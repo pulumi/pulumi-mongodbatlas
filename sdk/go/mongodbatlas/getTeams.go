@@ -24,7 +24,7 @@ type LookupTeamsArgs struct {
 
 // A collection of values returned by getTeams.
 type LookupTeamsResult struct {
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id        string   `pulumi:"id"`
 	Name      string   `pulumi:"name"`
 	OrgId     string   `pulumi:"orgId"`

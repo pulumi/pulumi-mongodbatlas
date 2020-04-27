@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
         public readonly int ClusterCount;
         public readonly string Created;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

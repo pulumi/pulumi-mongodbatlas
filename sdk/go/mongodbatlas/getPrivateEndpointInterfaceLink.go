@@ -37,7 +37,7 @@ type LookupPrivateEndpointInterfaceLinkResult struct {
 	DeleteRequested bool `pulumi:"deleteRequested"`
 	// Error message pertaining to the interface endpoint. Returns null if there are no errors.
 	ErrorMessage string `pulumi:"errorMessage"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id                  string `pulumi:"id"`
 	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
 	PrivateLinkId       string `pulumi:"privateLinkId"`

@@ -38,7 +38,7 @@ type LookupNetworkContainerResult struct {
 	ContainerId         string `pulumi:"containerId"`
 	// Unique identifier of the GCP project in which the Network Peering connection resides.
 	GcpProjectId string `pulumi:"gcpProjectId"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Name of the Network Peering connection in the Atlas project.
 	NetworkName string `pulumi:"networkName"`

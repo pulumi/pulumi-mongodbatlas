@@ -31,7 +31,7 @@ type LookupCustomDbRoleArgs struct {
 // A collection of values returned by getCustomDbRole.
 type LookupCustomDbRoleResult struct {
 	Actions []GetCustomDbRoleAction `pulumi:"actions"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id             string                         `pulumi:"id"`
 	InheritedRoles []GetCustomDbRoleInheritedRole `pulumi:"inheritedRoles"`
 	ProjectId      string                         `pulumi:"projectId"`

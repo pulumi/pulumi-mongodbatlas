@@ -29,7 +29,7 @@ type GetDatabaseUsersArgs struct {
 
 // A collection of values returned by getDatabaseUsers.
 type GetDatabaseUsersResult struct {
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// ID of the Atlas project the user belongs to.
 	ProjectId string `pulumi:"projectId"`

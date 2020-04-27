@@ -411,12 +411,22 @@ func (o AlertConfigurationMetricThresholdPtrOutput) Elem() AlertConfigurationMet
 
 // Name of the metric to check.
 func (o AlertConfigurationMetricThresholdPtrOutput) MetricName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.MetricName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MetricName
+	}).(pulumi.StringPtrOutput)
 }
 
 // This must be set to AVERAGE. Atlas computes the current metric value as an average.
 func (o AlertConfigurationMetricThresholdPtrOutput) Mode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.Mode }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mode
+	}).(pulumi.StringPtrOutput)
 }
 
 // Operator to apply when checking the current metric value against the threshold value.
@@ -424,12 +434,22 @@ func (o AlertConfigurationMetricThresholdPtrOutput) Mode() pulumi.StringPtrOutpu
 // - `GREATER_THAN`
 // - `LESS_THAN`
 func (o AlertConfigurationMetricThresholdPtrOutput) Operator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.Operator }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Operator
+	}).(pulumi.StringPtrOutput)
 }
 
 // Threshold value outside of which an alert will be triggered.
 func (o AlertConfigurationMetricThresholdPtrOutput) Threshold() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *float64 { return v.Threshold }).(pulumi.Float64PtrOutput)
+	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.Threshold
+	}).(pulumi.Float64PtrOutput)
 }
 
 // The units for the threshold value. Depends on the type of metric.
@@ -451,7 +471,12 @@ func (o AlertConfigurationMetricThresholdPtrOutput) Threshold() pulumi.Float64Pt
 // - `HOURS`
 // - `DAYS`
 func (o AlertConfigurationMetricThresholdPtrOutput) Units() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.Units }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Units
+	}).(pulumi.StringPtrOutput)
 }
 
 type AlertConfigurationNotification struct {
@@ -1148,20 +1173,40 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Elem() CloudProvid
 }
 
 func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Automated() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *bool { return v.Automated }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Automated
+	}).(pulumi.BoolPtrOutput)
 }
 
 func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Download() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *bool { return v.Download }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Download
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
 func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) TargetClusterName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *string { return v.TargetClusterName }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TargetClusterName
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) TargetProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *string { return v.TargetProjectId }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TargetProjectId
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterAdvancedConfiguration struct {
@@ -1343,37 +1388,72 @@ func (o ClusterAdvancedConfigurationPtrOutput) Elem() ClusterAdvancedConfigurati
 
 // When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 func (o ClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FailIndexKeyTooLong
+	}).(pulumi.BoolPtrOutput)
 }
 
 // When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 func (o ClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.JavascriptEnabled }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.JavascriptEnabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
 func (o ClusterAdvancedConfigurationPtrOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinimumEnabledTlsProtocol
+	}).(pulumi.StringPtrOutput)
 }
 
 // When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 func (o ClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.NoTableScan }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NoTableScan
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 func (o ClusterAdvancedConfigurationPtrOutput) OplogSizeMb() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.OplogSizeMb }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OplogSizeMb
+	}).(pulumi.IntPtrOutput)
 }
 
 // Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o ClusterAdvancedConfigurationPtrOutput) SampleRefreshIntervalBiConnector() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.SampleRefreshIntervalBiConnector }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SampleRefreshIntervalBiConnector
+	}).(pulumi.IntPtrOutput)
 }
 
 // Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
 func (o ClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.SampleSizeBiConnector }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SampleSizeBiConnector
+	}).(pulumi.IntPtrOutput)
 }
 
 type ClusterBiConnector struct {
@@ -1518,12 +1598,22 @@ func (o ClusterBiConnectorPtrOutput) Elem() ClusterBiConnectorOutput {
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorPtrOutput) Enabled() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterBiConnector) *string { return v.Enabled }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterBiConnector) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.StringPtrOutput)
 }
 
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 func (o ClusterBiConnectorPtrOutput) ReadPreference() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterBiConnector) *string { return v.ReadPreference }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterBiConnector) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ReadPreference
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterConnectionStrings struct {
@@ -1676,27 +1766,57 @@ func (o ClusterConnectionStringsPtrOutput) Elem() ClusterConnectionStringsOutput
 }
 
 func (o ClusterConnectionStringsPtrOutput) AwsPrivateLink() pulumi.MapOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+	return o.ApplyT(func(v *ClusterConnectionStrings) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.AwsPrivateLink
+	}).(pulumi.MapOutput)
 }
 
 func (o ClusterConnectionStringsPtrOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+	return o.ApplyT(func(v *ClusterConnectionStrings) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.AwsPrivateLinkSrv
+	}).(pulumi.MapOutput)
 }
 
 func (o ClusterConnectionStringsPtrOutput) Private() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.Private }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterConnectionStrings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Private
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterConnectionStringsPtrOutput) PrivateSrv() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterConnectionStrings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateSrv
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterConnectionStringsPtrOutput) Standard() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.Standard }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterConnectionStrings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Standard
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterConnectionStringsPtrOutput) StandardSrv() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ClusterConnectionStrings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StandardSrv
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterLabel struct {
@@ -3154,28 +3274,53 @@ func (o EncryptionAtRestAwsKmsPtrOutput) Elem() EncryptionAtRestAwsKmsOutput {
 }
 
 // The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-func (o EncryptionAtRestAwsKmsPtrOutput) AccessKeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.AccessKeyId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAwsKmsPtrOutput) AccessKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AccessKeyId
+	}).(pulumi.StringPtrOutput)
 }
 
 // The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
-func (o EncryptionAtRestAwsKmsPtrOutput) CustomerMasterKeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.CustomerMasterKeyId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAwsKmsPtrOutput) CustomerMasterKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CustomerMasterKeyId
+	}).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestAwsKmsPtrOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o EncryptionAtRestAwsKmsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-func (o EncryptionAtRestAwsKmsPtrOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.Region }).(pulumi.StringOutput)
+func (o EncryptionAtRestAwsKmsPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Region
+	}).(pulumi.StringPtrOutput)
 }
 
 // The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-func (o EncryptionAtRestAwsKmsPtrOutput) SecretAccessKey() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.SecretAccessKey }).(pulumi.StringOutput)
+func (o EncryptionAtRestAwsKmsPtrOutput) SecretAccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SecretAccessKey
+	}).(pulumi.StringPtrOutput)
 }
 
 type EncryptionAtRestAzureKeyVault struct {
@@ -3374,48 +3519,93 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) Elem() EncryptionAtRestAzureKeyV
 }
 
 // The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) AzureEnvironment() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.AzureEnvironment }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) AzureEnvironment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AzureEnvironment
+	}).(pulumi.StringPtrOutput)
 }
 
 // The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) ClientId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.ClientId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientId
+	}).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The unique identifier of a key in an Azure Key Vault.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyIdentifier() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.KeyIdentifier }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyIdentifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.KeyIdentifier
+	}).(pulumi.StringPtrOutput)
 }
 
 // The name of an Azure Key Vault containing your key.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyVaultName() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.KeyVaultName }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyVaultName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.KeyVaultName
+	}).(pulumi.StringPtrOutput)
 }
 
 // The name of the Azure Resource group that contains an Azure Key Vault.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) ResourceGroupName() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.ResourceGroupName }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) ResourceGroupName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ResourceGroupName
+	}).(pulumi.StringPtrOutput)
 }
 
 // The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) Secret() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.Secret }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Secret
+	}).(pulumi.StringPtrOutput)
 }
 
 // The unique identifier associated with an Azure subscription.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) SubscriptionId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.SubscriptionId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) SubscriptionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SubscriptionId
+	}).(pulumi.StringPtrOutput)
 }
 
 // The unique identifier for an Azure AD tenant within an Azure subscription.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) TenantId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.TenantId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultPtrOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TenantId
+	}).(pulumi.StringPtrOutput)
 }
 
 type EncryptionAtRestGoogleCloudKms struct {
@@ -3560,18 +3750,33 @@ func (o EncryptionAtRestGoogleCloudKmsPtrOutput) Elem() EncryptionAtRestGoogleCl
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o EncryptionAtRestGoogleCloudKmsPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKms) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The Key Version Resource ID from your GCP account.
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) KeyVersionResourceId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) string { return v.KeyVersionResourceId }).(pulumi.StringOutput)
+func (o EncryptionAtRestGoogleCloudKmsPtrOutput) KeyVersionResourceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKms) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.KeyVersionResourceId
+	}).(pulumi.StringPtrOutput)
 }
 
 // String-formatted JSON object containing GCP KMS credentials from your GCP account.
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) ServiceAccountKey() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) string { return v.ServiceAccountKey }).(pulumi.StringOutput)
+func (o EncryptionAtRestGoogleCloudKmsPtrOutput) ServiceAccountKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKms) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ServiceAccountKey
+	}).(pulumi.StringPtrOutput)
 }
 
 type GlobalClusterConfigCustomZoneMapping struct {

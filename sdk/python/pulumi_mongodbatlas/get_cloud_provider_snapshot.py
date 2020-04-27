@@ -39,7 +39,7 @@ class GetCloudProviderSnapshotResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if master_key_uuid and not isinstance(master_key_uuid, str):
             raise TypeError("Expected argument 'master_key_uuid' to be a str")

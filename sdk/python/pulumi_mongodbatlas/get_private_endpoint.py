@@ -30,7 +30,7 @@ class GetPrivateEndpointResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if interface_endpoints and not isinstance(interface_endpoints, list):
             raise TypeError("Expected argument 'interface_endpoints' to be a list")

@@ -29,7 +29,7 @@ type GetCloudProviderSnapshotsArgs struct {
 // A collection of values returned by getCloudProviderSnapshots.
 type GetCloudProviderSnapshotsResult struct {
 	ClusterName string `pulumi:"clusterName"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// Includes cloudProviderSnapshot object for each item detailed in the results array section.

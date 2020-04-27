@@ -21,7 +21,7 @@ class GetCustomDbRoleResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if inherited_roles and not isinstance(inherited_roles, list):
             raise TypeError("Expected argument 'inherited_roles' to be a list")

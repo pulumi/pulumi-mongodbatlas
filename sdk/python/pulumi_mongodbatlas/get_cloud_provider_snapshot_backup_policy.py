@@ -27,7 +27,7 @@ class GetCloudProviderSnapshotBackupPolicyResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if next_snapshot and not isinstance(next_snapshot, str):
             raise TypeError("Expected argument 'next_snapshot' to be a str")

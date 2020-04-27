@@ -38,7 +38,7 @@ type LookupDatabaseUserResult struct {
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	DatabaseName *string `pulumi:"databaseName"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id        string                 `pulumi:"id"`
 	Labels    []GetDatabaseUserLabel `pulumi:"labels"`
 	ProjectId string                 `pulumi:"projectId"`

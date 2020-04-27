@@ -21,7 +21,7 @@ func GetProjects(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetProjects
 
 // A collection of values returned by getProjects.
 type GetProjectsResult struct {
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id         string                  `pulumi:"id"`
 	Results    []GetProjectsResultType `pulumi:"results"`
 	TotalCount int                     `pulumi:"totalCount"`

@@ -33,7 +33,7 @@ type LookupPrivateEndpointResult struct {
 	EndpointServiceName string `pulumi:"endpointServiceName"`
 	// Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
 	ErrorMessage string `pulumi:"errorMessage"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
 	InterfaceEndpoints []string `pulumi:"interfaceEndpoints"`

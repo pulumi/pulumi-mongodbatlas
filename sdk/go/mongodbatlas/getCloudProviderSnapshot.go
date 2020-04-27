@@ -37,7 +37,7 @@ type LookupCloudProviderSnapshotResult struct {
 	Description string `pulumi:"description"`
 	// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
 	ExpiresAt string `pulumi:"expiresAt"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
 	MasterKeyUuid string `pulumi:"masterKeyUuid"`

@@ -32,7 +32,7 @@ type Get509AuthenticationDatabaseUserResult struct {
 	// Array of objects where each details one unexpired database user certificate.
 	Certificates    []Get509AuthenticationDatabaseUserCertificate `pulumi:"certificates"`
 	CustomerX509Cas string                                        `pulumi:"customerX509Cas"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	ProjectId string  `pulumi:"projectId"`
 	Username  *string `pulumi:"username"`

@@ -69,7 +69,7 @@ type LookupAlertConfigurationResult struct {
 	// - `CHARGE_SUCCEEDED`
 	// - `INVOICE_CLOSED`
 	EventType string `pulumi:"eventType"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id              string                               `pulumi:"id"`
 	Matchers        []GetAlertConfigurationMatcher       `pulumi:"matchers"`
 	MetricThreshold GetAlertConfigurationMetricThreshold `pulumi:"metricThreshold"`

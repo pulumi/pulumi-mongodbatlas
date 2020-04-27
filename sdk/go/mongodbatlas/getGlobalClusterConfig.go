@@ -35,7 +35,7 @@ type LookupGlobalClusterConfigResult struct {
 	ClusterName string `pulumi:"clusterName"`
 	// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
 	CustomZoneMapping map[string]interface{} `pulumi:"customZoneMapping"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GetGlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`

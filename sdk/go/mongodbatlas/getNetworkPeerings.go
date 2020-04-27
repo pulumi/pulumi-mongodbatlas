@@ -27,7 +27,7 @@ type GetNetworkPeeringsArgs struct {
 
 // A collection of values returned by getNetworkPeerings.
 type GetNetworkPeeringsResult struct {
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Network Peering Connection.

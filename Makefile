@@ -26,7 +26,7 @@ TESTPARALLELISM := 4
 # NOTE: Since the plugin is published using the nodejs style semver version
 # We set the PLUGIN_VERSION to be the same as the version we use when building
 # the provider (e.g. x.y.z-dev-... instead of x.y.zdev...)
-build:: tfgen provider
+build:: provider install_plugins
 	cd provider && for LANGUAGE in "nodejs" "python" "go" "dotnet" ; do \
 		$(TFGEN) $$LANGUAGE --overlays overlays/$$LANGUAGE/ --out ../${PACKDIR}/$$LANGUAGE/ || exit 3 ; \
 	done
@@ -55,6 +55,10 @@ tfgen::
 provider:: generate_schema
 	cd provider && go generate cmd/${PROVIDER}/main.go
 	cd provider && go install -ldflags "-X github.com/pulumi/pulumi-${PACK}/provider/pkg/version.Version=${VERSION}" ${PROJECT}/provider/cmd/${PROVIDER}
+
+install_plugins:
+	[ -x "$(shell which pulumi)" ] || ▶ curl -fsSL https://get.pulumi.com
+	pulumi plugin install resource aws 2.0.0
 
 install::
 	[ ! -e "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)" ] || rm -rf "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)"

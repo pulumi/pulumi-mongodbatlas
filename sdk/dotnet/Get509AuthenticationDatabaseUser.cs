@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
         public readonly ImmutableArray<Outputs.Get509AuthenticationDatabaseUserCertificateResult> Certificates;
         public readonly string CustomerX509Cas;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string ProjectId;

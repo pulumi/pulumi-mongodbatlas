@@ -83,7 +83,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string FinishedAt;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string JobId;

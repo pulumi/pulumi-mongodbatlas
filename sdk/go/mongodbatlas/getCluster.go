@@ -55,7 +55,7 @@ type LookupClusterResult struct {
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Indicates whether Encryption at Rest is enabled or disabled.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id     string            `pulumi:"id"`
 	Labels []GetClusterLabel `pulumi:"labels"`
 	// Indicates the version of the cluster to deploy.

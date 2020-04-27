@@ -31,7 +31,7 @@ type LookupProjectArgs struct {
 type LookupProjectResult struct {
 	ClusterCount int    `pulumi:"clusterCount"`
 	Created      string `pulumi:"created"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`

@@ -46,7 +46,7 @@ type LookupCloudProviderSnapshotRestoreJobResult struct {
 	ExpiresAt string `pulumi:"expiresAt"`
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt string `pulumi:"finishedAt"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	JobId     string `pulumi:"jobId"`
 	ProjectId string `pulumi:"projectId"`

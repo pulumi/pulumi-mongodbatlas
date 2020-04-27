@@ -32,7 +32,7 @@ type LookupCloudProviderSnapshotBackupPolicyResult struct {
 	// Unique identifier of the Atlas cluster.
 	ClusterId   string `pulumi:"clusterId"`
 	ClusterName string `pulumi:"clusterName"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.
 	NextSnapshot string `pulumi:"nextSnapshot"`

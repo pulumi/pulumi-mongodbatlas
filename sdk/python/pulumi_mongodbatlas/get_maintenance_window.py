@@ -30,7 +30,7 @@ class GetMaintenanceWindowResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if number_of_deferrals and not isinstance(number_of_deferrals, float):
             raise TypeError("Expected argument 'number_of_deferrals' to be a float")

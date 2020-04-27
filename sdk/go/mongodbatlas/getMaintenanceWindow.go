@@ -31,7 +31,7 @@ type LookupMaintenanceWindowResult struct {
 	DayOfWeek int `pulumi:"dayOfWeek"`
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
 	HourOfDay int `pulumi:"hourOfDay"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
 	NumberOfDeferrals int    `pulumi:"numberOfDeferrals"`
