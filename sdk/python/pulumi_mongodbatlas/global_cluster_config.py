@@ -42,6 +42,93 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+
+        ## Examples Usage
+
+        ### Example Global cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            project_id="<YOUR-PROJECT-ID>",
+            disk_size_gb=80,
+            backup_enabled=False,
+            provider_backup_enabled=True,
+            cluster_type="GEOSHARDED",
+            provider_name="AWS",
+            provider_disk_iops=240,
+            provider_instance_size_name="M30",
+            replication_specs=[
+                {
+                    "zoneName": "Zone 1",
+                    "numShards": 1,
+                    "regions_config": [{
+                        "regionName": "EU_CENTRAL_1",
+                        "electableNodes": 3,
+                        "priority": 7,
+                        "readOnlyNodes": 0,
+                    }],
+                },
+                {
+                    "zoneName": "Zone 2",
+                    "numShards": 1,
+                    "regions_config": [{
+                        "regionName": "US_EAST_2",
+                        "electableNodes": 3,
+                        "priority": 7,
+                        "readOnlyNodes": 0,
+                    }],
+                },
+            ])
+        config = mongodbatlas.GlobalClusterConfig("config",
+            project_id=test.project_id,
+            cluster_name=test.name,
+            managed_namespaces=[{
+                "db": "mydata",
+                "collection": "publishers",
+                "customShardKey": "city",
+            }],
+            custom_zone_mappings=[{
+                "location": "CA",
+                "zone": "Zone 1",
+            }])
+        ```
+
+        ### Example Global cluster config
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            num_shards=1,
+            replication_factor=3,
+            backup_enabled=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.0",
+            provider_name="AWS",
+            disk_size_gb=100,
+            provider_disk_iops=300,
+            provider_encrypt_ebs_volume=False,
+            provider_instance_size_name="M40",
+            provider_region_name="US_EAST_1")
+        config = mongodbatlas.GlobalClusterConfig("config",
+            project_id=mongodbatlas_cluster["test"]["project_id"],
+            cluster_name=mongodbatlas_cluster["test"]["name"],
+            managed_namespaces=[{
+                "db": "mydata",
+                "collection": "publishers",
+                "customShardKey": "city",
+            }],
+            custom_zone_mappings=[{
+                "location": "CA",
+                "zone": "Zone 1",
+            }])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.

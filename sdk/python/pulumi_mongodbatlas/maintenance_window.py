@@ -49,6 +49,19 @@ class MaintenanceWindow(pulumi.CustomResource):
         - Maintenance Starts As Close to the Hour As Possible: Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or expected system issues could delay the start time.
 
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            day_of_week=3,
+            hour_of_day=4,
+            project_id="<your-project-id>")
+        ```
 
 
         :param str resource_name: The name of the resource.

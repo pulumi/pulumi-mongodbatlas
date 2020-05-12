@@ -70,6 +70,19 @@ class PrivateEndpoint(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateEndpoint("test",
+            project_id="<PROJECT-ID>",
+            provider_name="AWS",
+            region="us-east-1")
+        ```
 
 
         :param str resource_name: The name of the resource.

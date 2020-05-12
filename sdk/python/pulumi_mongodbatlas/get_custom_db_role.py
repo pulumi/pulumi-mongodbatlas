@@ -50,6 +50,36 @@ def get_custom_db_role(inherited_roles=None,project_id=None,role_name=None,opts=
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CustomDbRole("testRole",
+        actions=[
+            {
+                "action": "UPDATE",
+                "resources": [{
+                    "collectionName": "",
+                    "databaseName": "anyDatabase",
+                }],
+            },
+            {
+                "action": "INSERT",
+                "resources": [{
+                    "collectionName": "",
+                    "databaseName": "anyDatabase",
+                }],
+            },
+        ],
+        project_id="<PROJECT-ID>",
+        role_name="myCustomRole")
+    test = pulumi.Output.all(test_role.project_id, test_role.role_name).apply(lambda project_id, role_name: mongodbatlas.get_custom_db_role(project_id=project_id,
+        role_name=role_name))
+    ```
 
 
 

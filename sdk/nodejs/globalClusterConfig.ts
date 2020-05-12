@@ -11,6 +11,97 @@ import * as utilities from "./utilities";
  * 
  * 
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ * 
+ * 
+ * ## Examples Usage
+ * 
+ * ### Example Global cluster
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * 
+ * const test = new mongodbatlas.Cluster("test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     diskSizeGb: 80,
+ *     backupEnabled: false,
+ *     providerBackupEnabled: true,
+ *     clusterType: "GEOSHARDED",
+ *     providerName: "AWS",
+ *     providerDiskIops: 240,
+ *     providerInstanceSizeName: "M30",
+ *     replication_specs: [
+ *         {
+ *             zoneName: "Zone 1",
+ *             numShards: 1,
+ *             regions_config: [{
+ *                 regionName: "EU_CENTRAL_1",
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *             }],
+ *         },
+ *         {
+ *             zoneName: "Zone 2",
+ *             numShards: 1,
+ *             regions_config: [{
+ *                 regionName: "US_EAST_2",
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *             }],
+ *         },
+ *     ],
+ * });
+ * const config = new mongodbatlas.GlobalClusterConfig("config", {
+ *     projectId: test.projectId,
+ *     clusterName: test.name,
+ *     managed_namespaces: [{
+ *         db: "mydata",
+ *         collection: "publishers",
+ *         customShardKey: "city",
+ *     }],
+ *     custom_zone_mappings: [{
+ *         location: "CA",
+ *         zone: "Zone 1",
+ *     }],
+ * });
+ * ```
+ * 
+ * ### Example Global cluster config
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * 
+ * const cluster-test = new mongodbatlas.Cluster("cluster-test", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     numShards: 1,
+ *     replicationFactor: 3,
+ *     backupEnabled: true,
+ *     autoScalingDiskGbEnabled: true,
+ *     mongoDbMajorVersion: "4.0",
+ *     providerName: "AWS",
+ *     diskSizeGb: 100,
+ *     providerDiskIops: 300,
+ *     providerEncryptEbsVolume: false,
+ *     providerInstanceSizeName: "M40",
+ *     providerRegionName: "US_EAST_1",
+ * });
+ * const config = new mongodbatlas.GlobalClusterConfig("config", {
+ *     projectId: mongodbatlas_cluster.test.project_id,
+ *     clusterName: mongodbatlas_cluster.test.name,
+ *     managed_namespaces: [{
+ *         db: "mydata",
+ *         collection: "publishers",
+ *         customShardKey: "city",
+ *     }],
+ *     custom_zone_mappings: [{
+ *         location: "CA",
+ *         zone: "Zone 1",
+ *     }],
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/global_cluster_config.html.markdown.
  */

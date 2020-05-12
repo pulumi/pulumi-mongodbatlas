@@ -76,6 +76,42 @@ class AlertConfiguration(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="OUTSIDE_METRIC_THRESHOLD",
+            matchers=[{
+                "fieldName": "HOSTNAME_AND_PORT",
+                "operator": "EQUALS",
+                "value": "SECONDARY",
+            }],
+            metric_threshold={
+                "metric_name": "ASSERT_REGULAR",
+                "mode": "AVERAGE",
+                "operator": "LESS_THAN",
+                "threshold": 99,
+                "units": "RAW",
+            },
+            notifications=[{
+                "delayMin": 0,
+                "emailEnabled": True,
+                "intervalMin": 5,
+                "roles": [
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+                "smsEnabled": False,
+                "typeName": "GROUP",
+            }],
+            project_id="<PROJECT-ID>")
+        ```
 
 
         :param str resource_name: The name of the resource.

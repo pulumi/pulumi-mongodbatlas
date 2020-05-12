@@ -61,6 +61,63 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("myCluster",
+            project_id="<PROJECT-ID>",
+            disk_size_gb=5,
+            provider_name="AWS",
+            provider_region_name="EU_CENTRAL_1",
+            provider_instance_size_name="M10",
+            provider_backup_enabled=True,
+            provider_disk_iops=100,
+            provider_encrypt_ebs_volume=False)
+        test = mongodbatlas.CloudProviderSnapshotBackupPolicy("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policies=[{
+                "id": my_cluster.snapshot_backup_policies[0]["policies"][0]["id"],
+                "policy_item": [
+                    {
+                        "id": my_cluster.snapshot_backup_policies[0]["policies"][0]["policyItems"][0]["id"],
+                        "frequencyInterval": 1,
+                        "frequencyType": "hourly",
+                        "retentionUnit": "days",
+                        "retentionValue": 1,
+                    },
+                    {
+                        "id": my_cluster.snapshot_backup_policies[0]["policies"][0]["policyItems"][1]["id"],
+                        "frequencyInterval": 1,
+                        "frequencyType": "daily",
+                        "retentionUnit": "days",
+                        "retentionValue": 2,
+                    },
+                    {
+                        "id": my_cluster.snapshot_backup_policies[0]["policies"][0]["policyItems"][2]["id"],
+                        "frequencyInterval": 4,
+                        "frequencyType": "weekly",
+                        "retentionUnit": "weeks",
+                        "retentionValue": 3,
+                    },
+                    {
+                        "id": my_cluster.snapshot_backup_policies[0]["policies"][0]["policyItems"][3]["id"],
+                        "frequencyInterval": 5,
+                        "frequencyType": "monthly",
+                        "retentionUnit": "months",
+                        "retentionValue": 4,
+                    },
+                ],
+            }])
+        ```
 
 
         :param str resource_name: The name of the resource.

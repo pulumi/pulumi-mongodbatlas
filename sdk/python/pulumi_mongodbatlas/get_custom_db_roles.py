@@ -45,6 +45,31 @@ def get_custom_db_roles(project_id=None,opts=None):
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
+        database_name="admin",
+        password="test-acc-password",
+        project_id="<PROJECT-ID>",
+        roles=[
+            {
+                "databaseName": "admin",
+                "roleName": "readWrite",
+            },
+            {
+                "databaseName": "admin",
+                "roleName": "atlasAdmin",
+            },
+        ],
+        username="test-acc-username")
+    test_custom_db_roles = mongodbatlas.get_custom_db_roles(project_id=mongodbatlas_custom_db_role["test"]["project_id"])
+    ```
 
 
 

@@ -15,6 +15,32 @@ import * as utilities from "./utilities";
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * 
+ * const testCluster = new mongodbatlas.Cluster("testCluster", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     diskSizeGb: 100,
+ *     numShards: 1,
+ *     replicationFactor: 3,
+ *     providerBackupEnabled: true,
+ *     autoScalingDiskGbEnabled: true,
+ *     providerName: "AWS",
+ *     providerDiskIops: 300,
+ *     providerVolumeType: "STANDARD",
+ *     providerEncryptEbsVolume: true,
+ *     providerInstanceSizeName: "M40",
+ *     providerRegionName: "US_EAST_1",
+ * });
+ * const testClusters = testCluster.projectId.apply(projectId => mongodbatlas.getClusters({
+ *     projectId: projectId,
+ * }));
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/clusters.html.markdown.
  */

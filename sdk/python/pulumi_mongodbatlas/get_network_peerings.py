@@ -46,6 +46,24 @@ def get_network_peerings(project_id=None,opts=None):
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
 
+    ## Example Usage
+
+    ### Basic Example (AWS).
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
+        accepter_region_name="us-east-1",
+        project_id="<YOUR-PROJEC-ID>",
+        container_id="507f1f77bcf86cd799439011",
+        provider_name="AWS",
+        route_table_cidr_block="192.168.0.0/24",
+        vpc_id="vpc-abc123abc123",
+        aws_account_id="abc123abc123")
+    test_network_peerings = test_network_peering.project_id.apply(lambda project_id: mongodbatlas.get_network_peerings(project_id=project_id))
+    ```
 
 
 

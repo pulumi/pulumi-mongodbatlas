@@ -71,6 +71,45 @@ class NetworkContainer(pulumi.CustomResource):
         > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
 
+        ## Example Usage
+
+        ### Example with AWS.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.NetworkContainer("test",
+            atlas_cidr_block="10.8.0.0/21",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_name="AWS",
+            region_name="US_EAST_1")
+        ```
+
+        ### Example with GCP
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.NetworkContainer("test",
+            atlas_cidr_block="10.8.0.0/21",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_name="GCP")
+        ```
+
+        ### Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.NetworkContainer("test",
+            atlas_cidr_block="10.8.0.0/21",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_name="AZURE",
+            region="US_EAST_2")
+        ```
 
 
         :param str resource_name: The name of the resource.
