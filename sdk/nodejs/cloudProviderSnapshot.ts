@@ -12,6 +12,39 @@ import * as utilities from "./utilities";
  * 
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * 
+ * const myCluster = new mongodbatlas.Cluster("myCluster", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
+ *     diskSizeGb: 5,
+ *     providerName: "AWS",
+ *     providerRegionName: "EU_WEST_2",
+ *     providerInstanceSizeName: "M10",
+ *     providerBackupEnabled: true,
+ *     providerDiskIops: 100,
+ *     providerEncryptEbsVolume: false,
+ * });
+ * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     description: "myDescription",
+ *     retentionInDays: 1,
+ * });
+ * const testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", {
+ *     projectId: testCloudProviderSnapshot.projectId,
+ *     clusterName: testCloudProviderSnapshot.clusterName,
+ *     snapshotId: testCloudProviderSnapshot.snapshotId,
+ *     deliveryType: {
+ *         download: true,
+ *     },
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/cloud_provider_snapshot.html.markdown.
  */

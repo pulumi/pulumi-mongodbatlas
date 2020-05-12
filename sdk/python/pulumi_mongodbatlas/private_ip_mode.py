@@ -25,6 +25,18 @@ class PrivateIpMode(pulumi.CustomResource):
         > **Deprecated Feature**: <br> This feature has been deprecated. Use [Split Horizon connection strings](https://dochub.mongodb.org/core/atlas-horizon-faq) to connect to your cluster. These connection strings allow you to connect using both VPC/VNet Peering and whitelisted public IP addresses. To learn more about support for Split Horizon, see [this FAQ](https://dochub.mongodb.org/core/atlas-horizon-faq). You need this endpoint to [disable Peering Only](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode).
 
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_private_ip_mode = mongodbatlas.PrivateIpMode("myPrivateIpMode",
+            enabled=False,
+            project_id="<YOUR PROJECT ID>")
+        ```
 
 
         :param str resource_name: The name of the resource.

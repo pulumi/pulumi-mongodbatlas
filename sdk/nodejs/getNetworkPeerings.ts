@@ -12,6 +12,27 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  * 
  * 
+ * ## Example Usage
+ * 
+ * ### Basic Example (AWS).
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * 
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("testNetworkPeering", {
+ *     accepterRegionName: "us-east-1",
+ *     projectId: "<YOUR-PROJEC-ID>",
+ *     containerId: "507f1f77bcf86cd799439011",
+ *     providerName: "AWS",
+ *     routeTableCidrBlock: "192.168.0.0/24",
+ *     vpcId: "vpc-abc123abc123",
+ *     awsAccountId: "abc123abc123",
+ * });
+ * const testNetworkPeerings = testNetworkPeering.projectId.apply(projectId => mongodbatlas.getNetworkPeerings({
+ *     projectId: projectId,
+ * }));
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/network_peerings.html.markdown.
  */

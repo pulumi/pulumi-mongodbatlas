@@ -53,6 +53,22 @@ def get_network_containers(project_id=None,provider_name=None,opts=None):
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
 
+    ## Example Usage
+
+    ### Basic Example.
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
+        project_id="<YOUR-PROJECT-ID>",
+        atlas_cidr_block="10.8.0.0/21",
+        provider_name="AWS",
+        region_name="US_EAST_1")
+    test_network_containers = pulumi.Output.all(test_network_container.project_id, test_network_container.provider_name).apply(lambda project_id, provider_name: mongodbatlas.get_network_containers(project_id=project_id,
+        provider_name=provider_name))
+    ```
 
 
 

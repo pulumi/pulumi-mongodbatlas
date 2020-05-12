@@ -50,6 +50,41 @@ def get_database_users(project_id=None,opts=None):
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
+        username="test-acc-username",
+        password="test-acc-password",
+        project_id="<PROJECT-ID>",
+        auth_database_name="admin",
+        roles=[
+            {
+                "roleName": "readWrite",
+                "databaseName": "admin",
+            },
+            {
+                "roleName": "atlasAdmin",
+                "databaseName": "admin",
+            },
+        ],
+        labels=[
+            {
+                "key": "key 1",
+                "value": "value 1",
+            },
+            {
+                "key": "key 2",
+                "value": "value 2",
+            },
+        ])
+    test_database_users = test_database_user.project_id.apply(lambda project_id: mongodbatlas.get_database_users(project_id=project_id))
+    ```
 
 
 

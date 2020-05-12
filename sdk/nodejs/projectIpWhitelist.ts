@@ -42,6 +42,34 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  * });
  * ```
+ * 
+ * ### Using an AWS Security Group
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * 
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ *     projectId: "<PROJECT-ID>",
+ *     atlasCidrBlock: "192.168.208.0/21",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * const testNetworkPeering = new mongodbatlas.NetworkPeering("testNetworkPeering", {
+ *     projectId: "<PROJECT-ID>",
+ *     containerId: testNetworkContainer.containerId,
+ *     accepterRegionName: "us-east-1",
+ *     providerName: "AWS",
+ *     routeTableCidrBlock: "172.31.0.0/16",
+ *     vpcId: "vpc-0d93d6f69f1578bd8",
+ *     awsAccountId: "232589400519",
+ * });
+ * const testProjectIpWhitelist = new mongodbatlas.ProjectIpWhitelist("testProjectIpWhitelist", {
+ *     projectId: "<PROJECT-ID>",
+ *     awsSecurityGroup: "sg-0026348ec11780bd1",
+ *     comment: "TestAcc for awsSecurityGroup",
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/project_ip_whitelist.html.markdown.
  */

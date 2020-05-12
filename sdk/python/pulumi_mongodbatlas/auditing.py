@@ -37,6 +37,20 @@ class Auditing(pulumi.CustomResource):
         """
         `.Auditing` provides an Auditing resource. This allows auditing to be created.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Auditing("test",
+            audit_authorization_success=False,
+            audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+            enabled=True,
+            project_id="<project-id>")
+        ```
 
 
         :param str resource_name: The name of the resource.

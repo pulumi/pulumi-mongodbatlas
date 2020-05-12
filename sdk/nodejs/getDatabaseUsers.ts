@@ -13,6 +13,44 @@ import * as utilities from "./utilities";
  * 
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * 
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ *     username: "test-acc-username",
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
+ *     authDatabaseName: "admin",
+ *     roles: [
+ *         {
+ *             roleName: "readWrite",
+ *             databaseName: "admin",
+ *         },
+ *         {
+ *             roleName: "atlasAdmin",
+ *             databaseName: "admin",
+ *         },
+ *     ],
+ *     labels: [
+ *         {
+ *             key: "key 1",
+ *             value: "value 1",
+ *         },
+ *         {
+ *             key: "key 2",
+ *             value: "value 2",
+ *         },
+ *     ],
+ * });
+ * const testDatabaseUsers = testDatabaseUser.projectId.apply(projectId => mongodbatlas.getDatabaseUsers({
+ *     projectId: projectId,
+ * }));
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/database_users.html.markdown.
  */

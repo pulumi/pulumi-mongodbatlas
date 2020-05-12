@@ -66,6 +66,8 @@ def get_maintenance_window(project_id=None,opts=None):
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Examples Usage
+
 
     :param str project_id: The unique identifier of the project for the Maintenance Window.
     """

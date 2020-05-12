@@ -36,6 +36,22 @@ class Team(pulumi.CustomResource):
 
         MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Teams("test",
+            org_id="<ORGANIZATION-ID>",
+            usernames=[
+                "user1",
+                "user2",
+                "user3",
+            ])
+        ```
 
 
         :param str resource_name: The name of the resource.
