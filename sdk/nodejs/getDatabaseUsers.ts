@@ -8,19 +8,19 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..getDatabaseUsers` describe all Database Users. This represents a database user which will be applied to all clusters within the project.
- * 
+ *
  * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
  *     username: "test-acc-username",
  *     password: "test-acc-password",
@@ -51,8 +51,6 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/database_users.html.markdown.
  */
 export function getDatabaseUsers(args: GetDatabaseUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseUsersResult> {
     if (!opts) {

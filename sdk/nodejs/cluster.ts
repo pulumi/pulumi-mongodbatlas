@@ -8,23 +8,23 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
+ *
  * > **IMPORTANT:**
  * <br> &#8226; Free tier cluster creation (M0) is not supported via API or by this Provider.
  * <br> &#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Example AWS cluster
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
  *     autoScalingDiskGbEnabled: true,
  *     diskSizeGb: 100,
@@ -42,13 +42,13 @@ import * as utilities from "./utilities";
  *     replicationFactor: 3,
  * });
  * ```
- * 
+ *
  * ### Example Azure cluster.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.Cluster("test", {
  *     autoScalingDiskGbEnabled: true,
  *     mongoDbMajorVersion: "4.0",
@@ -63,13 +63,13 @@ import * as utilities from "./utilities";
  *     replicationFactor: 3,
  * });
  * ```
- * 
+ *
  * ### Example GCP cluster
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.Cluster("test", {
  *     autoScalingDiskGbEnabled: true,
  *     diskSizeGb: 40,
@@ -84,13 +84,13 @@ import * as utilities from "./utilities";
  *     replicationFactor: 3,
  * });
  * ```
- * 
+ *
  * ### Example Multi Region cluster
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
  *     clusterType: "REPLICASET",
  *     diskSizeGb: 100,
@@ -127,13 +127,13 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * 
+ *
  * ### Example Global cluster
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
  *     clusterType: "GEOSHARDED",
  *     diskSizeGb: 80,
@@ -169,13 +169,13 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * 
+ *
  * ### Example AWS Shared Tier cluster
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
  *     autoScalingDiskGbEnabled: false,
  *     backingProviderName: "AWS",
@@ -189,8 +189,6 @@ import * as utilities from "./utilities";
  *     providerRegionName: "US_EAST_1",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/cluster.html.markdown.
  */
 export class Cluster extends pulumi.CustomResource {
     /**

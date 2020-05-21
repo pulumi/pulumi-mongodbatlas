@@ -8,21 +8,21 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
- * 
+ *
  * > **IMPORTANT:** MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
+ *
  * MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.Teams("test", {
  *     orgId: "<ORGANIZATION-ID>",
  *     usernames: [
@@ -32,8 +32,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/team.html.markdown.
  */
 export class Team extends pulumi.CustomResource {
     /**

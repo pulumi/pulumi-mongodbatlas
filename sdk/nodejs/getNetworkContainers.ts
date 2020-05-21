@@ -8,18 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
+ *
  * ### Basic Example.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     atlasCidrBlock: "10.8.0.0/21",
@@ -31,8 +31,6 @@ import * as utilities from "./utilities";
  *     providerName: providerName,
  * }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/network_containers.html.markdown.
  */
 export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainersResult> {
     if (!opts) {

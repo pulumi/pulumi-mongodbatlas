@@ -8,21 +8,21 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The mongodbatlas..X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
- * 
+ *
  * | Management  | Description  |
  * |---|---|
  * | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
  * | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
+ *
  * ## Example Usages
- * 
+ *
  * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const user = new mongodbatlas.DatabaseUser("user", {
  *     databaseName: "$external",
  *     labels: [{
@@ -43,12 +43,12 @@ import * as utilities from "./utilities";
  *     username: user.username,
  * });
  * ```
- * 
+ *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.X509AuthenticationDatabaseUser("test", {
  *     customerX509Cas: `  -----BEGIN CERTIFICATE-----
  *   MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
@@ -70,8 +70,6 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/x509_authentication_database_user.html.markdown.
  */
 export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
     /**

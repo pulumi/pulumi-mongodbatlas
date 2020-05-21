@@ -8,21 +8,21 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
+ *
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     diskSizeGb: 100,
@@ -41,8 +41,6 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/clusters.html.markdown.
  */
 export function getClusters(args: GetClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetClustersResult> {
     if (!opts) {

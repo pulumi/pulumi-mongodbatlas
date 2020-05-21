@@ -8,15 +8,15 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..Auditing` provides an Auditing resource. This allows auditing to be created.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.Auditing("test", {
  *     auditAuthorizationSuccess: false,
  *     auditFilter: "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
@@ -24,8 +24,6 @@ import * as utilities from "./utilities";
  *     projectId: "<project-id>",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/auditing.html.markdown.
  */
 export class Auditing extends pulumi.CustomResource {
     /**

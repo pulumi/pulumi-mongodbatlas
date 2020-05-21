@@ -118,7 +118,6 @@ export interface DatabaseUserState {
     readonly authDatabaseName?: pulumi.Input<string>;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
      * @deprecated use auth_database_name instead
      */
     readonly databaseName?: pulumi.Input<string>;
@@ -152,7 +151,6 @@ export interface DatabaseUserArgs {
     readonly authDatabaseName?: pulumi.Input<string>;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-     * 
      * @deprecated use auth_database_name instead
      */
     readonly databaseName?: pulumi.Input<string>;

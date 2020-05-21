@@ -8,23 +8,23 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
- * 
+ *
  * > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
  *   * Organization Owner
  *   * Project Owner
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testPrivateEndpoint = new mongodbatlas.PrivateEndpoint("test", {
  *     projectId: "<PROJECT_ID>",
  *     providerName: "AWS",
@@ -43,8 +43,6 @@ import * as utilities from "./utilities";
  *     projectId: testPrivateEndpoint.projectId,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/private_endpoint_interface_link.html.markdown.
  */
 export class PrivateEndpointInterfaceLink extends pulumi.CustomResource {
     /**

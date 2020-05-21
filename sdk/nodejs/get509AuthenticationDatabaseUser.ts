@@ -8,16 +8,16 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
+ *
  * ## Example Usages
- * 
+ *
  * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const user = new mongodbatlas.DatabaseUser("user", {
  *     databaseName: "$external",
  *     labels: [{
@@ -42,12 +42,12 @@ import * as utilities from "./utilities";
  *     username: username,
  * }, { async: true }));
  * ```
- * 
+ *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testX509AuthenticationDatabaseUser = new mongodbatlas.X509AuthenticationDatabaseUser("test", {
  *     customerX509Cas: `  -----BEGIN CERTIFICATE-----
  *   MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
@@ -72,8 +72,6 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/x509_authentication_database_user.html.markdown.
  */
 export function get509AuthenticationDatabaseUser(args: Get509AuthenticationDatabaseUserArgs, opts?: pulumi.InvokeOptions): Promise<Get509AuthenticationDatabaseUserResult> {
     if (!opts) {

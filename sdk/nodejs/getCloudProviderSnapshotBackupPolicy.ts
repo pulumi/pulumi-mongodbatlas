@@ -8,11 +8,9 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a Cloud Provider Snapshot Backup Policy entry datasource. An Atlas Cloud Provider Snapshot Backup Policy provides the current snapshot schedule and retention settings for the cluster.
- * 
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/cloud_provider_snapshot_backup_policy.html.markdown.
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
  */
 export function getCloudProviderSnapshotBackupPolicy(args: GetCloudProviderSnapshotBackupPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotBackupPolicyResult> {
     if (!opts) {

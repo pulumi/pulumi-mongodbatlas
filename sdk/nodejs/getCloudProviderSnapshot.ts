@@ -8,17 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..CloudProviderSnapshot` provides an Cloud Provider Snapshot entry datasource. Atlas Cloud Provider Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service provider.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testMongodbatlasCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("test", {
  *     clusterName: "MyClusterTest",
  *     description: "SomeDescription",
@@ -31,8 +31,6 @@ import * as utilities from "./utilities";
  *     snapshotId: "5d1285acd5ec13b6c2d1726a",
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/cloud_provider_snapshot.html.markdown.
  */
 export function getCloudProviderSnapshot(args: GetCloudProviderSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotResult> {
     if (!opts) {

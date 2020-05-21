@@ -26,6 +26,8 @@ type LookupDatabaseUserArgs struct {
 	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+	//
+	// Deprecated: use auth_database_name instead
 	DatabaseName *string `pulumi:"databaseName"`
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
@@ -37,6 +39,8 @@ type LookupDatabaseUserArgs struct {
 type LookupDatabaseUserResult struct {
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+	//
+	// Deprecated: use auth_database_name instead
 	DatabaseName *string `pulumi:"databaseName"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string                 `pulumi:"id"`

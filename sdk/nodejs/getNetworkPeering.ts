@@ -8,12 +8,10 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..NetworkPeering` describes a Network Peering Connection.
- * 
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- * 
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/network_peering.html.markdown.
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ *
  */
 export function getNetworkPeering(args: GetNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringResult> {
     if (!opts) {

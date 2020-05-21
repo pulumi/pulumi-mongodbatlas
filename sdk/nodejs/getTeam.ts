@@ -8,11 +8,9 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
- * 
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/team.html.markdown.
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
  */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
     if (!opts) {
