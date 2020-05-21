@@ -8,20 +8,20 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
- * 
+ *
  * > **IMPORTANT** Custom roles cannot use actions unavailable to any cluster version in your project. Custom roles are defined at the project level, and must be compatible with each MongoDB version used by your project’s clusters. If you have a cluster in your project with MongoDB 3.4, you cannot create a custom role that uses actions introduced in MongoDB 3.6, such as useUUID.
- * 
- * 
+ *
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testRole = new mongodbatlas.CustomDbRole("testRole", {
  *     actions: [
  *         {
@@ -50,13 +50,13 @@ import * as utilities from "./utilities";
  *     roleName: "myCustomRole",
  * });
  * ```
- * 
+ *
  * ## Example Usage with inherited roles
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const inheritedRoleOne = new mongodbatlas.CustomDbRole("inheritedRoleOne", {
  *     actions: [{
  *         action: "INSERT",
@@ -109,8 +109,6 @@ import * as utilities from "./utilities";
  *     roleName: "myCustomRole",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/custom_db_role.html.markdown.
  */
 export class CustomDbRole extends pulumi.CustomResource {
     /**

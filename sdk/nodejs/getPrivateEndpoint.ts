@@ -8,17 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..PrivateEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testMongodbatlasPrivateEndpoint = new mongodbatlas.PrivateEndpoint("test", {
  *     projectId: "<PROJECT-ID>",
  *     providerName: "AWS",
@@ -29,8 +29,6 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/private_endpoint.html.markdown.
  */
 export function getPrivateEndpoint(args: GetPrivateEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateEndpointResult> {
     if (!opts) {

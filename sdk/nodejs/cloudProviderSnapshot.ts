@@ -9,17 +9,17 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas..CloudProviderSnapshot` provides a resource to take a cloud provider snapshot on demand.
  * On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const myCluster = new mongodbatlas.Cluster("myCluster", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     diskSizeGb: 5,
@@ -45,8 +45,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/cloud_provider_snapshot.html.markdown.
  */
 export class CloudProviderSnapshot extends pulumi.CustomResource {
     /**

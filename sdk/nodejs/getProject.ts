@@ -8,17 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..Project` describes a MongoDB Atlas Project. This represents a project that has been created.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Using projectId attribute to query
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testMongodbatlasProject = new mongodbatlas.Project("test", {
  *     orgId: "<ORG_ID>",
  *     teams: [
@@ -39,13 +39,13 @@ import * as utilities from "./utilities";
  *     projectId: id,
  * }, { async: true }));
  * ```
- * 
+ *
  * ### Using name attribute to query
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testMongodbatlasProject = new mongodbatlas.Project("test", {
  *     orgId: "<ORG_ID>",
  *     teams: [
@@ -66,8 +66,6 @@ import * as utilities from "./utilities";
  *     name: name,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/project.html.markdown.
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};

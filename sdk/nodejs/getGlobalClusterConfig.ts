@@ -8,13 +8,11 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
- * 
- * 
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
- * 
  *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/global_cluster_config.html.markdown.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ *
  */
 export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalClusterConfigResult> {
     if (!opts) {

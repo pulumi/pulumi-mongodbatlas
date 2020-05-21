@@ -8,17 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..CloudProviderSnapshotRestoreJob` provides a Cloud Provider Snapshot Restore Job entry datasource. Gets all cloud provider snapshot restore jobs for the specified cluster.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("test", {
  *     clusterName: "MyCluster",
  *     description: "MyDescription",
@@ -41,8 +41,6 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/cloud_provider_snapshot_restore_job.html.markdown.
  */
 export function getCloudProviderSnapshotRestoreJob(args: GetCloudProviderSnapshotRestoreJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotRestoreJobResult> {
     if (!opts) {

@@ -8,18 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..getNetworkPeerings` describes all Network Peering Connections.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
+ *
  * ### Basic Example (AWS).
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testNetworkPeering = new mongodbatlas.NetworkPeering("testNetworkPeering", {
  *     accepterRegionName: "us-east-1",
  *     projectId: "<YOUR-PROJEC-ID>",
@@ -33,8 +33,6 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/network_peerings.html.markdown.
  */
 export function getNetworkPeerings(args: GetNetworkPeeringsArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringsResult> {
     if (!opts) {

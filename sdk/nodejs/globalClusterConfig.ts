@@ -8,19 +8,19 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..GlobalClusterConfig` provides a Global Cluster Configuration resource.
- * 
- * 
+ *
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
- * 
+ *
+ *
  * ## Examples Usage
- * 
+ *
  * ### Example Global cluster
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.Cluster("test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     diskSizeGb: 80,
@@ -67,13 +67,13 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * 
+ *
  * ### Example Global cluster config
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const cluster-test = new mongodbatlas.Cluster("cluster-test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     numShards: 1,
@@ -102,8 +102,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/global_cluster_config.html.markdown.
  */
 export class GlobalClusterConfig extends pulumi.CustomResource {
     /**

@@ -10,17 +10,17 @@ import * as utilities from "./utilities";
  * `mongodbatlas..EncryptionAtRest` Atlas encrypts your data at rest using encrypted storage media. 
  * Using keys you manage with AWS KMS, Atlas encrypts your data a second time when it writes it to the MongoDB encrypted storage engine. 
  * You can use the following clouds: AWS CMK, AZURE KEY VAULT and GOOGLE KEY VAULT to encrypt the MongoDB master encryption keys.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.EncryptionAtRest("test", {
  *     awsKms: {
  *         access_key_id: "AKIAIOSFODNN7EXAMPLE",
@@ -48,8 +48,6 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/encryption_at_rest.html.markdown.
  */
 export class EncryptionAtRest extends pulumi.CustomResource {
     /**

@@ -8,24 +8,24 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.
- * 
+ *
  * > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
- * 
+ *
  * The following table outlines the maximum number of Network Peering containers per cloud provider:
  * * Cloud Provider:  GCP - Container Limit: One container per project.
  * * Cloud Provider:  AWS and Azure - Container Limit: One container per cloud provider region.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
+ *
  * ### Example with AWS.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.NetworkContainer("test", {
  *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
@@ -33,26 +33,26 @@ import * as utilities from "./utilities";
  *     regionName: "US_EAST_1",
  * });
  * ```
- * 
+ *
  * ### Example with GCP
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.NetworkContainer("test", {
  *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
  *     providerName: "GCP",
  * });
  * ```
- * 
+ *
  * ### Example with Azure
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.NetworkContainer("test", {
  *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
@@ -60,8 +60,6 @@ import * as utilities from "./utilities";
  *     region: "US_EAST_2",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/network_container.html.markdown.
  */
 export class NetworkContainer extends pulumi.CustomResource {
     /**

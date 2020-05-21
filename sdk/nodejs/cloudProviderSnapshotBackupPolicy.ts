@@ -8,17 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Provider Snapshots enabled.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const myCluster = new mongodbatlas.Cluster("myCluster", {
  *     projectId: "<PROJECT-ID>",
  *     diskSizeGb: 5,
@@ -70,8 +70,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/cloud_provider_snapshot_backup_policy.html.markdown.
  */
 export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
     /**

@@ -8,17 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..getProjects` describe all Projects. This represents projects that have been created.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testMongodbatlasProject = new mongodbatlas.Project("test", {
  *     orgId: "<ORG_ID>",
  *     teams: [
@@ -37,8 +37,6 @@ import * as utilities from "./utilities";
  * });
  * const testProject = pulumi.output(mongodbatlas.getProject({ async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/projects.html.markdown.
  */
 export function getProjects(opts?: pulumi.InvokeOptions): Promise<GetProjectsResult> {
     if (!opts) {

@@ -8,17 +8,17 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const test = new mongodbatlas.AlertConfiguration("test", {
  *     enabled: true,
  *     eventType: "OUTSIDE_METRIC_THRESHOLD",
@@ -48,8 +48,6 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/alert_configuration.html.markdown.
  */
 export class AlertConfiguration extends pulumi.CustomResource {
     /**

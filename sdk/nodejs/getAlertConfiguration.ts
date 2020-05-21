@@ -8,18 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..AlertConfiguration` describes an Alert Configuration.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testMongodbatlasAlertConfiguration = new mongodbatlas.AlertConfiguration("test", {
  *     enabled: true,
  *     eventType: "OUTSIDE_METRIC_THRESHOLD",
@@ -49,8 +49,6 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/alert_configuration.html.markdown.
  */
 export function getAlertConfiguration(args: GetAlertConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationResult> {
     if (!opts) {

@@ -16,6 +16,8 @@ type DatabaseUser struct {
 	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
 	AuthDatabaseName pulumi.StringPtrOutput `pulumi:"authDatabaseName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+	//
+	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrOutput       `pulumi:"databaseName"`
 	Labels       DatabaseUserLabelArrayOutput `pulumi:"labels"`
 	Password     pulumi.StringPtrOutput       `pulumi:"password"`
@@ -66,6 +68,8 @@ type databaseUserState struct {
 	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+	//
+	// Deprecated: use auth_database_name instead
 	DatabaseName *string             `pulumi:"databaseName"`
 	Labels       []DatabaseUserLabel `pulumi:"labels"`
 	Password     *string             `pulumi:"password"`
@@ -83,6 +87,8 @@ type DatabaseUserState struct {
 	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
 	AuthDatabaseName pulumi.StringPtrInput
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+	//
+	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrInput
 	Labels       DatabaseUserLabelArrayInput
 	Password     pulumi.StringPtrInput
@@ -104,6 +110,8 @@ type databaseUserArgs struct {
 	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+	//
+	// Deprecated: use auth_database_name instead
 	DatabaseName *string             `pulumi:"databaseName"`
 	Labels       []DatabaseUserLabel `pulumi:"labels"`
 	Password     *string             `pulumi:"password"`
@@ -122,6 +130,8 @@ type DatabaseUserArgs struct {
 	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
 	AuthDatabaseName pulumi.StringPtrInput
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+	//
+	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrInput
 	Labels       DatabaseUserLabelArrayInput
 	Password     pulumi.StringPtrInput

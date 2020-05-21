@@ -8,18 +8,18 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas..Auditing` describes a Auditing.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const testMongodbatlasAuditing = new mongodbatlas.Auditing("test", {
  *     auditAuthorizationSuccess: false,
  *     auditFilter: "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
@@ -30,8 +30,6 @@ import * as utilities from "./utilities";
  *     projectId: id,
  * }, { async: true }));
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/d/auditing.html.markdown.
  */
 export function getAuditing(args: GetAuditingArgs, opts?: pulumi.InvokeOptions): Promise<GetAuditingResult> {
     if (!opts) {

@@ -9,19 +9,19 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas..CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud provider snapshot of a specified cluster. The restore job can be one of two types: 
  * * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
- * 
+ *
  * * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
- * 
+ *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
+ *
  * ## Example Usage
- * 
+ *
  * ### Example automated delivery type.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const myCluster = new mongodbatlas.Cluster("myCluster", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     diskSizeGb: 5,
@@ -49,13 +49,13 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * 
+ *
  * ### Example download delivery type.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
- * 
+ *
  * const myCluster = new mongodbatlas.Cluster("myCluster", {
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     diskSizeGb: 5,
@@ -81,8 +81,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-mongodbatlas/blob/master/website/docs/r/cloud_provider_snapshot_restore_job.html.markdown.
  */
 export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
     /**
