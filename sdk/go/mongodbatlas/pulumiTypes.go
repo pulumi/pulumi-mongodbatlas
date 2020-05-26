@@ -6864,9 +6864,7 @@ func (o GetClustersResultTypeOutput) ReplicationSpecs() GetClustersResultReplica
 
 // current snapshot schedule and retention settings for the cluster.
 func (o GetClustersResultTypeOutput) SnapshotBackupPolicies() GetClustersResultSnapshotBackupPolicyArrayOutput {
-	return o.ApplyT(func(v GetClustersResultType) []GetClustersResultSnapshotBackupPolicy {
-		return v.SnapshotBackupPolicies
-	}).(GetClustersResultSnapshotBackupPolicyArrayOutput)
+	return o.ApplyT(func(v GetClustersResultType) []GetClustersResultSnapshotBackupPolicy { return v.SnapshotBackupPolicies }).(GetClustersResultSnapshotBackupPolicyArrayOutput)
 }
 
 // Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
