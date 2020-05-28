@@ -64,14 +64,14 @@ def get_custom_db_role(inherited_roles=None,project_id=None,role_name=None,opts=
                 "action": "UPDATE",
                 "resources": [{
                     "collectionName": "",
-                    "databaseName": "anyDatabase",
+                    "database_name": "anyDatabase",
                 }],
             },
             {
                 "action": "INSERT",
                 "resources": [{
                     "collectionName": "",
-                    "databaseName": "anyDatabase",
+                    "database_name": "anyDatabase",
                 }],
             },
         ],

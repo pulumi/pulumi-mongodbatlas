@@ -43,21 +43,21 @@ class CustomDbRole(pulumi.CustomResource):
                     "action": "UPDATE",
                     "resources": [{
                         "collectionName": "",
-                        "databaseName": "anyDatabase",
+                        "database_name": "anyDatabase",
                     }],
                 },
                 {
                     "action": "INSERT",
                     "resources": [{
                         "collectionName": "",
-                        "databaseName": "anyDatabase",
+                        "database_name": "anyDatabase",
                     }],
                 },
                 {
                     "action": "REMOVE",
                     "resources": [{
                         "collectionName": "",
-                        "databaseName": "anyDatabase",
+                        "database_name": "anyDatabase",
                     }],
                 },
             ],
@@ -76,7 +76,7 @@ class CustomDbRole(pulumi.CustomResource):
                 "action": "INSERT",
                 "resources": [{
                     "collectionName": "",
-                    "databaseName": "anyDatabase",
+                    "database_name": "anyDatabase",
                 }],
             }],
             project_id="<PROJECT-ID>",
@@ -96,25 +96,25 @@ class CustomDbRole(pulumi.CustomResource):
                     "action": "UPDATE",
                     "resources": [{
                         "collectionName": "",
-                        "databaseName": "anyDatabase",
+                        "database_name": "anyDatabase",
                     }],
                 },
                 {
                     "action": "REMOVE",
                     "resources": [{
                         "collectionName": "",
-                        "databaseName": "anyDatabase",
+                        "database_name": "anyDatabase",
                     }],
                 },
             ],
             inherited_roles=[
                 {
-                    "databaseName": "admin",
-                    "roleName": inherited_role_one.role_name,
+                    "database_name": "admin",
+                    "role_name": inherited_role_one.role_name,
                 },
                 {
-                    "databaseName": "admin",
-                    "roleName": inherited_role_two.role_name,
+                    "database_name": "admin",
+                    "role_name": inherited_role_two.role_name,
                 },
             ],
             project_id=inherited_role_one.project_id,

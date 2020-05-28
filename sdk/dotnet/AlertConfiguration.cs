@@ -13,6 +13,62 @@ namespace Pulumi.Mongodbatlas
     /// `mongodbatlas..AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.AlertConfiguration("test", new Mongodbatlas.AlertConfigurationArgs
+    ///         {
+    ///             Enabled = true,
+    ///             EventType = "OUTSIDE_METRIC_THRESHOLD",
+    ///             Matchers = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+    ///                 {
+    ///                     FieldName = "HOSTNAME_AND_PORT",
+    ///                     Operator = "EQUALS",
+    ///                     Value = "SECONDARY",
+    ///                 },
+    ///             },
+    ///             MetricThreshold = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdArgs
+    ///             {
+    ///                 Metric_name = "ASSERT_REGULAR",
+    ///                 Mode = "AVERAGE",
+    ///                 Operator = "LESS_THAN",
+    ///                 Threshold = 99,
+    ///                 Units = "RAW",
+    ///             },
+    ///             Notifications = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///                 {
+    ///                     DelayMin = 0,
+    ///                     EmailEnabled = true,
+    ///                     IntervalMin = 5,
+    ///                     Roles = 
+    ///                     {
+    ///                         "GROUP_CHARTS_ADMIN",
+    ///                         "GROUP_CLUSTER_MANAGER",
+    ///                     },
+    ///                     SmsEnabled = false,
+    ///                     TypeName = "GROUP",
+    ///                 },
+    ///             },
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AlertConfiguration : Pulumi.CustomResource
     {

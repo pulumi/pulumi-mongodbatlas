@@ -13,6 +13,84 @@ namespace Pulumi.Mongodbatlas
     /// `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Provider Snapshots enabled.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var myCluster = new Mongodbatlas.Cluster("myCluster", new Mongodbatlas.ClusterArgs
+    ///         {
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             DiskSizeGb = 5,
+    ///             ProviderName = "AWS",
+    ///             ProviderRegionName = "EU_CENTRAL_1",
+    ///             ProviderInstanceSizeName = "M10",
+    ///             ProviderBackupEnabled = true,
+    ///             ProviderDiskIops = 100,
+    ///             ProviderEncryptEbsVolume = false,
+    ///         });
+    ///         var test = new Mongodbatlas.CloudProviderSnapshotBackupPolicy("test", new Mongodbatlas.CloudProviderSnapshotBackupPolicyArgs
+    ///         {
+    ///             ProjectId = myCluster.ProjectId,
+    ///             ClusterName = myCluster.Name,
+    ///             ReferenceHourOfDay = 3,
+    ///             ReferenceMinuteOfHour = 45,
+    ///             RestoreWindowDays = 4,
+    ///             Policies = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.CloudProviderSnapshotBackupPolicyPolicyArgs
+    ///                 {
+    ///                     Id = myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.Id),
+    ///                     Policy_item = 
+    ///                     {
+    ///                         
+    ///                         {
+    ///                             { "id", myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[0]?.Id) },
+    ///                             { "frequencyInterval", 1 },
+    ///                             { "frequencyType", "hourly" },
+    ///                             { "retentionUnit", "days" },
+    ///                             { "retentionValue", 1 },
+    ///                         },
+    ///                         
+    ///                         {
+    ///                             { "id", myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[1]?.Id) },
+    ///                             { "frequencyInterval", 1 },
+    ///                             { "frequencyType", "daily" },
+    ///                             { "retentionUnit", "days" },
+    ///                             { "retentionValue", 2 },
+    ///                         },
+    ///                         
+    ///                         {
+    ///                             { "id", myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[2]?.Id) },
+    ///                             { "frequencyInterval", 4 },
+    ///                             { "frequencyType", "weekly" },
+    ///                             { "retentionUnit", "weeks" },
+    ///                             { "retentionValue", 3 },
+    ///                         },
+    ///                         
+    ///                         {
+    ///                             { "id", myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[3]?.Id) },
+    ///                             { "frequencyInterval", 5 },
+    ///                             { "frequencyType", "monthly" },
+    ///                             { "retentionUnit", "months" },
+    ///                             { "retentionValue", 4 },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class CloudProviderSnapshotBackupPolicy : Pulumi.CustomResource
     {

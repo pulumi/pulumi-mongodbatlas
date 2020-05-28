@@ -63,9 +63,9 @@ class GlobalClusterConfig(pulumi.CustomResource):
             replication_specs=[
                 {
                     "zoneName": "Zone 1",
-                    "numShards": 1,
+                    "num_shards": 1,
                     "regions_config": [{
-                        "regionName": "EU_CENTRAL_1",
+                        "region_name": "EU_CENTRAL_1",
                         "electableNodes": 3,
                         "priority": 7,
                         "readOnlyNodes": 0,
@@ -73,9 +73,9 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 },
                 {
                     "zoneName": "Zone 2",
-                    "numShards": 1,
+                    "num_shards": 1,
                     "regions_config": [{
-                        "regionName": "US_EAST_2",
+                        "region_name": "US_EAST_2",
                         "electableNodes": 3,
                         "priority": 7,
                         "readOnlyNodes": 0,

@@ -17,6 +17,65 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testRole = new Mongodbatlas.CustomDbRole("testRole", new Mongodbatlas.CustomDbRoleArgs
+        ///         {
+        ///             Actions = 
+        ///             {
+        ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+        ///                 {
+        ///                     Action = "UPDATE",
+        ///                     Resources = 
+        ///                     {
+        ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+        ///                         {
+        ///                             CollectionName = "",
+        ///                             DatabaseName = "anyDatabase",
+        ///                         },
+        ///                     },
+        ///                 },
+        ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+        ///                 {
+        ///                     Action = "INSERT",
+        ///                     Resources = 
+        ///                     {
+        ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+        ///                         {
+        ///                             CollectionName = "",
+        ///                             DatabaseName = "anyDatabase",
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             RoleName = "myCustomRole",
+        ///         });
+        ///         var test = Output.Tuple(testRole.ProjectId, testRole.RoleName).Apply(values =&gt;
+        ///         {
+        ///             var projectId = values.Item1;
+        ///             var roleName = values.Item2;
+        ///             return Mongodbatlas.GetCustomDbRole.InvokeAsync(new Mongodbatlas.GetCustomDbRoleArgs
+        ///             {
+        ///                 ProjectId = projectId,
+        ///                 RoleName = roleName,
+        ///             });
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCustomDbRoleResult> InvokeAsync(GetCustomDbRoleArgs args, InvokeOptions? options = null)

@@ -18,6 +18,87 @@ namespace Pulumi.Mongodbatlas
     /// | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    /// 
+    /// ## Example Usages
+    /// 
+    /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var user = new Mongodbatlas.DatabaseUser("user", new Mongodbatlas.DatabaseUserArgs
+    ///         {
+    ///             DatabaseName = "$$external",
+    ///             Labels = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+    ///                 {
+    ///                     Key = "My Key",
+    ///                     Value = "My Value",
+    ///                 },
+    ///             },
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             Roles = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///                 {
+    ///                     DatabaseName = "admin",
+    ///                     RoleName = "atlasAdmin",
+    ///                 },
+    ///             },
+    ///             Username = "myUsername",
+    ///             X509Type = "MANAGED",
+    ///         });
+    ///         var test = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new Mongodbatlas.X509AuthenticationDatabaseUserArgs
+    ///         {
+    ///             MonthsUntilExpiration = 2,
+    ///             ProjectId = user.ProjectId,
+    ///             Username = user.Username,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new Mongodbatlas.X509AuthenticationDatabaseUserArgs
+    ///         {
+    ///             CustomerX509Cas = @"  -----BEGIN CERTIFICATE-----
+    ///   MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+    ///   VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+    ///   c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+    ///   SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+    ///   MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+    ///   VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+    ///   BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+    ///   c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+    ///   iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+    ///   cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+    ///   Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+    ///   SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+    ///   7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+    ///   iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+    ///   -----END CERTIFICATE-----""
+    /// 
+    /// ",
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class X509AuthenticationDatabaseUser : Pulumi.CustomResource
     {

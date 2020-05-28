@@ -17,6 +17,33 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
     /// MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.Teams("test", new Mongodbatlas.TeamsArgs
+    ///         {
+    ///             OrgId = "&lt;ORGANIZATION-ID&gt;",
+    ///             Usernames = 
+    ///             {
+    ///                 "user1",
+    ///                 "user2",
+    ///                 "user3",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Team : Pulumi.CustomResource
     {

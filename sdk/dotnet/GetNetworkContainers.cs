@@ -18,6 +18,42 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// 
+        /// {{% example %}}
+        /// ### Basic Example.
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new Mongodbatlas.NetworkContainerArgs
+        ///         {
+        ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///             AtlasCidrBlock = "10.8.0.0/21",
+        ///             ProviderName = "AWS",
+        ///             RegionName = "US_EAST_1",
+        ///         });
+        ///         var testNetworkContainers = Output.Tuple(testNetworkContainer.ProjectId, testNetworkContainer.ProviderName).Apply(values =&gt;
+        ///         {
+        ///             var projectId = values.Item1;
+        ///             var providerName = values.Item2;
+        ///             return Mongodbatlas.GetNetworkContainers.InvokeAsync(new Mongodbatlas.GetNetworkContainersArgs
+        ///             {
+        ///                 ProjectId = projectId,
+        ///                 ProviderName = providerName,
+        ///             });
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkContainersResult> InvokeAsync(GetNetworkContainersArgs args, InvokeOptions? options = null)

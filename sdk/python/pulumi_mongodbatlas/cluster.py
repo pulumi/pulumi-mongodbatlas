@@ -292,25 +292,25 @@ class Cluster(pulumi.CustomResource):
             provider_name="AWS",
             provider_volume_type="STANDARD",
             replication_specs=[{
-                "numShards": 1,
+                "num_shards": 1,
                 "regionsConfig": [
                     {
                         "electableNodes": 3,
                         "priority": 7,
                         "readOnlyNodes": 0,
-                        "regionName": "US_EAST_1",
+                        "region_name": "US_EAST_1",
                     },
                     {
                         "electableNodes": 2,
                         "priority": 6,
                         "readOnlyNodes": 0,
-                        "regionName": "US_EAST_2",
+                        "region_name": "US_EAST_2",
                     },
                     {
                         "electableNodes": 2,
                         "priority": 5,
                         "readOnlyNodes": 2,
-                        "regionName": "US_WEST_1",
+                        "region_name": "US_WEST_1",
                     },
                 ],
             }])
@@ -334,22 +334,22 @@ class Cluster(pulumi.CustomResource):
             provider_volume_type="STANDARD",
             replication_specs=[
                 {
-                    "numShards": 2,
+                    "num_shards": 2,
                     "regionsConfig": [{
                         "electableNodes": 3,
                         "priority": 7,
                         "readOnlyNodes": 0,
-                        "regionName": "US_EAST_1",
+                        "region_name": "US_EAST_1",
                     }],
                     "zoneName": "Zone 1",
                 },
                 {
-                    "numShards": 2,
+                    "num_shards": 2,
                     "regionsConfig": [{
                         "electableNodes": 3,
                         "priority": 7,
                         "readOnlyNodes": 0,
-                        "regionName": "EU_CENTRAL_1",
+                        "region_name": "EU_CENTRAL_1",
                     }],
                     "zoneName": "Zone 2",
                 },

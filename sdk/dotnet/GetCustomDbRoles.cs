@@ -17,6 +17,47 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new Mongodbatlas.DatabaseUserArgs
+        ///         {
+        ///             DatabaseName = "admin",
+        ///             Password = "test-acc-password",
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             Roles = 
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///                 {
+        ///                     DatabaseName = "admin",
+        ///                     RoleName = "readWrite",
+        ///                 },
+        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///                 {
+        ///                     DatabaseName = "admin",
+        ///                     RoleName = "atlasAdmin",
+        ///                 },
+        ///             },
+        ///             Username = "test-acc-username",
+        ///         });
+        ///         var testCustomDbRoles = Output.Create(Mongodbatlas.GetCustomDbRoles.InvokeAsync(new Mongodbatlas.GetCustomDbRolesArgs
+        ///         {
+        ///             ProjectId = mongodbatlas_custom_db_role.Test.Project_id,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCustomDbRolesResult> InvokeAsync(GetCustomDbRolesArgs args, InvokeOptions? options = null)

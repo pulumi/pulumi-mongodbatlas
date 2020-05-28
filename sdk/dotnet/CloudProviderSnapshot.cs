@@ -14,6 +14,51 @@ namespace Pulumi.Mongodbatlas
     /// On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var myCluster = new Mongodbatlas.Cluster("myCluster", new Mongodbatlas.ClusterArgs
+    ///         {
+    ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///             DiskSizeGb = 5,
+    ///             ProviderName = "AWS",
+    ///             ProviderRegionName = "EU_WEST_2",
+    ///             ProviderInstanceSizeName = "M10",
+    ///             ProviderBackupEnabled = true,
+    ///             ProviderDiskIops = 100,
+    ///             ProviderEncryptEbsVolume = false,
+    ///         });
+    ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
+    ///         {
+    ///             ProjectId = myCluster.ProjectId,
+    ///             ClusterName = myCluster.Name,
+    ///             Description = "myDescription",
+    ///             RetentionInDays = 1,
+    ///         });
+    ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
+    ///         {
+    ///             ProjectId = testCloudProviderSnapshot.ProjectId,
+    ///             ClusterName = testCloudProviderSnapshot.ClusterName,
+    ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
+    ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+    ///             {
+    ///                 Download = true,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class CloudProviderSnapshot : Pulumi.CustomResource
     {

@@ -17,6 +17,54 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// 
+        /// {{% example %}}
+        /// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
+        ///         {
+        ///             ClusterName = "MyCluster",
+        ///             Description = "MyDescription",
+        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
+        ///             RetentionInDays = 1,
+        ///         });
+        ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
+        ///         {
+        ///             ClusterName = "MyCluster",
+        ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+        ///             {
+        ///                 Automated = true,
+        ///                 Target_cluster_name = "MyCluster",
+        ///                 Target_project_id = "5cf5a45a9ccf6400e60981b6",
+        ///             },
+        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
+        ///             SnapshotId = testCloudProviderSnapshot.Id,
+        ///         });
+        ///         var testCloudProviderSnapshotRestoreJobs = Output.Tuple(testCloudProviderSnapshotRestoreJob.ClusterName, testCloudProviderSnapshotRestoreJob.ProjectId).Apply(values =&gt;
+        ///         {
+        ///             var clusterName = values.Item1;
+        ///             var projectId = values.Item2;
+        ///             return Mongodbatlas.GetCloudProviderSnapshotRestoreJobs.InvokeAsync(new Mongodbatlas.GetCloudProviderSnapshotRestoreJobsArgs
+        ///             {
+        ///                 ClusterName = clusterName,
+        ///                 ProjectId = projectId,
+        ///             });
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudProviderSnapshotRestoreJobsResult> InvokeAsync(GetCloudProviderSnapshotRestoreJobsArgs args, InvokeOptions? options = null)

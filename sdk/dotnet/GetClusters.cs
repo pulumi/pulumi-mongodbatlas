@@ -21,6 +21,42 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testCluster = new Mongodbatlas.Cluster("testCluster", new Mongodbatlas.ClusterArgs
+        ///         {
+        ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///             DiskSizeGb = 100,
+        ///             NumShards = 1,
+        ///             ReplicationFactor = 3,
+        ///             ProviderBackupEnabled = true,
+        ///             AutoScalingDiskGbEnabled = true,
+        ///             ProviderName = "AWS",
+        ///             ProviderDiskIops = 300,
+        ///             ProviderVolumeType = "STANDARD",
+        ///             ProviderEncryptEbsVolume = true,
+        ///             ProviderInstanceSizeName = "M40",
+        ///             ProviderRegionName = "US_EAST_1",
+        ///         });
+        ///         var testClusters = testCluster.ProjectId.Apply(projectId =&gt; Mongodbatlas.GetClusters.InvokeAsync(new Mongodbatlas.GetClustersArgs
+        ///         {
+        ///             ProjectId = projectId,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetClustersResult> InvokeAsync(GetClustersArgs args, InvokeOptions? options = null)

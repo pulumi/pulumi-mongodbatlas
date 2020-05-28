@@ -16,6 +16,166 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testRole = new Mongodbatlas.CustomDbRole("testRole", new Mongodbatlas.CustomDbRoleArgs
+    ///         {
+    ///             Actions = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///                 {
+    ///                     Action = "UPDATE",
+    ///                     Resources = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                         {
+    ///                             CollectionName = "",
+    ///                             DatabaseName = "anyDatabase",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///                 {
+    ///                     Action = "INSERT",
+    ///                     Resources = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                         {
+    ///                             CollectionName = "",
+    ///                             DatabaseName = "anyDatabase",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///                 {
+    ///                     Action = "REMOVE",
+    ///                     Resources = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                         {
+    ///                             CollectionName = "",
+    ///                             DatabaseName = "anyDatabase",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             RoleName = "myCustomRole",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ## Example Usage with inherited roles
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var inheritedRoleOne = new Mongodbatlas.CustomDbRole("inheritedRoleOne", new Mongodbatlas.CustomDbRoleArgs
+    ///         {
+    ///             Actions = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///                 {
+    ///                     Action = "INSERT",
+    ///                     Resources = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                         {
+    ///                             CollectionName = "",
+    ///                             DatabaseName = "anyDatabase",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             RoleName = "insertRole",
+    ///         });
+    ///         var inheritedRoleTwo = new Mongodbatlas.CustomDbRole("inheritedRoleTwo", new Mongodbatlas.CustomDbRoleArgs
+    ///         {
+    ///             Actions = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///                 {
+    ///                     Action = "SERVER_STATUS",
+    ///                     Resources = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                         {
+    ///                             Cluster = true,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             ProjectId = inheritedRoleOne.ProjectId,
+    ///             RoleName = "statusServerRole",
+    ///         });
+    ///         var testRole = new Mongodbatlas.CustomDbRole("testRole", new Mongodbatlas.CustomDbRoleArgs
+    ///         {
+    ///             Actions = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///                 {
+    ///                     Action = "UPDATE",
+    ///                     Resources = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                         {
+    ///                             CollectionName = "",
+    ///                             DatabaseName = "anyDatabase",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+    ///                 {
+    ///                     Action = "REMOVE",
+    ///                     Resources = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+    ///                         {
+    ///                             CollectionName = "",
+    ///                             DatabaseName = "anyDatabase",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             InheritedRoles = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs
+    ///                 {
+    ///                     DatabaseName = "admin",
+    ///                     RoleName = inheritedRoleOne.RoleName,
+    ///                 },
+    ///                 new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs
+    ///                 {
+    ///                     DatabaseName = "admin",
+    ///                     RoleName = inheritedRoleTwo.RoleName,
+    ///                 },
+    ///             },
+    ///             ProjectId = inheritedRoleOne.ProjectId,
+    ///             RoleName = "myCustomRole",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class CustomDbRole : Pulumi.CustomResource
     {

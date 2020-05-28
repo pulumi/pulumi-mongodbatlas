@@ -19,6 +19,60 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new Mongodbatlas.DatabaseUserArgs
+        ///         {
+        ///             Username = "test-acc-username",
+        ///             Password = "test-acc-password",
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             AuthDatabaseName = "admin",
+        ///             Roles = 
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///                 {
+        ///                     RoleName = "readWrite",
+        ///                     DatabaseName = "admin",
+        ///                 },
+        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///                 {
+        ///                     RoleName = "atlasAdmin",
+        ///                     DatabaseName = "admin",
+        ///                 },
+        ///             },
+        ///             Labels = 
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///                 {
+        ///                     Key = "key 1",
+        ///                     Value = "value 1",
+        ///                 },
+        ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///                 {
+        ///                     Key = "key 2",
+        ///                     Value = "value 2",
+        ///                 },
+        ///             },
+        ///         });
+        ///         var testDatabaseUsers = testDatabaseUser.ProjectId.Apply(projectId =&gt; Mongodbatlas.GetDatabaseUsers.InvokeAsync(new Mongodbatlas.GetDatabaseUsersArgs
+        ///         {
+        ///             ProjectId = projectId,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatabaseUsersResult> InvokeAsync(GetDatabaseUsersArgs args, InvokeOptions? options = null)

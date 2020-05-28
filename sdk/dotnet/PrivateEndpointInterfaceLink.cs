@@ -17,6 +17,51 @@ namespace Pulumi.Mongodbatlas
     ///   * Project Owner
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    /// 
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testPrivateEndpoint = new Mongodbatlas.PrivateEndpoint("testPrivateEndpoint", new Mongodbatlas.PrivateEndpointArgs
+    ///         {
+    ///             ProjectId = "&lt;PROJECT_ID&gt;",
+    ///             ProviderName = "AWS",
+    ///             Region = "us-east-1",
+    ///         });
+    ///         var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new Aws.Ec2.VpcEndpointArgs
+    ///         {
+    ///             SecurityGroupIds = 
+    ///             {
+    ///                 "sg-3f238186",
+    ///             },
+    ///             ServiceName = testPrivateEndpoint.EndpointServiceName,
+    ///             SubnetIds = 
+    ///             {
+    ///                 "subnet-de0406d2",
+    ///             },
+    ///             VpcEndpointType = "Interface",
+    ///             VpcId = "vpc-7fc0a543",
+    ///         });
+    ///         var testPrivateEndpointInterfaceLink = new Mongodbatlas.PrivateEndpointInterfaceLink("testPrivateEndpointInterfaceLink", new Mongodbatlas.PrivateEndpointInterfaceLinkArgs
+    ///         {
+    ///             InterfaceEndpointId = ptfeService.Id,
+    ///             PrivateLinkId = testPrivateEndpoint.PrivateLinkId,
+    ///             ProjectId = testPrivateEndpoint.ProjectId,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class PrivateEndpointInterfaceLink : Pulumi.CustomResource
     {
