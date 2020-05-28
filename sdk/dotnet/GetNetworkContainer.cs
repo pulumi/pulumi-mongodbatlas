@@ -20,6 +20,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// 
+        /// {{% example %}}
+        /// ### Basic Example.
+        /// 
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkContainerResult> InvokeAsync(GetNetworkContainerArgs args, InvokeOptions? options = null)

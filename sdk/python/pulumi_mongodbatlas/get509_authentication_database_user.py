@@ -68,8 +68,8 @@ def get509_authentication_database_user(project_id=None,username=None,opts=None)
         }],
         project_id="<PROJECT-ID>",
         roles=[{
-            "databaseName": "admin",
-            "roleName": "atlasAdmin",
+            "database_name": "admin",
+            "role_name": "atlasAdmin",
         }],
         username="myUsername",
         x509_type="MANAGED")

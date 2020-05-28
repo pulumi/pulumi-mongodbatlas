@@ -59,12 +59,12 @@ def get_custom_db_roles(project_id=None,opts=None):
         project_id="<PROJECT-ID>",
         roles=[
             {
-                "databaseName": "admin",
-                "roleName": "readWrite",
+                "database_name": "admin",
+                "role_name": "readWrite",
             },
             {
-                "databaseName": "admin",
-                "roleName": "atlasAdmin",
+                "database_name": "admin",
+                "role_name": "atlasAdmin",
             },
         ],
         username="test-acc-username")

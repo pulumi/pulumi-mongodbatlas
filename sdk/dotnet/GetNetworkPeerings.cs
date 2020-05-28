@@ -18,6 +18,39 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// 
+        /// {{% example %}}
+        /// ### Basic Example (AWS).
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new Mongodbatlas.NetworkPeeringArgs
+        ///         {
+        ///             AccepterRegionName = "us-east-1",
+        ///             ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
+        ///             ContainerId = "507f1f77bcf86cd799439011",
+        ///             ProviderName = "AWS",
+        ///             RouteTableCidrBlock = "192.168.0.0/24",
+        ///             VpcId = "vpc-abc123abc123",
+        ///             AwsAccountId = "abc123abc123",
+        ///         });
+        ///         var testNetworkPeerings = testNetworkPeering.ProjectId.Apply(projectId =&gt; Mongodbatlas.GetNetworkPeerings.InvokeAsync(new Mongodbatlas.GetNetworkPeeringsArgs
+        ///         {
+        ///             ProjectId = projectId,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkPeeringsResult> InvokeAsync(GetNetworkPeeringsArgs args, InvokeOptions? options = null)

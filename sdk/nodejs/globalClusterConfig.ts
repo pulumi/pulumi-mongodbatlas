@@ -74,7 +74,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const cluster-test = new mongodbatlas.Cluster("cluster-test", {
+ * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     numShards: 1,
  *     replicationFactor: 3,

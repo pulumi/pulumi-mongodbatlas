@@ -18,6 +18,11 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAuditingResult> InvokeAsync(GetAuditingArgs args, InvokeOptions? options = null)

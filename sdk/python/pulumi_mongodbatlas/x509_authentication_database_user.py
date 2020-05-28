@@ -66,8 +66,8 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
             }],
             project_id="<PROJECT-ID>",
             roles=[{
-                "databaseName": "admin",
-                "roleName": "atlasAdmin",
+                "database_name": "admin",
+                "role_name": "atlasAdmin",
             }],
             username="myUsername",
             x509_type="MANAGED")

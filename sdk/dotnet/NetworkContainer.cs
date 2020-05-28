@@ -19,6 +19,74 @@ namespace Pulumi.Mongodbatlas
     /// * Cloud Provider:  AWS and Azure - Container Limit: One container per cloud provider region.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+    /// 
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Example with AWS.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.NetworkContainer("test", new Mongodbatlas.NetworkContainerArgs
+    ///         {
+    ///             AtlasCidrBlock = "10.8.0.0/21",
+    ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///             ProviderName = "AWS",
+    ///             RegionName = "US_EAST_1",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example with GCP
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.NetworkContainer("test", new Mongodbatlas.NetworkContainerArgs
+    ///         {
+    ///             AtlasCidrBlock = "10.8.0.0/21",
+    ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///             ProviderName = "GCP",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example with Azure
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.NetworkContainer("test", new Mongodbatlas.NetworkContainerArgs
+    ///         {
+    ///             AtlasCidrBlock = "10.8.0.0/21",
+    ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///             ProviderName = "AZURE",
+    ///             Region = "US_EAST_2",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class NetworkContainer : Pulumi.CustomResource
     {

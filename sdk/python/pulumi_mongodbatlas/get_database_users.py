@@ -65,12 +65,12 @@ def get_database_users(project_id=None,opts=None):
         auth_database_name="admin",
         roles=[
             {
-                "roleName": "readWrite",
-                "databaseName": "admin",
+                "role_name": "readWrite",
+                "database_name": "admin",
             },
             {
-                "roleName": "atlasAdmin",
-                "databaseName": "admin",
+                "role_name": "atlasAdmin",
+                "database_name": "admin",
             },
         ],
         labels=[

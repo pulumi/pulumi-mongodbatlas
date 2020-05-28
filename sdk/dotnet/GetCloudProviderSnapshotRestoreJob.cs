@@ -17,6 +17,13 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// {{% examples %}}
+        /// ## Example Usage
+        /// 
+        /// {{% example %}}
+        /// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+        /// 
+        /// 
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudProviderSnapshotRestoreJobResult> InvokeAsync(GetCloudProviderSnapshotRestoreJobArgs args, InvokeOptions? options = null)

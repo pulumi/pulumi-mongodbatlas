@@ -15,6 +15,101 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas..X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// ## Example Usages
+        /// 
+        /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var user = new Mongodbatlas.DatabaseUser("user", new Mongodbatlas.DatabaseUserArgs
+        ///         {
+        ///             DatabaseName = "$$external",
+        ///             Labels = 
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///                 {
+        ///                     Key = "My Key",
+        ///                     Value = "My Value",
+        ///                 },
+        ///             },
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             Roles = 
+        ///             {
+        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///                 {
+        ///                     DatabaseName = "admin",
+        ///                     RoleName = "atlasAdmin",
+        ///                 },
+        ///             },
+        ///             Username = "myUsername",
+        ///             X509Type = "MANAGED",
+        ///         });
+        ///         var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", new Mongodbatlas.X509AuthenticationDatabaseUserArgs
+        ///         {
+        ///             MonthsUntilExpiration = 2,
+        ///             ProjectId = user.ProjectId,
+        ///             Username = user.Username,
+        ///         });
+        ///         var test509AuthenticationDatabaseUser = Output.Tuple(testX509AuthenticationDatabaseUser.ProjectId, testX509AuthenticationDatabaseUser.Username).Apply(values =&gt;
+        ///         {
+        ///             var projectId = values.Item1;
+        ///             var username = values.Item2;
+        ///             return Mongodbatlas.Get509AuthenticationDatabaseUser.InvokeAsync(new Mongodbatlas.Get509AuthenticationDatabaseUserArgs
+        ///             {
+        ///                 ProjectId = projectId,
+        ///                 Username = username,
+        ///             });
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", new Mongodbatlas.X509AuthenticationDatabaseUserArgs
+        ///         {
+        ///             CustomerX509Cas = @"  -----BEGIN CERTIFICATE-----
+        ///   MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+        ///   VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+        ///   c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+        ///   SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+        ///   MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+        ///   VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+        ///   BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+        ///   c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+        ///   iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+        ///   cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+        ///   Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+        ///   SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+        ///   7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+        ///   iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+        ///   -----END CERTIFICATE-----""
+        /// 
+        /// ",
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         });
+        ///         var test509AuthenticationDatabaseUser = testX509AuthenticationDatabaseUser.ProjectId.Apply(projectId =&gt; Mongodbatlas.Get509AuthenticationDatabaseUser.InvokeAsync(new Mongodbatlas.Get509AuthenticationDatabaseUserArgs
+        ///         {
+        ///             ProjectId = projectId,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
         /// </summary>
         public static Task<Get509AuthenticationDatabaseUserResult> InvokeAsync(Get509AuthenticationDatabaseUserArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<Get509AuthenticationDatabaseUserResult>("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args ?? new Get509AuthenticationDatabaseUserArgs(), options.WithVersion());

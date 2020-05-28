@@ -17,6 +17,30 @@ namespace Pulumi.Mongodbatlas
     ///   * Project Owner
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    /// 
+    /// 
+    /// ## Example Usage
+    /// 
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.PrivateEndpoint("test", new Mongodbatlas.PrivateEndpointArgs
+    ///         {
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             ProviderName = "AWS",
+    ///             Region = "us-east-1",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class PrivateEndpoint : Pulumi.CustomResource
     {

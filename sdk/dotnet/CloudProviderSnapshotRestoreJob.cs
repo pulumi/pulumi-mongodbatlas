@@ -16,6 +16,96 @@ namespace Pulumi.Mongodbatlas
     /// * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Example automated delivery type.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var myCluster = new Mongodbatlas.Cluster("myCluster", new Mongodbatlas.ClusterArgs
+    ///         {
+    ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///             DiskSizeGb = 5,
+    ///             ProviderName = "AWS",
+    ///             ProviderRegionName = "EU_WEST_2",
+    ///             ProviderInstanceSizeName = "M10",
+    ///             ProviderBackupEnabled = true,
+    ///             ProviderDiskIops = 100,
+    ///             ProviderEncryptEbsVolume = false,
+    ///         });
+    ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
+    ///         {
+    ///             ProjectId = myCluster.ProjectId,
+    ///             ClusterName = myCluster.Name,
+    ///             Description = "myDescription",
+    ///             RetentionInDays = 1,
+    ///         });
+    ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
+    ///         {
+    ///             ProjectId = testCloudProviderSnapshot.ProjectId,
+    ///             ClusterName = testCloudProviderSnapshot.ClusterName,
+    ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
+    ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+    ///             {
+    ///                 Automated = true,
+    ///                 Target_cluster_name = "MyCluster",
+    ///                 Target_project_id = "5cf5a45a9ccf6400e60981b6",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example download delivery type.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var myCluster = new Mongodbatlas.Cluster("myCluster", new Mongodbatlas.ClusterArgs
+    ///         {
+    ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///             DiskSizeGb = 5,
+    ///             ProviderName = "AWS",
+    ///             ProviderRegionName = "EU_WEST_2",
+    ///             ProviderInstanceSizeName = "M10",
+    ///             ProviderBackupEnabled = true,
+    ///             ProviderDiskIops = 100,
+    ///             ProviderEncryptEbsVolume = false,
+    ///         });
+    ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
+    ///         {
+    ///             ProjectId = myCluster.ProjectId,
+    ///             ClusterName = myCluster.Name,
+    ///             Description = "myDescription",
+    ///             RetentionInDays = 1,
+    ///         });
+    ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
+    ///         {
+    ///             ProjectId = testCloudProviderSnapshot.ProjectId,
+    ///             ClusterName = testCloudProviderSnapshot.ClusterName,
+    ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
+    ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+    ///             {
+    ///                 Download = true,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class CloudProviderSnapshotRestoreJob : Pulumi.CustomResource
     {
