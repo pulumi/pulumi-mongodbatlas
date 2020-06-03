@@ -60,7 +60,7 @@ provider:: generate_schema
 
 install_plugins:
 	[ -x "$(shell which pulumi)" ] || ▶ curl -fsSL https://get.pulumi.com
-	pulumi plugin install resource $(PACK) 1.0.1
+	pulumi plugin install resource $(PACK) $(PROVIDER_VERSION)
 	pulumi plugin install resource aws 2.0.0
 
 install::
