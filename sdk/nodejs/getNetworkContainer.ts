@@ -12,8 +12,6 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
- *
  */
 export function getNetworkContainer(args: GetNetworkContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainerResult> {
     if (!opts) {
@@ -61,6 +59,10 @@ export interface GetNetworkContainerResult {
      */
     readonly gcpProjectId: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Name of the Network Peering connection in the Atlas project.
      */
     readonly networkName: string;
@@ -89,8 +91,4 @@ export interface GetNetworkContainerResult {
      * Unique identifier of the project’s VPC.
      */
     readonly vpcId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

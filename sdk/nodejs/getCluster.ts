@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * > **IMPORTANT:**
  * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- *
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     if (!opts) {
@@ -86,6 +85,10 @@ export interface GetClusterResult {
      * Indicates whether Encryption at Rest is enabled or disabled.
      */
     readonly encryptionAtRestProvider: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly labels: outputs.GetClusterLabel[];
     /**
      * Indicates the version of the cluster to deploy.
@@ -182,8 +185,4 @@ export interface GetClusterResult {
      * - REPAIRING
      */
     readonly stateName: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

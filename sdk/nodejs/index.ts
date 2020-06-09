@@ -49,9 +49,9 @@ export * from "./projectIpWhitelist";
 export * from "./provider";
 export * from "./team";
 export * from "./teams";
-export * from "./x509AuthenticationDatabaseUser";
+export * from "./x509authenticationDatabaseUser";
 
 // Export sub-modules:
-import * as config from "./config/index";
-import * as types from "./types/index";
+import * as config from "./config";
+import * as types from "./types";
 export {config, types};

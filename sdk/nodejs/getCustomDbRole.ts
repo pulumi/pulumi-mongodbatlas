@@ -80,11 +80,11 @@ export interface GetCustomDbRoleArgs {
  */
 export interface GetCustomDbRoleResult {
     readonly actions: outputs.GetCustomDbRoleAction[];
-    readonly inheritedRoles?: outputs.GetCustomDbRoleInheritedRole[];
-    readonly projectId: string;
-    readonly roleName: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly inheritedRoles?: outputs.GetCustomDbRoleInheritedRole[];
+    readonly projectId: string;
+    readonly roleName: string;
 }

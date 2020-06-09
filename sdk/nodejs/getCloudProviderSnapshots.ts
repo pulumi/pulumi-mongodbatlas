@@ -61,14 +61,14 @@ export interface GetCloudProviderSnapshotsArgs {
  */
 export interface GetCloudProviderSnapshotsResult {
     readonly clusterName: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly projectId: string;
     /**
      * Includes cloudProviderSnapshot object for each item detailed in the results array section.
      */
     readonly results: outputs.GetCloudProviderSnapshotsResult[];
     readonly totalCount: number;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

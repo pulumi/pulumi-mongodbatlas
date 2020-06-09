@@ -10,8 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas..NetworkPeering` describes a Network Peering Connection.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
- *
  */
 export function getNetworkPeering(args: GetNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringResult> {
     if (!opts) {
@@ -88,6 +86,10 @@ export interface GetNetworkPeeringResult {
      */
     readonly gcpProjectId: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Name of the network peer to which Atlas connects.
      */
     readonly networkName: string;
@@ -121,8 +123,4 @@ export interface GetNetworkPeeringResult {
      * Unique identifier of the peer VPC.
      */
     readonly vpcId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

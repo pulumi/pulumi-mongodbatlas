@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
- *
  */
 export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalClusterConfigResult> {
     if (!opts) {
@@ -55,12 +53,12 @@ export interface GetGlobalClusterConfigResult {
      */
     readonly customZoneMapping: {[key: string]: any};
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
     readonly managedNamespaces: outputs.GetGlobalClusterConfigManagedNamespace[];
     readonly projectId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

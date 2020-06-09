@@ -32,12 +32,12 @@ export interface GetTeamsArgs {
  * A collection of values returned by getTeams.
  */
 export interface GetTeamsResult {
-    readonly name: string;
-    readonly orgId: string;
-    readonly teamId: string;
-    readonly usernames: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly name: string;
+    readonly orgId: string;
+    readonly teamId: string;
+    readonly usernames: string[];
 }

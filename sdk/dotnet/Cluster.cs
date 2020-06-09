@@ -239,9 +239,9 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         var cluster_test = new Mongodbatlas.Cluster("cluster-test", new Mongodbatlas.ClusterArgs
     ///         {
-    ///             AutoScalingDiskGbEnabled = "false",
+    ///             AutoScalingDiskGbEnabled = false,
     ///             BackingProviderName = "AWS",
-    ///             DiskSizeGb = "2",
+    ///             DiskSizeGb = 2,
     ///             MongoDbMajorVersion = "4.2",
     ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///             ProviderInstanceSizeName = "M2",

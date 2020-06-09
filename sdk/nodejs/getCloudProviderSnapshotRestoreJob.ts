@@ -108,6 +108,10 @@ export interface GetCloudProviderSnapshotRestoreJobResult {
      * UTC ISO 8601 formatted point in time when the restore job completed.
      */
     readonly finishedAt: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly jobId: string;
     readonly projectId: string;
     /**
@@ -123,8 +127,4 @@ export interface GetCloudProviderSnapshotRestoreJobResult {
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
      */
     readonly timestamp: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

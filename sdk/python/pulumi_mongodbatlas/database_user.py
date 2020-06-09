@@ -81,6 +81,9 @@ class DatabaseUser(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['auth_database_name'] = auth_database_name
+            if database_name is not None:
+                warnings.warn("use auth_database_name instead", DeprecationWarning)
+                pulumi.log.warn("database_name is deprecated: use auth_database_name instead")
             __props__['database_name'] = database_name
             __props__['labels'] = labels
             __props__['password'] = password

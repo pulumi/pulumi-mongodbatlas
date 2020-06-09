@@ -54,10 +54,10 @@ export function getProjects(opts?: pulumi.InvokeOptions): Promise<GetProjectsRes
  * A collection of values returned by getProjects.
  */
 export interface GetProjectsResult {
-    readonly results: outputs.GetProjectsResult[];
-    readonly totalCount: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly results: outputs.GetProjectsResult[];
+    readonly totalCount: number;
 }

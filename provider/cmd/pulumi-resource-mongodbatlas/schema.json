@@ -430,7 +430,20 @@
                     "description": "Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.\n"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "failIndexKeyTooLong",
+                        "javascriptEnabled",
+                        "minimumEnabledTlsProtocol",
+                        "noTableScan",
+                        "oplogSizeMb",
+                        "sampleRefreshIntervalBiConnector",
+                        "sampleSizeBiConnector"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/ClusterBiConnector:ClusterBiConnector": {
             "properties": {
@@ -443,7 +456,15 @@
                     "description": "Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).\n"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "enabled",
+                        "readPreference"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/ClusterConnectionStrings:ClusterConnectionStrings": {
             "properties": {
@@ -502,7 +523,19 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "awsPrivateLink",
+                        "awsPrivateLinkSrv",
+                        "private",
+                        "privateSrv",
+                        "standard",
+                        "standardSrv"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/ClusterLabel:ClusterLabel": {
             "properties": {
@@ -525,7 +558,15 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "key",
+                        "value"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/ClusterReplicationSpec:ClusterReplicationSpec": {
             "properties": {
@@ -572,7 +613,16 @@
             "type": "object",
             "required": [
                 "numShards"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id",
+                        "numShards",
+                        "regionsConfigs"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/ClusterReplicationSpecRegionsConfig:ClusterReplicationSpecRegionsConfig": {
             "properties": {
@@ -622,7 +672,16 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "electableNodes",
+                        "priority",
+                        "regionName"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/ClusterSnapshotBackupPolicy:ClusterSnapshotBackupPolicy": {
             "properties": {
@@ -695,7 +754,21 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "clusterId",
+                        "clusterName",
+                        "nextSnapshot",
+                        "policies",
+                        "referenceHourOfDay",
+                        "referenceMinuteOfHour",
+                        "restoreWindowDays",
+                        "updateSnapshots"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/ClusterSnapshotBackupPolicyPolicy:ClusterSnapshotBackupPolicyPolicy": {
             "properties": {
@@ -720,7 +793,15 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id",
+                        "policyItems"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/ClusterSnapshotBackupPolicyPolicyPolicyItem:ClusterSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
@@ -766,7 +847,18 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "frequencyInterval",
+                        "frequencyType",
+                        "id",
+                        "retentionUnit",
+                        "retentionValue"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/CustomDbRoleAction:CustomDbRoleAction": {
             "properties": {
@@ -876,7 +968,15 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "key",
+                        "value"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/DatabaseUserRole:DatabaseUserRole": {
             "properties": {
@@ -908,7 +1008,16 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "collectionName",
+                        "databaseName",
+                        "roleName"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms": {
             "properties": {
@@ -1037,7 +1146,15 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "location",
+                        "zone"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace": {
             "properties": {
@@ -1149,7 +1266,18 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "createdAt",
+                        "groupId",
+                        "id",
+                        "notAfter",
+                        "subject"
+                    ]
+                }
+            }
         },
         "mongodbatlas:/get509AuthenticationDatabaseUserCertificate:get509AuthenticationDatabaseUserCertificate": {
             "properties": {
@@ -1201,7 +1329,12 @@
                 "id",
                 "notAfter",
                 "subject"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getAlertConfigurationMatcher:getAlertConfigurationMatcher": {
             "properties": {
@@ -1238,7 +1371,12 @@
                 "fieldName",
                 "operator",
                 "value"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getAlertConfigurationMetricThreshold:getAlertConfigurationMetricThreshold": {
             "properties": {
@@ -1270,7 +1408,12 @@
                 "operator",
                 "threshold",
                 "units"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getAlertConfigurationNotification:getAlertConfigurationNotification": {
             "properties": {
@@ -1487,7 +1630,12 @@
                 "username",
                 "victorOpsApiKey",
                 "victorOpsRoutingKey"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCloudProviderSnapshotBackupPolicyPolicy:getCloudProviderSnapshotBackupPolicyPolicy": {
             "properties": {
@@ -1515,7 +1663,12 @@
             "required": [
                 "id",
                 "policyItems"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCloudProviderSnapshotBackupPolicyPolicyPolicyItem:getCloudProviderSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
@@ -1567,7 +1720,12 @@
                 "id",
                 "retentionUnit",
                 "retentionValue"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCloudProviderSnapshotRestoreJobsResult:getCloudProviderSnapshotRestoreJobsResult": {
             "properties": {
@@ -1696,7 +1854,12 @@
                 "targetClusterName",
                 "targetProjectId",
                 "timestamp"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCloudProviderSnapshotsResult:getCloudProviderSnapshotsResult": {
             "properties": {
@@ -1803,7 +1966,12 @@
                 "status",
                 "storageSizeBytes",
                 "type"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClusterBiConnector:getClusterBiConnector": {
             "properties": {
@@ -1820,7 +1988,12 @@
             "required": [
                 "enabled",
                 "readPreference"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClusterConnectionStrings:getClusterConnectionStrings": {
             "properties": {
@@ -1887,7 +2060,12 @@
                 "privateSrv",
                 "standard",
                 "standardSrv"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClusterLabel:getClusterLabel": {
             "properties": {
@@ -1914,7 +2092,12 @@
             "required": [
                 "key",
                 "value"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClusterReplicationSpec:getClusterReplicationSpec": {
             "properties": {
@@ -1964,7 +2147,12 @@
                 "numShards",
                 "regionsConfigs",
                 "zoneName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClusterReplicationSpecRegionsConfig:getClusterReplicationSpecRegionsConfig": {
             "properties": {
@@ -2021,7 +2209,12 @@
                 "priority",
                 "readOnlyNodes",
                 "regionName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClusterSnapshotBackupPolicy:getClusterSnapshotBackupPolicy": {
             "properties": {
@@ -2103,7 +2296,12 @@
                 "referenceMinuteOfHour",
                 "restoreWindowDays",
                 "updateSnapshots"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClusterSnapshotBackupPolicyPolicy:getClusterSnapshotBackupPolicyPolicy": {
             "properties": {
@@ -2132,7 +2330,12 @@
             "required": [
                 "id",
                 "policyItems"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClusterSnapshotBackupPolicyPolicyPolicyItem:getClusterSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
@@ -2185,7 +2388,12 @@
                 "id",
                 "retentionUnit",
                 "retentionValue"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResult:getClustersResult": {
             "properties": {
@@ -2510,7 +2718,12 @@
                 "snapshotBackupPolicies",
                 "srvAddress",
                 "stateName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResultBiConnector:getClustersResultBiConnector": {
             "properties": {
@@ -2537,7 +2750,12 @@
             "required": [
                 "enabled",
                 "readPreference"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResultConnectionStrings:getClustersResultConnectionStrings": {
             "properties": {
@@ -2604,7 +2822,12 @@
                 "privateSrv",
                 "standard",
                 "standardSrv"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResultLabel:getClustersResultLabel": {
             "properties": {
@@ -2631,7 +2854,12 @@
             "required": [
                 "key",
                 "value"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResultReplicationSpec:getClustersResultReplicationSpec": {
             "properties": {
@@ -2681,7 +2909,12 @@
                 "numShards",
                 "regionsConfigs",
                 "zoneName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResultReplicationSpecRegionsConfig:getClustersResultReplicationSpecRegionsConfig": {
             "properties": {
@@ -2738,7 +2971,12 @@
                 "priority",
                 "readOnlyNodes",
                 "regionName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResultSnapshotBackupPolicy:getClustersResultSnapshotBackupPolicy": {
             "properties": {
@@ -2820,7 +3058,12 @@
                 "referenceMinuteOfHour",
                 "restoreWindowDays",
                 "updateSnapshots"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResultSnapshotBackupPolicyPolicy:getClustersResultSnapshotBackupPolicyPolicy": {
             "properties": {
@@ -2849,7 +3092,12 @@
             "required": [
                 "id",
                 "policyItems"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getClustersResultSnapshotBackupPolicyPolicyPolicyItem:getClustersResultSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
@@ -2902,7 +3150,12 @@
                 "id",
                 "retentionUnit",
                 "retentionValue"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCustomDbRoleAction:getCustomDbRoleAction": {
             "properties": {
@@ -2932,7 +3185,12 @@
             "required": [
                 "action",
                 "resources"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCustomDbRoleActionResource:getCustomDbRoleActionResource": {
             "properties": {
@@ -2966,7 +3224,12 @@
                 "cluster",
                 "collectionName",
                 "databaseName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCustomDbRoleInheritedRole:getCustomDbRoleInheritedRole": {
             "properties": {
@@ -2992,7 +3255,12 @@
             "required": [
                 "databaseName",
                 "roleName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCustomDbRolesResult:getCustomDbRolesResult": {
             "properties": {
@@ -3032,7 +3300,12 @@
                 "actions",
                 "inheritedRoles",
                 "roleName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCustomDbRolesResultAction:getCustomDbRolesResultAction": {
             "properties": {
@@ -3062,7 +3335,12 @@
             "required": [
                 "action",
                 "resources"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCustomDbRolesResultActionResource:getCustomDbRolesResultActionResource": {
             "properties": {
@@ -3096,7 +3374,12 @@
                 "cluster",
                 "collectionName",
                 "databaseName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getCustomDbRolesResultInheritedRole:getCustomDbRolesResultInheritedRole": {
             "properties": {
@@ -3121,7 +3404,12 @@
             "required": [
                 "databaseName",
                 "roleName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getDatabaseUserLabel:getDatabaseUserLabel": {
             "properties": {
@@ -3148,7 +3436,12 @@
             "required": [
                 "key",
                 "value"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getDatabaseUserRole:getDatabaseUserRole": {
             "properties": {
@@ -3184,7 +3477,12 @@
                 "collectionName",
                 "databaseName",
                 "roleName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getDatabaseUsersResult:getDatabaseUsersResult": {
             "properties": {
@@ -3256,7 +3554,12 @@
                 "roles",
                 "username",
                 "x509Type"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getDatabaseUsersResultLabel:getDatabaseUsersResultLabel": {
             "properties": {
@@ -3283,7 +3586,12 @@
             "required": [
                 "key",
                 "value"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getDatabaseUsersResultRole:getDatabaseUsersResultRole": {
             "properties": {
@@ -3319,7 +3627,12 @@
                 "collectionName",
                 "databaseName",
                 "roleName"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getGlobalClusterConfigManagedNamespace:getGlobalClusterConfigManagedNamespace": {
             "properties": {
@@ -3473,7 +3786,12 @@
                 "regionName",
                 "vnetName",
                 "vpcId"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getNetworkPeeringsResult:getNetworkPeeringsResult": {
             "properties": {
@@ -3679,7 +3997,12 @@
                 "statusName",
                 "vnetName",
                 "vpcId"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getProjectTeam:getProjectTeam": {
             "properties": {
@@ -3707,7 +4030,12 @@
             "required": [
                 "roleNames",
                 "teamId"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getProjectsResult:getProjectsResult": {
             "properties": {
@@ -3774,7 +4102,12 @@
                 "name",
                 "orgId",
                 "teams"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "mongodbatlas:/getProjectsResultTeam:getProjectsResultTeam": {
             "properties": {
@@ -3802,7 +4135,12 @@
             "required": [
                 "roleNames",
                 "teamId"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -4484,7 +4822,7 @@
             }
         },
         "mongodbatlas:index/cluster:Cluster": {
-            "description": "`mongodbatlas..Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\u003e **IMPORTANT:**\n\u003cbr\u003e \u0026#8226; Free tier cluster creation (M0) is not supported via API or by this Provider.\n\u003cbr\u003e \u0026#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.\n\u003cbr\u003e \u0026#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).\n\u003cbr\u003e \u0026#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.\n\n{{% examples %}}\n## Example Usage\n\n{{% example %}}\n### Example AWS cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    autoScalingDiskGbEnabled: true,\n    diskSizeGb: 100,\n    mongoDbMajorVersion: \"4.0\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 300,\n    providerEncryptEbsVolume: true,\n    providerInstanceSizeName: \"M40\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerRegionName: \"US_EAST_1\",\n    providerVolumeType: \"STANDARD\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    auto_scaling_disk_gb_enabled=True,\n    disk_size_gb=100,\n    mongo_db_major_version=\"4.0\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=300,\n    provider_encrypt_ebs_volume=True,\n    provider_instance_size_name=\"M40\",\n    provider_name=\"AWS\",\n    provider_region_name=\"US_EAST_1\",\n    provider_volume_type=\"STANDARD\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            DiskSizeGb = 100,\n            MongoDbMajorVersion = \"4.0\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 300,\n            ProviderEncryptEbsVolume = true,\n            ProviderInstanceSizeName = \"M40\",\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"US_EAST_1\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Example Azure cluster.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Cluster(\"test\", {\n    autoScalingDiskGbEnabled: true,\n    mongoDbMajorVersion: \"4.0\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskTypeName: \"P6\",\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"AZURE\",\n    providerRegionName: \"US_EAST_2\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Cluster(\"test\",\n    auto_scaling_disk_gb_enabled=True,\n    mongo_db_major_version=\"4.0\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_type_name=\"P6\",\n    provider_instance_size_name=\"M30\",\n    provider_name=\"AZURE\",\n    provider_region_name=\"US_EAST_2\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Cluster(\"test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            MongoDbMajorVersion = \"4.0\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskTypeName = \"P6\",\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"AZURE\",\n            ProviderRegionName = \"US_EAST_2\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Example GCP cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Cluster(\"test\", {\n    autoScalingDiskGbEnabled: true,\n    diskSizeGb: 40,\n    mongoDbMajorVersion: \"4.0\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"GCP\",\n    providerRegionName: \"US_EAST_4\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Cluster(\"test\",\n    auto_scaling_disk_gb_enabled=True,\n    disk_size_gb=40,\n    mongo_db_major_version=\"4.0\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_instance_size_name=\"M30\",\n    provider_name=\"GCP\",\n    provider_region_name=\"US_EAST_4\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Cluster(\"test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            DiskSizeGb = 40,\n            MongoDbMajorVersion = \"4.0\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"GCP\",\n            ProviderRegionName = \"US_EAST_4\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Example Multi Region cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    clusterType: \"REPLICASET\",\n    diskSizeGb: 100,\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 300,\n    providerInstanceSizeName: \"M10\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerVolumeType: \"STANDARD\",\n    replicationSpecs: [{\n        numShards: 1,\n        regionsConfigs: [\n            {\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_1\",\n            },\n            {\n                electableNodes: 2,\n                priority: 6,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_2\",\n            },\n            {\n                electableNodes: 2,\n                priority: 5,\n                readOnlyNodes: 2,\n                regionName: \"US_WEST_1\",\n            },\n        ],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    cluster_type=\"REPLICASET\",\n    disk_size_gb=100,\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=300,\n    provider_instance_size_name=\"M10\",\n    provider_name=\"AWS\",\n    provider_volume_type=\"STANDARD\",\n    replication_specs=[{\n        \"num_shards\": 1,\n        \"regionsConfig\": [\n            {\n                \"electableNodes\": 3,\n                \"priority\": 7,\n                \"readOnlyNodes\": 0,\n                \"region_name\": \"US_EAST_1\",\n            },\n            {\n                \"electableNodes\": 2,\n                \"priority\": 6,\n                \"readOnlyNodes\": 0,\n                \"region_name\": \"US_EAST_2\",\n            },\n            {\n                \"electableNodes\": 2,\n                \"priority\": 5,\n                \"readOnlyNodes\": 2,\n                \"region_name\": \"US_WEST_1\",\n            },\n        ],\n    }])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            ClusterType = \"REPLICASET\",\n            DiskSizeGb = 100,\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 300,\n            ProviderInstanceSizeName = \"M10\",\n            ProviderName = \"AWS\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 1,\n                    RegionsConfig = \n                    {\n                        \n                        {\n                            { \"electableNodes\", 3 },\n                            { \"priority\", 7 },\n                            { \"readOnlyNodes\", 0 },\n                            { \"regionName\", \"US_EAST_1\" },\n                        },\n                        \n                        {\n                            { \"electableNodes\", 2 },\n                            { \"priority\", 6 },\n                            { \"readOnlyNodes\", 0 },\n                            { \"regionName\", \"US_EAST_2\" },\n                        },\n                        \n                        {\n                            { \"electableNodes\", 2 },\n                            { \"priority\", 5 },\n                            { \"readOnlyNodes\", 2 },\n                            { \"regionName\", \"US_WEST_1\" },\n                        },\n                    },\n                },\n            },\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Example Global cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    clusterType: \"GEOSHARDED\",\n    diskSizeGb: 80,\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 240,\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerVolumeType: \"STANDARD\",\n    replicationSpecs: [\n        {\n            numShards: 2,\n            regionsConfigs: [{\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_1\",\n            }],\n            zoneName: \"Zone 1\",\n        },\n        {\n            numShards: 2,\n            regionsConfigs: [{\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"EU_CENTRAL_1\",\n            }],\n            zoneName: \"Zone 2\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    cluster_type=\"GEOSHARDED\",\n    disk_size_gb=80,\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=240,\n    provider_instance_size_name=\"M30\",\n    provider_name=\"AWS\",\n    provider_volume_type=\"STANDARD\",\n    replication_specs=[\n        {\n            \"num_shards\": 2,\n            \"regionsConfig\": [{\n                \"electableNodes\": 3,\n                \"priority\": 7,\n                \"readOnlyNodes\": 0,\n                \"region_name\": \"US_EAST_1\",\n            }],\n            \"zoneName\": \"Zone 1\",\n        },\n        {\n            \"num_shards\": 2,\n            \"regionsConfig\": [{\n                \"electableNodes\": 3,\n                \"priority\": 7,\n                \"readOnlyNodes\": 0,\n                \"region_name\": \"EU_CENTRAL_1\",\n            }],\n            \"zoneName\": \"Zone 2\",\n        },\n    ])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            ClusterType = \"GEOSHARDED\",\n            DiskSizeGb = 80,\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 240,\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"AWS\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 2,\n                    RegionsConfig = \n                    {\n                        \n                        {\n                            { \"electableNodes\", 3 },\n                            { \"priority\", 7 },\n                            { \"readOnlyNodes\", 0 },\n                            { \"regionName\", \"US_EAST_1\" },\n                        },\n                    },\n                    ZoneName = \"Zone 1\",\n                },\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 2,\n                    RegionsConfig = \n                    {\n                        \n                        {\n                            { \"electableNodes\", 3 },\n                            { \"priority\", 7 },\n                            { \"readOnlyNodes\", 0 },\n                            { \"regionName\", \"EU_CENTRAL_1\" },\n                        },\n                    },\n                    ZoneName = \"Zone 2\",\n                },\n            },\n        });\n    }\n\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example AWS Shared Tier cluster\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    autoScalingDiskGbEnabled: false,\n    backingProviderName: \"AWS\",\n    diskSizeGb: 2,\n    //These must be the following values\n    mongoDbMajorVersion: \"4.2\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerInstanceSizeName: \"M2\",\n    //Provider Settings \"block\"\n    providerName: \"TENANT\",\n    providerRegionName: \"US_EAST_1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    auto_scaling_disk_gb_enabled=\"false\",\n    backing_provider_name=\"AWS\",\n    disk_size_gb=\"2\",\n    mongo_db_major_version=\"4.2\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_instance_size_name=\"M2\",\n    provider_name=\"TENANT\",\n    provider_region_name=\"US_EAST_1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = \"false\",\n            BackingProviderName = \"AWS\",\n            DiskSizeGb = \"2\",\n            MongoDbMajorVersion = \"4.2\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderInstanceSizeName = \"M2\",\n            ProviderName = \"TENANT\",\n            ProviderRegionName = \"US_EAST_1\",\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
+            "description": "`mongodbatlas..Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\u003e **IMPORTANT:**\n\u003cbr\u003e \u0026#8226; Free tier cluster creation (M0) is not supported via API or by this Provider.\n\u003cbr\u003e \u0026#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.\n\u003cbr\u003e \u0026#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).\n\u003cbr\u003e \u0026#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.\n\n{{% examples %}}\n## Example Usage\n\n{{% example %}}\n### Example AWS cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    autoScalingDiskGbEnabled: true,\n    diskSizeGb: 100,\n    mongoDbMajorVersion: \"4.0\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 300,\n    providerEncryptEbsVolume: true,\n    providerInstanceSizeName: \"M40\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerRegionName: \"US_EAST_1\",\n    providerVolumeType: \"STANDARD\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    auto_scaling_disk_gb_enabled=True,\n    disk_size_gb=100,\n    mongo_db_major_version=\"4.0\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=300,\n    provider_encrypt_ebs_volume=True,\n    provider_instance_size_name=\"M40\",\n    provider_name=\"AWS\",\n    provider_region_name=\"US_EAST_1\",\n    provider_volume_type=\"STANDARD\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            DiskSizeGb = 100,\n            MongoDbMajorVersion = \"4.0\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 300,\n            ProviderEncryptEbsVolume = true,\n            ProviderInstanceSizeName = \"M40\",\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"US_EAST_1\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Example Azure cluster.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Cluster(\"test\", {\n    autoScalingDiskGbEnabled: true,\n    mongoDbMajorVersion: \"4.0\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskTypeName: \"P6\",\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"AZURE\",\n    providerRegionName: \"US_EAST_2\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Cluster(\"test\",\n    auto_scaling_disk_gb_enabled=True,\n    mongo_db_major_version=\"4.0\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_type_name=\"P6\",\n    provider_instance_size_name=\"M30\",\n    provider_name=\"AZURE\",\n    provider_region_name=\"US_EAST_2\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Cluster(\"test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            MongoDbMajorVersion = \"4.0\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskTypeName = \"P6\",\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"AZURE\",\n            ProviderRegionName = \"US_EAST_2\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Example GCP cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Cluster(\"test\", {\n    autoScalingDiskGbEnabled: true,\n    diskSizeGb: 40,\n    mongoDbMajorVersion: \"4.0\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"GCP\",\n    providerRegionName: \"US_EAST_4\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Cluster(\"test\",\n    auto_scaling_disk_gb_enabled=True,\n    disk_size_gb=40,\n    mongo_db_major_version=\"4.0\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_instance_size_name=\"M30\",\n    provider_name=\"GCP\",\n    provider_region_name=\"US_EAST_4\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Cluster(\"test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            DiskSizeGb = 40,\n            MongoDbMajorVersion = \"4.0\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"GCP\",\n            ProviderRegionName = \"US_EAST_4\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Example Multi Region cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    clusterType: \"REPLICASET\",\n    diskSizeGb: 100,\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 300,\n    providerInstanceSizeName: \"M10\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerVolumeType: \"STANDARD\",\n    replicationSpecs: [{\n        numShards: 1,\n        regionsConfigs: [\n            {\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_1\",\n            },\n            {\n                electableNodes: 2,\n                priority: 6,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_2\",\n            },\n            {\n                electableNodes: 2,\n                priority: 5,\n                readOnlyNodes: 2,\n                regionName: \"US_WEST_1\",\n            },\n        ],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    cluster_type=\"REPLICASET\",\n    disk_size_gb=100,\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=300,\n    provider_instance_size_name=\"M10\",\n    provider_name=\"AWS\",\n    provider_volume_type=\"STANDARD\",\n    replication_specs=[{\n        \"num_shards\": 1,\n        \"regionsConfig\": [\n            {\n                \"electableNodes\": 3,\n                \"priority\": 7,\n                \"readOnlyNodes\": 0,\n                \"region_name\": \"US_EAST_1\",\n            },\n            {\n                \"electableNodes\": 2,\n                \"priority\": 6,\n                \"readOnlyNodes\": 0,\n                \"region_name\": \"US_EAST_2\",\n            },\n            {\n                \"electableNodes\": 2,\n                \"priority\": 5,\n                \"readOnlyNodes\": 2,\n                \"region_name\": \"US_WEST_1\",\n            },\n        ],\n    }])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            ClusterType = \"REPLICASET\",\n            DiskSizeGb = 100,\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 300,\n            ProviderInstanceSizeName = \"M10\",\n            ProviderName = \"AWS\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 1,\n                    RegionsConfig = \n                    {\n                        \n                        {\n                            { \"electableNodes\", 3 },\n                            { \"priority\", 7 },\n                            { \"readOnlyNodes\", 0 },\n                            { \"regionName\", \"US_EAST_1\" },\n                        },\n                        \n                        {\n                            { \"electableNodes\", 2 },\n                            { \"priority\", 6 },\n                            { \"readOnlyNodes\", 0 },\n                            { \"regionName\", \"US_EAST_2\" },\n                        },\n                        \n                        {\n                            { \"electableNodes\", 2 },\n                            { \"priority\", 5 },\n                            { \"readOnlyNodes\", 2 },\n                            { \"regionName\", \"US_WEST_1\" },\n                        },\n                    },\n                },\n            },\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### Example Global cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    clusterType: \"GEOSHARDED\",\n    diskSizeGb: 80,\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 240,\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerVolumeType: \"STANDARD\",\n    replicationSpecs: [\n        {\n            numShards: 2,\n            regionsConfigs: [{\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_1\",\n            }],\n            zoneName: \"Zone 1\",\n        },\n        {\n            numShards: 2,\n            regionsConfigs: [{\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"EU_CENTRAL_1\",\n            }],\n            zoneName: \"Zone 2\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    cluster_type=\"GEOSHARDED\",\n    disk_size_gb=80,\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=240,\n    provider_instance_size_name=\"M30\",\n    provider_name=\"AWS\",\n    provider_volume_type=\"STANDARD\",\n    replication_specs=[\n        {\n            \"num_shards\": 2,\n            \"regionsConfig\": [{\n                \"electableNodes\": 3,\n                \"priority\": 7,\n                \"readOnlyNodes\": 0,\n                \"region_name\": \"US_EAST_1\",\n            }],\n            \"zoneName\": \"Zone 1\",\n        },\n        {\n            \"num_shards\": 2,\n            \"regionsConfig\": [{\n                \"electableNodes\": 3,\n                \"priority\": 7,\n                \"readOnlyNodes\": 0,\n                \"region_name\": \"EU_CENTRAL_1\",\n            }],\n            \"zoneName\": \"Zone 2\",\n        },\n    ])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            ClusterType = \"GEOSHARDED\",\n            DiskSizeGb = 80,\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 240,\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"AWS\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 2,\n                    RegionsConfig = \n                    {\n                        \n                        {\n                            { \"electableNodes\", 3 },\n                            { \"priority\", 7 },\n                            { \"readOnlyNodes\", 0 },\n                            { \"regionName\", \"US_EAST_1\" },\n                        },\n                    },\n                    ZoneName = \"Zone 1\",\n                },\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 2,\n                    RegionsConfig = \n                    {\n                        \n                        {\n                            { \"electableNodes\", 3 },\n                            { \"priority\", 7 },\n                            { \"readOnlyNodes\", 0 },\n                            { \"regionName\", \"EU_CENTRAL_1\" },\n                        },\n                    },\n                    ZoneName = \"Zone 2\",\n                },\n            },\n        });\n    }\n\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example AWS Shared Tier cluster\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    autoScalingDiskGbEnabled: false,\n    backingProviderName: \"AWS\",\n    diskSizeGb: 2,\n    //These must be the following values\n    mongoDbMajorVersion: \"4.2\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerInstanceSizeName: \"M2\",\n    //Provider Settings \"block\"\n    providerName: \"TENANT\",\n    providerRegionName: \"US_EAST_1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    auto_scaling_disk_gb_enabled=\"false\",\n    backing_provider_name=\"AWS\",\n    disk_size_gb=\"2\",\n    mongo_db_major_version=\"4.2\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_instance_size_name=\"M2\",\n    provider_name=\"TENANT\",\n    provider_region_name=\"US_EAST_1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = false,\n            BackingProviderName = \"AWS\",\n            DiskSizeGb = 2,\n            MongoDbMajorVersion = \"4.2\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderInstanceSizeName = \"M2\",\n            ProviderName = \"TENANT\",\n            ProviderRegionName = \"US_EAST_1\",\n        });\n    }\n\n}\n```\n\n{{% /example %}}\n{{% /examples %}}\n",
             "properties": {
                 "advancedConfiguration": {
                     "$ref": "#/types/mongodbatlas:/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration"
@@ -8290,8 +8628,10 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^8.0.25"
             },
+            "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing mongodbatlas cloud resources.",
             "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/terraform-providers/terraform-provider-mongodbatlas)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-mongodbatlas` repo](https://github.com/pulumi/pulumi-mongodbatlas/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-providers/terraform-provider-mongodbatlas` repo](https://github.com/terraform-providers/terraform-provider-mongodbatlas/issues).",
             "typescriptVersion": ""
         },
         "python": {

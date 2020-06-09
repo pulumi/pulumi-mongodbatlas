@@ -71,6 +71,10 @@ export interface GetPrivateEndpointResult {
      */
     readonly errorMessage: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
      */
     readonly interfaceEndpoints: string[];
@@ -81,8 +85,4 @@ export interface GetPrivateEndpointResult {
      * Returns one of the following values:
      */
     readonly status: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
