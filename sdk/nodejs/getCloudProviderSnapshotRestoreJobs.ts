@@ -74,14 +74,14 @@ export interface GetCloudProviderSnapshotRestoreJobsArgs {
  */
 export interface GetCloudProviderSnapshotRestoreJobsResult {
     readonly clusterName: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly projectId: string;
     /**
      * Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
      */
     readonly results: outputs.GetCloudProviderSnapshotRestoreJobsResult[];
     readonly totalCount: number;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

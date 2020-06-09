@@ -74,9 +74,9 @@ export interface GetAuditingResult {
      * Denotes whether or not the project associated with the {GROUP-ID} has database auditing enabled.
      */
     readonly enabled: boolean;
-    readonly projectId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly projectId: string;
 }

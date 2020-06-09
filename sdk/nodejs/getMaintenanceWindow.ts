@@ -77,6 +77,10 @@ export interface GetMaintenanceWindowResult {
      */
     readonly hourOfDay: number;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
      */
     readonly numberOfDeferrals: number;
@@ -85,8 +89,4 @@ export interface GetMaintenanceWindowResult {
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      */
     readonly startAsap: boolean;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

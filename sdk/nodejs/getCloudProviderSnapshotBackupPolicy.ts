@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a Cloud Provider Snapshot Backup Policy entry datasource. An Atlas Cloud Provider Snapshot Backup Policy provides the current snapshot schedule and retention settings for the cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  */
 export function getCloudProviderSnapshotBackupPolicy(args: GetCloudProviderSnapshotBackupPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotBackupPolicyResult> {
     if (!opts) {
@@ -50,6 +49,10 @@ export interface GetCloudProviderSnapshotBackupPolicyResult {
     readonly clusterId: string;
     readonly clusterName: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * UTC ISO 8601 formatted point in time when Atlas will take the next snapshot.
      */
     readonly nextSnapshot: string;
@@ -72,8 +75,4 @@ export interface GetCloudProviderSnapshotBackupPolicyResult {
      */
     readonly restoreWindowDays: number;
     readonly updateSnapshots: boolean;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

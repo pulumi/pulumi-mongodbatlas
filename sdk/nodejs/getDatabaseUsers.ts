@@ -80,6 +80,10 @@ export interface GetDatabaseUsersArgs {
  */
 export interface GetDatabaseUsersResult {
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * ID of the Atlas project the user belongs to.
      */
     readonly projectId: string;
@@ -87,8 +91,4 @@ export interface GetDatabaseUsersResult {
      * A list where each represents a Database user.
      */
     readonly results: outputs.GetDatabaseUsersResult[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

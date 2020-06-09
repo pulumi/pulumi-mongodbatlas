@@ -110,10 +110,10 @@ export interface Get509AuthenticationDatabaseUserResult {
      */
     readonly certificates: outputs.Get509AuthenticationDatabaseUserCertificate[];
     readonly customerX509Cas: string;
-    readonly projectId: string;
-    readonly username?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly projectId: string;
+    readonly username?: string;
 }

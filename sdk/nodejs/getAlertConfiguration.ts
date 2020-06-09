@@ -128,6 +128,10 @@ export interface GetAlertConfigurationResult {
      * - `INVOICE_CLOSED`
      */
     readonly eventType: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly matchers: outputs.GetAlertConfigurationMatcher[];
     readonly metricThreshold: outputs.GetAlertConfigurationMetricThreshold;
     readonly notifications: outputs.GetAlertConfigurationNotification[];
@@ -136,8 +140,4 @@ export interface GetAlertConfigurationResult {
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
     readonly updated: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -67,7 +67,6 @@
         "types/input.ts",
         "types/output.ts",
         "utilities.ts",
-        "x509AuthenticationDatabaseUser.ts"
+        "x509authenticationDatabaseUser.ts"
     ]
 }
-

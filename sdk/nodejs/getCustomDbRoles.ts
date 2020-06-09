@@ -67,13 +67,13 @@ export interface GetCustomDbRolesArgs {
  * A collection of values returned by getCustomDbRoles.
  */
 export interface GetCustomDbRolesResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly projectId: string;
     /**
      * A list where each represents a custom db roles.
      */
     readonly results: outputs.GetCustomDbRolesResult[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas..Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  */
 export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamResult> {
     if (!opts) {
@@ -45,6 +44,10 @@ export interface GetTeamArgs {
  */
 export interface GetTeamResult {
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * The name of the team you want to create.
      */
     readonly name: string;
@@ -54,8 +57,4 @@ export interface GetTeamResult {
      * The users who are part of the organization.
      */
     readonly usernames: string[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

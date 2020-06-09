@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  */
 export function getDatabaseUser(args: GetDatabaseUserArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseUserResult> {
     if (!opts) {
@@ -40,6 +39,7 @@ export interface GetDatabaseUserArgs {
     readonly authDatabaseName?: string;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+     *
      * @deprecated use auth_database_name instead
      */
     readonly databaseName?: string;
@@ -60,9 +60,14 @@ export interface GetDatabaseUserResult {
     readonly authDatabaseName?: string;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+     *
      * @deprecated use auth_database_name instead
      */
     readonly databaseName?: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly labels: outputs.GetDatabaseUserLabel[];
     readonly projectId: string;
     /**
@@ -74,8 +79,4 @@ export interface GetDatabaseUserResult {
      * X.509 method by which the provided username is authenticated.
      */
     readonly x509Type: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

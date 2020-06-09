@@ -61,13 +61,13 @@ export interface GetNetworkPeeringsArgs {
  * A collection of values returned by getNetworkPeerings.
  */
 export interface GetNetworkPeeringsResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly projectId: string;
     /**
      * A list where each represents a Network Peering Connection.
      */
     readonly results: outputs.GetNetworkPeeringsResult[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

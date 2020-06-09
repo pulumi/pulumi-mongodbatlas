@@ -91,11 +91,11 @@ export interface GetPrivateEndpointInterfaceLinkResult {
      * Error message pertaining to the interface endpoint. Returns null if there are no errors.
      */
     readonly errorMessage: string;
-    readonly interfaceEndpointId: string;
-    readonly privateLinkId: string;
-    readonly projectId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly interfaceEndpointId: string;
+    readonly privateLinkId: string;
+    readonly projectId: string;
 }

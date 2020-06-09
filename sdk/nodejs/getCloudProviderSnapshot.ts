@@ -80,6 +80,10 @@ export interface GetCloudProviderSnapshotResult {
      */
     readonly expiresAt: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
      */
     readonly masterKeyUuid: string;
@@ -105,8 +109,4 @@ export interface GetCloudProviderSnapshotResult {
      * Specifies the type of cluster: replicaSet or shardedCluster.
      */
     readonly type: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

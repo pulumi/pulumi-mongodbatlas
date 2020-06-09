@@ -19,6 +19,9 @@ class GetDatabaseUserResult:
         __self__.auth_database_name = auth_database_name
         if database_name and not isinstance(database_name, str):
             raise TypeError("Expected argument 'database_name' to be a str")
+        if database_name is not None:
+            warnings.warn("use auth_database_name instead", DeprecationWarning)
+            pulumi.log.warn("database_name is deprecated: use auth_database_name instead")
         __self__.database_name = database_name
         """
         Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.

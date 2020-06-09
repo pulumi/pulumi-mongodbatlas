@@ -64,6 +64,10 @@ export interface GetNetworkContainersArgs {
  * A collection of values returned by getNetworkContainers.
  */
 export interface GetNetworkContainersResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly projectId: string;
     /**
      * Cloud provider for this Network Peering connection. If omitted, Atlas sets this parameter to AWS.
@@ -73,8 +77,4 @@ export interface GetNetworkContainersResult {
      * A list where each represents a Network Peering Container.
      */
     readonly results: outputs.GetNetworkContainersResult[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -103,6 +103,10 @@ export interface GetProjectResult {
     readonly clusterCount: number;
     readonly created: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
      */
     readonly name?: string;
@@ -123,8 +127,4 @@ export interface GetProjectResult {
     readonly orgId: string;
     readonly projectId?: string;
     readonly teams: outputs.GetProjectTeam[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
