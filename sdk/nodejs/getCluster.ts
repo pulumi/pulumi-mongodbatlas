@@ -48,6 +48,14 @@ export interface GetClusterArgs {
  */
 export interface GetClusterResult {
     /**
+     * (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     */
+    readonly autoScalingComputeEnabled: boolean;
+    /**
+     * (Optional) Set to `true` to enable the cluster tier to scale down.
+     */
+    readonly autoScalingComputeScaleDownEnabled: boolean;
+    /**
      * Indicates whether disk auto-scaling is enabled.
      */
     readonly autoScalingDiskGbEnabled: boolean;
@@ -77,6 +85,10 @@ export interface GetClusterResult {
      * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     readonly connectionStrings: outputs.GetClusterConnectionStrings;
+    /**
+     * The Network Peering Container ID.
+     */
+    readonly containerId: string;
     /**
      * Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
      */
@@ -123,12 +135,20 @@ export interface GetClusterResult {
      */
     readonly paused: boolean;
     /**
-     * Flag that indicates if the cluster uses Point-in-Time backups.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup.
      */
     readonly pitEnabled: boolean;
     readonly projectId: string;
     /**
-     * Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+     * (Optional) Maximum instance size to which your cluster can automatically scale.
+     */
+    readonly providerAutoScalingComputeMaxInstanceSize: string;
+    /**
+     * (Optional) Minimum instance size to which your cluster can automatically scale.
+     */
+    readonly providerAutoScalingComputeMinInstanceSize: string;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
      */
     readonly providerBackupEnabled: boolean;
     /**

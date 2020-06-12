@@ -10,6 +10,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// `.Project` provides a Project resource. This allows project to be created.
+//
+// > **IMPORTANT WARNING:**  Changing the name of an existing Project in your configuration will result the destruction of that Project and related resources (including Clusters) and the re-creation of those resources.  The provider will inform you of the destroyed/created resources before applying so be sure to verify any change to your environment before applying.
 type Project struct {
 	pulumi.CustomResourceState
 

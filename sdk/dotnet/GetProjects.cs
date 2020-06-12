@@ -24,8 +24,28 @@ namespace Pulumi.Mongodbatlas
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetProjectsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", InvokeArgs.Empty, options.WithVersion());
+        public static Task<GetProjectsResult> InvokeAsync(GetProjectsArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", args ?? new GetProjectsArgs(), options.WithVersion());
+    }
+
+
+    public sealed class GetProjectsArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+        /// </summary>
+        [Input("itemsPerPage")]
+        public int? ItemsPerPage { get; set; }
+
+        /// <summary>
+        /// The page to return. Defaults to `1`.
+        /// </summary>
+        [Input("pageNum")]
+        public int? PageNum { get; set; }
+
+        public GetProjectsArgs()
+        {
+        }
     }
 
 
@@ -36,6 +56,8 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly int? ItemsPerPage;
+        public readonly int? PageNum;
         public readonly ImmutableArray<Outputs.GetProjectsResultResult> Results;
         public readonly int TotalCount;
 
@@ -43,11 +65,17 @@ namespace Pulumi.Mongodbatlas
         private GetProjectsResult(
             string id,
 
+            int? itemsPerPage,
+
+            int? pageNum,
+
             ImmutableArray<Outputs.GetProjectsResultResult> results,
 
             int totalCount)
         {
             Id = id;
+            ItemsPerPage = itemsPerPage;
+            PageNum = pageNum;
             Results = results;
             TotalCount = totalCount;
         }

@@ -61,7 +61,7 @@ class GetCloudProviderSnapshotBackupPolicyResult:
             raise TypeError("Expected argument 'restore_window_days' to be a float")
         __self__.restore_window_days = restore_window_days
         """
-        Specifies a restore window in days for the cloud provider backup to maintain.
+        Specifies a restore window in days for cloud backup to maintain.
         """
         if update_snapshots and not isinstance(update_snapshots, bool):
             raise TypeError("Expected argument 'update_snapshots' to be a bool")
@@ -85,7 +85,7 @@ class AwaitableGetCloudProviderSnapshotBackupPolicyResult(GetCloudProviderSnapsh
 
 def get_cloud_provider_snapshot_backup_policy(cluster_name=None,project_id=None,opts=None):
     """
-    `.CloudProviderSnapshotBackupPolicy` provides a Cloud Provider Snapshot Backup Policy entry datasource. An Atlas Cloud Provider Snapshot Backup Policy provides the current snapshot schedule and retention settings for the cluster.
+    `.CloudProviderSnapshotBackupPolicy` provides a Cloud Backup Snapshot Backup Policy datasource. An Atlas Cloud Backup Snapshot Policy provides the current snapshot schedule and retention settings for the cluster. 
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderSnapshot
     {
         /// <summary>
-        /// `mongodbatlas..CloudProviderSnapshot` provides an Cloud Provider Snapshot entry datasource. Atlas Cloud Provider Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service provider.
+        /// `mongodbatlas..CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 

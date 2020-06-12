@@ -105,7 +105,7 @@ class AwaitableGetCloudProviderSnapshotResult(GetCloudProviderSnapshotResult):
 
 def get_cloud_provider_snapshot(cluster_name=None,project_id=None,snapshot_id=None,opts=None):
     """
-    `.CloudProviderSnapshot` provides an Cloud Provider Snapshot entry datasource. Atlas Cloud Provider Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service provider.
+    `.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

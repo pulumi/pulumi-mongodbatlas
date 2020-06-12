@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..CloudProviderSnapshotRestoreJob` provides a Cloud Provider Snapshot Restore Job entry datasource. Gets all cloud provider snapshot restore jobs for the specified cluster.
+ * `mongodbatlas..CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -113,6 +113,9 @@ export interface GetCloudProviderSnapshotRestoreJobResult {
      */
     readonly id: string;
     readonly jobId: string;
+    readonly oplogInc: number;
+    readonly oplogTs: string;
+    readonly pointInTimeUtcSeconds: number;
     readonly projectId: string;
     /**
      * Unique identifier of the source snapshot ID of the restore job.

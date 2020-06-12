@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.CloudProviderSnapshotRestoreJob` provides a Cloud Provider Snapshot Restore Job entry datasource. Gets all cloud provider snapshot restore jobs for the specified cluster.
+// `.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 func LookupCloudProviderSnapshotRestoreJob(ctx *pulumi.Context, args *LookupCloudProviderSnapshotRestoreJobArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderSnapshotRestoreJobResult, error) {
@@ -47,9 +47,12 @@ type LookupCloudProviderSnapshotRestoreJobResult struct {
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt string `pulumi:"finishedAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string `pulumi:"id"`
-	JobId     string `pulumi:"jobId"`
-	ProjectId string `pulumi:"projectId"`
+	Id                    string `pulumi:"id"`
+	JobId                 string `pulumi:"jobId"`
+	OplogInc              int    `pulumi:"oplogInc"`
+	OplogTs               string `pulumi:"oplogTs"`
+	PointInTimeUtcSeconds int    `pulumi:"pointInTimeUtcSeconds"`
+	ProjectId             string `pulumi:"projectId"`
 	// Unique identifier of the source snapshot ID of the restore job.
 	SnapshotId string `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.

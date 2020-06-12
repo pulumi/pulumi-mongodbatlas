@@ -24,7 +24,7 @@ class Team(pulumi.CustomResource):
     """
     usernames: pulumi.Output[list]
     """
-    You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+    The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
     """
     def __init__(__self__, resource_name, opts=None, name=None, org_id=None, usernames=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -47,9 +47,9 @@ class Team(pulumi.CustomResource):
         test = mongodbatlas.Teams("test",
             org_id="<ORGANIZATION-ID>",
             usernames=[
-                "user1",
-                "user2",
-                "user3",
+                "user1@email.com",
+                "user2@email.com",
+                "user3@email.com",
             ])
         ```
 
@@ -58,7 +58,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the team you want to create.
         :param pulumi.Input[str] org_id: The unique identifier for the organization you want to associate the team with.
-        :param pulumi.Input[list] usernames: You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        :param pulumi.Input[list] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -103,7 +103,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the team you want to create.
         :param pulumi.Input[str] org_id: The unique identifier for the organization you want to associate the team with.
         :param pulumi.Input[str] team_id: The unique identifier for the team.
-        :param pulumi.Input[list] usernames: You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        :param pulumi.Input[list] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

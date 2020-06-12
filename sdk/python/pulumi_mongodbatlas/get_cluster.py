@@ -13,7 +13,19 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, cluster_type=None, connection_strings=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None):
+    def __init__(__self__, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None):
+        if auto_scaling_compute_enabled and not isinstance(auto_scaling_compute_enabled, bool):
+            raise TypeError("Expected argument 'auto_scaling_compute_enabled' to be a bool")
+        __self__.auto_scaling_compute_enabled = auto_scaling_compute_enabled
+        """
+        (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+        """
+        if auto_scaling_compute_scale_down_enabled and not isinstance(auto_scaling_compute_scale_down_enabled, bool):
+            raise TypeError("Expected argument 'auto_scaling_compute_scale_down_enabled' to be a bool")
+        __self__.auto_scaling_compute_scale_down_enabled = auto_scaling_compute_scale_down_enabled
+        """
+        (Optional) Set to `true` to enable the cluster tier to scale down.
+        """
         if auto_scaling_disk_gb_enabled and not isinstance(auto_scaling_disk_gb_enabled, bool):
             raise TypeError("Expected argument 'auto_scaling_disk_gb_enabled' to be a bool")
         __self__.auto_scaling_disk_gb_enabled = auto_scaling_disk_gb_enabled
@@ -55,6 +67,12 @@ class GetClusterResult:
         - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
         - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        """
+        if container_id and not isinstance(container_id, str):
+            raise TypeError("Expected argument 'container_id' to be a str")
+        __self__.container_id = container_id
+        """
+        The Network Peering Container ID.
         """
         if disk_size_gb and not isinstance(disk_size_gb, float):
             raise TypeError("Expected argument 'disk_size_gb' to be a float")
@@ -129,16 +147,28 @@ class GetClusterResult:
             raise TypeError("Expected argument 'pit_enabled' to be a bool")
         __self__.pit_enabled = pit_enabled
         """
-        Flag that indicates if the cluster uses Point-in-Time backups.
+        Flag that indicates if the cluster uses Continuous Cloud Backup.
         """
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         __self__.project_id = project_id
+        if provider_auto_scaling_compute_max_instance_size and not isinstance(provider_auto_scaling_compute_max_instance_size, str):
+            raise TypeError("Expected argument 'provider_auto_scaling_compute_max_instance_size' to be a str")
+        __self__.provider_auto_scaling_compute_max_instance_size = provider_auto_scaling_compute_max_instance_size
+        """
+        (Optional) Maximum instance size to which your cluster can automatically scale.
+        """
+        if provider_auto_scaling_compute_min_instance_size and not isinstance(provider_auto_scaling_compute_min_instance_size, str):
+            raise TypeError("Expected argument 'provider_auto_scaling_compute_min_instance_size' to be a str")
+        __self__.provider_auto_scaling_compute_min_instance_size = provider_auto_scaling_compute_min_instance_size
+        """
+        (Optional) Minimum instance size to which your cluster can automatically scale.
+        """
         if provider_backup_enabled and not isinstance(provider_backup_enabled, bool):
             raise TypeError("Expected argument 'provider_backup_enabled' to be a bool")
         __self__.provider_backup_enabled = provider_backup_enabled
         """
-        Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+        Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
         """
         if provider_disk_iops and not isinstance(provider_disk_iops, float):
             raise TypeError("Expected argument 'provider_disk_iops' to be a float")
@@ -224,12 +254,15 @@ class AwaitableGetClusterResult(GetClusterResult):
         if False:
             yield self
         return GetClusterResult(
+            auto_scaling_compute_enabled=self.auto_scaling_compute_enabled,
+            auto_scaling_compute_scale_down_enabled=self.auto_scaling_compute_scale_down_enabled,
             auto_scaling_disk_gb_enabled=self.auto_scaling_disk_gb_enabled,
             backing_provider_name=self.backing_provider_name,
             backup_enabled=self.backup_enabled,
             bi_connector=self.bi_connector,
             cluster_type=self.cluster_type,
             connection_strings=self.connection_strings,
+            container_id=self.container_id,
             disk_size_gb=self.disk_size_gb,
             encryption_at_rest_provider=self.encryption_at_rest_provider,
             id=self.id,
@@ -244,6 +277,8 @@ class AwaitableGetClusterResult(GetClusterResult):
             paused=self.paused,
             pit_enabled=self.pit_enabled,
             project_id=self.project_id,
+            provider_auto_scaling_compute_max_instance_size=self.provider_auto_scaling_compute_max_instance_size,
+            provider_auto_scaling_compute_min_instance_size=self.provider_auto_scaling_compute_min_instance_size,
             provider_backup_enabled=self.provider_backup_enabled,
             provider_disk_iops=self.provider_disk_iops,
             provider_disk_type_name=self.provider_disk_type_name,
@@ -286,12 +321,15 @@ def get_cluster(name=None,project_id=None,opts=None):
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCluster:getCluster', __args__, opts=opts).value
 
     return AwaitableGetClusterResult(
+        auto_scaling_compute_enabled=__ret__.get('autoScalingComputeEnabled'),
+        auto_scaling_compute_scale_down_enabled=__ret__.get('autoScalingComputeScaleDownEnabled'),
         auto_scaling_disk_gb_enabled=__ret__.get('autoScalingDiskGbEnabled'),
         backing_provider_name=__ret__.get('backingProviderName'),
         backup_enabled=__ret__.get('backupEnabled'),
         bi_connector=__ret__.get('biConnector'),
         cluster_type=__ret__.get('clusterType'),
         connection_strings=__ret__.get('connectionStrings'),
+        container_id=__ret__.get('containerId'),
         disk_size_gb=__ret__.get('diskSizeGb'),
         encryption_at_rest_provider=__ret__.get('encryptionAtRestProvider'),
         id=__ret__.get('id'),
@@ -306,6 +344,8 @@ def get_cluster(name=None,project_id=None,opts=None):
         paused=__ret__.get('paused'),
         pit_enabled=__ret__.get('pitEnabled'),
         project_id=__ret__.get('projectId'),
+        provider_auto_scaling_compute_max_instance_size=__ret__.get('providerAutoScalingComputeMaxInstanceSize'),
+        provider_auto_scaling_compute_min_instance_size=__ret__.get('providerAutoScalingComputeMinInstanceSize'),
         provider_backup_enabled=__ret__.get('providerBackupEnabled'),
         provider_disk_iops=__ret__.get('providerDiskIops'),
         provider_disk_type_name=__ret__.get('providerDiskTypeName'),

@@ -18,6 +18,18 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("download")]
         public Input<bool>? Download { get; set; }
 
+        [Input("oplogInc")]
+        public Input<int>? OplogInc { get; set; }
+
+        [Input("oplogTs")]
+        public Input<int>? OplogTs { get; set; }
+
+        [Input("pointInTime")]
+        public Input<bool>? PointInTime { get; set; }
+
+        [Input("pointInTimeUtcSeconds")]
+        public Input<int>? PointInTimeUtcSeconds { get; set; }
+
         /// <summary>
         /// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
         /// </summary>
