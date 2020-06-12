@@ -24,9 +24,9 @@ import * as utilities from "./utilities";
  * const test = new mongodbatlas.Teams("test", {
  *     orgId: "<ORGANIZATION-ID>",
  *     usernames: [
- *         "user1",
- *         "user2",
- *         "user3",
+ *         "user1@email.com",
+ *         "user2@email.com",
+ *         "user3@email.com",
  *     ],
  * });
  * ```
@@ -72,7 +72,7 @@ export class Team extends pulumi.CustomResource {
      */
     public /*out*/ readonly teamId!: pulumi.Output<string>;
     /**
-     * You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
      */
     public readonly usernames!: pulumi.Output<string[]>;
 
@@ -133,7 +133,7 @@ export interface TeamState {
      */
     readonly teamId?: pulumi.Input<string>;
     /**
-     * You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
      */
     readonly usernames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -151,7 +151,7 @@ export interface TeamArgs {
      */
     readonly orgId: pulumi.Input<string>;
     /**
-     * You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
      */
     readonly usernames: pulumi.Input<pulumi.Input<string>[]>;
 }

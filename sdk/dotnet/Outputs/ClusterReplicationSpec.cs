@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// Number of shards to deploy in the specified zone.
+        /// Number of shards to deploy in the specified zone, minimum 1.
         /// </summary>
         public readonly int NumShards;
         /// <summary>

@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// Number of shards to deploy in the specified zone.
+        /// Number of shards to deploy in the specified zone, minimum 1.
         /// </summary>
         [Input("numShards", required: true)]
         public Input<int> NumShards { get; set; } = null!;

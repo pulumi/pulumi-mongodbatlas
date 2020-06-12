@@ -9,17 +9,187 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
+    /// <summary>
+    /// `mongodbatlas..NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.  
+    /// 
+    /// Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
+    /// 
+    /// &gt; **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details and `private_ip_mode` resource to disable.
+    /// 
+    /// &gt; **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
+    ///     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+    ///     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+    ///     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+    ///     Microsoft.Network/virtualNetworks/peer/action
+    /// For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+    /// 
+    /// &gt; **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
+    /// 
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+    /// 
+    /// 
+    /// ## Example Usage - Container &amp; Peering Connection
+    /// 
+    /// ### Example with AWS
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Container example provided but not always required, 
+    ///         // see network_container documentation for details. 
+    ///         var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new Mongodbatlas.NetworkContainerArgs
+    ///         {
+    ///             ProjectId = local.Project_id,
+    ///             AtlasCidrBlock = "10.8.0.0/21",
+    ///             ProviderName = "AWS",
+    ///             RegionName = "US_EAST_1",
+    ///         });
+    ///         // Create the peering connection request
+    ///         var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new Mongodbatlas.NetworkPeeringArgs
+    ///         {
+    ///             AccepterRegionName = "us-east-1",
+    ///             ProjectId = local.Project_id,
+    ///             ContainerId = "507f1f77bcf86cd799439011",
+    ///             ProviderName = "AWS",
+    ///             RouteTableCidrBlock = "192.168.0.0/24",
+    ///             VpcId = "vpc-abc123abc123",
+    ///             AwsAccountId = "abc123abc123",
+    ///         });
+    ///         // the following assumes an AWS provider is configured
+    ///         // Accept the peering connection request
+    ///         var peer = new Aws.Ec2.VpcPeeringConnectionAccepter("peer", new Aws.Ec2.VpcPeeringConnectionAccepterArgs
+    ///         {
+    ///             VpcPeeringConnectionId = testNetworkPeering.ConnectionId,
+    ///             AutoAccept = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example with GCP
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Container example provided but not always required, 
+    ///         // see network_container documentation for details. 
+    ///         var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new Mongodbatlas.NetworkContainerArgs
+    ///         {
+    ///             AtlasCidrBlock = "10.8.0.0/21",
+    ///             ProjectId = local.Project_id,
+    ///             ProviderName = "GCP",
+    ///         });
+    ///         // Create the peering connection request
+    ///         var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new Mongodbatlas.NetworkPeeringArgs
+    ///         {
+    ///             ContainerId = testNetworkContainer.ContainerId,
+    ///             GcpProjectId = local.GCP_PROJECT_ID,
+    ///             NetworkName = "default",
+    ///             ProjectId = local.Project_id,
+    ///             ProviderName = "GCP",
+    ///         });
+    ///         var @default = Output.Create(Gcp.Compute.GetNetwork.InvokeAsync(new Gcp.Compute.GetNetworkArgs
+    ///         {
+    ///             Name = "default",
+    ///         }));
+    ///         // Create the GCP peer
+    ///         var peering = new Gcp.Compute.NetworkPeering("peering", new Gcp.Compute.NetworkPeeringArgs
+    ///         {
+    ///             Network = @default.Apply(@default =&gt; @default.SelfLink),
+    ///             PeerNetwork = Output.Tuple(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).Apply(values =&gt;
+    ///             {
+    ///                 var atlasGcpProjectId = values.Item1;
+    ///                 var atlasVpcName = values.Item2;
+    ///                 return $"https://www.googleapis.com/compute/v1/projects/{atlasGcpProjectId}/global/networks/{atlasVpcName}";
+    ///             }),
+    ///         });
+    ///         // Create the cluster once the peering connection is completed
+    ///         var testCluster = new Mongodbatlas.Cluster("testCluster", new Mongodbatlas.ClusterArgs
+    ///         {
+    ///             AutoScalingDiskGbEnabled = true,
+    ///             DiskSizeGb = 5,
+    ///             MongoDbMajorVersion = "4.2",
+    ///             NumShards = 1,
+    ///             ProjectId = local.Project_id,
+    ///             ProviderInstanceSizeName = "M10",
+    ///             ProviderName = "GCP",
+    ///             ProviderRegionName = "US_EAST_4",
+    ///             ReplicationFactor = 3,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ### Example with Azure
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Container example provided but not always required, 
+    ///         // see network_container documentation for details. 
+    ///         var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new Mongodbatlas.NetworkContainerArgs
+    ///         {
+    ///             AtlasCidrBlock = "10.8.0.0/21",
+    ///             ProjectId = local.Project_id,
+    ///             ProviderName = "AZURE",
+    ///             Region = "US_EAST_2",
+    ///         });
+    ///         // Create the peering connection request
+    ///         var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new Mongodbatlas.NetworkPeeringArgs
+    ///         {
+    ///             AzureDirectoryId = local.AZURE_DIRECTORY_ID,
+    ///             AzureSubscriptionId = local.AZURE_SUBSCRIPTION_ID,
+    ///             ContainerId = testNetworkContainer.ContainerId,
+    ///             ProjectId = local.Project_id,
+    ///             ProviderName = "AZURE",
+    ///             ResourceGroupName = local.AZURE_RESOURCES_GROUP_NAME,
+    ///             VnetName = local.AZURE_VNET_NAME,
+    ///         });
+    ///         // Create the cluster once the peering connection is completed
+    ///         var testCluster = new Mongodbatlas.Cluster("testCluster", new Mongodbatlas.ClusterArgs
+    ///         {
+    ///             AutoScalingDiskGbEnabled = true,
+    ///             MongoDbMajorVersion = "4.2",
+    ///             NumShards = 1,
+    ///             ProjectId = local.Project_id,
+    ///             ProviderDiskTypeName = "P4",
+    ///             ProviderInstanceSizeName = "M10",
+    ///             ProviderName = "AZURE",
+    ///             ProviderRegionName = "US_EAST_2",
+    ///             ReplicationFactor = 3,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class NetworkPeering : Pulumi.CustomResource
     {
         /// <summary>
-        /// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        /// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         /// </summary>
         [Output("accepterRegionName")]
         public Output<string> AccepterRegionName { get; private set; } = null!;
 
-        /// <summary>
-        /// Unique identifier for an Azure AD directory.
-        /// </summary>
         [Output("atlasCidrBlock")]
         public Output<string> AtlasCidrBlock { get; private set; } = null!;
 
@@ -32,14 +202,11 @@ namespace Pulumi.Mongodbatlas
         [Output("atlasId")]
         public Output<string> AtlasId { get; private set; } = null!;
 
-        /// <summary>
-        /// The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.
-        /// </summary>
         [Output("atlasVpcName")]
         public Output<string> AtlasVpcName { get; private set; } = null!;
 
         /// <summary>
-        /// Account ID of the owner of the peer VPC.
+        /// AWS Account ID of the owner of the peer VPC.
         /// </summary>
         [Output("awsAccountId")]
         public Output<string> AwsAccountId { get; private set; } = null!;
@@ -51,19 +218,19 @@ namespace Pulumi.Mongodbatlas
         public Output<string> AzureDirectoryId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifer of the Azure subscription in which the VNet resides.
+        /// Unique identifier of the Azure subscription in which the VNet resides.
         /// </summary>
         [Output("azureSubscriptionId")]
         public Output<string> AzureSubscriptionId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the peering connection.
+        /// Unique identifier of the Atlas network peering container.
         /// </summary>
         [Output("connectionId")]
         public Output<string> ConnectionId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.
+        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         /// </summary>
         [Output("containerId")]
         public Output<string> ContainerId { get; private set; } = null!;
@@ -99,19 +266,19 @@ namespace Pulumi.Mongodbatlas
         public Output<string> NetworkName { get; private set; } = null!;
 
         /// <summary>
-        /// The Network Peering Container ID.
+        /// Unique identifier of the Atlas network peer.
         /// </summary>
         [Output("peerId")]
         public Output<string> PeerId { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the MongoDB Atlas project to create the database user.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Cloud provider for this VPC peering connection. (Possible Values `AWS`, `AZURE`, `GCP`).
+        /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
@@ -123,13 +290,13 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ResourceGroupName { get; private set; } = null!;
 
         /// <summary>
-        /// Peer VPC CIDR block or subnet.
+        /// AWS VPC CIDR block or subnet.
         /// </summary>
         [Output("routeTableCidrBlock")]
         public Output<string> RouteTableCidrBlock { get; private set; } = null!;
 
         /// <summary>
-        /// (Azure/GCP Only) Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
+        /// Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -147,7 +314,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> VnetName { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the peer VPC.
+        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         /// </summary>
         [Output("vpcId")]
         public Output<string> VpcId { get; private set; } = null!;
@@ -199,14 +366,11 @@ namespace Pulumi.Mongodbatlas
     public sealed class NetworkPeeringArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        /// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         /// </summary>
         [Input("accepterRegionName")]
         public Input<string>? AccepterRegionName { get; set; }
 
-        /// <summary>
-        /// Unique identifier for an Azure AD directory.
-        /// </summary>
         [Input("atlasCidrBlock")]
         public Input<string>? AtlasCidrBlock { get; set; }
 
@@ -216,14 +380,11 @@ namespace Pulumi.Mongodbatlas
         [Input("atlasGcpProjectId")]
         public Input<string>? AtlasGcpProjectId { get; set; }
 
-        /// <summary>
-        /// The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.
-        /// </summary>
         [Input("atlasVpcName")]
         public Input<string>? AtlasVpcName { get; set; }
 
         /// <summary>
-        /// Account ID of the owner of the peer VPC.
+        /// AWS Account ID of the owner of the peer VPC.
         /// </summary>
         [Input("awsAccountId")]
         public Input<string>? AwsAccountId { get; set; }
@@ -235,13 +396,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AzureDirectoryId { get; set; }
 
         /// <summary>
-        /// Unique identifer of the Azure subscription in which the VNet resides.
+        /// Unique identifier of the Azure subscription in which the VNet resides.
         /// </summary>
         [Input("azureSubscriptionId")]
         public Input<string>? AzureSubscriptionId { get; set; }
 
         /// <summary>
-        /// Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.
+        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         /// </summary>
         [Input("containerId", required: true)]
         public Input<string> ContainerId { get; set; } = null!;
@@ -259,13 +420,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? NetworkName { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the MongoDB Atlas project to create the database user.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Cloud provider for this VPC peering connection. (Possible Values `AWS`, `AZURE`, `GCP`).
+        /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -277,7 +438,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ResourceGroupName { get; set; }
 
         /// <summary>
-        /// Peer VPC CIDR block or subnet.
+        /// AWS VPC CIDR block or subnet.
         /// </summary>
         [Input("routeTableCidrBlock")]
         public Input<string>? RouteTableCidrBlock { get; set; }
@@ -289,7 +450,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? VnetName { get; set; }
 
         /// <summary>
-        /// Unique identifier of the peer VPC.
+        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
@@ -302,14 +463,11 @@ namespace Pulumi.Mongodbatlas
     public sealed class NetworkPeeringState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        /// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         /// </summary>
         [Input("accepterRegionName")]
         public Input<string>? AccepterRegionName { get; set; }
 
-        /// <summary>
-        /// Unique identifier for an Azure AD directory.
-        /// </summary>
         [Input("atlasCidrBlock")]
         public Input<string>? AtlasCidrBlock { get; set; }
 
@@ -322,14 +480,11 @@ namespace Pulumi.Mongodbatlas
         [Input("atlasId")]
         public Input<string>? AtlasId { get; set; }
 
-        /// <summary>
-        /// The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.
-        /// </summary>
         [Input("atlasVpcName")]
         public Input<string>? AtlasVpcName { get; set; }
 
         /// <summary>
-        /// Account ID of the owner of the peer VPC.
+        /// AWS Account ID of the owner of the peer VPC.
         /// </summary>
         [Input("awsAccountId")]
         public Input<string>? AwsAccountId { get; set; }
@@ -341,19 +496,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AzureDirectoryId { get; set; }
 
         /// <summary>
-        /// Unique identifer of the Azure subscription in which the VNet resides.
+        /// Unique identifier of the Azure subscription in which the VNet resides.
         /// </summary>
         [Input("azureSubscriptionId")]
         public Input<string>? AzureSubscriptionId { get; set; }
 
         /// <summary>
-        /// Unique identifier for the peering connection.
+        /// Unique identifier of the Atlas network peering container.
         /// </summary>
         [Input("connectionId")]
         public Input<string>? ConnectionId { get; set; }
 
         /// <summary>
-        /// Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.
+        /// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
@@ -389,19 +544,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? NetworkName { get; set; }
 
         /// <summary>
-        /// The Network Peering Container ID.
+        /// Unique identifier of the Atlas network peer.
         /// </summary>
         [Input("peerId")]
         public Input<string>? PeerId { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the MongoDB Atlas project to create the database user.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Cloud provider for this VPC peering connection. (Possible Values `AWS`, `AZURE`, `GCP`).
+        /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
@@ -413,13 +568,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ResourceGroupName { get; set; }
 
         /// <summary>
-        /// Peer VPC CIDR block or subnet.
+        /// AWS VPC CIDR block or subnet.
         /// </summary>
         [Input("routeTableCidrBlock")]
         public Input<string>? RouteTableCidrBlock { get; set; }
 
         /// <summary>
-        /// (Azure/GCP Only) Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
+        /// Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -437,7 +592,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? VnetName { get; set; }
 
         /// <summary>
-        /// Unique identifier of the peer VPC.
+        /// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
  *     autoScalingDiskGbEnabled: true,
  *     diskSizeGb: 100,
- *     mongoDbMajorVersion: "4.0",
+ *     mongoDbMajorVersion: "4.2",
  *     numShards: 1,
  *     projectId: "<YOUR-PROJECT-ID>",
  *     providerBackupEnabled: true,
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.Cluster("test", {
  *     autoScalingDiskGbEnabled: true,
- *     mongoDbMajorVersion: "4.0",
+ *     mongoDbMajorVersion: "4.2",
  *     numShards: 1,
  *     projectId: "<YOUR-PROJECT-ID>",
  *     providerBackupEnabled: true,
@@ -73,7 +73,7 @@ import * as utilities from "./utilities";
  * const test = new mongodbatlas.Cluster("test", {
  *     autoScalingDiskGbEnabled: true,
  *     diskSizeGb: 40,
- *     mongoDbMajorVersion: "4.0",
+ *     mongoDbMajorVersion: "4.2",
  *     numShards: 1,
  *     projectId: "<YOUR-PROJECT-ID>",
  *     providerBackupEnabled: true,
@@ -220,17 +220,32 @@ export class Cluster extends pulumi.CustomResource {
 
     public readonly advancedConfiguration!: pulumi.Output<outputs.ClusterAdvancedConfiguration>;
     /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+     * - Set to `false` to disable cluster tier auto-scaling.
+     */
+    public readonly autoScalingComputeEnabled!: pulumi.Output<boolean>;
+    /**
+     * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
+     * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
+     */
+    public readonly autoScalingComputeScaleDownEnabled!: pulumi.Output<boolean>;
+    /**
      * Specifies whether disk auto-scaling is enabled. The default is true.
      * - Set to `true` to enable disk auto-scaling.
      * - Set to `false` to disable disk auto-scaling.
      */
-    public readonly autoScalingDiskGbEnabled!: pulumi.Output<boolean>;
+    public readonly autoScalingDiskGbEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
     public readonly backingProviderName!: pulumi.Output<string>;
     /**
-     * Legacy Option - Set to true to enable Atlas continuous backups for the cluster.
+     * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+     * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+     * * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+     * * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
+     * * The default value is false.  M10 and above only.
      */
     public readonly backupEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -247,20 +262,22 @@ export class Cluster extends pulumi.CustomResource {
     public readonly clusterType!: pulumi.Output<string>;
     /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-     * - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
-     * - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     * - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.
-     * - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
-     * - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     public /*out*/ readonly connectionStrings!: pulumi.Output<outputs.ClusterConnectionStrings>;
     /**
-     * The size in gigabytes of the server’s root volume. You can add capacity by increasing this number, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
+     * The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+     */
+    public /*out*/ readonly containerId!: pulumi.Output<string>;
+    /**
+     * Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
+     * * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
+     * * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
+     * * Cannot be used with clusters with local NVMe SSDs
+     * * Cannot be used with Azure clusters
      */
     public readonly diskSizeGb!: pulumi.Output<number>;
     /**
-     * Set the Encryption at Rest parameter.  Possible values are AWS, GCP, AZURE or NONE.  Requires M10 or greater and for backupEnabled to be false or omitted.
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
      */
     public readonly encryptionAtRestProvider!: pulumi.Output<string>;
     /**
@@ -292,7 +309,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Number of shards to deploy in the specified zone.
+     * Number of shards to deploy in the specified zone, minimum 1.
      */
     public readonly numShards!: pulumi.Output<number | undefined>;
     /**
@@ -300,7 +317,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly paused!: pulumi.Output<boolean>;
     /**
-     * - Flag that indicates if the cluster uses Point-in-Time backups. If set to true, providerBackupEnabled must also be set to true.
+     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
      */
     public readonly pitEnabled!: pulumi.Output<boolean>;
     /**
@@ -308,11 +325,19 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+     * Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
+     */
+    public readonly providerAutoScalingComputeMaxInstanceSize!: pulumi.Output<string>;
+    /**
+     * Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
+     */
+    public readonly providerAutoScalingComputeMinInstanceSize!: pulumi.Output<string>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
      */
     public readonly providerBackupEnabled!: pulumi.Output<boolean | undefined>;
     /**
-     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
+     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
      */
     public readonly providerDiskIops!: pulumi.Output<number>;
     /**
@@ -320,11 +345,12 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerDiskTypeName!: pulumi.Output<string>;
     /**
-     * If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the instance.
+     * If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
     public readonly providerEncryptEbsVolume!: pulumi.Output<boolean>;
     /**
-     * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
+     * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
+     * **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
      */
     public readonly providerInstanceSizeName!: pulumi.Output<string>;
     /**
@@ -332,7 +358,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerName!: pulumi.Output<string>;
     /**
-     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      * Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
      */
     public readonly providerRegionName!: pulumi.Output<string>;
@@ -380,6 +406,8 @@ export class Cluster extends pulumi.CustomResource {
         if (opts && opts.id) {
             const state = argsOrState as ClusterState | undefined;
             inputs["advancedConfiguration"] = state ? state.advancedConfiguration : undefined;
+            inputs["autoScalingComputeEnabled"] = state ? state.autoScalingComputeEnabled : undefined;
+            inputs["autoScalingComputeScaleDownEnabled"] = state ? state.autoScalingComputeScaleDownEnabled : undefined;
             inputs["autoScalingDiskGbEnabled"] = state ? state.autoScalingDiskGbEnabled : undefined;
             inputs["backingProviderName"] = state ? state.backingProviderName : undefined;
             inputs["backupEnabled"] = state ? state.backupEnabled : undefined;
@@ -387,6 +415,7 @@ export class Cluster extends pulumi.CustomResource {
             inputs["clusterId"] = state ? state.clusterId : undefined;
             inputs["clusterType"] = state ? state.clusterType : undefined;
             inputs["connectionStrings"] = state ? state.connectionStrings : undefined;
+            inputs["containerId"] = state ? state.containerId : undefined;
             inputs["diskSizeGb"] = state ? state.diskSizeGb : undefined;
             inputs["encryptionAtRestProvider"] = state ? state.encryptionAtRestProvider : undefined;
             inputs["labels"] = state ? state.labels : undefined;
@@ -400,6 +429,8 @@ export class Cluster extends pulumi.CustomResource {
             inputs["paused"] = state ? state.paused : undefined;
             inputs["pitEnabled"] = state ? state.pitEnabled : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["providerAutoScalingComputeMaxInstanceSize"] = state ? state.providerAutoScalingComputeMaxInstanceSize : undefined;
+            inputs["providerAutoScalingComputeMinInstanceSize"] = state ? state.providerAutoScalingComputeMinInstanceSize : undefined;
             inputs["providerBackupEnabled"] = state ? state.providerBackupEnabled : undefined;
             inputs["providerDiskIops"] = state ? state.providerDiskIops : undefined;
             inputs["providerDiskTypeName"] = state ? state.providerDiskTypeName : undefined;
@@ -425,6 +456,8 @@ export class Cluster extends pulumi.CustomResource {
                 throw new Error("Missing required property 'providerName'");
             }
             inputs["advancedConfiguration"] = args ? args.advancedConfiguration : undefined;
+            inputs["autoScalingComputeEnabled"] = args ? args.autoScalingComputeEnabled : undefined;
+            inputs["autoScalingComputeScaleDownEnabled"] = args ? args.autoScalingComputeScaleDownEnabled : undefined;
             inputs["autoScalingDiskGbEnabled"] = args ? args.autoScalingDiskGbEnabled : undefined;
             inputs["backingProviderName"] = args ? args.backingProviderName : undefined;
             inputs["backupEnabled"] = args ? args.backupEnabled : undefined;
@@ -438,6 +471,8 @@ export class Cluster extends pulumi.CustomResource {
             inputs["numShards"] = args ? args.numShards : undefined;
             inputs["pitEnabled"] = args ? args.pitEnabled : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["providerAutoScalingComputeMaxInstanceSize"] = args ? args.providerAutoScalingComputeMaxInstanceSize : undefined;
+            inputs["providerAutoScalingComputeMinInstanceSize"] = args ? args.providerAutoScalingComputeMinInstanceSize : undefined;
             inputs["providerBackupEnabled"] = args ? args.providerBackupEnabled : undefined;
             inputs["providerDiskIops"] = args ? args.providerDiskIops : undefined;
             inputs["providerDiskTypeName"] = args ? args.providerDiskTypeName : undefined;
@@ -450,6 +485,7 @@ export class Cluster extends pulumi.CustomResource {
             inputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
             inputs["clusterId"] = undefined /*out*/;
             inputs["connectionStrings"] = undefined /*out*/;
+            inputs["containerId"] = undefined /*out*/;
             inputs["mongoDbVersion"] = undefined /*out*/;
             inputs["mongoUri"] = undefined /*out*/;
             inputs["mongoUriUpdated"] = undefined /*out*/;
@@ -476,6 +512,17 @@ export class Cluster extends pulumi.CustomResource {
 export interface ClusterState {
     readonly advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
     /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+     * - Set to `false` to disable cluster tier auto-scaling.
+     */
+    readonly autoScalingComputeEnabled?: pulumi.Input<boolean>;
+    /**
+     * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
+     * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
+     */
+    readonly autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
+    /**
      * Specifies whether disk auto-scaling is enabled. The default is true.
      * - Set to `true` to enable disk auto-scaling.
      * - Set to `false` to disable disk auto-scaling.
@@ -486,7 +533,11 @@ export interface ClusterState {
      */
     readonly backingProviderName?: pulumi.Input<string>;
     /**
-     * Legacy Option - Set to true to enable Atlas continuous backups for the cluster.
+     * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+     * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+     * * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+     * * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
+     * * The default value is false.  M10 and above only.
      */
     readonly backupEnabled?: pulumi.Input<boolean>;
     /**
@@ -503,20 +554,22 @@ export interface ClusterState {
     readonly clusterType?: pulumi.Input<string>;
     /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-     * - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
-     * - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     * - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.
-     * - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
-     * - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     readonly connectionStrings?: pulumi.Input<inputs.ClusterConnectionStrings>;
     /**
-     * The size in gigabytes of the server’s root volume. You can add capacity by increasing this number, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
+     * The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+     */
+    readonly containerId?: pulumi.Input<string>;
+    /**
+     * Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
+     * * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
+     * * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
+     * * Cannot be used with clusters with local NVMe SSDs
+     * * Cannot be used with Azure clusters
      */
     readonly diskSizeGb?: pulumi.Input<number>;
     /**
-     * Set the Encryption at Rest parameter.  Possible values are AWS, GCP, AZURE or NONE.  Requires M10 or greater and for backupEnabled to be false or omitted.
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
      */
     readonly encryptionAtRestProvider?: pulumi.Input<string>;
     /**
@@ -548,7 +601,7 @@ export interface ClusterState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Number of shards to deploy in the specified zone.
+     * Number of shards to deploy in the specified zone, minimum 1.
      */
     readonly numShards?: pulumi.Input<number>;
     /**
@@ -556,7 +609,7 @@ export interface ClusterState {
      */
     readonly paused?: pulumi.Input<boolean>;
     /**
-     * - Flag that indicates if the cluster uses Point-in-Time backups. If set to true, providerBackupEnabled must also be set to true.
+     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
      */
     readonly pitEnabled?: pulumi.Input<boolean>;
     /**
@@ -564,11 +617,19 @@ export interface ClusterState {
      */
     readonly projectId?: pulumi.Input<string>;
     /**
-     * Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+     * Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
+     */
+    readonly providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string>;
+    /**
+     * Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
+     */
+    readonly providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
      */
     readonly providerBackupEnabled?: pulumi.Input<boolean>;
     /**
-     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
+     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
      */
     readonly providerDiskIops?: pulumi.Input<number>;
     /**
@@ -576,11 +637,12 @@ export interface ClusterState {
      */
     readonly providerDiskTypeName?: pulumi.Input<string>;
     /**
-     * If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the instance.
+     * If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
     readonly providerEncryptEbsVolume?: pulumi.Input<boolean>;
     /**
-     * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
+     * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
+     * **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
      */
     readonly providerInstanceSizeName?: pulumi.Input<string>;
     /**
@@ -588,7 +650,7 @@ export interface ClusterState {
      */
     readonly providerName?: pulumi.Input<string>;
     /**
-     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      * Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
      */
     readonly providerRegionName?: pulumi.Input<string>;
@@ -630,6 +692,17 @@ export interface ClusterState {
 export interface ClusterArgs {
     readonly advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
     /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+     * - Set to `false` to disable cluster tier auto-scaling.
+     */
+    readonly autoScalingComputeEnabled?: pulumi.Input<boolean>;
+    /**
+     * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
+     * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
+     */
+    readonly autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
+    /**
      * Specifies whether disk auto-scaling is enabled. The default is true.
      * - Set to `true` to enable disk auto-scaling.
      * - Set to `false` to disable disk auto-scaling.
@@ -640,7 +713,11 @@ export interface ClusterArgs {
      */
     readonly backingProviderName?: pulumi.Input<string>;
     /**
-     * Legacy Option - Set to true to enable Atlas continuous backups for the cluster.
+     * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
+     * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+     * * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
+     * * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
+     * * The default value is false.  M10 and above only.
      */
     readonly backupEnabled?: pulumi.Input<boolean>;
     /**
@@ -652,11 +729,15 @@ export interface ClusterArgs {
      */
     readonly clusterType?: pulumi.Input<string>;
     /**
-     * The size in gigabytes of the server’s root volume. You can add capacity by increasing this number, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
+     * Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
+     * * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
+     * * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
+     * * Cannot be used with clusters with local NVMe SSDs
+     * * Cannot be used with Azure clusters
      */
     readonly diskSizeGb?: pulumi.Input<number>;
     /**
-     * Set the Encryption at Rest parameter.  Possible values are AWS, GCP, AZURE or NONE.  Requires M10 or greater and for backupEnabled to be false or omitted.
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
      */
     readonly encryptionAtRestProvider?: pulumi.Input<string>;
     /**
@@ -672,11 +753,11 @@ export interface ClusterArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Number of shards to deploy in the specified zone.
+     * Number of shards to deploy in the specified zone, minimum 1.
      */
     readonly numShards?: pulumi.Input<number>;
     /**
-     * - Flag that indicates if the cluster uses Point-in-Time backups. If set to true, providerBackupEnabled must also be set to true.
+     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
      */
     readonly pitEnabled?: pulumi.Input<boolean>;
     /**
@@ -684,11 +765,19 @@ export interface ClusterArgs {
      */
     readonly projectId: pulumi.Input<string>;
     /**
-     * Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+     * Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
+     */
+    readonly providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string>;
+    /**
+     * Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
+     */
+    readonly providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
      */
     readonly providerBackupEnabled?: pulumi.Input<boolean>;
     /**
-     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
+     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
      */
     readonly providerDiskIops?: pulumi.Input<number>;
     /**
@@ -696,11 +785,12 @@ export interface ClusterArgs {
      */
     readonly providerDiskTypeName?: pulumi.Input<string>;
     /**
-     * If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the instance.
+     * If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
     readonly providerEncryptEbsVolume?: pulumi.Input<boolean>;
     /**
-     * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
+     * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
+     * **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
      */
     readonly providerInstanceSizeName: pulumi.Input<string>;
     /**
@@ -708,7 +798,7 @@ export interface ClusterArgs {
      */
     readonly providerName: pulumi.Input<string>;
     /**
-     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      * Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
      */
     readonly providerRegionName?: pulumi.Input<string>;

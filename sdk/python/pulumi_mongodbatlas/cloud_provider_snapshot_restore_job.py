@@ -28,6 +28,10 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
       * `automated` (`bool`)
       * `download` (`bool`)
+      * `oplog_inc` (`float`)
+      * `oplog_ts` (`float`)
+      * `point_in_time` (`bool`)
+      * `point_in_time_utc_seconds` (`float`)
       * `target_cluster_name` (`str`) - Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
       * `target_project_id` (`str`)
     """
@@ -65,10 +69,14 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, cluster_name=None, delivery_type=None, project_id=None, snapshot_id=None, __props__=None, __name__=None, __opts__=None):
         """
-        `.CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud provider snapshot of a specified cluster. The restore job can be one of two types: 
+        `.CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types: 
         * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
 
         * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
+
+        * **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.
+
+        > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -146,6 +154,10 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
           * `automated` (`pulumi.Input[bool]`)
           * `download` (`pulumi.Input[bool]`)
+          * `oplog_inc` (`pulumi.Input[float]`)
+          * `oplog_ts` (`pulumi.Input[float]`)
+          * `point_in_time` (`pulumi.Input[bool]`)
+          * `point_in_time_utc_seconds` (`pulumi.Input[float]`)
           * `target_cluster_name` (`pulumi.Input[str]`) - Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
           * `target_project_id` (`pulumi.Input[str]`)
         """
@@ -218,6 +230,10 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
           * `automated` (`pulumi.Input[bool]`)
           * `download` (`pulumi.Input[bool]`)
+          * `oplog_inc` (`pulumi.Input[float]`)
+          * `oplog_ts` (`pulumi.Input[float]`)
+          * `point_in_time` (`pulumi.Input[bool]`)
+          * `point_in_time_utc_seconds` (`pulumi.Input[float]`)
           * `target_cluster_name` (`pulumi.Input[str]`) - Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
           * `target_project_id` (`pulumi.Input[str]`)
         """

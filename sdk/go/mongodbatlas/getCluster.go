@@ -33,6 +33,10 @@ type LookupClusterArgs struct {
 
 // A collection of values returned by getCluster.
 type LookupClusterResult struct {
+	// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+	AutoScalingComputeEnabled bool `pulumi:"autoScalingComputeEnabled"`
+	// (Optional) Set to `true` to enable the cluster tier to scale down.
+	AutoScalingComputeScaleDownEnabled bool `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Indicates whether disk auto-scaling is enabled.
 	AutoScalingDiskGbEnabled bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Indicates Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -51,6 +55,8 @@ type LookupClusterResult struct {
 	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	ConnectionStrings GetClusterConnectionStrings `pulumi:"connectionStrings"`
+	// The Network Peering Container ID.
+	ContainerId string `pulumi:"containerId"`
 	// Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Indicates whether Encryption at Rest is enabled or disabled.
@@ -74,10 +80,14 @@ type LookupClusterResult struct {
 	NumShards int `pulumi:"numShards"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused bool `pulumi:"paused"`
-	// Flag that indicates if the cluster uses Point-in-Time backups.
+	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
-	// Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+	// (Optional) Maximum instance size to which your cluster can automatically scale.
+	ProviderAutoScalingComputeMaxInstanceSize string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
+	// (Optional) Minimum instance size to which your cluster can automatically scale.
+	ProviderAutoScalingComputeMinInstanceSize string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
+	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
 	ProviderBackupEnabled bool `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops int `pulumi:"providerDiskIops"`

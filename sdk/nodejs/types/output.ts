@@ -202,6 +202,10 @@ export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
 export interface CloudProviderSnapshotRestoreJobDeliveryType {
     automated?: boolean;
     download?: boolean;
+    oplogInc?: number;
+    oplogTs?: number;
+    pointInTime?: boolean;
+    pointInTimeUtcSeconds?: number;
     /**
      * Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
      */
@@ -242,7 +246,8 @@ export interface ClusterAdvancedConfiguration {
 
 export interface ClusterBiConnector {
     /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * *
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
@@ -279,7 +284,7 @@ export interface ClusterReplicationSpec {
      */
     id: string;
     /**
-     * Number of shards to deploy in the specified zone.
+     * Number of shards to deploy in the specified zone, minimum 1.
      */
     numShards: number;
     /**
@@ -294,15 +299,21 @@ export interface ClusterReplicationSpec {
 
 export interface ClusterReplicationSpecRegionsConfig {
     /**
-     * The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
+     * The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
      */
     analyticsNodes?: number;
     /**
      * Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
+     * * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
+     * * Specify 0 if you do not want any electable nodes in the region.
+     * * You cannot create electable nodes in a region if `priority` is 0.
      */
     electableNodes: number;
     /**
      * Election priority of the region. For regions with only read-only nodes, set this value to 0.
+     * * For regions where `electableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
+     * * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
+     * * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
      */
     priority: number;
     /**
@@ -310,7 +321,7 @@ export interface ClusterReplicationSpecRegionsConfig {
      */
     readOnlyNodes?: number;
     /**
-     * Name for the region specified.
+     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
     regionName: string;
 }
@@ -717,6 +728,9 @@ export interface GetCloudProviderSnapshotRestoreJobsResult {
      * The unique identifier of the restore job.
      */
     id: string;
+    oplogInc: number;
+    oplogTs: number;
+    pointInTimeUtcSeconds: number;
     /**
      * Unique identifier of the source snapshot ID of the restore job.
      */
@@ -880,6 +894,14 @@ export interface GetClusterSnapshotBackupPolicyPolicyPolicyItem {
 
 export interface GetClustersResult {
     /**
+     * (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     */
+    autoScalingComputeEnabled: boolean;
+    /**
+     * (Optional) Set to `true` to enable the cluster tier to scale down.
+     */
+    autoScalingComputeScaleDownEnabled: boolean;
+    /**
      * Indicates whether disk auto-scaling is enabled.
      */
     autoScalingDiskGbEnabled: boolean;
@@ -909,6 +931,10 @@ export interface GetClustersResult {
      * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     connectionStrings: outputs.GetClustersResultConnectionStrings;
+    /**
+     * The Network Peering Container ID.
+     */
+    containerId: string;
     /**
      * Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
      */
@@ -951,11 +977,19 @@ export interface GetClustersResult {
      */
     paused: boolean;
     /**
-     * Flag that indicates if the cluster uses Point-in-Time backups.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup.
      */
     pitEnabled: boolean;
     /**
-     * Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+     * (Optional) Maximum instance size to which your cluster can automatically scale.
+     */
+    providerAutoScalingComputeMaxInstanceSize: string;
+    /**
+     * (Optional) Minimum instance size to which your cluster can automatically scale.
+     */
+    providerAutoScalingComputeMinInstanceSize: string;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
      */
     providerBackupEnabled: boolean;
     /**

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..getCloudProviderSnapshotRestoreJobs` provides a Cloud Provider Snapshot Restore Jobs entry datasource. Gets all cloud provider snapshot restore jobs for the specified cluster.
+ * `mongodbatlas..getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -37,6 +37,8 @@ import * as utilities from "./utilities";
  * });
  * const testCloudProviderSnapshotRestoreJobs = pulumi.all([testCloudProviderSnapshotRestoreJob.clusterName, testCloudProviderSnapshotRestoreJob.projectId]).apply(([clusterName, projectId]) => mongodbatlas.getCloudProviderSnapshotRestoreJobs({
  *     clusterName: clusterName,
+ *     itemsPerPage: 5,
+ *     pageNum: 1,
  *     projectId: projectId,
  * }, { async: true }));
  * ```
@@ -51,6 +53,8 @@ export function getCloudProviderSnapshotRestoreJobs(args: GetCloudProviderSnapsh
     }
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", {
         "clusterName": args.clusterName,
+        "itemsPerPage": args.itemsPerPage,
+        "pageNum": args.pageNum,
         "projectId": args.projectId,
     }, opts);
 }
@@ -63,6 +67,14 @@ export interface GetCloudProviderSnapshotRestoreJobsArgs {
      * The name of the Atlas cluster for which you want to retrieve restore jobs.
      */
     readonly clusterName: string;
+    /**
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     */
+    readonly itemsPerPage?: number;
+    /**
+     * The page to return. Defaults to `1`.
+     */
+    readonly pageNum?: number;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -78,6 +90,8 @@ export interface GetCloudProviderSnapshotRestoreJobsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly itemsPerPage?: number;
+    readonly pageNum?: number;
     readonly projectId: string;
     /**
      * Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.

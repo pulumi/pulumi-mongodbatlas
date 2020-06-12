@@ -10,6 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// `.DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
+//
+// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text.
 type DatabaseUser struct {
 	pulumi.CustomResourceState
 
@@ -20,7 +27,8 @@ type DatabaseUser struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrOutput       `pulumi:"databaseName"`
 	Labels       DatabaseUserLabelArrayOutput `pulumi:"labels"`
-	Password     pulumi.StringPtrOutput       `pulumi:"password"`
+	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -72,7 +80,8 @@ type databaseUserState struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName *string             `pulumi:"databaseName"`
 	Labels       []DatabaseUserLabel `pulumi:"labels"`
-	Password     *string             `pulumi:"password"`
+	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+	Password *string `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -91,7 +100,8 @@ type DatabaseUserState struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrInput
 	Labels       DatabaseUserLabelArrayInput
-	Password     pulumi.StringPtrInput
+	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+	Password pulumi.StringPtrInput
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringPtrInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -114,7 +124,8 @@ type databaseUserArgs struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName *string             `pulumi:"databaseName"`
 	Labels       []DatabaseUserLabel `pulumi:"labels"`
-	Password     *string             `pulumi:"password"`
+	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+	Password *string `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -134,7 +145,8 @@ type DatabaseUserArgs struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrInput
 	Labels       DatabaseUserLabelArrayInput
-	Password     pulumi.StringPtrInput
+	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+	Password pulumi.StringPtrInput
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.

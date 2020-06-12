@@ -6,6 +6,64 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * `mongodbatlas..DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
+ *
+ * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text.
+ *
+ * ## Example Usages
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     authDatabaseName: "admin",
+ *     labels: [{
+ *         key: "My Key",
+ *         value: "My Value",
+ *     }],
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
+ *     roles: [
+ *         {
+ *             databaseName: "dbforApp",
+ *             roleName: "readWrite",
+ *         },
+ *         {
+ *             databaseName: "admin",
+ *             roleName: "readAnyDatabase",
+ *         },
+ *     ],
+ *     username: "test-acc-username",
+ * });
+ * ```
+ *
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     authDatabaseName: "$external",
+ *     labels: [{
+ *         key: "%s",
+ *         value: "%s",
+ *     }],
+ *     projectId: "<PROJECT-ID>",
+ *     roles: [{
+ *         databaseName: "admin",
+ *         roleName: "readAnyDatabase",
+ *     }],
+ *     username: "test-acc-username",
+ *     x509Type: "MANAGED",
+ * });
+ * ```
+ */
 export class DatabaseUser extends pulumi.CustomResource {
     /**
      * Get an existing DatabaseUser resource's state with the given name, ID, and optional extra
@@ -45,6 +103,9 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     public readonly databaseName!: pulumi.Output<string | undefined>;
     public readonly labels!: pulumi.Output<outputs.DatabaseUserLabel[]>;
+    /**
+     * User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+     */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
      * The unique ID for the project to create the database user.
@@ -126,6 +187,9 @@ export interface DatabaseUserState {
      */
     readonly databaseName?: pulumi.Input<string>;
     readonly labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
+    /**
+     * User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+     */
     readonly password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.
@@ -160,6 +224,9 @@ export interface DatabaseUserArgs {
      */
     readonly databaseName?: pulumi.Input<string>;
     readonly labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
+    /**
+     * User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+     */
     readonly password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.

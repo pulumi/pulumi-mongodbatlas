@@ -57,7 +57,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, cluster_name=None, policies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, update_snapshots=None, __props__=None, __name__=None, __opts__=None):
         """
-        `.CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Provider Snapshots enabled.
+        `.CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.  
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

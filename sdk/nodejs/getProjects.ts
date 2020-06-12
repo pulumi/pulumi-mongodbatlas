@@ -35,10 +35,14 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const testProject = pulumi.output(mongodbatlas.getProject({ async: true }));
+ * const testProject = pulumi.output(mongodbatlas.getProject({
+ *     itemsPerPage: 5,
+ *     pageNum: 1,
+ * }, { async: true }));
  * ```
  */
-export function getProjects(opts?: pulumi.InvokeOptions): Promise<GetProjectsResult> {
+export function getProjects(args?: GetProjectsArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectsResult> {
+    args = args || {};
     if (!opts) {
         opts = {}
     }
@@ -47,7 +51,23 @@ export function getProjects(opts?: pulumi.InvokeOptions): Promise<GetProjectsRes
         opts.version = utilities.getVersion();
     }
     return pulumi.runtime.invoke("mongodbatlas:index/getProjects:getProjects", {
+        "itemsPerPage": args.itemsPerPage,
+        "pageNum": args.pageNum,
     }, opts);
+}
+
+/**
+ * A collection of arguments for invoking getProjects.
+ */
+export interface GetProjectsArgs {
+    /**
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     */
+    readonly itemsPerPage?: number;
+    /**
+     * The page to return. Defaults to `1`.
+     */
+    readonly pageNum?: number;
 }
 
 /**
@@ -58,6 +78,8 @@ export interface GetProjectsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly itemsPerPage?: number;
+    readonly pageNum?: number;
     readonly results: outputs.GetProjectsResult[];
     readonly totalCount: number;
 }
