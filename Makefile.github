@@ -83,6 +83,7 @@ install_plugins::
 	pulumi plugin install resource $(PACK) $(PROVIDER_VERSION)
 	pulumi plugin install resource aws 2.8.0
 	pulumi plugin install resource azure 3.9.0
+	pulumi plugin install resource gcp 3.9.0
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget
