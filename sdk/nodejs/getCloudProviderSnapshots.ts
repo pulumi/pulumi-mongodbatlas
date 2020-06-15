@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..getCloudProviderSnapshots` provides an Cloud Provider Snapshot entry datasource. Atlas Cloud Provider Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service provider.
+ * `mongodbatlas..getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -28,6 +28,8 @@ import * as utilities from "./utilities";
  * const testCloudProviderSnapshots = pulumi.all([testMongodbatlasCloudProviderSnapshots.clusterName, testMongodbatlasCloudProviderSnapshots.groupId]).apply(([clusterName, groupId]) => mongodbatlas.getCloudProviderSnapshots({
  *     clusterName: clusterName,
  *     groupId: groupId,
+ *     itemsPerPage: 5,
+ *     pageNum: 1,
  * }, { async: true }));
  * ```
  */
@@ -41,6 +43,8 @@ export function getCloudProviderSnapshots(args: GetCloudProviderSnapshotsArgs, o
     }
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", {
         "clusterName": args.clusterName,
+        "itemsPerPage": args.itemsPerPage,
+        "pageNum": args.pageNum,
         "projectId": args.projectId,
     }, opts);
 }
@@ -53,6 +57,14 @@ export interface GetCloudProviderSnapshotsArgs {
      * The name of the Atlas cluster that contains the snapshot you want to retrieve.
      */
     readonly clusterName: string;
+    /**
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     */
+    readonly itemsPerPage?: number;
+    /**
+     * The page to return. Defaults to `1`.
+     */
+    readonly pageNum?: number;
     readonly projectId: string;
 }
 
@@ -65,6 +77,8 @@ export interface GetCloudProviderSnapshotsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly itemsPerPage?: number;
+    readonly pageNum?: number;
     readonly projectId: string;
     /**
      * Includes cloudProviderSnapshot object for each item detailed in the results array section.

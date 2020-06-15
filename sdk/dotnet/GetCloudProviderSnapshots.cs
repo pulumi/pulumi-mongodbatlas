@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderSnapshots
     {
         /// <summary>
-        /// `mongodbatlas..getCloudProviderSnapshots` provides an Cloud Provider Snapshot entry datasource. Atlas Cloud Provider Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service provider.
+        /// `mongodbatlas..getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -32,6 +32,18 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName", required: true)]
         public string ClusterName { get; set; } = null!;
 
+        /// <summary>
+        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+        /// </summary>
+        [Input("itemsPerPage")]
+        public int? ItemsPerPage { get; set; }
+
+        /// <summary>
+        /// The page to return. Defaults to `1`.
+        /// </summary>
+        [Input("pageNum")]
+        public int? PageNum { get; set; }
+
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
@@ -49,6 +61,8 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly int? ItemsPerPage;
+        public readonly int? PageNum;
         public readonly string ProjectId;
         /// <summary>
         /// Includes cloudProviderSnapshot object for each item detailed in the results array section.
@@ -62,6 +76,10 @@ namespace Pulumi.Mongodbatlas
 
             string id,
 
+            int? itemsPerPage,
+
+            int? pageNum,
+
             string projectId,
 
             ImmutableArray<Outputs.GetCloudProviderSnapshotsResultResult> results,
@@ -70,6 +88,8 @@ namespace Pulumi.Mongodbatlas
         {
             ClusterName = clusterName;
             Id = id;
+            ItemsPerPage = itemsPerPage;
+            PageNum = pageNum;
             ProjectId = projectId;
             Results = results;
             TotalCount = totalCount;

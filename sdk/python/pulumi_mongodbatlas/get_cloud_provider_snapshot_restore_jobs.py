@@ -13,7 +13,7 @@ class GetCloudProviderSnapshotRestoreJobsResult:
     """
     A collection of values returned by getCloudProviderSnapshotRestoreJobs.
     """
-    def __init__(__self__, cluster_name=None, id=None, project_id=None, results=None, total_count=None):
+    def __init__(__self__, cluster_name=None, id=None, items_per_page=None, page_num=None, project_id=None, results=None, total_count=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         __self__.cluster_name = cluster_name
@@ -23,6 +23,12 @@ class GetCloudProviderSnapshotRestoreJobsResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
+        if items_per_page and not isinstance(items_per_page, float):
+            raise TypeError("Expected argument 'items_per_page' to be a float")
+        __self__.items_per_page = items_per_page
+        if page_num and not isinstance(page_num, float):
+            raise TypeError("Expected argument 'page_num' to be a float")
+        __self__.page_num = page_num
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         __self__.project_id = project_id
@@ -43,13 +49,15 @@ class AwaitableGetCloudProviderSnapshotRestoreJobsResult(GetCloudProviderSnapsho
         return GetCloudProviderSnapshotRestoreJobsResult(
             cluster_name=self.cluster_name,
             id=self.id,
+            items_per_page=self.items_per_page,
+            page_num=self.page_num,
             project_id=self.project_id,
             results=self.results,
             total_count=self.total_count)
 
-def get_cloud_provider_snapshot_restore_jobs(cluster_name=None,project_id=None,opts=None):
+def get_cloud_provider_snapshot_restore_jobs(cluster_name=None,items_per_page=None,page_num=None,project_id=None,opts=None):
     """
-    `.getCloudProviderSnapshotRestoreJobs` provides a Cloud Provider Snapshot Restore Jobs entry datasource. Gets all cloud provider snapshot restore jobs for the specified cluster.
+    `.getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -76,18 +84,24 @@ def get_cloud_provider_snapshot_restore_jobs(cluster_name=None,project_id=None,o
         project_id="5cf5a45a9ccf6400e60981b6",
         snapshot_id=test_cloud_provider_snapshot.id)
     test_cloud_provider_snapshot_restore_jobs = pulumi.Output.all(test_cloud_provider_snapshot_restore_job.cluster_name, test_cloud_provider_snapshot_restore_job.project_id).apply(lambda cluster_name, project_id: mongodbatlas.get_cloud_provider_snapshot_restore_jobs(cluster_name=cluster_name,
+        items_per_page=5,
+        page_num=1,
         project_id=project_id))
     ```
 
 
 
     :param str cluster_name: The name of the Atlas cluster for which you want to retrieve restore jobs.
+    :param float items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+    :param float page_num: The page to return. Defaults to `1`.
     :param str project_id: The unique identifier of the project for the Atlas cluster.
     """
     __args__ = dict()
 
 
     __args__['clusterName'] = cluster_name
+    __args__['itemsPerPage'] = items_per_page
+    __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -98,6 +112,8 @@ def get_cloud_provider_snapshot_restore_jobs(cluster_name=None,project_id=None,o
     return AwaitableGetCloudProviderSnapshotRestoreJobsResult(
         cluster_name=__ret__.get('clusterName'),
         id=__ret__.get('id'),
+        items_per_page=__ret__.get('itemsPerPage'),
+        page_num=__ret__.get('pageNum'),
         project_id=__ret__.get('projectId'),
         results=__ret__.get('results'),
         total_count=__ret__.get('totalCount'))

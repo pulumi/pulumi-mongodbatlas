@@ -29,7 +29,36 @@ class Project(pulumi.CustomResource):
     teams: pulumi.Output[list]
     def __init__(__self__, resource_name, opts=None, name=None, org_id=None, teams=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Project resource with the given unique name, props, and options.
+        `.Project` provides a Project resource. This allows project to be created.
+
+        > **IMPORTANT WARNING:**  Changing the name of an existing Project in your configuration will result the destruction of that Project and related resources (including Clusters) and the re-creation of those resources.  The provider will inform you of the destroyed/created resources before applying so be sure to verify any change to your environment before applying.
+
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Project("test",
+            org_id="<ORG_ID>",
+            teams=[
+                {
+                    "roleNames": ["GROUP_OWNER"],
+                    "team_id": "5e0fa8c99ccf641c722fe645",
+                },
+                {
+                    "roleNames": [
+                        "GROUP_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                    "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
+                },
+            ])
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)

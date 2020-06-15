@@ -45,6 +45,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The unique identifier of the restore job.
         /// </summary>
         public readonly string Id;
+        public readonly int OplogInc;
+        public readonly int OplogTs;
+        public readonly int PointInTimeUtcSeconds;
         /// <summary>
         /// Unique identifier of the source snapshot ID of the restore job.
         /// </summary>
@@ -77,6 +80,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string id,
 
+            int oplogInc,
+
+            int oplogTs,
+
+            int pointInTimeUtcSeconds,
+
             string snapshotId,
 
             string targetClusterName,
@@ -93,6 +102,9 @@ namespace Pulumi.Mongodbatlas.Outputs
             ExpiresAt = expiresAt;
             FinishedAt = finishedAt;
             Id = id;
+            OplogInc = oplogInc;
+            OplogTs = oplogTs;
+            PointInTimeUtcSeconds = pointInTimeUtcSeconds;
             SnapshotId = snapshotId;
             TargetClusterName = targetClusterName;
             TargetProjectId = targetProjectId;

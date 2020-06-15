@@ -6,6 +6,37 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * `mongodbatlas..Project` provides a Project resource. This allows project to be created.
+ *
+ * > **IMPORTANT WARNING:**  Changing the name of an existing Project in your configuration will result the destruction of that Project and related resources (including Clusters) and the re-creation of those resources.  The provider will inform you of the destroyed/created resources before applying so be sure to verify any change to your environment before applying.
+ *
+ * ## Example Usage
+ *
+ *
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.Project("test", {
+ *     orgId: "<ORG_ID>",
+ *     teams: [
+ *         {
+ *             roleNames: ["GROUP_OWNER"],
+ *             teamId: "5e0fa8c99ccf641c722fe645",
+ *         },
+ *         {
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
+ *         },
+ *     ],
+ * });
+ * ```
+ */
 export class Project extends pulumi.CustomResource {
     /**
      * Get an existing Project resource's state with the given name, ID, and optional extra

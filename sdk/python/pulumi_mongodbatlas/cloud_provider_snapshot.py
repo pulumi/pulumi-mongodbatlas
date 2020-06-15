@@ -64,7 +64,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, cluster_name=None, description=None, project_id=None, retention_in_days=None, __props__=None, __name__=None, __opts__=None):
         """
-        `.CloudProviderSnapshot` provides a resource to take a cloud provider snapshot on demand.
+        `.CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

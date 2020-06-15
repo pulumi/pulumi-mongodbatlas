@@ -57,6 +57,14 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetClusterResult
     {
         /// <summary>
+        /// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+        /// </summary>
+        public readonly bool AutoScalingComputeEnabled;
+        /// <summary>
+        /// (Optional) Set to `true` to enable the cluster tier to scale down.
+        /// </summary>
+        public readonly bool AutoScalingComputeScaleDownEnabled;
+        /// <summary>
         /// Indicates whether disk auto-scaling is enabled.
         /// </summary>
         public readonly bool AutoScalingDiskGbEnabled;
@@ -86,6 +94,10 @@ namespace Pulumi.Mongodbatlas
         /// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         /// </summary>
         public readonly Outputs.GetClusterConnectionStringsResult ConnectionStrings;
+        /// <summary>
+        /// The Network Peering Container ID.
+        /// </summary>
+        public readonly string ContainerId;
         /// <summary>
         /// Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
         /// </summary>
@@ -132,12 +144,20 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool Paused;
         /// <summary>
-        /// Flag that indicates if the cluster uses Point-in-Time backups.
+        /// Flag that indicates if the cluster uses Continuous Cloud Backup.
         /// </summary>
         public readonly bool PitEnabled;
         public readonly string ProjectId;
         /// <summary>
-        /// Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+        /// (Optional) Maximum instance size to which your cluster can automatically scale.
+        /// </summary>
+        public readonly string ProviderAutoScalingComputeMaxInstanceSize;
+        /// <summary>
+        /// (Optional) Minimum instance size to which your cluster can automatically scale.
+        /// </summary>
+        public readonly string ProviderAutoScalingComputeMinInstanceSize;
+        /// <summary>
+        /// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
         /// </summary>
         public readonly bool ProviderBackupEnabled;
         /// <summary>
@@ -197,6 +217,10 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetClusterResult(
+            bool autoScalingComputeEnabled,
+
+            bool autoScalingComputeScaleDownEnabled,
+
             bool autoScalingDiskGbEnabled,
 
             string backingProviderName,
@@ -208,6 +232,8 @@ namespace Pulumi.Mongodbatlas
             string clusterType,
 
             Outputs.GetClusterConnectionStringsResult connectionStrings,
+
+            string containerId,
 
             double diskSizeGb,
 
@@ -237,6 +263,10 @@ namespace Pulumi.Mongodbatlas
 
             string projectId,
 
+            string providerAutoScalingComputeMaxInstanceSize,
+
+            string providerAutoScalingComputeMinInstanceSize,
+
             bool providerBackupEnabled,
 
             int providerDiskIops,
@@ -263,12 +293,15 @@ namespace Pulumi.Mongodbatlas
 
             string stateName)
         {
+            AutoScalingComputeEnabled = autoScalingComputeEnabled;
+            AutoScalingComputeScaleDownEnabled = autoScalingComputeScaleDownEnabled;
             AutoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
             BackingProviderName = backingProviderName;
             BackupEnabled = backupEnabled;
             BiConnector = biConnector;
             ClusterType = clusterType;
             ConnectionStrings = connectionStrings;
+            ContainerId = containerId;
             DiskSizeGb = diskSizeGb;
             EncryptionAtRestProvider = encryptionAtRestProvider;
             Id = id;
@@ -283,6 +316,8 @@ namespace Pulumi.Mongodbatlas
             Paused = paused;
             PitEnabled = pitEnabled;
             ProjectId = projectId;
+            ProviderAutoScalingComputeMaxInstanceSize = providerAutoScalingComputeMaxInstanceSize;
+            ProviderAutoScalingComputeMinInstanceSize = providerAutoScalingComputeMinInstanceSize;
             ProviderBackupEnabled = providerBackupEnabled;
             ProviderDiskIops = providerDiskIops;
             ProviderDiskTypeName = providerDiskTypeName;

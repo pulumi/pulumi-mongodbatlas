@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a Cloud Provider Snapshot Backup Policy entry datasource. An Atlas Cloud Provider Snapshot Backup Policy provides the current snapshot schedule and retention settings for the cluster.
+ * `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a Cloud Backup Snapshot Backup Policy datasource. An Atlas Cloud Backup Snapshot Policy provides the current snapshot schedule and retention settings for the cluster. 
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
@@ -71,7 +71,7 @@ export interface GetCloudProviderSnapshotBackupPolicyResult {
      */
     readonly referenceMinuteOfHour: number;
     /**
-     * Specifies a restore window in days for the cloud provider backup to maintain.
+     * Specifies a restore window in days for cloud backup to maintain.
      */
     readonly restoreWindowDays: number;
     readonly updateSnapshots: boolean;

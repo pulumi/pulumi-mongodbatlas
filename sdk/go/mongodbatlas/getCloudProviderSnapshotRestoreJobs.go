@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.getCloudProviderSnapshotRestoreJobs` provides a Cloud Provider Snapshot Restore Jobs entry datasource. Gets all cloud provider snapshot restore jobs for the specified cluster.
+// `.getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 func GetCloudProviderSnapshotRestoreJobs(ctx *pulumi.Context, args *GetCloudProviderSnapshotRestoreJobsArgs, opts ...pulumi.InvokeOption) (*GetCloudProviderSnapshotRestoreJobsResult, error) {
@@ -23,6 +23,10 @@ func GetCloudProviderSnapshotRestoreJobs(ctx *pulumi.Context, args *GetCloudProv
 type GetCloudProviderSnapshotRestoreJobsArgs struct {
 	// The name of the Atlas cluster for which you want to retrieve restore jobs.
 	ClusterName string `pulumi:"clusterName"`
+	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+	ItemsPerPage *int `pulumi:"itemsPerPage"`
+	// The page to return. Defaults to `1`.
+	PageNum *int `pulumi:"pageNum"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -31,8 +35,10 @@ type GetCloudProviderSnapshotRestoreJobsArgs struct {
 type GetCloudProviderSnapshotRestoreJobsResult struct {
 	ClusterName string `pulumi:"clusterName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string `pulumi:"id"`
-	ProjectId string `pulumi:"projectId"`
+	Id           string `pulumi:"id"`
+	ItemsPerPage *int   `pulumi:"itemsPerPage"`
+	PageNum      *int   `pulumi:"pageNum"`
+	ProjectId    string `pulumi:"projectId"`
 	// Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
 	Results    []GetCloudProviderSnapshotRestoreJobsResultType `pulumi:"results"`
 	TotalCount int                                             `pulumi:"totalCount"`

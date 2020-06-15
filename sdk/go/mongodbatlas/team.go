@@ -26,7 +26,7 @@ type Team struct {
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// The unique identifier for the team.
 	TeamId pulumi.StringOutput `pulumi:"teamId"`
-	// You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
 	Usernames pulumi.StringArrayOutput `pulumi:"usernames"`
 }
 
@@ -70,7 +70,7 @@ type teamState struct {
 	OrgId *string `pulumi:"orgId"`
 	// The unique identifier for the team.
 	TeamId *string `pulumi:"teamId"`
-	// You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
 	Usernames []string `pulumi:"usernames"`
 }
 
@@ -81,7 +81,7 @@ type TeamState struct {
 	OrgId pulumi.StringPtrInput
 	// The unique identifier for the team.
 	TeamId pulumi.StringPtrInput
-	// You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
 	Usernames pulumi.StringArrayInput
 }
 
@@ -94,7 +94,7 @@ type teamArgs struct {
 	Name *string `pulumi:"name"`
 	// The unique identifier for the organization you want to associate the team with.
 	OrgId string `pulumi:"orgId"`
-	// You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
 	Usernames []string `pulumi:"usernames"`
 }
 
@@ -104,7 +104,7 @@ type TeamArgs struct {
 	Name pulumi.StringPtrInput
 	// The unique identifier for the organization you want to associate the team with.
 	OrgId pulumi.StringInput
-	// You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
 	Usernames pulumi.StringArrayInput
 }
 

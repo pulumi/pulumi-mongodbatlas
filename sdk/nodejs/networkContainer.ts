@@ -5,20 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.
+ * `mongodbatlas..NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully. 
  *
- * > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
- *
- * The following table outlines the maximum number of Network Peering containers per cloud provider:
- * * Cloud Provider:  GCP - Container Limit: One container per project.
- * * Cloud Provider:  AWS and Azure - Container Limit: One container per cloud provider region.
+ *  Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the "containers per cloud provider" information that follows (in this case you can obtain the container id from the cluster resource attribute `containerId`).
+ *  
+ * The following is the maximum number of Network Peering containers per cloud provider:
+ * <br> &#8226;  GCP -  One container per project.
+ * <br> &#8226;  AWS and Azure - One container per cloud provider region.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  *
  * ## Example Usage
  *
- * ### Example with AWS.
+ * ### Example with AWS
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -88,11 +88,14 @@ export class NetworkContainer extends pulumi.CustomResource {
     }
 
     /**
-     * CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
+     * CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
+     * * Lower bound: 10.0.0.0 -	Upper bound: 10.255.255.255 -	Prefix: 10/8
+     * * Lower bound: 172.16.0.0 -	Upper bound:172.31.255.255 -	Prefix:	172.16/12
+     * * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
      */
     public readonly atlasCidrBlock!: pulumi.Output<string>;
     /**
-     * Unique identifer of the Azure subscription in which the VNet resides.
+     * Unique identifier of the Azure subscription in which the VNet resides.
      */
     public /*out*/ readonly azureSubscriptionId!: pulumi.Output<string>;
     /**
@@ -100,39 +103,42 @@ export class NetworkContainer extends pulumi.CustomResource {
      */
     public /*out*/ readonly containerId!: pulumi.Output<string>;
     /**
-     * Unique identifier of the GCP project in which the Network Peering connection resides.
+     * Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
     public /*out*/ readonly gcpProjectId!: pulumi.Output<string>;
     /**
-     * Name of the Network Peering connection in the Atlas project.
+     * Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+     * **AZURE ONLY:**
      */
     public /*out*/ readonly networkName!: pulumi.Output<string>;
     /**
-     * The unique ID for the project to create the database user.
+     * Unique identifier for the Atlas project for this Network Peering Container.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Cloud provider for this Network Peering connection. If omitted, Atlas sets this parameter to AWS.
+     * Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
      */
     public readonly providerName!: pulumi.Output<string | undefined>;
     /**
      * Indicates whether the project has Network Peering connections deployed in the container.
+     * **AWS ONLY:**
      */
     public /*out*/ readonly provisioned!: pulumi.Output<boolean>;
     /**
-     * The Atlas Azure region name for where this container will exist.
+     * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The Atlas AWS region name for where this container will exist.
+     * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     public readonly regionName!: pulumi.Output<string>;
     /**
-     * The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
+     * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
     public /*out*/ readonly vnetName!: pulumi.Output<string>;
     /**
-     * Unique identifier of the project’s VPC.
+     * Unique identifier of Atlas' AWS VPC.
+     * **CGP ONLY:**
      */
     public /*out*/ readonly vpcId!: pulumi.Output<string>;
 
@@ -197,11 +203,14 @@ export class NetworkContainer extends pulumi.CustomResource {
  */
 export interface NetworkContainerState {
     /**
-     * CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
+     * CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
+     * * Lower bound: 10.0.0.0 -	Upper bound: 10.255.255.255 -	Prefix: 10/8
+     * * Lower bound: 172.16.0.0 -	Upper bound:172.31.255.255 -	Prefix:	172.16/12
+     * * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
      */
     readonly atlasCidrBlock?: pulumi.Input<string>;
     /**
-     * Unique identifer of the Azure subscription in which the VNet resides.
+     * Unique identifier of the Azure subscription in which the VNet resides.
      */
     readonly azureSubscriptionId?: pulumi.Input<string>;
     /**
@@ -209,39 +218,42 @@ export interface NetworkContainerState {
      */
     readonly containerId?: pulumi.Input<string>;
     /**
-     * Unique identifier of the GCP project in which the Network Peering connection resides.
+     * Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
     readonly gcpProjectId?: pulumi.Input<string>;
     /**
-     * Name of the Network Peering connection in the Atlas project.
+     * Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+     * **AZURE ONLY:**
      */
     readonly networkName?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the database user.
+     * Unique identifier for the Atlas project for this Network Peering Container.
      */
     readonly projectId?: pulumi.Input<string>;
     /**
-     * Cloud provider for this Network Peering connection. If omitted, Atlas sets this parameter to AWS.
+     * Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
      */
     readonly providerName?: pulumi.Input<string>;
     /**
      * Indicates whether the project has Network Peering connections deployed in the container.
+     * **AWS ONLY:**
      */
     readonly provisioned?: pulumi.Input<boolean>;
     /**
-     * The Atlas Azure region name for where this container will exist.
+     * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * The Atlas AWS region name for where this container will exist.
+     * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     readonly regionName?: pulumi.Input<string>;
     /**
-     * The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
+     * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
     readonly vnetName?: pulumi.Input<string>;
     /**
-     * Unique identifier of the project’s VPC.
+     * Unique identifier of Atlas' AWS VPC.
+     * **CGP ONLY:**
      */
     readonly vpcId?: pulumi.Input<string>;
 }
@@ -251,23 +263,26 @@ export interface NetworkContainerState {
  */
 export interface NetworkContainerArgs {
     /**
-     * CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
+     * CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
+     * * Lower bound: 10.0.0.0 -	Upper bound: 10.255.255.255 -	Prefix: 10/8
+     * * Lower bound: 172.16.0.0 -	Upper bound:172.31.255.255 -	Prefix:	172.16/12
+     * * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
      */
     readonly atlasCidrBlock: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the database user.
+     * Unique identifier for the Atlas project for this Network Peering Container.
      */
     readonly projectId: pulumi.Input<string>;
     /**
-     * Cloud provider for this Network Peering connection. If omitted, Atlas sets this parameter to AWS.
+     * Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
      */
     readonly providerName?: pulumi.Input<string>;
     /**
-     * The Atlas Azure region name for where this container will exist.
+     * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * The Atlas AWS region name for where this container will exist.
+     * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     readonly regionName?: pulumi.Input<string>;
 }

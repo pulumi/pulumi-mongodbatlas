@@ -10,27 +10,41 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// `.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
+//
+// Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
+//
+// > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details and `privateIpMode` resource to disable.
+//
+// > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
+//     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
+//     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
+//     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
+//     Microsoft.Network/virtualNetworks/peer/action
+// For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+//
+// > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the projectIpWhitelist resource.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 type NetworkPeering struct {
 	pulumi.CustomResourceState
 
-	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringOutput `pulumi:"accepterRegionName"`
-	// Unique identifier for an Azure AD directory.
-	AtlasCidrBlock pulumi.StringOutput `pulumi:"atlasCidrBlock"`
+	AtlasCidrBlock     pulumi.StringOutput `pulumi:"atlasCidrBlock"`
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
 	AtlasGcpProjectId pulumi.StringOutput `pulumi:"atlasGcpProjectId"`
 	AtlasId           pulumi.StringOutput `pulumi:"atlasId"`
-	// The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.
-	AtlasVpcName pulumi.StringOutput `pulumi:"atlasVpcName"`
-	// Account ID of the owner of the peer VPC.
+	AtlasVpcName      pulumi.StringOutput `pulumi:"atlasVpcName"`
+	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId pulumi.StringOutput `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.
 	AzureDirectoryId pulumi.StringOutput `pulumi:"azureDirectoryId"`
-	// Unique identifer of the Azure subscription in which the VNet resides.
+	// Unique identifier of the Azure subscription in which the VNet resides.
 	AzureSubscriptionId pulumi.StringOutput `pulumi:"azureSubscriptionId"`
-	// Unique identifier for the peering connection.
+	// Unique identifier of the Atlas network peering container.
 	ConnectionId pulumi.StringOutput `pulumi:"connectionId"`
-	// Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.
+	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId pulumi.StringOutput `pulumi:"containerId"`
 	// When `"status" : "FAILED"`, Atlas provides a description of the error.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
@@ -42,23 +56,23 @@ type NetworkPeering struct {
 	GcpProjectId pulumi.StringOutput `pulumi:"gcpProjectId"`
 	// Name of the network peer to which Atlas connects.
 	NetworkName pulumi.StringOutput `pulumi:"networkName"`
-	// The Network Peering Container ID.
+	// Unique identifier of the Atlas network peer.
 	PeerId pulumi.StringOutput `pulumi:"peerId"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Cloud provider for this VPC peering connection. (Possible Values `AWS`, `AZURE`, `GCP`).
+	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringOutput `pulumi:"resourceGroupName"`
-	// Peer VPC CIDR block or subnet.
+	// AWS VPC CIDR block or subnet.
 	RouteTableCidrBlock pulumi.StringOutput `pulumi:"routeTableCidrBlock"`
-	// (Azure/GCP Only) Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
+	// Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
 	StatusName pulumi.StringOutput `pulumi:"statusName"`
 	// Name of your Azure VNet.
 	VnetName pulumi.StringOutput `pulumi:"vnetName"`
-	// Unique identifier of the peer VPC.
+	// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 }
 
@@ -99,24 +113,22 @@ func GetNetworkPeering(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NetworkPeering resources.
 type networkPeeringState struct {
-	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName *string `pulumi:"accepterRegionName"`
-	// Unique identifier for an Azure AD directory.
-	AtlasCidrBlock *string `pulumi:"atlasCidrBlock"`
+	AtlasCidrBlock     *string `pulumi:"atlasCidrBlock"`
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
 	AtlasGcpProjectId *string `pulumi:"atlasGcpProjectId"`
 	AtlasId           *string `pulumi:"atlasId"`
-	// The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.
-	AtlasVpcName *string `pulumi:"atlasVpcName"`
-	// Account ID of the owner of the peer VPC.
+	AtlasVpcName      *string `pulumi:"atlasVpcName"`
+	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId *string `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.
 	AzureDirectoryId *string `pulumi:"azureDirectoryId"`
-	// Unique identifer of the Azure subscription in which the VNet resides.
+	// Unique identifier of the Azure subscription in which the VNet resides.
 	AzureSubscriptionId *string `pulumi:"azureSubscriptionId"`
-	// Unique identifier for the peering connection.
+	// Unique identifier of the Atlas network peering container.
 	ConnectionId *string `pulumi:"connectionId"`
-	// Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.
+	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId *string `pulumi:"containerId"`
 	// When `"status" : "FAILED"`, Atlas provides a description of the error.
 	ErrorMessage *string `pulumi:"errorMessage"`
@@ -128,45 +140,43 @@ type networkPeeringState struct {
 	GcpProjectId *string `pulumi:"gcpProjectId"`
 	// Name of the network peer to which Atlas connects.
 	NetworkName *string `pulumi:"networkName"`
-	// The Network Peering Container ID.
+	// Unique identifier of the Atlas network peer.
 	PeerId *string `pulumi:"peerId"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
-	// Cloud provider for this VPC peering connection. (Possible Values `AWS`, `AZURE`, `GCP`).
+	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	ProviderName *string `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName *string `pulumi:"resourceGroupName"`
-	// Peer VPC CIDR block or subnet.
+	// AWS VPC CIDR block or subnet.
 	RouteTableCidrBlock *string `pulumi:"routeTableCidrBlock"`
-	// (Azure/GCP Only) Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
+	// Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
 	Status *string `pulumi:"status"`
 	// (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
 	StatusName *string `pulumi:"statusName"`
 	// Name of your Azure VNet.
 	VnetName *string `pulumi:"vnetName"`
-	// Unique identifier of the peer VPC.
+	// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
 	VpcId *string `pulumi:"vpcId"`
 }
 
 type NetworkPeeringState struct {
-	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringPtrInput
-	// Unique identifier for an Azure AD directory.
-	AtlasCidrBlock pulumi.StringPtrInput
+	AtlasCidrBlock     pulumi.StringPtrInput
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
 	AtlasGcpProjectId pulumi.StringPtrInput
 	AtlasId           pulumi.StringPtrInput
-	// The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.
-	AtlasVpcName pulumi.StringPtrInput
-	// Account ID of the owner of the peer VPC.
+	AtlasVpcName      pulumi.StringPtrInput
+	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId pulumi.StringPtrInput
 	// Unique identifier for an Azure AD directory.
 	AzureDirectoryId pulumi.StringPtrInput
-	// Unique identifer of the Azure subscription in which the VNet resides.
+	// Unique identifier of the Azure subscription in which the VNet resides.
 	AzureSubscriptionId pulumi.StringPtrInput
-	// Unique identifier for the peering connection.
+	// Unique identifier of the Atlas network peering container.
 	ConnectionId pulumi.StringPtrInput
-	// Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.
+	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId pulumi.StringPtrInput
 	// When `"status" : "FAILED"`, Atlas provides a description of the error.
 	ErrorMessage pulumi.StringPtrInput
@@ -178,23 +188,23 @@ type NetworkPeeringState struct {
 	GcpProjectId pulumi.StringPtrInput
 	// Name of the network peer to which Atlas connects.
 	NetworkName pulumi.StringPtrInput
-	// The Network Peering Container ID.
+	// Unique identifier of the Atlas network peer.
 	PeerId pulumi.StringPtrInput
-	// The unique ID for the project to create the database user.
+	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId pulumi.StringPtrInput
-	// Cloud provider for this VPC peering connection. (Possible Values `AWS`, `AZURE`, `GCP`).
+	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	ProviderName pulumi.StringPtrInput
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringPtrInput
-	// Peer VPC CIDR block or subnet.
+	// AWS VPC CIDR block or subnet.
 	RouteTableCidrBlock pulumi.StringPtrInput
-	// (Azure/GCP Only) Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
+	// Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
 	Status pulumi.StringPtrInput
 	// (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
 	StatusName pulumi.StringPtrInput
 	// Name of your Azure VNet.
 	VnetName pulumi.StringPtrInput
-	// Unique identifier of the peer VPC.
+	// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
 	VpcId pulumi.StringPtrInput
 }
 
@@ -203,73 +213,69 @@ func (NetworkPeeringState) ElementType() reflect.Type {
 }
 
 type networkPeeringArgs struct {
-	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName *string `pulumi:"accepterRegionName"`
-	// Unique identifier for an Azure AD directory.
-	AtlasCidrBlock *string `pulumi:"atlasCidrBlock"`
+	AtlasCidrBlock     *string `pulumi:"atlasCidrBlock"`
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
 	AtlasGcpProjectId *string `pulumi:"atlasGcpProjectId"`
-	// The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.
-	AtlasVpcName *string `pulumi:"atlasVpcName"`
-	// Account ID of the owner of the peer VPC.
+	AtlasVpcName      *string `pulumi:"atlasVpcName"`
+	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId *string `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.
 	AzureDirectoryId *string `pulumi:"azureDirectoryId"`
-	// Unique identifer of the Azure subscription in which the VNet resides.
+	// Unique identifier of the Azure subscription in which the VNet resides.
 	AzureSubscriptionId *string `pulumi:"azureSubscriptionId"`
-	// Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.
+	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId string `pulumi:"containerId"`
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId *string `pulumi:"gcpProjectId"`
 	// Name of the network peer to which Atlas connects.
 	NetworkName *string `pulumi:"networkName"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId string `pulumi:"projectId"`
-	// Cloud provider for this VPC peering connection. (Possible Values `AWS`, `AZURE`, `GCP`).
+	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	ProviderName string `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName *string `pulumi:"resourceGroupName"`
-	// Peer VPC CIDR block or subnet.
+	// AWS VPC CIDR block or subnet.
 	RouteTableCidrBlock *string `pulumi:"routeTableCidrBlock"`
 	// Name of your Azure VNet.
 	VnetName *string `pulumi:"vnetName"`
-	// Unique identifier of the peer VPC.
+	// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
 	VpcId *string `pulumi:"vpcId"`
 }
 
 // The set of arguments for constructing a NetworkPeering resource.
 type NetworkPeeringArgs struct {
-	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringPtrInput
-	// Unique identifier for an Azure AD directory.
-	AtlasCidrBlock pulumi.StringPtrInput
+	AtlasCidrBlock     pulumi.StringPtrInput
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
 	AtlasGcpProjectId pulumi.StringPtrInput
-	// The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.
-	AtlasVpcName pulumi.StringPtrInput
-	// Account ID of the owner of the peer VPC.
+	AtlasVpcName      pulumi.StringPtrInput
+	// AWS Account ID of the owner of the peer VPC.
 	AwsAccountId pulumi.StringPtrInput
 	// Unique identifier for an Azure AD directory.
 	AzureDirectoryId pulumi.StringPtrInput
-	// Unique identifer of the Azure subscription in which the VNet resides.
+	// Unique identifier of the Azure subscription in which the VNet resides.
 	AzureSubscriptionId pulumi.StringPtrInput
-	// Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.
+	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId pulumi.StringInput
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId pulumi.StringPtrInput
 	// Name of the network peer to which Atlas connects.
 	NetworkName pulumi.StringPtrInput
-	// The unique ID for the project to create the database user.
+	// The unique ID for the MongoDB Atlas project to create the database user.
 	ProjectId pulumi.StringInput
-	// Cloud provider for this VPC peering connection. (Possible Values `AWS`, `AZURE`, `GCP`).
+	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
 	ProviderName pulumi.StringInput
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringPtrInput
-	// Peer VPC CIDR block or subnet.
+	// AWS VPC CIDR block or subnet.
 	RouteTableCidrBlock pulumi.StringPtrInput
 	// Name of your Azure VNet.
 	VnetName pulumi.StringPtrInput
-	// Unique identifier of the peer VPC.
+	// Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
 	VpcId pulumi.StringPtrInput
 }
 

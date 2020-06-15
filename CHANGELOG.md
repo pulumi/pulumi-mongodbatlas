@@ -6,6 +6,9 @@ _(none)_
 
 ---
 
+## 1.1.0 (2020-06-12)
+* Upgrade to v0.6.0 of the MongoDbAtlas Terraform Provider
+
 ## 1.0.3 (2020-06-10)
 * Switch to GitHub actions for build
 

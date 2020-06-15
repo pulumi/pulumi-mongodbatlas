@@ -1031,8 +1031,12 @@ func (o CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayOutput) Index(i pu
 }
 
 type CloudProviderSnapshotRestoreJobDeliveryType struct {
-	Automated *bool `pulumi:"automated"`
-	Download  *bool `pulumi:"download"`
+	Automated             *bool `pulumi:"automated"`
+	Download              *bool `pulumi:"download"`
+	OplogInc              *int  `pulumi:"oplogInc"`
+	OplogTs               *int  `pulumi:"oplogTs"`
+	PointInTime           *bool `pulumi:"pointInTime"`
+	PointInTimeUtcSeconds *int  `pulumi:"pointInTimeUtcSeconds"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
 	TargetClusterName *string `pulumi:"targetClusterName"`
 	TargetProjectId   *string `pulumi:"targetProjectId"`
@@ -1051,8 +1055,12 @@ type CloudProviderSnapshotRestoreJobDeliveryTypeInput interface {
 }
 
 type CloudProviderSnapshotRestoreJobDeliveryTypeArgs struct {
-	Automated pulumi.BoolPtrInput `pulumi:"automated"`
-	Download  pulumi.BoolPtrInput `pulumi:"download"`
+	Automated             pulumi.BoolPtrInput `pulumi:"automated"`
+	Download              pulumi.BoolPtrInput `pulumi:"download"`
+	OplogInc              pulumi.IntPtrInput  `pulumi:"oplogInc"`
+	OplogTs               pulumi.IntPtrInput  `pulumi:"oplogTs"`
+	PointInTime           pulumi.BoolPtrInput `pulumi:"pointInTime"`
+	PointInTimeUtcSeconds pulumi.IntPtrInput  `pulumi:"pointInTimeUtcSeconds"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
 	TargetClusterName pulumi.StringPtrInput `pulumi:"targetClusterName"`
 	TargetProjectId   pulumi.StringPtrInput `pulumi:"targetProjectId"`
@@ -1143,6 +1151,22 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) Download() pulumi.Boo
 	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *bool { return v.Download }).(pulumi.BoolPtrOutput)
 }
 
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) OplogInc() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *int { return v.OplogInc }).(pulumi.IntPtrOutput)
+}
+
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) OplogTs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *int { return v.OplogTs }).(pulumi.IntPtrOutput)
+}
+
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) PointInTime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *bool { return v.PointInTime }).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *int { return v.PointInTimeUtcSeconds }).(pulumi.IntPtrOutput)
+}
+
 // Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
 func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) TargetClusterName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *string { return v.TargetClusterName }).(pulumi.StringPtrOutput)
@@ -1188,6 +1212,42 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Download() pulumi.
 		}
 		return v.Download
 	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) OplogInc() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OplogInc
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) OplogTs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OplogTs
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) PointInTime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PointInTime
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PointInTimeUtcSeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 // Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
@@ -1457,7 +1517,8 @@ func (o ClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.In
 }
 
 type ClusterBiConnector struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// *
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *string `pulumi:"enabled"`
@@ -1478,7 +1539,8 @@ type ClusterBiConnectorInput interface {
 }
 
 type ClusterBiConnectorArgs struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// *
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.StringPtrInput `pulumi:"enabled"`
@@ -1564,7 +1626,8 @@ func (o ClusterBiConnectorOutput) ToClusterBiConnectorPtrOutputWithContext(ctx c
 	}).(ClusterBiConnectorPtrOutput)
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// *
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorOutput) Enabled() pulumi.StringPtrOutput {
@@ -1594,7 +1657,8 @@ func (o ClusterBiConnectorPtrOutput) Elem() ClusterBiConnectorOutput {
 	return o.ApplyT(func(v *ClusterBiConnector) ClusterBiConnector { return *v }).(ClusterBiConnectorOutput)
 }
 
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// *
 // - Set to `true` to enable BI Connector for Atlas.
 // - Set to `false` to disable BI Connector for Atlas.
 func (o ClusterBiConnectorPtrOutput) Enabled() pulumi.StringPtrOutput {
@@ -1930,7 +1994,7 @@ func (o ClusterLabelArrayOutput) Index(i pulumi.IntInput) ClusterLabelOutput {
 type ClusterReplicationSpec struct {
 	// Unique identifer of the replication document for a zone in a Global Cluster.
 	Id *string `pulumi:"id"`
-	// Number of shards to deploy in the specified zone.
+	// Number of shards to deploy in the specified zone, minimum 1.
 	NumShards int `pulumi:"numShards"`
 	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
 	RegionsConfigs []ClusterReplicationSpecRegionsConfig `pulumi:"regionsConfigs"`
@@ -1953,7 +2017,7 @@ type ClusterReplicationSpecInput interface {
 type ClusterReplicationSpecArgs struct {
 	// Unique identifer of the replication document for a zone in a Global Cluster.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Number of shards to deploy in the specified zone.
+	// Number of shards to deploy in the specified zone, minimum 1.
 	NumShards pulumi.IntInput `pulumi:"numShards"`
 	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
 	RegionsConfigs ClusterReplicationSpecRegionsConfigArrayInput `pulumi:"regionsConfigs"`
@@ -2018,7 +2082,7 @@ func (o ClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Number of shards to deploy in the specified zone.
+// Number of shards to deploy in the specified zone, minimum 1.
 func (o ClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
@@ -2054,15 +2118,21 @@ func (o ClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) ClusterRepli
 }
 
 type ClusterReplicationSpecRegionsConfig struct {
-	// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
+	// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
 	AnalyticsNodes *int `pulumi:"analyticsNodes"`
 	// Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
+	// * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
+	// * Specify 0 if you do not want any electable nodes in the region.
+	// * You cannot create electable nodes in a region if `priority` is 0.
 	ElectableNodes *int `pulumi:"electableNodes"`
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
+	// * For regions where `electableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
+	// * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
+	// * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
 	Priority *int `pulumi:"priority"`
 	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
 	ReadOnlyNodes *int `pulumi:"readOnlyNodes"`
-	// Name for the region specified.
+	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	RegionName *string `pulumi:"regionName"`
 }
 
@@ -2079,15 +2149,21 @@ type ClusterReplicationSpecRegionsConfigInput interface {
 }
 
 type ClusterReplicationSpecRegionsConfigArgs struct {
-	// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
+	// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
 	AnalyticsNodes pulumi.IntPtrInput `pulumi:"analyticsNodes"`
 	// Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
+	// * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
+	// * Specify 0 if you do not want any electable nodes in the region.
+	// * You cannot create electable nodes in a region if `priority` is 0.
 	ElectableNodes pulumi.IntPtrInput `pulumi:"electableNodes"`
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
+	// * For regions where `electableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
+	// * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
+	// * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
 	ReadOnlyNodes pulumi.IntPtrInput `pulumi:"readOnlyNodes"`
-	// Name for the region specified.
+	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
 }
 
@@ -2143,17 +2219,23 @@ func (o ClusterReplicationSpecRegionsConfigOutput) ToClusterReplicationSpecRegio
 	return o
 }
 
-// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
+// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
 func (o ClusterReplicationSpecRegionsConfigOutput) AnalyticsNodes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.AnalyticsNodes }).(pulumi.IntPtrOutput)
 }
 
 // Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
+// * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
+// * Specify 0 if you do not want any electable nodes in the region.
+// * You cannot create electable nodes in a region if `priority` is 0.
 func (o ClusterReplicationSpecRegionsConfigOutput) ElectableNodes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.ElectableNodes }).(pulumi.IntPtrOutput)
 }
 
 // Election priority of the region. For regions with only read-only nodes, set this value to 0.
+// * For regions where `electableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
+// * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
+// * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
 func (o ClusterReplicationSpecRegionsConfigOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
@@ -2163,7 +2245,7 @@ func (o ClusterReplicationSpecRegionsConfigOutput) ReadOnlyNodes() pulumi.IntPtr
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.ReadOnlyNodes }).(pulumi.IntPtrOutput)
 }
 
-// Name for the region specified.
+// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 func (o ClusterReplicationSpecRegionsConfigOutput) RegionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *string { return v.RegionName }).(pulumi.StringPtrOutput)
 }
@@ -5263,7 +5345,10 @@ type GetCloudProviderSnapshotRestoreJobsResultType struct {
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt string `pulumi:"finishedAt"`
 	// The unique identifier of the restore job.
-	Id string `pulumi:"id"`
+	Id                    string `pulumi:"id"`
+	OplogInc              int    `pulumi:"oplogInc"`
+	OplogTs               int    `pulumi:"oplogTs"`
+	PointInTimeUtcSeconds int    `pulumi:"pointInTimeUtcSeconds"`
 	// Unique identifier of the source snapshot ID of the restore job.
 	SnapshotId string `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
@@ -5301,7 +5386,10 @@ type GetCloudProviderSnapshotRestoreJobsResultTypeArgs struct {
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt pulumi.StringInput `pulumi:"finishedAt"`
 	// The unique identifier of the restore job.
-	Id pulumi.StringInput `pulumi:"id"`
+	Id                    pulumi.StringInput `pulumi:"id"`
+	OplogInc              pulumi.IntInput    `pulumi:"oplogInc"`
+	OplogTs               pulumi.IntInput    `pulumi:"oplogTs"`
+	PointInTimeUtcSeconds pulumi.IntInput    `pulumi:"pointInTimeUtcSeconds"`
 	// Unique identifier of the source snapshot ID of the restore job.
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
@@ -5401,6 +5489,18 @@ func (o GetCloudProviderSnapshotRestoreJobsResultTypeOutput) FinishedAt() pulumi
 // The unique identifier of the restore job.
 func (o GetCloudProviderSnapshotRestoreJobsResultTypeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudProviderSnapshotRestoreJobsResultType) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetCloudProviderSnapshotRestoreJobsResultTypeOutput) OplogInc() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudProviderSnapshotRestoreJobsResultType) int { return v.OplogInc }).(pulumi.IntOutput)
+}
+
+func (o GetCloudProviderSnapshotRestoreJobsResultTypeOutput) OplogTs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudProviderSnapshotRestoreJobsResultType) int { return v.OplogTs }).(pulumi.IntOutput)
+}
+
+func (o GetCloudProviderSnapshotRestoreJobsResultTypeOutput) PointInTimeUtcSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudProviderSnapshotRestoreJobsResultType) int { return v.PointInTimeUtcSeconds }).(pulumi.IntOutput)
 }
 
 // Unique identifier of the source snapshot ID of the restore job.
@@ -6502,6 +6602,10 @@ func (o GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayOutput) Index(i pulum
 }
 
 type GetClustersResultType struct {
+	// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+	AutoScalingComputeEnabled bool `pulumi:"autoScalingComputeEnabled"`
+	// (Optional) Set to `true` to enable the cluster tier to scale down.
+	AutoScalingComputeScaleDownEnabled bool `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Indicates whether disk auto-scaling is enabled.
 	AutoScalingDiskGbEnabled bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Indicates Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -6520,6 +6624,8 @@ type GetClustersResultType struct {
 	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	ConnectionStrings GetClustersResultConnectionStrings `pulumi:"connectionStrings"`
+	// The Network Peering Container ID.
+	ContainerId string `pulumi:"containerId"`
 	// Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Indicates whether Encryption at Rest is enabled or disabled.
@@ -6541,9 +6647,13 @@ type GetClustersResultType struct {
 	NumShards int `pulumi:"numShards"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused bool `pulumi:"paused"`
-	// Flag that indicates if the cluster uses Point-in-Time backups.
+	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
-	// Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+	// (Optional) Maximum instance size to which your cluster can automatically scale.
+	ProviderAutoScalingComputeMaxInstanceSize string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
+	// (Optional) Minimum instance size to which your cluster can automatically scale.
+	ProviderAutoScalingComputeMinInstanceSize string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
+	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
 	ProviderBackupEnabled bool `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops int `pulumi:"providerDiskIops"`
@@ -6590,6 +6700,10 @@ type GetClustersResultTypeInput interface {
 }
 
 type GetClustersResultTypeArgs struct {
+	// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+	AutoScalingComputeEnabled pulumi.BoolInput `pulumi:"autoScalingComputeEnabled"`
+	// (Optional) Set to `true` to enable the cluster tier to scale down.
+	AutoScalingComputeScaleDownEnabled pulumi.BoolInput `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Indicates whether disk auto-scaling is enabled.
 	AutoScalingDiskGbEnabled pulumi.BoolInput `pulumi:"autoScalingDiskGbEnabled"`
 	// Indicates Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -6608,6 +6722,8 @@ type GetClustersResultTypeArgs struct {
 	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	ConnectionStrings GetClustersResultConnectionStringsInput `pulumi:"connectionStrings"`
+	// The Network Peering Container ID.
+	ContainerId pulumi.StringInput `pulumi:"containerId"`
 	// Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Indicates whether Encryption at Rest is enabled or disabled.
@@ -6629,9 +6745,13 @@ type GetClustersResultTypeArgs struct {
 	NumShards pulumi.IntInput `pulumi:"numShards"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused pulumi.BoolInput `pulumi:"paused"`
-	// Flag that indicates if the cluster uses Point-in-Time backups.
+	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
-	// Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+	// (Optional) Maximum instance size to which your cluster can automatically scale.
+	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringInput `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
+	// (Optional) Minimum instance size to which your cluster can automatically scale.
+	ProviderAutoScalingComputeMinInstanceSize pulumi.StringInput `pulumi:"providerAutoScalingComputeMinInstanceSize"`
+	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
 	ProviderBackupEnabled pulumi.BoolInput `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops pulumi.IntInput `pulumi:"providerDiskIops"`
@@ -6717,6 +6837,16 @@ func (o GetClustersResultTypeOutput) ToGetClustersResultTypeOutputWithContext(ct
 	return o
 }
 
+// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+func (o GetClustersResultTypeOutput) AutoScalingComputeEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersResultType) bool { return v.AutoScalingComputeEnabled }).(pulumi.BoolOutput)
+}
+
+// (Optional) Set to `true` to enable the cluster tier to scale down.
+func (o GetClustersResultTypeOutput) AutoScalingComputeScaleDownEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersResultType) bool { return v.AutoScalingComputeScaleDownEnabled }).(pulumi.BoolOutput)
+}
+
 // Indicates whether disk auto-scaling is enabled.
 func (o GetClustersResultTypeOutput) AutoScalingDiskGbEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultType) bool { return v.AutoScalingDiskGbEnabled }).(pulumi.BoolOutput)
@@ -6751,6 +6881,11 @@ func (o GetClustersResultTypeOutput) ClusterType() pulumi.StringOutput {
 // - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetClustersResultTypeOutput) ConnectionStrings() GetClustersResultConnectionStringsOutput {
 	return o.ApplyT(func(v GetClustersResultType) GetClustersResultConnectionStrings { return v.ConnectionStrings }).(GetClustersResultConnectionStringsOutput)
+}
+
+// The Network Peering Container ID.
+func (o GetClustersResultTypeOutput) ContainerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultType) string { return v.ContainerId }).(pulumi.StringOutput)
 }
 
 // Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
@@ -6807,12 +6942,22 @@ func (o GetClustersResultTypeOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultType) bool { return v.Paused }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates if the cluster uses Point-in-Time backups.
+// Flag that indicates if the cluster uses Continuous Cloud Backup.
 func (o GetClustersResultTypeOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultType) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// Flag indicating if the cluster uses Cloud Provider Snapshots for backups.
+// (Optional) Maximum instance size to which your cluster can automatically scale.
+func (o GetClustersResultTypeOutput) ProviderAutoScalingComputeMaxInstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultType) string { return v.ProviderAutoScalingComputeMaxInstanceSize }).(pulumi.StringOutput)
+}
+
+// (Optional) Minimum instance size to which your cluster can automatically scale.
+func (o GetClustersResultTypeOutput) ProviderAutoScalingComputeMinInstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultType) string { return v.ProviderAutoScalingComputeMinInstanceSize }).(pulumi.StringOutput)
+}
+
+// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
 func (o GetClustersResultTypeOutput) ProviderBackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultType) bool { return v.ProviderBackupEnabled }).(pulumi.BoolOutput)
 }

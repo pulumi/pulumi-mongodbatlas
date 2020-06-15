@@ -13,7 +13,7 @@ class GetCloudProviderSnapshotRestoreJobResult:
     """
     A collection of values returned by getCloudProviderSnapshotRestoreJob.
     """
-    def __init__(__self__, cancelled=None, cluster_name=None, created_at=None, delivery_type=None, delivery_urls=None, expired=None, expires_at=None, finished_at=None, id=None, job_id=None, project_id=None, snapshot_id=None, target_cluster_name=None, target_project_id=None, timestamp=None):
+    def __init__(__self__, cancelled=None, cluster_name=None, created_at=None, delivery_type=None, delivery_urls=None, expired=None, expires_at=None, finished_at=None, id=None, job_id=None, oplog_inc=None, oplog_ts=None, point_in_time_utc_seconds=None, project_id=None, snapshot_id=None, target_cluster_name=None, target_project_id=None, timestamp=None):
         if cancelled and not isinstance(cancelled, bool):
             raise TypeError("Expected argument 'cancelled' to be a bool")
         __self__.cancelled = cancelled
@@ -68,6 +68,15 @@ class GetCloudProviderSnapshotRestoreJobResult:
         if job_id and not isinstance(job_id, str):
             raise TypeError("Expected argument 'job_id' to be a str")
         __self__.job_id = job_id
+        if oplog_inc and not isinstance(oplog_inc, float):
+            raise TypeError("Expected argument 'oplog_inc' to be a float")
+        __self__.oplog_inc = oplog_inc
+        if oplog_ts and not isinstance(oplog_ts, str):
+            raise TypeError("Expected argument 'oplog_ts' to be a str")
+        __self__.oplog_ts = oplog_ts
+        if point_in_time_utc_seconds and not isinstance(point_in_time_utc_seconds, float):
+            raise TypeError("Expected argument 'point_in_time_utc_seconds' to be a float")
+        __self__.point_in_time_utc_seconds = point_in_time_utc_seconds
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         __self__.project_id = project_id
@@ -108,6 +117,9 @@ class AwaitableGetCloudProviderSnapshotRestoreJobResult(GetCloudProviderSnapshot
             finished_at=self.finished_at,
             id=self.id,
             job_id=self.job_id,
+            oplog_inc=self.oplog_inc,
+            oplog_ts=self.oplog_ts,
+            point_in_time_utc_seconds=self.point_in_time_utc_seconds,
             project_id=self.project_id,
             snapshot_id=self.snapshot_id,
             target_cluster_name=self.target_cluster_name,
@@ -116,7 +128,7 @@ class AwaitableGetCloudProviderSnapshotRestoreJobResult(GetCloudProviderSnapshot
 
 def get_cloud_provider_snapshot_restore_job(cluster_name=None,job_id=None,project_id=None,opts=None):
     """
-    `.CloudProviderSnapshotRestoreJob` provides a Cloud Provider Snapshot Restore Job entry datasource. Gets all cloud provider snapshot restore jobs for the specified cluster.
+    `.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -150,6 +162,9 @@ def get_cloud_provider_snapshot_restore_job(cluster_name=None,job_id=None,projec
         finished_at=__ret__.get('finishedAt'),
         id=__ret__.get('id'),
         job_id=__ret__.get('jobId'),
+        oplog_inc=__ret__.get('oplogInc'),
+        oplog_ts=__ret__.get('oplogTs'),
+        point_in_time_utc_seconds=__ret__.get('pointInTimeUtcSeconds'),
         project_id=__ret__.get('projectId'),
         snapshot_id=__ret__.get('snapshotId'),
         target_cluster_name=__ret__.get('targetClusterName'),

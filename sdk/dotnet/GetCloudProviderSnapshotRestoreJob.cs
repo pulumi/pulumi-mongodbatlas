@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderSnapshotRestoreJob
     {
         /// <summary>
-        /// `mongodbatlas..CloudProviderSnapshotRestoreJob` provides a Cloud Provider Snapshot Restore Job entry datasource. Gets all cloud provider snapshot restore jobs for the specified cluster.
+        /// `mongodbatlas..CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -94,6 +94,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         public readonly string JobId;
+        public readonly int OplogInc;
+        public readonly string OplogTs;
+        public readonly int PointInTimeUtcSeconds;
         public readonly string ProjectId;
         /// <summary>
         /// Unique identifier of the source snapshot ID of the restore job.
@@ -131,6 +134,12 @@ namespace Pulumi.Mongodbatlas
 
             string jobId,
 
+            int oplogInc,
+
+            string oplogTs,
+
+            int pointInTimeUtcSeconds,
+
             string projectId,
 
             string snapshotId,
@@ -151,6 +160,9 @@ namespace Pulumi.Mongodbatlas
             FinishedAt = finishedAt;
             Id = id;
             JobId = jobId;
+            OplogInc = oplogInc;
+            OplogTs = oplogTs;
+            PointInTimeUtcSeconds = pointInTimeUtcSeconds;
             ProjectId = projectId;
             SnapshotId = snapshotId;
             TargetClusterName = targetClusterName;

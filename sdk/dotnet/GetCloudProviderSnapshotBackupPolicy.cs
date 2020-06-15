@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderSnapshotBackupPolicy
     {
         /// <summary>
-        /// `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a Cloud Provider Snapshot Backup Policy entry datasource. An Atlas Cloud Provider Snapshot Backup Policy provides the current snapshot schedule and retention settings for the cluster.
+        /// `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a Cloud Backup Snapshot Backup Policy datasource. An Atlas Cloud Backup Snapshot Policy provides the current snapshot schedule and retention settings for the cluster. 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -80,7 +80,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly int ReferenceMinuteOfHour;
         /// <summary>
-        /// Specifies a restore window in days for the cloud provider backup to maintain.
+        /// Specifies a restore window in days for cloud backup to maintain.
         /// </summary>
         public readonly int RestoreWindowDays;
         public readonly bool UpdateSnapshots;

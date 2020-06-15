@@ -15,6 +15,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly bool? Automated;
         public readonly bool? Download;
+        public readonly int? OplogInc;
+        public readonly int? OplogTs;
+        public readonly bool? PointInTime;
+        public readonly int? PointInTimeUtcSeconds;
         /// <summary>
         /// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
         /// </summary>
@@ -27,12 +31,24 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool? download,
 
+            int? oplogInc,
+
+            int? oplogTs,
+
+            bool? pointInTime,
+
+            int? pointInTimeUtcSeconds,
+
             string? targetClusterName,
 
             string? targetProjectId)
         {
             Automated = automated;
             Download = download;
+            OplogInc = oplogInc;
+            OplogTs = oplogTs;
+            PointInTime = pointInTime;
+            PointInTimeUtcSeconds = pointInTimeUtcSeconds;
             TargetClusterName = targetClusterName;
             TargetProjectId = targetProjectId;
         }
