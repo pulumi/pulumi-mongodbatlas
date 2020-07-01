@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+// `Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.InvokeOption) (*LookupTeamResult, error) {

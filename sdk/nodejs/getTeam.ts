@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+ * `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */

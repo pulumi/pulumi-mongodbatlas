@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
+ * `mongodbatlas.Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
  *
  * > **IMPORTANT:** MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
  *
@@ -14,8 +14,6 @@ import * as utilities from "./utilities";
  * MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -72,7 +70,7 @@ export class Team extends pulumi.CustomResource {
      */
     public /*out*/ readonly teamId!: pulumi.Output<string>;
     /**
-     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
      */
     public readonly usernames!: pulumi.Output<string[]>;
 
@@ -133,7 +131,7 @@ export interface TeamState {
      */
     readonly teamId?: pulumi.Input<string>;
     /**
-     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
      */
     readonly usernames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -151,7 +149,7 @@ export interface TeamArgs {
      */
     readonly orgId: pulumi.Input<string>;
     /**
-     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
+     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
      */
     readonly usernames: pulumi.Input<pulumi.Input<string>[]>;
 }

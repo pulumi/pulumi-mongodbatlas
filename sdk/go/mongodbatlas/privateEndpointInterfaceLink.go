@@ -10,13 +10,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+// `PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
 //
 // > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
 //   * Organization Owner
 //   * Project Owner
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testPrivateEndpoint, err := mongodbatlas.NewPrivateEndpoint(ctx, "testPrivateEndpoint", &mongodbatlas.PrivateEndpointArgs{
+// 			ProjectId:    pulumi.String("<PROJECT_ID>"),
+// 			ProviderName: pulumi.String("AWS"),
+// 			Region:       pulumi.String("us-east-1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ptfeService, err := ec2.NewVpcEndpoint(ctx, "ptfeService", &ec2.VpcEndpointArgs{
+// 			SecurityGroupIds: pulumi.StringArray{
+// 				pulumi.String("sg-3f238186"),
+// 			},
+// 			ServiceName: testPrivateEndpoint.EndpointServiceName,
+// 			SubnetIds: pulumi.StringArray{
+// 				pulumi.String("subnet-de0406d2"),
+// 			},
+// 			VpcEndpointType: pulumi.String("Interface"),
+// 			VpcId:           pulumi.String("vpc-7fc0a543"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = mongodbatlas.NewPrivateEndpointInterfaceLink(ctx, "testPrivateEndpointInterfaceLink", &mongodbatlas.PrivateEndpointInterfaceLinkArgs{
+// 			InterfaceEndpointId: ptfeService.ID(),
+// 			PrivateLinkId:       testPrivateEndpoint.PrivateLinkId,
+// 			ProjectId:           testPrivateEndpoint.ProjectId,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type PrivateEndpointInterfaceLink struct {
 	pulumi.CustomResourceState
 
@@ -29,7 +77,7 @@ type PrivateEndpointInterfaceLink struct {
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
 	// Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
 	InterfaceEndpointId pulumi.StringOutput `pulumi:"interfaceEndpointId"`
-	// Unique identifier of the AWS PrivateLink connection which is created by `.PrivateEndpoint` resource.
+	// Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
 	PrivateLinkId pulumi.StringOutput `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -81,7 +129,7 @@ type privateEndpointInterfaceLinkState struct {
 	ErrorMessage *string `pulumi:"errorMessage"`
 	// Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
 	InterfaceEndpointId *string `pulumi:"interfaceEndpointId"`
-	// Unique identifier of the AWS PrivateLink connection which is created by `.PrivateEndpoint` resource.
+	// Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
 	PrivateLinkId *string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId *string `pulumi:"projectId"`
@@ -97,7 +145,7 @@ type PrivateEndpointInterfaceLinkState struct {
 	ErrorMessage pulumi.StringPtrInput
 	// Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
 	InterfaceEndpointId pulumi.StringPtrInput
-	// Unique identifier of the AWS PrivateLink connection which is created by `.PrivateEndpoint` resource.
+	// Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
 	PrivateLinkId pulumi.StringPtrInput
 	// Unique identifier for the project.
 	ProjectId pulumi.StringPtrInput
@@ -110,7 +158,7 @@ func (PrivateEndpointInterfaceLinkState) ElementType() reflect.Type {
 type privateEndpointInterfaceLinkArgs struct {
 	// Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
 	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
-	// Unique identifier of the AWS PrivateLink connection which is created by `.PrivateEndpoint` resource.
+	// Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
 	PrivateLinkId string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`
@@ -120,7 +168,7 @@ type privateEndpointInterfaceLinkArgs struct {
 type PrivateEndpointInterfaceLinkArgs struct {
 	// Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
 	InterfaceEndpointId pulumi.StringInput
-	// Unique identifier of the AWS PrivateLink connection which is created by `.PrivateEndpoint` resource.
+	// Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
 	PrivateLinkId pulumi.StringInput
 	// Unique identifier for the project.
 	ProjectId pulumi.StringInput

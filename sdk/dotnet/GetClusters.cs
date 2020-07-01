@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetClusters
     {
         /// <summary>
-        /// `mongodbatlas..Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+        /// `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
@@ -55,7 +55,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

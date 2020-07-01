@@ -10,11 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..Auditing` provides an Auditing resource. This allows auditing to be created.
+    /// `mongodbatlas.Auditing` provides an Auditing resource. This allows auditing to be created.
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

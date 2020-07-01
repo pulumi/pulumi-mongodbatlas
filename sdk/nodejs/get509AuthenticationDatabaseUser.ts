@@ -7,12 +7,13 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
+ * `mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
- * ## Example Usages
+ * ## Example Usage
  *
+ * ### S
  * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -42,7 +43,6 @@ import * as utilities from "./utilities";
  *     username: username,
  * }, { async: true }));
  * ```
- *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

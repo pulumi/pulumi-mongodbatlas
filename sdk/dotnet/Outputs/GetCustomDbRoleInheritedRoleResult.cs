@@ -15,7 +15,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly string DatabaseName;
         /// <summary>
-        /// Name of the custom role. 
+        /// Name of the custom role.
         /// </summary>
         public readonly string RoleName;
 

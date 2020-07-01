@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..EncryptionAtRest` Allows management of encryption at rest for an Atlas project with one of the following providers:
+ * `mongodbatlas.EncryptionAtRest` Allows management of encryption at rest for an Atlas project with one of the following providers:
  *
  * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
  * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
@@ -24,8 +24,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

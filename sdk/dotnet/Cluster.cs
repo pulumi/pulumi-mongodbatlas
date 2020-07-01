@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
+    /// `mongodbatlas.Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
@@ -21,7 +21,6 @@ namespace Pulumi.Mongodbatlas
     /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
     /// 
     /// ## Example Usage
-    /// 
     /// ### Example AWS cluster
     /// 
     /// ```csharp
@@ -52,7 +51,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example Azure cluster.
     /// 
     /// ```csharp
@@ -80,7 +78,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example GCP cluster
     /// 
     /// ```csharp
@@ -108,7 +105,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example Multi Region cluster
     /// 
     /// ```csharp
@@ -135,28 +131,28 @@ namespace Pulumi.Mongodbatlas
     ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
     ///                 {
     ///                     NumShards = 1,
-    ///                     RegionsConfig = 
+    ///                     RegionsConfigs = 
     ///                     {
-    ///                         
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
     ///                         {
-    ///                             { "electableNodes", 3 },
-    ///                             { "priority", 7 },
-    ///                             { "readOnlyNodes", 0 },
-    ///                             { "regionName", "US_EAST_1" },
+    ///                             ElectableNodes = 3,
+    ///                             Priority = 7,
+    ///                             ReadOnlyNodes = 0,
+    ///                             RegionName = "US_EAST_1",
     ///                         },
-    ///                         
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
     ///                         {
-    ///                             { "electableNodes", 2 },
-    ///                             { "priority", 6 },
-    ///                             { "readOnlyNodes", 0 },
-    ///                             { "regionName", "US_EAST_2" },
+    ///                             ElectableNodes = 2,
+    ///                             Priority = 6,
+    ///                             ReadOnlyNodes = 0,
+    ///                             RegionName = "US_EAST_2",
     ///                         },
-    ///                         
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
     ///                         {
-    ///                             { "electableNodes", 2 },
-    ///                             { "priority", 5 },
-    ///                             { "readOnlyNodes", 2 },
-    ///                             { "regionName", "US_WEST_1" },
+    ///                             ElectableNodes = 2,
+    ///                             Priority = 5,
+    ///                             ReadOnlyNodes = 2,
+    ///                             RegionName = "US_WEST_1",
     ///                         },
     ///                     },
     ///                 },
@@ -166,7 +162,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example Global cluster
     /// 
     /// ```csharp
@@ -193,14 +188,14 @@ namespace Pulumi.Mongodbatlas
     ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
     ///                 {
     ///                     NumShards = 2,
-    ///                     RegionsConfig = 
+    ///                     RegionsConfigs = 
     ///                     {
-    ///                         
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
     ///                         {
-    ///                             { "electableNodes", 3 },
-    ///                             { "priority", 7 },
-    ///                             { "readOnlyNodes", 0 },
-    ///                             { "regionName", "US_EAST_1" },
+    ///                             ElectableNodes = 3,
+    ///                             Priority = 7,
+    ///                             ReadOnlyNodes = 0,
+    ///                             RegionName = "US_EAST_1",
     ///                         },
     ///                     },
     ///                     ZoneName = "Zone 1",
@@ -208,14 +203,14 @@ namespace Pulumi.Mongodbatlas
     ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
     ///                 {
     ///                     NumShards = 2,
-    ///                     RegionsConfig = 
+    ///                     RegionsConfigs = 
     ///                     {
-    ///                         
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
     ///                         {
-    ///                             { "electableNodes", 3 },
-    ///                             { "priority", 7 },
-    ///                             { "readOnlyNodes", 0 },
-    ///                             { "regionName", "EU_CENTRAL_1" },
+    ///                             ElectableNodes = 3,
+    ///                             Priority = 7,
+    ///                             ReadOnlyNodes = 0,
+    ///                             RegionName = "EU_CENTRAL_1",
     ///                         },
     ///                     },
     ///                     ZoneName = "Zone 2",
@@ -226,9 +221,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example AWS Shared Tier cluster
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
@@ -338,7 +331,7 @@ namespace Pulumi.Mongodbatlas
         public Output<double> DiskSizeGb { get; private set; } = null!;
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         /// </summary>
         [Output("encryptionAtRestProvider")]
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
@@ -618,7 +611,7 @@ namespace Pulumi.Mongodbatlas
         public Input<double>? DiskSizeGb { get; set; }
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
@@ -835,7 +828,7 @@ namespace Pulumi.Mongodbatlas
         public Input<double>? DiskSizeGb { get; set; }
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }

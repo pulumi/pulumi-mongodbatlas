@@ -7,9 +7,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.NetworkPeering` describes a Network Peering Connection.
+// `NetworkPeering` describes a Network Peering Connection.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// ## Example Usage
 func LookupNetworkPeering(ctx *pulumi.Context, args *LookupNetworkPeeringArgs, opts ...pulumi.InvokeOption) (*LookupNetworkPeeringResult, error) {
 	var rv LookupNetworkPeeringResult
 	err := ctx.Invoke("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args, &rv, opts...)

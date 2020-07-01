@@ -7,9 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..NetworkPeering` describes a Network Peering Connection.
+ * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
  */
 export function getNetworkPeering(args: GetNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringResult> {
     if (!opts) {
@@ -82,7 +84,7 @@ export interface GetNetworkPeeringResult {
      */
     readonly errorStateName: string;
     /**
-     * GCP project ID of the owner of the network peer. 
+     * GCP project ID of the owner of the network peer.
      */
     readonly gcpProjectId: string;
     /**
@@ -100,7 +102,7 @@ export interface GetNetworkPeeringResult {
      */
     readonly providerName: string;
     /**
-     * Name of your Azure resource group. 
+     * Name of your Azure resource group.
      */
     readonly resourceGroupName: string;
     /**

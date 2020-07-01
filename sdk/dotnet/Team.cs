@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
+    /// `mongodbatlas.Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
     /// 
     /// &gt; **IMPORTANT:** MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
     /// 
@@ -19,8 +19,6 @@ namespace Pulumi.Mongodbatlas
     /// MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -66,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> TeamId { get; private set; } = null!;
 
         /// <summary>
-        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
+        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         /// </summary>
         [Output("usernames")]
         public Output<ImmutableArray<string>> Usernames { get; private set; } = null!;
@@ -133,7 +131,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _usernames;
 
         /// <summary>
-        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
+        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         /// </summary>
         public InputList<string> Usernames
         {
@@ -170,7 +168,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _usernames;
 
         /// <summary>
-        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. 
+        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         /// </summary>
         public InputList<string> Usernames
         {

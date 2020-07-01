@@ -7,22 +7,19 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
+ * `mongodbatlas.CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
  *
  * > **IMPORTANT** Custom roles cannot use actions unavailable to any cluster version in your project. Custom roles are defined at the project level, and must be compatible with each MongoDB version used by your project’s clusters. If you have a cluster in your project with MongoDB 3.4, you cannot create a custom role that uses actions introduced in MongoDB 3.6, such as useUUID.
- *
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ * const testRole = new mongodbatlas.CustomDbRole("test_role", {
  *     actions: [
  *         {
  *             action: "UPDATE",
@@ -50,14 +47,13 @@ import * as utilities from "./utilities";
  *     roleName: "myCustomRole",
  * });
  * ```
- *
- * ## Example Usage with inherited roles
+ * ### With Inherited Roles
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const inheritedRoleOne = new mongodbatlas.CustomDbRole("inheritedRoleOne", {
+ * const inheritedRoleOne = new mongodbatlas.CustomDbRole("inherited_role_one", {
  *     actions: [{
  *         action: "INSERT",
  *         resources: [{
@@ -68,7 +64,7 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  *     roleName: "insertRole",
  * });
- * const inheritedRoleTwo = new mongodbatlas.CustomDbRole("inheritedRoleTwo", {
+ * const inheritedRoleTwo = new mongodbatlas.CustomDbRole("inherited_role_two", {
  *     actions: [{
  *         action: "SERVER_STATUS",
  *         resources: [{
@@ -78,7 +74,7 @@ import * as utilities from "./utilities";
  *     projectId: inheritedRoleOne.projectId,
  *     roleName: "statusServerRole",
  * });
- * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ * const testRole = new mongodbatlas.CustomDbRole("test_role", {
  *     actions: [
  *         {
  *             action: "UPDATE",

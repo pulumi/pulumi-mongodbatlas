@@ -7,8 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
-//
+// `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 func LookupGlobalClusterConfig(ctx *pulumi.Context, args *LookupGlobalClusterConfigArgs, opts ...pulumi.InvokeOption) (*LookupGlobalClusterConfigResult, error) {

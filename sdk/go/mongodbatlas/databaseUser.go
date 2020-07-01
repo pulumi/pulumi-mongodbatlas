@@ -10,13 +10,94 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
+// `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
 //
 // Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text.
+//
+// ## Example Usage
+// ### S
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+// 			AuthDatabaseName: pulumi.String("admin"),
+// 			Labels: mongodbatlas.DatabaseUserLabelArray{
+// 				&mongodbatlas.DatabaseUserLabelArgs{
+// 					Key:   pulumi.String("My Key"),
+// 					Value: pulumi.String("My Value"),
+// 				},
+// 			},
+// 			Password:  pulumi.String("test-acc-password"),
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			Roles: mongodbatlas.DatabaseUserRoleArray{
+// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 					DatabaseName: pulumi.String("dbforApp"),
+// 					RoleName:     pulumi.String("readWrite"),
+// 				},
+// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 					DatabaseName: pulumi.String("admin"),
+// 					RoleName:     pulumi.String("readAnyDatabase"),
+// 				},
+// 			},
+// 			Username: pulumi.String("test-acc-username"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+// 			AuthDatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
+// 			Labels: mongodbatlas.DatabaseUserLabelArray{
+// 				&mongodbatlas.DatabaseUserLabelArgs{
+// 					Key:   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 					Value: pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 				},
+// 			},
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			Roles: mongodbatlas.DatabaseUserRoleArray{
+// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 					DatabaseName: pulumi.String("admin"),
+// 					RoleName:     pulumi.String("readAnyDatabase"),
+// 				},
+// 			},
+// 			Username: pulumi.String("test-acc-username"),
+// 			X509Type: pulumi.String("MANAGED"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DatabaseUser struct {
 	pulumi.CustomResourceState
 

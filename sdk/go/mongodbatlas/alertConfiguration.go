@@ -10,9 +10,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
+// `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
+// 			Enabled:   pulumi.Bool(true),
+// 			EventType: pulumi.String("OUTSIDE_METRIC_THRESHOLD"),
+// 			Matchers: mongodbatlas.AlertConfigurationMatcherArray{
+// 				&mongodbatlas.AlertConfigurationMatcherArgs{
+// 					FieldName: pulumi.String("HOSTNAME_AND_PORT"),
+// 					Operator:  pulumi.String("EQUALS"),
+// 					Value:     pulumi.String("SECONDARY"),
+// 				},
+// 			},
+// 			MetricThreshold: &mongodbatlas.AlertConfigurationMetricThresholdArgs{
+// 				Metric_name: pulumi.String("ASSERT_REGULAR"),
+// 				Mode:        pulumi.String("AVERAGE"),
+// 				Operator:    pulumi.String("LESS_THAN"),
+// 				Threshold:   pulumi.Float64(99),
+// 				Units:       pulumi.String("RAW"),
+// 			},
+// 			Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+// 				&mongodbatlas.AlertConfigurationNotificationArgs{
+// 					DelayMin:     pulumi.Int(0),
+// 					EmailEnabled: pulumi.Bool(true),
+// 					IntervalMin:  pulumi.Int(5),
+// 					Roles: pulumi.StringArray{
+// 						pulumi.String("GROUP_CHARTS_ADMIN"),
+// 						pulumi.String("GROUP_CLUSTER_MANAGER"),
+// 					},
+// 					SmsEnabled: pulumi.Bool(false),
+// 					TypeName:   pulumi.String("GROUP"),
+// 				},
+// 			},
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AlertConfiguration struct {
 	pulumi.CustomResourceState
 

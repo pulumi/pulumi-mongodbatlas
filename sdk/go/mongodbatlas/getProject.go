@@ -7,9 +7,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
+// `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// ## Example Usage
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	var rv LookupProjectResult
 	err := ctx.Invoke("mongodbatlas:index/getProject:getProject", args, &rv, opts...)
@@ -40,7 +42,7 @@ type LookupProjectResult struct {
 	// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
 	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-	// The following are valid roles:
+	//   The following are valid roles:
 	// * `GROUP_OWNER`
 	// * `GROUP_READ_ONLY`
 	// * `GROUP_DATA_ACCESS_ADMIN`

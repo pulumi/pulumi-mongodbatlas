@@ -7,13 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
+ * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
- *
  * ## Example Usage
- *
  * ### Basic Example.
  *
  * ```typescript

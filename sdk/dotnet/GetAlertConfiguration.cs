@@ -12,18 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetAlertConfiguration
     {
         /// <summary>
-        /// `mongodbatlas..AlertConfiguration` describes an Alert Configuration.
+        /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// 
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetAlertConfigurationResult> InvokeAsync(GetAlertConfigurationArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationArgs(), options.WithVersion());

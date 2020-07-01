@@ -13,8 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -25,7 +23,7 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     region: "us-east-1",
  * });
- * const ptfeService = new aws.ec2.VpcEndpoint("ptfeService", {
+ * const ptfeService = new aws.ec2.VpcEndpoint("ptfe_service", {
  *     securityGroupIds: ["sg-3f238186"],
  *     serviceName: testPrivateEndpoint.endpointServiceName,
  *     subnetIds: ["subnet-de0406d2"],

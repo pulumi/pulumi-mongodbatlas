@@ -10,10 +10,60 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
+// `CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
 // On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
+// 			ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+// 			DiskSizeGb:               pulumi.Float64(5),
+// 			ProviderName:             pulumi.String("AWS"),
+// 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
+// 			ProviderInstanceSizeName: pulumi.String("M10"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderDiskIops:         pulumi.Int(100),
+// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
+// 			ProjectId:       myCluster.ProjectId,
+// 			ClusterName:     myCluster.Name,
+// 			Description:     pulumi.String("myDescription"),
+// 			RetentionInDays: pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
+// 			ProjectId:   testCloudProviderSnapshot.ProjectId,
+// 			ClusterName: testCloudProviderSnapshot.ClusterName,
+// 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
+// 			DeliveryType: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs{
+// 				Download: pulumi.Bool(true),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type CloudProviderSnapshot struct {
 	pulumi.CustomResourceState
 

@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCustomDbRole
     {
         /// <summary>
-        /// `mongodbatlas..CustomDbRole` describe a Custom DB Role. This represents a custom db role.
+        /// `mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
@@ -74,7 +74,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
@@ -100,7 +99,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Name of the custom role. 
+        /// Name of the custom role.
         /// </summary>
         [Input("roleName", required: true)]
         public string RoleName { get; set; } = null!;

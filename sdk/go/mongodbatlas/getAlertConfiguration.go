@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.AlertConfiguration` describes an Alert Configuration.
+// `AlertConfiguration` describes an Alert Configuration.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 func LookupAlertConfiguration(ctx *pulumi.Context, args *LookupAlertConfigurationArgs, opts ...pulumi.InvokeOption) (*LookupAlertConfigurationResult, error) {
@@ -45,7 +45,7 @@ type LookupAlertConfigurationResult struct {
 	// - Replica set
 	// - `NO_PRIMARY`
 	// - `TOO_MANY_ELECTIONS`
-	// Sharded cluster
+	//   Sharded cluster
 	// - `CLUSTER_MONGOS_IS_MISSING`
 	// - `User`
 	// - `JOINED_GROUP`

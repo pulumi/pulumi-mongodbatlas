@@ -7,9 +7,39 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.getNetworkPeerings` describes all Network Peering Connections.
+// `getNetworkPeerings` describes all Network Peering Connections.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// ## Example Usage
+// ### Basic Example (AWS).
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
+// 			AccepterRegionName:  pulumi.String("us-east-1"),
+// 			ProjectId:           pulumi.String("<YOUR-PROJEC-ID>"),
+// 			ContainerId:         pulumi.String("507f1f77bcf86cd799439011"),
+// 			ProviderName:        pulumi.String("AWS"),
+// 			RouteTableCidrBlock: pulumi.String("192.168.0.0/24"),
+// 			VpcId:               pulumi.String("vpc-abc123abc123"),
+// 			AwsAccountId:        pulumi.String("abc123abc123"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetNetworkPeerings(ctx *pulumi.Context, args *GetNetworkPeeringsArgs, opts ...pulumi.InvokeOption) (*GetNetworkPeeringsResult, error) {
 	var rv GetNetworkPeeringsResult
 	err := ctx.Invoke("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args, &rv, opts...)

@@ -12,12 +12,15 @@ namespace Pulumi.Mongodbatlas
     public static class Get509AuthenticationDatabaseUser
     {
         /// <summary>
-        /// `mongodbatlas..X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
+        /// `mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
-        /// ## Example Usages
+        /// {{% examples %}}
+        /// ## Example Usage
         /// 
+        /// ### S
+        /// {{% example %}}
         /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
         /// ```csharp
         /// using Pulumi;
@@ -29,7 +32,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         var user = new Mongodbatlas.DatabaseUser("user", new Mongodbatlas.DatabaseUserArgs
         ///         {
-        ///             DatabaseName = "$$external",
+        ///             DatabaseName = "$external",
         ///             Labels = 
         ///             {
         ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
@@ -70,7 +73,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// }
         /// ```
-        /// 
+        /// {{% /example %}}
+        /// {{% example %}}
         /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         /// ```csharp
         /// using Pulumi;
@@ -110,6 +114,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// }
         /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<Get509AuthenticationDatabaseUserResult> InvokeAsync(Get509AuthenticationDatabaseUserArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<Get509AuthenticationDatabaseUserResult>("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args ?? new Get509AuthenticationDatabaseUserArgs(), options.WithVersion());

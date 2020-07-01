@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
+    /// `mongodbatlas.DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
     /// 
     /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
     /// 
@@ -18,7 +18,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text.
     /// 
-    /// ## Example Usages
+    /// ## Example Usage
+    /// ### S
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -61,7 +62,6 @@ namespace Pulumi.Mongodbatlas
     /// }
     /// ```
     /// 
-    /// 
     /// ```csharp
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
@@ -72,7 +72,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         var test = new Mongodbatlas.DatabaseUser("test", new Mongodbatlas.DatabaseUserArgs
     ///         {
-    ///             AuthDatabaseName = "$$external",
+    ///             AuthDatabaseName = "$external",
     ///             Labels = 
     ///             {
     ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs

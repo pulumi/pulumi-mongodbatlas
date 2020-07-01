@@ -7,14 +7,12 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..Project` describes a MongoDB Atlas Project. This represents a project that has been created.
+ * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
- *
  * ### Using projectId attribute to query
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -39,9 +37,7 @@ import * as utilities from "./utilities";
  *     projectId: id,
  * }, { async: true }));
  * ```
- *
  * ### Using name attribute to query
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";

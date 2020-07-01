@@ -10,12 +10,152 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
+// `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 //
 // > **IMPORTANT** Custom roles cannot use actions unavailable to any cluster version in your project. Custom roles are defined at the project level, and must be compatible with each MongoDB version used by your project’s clusters. If you have a cluster in your project with MongoDB 3.4, you cannot create a custom role that uses actions introduced in MongoDB 3.6, such as useUUID.
 //
-//
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+// 			Actions: mongodbatlas.CustomDbRoleActionArray{
+// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 					Action: pulumi.String("UPDATE"),
+// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 							CollectionName: pulumi.String(""),
+// 							DatabaseName:   pulumi.String("anyDatabase"),
+// 						},
+// 					},
+// 				},
+// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 					Action: pulumi.String("INSERT"),
+// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 							CollectionName: pulumi.String(""),
+// 							DatabaseName:   pulumi.String("anyDatabase"),
+// 						},
+// 					},
+// 				},
+// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 					Action: pulumi.String("REMOVE"),
+// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 							CollectionName: pulumi.String(""),
+// 							DatabaseName:   pulumi.String("anyDatabase"),
+// 						},
+// 					},
+// 				},
+// 			},
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			RoleName:  pulumi.String("myCustomRole"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### With Inherited Roles
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		inheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleOne", &mongodbatlas.CustomDbRoleArgs{
+// 			Actions: mongodbatlas.CustomDbRoleActionArray{
+// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 					Action: pulumi.String("INSERT"),
+// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 							CollectionName: pulumi.String(""),
+// 							DatabaseName:   pulumi.String("anyDatabase"),
+// 						},
+// 					},
+// 				},
+// 			},
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			RoleName:  pulumi.String("insertRole"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		inheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleTwo", &mongodbatlas.CustomDbRoleArgs{
+// 			Actions: mongodbatlas.CustomDbRoleActionArray{
+// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 					Action: pulumi.String("SERVER_STATUS"),
+// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 							Cluster: pulumi.Bool(true),
+// 						},
+// 					},
+// 				},
+// 			},
+// 			ProjectId: inheritedRoleOne.ProjectId,
+// 			RoleName:  pulumi.String("statusServerRole"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+// 			Actions: mongodbatlas.CustomDbRoleActionArray{
+// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 					Action: pulumi.String("UPDATE"),
+// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 							CollectionName: pulumi.String(""),
+// 							DatabaseName:   pulumi.String("anyDatabase"),
+// 						},
+// 					},
+// 				},
+// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 					Action: pulumi.String("REMOVE"),
+// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 							CollectionName: pulumi.String(""),
+// 							DatabaseName:   pulumi.String("anyDatabase"),
+// 						},
+// 					},
+// 				},
+// 			},
+// 			InheritedRoles: mongodbatlas.CustomDbRoleInheritedRoleArray{
+// 				&mongodbatlas.CustomDbRoleInheritedRoleArgs{
+// 					DatabaseName: pulumi.String("admin"),
+// 					RoleName:     inheritedRoleOne.RoleName,
+// 				},
+// 				&mongodbatlas.CustomDbRoleInheritedRoleArgs{
+// 					DatabaseName: pulumi.String("admin"),
+// 					RoleName:     inheritedRoleTwo.RoleName,
+// 				},
+// 			},
+// 			ProjectId: inheritedRoleOne.ProjectId,
+// 			RoleName:  pulumi.String("myCustomRole"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type CustomDbRole struct {
 	pulumi.CustomResourceState
 
