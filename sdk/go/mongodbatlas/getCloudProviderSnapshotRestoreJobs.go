@@ -7,9 +7,50 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
+// `getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
+// 			ClusterName:     pulumi.String("MyCluster"),
+// 			Description:     pulumi.String("MyDescription"),
+// 			ProjectId:       pulumi.String("5cf5a45a9ccf6400e60981b6"),
+// 			RetentionInDays: pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testCloudProviderSnapshotRestoreJob, err := mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
+// 			ClusterName: pulumi.String("MyCluster"),
+// 			DeliveryType: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs{
+// 				Automated:           pulumi.Bool(true),
+// 				Target_cluster_name: pulumi.String("MyCluster"),
+// 				Target_project_id:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+// 			},
+// 			ProjectId:  pulumi.String("5cf5a45a9ccf6400e60981b6"),
+// 			SnapshotId: testCloudProviderSnapshot.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetCloudProviderSnapshotRestoreJobs(ctx *pulumi.Context, args *GetCloudProviderSnapshotRestoreJobsArgs, opts ...pulumi.InvokeOption) (*GetCloudProviderSnapshotRestoreJobsResult, error) {
 	var rv GetCloudProviderSnapshotRestoreJobsResult
 	err := ctx.Invoke("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args, &rv, opts...)

@@ -7,19 +7,17 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..CustomDbRole` describe a Custom DB Role. This represents a custom db role.
+ * `mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
  *
- *
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ * const testRole = new mongodbatlas.CustomDbRole("test_role", {
  *     actions: [
  *         {
  *             action: "UPDATE",
@@ -70,7 +68,7 @@ export interface GetCustomDbRoleArgs {
      */
     readonly projectId: string;
     /**
-     * Name of the custom role. 
+     * Name of the custom role.
      */
     readonly roleName: string;
 }

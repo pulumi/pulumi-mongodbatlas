@@ -51,7 +51,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ErrorStateName;
         /// <summary>
-        /// GCP project ID of the owner of the network peer. 
+        /// GCP project ID of the owner of the network peer.
         /// </summary>
         public readonly string GcpProjectId;
         /// <summary>
@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderName;
         /// <summary>
-        /// Name of your Azure resource group. 
+        /// Name of your Azure resource group.
         /// </summary>
         public readonly string ResourceGroupName;
         /// <summary>

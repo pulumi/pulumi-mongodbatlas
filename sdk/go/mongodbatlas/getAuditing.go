@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.Auditing` describes a Auditing.
+// `Auditing` describes a Auditing.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 func LookupAuditing(ctx *pulumi.Context, args *LookupAuditingArgs, opts ...pulumi.InvokeOption) (*LookupAuditingResult, error) {

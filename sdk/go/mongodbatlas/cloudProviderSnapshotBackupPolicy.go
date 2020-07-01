@@ -10,9 +10,94 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.
+// `CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
+// 			ProjectId:                pulumi.String("<PROJECT-ID>"),
+// 			DiskSizeGb:               pulumi.Float64(5),
+// 			ProviderName:             pulumi.String("AWS"),
+// 			ProviderRegionName:       pulumi.String("EU_CENTRAL_1"),
+// 			ProviderInstanceSizeName: pulumi.String("M10"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderDiskIops:         pulumi.Int(100),
+// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = mongodbatlas.NewCloudProviderSnapshotBackupPolicy(ctx, "test", &mongodbatlas.CloudProviderSnapshotBackupPolicyArgs{
+// 			ProjectId:             myCluster.ProjectId,
+// 			ClusterName:           myCluster.Name,
+// 			ReferenceHourOfDay:    pulumi.Int(3),
+// 			ReferenceMinuteOfHour: pulumi.Int(45),
+// 			RestoreWindowDays:     pulumi.Int(4),
+// 			Policies: mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyArray{
+// 				&mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyArgs{
+// 					Id: pulumi.String(myCluster.SnapshotBackupPolicies.ApplyT(func(snapshotBackupPolicies []mongodbatlas.ClusterSnapshotBackupPolicy) (string, error) {
+// 						return snapshotBackupPolicies[0].Policies[0].Id, nil
+// 					}).(pulumi.StringOutput)),
+// 					PolicyItems: mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArray{
+// 						&mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{
+// 							Id: pulumi.String(myCluster.SnapshotBackupPolicies.ApplyT(func(snapshotBackupPolicies []mongodbatlas.ClusterSnapshotBackupPolicy) (string, error) {
+// 								return snapshotBackupPolicies[0].Policies[0].PolicyItems[0].Id, nil
+// 							}).(pulumi.StringOutput)),
+// 							FrequencyInterval: pulumi.Int(1),
+// 							FrequencyType:     pulumi.String("hourly"),
+// 							RetentionUnit:     pulumi.String("days"),
+// 							RetentionValue:    pulumi.Int(1),
+// 						},
+// 						&mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{
+// 							Id: pulumi.String(myCluster.SnapshotBackupPolicies.ApplyT(func(snapshotBackupPolicies []mongodbatlas.ClusterSnapshotBackupPolicy) (string, error) {
+// 								return snapshotBackupPolicies[0].Policies[0].PolicyItems[1].Id, nil
+// 							}).(pulumi.StringOutput)),
+// 							FrequencyInterval: pulumi.Int(1),
+// 							FrequencyType:     pulumi.String("daily"),
+// 							RetentionUnit:     pulumi.String("days"),
+// 							RetentionValue:    pulumi.Int(2),
+// 						},
+// 						&mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{
+// 							Id: pulumi.String(myCluster.SnapshotBackupPolicies.ApplyT(func(snapshotBackupPolicies []mongodbatlas.ClusterSnapshotBackupPolicy) (string, error) {
+// 								return snapshotBackupPolicies[0].Policies[0].PolicyItems[2].Id, nil
+// 							}).(pulumi.StringOutput)),
+// 							FrequencyInterval: pulumi.Int(4),
+// 							FrequencyType:     pulumi.String("weekly"),
+// 							RetentionUnit:     pulumi.String("weeks"),
+// 							RetentionValue:    pulumi.Int(3),
+// 						},
+// 						&mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{
+// 							Id: pulumi.String(myCluster.SnapshotBackupPolicies.ApplyT(func(snapshotBackupPolicies []mongodbatlas.ClusterSnapshotBackupPolicy) (string, error) {
+// 								return snapshotBackupPolicies[0].Policies[0].PolicyItems[3].Id, nil
+// 							}).(pulumi.StringOutput)),
+// 							FrequencyInterval: pulumi.Int(5),
+// 							FrequencyType:     pulumi.String("monthly"),
+// 							RetentionUnit:     pulumi.String("months"),
+// 							RetentionValue:    pulumi.Int(4),
+// 						},
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type CloudProviderSnapshotBackupPolicy struct {
 	pulumi.CustomResourceState
 
@@ -23,7 +108,7 @@ type CloudProviderSnapshotBackupPolicy struct {
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
 	NextSnapshot pulumi.StringOutput `pulumi:"nextSnapshot"`
 	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the .Cluster resource. providerBackupEnabled of the .Cluster resource must be set to true. See the example above for how to refer to the .Cluster resource for policies.#.id
+	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
 	Policies CloudProviderSnapshotBackupPolicyPolicyArrayOutput `pulumi:"policies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -81,7 +166,7 @@ type cloudProviderSnapshotBackupPolicyState struct {
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
 	NextSnapshot *string `pulumi:"nextSnapshot"`
 	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the .Cluster resource. providerBackupEnabled of the .Cluster resource must be set to true. See the example above for how to refer to the .Cluster resource for policies.#.id
+	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
 	Policies []CloudProviderSnapshotBackupPolicyPolicy `pulumi:"policies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId *string `pulumi:"projectId"`
@@ -103,7 +188,7 @@ type CloudProviderSnapshotBackupPolicyState struct {
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
 	NextSnapshot pulumi.StringPtrInput
 	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the .Cluster resource. providerBackupEnabled of the .Cluster resource must be set to true. See the example above for how to refer to the .Cluster resource for policies.#.id
+	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
 	Policies CloudProviderSnapshotBackupPolicyPolicyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringPtrInput
@@ -125,7 +210,7 @@ type cloudProviderSnapshotBackupPolicyArgs struct {
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`
 	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the .Cluster resource. providerBackupEnabled of the .Cluster resource must be set to true. See the example above for how to refer to the .Cluster resource for policies.#.id
+	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
 	Policies []CloudProviderSnapshotBackupPolicyPolicy `pulumi:"policies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
@@ -144,7 +229,7 @@ type CloudProviderSnapshotBackupPolicyArgs struct {
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringInput
 	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the .Cluster resource. providerBackupEnabled of the .Cluster resource must be set to true. See the example above for how to refer to the .Cluster resource for policies.#.id
+	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
 	Policies CloudProviderSnapshotBackupPolicyPolicyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput

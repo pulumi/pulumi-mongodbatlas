@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The mongodbatlas..X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
+    /// `mongodbatlas.X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The mongodbatlas.X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
     /// 
     /// | Management  | Description  |
     /// |---|---|
@@ -19,8 +19,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
-    /// ## Example Usages
+    /// ## Example Usage
     /// 
+    /// ### S
     /// ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
     /// ```csharp
     /// using Pulumi;
@@ -32,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         var user = new Mongodbatlas.DatabaseUser("user", new Mongodbatlas.DatabaseUserArgs
     ///         {
-    ///             DatabaseName = "$$external",
+    ///             DatabaseName = "$external",
     ///             Labels = 
     ///             {
     ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
@@ -63,7 +64,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
     /// ```csharp
     /// using Pulumi;

@@ -12,19 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderSnapshotRestoreJob
     {
         /// <summary>
-        /// `mongodbatlas..CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
+        /// `mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// 
-        /// {{% example %}}
-        /// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
-        /// 
-        /// 
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudProviderSnapshotRestoreJobResult> InvokeAsync(GetCloudProviderSnapshotRestoreJobArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotRestoreJobResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJob:getCloudProviderSnapshotRestoreJob", args ?? new GetCloudProviderSnapshotRestoreJobArgs(), options.WithVersion());

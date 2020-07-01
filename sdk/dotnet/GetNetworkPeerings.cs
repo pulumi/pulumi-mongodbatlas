@@ -12,14 +12,13 @@ namespace Pulumi.Mongodbatlas
     public static class GetNetworkPeerings
     {
         /// <summary>
-        /// `mongodbatlas..getNetworkPeerings` describes all Network Peering Connections.
+        /// `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// 
         /// {{% example %}}
         /// ### Basic Example (AWS).
         /// 
@@ -49,7 +48,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

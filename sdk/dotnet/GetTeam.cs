@@ -12,17 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetTeam
     {
         /// <summary>
-        /// `mongodbatlas..Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+        /// `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// 
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetTeamResult> InvokeAsync(GetTeamArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamArgs(), options.WithVersion());

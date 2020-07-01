@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public string DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// Name of the custom role. 
+        /// Name of the custom role.
         /// </summary>
         [Input("roleName", required: true)]
         public string RoleName { get; set; } = null!;

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+ * `mongodbatlas.PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
  *
  * > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
  *   * Organization Owner
@@ -13,10 +13,7 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,7 +25,7 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     region: "us-east-1",
  * });
- * const ptfeService = new aws.ec2.VpcEndpoint("ptfeService", {
+ * const ptfeService = new aws.ec2.VpcEndpoint("ptfe_service", {
  *     securityGroupIds: ["sg-3f238186"],
  *     serviceName: testPrivateEndpoint.endpointServiceName,
  *     subnetIds: ["subnet-de0406d2"],
@@ -88,7 +85,7 @@ export class PrivateEndpointInterfaceLink extends pulumi.CustomResource {
      */
     public readonly interfaceEndpointId!: pulumi.Output<string>;
     /**
-     * Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas..PrivateEndpoint` resource.
+     * Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas.PrivateEndpoint` resource.
      */
     public readonly privateLinkId!: pulumi.Output<string>;
     /**
@@ -165,7 +162,7 @@ export interface PrivateEndpointInterfaceLinkState {
      */
     readonly interfaceEndpointId?: pulumi.Input<string>;
     /**
-     * Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas..PrivateEndpoint` resource.
+     * Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas.PrivateEndpoint` resource.
      */
     readonly privateLinkId?: pulumi.Input<string>;
     /**
@@ -183,7 +180,7 @@ export interface PrivateEndpointInterfaceLinkArgs {
      */
     readonly interfaceEndpointId: pulumi.Input<string>;
     /**
-     * Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas..PrivateEndpoint` resource.
+     * Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas.PrivateEndpoint` resource.
      */
     readonly privateLinkId: pulumi.Input<string>;
     /**

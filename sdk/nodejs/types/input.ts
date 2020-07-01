@@ -497,7 +497,7 @@ export interface EncryptionAtRestGoogleCloudKms {
 export interface GetCustomDbRoleInheritedRole {
     databaseName?: string;
     /**
-     * Name of the custom role. 
+     * Name of the custom role.
      */
     roleName?: string;
 }

@@ -12,14 +12,13 @@ namespace Pulumi.Mongodbatlas
     public static class GetNetworkContainers
     {
         /// <summary>
-        /// `mongodbatlas..getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
+        /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// 
         /// {{% example %}}
         /// ### Basic Example.
         /// 
@@ -52,7 +51,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// }
         /// ```
-        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

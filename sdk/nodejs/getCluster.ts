@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..Cluster` describes a Cluster. The. The data source requires your Project ID.
+ * `mongodbatlas.Cluster` describes a Cluster. The. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *

@@ -7,11 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..GlobalClusterConfig` provides a Global Cluster Configuration resource.
- *
+ * `mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  *
  * ## Examples Usage
  *
@@ -30,11 +28,11 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     providerDiskIops: 240,
  *     providerInstanceSizeName: "M30",
- *     replication_specs: [
+ *     replicationSpecs: [
  *         {
  *             zoneName: "Zone 1",
  *             numShards: 1,
- *             regions_config: [{
+ *             regionsConfigs: [{
  *                 regionName: "EU_CENTRAL_1",
  *                 electableNodes: 3,
  *                 priority: 7,
@@ -44,7 +42,7 @@ import * as utilities from "./utilities";
  *         {
  *             zoneName: "Zone 2",
  *             numShards: 1,
- *             regions_config: [{
+ *             regionsConfigs: [{
  *                 regionName: "US_EAST_2",
  *                 electableNodes: 3,
  *                 priority: 7,
@@ -56,12 +54,12 @@ import * as utilities from "./utilities";
  * const config = new mongodbatlas.GlobalClusterConfig("config", {
  *     projectId: test.projectId,
  *     clusterName: test.name,
- *     managed_namespaces: [{
+ *     managedNamespaces: [{
  *         db: "mydata",
  *         collection: "publishers",
  *         customShardKey: "city",
  *     }],
- *     custom_zone_mappings: [{
+ *     customZoneMappings: [{
  *         location: "CA",
  *         zone: "Zone 1",
  *     }],
@@ -74,7 +72,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     numShards: 1,
  *     replicationFactor: 3,
@@ -91,12 +89,12 @@ import * as utilities from "./utilities";
  * const config = new mongodbatlas.GlobalClusterConfig("config", {
  *     projectId: mongodbatlas_cluster.test.project_id,
  *     clusterName: mongodbatlas_cluster.test.name,
- *     managed_namespaces: [{
+ *     managedNamespaces: [{
  *         db: "mydata",
  *         collection: "publishers",
  *         customShardKey: "city",
  *     }],
- *     custom_zone_mappings: [{
+ *     customZoneMappings: [{
  *         location: "CA",
  *         zone: "Zone 1",
  *     }],

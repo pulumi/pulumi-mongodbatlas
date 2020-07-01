@@ -7,11 +7,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
+// `NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
 //
 // > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+//
+// ## Example Usage
 func LookupNetworkContainer(ctx *pulumi.Context, args *LookupNetworkContainerArgs, opts ...pulumi.InvokeOption) (*LookupNetworkContainerResult, error) {
 	var rv LookupNetworkContainerResult
 	err := ctx.Invoke("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args, &rv, opts...)

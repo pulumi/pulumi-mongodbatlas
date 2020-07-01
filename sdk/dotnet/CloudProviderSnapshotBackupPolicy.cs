@@ -10,13 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.  
+    /// `mongodbatlas.CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -49,39 +47,39 @@ namespace Pulumi.Mongodbatlas
     ///                 new Mongodbatlas.Inputs.CloudProviderSnapshotBackupPolicyPolicyArgs
     ///                 {
     ///                     Id = myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.Id),
-    ///                     Policy_item = 
+    ///                     PolicyItems = 
     ///                     {
-    ///                         
+    ///                         new Mongodbatlas.Inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs
     ///                         {
-    ///                             { "id", myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[0]?.Id) },
-    ///                             { "frequencyInterval", 1 },
-    ///                             { "frequencyType", "hourly" },
-    ///                             { "retentionUnit", "days" },
-    ///                             { "retentionValue", 1 },
+    ///                             Id = myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[0]?.Id),
+    ///                             FrequencyInterval = 1,
+    ///                             FrequencyType = "hourly",
+    ///                             RetentionUnit = "days",
+    ///                             RetentionValue = 1,
     ///                         },
-    ///                         
+    ///                         new Mongodbatlas.Inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs
     ///                         {
-    ///                             { "id", myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[1]?.Id) },
-    ///                             { "frequencyInterval", 1 },
-    ///                             { "frequencyType", "daily" },
-    ///                             { "retentionUnit", "days" },
-    ///                             { "retentionValue", 2 },
+    ///                             Id = myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[1]?.Id),
+    ///                             FrequencyInterval = 1,
+    ///                             FrequencyType = "daily",
+    ///                             RetentionUnit = "days",
+    ///                             RetentionValue = 2,
     ///                         },
-    ///                         
+    ///                         new Mongodbatlas.Inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs
     ///                         {
-    ///                             { "id", myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[2]?.Id) },
-    ///                             { "frequencyInterval", 4 },
-    ///                             { "frequencyType", "weekly" },
-    ///                             { "retentionUnit", "weeks" },
-    ///                             { "retentionValue", 3 },
+    ///                             Id = myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[2]?.Id),
+    ///                             FrequencyInterval = 4,
+    ///                             FrequencyType = "weekly",
+    ///                             RetentionUnit = "weeks",
+    ///                             RetentionValue = 3,
     ///                         },
-    ///                         
+    ///                         new Mongodbatlas.Inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs
     ///                         {
-    ///                             { "id", myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[3]?.Id) },
-    ///                             { "frequencyInterval", 5 },
-    ///                             { "frequencyType", "monthly" },
-    ///                             { "retentionUnit", "months" },
-    ///                             { "retentionValue", 4 },
+    ///                             Id = myCluster.SnapshotBackupPolicies.Apply(snapshotBackupPolicies =&gt; snapshotBackupPolicies[0].Policies?[0]?.PolicyItems?[3]?.Id),
+    ///                             FrequencyInterval = 5,
+    ///                             FrequencyType = "monthly",
+    ///                             RetentionUnit = "months",
+    ///                             RetentionValue = 4,
     ///                         },
     ///                     },
     ///                 },
@@ -114,7 +112,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Contains a document for each backup policy item in the desired updated backup policy.
-        /// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas..Cluster resource. provider_backup_enabled of the mongodbatlas..Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas..Cluster resource for policies.#.id
+        /// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<Outputs.CloudProviderSnapshotBackupPolicyPolicy>> Policies { get; private set; } = null!;
@@ -206,7 +204,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Contains a document for each backup policy item in the desired updated backup policy.
-        /// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas..Cluster resource. provider_backup_enabled of the mongodbatlas..Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas..Cluster resource for policies.#.id
+        /// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
         /// </summary>
         public InputList<Inputs.CloudProviderSnapshotBackupPolicyPolicyArgs> Policies
         {
@@ -274,7 +272,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Contains a document for each backup policy item in the desired updated backup policy.
-        /// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas..Cluster resource. provider_backup_enabled of the mongodbatlas..Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas..Cluster resource for policies.#.id
+        /// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
         /// </summary>
         public InputList<Inputs.CloudProviderSnapshotBackupPolicyPolicyGetArgs> Policies
         {

@@ -12,21 +12,12 @@ namespace Pulumi.Mongodbatlas
     public static class GetProject
     {
         /// <summary>
-        /// `mongodbatlas..Project` describes a MongoDB Atlas Project. This represents a project that has been created.
+        /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// 
-        /// {{% example %}}
-        /// ### Using project_id attribute to query
-        /// 
-        /// {{% /example %}}
-        /// {{% example %}}
-        /// ### Using name attribute to query
-        /// 
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs? args = null, InvokeOptions? options = null)

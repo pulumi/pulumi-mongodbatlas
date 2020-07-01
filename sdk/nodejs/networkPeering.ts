@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.  
+ * `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
  *
  * Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
  *
@@ -22,9 +22,9 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
+ * ## Example Usage
  *
- * ## Example Usage - Container & Peering Connection
- *
+ * ### Container & Peering Connection
  * ### Example with AWS
  *
  * ```typescript
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * // Container example provided but not always required, 
- * // see networkContainer documentation for details. 
+ * // see network_container documentation for details. 
  * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
  *     projectId: local.project_id,
  *     atlasCidrBlock: "10.8.0.0/21",
@@ -57,7 +57,6 @@ import * as utilities from "./utilities";
  *     autoAccept: true,
  * });
  * ```
- *
  * ### Example with GCP
  *
  * ```typescript
@@ -66,7 +65,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * // Container example provided but not always required, 
- * // see networkContainer documentation for details. 
+ * // see network_container documentation for details. 
  * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
  *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: local_project_id,
@@ -103,7 +102,6 @@ import * as utilities from "./utilities";
  *     replicationFactor: 3,
  * }, { dependsOn: [peering] });
  * ```
- *
  * ### Example with Azure
  *
  * ```typescript
@@ -111,7 +109,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * // Container example provided but not always required, 
- * // see networkContainer documentation for details. 
+ * // see network_container documentation for details. 
  * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
  *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: local_project_id,
@@ -142,7 +140,6 @@ import * as utilities from "./utilities";
  *     replicationFactor: 3,
  * }, { dependsOn: [testNetworkPeering] });
  * ```
- *
  * ### Example with AWS - Peering Connection Only, Container Exists
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -184,7 +181,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- *
  * ### Example with GCP - Peering Connection Only, Container Exists
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -222,7 +218,6 @@ import * as utilities from "./utilities";
  *     peerNetwork: pulumi.interpolate`https://www.googleapis.com/compute/v1/projects/${testNetworkPeering.atlasGcpProjectId}/global/networks/${testNetworkPeering.atlasVpcName}`,
  * });
  * ```
- *
  * ### Example with Azure - Peering Connection Only, Container Exists
  *
  * ```typescript

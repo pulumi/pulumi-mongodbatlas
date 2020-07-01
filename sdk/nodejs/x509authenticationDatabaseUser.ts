@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The mongodbatlas..X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
+ * `mongodbatlas.X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The mongodbatlas.X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
  *
  * | Management  | Description  |
  * |---|---|
@@ -16,8 +16,9 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
- * ## Example Usages
+ * ## Example Usage
  *
+ * ### S
  * ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -43,7 +44,6 @@ import * as utilities from "./utilities";
  *     username: user.username,
  * });
  * ```
- *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

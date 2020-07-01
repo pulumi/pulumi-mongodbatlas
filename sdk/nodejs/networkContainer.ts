@@ -5,19 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully. 
+ * `mongodbatlas.NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully.
  *
  *  Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the "containers per cloud provider" information that follows (in this case you can obtain the container id from the cluster resource attribute `containerId`).
- *  
+ *
  * The following is the maximum number of Network Peering containers per cloud provider:
  * <br> &#8226;  GCP -  One container per project.
  * <br> &#8226;  AWS and Azure - One container per cloud provider region.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
- *
  * ## Example Usage
- *
  * ### Example with AWS
  *
  * ```typescript
@@ -31,7 +29,6 @@ import * as utilities from "./utilities";
  *     regionName: "US_EAST_1",
  * });
  * ```
- *
  * ### Example with GCP
  *
  * ```typescript
@@ -44,7 +41,6 @@ import * as utilities from "./utilities";
  *     providerName: "GCP",
  * });
  * ```
- *
  * ### Example with Azure
  *
  * ```typescript

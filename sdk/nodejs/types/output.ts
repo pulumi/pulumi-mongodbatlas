@@ -1171,7 +1171,7 @@ export interface GetCustomDbRoleActionResource {
 export interface GetCustomDbRoleInheritedRole {
     databaseName: string;
     /**
-     * Name of the custom role. 
+     * Name of the custom role.
      */
     roleName: string;
 }
@@ -1375,7 +1375,7 @@ export interface GetNetworkPeeringsResult {
      */
     errorStateName: string;
     /**
-     * GCP project ID of the owner of the network peer. 
+     * GCP project ID of the owner of the network peer.
      */
     gcpProjectId: string;
     /**
@@ -1391,7 +1391,7 @@ export interface GetNetworkPeeringsResult {
      */
     providerName: string;
     /**
-     * Name of your Azure resource group. 
+     * Name of your Azure resource group.
      */
     resourceGroupName: string;
     /**

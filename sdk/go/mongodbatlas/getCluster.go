@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.Cluster` describes a Cluster. The. The data source requires your Project ID.
+// `Cluster` describes a Cluster. The. The data source requires your Project ID.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //

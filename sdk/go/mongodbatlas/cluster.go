@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
+// `Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
@@ -19,6 +19,243 @@ import (
 // <br> &#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.
 // <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
 // <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+//
+// ## Example Usage
+// ### Example AWS cluster
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
+// 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
+// 			DiskSizeGb:               pulumi.Float64(100),
+// 			MongoDbMajorVersion:      pulumi.String("4.2"),
+// 			NumShards:                pulumi.Int(1),
+// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderDiskIops:         pulumi.Int(300),
+// 			ProviderEncryptEbsVolume: pulumi.Bool(true),
+// 			ProviderInstanceSizeName: pulumi.String("M40"),
+// 			ProviderName:             pulumi.String("AWS"),
+// 			ProviderRegionName:       pulumi.String("US_EAST_1"),
+// 			ProviderVolumeType:       pulumi.String("STANDARD"),
+// 			ReplicationFactor:        pulumi.Int(3),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Example Azure cluster.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
+// 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
+// 			MongoDbMajorVersion:      pulumi.String("4.2"),
+// 			NumShards:                pulumi.Int(1),
+// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderDiskTypeName:     pulumi.String("P6"),
+// 			ProviderInstanceSizeName: pulumi.String("M30"),
+// 			ProviderName:             pulumi.String("AZURE"),
+// 			ProviderRegionName:       pulumi.String("US_EAST_2"),
+// 			ReplicationFactor:        pulumi.Int(3),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Example GCP cluster
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
+// 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
+// 			DiskSizeGb:               pulumi.Float64(40),
+// 			MongoDbMajorVersion:      pulumi.String("4.2"),
+// 			NumShards:                pulumi.Int(1),
+// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderInstanceSizeName: pulumi.String("M30"),
+// 			ProviderName:             pulumi.String("GCP"),
+// 			ProviderRegionName:       pulumi.String("US_EAST_4"),
+// 			ReplicationFactor:        pulumi.Int(3),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Example Multi Region cluster
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
+// 			ClusterType:              pulumi.String("REPLICASET"),
+// 			DiskSizeGb:               pulumi.Float64(100),
+// 			NumShards:                pulumi.Int(1),
+// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderDiskIops:         pulumi.Int(300),
+// 			ProviderInstanceSizeName: pulumi.String("M10"),
+// 			ProviderName:             pulumi.String("AWS"),
+// 			ProviderVolumeType:       pulumi.String("STANDARD"),
+// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 					NumShards: pulumi.Int(1),
+// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 							ElectableNodes: pulumi.Int(3),
+// 							Priority:       pulumi.Int(7),
+// 							ReadOnlyNodes:  pulumi.Int(0),
+// 							RegionName:     pulumi.String("US_EAST_1"),
+// 						},
+// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 							ElectableNodes: pulumi.Int(2),
+// 							Priority:       pulumi.Int(6),
+// 							ReadOnlyNodes:  pulumi.Int(0),
+// 							RegionName:     pulumi.String("US_EAST_2"),
+// 						},
+// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 							ElectableNodes: pulumi.Int(2),
+// 							Priority:       pulumi.Int(5),
+// 							ReadOnlyNodes:  pulumi.Int(2),
+// 							RegionName:     pulumi.String("US_WEST_1"),
+// 						},
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Example Global cluster
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
+// 			ClusterType:              pulumi.String("GEOSHARDED"),
+// 			DiskSizeGb:               pulumi.Float64(80),
+// 			NumShards:                pulumi.Int(1),
+// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderDiskIops:         pulumi.Int(240),
+// 			ProviderInstanceSizeName: pulumi.String("M30"),
+// 			ProviderName:             pulumi.String("AWS"),
+// 			ProviderVolumeType:       pulumi.String("STANDARD"),
+// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 					NumShards: pulumi.Int(2),
+// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 							ElectableNodes: pulumi.Int(3),
+// 							Priority:       pulumi.Int(7),
+// 							ReadOnlyNodes:  pulumi.Int(0),
+// 							RegionName:     pulumi.String("US_EAST_1"),
+// 						},
+// 					},
+// 					ZoneName: pulumi.String("Zone 1"),
+// 				},
+// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 					NumShards: pulumi.Int(2),
+// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 							ElectableNodes: pulumi.Int(3),
+// 							Priority:       pulumi.Int(7),
+// 							ReadOnlyNodes:  pulumi.Int(0),
+// 							RegionName:     pulumi.String("EU_CENTRAL_1"),
+// 						},
+// 					},
+// 					ZoneName: pulumi.String("Zone 2"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Example AWS Shared Tier cluster
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
+// 			AutoScalingDiskGbEnabled: pulumi.Bool(false),
+// 			BackingProviderName:      pulumi.String("AWS"),
+// 			DiskSizeGb:               pulumi.Float64(2),
+// 			MongoDbMajorVersion:      pulumi.String("4.2"),
+// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
+// 			ProviderInstanceSizeName: pulumi.String("M2"),
+// 			ProviderName:             pulumi.String("TENANT"),
+// 			ProviderRegionName:       pulumi.String("US_EAST_1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Cluster struct {
 	pulumi.CustomResourceState
 

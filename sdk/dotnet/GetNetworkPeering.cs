@@ -12,19 +12,13 @@ namespace Pulumi.Mongodbatlas
     public static class GetNetworkPeering
     {
         /// <summary>
-        /// `mongodbatlas..NetworkPeering` describes a Network Peering Connection.
+        /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// 
-        /// {{% example %}}
-        /// ### Basic Example (AWS).
-        /// 
-        /// 
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkPeeringResult> InvokeAsync(GetNetworkPeeringArgs args, InvokeOptions? options = null)
@@ -94,7 +88,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ErrorStateName;
         /// <summary>
-        /// GCP project ID of the owner of the network peer. 
+        /// GCP project ID of the owner of the network peer.
         /// </summary>
         public readonly string GcpProjectId;
         /// <summary>
@@ -112,7 +106,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ProviderName;
         /// <summary>
-        /// Name of your Azure resource group. 
+        /// Name of your Azure resource group.
         /// </summary>
         public readonly string ResourceGroupName;
         /// <summary>

@@ -7,8 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
- *
+ * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */

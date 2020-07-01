@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.  
+    /// `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
     /// 
     /// Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
     /// 
@@ -27,9 +27,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
     /// 
+    /// ## Example Usage
     /// 
-    /// ## Example Usage - Container &amp; Peering Connection
-    /// 
+    /// ### Container &amp; Peering Connection
     /// ### Example with AWS
     /// 
     /// ```csharp
@@ -72,7 +72,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example with GCP
     /// 
     /// ```csharp
@@ -128,12 +127,17 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderName = "GCP",
     ///             ProviderRegionName = "US_EAST_4",
     ///             ReplicationFactor = 3,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 "google_compute_network_peering.peering",
+    ///             },
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example with Azure
     /// 
     /// ```csharp
@@ -176,12 +180,17 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderName = "AZURE",
     ///             ProviderRegionName = "US_EAST_2",
     ///             ReplicationFactor = 3,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 "mongodbatlas_network_peering.test",
+    ///             },
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example with AWS - Peering Connection Only, Container Exists
     /// ```csharp
     /// using Pulumi;
@@ -238,7 +247,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example with GCP - Peering Connection Only, Container Exists
     /// ```csharp
     /// using Pulumi;
@@ -292,7 +300,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example with Azure - Peering Connection Only, Container Exists
     /// 
     /// ```csharp

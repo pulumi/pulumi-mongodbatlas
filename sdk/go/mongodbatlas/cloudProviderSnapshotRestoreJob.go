@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `.CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
+// `CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
 // * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
 //
 // * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
@@ -20,6 +20,110 @@ import (
 // > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+// ### Example automated delivery type.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
+// 			ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+// 			DiskSizeGb:               pulumi.Float64(5),
+// 			ProviderName:             pulumi.String("AWS"),
+// 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
+// 			ProviderInstanceSizeName: pulumi.String("M10"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderDiskIops:         pulumi.Int(100),
+// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
+// 			ProjectId:       myCluster.ProjectId,
+// 			ClusterName:     myCluster.Name,
+// 			Description:     pulumi.String("myDescription"),
+// 			RetentionInDays: pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
+// 			ProjectId:   testCloudProviderSnapshot.ProjectId,
+// 			ClusterName: testCloudProviderSnapshot.ClusterName,
+// 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
+// 			DeliveryType: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs{
+// 				Automated:           pulumi.Bool(true),
+// 				Target_cluster_name: pulumi.String("MyCluster"),
+// 				Target_project_id:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+// 			},
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			"mongodbatlas_cloud_provider_snapshot.test",
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Example download delivery type.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
+// 			ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+// 			DiskSizeGb:               pulumi.Float64(5),
+// 			ProviderName:             pulumi.String("AWS"),
+// 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
+// 			ProviderInstanceSizeName: pulumi.String("M10"),
+// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			ProviderDiskIops:         pulumi.Int(100),
+// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
+// 			ProjectId:       myCluster.ProjectId,
+// 			ClusterName:     myCluster.Name,
+// 			Description:     pulumi.String("myDescription"),
+// 			RetentionInDays: pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
+// 			ProjectId:   testCloudProviderSnapshot.ProjectId,
+// 			ClusterName: testCloudProviderSnapshot.ClusterName,
+// 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
+// 			DeliveryType: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs{
+// 				Download: pulumi.Bool(true),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type CloudProviderSnapshotRestoreJob struct {
 	pulumi.CustomResourceState
 

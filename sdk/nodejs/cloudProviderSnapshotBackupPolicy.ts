@@ -7,13 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.  
+ * `mongodbatlas.CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -37,7 +35,7 @@ import * as utilities from "./utilities";
  *     restoreWindowDays: 4,
  *     policies: [{
  *         id: myCluster.snapshotBackupPolicies.apply(snapshotBackupPolicies => snapshotBackupPolicies[0].policies?[0]?.id),
- *         policy_item: [
+ *         policyItems: [
  *             {
  *                 id: myCluster.snapshotBackupPolicies.apply(snapshotBackupPolicies => snapshotBackupPolicies[0].policies?[0]?.policyItems?[0]?.id),
  *                 frequencyInterval: 1,
@@ -113,7 +111,7 @@ export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
     public /*out*/ readonly nextSnapshot!: pulumi.Output<string>;
     /**
      * Contains a document for each backup policy item in the desired updated backup policy.
-     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas..Cluster resource. providerBackupEnabled of the mongodbatlas..Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas..Cluster resource for policies.#.id
+     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. providerBackupEnabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
      */
     public readonly policies!: pulumi.Output<outputs.CloudProviderSnapshotBackupPolicyPolicy[]>;
     /**
@@ -208,7 +206,7 @@ export interface CloudProviderSnapshotBackupPolicyState {
     readonly nextSnapshot?: pulumi.Input<string>;
     /**
      * Contains a document for each backup policy item in the desired updated backup policy.
-     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas..Cluster resource. providerBackupEnabled of the mongodbatlas..Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas..Cluster resource for policies.#.id
+     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. providerBackupEnabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
      */
     readonly policies?: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicy>[]>;
     /**
@@ -243,7 +241,7 @@ export interface CloudProviderSnapshotBackupPolicyArgs {
     readonly clusterName: pulumi.Input<string>;
     /**
      * Contains a document for each backup policy item in the desired updated backup policy.
-     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas..Cluster resource. providerBackupEnabled of the mongodbatlas..Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas..Cluster resource for policies.#.id
+     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. providerBackupEnabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
      */
     readonly policies: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicy>[]>;
     /**

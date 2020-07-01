@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types: 
+    /// `mongodbatlas.CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
     /// * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
     /// 
     /// * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
@@ -22,7 +22,6 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
     /// ## Example Usage
-    /// 
     /// ### Example automated delivery type.
     /// 
     /// ```csharp
@@ -62,12 +61,17 @@ namespace Pulumi.Mongodbatlas
     ///                 Target_cluster_name = "MyCluster",
     ///                 Target_project_id = "5cf5a45a9ccf6400e60981b6",
     ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 "mongodbatlas_cloud_provider_snapshot.test",
+    ///             },
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// 
     /// ### Example download delivery type.
     /// 
     /// ```csharp

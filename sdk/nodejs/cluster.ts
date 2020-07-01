@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas..Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
+ * `mongodbatlas.Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -18,14 +18,13 @@ import * as utilities from "./utilities";
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  *
  * ## Example Usage
- *
  * ### Example AWS cluster
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
  *     autoScalingDiskGbEnabled: true,
  *     diskSizeGb: 100,
  *     mongoDbMajorVersion: "4.2",
@@ -42,7 +41,6 @@ import * as utilities from "./utilities";
  *     replicationFactor: 3,
  * });
  * ```
- *
  * ### Example Azure cluster.
  *
  * ```typescript
@@ -63,7 +61,6 @@ import * as utilities from "./utilities";
  *     replicationFactor: 3,
  * });
  * ```
- *
  * ### Example GCP cluster
  *
  * ```typescript
@@ -84,14 +81,13 @@ import * as utilities from "./utilities";
  *     replicationFactor: 3,
  * });
  * ```
- *
  * ### Example Multi Region cluster
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
  *     clusterType: "REPLICASET",
  *     diskSizeGb: 100,
  *     numShards: 1,
@@ -127,14 +123,13 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- *
  * ### Example Global cluster
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
  *     clusterType: "GEOSHARDED",
  *     diskSizeGb: 80,
  *     numShards: 1,
@@ -169,14 +164,12 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- *
  * ### Example AWS Shared Tier cluster
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const clusterTest = new mongodbatlas.Cluster("cluster-test", {
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
  *     autoScalingDiskGbEnabled: false,
  *     backingProviderName: "AWS",
  *     diskSizeGb: 2,
@@ -277,7 +270,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly diskSizeGb!: pulumi.Output<number>;
     /**
-     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
     public readonly encryptionAtRestProvider!: pulumi.Output<string>;
     /**
@@ -569,7 +562,7 @@ export interface ClusterState {
      */
     readonly diskSizeGb?: pulumi.Input<number>;
     /**
-     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
     readonly encryptionAtRestProvider?: pulumi.Input<string>;
     /**
@@ -737,7 +730,7 @@ export interface ClusterArgs {
      */
     readonly diskSizeGb?: pulumi.Input<number>;
     /**
-     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.   
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
     readonly encryptionAtRestProvider?: pulumi.Input<string>;
     /**

@@ -15,9 +15,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas_private_endpoint_link` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-        /// 
-        /// {{% examples %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetPrivateEndpointInterfaceLinkResult> InvokeAsync(GetPrivateEndpointInterfaceLinkArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPrivateEndpointInterfaceLinkResult>("mongodbatlas:index/getPrivateEndpointInterfaceLink:getPrivateEndpointInterfaceLink", args ?? new GetPrivateEndpointInterfaceLinkArgs(), options.WithVersion());

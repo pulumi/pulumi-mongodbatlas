@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas..PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+    /// `mongodbatlas.PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
     /// 
     /// &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
     ///   * Organization Owner
@@ -18,10 +18,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -91,7 +88,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> InterfaceEndpointId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas..PrivateEndpoint` resource.
+        /// Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas.PrivateEndpoint` resource.
         /// </summary>
         [Output("privateLinkId")]
         public Output<string> PrivateLinkId { get; private set; } = null!;
@@ -155,7 +152,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> InterfaceEndpointId { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas..PrivateEndpoint` resource.
+        /// Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas.PrivateEndpoint` resource.
         /// </summary>
         [Input("privateLinkId", required: true)]
         public Input<string> PrivateLinkId { get; set; } = null!;
@@ -199,7 +196,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? InterfaceEndpointId { get; set; }
 
         /// <summary>
-        /// Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas..PrivateEndpoint` resource.
+        /// Unique identifier of the AWS PrivateLink connection which is created by `mongodbatlas.PrivateEndpoint` resource.
         /// </summary>
         [Input("privateLinkId")]
         public Input<string>? PrivateLinkId { get; set; }
