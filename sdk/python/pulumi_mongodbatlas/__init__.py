@@ -35,6 +35,7 @@ from .get_network_peerings import *
 from .get_private_endpoint import *
 from .get_private_endpoint_interface_link import *
 from .get_project import *
+from .get_project_ip_whitelist import *
 from .get_projects import *
 from .get_team import *
 from .get_teams import *

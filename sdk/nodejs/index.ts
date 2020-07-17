@@ -34,6 +34,7 @@ export * from "./getNetworkPeerings";
 export * from "./getPrivateEndpoint";
 export * from "./getPrivateEndpointInterfaceLink";
 export * from "./getProject";
+export * from "./getProjectIpWhitelist";
 export * from "./getProjects";
 export * from "./getTeam";
 export * from "./getTeams";

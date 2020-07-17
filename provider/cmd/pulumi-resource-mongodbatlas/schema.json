@@ -8728,6 +8728,68 @@
                 ]
             }
         },
+        "mongodbatlas:index/getProjectIpWhitelist:getProjectIpWhitelist": {
+            "description": "`mongodbatlas.ProjectIpWhitelist` describes an IP Whitelist entry resource. The whitelist grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n\u003e **IMPORTANT:**\nWhen you remove an entry from the whitelist, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.   \n\n\n{{% examples %}}\n## Example Usage\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getProjectIpWhitelist.\n",
+                "properties": {
+                    "awsSecurityGroup": {
+                        "type": "string",
+                        "description": "ID of the whitelisted AWS security group. Mutually exclusive with `cidr_block` and `ip_address`.\n"
+                    },
+                    "cidrBlock": {
+                        "type": "string",
+                        "description": "Whitelist entry in Classless Inter-Domain Routing (CIDR) notation. Mutually exclusive with `aws_security_group` and `ip_address`.\n"
+                    },
+                    "ipAddress": {
+                        "type": "string",
+                        "description": "Whitelisted IP address. Mutually exclusive with `aws_security_group` and `cidr_block`.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project in which to add the whitelist entry.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "projectId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getProjectIpWhitelist.\n",
+                "properties": {
+                    "awsSecurityGroup": {
+                        "type": "string"
+                    },
+                    "cidrBlock": {
+                        "type": "string"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "Comment to add to the whitelist entry.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ipAddress": {
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "awsSecurityGroup",
+                    "cidrBlock",
+                    "comment",
+                    "ipAddress",
+                    "projectId",
+                    "id"
+                ]
+            }
+        },
         "mongodbatlas:index/getProjects:getProjects": {
             "description": "`mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
             "inputs": {
@@ -8780,6 +8842,10 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getTeam.\n",
                 "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The team name.\n"
+                    },
                     "orgId": {
                         "type": "string",
                         "description": "The unique identifier for the organization you want to associate the team with.\n"
@@ -8791,8 +8857,7 @@
                 },
                 "type": "object",
                 "required": [
-                    "orgId",
-                    "teamId"
+                    "orgId"
                 ]
             },
             "outputs": {
@@ -8810,7 +8875,8 @@
                         "type": "string"
                     },
                     "teamId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the team.\n"
                     },
                     "usernames": {
                         "type": "array",
@@ -8834,6 +8900,9 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getTeams.\n",
                 "properties": {
+                    "name": {
+                        "type": "string"
+                    },
                     "orgId": {
                         "type": "string"
                     },
@@ -8843,8 +8912,7 @@
                 },
                 "type": "object",
                 "required": [
-                    "orgId",
-                    "teamId"
+                    "orgId"
                 ]
             },
             "outputs": {

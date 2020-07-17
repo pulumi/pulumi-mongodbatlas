@@ -162,6 +162,9 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_cloud_provider_snapshot_backup_policy": {
 				Tok: makeDataSource(mainMod, "getCloudProviderSnapshotBackupPolicy"),
 			},
+			"mongodbatlas_project_ip_whitelist": {
+				Tok: makeDataSource(mainMod, "getProjectIpWhitelist"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
