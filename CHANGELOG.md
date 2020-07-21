@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.6.2 of the MongoDbAtlas Terraform Provider
+_(none)_
 
 ---
+
+## 1.1.2 (2020-07-21)
+* Upgrade to v0.6.2 of the MongoDbAtlas Terraform Provider
 
 ## 1.1.1 (2020-06-23)
 * Upgrade to v0.6.1 of the MongoDbAtlas Terraform Provider
