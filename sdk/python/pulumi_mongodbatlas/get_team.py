@@ -31,6 +31,9 @@ class GetTeamResult:
         if team_id and not isinstance(team_id, str):
             raise TypeError("Expected argument 'team_id' to be a str")
         __self__.team_id = team_id
+        """
+        The unique identifier for the team.
+        """
         if usernames and not isinstance(usernames, list):
             raise TypeError("Expected argument 'usernames' to be a list")
         __self__.usernames = usernames
@@ -49,19 +52,21 @@ class AwaitableGetTeamResult(GetTeamResult):
             team_id=self.team_id,
             usernames=self.usernames)
 
-def get_team(org_id=None,team_id=None,opts=None):
+def get_team(name=None,org_id=None,team_id=None,opts=None):
     """
     `Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
 
+    :param str name: The team name.
     :param str org_id: The unique identifier for the organization you want to associate the team with.
     :param str team_id: The unique identifier for the team.
     """
     __args__ = dict()
 
 
+    __args__['name'] = name
     __args__['orgId'] = org_id
     __args__['teamId'] = team_id
     if opts is None:

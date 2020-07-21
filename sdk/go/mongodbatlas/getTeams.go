@@ -18,8 +18,9 @@ func LookupTeams(ctx *pulumi.Context, args *LookupTeamsArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getTeams.
 type LookupTeamsArgs struct {
-	OrgId  string `pulumi:"orgId"`
-	TeamId string `pulumi:"teamId"`
+	Name   *string `pulumi:"name"`
+	OrgId  string  `pulumi:"orgId"`
+	TeamId *string `pulumi:"teamId"`
 }
 
 // A collection of values returned by getTeams.

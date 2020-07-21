@@ -20,6 +20,7 @@ export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise
         opts.version = utilities.getVersion();
     }
     return pulumi.runtime.invoke("mongodbatlas:index/getTeam:getTeam", {
+        "name": args.name,
         "orgId": args.orgId,
         "teamId": args.teamId,
     }, opts);
@@ -30,13 +31,17 @@ export function getTeam(args: GetTeamArgs, opts?: pulumi.InvokeOptions): Promise
  */
 export interface GetTeamArgs {
     /**
+     * The team name.
+     */
+    readonly name?: string;
+    /**
      * The unique identifier for the organization you want to associate the team with.
      */
     readonly orgId: string;
     /**
      * The unique identifier for the team.
      */
-    readonly teamId: string;
+    readonly teamId?: string;
 }
 
 /**
@@ -52,6 +57,9 @@ export interface GetTeamResult {
      */
     readonly name: string;
     readonly orgId: string;
+    /**
+     * The unique identifier for the team.
+     */
     readonly teamId: string;
     /**
      * The users who are part of the organization.

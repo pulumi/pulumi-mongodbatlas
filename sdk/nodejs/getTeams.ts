@@ -15,6 +15,7 @@ export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promi
         opts.version = utilities.getVersion();
     }
     return pulumi.runtime.invoke("mongodbatlas:index/getTeams:getTeams", {
+        "name": args.name,
         "orgId": args.orgId,
         "teamId": args.teamId,
     }, opts);
@@ -24,8 +25,9 @@ export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getTeams.
  */
 export interface GetTeamsArgs {
+    readonly name?: string;
     readonly orgId: string;
-    readonly teamId: string;
+    readonly teamId?: string;
 }
 
 /**

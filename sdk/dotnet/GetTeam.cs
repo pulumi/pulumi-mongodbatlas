@@ -24,6 +24,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetTeamArgs : Pulumi.InvokeArgs
     {
         /// <summary>
+        /// The team name.
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
+
+        /// <summary>
         /// The unique identifier for the organization you want to associate the team with.
         /// </summary>
         [Input("orgId", required: true)]
@@ -32,8 +38,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The unique identifier for the team.
         /// </summary>
-        [Input("teamId", required: true)]
-        public string TeamId { get; set; } = null!;
+        [Input("teamId")]
+        public string? TeamId { get; set; }
 
         public GetTeamArgs()
         {
@@ -53,6 +59,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Name;
         public readonly string OrgId;
+        /// <summary>
+        /// The unique identifier for the team.
+        /// </summary>
         public readonly string TeamId;
         /// <summary>
         /// The users who are part of the organization.

@@ -21,10 +21,12 @@ func LookupTeam(ctx *pulumi.Context, args *LookupTeamArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getTeam.
 type LookupTeamArgs struct {
+	// The team name.
+	Name *string `pulumi:"name"`
 	// The unique identifier for the organization you want to associate the team with.
 	OrgId string `pulumi:"orgId"`
 	// The unique identifier for the team.
-	TeamId string `pulumi:"teamId"`
+	TeamId *string `pulumi:"teamId"`
 }
 
 // A collection of values returned by getTeam.
@@ -32,8 +34,9 @@ type LookupTeamResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The name of the team you want to create.
-	Name   string `pulumi:"name"`
-	OrgId  string `pulumi:"orgId"`
+	Name  string `pulumi:"name"`
+	OrgId string `pulumi:"orgId"`
+	// The unique identifier for the team.
 	TeamId string `pulumi:"teamId"`
 	// The users who are part of the organization.
 	Usernames []string `pulumi:"usernames"`

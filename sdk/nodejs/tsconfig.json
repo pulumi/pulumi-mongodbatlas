@@ -47,6 +47,7 @@
         "getPrivateEndpoint.ts",
         "getPrivateEndpointInterfaceLink.ts",
         "getProject.ts",
+        "getProjectIpWhitelist.ts",
         "getProjects.ts",
         "getTeam.ts",
         "getTeams.ts",

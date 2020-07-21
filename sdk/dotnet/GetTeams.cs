@@ -18,11 +18,14 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetTeamsArgs : Pulumi.InvokeArgs
     {
+        [Input("name")]
+        public string? Name { get; set; }
+
         [Input("orgId", required: true)]
         public string OrgId { get; set; } = null!;
 
-        [Input("teamId", required: true)]
-        public string TeamId { get; set; } = null!;
+        [Input("teamId")]
+        public string? TeamId { get; set; }
 
         public GetTeamsArgs()
         {

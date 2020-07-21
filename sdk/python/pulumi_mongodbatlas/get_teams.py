@@ -43,13 +43,14 @@ class AwaitableGetTeamsResult(GetTeamsResult):
             team_id=self.team_id,
             usernames=self.usernames)
 
-def get_teams(org_id=None,team_id=None,opts=None):
+def get_teams(name=None,org_id=None,team_id=None,opts=None):
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
 
 
+    __args__['name'] = name
     __args__['orgId'] = org_id
     __args__['teamId'] = team_id
     if opts is None:
