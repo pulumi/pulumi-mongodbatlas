@@ -891,6 +891,8 @@ github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20200622101142-7ebcfc
 github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20200622101142-7ebcfc13e4af/go.mod h1:a4Qz6WlrbLTZsr4XXTHaB8TOd3bCM34+sKxl27z4cTU=
 github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20200717115851-7601c26206ab h1:ozZ+n9kIF67uelwi7ZP7jAd3AJqkXnFB2C2xc34MqRk=
 github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20200717115851-7601c26206ab/go.mod h1:BApnazN1a5KizNYYcb4twIHB/L9uGHxmD5WtfAmyo50=
+github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20200724101150-73367f933aac h1:EflaOFOTMvQlU3/0OR7w09OmCuWuy3gWQfEfkZaO+rc=
+github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20200724101150-73367f933aac/go.mod h1:BApnazN1a5KizNYYcb4twIHB/L9uGHxmD5WtfAmyo50=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200519092335-cb56a4dfa88d h1:1JtzB9Gx0YX2UgKKkqJwTgBXxfg2cbLUEqTJKwKBK7s=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200519092335-cb56a4dfa88d/go.mod h1:yv9XozKsue9ZELHQbrBGgIaFtE3OX3Q4m7koTzTqgpE=
 github.com/pulumi/tf2pulumi v0.8.1-0.20200528170746-c1234defe2b5 h1:h+pUwgEser1Ole6TMCc66njRPcw7SEVXpeoClG+ihEM=
