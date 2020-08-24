@@ -97,6 +97,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifier of the Azure subscription in which the VNet resides.
+        /// * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         /// </summary>
         [Output("azureSubscriptionId")]
         public Output<string> AzureSubscriptionId { get; private set; } = null!;
@@ -151,9 +152,6 @@ namespace Pulumi.Mongodbatlas
         [Output("regionName")]
         public Output<string> RegionName { get; private set; } = null!;
 
-        /// <summary>
-        /// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-        /// </summary>
         [Output("vnetName")]
         public Output<string> VnetName { get; private set; } = null!;
 
@@ -261,6 +259,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifier of the Azure subscription in which the VNet resides.
+        /// * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         /// </summary>
         [Input("azureSubscriptionId")]
         public Input<string>? AzureSubscriptionId { get; set; }
@@ -315,9 +314,6 @@ namespace Pulumi.Mongodbatlas
         [Input("regionName")]
         public Input<string>? RegionName { get; set; }
 
-        /// <summary>
-        /// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-        /// </summary>
         [Input("vnetName")]
         public Input<string>? VnetName { get; set; }
 

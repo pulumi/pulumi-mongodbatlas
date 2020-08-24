@@ -516,16 +516,6 @@ type AlertConfigurationNotification struct {
 	// - `DATADOG`
 	// - `EMAIL`
 	// - `FLOWDOCK`
-	// - `GROUP` (Project)
-	// - `OPS_GENIE`
-	// - `ORG`
-	// - `PAGER_DUTY`
-	// - `SLACK`
-	// - `SMS`
-	// - `TEAM`
-	// - `USER`
-	// - `VICTOR_OPS`
-	// - `WEBHOOK`
 	TypeName *string `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username *string `pulumi:"username"`
@@ -587,16 +577,6 @@ type AlertConfigurationNotificationArgs struct {
 	// - `DATADOG`
 	// - `EMAIL`
 	// - `FLOWDOCK`
-	// - `GROUP` (Project)
-	// - `OPS_GENIE`
-	// - `ORG`
-	// - `PAGER_DUTY`
-	// - `SLACK`
-	// - `SMS`
-	// - `TEAM`
-	// - `USER`
-	// - `VICTOR_OPS`
-	// - `WEBHOOK`
 	TypeName pulumi.StringPtrInput `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username pulumi.StringPtrInput `pulumi:"username"`
@@ -751,16 +731,6 @@ func (o AlertConfigurationNotificationOutput) TeamId() pulumi.StringPtrOutput {
 // - `DATADOG`
 // - `EMAIL`
 // - `FLOWDOCK`
-// - `GROUP` (Project)
-// - `OPS_GENIE`
-// - `ORG`
-// - `PAGER_DUTY`
-// - `SLACK`
-// - `SMS`
-// - `TEAM`
-// - `USER`
-// - `VICTOR_OPS`
-// - `WEBHOOK`
 func (o AlertConfigurationNotificationOutput) TypeName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.TypeName }).(pulumi.StringPtrOutput)
 }

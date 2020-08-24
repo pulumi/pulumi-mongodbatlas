@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetProjectResult',
+    'AwaitableGetProjectResult',
+    'get_project',
+]
+
+@pulumi.output_type
 class GetProjectResult:
     """
     A collection of values returned by getProject.
@@ -15,25 +23,55 @@ class GetProjectResult:
     def __init__(__self__, cluster_count=None, created=None, id=None, name=None, org_id=None, project_id=None, teams=None):
         if cluster_count and not isinstance(cluster_count, float):
             raise TypeError("Expected argument 'cluster_count' to be a float")
-        __self__.cluster_count = cluster_count
+        pulumi.set(__self__, "cluster_count", cluster_count)
         if created and not isinstance(created, str):
             raise TypeError("Expected argument 'created' to be a str")
-        __self__.created = created
+        pulumi.set(__self__, "created", created)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if org_id and not isinstance(org_id, str):
+            raise TypeError("Expected argument 'org_id' to be a str")
+        pulumi.set(__self__, "org_id", org_id)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if teams and not isinstance(teams, list):
+            raise TypeError("Expected argument 'teams' to be a list")
+        pulumi.set(__self__, "teams", teams)
+
+    @property
+    @pulumi.getter(name="clusterCount")
+    def cluster_count(self) -> float:
+        return pulumi.get(self, "cluster_count")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
         """
         The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         """
-        if org_id and not isinstance(org_id, str):
-            raise TypeError("Expected argument 'org_id' to be a str")
-        __self__.org_id = org_id
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
         """
         The ID of the organization you want to create the project within.
         *`cluster_count` - The number of Atlas clusters deployed in the project.
@@ -48,12 +86,19 @@ class GetProjectResult:
         * `GROUP_DATA_ACCESS_READ_ONLY`
         * `GROUP_CLUSTER_MANAGER`
         """
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if teams and not isinstance(teams, list):
-            raise TypeError("Expected argument 'teams' to be a list")
-        __self__.teams = teams
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def teams(self) -> List['outputs.GetProjectTeamResult']:
+        return pulumi.get(self, "teams")
+
+
 class AwaitableGetProjectResult(GetProjectResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -68,7 +113,10 @@ class AwaitableGetProjectResult(GetProjectResult):
             project_id=self.project_id,
             teams=self.teams)
 
-def get_project(name=None,project_id=None,opts=None):
+
+def get_project(name: Optional[str] = None,
+                project_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
     `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 
@@ -81,21 +129,19 @@ def get_project(name=None,project_id=None,opts=None):
     :param str project_id: The unique ID for the project.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProject:getProject', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult).value
 
     return AwaitableGetProjectResult(
-        cluster_count=__ret__.get('clusterCount'),
-        created=__ret__.get('created'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        org_id=__ret__.get('orgId'),
-        project_id=__ret__.get('projectId'),
-        teams=__ret__.get('teams'))
+        cluster_count=__ret__.cluster_count,
+        created=__ret__.created,
+        id=__ret__.id,
+        name=__ret__.name,
+        org_id=__ret__.org_id,
+        project_id=__ret__.project_id,
+        teams=__ret__.teams)

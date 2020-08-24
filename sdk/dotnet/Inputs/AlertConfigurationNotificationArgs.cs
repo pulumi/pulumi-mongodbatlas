@@ -128,16 +128,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// - `DATADOG`
         /// - `EMAIL`
         /// - `FLOWDOCK`
-        /// - `GROUP` (Project)
-        /// - `OPS_GENIE`
-        /// - `ORG`
-        /// - `PAGER_DUTY`
-        /// - `SLACK`
-        /// - `SMS`
-        /// - `TEAM`
-        /// - `USER`
-        /// - `VICTOR_OPS`
-        /// - `WEBHOOK`
         /// </summary>
         [Input("typeName")]
         public Input<string>? TypeName { get; set; }

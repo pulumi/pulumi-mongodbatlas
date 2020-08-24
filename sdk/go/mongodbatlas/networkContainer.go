@@ -104,6 +104,7 @@ type NetworkContainer struct {
 	// * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
 	AtlasCidrBlock pulumi.StringOutput `pulumi:"atlasCidrBlock"`
 	// Unique identifier of the Azure subscription in which the VNet resides.
+	// * * `vnetName` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	AzureSubscriptionId pulumi.StringOutput `pulumi:"azureSubscriptionId"`
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringOutput `pulumi:"containerId"`
@@ -123,8 +124,7 @@ type NetworkContainer struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	RegionName pulumi.StringOutput `pulumi:"regionName"`
-	// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-	VnetName pulumi.StringOutput `pulumi:"vnetName"`
+	VnetName   pulumi.StringOutput `pulumi:"vnetName"`
 	// Unique identifier of Atlas' AWS VPC.
 	// **CGP ONLY:**
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
@@ -170,6 +170,7 @@ type networkContainerState struct {
 	// * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
 	AtlasCidrBlock *string `pulumi:"atlasCidrBlock"`
 	// Unique identifier of the Azure subscription in which the VNet resides.
+	// * * `vnetName` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	AzureSubscriptionId *string `pulumi:"azureSubscriptionId"`
 	// The Network Peering Container ID.
 	ContainerId *string `pulumi:"containerId"`
@@ -189,8 +190,7 @@ type networkContainerState struct {
 	Region *string `pulumi:"region"`
 	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	RegionName *string `pulumi:"regionName"`
-	// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-	VnetName *string `pulumi:"vnetName"`
+	VnetName   *string `pulumi:"vnetName"`
 	// Unique identifier of Atlas' AWS VPC.
 	// **CGP ONLY:**
 	VpcId *string `pulumi:"vpcId"`
@@ -203,6 +203,7 @@ type NetworkContainerState struct {
 	// * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
 	AtlasCidrBlock pulumi.StringPtrInput
 	// Unique identifier of the Azure subscription in which the VNet resides.
+	// * * `vnetName` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	AzureSubscriptionId pulumi.StringPtrInput
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringPtrInput
@@ -222,8 +223,7 @@ type NetworkContainerState struct {
 	Region pulumi.StringPtrInput
 	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	RegionName pulumi.StringPtrInput
-	// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-	VnetName pulumi.StringPtrInput
+	VnetName   pulumi.StringPtrInput
 	// Unique identifier of Atlas' AWS VPC.
 	// **CGP ONLY:**
 	VpcId pulumi.StringPtrInput

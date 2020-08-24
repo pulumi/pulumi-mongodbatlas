@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetNetworkContainersResult',
+    'AwaitableGetNetworkContainersResult',
+    'get_network_containers',
+]
+
+@pulumi.output_type
 class GetNetworkContainersResult:
     """
     A collection of values returned by getNetworkContainers.
@@ -15,25 +23,47 @@ class GetNetworkContainersResult:
     def __init__(__self__, id=None, project_id=None, provider_name=None, results=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if provider_name and not isinstance(provider_name, str):
+            raise TypeError("Expected argument 'provider_name' to be a str")
+        pulumi.set(__self__, "provider_name", provider_name)
+        if results and not isinstance(results, list):
+            raise TypeError("Expected argument 'results' to be a list")
+        pulumi.set(__self__, "results", results)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if provider_name and not isinstance(provider_name, str):
-            raise TypeError("Expected argument 'provider_name' to be a str")
-        __self__.provider_name = provider_name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
         """
         Cloud provider for this Network Peering connection. If omitted, Atlas sets this parameter to AWS.
         """
-        if results and not isinstance(results, list):
-            raise TypeError("Expected argument 'results' to be a list")
-        __self__.results = results
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def results(self) -> List['outputs.GetNetworkContainersResultResult']:
         """
         A list where each represents a Network Peering Container.
         """
+        return pulumi.get(self, "results")
+
+
 class AwaitableGetNetworkContainersResult(GetNetworkContainersResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -45,7 +75,10 @@ class AwaitableGetNetworkContainersResult(GetNetworkContainersResult):
             provider_name=self.provider_name,
             results=self.results)
 
-def get_network_containers(project_id=None,provider_name=None,opts=None):
+
+def get_network_containers(project_id: Optional[str] = None,
+                           provider_name: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkContainersResult:
     """
     `getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
 
@@ -72,18 +105,16 @@ def get_network_containers(project_id=None,provider_name=None,opts=None):
     :param str provider_name: Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
     """
     __args__ = dict()
-
-
     __args__['projectId'] = project_id
     __args__['providerName'] = provider_name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getNetworkContainers:getNetworkContainers', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getNetworkContainers:getNetworkContainers', __args__, opts=opts, typ=GetNetworkContainersResult).value
 
     return AwaitableGetNetworkContainersResult(
-        id=__ret__.get('id'),
-        project_id=__ret__.get('projectId'),
-        provider_name=__ret__.get('providerName'),
-        results=__ret__.get('results'))
+        id=__ret__.id,
+        project_id=__ret__.project_id,
+        provider_name=__ret__.provider_name,
+        results=__ret__.results)

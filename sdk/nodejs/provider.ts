@@ -35,8 +35,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        inputs["privateKey"] = (args ? args.privateKey : undefined) || utilities.getEnv("MONGODB_ATLAS_PRIVATE_KEY");
-        inputs["publicKey"] = (args ? args.publicKey : undefined) || utilities.getEnv("MONGODB_ATLAS_PUBLIC_KEY");
+        {
+            inputs["privateKey"] = (args ? args.privateKey : undefined) || utilities.getEnv("MONGODB_ATLAS_PRIVATE_KEY");
+            inputs["publicKey"] = (args ? args.publicKey : undefined) || utilities.getEnv("MONGODB_ATLAS_PUBLIC_KEY");
+        }
         if (!opts) {
             opts = {}
         }

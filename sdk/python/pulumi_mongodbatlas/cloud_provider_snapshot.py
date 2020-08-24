@@ -5,64 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['CloudProviderSnapshot']
 
 
 class CloudProviderSnapshot(pulumi.CustomResource):
-    cluster_name: pulumi.Output[str]
-    """
-    The name of the Atlas cluster that contains the snapshots you want to retrieve.
-    """
-    created_at: pulumi.Output[str]
-    """
-    UTC ISO 8601 formatted point in time when Atlas took the snapshot.
-    """
-    description: pulumi.Output[str]
-    """
-    Description of the on-demand snapshot.
-    """
-    expires_at: pulumi.Output[str]
-    """
-    UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
-    """
-    master_key_uuid: pulumi.Output[str]
-    """
-    Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
-    """
-    mongod_version: pulumi.Output[str]
-    """
-    Version of the MongoDB server.
-    """
-    project_id: pulumi.Output[str]
-    """
-    The unique identifier of the project for the Atlas cluster.
-    """
-    retention_in_days: pulumi.Output[float]
-    """
-    The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
-    """
-    snapshot_id: pulumi.Output[str]
-    """
-    Unique identifier of the snapshot.
-    """
-    snapshot_type: pulumi.Output[str]
-    """
-    Specified the type of snapshot. Valid values are onDemand and scheduled.
-    """
-    status: pulumi.Output[str]
-    """
-    Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
-    """
-    storage_size_bytes: pulumi.Output[float]
-    """
-    Specifies the size of the snapshot in bytes.
-    """
-    type: pulumi.Output[str]
-    """
-    Specifies the type of cluster: replicaSet or shardedCluster.
-    """
-    def __init__(__self__, resource_name, opts=None, cluster_name=None, description=None, project_id=None, retention_in_days=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 retention_in_days: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         `CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
@@ -93,9 +52,9 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
             snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type={
-                "download": True,
-            })
+            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+                download=True,
+            ))
         ```
 
         :param str resource_name: The name of the resource.
@@ -116,7 +75,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -150,13 +109,28 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cluster_name=None, created_at=None, description=None, expires_at=None, master_key_uuid=None, mongod_version=None, project_id=None, retention_in_days=None, snapshot_id=None, snapshot_type=None, status=None, storage_size_bytes=None, type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_name: Optional[pulumi.Input[str]] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            expires_at: Optional[pulumi.Input[str]] = None,
+            master_key_uuid: Optional[pulumi.Input[str]] = None,
+            mongod_version: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            retention_in_days: Optional[pulumi.Input[float]] = None,
+            snapshot_id: Optional[pulumi.Input[str]] = None,
+            snapshot_type: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            storage_size_bytes: Optional[pulumi.Input[float]] = None,
+            type: Optional[pulumi.Input[str]] = None) -> 'CloudProviderSnapshot':
         """
         Get an existing CloudProviderSnapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[str] created_at: UTC ISO 8601 formatted point in time when Atlas took the snapshot.
@@ -191,8 +165,113 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         __props__["type"] = type
         return CloudProviderSnapshot(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        """
+        The name of the Atlas cluster that contains the snapshots you want to retrieve.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of the on-demand snapshot.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> str:
+        """
+        UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @property
+    @pulumi.getter(name="masterKeyUuid")
+    def master_key_uuid(self) -> str:
+        """
+        Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
+        """
+        return pulumi.get(self, "master_key_uuid")
+
+    @property
+    @pulumi.getter(name="mongodVersion")
+    def mongod_version(self) -> str:
+        """
+        Version of the MongoDB server.
+        """
+        return pulumi.get(self, "mongod_version")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The unique identifier of the project for the Atlas cluster.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="retentionInDays")
+    def retention_in_days(self) -> float:
+        """
+        The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+        """
+        return pulumi.get(self, "retention_in_days")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique identifier of the snapshot.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="snapshotType")
+    def snapshot_type(self) -> str:
+        """
+        Specified the type of snapshot. Valid values are onDemand and scheduled.
+        """
+        return pulumi.get(self, "snapshot_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="storageSizeBytes")
+    def storage_size_bytes(self) -> float:
+        """
+        Specifies the size of the snapshot in bytes.
+        """
+        return pulumi.get(self, "storage_size_bytes")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Specifies the type of cluster: replicaSet or shardedCluster.
+        """
+        return pulumi.get(self, "type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -1,4 +1,10 @@
-[![Build Status](https://travis-ci.com/pulumi/pulumi-github.svg?token=eHg7Zp5zdDDJfTjY8ejq&branch=master)](https://travis-ci.com/pulumi/pulumi-github)
+[![Actions Status](https://github.com/pulumi/pulumi-mongodbatlas/workflows/master/badge.svg)](https://github.com/pulumi/pulumi-mongodbatlas/actions)
+[![Slack](http://www.pulumi.com/images/docs/badges/slack.svg)](https://slack.pulumi.com)
+[![NPM version](https://badge.fury.io/js/%40pulumi%2Fmongodbatlas.svg)](https://www.npmjs.com/package/@pulumi/mongodbatlas)
+[![Python version](https://badge.fury.io/py/pulumi-mongodbatlas.svg)](https://pypi.org/project/pulumi-mongodbatlas)
+[![NuGet version](https://badge.fury.io/nu/pulumi.mongodbatlas.svg)](https://badge.fury.io/nu/pulumi.mongodbatlas)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-mongodbatlas/sdk/go)](https://pkg.go.dev/github.com/pulumi/pulumi-mongodbatlas/sdk/go)
+[![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-mongodbatlas/blob/master/LICENSE)
 
 # MongoDB Atlas provider
 

@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
+__all__ = [
+    'GetCustomDbRoleResult',
+    'AwaitableGetCustomDbRoleResult',
+    'get_custom_db_role',
+]
+
+@pulumi.output_type
 class GetCustomDbRoleResult:
     """
     A collection of values returned by getCustomDbRole.
@@ -15,22 +24,49 @@ class GetCustomDbRoleResult:
     def __init__(__self__, actions=None, id=None, inherited_roles=None, project_id=None, role_name=None):
         if actions and not isinstance(actions, list):
             raise TypeError("Expected argument 'actions' to be a list")
-        __self__.actions = actions
+        pulumi.set(__self__, "actions", actions)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if inherited_roles and not isinstance(inherited_roles, list):
+            raise TypeError("Expected argument 'inherited_roles' to be a list")
+        pulumi.set(__self__, "inherited_roles", inherited_roles)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if role_name and not isinstance(role_name, str):
+            raise TypeError("Expected argument 'role_name' to be a str")
+        pulumi.set(__self__, "role_name", role_name)
+
+    @property
+    @pulumi.getter
+    def actions(self) -> List['outputs.GetCustomDbRoleActionResult']:
+        return pulumi.get(self, "actions")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if inherited_roles and not isinstance(inherited_roles, list):
-            raise TypeError("Expected argument 'inherited_roles' to be a list")
-        __self__.inherited_roles = inherited_roles
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if role_name and not isinstance(role_name, str):
-            raise TypeError("Expected argument 'role_name' to be a str")
-        __self__.role_name = role_name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="inheritedRoles")
+    def inherited_roles(self) -> Optional[List['outputs.GetCustomDbRoleInheritedRoleResult']]:
+        return pulumi.get(self, "inherited_roles")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        return pulumi.get(self, "role_name")
+
+
 class AwaitableGetCustomDbRoleResult(GetCustomDbRoleResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -43,7 +79,11 @@ class AwaitableGetCustomDbRoleResult(GetCustomDbRoleResult):
             project_id=self.project_id,
             role_name=self.role_name)
 
-def get_custom_db_role(inherited_roles=None,project_id=None,role_name=None,opts=None):
+
+def get_custom_db_role(inherited_roles: Optional[List[pulumi.InputType['GetCustomDbRoleInheritedRoleArgs']]] = None,
+                       project_id: Optional[str] = None,
+                       role_name: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDbRoleResult:
     """
     `CustomDbRole` describe a Custom DB Role. This represents a custom db role.
 
@@ -57,20 +97,20 @@ def get_custom_db_role(inherited_roles=None,project_id=None,role_name=None,opts=
 
     test_role = mongodbatlas.CustomDbRole("testRole",
         actions=[
-            {
-                "action": "UPDATE",
-                "resources": [{
-                    "collectionName": "",
-                    "database_name": "anyDatabase",
-                }],
-            },
-            {
-                "action": "INSERT",
-                "resources": [{
-                    "collectionName": "",
-                    "database_name": "anyDatabase",
-                }],
-            },
+            mongodbatlas.CustomDbRoleActionArgs(
+                action="UPDATE",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            ),
+            mongodbatlas.CustomDbRoleActionArgs(
+                action="INSERT",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            ),
         ],
         project_id="<PROJECT-ID>",
         role_name="myCustomRole")
@@ -81,27 +121,20 @@ def get_custom_db_role(inherited_roles=None,project_id=None,role_name=None,opts=
 
     :param str project_id: The unique ID for the project to create the database user.
     :param str role_name: Name of the custom role.
-
-    The **inherited_roles** object supports the following:
-
-      * `database_name` (`str`)
-      * `role_name` (`str`) - Name of the custom role.
     """
     __args__ = dict()
-
-
     __args__['inheritedRoles'] = inherited_roles
     __args__['projectId'] = project_id
     __args__['roleName'] = role_name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCustomDbRole:getCustomDbRole', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCustomDbRole:getCustomDbRole', __args__, opts=opts, typ=GetCustomDbRoleResult).value
 
     return AwaitableGetCustomDbRoleResult(
-        actions=__ret__.get('actions'),
-        id=__ret__.get('id'),
-        inherited_roles=__ret__.get('inheritedRoles'),
-        project_id=__ret__.get('projectId'),
-        role_name=__ret__.get('roleName'))
+        actions=__ret__.actions,
+        id=__ret__.id,
+        inherited_roles=__ret__.inherited_roles,
+        project_id=__ret__.project_id,
+        role_name=__ret__.role_name)

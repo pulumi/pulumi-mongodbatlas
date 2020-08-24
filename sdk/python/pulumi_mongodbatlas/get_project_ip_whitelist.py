@@ -5,9 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
 
+__all__ = [
+    'GetProjectIpWhitelistResult',
+    'AwaitableGetProjectIpWhitelistResult',
+    'get_project_ip_whitelist',
+]
+
+@pulumi.output_type
 class GetProjectIpWhitelistResult:
     """
     A collection of values returned by getProjectIpWhitelist.
@@ -15,28 +22,60 @@ class GetProjectIpWhitelistResult:
     def __init__(__self__, aws_security_group=None, cidr_block=None, comment=None, id=None, ip_address=None, project_id=None):
         if aws_security_group and not isinstance(aws_security_group, str):
             raise TypeError("Expected argument 'aws_security_group' to be a str")
-        __self__.aws_security_group = aws_security_group
+        pulumi.set(__self__, "aws_security_group", aws_security_group)
         if cidr_block and not isinstance(cidr_block, str):
             raise TypeError("Expected argument 'cidr_block' to be a str")
-        __self__.cidr_block = cidr_block
+        pulumi.set(__self__, "cidr_block", cidr_block)
         if comment and not isinstance(comment, str):
             raise TypeError("Expected argument 'comment' to be a str")
-        __self__.comment = comment
+        pulumi.set(__self__, "comment", comment)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if ip_address and not isinstance(ip_address, str):
+            raise TypeError("Expected argument 'ip_address' to be a str")
+        pulumi.set(__self__, "ip_address", ip_address)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="awsSecurityGroup")
+    def aws_security_group(self) -> str:
+        return pulumi.get(self, "aws_security_group")
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> str:
+        return pulumi.get(self, "cidr_block")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> str:
         """
         Comment to add to the whitelist entry.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if ip_address and not isinstance(ip_address, str):
-            raise TypeError("Expected argument 'ip_address' to be a str")
-        __self__.ip_address = ip_address
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+
 class AwaitableGetProjectIpWhitelistResult(GetProjectIpWhitelistResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -50,7 +89,12 @@ class AwaitableGetProjectIpWhitelistResult(GetProjectIpWhitelistResult):
             ip_address=self.ip_address,
             project_id=self.project_id)
 
-def get_project_ip_whitelist(aws_security_group=None,cidr_block=None,ip_address=None,project_id=None,opts=None):
+
+def get_project_ip_whitelist(aws_security_group: Optional[str] = None,
+                             cidr_block: Optional[str] = None,
+                             ip_address: Optional[str] = None,
+                             project_id: Optional[str] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectIpWhitelistResult:
     """
     `ProjectIpWhitelist` describes an IP Whitelist entry resource. The whitelist grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
 
@@ -68,8 +112,6 @@ def get_project_ip_whitelist(aws_security_group=None,cidr_block=None,ip_address=
     :param str project_id: The ID of the project in which to add the whitelist entry.
     """
     __args__ = dict()
-
-
     __args__['awsSecurityGroup'] = aws_security_group
     __args__['cidrBlock'] = cidr_block
     __args__['ipAddress'] = ip_address
@@ -77,13 +119,13 @@ def get_project_ip_whitelist(aws_security_group=None,cidr_block=None,ip_address=
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProjectIpWhitelist:getProjectIpWhitelist', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProjectIpWhitelist:getProjectIpWhitelist', __args__, opts=opts, typ=GetProjectIpWhitelistResult).value
 
     return AwaitableGetProjectIpWhitelistResult(
-        aws_security_group=__ret__.get('awsSecurityGroup'),
-        cidr_block=__ret__.get('cidrBlock'),
-        comment=__ret__.get('comment'),
-        id=__ret__.get('id'),
-        ip_address=__ret__.get('ipAddress'),
-        project_id=__ret__.get('projectId'))
+        aws_security_group=__ret__.aws_security_group,
+        cidr_block=__ret__.cidr_block,
+        comment=__ret__.comment,
+        id=__ret__.id,
+        ip_address=__ret__.ip_address,
+        project_id=__ret__.project_id)

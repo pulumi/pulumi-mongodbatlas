@@ -52,3 +52,10 @@ from .provider import *
 from .team import *
 from .teams import *
 from .x509_authentication_database_user import *
+from ._inputs import *
+from . import outputs
+
+# Make subpackages available:
+from . import (
+    config,
+)

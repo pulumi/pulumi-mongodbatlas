@@ -5,45 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['DatabaseUser']
 
 
 class DatabaseUser(pulumi.CustomResource):
-    auth_database_name: pulumi.Output[str]
-    """
-    The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
-    """
-    database_name: pulumi.Output[str]
-    """
-    Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-    """
-    labels: pulumi.Output[list]
-    password: pulumi.Output[str]
-    """
-    User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
-    """
-    project_id: pulumi.Output[str]
-    """
-    The unique ID for the project to create the database user.
-    """
-    roles: pulumi.Output[list]
-    """
-    List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-
-      * `collectionName` (`str`) - Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
-      * `database_name` (`str`) - Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-      * `role_name` (`str`) - Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
-    """
-    username: pulumi.Output[str]
-    """
-    Username for authenticating to MongoDB.
-    """
-    x509_type: pulumi.Output[str]
-    """
-    X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
-    """
-    def __init__(__self__, resource_name, opts=None, auth_database_name=None, database_name=None, labels=None, password=None, project_id=None, roles=None, username=None, x509_type=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 auth_database_name: Optional[pulumi.Input[str]] = None,
+                 database_name: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserLabelArgs']]]]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 x509_type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
 
@@ -62,21 +46,21 @@ class DatabaseUser(pulumi.CustomResource):
 
         test = mongodbatlas.DatabaseUser("test",
             auth_database_name="admin",
-            labels=[{
-                "key": "My Key",
-                "value": "My Value",
-            }],
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
             password="test-acc-password",
             project_id="<PROJECT-ID>",
             roles=[
-                {
-                    "database_name": "dbforApp",
-                    "role_name": "readWrite",
-                },
-                {
-                    "database_name": "admin",
-                    "role_name": "readAnyDatabase",
-                },
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="dbforApp",
+                    role_name="readWrite",
+                ),
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="admin",
+                    role_name="readAnyDatabase",
+                ),
             ],
             username="test-acc-username")
         ```
@@ -87,15 +71,15 @@ class DatabaseUser(pulumi.CustomResource):
 
         test = mongodbatlas.DatabaseUser("test",
             auth_database_name="$external",
-            labels=[{
-                "key": "%s",
-                "value": "%s",
-            }],
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
             project_id="<PROJECT-ID>",
-            roles=[{
-                "database_name": "admin",
-                "role_name": "readAnyDatabase",
-            }],
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="readAnyDatabase",
+            )],
             username="test-acc-username",
             x509_type="MANAGED")
         ```
@@ -106,20 +90,9 @@ class DatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         :param pulumi.Input[str] password: User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[list] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[str] username: Username for authenticating to MongoDB.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
-
-        The **labels** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - The key that you want to write.
-          * `value` (`pulumi.Input[str]`) - The value that you want to write.
-
-        The **roles** object supports the following:
-
-          * `collectionName` (`pulumi.Input[str]`) - Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
-          * `database_name` (`pulumi.Input[str]`) - Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-          * `role_name` (`pulumi.Input[str]`) - Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -132,7 +105,7 @@ class DatabaseUser(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -160,32 +133,31 @@ class DatabaseUser(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, auth_database_name=None, database_name=None, labels=None, password=None, project_id=None, roles=None, username=None, x509_type=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auth_database_name: Optional[pulumi.Input[str]] = None,
+            database_name: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserLabelArgs']]]]] = None,
+            password: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
+            username: Optional[pulumi.Input[str]] = None,
+            x509_type: Optional[pulumi.Input[str]] = None) -> 'DatabaseUser':
         """
         Get an existing DatabaseUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth_database_name: The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
         :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         :param pulumi.Input[str] password: User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[list] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[str] username: Username for authenticating to MongoDB.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
-
-        The **labels** object supports the following:
-
-          * `key` (`pulumi.Input[str]`) - The key that you want to write.
-          * `value` (`pulumi.Input[str]`) - The value that you want to write.
-
-        The **roles** object supports the following:
-
-          * `collectionName` (`pulumi.Input[str]`) - Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
-          * `database_name` (`pulumi.Input[str]`) - Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
-          * `role_name` (`pulumi.Input[str]`) - Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -201,8 +173,70 @@ class DatabaseUser(pulumi.CustomResource):
         __props__["x509_type"] = x509_type
         return DatabaseUser(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="authDatabaseName")
+    def auth_database_name(self) -> Optional[str]:
+        """
+        The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+        """
+        return pulumi.get(self, "auth_database_name")
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> Optional[str]:
+        """
+        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        """
+        return pulumi.get(self, "database_name")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> List['outputs.DatabaseUserLabel']:
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The unique ID for the project to create the database user.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> List['outputs.DatabaseUserRole']:
+        """
+        List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        """
+        return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        Username for authenticating to MongoDB.
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="x509Type")
+    def x509_type(self) -> Optional[str]:
+        """
+        X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        """
+        return pulumi.get(self, "x509_type")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

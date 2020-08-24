@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetDatabaseUserResult',
+    'AwaitableGetDatabaseUserResult',
+    'get_database_user',
+]
+
+@pulumi.output_type
 class GetDatabaseUserResult:
     """
     A collection of values returned by getDatabaseUser.
@@ -15,44 +23,86 @@ class GetDatabaseUserResult:
     def __init__(__self__, auth_database_name=None, database_name=None, id=None, labels=None, project_id=None, roles=None, username=None, x509_type=None):
         if auth_database_name and not isinstance(auth_database_name, str):
             raise TypeError("Expected argument 'auth_database_name' to be a str")
-        __self__.auth_database_name = auth_database_name
+        pulumi.set(__self__, "auth_database_name", auth_database_name)
         if database_name and not isinstance(database_name, str):
             raise TypeError("Expected argument 'database_name' to be a str")
         if database_name is not None:
             warnings.warn("use auth_database_name instead", DeprecationWarning)
             pulumi.log.warn("database_name is deprecated: use auth_database_name instead")
 
-        __self__.database_name = database_name
+        pulumi.set(__self__, "database_name", database_name)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if labels and not isinstance(labels, list):
+            raise TypeError("Expected argument 'labels' to be a list")
+        pulumi.set(__self__, "labels", labels)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if roles and not isinstance(roles, list):
+            raise TypeError("Expected argument 'roles' to be a list")
+        pulumi.set(__self__, "roles", roles)
+        if username and not isinstance(username, str):
+            raise TypeError("Expected argument 'username' to be a str")
+        pulumi.set(__self__, "username", username)
+        if x509_type and not isinstance(x509_type, str):
+            raise TypeError("Expected argument 'x509_type' to be a str")
+        pulumi.set(__self__, "x509_type", x509_type)
+
+    @property
+    @pulumi.getter(name="authDatabaseName")
+    def auth_database_name(self) -> Optional[str]:
+        return pulumi.get(self, "auth_database_name")
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> Optional[str]:
         """
         Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "database_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if labels and not isinstance(labels, list):
-            raise TypeError("Expected argument 'labels' to be a list")
-        __self__.labels = labels
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if roles and not isinstance(roles, list):
-            raise TypeError("Expected argument 'roles' to be a list")
-        __self__.roles = roles
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> List['outputs.GetDatabaseUserLabelResult']:
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> List['outputs.GetDatabaseUserRoleResult']:
         """
         List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         """
-        if username and not isinstance(username, str):
-            raise TypeError("Expected argument 'username' to be a str")
-        __self__.username = username
-        if x509_type and not isinstance(x509_type, str):
-            raise TypeError("Expected argument 'x509_type' to be a str")
-        __self__.x509_type = x509_type
+        return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="x509Type")
+    def x509_type(self) -> str:
         """
         X.509 method by which the provided username is authenticated.
         """
+        return pulumi.get(self, "x509_type")
+
+
 class AwaitableGetDatabaseUserResult(GetDatabaseUserResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -68,7 +118,12 @@ class AwaitableGetDatabaseUserResult(GetDatabaseUserResult):
             username=self.username,
             x509_type=self.x509_type)
 
-def get_database_user(auth_database_name=None,database_name=None,project_id=None,username=None,opts=None):
+
+def get_database_user(auth_database_name: Optional[str] = None,
+                      database_name: Optional[str] = None,
+                      project_id: Optional[str] = None,
+                      username: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseUserResult:
     """
     `DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
 
@@ -83,8 +138,6 @@ def get_database_user(auth_database_name=None,database_name=None,project_id=None
     :param str username: Username for authenticating to MongoDB.
     """
     __args__ = dict()
-
-
     __args__['authDatabaseName'] = auth_database_name
     __args__['databaseName'] = database_name
     __args__['projectId'] = project_id
@@ -92,15 +145,15 @@ def get_database_user(auth_database_name=None,database_name=None,project_id=None
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getDatabaseUser:getDatabaseUser', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getDatabaseUser:getDatabaseUser', __args__, opts=opts, typ=GetDatabaseUserResult).value
 
     return AwaitableGetDatabaseUserResult(
-        auth_database_name=__ret__.get('authDatabaseName'),
-        database_name=__ret__.get('databaseName'),
-        id=__ret__.get('id'),
-        labels=__ret__.get('labels'),
-        project_id=__ret__.get('projectId'),
-        roles=__ret__.get('roles'),
-        username=__ret__.get('username'),
-        x509_type=__ret__.get('x509Type'))
+        auth_database_name=__ret__.auth_database_name,
+        database_name=__ret__.database_name,
+        id=__ret__.id,
+        labels=__ret__.labels,
+        project_id=__ret__.project_id,
+        roles=__ret__.roles,
+        username=__ret__.username,
+        x509_type=__ret__.x509_type)

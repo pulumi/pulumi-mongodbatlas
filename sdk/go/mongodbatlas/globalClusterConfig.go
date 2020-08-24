@@ -122,8 +122,8 @@ import (
 // 			return err
 // 		}
 // 		_, err = mongodbatlas.NewGlobalClusterConfig(ctx, "config", &mongodbatlas.GlobalClusterConfigArgs{
-// 			ProjectId:   pulumi.String(mongodbatlas_cluster.Test.Project_id),
-// 			ClusterName: pulumi.String(mongodbatlas_cluster.Test.Name),
+// 			ProjectId:   pulumi.Any(mongodbatlas_cluster.Test.Project_id),
+// 			ClusterName: pulumi.Any(mongodbatlas_cluster.Test.Name),
 // 			ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
 // 				&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
 // 					Db:             pulumi.String("mydata"),

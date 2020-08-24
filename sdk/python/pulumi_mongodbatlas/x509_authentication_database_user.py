@@ -5,42 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['X509AuthenticationDatabaseUser']
 
 
 class X509AuthenticationDatabaseUser(pulumi.CustomResource):
-    certificates: pulumi.Output[list]
-    """
-    Array of objects where each details one unexpired database user certificate.
-
-      * `created_at` (`str`)
-      * `groupId` (`str`)
-      * `id` (`float`)
-      * `notAfter` (`str`)
-      * `subject` (`str`)
-    """
-    current_certificate: pulumi.Output[str]
-    """
-    Contains the last X.509 certificate and private key created for a database user.
-    """
-    customer_x509_cas: pulumi.Output[str]
-    """
-    PEM string containing one or more customer CAs for database user authentication.
-    """
-    months_until_expiration: pulumi.Output[float]
-    """
-    A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
-    """
-    project_id: pulumi.Output[str]
-    """
-    Identifier for the Atlas project associated with the X.509 configuration.
-    """
-    username: pulumi.Output[str]
-    """
-    Username of the database user to create a certificate for.
-    """
-    def __init__(__self__, resource_name, opts=None, customer_x509_cas=None, months_until_expiration=None, project_id=None, username=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 customer_x509_cas: Optional[pulumi.Input[str]] = None,
+                 months_until_expiration: Optional[pulumi.Input[float]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         `X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
 
@@ -61,15 +44,15 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
         user = mongodbatlas.DatabaseUser("user",
             database_name="$external",
-            labels=[{
-                "key": "My Key",
-                "value": "My Value",
-            }],
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
             project_id="<PROJECT-ID>",
-            roles=[{
-                "database_name": "admin",
-                "role_name": "atlasAdmin",
-            }],
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="atlasAdmin",
+            )],
             username="myUsername",
             x509_type="MANAGED")
         test = mongodbatlas.X509AuthenticationDatabaseUser("test",
@@ -122,7 +105,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -143,28 +126,28 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, certificates=None, current_certificate=None, customer_x509_cas=None, months_until_expiration=None, project_id=None, username=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            certificates: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['X509AuthenticationDatabaseUserCertificateArgs']]]]] = None,
+            current_certificate: Optional[pulumi.Input[str]] = None,
+            customer_x509_cas: Optional[pulumi.Input[str]] = None,
+            months_until_expiration: Optional[pulumi.Input[float]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            username: Optional[pulumi.Input[str]] = None) -> 'X509AuthenticationDatabaseUser':
         """
         Get an existing X509AuthenticationDatabaseUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] certificates: Array of objects where each details one unexpired database user certificate.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['X509AuthenticationDatabaseUserCertificateArgs']]]] certificates: Array of objects where each details one unexpired database user certificate.
         :param pulumi.Input[str] current_certificate: Contains the last X.509 certificate and private key created for a database user.
         :param pulumi.Input[str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
         :param pulumi.Input[float] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         :param pulumi.Input[str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
         :param pulumi.Input[str] username: Username of the database user to create a certificate for.
-
-        The **certificates** object supports the following:
-
-          * `created_at` (`pulumi.Input[str]`)
-          * `groupId` (`pulumi.Input[str]`)
-          * `id` (`pulumi.Input[float]`)
-          * `notAfter` (`pulumi.Input[str]`)
-          * `subject` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -178,8 +161,57 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         __props__["username"] = username
         return X509AuthenticationDatabaseUser(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def certificates(self) -> List['outputs.X509AuthenticationDatabaseUserCertificate']:
+        """
+        Array of objects where each details one unexpired database user certificate.
+        """
+        return pulumi.get(self, "certificates")
+
+    @property
+    @pulumi.getter(name="currentCertificate")
+    def current_certificate(self) -> str:
+        """
+        Contains the last X.509 certificate and private key created for a database user.
+        """
+        return pulumi.get(self, "current_certificate")
+
+    @property
+    @pulumi.getter(name="customerX509Cas")
+    def customer_x509_cas(self) -> Optional[str]:
+        """
+        PEM string containing one or more customer CAs for database user authentication.
+        """
+        return pulumi.get(self, "customer_x509_cas")
+
+    @property
+    @pulumi.getter(name="monthsUntilExpiration")
+    def months_until_expiration(self) -> Optional[float]:
+        """
+        A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
+        """
+        return pulumi.get(self, "months_until_expiration")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Identifier for the Atlas project associated with the X.509 configuration.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[str]:
+        """
+        Username of the database user to create a certificate for.
+        """
+        return pulumi.get(self, "username")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
