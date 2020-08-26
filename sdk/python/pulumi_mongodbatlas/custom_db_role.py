@@ -5,22 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['CustomDbRole']
 
 
 class CustomDbRole(pulumi.CustomResource):
-    actions: pulumi.Output[list]
-    inherited_roles: pulumi.Output[list]
-    project_id: pulumi.Output[str]
-    """
-    The unique ID for the project to create the database user.
-    """
-    role_name: pulumi.Output[str]
-    """
-    Name of the inherited role. This can either be another custom role or a built-in role.
-    """
-    def __init__(__self__, resource_name, opts=None, actions=None, inherited_roles=None, project_id=None, role_name=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 actions: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CustomDbRoleActionArgs']]]]] = None,
+                 inherited_roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CustomDbRoleInheritedRoleArgs']]]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 role_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 
@@ -36,27 +39,27 @@ class CustomDbRole(pulumi.CustomResource):
 
         test_role = mongodbatlas.CustomDbRole("testRole",
             actions=[
-                {
-                    "action": "UPDATE",
-                    "resources": [{
-                        "collectionName": "",
-                        "database_name": "anyDatabase",
-                    }],
-                },
-                {
-                    "action": "INSERT",
-                    "resources": [{
-                        "collectionName": "",
-                        "database_name": "anyDatabase",
-                    }],
-                },
-                {
-                    "action": "REMOVE",
-                    "resources": [{
-                        "collectionName": "",
-                        "database_name": "anyDatabase",
-                    }],
-                },
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="UPDATE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="INSERT",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="REMOVE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
             ],
             project_id="<PROJECT-ID>",
             role_name="myCustomRole")
@@ -68,50 +71,50 @@ class CustomDbRole(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         inherited_role_one = mongodbatlas.CustomDbRole("inheritedRoleOne",
-            actions=[{
-                "action": "INSERT",
-                "resources": [{
-                    "collectionName": "",
-                    "database_name": "anyDatabase",
-                }],
-            }],
+            actions=[mongodbatlas.CustomDbRoleActionArgs(
+                action="INSERT",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    collection_name="",
+                    database_name="anyDatabase",
+                )],
+            )],
             project_id="<PROJECT-ID>",
             role_name="insertRole")
         inherited_role_two = mongodbatlas.CustomDbRole("inheritedRoleTwo",
-            actions=[{
-                "action": "SERVER_STATUS",
-                "resources": [{
-                    "cluster": True,
-                }],
-            }],
+            actions=[mongodbatlas.CustomDbRoleActionArgs(
+                action="SERVER_STATUS",
+                resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                    cluster=True,
+                )],
+            )],
             project_id=inherited_role_one.project_id,
             role_name="statusServerRole")
         test_role = mongodbatlas.CustomDbRole("testRole",
             actions=[
-                {
-                    "action": "UPDATE",
-                    "resources": [{
-                        "collectionName": "",
-                        "database_name": "anyDatabase",
-                    }],
-                },
-                {
-                    "action": "REMOVE",
-                    "resources": [{
-                        "collectionName": "",
-                        "database_name": "anyDatabase",
-                    }],
-                },
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="UPDATE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
+                mongodbatlas.CustomDbRoleActionArgs(
+                    action="REMOVE",
+                    resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
+                        collection_name="",
+                        database_name="anyDatabase",
+                    )],
+                ),
             ],
             inherited_roles=[
-                {
-                    "database_name": "admin",
-                    "role_name": inherited_role_one.role_name,
-                },
-                {
-                    "database_name": "admin",
-                    "role_name": inherited_role_two.role_name,
-                },
+                mongodbatlas.CustomDbRoleInheritedRoleArgs(
+                    database_name="admin",
+                    role_name=inherited_role_one.role_name,
+                ),
+                mongodbatlas.CustomDbRoleInheritedRoleArgs(
+                    database_name="admin",
+                    role_name=inherited_role_two.role_name,
+                ),
             ],
             project_id=inherited_role_one.project_id,
             role_name="myCustomRole")
@@ -121,20 +124,6 @@ class CustomDbRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] role_name: Name of the inherited role. This can either be another custom role or a built-in role.
-
-        The **actions** object supports the following:
-
-          * `action` (`pulumi.Input[str]`) - Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
-            > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
-          * `resources` (`pulumi.Input[list]`) - Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
-            * `cluster` (`pulumi.Input[bool]`)
-            * `collectionName` (`pulumi.Input[str]`)
-            * `database_name` (`pulumi.Input[str]`) - Database on which the inherited role is granted.
-
-        The **inherited_roles** object supports the following:
-
-          * `database_name` (`pulumi.Input[str]`) - Database on which the inherited role is granted.
-          * `role_name` (`pulumi.Input[str]`) - Name of the inherited role. This can either be another custom role or a built-in role.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -147,7 +136,7 @@ class CustomDbRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -170,30 +159,22 @@ class CustomDbRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, actions=None, inherited_roles=None, project_id=None, role_name=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            actions: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CustomDbRoleActionArgs']]]]] = None,
+            inherited_roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CustomDbRoleInheritedRoleArgs']]]]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            role_name: Optional[pulumi.Input[str]] = None) -> 'CustomDbRole':
         """
         Get an existing CustomDbRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] role_name: Name of the inherited role. This can either be another custom role or a built-in role.
-
-        The **actions** object supports the following:
-
-          * `action` (`pulumi.Input[str]`) - Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
-            > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
-          * `resources` (`pulumi.Input[list]`) - Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
-            * `cluster` (`pulumi.Input[bool]`)
-            * `collectionName` (`pulumi.Input[str]`)
-            * `database_name` (`pulumi.Input[str]`) - Database on which the inherited role is granted.
-
-        The **inherited_roles** object supports the following:
-
-          * `database_name` (`pulumi.Input[str]`) - Database on which the inherited role is granted.
-          * `role_name` (`pulumi.Input[str]`) - Name of the inherited role. This can either be another custom role or a built-in role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -205,8 +186,35 @@ class CustomDbRole(pulumi.CustomResource):
         __props__["role_name"] = role_name
         return CustomDbRole(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def actions(self) -> List['outputs.CustomDbRoleAction']:
+        return pulumi.get(self, "actions")
+
+    @property
+    @pulumi.getter(name="inheritedRoles")
+    def inherited_roles(self) -> Optional[List['outputs.CustomDbRoleInheritedRole']]:
+        return pulumi.get(self, "inherited_roles")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The unique ID for the project to create the database user.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        """
+        Name of the inherited role. This can either be another custom role or a built-in role.
+        """
+        return pulumi.get(self, "role_name")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

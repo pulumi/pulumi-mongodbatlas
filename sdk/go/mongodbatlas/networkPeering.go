@@ -44,7 +44,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
-// 			ProjectId:      pulumi.String(local.Project_id),
+// 			ProjectId:      pulumi.Any(local.Project_id),
 // 			AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 // 			ProviderName:   pulumi.String("AWS"),
 // 			RegionName:     pulumi.String("US_EAST_1"),
@@ -54,7 +54,7 @@ import (
 // 		}
 // 		testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
 // 			AccepterRegionName:  pulumi.String("us-east-1"),
-// 			ProjectId:           pulumi.String(local.Project_id),
+// 			ProjectId:           pulumi.Any(local.Project_id),
 // 			ContainerId:         pulumi.String("507f1f77bcf86cd799439011"),
 // 			ProviderName:        pulumi.String("AWS"),
 // 			RouteTableCidrBlock: pulumi.String("192.168.0.0/24"),
@@ -92,7 +92,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
 // 			AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
-// 			ProjectId:      pulumi.String(local.Project_id),
+// 			ProjectId:      pulumi.Any(local.Project_id),
 // 			ProviderName:   pulumi.String("GCP"),
 // 		})
 // 		if err != nil {
@@ -100,9 +100,9 @@ import (
 // 		}
 // 		testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
 // 			ContainerId:  testNetworkContainer.ContainerId,
-// 			GcpProjectId: pulumi.String(local.GCP_PROJECT_ID),
+// 			GcpProjectId: pulumi.Any(local.GCP_PROJECT_ID),
 // 			NetworkName:  pulumi.String("default"),
-// 			ProjectId:    pulumi.String(local.Project_id),
+// 			ProjectId:    pulumi.Any(local.Project_id),
 // 			ProviderName: pulumi.String("GCP"),
 // 		})
 // 		if err != nil {
@@ -130,7 +130,7 @@ import (
 // 			DiskSizeGb:               pulumi.Float64(5),
 // 			MongoDbMajorVersion:      pulumi.String("4.2"),
 // 			NumShards:                pulumi.Int(1),
-// 			ProjectId:                pulumi.String(local.Project_id),
+// 			ProjectId:                pulumi.Any(local.Project_id),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
 // 			ProviderName:             pulumi.String("GCP"),
 // 			ProviderRegionName:       pulumi.String("US_EAST_4"),
@@ -159,7 +159,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
 // 			AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
-// 			ProjectId:      pulumi.String(local.Project_id),
+// 			ProjectId:      pulumi.Any(local.Project_id),
 // 			ProviderName:   pulumi.String("AZURE"),
 // 			Region:         pulumi.String("US_EAST_2"),
 // 		})
@@ -167,13 +167,13 @@ import (
 // 			return err
 // 		}
 // 		_, err = mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
-// 			AzureDirectoryId:    pulumi.String(local.AZURE_DIRECTORY_ID),
-// 			AzureSubscriptionId: pulumi.String(local.AZURE_SUBSCRIPTION_ID),
+// 			AzureDirectoryId:    pulumi.Any(local.AZURE_DIRECTORY_ID),
+// 			AzureSubscriptionId: pulumi.Any(local.AZURE_SUBSCRIPTION_ID),
 // 			ContainerId:         testNetworkContainer.ContainerId,
-// 			ProjectId:           pulumi.String(local.Project_id),
+// 			ProjectId:           pulumi.Any(local.Project_id),
 // 			ProviderName:        pulumi.String("AZURE"),
-// 			ResourceGroupName:   pulumi.String(local.AZURE_RESOURCES_GROUP_NAME),
-// 			VnetName:            pulumi.String(local.AZURE_VNET_NAME),
+// 			ResourceGroupName:   pulumi.Any(local.AZURE_RESOURCES_GROUP_NAME),
+// 			VnetName:            pulumi.Any(local.AZURE_VNET_NAME),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -182,7 +182,7 @@ import (
 // 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
 // 			MongoDbMajorVersion:      pulumi.String("4.2"),
 // 			NumShards:                pulumi.Int(1),
-// 			ProjectId:                pulumi.String(local.Project_id),
+// 			ProjectId:                pulumi.Any(local.Project_id),
 // 			ProviderDiskTypeName:     pulumi.String("P4"),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
 // 			ProviderName:             pulumi.String("AZURE"),
@@ -211,7 +211,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String(local.Project_id),
+// 			ProjectId:                pulumi.Any(local.Project_id),
 // 			DiskSizeGb:               pulumi.Float64(5),
 // 			ReplicationFactor:        pulumi.Int(3),
 // 			AutoScalingDiskGbEnabled: pulumi.Bool(false),
@@ -233,12 +233,12 @@ import (
 // 		}
 // 		mongoPeer, err := mongodbatlas.NewNetworkPeering(ctx, "mongoPeer", &mongodbatlas.NetworkPeeringArgs{
 // 			AccepterRegionName:  pulumi.String("us-east-2"),
-// 			ProjectId:           pulumi.String(local.Project_id),
+// 			ProjectId:           pulumi.Any(local.Project_id),
 // 			ContainerId:         test.ContainerId,
 // 			ProviderName:        pulumi.String("AWS"),
 // 			RouteTableCidrBlock: pulumi.String("172.31.0.0/16"),
 // 			VpcId:               _default.ID(),
-// 			AwsAccountId:        pulumi.String(local.AWS_ACCOUNT_ID),
+// 			AwsAccountId:        pulumi.Any(local.AWS_ACCOUNT_ID),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -272,7 +272,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String(local.Project_id),
+// 			ProjectId:                pulumi.Any(local.Project_id),
 // 			NumShards:                pulumi.Int(1),
 // 			DiskSizeGb:               pulumi.Float64(5),
 // 			ReplicationFactor:        pulumi.Int(3),
@@ -286,11 +286,11 @@ import (
 // 			return err
 // 		}
 // 		testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
-// 			ProjectId:      pulumi.String(local.Project_id),
+// 			ProjectId:      pulumi.Any(local.Project_id),
 // 			AtlasCidrBlock: pulumi.String("192.168.0.0/18"),
 // 			ContainerId:    testCluster.ContainerId,
 // 			ProviderName:   pulumi.String("GCP"),
-// 			GcpProjectId:   pulumi.String(local.GCP_PROJECT_ID),
+// 			GcpProjectId:   pulumi.Any(local.GCP_PROJECT_ID),
 // 			NetworkName:    pulumi.String("default"),
 // 		})
 // 		if err != nil {
@@ -330,7 +330,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String(local.Project_id),
+// 			ProjectId:                pulumi.Any(local.Project_id),
 // 			ReplicationFactor:        pulumi.Int(3),
 // 			AutoScalingDiskGbEnabled: pulumi.Bool(false),
 // 			MongoDbMajorVersion:      pulumi.String("4.2"),
@@ -342,13 +342,13 @@ import (
 // 			return err
 // 		}
 // 		_, err = mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
-// 			ProjectId:           pulumi.String(local.Project_id),
+// 			ProjectId:           pulumi.Any(local.Project_id),
 // 			ContainerId:         testCluster.ContainerId,
 // 			ProviderName:        pulumi.String("AZURE"),
-// 			AzureDirectoryId:    pulumi.String(local.AZURE_DIRECTORY_ID),
-// 			AzureSubscriptionId: pulumi.String(local.AZURE_SUBCRIPTION_ID),
-// 			ResourceGroupName:   pulumi.String(local.AZURE_RESOURCE_GROUP_NAME),
-// 			VnetName:            pulumi.String(local.AZURE_VNET_NAME),
+// 			AzureDirectoryId:    pulumi.Any(local.AZURE_DIRECTORY_ID),
+// 			AzureSubscriptionId: pulumi.Any(local.AZURE_SUBCRIPTION_ID),
+// 			ResourceGroupName:   pulumi.Any(local.AZURE_RESOURCE_GROUP_NAME),
+// 			VnetName:            pulumi.Any(local.AZURE_VNET_NAME),
 // 		})
 // 		if err != nil {
 // 			return err

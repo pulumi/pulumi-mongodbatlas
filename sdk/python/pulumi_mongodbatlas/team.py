@@ -5,28 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+
+__all__ = ['Team']
 
 
 class Team(pulumi.CustomResource):
-    name: pulumi.Output[str]
-    """
-    The name of the team you want to create.
-    """
-    org_id: pulumi.Output[str]
-    """
-    The unique identifier for the organization you want to associate the team with.
-    """
-    team_id: pulumi.Output[str]
-    """
-    The unique identifier for the team.
-    """
-    usernames: pulumi.Output[list]
-    """
-    The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
-    """
-    def __init__(__self__, resource_name, opts=None, name=None, org_id=None, usernames=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 usernames: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         `Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
 
@@ -55,7 +49,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the team you want to create.
         :param pulumi.Input[str] org_id: The unique identifier for the organization you want to associate the team with.
-        :param pulumi.Input[list] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        :param pulumi.Input[List[pulumi.Input[str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -68,7 +62,7 @@ class Team(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -89,18 +83,24 @@ class Team(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, org_id=None, team_id=None, usernames=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
+            team_id: Optional[pulumi.Input[str]] = None,
+            usernames: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Team':
         """
         Get an existing Team resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the team you want to create.
         :param pulumi.Input[str] org_id: The unique identifier for the organization you want to associate the team with.
         :param pulumi.Input[str] team_id: The unique identifier for the team.
-        :param pulumi.Input[list] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        :param pulumi.Input[List[pulumi.Input[str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -112,8 +112,41 @@ class Team(pulumi.CustomResource):
         __props__["usernames"] = usernames
         return Team(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the team you want to create.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        The unique identifier for the organization you want to associate the team with.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="teamId")
+    def team_id(self) -> str:
+        """
+        The unique identifier for the team.
+        """
+        return pulumi.get(self, "team_id")
+
+    @property
+    @pulumi.getter
+    def usernames(self) -> List[str]:
+        """
+        The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        """
+        return pulumi.get(self, "usernames")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

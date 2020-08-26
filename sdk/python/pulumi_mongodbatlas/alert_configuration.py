@@ -5,72 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['AlertConfiguration']
 
 
 class AlertConfiguration(pulumi.CustomResource):
-    alert_configuration_id: pulumi.Output[str]
-    """
-    Unique identifier for the alert configuration.
-    """
-    created: pulumi.Output[str]
-    """
-    Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
-    """
-    enabled: pulumi.Output[bool]
-    """
-    It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
-    """
-    event_type: pulumi.Output[str]
-    """
-    The type of event that will trigger an alert.
-    Alert type 	Possible values:
-    * Host
-    - `OUTSIDE_METRIC_THRESHOLD`
-    - `HOST_RESTARTED`
-    - `HOST_UPGRADED`
-    - `HOST_NOW_SECONDARY`
-    - `HOST_NOW_PRIMARY`
-    * Replica set
-    - `NO_PRIMARY`
-    - `TOO_MANY_ELECTIONS`
-    * Sharded cluster
-    - `CLUSTER_MONGOS_IS_MISSING`
-    - `User`
-    - `JOINED_GROUP`
-    - `REMOVED_FROM_GROUP`
-    - `USER_ROLES_CHANGED_AUDIT`
-    * Project
-    - `USERS_AWAITING_APPROVAL`
-    - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-    - `GROUP_CREATED`
-    * Team
-    - `JOINED_TEAM`
-    - `REMOVED_FROM_TEAM`
-    * Organization
-    - `INVITED_TO_ORG`
-    - `JOINED_ORG`
-    * Data Explorer
-    - `DATA_EXPLORER`
-    - `DATA_EXPLORER_CRUD`
-    * Billing
-    - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-    - `CHARGE_SUCCEEDED`
-    - `INVOICE_CLOSED`
-    """
-    matchers: pulumi.Output[list]
-    metric_threshold: pulumi.Output[dict]
-    notifications: pulumi.Output[list]
-    project_id: pulumi.Output[str]
-    """
-    The ID of the project where the alert configuration will create.
-    """
-    updated: pulumi.Output[str]
-    """
-    Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
-    """
-    def __init__(__self__, resource_name, opts=None, enabled=None, event_type=None, matchers=None, metric_threshold=None, notifications=None, project_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 event_type: Optional[pulumi.Input[str]] = None,
+                 matchers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
+                 metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
+                 notifications: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 
@@ -85,29 +40,29 @@ class AlertConfiguration(pulumi.CustomResource):
         test = mongodbatlas.AlertConfiguration("test",
             enabled=True,
             event_type="OUTSIDE_METRIC_THRESHOLD",
-            matchers=[{
-                "fieldName": "HOSTNAME_AND_PORT",
-                "operator": "EQUALS",
-                "value": "SECONDARY",
-            }],
-            metric_threshold={
-                "metric_name": "ASSERT_REGULAR",
-                "mode": "AVERAGE",
-                "operator": "LESS_THAN",
-                "threshold": 99,
-                "units": "RAW",
-            },
-            notifications=[{
-                "delayMin": 0,
-                "emailEnabled": True,
-                "intervalMin": 5,
-                "roles": [
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            metric_threshold=mongodbatlas.AlertConfigurationMetricThresholdArgs(
+                metric_name="ASSERT_REGULAR",
+                mode="AVERAGE",
+                operator="LESS_THAN",
+                threshold=99,
+                units="RAW",
+            ),
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                delay_min=0,
+                email_enabled=True,
+                interval_min=5,
+                roles=[
                     "GROUP_CHARTS_ADMIN",
                     "GROUP_CLUSTER_MANAGER",
                 ],
-                "smsEnabled": False,
-                "typeName": "GROUP",
-            }],
+                sms_enabled=False,
+                type_name="GROUP",
+            )],
             project_id="<PROJECT-ID>")
         ```
 
@@ -149,100 +104,6 @@ class AlertConfiguration(pulumi.CustomResource):
                - `CHARGE_SUCCEEDED`
                - `INVOICE_CLOSED`
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
-
-        The **matchers** object supports the following:
-
-          * `fieldName` (`pulumi.Input[str]`) - Name of the field in the target object to match on.
-            Host alerts support these fields:
-            - `TYPE_NAME`
-            - `HOSTNAME`
-            - `PORT`
-            - `HOSTNAME_AND_PORT`
-            - `REPLICA_SET_NAME`
-            Replica set alerts support these fields:
-            - `REPLICA_SET_NAME`
-            - `SHARD_NAME`
-            - `CLUSTER_NAME`
-            Sharded cluster alerts support these fields:
-            - `CLUSTER_NAME`
-            - `SHARD_NAME`
-          * `operator` (`pulumi.Input[str]`) - Operator to apply when checking the current metric value against the threshold value.
-            Accepted values are:
-            - `GREATER_THAN`
-            - `LESS_THAN`
-          * `value` (`pulumi.Input[str]`) - Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-            - `PRIMARY`
-            - `SECONDARY`
-            - `STANDALONE`
-            - `CONFIG`
-            - `MONGOS`
-
-        The **metric_threshold** object supports the following:
-
-          * `metric_name` (`pulumi.Input[str]`) - Name of the metric to check.
-          * `mode` (`pulumi.Input[str]`) - This must be set to AVERAGE. Atlas computes the current metric value as an average.
-          * `operator` (`pulumi.Input[str]`) - Operator to apply when checking the current metric value against the threshold value.
-            Accepted values are:
-            - `GREATER_THAN`
-            - `LESS_THAN`
-          * `threshold` (`pulumi.Input[float]`) - Threshold value outside of which an alert will be triggered.
-          * `units` (`pulumi.Input[str]`) - The units for the threshold value. Depends on the type of metric.
-            Accepted values are:
-            - `RAW`
-            - `BITS`
-            - `BYTES`
-            - `KILOBITS`
-            - `KILOBYTES`
-            - `MEGABITS`
-            - `MEGABYTES`
-            - `GIGABITS`
-            - `GIGABYTES`
-            - `TERABYTES`
-            - `PETABYTES`
-            - `MILLISECONDS`
-            - `SECONDS`
-            - `MINUTES`
-            - `HOURS`
-            - `DAYS`
-
-        The **notifications** object supports the following:
-
-          * `apiToken` (`pulumi.Input[str]`) - Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-          * `channelName` (`pulumi.Input[str]`) - Slack channel name. Required for the SLACK notifications type.
-          * `datadogApiKey` (`pulumi.Input[str]`) - Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-          * `datadogRegion` (`pulumi.Input[str]`) - Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
-          * `delayMin` (`pulumi.Input[float]`) - Number of minutes to wait after an alert condition is detected before sending out the first notification.
-          * `emailAddress` (`pulumi.Input[str]`) - Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-          * `emailEnabled` (`pulumi.Input[bool]`) - Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
-          * `flowName` (`pulumi.Input[str]`) - Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-          * `flowdockApiToken` (`pulumi.Input[str]`) - The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-          * `intervalMin` (`pulumi.Input[float]`) - Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
-          * `mobileNumber` (`pulumi.Input[str]`) - Mobile number to which alert notifications are sent. Required for the SMS notifications type.
-          * `opsGenieApiKey` (`pulumi.Input[str]`) - Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-          * `opsGenieRegion` (`pulumi.Input[str]`) - Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-          * `orgName` (`pulumi.Input[str]`) - Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-          * `roles` (`pulumi.Input[list]`)
-          * `serviceKey` (`pulumi.Input[str]`) - PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-          * `smsEnabled` (`pulumi.Input[bool]`) - Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
-          * `team_id` (`pulumi.Input[str]`) - Unique identifier of a team.
-          * `typeName` (`pulumi.Input[str]`) - Type of alert notification.
-            Accepted values are:
-            - `DATADOG`
-            - `EMAIL`
-            - `FLOWDOCK`
-            - `GROUP` (Project)
-            - `OPS_GENIE`
-            - `ORG`
-            - `PAGER_DUTY`
-            - `SLACK`
-            - `SMS`
-            - `TEAM`
-            - `USER`
-            - `VICTOR_OPS`
-            - `WEBHOOK`
-          * `username` (`pulumi.Input[str]`) - Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
-          * `victorOpsApiKey` (`pulumi.Input[str]`) - VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-          * `victorOpsRoutingKey` (`pulumi.Input[str]`) - VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -255,7 +116,7 @@ class AlertConfiguration(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -283,13 +144,24 @@ class AlertConfiguration(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, alert_configuration_id=None, created=None, enabled=None, event_type=None, matchers=None, metric_threshold=None, notifications=None, project_id=None, updated=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alert_configuration_id: Optional[pulumi.Input[str]] = None,
+            created: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            event_type: Optional[pulumi.Input[str]] = None,
+            matchers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
+            metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
+            notifications: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
+            updated: Optional[pulumi.Input[str]] = None) -> 'AlertConfiguration':
         """
         Get an existing AlertConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] alert_configuration_id: Unique identifier for the alert configuration.
         :param pulumi.Input[str] created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
@@ -330,100 +202,6 @@ class AlertConfiguration(pulumi.CustomResource):
                - `INVOICE_CLOSED`
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
-
-        The **matchers** object supports the following:
-
-          * `fieldName` (`pulumi.Input[str]`) - Name of the field in the target object to match on.
-            Host alerts support these fields:
-            - `TYPE_NAME`
-            - `HOSTNAME`
-            - `PORT`
-            - `HOSTNAME_AND_PORT`
-            - `REPLICA_SET_NAME`
-            Replica set alerts support these fields:
-            - `REPLICA_SET_NAME`
-            - `SHARD_NAME`
-            - `CLUSTER_NAME`
-            Sharded cluster alerts support these fields:
-            - `CLUSTER_NAME`
-            - `SHARD_NAME`
-          * `operator` (`pulumi.Input[str]`) - Operator to apply when checking the current metric value against the threshold value.
-            Accepted values are:
-            - `GREATER_THAN`
-            - `LESS_THAN`
-          * `value` (`pulumi.Input[str]`) - Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-            - `PRIMARY`
-            - `SECONDARY`
-            - `STANDALONE`
-            - `CONFIG`
-            - `MONGOS`
-
-        The **metric_threshold** object supports the following:
-
-          * `metric_name` (`pulumi.Input[str]`) - Name of the metric to check.
-          * `mode` (`pulumi.Input[str]`) - This must be set to AVERAGE. Atlas computes the current metric value as an average.
-          * `operator` (`pulumi.Input[str]`) - Operator to apply when checking the current metric value against the threshold value.
-            Accepted values are:
-            - `GREATER_THAN`
-            - `LESS_THAN`
-          * `threshold` (`pulumi.Input[float]`) - Threshold value outside of which an alert will be triggered.
-          * `units` (`pulumi.Input[str]`) - The units for the threshold value. Depends on the type of metric.
-            Accepted values are:
-            - `RAW`
-            - `BITS`
-            - `BYTES`
-            - `KILOBITS`
-            - `KILOBYTES`
-            - `MEGABITS`
-            - `MEGABYTES`
-            - `GIGABITS`
-            - `GIGABYTES`
-            - `TERABYTES`
-            - `PETABYTES`
-            - `MILLISECONDS`
-            - `SECONDS`
-            - `MINUTES`
-            - `HOURS`
-            - `DAYS`
-
-        The **notifications** object supports the following:
-
-          * `apiToken` (`pulumi.Input[str]`) - Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-          * `channelName` (`pulumi.Input[str]`) - Slack channel name. Required for the SLACK notifications type.
-          * `datadogApiKey` (`pulumi.Input[str]`) - Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
-          * `datadogRegion` (`pulumi.Input[str]`) - Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
-          * `delayMin` (`pulumi.Input[float]`) - Number of minutes to wait after an alert condition is detected before sending out the first notification.
-          * `emailAddress` (`pulumi.Input[str]`) - Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-          * `emailEnabled` (`pulumi.Input[bool]`) - Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
-          * `flowName` (`pulumi.Input[str]`) - Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
-          * `flowdockApiToken` (`pulumi.Input[str]`) - The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-          * `intervalMin` (`pulumi.Input[float]`) - Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
-          * `mobileNumber` (`pulumi.Input[str]`) - Mobile number to which alert notifications are sent. Required for the SMS notifications type.
-          * `opsGenieApiKey` (`pulumi.Input[str]`) - Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-          * `opsGenieRegion` (`pulumi.Input[str]`) - Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
-          * `orgName` (`pulumi.Input[str]`) - Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-          * `roles` (`pulumi.Input[list]`)
-          * `serviceKey` (`pulumi.Input[str]`) - PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-          * `smsEnabled` (`pulumi.Input[bool]`) - Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
-          * `team_id` (`pulumi.Input[str]`) - Unique identifier of a team.
-          * `typeName` (`pulumi.Input[str]`) - Type of alert notification.
-            Accepted values are:
-            - `DATADOG`
-            - `EMAIL`
-            - `FLOWDOCK`
-            - `GROUP` (Project)
-            - `OPS_GENIE`
-            - `ORG`
-            - `PAGER_DUTY`
-            - `SLACK`
-            - `SMS`
-            - `TEAM`
-            - `USER`
-            - `VICTOR_OPS`
-            - `WEBHOOK`
-          * `username` (`pulumi.Input[str]`) - Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
-          * `victorOpsApiKey` (`pulumi.Input[str]`) - VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-          * `victorOpsRoutingKey` (`pulumi.Input[str]`) - VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -440,8 +218,105 @@ class AlertConfiguration(pulumi.CustomResource):
         __props__["updated"] = updated
         return AlertConfiguration(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="alertConfigurationId")
+    def alert_configuration_id(self) -> str:
+        """
+        Unique identifier for the alert configuration.
+        """
+        return pulumi.get(self, "alert_configuration_id")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
+        """
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> str:
+        """
+        The type of event that will trigger an alert.
+        Alert type 	Possible values:
+        * Host
+        - `OUTSIDE_METRIC_THRESHOLD`
+        - `HOST_RESTARTED`
+        - `HOST_UPGRADED`
+        - `HOST_NOW_SECONDARY`
+        - `HOST_NOW_PRIMARY`
+        * Replica set
+        - `NO_PRIMARY`
+        - `TOO_MANY_ELECTIONS`
+        * Sharded cluster
+        - `CLUSTER_MONGOS_IS_MISSING`
+        - `User`
+        - `JOINED_GROUP`
+        - `REMOVED_FROM_GROUP`
+        - `USER_ROLES_CHANGED_AUDIT`
+        * Project
+        - `USERS_AWAITING_APPROVAL`
+        - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
+        - `GROUP_CREATED`
+        * Team
+        - `JOINED_TEAM`
+        - `REMOVED_FROM_TEAM`
+        * Organization
+        - `INVITED_TO_ORG`
+        - `JOINED_ORG`
+        * Data Explorer
+        - `DATA_EXPLORER`
+        - `DATA_EXPLORER_CRUD`
+        * Billing
+        - `CREDIT_CARD_ABOUT_TO_EXPIRE`
+        - `CHARGE_SUCCEEDED`
+        - `INVOICE_CLOSED`
+        """
+        return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter
+    def matchers(self) -> Optional[List['outputs.AlertConfigurationMatcher']]:
+        return pulumi.get(self, "matchers")
+
+    @property
+    @pulumi.getter(name="metricThreshold")
+    def metric_threshold(self) -> Optional['outputs.AlertConfigurationMetricThreshold']:
+        return pulumi.get(self, "metric_threshold")
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> List['outputs.AlertConfigurationNotification']:
+        return pulumi.get(self, "notifications")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of the project where the alert configuration will create.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
+        """
+        return pulumi.get(self, "updated")
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

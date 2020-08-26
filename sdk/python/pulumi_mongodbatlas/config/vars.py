@@ -5,17 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'private_key',
+    'public_key',
+]
 
 __config__ = pulumi.Config('mongodbatlas')
 
-private_key = __config__.get('privateKey') or utilities.get_env('MONGODB_ATLAS_PRIVATE_KEY')
+private_key = __config__.get('privateKey') or _utilities.get_env('MONGODB_ATLAS_PRIVATE_KEY')
 """
 MongoDB Atlas Programmatic Private Key
 """
 
-public_key = __config__.get('publicKey') or utilities.get_env('MONGODB_ATLAS_PUBLIC_KEY')
+public_key = __config__.get('publicKey') or _utilities.get_env('MONGODB_ATLAS_PUBLIC_KEY')
 """
 MongoDB Atlas Programmatic Public Key
 """

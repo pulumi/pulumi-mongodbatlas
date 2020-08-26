@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
+__all__ = [
+    'GetGlobalClusterConfigResult',
+    'AwaitableGetGlobalClusterConfigResult',
+    'get_global_cluster_config',
+]
+
+@pulumi.output_type
 class GetGlobalClusterConfigResult:
     """
     A collection of values returned by getGlobalClusterConfig.
@@ -15,28 +24,55 @@ class GetGlobalClusterConfigResult:
     def __init__(__self__, cluster_name=None, custom_zone_mapping=None, id=None, managed_namespaces=None, project_id=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
-        __self__.cluster_name = cluster_name
+        pulumi.set(__self__, "cluster_name", cluster_name)
         if custom_zone_mapping and not isinstance(custom_zone_mapping, dict):
             raise TypeError("Expected argument 'custom_zone_mapping' to be a dict")
-        __self__.custom_zone_mapping = custom_zone_mapping
+        pulumi.set(__self__, "custom_zone_mapping", custom_zone_mapping)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if managed_namespaces and not isinstance(managed_namespaces, list):
+            raise TypeError("Expected argument 'managed_namespaces' to be a list")
+        pulumi.set(__self__, "managed_namespaces", managed_namespaces)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="customZoneMapping")
+    def custom_zone_mapping(self) -> Mapping[str, Any]:
         """
         A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "custom_zone_mapping")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if managed_namespaces and not isinstance(managed_namespaces, list):
-            raise TypeError("Expected argument 'managed_namespaces' to be a list")
-        __self__.managed_namespaces = managed_namespaces
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="managedNamespaces")
+    def managed_namespaces(self) -> List['outputs.GetGlobalClusterConfigManagedNamespaceResult']:
         """
         Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         """
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
+        return pulumi.get(self, "managed_namespaces")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+
 class AwaitableGetGlobalClusterConfigResult(GetGlobalClusterConfigResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -49,38 +85,34 @@ class AwaitableGetGlobalClusterConfigResult(GetGlobalClusterConfigResult):
             managed_namespaces=self.managed_namespaces,
             project_id=self.project_id)
 
-def get_global_cluster_config(cluster_name=None,managed_namespaces=None,project_id=None,opts=None):
+
+def get_global_cluster_config(cluster_name: Optional[str] = None,
+                              managed_namespaces: Optional[List[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']]] = None,
+                              project_id: Optional[str] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGlobalClusterConfigResult:
     """
     `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
 
-    :param list managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+    :param List[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
     :param str project_id: The unique ID for the project to create the database user.
            * `cluster_name - (Required) The name of the Global Cluster.
-
-    The **managed_namespaces** object supports the following:
-
-      * `collection` (`str`) - (Required) The name of the collection associated with the managed namespace.
-      * `customShardKey` (`str`) - (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
-      * `db` (`str`) - (Required) The name of the database containing the collection.
     """
     __args__ = dict()
-
-
     __args__['clusterName'] = cluster_name
     __args__['managedNamespaces'] = managed_namespaces
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig', __args__, opts=opts, typ=GetGlobalClusterConfigResult).value
 
     return AwaitableGetGlobalClusterConfigResult(
-        cluster_name=__ret__.get('clusterName'),
-        custom_zone_mapping=__ret__.get('customZoneMapping'),
-        id=__ret__.get('id'),
-        managed_namespaces=__ret__.get('managedNamespaces'),
-        project_id=__ret__.get('projectId'))
+        cluster_name=__ret__.cluster_name,
+        custom_zone_mapping=__ret__.custom_zone_mapping,
+        id=__ret__.id,
+        managed_namespaces=__ret__.managed_namespaces,
+        project_id=__ret__.project_id)

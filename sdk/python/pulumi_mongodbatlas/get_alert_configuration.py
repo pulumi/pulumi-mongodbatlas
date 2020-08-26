@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetAlertConfigurationResult',
+    'AwaitableGetAlertConfigurationResult',
+    'get_alert_configuration',
+]
+
+@pulumi.output_type
 class GetAlertConfigurationResult:
     """
     A collection of values returned by getAlertConfiguration.
@@ -15,22 +23,59 @@ class GetAlertConfigurationResult:
     def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold=None, notifications=None, project_id=None, updated=None):
         if alert_configuration_id and not isinstance(alert_configuration_id, str):
             raise TypeError("Expected argument 'alert_configuration_id' to be a str")
-        __self__.alert_configuration_id = alert_configuration_id
+        pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
         if created and not isinstance(created, str):
             raise TypeError("Expected argument 'created' to be a str")
-        __self__.created = created
+        pulumi.set(__self__, "created", created)
+        if enabled and not isinstance(enabled, bool):
+            raise TypeError("Expected argument 'enabled' to be a bool")
+        pulumi.set(__self__, "enabled", enabled)
+        if event_type and not isinstance(event_type, str):
+            raise TypeError("Expected argument 'event_type' to be a str")
+        pulumi.set(__self__, "event_type", event_type)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if matchers and not isinstance(matchers, list):
+            raise TypeError("Expected argument 'matchers' to be a list")
+        pulumi.set(__self__, "matchers", matchers)
+        if metric_threshold and not isinstance(metric_threshold, dict):
+            raise TypeError("Expected argument 'metric_threshold' to be a dict")
+        pulumi.set(__self__, "metric_threshold", metric_threshold)
+        if notifications and not isinstance(notifications, list):
+            raise TypeError("Expected argument 'notifications' to be a list")
+        pulumi.set(__self__, "notifications", notifications)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if updated and not isinstance(updated, str):
+            raise TypeError("Expected argument 'updated' to be a str")
+        pulumi.set(__self__, "updated", updated)
+
+    @property
+    @pulumi.getter(name="alertConfigurationId")
+    def alert_configuration_id(self) -> str:
+        return pulumi.get(self, "alert_configuration_id")
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
         """
         Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
         """
-        if enabled and not isinstance(enabled, bool):
-            raise TypeError("Expected argument 'enabled' to be a bool")
-        __self__.enabled = enabled
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
         """
         If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.
         """
-        if event_type and not isinstance(event_type, str):
-            raise TypeError("Expected argument 'event_type' to be a str")
-        __self__.event_type = event_type
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> str:
         """
         The type of event that will trigger an alert.
         Alert type. Possible values:
@@ -45,52 +90,46 @@ class GetAlertConfigurationResult:
         - `TOO_MANY_ELECTIONS`
         Sharded cluster
         - `CLUSTER_MONGOS_IS_MISSING`
-        - `User`
-        - `JOINED_GROUP`
-        - `REMOVED_FROM_GROUP`
-        - `USER_ROLES_CHANGED_AUDIT`
-        - Project
-        - `USERS_AWAITING_APPROVAL`
-        - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-        - `GROUP_CREATED`
-        - Team
-        - `JOINED_TEAM`
-        - `REMOVED_FROM_TEAM`
-        - Organization
-        - `INVITED_TO_ORG`
-        - `JOINED_ORG`
-        - Data Explorer
-        - `DATA_EXPLORER`
-        - `DATA_EXPLORER_CRUD`
-        - Billing
-        - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-        - `CHARGE_SUCCEEDED`
-        - `INVOICE_CLOSED`
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if matchers and not isinstance(matchers, list):
-            raise TypeError("Expected argument 'matchers' to be a list")
-        __self__.matchers = matchers
-        if metric_threshold and not isinstance(metric_threshold, dict):
-            raise TypeError("Expected argument 'metric_threshold' to be a dict")
-        __self__.metric_threshold = metric_threshold
-        if notifications and not isinstance(notifications, list):
-            raise TypeError("Expected argument 'notifications' to be a list")
-        __self__.notifications = notifications
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if updated and not isinstance(updated, str):
-            raise TypeError("Expected argument 'updated' to be a str")
-        __self__.updated = updated
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def matchers(self) -> List['outputs.GetAlertConfigurationMatcherResult']:
+        return pulumi.get(self, "matchers")
+
+    @property
+    @pulumi.getter(name="metricThreshold")
+    def metric_threshold(self) -> 'outputs.GetAlertConfigurationMetricThresholdResult':
+        return pulumi.get(self, "metric_threshold")
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> List['outputs.GetAlertConfigurationNotificationResult']:
+        return pulumi.get(self, "notifications")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def updated(self) -> str:
         """
         Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
+        return pulumi.get(self, "updated")
+
+
 class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -108,7 +147,10 @@ class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
             project_id=self.project_id,
             updated=self.updated)
 
-def get_alert_configuration(alert_configuration_id=None,project_id=None,opts=None):
+
+def get_alert_configuration(alert_configuration_id: Optional[str] = None,
+                            project_id: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationResult:
     """
     `AlertConfiguration` describes an Alert Configuration.
 
@@ -119,24 +161,22 @@ def get_alert_configuration(alert_configuration_id=None,project_id=None,opts=Non
     :param str project_id: The ID of the project where the alert configuration will create.
     """
     __args__ = dict()
-
-
     __args__['alertConfigurationId'] = alert_configuration_id
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAlertConfiguration:getAlertConfiguration', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAlertConfiguration:getAlertConfiguration', __args__, opts=opts, typ=GetAlertConfigurationResult).value
 
     return AwaitableGetAlertConfigurationResult(
-        alert_configuration_id=__ret__.get('alertConfigurationId'),
-        created=__ret__.get('created'),
-        enabled=__ret__.get('enabled'),
-        event_type=__ret__.get('eventType'),
-        id=__ret__.get('id'),
-        matchers=__ret__.get('matchers'),
-        metric_threshold=__ret__.get('metricThreshold'),
-        notifications=__ret__.get('notifications'),
-        project_id=__ret__.get('projectId'),
-        updated=__ret__.get('updated'))
+        alert_configuration_id=__ret__.alert_configuration_id,
+        created=__ret__.created,
+        enabled=__ret__.enabled,
+        event_type=__ret__.event_type,
+        id=__ret__.id,
+        matchers=__ret__.matchers,
+        metric_threshold=__ret__.metric_threshold,
+        notifications=__ret__.notifications,
+        project_id=__ret__.project_id,
+        updated=__ret__.updated)

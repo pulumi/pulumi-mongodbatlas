@@ -5,9 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from . import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetCloudProviderSnapshotRestoreJobsResult',
+    'AwaitableGetCloudProviderSnapshotRestoreJobsResult',
+    'get_cloud_provider_snapshot_restore_jobs',
+]
+
+@pulumi.output_type
 class GetCloudProviderSnapshotRestoreJobsResult:
     """
     A collection of values returned by getCloudProviderSnapshotRestoreJobs.
@@ -15,31 +23,68 @@ class GetCloudProviderSnapshotRestoreJobsResult:
     def __init__(__self__, cluster_name=None, id=None, items_per_page=None, page_num=None, project_id=None, results=None, total_count=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
-        __self__.cluster_name = cluster_name
+        pulumi.set(__self__, "cluster_name", cluster_name)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if items_per_page and not isinstance(items_per_page, float):
+            raise TypeError("Expected argument 'items_per_page' to be a float")
+        pulumi.set(__self__, "items_per_page", items_per_page)
+        if page_num and not isinstance(page_num, float):
+            raise TypeError("Expected argument 'page_num' to be a float")
+        pulumi.set(__self__, "page_num", page_num)
+        if project_id and not isinstance(project_id, str):
+            raise TypeError("Expected argument 'project_id' to be a str")
+        pulumi.set(__self__, "project_id", project_id)
+        if results and not isinstance(results, list):
+            raise TypeError("Expected argument 'results' to be a list")
+        pulumi.set(__self__, "results", results)
+        if total_count and not isinstance(total_count, float):
+            raise TypeError("Expected argument 'total_count' to be a float")
+        pulumi.set(__self__, "total_count", total_count)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if items_per_page and not isinstance(items_per_page, float):
-            raise TypeError("Expected argument 'items_per_page' to be a float")
-        __self__.items_per_page = items_per_page
-        if page_num and not isinstance(page_num, float):
-            raise TypeError("Expected argument 'page_num' to be a float")
-        __self__.page_num = page_num
-        if project_id and not isinstance(project_id, str):
-            raise TypeError("Expected argument 'project_id' to be a str")
-        __self__.project_id = project_id
-        if results and not isinstance(results, list):
-            raise TypeError("Expected argument 'results' to be a list")
-        __self__.results = results
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="itemsPerPage")
+    def items_per_page(self) -> Optional[float]:
+        return pulumi.get(self, "items_per_page")
+
+    @property
+    @pulumi.getter(name="pageNum")
+    def page_num(self) -> Optional[float]:
+        return pulumi.get(self, "page_num")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def results(self) -> List['outputs.GetCloudProviderSnapshotRestoreJobsResultResult']:
         """
         Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
         """
-        if total_count and not isinstance(total_count, float):
-            raise TypeError("Expected argument 'total_count' to be a float")
-        __self__.total_count = total_count
+        return pulumi.get(self, "results")
+
+    @property
+    @pulumi.getter(name="totalCount")
+    def total_count(self) -> float:
+        return pulumi.get(self, "total_count")
+
+
 class AwaitableGetCloudProviderSnapshotRestoreJobsResult(GetCloudProviderSnapshotRestoreJobsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -54,7 +99,12 @@ class AwaitableGetCloudProviderSnapshotRestoreJobsResult(GetCloudProviderSnapsho
             results=self.results,
             total_count=self.total_count)
 
-def get_cloud_provider_snapshot_restore_jobs(cluster_name=None,items_per_page=None,page_num=None,project_id=None,opts=None):
+
+def get_cloud_provider_snapshot_restore_jobs(cluster_name: Optional[str] = None,
+                                             items_per_page: Optional[float] = None,
+                                             page_num: Optional[float] = None,
+                                             project_id: Optional[str] = None,
+                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderSnapshotRestoreJobsResult:
     """
     `getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
@@ -75,11 +125,11 @@ def get_cloud_provider_snapshot_restore_jobs(cluster_name=None,items_per_page=No
         retention_in_days=1)
     test_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob",
         cluster_name="MyCluster",
-        delivery_type={
-            "automated": True,
-            "target_cluster_name": "MyCluster",
-            "target_project_id": "5cf5a45a9ccf6400e60981b6",
-        },
+        delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+            automated=True,
+            target_cluster_name="MyCluster",
+            target_project_id="5cf5a45a9ccf6400e60981b6",
+        ),
         project_id="5cf5a45a9ccf6400e60981b6",
         snapshot_id=test_cloud_provider_snapshot.id)
     test_cloud_provider_snapshot_restore_jobs = pulumi.Output.all(test_cloud_provider_snapshot_restore_job.cluster_name, test_cloud_provider_snapshot_restore_job.project_id).apply(lambda cluster_name, project_id: mongodbatlas.get_cloud_provider_snapshot_restore_jobs(cluster_name=cluster_name,
@@ -95,8 +145,6 @@ def get_cloud_provider_snapshot_restore_jobs(cluster_name=None,items_per_page=No
     :param str project_id: The unique identifier of the project for the Atlas cluster.
     """
     __args__ = dict()
-
-
     __args__['clusterName'] = cluster_name
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
@@ -104,14 +152,14 @@ def get_cloud_provider_snapshot_restore_jobs(cluster_name=None,items_per_page=No
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs', __args__, opts=opts, typ=GetCloudProviderSnapshotRestoreJobsResult).value
 
     return AwaitableGetCloudProviderSnapshotRestoreJobsResult(
-        cluster_name=__ret__.get('clusterName'),
-        id=__ret__.get('id'),
-        items_per_page=__ret__.get('itemsPerPage'),
-        page_num=__ret__.get('pageNum'),
-        project_id=__ret__.get('projectId'),
-        results=__ret__.get('results'),
-        total_count=__ret__.get('totalCount'))
+        cluster_name=__ret__.cluster_name,
+        id=__ret__.id,
+        items_per_page=__ret__.items_per_page,
+        page_num=__ret__.page_num,
+        project_id=__ret__.project_id,
+        results=__ret__.results,
+        total_count=__ret__.total_count)

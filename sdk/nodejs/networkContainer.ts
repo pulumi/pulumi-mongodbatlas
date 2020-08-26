@@ -92,6 +92,7 @@ export class NetworkContainer extends pulumi.CustomResource {
     public readonly atlasCidrBlock!: pulumi.Output<string>;
     /**
      * Unique identifier of the Azure subscription in which the VNet resides.
+     * * * `vnetName` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
     public /*out*/ readonly azureSubscriptionId!: pulumi.Output<string>;
     /**
@@ -128,9 +129,6 @@ export class NetworkContainer extends pulumi.CustomResource {
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     public readonly regionName!: pulumi.Output<string>;
-    /**
-     * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-     */
     public /*out*/ readonly vnetName!: pulumi.Output<string>;
     /**
      * Unique identifier of Atlas' AWS VPC.
@@ -207,6 +205,7 @@ export interface NetworkContainerState {
     readonly atlasCidrBlock?: pulumi.Input<string>;
     /**
      * Unique identifier of the Azure subscription in which the VNet resides.
+     * * * `vnetName` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
     readonly azureSubscriptionId?: pulumi.Input<string>;
     /**
@@ -243,9 +242,6 @@ export interface NetworkContainerState {
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     readonly regionName?: pulumi.Input<string>;
-    /**
-     * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-     */
     readonly vnetName?: pulumi.Input<string>;
     /**
      * Unique identifier of Atlas' AWS VPC.
