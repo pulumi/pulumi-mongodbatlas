@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform-bridge v2.7.3
-* Upgrade to Pulumi v2.9.0, which adds type annotations and input/output classes to Python
+_(none)_
 
 ---
+
+## 1.2.0 (2020-08-31)
+* Upgrade to pulumi-terraform-bridge v2.7.3
+* Upgrade to Pulumi v2.9.0, which adds type annotations and input/output classes to Python
 
 ## 1.1.3 (2020-07-24)
 * Upgrade to v0.6.3 of the MongoDbAtlas Terraform Provider
