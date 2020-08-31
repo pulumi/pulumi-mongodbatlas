@@ -15,7 +15,7 @@ __all__ = ['AlertConfiguration']
 
 class AlertConfiguration(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
@@ -220,7 +220,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="alertConfigurationId")
-    def alert_configuration_id(self) -> str:
+    def alert_configuration_id(self) -> pulumi.Output[str]:
         """
         Unique identifier for the alert configuration.
         """
@@ -228,7 +228,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def created(self) -> str:
+    def created(self) -> pulumi.Output[str]:
         """
         Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
         """
@@ -236,7 +236,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def enabled(self) -> bool:
+    def enabled(self) -> pulumi.Output[bool]:
         """
         It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         """
@@ -244,7 +244,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="eventType")
-    def event_type(self) -> str:
+    def event_type(self) -> pulumi.Output[str]:
         """
         The type of event that will trigger an alert.
         Alert type 	Possible values:
@@ -285,22 +285,22 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def matchers(self) -> Optional[List['outputs.AlertConfigurationMatcher']]:
+    def matchers(self) -> pulumi.Output[Optional[List['outputs.AlertConfigurationMatcher']]]:
         return pulumi.get(self, "matchers")
 
     @property
     @pulumi.getter(name="metricThreshold")
-    def metric_threshold(self) -> Optional['outputs.AlertConfigurationMetricThreshold']:
+    def metric_threshold(self) -> pulumi.Output[Optional['outputs.AlertConfigurationMetricThreshold']]:
         return pulumi.get(self, "metric_threshold")
 
     @property
     @pulumi.getter
-    def notifications(self) -> List['outputs.AlertConfigurationNotification']:
+    def notifications(self) -> pulumi.Output[List['outputs.AlertConfigurationNotification']]:
         return pulumi.get(self, "notifications")
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The ID of the project where the alert configuration will create.
         """
@@ -308,7 +308,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def updated(self) -> str:
+    def updated(self) -> pulumi.Output[str]:
         """
         Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """

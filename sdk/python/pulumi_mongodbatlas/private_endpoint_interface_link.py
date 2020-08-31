@@ -13,7 +13,7 @@ __all__ = ['PrivateEndpointInterfaceLink']
 
 class PrivateEndpointInterfaceLink(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  interface_endpoint_id: Optional[pulumi.Input[str]] = None,
                  private_link_id: Optional[pulumi.Input[str]] = None,
@@ -133,7 +133,7 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="connectionStatus")
-    def connection_status(self) -> str:
+    def connection_status(self) -> pulumi.Output[str]:
         """
         Status of the interface endpoint.
         Returns one of the following values:
@@ -142,7 +142,7 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deleteRequested")
-    def delete_requested(self) -> bool:
+    def delete_requested(self) -> pulumi.Output[bool]:
         """
         Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         """
@@ -150,7 +150,7 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="errorMessage")
-    def error_message(self) -> str:
+    def error_message(self) -> pulumi.Output[str]:
         """
         Error message pertaining to the interface endpoint. Returns null if there are no errors.
         """
@@ -158,7 +158,7 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="interfaceEndpointId")
-    def interface_endpoint_id(self) -> str:
+    def interface_endpoint_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
         """
@@ -166,7 +166,7 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateLinkId")
-    def private_link_id(self) -> str:
+    def private_link_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
         """
@@ -174,7 +174,7 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         Unique identifier for the project.
         """

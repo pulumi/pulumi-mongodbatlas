@@ -13,7 +13,7 @@ __all__ = ['PrivateEndpoint']
 
 class PrivateEndpoint(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
@@ -166,7 +166,7 @@ class PrivateEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="endpointServiceName")
-    def endpoint_service_name(self) -> str:
+    def endpoint_service_name(self) -> pulumi.Output[str]:
         """
         Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         """
@@ -174,7 +174,7 @@ class PrivateEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="errorMessage")
-    def error_message(self) -> str:
+    def error_message(self) -> pulumi.Output[str]:
         """
         Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
         """
@@ -182,7 +182,7 @@ class PrivateEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="interfaceEndpoints")
-    def interface_endpoints(self) -> List[str]:
+    def interface_endpoints(self) -> pulumi.Output[List[str]]:
         """
         Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
         """
@@ -190,7 +190,7 @@ class PrivateEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateLinkId")
-    def private_link_id(self) -> str:
+    def private_link_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the AWS PrivateLink connection.
         """
@@ -198,7 +198,7 @@ class PrivateEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         Required 	Unique identifier for the project.
         """
@@ -206,12 +206,12 @@ class PrivateEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerName")
-    def provider_name(self) -> str:
+    def provider_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "provider_name")
 
     @property
     @pulumi.getter
-    def region(self) -> str:
+    def region(self) -> pulumi.Output[str]:
         """
         Cloud provider region in which you want to create the private endpoint connection.
         Accepted values are:
@@ -238,7 +238,7 @@ class PrivateEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def status(self) -> str:
+    def status(self) -> pulumi.Output[str]:
         """
         Status of the AWS PrivateLink connection.
         Returns one of the following values:

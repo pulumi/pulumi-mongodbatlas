@@ -15,7 +15,7 @@ __all__ = ['CustomDbRole']
 
 class CustomDbRole(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  actions: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CustomDbRoleActionArgs']]]]] = None,
                  inherited_roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CustomDbRoleInheritedRoleArgs']]]]] = None,
@@ -188,17 +188,17 @@ class CustomDbRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def actions(self) -> List['outputs.CustomDbRoleAction']:
+    def actions(self) -> pulumi.Output[List['outputs.CustomDbRoleAction']]:
         return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter(name="inheritedRoles")
-    def inherited_roles(self) -> Optional[List['outputs.CustomDbRoleInheritedRole']]:
+    def inherited_roles(self) -> pulumi.Output[Optional[List['outputs.CustomDbRoleInheritedRole']]]:
         return pulumi.get(self, "inherited_roles")
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique ID for the project to create the database user.
         """
@@ -206,7 +206,7 @@ class CustomDbRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> str:
+    def role_name(self) -> pulumi.Output[str]:
         """
         Name of the inherited role. This can either be another custom role or a built-in role.
         """

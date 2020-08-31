@@ -13,7 +13,7 @@ __all__ = ['PrivateIpMode']
 
 class PrivateIpMode(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -96,7 +96,7 @@ class PrivateIpMode(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def enabled(self) -> bool:
+    def enabled(self) -> pulumi.Output[bool]:
         """
         Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
         """
@@ -104,7 +104,7 @@ class PrivateIpMode(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique ID for the project to enable Only Private IP Mode.
         """

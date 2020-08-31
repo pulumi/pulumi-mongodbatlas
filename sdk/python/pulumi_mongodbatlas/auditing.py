@@ -13,7 +13,7 @@ __all__ = ['Auditing']
 
 class Auditing(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  audit_authorization_success: Optional[pulumi.Input[bool]] = None,
                  audit_filter: Optional[pulumi.Input[str]] = None,
@@ -113,7 +113,7 @@ class Auditing(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="auditAuthorizationSuccess")
-    def audit_authorization_success(self) -> bool:
+    def audit_authorization_success(self) -> pulumi.Output[bool]:
         """
         JSON-formatted audit filter used by the project
         """
@@ -121,7 +121,7 @@ class Auditing(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="auditFilter")
-    def audit_filter(self) -> str:
+    def audit_filter(self) -> pulumi.Output[str]:
         """
         Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
         """
@@ -129,7 +129,7 @@ class Auditing(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="configurationType")
-    def configuration_type(self) -> str:
+    def configuration_type(self) -> pulumi.Output[str]:
         """
         Denotes the configuration method for the audit filter. Possible values are: 
         * NONE - auditing not configured for the project.
@@ -140,7 +140,7 @@ class Auditing(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def enabled(self) -> bool:
+    def enabled(self) -> pulumi.Output[bool]:
         """
         Denotes whether or not the project associated with the {project_id} has database auditing enabled.
         """
@@ -148,7 +148,7 @@ class Auditing(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique ID for the project to configure auditing.
         """
