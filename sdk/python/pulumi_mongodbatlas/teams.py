@@ -13,7 +13,7 @@ __all__ = ['Teams']
 
 class Teams(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -85,22 +85,22 @@ class Teams(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> str:
+    def org_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> str:
+    def team_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "team_id")
 
     @property
     @pulumi.getter
-    def usernames(self) -> List[str]:
+    def usernames(self) -> pulumi.Output[List[str]]:
         return pulumi.get(self, "usernames")
 
     def translate_output_property(self, prop):

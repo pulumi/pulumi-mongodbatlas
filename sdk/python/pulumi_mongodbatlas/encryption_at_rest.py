@@ -15,7 +15,7 @@ __all__ = ['EncryptionAtRest']
 
 class EncryptionAtRest(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  aws_kms: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAwsKmsArgs']]] = None,
                  azure_key_vault: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAzureKeyVaultArgs']]] = None,
@@ -142,7 +142,7 @@ class EncryptionAtRest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="awsKms")
-    def aws_kms(self) -> Optional['outputs.EncryptionAtRestAwsKms']:
+    def aws_kms(self) -> pulumi.Output[Optional['outputs.EncryptionAtRestAwsKms']]:
         """
         Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
@@ -150,7 +150,7 @@ class EncryptionAtRest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="azureKeyVault")
-    def azure_key_vault(self) -> Optional['outputs.EncryptionAtRestAzureKeyVault']:
+    def azure_key_vault(self) -> pulumi.Output[Optional['outputs.EncryptionAtRestAzureKeyVault']]:
         """
         Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
@@ -158,7 +158,7 @@ class EncryptionAtRest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="googleCloudKms")
-    def google_cloud_kms(self) -> Optional['outputs.EncryptionAtRestGoogleCloudKms']:
+    def google_cloud_kms(self) -> pulumi.Output[Optional['outputs.EncryptionAtRestGoogleCloudKms']]:
         """
         Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         """
@@ -166,7 +166,7 @@ class EncryptionAtRest(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique identifier for the project.
         """

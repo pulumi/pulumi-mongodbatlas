@@ -15,7 +15,7 @@ __all__ = ['Project']
 
 class Project(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -120,7 +120,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterCount")
-    def cluster_count(self) -> float:
+    def cluster_count(self) -> pulumi.Output[float]:
         """
         The number of Atlas clusters deployed in the project..
         """
@@ -128,7 +128,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def created(self) -> str:
+    def created(self) -> pulumi.Output[str]:
         """
         The ISO-8601-formatted timestamp of when Atlas created the project..
         """
@@ -136,7 +136,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         """
@@ -144,7 +144,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> str:
+    def org_id(self) -> pulumi.Output[str]:
         """
         The ID of the organization you want to create the project within.
         """
@@ -152,7 +152,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def teams(self) -> Optional[List['outputs.ProjectTeam']]:
+    def teams(self) -> pulumi.Output[Optional[List['outputs.ProjectTeam']]]:
         return pulumi.get(self, "teams")
 
     def translate_output_property(self, prop):

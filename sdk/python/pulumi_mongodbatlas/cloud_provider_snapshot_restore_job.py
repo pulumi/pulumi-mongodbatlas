@@ -15,7 +15,7 @@ __all__ = ['CloudProviderSnapshotRestoreJob']
 
 class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  delivery_type: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]] = None,
@@ -203,7 +203,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def cancelled(self) -> bool:
+    def cancelled(self) -> pulumi.Output[bool]:
         """
         Indicates whether the restore job was canceled.
         """
@@ -211,7 +211,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> str:
+    def cluster_name(self) -> pulumi.Output[str]:
         """
         The name of the Atlas cluster whose snapshot you want to restore.
         """
@@ -219,7 +219,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> str:
+    def created_at(self) -> pulumi.Output[str]:
         """
         UTC ISO 8601 formatted point in time when Atlas created the restore job.
         """
@@ -227,7 +227,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deliveryType")
-    def delivery_type(self) -> 'outputs.CloudProviderSnapshotRestoreJobDeliveryType':
+    def delivery_type(self) -> pulumi.Output['outputs.CloudProviderSnapshotRestoreJobDeliveryType']:
         """
         Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
         """
@@ -235,7 +235,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deliveryUrls")
-    def delivery_urls(self) -> List[str]:
+    def delivery_urls(self) -> pulumi.Output[List[str]]:
         """
         One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         """
@@ -243,7 +243,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def expired(self) -> bool:
+    def expired(self) -> pulumi.Output[bool]:
         """
         Indicates whether the restore job expired.
         """
@@ -251,7 +251,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> str:
+    def expires_at(self) -> pulumi.Output[str]:
         """
         UTC ISO 8601 formatted point in time when the restore job expires.
         """
@@ -259,7 +259,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="finishedAt")
-    def finished_at(self) -> str:
+    def finished_at(self) -> pulumi.Output[str]:
         """
         UTC ISO 8601 formatted point in time when the restore job completed.
         """
@@ -267,7 +267,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
         """
@@ -275,7 +275,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> str:
+    def snapshot_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the snapshot to restore.
         """
@@ -283,7 +283,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotRestoreJobId")
-    def snapshot_restore_job_id(self) -> str:
+    def snapshot_restore_job_id(self) -> pulumi.Output[str]:
         """
         The unique identifier of the restore job.
         """
@@ -291,7 +291,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def timestamp(self) -> str:
+    def timestamp(self) -> pulumi.Output[str]:
         """
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
         """

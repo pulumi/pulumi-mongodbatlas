@@ -13,7 +13,7 @@ __all__ = ['MaintenanceWindow']
 
 class MaintenanceWindow(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  day_of_week: Optional[pulumi.Input[float]] = None,
                  defer: Optional[pulumi.Input[bool]] = None,
@@ -134,7 +134,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dayOfWeek")
-    def day_of_week(self) -> float:
+    def day_of_week(self) -> pulumi.Output[float]:
         """
         Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
         """
@@ -142,7 +142,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def defer(self) -> bool:
+    def defer(self) -> pulumi.Output[bool]:
         """
         Defer maintenance for the given project for one week.
         """
@@ -150,7 +150,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="hourOfDay")
-    def hour_of_day(self) -> float:
+    def hour_of_day(self) -> pulumi.Output[float]:
         """
         Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
         """
@@ -158,7 +158,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="numberOfDeferrals")
-    def number_of_deferrals(self) -> float:
+    def number_of_deferrals(self) -> pulumi.Output[float]:
         """
         Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
         """
@@ -166,7 +166,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique identifier of the project for the Maintenance Window.
         """
@@ -174,7 +174,7 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="startAsap")
-    def start_asap(self) -> bool:
+    def start_asap(self) -> pulumi.Output[bool]:
         """
         Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         """

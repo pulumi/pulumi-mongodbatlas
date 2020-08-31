@@ -13,7 +13,7 @@ __all__ = ['CloudProviderSnapshot']
 
 class CloudProviderSnapshot(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -167,7 +167,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> str:
+    def cluster_name(self) -> pulumi.Output[str]:
         """
         The name of the Atlas cluster that contains the snapshots you want to retrieve.
         """
@@ -175,7 +175,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> str:
+    def created_at(self) -> pulumi.Output[str]:
         """
         UTC ISO 8601 formatted point in time when Atlas took the snapshot.
         """
@@ -183,7 +183,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> str:
+    def description(self) -> pulumi.Output[str]:
         """
         Description of the on-demand snapshot.
         """
@@ -191,7 +191,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> str:
+    def expires_at(self) -> pulumi.Output[str]:
         """
         UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
         """
@@ -199,7 +199,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="masterKeyUuid")
-    def master_key_uuid(self) -> str:
+    def master_key_uuid(self) -> pulumi.Output[str]:
         """
         Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
         """
@@ -207,7 +207,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mongodVersion")
-    def mongod_version(self) -> str:
+    def mongod_version(self) -> pulumi.Output[str]:
         """
         Version of the MongoDB server.
         """
@@ -215,7 +215,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique identifier of the project for the Atlas cluster.
         """
@@ -223,7 +223,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="retentionInDays")
-    def retention_in_days(self) -> float:
+    def retention_in_days(self) -> pulumi.Output[float]:
         """
         The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         """
@@ -231,7 +231,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> str:
+    def snapshot_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the snapshot.
         """
@@ -239,7 +239,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotType")
-    def snapshot_type(self) -> str:
+    def snapshot_type(self) -> pulumi.Output[str]:
         """
         Specified the type of snapshot. Valid values are onDemand and scheduled.
         """
@@ -247,7 +247,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def status(self) -> str:
+    def status(self) -> pulumi.Output[str]:
         """
         Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
         """
@@ -255,7 +255,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="storageSizeBytes")
-    def storage_size_bytes(self) -> float:
+    def storage_size_bytes(self) -> pulumi.Output[float]:
         """
         Specifies the size of the snapshot in bytes.
         """
@@ -263,7 +263,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def type(self) -> pulumi.Output[str]:
         """
         Specifies the type of cluster: replicaSet or shardedCluster.
         """

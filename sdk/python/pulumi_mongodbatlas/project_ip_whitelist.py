@@ -13,7 +13,7 @@ __all__ = ['ProjectIpWhitelist']
 
 class ProjectIpWhitelist(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  aws_security_group: Optional[pulumi.Input[str]] = None,
                  cidr_block: Optional[pulumi.Input[str]] = None,
@@ -152,7 +152,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="awsSecurityGroup")
-    def aws_security_group(self) -> str:
+    def aws_security_group(self) -> pulumi.Output[str]:
         """
         ID of the whitelisted AWS security group. Mutually exclusive with `cidr_block` and `ip_address`.
         """
@@ -160,7 +160,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cidrBlock")
-    def cidr_block(self) -> str:
+    def cidr_block(self) -> pulumi.Output[str]:
         """
         Whitelist entry in Classless Inter-Domain Routing (CIDR) notation. Mutually exclusive with `aws_security_group` and `ip_address`.
         """
@@ -168,7 +168,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def comment(self) -> str:
+    def comment(self) -> pulumi.Output[str]:
         """
         Comment to add to the whitelist entry.
         """
@@ -176,7 +176,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipAddress")
-    def ip_address(self) -> str:
+    def ip_address(self) -> pulumi.Output[str]:
         """
         Whitelisted IP address. Mutually exclusive with `aws_security_group` and `cidr_block`.
         """
@@ -184,7 +184,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The ID of the project in which to add the whitelist entry.
         """

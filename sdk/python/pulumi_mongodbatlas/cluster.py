@@ -15,7 +15,7 @@ __all__ = ['Cluster']
 
 class Cluster(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  advanced_configuration: Optional[pulumi.Input[pulumi.InputType['ClusterAdvancedConfigurationArgs']]] = None,
                  auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
@@ -482,12 +482,12 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="advancedConfiguration")
-    def advanced_configuration(self) -> 'outputs.ClusterAdvancedConfiguration':
+    def advanced_configuration(self) -> pulumi.Output['outputs.ClusterAdvancedConfiguration']:
         return pulumi.get(self, "advanced_configuration")
 
     @property
     @pulumi.getter(name="autoScalingComputeEnabled")
-    def auto_scaling_compute_enabled(self) -> bool:
+    def auto_scaling_compute_enabled(self) -> pulumi.Output[bool]:
         """
         Specifies whether cluster tier auto-scaling is enabled. The default is false.
         - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
@@ -497,7 +497,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoScalingComputeScaleDownEnabled")
-    def auto_scaling_compute_scale_down_enabled(self) -> bool:
+    def auto_scaling_compute_scale_down_enabled(self) -> pulumi.Output[bool]:
         """
         Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
         - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
@@ -506,7 +506,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="autoScalingDiskGbEnabled")
-    def auto_scaling_disk_gb_enabled(self) -> Optional[bool]:
+    def auto_scaling_disk_gb_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Specifies whether disk auto-scaling is enabled. The default is true.
         - Set to `true` to enable disk auto-scaling.
@@ -516,7 +516,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="backingProviderName")
-    def backing_provider_name(self) -> str:
+    def backing_provider_name(self) -> pulumi.Output[str]:
         """
         Cloud service provider on which the server for a multi-tenant cluster is provisioned.
         """
@@ -524,7 +524,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="backupEnabled")
-    def backup_enabled(self) -> Optional[bool]:
+    def backup_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
@@ -536,7 +536,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> 'outputs.ClusterBiConnector':
+    def bi_connector(self) -> pulumi.Output['outputs.ClusterBiConnector']:
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         """
@@ -544,7 +544,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> str:
+    def cluster_id(self) -> pulumi.Output[str]:
         """
         The cluster ID.
         """
@@ -552,7 +552,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterType")
-    def cluster_type(self) -> str:
+    def cluster_type(self) -> pulumi.Output[str]:
         """
         Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         """
@@ -560,7 +560,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="connectionStrings")
-    def connection_strings(self) -> 'outputs.ClusterConnectionStrings':
+    def connection_strings(self) -> pulumi.Output['outputs.ClusterConnectionStrings']:
         """
         Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         """
@@ -568,7 +568,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="containerId")
-    def container_id(self) -> str:
+    def container_id(self) -> pulumi.Output[str]:
         """
         The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         """
@@ -576,7 +576,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> float:
+    def disk_size_gb(self) -> pulumi.Output[float]:
         """
         Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
         * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -588,7 +588,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="encryptionAtRestProvider")
-    def encryption_at_rest_provider(self) -> str:
+    def encryption_at_rest_provider(self) -> pulumi.Output[str]:
         """
         Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         """
@@ -596,7 +596,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def labels(self) -> List['outputs.ClusterLabel']:
+    def labels(self) -> pulumi.Output[List['outputs.ClusterLabel']]:
         """
         Array containing key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key `Infrastructure Tool`, it is used for internal purposes to track aggregate usage.
         """
@@ -604,7 +604,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mongoDbMajorVersion")
-    def mongo_db_major_version(self) -> str:
+    def mongo_db_major_version(self) -> pulumi.Output[str]:
         """
         Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.
         """
@@ -612,7 +612,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mongoDbVersion")
-    def mongo_db_version(self) -> str:
+    def mongo_db_version(self) -> pulumi.Output[str]:
         """
         Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         """
@@ -620,7 +620,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mongoUri")
-    def mongo_uri(self) -> str:
+    def mongo_uri(self) -> pulumi.Output[str]:
         """
         Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
         """
@@ -628,7 +628,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mongoUriUpdated")
-    def mongo_uri_updated(self) -> str:
+    def mongo_uri_updated(self) -> pulumi.Output[str]:
         """
         Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
         """
@@ -636,7 +636,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mongoUriWithOptions")
-    def mongo_uri_with_options(self) -> str:
+    def mongo_uri_with_options(self) -> pulumi.Output[str]:
         """
         connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
         """
@@ -644,7 +644,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
         """
@@ -652,7 +652,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> Optional[float]:
+    def num_shards(self) -> pulumi.Output[Optional[float]]:
         """
         Number of shards to deploy in the specified zone, minimum 1.
         """
@@ -660,7 +660,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def paused(self) -> bool:
+    def paused(self) -> pulumi.Output[bool]:
         """
         Flag that indicates whether the cluster is paused or not.
         """
@@ -668,7 +668,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="pitEnabled")
-    def pit_enabled(self) -> bool:
+    def pit_enabled(self) -> pulumi.Output[bool]:
         """
         - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, provider_backup_enabled must also be set to true.
         """
@@ -676,7 +676,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique ID for the project to create the database user.
         """
@@ -684,7 +684,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerAutoScalingComputeMaxInstanceSize")
-    def provider_auto_scaling_compute_max_instance_size(self) -> str:
+    def provider_auto_scaling_compute_max_instance_size(self) -> pulumi.Output[str]:
         """
         Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         """
@@ -692,7 +692,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerAutoScalingComputeMinInstanceSize")
-    def provider_auto_scaling_compute_min_instance_size(self) -> str:
+    def provider_auto_scaling_compute_min_instance_size(self) -> pulumi.Output[str]:
         """
         Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         """
@@ -700,7 +700,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerBackupEnabled")
-    def provider_backup_enabled(self) -> Optional[bool]:
+    def provider_backup_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
         Flag indicating if the cluster uses Cloud Backup for backups.
         """
@@ -708,7 +708,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerDiskIops")
-    def provider_disk_iops(self) -> float:
+    def provider_disk_iops(self) -> pulumi.Output[float]:
         """
         The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
         """
@@ -716,7 +716,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerDiskTypeName")
-    def provider_disk_type_name(self) -> str:
+    def provider_disk_type_name(self) -> pulumi.Output[str]:
         """
         Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
         """
@@ -724,7 +724,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerEncryptEbsVolume")
-    def provider_encrypt_ebs_volume(self) -> bool:
+    def provider_encrypt_ebs_volume(self) -> pulumi.Output[bool]:
         """
         If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         """
@@ -732,7 +732,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerInstanceSizeName")
-    def provider_instance_size_name(self) -> str:
+    def provider_instance_size_name(self) -> pulumi.Output[str]:
         """
         Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
         **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
@@ -741,7 +741,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerName")
-    def provider_name(self) -> str:
+    def provider_name(self) -> pulumi.Output[str]:
         """
         Cloud service provider on which the servers are provisioned.
         """
@@ -749,7 +749,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerRegionName")
-    def provider_region_name(self) -> str:
+    def provider_region_name(self) -> pulumi.Output[str]:
         """
         Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -758,7 +758,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerVolumeType")
-    def provider_volume_type(self) -> str:
+    def provider_volume_type(self) -> pulumi.Output[str]:
         """
         The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
         """
@@ -766,7 +766,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="replicationFactor")
-    def replication_factor(self) -> float:
+    def replication_factor(self) -> pulumi.Output[float]:
         """
         Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
@@ -774,7 +774,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="replicationSpecs")
-    def replication_specs(self) -> List['outputs.ClusterReplicationSpec']:
+    def replication_specs(self) -> pulumi.Output[List['outputs.ClusterReplicationSpec']]:
         """
         Configuration for cluster regions.  See Replication Spec below for more details.
         """
@@ -782,7 +782,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotBackupPolicies")
-    def snapshot_backup_policies(self) -> List['outputs.ClusterSnapshotBackupPolicy']:
+    def snapshot_backup_policies(self) -> pulumi.Output[List['outputs.ClusterSnapshotBackupPolicy']]:
         """
         current snapshot schedule and retention settings for the cluster.
         """
@@ -790,7 +790,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="srvAddress")
-    def srv_address(self) -> str:
+    def srv_address(self) -> pulumi.Output[str]:
         """
         Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         """
@@ -798,7 +798,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="stateName")
-    def state_name(self) -> str:
+    def state_name(self) -> pulumi.Output[str]:
         """
         Current state of the cluster. The possible states are:
         - IDLE

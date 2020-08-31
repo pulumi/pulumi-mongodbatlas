@@ -15,7 +15,7 @@ __all__ = ['GlobalClusterConfig']
 
 class GlobalClusterConfig(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  custom_zone_mappings: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GlobalClusterConfigCustomZoneMappingArgs']]]]] = None,
@@ -189,12 +189,12 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> str:
+    def cluster_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter(name="customZoneMapping")
-    def custom_zone_mapping(self) -> Mapping[str, Any]:
+    def custom_zone_mapping(self) -> pulumi.Output[Mapping[str, Any]]:
         """
         A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         """
@@ -202,7 +202,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="customZoneMappings")
-    def custom_zone_mappings(self) -> Optional[List['outputs.GlobalClusterConfigCustomZoneMapping']]:
+    def custom_zone_mappings(self) -> pulumi.Output[Optional[List['outputs.GlobalClusterConfigCustomZoneMapping']]]:
         """
         Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
         """
@@ -210,7 +210,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="managedNamespaces")
-    def managed_namespaces(self) -> List['outputs.GlobalClusterConfigManagedNamespace']:
+    def managed_namespaces(self) -> pulumi.Output[List['outputs.GlobalClusterConfigManagedNamespace']]:
         """
         Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         """
@@ -218,7 +218,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique ID for the project to create the database user.
         * `cluster_name - (Required) The name of the Global Cluster.

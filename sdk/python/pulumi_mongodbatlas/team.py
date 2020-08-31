@@ -13,7 +13,7 @@ __all__ = ['Team']
 
 class Team(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
@@ -114,7 +114,7 @@ class Team(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> pulumi.Output[str]:
         """
         The name of the team you want to create.
         """
@@ -122,7 +122,7 @@ class Team(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> str:
+    def org_id(self) -> pulumi.Output[str]:
         """
         The unique identifier for the organization you want to associate the team with.
         """
@@ -130,7 +130,7 @@ class Team(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> str:
+    def team_id(self) -> pulumi.Output[str]:
         """
         The unique identifier for the team.
         """
@@ -138,7 +138,7 @@ class Team(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def usernames(self) -> List[str]:
+    def usernames(self) -> pulumi.Output[List[str]]:
         """
         The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         """

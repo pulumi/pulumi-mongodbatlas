@@ -13,7 +13,7 @@ __all__ = ['NetworkPeering']
 
 class NetworkPeering(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accepter_region_name: Optional[pulumi.Input[str]] = None,
                  atlas_cidr_block: Optional[pulumi.Input[str]] = None,
@@ -415,7 +415,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accepterRegionName")
-    def accepter_region_name(self) -> str:
+    def accepter_region_name(self) -> pulumi.Output[str]:
         """
         Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         """
@@ -423,12 +423,12 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="atlasCidrBlock")
-    def atlas_cidr_block(self) -> str:
+    def atlas_cidr_block(self) -> pulumi.Output[str]:
         return pulumi.get(self, "atlas_cidr_block")
 
     @property
     @pulumi.getter(name="atlasGcpProjectId")
-    def atlas_gcp_project_id(self) -> str:
+    def atlas_gcp_project_id(self) -> pulumi.Output[str]:
         """
         The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
         """
@@ -436,17 +436,17 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="atlasId")
-    def atlas_id(self) -> str:
+    def atlas_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "atlas_id")
 
     @property
     @pulumi.getter(name="atlasVpcName")
-    def atlas_vpc_name(self) -> str:
+    def atlas_vpc_name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "atlas_vpc_name")
 
     @property
     @pulumi.getter(name="awsAccountId")
-    def aws_account_id(self) -> str:
+    def aws_account_id(self) -> pulumi.Output[str]:
         """
         AWS Account ID of the owner of the peer VPC.
         """
@@ -454,7 +454,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="azureDirectoryId")
-    def azure_directory_id(self) -> str:
+    def azure_directory_id(self) -> pulumi.Output[str]:
         """
         Unique identifier for an Azure AD directory.
         """
@@ -462,7 +462,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="azureSubscriptionId")
-    def azure_subscription_id(self) -> str:
+    def azure_subscription_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the Azure subscription in which the VNet resides.
         """
@@ -470,7 +470,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> str:
+    def connection_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the Atlas network peering container.
         """
@@ -478,7 +478,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="containerId")
-    def container_id(self) -> str:
+    def container_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         """
@@ -486,7 +486,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="errorMessage")
-    def error_message(self) -> str:
+    def error_message(self) -> pulumi.Output[str]:
         """
         When `"status" : "FAILED"`, Atlas provides a description of the error.
         """
@@ -494,7 +494,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="errorState")
-    def error_state(self) -> str:
+    def error_state(self) -> pulumi.Output[str]:
         """
         Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
         """
@@ -502,7 +502,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="errorStateName")
-    def error_state_name(self) -> str:
+    def error_state_name(self) -> pulumi.Output[str]:
         """
         Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
         """
@@ -510,7 +510,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="gcpProjectId")
-    def gcp_project_id(self) -> str:
+    def gcp_project_id(self) -> pulumi.Output[str]:
         """
         GCP project ID of the owner of the network peer.
         """
@@ -518,7 +518,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="networkName")
-    def network_name(self) -> str:
+    def network_name(self) -> pulumi.Output[str]:
         """
         Name of the network peer to which Atlas connects.
         """
@@ -526,7 +526,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="peerId")
-    def peer_id(self) -> str:
+    def peer_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the Atlas network peer.
         """
@@ -534,7 +534,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique ID for the MongoDB Atlas project to create the database user.
         """
@@ -542,7 +542,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerName")
-    def provider_name(self) -> str:
+    def provider_name(self) -> pulumi.Output[str]:
         """
         Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
         """
@@ -550,7 +550,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="resourceGroupName")
-    def resource_group_name(self) -> str:
+    def resource_group_name(self) -> pulumi.Output[str]:
         """
         Name of your Azure resource group.
         """
@@ -558,7 +558,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="routeTableCidrBlock")
-    def route_table_cidr_block(self) -> str:
+    def route_table_cidr_block(self) -> pulumi.Output[str]:
         """
         AWS VPC CIDR block or subnet.
         """
@@ -566,7 +566,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def status(self) -> str:
+    def status(self) -> pulumi.Output[str]:
         """
         Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
         """
@@ -574,7 +574,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="statusName")
-    def status_name(self) -> str:
+    def status_name(self) -> pulumi.Output[str]:
         """
         (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
         """
@@ -582,7 +582,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vnetName")
-    def vnet_name(self) -> str:
+    def vnet_name(self) -> pulumi.Output[str]:
         """
         Name of your Azure VNet.
         """
@@ -590,7 +590,7 @@ class NetworkPeering(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="vpcId")
-    def vpc_id(self) -> str:
+    def vpc_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         """

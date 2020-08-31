@@ -15,7 +15,7 @@ __all__ = ['CloudProviderSnapshotBackupPolicy']
 
 class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['CloudProviderSnapshotBackupPolicyPolicyArgs']]]]] = None,
@@ -185,7 +185,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> str:
+    def cluster_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the Atlas cluster.
         """
@@ -193,7 +193,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> str:
+    def cluster_name(self) -> pulumi.Output[str]:
         """
         The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         """
@@ -201,7 +201,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="nextSnapshot")
-    def next_snapshot(self) -> str:
+    def next_snapshot(self) -> pulumi.Output[str]:
         """
         Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
         """
@@ -209,7 +209,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def policies(self) -> List['outputs.CloudProviderSnapshotBackupPolicyPolicy']:
+    def policies(self) -> pulumi.Output[List['outputs.CloudProviderSnapshotBackupPolicyPolicy']]:
         """
         Contains a document for each backup policy item in the desired updated backup policy.
         * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
@@ -218,7 +218,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         The unique identifier of the project for the Atlas cluster.
         """
@@ -226,7 +226,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="referenceHourOfDay")
-    def reference_hour_of_day(self) -> float:
+    def reference_hour_of_day(self) -> pulumi.Output[float]:
         """
         UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         """
@@ -234,7 +234,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="referenceMinuteOfHour")
-    def reference_minute_of_hour(self) -> float:
+    def reference_minute_of_hour(self) -> pulumi.Output[float]:
         """
         UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         """
@@ -242,7 +242,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="restoreWindowDays")
-    def restore_window_days(self) -> float:
+    def restore_window_days(self) -> pulumi.Output[float]:
         """
         Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
         """
@@ -250,7 +250,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="updateSnapshots")
-    def update_snapshots(self) -> bool:
+    def update_snapshots(self) -> pulumi.Output[bool]:
         """
         Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
         """

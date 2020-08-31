@@ -15,7 +15,7 @@ __all__ = ['X509AuthenticationDatabaseUser']
 
 class X509AuthenticationDatabaseUser(pulumi.CustomResource):
     def __init__(__self__,
-                 resource_name,
+                 resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  customer_x509_cas: Optional[pulumi.Input[str]] = None,
                  months_until_expiration: Optional[pulumi.Input[float]] = None,
@@ -163,7 +163,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def certificates(self) -> List['outputs.X509AuthenticationDatabaseUserCertificate']:
+    def certificates(self) -> pulumi.Output[List['outputs.X509AuthenticationDatabaseUserCertificate']]:
         """
         Array of objects where each details one unexpired database user certificate.
         """
@@ -171,7 +171,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="currentCertificate")
-    def current_certificate(self) -> str:
+    def current_certificate(self) -> pulumi.Output[str]:
         """
         Contains the last X.509 certificate and private key created for a database user.
         """
@@ -179,7 +179,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="customerX509Cas")
-    def customer_x509_cas(self) -> Optional[str]:
+    def customer_x509_cas(self) -> pulumi.Output[Optional[str]]:
         """
         PEM string containing one or more customer CAs for database user authentication.
         """
@@ -187,7 +187,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="monthsUntilExpiration")
-    def months_until_expiration(self) -> Optional[float]:
+    def months_until_expiration(self) -> pulumi.Output[Optional[float]]:
         """
         A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         """
@@ -195,7 +195,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> pulumi.Output[str]:
         """
         Identifier for the Atlas project associated with the X.509 configuration.
         """
@@ -203,7 +203,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def username(self) -> Optional[str]:
+    def username(self) -> pulumi.Output[Optional[str]]:
         """
         Username of the database user to create a certificate for.
         """
