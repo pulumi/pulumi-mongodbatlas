@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class AlertConfigurationMetricThresholdGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the metric to check.
+        /// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
         /// </summary>
         [Input("metricName")]
         public Input<string>? MetricName { get; set; }

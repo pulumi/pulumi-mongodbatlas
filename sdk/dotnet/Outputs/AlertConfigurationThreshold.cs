@@ -7,38 +7,23 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Mongodbatlas.Inputs
+namespace Pulumi.Mongodbatlas.Outputs
 {
 
-    public sealed class AlertConfigurationMetricThresholdArgs : Pulumi.ResourceArgs
+    [OutputType]
+    public sealed class AlertConfigurationThreshold
     {
-        /// <summary>
-        /// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
-        /// </summary>
-        [Input("metricName")]
-        public Input<string>? MetricName { get; set; }
-
-        /// <summary>
-        /// This must be set to AVERAGE. Atlas computes the current metric value as an average.
-        /// </summary>
-        [Input("mode")]
-        public Input<string>? Mode { get; set; }
-
         /// <summary>
         /// Operator to apply when checking the current metric value against the threshold value.
         /// Accepted values are:
         /// - `GREATER_THAN`
         /// - `LESS_THAN`
         /// </summary>
-        [Input("operator")]
-        public Input<string>? Operator { get; set; }
-
+        public readonly string? Operator;
         /// <summary>
         /// Threshold value outside of which an alert will be triggered.
         /// </summary>
-        [Input("threshold")]
-        public Input<double>? Threshold { get; set; }
-
+        public readonly double? Threshold;
         /// <summary>
         /// The units for the threshold value. Depends on the type of metric.
         /// Accepted values are:
@@ -59,11 +44,19 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// - `HOURS`
         /// - `DAYS`
         /// </summary>
-        [Input("units")]
-        public Input<string>? Units { get; set; }
+        public readonly string? Units;
 
-        public AlertConfigurationMetricThresholdArgs()
+        [OutputConstructor]
+        private AlertConfigurationThreshold(
+            string? @operator,
+
+            double? threshold,
+
+            string? units)
         {
+            Operator = @operator;
+            Threshold = threshold;
+            Units = units;
         }
     }
 }

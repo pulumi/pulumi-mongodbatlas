@@ -170,9 +170,6 @@ type CustomDbRole struct {
 // NewCustomDbRole registers a new resource with the given unique name, arguments, and options.
 func NewCustomDbRole(ctx *pulumi.Context,
 	name string, args *CustomDbRoleArgs, opts ...pulumi.ResourceOption) (*CustomDbRole, error) {
-	if args == nil || args.Actions == nil {
-		return nil, errors.New("missing required argument 'Actions'")
-	}
 	if args == nil || args.ProjectId == nil {
 		return nil, errors.New("missing required argument 'ProjectId'")
 	}

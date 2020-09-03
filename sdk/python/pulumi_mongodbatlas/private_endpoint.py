@@ -30,6 +30,8 @@ class PrivateEndpoint(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+        > **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
+
         ## Example Usage
 
         ```python

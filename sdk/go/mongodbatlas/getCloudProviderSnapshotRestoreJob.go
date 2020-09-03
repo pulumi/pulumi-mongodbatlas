@@ -50,7 +50,7 @@ type LookupCloudProviderSnapshotRestoreJobResult struct {
 	Id                    string `pulumi:"id"`
 	JobId                 string `pulumi:"jobId"`
 	OplogInc              int    `pulumi:"oplogInc"`
-	OplogTs               string `pulumi:"oplogTs"`
+	OplogTs               int    `pulumi:"oplogTs"`
 	PointInTimeUtcSeconds int    `pulumi:"pointInTimeUtcSeconds"`
 	ProjectId             string `pulumi:"projectId"`
 	// Unique identifier of the source snapshot ID of the restore job.

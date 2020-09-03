@@ -10,47 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `Project` provides a Project resource. This allows project to be created.
-//
-// > **IMPORTANT WARNING:**  Changing the name of an existing Project in your configuration will result the destruction of that Project and related resources (including Clusters) and the re-creation of those resources.  The provider will inform you of the destroyed/created resources before applying so be sure to verify any change to your environment before applying.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
-// 			OrgId: pulumi.String("<ORG_ID>"),
-// 			Teams: mongodbatlas.ProjectTeamArray{
-// 				&mongodbatlas.ProjectTeamArgs{
-// 					RoleNames: pulumi.StringArray{
-// 						pulumi.String("GROUP_OWNER"),
-// 					},
-// 					TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
-// 				},
-// 				&mongodbatlas.ProjectTeamArgs{
-// 					RoleNames: pulumi.StringArray{
-// 						pulumi.String("GROUP_READ_ONLY"),
-// 						pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
-// 					},
-// 					TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type Project struct {
 	pulumi.CustomResourceState
 

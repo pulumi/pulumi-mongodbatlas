@@ -14,9 +14,18 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetDatabaseUsersResultResult
     {
         /// <summary>
-        /// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+        /// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+        /// Possible values include:
+        /// * `admin` if `x509_type` and `aws_iam_type` are omitted or NONE.
+        /// * `$external` if:
+        /// * `x509_type` is MANAGED or CUSTOMER, or
+        /// * `aws_iam_type` is USER or ROLE.
         /// </summary>
         public readonly string AuthDatabaseName;
+        /// <summary>
+        /// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+        /// </summary>
+        public readonly string AwsIamType;
         public readonly ImmutableArray<Outputs.GetDatabaseUsersResultLabelResult> Labels;
         /// <summary>
         /// The unique ID for the project to get all database users.
@@ -39,6 +48,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetDatabaseUsersResultResult(
             string authDatabaseName,
 
+            string awsIamType,
+
             ImmutableArray<Outputs.GetDatabaseUsersResultLabelResult> labels,
 
             string projectId,
@@ -50,6 +61,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             string x509Type)
         {
             AuthDatabaseName = authDatabaseName;
+            AwsIamType = awsIamType;
             Labels = labels;
             ProjectId = projectId;
             Roles = roles;

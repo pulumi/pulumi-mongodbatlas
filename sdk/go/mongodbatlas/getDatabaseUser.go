@@ -38,6 +38,8 @@ type LookupDatabaseUserArgs struct {
 // A collection of values returned by getDatabaseUser.
 type LookupDatabaseUserResult struct {
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
+	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+	AwsIamType string `pulumi:"awsIamType"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
 	// Deprecated: use auth_database_name instead

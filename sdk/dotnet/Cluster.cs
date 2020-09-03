@@ -14,10 +14,12 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
+    /// &gt; **NOTE:** A network container is created for a cluster to reside in if one does not yet exist in the project.  To  use this automatically created container with another resource, such as peering, the `container_id` is exported after creation.
+    /// 
     /// &gt; **IMPORTANT:**
     /// &lt;br&gt; &amp;#8226; Free tier cluster creation (M0) is not supported via API or by this Provider.
     /// &lt;br&gt; &amp;#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.
-    /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+    /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).\
     /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
     /// 
     /// ## Example Usage
@@ -336,9 +338,6 @@ namespace Pulumi.Mongodbatlas
         [Output("encryptionAtRestProvider")]
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
 
-        /// <summary>
-        /// Array containing key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key `Infrastructure Tool`, it is used for internal purposes to track aggregate usage.
-        /// </summary>
         [Output("labels")]
         public Output<ImmutableArray<Outputs.ClusterLabel>> Labels { get; private set; } = null!;
 
@@ -618,10 +617,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("labels")]
         private InputList<Inputs.ClusterLabelArgs>? _labels;
-
-        /// <summary>
-        /// Array containing key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key `Infrastructure Tool`, it is used for internal purposes to track aggregate usage.
-        /// </summary>
         public InputList<Inputs.ClusterLabelArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.ClusterLabelArgs>());
@@ -835,10 +830,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("labels")]
         private InputList<Inputs.ClusterLabelGetArgs>? _labels;
-
-        /// <summary>
-        /// Array containing key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters. You cannot set the key `Infrastructure Tool`, it is used for internal purposes to track aggregate usage.
-        /// </summary>
         public InputList<Inputs.ClusterLabelGetArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<Inputs.ClusterLabelGetArgs>());

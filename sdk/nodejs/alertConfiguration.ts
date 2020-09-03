@@ -46,6 +46,40 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  * });
  * ```
+ *
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.AlertConfiguration("test", {
+ *     enabled: true,
+ *     eventType: "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     notifications: [{
+ *         delayMin: 0,
+ *         emailEnabled: true,
+ *         intervalMin: 5,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *         smsEnabled: false,
+ *         typeName: "GROUP",
+ *     }],
+ *     projectId: "<PROJECT-ID>",
+ *     threshold: {
+ *         operator: "LESS_THAN",
+ *         threshold: 1,
+ *         units: "HOURS",
+ *     },
+ * });
+ * ```
  */
 export class AlertConfiguration extends pulumi.CustomResource {
     /**
@@ -89,39 +123,6 @@ export class AlertConfiguration extends pulumi.CustomResource {
     public readonly enabled!: pulumi.Output<boolean>;
     /**
      * The type of event that will trigger an alert.
-     * Alert type 	Possible values:
-     * * Host
-     * - `OUTSIDE_METRIC_THRESHOLD`
-     * - `HOST_RESTARTED`
-     * - `HOST_UPGRADED`
-     * - `HOST_NOW_SECONDARY`
-     * - `HOST_NOW_PRIMARY`
-     * * Replica set
-     * - `NO_PRIMARY`
-     * - `TOO_MANY_ELECTIONS`
-     * * Sharded cluster
-     * - `CLUSTER_MONGOS_IS_MISSING`
-     * - `User`
-     * - `JOINED_GROUP`
-     * - `REMOVED_FROM_GROUP`
-     * - `USER_ROLES_CHANGED_AUDIT`
-     * * Project
-     * - `USERS_AWAITING_APPROVAL`
-     * - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-     * - `GROUP_CREATED`
-     * * Team
-     * - `JOINED_TEAM`
-     * - `REMOVED_FROM_TEAM`
-     * * Organization
-     * - `INVITED_TO_ORG`
-     * - `JOINED_ORG`
-     * * Data Explorer
-     * - `DATA_EXPLORER`
-     * - `DATA_EXPLORER_CRUD`
-     * * Billing
-     * - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-     * - `CHARGE_SUCCEEDED`
-     * - `INVOICE_CLOSED`
      */
     public readonly eventType!: pulumi.Output<string>;
     public readonly matchers!: pulumi.Output<outputs.AlertConfigurationMatcher[] | undefined>;
@@ -131,6 +132,10 @@ export class AlertConfiguration extends pulumi.CustomResource {
      * The ID of the project where the alert configuration will create.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
+    public readonly threshold!: pulumi.Output<outputs.AlertConfigurationThreshold | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
@@ -156,6 +161,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
             inputs["metricThreshold"] = state ? state.metricThreshold : undefined;
             inputs["notifications"] = state ? state.notifications : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
+            inputs["threshold"] = state ? state.threshold : undefined;
             inputs["updated"] = state ? state.updated : undefined;
         } else {
             const args = argsOrState as AlertConfigurationArgs | undefined;
@@ -174,6 +180,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
             inputs["metricThreshold"] = args ? args.metricThreshold : undefined;
             inputs["notifications"] = args ? args.notifications : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
+            inputs["threshold"] = args ? args.threshold : undefined;
             inputs["alertConfigurationId"] = undefined /*out*/;
             inputs["created"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
@@ -207,39 +214,6 @@ export interface AlertConfigurationState {
     readonly enabled?: pulumi.Input<boolean>;
     /**
      * The type of event that will trigger an alert.
-     * Alert type 	Possible values:
-     * * Host
-     * - `OUTSIDE_METRIC_THRESHOLD`
-     * - `HOST_RESTARTED`
-     * - `HOST_UPGRADED`
-     * - `HOST_NOW_SECONDARY`
-     * - `HOST_NOW_PRIMARY`
-     * * Replica set
-     * - `NO_PRIMARY`
-     * - `TOO_MANY_ELECTIONS`
-     * * Sharded cluster
-     * - `CLUSTER_MONGOS_IS_MISSING`
-     * - `User`
-     * - `JOINED_GROUP`
-     * - `REMOVED_FROM_GROUP`
-     * - `USER_ROLES_CHANGED_AUDIT`
-     * * Project
-     * - `USERS_AWAITING_APPROVAL`
-     * - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-     * - `GROUP_CREATED`
-     * * Team
-     * - `JOINED_TEAM`
-     * - `REMOVED_FROM_TEAM`
-     * * Organization
-     * - `INVITED_TO_ORG`
-     * - `JOINED_ORG`
-     * * Data Explorer
-     * - `DATA_EXPLORER`
-     * - `DATA_EXPLORER_CRUD`
-     * * Billing
-     * - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-     * - `CHARGE_SUCCEEDED`
-     * - `INVOICE_CLOSED`
      */
     readonly eventType?: pulumi.Input<string>;
     readonly matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
@@ -249,6 +223,10 @@ export interface AlertConfigurationState {
      * The ID of the project where the alert configuration will create.
      */
     readonly projectId?: pulumi.Input<string>;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
+    readonly threshold?: pulumi.Input<inputs.AlertConfigurationThreshold>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
@@ -265,39 +243,6 @@ export interface AlertConfigurationArgs {
     readonly enabled?: pulumi.Input<boolean>;
     /**
      * The type of event that will trigger an alert.
-     * Alert type 	Possible values:
-     * * Host
-     * - `OUTSIDE_METRIC_THRESHOLD`
-     * - `HOST_RESTARTED`
-     * - `HOST_UPGRADED`
-     * - `HOST_NOW_SECONDARY`
-     * - `HOST_NOW_PRIMARY`
-     * * Replica set
-     * - `NO_PRIMARY`
-     * - `TOO_MANY_ELECTIONS`
-     * * Sharded cluster
-     * - `CLUSTER_MONGOS_IS_MISSING`
-     * - `User`
-     * - `JOINED_GROUP`
-     * - `REMOVED_FROM_GROUP`
-     * - `USER_ROLES_CHANGED_AUDIT`
-     * * Project
-     * - `USERS_AWAITING_APPROVAL`
-     * - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-     * - `GROUP_CREATED`
-     * * Team
-     * - `JOINED_TEAM`
-     * - `REMOVED_FROM_TEAM`
-     * * Organization
-     * - `INVITED_TO_ORG`
-     * - `JOINED_ORG`
-     * * Data Explorer
-     * - `DATA_EXPLORER`
-     * - `DATA_EXPLORER_CRUD`
-     * * Billing
-     * - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-     * - `CHARGE_SUCCEEDED`
-     * - `INVOICE_CLOSED`
      */
     readonly eventType: pulumi.Input<string>;
     readonly matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
@@ -307,4 +252,8 @@ export interface AlertConfigurationArgs {
      * The ID of the project where the alert configuration will create.
      */
     readonly projectId: pulumi.Input<string>;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
+    readonly threshold?: pulumi.Input<inputs.AlertConfigurationThreshold>;
 }

@@ -134,7 +134,7 @@ export class CustomDbRole extends pulumi.CustomResource {
         return obj['__pulumiType'] === CustomDbRole.__pulumiType;
     }
 
-    public readonly actions!: pulumi.Output<outputs.CustomDbRoleAction[]>;
+    public readonly actions!: pulumi.Output<outputs.CustomDbRoleAction[] | undefined>;
     public readonly inheritedRoles!: pulumi.Output<outputs.CustomDbRoleInheritedRole[] | undefined>;
     /**
      * The unique ID for the project to create the database user.
@@ -163,9 +163,6 @@ export class CustomDbRole extends pulumi.CustomResource {
             inputs["roleName"] = state ? state.roleName : undefined;
         } else {
             const args = argsOrState as CustomDbRoleArgs | undefined;
-            if (!args || args.actions === undefined) {
-                throw new Error("Missing required property 'actions'");
-            }
             if (!args || args.projectId === undefined) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -208,7 +205,7 @@ export interface CustomDbRoleState {
  * The set of arguments for constructing a CustomDbRole resource.
  */
 export interface CustomDbRoleArgs {
-    readonly actions: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
+    readonly actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
     readonly inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
     /**
      * The unique ID for the project to create the database user.

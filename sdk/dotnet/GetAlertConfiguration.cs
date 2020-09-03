@@ -55,18 +55,6 @@ namespace Pulumi.Mongodbatlas
         public readonly bool Enabled;
         /// <summary>
         /// The type of event that will trigger an alert.
-        /// Alert type. Possible values:
-        /// - Host
-        /// - `OUTSIDE_METRIC_THRESHOLD`
-        /// - `HOST_RESTARTED`
-        /// - `HOST_UPGRADED`
-        /// - `HOST_NOW_SECONDARY`
-        /// - `HOST_NOW_PRIMARY`
-        /// - Replica set
-        /// - `NO_PRIMARY`
-        /// - `TOO_MANY_ELECTIONS`
-        /// Sharded cluster
-        /// - `CLUSTER_MONGOS_IS_MISSING`
         /// </summary>
         public readonly string EventType;
         /// <summary>
@@ -77,6 +65,10 @@ namespace Pulumi.Mongodbatlas
         public readonly Outputs.GetAlertConfigurationMetricThresholdResult MetricThreshold;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> Notifications;
         public readonly string ProjectId;
+        /// <summary>
+        /// Threshold value outside of which an alert will be triggered.
+        /// </summary>
+        public readonly Outputs.GetAlertConfigurationThresholdResult Threshold;
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         /// </summary>
@@ -102,6 +94,8 @@ namespace Pulumi.Mongodbatlas
 
             string projectId,
 
+            Outputs.GetAlertConfigurationThresholdResult threshold,
+
             string updated)
         {
             AlertConfigurationId = alertConfigurationId;
@@ -113,6 +107,7 @@ namespace Pulumi.Mongodbatlas
             MetricThreshold = metricThreshold;
             Notifications = notifications;
             ProjectId = projectId;
+            Threshold = threshold;
             Updated = updated;
         }
     }

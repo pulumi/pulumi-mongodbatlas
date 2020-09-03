@@ -13,6 +13,7 @@ __all__ = [
     'AlertConfigurationMatcher',
     'AlertConfigurationMetricThreshold',
     'AlertConfigurationNotification',
+    'AlertConfigurationThreshold',
     'CloudProviderSnapshotBackupPolicyPolicy',
     'CloudProviderSnapshotBackupPolicyPolicyPolicyItem',
     'CloudProviderSnapshotRestoreJobDeliveryType',
@@ -41,6 +42,7 @@ __all__ = [
     'GetAlertConfigurationMatcherResult',
     'GetAlertConfigurationMetricThresholdResult',
     'GetAlertConfigurationNotificationResult',
+    'GetAlertConfigurationThresholdResult',
     'GetCloudProviderSnapshotBackupPolicyPolicyResult',
     'GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetCloudProviderSnapshotRestoreJobsResultResult',
@@ -90,19 +92,6 @@ class AlertConfigurationMatcher(dict):
                  value: Optional[str] = None):
         """
         :param str field_name: Name of the field in the target object to match on.
-               Host alerts support these fields:
-               - `TYPE_NAME`
-               - `HOSTNAME`
-               - `PORT`
-               - `HOSTNAME_AND_PORT`
-               - `REPLICA_SET_NAME`
-               Replica set alerts support these fields:
-               - `REPLICA_SET_NAME`
-               - `SHARD_NAME`
-               - `CLUSTER_NAME`
-               Sharded cluster alerts support these fields:
-               - `CLUSTER_NAME`
-               - `SHARD_NAME`
         :param str operator: Operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
                - `GREATER_THAN`
@@ -126,19 +115,6 @@ class AlertConfigurationMatcher(dict):
     def field_name(self) -> Optional[str]:
         """
         Name of the field in the target object to match on.
-        Host alerts support these fields:
-        - `TYPE_NAME`
-        - `HOSTNAME`
-        - `PORT`
-        - `HOSTNAME_AND_PORT`
-        - `REPLICA_SET_NAME`
-        Replica set alerts support these fields:
-        - `REPLICA_SET_NAME`
-        - `SHARD_NAME`
-        - `CLUSTER_NAME`
-        Sharded cluster alerts support these fields:
-        - `CLUSTER_NAME`
-        - `SHARD_NAME`
         """
         return pulumi.get(self, "field_name")
 
@@ -179,7 +155,7 @@ class AlertConfigurationMetricThreshold(dict):
                  threshold: Optional[float] = None,
                  units: Optional[str] = None):
         """
-        :param str metric_name: Name of the metric to check.
+        :param str metric_name: Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
         :param str mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
         :param str operator: Operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
@@ -220,7 +196,7 @@ class AlertConfigurationMetricThreshold(dict):
     @pulumi.getter(name="metricName")
     def metric_name(self) -> Optional[str]:
         """
-        Name of the metric to check.
+        Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
         """
         return pulumi.get(self, "metric_name")
 
@@ -553,6 +529,92 @@ class AlertConfigurationNotification(dict):
         VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         """
         return pulumi.get(self, "victor_ops_routing_key")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class AlertConfigurationThreshold(dict):
+    def __init__(__self__, *,
+                 operator: Optional[str] = None,
+                 threshold: Optional[float] = None,
+                 units: Optional[str] = None):
+        """
+        :param str operator: Operator to apply when checking the current metric value against the threshold value.
+               Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
+        :param float threshold: Threshold value outside of which an alert will be triggered.
+        :param str units: The units for the threshold value. Depends on the type of metric.
+               Accepted values are:
+               - `RAW`
+               - `BITS`
+               - `BYTES`
+               - `KILOBITS`
+               - `KILOBYTES`
+               - `MEGABITS`
+               - `MEGABYTES`
+               - `GIGABITS`
+               - `GIGABYTES`
+               - `TERABYTES`
+               - `PETABYTES`
+               - `MILLISECONDS`
+               - `SECONDS`
+               - `MINUTES`
+               - `HOURS`
+               - `DAYS`
+        """
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
+        if units is not None:
+            pulumi.set(__self__, "units", units)
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[str]:
+        """
+        Operator to apply when checking the current metric value against the threshold value.
+        Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
+        """
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> Optional[float]:
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter
+    def units(self) -> Optional[str]:
+        """
+        The units for the threshold value. Depends on the type of metric.
+        Accepted values are:
+        - `RAW`
+        - `BITS`
+        - `BYTES`
+        - `KILOBITS`
+        - `KILOBYTES`
+        - `MEGABITS`
+        - `MEGABYTES`
+        - `GIGABITS`
+        - `GIGABYTES`
+        - `TERABYTES`
+        - `PETABYTES`
+        - `MILLISECONDS`
+        - `SECONDS`
+        - `MINUTES`
+        - `HOURS`
+        - `DAYS`
+        """
+        return pulumi.get(self, "units")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1846,20 +1908,7 @@ class GetAlertConfigurationMatcherResult(dict):
                  value: str):
         """
         :param str field_name: Name of the field in the target object to match on.
-               Host alerts support these fields:
-               - `TYPE_NAME`
-               - `HOSTNAME`
-               - `PORT`
-               - `HOSTNAME_AND_PORT`
-               - `REPLICA_SET_NAME`
-               Replica set alerts support these fields:
-               - `REPLICA_SET_NAME`
-               - `SHARD_NAME`
-               - `CLUSTER_NAME`
-               Sharded cluster alerts support these fields:
-               - `CLUSTER_NAME`
-               - `SHARD_NAME`
-        :param str operator: Operator to apply when checking the current metric value against the threshold value. 
+        :param str operator: Operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
                - `GREATER_THAN`
                - `LESS_THAN`
@@ -1879,19 +1928,6 @@ class GetAlertConfigurationMatcherResult(dict):
     def field_name(self) -> str:
         """
         Name of the field in the target object to match on.
-        Host alerts support these fields:
-        - `TYPE_NAME`
-        - `HOSTNAME`
-        - `PORT`
-        - `HOSTNAME_AND_PORT`
-        - `REPLICA_SET_NAME`
-        Replica set alerts support these fields:
-        - `REPLICA_SET_NAME`
-        - `SHARD_NAME`
-        - `CLUSTER_NAME`
-        Sharded cluster alerts support these fields:
-        - `CLUSTER_NAME`
-        - `SHARD_NAME`
         """
         return pulumi.get(self, "field_name")
 
@@ -1899,7 +1935,7 @@ class GetAlertConfigurationMatcherResult(dict):
     @pulumi.getter
     def operator(self) -> str:
         """
-        Operator to apply when checking the current metric value against the threshold value. 
+        Operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
         - `GREATER_THAN`
         - `LESS_THAN`
@@ -1929,9 +1965,9 @@ class GetAlertConfigurationMetricThresholdResult(dict):
                  threshold: float,
                  units: str):
         """
-        :param str metric_name: Name of the metric to check.
+        :param str metric_name: Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
         :param str mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
-        :param str operator: Operator to apply when checking the current metric value against the threshold value. 
+        :param str operator: Operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
                - `GREATER_THAN`
                - `LESS_THAN`
@@ -1965,7 +2001,7 @@ class GetAlertConfigurationMetricThresholdResult(dict):
     @pulumi.getter(name="metricName")
     def metric_name(self) -> str:
         """
-        Name of the metric to check.
+        Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
         """
         return pulumi.get(self, "metric_name")
 
@@ -1981,7 +2017,7 @@ class GetAlertConfigurationMetricThresholdResult(dict):
     @pulumi.getter
     def operator(self) -> str:
         """
-        Operator to apply when checking the current metric value against the threshold value. 
+        Operator to apply when checking the current metric value against the threshold value.
         Accepted values are:
         - `GREATER_THAN`
         - `LESS_THAN`
@@ -2045,7 +2081,8 @@ class GetAlertConfigurationNotificationResult(dict):
                  type_name: str,
                  username: str,
                  victor_ops_api_key: str,
-                 victor_ops_routing_key: str):
+                 victor_ops_routing_key: str,
+                 roles: Optional[List[str]] = None):
         """
         :param str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str channel_name: Slack channel name. Required for the SLACK notifications type.
@@ -2064,7 +2101,7 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param bool sms_enabled: Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
         :param str team_id: Unique identifier of a team.
-        :param str type_name: Type of alert notification. 
+        :param str type_name: Type of alert notification.
                Accepted values are:
                - `DATADOG`
                - `EMAIL`
@@ -2104,6 +2141,8 @@ class GetAlertConfigurationNotificationResult(dict):
         pulumi.set(__self__, "username", username)
         pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
         pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -2245,7 +2284,7 @@ class GetAlertConfigurationNotificationResult(dict):
     @pulumi.getter(name="typeName")
     def type_name(self) -> str:
         """
-        Type of alert notification. 
+        Type of alert notification.
         Accepted values are:
         - `DATADOG`
         - `EMAIL`
@@ -2286,6 +2325,91 @@ class GetAlertConfigurationNotificationResult(dict):
         VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         """
         return pulumi.get(self, "victor_ops_routing_key")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[List[str]]:
+        return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
+class GetAlertConfigurationThresholdResult(dict):
+    def __init__(__self__, *,
+                 operator: str,
+                 threshold: float,
+                 units: str):
+        """
+        :param str operator: Operator to apply when checking the current metric value against the threshold value.
+               Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
+        :param float threshold: Threshold value outside of which an alert will be triggered.
+        :param str units: The units for the threshold value. Depends on the type of metric.
+               Accepted values are:
+               - `RAW`
+               - `BITS`
+               - `BYTES`
+               - `KILOBITS`
+               - `KILOBYTES`
+               - `MEGABITS`
+               - `MEGABYTES`
+               - `GIGABITS`
+               - `GIGABYTES`
+               - `TERABYTES`
+               - `PETABYTES`
+               - `MILLISECONDS`
+               - `SECONDS`
+               - `MINUTES`
+               - `HOURS`
+               - `DAYS`
+        """
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "units", units)
+
+    @property
+    @pulumi.getter
+    def operator(self) -> str:
+        """
+        Operator to apply when checking the current metric value against the threshold value.
+        Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
+        """
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> float:
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter
+    def units(self) -> str:
+        """
+        The units for the threshold value. Depends on the type of metric.
+        Accepted values are:
+        - `RAW`
+        - `BITS`
+        - `BYTES`
+        - `KILOBITS`
+        - `KILOBYTES`
+        - `MEGABITS`
+        - `MEGABYTES`
+        - `GIGABITS`
+        - `GIGABYTES`
+        - `TERABYTES`
+        - `PETABYTES`
+        - `MILLISECONDS`
+        - `SECONDS`
+        - `MINUTES`
+        - `HOURS`
+        - `DAYS`
+        """
+        return pulumi.get(self, "units")
 
 
 @pulumi.output_type
@@ -3992,19 +4116,27 @@ class GetDatabaseUserRoleResult(dict):
 class GetDatabaseUsersResultResult(dict):
     def __init__(__self__, *,
                  auth_database_name: str,
+                 aws_iam_type: str,
                  labels: List['outputs.GetDatabaseUsersResultLabelResult'],
                  project_id: str,
                  roles: List['outputs.GetDatabaseUsersResultRoleResult'],
                  username: str,
                  x509_type: str):
         """
-        :param str auth_database_name: The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+        :param str auth_database_name: (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+               Possible values include:
+               * `admin` if `x509_type` and `aws_iam_type` are omitted or NONE.
+               * `$external` if:
+               * `x509_type` is MANAGED or CUSTOMER, or
+               * `aws_iam_type` is USER or ROLE.
+        :param str aws_iam_type: The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
         :param str project_id: The unique ID for the project to get all database users.
         :param List['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param str username: Username for authenticating to MongoDB.
         :param str x509_type: X.509 method by which the provided username is authenticated.
         """
         pulumi.set(__self__, "auth_database_name", auth_database_name)
+        pulumi.set(__self__, "aws_iam_type", aws_iam_type)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "roles", roles)
@@ -4015,9 +4147,22 @@ class GetDatabaseUsersResultResult(dict):
     @pulumi.getter(name="authDatabaseName")
     def auth_database_name(self) -> str:
         """
-        The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+        (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+        Possible values include:
+        * `admin` if `x509_type` and `aws_iam_type` are omitted or NONE.
+        * `$external` if:
+        * `x509_type` is MANAGED or CUSTOMER, or
+        * `aws_iam_type` is USER or ROLE.
         """
         return pulumi.get(self, "auth_database_name")
+
+    @property
+    @pulumi.getter(name="awsIamType")
+    def aws_iam_type(self) -> str:
+        """
+        The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+        """
+        return pulumi.get(self, "aws_iam_type")
 
     @property
     @pulumi.getter

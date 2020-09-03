@@ -46,6 +46,44 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  * }, { async: true }));
  * ```
+ *
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testMongodbatlasAlertConfiguration = new mongodbatlas.AlertConfiguration("test", {
+ *     enabled: true,
+ *     eventType: "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     notifications: [{
+ *         delayMin: 0,
+ *         emailEnabled: true,
+ *         intervalMin: 5,
+ *         roles: [
+ *             "GROUP_CHARTS_ADMIN",
+ *             "GROUP_CLUSTER_MANAGER",
+ *         ],
+ *         smsEnabled: false,
+ *         typeName: "GROUP",
+ *     }],
+ *     projectId: "<PROJECT-ID>",
+ *     threshold: {
+ *         operator: "LESS_THAN",
+ *         threshold: 1,
+ *         units: "HOURS",
+ *     },
+ * });
+ * const testAlertConfiguration = pulumi.all([testMongodbatlasAlertConfiguration.alertConfigurationId, testMongodbatlasAlertConfiguration.projectId]).apply(([alertConfigurationId, projectId]) => mongodbatlas.getAlertConfiguration({
+ *     alertConfigurationId: alertConfigurationId,
+ *     projectId: projectId,
+ * }, { async: true }));
+ * ```
  */
 export function getAlertConfiguration(args: GetAlertConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationResult> {
     if (!opts) {
@@ -90,18 +128,6 @@ export interface GetAlertConfigurationResult {
     readonly enabled: boolean;
     /**
      * The type of event that will trigger an alert.
-     * Alert type. Possible values:
-     * - Host
-     * - `OUTSIDE_METRIC_THRESHOLD`
-     * - `HOST_RESTARTED`
-     * - `HOST_UPGRADED`
-     * - `HOST_NOW_SECONDARY`
-     * - `HOST_NOW_PRIMARY`
-     * - Replica set
-     * - `NO_PRIMARY`
-     * - `TOO_MANY_ELECTIONS`
-     * Sharded cluster
-     * - `CLUSTER_MONGOS_IS_MISSING`
      */
     readonly eventType: string;
     /**
@@ -112,6 +138,10 @@ export interface GetAlertConfigurationResult {
     readonly metricThreshold: outputs.GetAlertConfigurationMetricThreshold;
     readonly notifications: outputs.GetAlertConfigurationNotification[];
     readonly projectId: string;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
+    readonly threshold: outputs.GetAlertConfigurationThreshold;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */

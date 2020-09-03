@@ -69,6 +69,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
         /// </summary>
         public readonly string OrgName;
+        public readonly ImmutableArray<string> Roles;
         /// <summary>
         /// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         /// </summary>
@@ -82,7 +83,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string TeamId;
         /// <summary>
-        /// Type of alert notification. 
+        /// Type of alert notification.
         /// Accepted values are:
         /// - `DATADOG`
         /// - `EMAIL`
@@ -142,6 +143,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string orgName,
 
+            ImmutableArray<string> roles,
+
             string serviceKey,
 
             bool smsEnabled,
@@ -170,6 +173,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             OpsGenieApiKey = opsGenieApiKey;
             OpsGenieRegion = opsGenieRegion;
             OrgName = orgName;
+            Roles = roles;
             ServiceKey = serviceKey;
             SmsEnabled = smsEnabled;
             TeamId = teamId;

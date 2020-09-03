@@ -67,6 +67,58 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
+    /// 
+    /// &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.AlertConfiguration("test", new Mongodbatlas.AlertConfigurationArgs
+    ///         {
+    ///             Enabled = true,
+    ///             EventType = "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+    ///             Matchers = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+    ///                 {
+    ///                     FieldName = "HOSTNAME_AND_PORT",
+    ///                     Operator = "EQUALS",
+    ///                     Value = "SECONDARY",
+    ///                 },
+    ///             },
+    ///             Notifications = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///                 {
+    ///                     DelayMin = 0,
+    ///                     EmailEnabled = true,
+    ///                     IntervalMin = 5,
+    ///                     Roles = 
+    ///                     {
+    ///                         "GROUP_CHARTS_ADMIN",
+    ///                         "GROUP_CLUSTER_MANAGER",
+    ///                     },
+    ///                     SmsEnabled = false,
+    ///                     TypeName = "GROUP",
+    ///                 },
+    ///             },
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             Threshold = new Mongodbatlas.Inputs.AlertConfigurationThresholdArgs
+    ///             {
+    ///                 Operator = "LESS_THAN",
+    ///                 Threshold = 1,
+    ///                 Units = "HOURS",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class AlertConfiguration : Pulumi.CustomResource
     {
@@ -90,39 +142,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The type of event that will trigger an alert.
-        /// Alert type 	Possible values:
-        /// * Host
-        /// - `OUTSIDE_METRIC_THRESHOLD`
-        /// - `HOST_RESTARTED`
-        /// - `HOST_UPGRADED`
-        /// - `HOST_NOW_SECONDARY`
-        /// - `HOST_NOW_PRIMARY`
-        /// * Replica set
-        /// - `NO_PRIMARY`
-        /// - `TOO_MANY_ELECTIONS`
-        /// * Sharded cluster
-        /// - `CLUSTER_MONGOS_IS_MISSING`
-        /// - `User`
-        /// - `JOINED_GROUP`
-        /// - `REMOVED_FROM_GROUP`
-        /// - `USER_ROLES_CHANGED_AUDIT`
-        /// * Project
-        /// - `USERS_AWAITING_APPROVAL`
-        /// - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-        /// - `GROUP_CREATED`
-        /// * Team
-        /// - `JOINED_TEAM`
-        /// - `REMOVED_FROM_TEAM`
-        /// * Organization
-        /// - `INVITED_TO_ORG`
-        /// - `JOINED_ORG`
-        /// * Data Explorer
-        /// - `DATA_EXPLORER`
-        /// - `DATA_EXPLORER_CRUD`
-        /// * Billing
-        /// - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-        /// - `CHARGE_SUCCEEDED`
-        /// - `INVOICE_CLOSED`
         /// </summary>
         [Output("eventType")]
         public Output<string> EventType { get; private set; } = null!;
@@ -141,6 +160,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// Threshold value outside of which an alert will be triggered.
+        /// </summary>
+        [Output("threshold")]
+        public Output<Outputs.AlertConfigurationThreshold?> Threshold { get; private set; } = null!;
 
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -202,39 +227,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The type of event that will trigger an alert.
-        /// Alert type 	Possible values:
-        /// * Host
-        /// - `OUTSIDE_METRIC_THRESHOLD`
-        /// - `HOST_RESTARTED`
-        /// - `HOST_UPGRADED`
-        /// - `HOST_NOW_SECONDARY`
-        /// - `HOST_NOW_PRIMARY`
-        /// * Replica set
-        /// - `NO_PRIMARY`
-        /// - `TOO_MANY_ELECTIONS`
-        /// * Sharded cluster
-        /// - `CLUSTER_MONGOS_IS_MISSING`
-        /// - `User`
-        /// - `JOINED_GROUP`
-        /// - `REMOVED_FROM_GROUP`
-        /// - `USER_ROLES_CHANGED_AUDIT`
-        /// * Project
-        /// - `USERS_AWAITING_APPROVAL`
-        /// - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-        /// - `GROUP_CREATED`
-        /// * Team
-        /// - `JOINED_TEAM`
-        /// - `REMOVED_FROM_TEAM`
-        /// * Organization
-        /// - `INVITED_TO_ORG`
-        /// - `JOINED_ORG`
-        /// * Data Explorer
-        /// - `DATA_EXPLORER`
-        /// - `DATA_EXPLORER_CRUD`
-        /// * Billing
-        /// - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-        /// - `CHARGE_SUCCEEDED`
-        /// - `INVOICE_CLOSED`
         /// </summary>
         [Input("eventType", required: true)]
         public Input<string> EventType { get; set; } = null!;
@@ -264,6 +256,12 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Threshold value outside of which an alert will be triggered.
+        /// </summary>
+        [Input("threshold")]
+        public Input<Inputs.AlertConfigurationThresholdArgs>? Threshold { get; set; }
+
         public AlertConfigurationArgs()
         {
         }
@@ -291,39 +289,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The type of event that will trigger an alert.
-        /// Alert type 	Possible values:
-        /// * Host
-        /// - `OUTSIDE_METRIC_THRESHOLD`
-        /// - `HOST_RESTARTED`
-        /// - `HOST_UPGRADED`
-        /// - `HOST_NOW_SECONDARY`
-        /// - `HOST_NOW_PRIMARY`
-        /// * Replica set
-        /// - `NO_PRIMARY`
-        /// - `TOO_MANY_ELECTIONS`
-        /// * Sharded cluster
-        /// - `CLUSTER_MONGOS_IS_MISSING`
-        /// - `User`
-        /// - `JOINED_GROUP`
-        /// - `REMOVED_FROM_GROUP`
-        /// - `USER_ROLES_CHANGED_AUDIT`
-        /// * Project
-        /// - `USERS_AWAITING_APPROVAL`
-        /// - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-        /// - `GROUP_CREATED`
-        /// * Team
-        /// - `JOINED_TEAM`
-        /// - `REMOVED_FROM_TEAM`
-        /// * Organization
-        /// - `INVITED_TO_ORG`
-        /// - `JOINED_ORG`
-        /// * Data Explorer
-        /// - `DATA_EXPLORER`
-        /// - `DATA_EXPLORER_CRUD`
-        /// * Billing
-        /// - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-        /// - `CHARGE_SUCCEEDED`
-        /// - `INVOICE_CLOSED`
         /// </summary>
         [Input("eventType")]
         public Input<string>? EventType { get; set; }
@@ -352,6 +317,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Threshold value outside of which an alert will be triggered.
+        /// </summary>
+        [Input("threshold")]
+        public Input<Inputs.AlertConfigurationThresholdGetArgs>? Threshold { get; set; }
 
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.

@@ -59,6 +59,10 @@ export interface GetDatabaseUserArgs {
 export interface GetDatabaseUserResult {
     readonly authDatabaseName?: string;
     /**
+     * The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+     */
+    readonly awsIamType: string;
+    /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
      * @deprecated use auth_database_name instead

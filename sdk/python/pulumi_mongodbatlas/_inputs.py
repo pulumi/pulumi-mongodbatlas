@@ -12,6 +12,7 @@ __all__ = [
     'AlertConfigurationMatcherArgs',
     'AlertConfigurationMetricThresholdArgs',
     'AlertConfigurationNotificationArgs',
+    'AlertConfigurationThresholdArgs',
     'CloudProviderSnapshotBackupPolicyPolicyArgs',
     'CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs',
     'CloudProviderSnapshotRestoreJobDeliveryTypeArgs',
@@ -48,19 +49,6 @@ class AlertConfigurationMatcherArgs:
                  value: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] field_name: Name of the field in the target object to match on.
-               Host alerts support these fields:
-               - `TYPE_NAME`
-               - `HOSTNAME`
-               - `PORT`
-               - `HOSTNAME_AND_PORT`
-               - `REPLICA_SET_NAME`
-               Replica set alerts support these fields:
-               - `REPLICA_SET_NAME`
-               - `SHARD_NAME`
-               - `CLUSTER_NAME`
-               Sharded cluster alerts support these fields:
-               - `CLUSTER_NAME`
-               - `SHARD_NAME`
         :param pulumi.Input[str] operator: Operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
                - `GREATER_THAN`
@@ -84,19 +72,6 @@ class AlertConfigurationMatcherArgs:
     def field_name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the field in the target object to match on.
-        Host alerts support these fields:
-        - `TYPE_NAME`
-        - `HOSTNAME`
-        - `PORT`
-        - `HOSTNAME_AND_PORT`
-        - `REPLICA_SET_NAME`
-        Replica set alerts support these fields:
-        - `REPLICA_SET_NAME`
-        - `SHARD_NAME`
-        - `CLUSTER_NAME`
-        Sharded cluster alerts support these fields:
-        - `CLUSTER_NAME`
-        - `SHARD_NAME`
         """
         return pulumi.get(self, "field_name")
 
@@ -146,7 +121,7 @@ class AlertConfigurationMetricThresholdArgs:
                  threshold: Optional[pulumi.Input[float]] = None,
                  units: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] metric_name: Name of the metric to check.
+        :param pulumi.Input[str] metric_name: Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
         :param pulumi.Input[str] mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
         :param pulumi.Input[str] operator: Operator to apply when checking the current metric value against the threshold value.
                Accepted values are:
@@ -187,7 +162,7 @@ class AlertConfigurationMetricThresholdArgs:
     @pulumi.getter(name="metricName")
     def metric_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the metric to check.
+        Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
         """
         return pulumi.get(self, "metric_name")
 
@@ -625,6 +600,101 @@ class AlertConfigurationNotificationArgs:
     @victor_ops_routing_key.setter
     def victor_ops_routing_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "victor_ops_routing_key", value)
+
+
+@pulumi.input_type
+class AlertConfigurationThresholdArgs:
+    def __init__(__self__, *,
+                 operator: Optional[pulumi.Input[str]] = None,
+                 threshold: Optional[pulumi.Input[float]] = None,
+                 units: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] operator: Operator to apply when checking the current metric value against the threshold value.
+               Accepted values are:
+               - `GREATER_THAN`
+               - `LESS_THAN`
+        :param pulumi.Input[float] threshold: Threshold value outside of which an alert will be triggered.
+        :param pulumi.Input[str] units: The units for the threshold value. Depends on the type of metric.
+               Accepted values are:
+               - `RAW`
+               - `BITS`
+               - `BYTES`
+               - `KILOBITS`
+               - `KILOBYTES`
+               - `MEGABITS`
+               - `MEGABYTES`
+               - `GIGABITS`
+               - `GIGABYTES`
+               - `TERABYTES`
+               - `PETABYTES`
+               - `MILLISECONDS`
+               - `SECONDS`
+               - `MINUTES`
+               - `HOURS`
+               - `DAYS`
+        """
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
+        if units is not None:
+            pulumi.set(__self__, "units", units)
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[pulumi.Input[str]]:
+        """
+        Operator to apply when checking the current metric value against the threshold value.
+        Accepted values are:
+        - `GREATER_THAN`
+        - `LESS_THAN`
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "operator", value)
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> Optional[pulumi.Input[float]]:
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "threshold", value)
+
+    @property
+    @pulumi.getter
+    def units(self) -> Optional[pulumi.Input[str]]:
+        """
+        The units for the threshold value. Depends on the type of metric.
+        Accepted values are:
+        - `RAW`
+        - `BITS`
+        - `BYTES`
+        - `KILOBITS`
+        - `KILOBYTES`
+        - `MEGABITS`
+        - `MEGABYTES`
+        - `GIGABITS`
+        - `GIGABYTES`
+        - `TERABYTES`
+        - `PETABYTES`
+        - `MILLISECONDS`
+        - `SECONDS`
+        - `MINUTES`
+        - `HOURS`
+        - `DAYS`
+        """
+        return pulumi.get(self, "units")
+
+    @units.setter
+    def units(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "units", value)
 
 
 @pulumi.input_type

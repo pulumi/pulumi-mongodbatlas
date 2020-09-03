@@ -12,19 +12,6 @@ import (
 
 type AlertConfigurationMatcher struct {
 	// Name of the field in the target object to match on.
-	// Host alerts support these fields:
-	// - `TYPE_NAME`
-	// - `HOSTNAME`
-	// - `PORT`
-	// - `HOSTNAME_AND_PORT`
-	// - `REPLICA_SET_NAME`
-	//   Replica set alerts support these fields:
-	// - `REPLICA_SET_NAME`
-	// - `SHARD_NAME`
-	// - `CLUSTER_NAME`
-	//   Sharded cluster alerts support these fields:
-	// - `CLUSTER_NAME`
-	// - `SHARD_NAME`
 	FieldName *string `pulumi:"fieldName"`
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
@@ -53,19 +40,6 @@ type AlertConfigurationMatcherInput interface {
 
 type AlertConfigurationMatcherArgs struct {
 	// Name of the field in the target object to match on.
-	// Host alerts support these fields:
-	// - `TYPE_NAME`
-	// - `HOSTNAME`
-	// - `PORT`
-	// - `HOSTNAME_AND_PORT`
-	// - `REPLICA_SET_NAME`
-	//   Replica set alerts support these fields:
-	// - `REPLICA_SET_NAME`
-	// - `SHARD_NAME`
-	// - `CLUSTER_NAME`
-	//   Sharded cluster alerts support these fields:
-	// - `CLUSTER_NAME`
-	// - `SHARD_NAME`
 	FieldName pulumi.StringPtrInput `pulumi:"fieldName"`
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
@@ -133,19 +107,6 @@ func (o AlertConfigurationMatcherOutput) ToAlertConfigurationMatcherOutputWithCo
 }
 
 // Name of the field in the target object to match on.
-// Host alerts support these fields:
-// - `TYPE_NAME`
-// - `HOSTNAME`
-// - `PORT`
-// - `HOSTNAME_AND_PORT`
-// - `REPLICA_SET_NAME`
-//   Replica set alerts support these fields:
-// - `REPLICA_SET_NAME`
-// - `SHARD_NAME`
-// - `CLUSTER_NAME`
-//   Sharded cluster alerts support these fields:
-// - `CLUSTER_NAME`
-// - `SHARD_NAME`
 func (o AlertConfigurationMatcherOutput) FieldName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMatcher) *string { return v.FieldName }).(pulumi.StringPtrOutput)
 }
@@ -189,7 +150,7 @@ func (o AlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) AlertConf
 }
 
 type AlertConfigurationMetricThreshold struct {
-	// Name of the metric to check.
+	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 	MetricName *string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode *string `pulumi:"mode"`
@@ -233,7 +194,7 @@ type AlertConfigurationMetricThresholdInput interface {
 }
 
 type AlertConfigurationMetricThresholdArgs struct {
-	// Name of the metric to check.
+	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 	MetricName pulumi.StringPtrInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
@@ -342,7 +303,7 @@ func (o AlertConfigurationMetricThresholdOutput) ToAlertConfigurationMetricThres
 	}).(AlertConfigurationMetricThresholdPtrOutput)
 }
 
-// Name of the metric to check.
+// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 func (o AlertConfigurationMetricThresholdOutput) MetricName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.MetricName }).(pulumi.StringPtrOutput)
 }
@@ -405,7 +366,7 @@ func (o AlertConfigurationMetricThresholdPtrOutput) Elem() AlertConfigurationMet
 	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) AlertConfigurationMetricThreshold { return *v }).(AlertConfigurationMetricThresholdOutput)
 }
 
-// Name of the metric to check.
+// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 func (o AlertConfigurationMetricThresholdPtrOutput) MetricName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
 		if v == nil {
@@ -768,6 +729,255 @@ func (o AlertConfigurationNotificationArrayOutput) Index(i pulumi.IntInput) Aler
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertConfigurationNotification {
 		return vs[0].([]AlertConfigurationNotification)[vs[1].(int)]
 	}).(AlertConfigurationNotificationOutput)
+}
+
+type AlertConfigurationThreshold struct {
+	// Operator to apply when checking the current metric value against the threshold value.
+	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
+	Operator *string `pulumi:"operator"`
+	// Threshold value outside of which an alert will be triggered.
+	Threshold *float64 `pulumi:"threshold"`
+	// The units for the threshold value. Depends on the type of metric.
+	// Accepted values are:
+	// - `RAW`
+	// - `BITS`
+	// - `BYTES`
+	// - `KILOBITS`
+	// - `KILOBYTES`
+	// - `MEGABITS`
+	// - `MEGABYTES`
+	// - `GIGABITS`
+	// - `GIGABYTES`
+	// - `TERABYTES`
+	// - `PETABYTES`
+	// - `MILLISECONDS`
+	// - `SECONDS`
+	// - `MINUTES`
+	// - `HOURS`
+	// - `DAYS`
+	Units *string `pulumi:"units"`
+}
+
+// AlertConfigurationThresholdInput is an input type that accepts AlertConfigurationThresholdArgs and AlertConfigurationThresholdOutput values.
+// You can construct a concrete instance of `AlertConfigurationThresholdInput` via:
+//
+//          AlertConfigurationThresholdArgs{...}
+type AlertConfigurationThresholdInput interface {
+	pulumi.Input
+
+	ToAlertConfigurationThresholdOutput() AlertConfigurationThresholdOutput
+	ToAlertConfigurationThresholdOutputWithContext(context.Context) AlertConfigurationThresholdOutput
+}
+
+type AlertConfigurationThresholdArgs struct {
+	// Operator to apply when checking the current metric value against the threshold value.
+	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
+	Operator pulumi.StringPtrInput `pulumi:"operator"`
+	// Threshold value outside of which an alert will be triggered.
+	Threshold pulumi.Float64PtrInput `pulumi:"threshold"`
+	// The units for the threshold value. Depends on the type of metric.
+	// Accepted values are:
+	// - `RAW`
+	// - `BITS`
+	// - `BYTES`
+	// - `KILOBITS`
+	// - `KILOBYTES`
+	// - `MEGABITS`
+	// - `MEGABYTES`
+	// - `GIGABITS`
+	// - `GIGABYTES`
+	// - `TERABYTES`
+	// - `PETABYTES`
+	// - `MILLISECONDS`
+	// - `SECONDS`
+	// - `MINUTES`
+	// - `HOURS`
+	// - `DAYS`
+	Units pulumi.StringPtrInput `pulumi:"units"`
+}
+
+func (AlertConfigurationThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfigurationThreshold)(nil)).Elem()
+}
+
+func (i AlertConfigurationThresholdArgs) ToAlertConfigurationThresholdOutput() AlertConfigurationThresholdOutput {
+	return i.ToAlertConfigurationThresholdOutputWithContext(context.Background())
+}
+
+func (i AlertConfigurationThresholdArgs) ToAlertConfigurationThresholdOutputWithContext(ctx context.Context) AlertConfigurationThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdOutput)
+}
+
+func (i AlertConfigurationThresholdArgs) ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput {
+	return i.ToAlertConfigurationThresholdPtrOutputWithContext(context.Background())
+}
+
+func (i AlertConfigurationThresholdArgs) ToAlertConfigurationThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdOutput).ToAlertConfigurationThresholdPtrOutputWithContext(ctx)
+}
+
+// AlertConfigurationThresholdPtrInput is an input type that accepts AlertConfigurationThresholdArgs, AlertConfigurationThresholdPtr and AlertConfigurationThresholdPtrOutput values.
+// You can construct a concrete instance of `AlertConfigurationThresholdPtrInput` via:
+//
+//          AlertConfigurationThresholdArgs{...}
+//
+//  or:
+//
+//          nil
+type AlertConfigurationThresholdPtrInput interface {
+	pulumi.Input
+
+	ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput
+	ToAlertConfigurationThresholdPtrOutputWithContext(context.Context) AlertConfigurationThresholdPtrOutput
+}
+
+type alertConfigurationThresholdPtrType AlertConfigurationThresholdArgs
+
+func AlertConfigurationThresholdPtr(v *AlertConfigurationThresholdArgs) AlertConfigurationThresholdPtrInput {
+	return (*alertConfigurationThresholdPtrType)(v)
+}
+
+func (*alertConfigurationThresholdPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertConfigurationThreshold)(nil)).Elem()
+}
+
+func (i *alertConfigurationThresholdPtrType) ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput {
+	return i.ToAlertConfigurationThresholdPtrOutputWithContext(context.Background())
+}
+
+func (i *alertConfigurationThresholdPtrType) ToAlertConfigurationThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdPtrOutput)
+}
+
+type AlertConfigurationThresholdOutput struct{ *pulumi.OutputState }
+
+func (AlertConfigurationThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfigurationThreshold)(nil)).Elem()
+}
+
+func (o AlertConfigurationThresholdOutput) ToAlertConfigurationThresholdOutput() AlertConfigurationThresholdOutput {
+	return o
+}
+
+func (o AlertConfigurationThresholdOutput) ToAlertConfigurationThresholdOutputWithContext(ctx context.Context) AlertConfigurationThresholdOutput {
+	return o
+}
+
+func (o AlertConfigurationThresholdOutput) ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput {
+	return o.ToAlertConfigurationThresholdPtrOutputWithContext(context.Background())
+}
+
+func (o AlertConfigurationThresholdOutput) ToAlertConfigurationThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationThreshold) *AlertConfigurationThreshold {
+		return &v
+	}).(AlertConfigurationThresholdPtrOutput)
+}
+
+// Operator to apply when checking the current metric value against the threshold value.
+// Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
+func (o AlertConfigurationThresholdOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationThreshold) *string { return v.Operator }).(pulumi.StringPtrOutput)
+}
+
+// Threshold value outside of which an alert will be triggered.
+func (o AlertConfigurationThresholdOutput) Threshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AlertConfigurationThreshold) *float64 { return v.Threshold }).(pulumi.Float64PtrOutput)
+}
+
+// The units for the threshold value. Depends on the type of metric.
+// Accepted values are:
+// - `RAW`
+// - `BITS`
+// - `BYTES`
+// - `KILOBITS`
+// - `KILOBYTES`
+// - `MEGABITS`
+// - `MEGABYTES`
+// - `GIGABITS`
+// - `GIGABYTES`
+// - `TERABYTES`
+// - `PETABYTES`
+// - `MILLISECONDS`
+// - `SECONDS`
+// - `MINUTES`
+// - `HOURS`
+// - `DAYS`
+func (o AlertConfigurationThresholdOutput) Units() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationThreshold) *string { return v.Units }).(pulumi.StringPtrOutput)
+}
+
+type AlertConfigurationThresholdPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertConfigurationThresholdPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertConfigurationThreshold)(nil)).Elem()
+}
+
+func (o AlertConfigurationThresholdPtrOutput) ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput {
+	return o
+}
+
+func (o AlertConfigurationThresholdPtrOutput) ToAlertConfigurationThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdPtrOutput {
+	return o
+}
+
+func (o AlertConfigurationThresholdPtrOutput) Elem() AlertConfigurationThresholdOutput {
+	return o.ApplyT(func(v *AlertConfigurationThreshold) AlertConfigurationThreshold { return *v }).(AlertConfigurationThresholdOutput)
+}
+
+// Operator to apply when checking the current metric value against the threshold value.
+// Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
+func (o AlertConfigurationThresholdPtrOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationThreshold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Operator
+	}).(pulumi.StringPtrOutput)
+}
+
+// Threshold value outside of which an alert will be triggered.
+func (o AlertConfigurationThresholdPtrOutput) Threshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationThreshold) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.Threshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The units for the threshold value. Depends on the type of metric.
+// Accepted values are:
+// - `RAW`
+// - `BITS`
+// - `BYTES`
+// - `KILOBITS`
+// - `KILOBYTES`
+// - `MEGABITS`
+// - `MEGABYTES`
+// - `GIGABITS`
+// - `GIGABYTES`
+// - `TERABYTES`
+// - `PETABYTES`
+// - `MILLISECONDS`
+// - `SECONDS`
+// - `MINUTES`
+// - `HOURS`
+// - `DAYS`
+func (o AlertConfigurationThresholdPtrOutput) Units() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationThreshold) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Units
+	}).(pulumi.StringPtrOutput)
 }
 
 type CloudProviderSnapshotBackupPolicyPolicy struct {
@@ -4371,19 +4581,6 @@ func (o Get509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.I
 
 type GetAlertConfigurationMatcher struct {
 	// Name of the field in the target object to match on.
-	// Host alerts support these fields:
-	// - `TYPE_NAME`
-	// - `HOSTNAME`
-	// - `PORT`
-	// - `HOSTNAME_AND_PORT`
-	// - `REPLICA_SET_NAME`
-	//   Replica set alerts support these fields:
-	// - `REPLICA_SET_NAME`
-	// - `SHARD_NAME`
-	// - `CLUSTER_NAME`
-	//   Sharded cluster alerts support these fields:
-	// - `CLUSTER_NAME`
-	// - `SHARD_NAME`
 	FieldName string `pulumi:"fieldName"`
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
@@ -4412,19 +4609,6 @@ type GetAlertConfigurationMatcherInput interface {
 
 type GetAlertConfigurationMatcherArgs struct {
 	// Name of the field in the target object to match on.
-	// Host alerts support these fields:
-	// - `TYPE_NAME`
-	// - `HOSTNAME`
-	// - `PORT`
-	// - `HOSTNAME_AND_PORT`
-	// - `REPLICA_SET_NAME`
-	//   Replica set alerts support these fields:
-	// - `REPLICA_SET_NAME`
-	// - `SHARD_NAME`
-	// - `CLUSTER_NAME`
-	//   Sharded cluster alerts support these fields:
-	// - `CLUSTER_NAME`
-	// - `SHARD_NAME`
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
@@ -4492,19 +4676,6 @@ func (o GetAlertConfigurationMatcherOutput) ToGetAlertConfigurationMatcherOutput
 }
 
 // Name of the field in the target object to match on.
-// Host alerts support these fields:
-// - `TYPE_NAME`
-// - `HOSTNAME`
-// - `PORT`
-// - `HOSTNAME_AND_PORT`
-// - `REPLICA_SET_NAME`
-//   Replica set alerts support these fields:
-// - `REPLICA_SET_NAME`
-// - `SHARD_NAME`
-// - `CLUSTER_NAME`
-//   Sharded cluster alerts support these fields:
-// - `CLUSTER_NAME`
-// - `SHARD_NAME`
 func (o GetAlertConfigurationMatcherOutput) FieldName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMatcher) string { return v.FieldName }).(pulumi.StringOutput)
 }
@@ -4548,7 +4719,7 @@ func (o GetAlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) GetAle
 }
 
 type GetAlertConfigurationMetricThreshold struct {
-	// Name of the metric to check.
+	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 	MetricName string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode string `pulumi:"mode"`
@@ -4592,7 +4763,7 @@ type GetAlertConfigurationMetricThresholdInput interface {
 }
 
 type GetAlertConfigurationMetricThresholdArgs struct {
-	// Name of the metric to check.
+	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 	MetricName pulumi.StringInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode pulumi.StringInput `pulumi:"mode"`
@@ -4650,7 +4821,7 @@ func (o GetAlertConfigurationMetricThresholdOutput) ToGetAlertConfigurationMetri
 	return o
 }
 
-// Name of the metric to check.
+// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 func (o GetAlertConfigurationMetricThresholdOutput) MetricName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMetricThreshold) string { return v.MetricName }).(pulumi.StringOutput)
 }
@@ -4723,7 +4894,8 @@ type GetAlertConfigurationNotification struct {
 	// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
 	OpsGenieRegion string `pulumi:"opsGenieRegion"`
 	// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-	OrgName string `pulumi:"orgName"`
+	OrgName string   `pulumi:"orgName"`
+	Roles   []string `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey string `pulumi:"serviceKey"`
 	// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
@@ -4793,7 +4965,8 @@ type GetAlertConfigurationNotificationArgs struct {
 	// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
 	OpsGenieRegion pulumi.StringInput `pulumi:"opsGenieRegion"`
 	// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-	OrgName pulumi.StringInput `pulumi:"orgName"`
+	OrgName pulumi.StringInput      `pulumi:"orgName"`
+	Roles   pulumi.StringArrayInput `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
 	// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
@@ -4945,6 +5118,10 @@ func (o GetAlertConfigurationNotificationOutput) OrgName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.OrgName }).(pulumi.StringOutput)
 }
 
+func (o GetAlertConfigurationNotificationOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
 // PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o GetAlertConfigurationNotificationOutput) ServiceKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.ServiceKey }).(pulumi.StringOutput)
@@ -5012,6 +5189,136 @@ func (o GetAlertConfigurationNotificationArrayOutput) Index(i pulumi.IntInput) G
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertConfigurationNotification {
 		return vs[0].([]GetAlertConfigurationNotification)[vs[1].(int)]
 	}).(GetAlertConfigurationNotificationOutput)
+}
+
+type GetAlertConfigurationThreshold struct {
+	// Operator to apply when checking the current metric value against the threshold value.
+	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
+	Operator string `pulumi:"operator"`
+	// Threshold value outside of which an alert will be triggered.
+	Threshold float64 `pulumi:"threshold"`
+	// The units for the threshold value. Depends on the type of metric.
+	// Accepted values are:
+	// - `RAW`
+	// - `BITS`
+	// - `BYTES`
+	// - `KILOBITS`
+	// - `KILOBYTES`
+	// - `MEGABITS`
+	// - `MEGABYTES`
+	// - `GIGABITS`
+	// - `GIGABYTES`
+	// - `TERABYTES`
+	// - `PETABYTES`
+	// - `MILLISECONDS`
+	// - `SECONDS`
+	// - `MINUTES`
+	// - `HOURS`
+	// - `DAYS`
+	Units string `pulumi:"units"`
+}
+
+// GetAlertConfigurationThresholdInput is an input type that accepts GetAlertConfigurationThresholdArgs and GetAlertConfigurationThresholdOutput values.
+// You can construct a concrete instance of `GetAlertConfigurationThresholdInput` via:
+//
+//          GetAlertConfigurationThresholdArgs{...}
+type GetAlertConfigurationThresholdInput interface {
+	pulumi.Input
+
+	ToGetAlertConfigurationThresholdOutput() GetAlertConfigurationThresholdOutput
+	ToGetAlertConfigurationThresholdOutputWithContext(context.Context) GetAlertConfigurationThresholdOutput
+}
+
+type GetAlertConfigurationThresholdArgs struct {
+	// Operator to apply when checking the current metric value against the threshold value.
+	// Accepted values are:
+	// - `GREATER_THAN`
+	// - `LESS_THAN`
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// Threshold value outside of which an alert will be triggered.
+	Threshold pulumi.Float64Input `pulumi:"threshold"`
+	// The units for the threshold value. Depends on the type of metric.
+	// Accepted values are:
+	// - `RAW`
+	// - `BITS`
+	// - `BYTES`
+	// - `KILOBITS`
+	// - `KILOBYTES`
+	// - `MEGABITS`
+	// - `MEGABYTES`
+	// - `GIGABITS`
+	// - `GIGABYTES`
+	// - `TERABYTES`
+	// - `PETABYTES`
+	// - `MILLISECONDS`
+	// - `SECONDS`
+	// - `MINUTES`
+	// - `HOURS`
+	// - `DAYS`
+	Units pulumi.StringInput `pulumi:"units"`
+}
+
+func (GetAlertConfigurationThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertConfigurationThreshold)(nil)).Elem()
+}
+
+func (i GetAlertConfigurationThresholdArgs) ToGetAlertConfigurationThresholdOutput() GetAlertConfigurationThresholdOutput {
+	return i.ToGetAlertConfigurationThresholdOutputWithContext(context.Background())
+}
+
+func (i GetAlertConfigurationThresholdArgs) ToGetAlertConfigurationThresholdOutputWithContext(ctx context.Context) GetAlertConfigurationThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertConfigurationThresholdOutput)
+}
+
+type GetAlertConfigurationThresholdOutput struct{ *pulumi.OutputState }
+
+func (GetAlertConfigurationThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertConfigurationThreshold)(nil)).Elem()
+}
+
+func (o GetAlertConfigurationThresholdOutput) ToGetAlertConfigurationThresholdOutput() GetAlertConfigurationThresholdOutput {
+	return o
+}
+
+func (o GetAlertConfigurationThresholdOutput) ToGetAlertConfigurationThresholdOutputWithContext(ctx context.Context) GetAlertConfigurationThresholdOutput {
+	return o
+}
+
+// Operator to apply when checking the current metric value against the threshold value.
+// Accepted values are:
+// - `GREATER_THAN`
+// - `LESS_THAN`
+func (o GetAlertConfigurationThresholdOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationThreshold) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// Threshold value outside of which an alert will be triggered.
+func (o GetAlertConfigurationThresholdOutput) Threshold() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAlertConfigurationThreshold) float64 { return v.Threshold }).(pulumi.Float64Output)
+}
+
+// The units for the threshold value. Depends on the type of metric.
+// Accepted values are:
+// - `RAW`
+// - `BITS`
+// - `BYTES`
+// - `KILOBITS`
+// - `KILOBYTES`
+// - `MEGABITS`
+// - `MEGABYTES`
+// - `GIGABITS`
+// - `GIGABYTES`
+// - `TERABYTES`
+// - `PETABYTES`
+// - `MILLISECONDS`
+// - `SECONDS`
+// - `MINUTES`
+// - `HOURS`
+// - `DAYS`
+func (o GetAlertConfigurationThresholdOutput) Units() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationThreshold) string { return v.Units }).(pulumi.StringOutput)
 }
 
 type GetCloudProviderSnapshotBackupPolicyPolicy struct {
@@ -8754,9 +9061,16 @@ func (o GetDatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) GetDatabaseUser
 }
 
 type GetDatabaseUsersResultType struct {
-	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
-	AuthDatabaseName string                        `pulumi:"authDatabaseName"`
-	Labels           []GetDatabaseUsersResultLabel `pulumi:"labels"`
+	// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+	// Possible values include:
+	// * `admin` if `x509Type` and `awsIamType` are omitted or NONE.
+	// * `$external` if:
+	// * `x509Type` is MANAGED or CUSTOMER, or
+	// * `awsIamType` is USER or ROLE.
+	AuthDatabaseName string `pulumi:"authDatabaseName"`
+	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+	AwsIamType string                        `pulumi:"awsIamType"`
+	Labels     []GetDatabaseUsersResultLabel `pulumi:"labels"`
 	// The unique ID for the project to get all database users.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -8779,9 +9093,16 @@ type GetDatabaseUsersResultTypeInput interface {
 }
 
 type GetDatabaseUsersResultTypeArgs struct {
-	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
-	AuthDatabaseName pulumi.StringInput                    `pulumi:"authDatabaseName"`
-	Labels           GetDatabaseUsersResultLabelArrayInput `pulumi:"labels"`
+	// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+	// Possible values include:
+	// * `admin` if `x509Type` and `awsIamType` are omitted or NONE.
+	// * `$external` if:
+	// * `x509Type` is MANAGED or CUSTOMER, or
+	// * `awsIamType` is USER or ROLE.
+	AuthDatabaseName pulumi.StringInput `pulumi:"authDatabaseName"`
+	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+	AwsIamType pulumi.StringInput                    `pulumi:"awsIamType"`
+	Labels     GetDatabaseUsersResultLabelArrayInput `pulumi:"labels"`
 	// The unique ID for the project to get all database users.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -8843,9 +9164,19 @@ func (o GetDatabaseUsersResultTypeOutput) ToGetDatabaseUsersResultTypeOutputWith
 	return o
 }
 
-// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+// Possible values include:
+// * `admin` if `x509Type` and `awsIamType` are omitted or NONE.
+// * `$external` if:
+// * `x509Type` is MANAGED or CUSTOMER, or
+// * `awsIamType` is USER or ROLE.
 func (o GetDatabaseUsersResultTypeOutput) AuthDatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultType) string { return v.AuthDatabaseName }).(pulumi.StringOutput)
+}
+
+// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+func (o GetDatabaseUsersResultTypeOutput) AwsIamType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseUsersResultType) string { return v.AwsIamType }).(pulumi.StringOutput)
 }
 
 func (o GetDatabaseUsersResultTypeOutput) Labels() GetDatabaseUsersResultLabelArrayOutput {
@@ -10050,6 +10381,8 @@ func init() {
 	pulumi.RegisterOutputType(AlertConfigurationMetricThresholdPtrOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationNotificationOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationNotificationArrayOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationThresholdOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationThresholdPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput{})
@@ -10105,6 +10438,7 @@ func init() {
 	pulumi.RegisterOutputType(GetAlertConfigurationMetricThresholdOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationNotificationOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationNotificationArrayOutput{})
+	pulumi.RegisterOutputType(GetAlertConfigurationThresholdOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput{})

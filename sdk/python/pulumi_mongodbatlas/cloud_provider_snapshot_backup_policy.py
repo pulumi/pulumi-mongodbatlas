@@ -28,66 +28,7 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        `CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        my_cluster = mongodbatlas.Cluster("myCluster",
-            project_id="<PROJECT-ID>",
-            disk_size_gb=5,
-            provider_name="AWS",
-            provider_region_name="EU_CENTRAL_1",
-            provider_instance_size_name="M10",
-            provider_backup_enabled=True,
-            provider_disk_iops=100,
-            provider_encrypt_ebs_volume=False)
-        test = mongodbatlas.CloudProviderSnapshotBackupPolicy("test",
-            project_id=my_cluster.project_id,
-            cluster_name=my_cluster.name,
-            reference_hour_of_day=3,
-            reference_minute_of_hour=45,
-            restore_window_days=4,
-            policies=[mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyArgs(
-                id=my_cluster.snapshot_backup_policies[0].policies[0].id,
-                policy_items=[
-                    mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs(
-                        id=my_cluster.snapshot_backup_policies[0].policies[0].policy_items[0].id,
-                        frequency_interval=1,
-                        frequency_type="hourly",
-                        retention_unit="days",
-                        retention_value=1,
-                    ),
-                    mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs(
-                        id=my_cluster.snapshot_backup_policies[0].policies[0].policy_items[1].id,
-                        frequency_interval=1,
-                        frequency_type="daily",
-                        retention_unit="days",
-                        retention_value=2,
-                    ),
-                    mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs(
-                        id=my_cluster.snapshot_backup_policies[0].policies[0].policy_items[2].id,
-                        frequency_interval=4,
-                        frequency_type="weekly",
-                        retention_unit="weeks",
-                        retention_value=3,
-                    ),
-                    mongodbatlas.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs(
-                        id=my_cluster.snapshot_backup_policies[0].policies[0].policy_items[3].id,
-                        frequency_interval=5,
-                        frequency_type="monthly",
-                        retention_unit="months",
-                        retention_value=4,
-                    ),
-                ],
-            )])
-        ```
-
+        Create a CloudProviderSnapshotBackupPolicy resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.

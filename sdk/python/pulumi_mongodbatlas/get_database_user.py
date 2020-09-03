@@ -20,10 +20,13 @@ class GetDatabaseUserResult:
     """
     A collection of values returned by getDatabaseUser.
     """
-    def __init__(__self__, auth_database_name=None, database_name=None, id=None, labels=None, project_id=None, roles=None, username=None, x509_type=None):
+    def __init__(__self__, auth_database_name=None, aws_iam_type=None, database_name=None, id=None, labels=None, project_id=None, roles=None, username=None, x509_type=None):
         if auth_database_name and not isinstance(auth_database_name, str):
             raise TypeError("Expected argument 'auth_database_name' to be a str")
         pulumi.set(__self__, "auth_database_name", auth_database_name)
+        if aws_iam_type and not isinstance(aws_iam_type, str):
+            raise TypeError("Expected argument 'aws_iam_type' to be a str")
+        pulumi.set(__self__, "aws_iam_type", aws_iam_type)
         if database_name and not isinstance(database_name, str):
             raise TypeError("Expected argument 'database_name' to be a str")
         if database_name is not None:
@@ -54,6 +57,14 @@ class GetDatabaseUserResult:
     @pulumi.getter(name="authDatabaseName")
     def auth_database_name(self) -> Optional[str]:
         return pulumi.get(self, "auth_database_name")
+
+    @property
+    @pulumi.getter(name="awsIamType")
+    def aws_iam_type(self) -> str:
+        """
+        The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+        """
+        return pulumi.get(self, "aws_iam_type")
 
     @property
     @pulumi.getter(name="databaseName")
@@ -110,6 +121,7 @@ class AwaitableGetDatabaseUserResult(GetDatabaseUserResult):
             yield self
         return GetDatabaseUserResult(
             auth_database_name=self.auth_database_name,
+            aws_iam_type=self.aws_iam_type,
             database_name=self.database_name,
             id=self.id,
             labels=self.labels,
@@ -150,6 +162,7 @@ def get_database_user(auth_database_name: Optional[str] = None,
 
     return AwaitableGetDatabaseUserResult(
         auth_database_name=__ret__.auth_database_name,
+        aws_iam_type=__ret__.aws_iam_type,
         database_name=__ret__.database_name,
         id=__ret__.id,
         labels=__ret__.labels,

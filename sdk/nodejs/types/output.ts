@@ -8,19 +8,6 @@ import * as outputs from "../types/output";
 export interface AlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
-     * Host alerts support these fields:
-     * - `TYPE_NAME`
-     * - `HOSTNAME`
-     * - `PORT`
-     * - `HOSTNAME_AND_PORT`
-     * - `REPLICA_SET_NAME`
-     * Replica set alerts support these fields:
-     * - `REPLICA_SET_NAME`
-     * - `SHARD_NAME`
-     * - `CLUSTER_NAME`
-     * Sharded cluster alerts support these fields:
-     * - `CLUSTER_NAME`
-     * - `SHARD_NAME`
      */
     fieldName?: string;
     /**
@@ -43,7 +30,7 @@ export interface AlertConfigurationMatcher {
 
 export interface AlertConfigurationMetricThreshold {
     /**
-     * Name of the metric to check.
+     * Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
      */
     metricName?: string;
     /**
@@ -174,6 +161,41 @@ export interface AlertConfigurationNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey?: string;
+}
+
+export interface AlertConfigurationThreshold {
+    /**
+     * Operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
+     */
+    operator?: string;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
+    threshold?: number;
+    /**
+     * The units for the threshold value. Depends on the type of metric.
+     * Accepted values are:
+     * - `RAW`
+     * - `BITS`
+     * - `BYTES`
+     * - `KILOBITS`
+     * - `KILOBYTES`
+     * - `MEGABITS`
+     * - `MEGABYTES`
+     * - `GIGABITS`
+     * - `GIGABYTES`
+     * - `TERABYTES`
+     * - `PETABYTES`
+     * - `MILLISECONDS`
+     * - `SECONDS`
+     * - `MINUTES`
+     * - `HOURS`
+     * - `DAYS`
+     */
+    units?: string;
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicy {
@@ -495,23 +517,10 @@ export interface Get509AuthenticationDatabaseUserCertificate {
 export interface GetAlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
-     * Host alerts support these fields:
-     * - `TYPE_NAME`
-     * - `HOSTNAME`
-     * - `PORT`
-     * - `HOSTNAME_AND_PORT`
-     * - `REPLICA_SET_NAME`
-     * Replica set alerts support these fields:
-     * - `REPLICA_SET_NAME`
-     * - `SHARD_NAME`
-     * - `CLUSTER_NAME`
-     * Sharded cluster alerts support these fields:
-     * - `CLUSTER_NAME`
-     * - `SHARD_NAME`
      */
     fieldName: string;
     /**
-     * Operator to apply when checking the current metric value against the threshold value. 
+     * Operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      * - `GREATER_THAN`
      * - `LESS_THAN`
@@ -530,7 +539,7 @@ export interface GetAlertConfigurationMatcher {
 
 export interface GetAlertConfigurationMetricThreshold {
     /**
-     * Name of the metric to check.
+     * Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
      */
     metricName: string;
     /**
@@ -538,7 +547,7 @@ export interface GetAlertConfigurationMetricThreshold {
      */
     mode: string;
     /**
-     * Operator to apply when checking the current metric value against the threshold value. 
+     * Operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
      * - `GREATER_THAN`
      * - `LESS_THAN`
@@ -628,6 +637,7 @@ export interface GetAlertConfigurationNotification {
      * Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
      */
     orgName: string;
+    roles?: string[];
     /**
      * PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
@@ -641,7 +651,7 @@ export interface GetAlertConfigurationNotification {
      */
     teamId: string;
     /**
-     * Type of alert notification. 
+     * Type of alert notification.
      * Accepted values are:
      * - `DATADOG`
      * - `EMAIL`
@@ -670,6 +680,41 @@ export interface GetAlertConfigurationNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey: string;
+}
+
+export interface GetAlertConfigurationThreshold {
+    /**
+     * Operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
+     */
+    operator: string;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
+    threshold: number;
+    /**
+     * The units for the threshold value. Depends on the type of metric.
+     * Accepted values are:
+     * - `RAW`
+     * - `BITS`
+     * - `BYTES`
+     * - `KILOBITS`
+     * - `KILOBYTES`
+     * - `MEGABITS`
+     * - `MEGABYTES`
+     * - `GIGABITS`
+     * - `GIGABYTES`
+     * - `TERABYTES`
+     * - `PETABYTES`
+     * - `MILLISECONDS`
+     * - `SECONDS`
+     * - `MINUTES`
+     * - `HOURS`
+     * - `DAYS`
+     */
+    units: string;
 }
 
 export interface GetCloudProviderSnapshotBackupPolicyPolicy {
@@ -1219,9 +1264,18 @@ export interface GetDatabaseUserRole {
 
 export interface GetDatabaseUsersResult {
     /**
-     * The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+     * (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+     * Possible values include:
+     * * `admin` if `x509Type` and `awsIamType` are omitted or NONE.
+     * * `$external` if:
+     * * `x509Type` is MANAGED or CUSTOMER, or
+     * * `awsIamType` is USER or ROLE.
      */
     authDatabaseName: string;
+    /**
+     * The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+     */
+    awsIamType: string;
     labels: outputs.GetDatabaseUsersResultLabel[];
     /**
      * The unique ID for the project to get all database users.

@@ -23,6 +23,7 @@ class AlertConfiguration(pulumi.CustomResource):
                  metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
                  notifications: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -66,44 +67,45 @@ class AlertConfiguration(pulumi.CustomResource):
             project_id="<PROJECT-ID>")
         ```
 
+        > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                delay_min=0,
+                email_enabled=True,
+                interval_min=5,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+                sms_enabled=False,
+                type_name="GROUP",
+            )],
+            project_id="<PROJECT-ID>",
+            threshold=mongodbatlas.AlertConfigurationThresholdArgs(
+                operator="LESS_THAN",
+                threshold=1,
+                units="HOURS",
+            ))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
-               Alert type 	Possible values:
-               * Host
-               - `OUTSIDE_METRIC_THRESHOLD`
-               - `HOST_RESTARTED`
-               - `HOST_UPGRADED`
-               - `HOST_NOW_SECONDARY`
-               - `HOST_NOW_PRIMARY`
-               * Replica set
-               - `NO_PRIMARY`
-               - `TOO_MANY_ELECTIONS`
-               * Sharded cluster
-               - `CLUSTER_MONGOS_IS_MISSING`
-               - `User`
-               - `JOINED_GROUP`
-               - `REMOVED_FROM_GROUP`
-               - `USER_ROLES_CHANGED_AUDIT`
-               * Project
-               - `USERS_AWAITING_APPROVAL`
-               - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-               - `GROUP_CREATED`
-               * Team
-               - `JOINED_TEAM`
-               - `REMOVED_FROM_TEAM`
-               * Organization
-               - `INVITED_TO_ORG`
-               - `JOINED_ORG`
-               * Data Explorer
-               - `DATA_EXPLORER`
-               - `DATA_EXPLORER_CRUD`
-               * Billing
-               - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-               - `CHARGE_SUCCEEDED`
-               - `INVOICE_CLOSED`
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']] threshold: Threshold value outside of which an alert will be triggered.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -134,6 +136,7 @@ class AlertConfiguration(pulumi.CustomResource):
             if project_id is None:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
+            __props__['threshold'] = threshold
             __props__['alert_configuration_id'] = None
             __props__['created'] = None
             __props__['updated'] = None
@@ -155,6 +158,7 @@ class AlertConfiguration(pulumi.CustomResource):
             metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
             notifications: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']]] = None,
             updated: Optional[pulumi.Input[str]] = None) -> 'AlertConfiguration':
         """
         Get an existing AlertConfiguration resource's state with the given name, id, and optional extra
@@ -167,40 +171,8 @@ class AlertConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
-               Alert type 	Possible values:
-               * Host
-               - `OUTSIDE_METRIC_THRESHOLD`
-               - `HOST_RESTARTED`
-               - `HOST_UPGRADED`
-               - `HOST_NOW_SECONDARY`
-               - `HOST_NOW_PRIMARY`
-               * Replica set
-               - `NO_PRIMARY`
-               - `TOO_MANY_ELECTIONS`
-               * Sharded cluster
-               - `CLUSTER_MONGOS_IS_MISSING`
-               - `User`
-               - `JOINED_GROUP`
-               - `REMOVED_FROM_GROUP`
-               - `USER_ROLES_CHANGED_AUDIT`
-               * Project
-               - `USERS_AWAITING_APPROVAL`
-               - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-               - `GROUP_CREATED`
-               * Team
-               - `JOINED_TEAM`
-               - `REMOVED_FROM_TEAM`
-               * Organization
-               - `INVITED_TO_ORG`
-               - `JOINED_ORG`
-               * Data Explorer
-               - `DATA_EXPLORER`
-               - `DATA_EXPLORER_CRUD`
-               * Billing
-               - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-               - `CHARGE_SUCCEEDED`
-               - `INVOICE_CLOSED`
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']] threshold: Threshold value outside of which an alert will be triggered.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -215,6 +187,7 @@ class AlertConfiguration(pulumi.CustomResource):
         __props__["metric_threshold"] = metric_threshold
         __props__["notifications"] = notifications
         __props__["project_id"] = project_id
+        __props__["threshold"] = threshold
         __props__["updated"] = updated
         return AlertConfiguration(resource_name, opts=opts, __props__=__props__)
 
@@ -247,39 +220,6 @@ class AlertConfiguration(pulumi.CustomResource):
     def event_type(self) -> pulumi.Output[str]:
         """
         The type of event that will trigger an alert.
-        Alert type 	Possible values:
-        * Host
-        - `OUTSIDE_METRIC_THRESHOLD`
-        - `HOST_RESTARTED`
-        - `HOST_UPGRADED`
-        - `HOST_NOW_SECONDARY`
-        - `HOST_NOW_PRIMARY`
-        * Replica set
-        - `NO_PRIMARY`
-        - `TOO_MANY_ELECTIONS`
-        * Sharded cluster
-        - `CLUSTER_MONGOS_IS_MISSING`
-        - `User`
-        - `JOINED_GROUP`
-        - `REMOVED_FROM_GROUP`
-        - `USER_ROLES_CHANGED_AUDIT`
-        * Project
-        - `USERS_AWAITING_APPROVAL`
-        - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-        - `GROUP_CREATED`
-        * Team
-        - `JOINED_TEAM`
-        - `REMOVED_FROM_TEAM`
-        * Organization
-        - `INVITED_TO_ORG`
-        - `JOINED_ORG`
-        * Data Explorer
-        - `DATA_EXPLORER`
-        - `DATA_EXPLORER_CRUD`
-        * Billing
-        - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-        - `CHARGE_SUCCEEDED`
-        - `INVOICE_CLOSED`
         """
         return pulumi.get(self, "event_type")
 
@@ -305,6 +245,14 @@ class AlertConfiguration(pulumi.CustomResource):
         The ID of the project where the alert configuration will create.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> pulumi.Output[Optional['outputs.AlertConfigurationThreshold']]:
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
+        return pulumi.get(self, "threshold")
 
     @property
     @pulumi.getter

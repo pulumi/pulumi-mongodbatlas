@@ -65,6 +65,56 @@ import (
 // 	})
 // }
 // ```
+//
+// > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
+// 			Enabled:   pulumi.Bool(true),
+// 			EventType: pulumi.String("REPLICATION_OPLOG_WINDOW_RUNNING_OUT"),
+// 			Matchers: mongodbatlas.AlertConfigurationMatcherArray{
+// 				&mongodbatlas.AlertConfigurationMatcherArgs{
+// 					FieldName: pulumi.String("HOSTNAME_AND_PORT"),
+// 					Operator:  pulumi.String("EQUALS"),
+// 					Value:     pulumi.String("SECONDARY"),
+// 				},
+// 			},
+// 			Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+// 				&mongodbatlas.AlertConfigurationNotificationArgs{
+// 					DelayMin:     pulumi.Int(0),
+// 					EmailEnabled: pulumi.Bool(true),
+// 					IntervalMin:  pulumi.Int(5),
+// 					Roles: pulumi.StringArray{
+// 						pulumi.String("GROUP_CHARTS_ADMIN"),
+// 						pulumi.String("GROUP_CLUSTER_MANAGER"),
+// 					},
+// 					SmsEnabled: pulumi.Bool(false),
+// 					TypeName:   pulumi.String("GROUP"),
+// 				},
+// 			},
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			Threshold: &mongodbatlas.AlertConfigurationThresholdArgs{
+// 				Operator:  pulumi.String("LESS_THAN"),
+// 				Threshold: pulumi.Float64(1),
+// 				Units:     pulumi.String("HOURS"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AlertConfiguration struct {
 	pulumi.CustomResourceState
 
@@ -75,45 +125,14 @@ type AlertConfiguration struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
-	// Alert type 	Possible values:
-	// * Host
-	// - `OUTSIDE_METRIC_THRESHOLD`
-	// - `HOST_RESTARTED`
-	// - `HOST_UPGRADED`
-	// - `HOST_NOW_SECONDARY`
-	// - `HOST_NOW_PRIMARY`
-	// * Replica set
-	// - `NO_PRIMARY`
-	// - `TOO_MANY_ELECTIONS`
-	// * Sharded cluster
-	// - `CLUSTER_MONGOS_IS_MISSING`
-	// - `User`
-	// - `JOINED_GROUP`
-	// - `REMOVED_FROM_GROUP`
-	// - `USER_ROLES_CHANGED_AUDIT`
-	// * Project
-	// - `USERS_AWAITING_APPROVAL`
-	// - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-	// - `GROUP_CREATED`
-	// * Team
-	// - `JOINED_TEAM`
-	// - `REMOVED_FROM_TEAM`
-	// * Organization
-	// - `INVITED_TO_ORG`
-	// - `JOINED_ORG`
-	// * Data Explorer
-	// - `DATA_EXPLORER`
-	// - `DATA_EXPLORER_CRUD`
-	// * Billing
-	// - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-	// - `CHARGE_SUCCEEDED`
-	// - `INVOICE_CLOSED`
 	EventType       pulumi.StringOutput                        `pulumi:"eventType"`
 	Matchers        AlertConfigurationMatcherArrayOutput       `pulumi:"matchers"`
 	MetricThreshold AlertConfigurationMetricThresholdPtrOutput `pulumi:"metricThreshold"`
 	Notifications   AlertConfigurationNotificationArrayOutput  `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Threshold value outside of which an alert will be triggered.
+	Threshold AlertConfigurationThresholdPtrOutput `pulumi:"threshold"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated pulumi.StringOutput `pulumi:"updated"`
 }
@@ -162,45 +181,14 @@ type alertConfigurationState struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
-	// Alert type 	Possible values:
-	// * Host
-	// - `OUTSIDE_METRIC_THRESHOLD`
-	// - `HOST_RESTARTED`
-	// - `HOST_UPGRADED`
-	// - `HOST_NOW_SECONDARY`
-	// - `HOST_NOW_PRIMARY`
-	// * Replica set
-	// - `NO_PRIMARY`
-	// - `TOO_MANY_ELECTIONS`
-	// * Sharded cluster
-	// - `CLUSTER_MONGOS_IS_MISSING`
-	// - `User`
-	// - `JOINED_GROUP`
-	// - `REMOVED_FROM_GROUP`
-	// - `USER_ROLES_CHANGED_AUDIT`
-	// * Project
-	// - `USERS_AWAITING_APPROVAL`
-	// - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-	// - `GROUP_CREATED`
-	// * Team
-	// - `JOINED_TEAM`
-	// - `REMOVED_FROM_TEAM`
-	// * Organization
-	// - `INVITED_TO_ORG`
-	// - `JOINED_ORG`
-	// * Data Explorer
-	// - `DATA_EXPLORER`
-	// - `DATA_EXPLORER_CRUD`
-	// * Billing
-	// - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-	// - `CHARGE_SUCCEEDED`
-	// - `INVOICE_CLOSED`
 	EventType       *string                            `pulumi:"eventType"`
 	Matchers        []AlertConfigurationMatcher        `pulumi:"matchers"`
 	MetricThreshold *AlertConfigurationMetricThreshold `pulumi:"metricThreshold"`
 	Notifications   []AlertConfigurationNotification   `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId *string `pulumi:"projectId"`
+	// Threshold value outside of which an alert will be triggered.
+	Threshold *AlertConfigurationThreshold `pulumi:"threshold"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated *string `pulumi:"updated"`
 }
@@ -213,45 +201,14 @@ type AlertConfigurationState struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolPtrInput
 	// The type of event that will trigger an alert.
-	// Alert type 	Possible values:
-	// * Host
-	// - `OUTSIDE_METRIC_THRESHOLD`
-	// - `HOST_RESTARTED`
-	// - `HOST_UPGRADED`
-	// - `HOST_NOW_SECONDARY`
-	// - `HOST_NOW_PRIMARY`
-	// * Replica set
-	// - `NO_PRIMARY`
-	// - `TOO_MANY_ELECTIONS`
-	// * Sharded cluster
-	// - `CLUSTER_MONGOS_IS_MISSING`
-	// - `User`
-	// - `JOINED_GROUP`
-	// - `REMOVED_FROM_GROUP`
-	// - `USER_ROLES_CHANGED_AUDIT`
-	// * Project
-	// - `USERS_AWAITING_APPROVAL`
-	// - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-	// - `GROUP_CREATED`
-	// * Team
-	// - `JOINED_TEAM`
-	// - `REMOVED_FROM_TEAM`
-	// * Organization
-	// - `INVITED_TO_ORG`
-	// - `JOINED_ORG`
-	// * Data Explorer
-	// - `DATA_EXPLORER`
-	// - `DATA_EXPLORER_CRUD`
-	// * Billing
-	// - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-	// - `CHARGE_SUCCEEDED`
-	// - `INVOICE_CLOSED`
 	EventType       pulumi.StringPtrInput
 	Matchers        AlertConfigurationMatcherArrayInput
 	MetricThreshold AlertConfigurationMetricThresholdPtrInput
 	Notifications   AlertConfigurationNotificationArrayInput
 	// The ID of the project where the alert configuration will create.
 	ProjectId pulumi.StringPtrInput
+	// Threshold value outside of which an alert will be triggered.
+	Threshold AlertConfigurationThresholdPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated pulumi.StringPtrInput
 }
@@ -264,45 +221,14 @@ type alertConfigurationArgs struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
-	// Alert type 	Possible values:
-	// * Host
-	// - `OUTSIDE_METRIC_THRESHOLD`
-	// - `HOST_RESTARTED`
-	// - `HOST_UPGRADED`
-	// - `HOST_NOW_SECONDARY`
-	// - `HOST_NOW_PRIMARY`
-	// * Replica set
-	// - `NO_PRIMARY`
-	// - `TOO_MANY_ELECTIONS`
-	// * Sharded cluster
-	// - `CLUSTER_MONGOS_IS_MISSING`
-	// - `User`
-	// - `JOINED_GROUP`
-	// - `REMOVED_FROM_GROUP`
-	// - `USER_ROLES_CHANGED_AUDIT`
-	// * Project
-	// - `USERS_AWAITING_APPROVAL`
-	// - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-	// - `GROUP_CREATED`
-	// * Team
-	// - `JOINED_TEAM`
-	// - `REMOVED_FROM_TEAM`
-	// * Organization
-	// - `INVITED_TO_ORG`
-	// - `JOINED_ORG`
-	// * Data Explorer
-	// - `DATA_EXPLORER`
-	// - `DATA_EXPLORER_CRUD`
-	// * Billing
-	// - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-	// - `CHARGE_SUCCEEDED`
-	// - `INVOICE_CLOSED`
 	EventType       string                             `pulumi:"eventType"`
 	Matchers        []AlertConfigurationMatcher        `pulumi:"matchers"`
 	MetricThreshold *AlertConfigurationMetricThreshold `pulumi:"metricThreshold"`
 	Notifications   []AlertConfigurationNotification   `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId string `pulumi:"projectId"`
+	// Threshold value outside of which an alert will be triggered.
+	Threshold *AlertConfigurationThreshold `pulumi:"threshold"`
 }
 
 // The set of arguments for constructing a AlertConfiguration resource.
@@ -310,45 +236,14 @@ type AlertConfigurationArgs struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolPtrInput
 	// The type of event that will trigger an alert.
-	// Alert type 	Possible values:
-	// * Host
-	// - `OUTSIDE_METRIC_THRESHOLD`
-	// - `HOST_RESTARTED`
-	// - `HOST_UPGRADED`
-	// - `HOST_NOW_SECONDARY`
-	// - `HOST_NOW_PRIMARY`
-	// * Replica set
-	// - `NO_PRIMARY`
-	// - `TOO_MANY_ELECTIONS`
-	// * Sharded cluster
-	// - `CLUSTER_MONGOS_IS_MISSING`
-	// - `User`
-	// - `JOINED_GROUP`
-	// - `REMOVED_FROM_GROUP`
-	// - `USER_ROLES_CHANGED_AUDIT`
-	// * Project
-	// - `USERS_AWAITING_APPROVAL`
-	// - `USERS_WITHOUT_MULTI_FACTOR_AUTH`
-	// - `GROUP_CREATED`
-	// * Team
-	// - `JOINED_TEAM`
-	// - `REMOVED_FROM_TEAM`
-	// * Organization
-	// - `INVITED_TO_ORG`
-	// - `JOINED_ORG`
-	// * Data Explorer
-	// - `DATA_EXPLORER`
-	// - `DATA_EXPLORER_CRUD`
-	// * Billing
-	// - `CREDIT_CARD_ABOUT_TO_EXPIRE`
-	// - `CHARGE_SUCCEEDED`
-	// - `INVOICE_CLOSED`
 	EventType       pulumi.StringInput
 	Matchers        AlertConfigurationMatcherArrayInput
 	MetricThreshold AlertConfigurationMetricThresholdPtrInput
 	Notifications   AlertConfigurationNotificationArrayInput
 	// The ID of the project where the alert configuration will create.
 	ProjectId pulumi.StringInput
+	// Threshold value outside of which an alert will be triggered.
+	Threshold AlertConfigurationThresholdPtrInput
 }
 
 func (AlertConfigurationArgs) ElementType() reflect.Type {

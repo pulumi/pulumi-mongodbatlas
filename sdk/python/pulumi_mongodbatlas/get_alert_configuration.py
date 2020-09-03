@@ -20,7 +20,7 @@ class GetAlertConfigurationResult:
     """
     A collection of values returned by getAlertConfiguration.
     """
-    def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold=None, notifications=None, project_id=None, updated=None):
+    def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold=None, notifications=None, project_id=None, threshold=None, updated=None):
         if alert_configuration_id and not isinstance(alert_configuration_id, str):
             raise TypeError("Expected argument 'alert_configuration_id' to be a str")
         pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
@@ -48,6 +48,9 @@ class GetAlertConfigurationResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if threshold and not isinstance(threshold, dict):
+            raise TypeError("Expected argument 'threshold' to be a dict")
+        pulumi.set(__self__, "threshold", threshold)
         if updated and not isinstance(updated, str):
             raise TypeError("Expected argument 'updated' to be a str")
         pulumi.set(__self__, "updated", updated)
@@ -78,18 +81,6 @@ class GetAlertConfigurationResult:
     def event_type(self) -> str:
         """
         The type of event that will trigger an alert.
-        Alert type. Possible values:
-        - Host
-        - `OUTSIDE_METRIC_THRESHOLD`
-        - `HOST_RESTARTED`
-        - `HOST_UPGRADED`
-        - `HOST_NOW_SECONDARY`
-        - `HOST_NOW_PRIMARY`
-        - Replica set
-        - `NO_PRIMARY`
-        - `TOO_MANY_ELECTIONS`
-        Sharded cluster
-        - `CLUSTER_MONGOS_IS_MISSING`
         """
         return pulumi.get(self, "event_type")
 
@@ -123,6 +114,14 @@ class GetAlertConfigurationResult:
 
     @property
     @pulumi.getter
+    def threshold(self) -> 'outputs.GetAlertConfigurationThresholdResult':
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter
     def updated(self) -> str:
         """
         Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -145,6 +144,7 @@ class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
             metric_threshold=self.metric_threshold,
             notifications=self.notifications,
             project_id=self.project_id,
+            threshold=self.threshold,
             updated=self.updated)
 
 
@@ -179,4 +179,5 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
         metric_threshold=__ret__.metric_threshold,
         notifications=__ret__.notifications,
         project_id=__ret__.project_id,
+        threshold=__ret__.threshold,
         updated=__ret__.updated)
