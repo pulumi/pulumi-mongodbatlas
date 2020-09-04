@@ -114,7 +114,7 @@ export interface GetCloudProviderSnapshotRestoreJobResult {
     readonly id: string;
     readonly jobId: string;
     readonly oplogInc: number;
-    readonly oplogTs: string;
+    readonly oplogTs: number;
     readonly pointInTimeUtcSeconds: number;
     readonly projectId: string;
     /**

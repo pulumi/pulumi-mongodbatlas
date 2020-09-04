@@ -35,18 +35,6 @@ type LookupAlertConfigurationResult struct {
 	// If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.
 	Enabled bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
-	// Alert type. Possible values:
-	// - Host
-	// - `OUTSIDE_METRIC_THRESHOLD`
-	// - `HOST_RESTARTED`
-	// - `HOST_UPGRADED`
-	// - `HOST_NOW_SECONDARY`
-	// - `HOST_NOW_PRIMARY`
-	// - Replica set
-	// - `NO_PRIMARY`
-	// - `TOO_MANY_ELECTIONS`
-	//   Sharded cluster
-	// - `CLUSTER_MONGOS_IS_MISSING`
 	EventType string `pulumi:"eventType"`
 	// The provider-assigned unique ID for this managed resource.
 	Id              string                               `pulumi:"id"`
@@ -54,6 +42,8 @@ type LookupAlertConfigurationResult struct {
 	MetricThreshold GetAlertConfigurationMetricThreshold `pulumi:"metricThreshold"`
 	Notifications   []GetAlertConfigurationNotification  `pulumi:"notifications"`
 	ProjectId       string                               `pulumi:"projectId"`
+	// Threshold value outside of which an alert will be triggered.
+	Threshold GetAlertConfigurationThreshold `pulumi:"threshold"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated string `pulumi:"updated"`
 }

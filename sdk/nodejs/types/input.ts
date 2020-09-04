@@ -8,19 +8,6 @@ import * as outputs from "../types/output";
 export interface AlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
-     * Host alerts support these fields:
-     * - `TYPE_NAME`
-     * - `HOSTNAME`
-     * - `PORT`
-     * - `HOSTNAME_AND_PORT`
-     * - `REPLICA_SET_NAME`
-     * Replica set alerts support these fields:
-     * - `REPLICA_SET_NAME`
-     * - `SHARD_NAME`
-     * - `CLUSTER_NAME`
-     * Sharded cluster alerts support these fields:
-     * - `CLUSTER_NAME`
-     * - `SHARD_NAME`
      */
     fieldName?: pulumi.Input<string>;
     /**
@@ -43,7 +30,7 @@ export interface AlertConfigurationMatcher {
 
 export interface AlertConfigurationMetricThreshold {
     /**
-     * Name of the metric to check.
+     * Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
      */
     metricName?: pulumi.Input<string>;
     /**
@@ -174,6 +161,41 @@ export interface AlertConfigurationNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey?: pulumi.Input<string>;
+}
+
+export interface AlertConfigurationThreshold {
+    /**
+     * Operator to apply when checking the current metric value against the threshold value.
+     * Accepted values are:
+     * - `GREATER_THAN`
+     * - `LESS_THAN`
+     */
+    operator?: pulumi.Input<string>;
+    /**
+     * Threshold value outside of which an alert will be triggered.
+     */
+    threshold?: pulumi.Input<number>;
+    /**
+     * The units for the threshold value. Depends on the type of metric.
+     * Accepted values are:
+     * - `RAW`
+     * - `BITS`
+     * - `BYTES`
+     * - `KILOBITS`
+     * - `KILOBYTES`
+     * - `MEGABITS`
+     * - `MEGABYTES`
+     * - `GIGABITS`
+     * - `GIGABYTES`
+     * - `TERABYTES`
+     * - `PETABYTES`
+     * - `MILLISECONDS`
+     * - `SECONDS`
+     * - `MINUTES`
+     * - `HOURS`
+     * - `DAYS`
+     */
+    units?: pulumi.Input<string>;
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicy {

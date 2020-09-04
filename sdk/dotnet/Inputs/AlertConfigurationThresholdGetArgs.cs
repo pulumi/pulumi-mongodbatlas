@@ -10,20 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AlertConfigurationMetricThresholdArgs : Pulumi.ResourceArgs
+    public sealed class AlertConfigurationThresholdGetArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
-        /// </summary>
-        [Input("metricName")]
-        public Input<string>? MetricName { get; set; }
-
-        /// <summary>
-        /// This must be set to AVERAGE. Atlas computes the current metric value as an average.
-        /// </summary>
-        [Input("mode")]
-        public Input<string>? Mode { get; set; }
-
         /// <summary>
         /// Operator to apply when checking the current metric value against the threshold value.
         /// Accepted values are:
@@ -62,7 +50,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("units")]
         public Input<string>? Units { get; set; }
 
-        public AlertConfigurationMetricThresholdArgs()
+        public AlertConfigurationThresholdGetArgs()
         {
         }
     }

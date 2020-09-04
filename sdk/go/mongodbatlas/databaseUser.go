@@ -10,106 +10,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
-//
-// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
-// > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text.
-//
-// ## Example Usage
-// ### S
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
-// 			AuthDatabaseName: pulumi.String("admin"),
-// 			Labels: mongodbatlas.DatabaseUserLabelArray{
-// 				&mongodbatlas.DatabaseUserLabelArgs{
-// 					Key:   pulumi.String("My Key"),
-// 					Value: pulumi.String("My Value"),
-// 				},
-// 			},
-// 			Password:  pulumi.String("test-acc-password"),
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Roles: mongodbatlas.DatabaseUserRoleArray{
-// 				&mongodbatlas.DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("dbforApp"),
-// 					RoleName:     pulumi.String("readWrite"),
-// 				},
-// 				&mongodbatlas.DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
-// 					RoleName:     pulumi.String("readAnyDatabase"),
-// 				},
-// 			},
-// 			Username: pulumi.String("test-acc-username"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
-// ```go
-// package main
-//
-// import (
-// 	"fmt"
-//
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
-// 			AuthDatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
-// 			Labels: mongodbatlas.DatabaseUserLabelArray{
-// 				&mongodbatlas.DatabaseUserLabelArgs{
-// 					Key:   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
-// 					Value: pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
-// 				},
-// 			},
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Roles: mongodbatlas.DatabaseUserRoleArray{
-// 				&mongodbatlas.DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
-// 					RoleName:     pulumi.String("readAnyDatabase"),
-// 				},
-// 			},
-// 			Username: pulumi.String("test-acc-username"),
-// 			X509Type: pulumi.String("MANAGED"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type DatabaseUser struct {
 	pulumi.CustomResourceState
 
-	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+	// Accepted values include:
 	AuthDatabaseName pulumi.StringPtrOutput `pulumi:"authDatabaseName"`
+	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+	AwsIamType pulumi.StringPtrOutput `pulumi:"awsIamType"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrOutput       `pulumi:"databaseName"`
 	Labels       DatabaseUserLabelArrayOutput `pulumi:"labels"`
-	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
-	Password pulumi.StringPtrOutput `pulumi:"password"`
+	Password     pulumi.StringPtrOutput       `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -154,15 +68,17 @@ func GetDatabaseUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatabaseUser resources.
 type databaseUserState struct {
-	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+	// Accepted values include:
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
+	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+	AwsIamType *string `pulumi:"awsIamType"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
 	// Deprecated: use auth_database_name instead
 	DatabaseName *string             `pulumi:"databaseName"`
 	Labels       []DatabaseUserLabel `pulumi:"labels"`
-	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
-	Password *string `pulumi:"password"`
+	Password     *string             `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -174,15 +90,17 @@ type databaseUserState struct {
 }
 
 type DatabaseUserState struct {
-	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+	// Accepted values include:
 	AuthDatabaseName pulumi.StringPtrInput
+	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+	AwsIamType pulumi.StringPtrInput
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrInput
 	Labels       DatabaseUserLabelArrayInput
-	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
-	Password pulumi.StringPtrInput
+	Password     pulumi.StringPtrInput
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringPtrInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -198,15 +116,17 @@ func (DatabaseUserState) ElementType() reflect.Type {
 }
 
 type databaseUserArgs struct {
-	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+	// Accepted values include:
 	AuthDatabaseName *string `pulumi:"authDatabaseName"`
+	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+	AwsIamType *string `pulumi:"awsIamType"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
 	// Deprecated: use auth_database_name instead
 	DatabaseName *string             `pulumi:"databaseName"`
 	Labels       []DatabaseUserLabel `pulumi:"labels"`
-	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
-	Password *string `pulumi:"password"`
+	Password     *string             `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -219,15 +139,17 @@ type databaseUserArgs struct {
 
 // The set of arguments for constructing a DatabaseUser resource.
 type DatabaseUserArgs struct {
-	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.
+	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+	// Accepted values include:
 	AuthDatabaseName pulumi.StringPtrInput
+	// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+	AwsIamType pulumi.StringPtrInput
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	//
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrInput
 	Labels       DatabaseUserLabelArrayInput
-	// User's initial password. A value is required to create the database user, however the argument but may be removed from your configuration after user creation without impacting the user, password or management. IMPORTANT --- Passwords may show up in provider related logs and it will be stored in the state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.  If you do change management of the password to outside of provider be sure to remove the argument from the provider configuration so it is not inadvertently updated to the original password.
-	Password pulumi.StringPtrInput
+	Password     pulumi.StringPtrInput
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.

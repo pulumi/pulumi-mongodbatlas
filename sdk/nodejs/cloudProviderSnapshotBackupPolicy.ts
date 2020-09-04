@@ -6,69 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * `mongodbatlas.CloudProviderSnapshotBackupPolicy` provides a resource that enables you to view and modify the snapshot schedule and retention settings for an Atlas cluster with Cloud Backup enabled.  A default policy is created automatically when Cloud Backup is enabled for the cluster.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const myCluster = new mongodbatlas.Cluster("myCluster", {
- *     projectId: "<PROJECT-ID>",
- *     diskSizeGb: 5,
- *     providerName: "AWS",
- *     providerRegionName: "EU_CENTRAL_1",
- *     providerInstanceSizeName: "M10",
- *     providerBackupEnabled: true,
- *     providerDiskIops: 100,
- *     providerEncryptEbsVolume: false,
- * });
- * const test = new mongodbatlas.CloudProviderSnapshotBackupPolicy("test", {
- *     projectId: myCluster.projectId,
- *     clusterName: myCluster.name,
- *     referenceHourOfDay: 3,
- *     referenceMinuteOfHour: 45,
- *     restoreWindowDays: 4,
- *     policies: [{
- *         id: myCluster.snapshotBackupPolicies.apply(snapshotBackupPolicies => snapshotBackupPolicies[0].policies?[0]?.id),
- *         policyItems: [
- *             {
- *                 id: myCluster.snapshotBackupPolicies.apply(snapshotBackupPolicies => snapshotBackupPolicies[0].policies?[0]?.policyItems?[0]?.id),
- *                 frequencyInterval: 1,
- *                 frequencyType: "hourly",
- *                 retentionUnit: "days",
- *                 retentionValue: 1,
- *             },
- *             {
- *                 id: myCluster.snapshotBackupPolicies.apply(snapshotBackupPolicies => snapshotBackupPolicies[0].policies?[0]?.policyItems?[1]?.id),
- *                 frequencyInterval: 1,
- *                 frequencyType: "daily",
- *                 retentionUnit: "days",
- *                 retentionValue: 2,
- *             },
- *             {
- *                 id: myCluster.snapshotBackupPolicies.apply(snapshotBackupPolicies => snapshotBackupPolicies[0].policies?[0]?.policyItems?[2]?.id),
- *                 frequencyInterval: 4,
- *                 frequencyType: "weekly",
- *                 retentionUnit: "weeks",
- *                 retentionValue: 3,
- *             },
- *             {
- *                 id: myCluster.snapshotBackupPolicies.apply(snapshotBackupPolicies => snapshotBackupPolicies[0].policies?[0]?.policyItems?[3]?.id),
- *                 frequencyInterval: 5,
- *                 frequencyType: "monthly",
- *                 retentionUnit: "months",
- *                 retentionValue: 4,
- *             },
- *         ],
- *     }],
- * });
- * ```
- */
 export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
     /**
      * Get an existing CloudProviderSnapshotBackupPolicy resource's state with the given name, ID, and optional extra

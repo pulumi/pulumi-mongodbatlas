@@ -60,6 +60,10 @@ namespace Pulumi.Mongodbatlas
     {
         public readonly string? AuthDatabaseName;
         /// <summary>
+        /// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+        /// </summary>
+        public readonly string AwsIamType;
+        /// <summary>
         /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
         /// </summary>
         public readonly string? DatabaseName;
@@ -83,6 +87,8 @@ namespace Pulumi.Mongodbatlas
         private GetDatabaseUserResult(
             string? authDatabaseName,
 
+            string awsIamType,
+
             string? databaseName,
 
             string id,
@@ -98,6 +104,7 @@ namespace Pulumi.Mongodbatlas
             string x509Type)
         {
             AuthDatabaseName = authDatabaseName;
+            AwsIamType = awsIamType;
             DatabaseName = databaseName;
             Id = id;
             Labels = labels;

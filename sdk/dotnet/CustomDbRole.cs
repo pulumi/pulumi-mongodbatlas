@@ -239,7 +239,7 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class CustomDbRoleArgs : Pulumi.ResourceArgs
     {
-        [Input("actions", required: true)]
+        [Input("actions")]
         private InputList<Inputs.CustomDbRoleActionArgs>? _actions;
         public InputList<Inputs.CustomDbRoleActionArgs> Actions
         {

@@ -53,8 +53,8 @@ class GetCloudProviderSnapshotRestoreJobResult:
         if oplog_inc and not isinstance(oplog_inc, float):
             raise TypeError("Expected argument 'oplog_inc' to be a float")
         pulumi.set(__self__, "oplog_inc", oplog_inc)
-        if oplog_ts and not isinstance(oplog_ts, str):
-            raise TypeError("Expected argument 'oplog_ts' to be a str")
+        if oplog_ts and not isinstance(oplog_ts, float):
+            raise TypeError("Expected argument 'oplog_ts' to be a float")
         pulumi.set(__self__, "oplog_ts", oplog_ts)
         if point_in_time_utc_seconds and not isinstance(point_in_time_utc_seconds, float):
             raise TypeError("Expected argument 'point_in_time_utc_seconds' to be a float")
@@ -156,7 +156,7 @@ class GetCloudProviderSnapshotRestoreJobResult:
 
     @property
     @pulumi.getter(name="oplogTs")
-    def oplog_ts(self) -> str:
+    def oplog_ts(self) -> float:
         return pulumi.get(self, "oplog_ts")
 
     @property

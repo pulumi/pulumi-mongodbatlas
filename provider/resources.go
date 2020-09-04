@@ -19,10 +19,10 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/mongodb/terraform-provider-mongodbatlas/mongodbatlas"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-mongodbatlas/mongodbatlas"
 )
 
 // all of the token components used below.
@@ -81,6 +81,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-mongodbatlas",
+		GitHubOrg:   "mongodb",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"public_key": {
 				Default: &tfbridge.DefaultInfo{

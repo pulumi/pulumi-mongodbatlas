@@ -85,7 +85,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string Id;
         public readonly string JobId;
         public readonly int OplogInc;
-        public readonly string OplogTs;
+        public readonly int OplogTs;
         public readonly int PointInTimeUtcSeconds;
         public readonly string ProjectId;
         /// <summary>
@@ -126,7 +126,7 @@ namespace Pulumi.Mongodbatlas
 
             int oplogInc,
 
-            string oplogTs,
+            int oplogTs,
 
             int pointInTimeUtcSeconds,
 

@@ -142,8 +142,6 @@ class CustomDbRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if actions is None:
-                raise TypeError("Missing required property 'actions'")
             __props__['actions'] = actions
             __props__['inherited_roles'] = inherited_roles
             if project_id is None:
@@ -188,7 +186,7 @@ class CustomDbRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def actions(self) -> pulumi.Output[List['outputs.CustomDbRoleAction']]:
+    def actions(self) -> pulumi.Output[Optional[List['outputs.CustomDbRoleAction']]]:
         return pulumi.get(self, "actions")
 
     @property

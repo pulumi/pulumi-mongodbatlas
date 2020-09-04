@@ -18,6 +18,8 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
+// > **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
+//
 // ## Example Usage
 //
 // ```go

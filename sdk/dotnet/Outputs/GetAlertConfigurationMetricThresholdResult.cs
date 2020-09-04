@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAlertConfigurationMetricThresholdResult
     {
         /// <summary>
-        /// Name of the metric to check.
+        /// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
         /// </summary>
         public readonly string MetricName;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Mode;
         /// <summary>
-        /// Operator to apply when checking the current metric value against the threshold value. 
+        /// Operator to apply when checking the current metric value against the threshold value.
         /// Accepted values are:
         /// - `GREATER_THAN`
         /// - `LESS_THAN`
