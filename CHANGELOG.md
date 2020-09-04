@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.6.4 of the MongoDbAtlas Terraform Provider
+_(none)_
 
 ---
+
+## 1.2.1 (2020-09-04)
+* Upgrade to v0.6.4 of the MongoDbAtlas Terraform Provider
 
 ## 1.2.0 (2020-08-31)
 * Upgrade to pulumi-terraform-bridge v2.7.3
