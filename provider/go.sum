@@ -810,6 +810,8 @@ github.com/mongodb/go-client-mongodb-atlas v0.3.0 h1:G2sNi2M/8ovfqSDmvOuxusXmafS
 github.com/mongodb/go-client-mongodb-atlas v0.3.0/go.mod h1:182DADO+2ZDWQyW25uIxzop3U0rrQdeNEzqvs6w9kTI=
 github.com/mongodb/terraform-provider-mongodbatlas v0.6.4 h1:D0GrSOyFSiKiVwfpW6/K4bIEedNfCiCiXjOmpmO1nZk=
 github.com/mongodb/terraform-provider-mongodbatlas v0.6.4/go.mod h1:7ERbOQKdafp1e8TmDs3fCXDBUJfuXAzYmiVtOIOTLtY=
+github.com/mongodb/terraform-provider-mongodbatlas v0.6.5 h1:mU/GHXnCDi92rSnptu4qxQftN0JJDSzOflgN1lvlT5k=
+github.com/mongodb/terraform-provider-mongodbatlas v0.6.5/go.mod h1:ZPDM2Ji+H50vHUVZPT0y8YK2t79ac5ilbU5qvNQbfHQ=
 github.com/mozilla/tls-observatory v0.0.0-20180409132520-8791a200eb40/go.mod h1:SrKMQvPiws7F7iqYp8/TX+IhxCYhzr6N/1yb8cwHsGk=
 github.com/mozilla/tls-observatory v0.0.0-20200220173314-aae45faa4006/go.mod h1:SrKMQvPiws7F7iqYp8/TX+IhxCYhzr6N/1yb8cwHsGk=
 github.com/mwielbut/pointy v1.1.0 h1:U5/YEfoIkaGCHv0St3CgjduqXID4FNRoyZgLM1kY9vg=
@@ -1121,6 +1123,8 @@ go.mongodb.org/atlas v0.3.1-0.20200610163544-41bae9e4adcc h1:4ctQf+myJr8vnlCBE8U
 go.mongodb.org/atlas v0.3.1-0.20200610163544-41bae9e4adcc/go.mod h1:xa/V3muNuVoReSG0y2pigUUnfPOx1cHF0ZV2uCE+c7I=
 go.mongodb.org/atlas v0.4.1-0.20200820152733-8dc4a7c19a2b h1:AuAQZDrQLesdmz9mIPaIn07OJRoG4Vfm+M3xd31HGgo=
 go.mongodb.org/atlas v0.4.1-0.20200820152733-8dc4a7c19a2b/go.mod h1:QlKvZKT43+R6lhHlaTy2E7Q/3AoAljMI6v5apfqslIs=
+go.mongodb.org/atlas v0.4.1-0.20200916170654-ac3833accfa2 h1:qjEP4bC8yTi57jBYHtSSA8gzPN4vJl3XG23YBMXCgUg=
+go.mongodb.org/atlas v0.4.1-0.20200916170654-ac3833accfa2/go.mod h1:CIaBeO8GLHhtYLw7xSSXsw7N90Z4MFY87Oy9qcPyuEs=
 go.mongodb.org/mongo-driver v1.2.1/go.mod h1:u7ryQJ+DOzQmeO7zB6MHyr8jkEQvC8vH7qLUO4lqsUM=
 go.opencensus.io v0.15.0/go.mod h1:UffZAU+4sDEINUGP/B7UfBBkq4fqLu9zXAX7ke6CHW0=
 go.opencensus.io v0.19.1/go.mod h1:gug0GbSHa8Pafr0d2urOSgoXHZ6x/RUlaiT0d9pqb4A=

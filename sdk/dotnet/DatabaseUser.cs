@@ -48,6 +48,9 @@ namespace Pulumi.Mongodbatlas
         [Output("roles")]
         public Output<ImmutableArray<Outputs.DatabaseUserRole>> Roles { get; private set; } = null!;
 
+        [Output("scopes")]
+        public Output<ImmutableArray<Outputs.DatabaseUserScope>> Scopes { get; private set; } = null!;
+
         /// <summary>
         /// Username for authenticating to MongoDB.
         /// </summary>
@@ -154,6 +157,14 @@ namespace Pulumi.Mongodbatlas
             set => _roles = value;
         }
 
+        [Input("scopes")]
+        private InputList<Inputs.DatabaseUserScopeArgs>? _scopes;
+        public InputList<Inputs.DatabaseUserScopeArgs> Scopes
+        {
+            get => _scopes ?? (_scopes = new InputList<Inputs.DatabaseUserScopeArgs>());
+            set => _scopes = value;
+        }
+
         /// <summary>
         /// Username for authenticating to MongoDB.
         /// </summary>
@@ -219,6 +230,14 @@ namespace Pulumi.Mongodbatlas
         {
             get => _roles ?? (_roles = new InputList<Inputs.DatabaseUserRoleGetArgs>());
             set => _roles = value;
+        }
+
+        [Input("scopes")]
+        private InputList<Inputs.DatabaseUserScopeGetArgs>? _scopes;
+        public InputList<Inputs.DatabaseUserScopeGetArgs> Scopes
+        {
+            get => _scopes ?? (_scopes = new InputList<Inputs.DatabaseUserScopeGetArgs>());
+            set => _scopes = value;
         }
 
         /// <summary>

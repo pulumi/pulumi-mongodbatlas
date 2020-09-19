@@ -31,6 +31,7 @@ __all__ = [
     'CustomDbRoleInheritedRole',
     'DatabaseUserLabel',
     'DatabaseUserRole',
+    'DatabaseUserScope',
     'EncryptionAtRestAwsKms',
     'EncryptionAtRestAzureKeyVault',
     'EncryptionAtRestGoogleCloudKms',
@@ -73,9 +74,11 @@ __all__ = [
     'GetCustomDbRolesResultInheritedRoleResult',
     'GetDatabaseUserLabelResult',
     'GetDatabaseUserRoleResult',
+    'GetDatabaseUserScopeResult',
     'GetDatabaseUsersResultResult',
     'GetDatabaseUsersResultLabelResult',
     'GetDatabaseUsersResultRoleResult',
+    'GetDatabaseUsersResultScopeResult',
     'GetGlobalClusterConfigManagedNamespaceResult',
     'GetNetworkContainersResultResult',
     'GetNetworkPeeringsResultResult',
@@ -1467,6 +1470,40 @@ class DatabaseUserRole(dict):
         Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
         """
         return pulumi.get(self, "role_name")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class DatabaseUserScope(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param str name: Name of the cluster or Atlas Data Lake that the user has access to.
+        :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the cluster or Atlas Data Lake that the user has access to.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        """
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4113,6 +4150,35 @@ class GetDatabaseUserRoleResult(dict):
 
 
 @pulumi.output_type
+class GetDatabaseUserScopeResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 type: str):
+        """
+        :param str name: Name of the role to grant.
+        :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the role to grant.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetDatabaseUsersResultResult(dict):
     def __init__(__self__, *,
                  auth_database_name: str,
@@ -4120,6 +4186,7 @@ class GetDatabaseUsersResultResult(dict):
                  labels: List['outputs.GetDatabaseUsersResultLabelResult'],
                  project_id: str,
                  roles: List['outputs.GetDatabaseUsersResultRoleResult'],
+                 scopes: List['outputs.GetDatabaseUsersResultScopeResult'],
                  username: str,
                  x509_type: str):
         """
@@ -4132,6 +4199,7 @@ class GetDatabaseUsersResultResult(dict):
         :param str aws_iam_type: The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
         :param str project_id: The unique ID for the project to get all database users.
         :param List['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param List['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Lakes that this user has access to.
         :param str username: Username for authenticating to MongoDB.
         :param str x509_type: X.509 method by which the provided username is authenticated.
         """
@@ -4140,6 +4208,7 @@ class GetDatabaseUsersResultResult(dict):
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "scopes", scopes)
         pulumi.set(__self__, "username", username)
         pulumi.set(__self__, "x509_type", x509_type)
 
@@ -4184,6 +4253,14 @@ class GetDatabaseUsersResultResult(dict):
         List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         """
         return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> List['outputs.GetDatabaseUsersResultScopeResult']:
+        """
+        Array of clusters and Atlas Data Lakes that this user has access to.
+        """
+        return pulumi.get(self, "scopes")
 
     @property
     @pulumi.getter
@@ -4265,6 +4342,35 @@ class GetDatabaseUsersResultRoleResult(dict):
     @pulumi.getter(name="roleName")
     def role_name(self) -> str:
         return pulumi.get(self, "role_name")
+
+
+@pulumi.output_type
+class GetDatabaseUsersResultScopeResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 type: str):
+        """
+        :param str name: Name of the role to grant.
+        :param str type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the role to grant.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type

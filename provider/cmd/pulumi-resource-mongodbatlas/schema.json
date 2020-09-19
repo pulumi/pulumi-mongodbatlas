@@ -1083,6 +1083,37 @@
                 }
             }
         },
+        "mongodbatlas:/DatabaseUserScope:DatabaseUserScope": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the cluster or Atlas Data Lake that the user has access to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "name",
+                        "type"
+                    ]
+                }
+            }
+        },
         "mongodbatlas:/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms": {
             "properties": {
                 "accessKeyId": {
@@ -3663,6 +3694,38 @@
                 }
             }
         },
+        "mongodbatlas:/getDatabaseUserScope:getDatabaseUserScope": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the role to grant.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "mongodbatlas:/getDatabaseUsersResult:getDatabaseUsersResult": {
             "properties": {
                 "authDatabaseName": {
@@ -3715,6 +3778,18 @@
                         }
                     }
                 },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:/getDatabaseUsersResultScope:getDatabaseUsersResultScope"
+                    },
+                    "description": "Array of clusters and Atlas Data Lakes that this user has access to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "username": {
                     "type": "string",
                     "description": "Username for authenticating to MongoDB.\n",
@@ -3741,6 +3816,7 @@
                 "labels",
                 "projectId",
                 "roles",
+                "scopes",
                 "username",
                 "x509Type"
             ],
@@ -3816,6 +3892,38 @@
                 "collectionName",
                 "databaseName",
                 "roleName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:/getDatabaseUsersResultScope:getDatabaseUsersResultScope": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the role to grant.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type"
             ],
             "language": {
                 "nodejs": {
@@ -5634,6 +5742,12 @@
                     },
                     "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
                 },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                    }
+                },
                 "username": {
                     "type": "string",
                     "description": "Username for authenticating to MongoDB.\n"
@@ -5647,6 +5761,7 @@
                 "labels",
                 "projectId",
                 "roles",
+                "scopes",
                 "username"
             ],
             "inputProperties": {
@@ -5682,6 +5797,12 @@
                         "$ref": "#/types/mongodbatlas:/DatabaseUserRole:DatabaseUserRole"
                     },
                     "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                    }
                 },
                 "username": {
                     "type": "string",
@@ -5731,6 +5852,12 @@
                             "$ref": "#/types/mongodbatlas:/DatabaseUserRole:DatabaseUserRole"
                         },
                         "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                        }
                     },
                     "username": {
                         "type": "string",
@@ -6546,7 +6673,7 @@
             }
         },
         "mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink": {
-            "description": "`mongodbatlas.PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateEndpoint = new mongodbatlas.PrivateEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testPrivateEndpointInterfaceLink = new mongodbatlas.PrivateEndpointInterfaceLink(\"test\", {\n    interfaceEndpointId: ptfeService.id,\n    privateLinkId: testPrivateEndpoint.privateLinkId,\n    projectId: testPrivateEndpoint.projectId,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_endpoint = mongodbatlas.PrivateEndpoint(\"testPrivateEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    security_group_ids=[\"sg-3f238186\"],\n    service_name=test_private_endpoint.endpoint_service_name,\n    subnet_ids=[\"subnet-de0406d2\"],\n    vpc_endpoint_type=\"Interface\",\n    vpc_id=\"vpc-7fc0a543\")\ntest_private_endpoint_interface_link = mongodbatlas.PrivateEndpointInterfaceLink(\"testPrivateEndpointInterfaceLink\",\n    interface_endpoint_id=ptfe_service.id,\n    private_link_id=test_private_endpoint.private_link_id,\n    project_id=test_private_endpoint.project_id)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateEndpoint = new Mongodbatlas.PrivateEndpoint(\"testPrivateEndpoint\", new Mongodbatlas.PrivateEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n            ServiceName = testPrivateEndpoint.EndpointServiceName,\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            VpcEndpointType = \"Interface\",\n            VpcId = \"vpc-7fc0a543\",\n        });\n        var testPrivateEndpointInterfaceLink = new Mongodbatlas.PrivateEndpointInterfaceLink(\"testPrivateEndpointInterfaceLink\", new Mongodbatlas.PrivateEndpointInterfaceLinkArgs\n        {\n            InterfaceEndpointId = ptfeService.Id,\n            PrivateLinkId = testPrivateEndpoint.PrivateLinkId,\n            ProjectId = testPrivateEndpoint.ProjectId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateEndpoint, err := mongodbatlas.NewPrivateEndpoint(ctx, \"testPrivateEndpoint\", \u0026mongodbatlas.PrivateEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t\tServiceName: testPrivateEndpoint.EndpointServiceName,\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateEndpointInterfaceLink(ctx, \"testPrivateEndpointInterfaceLink\", \u0026mongodbatlas.PrivateEndpointInterfaceLinkArgs{\n\t\t\tInterfaceEndpointId: ptfeService.ID(),\n\t\t\tPrivateLinkId:       testPrivateEndpoint.PrivateLinkId,\n\t\t\tProjectId:           testPrivateEndpoint.ProjectId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "`mongodbatlas.PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateEndpoint = new mongodbatlas.PrivateEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testPrivateEndpointInterfaceLink = new mongodbatlas.PrivateEndpointInterfaceLink(\"test\", {\n    interfaceEndpointId: ptfeService.id,\n    privateLinkId: testPrivateEndpoint.privateLinkId,\n    projectId: testPrivateEndpoint.projectId,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_endpoint = mongodbatlas.PrivateEndpoint(\"testPrivateEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    security_group_ids=[\"sg-3f238186\"],\n    service_name=test_private_endpoint.endpoint_service_name,\n    subnet_ids=[\"subnet-de0406d2\"],\n    vpc_endpoint_type=\"Interface\",\n    vpc_id=\"vpc-7fc0a543\")\ntest_private_endpoint_interface_link = mongodbatlas.PrivateEndpointInterfaceLink(\"testPrivateEndpointInterfaceLink\",\n    interface_endpoint_id=ptfe_service.id,\n    private_link_id=test_private_endpoint.private_link_id,\n    project_id=test_private_endpoint.project_id)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateEndpoint = new Mongodbatlas.PrivateEndpoint(\"testPrivateEndpoint\", new Mongodbatlas.PrivateEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n            ServiceName = testPrivateEndpoint.EndpointServiceName,\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            VpcEndpointType = \"Interface\",\n            VpcId = \"vpc-7fc0a543\",\n        });\n        var testPrivateEndpointInterfaceLink = new Mongodbatlas.PrivateEndpointInterfaceLink(\"testPrivateEndpointInterfaceLink\", new Mongodbatlas.PrivateEndpointInterfaceLinkArgs\n        {\n            InterfaceEndpointId = ptfeService.Id,\n            PrivateLinkId = testPrivateEndpoint.PrivateLinkId,\n            ProjectId = testPrivateEndpoint.ProjectId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateEndpoint, err := mongodbatlas.NewPrivateEndpoint(ctx, \"testPrivateEndpoint\", \u0026mongodbatlas.PrivateEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t\tServiceName: testPrivateEndpoint.EndpointServiceName,\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateEndpointInterfaceLink(ctx, \"testPrivateEndpointInterfaceLink\", \u0026mongodbatlas.PrivateEndpointInterfaceLinkArgs{\n\t\t\tInterfaceEndpointId: ptfeService.ID(),\n\t\t\tPrivateLinkId:       testPrivateEndpoint.PrivateLinkId,\n\t\t\tProjectId:           testPrivateEndpoint.ProjectId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "connectionStatus": {
                     "type": "string",
@@ -8123,6 +8250,13 @@
                         },
                         "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
                     },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:/getDatabaseUserScope:getDatabaseUserScope"
+                        },
+                        "description": "Array of clusters and Atlas Data Lakes that this user has access to.\n"
+                    },
                     "username": {
                         "type": "string"
                     },
@@ -8137,6 +8271,7 @@
                     "labels",
                     "projectId",
                     "roles",
+                    "scopes",
                     "username",
                     "x509Type",
                     "id"

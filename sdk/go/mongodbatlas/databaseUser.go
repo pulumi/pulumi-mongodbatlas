@@ -27,7 +27,8 @@ type DatabaseUser struct {
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-	Roles DatabaseUserRoleArrayOutput `pulumi:"roles"`
+	Roles  DatabaseUserRoleArrayOutput  `pulumi:"roles"`
+	Scopes DatabaseUserScopeArrayOutput `pulumi:"scopes"`
 	// Username for authenticating to MongoDB.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
@@ -82,7 +83,8 @@ type databaseUserState struct {
 	// The unique ID for the project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-	Roles []DatabaseUserRole `pulumi:"roles"`
+	Roles  []DatabaseUserRole  `pulumi:"roles"`
+	Scopes []DatabaseUserScope `pulumi:"scopes"`
 	// Username for authenticating to MongoDB.
 	Username *string `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
@@ -104,7 +106,8 @@ type DatabaseUserState struct {
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringPtrInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-	Roles DatabaseUserRoleArrayInput
+	Roles  DatabaseUserRoleArrayInput
+	Scopes DatabaseUserScopeArrayInput
 	// Username for authenticating to MongoDB.
 	Username pulumi.StringPtrInput
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
@@ -130,7 +133,8 @@ type databaseUserArgs struct {
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-	Roles []DatabaseUserRole `pulumi:"roles"`
+	Roles  []DatabaseUserRole  `pulumi:"roles"`
+	Scopes []DatabaseUserScope `pulumi:"scopes"`
 	// Username for authenticating to MongoDB.
 	Username string `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
@@ -153,7 +157,8 @@ type DatabaseUserArgs struct {
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-	Roles DatabaseUserRoleArrayInput
+	Roles  DatabaseUserRoleArrayInput
+	Scopes DatabaseUserScopeArrayInput
 	// Username for authenticating to MongoDB.
 	Username pulumi.StringInput
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
