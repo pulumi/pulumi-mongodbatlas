@@ -3336,6 +3336,112 @@ func (o DatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) DatabaseUserRoleOu
 	}).(DatabaseUserRoleOutput)
 }
 
+type DatabaseUserScope struct {
+	// Name of the cluster or Atlas Data Lake that the user has access to.
+	Name *string `pulumi:"name"`
+	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	Type *string `pulumi:"type"`
+}
+
+// DatabaseUserScopeInput is an input type that accepts DatabaseUserScopeArgs and DatabaseUserScopeOutput values.
+// You can construct a concrete instance of `DatabaseUserScopeInput` via:
+//
+//          DatabaseUserScopeArgs{...}
+type DatabaseUserScopeInput interface {
+	pulumi.Input
+
+	ToDatabaseUserScopeOutput() DatabaseUserScopeOutput
+	ToDatabaseUserScopeOutputWithContext(context.Context) DatabaseUserScopeOutput
+}
+
+type DatabaseUserScopeArgs struct {
+	// Name of the cluster or Atlas Data Lake that the user has access to.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (DatabaseUserScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseUserScope)(nil)).Elem()
+}
+
+func (i DatabaseUserScopeArgs) ToDatabaseUserScopeOutput() DatabaseUserScopeOutput {
+	return i.ToDatabaseUserScopeOutputWithContext(context.Background())
+}
+
+func (i DatabaseUserScopeArgs) ToDatabaseUserScopeOutputWithContext(ctx context.Context) DatabaseUserScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseUserScopeOutput)
+}
+
+// DatabaseUserScopeArrayInput is an input type that accepts DatabaseUserScopeArray and DatabaseUserScopeArrayOutput values.
+// You can construct a concrete instance of `DatabaseUserScopeArrayInput` via:
+//
+//          DatabaseUserScopeArray{ DatabaseUserScopeArgs{...} }
+type DatabaseUserScopeArrayInput interface {
+	pulumi.Input
+
+	ToDatabaseUserScopeArrayOutput() DatabaseUserScopeArrayOutput
+	ToDatabaseUserScopeArrayOutputWithContext(context.Context) DatabaseUserScopeArrayOutput
+}
+
+type DatabaseUserScopeArray []DatabaseUserScopeInput
+
+func (DatabaseUserScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseUserScope)(nil)).Elem()
+}
+
+func (i DatabaseUserScopeArray) ToDatabaseUserScopeArrayOutput() DatabaseUserScopeArrayOutput {
+	return i.ToDatabaseUserScopeArrayOutputWithContext(context.Background())
+}
+
+func (i DatabaseUserScopeArray) ToDatabaseUserScopeArrayOutputWithContext(ctx context.Context) DatabaseUserScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseUserScopeArrayOutput)
+}
+
+type DatabaseUserScopeOutput struct{ *pulumi.OutputState }
+
+func (DatabaseUserScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseUserScope)(nil)).Elem()
+}
+
+func (o DatabaseUserScopeOutput) ToDatabaseUserScopeOutput() DatabaseUserScopeOutput {
+	return o
+}
+
+func (o DatabaseUserScopeOutput) ToDatabaseUserScopeOutputWithContext(ctx context.Context) DatabaseUserScopeOutput {
+	return o
+}
+
+// Name of the cluster or Atlas Data Lake that the user has access to.
+func (o DatabaseUserScopeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseUserScope) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+func (o DatabaseUserScopeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseUserScope) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type DatabaseUserScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (DatabaseUserScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseUserScope)(nil)).Elem()
+}
+
+func (o DatabaseUserScopeArrayOutput) ToDatabaseUserScopeArrayOutput() DatabaseUserScopeArrayOutput {
+	return o
+}
+
+func (o DatabaseUserScopeArrayOutput) ToDatabaseUserScopeArrayOutputWithContext(ctx context.Context) DatabaseUserScopeArrayOutput {
+	return o
+}
+
+func (o DatabaseUserScopeArrayOutput) Index(i pulumi.IntInput) DatabaseUserScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseUserScope {
+		return vs[0].([]DatabaseUserScope)[vs[1].(int)]
+	}).(DatabaseUserScopeOutput)
+}
+
 type EncryptionAtRestAwsKms struct {
 	// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
 	AccessKeyId string `pulumi:"accessKeyId"`
@@ -9060,6 +9166,112 @@ func (o GetDatabaseUserRoleArrayOutput) Index(i pulumi.IntInput) GetDatabaseUser
 	}).(GetDatabaseUserRoleOutput)
 }
 
+type GetDatabaseUserScope struct {
+	// Name of the role to grant.
+	Name string `pulumi:"name"`
+	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	Type string `pulumi:"type"`
+}
+
+// GetDatabaseUserScopeInput is an input type that accepts GetDatabaseUserScopeArgs and GetDatabaseUserScopeOutput values.
+// You can construct a concrete instance of `GetDatabaseUserScopeInput` via:
+//
+//          GetDatabaseUserScopeArgs{...}
+type GetDatabaseUserScopeInput interface {
+	pulumi.Input
+
+	ToGetDatabaseUserScopeOutput() GetDatabaseUserScopeOutput
+	ToGetDatabaseUserScopeOutputWithContext(context.Context) GetDatabaseUserScopeOutput
+}
+
+type GetDatabaseUserScopeArgs struct {
+	// Name of the role to grant.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetDatabaseUserScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseUserScope)(nil)).Elem()
+}
+
+func (i GetDatabaseUserScopeArgs) ToGetDatabaseUserScopeOutput() GetDatabaseUserScopeOutput {
+	return i.ToGetDatabaseUserScopeOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseUserScopeArgs) ToGetDatabaseUserScopeOutputWithContext(ctx context.Context) GetDatabaseUserScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseUserScopeOutput)
+}
+
+// GetDatabaseUserScopeArrayInput is an input type that accepts GetDatabaseUserScopeArray and GetDatabaseUserScopeArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseUserScopeArrayInput` via:
+//
+//          GetDatabaseUserScopeArray{ GetDatabaseUserScopeArgs{...} }
+type GetDatabaseUserScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseUserScopeArrayOutput() GetDatabaseUserScopeArrayOutput
+	ToGetDatabaseUserScopeArrayOutputWithContext(context.Context) GetDatabaseUserScopeArrayOutput
+}
+
+type GetDatabaseUserScopeArray []GetDatabaseUserScopeInput
+
+func (GetDatabaseUserScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseUserScope)(nil)).Elem()
+}
+
+func (i GetDatabaseUserScopeArray) ToGetDatabaseUserScopeArrayOutput() GetDatabaseUserScopeArrayOutput {
+	return i.ToGetDatabaseUserScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseUserScopeArray) ToGetDatabaseUserScopeArrayOutputWithContext(ctx context.Context) GetDatabaseUserScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseUserScopeArrayOutput)
+}
+
+type GetDatabaseUserScopeOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseUserScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseUserScope)(nil)).Elem()
+}
+
+func (o GetDatabaseUserScopeOutput) ToGetDatabaseUserScopeOutput() GetDatabaseUserScopeOutput {
+	return o
+}
+
+func (o GetDatabaseUserScopeOutput) ToGetDatabaseUserScopeOutputWithContext(ctx context.Context) GetDatabaseUserScopeOutput {
+	return o
+}
+
+// Name of the role to grant.
+func (o GetDatabaseUserScopeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseUserScope) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+func (o GetDatabaseUserScopeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseUserScope) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetDatabaseUserScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseUserScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseUserScope)(nil)).Elem()
+}
+
+func (o GetDatabaseUserScopeArrayOutput) ToGetDatabaseUserScopeArrayOutput() GetDatabaseUserScopeArrayOutput {
+	return o
+}
+
+func (o GetDatabaseUserScopeArrayOutput) ToGetDatabaseUserScopeArrayOutputWithContext(ctx context.Context) GetDatabaseUserScopeArrayOutput {
+	return o
+}
+
+func (o GetDatabaseUserScopeArrayOutput) Index(i pulumi.IntInput) GetDatabaseUserScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseUserScope {
+		return vs[0].([]GetDatabaseUserScope)[vs[1].(int)]
+	}).(GetDatabaseUserScopeOutput)
+}
+
 type GetDatabaseUsersResultType struct {
 	// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Possible values include:
@@ -9075,6 +9287,8 @@ type GetDatabaseUsersResultType struct {
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles []GetDatabaseUsersResultRole `pulumi:"roles"`
+	// Array of clusters and Atlas Data Lakes that this user has access to.
+	Scopes []GetDatabaseUsersResultScope `pulumi:"scopes"`
 	// Username for authenticating to MongoDB.
 	Username string `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated.
@@ -9107,6 +9321,8 @@ type GetDatabaseUsersResultTypeArgs struct {
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles GetDatabaseUsersResultRoleArrayInput `pulumi:"roles"`
+	// Array of clusters and Atlas Data Lakes that this user has access to.
+	Scopes GetDatabaseUsersResultScopeArrayInput `pulumi:"scopes"`
 	// Username for authenticating to MongoDB.
 	Username pulumi.StringInput `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated.
@@ -9191,6 +9407,11 @@ func (o GetDatabaseUsersResultTypeOutput) ProjectId() pulumi.StringOutput {
 // List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 func (o GetDatabaseUsersResultTypeOutput) Roles() GetDatabaseUsersResultRoleArrayOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultType) []GetDatabaseUsersResultRole { return v.Roles }).(GetDatabaseUsersResultRoleArrayOutput)
+}
+
+// Array of clusters and Atlas Data Lakes that this user has access to.
+func (o GetDatabaseUsersResultTypeOutput) Scopes() GetDatabaseUsersResultScopeArrayOutput {
+	return o.ApplyT(func(v GetDatabaseUsersResultType) []GetDatabaseUsersResultScope { return v.Scopes }).(GetDatabaseUsersResultScopeArrayOutput)
 }
 
 // Username for authenticating to MongoDB.
@@ -9439,6 +9660,112 @@ func (o GetDatabaseUsersResultRoleArrayOutput) Index(i pulumi.IntInput) GetDatab
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseUsersResultRole {
 		return vs[0].([]GetDatabaseUsersResultRole)[vs[1].(int)]
 	}).(GetDatabaseUsersResultRoleOutput)
+}
+
+type GetDatabaseUsersResultScope struct {
+	// Name of the role to grant.
+	Name string `pulumi:"name"`
+	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	Type string `pulumi:"type"`
+}
+
+// GetDatabaseUsersResultScopeInput is an input type that accepts GetDatabaseUsersResultScopeArgs and GetDatabaseUsersResultScopeOutput values.
+// You can construct a concrete instance of `GetDatabaseUsersResultScopeInput` via:
+//
+//          GetDatabaseUsersResultScopeArgs{...}
+type GetDatabaseUsersResultScopeInput interface {
+	pulumi.Input
+
+	ToGetDatabaseUsersResultScopeOutput() GetDatabaseUsersResultScopeOutput
+	ToGetDatabaseUsersResultScopeOutputWithContext(context.Context) GetDatabaseUsersResultScopeOutput
+}
+
+type GetDatabaseUsersResultScopeArgs struct {
+	// Name of the role to grant.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetDatabaseUsersResultScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseUsersResultScope)(nil)).Elem()
+}
+
+func (i GetDatabaseUsersResultScopeArgs) ToGetDatabaseUsersResultScopeOutput() GetDatabaseUsersResultScopeOutput {
+	return i.ToGetDatabaseUsersResultScopeOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseUsersResultScopeArgs) ToGetDatabaseUsersResultScopeOutputWithContext(ctx context.Context) GetDatabaseUsersResultScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseUsersResultScopeOutput)
+}
+
+// GetDatabaseUsersResultScopeArrayInput is an input type that accepts GetDatabaseUsersResultScopeArray and GetDatabaseUsersResultScopeArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseUsersResultScopeArrayInput` via:
+//
+//          GetDatabaseUsersResultScopeArray{ GetDatabaseUsersResultScopeArgs{...} }
+type GetDatabaseUsersResultScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseUsersResultScopeArrayOutput() GetDatabaseUsersResultScopeArrayOutput
+	ToGetDatabaseUsersResultScopeArrayOutputWithContext(context.Context) GetDatabaseUsersResultScopeArrayOutput
+}
+
+type GetDatabaseUsersResultScopeArray []GetDatabaseUsersResultScopeInput
+
+func (GetDatabaseUsersResultScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseUsersResultScope)(nil)).Elem()
+}
+
+func (i GetDatabaseUsersResultScopeArray) ToGetDatabaseUsersResultScopeArrayOutput() GetDatabaseUsersResultScopeArrayOutput {
+	return i.ToGetDatabaseUsersResultScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseUsersResultScopeArray) ToGetDatabaseUsersResultScopeArrayOutputWithContext(ctx context.Context) GetDatabaseUsersResultScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseUsersResultScopeArrayOutput)
+}
+
+type GetDatabaseUsersResultScopeOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseUsersResultScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseUsersResultScope)(nil)).Elem()
+}
+
+func (o GetDatabaseUsersResultScopeOutput) ToGetDatabaseUsersResultScopeOutput() GetDatabaseUsersResultScopeOutput {
+	return o
+}
+
+func (o GetDatabaseUsersResultScopeOutput) ToGetDatabaseUsersResultScopeOutputWithContext(ctx context.Context) GetDatabaseUsersResultScopeOutput {
+	return o
+}
+
+// Name of the role to grant.
+func (o GetDatabaseUsersResultScopeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+func (o GetDatabaseUsersResultScopeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetDatabaseUsersResultScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseUsersResultScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseUsersResultScope)(nil)).Elem()
+}
+
+func (o GetDatabaseUsersResultScopeArrayOutput) ToGetDatabaseUsersResultScopeArrayOutput() GetDatabaseUsersResultScopeArrayOutput {
+	return o
+}
+
+func (o GetDatabaseUsersResultScopeArrayOutput) ToGetDatabaseUsersResultScopeArrayOutputWithContext(ctx context.Context) GetDatabaseUsersResultScopeArrayOutput {
+	return o
+}
+
+func (o GetDatabaseUsersResultScopeArrayOutput) Index(i pulumi.IntInput) GetDatabaseUsersResultScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseUsersResultScope {
+		return vs[0].([]GetDatabaseUsersResultScope)[vs[1].(int)]
+	}).(GetDatabaseUsersResultScopeOutput)
 }
 
 type GetGlobalClusterConfigManagedNamespace struct {
@@ -10417,6 +10744,8 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseUserLabelArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseUserRoleOutput{})
 	pulumi.RegisterOutputType(DatabaseUserRoleArrayOutput{})
+	pulumi.RegisterOutputType(DatabaseUserScopeOutput{})
+	pulumi.RegisterOutputType(DatabaseUserScopeArrayOutput{})
 	pulumi.RegisterOutputType(EncryptionAtRestAwsKmsOutput{})
 	pulumi.RegisterOutputType(EncryptionAtRestAwsKmsPtrOutput{})
 	pulumi.RegisterOutputType(EncryptionAtRestAzureKeyVaultOutput{})
@@ -10495,12 +10824,16 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseUserLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUserRoleOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUserRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseUserScopeOutput{})
+	pulumi.RegisterOutputType(GetDatabaseUserScopeArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultTypeOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultLabelOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultRoleOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseUsersResultScopeOutput{})
+	pulumi.RegisterOutputType(GetDatabaseUsersResultScopeArrayOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultTypeOutput{})

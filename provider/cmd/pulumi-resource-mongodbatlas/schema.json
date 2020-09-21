@@ -1083,6 +1083,37 @@
                 }
             }
         },
+        "mongodbatlas:/DatabaseUserScope:DatabaseUserScope": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the cluster or Atlas Data Lake that the user has access to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "name",
+                        "type"
+                    ]
+                }
+            }
+        },
         "mongodbatlas:/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms": {
             "properties": {
                 "accessKeyId": {
@@ -3663,6 +3694,38 @@
                 }
             }
         },
+        "mongodbatlas:/getDatabaseUserScope:getDatabaseUserScope": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the role to grant.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "mongodbatlas:/getDatabaseUsersResult:getDatabaseUsersResult": {
             "properties": {
                 "authDatabaseName": {
@@ -3715,6 +3778,18 @@
                         }
                     }
                 },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:/getDatabaseUsersResultScope:getDatabaseUsersResultScope"
+                    },
+                    "description": "Array of clusters and Atlas Data Lakes that this user has access to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "username": {
                     "type": "string",
                     "description": "Username for authenticating to MongoDB.\n",
@@ -3741,6 +3816,7 @@
                 "labels",
                 "projectId",
                 "roles",
+                "scopes",
                 "username",
                 "x509Type"
             ],
@@ -3816,6 +3892,38 @@
                 "collectionName",
                 "databaseName",
                 "roleName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:/getDatabaseUsersResultScope:getDatabaseUsersResultScope": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the role to grant.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "type"
             ],
             "language": {
                 "nodejs": {
@@ -5634,6 +5742,12 @@
                     },
                     "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
                 },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                    }
+                },
                 "username": {
                     "type": "string",
                     "description": "Username for authenticating to MongoDB.\n"
@@ -5647,6 +5761,7 @@
                 "labels",
                 "projectId",
                 "roles",
+                "scopes",
                 "username"
             ],
             "inputProperties": {
@@ -5682,6 +5797,12 @@
                         "$ref": "#/types/mongodbatlas:/DatabaseUserRole:DatabaseUserRole"
                     },
                     "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                    }
                 },
                 "username": {
                     "type": "string",
@@ -5731,6 +5852,12 @@
                             "$ref": "#/types/mongodbatlas:/DatabaseUserRole:DatabaseUserRole"
                         },
                         "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                        }
                     },
                     "username": {
                         "type": "string",
@@ -6546,7 +6673,7 @@
             }
         },
         "mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink": {
-            "description": "`mongodbatlas.PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateEndpoint = new mongodbatlas.PrivateEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testPrivateEndpointInterfaceLink = new mongodbatlas.PrivateEndpointInterfaceLink(\"test\", {\n    interfaceEndpointId: ptfeService.id,\n    privateLinkId: testPrivateEndpoint.privateLinkId,\n    projectId: testPrivateEndpoint.projectId,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_endpoint = mongodbatlas.PrivateEndpoint(\"testPrivateEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    security_group_ids=[\"sg-3f238186\"],\n    service_name=test_private_endpoint.endpoint_service_name,\n    subnet_ids=[\"subnet-de0406d2\"],\n    vpc_endpoint_type=\"Interface\",\n    vpc_id=\"vpc-7fc0a543\")\ntest_private_endpoint_interface_link = mongodbatlas.PrivateEndpointInterfaceLink(\"testPrivateEndpointInterfaceLink\",\n    interface_endpoint_id=ptfe_service.id,\n    private_link_id=test_private_endpoint.private_link_id,\n    project_id=test_private_endpoint.project_id)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateEndpoint = new Mongodbatlas.PrivateEndpoint(\"testPrivateEndpoint\", new Mongodbatlas.PrivateEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n            ServiceName = testPrivateEndpoint.EndpointServiceName,\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            VpcEndpointType = \"Interface\",\n            VpcId = \"vpc-7fc0a543\",\n        });\n        var testPrivateEndpointInterfaceLink = new Mongodbatlas.PrivateEndpointInterfaceLink(\"testPrivateEndpointInterfaceLink\", new Mongodbatlas.PrivateEndpointInterfaceLinkArgs\n        {\n            InterfaceEndpointId = ptfeService.Id,\n            PrivateLinkId = testPrivateEndpoint.PrivateLinkId,\n            ProjectId = testPrivateEndpoint.ProjectId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v2/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateEndpoint, err := mongodbatlas.NewPrivateEndpoint(ctx, \"testPrivateEndpoint\", \u0026mongodbatlas.PrivateEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t\tServiceName: testPrivateEndpoint.EndpointServiceName,\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateEndpointInterfaceLink(ctx, \"testPrivateEndpointInterfaceLink\", \u0026mongodbatlas.PrivateEndpointInterfaceLinkArgs{\n\t\t\tInterfaceEndpointId: ptfeService.ID(),\n\t\t\tPrivateLinkId:       testPrivateEndpoint.PrivateLinkId,\n\t\t\tProjectId:           testPrivateEndpoint.ProjectId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "`mongodbatlas.PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateEndpoint = new mongodbatlas.PrivateEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testPrivateEndpointInterfaceLink = new mongodbatlas.PrivateEndpointInterfaceLink(\"test\", {\n    interfaceEndpointId: ptfeService.id,\n    privateLinkId: testPrivateEndpoint.privateLinkId,\n    projectId: testPrivateEndpoint.projectId,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_endpoint = mongodbatlas.PrivateEndpoint(\"testPrivateEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    security_group_ids=[\"sg-3f238186\"],\n    service_name=test_private_endpoint.endpoint_service_name,\n    subnet_ids=[\"subnet-de0406d2\"],\n    vpc_endpoint_type=\"Interface\",\n    vpc_id=\"vpc-7fc0a543\")\ntest_private_endpoint_interface_link = mongodbatlas.PrivateEndpointInterfaceLink(\"testPrivateEndpointInterfaceLink\",\n    interface_endpoint_id=ptfe_service.id,\n    private_link_id=test_private_endpoint.private_link_id,\n    project_id=test_private_endpoint.project_id)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateEndpoint = new Mongodbatlas.PrivateEndpoint(\"testPrivateEndpoint\", new Mongodbatlas.PrivateEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n            ServiceName = testPrivateEndpoint.EndpointServiceName,\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            VpcEndpointType = \"Interface\",\n            VpcId = \"vpc-7fc0a543\",\n        });\n        var testPrivateEndpointInterfaceLink = new Mongodbatlas.PrivateEndpointInterfaceLink(\"testPrivateEndpointInterfaceLink\", new Mongodbatlas.PrivateEndpointInterfaceLinkArgs\n        {\n            InterfaceEndpointId = ptfeService.Id,\n            PrivateLinkId = testPrivateEndpoint.PrivateLinkId,\n            ProjectId = testPrivateEndpoint.ProjectId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateEndpoint, err := mongodbatlas.NewPrivateEndpoint(ctx, \"testPrivateEndpoint\", \u0026mongodbatlas.PrivateEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t\tServiceName: testPrivateEndpoint.EndpointServiceName,\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateEndpointInterfaceLink(ctx, \"testPrivateEndpointInterfaceLink\", \u0026mongodbatlas.PrivateEndpointInterfaceLinkArgs{\n\t\t\tInterfaceEndpointId: ptfeService.ID(),\n\t\t\tPrivateLinkId:       testPrivateEndpoint.PrivateLinkId,\n\t\t\tProjectId:           testPrivateEndpoint.ProjectId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "connectionStatus": {
                     "type": "string",
@@ -7124,7 +7251,7 @@
             }
         },
         "mongodbatlas:index/getAlertConfiguration:getAlertConfiguration": {
-            "description": "`mongodbatlas.AlertConfiguration` describes an Alert Configuration.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.\n\n",
+            "description": "`mongodbatlas.AlertConfiguration` describes an Alert Configuration.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasAlertConfiguration = new mongodbatlas.AlertConfiguration(\"test\", {\n    enabled: true,\n    eventType: \"OUTSIDE_METRIC_THRESHOLD\",\n    matchers: [{\n        fieldName: \"HOSTNAME_AND_PORT\",\n        operator: \"EQUALS\",\n        value: \"SECONDARY\",\n    }],\n    metricThreshold: {\n        metric_name: \"ASSERT_REGULAR\",\n        mode: \"AVERAGE\",\n        operator: \"LESS_THAN\",\n        threshold: 99,\n        units: \"RAW\",\n    },\n    notifications: [{\n        delayMin: 0,\n        emailEnabled: true,\n        intervalMin: 5,\n        smsEnabled: false,\n        typeName: \"GROUP\",\n    }],\n    projectId: \"\u003cPROJECT-ID\u003e\",\n});\nconst testAlertConfiguration = pulumi.all([testMongodbatlasAlertConfiguration.alertConfigurationId, testMongodbatlasAlertConfiguration.projectId]).apply(([alertConfigurationId, projectId]) =\u003e mongodbatlas.getAlertConfiguration({\n    alertConfigurationId: alertConfigurationId,\n    projectId: projectId,\n}, { async: true }));\n```\n\n\u003e **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasAlertConfiguration = new mongodbatlas.AlertConfiguration(\"test\", {\n    enabled: true,\n    eventType: \"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\",\n    matchers: [{\n        fieldName: \"HOSTNAME_AND_PORT\",\n        operator: \"EQUALS\",\n        value: \"SECONDARY\",\n    }],\n    notifications: [{\n        delayMin: 0,\n        emailEnabled: true,\n        intervalMin: 5,\n        roles: [\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        smsEnabled: false,\n        typeName: \"GROUP\",\n    }],\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    threshold: {\n        operator: \"LESS_THAN\",\n        threshold: 1,\n        units: \"HOURS\",\n    },\n});\nconst testAlertConfiguration = pulumi.all([testMongodbatlasAlertConfiguration.alertConfigurationId, testMongodbatlasAlertConfiguration.projectId]).apply(([alertConfigurationId, projectId]) =\u003e mongodbatlas.getAlertConfiguration({\n    alertConfigurationId: alertConfigurationId,\n    projectId: projectId,\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAlertConfiguration.\n",
                 "properties": {
@@ -7209,7 +7336,7 @@
             }
         },
         "mongodbatlas:index/getAuditing:getAuditing": {
-            "description": "`mongodbatlas.Auditing` describes a Auditing.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.\n\n",
+            "description": "`mongodbatlas.Auditing` describes a Auditing.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasAuditing = new mongodbatlas.Auditing(\"test\", {\n    auditAuthorizationSuccess: false,\n    auditFilter: \"{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}\",\n    enabled: true,\n    projectId: \"\u003cproject-id\u003e\",\n});\nconst testAuditing = testMongodbatlasAuditing.id.apply(id =\u003e mongodbatlas.getAuditing({\n    projectId: id,\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAuditing.\n",
                 "properties": {
@@ -7262,7 +7389,7 @@
             }
         },
         "mongodbatlas:index/getCloudProviderSnapshot:getCloudProviderSnapshot": {
-            "description": "`mongodbatlas.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
+            "description": "`mongodbatlas.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"test\", {\n    clusterName: \"MyClusterTest\",\n    description: \"SomeDescription\",\n    groupId: \"5d0f1f73cf09a29120e173cf\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshot = pulumi.all([testMongodbatlasCloudProviderSnapshot.clusterName, testMongodbatlasCloudProviderSnapshot.groupId]).apply(([clusterName, groupId]) =\u003e mongodbatlas.getCloudProviderSnapshot({\n    clusterName: clusterName,\n    groupId: groupId,\n    snapshotId: \"5d1285acd5ec13b6c2d1726a\",\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getCloudProviderSnapshot.\n",
                 "properties": {
@@ -7436,7 +7563,7 @@
             }
         },
         "mongodbatlas:index/getCloudProviderSnapshotRestoreJob:getCloudProviderSnapshotRestoreJob": {
-            "description": "`mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
+            "description": "`mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nFirst create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"test\", {\n    clusterName: \"MyCluster\",\n    description: \"MyDescription\",\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    retentionInDays: 1,\n});\nconst testMongodbatlasCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"test\", {\n    clusterName: \"MyCluster\",\n    deliveryType: {\n        automated: true,\n        target_cluster_name: \"MyCluster\",\n        target_project_id: \"5cf5a45a9ccf6400e60981b6\",\n    },\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    snapshotId: testCloudProviderSnapshot.id,\n});\nconst testCloudProviderSnapshotRestoreJob = pulumi.all([testMongodbatlasCloudProviderSnapshotRestoreJob.clusterName, testMongodbatlasCloudProviderSnapshotRestoreJob.id, testMongodbatlasCloudProviderSnapshotRestoreJob.projectId]).apply(([clusterName, id, projectId]) =\u003e mongodbatlas.getCloudProviderSnapshotRestoreJob({\n    clusterName: clusterName,\n    jobId: id,\n    projectId: projectId,\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getCloudProviderSnapshotRestoreJob.\n",
                 "properties": {
@@ -8123,6 +8250,13 @@
                         },
                         "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
                     },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:/getDatabaseUserScope:getDatabaseUserScope"
+                        },
+                        "description": "Array of clusters and Atlas Data Lakes that this user has access to.\n"
+                    },
                     "username": {
                         "type": "string"
                     },
@@ -8137,6 +8271,7 @@
                     "labels",
                     "projectId",
                     "roles",
+                    "scopes",
                     "username",
                     "x509Type",
                     "id"
@@ -8250,7 +8385,7 @@
             }
         },
         "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow": {
-            "description": "`mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
+            "description": "`mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n## Examples Usage\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasMaintenanceWindow = new mongodbatlas.MaintenanceWindow(\"test\", {\n    dayOfWeek: 3,\n    hourOfDay: 4,\n    projectId: \"\u003cyour-project-id\u003e\",\n});\nconst testMaintenanceWindow = testMongodbatlasMaintenanceWindow.id.apply(id =\u003e mongodbatlas.getMaintenanceWindow({\n    projectId: id,\n}, { async: true }));\n```\n\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasMaintenanceWindow = new mongodbatlas.MaintenanceWindow(\"test\", {\n    projectId: \"\u003cyour-project-id\u003e\",\n    startAsap: true,\n});\nconst testMaintenanceWindow = testMongodbatlasMaintenanceWindow.id.apply(id =\u003e mongodbatlas.getMaintenanceWindow({\n    projectId: id,\n}, { async: true }));\n```\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getMaintenanceWindow.\n",
                 "properties": {
@@ -8627,7 +8762,7 @@
             }
         },
         "mongodbatlas:index/getPrivateEndpoint:getPrivateEndpoint": {
-            "description": "`mongodbatlas.PrivateEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n",
+            "description": "`mongodbatlas.PrivateEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasPrivateEndpoint = new mongodbatlas.PrivateEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst testPrivateEndpoint = pulumi.all([testMongodbatlasPrivateEndpoint.privateLinkId, testMongodbatlasPrivateEndpoint.projectId]).apply(([privateLinkId, projectId]) =\u003e mongodbatlas.getPrivateEndpoint({\n    privateLinkId: privateLinkId,\n    projectId: projectId,\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getPrivateEndpoint.\n",
                 "properties": {
@@ -8757,7 +8892,7 @@
             }
         },
         "mongodbatlas:index/getProject:getProject": {
-            "description": "`mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% /examples %}}",
+            "description": "`mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Using project_id attribute to query\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasProject = new mongodbatlas.Project(\"test\", {\n    orgId: \"\u003cORG_ID\u003e\",\n    teams: [\n        {\n            roleNames: [\"GROUP_OWNER\"],\n            teamId: \"5e0fa8c99ccf641c722fe645\",\n        },\n        {\n            roleNames: [\n                \"GROUP_READ_ONLY\",\n                \"GROUP_DATA_ACCESS_READ_WRITE\",\n            ],\n            teamId: \"5e1dd7b4f2a30ba80a70cd4rw\",\n        },\n    ],\n});\nconst testProject = testMongodbatlasProject.id.apply(id =\u003e mongodbatlas.getProject({\n    projectId: id,\n}, { async: true }));\n```\n{{% /example %}}\n{{% example %}}\n### Using name attribute to query\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasProject = new mongodbatlas.Project(\"test\", {\n    orgId: \"\u003cORG_ID\u003e\",\n    teams: [\n        {\n            roleNames: [\"GROUP_OWNER\"],\n            teamId: \"5e0fa8c99ccf641c722fe645\",\n        },\n        {\n            roleNames: [\n                \"GROUP_READ_ONLY\",\n                \"GROUP_DATA_ACCESS_READ_WRITE\",\n            ],\n            teamId: \"5e1dd7b4f2a30ba80a70cd4rw\",\n        },\n    ],\n});\nconst testProject = testMongodbatlasProject.name.apply(name =\u003e mongodbatlas.getProject({\n    name: name,\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getProject.\n",
                 "properties": {
@@ -8876,7 +9011,7 @@
             }
         },
         "mongodbatlas:index/getProjects:getProjects": {
-            "description": "`mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
+            "description": "`mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasProject = new mongodbatlas.Project(\"test\", {\n    orgId: \"\u003cORG_ID\u003e\",\n    teams: [\n        {\n            roleNames: [\"GROUP_OWNER\"],\n            teamId: \"5e0fa8c99ccf641c722fe645\",\n        },\n        {\n            roleNames: [\n                \"GROUP_READ_ONLY\",\n                \"GROUP_DATA_ACCESS_READ_WRITE\",\n            ],\n            teamId: \"5e1dd7b4f2a30ba80a70cd4rw\",\n        },\n    ],\n});\nconst testProject = pulumi.output(mongodbatlas.getProject({\n    itemsPerPage: 5,\n    pageNum: 1,\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getProjects.\n",
                 "properties": {

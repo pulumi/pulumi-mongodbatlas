@@ -59,6 +59,7 @@ export class DatabaseUser extends pulumi.CustomResource {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
     public readonly roles!: pulumi.Output<outputs.DatabaseUserRole[]>;
+    public readonly scopes!: pulumi.Output<outputs.DatabaseUserScope[]>;
     /**
      * Username for authenticating to MongoDB.
      */
@@ -87,6 +88,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             inputs["password"] = state ? state.password : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
             inputs["roles"] = state ? state.roles : undefined;
+            inputs["scopes"] = state ? state.scopes : undefined;
             inputs["username"] = state ? state.username : undefined;
             inputs["x509Type"] = state ? state.x509Type : undefined;
         } else {
@@ -104,6 +106,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             inputs["password"] = args ? args.password : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["roles"] = args ? args.roles : undefined;
+            inputs["scopes"] = args ? args.scopes : undefined;
             inputs["username"] = args ? args.username : undefined;
             inputs["x509Type"] = args ? args.x509Type : undefined;
         }
@@ -147,6 +150,7 @@ export interface DatabaseUserState {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
     readonly roles?: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
+    readonly scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
     /**
      * Username for authenticating to MongoDB.
      */
@@ -186,6 +190,7 @@ export interface DatabaseUserArgs {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
     readonly roles?: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
+    readonly scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
     /**
      * Username for authenticating to MongoDB.
      */

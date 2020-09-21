@@ -24,6 +24,7 @@ class DatabaseUser(pulumi.CustomResource):
                  password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
+                 scopes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserScopeArgs']]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  x509_type: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -71,6 +72,7 @@ class DatabaseUser(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['roles'] = roles
+            __props__['scopes'] = scopes
             if username is None:
                 raise TypeError("Missing required property 'username'")
             __props__['username'] = username
@@ -92,6 +94,7 @@ class DatabaseUser(pulumi.CustomResource):
             password: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
+            scopes: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatabaseUserScopeArgs']]]]] = None,
             username: Optional[pulumi.Input[str]] = None,
             x509_type: Optional[pulumi.Input[str]] = None) -> 'DatabaseUser':
         """
@@ -121,6 +124,7 @@ class DatabaseUser(pulumi.CustomResource):
         __props__["password"] = password
         __props__["project_id"] = project_id
         __props__["roles"] = roles
+        __props__["scopes"] = scopes
         __props__["username"] = username
         __props__["x509_type"] = x509_type
         return DatabaseUser(resource_name, opts=opts, __props__=__props__)
@@ -175,6 +179,11 @@ class DatabaseUser(pulumi.CustomResource):
         List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         """
         return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> pulumi.Output[List['outputs.DatabaseUserScope']]:
+        return pulumi.get(self, "scopes")
 
     @property
     @pulumi.getter

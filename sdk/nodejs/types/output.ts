@@ -429,6 +429,17 @@ export interface DatabaseUserRole {
     roleName: string;
 }
 
+export interface DatabaseUserScope {
+    /**
+     * Name of the cluster or Atlas Data Lake that the user has access to.
+     */
+    name: string;
+    /**
+     * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     */
+    type: string;
+}
+
 export interface EncryptionAtRestAwsKms {
     /**
      * The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
@@ -1262,6 +1273,17 @@ export interface GetDatabaseUserRole {
     roleName: string;
 }
 
+export interface GetDatabaseUserScope {
+    /**
+     * Name of the role to grant.
+     */
+    name: string;
+    /**
+     * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     */
+    type: string;
+}
+
 export interface GetDatabaseUsersResult {
     /**
      * (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
@@ -1285,6 +1307,10 @@ export interface GetDatabaseUsersResult {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
     roles: outputs.GetDatabaseUsersResultRole[];
+    /**
+     * Array of clusters and Atlas Data Lakes that this user has access to.
+     */
+    scopes: outputs.GetDatabaseUsersResultScope[];
     /**
      * Username for authenticating to MongoDB.
      */
@@ -1316,6 +1342,17 @@ export interface GetDatabaseUsersResultRole {
      */
     databaseName: string;
     roleName: string;
+}
+
+export interface GetDatabaseUsersResultScope {
+    /**
+     * Name of the role to grant.
+     */
+    name: string;
+    /**
+     * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     */
+    type: string;
 }
 
 export interface GetGlobalClusterConfigManagedNamespace {

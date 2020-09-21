@@ -83,7 +83,7 @@ clean::
 
 install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource aws 2.8.0
+	pulumi plugin install resource aws 3.2.0
 	pulumi plugin install resource azure 3.9.0
 	pulumi plugin install resource gcp 3.9.0
 

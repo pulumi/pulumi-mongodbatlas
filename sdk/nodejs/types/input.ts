@@ -429,6 +429,17 @@ export interface DatabaseUserRole {
     roleName?: pulumi.Input<string>;
 }
 
+export interface DatabaseUserScope {
+    /**
+     * Name of the cluster or Atlas Data Lake that the user has access to.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+     */
+    type?: pulumi.Input<string>;
+}
+
 export interface EncryptionAtRestAwsKms {
     /**
      * The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.

@@ -30,6 +30,7 @@ __all__ = [
     'CustomDbRoleInheritedRoleArgs',
     'DatabaseUserLabelArgs',
     'DatabaseUserRoleArgs',
+    'DatabaseUserScopeArgs',
     'EncryptionAtRestAwsKmsArgs',
     'EncryptionAtRestAzureKeyVaultArgs',
     'EncryptionAtRestGoogleCloudKmsArgs',
@@ -1768,6 +1769,45 @@ class DatabaseUserRoleArgs:
     @role_name.setter
     def role_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role_name", value)
+
+
+@pulumi.input_type
+class DatabaseUserScopeArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the cluster or Atlas Data Lake that the user has access to.
+        :param pulumi.Input[str] type: Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the cluster or Atlas Data Lake that the user has access to.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type

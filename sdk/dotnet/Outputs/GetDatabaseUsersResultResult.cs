@@ -36,6 +36,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseUsersResultRoleResult> Roles;
         /// <summary>
+        /// Array of clusters and Atlas Data Lakes that this user has access to.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDatabaseUsersResultScopeResult> Scopes;
+        /// <summary>
         /// Username for authenticating to MongoDB.
         /// </summary>
         public readonly string Username;
@@ -56,6 +60,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetDatabaseUsersResultRoleResult> roles,
 
+            ImmutableArray<Outputs.GetDatabaseUsersResultScopeResult> scopes,
+
             string username,
 
             string x509Type)
@@ -65,6 +71,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Labels = labels;
             ProjectId = projectId;
             Roles = roles;
+            Scopes = scopes;
             Username = username;
             X509Type = x509Type;
         }

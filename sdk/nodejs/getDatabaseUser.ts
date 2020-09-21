@@ -78,6 +78,10 @@ export interface GetDatabaseUserResult {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
     readonly roles: outputs.GetDatabaseUserRole[];
+    /**
+     * Array of clusters and Atlas Data Lakes that this user has access to.
+     */
+    readonly scopes: outputs.GetDatabaseUserScope[];
     readonly username: string;
     /**
      * X.509 method by which the provided username is authenticated.

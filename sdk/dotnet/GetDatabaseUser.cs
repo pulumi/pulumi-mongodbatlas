@@ -77,6 +77,10 @@ namespace Pulumi.Mongodbatlas
         /// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseUserRoleResult> Roles;
+        /// <summary>
+        /// Array of clusters and Atlas Data Lakes that this user has access to.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDatabaseUserScopeResult> Scopes;
         public readonly string Username;
         /// <summary>
         /// X.509 method by which the provided username is authenticated.
@@ -99,6 +103,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetDatabaseUserRoleResult> roles,
 
+            ImmutableArray<Outputs.GetDatabaseUserScopeResult> scopes,
+
             string username,
 
             string x509Type)
@@ -110,6 +116,7 @@ namespace Pulumi.Mongodbatlas
             Labels = labels;
             ProjectId = projectId;
             Roles = roles;
+            Scopes = scopes;
             Username = username;
             X509Type = x509Type;
         }

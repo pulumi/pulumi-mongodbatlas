@@ -20,7 +20,7 @@ class GetDatabaseUserResult:
     """
     A collection of values returned by getDatabaseUser.
     """
-    def __init__(__self__, auth_database_name=None, aws_iam_type=None, database_name=None, id=None, labels=None, project_id=None, roles=None, username=None, x509_type=None):
+    def __init__(__self__, auth_database_name=None, aws_iam_type=None, database_name=None, id=None, labels=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
         if auth_database_name and not isinstance(auth_database_name, str):
             raise TypeError("Expected argument 'auth_database_name' to be a str")
         pulumi.set(__self__, "auth_database_name", auth_database_name)
@@ -46,6 +46,9 @@ class GetDatabaseUserResult:
         if roles and not isinstance(roles, list):
             raise TypeError("Expected argument 'roles' to be a list")
         pulumi.set(__self__, "roles", roles)
+        if scopes and not isinstance(scopes, list):
+            raise TypeError("Expected argument 'scopes' to be a list")
+        pulumi.set(__self__, "scopes", scopes)
         if username and not isinstance(username, str):
             raise TypeError("Expected argument 'username' to be a str")
         pulumi.set(__self__, "username", username)
@@ -102,6 +105,14 @@ class GetDatabaseUserResult:
 
     @property
     @pulumi.getter
+    def scopes(self) -> List['outputs.GetDatabaseUserScopeResult']:
+        """
+        Array of clusters and Atlas Data Lakes that this user has access to.
+        """
+        return pulumi.get(self, "scopes")
+
+    @property
+    @pulumi.getter
     def username(self) -> str:
         return pulumi.get(self, "username")
 
@@ -127,6 +138,7 @@ class AwaitableGetDatabaseUserResult(GetDatabaseUserResult):
             labels=self.labels,
             project_id=self.project_id,
             roles=self.roles,
+            scopes=self.scopes,
             username=self.username,
             x509_type=self.x509_type)
 
@@ -168,5 +180,6 @@ def get_database_user(auth_database_name: Optional[str] = None,
         labels=__ret__.labels,
         project_id=__ret__.project_id,
         roles=__ret__.roles,
+        scopes=__ret__.scopes,
         username=__ret__.username,
         x509_type=__ret__.x509_type)
