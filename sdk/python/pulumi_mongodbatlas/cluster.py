@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -27,24 +27,24 @@ class Cluster(pulumi.CustomResource):
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 num_shards: Optional[pulumi.Input[float]] = None,
+                 num_shards: Optional[pulumi.Input[int]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
                  provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[str]] = None,
                  provider_backup_enabled: Optional[pulumi.Input[bool]] = None,
-                 provider_disk_iops: Optional[pulumi.Input[float]] = None,
+                 provider_disk_iops: Optional[pulumi.Input[int]] = None,
                  provider_disk_type_name: Optional[pulumi.Input[str]] = None,
                  provider_encrypt_ebs_volume: Optional[pulumi.Input[bool]] = None,
                  provider_instance_size_name: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  provider_region_name: Optional[pulumi.Input[str]] = None,
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
-                 replication_factor: Optional[pulumi.Input[float]] = None,
-                 replication_specs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 replication_factor: Optional[pulumi.Input[int]] = None,
+                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -240,13 +240,13 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-        :param pulumi.Input[float] num_shards: Number of shards to deploy in the specified zone, minimum 1.
+        :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
         :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, provider_backup_enabled must also be set to true.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
-        :param pulumi.Input[float] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
@@ -255,8 +255,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
-        :param pulumi.Input[float] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -343,30 +343,30 @@ class Cluster(pulumi.CustomResource):
             container_id: Optional[pulumi.Input[str]] = None,
             disk_size_gb: Optional[pulumi.Input[float]] = None,
             encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
-            labels: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]]] = None,
             mongo_db_major_version: Optional[pulumi.Input[str]] = None,
             mongo_db_version: Optional[pulumi.Input[str]] = None,
             mongo_uri: Optional[pulumi.Input[str]] = None,
             mongo_uri_updated: Optional[pulumi.Input[str]] = None,
             mongo_uri_with_options: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            num_shards: Optional[pulumi.Input[float]] = None,
+            num_shards: Optional[pulumi.Input[int]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
             pit_enabled: Optional[pulumi.Input[bool]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
             provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[str]] = None,
             provider_backup_enabled: Optional[pulumi.Input[bool]] = None,
-            provider_disk_iops: Optional[pulumi.Input[float]] = None,
+            provider_disk_iops: Optional[pulumi.Input[int]] = None,
             provider_disk_type_name: Optional[pulumi.Input[str]] = None,
             provider_encrypt_ebs_volume: Optional[pulumi.Input[bool]] = None,
             provider_instance_size_name: Optional[pulumi.Input[str]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
             provider_region_name: Optional[pulumi.Input[str]] = None,
             provider_volume_type: Optional[pulumi.Input[str]] = None,
-            replication_factor: Optional[pulumi.Input[float]] = None,
-            replication_specs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
-            snapshot_backup_policies: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]]] = None,
+            replication_factor: Optional[pulumi.Input[int]] = None,
+            replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+            snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]]] = None,
             srv_address: Optional[pulumi.Input[str]] = None,
             state_name: Optional[pulumi.Input[str]] = None) -> 'Cluster':
         """
@@ -407,14 +407,14 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] mongo_uri_updated: Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
         :param pulumi.Input[str] mongo_uri_with_options: connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-        :param pulumi.Input[float] num_shards: Number of shards to deploy in the specified zone, minimum 1.
+        :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
         :param pulumi.Input[bool] paused: Flag that indicates whether the cluster is paused or not.
         :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, provider_backup_enabled must also be set to true.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
-        :param pulumi.Input[float] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
@@ -423,9 +423,9 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
-        :param pulumi.Input[float] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
+        :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
         :param pulumi.Input[str] srv_address: Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         :param pulumi.Input[str] state_name: Current state of the cluster. The possible states are:
                - IDLE
@@ -596,7 +596,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[List['outputs.ClusterLabel']]:
+    def labels(self) -> pulumi.Output[Sequence['outputs.ClusterLabel']]:
         return pulumi.get(self, "labels")
 
     @property
@@ -649,7 +649,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> pulumi.Output[Optional[float]]:
+    def num_shards(self) -> pulumi.Output[Optional[int]]:
         """
         Number of shards to deploy in the specified zone, minimum 1.
         """
@@ -705,7 +705,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="providerDiskIops")
-    def provider_disk_iops(self) -> pulumi.Output[float]:
+    def provider_disk_iops(self) -> pulumi.Output[int]:
         """
         The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
         """
@@ -763,7 +763,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="replicationFactor")
-    def replication_factor(self) -> pulumi.Output[float]:
+    def replication_factor(self) -> pulumi.Output[int]:
         """
         Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
@@ -771,7 +771,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="replicationSpecs")
-    def replication_specs(self) -> pulumi.Output[List['outputs.ClusterReplicationSpec']]:
+    def replication_specs(self) -> pulumi.Output[Sequence['outputs.ClusterReplicationSpec']]:
         """
         Configuration for cluster regions.  See Replication Spec below for more details.
         """
@@ -779,7 +779,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="snapshotBackupPolicies")
-    def snapshot_backup_policies(self) -> pulumi.Output[List['outputs.ClusterSnapshotBackupPolicy']]:
+    def snapshot_backup_policies(self) -> pulumi.Output[Sequence['outputs.ClusterSnapshotBackupPolicy']]:
         """
         current snapshot schedule and retention settings for the cluster.
         """

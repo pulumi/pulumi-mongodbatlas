@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -61,7 +61,7 @@ class GetGlobalClusterConfigResult:
 
     @property
     @pulumi.getter(name="managedNamespaces")
-    def managed_namespaces(self) -> List['outputs.GetGlobalClusterConfigManagedNamespaceResult']:
+    def managed_namespaces(self) -> Sequence['outputs.GetGlobalClusterConfigManagedNamespaceResult']:
         """
         Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         """
@@ -87,7 +87,7 @@ class AwaitableGetGlobalClusterConfigResult(GetGlobalClusterConfigResult):
 
 
 def get_global_cluster_config(cluster_name: Optional[str] = None,
-                              managed_namespaces: Optional[List[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']]] = None,
+                              managed_namespaces: Optional[Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']]] = None,
                               project_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGlobalClusterConfigResult:
     """
@@ -96,7 +96,7 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
 
-    :param List[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+    :param Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
     :param str project_id: The unique ID for the project to create the database user.
            * `cluster_name - (Required) The name of the Global Cluster.
     """

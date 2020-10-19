@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -57,7 +57,7 @@ class GetNetworkContainersResult:
 
     @property
     @pulumi.getter
-    def results(self) -> List['outputs.GetNetworkContainersResultResult']:
+    def results(self) -> Sequence['outputs.GetNetworkContainersResultResult']:
         """
         A list where each represents a Network Peering Container.
         """

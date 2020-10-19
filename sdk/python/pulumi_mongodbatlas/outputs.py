@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -266,17 +266,17 @@ class AlertConfigurationNotification(dict):
                  channel_name: Optional[str] = None,
                  datadog_api_key: Optional[str] = None,
                  datadog_region: Optional[str] = None,
-                 delay_min: Optional[float] = None,
+                 delay_min: Optional[int] = None,
                  email_address: Optional[str] = None,
                  email_enabled: Optional[bool] = None,
                  flow_name: Optional[str] = None,
                  flowdock_api_token: Optional[str] = None,
-                 interval_min: Optional[float] = None,
+                 interval_min: Optional[int] = None,
                  mobile_number: Optional[str] = None,
                  ops_genie_api_key: Optional[str] = None,
                  ops_genie_region: Optional[str] = None,
                  org_name: Optional[str] = None,
-                 roles: Optional[List[str]] = None,
+                 roles: Optional[Sequence[str]] = None,
                  service_key: Optional[str] = None,
                  sms_enabled: Optional[bool] = None,
                  team_id: Optional[str] = None,
@@ -289,12 +289,12 @@ class AlertConfigurationNotification(dict):
         :param str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
         :param str datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
-        :param float delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
+        :param int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param bool email_enabled: Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
         :param str flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
         :param str flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        :param float interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
         :param str mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param str ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
@@ -390,7 +390,7 @@ class AlertConfigurationNotification(dict):
 
     @property
     @pulumi.getter(name="delayMin")
-    def delay_min(self) -> Optional[float]:
+    def delay_min(self) -> Optional[int]:
         """
         Number of minutes to wait after an alert condition is detected before sending out the first notification.
         """
@@ -430,7 +430,7 @@ class AlertConfigurationNotification(dict):
 
     @property
     @pulumi.getter(name="intervalMin")
-    def interval_min(self) -> Optional[float]:
+    def interval_min(self) -> Optional[int]:
         """
         Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
         """
@@ -470,7 +470,7 @@ class AlertConfigurationNotification(dict):
 
     @property
     @pulumi.getter
-    def roles(self) -> Optional[List[str]]:
+    def roles(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "roles")
 
     @property
@@ -627,7 +627,7 @@ class AlertConfigurationThreshold(dict):
 class CloudProviderSnapshotBackupPolicyPolicy(dict):
     def __init__(__self__, *,
                  id: str,
-                 policy_items: List['outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem']):
+                 policy_items: Sequence['outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem']):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "policy_items", policy_items)
 
@@ -638,7 +638,7 @@ class CloudProviderSnapshotBackupPolicyPolicy(dict):
 
     @property
     @pulumi.getter(name="policyItems")
-    def policy_items(self) -> List['outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem']:
+    def policy_items(self) -> Sequence['outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem']:
         return pulumi.get(self, "policy_items")
 
     def _translate_property(self, prop):
@@ -648,11 +648,11 @@ class CloudProviderSnapshotBackupPolicyPolicy(dict):
 @pulumi.output_type
 class CloudProviderSnapshotBackupPolicyPolicyPolicyItem(dict):
     def __init__(__self__, *,
-                 frequency_interval: float,
+                 frequency_interval: int,
                  frequency_type: str,
                  id: str,
                  retention_unit: str,
-                 retention_value: float):
+                 retention_value: int):
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
         pulumi.set(__self__, "id", id)
@@ -661,7 +661,7 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItem(dict):
 
     @property
     @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> float:
+    def frequency_interval(self) -> int:
         return pulumi.get(self, "frequency_interval")
 
     @property
@@ -681,7 +681,7 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItem(dict):
 
     @property
     @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> float:
+    def retention_value(self) -> int:
         return pulumi.get(self, "retention_value")
 
     def _translate_property(self, prop):
@@ -693,10 +693,10 @@ class CloudProviderSnapshotRestoreJobDeliveryType(dict):
     def __init__(__self__, *,
                  automated: Optional[bool] = None,
                  download: Optional[bool] = None,
-                 oplog_inc: Optional[float] = None,
-                 oplog_ts: Optional[float] = None,
+                 oplog_inc: Optional[int] = None,
+                 oplog_ts: Optional[int] = None,
                  point_in_time: Optional[bool] = None,
-                 point_in_time_utc_seconds: Optional[float] = None,
+                 point_in_time_utc_seconds: Optional[int] = None,
                  target_cluster_name: Optional[str] = None,
                  target_project_id: Optional[str] = None):
         """
@@ -731,12 +731,12 @@ class CloudProviderSnapshotRestoreJobDeliveryType(dict):
 
     @property
     @pulumi.getter(name="oplogInc")
-    def oplog_inc(self) -> Optional[float]:
+    def oplog_inc(self) -> Optional[int]:
         return pulumi.get(self, "oplog_inc")
 
     @property
     @pulumi.getter(name="oplogTs")
-    def oplog_ts(self) -> Optional[float]:
+    def oplog_ts(self) -> Optional[int]:
         return pulumi.get(self, "oplog_ts")
 
     @property
@@ -746,7 +746,7 @@ class CloudProviderSnapshotRestoreJobDeliveryType(dict):
 
     @property
     @pulumi.getter(name="pointInTimeUtcSeconds")
-    def point_in_time_utc_seconds(self) -> Optional[float]:
+    def point_in_time_utc_seconds(self) -> Optional[int]:
         return pulumi.get(self, "point_in_time_utc_seconds")
 
     @property
@@ -773,17 +773,17 @@ class ClusterAdvancedConfiguration(dict):
                  javascript_enabled: Optional[bool] = None,
                  minimum_enabled_tls_protocol: Optional[str] = None,
                  no_table_scan: Optional[bool] = None,
-                 oplog_size_mb: Optional[float] = None,
-                 sample_refresh_interval_bi_connector: Optional[float] = None,
-                 sample_size_bi_connector: Optional[float] = None):
+                 oplog_size_mb: Optional[int] = None,
+                 sample_refresh_interval_bi_connector: Optional[int] = None,
+                 sample_size_bi_connector: Optional[int] = None):
         """
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
         :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        :param float oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-        :param float sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        :param float sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         if fail_index_key_too_long is not None:
             pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
@@ -834,7 +834,7 @@ class ClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="oplogSizeMb")
-    def oplog_size_mb(self) -> Optional[float]:
+    def oplog_size_mb(self) -> Optional[int]:
         """
         The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         """
@@ -842,7 +842,7 @@ class ClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="sampleRefreshIntervalBiConnector")
-    def sample_refresh_interval_bi_connector(self) -> Optional[float]:
+    def sample_refresh_interval_bi_connector(self) -> Optional[int]:
         """
         Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
@@ -850,7 +850,7 @@ class ClusterAdvancedConfiguration(dict):
 
     @property
     @pulumi.getter(name="sampleSizeBiConnector")
-    def sample_size_bi_connector(self) -> Optional[float]:
+    def sample_size_bi_connector(self) -> Optional[int]:
         """
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
@@ -993,14 +993,14 @@ class ClusterLabel(dict):
 @pulumi.output_type
 class ClusterReplicationSpec(dict):
     def __init__(__self__, *,
-                 num_shards: float,
+                 num_shards: int,
                  id: Optional[str] = None,
-                 regions_configs: Optional[List['outputs.ClusterReplicationSpecRegionsConfig']] = None,
+                 regions_configs: Optional[Sequence['outputs.ClusterReplicationSpecRegionsConfig']] = None,
                  zone_name: Optional[str] = None):
         """
-        :param float num_shards: Number of shards to deploy in the specified zone, minimum 1.
+        :param int num_shards: Number of shards to deploy in the specified zone, minimum 1.
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        :param List['ClusterReplicationSpecRegionsConfigArgs'] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+        :param Sequence['ClusterReplicationSpecRegionsConfigArgs'] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Name for the zone in a Global Cluster.
         """
         pulumi.set(__self__, "num_shards", num_shards)
@@ -1013,7 +1013,7 @@ class ClusterReplicationSpec(dict):
 
     @property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> float:
+    def num_shards(self) -> int:
         """
         Number of shards to deploy in the specified zone, minimum 1.
         """
@@ -1029,7 +1029,7 @@ class ClusterReplicationSpec(dict):
 
     @property
     @pulumi.getter(name="regionsConfigs")
-    def regions_configs(self) -> Optional[List['outputs.ClusterReplicationSpecRegionsConfig']]:
+    def regions_configs(self) -> Optional[Sequence['outputs.ClusterReplicationSpecRegionsConfig']]:
         """
         Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         """
@@ -1050,22 +1050,22 @@ class ClusterReplicationSpec(dict):
 @pulumi.output_type
 class ClusterReplicationSpecRegionsConfig(dict):
     def __init__(__self__, *,
-                 analytics_nodes: Optional[float] = None,
-                 electable_nodes: Optional[float] = None,
-                 priority: Optional[float] = None,
-                 read_only_nodes: Optional[float] = None,
+                 analytics_nodes: Optional[int] = None,
+                 electable_nodes: Optional[int] = None,
+                 priority: Optional[int] = None,
+                 read_only_nodes: Optional[int] = None,
                  region_name: Optional[str] = None):
         """
-        :param float analytics_nodes: The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
-        :param float electable_nodes: Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
+        :param int analytics_nodes: The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
+        :param int electable_nodes: Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
                * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
                * Specify 0 if you do not want any electable nodes in the region.
                * You cannot create electable nodes in a region if `priority` is 0.
-        :param float priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
+        :param int priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
                * For regions where `electable_nodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
                * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
                * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
-        :param float read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
+        :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         """
         if analytics_nodes is not None:
@@ -1081,7 +1081,7 @@ class ClusterReplicationSpecRegionsConfig(dict):
 
     @property
     @pulumi.getter(name="analyticsNodes")
-    def analytics_nodes(self) -> Optional[float]:
+    def analytics_nodes(self) -> Optional[int]:
         """
         The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
         """
@@ -1089,7 +1089,7 @@ class ClusterReplicationSpecRegionsConfig(dict):
 
     @property
     @pulumi.getter(name="electableNodes")
-    def electable_nodes(self) -> Optional[float]:
+    def electable_nodes(self) -> Optional[int]:
         """
         Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
         * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
@@ -1100,7 +1100,7 @@ class ClusterReplicationSpecRegionsConfig(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> Optional[float]:
+    def priority(self) -> Optional[int]:
         """
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         * For regions where `electable_nodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
@@ -1111,7 +1111,7 @@ class ClusterReplicationSpecRegionsConfig(dict):
 
     @property
     @pulumi.getter(name="readOnlyNodes")
-    def read_only_nodes(self) -> Optional[float]:
+    def read_only_nodes(self) -> Optional[int]:
         """
         Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         """
@@ -1135,10 +1135,10 @@ class ClusterSnapshotBackupPolicy(dict):
                  cluster_id: Optional[str] = None,
                  cluster_name: Optional[str] = None,
                  next_snapshot: Optional[str] = None,
-                 policies: Optional[List['outputs.ClusterSnapshotBackupPolicyPolicy']] = None,
-                 reference_hour_of_day: Optional[float] = None,
-                 reference_minute_of_hour: Optional[float] = None,
-                 restore_window_days: Optional[float] = None,
+                 policies: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicy']] = None,
+                 reference_hour_of_day: Optional[int] = None,
+                 reference_minute_of_hour: Optional[int] = None,
+                 restore_window_days: Optional[int] = None,
                  update_snapshots: Optional[bool] = None):
         """
         :param str cluster_id: The cluster ID.
@@ -1180,22 +1180,22 @@ class ClusterSnapshotBackupPolicy(dict):
 
     @property
     @pulumi.getter
-    def policies(self) -> Optional[List['outputs.ClusterSnapshotBackupPolicyPolicy']]:
+    def policies(self) -> Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicy']]:
         return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter(name="referenceHourOfDay")
-    def reference_hour_of_day(self) -> Optional[float]:
+    def reference_hour_of_day(self) -> Optional[int]:
         return pulumi.get(self, "reference_hour_of_day")
 
     @property
     @pulumi.getter(name="referenceMinuteOfHour")
-    def reference_minute_of_hour(self) -> Optional[float]:
+    def reference_minute_of_hour(self) -> Optional[int]:
         return pulumi.get(self, "reference_minute_of_hour")
 
     @property
     @pulumi.getter(name="restoreWindowDays")
-    def restore_window_days(self) -> Optional[float]:
+    def restore_window_days(self) -> Optional[int]:
         return pulumi.get(self, "restore_window_days")
 
     @property
@@ -1211,7 +1211,7 @@ class ClusterSnapshotBackupPolicy(dict):
 class ClusterSnapshotBackupPolicyPolicy(dict):
     def __init__(__self__, *,
                  id: Optional[str] = None,
-                 policy_items: Optional[List['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']] = None):
+                 policy_items: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']] = None):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
@@ -1230,7 +1230,7 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
 
     @property
     @pulumi.getter(name="policyItems")
-    def policy_items(self) -> Optional[List['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']]:
+    def policy_items(self) -> Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']]:
         return pulumi.get(self, "policy_items")
 
     def _translate_property(self, prop):
@@ -1240,11 +1240,11 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
 @pulumi.output_type
 class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
     def __init__(__self__, *,
-                 frequency_interval: Optional[float] = None,
+                 frequency_interval: Optional[int] = None,
                  frequency_type: Optional[str] = None,
                  id: Optional[str] = None,
                  retention_unit: Optional[str] = None,
-                 retention_value: Optional[float] = None):
+                 retention_value: Optional[int] = None):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
@@ -1261,7 +1261,7 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
 
     @property
     @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> Optional[float]:
+    def frequency_interval(self) -> Optional[int]:
         return pulumi.get(self, "frequency_interval")
 
     @property
@@ -1284,7 +1284,7 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
 
     @property
     @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> Optional[float]:
+    def retention_value(self) -> Optional[int]:
         return pulumi.get(self, "retention_value")
 
     def _translate_property(self, prop):
@@ -1295,11 +1295,11 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
 class CustomDbRoleAction(dict):
     def __init__(__self__, *,
                  action: str,
-                 resources: List['outputs.CustomDbRoleActionResource']):
+                 resources: Sequence['outputs.CustomDbRoleActionResource']):
         """
         :param str action: Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
                > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
-        :param List['CustomDbRoleActionResourceArgs'] resources: Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
+        :param Sequence['CustomDbRoleActionResourceArgs'] resources: Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "resources", resources)
@@ -1315,7 +1315,7 @@ class CustomDbRoleAction(dict):
 
     @property
     @pulumi.getter
-    def resources(self) -> List['outputs.CustomDbRoleActionResource']:
+    def resources(self) -> Sequence['outputs.CustomDbRoleActionResource']:
         """
         Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
@@ -1806,10 +1806,10 @@ class GlobalClusterConfigManagedNamespace(dict):
 @pulumi.output_type
 class ProjectTeam(dict):
     def __init__(__self__, *,
-                 role_names: List[str],
+                 role_names: Sequence[str],
                  team_id: str):
         """
-        :param List[str] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+        :param Sequence[str] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
                The following are valid roles:
                * `GROUP_OWNER`
                * `GROUP_READ_ONLY`
@@ -1824,7 +1824,7 @@ class ProjectTeam(dict):
 
     @property
     @pulumi.getter(name="roleNames")
-    def role_names(self) -> List[str]:
+    def role_names(self) -> Sequence[str]:
         """
         Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
         The following are valid roles:
@@ -1854,7 +1854,7 @@ class X509AuthenticationDatabaseUserCertificate(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
                  group_id: Optional[str] = None,
-                 id: Optional[float] = None,
+                 id: Optional[int] = None,
                  not_after: Optional[str] = None,
                  subject: Optional[str] = None):
         if created_at is not None:
@@ -1880,7 +1880,7 @@ class X509AuthenticationDatabaseUserCertificate(dict):
 
     @property
     @pulumi.getter
-    def id(self) -> Optional[float]:
+    def id(self) -> Optional[int]:
         return pulumi.get(self, "id")
 
     @property
@@ -1902,7 +1902,7 @@ class Get509AuthenticationDatabaseUserCertificateResult(dict):
     def __init__(__self__, *,
                  created_at: str,
                  group_id: str,
-                 id: float,
+                 id: int,
                  not_after: str,
                  subject: str):
         pulumi.set(__self__, "created_at", created_at)
@@ -1923,7 +1923,7 @@ class Get509AuthenticationDatabaseUserCertificateResult(dict):
 
     @property
     @pulumi.getter
-    def id(self) -> float:
+    def id(self) -> int:
         return pulumi.get(self, "id")
 
     @property
@@ -2102,12 +2102,12 @@ class GetAlertConfigurationNotificationResult(dict):
                  channel_name: str,
                  datadog_api_key: str,
                  datadog_region: str,
-                 delay_min: float,
+                 delay_min: int,
                  email_address: str,
                  email_enabled: bool,
                  flow_name: str,
                  flowdock_api_token: str,
-                 interval_min: float,
+                 interval_min: int,
                  mobile_number: str,
                  ops_genie_api_key: str,
                  ops_genie_region: str,
@@ -2119,18 +2119,18 @@ class GetAlertConfigurationNotificationResult(dict):
                  username: str,
                  victor_ops_api_key: str,
                  victor_ops_routing_key: str,
-                 roles: Optional[List[str]] = None):
+                 roles: Optional[Sequence[str]] = None):
         """
         :param str api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str channel_name: Slack channel name. Required for the SLACK notifications type.
         :param str datadog_api_key: Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
         :param str datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
-        :param float delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
+        :param int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         :param bool email_enabled: Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
         :param str flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
         :param str flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        :param float interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
         :param str mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param str ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
@@ -2215,7 +2215,7 @@ class GetAlertConfigurationNotificationResult(dict):
 
     @property
     @pulumi.getter(name="delayMin")
-    def delay_min(self) -> float:
+    def delay_min(self) -> int:
         """
         Number of minutes to wait after an alert condition is detected before sending out the first notification.
         """
@@ -2255,7 +2255,7 @@ class GetAlertConfigurationNotificationResult(dict):
 
     @property
     @pulumi.getter(name="intervalMin")
-    def interval_min(self) -> float:
+    def interval_min(self) -> int:
         """
         Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
         """
@@ -2365,7 +2365,7 @@ class GetAlertConfigurationNotificationResult(dict):
 
     @property
     @pulumi.getter
-    def roles(self) -> Optional[List[str]]:
+    def roles(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "roles")
 
 
@@ -2453,7 +2453,7 @@ class GetAlertConfigurationThresholdResult(dict):
 class GetCloudProviderSnapshotBackupPolicyPolicyResult(dict):
     def __init__(__self__, *,
                  id: str,
-                 policy_items: List['outputs.GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult']):
+                 policy_items: Sequence['outputs.GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult']):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "policy_items", policy_items)
 
@@ -2464,18 +2464,18 @@ class GetCloudProviderSnapshotBackupPolicyPolicyResult(dict):
 
     @property
     @pulumi.getter(name="policyItems")
-    def policy_items(self) -> List['outputs.GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult']:
+    def policy_items(self) -> Sequence['outputs.GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult']:
         return pulumi.get(self, "policy_items")
 
 
 @pulumi.output_type
 class GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     def __init__(__self__, *,
-                 frequency_interval: float,
+                 frequency_interval: int,
                  frequency_type: str,
                  id: str,
                  retention_unit: str,
-                 retention_value: float):
+                 retention_value: int):
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
         pulumi.set(__self__, "id", id)
@@ -2484,7 +2484,7 @@ class GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 
     @property
     @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> float:
+    def frequency_interval(self) -> int:
         return pulumi.get(self, "frequency_interval")
 
     @property
@@ -2504,7 +2504,7 @@ class GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 
     @property
     @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> float:
+    def retention_value(self) -> int:
         return pulumi.get(self, "retention_value")
 
 
@@ -2514,14 +2514,14 @@ class GetCloudProviderSnapshotRestoreJobsResultResult(dict):
                  cancelled: bool,
                  created_at: str,
                  delivery_type: str,
-                 delivery_urls: List[str],
+                 delivery_urls: Sequence[str],
                  expired: bool,
                  expires_at: str,
                  finished_at: str,
                  id: str,
-                 oplog_inc: float,
-                 oplog_ts: float,
-                 point_in_time_utc_seconds: float,
+                 oplog_inc: int,
+                 oplog_ts: int,
+                 point_in_time_utc_seconds: int,
                  snapshot_id: str,
                  target_cluster_name: str,
                  target_project_id: str,
@@ -2530,7 +2530,7 @@ class GetCloudProviderSnapshotRestoreJobsResultResult(dict):
         :param bool cancelled: Indicates whether the restore job was canceled.
         :param str created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
         :param str delivery_type: Type of restore job to create. Possible values are: automated and download.
-        :param List[str] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+        :param Sequence[str] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         :param bool expired: Indicates whether the restore job expired.
         :param str expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
         :param str finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
@@ -2581,7 +2581,7 @@ class GetCloudProviderSnapshotRestoreJobsResultResult(dict):
 
     @property
     @pulumi.getter(name="deliveryUrls")
-    def delivery_urls(self) -> List[str]:
+    def delivery_urls(self) -> Sequence[str]:
         """
         One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         """
@@ -2621,17 +2621,17 @@ class GetCloudProviderSnapshotRestoreJobsResultResult(dict):
 
     @property
     @pulumi.getter(name="oplogInc")
-    def oplog_inc(self) -> float:
+    def oplog_inc(self) -> int:
         return pulumi.get(self, "oplog_inc")
 
     @property
     @pulumi.getter(name="oplogTs")
-    def oplog_ts(self) -> float:
+    def oplog_ts(self) -> int:
         return pulumi.get(self, "oplog_ts")
 
     @property
     @pulumi.getter(name="pointInTimeUtcSeconds")
-    def point_in_time_utc_seconds(self) -> float:
+    def point_in_time_utc_seconds(self) -> int:
         return pulumi.get(self, "point_in_time_utc_seconds")
 
     @property
@@ -2675,7 +2675,7 @@ class GetCloudProviderSnapshotsResultResult(dict):
                  mongod_version: str,
                  snapshot_type: str,
                  status: str,
-                 storage_size_bytes: float,
+                 storage_size_bytes: int,
                  type: str):
         """
         :param str created_at: UTC ISO 8601 formatted point in time when Atlas took the snapshot.
@@ -2686,7 +2686,7 @@ class GetCloudProviderSnapshotsResultResult(dict):
         :param str mongod_version: Version of the MongoDB server.
         :param str snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
         :param str status: Current status of the snapshot. One of the following values: queued, inProgress, completed, failed.
-        :param float storage_size_bytes: Specifies the size of the snapshot in bytes.
+        :param int storage_size_bytes: Specifies the size of the snapshot in bytes.
         :param str type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
         pulumi.set(__self__, "created_at", created_at)
@@ -2766,7 +2766,7 @@ class GetCloudProviderSnapshotsResultResult(dict):
 
     @property
     @pulumi.getter(name="storageSizeBytes")
-    def storage_size_bytes(self) -> float:
+    def storage_size_bytes(self) -> int:
         """
         Specifies the size of the snapshot in bytes.
         """
@@ -2890,13 +2890,13 @@ class GetClusterLabelResult(dict):
 class GetClusterReplicationSpecResult(dict):
     def __init__(__self__, *,
                  id: str,
-                 num_shards: float,
-                 regions_configs: List['outputs.GetClusterReplicationSpecRegionsConfigResult'],
+                 num_shards: int,
+                 regions_configs: Sequence['outputs.GetClusterReplicationSpecRegionsConfigResult'],
                  zone_name: str):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        :param float num_shards: Number of shards to deploy in the specified zone.
-        :param List['GetClusterReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+        :param int num_shards: Number of shards to deploy in the specified zone.
+        :param Sequence['GetClusterReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Indicates the n ame for the zone in a Global Cluster.
         """
         pulumi.set(__self__, "id", id)
@@ -2914,7 +2914,7 @@ class GetClusterReplicationSpecResult(dict):
 
     @property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> float:
+    def num_shards(self) -> int:
         """
         Number of shards to deploy in the specified zone.
         """
@@ -2922,7 +2922,7 @@ class GetClusterReplicationSpecResult(dict):
 
     @property
     @pulumi.getter(name="regionsConfigs")
-    def regions_configs(self) -> List['outputs.GetClusterReplicationSpecRegionsConfigResult']:
+    def regions_configs(self) -> Sequence['outputs.GetClusterReplicationSpecRegionsConfigResult']:
         """
         Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         """
@@ -2940,16 +2940,16 @@ class GetClusterReplicationSpecResult(dict):
 @pulumi.output_type
 class GetClusterReplicationSpecRegionsConfigResult(dict):
     def __init__(__self__, *,
-                 analytics_nodes: float,
-                 electable_nodes: float,
-                 priority: float,
-                 read_only_nodes: float,
+                 analytics_nodes: int,
+                 electable_nodes: int,
+                 priority: int,
+                 read_only_nodes: int,
                  region_name: str):
         """
-        :param float analytics_nodes: Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
-        :param float electable_nodes: Number of electable nodes for Atlas to deploy to the region.
-        :param float priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
-        :param float read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
+        :param int analytics_nodes: Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
+        :param int electable_nodes: Number of electable nodes for Atlas to deploy to the region.
+        :param int priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
+        :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         :param str region_name: Name for the region specified.
         """
         pulumi.set(__self__, "analytics_nodes", analytics_nodes)
@@ -2960,7 +2960,7 @@ class GetClusterReplicationSpecRegionsConfigResult(dict):
 
     @property
     @pulumi.getter(name="analyticsNodes")
-    def analytics_nodes(self) -> float:
+    def analytics_nodes(self) -> int:
         """
         Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
         """
@@ -2968,7 +2968,7 @@ class GetClusterReplicationSpecRegionsConfigResult(dict):
 
     @property
     @pulumi.getter(name="electableNodes")
-    def electable_nodes(self) -> float:
+    def electable_nodes(self) -> int:
         """
         Number of electable nodes for Atlas to deploy to the region.
         """
@@ -2976,7 +2976,7 @@ class GetClusterReplicationSpecRegionsConfigResult(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> float:
+    def priority(self) -> int:
         """
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         """
@@ -2984,7 +2984,7 @@ class GetClusterReplicationSpecRegionsConfigResult(dict):
 
     @property
     @pulumi.getter(name="readOnlyNodes")
-    def read_only_nodes(self) -> float:
+    def read_only_nodes(self) -> int:
         """
         Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         """
@@ -3005,10 +3005,10 @@ class GetClusterSnapshotBackupPolicyResult(dict):
                  cluster_id: str,
                  cluster_name: str,
                  next_snapshot: str,
-                 policies: List['outputs.GetClusterSnapshotBackupPolicyPolicyResult'],
-                 reference_hour_of_day: float,
-                 reference_minute_of_hour: float,
-                 restore_window_days: float,
+                 policies: Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyResult'],
+                 reference_hour_of_day: int,
+                 reference_minute_of_hour: int,
+                 restore_window_days: int,
                  update_snapshots: bool):
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -3036,22 +3036,22 @@ class GetClusterSnapshotBackupPolicyResult(dict):
 
     @property
     @pulumi.getter
-    def policies(self) -> List['outputs.GetClusterSnapshotBackupPolicyPolicyResult']:
+    def policies(self) -> Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyResult']:
         return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter(name="referenceHourOfDay")
-    def reference_hour_of_day(self) -> float:
+    def reference_hour_of_day(self) -> int:
         return pulumi.get(self, "reference_hour_of_day")
 
     @property
     @pulumi.getter(name="referenceMinuteOfHour")
-    def reference_minute_of_hour(self) -> float:
+    def reference_minute_of_hour(self) -> int:
         return pulumi.get(self, "reference_minute_of_hour")
 
     @property
     @pulumi.getter(name="restoreWindowDays")
-    def restore_window_days(self) -> float:
+    def restore_window_days(self) -> int:
         return pulumi.get(self, "restore_window_days")
 
     @property
@@ -3064,7 +3064,7 @@ class GetClusterSnapshotBackupPolicyResult(dict):
 class GetClusterSnapshotBackupPolicyPolicyResult(dict):
     def __init__(__self__, *,
                  id: str,
-                 policy_items: List['outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult']):
+                 policy_items: Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult']):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
@@ -3081,18 +3081,18 @@ class GetClusterSnapshotBackupPolicyPolicyResult(dict):
 
     @property
     @pulumi.getter(name="policyItems")
-    def policy_items(self) -> List['outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult']:
+    def policy_items(self) -> Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult']:
         return pulumi.get(self, "policy_items")
 
 
 @pulumi.output_type
 class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     def __init__(__self__, *,
-                 frequency_interval: float,
+                 frequency_interval: int,
                  frequency_type: str,
                  id: str,
                  retention_unit: str,
-                 retention_value: float):
+                 retention_value: int):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
@@ -3104,7 +3104,7 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 
     @property
     @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> float:
+    def frequency_interval(self) -> int:
         return pulumi.get(self, "frequency_interval")
 
     @property
@@ -3127,7 +3127,7 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 
     @property
     @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> float:
+    def retention_value(self) -> int:
         return pulumi.get(self, "retention_value")
 
 
@@ -3145,29 +3145,29 @@ class GetClustersResultResult(dict):
                  container_id: str,
                  disk_size_gb: float,
                  encryption_at_rest_provider: str,
-                 labels: List['outputs.GetClustersResultLabelResult'],
+                 labels: Sequence['outputs.GetClustersResultLabelResult'],
                  mongo_db_major_version: str,
                  mongo_db_version: str,
                  mongo_uri: str,
                  mongo_uri_updated: str,
                  mongo_uri_with_options: str,
                  name: str,
-                 num_shards: float,
+                 num_shards: int,
                  paused: bool,
                  pit_enabled: bool,
                  provider_auto_scaling_compute_max_instance_size: str,
                  provider_auto_scaling_compute_min_instance_size: str,
                  provider_backup_enabled: bool,
-                 provider_disk_iops: float,
+                 provider_disk_iops: int,
                  provider_disk_type_name: str,
                  provider_encrypt_ebs_volume: bool,
                  provider_instance_size_name: str,
                  provider_name: str,
                  provider_region_name: str,
                  provider_volume_type: str,
-                 replication_factor: float,
-                 replication_specs: List['outputs.GetClustersResultReplicationSpecResult'],
-                 snapshot_backup_policies: List['outputs.GetClustersResultSnapshotBackupPolicyResult'],
+                 replication_factor: int,
+                 replication_specs: Sequence['outputs.GetClustersResultReplicationSpecResult'],
+                 snapshot_backup_policies: Sequence['outputs.GetClustersResultSnapshotBackupPolicyResult'],
                  srv_address: str,
                  state_name: str):
         """
@@ -3194,22 +3194,22 @@ class GetClustersResultResult(dict):
         :param str mongo_uri_updated: Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
         :param str mongo_uri_with_options: Describes connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
         :param str name: The name of the current plugin
-        :param float num_shards: Number of shards to deploy in the specified zone.
+        :param int num_shards: Number of shards to deploy in the specified zone.
         :param bool paused: Flag that indicates whether the cluster is paused or not.
         :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param str provider_auto_scaling_compute_max_instance_size: (Optional) Maximum instance size to which your cluster can automatically scale.
         :param str provider_auto_scaling_compute_min_instance_size: (Optional) Minimum instance size to which your cluster can automatically scale.
         :param bool provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
-        :param float provider_disk_iops: Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
+        :param int provider_disk_iops: Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
         :param str provider_disk_type_name: Describes Azure disk type of the server’s root volume (Azure Only).
         :param bool provider_encrypt_ebs_volume: Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
         :param str provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size.
         :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
         :param str provider_region_name: Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param str provider_volume_type: Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
-        :param float replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
-        :param List['GetClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
-        :param List['GetClustersResultSnapshotBackupPolicyArgs'] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
+        :param int replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param Sequence['GetClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param Sequence['GetClustersResultSnapshotBackupPolicyArgs'] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
         :param str srv_address: Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         :param str state_name: Indicates the current state of the cluster. The possible states are:
                - IDLE
@@ -3352,7 +3352,7 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter
-    def labels(self) -> List['outputs.GetClustersResultLabelResult']:
+    def labels(self) -> Sequence['outputs.GetClustersResultLabelResult']:
         return pulumi.get(self, "labels")
 
     @property
@@ -3405,7 +3405,7 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> float:
+    def num_shards(self) -> int:
         """
         Number of shards to deploy in the specified zone.
         """
@@ -3453,7 +3453,7 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="providerDiskIops")
-    def provider_disk_iops(self) -> float:
+    def provider_disk_iops(self) -> int:
         """
         Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
         """
@@ -3509,7 +3509,7 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="replicationFactor")
-    def replication_factor(self) -> float:
+    def replication_factor(self) -> int:
         """
         Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
@@ -3517,7 +3517,7 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="replicationSpecs")
-    def replication_specs(self) -> List['outputs.GetClustersResultReplicationSpecResult']:
+    def replication_specs(self) -> Sequence['outputs.GetClustersResultReplicationSpecResult']:
         """
         Configuration for cluster regions.  See Replication Spec below for more details.
         """
@@ -3525,7 +3525,7 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="snapshotBackupPolicies")
-    def snapshot_backup_policies(self) -> List['outputs.GetClustersResultSnapshotBackupPolicyResult']:
+    def snapshot_backup_policies(self) -> Sequence['outputs.GetClustersResultSnapshotBackupPolicyResult']:
         """
         current snapshot schedule and retention settings for the cluster.
         """
@@ -3663,13 +3663,13 @@ class GetClustersResultLabelResult(dict):
 class GetClustersResultReplicationSpecResult(dict):
     def __init__(__self__, *,
                  id: str,
-                 num_shards: float,
-                 regions_configs: List['outputs.GetClustersResultReplicationSpecRegionsConfigResult'],
+                 num_shards: int,
+                 regions_configs: Sequence['outputs.GetClustersResultReplicationSpecRegionsConfigResult'],
                  zone_name: str):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        :param float num_shards: Number of shards to deploy in the specified zone.
-        :param List['GetClustersResultReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+        :param int num_shards: Number of shards to deploy in the specified zone.
+        :param Sequence['GetClustersResultReplicationSpecRegionsConfigArgs'] regions_configs: Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param str zone_name: Indicates the n ame for the zone in a Global Cluster.
         """
         pulumi.set(__self__, "id", id)
@@ -3687,7 +3687,7 @@ class GetClustersResultReplicationSpecResult(dict):
 
     @property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> float:
+    def num_shards(self) -> int:
         """
         Number of shards to deploy in the specified zone.
         """
@@ -3695,7 +3695,7 @@ class GetClustersResultReplicationSpecResult(dict):
 
     @property
     @pulumi.getter(name="regionsConfigs")
-    def regions_configs(self) -> List['outputs.GetClustersResultReplicationSpecRegionsConfigResult']:
+    def regions_configs(self) -> Sequence['outputs.GetClustersResultReplicationSpecRegionsConfigResult']:
         """
         Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         """
@@ -3713,16 +3713,16 @@ class GetClustersResultReplicationSpecResult(dict):
 @pulumi.output_type
 class GetClustersResultReplicationSpecRegionsConfigResult(dict):
     def __init__(__self__, *,
-                 analytics_nodes: float,
-                 electable_nodes: float,
-                 priority: float,
-                 read_only_nodes: float,
+                 analytics_nodes: int,
+                 electable_nodes: int,
+                 priority: int,
+                 read_only_nodes: int,
                  region_name: str):
         """
-        :param float analytics_nodes: Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
-        :param float electable_nodes: Number of electable nodes for Atlas to deploy to the region.
-        :param float priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
-        :param float read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
+        :param int analytics_nodes: Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
+        :param int electable_nodes: Number of electable nodes for Atlas to deploy to the region.
+        :param int priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
+        :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         :param str region_name: Name for the region specified.
         """
         pulumi.set(__self__, "analytics_nodes", analytics_nodes)
@@ -3733,7 +3733,7 @@ class GetClustersResultReplicationSpecRegionsConfigResult(dict):
 
     @property
     @pulumi.getter(name="analyticsNodes")
-    def analytics_nodes(self) -> float:
+    def analytics_nodes(self) -> int:
         """
         Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary.
         """
@@ -3741,7 +3741,7 @@ class GetClustersResultReplicationSpecRegionsConfigResult(dict):
 
     @property
     @pulumi.getter(name="electableNodes")
-    def electable_nodes(self) -> float:
+    def electable_nodes(self) -> int:
         """
         Number of electable nodes for Atlas to deploy to the region.
         """
@@ -3749,7 +3749,7 @@ class GetClustersResultReplicationSpecRegionsConfigResult(dict):
 
     @property
     @pulumi.getter
-    def priority(self) -> float:
+    def priority(self) -> int:
         """
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         """
@@ -3757,7 +3757,7 @@ class GetClustersResultReplicationSpecRegionsConfigResult(dict):
 
     @property
     @pulumi.getter(name="readOnlyNodes")
-    def read_only_nodes(self) -> float:
+    def read_only_nodes(self) -> int:
         """
         Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         """
@@ -3778,10 +3778,10 @@ class GetClustersResultSnapshotBackupPolicyResult(dict):
                  cluster_id: str,
                  cluster_name: str,
                  next_snapshot: str,
-                 policies: List['outputs.GetClustersResultSnapshotBackupPolicyPolicyResult'],
-                 reference_hour_of_day: float,
-                 reference_minute_of_hour: float,
-                 restore_window_days: float,
+                 policies: Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyResult'],
+                 reference_hour_of_day: int,
+                 reference_minute_of_hour: int,
+                 restore_window_days: int,
                  update_snapshots: bool):
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -3809,22 +3809,22 @@ class GetClustersResultSnapshotBackupPolicyResult(dict):
 
     @property
     @pulumi.getter
-    def policies(self) -> List['outputs.GetClustersResultSnapshotBackupPolicyPolicyResult']:
+    def policies(self) -> Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyResult']:
         return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter(name="referenceHourOfDay")
-    def reference_hour_of_day(self) -> float:
+    def reference_hour_of_day(self) -> int:
         return pulumi.get(self, "reference_hour_of_day")
 
     @property
     @pulumi.getter(name="referenceMinuteOfHour")
-    def reference_minute_of_hour(self) -> float:
+    def reference_minute_of_hour(self) -> int:
         return pulumi.get(self, "reference_minute_of_hour")
 
     @property
     @pulumi.getter(name="restoreWindowDays")
-    def restore_window_days(self) -> float:
+    def restore_window_days(self) -> int:
         return pulumi.get(self, "restore_window_days")
 
     @property
@@ -3837,7 +3837,7 @@ class GetClustersResultSnapshotBackupPolicyResult(dict):
 class GetClustersResultSnapshotBackupPolicyPolicyResult(dict):
     def __init__(__self__, *,
                  id: str,
-                 policy_items: List['outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult']):
+                 policy_items: Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult']):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
@@ -3854,18 +3854,18 @@ class GetClustersResultSnapshotBackupPolicyPolicyResult(dict):
 
     @property
     @pulumi.getter(name="policyItems")
-    def policy_items(self) -> List['outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult']:
+    def policy_items(self) -> Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult']:
         return pulumi.get(self, "policy_items")
 
 
 @pulumi.output_type
 class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     def __init__(__self__, *,
-                 frequency_interval: float,
+                 frequency_interval: int,
                  frequency_type: str,
                  id: str,
                  retention_unit: str,
-                 retention_value: float):
+                 retention_value: int):
         """
         :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
         """
@@ -3877,7 +3877,7 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 
     @property
     @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> float:
+    def frequency_interval(self) -> int:
         return pulumi.get(self, "frequency_interval")
 
     @property
@@ -3900,7 +3900,7 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 
     @property
     @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> float:
+    def retention_value(self) -> int:
         return pulumi.get(self, "retention_value")
 
 
@@ -3908,10 +3908,10 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 class GetCustomDbRoleActionResult(dict):
     def __init__(__self__, *,
                  action: str,
-                 resources: List['outputs.GetCustomDbRoleActionResourceResult']):
+                 resources: Sequence['outputs.GetCustomDbRoleActionResourceResult']):
         """
         :param str action: (Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.
-        :param List['GetCustomDbRoleActionResourceArgs'] resources: (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
+        :param Sequence['GetCustomDbRoleActionResourceArgs'] resources: (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "resources", resources)
@@ -3926,7 +3926,7 @@ class GetCustomDbRoleActionResult(dict):
 
     @property
     @pulumi.getter
-    def resources(self) -> List['outputs.GetCustomDbRoleActionResourceResult']:
+    def resources(self) -> Sequence['outputs.GetCustomDbRoleActionResourceResult']:
         """
         (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
@@ -3987,8 +3987,8 @@ class GetCustomDbRoleInheritedRoleResult(dict):
 @pulumi.output_type
 class GetCustomDbRolesResultResult(dict):
     def __init__(__self__, *,
-                 actions: List['outputs.GetCustomDbRolesResultActionResult'],
-                 inherited_roles: List['outputs.GetCustomDbRolesResultInheritedRoleResult'],
+                 actions: Sequence['outputs.GetCustomDbRolesResultActionResult'],
+                 inherited_roles: Sequence['outputs.GetCustomDbRolesResultInheritedRoleResult'],
                  role_name: str):
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "inherited_roles", inherited_roles)
@@ -3996,12 +3996,12 @@ class GetCustomDbRolesResultResult(dict):
 
     @property
     @pulumi.getter
-    def actions(self) -> List['outputs.GetCustomDbRolesResultActionResult']:
+    def actions(self) -> Sequence['outputs.GetCustomDbRolesResultActionResult']:
         return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter(name="inheritedRoles")
-    def inherited_roles(self) -> List['outputs.GetCustomDbRolesResultInheritedRoleResult']:
+    def inherited_roles(self) -> Sequence['outputs.GetCustomDbRolesResultInheritedRoleResult']:
         return pulumi.get(self, "inherited_roles")
 
     @property
@@ -4014,10 +4014,10 @@ class GetCustomDbRolesResultResult(dict):
 class GetCustomDbRolesResultActionResult(dict):
     def __init__(__self__, *,
                  action: str,
-                 resources: List['outputs.GetCustomDbRolesResultActionResourceResult']):
+                 resources: Sequence['outputs.GetCustomDbRolesResultActionResourceResult']):
         """
         :param str action: (Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.
-        :param List['GetCustomDbRolesResultActionResourceArgs'] resources: (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
+        :param Sequence['GetCustomDbRolesResultActionResourceArgs'] resources: (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "resources", resources)
@@ -4032,7 +4032,7 @@ class GetCustomDbRolesResultActionResult(dict):
 
     @property
     @pulumi.getter
-    def resources(self) -> List['outputs.GetCustomDbRolesResultActionResourceResult']:
+    def resources(self) -> Sequence['outputs.GetCustomDbRolesResultActionResourceResult']:
         """
         (Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
         """
@@ -4183,10 +4183,10 @@ class GetDatabaseUsersResultResult(dict):
     def __init__(__self__, *,
                  auth_database_name: str,
                  aws_iam_type: str,
-                 labels: List['outputs.GetDatabaseUsersResultLabelResult'],
+                 labels: Sequence['outputs.GetDatabaseUsersResultLabelResult'],
                  project_id: str,
-                 roles: List['outputs.GetDatabaseUsersResultRoleResult'],
-                 scopes: List['outputs.GetDatabaseUsersResultScopeResult'],
+                 roles: Sequence['outputs.GetDatabaseUsersResultRoleResult'],
+                 scopes: Sequence['outputs.GetDatabaseUsersResultScopeResult'],
                  username: str,
                  x509_type: str):
         """
@@ -4198,8 +4198,8 @@ class GetDatabaseUsersResultResult(dict):
                * `aws_iam_type` is USER or ROLE.
         :param str aws_iam_type: The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
         :param str project_id: The unique ID for the project to get all database users.
-        :param List['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-        :param List['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Lakes that this user has access to.
+        :param Sequence['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param Sequence['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Lakes that this user has access to.
         :param str username: Username for authenticating to MongoDB.
         :param str x509_type: X.509 method by which the provided username is authenticated.
         """
@@ -4235,7 +4235,7 @@ class GetDatabaseUsersResultResult(dict):
 
     @property
     @pulumi.getter
-    def labels(self) -> List['outputs.GetDatabaseUsersResultLabelResult']:
+    def labels(self) -> Sequence['outputs.GetDatabaseUsersResultLabelResult']:
         return pulumi.get(self, "labels")
 
     @property
@@ -4248,7 +4248,7 @@ class GetDatabaseUsersResultResult(dict):
 
     @property
     @pulumi.getter
-    def roles(self) -> List['outputs.GetDatabaseUsersResultRoleResult']:
+    def roles(self) -> Sequence['outputs.GetDatabaseUsersResultRoleResult']:
         """
         List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         """
@@ -4256,7 +4256,7 @@ class GetDatabaseUsersResultResult(dict):
 
     @property
     @pulumi.getter
-    def scopes(self) -> List['outputs.GetDatabaseUsersResultScopeResult']:
+    def scopes(self) -> Sequence['outputs.GetDatabaseUsersResultScopeResult']:
         """
         Array of clusters and Atlas Data Lakes that this user has access to.
         """
@@ -4767,14 +4767,14 @@ class GetNetworkPeeringsResultResult(dict):
 @pulumi.output_type
 class GetProjectTeamResult(dict):
     def __init__(__self__, *,
-                 role_names: List[str],
+                 role_names: Sequence[str],
                  team_id: str):
         pulumi.set(__self__, "role_names", role_names)
         pulumi.set(__self__, "team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
-    def role_names(self) -> List[str]:
+    def role_names(self) -> Sequence[str]:
         return pulumi.get(self, "role_names")
 
     @property
@@ -4786,12 +4786,12 @@ class GetProjectTeamResult(dict):
 @pulumi.output_type
 class GetProjectsResultResult(dict):
     def __init__(__self__, *,
-                 cluster_count: float,
+                 cluster_count: int,
                  created: str,
                  id: str,
                  name: str,
                  org_id: str,
-                 teams: List['outputs.GetProjectsResultTeamResult']):
+                 teams: Sequence['outputs.GetProjectsResultTeamResult']):
         """
         :param str id: Autogenerated Unique ID for this data source.
         :param str name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
@@ -4817,7 +4817,7 @@ class GetProjectsResultResult(dict):
 
     @property
     @pulumi.getter(name="clusterCount")
-    def cluster_count(self) -> float:
+    def cluster_count(self) -> int:
         return pulumi.get(self, "cluster_count")
 
     @property
@@ -4862,21 +4862,21 @@ class GetProjectsResultResult(dict):
 
     @property
     @pulumi.getter
-    def teams(self) -> List['outputs.GetProjectsResultTeamResult']:
+    def teams(self) -> Sequence['outputs.GetProjectsResultTeamResult']:
         return pulumi.get(self, "teams")
 
 
 @pulumi.output_type
 class GetProjectsResultTeamResult(dict):
     def __init__(__self__, *,
-                 role_names: List[str],
+                 role_names: Sequence[str],
                  team_id: str):
         pulumi.set(__self__, "role_names", role_names)
         pulumi.set(__self__, "team_id", team_id)
 
     @property
     @pulumi.getter(name="roleNames")
-    def role_names(self) -> List[str]:
+    def role_names(self) -> Sequence[str]:
         return pulumi.get(self, "role_names")
 
     @property

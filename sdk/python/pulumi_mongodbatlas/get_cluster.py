@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -78,8 +78,8 @@ class GetClusterResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if num_shards and not isinstance(num_shards, float):
-            raise TypeError("Expected argument 'num_shards' to be a float")
+        if num_shards and not isinstance(num_shards, int):
+            raise TypeError("Expected argument 'num_shards' to be a int")
         pulumi.set(__self__, "num_shards", num_shards)
         if paused and not isinstance(paused, bool):
             raise TypeError("Expected argument 'paused' to be a bool")
@@ -99,8 +99,8 @@ class GetClusterResult:
         if provider_backup_enabled and not isinstance(provider_backup_enabled, bool):
             raise TypeError("Expected argument 'provider_backup_enabled' to be a bool")
         pulumi.set(__self__, "provider_backup_enabled", provider_backup_enabled)
-        if provider_disk_iops and not isinstance(provider_disk_iops, float):
-            raise TypeError("Expected argument 'provider_disk_iops' to be a float")
+        if provider_disk_iops and not isinstance(provider_disk_iops, int):
+            raise TypeError("Expected argument 'provider_disk_iops' to be a int")
         pulumi.set(__self__, "provider_disk_iops", provider_disk_iops)
         if provider_disk_type_name and not isinstance(provider_disk_type_name, str):
             raise TypeError("Expected argument 'provider_disk_type_name' to be a str")
@@ -120,8 +120,8 @@ class GetClusterResult:
         if provider_volume_type and not isinstance(provider_volume_type, str):
             raise TypeError("Expected argument 'provider_volume_type' to be a str")
         pulumi.set(__self__, "provider_volume_type", provider_volume_type)
-        if replication_factor and not isinstance(replication_factor, float):
-            raise TypeError("Expected argument 'replication_factor' to be a float")
+        if replication_factor and not isinstance(replication_factor, int):
+            raise TypeError("Expected argument 'replication_factor' to be a int")
         pulumi.set(__self__, "replication_factor", replication_factor)
         if replication_specs and not isinstance(replication_specs, list):
             raise TypeError("Expected argument 'replication_specs' to be a list")
@@ -240,7 +240,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter
-    def labels(self) -> List['outputs.GetClusterLabelResult']:
+    def labels(self) -> Sequence['outputs.GetClusterLabelResult']:
         return pulumi.get(self, "labels")
 
     @property
@@ -293,7 +293,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> float:
+    def num_shards(self) -> int:
         """
         Number of shards to deploy in the specified zone.
         """
@@ -346,7 +346,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="providerDiskIops")
-    def provider_disk_iops(self) -> float:
+    def provider_disk_iops(self) -> int:
         """
         Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
         """
@@ -402,7 +402,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="replicationFactor")
-    def replication_factor(self) -> float:
+    def replication_factor(self) -> int:
         """
         Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
@@ -410,7 +410,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="replicationSpecs")
-    def replication_specs(self) -> List['outputs.GetClusterReplicationSpecResult']:
+    def replication_specs(self) -> Sequence['outputs.GetClusterReplicationSpecResult']:
         """
         Configuration for cluster regions.  See Replication Spec below for more details.
         """
@@ -418,7 +418,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="snapshotBackupPolicies")
-    def snapshot_backup_policies(self) -> List['outputs.GetClusterSnapshotBackupPolicyResult']:
+    def snapshot_backup_policies(self) -> Sequence['outputs.GetClusterSnapshotBackupPolicyResult']:
         """
         current snapshot schedule and retention settings for the cluster.
         """

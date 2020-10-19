@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['CloudProviderSnapshot']
@@ -18,7 +18,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 retention_in_days: Optional[pulumi.Input[float]] = None,
+                 retention_in_days: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -62,7 +62,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[str] description: Description of the on-demand snapshot.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
-        :param pulumi.Input[float] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+        :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -119,11 +119,11 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             master_key_uuid: Optional[pulumi.Input[str]] = None,
             mongod_version: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            retention_in_days: Optional[pulumi.Input[float]] = None,
+            retention_in_days: Optional[pulumi.Input[int]] = None,
             snapshot_id: Optional[pulumi.Input[str]] = None,
             snapshot_type: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            storage_size_bytes: Optional[pulumi.Input[float]] = None,
+            storage_size_bytes: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'CloudProviderSnapshot':
         """
         Get an existing CloudProviderSnapshot resource's state with the given name, id, and optional extra
@@ -139,11 +139,11 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] master_key_uuid: Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
         :param pulumi.Input[str] mongod_version: Version of the MongoDB server.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
-        :param pulumi.Input[float] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+        :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot.
         :param pulumi.Input[str] snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
         :param pulumi.Input[str] status: Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
-        :param pulumi.Input[float] storage_size_bytes: Specifies the size of the snapshot in bytes.
+        :param pulumi.Input[int] storage_size_bytes: Specifies the size of the snapshot in bytes.
         :param pulumi.Input[str] type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -223,7 +223,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="retentionInDays")
-    def retention_in_days(self) -> pulumi.Output[float]:
+    def retention_in_days(self) -> pulumi.Output[int]:
         """
         The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         """
@@ -255,7 +255,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="storageSizeBytes")
-    def storage_size_bytes(self) -> pulumi.Output[float]:
+    def storage_size_bytes(self) -> pulumi.Output[int]:
         """
         Specifies the size of the snapshot in bytes.
         """

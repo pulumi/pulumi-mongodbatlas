@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -27,11 +27,11 @@ class GetCloudProviderSnapshotRestoreJobsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if items_per_page and not isinstance(items_per_page, float):
-            raise TypeError("Expected argument 'items_per_page' to be a float")
+        if items_per_page and not isinstance(items_per_page, int):
+            raise TypeError("Expected argument 'items_per_page' to be a int")
         pulumi.set(__self__, "items_per_page", items_per_page)
-        if page_num and not isinstance(page_num, float):
-            raise TypeError("Expected argument 'page_num' to be a float")
+        if page_num and not isinstance(page_num, int):
+            raise TypeError("Expected argument 'page_num' to be a int")
         pulumi.set(__self__, "page_num", page_num)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
@@ -39,8 +39,8 @@ class GetCloudProviderSnapshotRestoreJobsResult:
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-        if total_count and not isinstance(total_count, float):
-            raise TypeError("Expected argument 'total_count' to be a float")
+        if total_count and not isinstance(total_count, int):
+            raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
 
     @property
@@ -58,12 +58,12 @@ class GetCloudProviderSnapshotRestoreJobsResult:
 
     @property
     @pulumi.getter(name="itemsPerPage")
-    def items_per_page(self) -> Optional[float]:
+    def items_per_page(self) -> Optional[int]:
         return pulumi.get(self, "items_per_page")
 
     @property
     @pulumi.getter(name="pageNum")
-    def page_num(self) -> Optional[float]:
+    def page_num(self) -> Optional[int]:
         return pulumi.get(self, "page_num")
 
     @property
@@ -73,7 +73,7 @@ class GetCloudProviderSnapshotRestoreJobsResult:
 
     @property
     @pulumi.getter
-    def results(self) -> List['outputs.GetCloudProviderSnapshotRestoreJobsResultResult']:
+    def results(self) -> Sequence['outputs.GetCloudProviderSnapshotRestoreJobsResultResult']:
         """
         Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
         """
@@ -81,7 +81,7 @@ class GetCloudProviderSnapshotRestoreJobsResult:
 
     @property
     @pulumi.getter(name="totalCount")
-    def total_count(self) -> float:
+    def total_count(self) -> int:
         return pulumi.get(self, "total_count")
 
 
@@ -101,8 +101,8 @@ class AwaitableGetCloudProviderSnapshotRestoreJobsResult(GetCloudProviderSnapsho
 
 
 def get_cloud_provider_snapshot_restore_jobs(cluster_name: Optional[str] = None,
-                                             items_per_page: Optional[float] = None,
-                                             page_num: Optional[float] = None,
+                                             items_per_page: Optional[int] = None,
+                                             page_num: Optional[int] = None,
                                              project_id: Optional[str] = None,
                                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderSnapshotRestoreJobsResult:
     """
@@ -140,8 +140,8 @@ def get_cloud_provider_snapshot_restore_jobs(cluster_name: Optional[str] = None,
 
 
     :param str cluster_name: The name of the Atlas cluster for which you want to retrieve restore jobs.
-    :param float items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-    :param float page_num: The page to return. Defaults to `1`.
+    :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+    :param int page_num: The page to return. Defaults to `1`.
     :param str project_id: The unique identifier of the project for the Atlas cluster.
     """
     __args__ = dict()

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -87,7 +87,7 @@ class GetDatabaseUserResult:
 
     @property
     @pulumi.getter
-    def labels(self) -> List['outputs.GetDatabaseUserLabelResult']:
+    def labels(self) -> Sequence['outputs.GetDatabaseUserLabelResult']:
         return pulumi.get(self, "labels")
 
     @property
@@ -97,7 +97,7 @@ class GetDatabaseUserResult:
 
     @property
     @pulumi.getter
-    def roles(self) -> List['outputs.GetDatabaseUserRoleResult']:
+    def roles(self) -> Sequence['outputs.GetDatabaseUserRoleResult']:
         """
         List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         """
@@ -105,7 +105,7 @@ class GetDatabaseUserResult:
 
     @property
     @pulumi.getter
-    def scopes(self) -> List['outputs.GetDatabaseUserScopeResult']:
+    def scopes(self) -> Sequence['outputs.GetDatabaseUserScopeResult']:
         """
         Array of clusters and Atlas Data Lakes that this user has access to.
         """

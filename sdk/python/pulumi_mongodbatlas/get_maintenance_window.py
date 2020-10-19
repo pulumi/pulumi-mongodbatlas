@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -20,17 +20,17 @@ class GetMaintenanceWindowResult:
     A collection of values returned by getMaintenanceWindow.
     """
     def __init__(__self__, day_of_week=None, hour_of_day=None, id=None, number_of_deferrals=None, project_id=None, start_asap=None):
-        if day_of_week and not isinstance(day_of_week, float):
-            raise TypeError("Expected argument 'day_of_week' to be a float")
+        if day_of_week and not isinstance(day_of_week, int):
+            raise TypeError("Expected argument 'day_of_week' to be a int")
         pulumi.set(__self__, "day_of_week", day_of_week)
-        if hour_of_day and not isinstance(hour_of_day, float):
-            raise TypeError("Expected argument 'hour_of_day' to be a float")
+        if hour_of_day and not isinstance(hour_of_day, int):
+            raise TypeError("Expected argument 'hour_of_day' to be a int")
         pulumi.set(__self__, "hour_of_day", hour_of_day)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if number_of_deferrals and not isinstance(number_of_deferrals, float):
-            raise TypeError("Expected argument 'number_of_deferrals' to be a float")
+        if number_of_deferrals and not isinstance(number_of_deferrals, int):
+            raise TypeError("Expected argument 'number_of_deferrals' to be a int")
         pulumi.set(__self__, "number_of_deferrals", number_of_deferrals)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
@@ -41,7 +41,7 @@ class GetMaintenanceWindowResult:
 
     @property
     @pulumi.getter(name="dayOfWeek")
-    def day_of_week(self) -> float:
+    def day_of_week(self) -> int:
         """
         Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
         """
@@ -49,7 +49,7 @@ class GetMaintenanceWindowResult:
 
     @property
     @pulumi.getter(name="hourOfDay")
-    def hour_of_day(self) -> float:
+    def hour_of_day(self) -> int:
         """
         Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
         """
@@ -65,7 +65,7 @@ class GetMaintenanceWindowResult:
 
     @property
     @pulumi.getter(name="numberOfDeferrals")
-    def number_of_deferrals(self) -> float:
+    def number_of_deferrals(self) -> int:
         """
         Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
         """

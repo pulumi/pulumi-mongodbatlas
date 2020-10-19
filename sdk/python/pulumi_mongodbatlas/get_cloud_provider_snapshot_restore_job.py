@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -50,14 +50,14 @@ class GetCloudProviderSnapshotRestoreJobResult:
         if job_id and not isinstance(job_id, str):
             raise TypeError("Expected argument 'job_id' to be a str")
         pulumi.set(__self__, "job_id", job_id)
-        if oplog_inc and not isinstance(oplog_inc, float):
-            raise TypeError("Expected argument 'oplog_inc' to be a float")
+        if oplog_inc and not isinstance(oplog_inc, int):
+            raise TypeError("Expected argument 'oplog_inc' to be a int")
         pulumi.set(__self__, "oplog_inc", oplog_inc)
-        if oplog_ts and not isinstance(oplog_ts, float):
-            raise TypeError("Expected argument 'oplog_ts' to be a float")
+        if oplog_ts and not isinstance(oplog_ts, int):
+            raise TypeError("Expected argument 'oplog_ts' to be a int")
         pulumi.set(__self__, "oplog_ts", oplog_ts)
-        if point_in_time_utc_seconds and not isinstance(point_in_time_utc_seconds, float):
-            raise TypeError("Expected argument 'point_in_time_utc_seconds' to be a float")
+        if point_in_time_utc_seconds and not isinstance(point_in_time_utc_seconds, int):
+            raise TypeError("Expected argument 'point_in_time_utc_seconds' to be a int")
         pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
@@ -106,7 +106,7 @@ class GetCloudProviderSnapshotRestoreJobResult:
 
     @property
     @pulumi.getter(name="deliveryUrls")
-    def delivery_urls(self) -> List[str]:
+    def delivery_urls(self) -> Sequence[str]:
         """
         One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         """
@@ -151,17 +151,17 @@ class GetCloudProviderSnapshotRestoreJobResult:
 
     @property
     @pulumi.getter(name="oplogInc")
-    def oplog_inc(self) -> float:
+    def oplog_inc(self) -> int:
         return pulumi.get(self, "oplog_inc")
 
     @property
     @pulumi.getter(name="oplogTs")
-    def oplog_ts(self) -> float:
+    def oplog_ts(self) -> int:
         return pulumi.get(self, "oplog_ts")
 
     @property
     @pulumi.getter(name="pointInTimeUtcSeconds")
-    def point_in_time_utc_seconds(self) -> float:
+    def point_in_time_utc_seconds(self) -> int:
         return pulumi.get(self, "point_in_time_utc_seconds")
 
     @property

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -21,8 +21,8 @@ class GetProjectResult:
     A collection of values returned by getProject.
     """
     def __init__(__self__, cluster_count=None, created=None, id=None, name=None, org_id=None, project_id=None, teams=None):
-        if cluster_count and not isinstance(cluster_count, float):
-            raise TypeError("Expected argument 'cluster_count' to be a float")
+        if cluster_count and not isinstance(cluster_count, int):
+            raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
         if created and not isinstance(created, str):
             raise TypeError("Expected argument 'created' to be a str")
@@ -45,7 +45,7 @@ class GetProjectResult:
 
     @property
     @pulumi.getter(name="clusterCount")
-    def cluster_count(self) -> float:
+    def cluster_count(self) -> int:
         return pulumi.get(self, "cluster_count")
 
     @property
@@ -95,7 +95,7 @@ class GetProjectResult:
 
     @property
     @pulumi.getter
-    def teams(self) -> List['outputs.GetProjectTeamResult']:
+    def teams(self) -> Sequence['outputs.GetProjectTeamResult']:
         return pulumi.get(self, "teams")
 
 

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -94,7 +94,7 @@ class GetAlertConfigurationResult:
 
     @property
     @pulumi.getter
-    def matchers(self) -> List['outputs.GetAlertConfigurationMatcherResult']:
+    def matchers(self) -> Sequence['outputs.GetAlertConfigurationMatcherResult']:
         return pulumi.get(self, "matchers")
 
     @property
@@ -104,7 +104,7 @@ class GetAlertConfigurationResult:
 
     @property
     @pulumi.getter
-    def notifications(self) -> List['outputs.GetAlertConfigurationNotificationResult']:
+    def notifications(self) -> Sequence['outputs.GetAlertConfigurationNotificationResult']:
         return pulumi.get(self, "notifications")
 
     @property
