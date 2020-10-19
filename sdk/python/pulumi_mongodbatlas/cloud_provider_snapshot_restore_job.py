@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -155,7 +155,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             cluster_name: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             delivery_type: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]] = None,
-            delivery_urls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             expired: Optional[pulumi.Input[bool]] = None,
             expires_at: Optional[pulumi.Input[str]] = None,
             finished_at: Optional[pulumi.Input[str]] = None,
@@ -174,7 +174,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
         :param pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
-        :param pulumi.Input[List[pulumi.Input[str]]] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         :param pulumi.Input[bool] expired: Indicates whether the restore job expired.
         :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
         :param pulumi.Input[str] finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
@@ -235,7 +235,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deliveryUrls")
-    def delivery_urls(self) -> pulumi.Output[List[str]]:
+    def delivery_urls(self) -> pulumi.Output[Sequence[str]]:
         """
         One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         """

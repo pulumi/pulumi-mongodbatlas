@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Teams']
@@ -17,7 +17,7 @@ class Teams(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 usernames: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -64,7 +64,7 @@ class Teams(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             team_id: Optional[pulumi.Input[str]] = None,
-            usernames: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Teams':
+            usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Teams':
         """
         Get an existing Teams resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -100,7 +100,7 @@ class Teams(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def usernames(self) -> pulumi.Output[List[str]]:
+    def usernames(self) -> pulumi.Output[Sequence[str]]:
         return pulumi.get(self, "usernames")
 
     def translate_output_property(self, prop):

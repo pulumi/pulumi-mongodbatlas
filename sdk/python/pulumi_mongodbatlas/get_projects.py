@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -24,17 +24,17 @@ class GetProjectsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if items_per_page and not isinstance(items_per_page, float):
-            raise TypeError("Expected argument 'items_per_page' to be a float")
+        if items_per_page and not isinstance(items_per_page, int):
+            raise TypeError("Expected argument 'items_per_page' to be a int")
         pulumi.set(__self__, "items_per_page", items_per_page)
-        if page_num and not isinstance(page_num, float):
-            raise TypeError("Expected argument 'page_num' to be a float")
+        if page_num and not isinstance(page_num, int):
+            raise TypeError("Expected argument 'page_num' to be a int")
         pulumi.set(__self__, "page_num", page_num)
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-        if total_count and not isinstance(total_count, float):
-            raise TypeError("Expected argument 'total_count' to be a float")
+        if total_count and not isinstance(total_count, int):
+            raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
 
     @property
@@ -47,22 +47,22 @@ class GetProjectsResult:
 
     @property
     @pulumi.getter(name="itemsPerPage")
-    def items_per_page(self) -> Optional[float]:
+    def items_per_page(self) -> Optional[int]:
         return pulumi.get(self, "items_per_page")
 
     @property
     @pulumi.getter(name="pageNum")
-    def page_num(self) -> Optional[float]:
+    def page_num(self) -> Optional[int]:
         return pulumi.get(self, "page_num")
 
     @property
     @pulumi.getter
-    def results(self) -> List['outputs.GetProjectsResultResult']:
+    def results(self) -> Sequence['outputs.GetProjectsResultResult']:
         return pulumi.get(self, "results")
 
     @property
     @pulumi.getter(name="totalCount")
-    def total_count(self) -> float:
+    def total_count(self) -> int:
         return pulumi.get(self, "total_count")
 
 
@@ -79,8 +79,8 @@ class AwaitableGetProjectsResult(GetProjectsResult):
             total_count=self.total_count)
 
 
-def get_projects(items_per_page: Optional[float] = None,
-                 page_num: Optional[float] = None,
+def get_projects(items_per_page: Optional[int] = None,
+                 page_num: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectsResult:
     """
     `getProjects` describe all Projects. This represents projects that have been created.
@@ -88,8 +88,8 @@ def get_projects(items_per_page: Optional[float] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
 
-    :param float items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-    :param float page_num: The page to return. Defaults to `1`.
+    :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+    :param int page_num: The page to return. Defaults to `1`.
     """
     __args__ = dict()
     __args__['itemsPerPage'] = items_per_page

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -40,7 +40,7 @@ class GetCustomDbRoleResult:
 
     @property
     @pulumi.getter
-    def actions(self) -> List['outputs.GetCustomDbRoleActionResult']:
+    def actions(self) -> Sequence['outputs.GetCustomDbRoleActionResult']:
         return pulumi.get(self, "actions")
 
     @property
@@ -53,7 +53,7 @@ class GetCustomDbRoleResult:
 
     @property
     @pulumi.getter(name="inheritedRoles")
-    def inherited_roles(self) -> Optional[List['outputs.GetCustomDbRoleInheritedRoleResult']]:
+    def inherited_roles(self) -> Optional[Sequence['outputs.GetCustomDbRoleInheritedRoleResult']]:
         return pulumi.get(self, "inherited_roles")
 
     @property
@@ -80,7 +80,7 @@ class AwaitableGetCustomDbRoleResult(GetCustomDbRoleResult):
             role_name=self.role_name)
 
 
-def get_custom_db_role(inherited_roles: Optional[List[pulumi.InputType['GetCustomDbRoleInheritedRoleArgs']]] = None,
+def get_custom_db_role(inherited_roles: Optional[Sequence[pulumi.InputType['GetCustomDbRoleInheritedRoleArgs']]] = None,
                        project_id: Optional[str] = None,
                        role_name: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDbRoleResult:

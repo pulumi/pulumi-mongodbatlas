@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['PrivateEndpoint']
@@ -111,7 +111,7 @@ class PrivateEndpoint(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             endpoint_service_name: Optional[pulumi.Input[str]] = None,
             error_message: Optional[pulumi.Input[str]] = None,
-            interface_endpoints: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            interface_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             private_link_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
@@ -126,7 +126,7 @@ class PrivateEndpoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         :param pulumi.Input[str] error_message: Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-        :param pulumi.Input[List[pulumi.Input[str]]] interface_endpoints: Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] interface_endpoints: Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
         :param pulumi.Input[str] private_link_id: Unique identifier of the AWS PrivateLink connection.
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
@@ -184,7 +184,7 @@ class PrivateEndpoint(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="interfaceEndpoints")
-    def interface_endpoints(self) -> pulumi.Output[List[str]]:
+    def interface_endpoints(self) -> pulumi.Output[Sequence[str]]:
         """
         Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
         """

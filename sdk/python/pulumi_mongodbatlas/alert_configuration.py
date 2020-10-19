@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -19,9 +19,9 @@ class AlertConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
-                 matchers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
+                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
                  metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
-                 notifications: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
+                 notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']]] = None,
                  __props__=None,
@@ -154,9 +154,9 @@ class AlertConfiguration(pulumi.CustomResource):
             created: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             event_type: Optional[pulumi.Input[str]] = None,
-            matchers: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
+            matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
             metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
-            notifications: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
+            notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']]] = None,
             updated: Optional[pulumi.Input[str]] = None) -> 'AlertConfiguration':
@@ -225,7 +225,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def matchers(self) -> pulumi.Output[Optional[List['outputs.AlertConfigurationMatcher']]]:
+    def matchers(self) -> pulumi.Output[Optional[Sequence['outputs.AlertConfigurationMatcher']]]:
         return pulumi.get(self, "matchers")
 
     @property
@@ -235,7 +235,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def notifications(self) -> pulumi.Output[List['outputs.AlertConfigurationNotification']]:
+    def notifications(self) -> pulumi.Output[Sequence['outputs.AlertConfigurationNotification']]:
         return pulumi.get(self, "notifications")
 
     @property

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -53,8 +53,8 @@ class GetCloudProviderSnapshotResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
-        if storage_size_bytes and not isinstance(storage_size_bytes, float):
-            raise TypeError("Expected argument 'storage_size_bytes' to be a float")
+        if storage_size_bytes and not isinstance(storage_size_bytes, int):
+            raise TypeError("Expected argument 'storage_size_bytes' to be a int")
         pulumi.set(__self__, "storage_size_bytes", storage_size_bytes)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
@@ -141,7 +141,7 @@ class GetCloudProviderSnapshotResult:
 
     @property
     @pulumi.getter(name="storageSizeBytes")
-    def storage_size_bytes(self) -> float:
+    def storage_size_bytes(self) -> int:
         """
         Specifies the size of the snapshot in bytes.
         """

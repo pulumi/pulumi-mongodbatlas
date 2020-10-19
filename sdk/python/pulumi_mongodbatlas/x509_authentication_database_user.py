@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -18,7 +18,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  customer_x509_cas: Optional[pulumi.Input[str]] = None,
-                 months_until_expiration: Optional[pulumi.Input[float]] = None,
+                 months_until_expiration: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -90,7 +90,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
-        :param pulumi.Input[float] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
+        :param pulumi.Input[int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         :param pulumi.Input[str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
         :param pulumi.Input[str] username: Username of the database user to create a certificate for.
         """
@@ -129,10 +129,10 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            certificates: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['X509AuthenticationDatabaseUserCertificateArgs']]]]] = None,
+            certificates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['X509AuthenticationDatabaseUserCertificateArgs']]]]] = None,
             current_certificate: Optional[pulumi.Input[str]] = None,
             customer_x509_cas: Optional[pulumi.Input[str]] = None,
-            months_until_expiration: Optional[pulumi.Input[float]] = None,
+            months_until_expiration: Optional[pulumi.Input[int]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'X509AuthenticationDatabaseUser':
         """
@@ -142,10 +142,10 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['X509AuthenticationDatabaseUserCertificateArgs']]]] certificates: Array of objects where each details one unexpired database user certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['X509AuthenticationDatabaseUserCertificateArgs']]]] certificates: Array of objects where each details one unexpired database user certificate.
         :param pulumi.Input[str] current_certificate: Contains the last X.509 certificate and private key created for a database user.
         :param pulumi.Input[str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
-        :param pulumi.Input[float] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
+        :param pulumi.Input[int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         :param pulumi.Input[str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
         :param pulumi.Input[str] username: Username of the database user to create a certificate for.
         """
@@ -163,7 +163,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def certificates(self) -> pulumi.Output[List['outputs.X509AuthenticationDatabaseUserCertificate']]:
+    def certificates(self) -> pulumi.Output[Sequence['outputs.X509AuthenticationDatabaseUserCertificate']]:
         """
         Array of objects where each details one unexpired database user certificate.
         """
@@ -187,7 +187,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="monthsUntilExpiration")
-    def months_until_expiration(self) -> pulumi.Output[Optional[float]]:
+    def months_until_expiration(self) -> pulumi.Output[Optional[int]]:
         """
         A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         """

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -39,14 +39,14 @@ class GetCloudProviderSnapshotBackupPolicyResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
-        if reference_hour_of_day and not isinstance(reference_hour_of_day, float):
-            raise TypeError("Expected argument 'reference_hour_of_day' to be a float")
+        if reference_hour_of_day and not isinstance(reference_hour_of_day, int):
+            raise TypeError("Expected argument 'reference_hour_of_day' to be a int")
         pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
-        if reference_minute_of_hour and not isinstance(reference_minute_of_hour, float):
-            raise TypeError("Expected argument 'reference_minute_of_hour' to be a float")
+        if reference_minute_of_hour and not isinstance(reference_minute_of_hour, int):
+            raise TypeError("Expected argument 'reference_minute_of_hour' to be a int")
         pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
-        if restore_window_days and not isinstance(restore_window_days, float):
-            raise TypeError("Expected argument 'restore_window_days' to be a float")
+        if restore_window_days and not isinstance(restore_window_days, int):
+            raise TypeError("Expected argument 'restore_window_days' to be a int")
         pulumi.set(__self__, "restore_window_days", restore_window_days)
         if update_snapshots and not isinstance(update_snapshots, bool):
             raise TypeError("Expected argument 'update_snapshots' to be a bool")
@@ -83,7 +83,7 @@ class GetCloudProviderSnapshotBackupPolicyResult:
 
     @property
     @pulumi.getter
-    def policies(self) -> List['outputs.GetCloudProviderSnapshotBackupPolicyPolicyResult']:
+    def policies(self) -> Sequence['outputs.GetCloudProviderSnapshotBackupPolicyPolicyResult']:
         """
         A list of policy definitions for the cluster.
         * `policies.#.id` - Unique identifier of the backup policy.
@@ -97,7 +97,7 @@ class GetCloudProviderSnapshotBackupPolicyResult:
 
     @property
     @pulumi.getter(name="referenceHourOfDay")
-    def reference_hour_of_day(self) -> float:
+    def reference_hour_of_day(self) -> int:
         """
         UTC Hour of day between 0 and 23 representing which hour of the day that Atlas takes a snapshot.
         """
@@ -105,7 +105,7 @@ class GetCloudProviderSnapshotBackupPolicyResult:
 
     @property
     @pulumi.getter(name="referenceMinuteOfHour")
-    def reference_minute_of_hour(self) -> float:
+    def reference_minute_of_hour(self) -> int:
         """
         UTC Minute of day between 0 and 59 representing which minute of the referenceHourOfDay that Atlas takes the snapshot.
         """
@@ -113,7 +113,7 @@ class GetCloudProviderSnapshotBackupPolicyResult:
 
     @property
     @pulumi.getter(name="restoreWindowDays")
-    def restore_window_days(self) -> float:
+    def restore_window_days(self) -> int:
         """
         Specifies a restore window in days for cloud backup to maintain.
         """

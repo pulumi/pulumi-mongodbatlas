@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -19,7 +19,7 @@ class Project(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
-                 teams: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -64,11 +64,11 @@ class Project(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cluster_count: Optional[pulumi.Input[float]] = None,
+            cluster_count: Optional[pulumi.Input[int]] = None,
             created: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
-            teams: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None) -> 'Project':
+            teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -76,7 +76,7 @@ class Project(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] cluster_count: The number of Atlas clusters deployed in the project..
+        :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project..
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
@@ -94,7 +94,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clusterCount")
-    def cluster_count(self) -> pulumi.Output[float]:
+    def cluster_count(self) -> pulumi.Output[int]:
         """
         The number of Atlas clusters deployed in the project..
         """
@@ -126,7 +126,7 @@ class Project(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def teams(self) -> pulumi.Output[Optional[List['outputs.ProjectTeam']]]:
+    def teams(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectTeam']]]:
         return pulumi.get(self, "teams")
 
     def translate_output_property(self, prop):

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -39,7 +39,7 @@ class Get509AuthenticationDatabaseUserResult:
 
     @property
     @pulumi.getter
-    def certificates(self) -> List['outputs.Get509AuthenticationDatabaseUserCertificateResult']:
+    def certificates(self) -> Sequence['outputs.Get509AuthenticationDatabaseUserCertificateResult']:
         """
         Array of objects where each details one unexpired database user certificate.
         """

@@ -39,7 +39,7 @@
         ]
     },
     "types": {
-        "mongodbatlas:/AlertConfigurationMatcher:AlertConfigurationMatcher": {
+        "mongodbatlas:index/AlertConfigurationMatcher:AlertConfigurationMatcher": {
             "properties": {
                 "fieldName": {
                     "type": "string",
@@ -71,7 +71,7 @@
             },
             "type": "object"
         },
-        "mongodbatlas:/AlertConfigurationMetricThreshold:AlertConfigurationMetricThreshold": {
+        "mongodbatlas:index/AlertConfigurationMetricThreshold:AlertConfigurationMetricThreshold": {
             "properties": {
                 "metricName": {
                     "type": "string",
@@ -96,7 +96,7 @@
             },
             "type": "object"
         },
-        "mongodbatlas:/AlertConfigurationNotification:AlertConfigurationNotification": {
+        "mongodbatlas:index/AlertConfigurationNotification:AlertConfigurationNotification": {
             "properties": {
                 "apiToken": {
                     "type": "string",
@@ -301,7 +301,7 @@
             },
             "type": "object"
         },
-        "mongodbatlas:/AlertConfigurationThreshold:AlertConfigurationThreshold": {
+        "mongodbatlas:index/AlertConfigurationThreshold:AlertConfigurationThreshold": {
             "properties": {
                 "operator": {
                     "type": "string",
@@ -318,7 +318,7 @@
             },
             "type": "object"
         },
-        "mongodbatlas:/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy": {
+        "mongodbatlas:index/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -331,7 +331,7 @@
                 "policyItems": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/CloudProviderSnapshotBackupPolicyPolicyPolicyItem:CloudProviderSnapshotBackupPolicyPolicyPolicyItem"
+                        "$ref": "#/types/mongodbatlas:index/CloudProviderSnapshotBackupPolicyPolicyPolicyItem:CloudProviderSnapshotBackupPolicyPolicyPolicyItem"
                     },
                     "language": {
                         "python": {
@@ -346,7 +346,7 @@
                 "policyItems"
             ]
         },
-        "mongodbatlas:/CloudProviderSnapshotBackupPolicyPolicyPolicyItem:CloudProviderSnapshotBackupPolicyPolicyPolicyItem": {
+        "mongodbatlas:index/CloudProviderSnapshotBackupPolicyPolicyPolicyItem:CloudProviderSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
                 "frequencyInterval": {
                     "type": "integer",
@@ -398,7 +398,7 @@
                 "retentionValue"
             ]
         },
-        "mongodbatlas:/CloudProviderSnapshotRestoreJobDeliveryType:CloudProviderSnapshotRestoreJobDeliveryType": {
+        "mongodbatlas:index/CloudProviderSnapshotRestoreJobDeliveryType:CloudProviderSnapshotRestoreJobDeliveryType": {
             "properties": {
                 "automated": {
                     "type": "boolean"
@@ -428,7 +428,7 @@
             },
             "type": "object"
         },
-        "mongodbatlas:/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration": {
+        "mongodbatlas:index/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration": {
             "properties": {
                 "failIndexKeyTooLong": {
                     "type": "boolean",
@@ -509,7 +509,7 @@
                 }
             }
         },
-        "mongodbatlas:/ClusterBiConnector:ClusterBiConnector": {
+        "mongodbatlas:index/ClusterBiConnector:ClusterBiConnector": {
             "properties": {
                 "enabled": {
                     "type": "string",
@@ -530,7 +530,7 @@
                 }
             }
         },
-        "mongodbatlas:/ClusterConnectionStrings:ClusterConnectionStrings": {
+        "mongodbatlas:index/ClusterConnectionStrings:ClusterConnectionStrings": {
             "properties": {
                 "awsPrivateLink": {
                     "type": "object",
@@ -601,7 +601,7 @@
                 }
             }
         },
-        "mongodbatlas:/ClusterLabel:ClusterLabel": {
+        "mongodbatlas:index/ClusterLabel:ClusterLabel": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -632,7 +632,7 @@
                 }
             }
         },
-        "mongodbatlas:/ClusterReplicationSpec:ClusterReplicationSpec": {
+        "mongodbatlas:index/ClusterReplicationSpec:ClusterReplicationSpec": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -655,7 +655,7 @@
                 "regionsConfigs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ClusterReplicationSpecRegionsConfig:ClusterReplicationSpecRegionsConfig"
+                        "$ref": "#/types/mongodbatlas:index/ClusterReplicationSpecRegionsConfig:ClusterReplicationSpecRegionsConfig"
                     },
                     "description": "Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.\n",
                     "language": {
@@ -688,7 +688,7 @@
                 }
             }
         },
-        "mongodbatlas:/ClusterReplicationSpecRegionsConfig:ClusterReplicationSpecRegionsConfig": {
+        "mongodbatlas:index/ClusterReplicationSpecRegionsConfig:ClusterReplicationSpecRegionsConfig": {
             "properties": {
                 "analyticsNodes": {
                     "type": "integer",
@@ -747,7 +747,7 @@
                 }
             }
         },
-        "mongodbatlas:/ClusterSnapshotBackupPolicy:ClusterSnapshotBackupPolicy": {
+        "mongodbatlas:index/ClusterSnapshotBackupPolicy:ClusterSnapshotBackupPolicy": {
             "properties": {
                 "clusterId": {
                     "type": "string",
@@ -777,7 +777,7 @@
                 "policies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ClusterSnapshotBackupPolicyPolicy:ClusterSnapshotBackupPolicyPolicy"
+                        "$ref": "#/types/mongodbatlas:index/ClusterSnapshotBackupPolicyPolicy:ClusterSnapshotBackupPolicyPolicy"
                     },
                     "language": {
                         "python": {
@@ -834,7 +834,7 @@
                 }
             }
         },
-        "mongodbatlas:/ClusterSnapshotBackupPolicyPolicy:ClusterSnapshotBackupPolicyPolicy": {
+        "mongodbatlas:index/ClusterSnapshotBackupPolicyPolicy:ClusterSnapshotBackupPolicyPolicy": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -848,7 +848,7 @@
                 "policyItems": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ClusterSnapshotBackupPolicyPolicyPolicyItem:ClusterSnapshotBackupPolicyPolicyPolicyItem"
+                        "$ref": "#/types/mongodbatlas:index/ClusterSnapshotBackupPolicyPolicyPolicyItem:ClusterSnapshotBackupPolicyPolicyPolicyItem"
                     },
                     "language": {
                         "python": {
@@ -867,7 +867,7 @@
                 }
             }
         },
-        "mongodbatlas:/ClusterSnapshotBackupPolicyPolicyPolicyItem:ClusterSnapshotBackupPolicyPolicyPolicyItem": {
+        "mongodbatlas:index/ClusterSnapshotBackupPolicyPolicyPolicyItem:ClusterSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
                 "frequencyInterval": {
                     "type": "integer",
@@ -924,7 +924,7 @@
                 }
             }
         },
-        "mongodbatlas:/CustomDbRoleAction:CustomDbRoleAction": {
+        "mongodbatlas:index/CustomDbRoleAction:CustomDbRoleAction": {
             "properties": {
                 "action": {
                     "type": "string",
@@ -938,7 +938,7 @@
                 "resources": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/CustomDbRoleActionResource:CustomDbRoleActionResource"
+                        "$ref": "#/types/mongodbatlas:index/CustomDbRoleActionResource:CustomDbRoleActionResource"
                     },
                     "description": "Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.\n",
                     "language": {
@@ -954,7 +954,7 @@
                 "resources"
             ]
         },
-        "mongodbatlas:/CustomDbRoleActionResource:CustomDbRoleActionResource": {
+        "mongodbatlas:index/CustomDbRoleActionResource:CustomDbRoleActionResource": {
             "properties": {
                 "cluster": {
                     "type": "boolean",
@@ -984,7 +984,7 @@
             },
             "type": "object"
         },
-        "mongodbatlas:/CustomDbRoleInheritedRole:CustomDbRoleInheritedRole": {
+        "mongodbatlas:index/CustomDbRoleInheritedRole:CustomDbRoleInheritedRole": {
             "properties": {
                 "databaseName": {
                     "type": "string",
@@ -1011,7 +1011,7 @@
                 "roleName"
             ]
         },
-        "mongodbatlas:/DatabaseUserLabel:DatabaseUserLabel": {
+        "mongodbatlas:index/DatabaseUserLabel:DatabaseUserLabel": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -1042,7 +1042,7 @@
                 }
             }
         },
-        "mongodbatlas:/DatabaseUserRole:DatabaseUserRole": {
+        "mongodbatlas:index/DatabaseUserRole:DatabaseUserRole": {
             "properties": {
                 "collectionName": {
                     "type": "string",
@@ -1083,7 +1083,7 @@
                 }
             }
         },
-        "mongodbatlas:/DatabaseUserScope:DatabaseUserScope": {
+        "mongodbatlas:index/DatabaseUserScope:DatabaseUserScope": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -1114,7 +1114,7 @@
                 }
             }
         },
-        "mongodbatlas:/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms": {
+        "mongodbatlas:index/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms": {
             "properties": {
                 "accessKeyId": {
                     "type": "string",
@@ -1146,7 +1146,7 @@
                 "secretAccessKey"
             ]
         },
-        "mongodbatlas:/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault": {
+        "mongodbatlas:index/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault": {
             "properties": {
                 "azureEnvironment": {
                     "type": "string",
@@ -1198,7 +1198,7 @@
                 "tenantId"
             ]
         },
-        "mongodbatlas:/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms": {
+        "mongodbatlas:index/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms": {
             "properties": {
                 "enabled": {
                     "type": "boolean",
@@ -1220,7 +1220,7 @@
                 "serviceAccountKey"
             ]
         },
-        "mongodbatlas:/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping": {
+        "mongodbatlas:index/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping": {
             "properties": {
                 "location": {
                     "type": "string",
@@ -1251,7 +1251,7 @@
                 }
             }
         },
-        "mongodbatlas:/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace": {
+        "mongodbatlas:index/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace": {
             "properties": {
                 "collection": {
                     "type": "string",
@@ -1288,7 +1288,7 @@
                 "db"
             ]
         },
-        "mongodbatlas:/ProjectTeam:ProjectTeam": {
+        "mongodbatlas:index/ProjectTeam:ProjectTeam": {
             "properties": {
                 "roleNames": {
                     "type": "array",
@@ -1318,7 +1318,7 @@
                 "teamId"
             ]
         },
-        "mongodbatlas:/X509AuthenticationDatabaseUserCertificate:X509AuthenticationDatabaseUserCertificate": {
+        "mongodbatlas:index/X509AuthenticationDatabaseUserCertificate:X509AuthenticationDatabaseUserCertificate": {
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -1374,7 +1374,7 @@
                 }
             }
         },
-        "mongodbatlas:/get509AuthenticationDatabaseUserCertificate:get509AuthenticationDatabaseUserCertificate": {
+        "mongodbatlas:index/get509AuthenticationDatabaseUserCertificate:get509AuthenticationDatabaseUserCertificate": {
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -1431,7 +1431,7 @@
                 }
             }
         },
-        "mongodbatlas:/getAlertConfigurationMatcher:getAlertConfigurationMatcher": {
+        "mongodbatlas:index/getAlertConfigurationMatcher:getAlertConfigurationMatcher": {
             "properties": {
                 "fieldName": {
                     "type": "string",
@@ -1473,7 +1473,7 @@
                 }
             }
         },
-        "mongodbatlas:/getAlertConfigurationMetricThreshold:getAlertConfigurationMetricThreshold": {
+        "mongodbatlas:index/getAlertConfigurationMetricThreshold:getAlertConfigurationMetricThreshold": {
             "properties": {
                 "metricName": {
                     "type": "string",
@@ -1510,7 +1510,7 @@
                 }
             }
         },
-        "mongodbatlas:/getAlertConfigurationNotification:getAlertConfigurationNotification": {
+        "mongodbatlas:index/getAlertConfigurationNotification:getAlertConfigurationNotification": {
             "properties": {
                 "apiToken": {
                     "type": "string",
@@ -1743,7 +1743,7 @@
                 }
             }
         },
-        "mongodbatlas:/getAlertConfigurationThreshold:getAlertConfigurationThreshold": {
+        "mongodbatlas:index/getAlertConfigurationThreshold:getAlertConfigurationThreshold": {
             "properties": {
                 "operator": {
                     "type": "string",
@@ -1770,7 +1770,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCloudProviderSnapshotBackupPolicyPolicy:getCloudProviderSnapshotBackupPolicyPolicy": {
+        "mongodbatlas:index/getCloudProviderSnapshotBackupPolicyPolicy:getCloudProviderSnapshotBackupPolicyPolicy": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -1783,7 +1783,7 @@
                 "policyItems": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getCloudProviderSnapshotBackupPolicyPolicyPolicyItem:getCloudProviderSnapshotBackupPolicyPolicyPolicyItem"
+                        "$ref": "#/types/mongodbatlas:index/getCloudProviderSnapshotBackupPolicyPolicyPolicyItem:getCloudProviderSnapshotBackupPolicyPolicyPolicyItem"
                     },
                     "language": {
                         "python": {
@@ -1803,7 +1803,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCloudProviderSnapshotBackupPolicyPolicyPolicyItem:getCloudProviderSnapshotBackupPolicyPolicyPolicyItem": {
+        "mongodbatlas:index/getCloudProviderSnapshotBackupPolicyPolicyPolicyItem:getCloudProviderSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
                 "frequencyInterval": {
                     "type": "integer",
@@ -1860,7 +1860,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCloudProviderSnapshotRestoreJobsResult:getCloudProviderSnapshotRestoreJobsResult": {
+        "mongodbatlas:index/getCloudProviderSnapshotRestoreJobsResult:getCloudProviderSnapshotRestoreJobsResult": {
             "properties": {
                 "cancelled": {
                     "type": "boolean",
@@ -2021,7 +2021,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCloudProviderSnapshotsResult:getCloudProviderSnapshotsResult": {
+        "mongodbatlas:index/getCloudProviderSnapshotsResult:getCloudProviderSnapshotsResult": {
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -2133,7 +2133,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClusterBiConnector:getClusterBiConnector": {
+        "mongodbatlas:index/getClusterBiConnector:getClusterBiConnector": {
             "properties": {
                 "enabled": {
                     "type": "string",
@@ -2155,7 +2155,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClusterConnectionStrings:getClusterConnectionStrings": {
+        "mongodbatlas:index/getClusterConnectionStrings:getClusterConnectionStrings": {
             "properties": {
                 "awsPrivateLink": {
                     "type": "object",
@@ -2227,7 +2227,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClusterLabel:getClusterLabel": {
+        "mongodbatlas:index/getClusterLabel:getClusterLabel": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -2259,7 +2259,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClusterReplicationSpec:getClusterReplicationSpec": {
+        "mongodbatlas:index/getClusterReplicationSpec:getClusterReplicationSpec": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -2282,7 +2282,7 @@
                 "regionsConfigs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClusterReplicationSpecRegionsConfig:getClusterReplicationSpecRegionsConfig"
+                        "$ref": "#/types/mongodbatlas:index/getClusterReplicationSpecRegionsConfig:getClusterReplicationSpecRegionsConfig"
                     },
                     "description": "Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.\n",
                     "language": {
@@ -2314,7 +2314,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClusterReplicationSpecRegionsConfig:getClusterReplicationSpecRegionsConfig": {
+        "mongodbatlas:index/getClusterReplicationSpecRegionsConfig:getClusterReplicationSpecRegionsConfig": {
             "properties": {
                 "analyticsNodes": {
                     "type": "integer",
@@ -2376,7 +2376,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClusterSnapshotBackupPolicy:getClusterSnapshotBackupPolicy": {
+        "mongodbatlas:index/getClusterSnapshotBackupPolicy:getClusterSnapshotBackupPolicy": {
             "properties": {
                 "clusterId": {
                     "type": "string",
@@ -2405,7 +2405,7 @@
                 "policies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClusterSnapshotBackupPolicyPolicy:getClusterSnapshotBackupPolicyPolicy"
+                        "$ref": "#/types/mongodbatlas:index/getClusterSnapshotBackupPolicyPolicy:getClusterSnapshotBackupPolicyPolicy"
                     },
                     "language": {
                         "python": {
@@ -2463,7 +2463,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClusterSnapshotBackupPolicyPolicy:getClusterSnapshotBackupPolicyPolicy": {
+        "mongodbatlas:index/getClusterSnapshotBackupPolicyPolicy:getClusterSnapshotBackupPolicyPolicy": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -2477,7 +2477,7 @@
                 "policyItems": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClusterSnapshotBackupPolicyPolicyPolicyItem:getClusterSnapshotBackupPolicyPolicyPolicyItem"
+                        "$ref": "#/types/mongodbatlas:index/getClusterSnapshotBackupPolicyPolicyPolicyItem:getClusterSnapshotBackupPolicyPolicyPolicyItem"
                     },
                     "language": {
                         "python": {
@@ -2497,7 +2497,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClusterSnapshotBackupPolicyPolicyPolicyItem:getClusterSnapshotBackupPolicyPolicyPolicyItem": {
+        "mongodbatlas:index/getClusterSnapshotBackupPolicyPolicyPolicyItem:getClusterSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
                 "frequencyInterval": {
                     "type": "integer",
@@ -2555,7 +2555,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResult:getClustersResult": {
+        "mongodbatlas:index/getClustersResult:getClustersResult": {
             "properties": {
                 "autoScalingComputeEnabled": {
                     "type": "boolean",
@@ -2603,7 +2603,7 @@
                     }
                 },
                 "biConnector": {
-                    "$ref": "#/types/mongodbatlas:/getClustersResultBiConnector:getClustersResultBiConnector",
+                    "$ref": "#/types/mongodbatlas:index/getClustersResultBiConnector:getClustersResultBiConnector",
                     "description": "Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.\n",
                     "language": {
                         "python": {
@@ -2621,7 +2621,7 @@
                     }
                 },
                 "connectionStrings": {
-                    "$ref": "#/types/mongodbatlas:/getClustersResultConnectionStrings:getClustersResultConnectionStrings",
+                    "$ref": "#/types/mongodbatlas:index/getClustersResultConnectionStrings:getClustersResultConnectionStrings",
                     "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n- `connection_strings.standard` -   Public mongodb:// connection string for this cluster.\n- `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n- `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.\n- `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.\n- `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n",
                     "language": {
                         "python": {
@@ -2659,7 +2659,7 @@
                 "labels": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClustersResultLabel:getClustersResultLabel"
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultLabel:getClustersResultLabel"
                     },
                     "language": {
                         "python": {
@@ -2850,7 +2850,7 @@
                 "replicationSpecs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClustersResultReplicationSpec:getClustersResultReplicationSpec"
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultReplicationSpec:getClustersResultReplicationSpec"
                     },
                     "description": "Configuration for cluster regions.  See Replication Spec below for more details.\n",
                     "language": {
@@ -2862,7 +2862,7 @@
                 "snapshotBackupPolicies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClustersResultSnapshotBackupPolicy:getClustersResultSnapshotBackupPolicy"
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultSnapshotBackupPolicy:getClustersResultSnapshotBackupPolicy"
                     },
                     "description": "current snapshot schedule and retention settings for the cluster.\n",
                     "language": {
@@ -2935,7 +2935,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResultBiConnector:getClustersResultBiConnector": {
+        "mongodbatlas:index/getClustersResultBiConnector:getClustersResultBiConnector": {
             "properties": {
                 "enabled": {
                     "type": "string",
@@ -2967,7 +2967,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResultConnectionStrings:getClustersResultConnectionStrings": {
+        "mongodbatlas:index/getClustersResultConnectionStrings:getClustersResultConnectionStrings": {
             "properties": {
                 "awsPrivateLink": {
                     "type": "object",
@@ -3039,7 +3039,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResultLabel:getClustersResultLabel": {
+        "mongodbatlas:index/getClustersResultLabel:getClustersResultLabel": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -3071,7 +3071,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResultReplicationSpec:getClustersResultReplicationSpec": {
+        "mongodbatlas:index/getClustersResultReplicationSpec:getClustersResultReplicationSpec": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -3094,7 +3094,7 @@
                 "regionsConfigs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClustersResultReplicationSpecRegionsConfig:getClustersResultReplicationSpecRegionsConfig"
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultReplicationSpecRegionsConfig:getClustersResultReplicationSpecRegionsConfig"
                     },
                     "description": "Describes the physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.\n",
                     "language": {
@@ -3126,7 +3126,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResultReplicationSpecRegionsConfig:getClustersResultReplicationSpecRegionsConfig": {
+        "mongodbatlas:index/getClustersResultReplicationSpecRegionsConfig:getClustersResultReplicationSpecRegionsConfig": {
             "properties": {
                 "analyticsNodes": {
                     "type": "integer",
@@ -3188,7 +3188,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResultSnapshotBackupPolicy:getClustersResultSnapshotBackupPolicy": {
+        "mongodbatlas:index/getClustersResultSnapshotBackupPolicy:getClustersResultSnapshotBackupPolicy": {
             "properties": {
                 "clusterId": {
                     "type": "string",
@@ -3217,7 +3217,7 @@
                 "policies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClustersResultSnapshotBackupPolicyPolicy:getClustersResultSnapshotBackupPolicyPolicy"
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultSnapshotBackupPolicyPolicy:getClustersResultSnapshotBackupPolicyPolicy"
                     },
                     "language": {
                         "python": {
@@ -3275,7 +3275,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResultSnapshotBackupPolicyPolicy:getClustersResultSnapshotBackupPolicyPolicy": {
+        "mongodbatlas:index/getClustersResultSnapshotBackupPolicyPolicy:getClustersResultSnapshotBackupPolicyPolicy": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -3289,7 +3289,7 @@
                 "policyItems": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getClustersResultSnapshotBackupPolicyPolicyPolicyItem:getClustersResultSnapshotBackupPolicyPolicyPolicyItem"
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultSnapshotBackupPolicyPolicyPolicyItem:getClustersResultSnapshotBackupPolicyPolicyPolicyItem"
                     },
                     "language": {
                         "python": {
@@ -3309,7 +3309,7 @@
                 }
             }
         },
-        "mongodbatlas:/getClustersResultSnapshotBackupPolicyPolicyPolicyItem:getClustersResultSnapshotBackupPolicyPolicyPolicyItem": {
+        "mongodbatlas:index/getClustersResultSnapshotBackupPolicyPolicyPolicyItem:getClustersResultSnapshotBackupPolicyPolicyPolicyItem": {
             "properties": {
                 "frequencyInterval": {
                     "type": "integer",
@@ -3367,7 +3367,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCustomDbRoleAction:getCustomDbRoleAction": {
+        "mongodbatlas:index/getCustomDbRoleAction:getCustomDbRoleAction": {
             "properties": {
                 "action": {
                     "type": "string",
@@ -3381,7 +3381,7 @@
                 "resources": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getCustomDbRoleActionResource:getCustomDbRoleActionResource"
+                        "$ref": "#/types/mongodbatlas:index/getCustomDbRoleActionResource:getCustomDbRoleActionResource"
                     },
                     "description": "(Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.\n",
                     "language": {
@@ -3402,7 +3402,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCustomDbRoleActionResource:getCustomDbRoleActionResource": {
+        "mongodbatlas:index/getCustomDbRoleActionResource:getCustomDbRoleActionResource": {
             "properties": {
                 "cluster": {
                     "type": "boolean",
@@ -3441,7 +3441,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCustomDbRoleInheritedRole:getCustomDbRoleInheritedRole": {
+        "mongodbatlas:index/getCustomDbRoleInheritedRole:getCustomDbRoleInheritedRole": {
             "properties": {
                 "databaseName": {
                     "type": "string",
@@ -3472,12 +3472,12 @@
                 }
             }
         },
-        "mongodbatlas:/getCustomDbRolesResult:getCustomDbRolesResult": {
+        "mongodbatlas:index/getCustomDbRolesResult:getCustomDbRolesResult": {
             "properties": {
                 "actions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getCustomDbRolesResultAction:getCustomDbRolesResultAction"
+                        "$ref": "#/types/mongodbatlas:index/getCustomDbRolesResultAction:getCustomDbRolesResultAction"
                     },
                     "language": {
                         "python": {
@@ -3488,7 +3488,7 @@
                 "inheritedRoles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getCustomDbRolesResultInheritedRole:getCustomDbRolesResultInheritedRole"
+                        "$ref": "#/types/mongodbatlas:index/getCustomDbRolesResultInheritedRole:getCustomDbRolesResultInheritedRole"
                     },
                     "language": {
                         "python": {
@@ -3517,7 +3517,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCustomDbRolesResultAction:getCustomDbRolesResultAction": {
+        "mongodbatlas:index/getCustomDbRolesResultAction:getCustomDbRolesResultAction": {
             "properties": {
                 "action": {
                     "type": "string",
@@ -3531,7 +3531,7 @@
                 "resources": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getCustomDbRolesResultActionResource:getCustomDbRolesResultActionResource"
+                        "$ref": "#/types/mongodbatlas:index/getCustomDbRolesResultActionResource:getCustomDbRolesResultActionResource"
                     },
                     "description": "(Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.\n",
                     "language": {
@@ -3552,7 +3552,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCustomDbRolesResultActionResource:getCustomDbRolesResultActionResource": {
+        "mongodbatlas:index/getCustomDbRolesResultActionResource:getCustomDbRolesResultActionResource": {
             "properties": {
                 "cluster": {
                     "type": "boolean",
@@ -3591,7 +3591,7 @@
                 }
             }
         },
-        "mongodbatlas:/getCustomDbRolesResultInheritedRole:getCustomDbRolesResultInheritedRole": {
+        "mongodbatlas:index/getCustomDbRolesResultInheritedRole:getCustomDbRolesResultInheritedRole": {
             "properties": {
                 "databaseName": {
                     "type": "string",
@@ -3621,7 +3621,7 @@
                 }
             }
         },
-        "mongodbatlas:/getDatabaseUserLabel:getDatabaseUserLabel": {
+        "mongodbatlas:index/getDatabaseUserLabel:getDatabaseUserLabel": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -3653,7 +3653,7 @@
                 }
             }
         },
-        "mongodbatlas:/getDatabaseUserRole:getDatabaseUserRole": {
+        "mongodbatlas:index/getDatabaseUserRole:getDatabaseUserRole": {
             "properties": {
                 "collectionName": {
                     "type": "string",
@@ -3694,7 +3694,7 @@
                 }
             }
         },
-        "mongodbatlas:/getDatabaseUserScope:getDatabaseUserScope": {
+        "mongodbatlas:index/getDatabaseUserScope:getDatabaseUserScope": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -3726,7 +3726,7 @@
                 }
             }
         },
-        "mongodbatlas:/getDatabaseUsersResult:getDatabaseUsersResult": {
+        "mongodbatlas:index/getDatabaseUsersResult:getDatabaseUsersResult": {
             "properties": {
                 "authDatabaseName": {
                     "type": "string",
@@ -3749,7 +3749,7 @@
                 "labels": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getDatabaseUsersResultLabel:getDatabaseUsersResultLabel"
+                        "$ref": "#/types/mongodbatlas:index/getDatabaseUsersResultLabel:getDatabaseUsersResultLabel"
                     },
                     "language": {
                         "python": {
@@ -3769,7 +3769,7 @@
                 "roles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getDatabaseUsersResultRole:getDatabaseUsersResultRole"
+                        "$ref": "#/types/mongodbatlas:index/getDatabaseUsersResultRole:getDatabaseUsersResultRole"
                     },
                     "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n",
                     "language": {
@@ -3781,7 +3781,7 @@
                 "scopes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getDatabaseUsersResultScope:getDatabaseUsersResultScope"
+                        "$ref": "#/types/mongodbatlas:index/getDatabaseUsersResultScope:getDatabaseUsersResultScope"
                     },
                     "description": "Array of clusters and Atlas Data Lakes that this user has access to.\n",
                     "language": {
@@ -3826,7 +3826,7 @@
                 }
             }
         },
-        "mongodbatlas:/getDatabaseUsersResultLabel:getDatabaseUsersResultLabel": {
+        "mongodbatlas:index/getDatabaseUsersResultLabel:getDatabaseUsersResultLabel": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -3858,7 +3858,7 @@
                 }
             }
         },
-        "mongodbatlas:/getDatabaseUsersResultRole:getDatabaseUsersResultRole": {
+        "mongodbatlas:index/getDatabaseUsersResultRole:getDatabaseUsersResultRole": {
             "properties": {
                 "collectionName": {
                     "type": "string",
@@ -3899,7 +3899,7 @@
                 }
             }
         },
-        "mongodbatlas:/getDatabaseUsersResultScope:getDatabaseUsersResultScope": {
+        "mongodbatlas:index/getDatabaseUsersResultScope:getDatabaseUsersResultScope": {
             "properties": {
                 "name": {
                     "type": "string",
@@ -3931,7 +3931,7 @@
                 }
             }
         },
-        "mongodbatlas:/getGlobalClusterConfigManagedNamespace:getGlobalClusterConfigManagedNamespace": {
+        "mongodbatlas:index/getGlobalClusterConfigManagedNamespace:getGlobalClusterConfigManagedNamespace": {
             "properties": {
                 "collection": {
                     "type": "string",
@@ -3968,7 +3968,7 @@
                 "db"
             ]
         },
-        "mongodbatlas:/getNetworkContainersResult:getNetworkContainersResult": {
+        "mongodbatlas:index/getNetworkContainersResult:getNetworkContainersResult": {
             "properties": {
                 "atlasCidrBlock": {
                     "type": "string",
@@ -4090,7 +4090,7 @@
                 }
             }
         },
-        "mongodbatlas:/getNetworkPeeringsResult:getNetworkPeeringsResult": {
+        "mongodbatlas:index/getNetworkPeeringsResult:getNetworkPeeringsResult": {
             "properties": {
                 "accepterRegionName": {
                     "type": "string",
@@ -4301,7 +4301,7 @@
                 }
             }
         },
-        "mongodbatlas:/getProjectTeam:getProjectTeam": {
+        "mongodbatlas:index/getProjectTeam:getProjectTeam": {
             "properties": {
                 "roleNames": {
                     "type": "array",
@@ -4334,7 +4334,7 @@
                 }
             }
         },
-        "mongodbatlas:/getProjectsResult:getProjectsResult": {
+        "mongodbatlas:index/getProjectsResult:getProjectsResult": {
             "properties": {
                 "clusterCount": {
                     "type": "integer",
@@ -4382,7 +4382,7 @@
                 "teams": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/getProjectsResultTeam:getProjectsResultTeam"
+                        "$ref": "#/types/mongodbatlas:index/getProjectsResultTeam:getProjectsResultTeam"
                     },
                     "language": {
                         "python": {
@@ -4406,7 +4406,7 @@
                 }
             }
         },
-        "mongodbatlas:/getProjectsResultTeam:getProjectsResultTeam": {
+        "mongodbatlas:index/getProjectsResultTeam:getProjectsResultTeam": {
             "properties": {
                 "roleNames": {
                     "type": "array",
@@ -4486,16 +4486,16 @@
                 "matchers": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/AlertConfigurationMatcher:AlertConfigurationMatcher"
+                        "$ref": "#/types/mongodbatlas:index/AlertConfigurationMatcher:AlertConfigurationMatcher"
                     }
                 },
                 "metricThreshold": {
-                    "$ref": "#/types/mongodbatlas:/AlertConfigurationMetricThreshold:AlertConfigurationMetricThreshold"
+                    "$ref": "#/types/mongodbatlas:index/AlertConfigurationMetricThreshold:AlertConfigurationMetricThreshold"
                 },
                 "notifications": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/AlertConfigurationNotification:AlertConfigurationNotification"
+                        "$ref": "#/types/mongodbatlas:index/AlertConfigurationNotification:AlertConfigurationNotification"
                     }
                 },
                 "projectId": {
@@ -4503,7 +4503,7 @@
                     "description": "The ID of the project where the alert configuration will create.\n"
                 },
                 "threshold": {
-                    "$ref": "#/types/mongodbatlas:/AlertConfigurationThreshold:AlertConfigurationThreshold",
+                    "$ref": "#/types/mongodbatlas:index/AlertConfigurationThreshold:AlertConfigurationThreshold",
                     "description": "Threshold value outside of which an alert will be triggered.\n"
                 },
                 "updated": {
@@ -4532,16 +4532,16 @@
                 "matchers": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/AlertConfigurationMatcher:AlertConfigurationMatcher"
+                        "$ref": "#/types/mongodbatlas:index/AlertConfigurationMatcher:AlertConfigurationMatcher"
                     }
                 },
                 "metricThreshold": {
-                    "$ref": "#/types/mongodbatlas:/AlertConfigurationMetricThreshold:AlertConfigurationMetricThreshold"
+                    "$ref": "#/types/mongodbatlas:index/AlertConfigurationMetricThreshold:AlertConfigurationMetricThreshold"
                 },
                 "notifications": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/AlertConfigurationNotification:AlertConfigurationNotification"
+                        "$ref": "#/types/mongodbatlas:index/AlertConfigurationNotification:AlertConfigurationNotification"
                     }
                 },
                 "projectId": {
@@ -4549,7 +4549,7 @@
                     "description": "The ID of the project where the alert configuration will create.\n"
                 },
                 "threshold": {
-                    "$ref": "#/types/mongodbatlas:/AlertConfigurationThreshold:AlertConfigurationThreshold",
+                    "$ref": "#/types/mongodbatlas:index/AlertConfigurationThreshold:AlertConfigurationThreshold",
                     "description": "Threshold value outside of which an alert will be triggered.\n"
                 }
             },
@@ -4580,16 +4580,16 @@
                     "matchers": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/AlertConfigurationMatcher:AlertConfigurationMatcher"
+                            "$ref": "#/types/mongodbatlas:index/AlertConfigurationMatcher:AlertConfigurationMatcher"
                         }
                     },
                     "metricThreshold": {
-                        "$ref": "#/types/mongodbatlas:/AlertConfigurationMetricThreshold:AlertConfigurationMetricThreshold"
+                        "$ref": "#/types/mongodbatlas:index/AlertConfigurationMetricThreshold:AlertConfigurationMetricThreshold"
                     },
                     "notifications": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/AlertConfigurationNotification:AlertConfigurationNotification"
+                            "$ref": "#/types/mongodbatlas:index/AlertConfigurationNotification:AlertConfigurationNotification"
                         }
                     },
                     "projectId": {
@@ -4597,7 +4597,7 @@
                         "description": "The ID of the project where the alert configuration will create.\n"
                     },
                     "threshold": {
-                        "$ref": "#/types/mongodbatlas:/AlertConfigurationThreshold:AlertConfigurationThreshold",
+                        "$ref": "#/types/mongodbatlas:index/AlertConfigurationThreshold:AlertConfigurationThreshold",
                         "description": "Threshold value outside of which an alert will be triggered.\n"
                     },
                     "updated": {
@@ -4858,7 +4858,7 @@
                 "policies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy"
+                        "$ref": "#/types/mongodbatlas:index/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy"
                     },
                     "description": "Contains a document for each backup policy item in the desired updated backup policy.\n* `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id\n"
                 },
@@ -4902,7 +4902,7 @@
                 "policies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy"
+                        "$ref": "#/types/mongodbatlas:index/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy"
                     },
                     "description": "Contains a document for each backup policy item in the desired updated backup policy.\n* `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id\n"
                 },
@@ -4950,7 +4950,7 @@
                     "policies": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy"
+                            "$ref": "#/types/mongodbatlas:index/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy"
                         },
                         "description": "Contains a document for each backup policy item in the desired updated backup policy.\n* `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id\n"
                     },
@@ -4994,7 +4994,7 @@
                     "description": "UTC ISO 8601 formatted point in time when Atlas created the restore job.\n"
                 },
                 "deliveryType": {
-                    "$ref": "#/types/mongodbatlas:/CloudProviderSnapshotRestoreJobDeliveryType:CloudProviderSnapshotRestoreJobDeliveryType",
+                    "$ref": "#/types/mongodbatlas:index/CloudProviderSnapshotRestoreJobDeliveryType:CloudProviderSnapshotRestoreJobDeliveryType",
                     "description": "Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.\n"
                 },
                 "deliveryUrls": {
@@ -5053,7 +5053,7 @@
                     "description": "The name of the Atlas cluster whose snapshot you want to restore.\n"
                 },
                 "deliveryType": {
-                    "$ref": "#/types/mongodbatlas:/CloudProviderSnapshotRestoreJobDeliveryType:CloudProviderSnapshotRestoreJobDeliveryType",
+                    "$ref": "#/types/mongodbatlas:index/CloudProviderSnapshotRestoreJobDeliveryType:CloudProviderSnapshotRestoreJobDeliveryType",
                     "description": "Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.\n"
                 },
                 "projectId": {
@@ -5087,7 +5087,7 @@
                         "description": "UTC ISO 8601 formatted point in time when Atlas created the restore job.\n"
                     },
                     "deliveryType": {
-                        "$ref": "#/types/mongodbatlas:/CloudProviderSnapshotRestoreJobDeliveryType:CloudProviderSnapshotRestoreJobDeliveryType",
+                        "$ref": "#/types/mongodbatlas:index/CloudProviderSnapshotRestoreJobDeliveryType:CloudProviderSnapshotRestoreJobDeliveryType",
                         "description": "Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.\n"
                     },
                     "deliveryUrls": {
@@ -5133,7 +5133,7 @@
             "description": "`mongodbatlas.Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\u003e **NOTE:** A network container is created for a cluster to reside in if one does not yet exist in the project.  To  use this automatically created container with another resource, such as peering, the `container_id` is exported after creation.\n\n\u003e **IMPORTANT:**\n\u003cbr\u003e \u0026#8226; Free tier cluster creation (M0) is not supported via API or by this Provider.\n\u003cbr\u003e \u0026#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.\n\u003cbr\u003e \u0026#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).   \n\u003cbr\u003e \u0026#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Example AWS cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    autoScalingDiskGbEnabled: true,\n    diskSizeGb: 100,\n    mongoDbMajorVersion: \"4.2\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 300,\n    providerEncryptEbsVolume: true,\n    providerInstanceSizeName: \"M40\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerRegionName: \"US_EAST_1\",\n    providerVolumeType: \"STANDARD\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    auto_scaling_disk_gb_enabled=True,\n    disk_size_gb=100,\n    mongo_db_major_version=\"4.2\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=300,\n    provider_encrypt_ebs_volume=True,\n    provider_instance_size_name=\"M40\",\n    provider_name=\"AWS\",\n    provider_region_name=\"US_EAST_1\",\n    provider_volume_type=\"STANDARD\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            DiskSizeGb = 100,\n            MongoDbMajorVersion = \"4.2\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 300,\n            ProviderEncryptEbsVolume = true,\n            ProviderInstanceSizeName = \"M40\",\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"US_EAST_1\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCluster(ctx, \"cluster_test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tAutoScalingDiskGbEnabled: pulumi.Bool(true),\n\t\t\tDiskSizeGb:               pulumi.Float64(100),\n\t\t\tMongoDbMajorVersion:      pulumi.String(\"4.2\"),\n\t\t\tNumShards:                pulumi.Int(1),\n\t\t\tProjectId:                pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderBackupEnabled:    pulumi.Bool(true),\n\t\t\tProviderDiskIops:         pulumi.Int(300),\n\t\t\tProviderEncryptEbsVolume: pulumi.Bool(true),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M40\"),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderRegionName:       pulumi.String(\"US_EAST_1\"),\n\t\t\tProviderVolumeType:       pulumi.String(\"STANDARD\"),\n\t\t\tReplicationFactor:        pulumi.Int(3),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example Azure cluster.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Cluster(\"test\", {\n    autoScalingDiskGbEnabled: true,\n    mongoDbMajorVersion: \"4.2\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskTypeName: \"P6\",\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"AZURE\",\n    providerRegionName: \"US_EAST_2\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Cluster(\"test\",\n    auto_scaling_disk_gb_enabled=True,\n    mongo_db_major_version=\"4.2\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_type_name=\"P6\",\n    provider_instance_size_name=\"M30\",\n    provider_name=\"AZURE\",\n    provider_region_name=\"US_EAST_2\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Cluster(\"test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            MongoDbMajorVersion = \"4.2\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskTypeName = \"P6\",\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"AZURE\",\n            ProviderRegionName = \"US_EAST_2\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCluster(ctx, \"test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tAutoScalingDiskGbEnabled: pulumi.Bool(true),\n\t\t\tMongoDbMajorVersion:      pulumi.String(\"4.2\"),\n\t\t\tNumShards:                pulumi.Int(1),\n\t\t\tProjectId:                pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderBackupEnabled:    pulumi.Bool(true),\n\t\t\tProviderDiskTypeName:     pulumi.String(\"P6\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M30\"),\n\t\t\tProviderName:             pulumi.String(\"AZURE\"),\n\t\t\tProviderRegionName:       pulumi.String(\"US_EAST_2\"),\n\t\t\tReplicationFactor:        pulumi.Int(3),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example GCP cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Cluster(\"test\", {\n    autoScalingDiskGbEnabled: true,\n    diskSizeGb: 40,\n    mongoDbMajorVersion: \"4.2\",\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"GCP\",\n    providerRegionName: \"US_EAST_4\",\n    replicationFactor: 3,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Cluster(\"test\",\n    auto_scaling_disk_gb_enabled=True,\n    disk_size_gb=40,\n    mongo_db_major_version=\"4.2\",\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_instance_size_name=\"M30\",\n    provider_name=\"GCP\",\n    provider_region_name=\"US_EAST_4\",\n    replication_factor=3)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Cluster(\"test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = true,\n            DiskSizeGb = 40,\n            MongoDbMajorVersion = \"4.2\",\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"GCP\",\n            ProviderRegionName = \"US_EAST_4\",\n            ReplicationFactor = 3,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCluster(ctx, \"test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tAutoScalingDiskGbEnabled: pulumi.Bool(true),\n\t\t\tDiskSizeGb:               pulumi.Float64(40),\n\t\t\tMongoDbMajorVersion:      pulumi.String(\"4.2\"),\n\t\t\tNumShards:                pulumi.Int(1),\n\t\t\tProjectId:                pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderBackupEnabled:    pulumi.Bool(true),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M30\"),\n\t\t\tProviderName:             pulumi.String(\"GCP\"),\n\t\t\tProviderRegionName:       pulumi.String(\"US_EAST_4\"),\n\t\t\tReplicationFactor:        pulumi.Int(3),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example Multi Region cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    clusterType: \"REPLICASET\",\n    diskSizeGb: 100,\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 300,\n    providerInstanceSizeName: \"M10\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerVolumeType: \"STANDARD\",\n    replicationSpecs: [{\n        numShards: 1,\n        regionsConfigs: [\n            {\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_1\",\n            },\n            {\n                electableNodes: 2,\n                priority: 6,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_2\",\n            },\n            {\n                electableNodes: 2,\n                priority: 5,\n                readOnlyNodes: 2,\n                regionName: \"US_WEST_1\",\n            },\n        ],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    cluster_type=\"REPLICASET\",\n    disk_size_gb=100,\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=300,\n    provider_instance_size_name=\"M10\",\n    provider_name=\"AWS\",\n    provider_volume_type=\"STANDARD\",\n    replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(\n        num_shards=1,\n        regions_configs=[\n            mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                electable_nodes=3,\n                priority=7,\n                read_only_nodes=0,\n                region_name=\"US_EAST_1\",\n            ),\n            mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                electable_nodes=2,\n                priority=6,\n                read_only_nodes=0,\n                region_name=\"US_EAST_2\",\n            ),\n            mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                electable_nodes=2,\n                priority=5,\n                read_only_nodes=2,\n                region_name=\"US_WEST_1\",\n            ),\n        ],\n    )])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            ClusterType = \"REPLICASET\",\n            DiskSizeGb = 100,\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 300,\n            ProviderInstanceSizeName = \"M10\",\n            ProviderName = \"AWS\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 1,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                            RegionName = \"US_EAST_1\",\n                        },\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            ElectableNodes = 2,\n                            Priority = 6,\n                            ReadOnlyNodes = 0,\n                            RegionName = \"US_EAST_2\",\n                        },\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            ElectableNodes = 2,\n                            Priority = 5,\n                            ReadOnlyNodes = 2,\n                            RegionName = \"US_WEST_1\",\n                        },\n                    },\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCluster(ctx, \"cluster_test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tClusterType:              pulumi.String(\"REPLICASET\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(100),\n\t\t\tNumShards:                pulumi.Int(1),\n\t\t\tProjectId:                pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderBackupEnabled:    pulumi.Bool(true),\n\t\t\tProviderDiskIops:         pulumi.Int(300),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M10\"),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderVolumeType:       pulumi.String(\"STANDARD\"),\n\t\t\tReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tNumShards: pulumi.Int(1),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"US_EAST_1\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(2),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(6),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"US_EAST_2\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(2),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(5),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(2),\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"US_WEST_1\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example Global cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    clusterType: \"GEOSHARDED\",\n    diskSizeGb: 80,\n    numShards: 1,\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerBackupEnabled: true,\n    providerDiskIops: 240,\n    providerInstanceSizeName: \"M30\",\n    //Provider Settings \"block\"\n    providerName: \"AWS\",\n    providerVolumeType: \"STANDARD\",\n    replicationSpecs: [\n        {\n            numShards: 2,\n            regionsConfigs: [{\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"US_EAST_1\",\n            }],\n            zoneName: \"Zone 1\",\n        },\n        {\n            numShards: 2,\n            regionsConfigs: [{\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n                regionName: \"EU_CENTRAL_1\",\n            }],\n            zoneName: \"Zone 2\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    cluster_type=\"GEOSHARDED\",\n    disk_size_gb=80,\n    num_shards=1,\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_backup_enabled=True,\n    provider_disk_iops=240,\n    provider_instance_size_name=\"M30\",\n    provider_name=\"AWS\",\n    provider_volume_type=\"STANDARD\",\n    replication_specs=[\n        mongodbatlas.ClusterReplicationSpecArgs(\n            num_shards=2,\n            regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                electable_nodes=3,\n                priority=7,\n                read_only_nodes=0,\n                region_name=\"US_EAST_1\",\n            )],\n            zone_name=\"Zone 1\",\n        ),\n        mongodbatlas.ClusterReplicationSpecArgs(\n            num_shards=2,\n            regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                electable_nodes=3,\n                priority=7,\n                read_only_nodes=0,\n                region_name=\"EU_CENTRAL_1\",\n            )],\n            zone_name=\"Zone 2\",\n        ),\n    ])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            ClusterType = \"GEOSHARDED\",\n            DiskSizeGb = 80,\n            NumShards = 1,\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderBackupEnabled = true,\n            ProviderDiskIops = 240,\n            ProviderInstanceSizeName = \"M30\",\n            ProviderName = \"AWS\",\n            ProviderVolumeType = \"STANDARD\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 2,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                            RegionName = \"US_EAST_1\",\n                        },\n                    },\n                    ZoneName = \"Zone 1\",\n                },\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 2,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                            RegionName = \"EU_CENTRAL_1\",\n                        },\n                    },\n                    ZoneName = \"Zone 2\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCluster(ctx, \"cluster_test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tClusterType:              pulumi.String(\"GEOSHARDED\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(80),\n\t\t\tNumShards:                pulumi.Int(1),\n\t\t\tProjectId:                pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderBackupEnabled:    pulumi.Bool(true),\n\t\t\tProviderDiskIops:         pulumi.Int(240),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M30\"),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderVolumeType:       pulumi.String(\"STANDARD\"),\n\t\t\tReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tNumShards: pulumi.Int(2),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"US_EAST_1\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tZoneName: pulumi.String(\"Zone 1\"),\n\t\t\t\t},\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tNumShards: pulumi.Int(2),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"EU_CENTRAL_1\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tZoneName: pulumi.String(\"Zone 2\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example AWS Shared Tier cluster\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    autoScalingDiskGbEnabled: false,\n    backingProviderName: \"AWS\",\n    diskSizeGb: 2,\n    //These must be the following values\n    mongoDbMajorVersion: \"4.2\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerInstanceSizeName: \"M2\",\n    //Provider Settings \"block\"\n    providerName: \"TENANT\",\n    providerRegionName: \"US_EAST_1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    auto_scaling_disk_gb_enabled=False,\n    backing_provider_name=\"AWS\",\n    disk_size_gb=2,\n    mongo_db_major_version=\"4.2\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_instance_size_name=\"M2\",\n    provider_name=\"TENANT\",\n    provider_region_name=\"US_EAST_1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            AutoScalingDiskGbEnabled = false,\n            BackingProviderName = \"AWS\",\n            DiskSizeGb = 2,\n            MongoDbMajorVersion = \"4.2\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderInstanceSizeName = \"M2\",\n            ProviderName = \"TENANT\",\n            ProviderRegionName = \"US_EAST_1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCluster(ctx, \"cluster_test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tAutoScalingDiskGbEnabled: pulumi.Bool(false),\n\t\t\tBackingProviderName:      pulumi.String(\"AWS\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(2),\n\t\t\tMongoDbMajorVersion:      pulumi.String(\"4.2\"),\n\t\t\tProjectId:                pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M2\"),\n\t\t\tProviderName:             pulumi.String(\"TENANT\"),\n\t\t\tProviderRegionName:       pulumi.String(\"US_EAST_1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "advancedConfiguration": {
-                    "$ref": "#/types/mongodbatlas:/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration"
+                    "$ref": "#/types/mongodbatlas:index/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration"
                 },
                 "autoScalingComputeEnabled": {
                     "type": "boolean",
@@ -5156,7 +5156,7 @@
                     "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `provider_backup_enabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.\n* The default value is false.  M10 and above only.\n"
                 },
                 "biConnector": {
-                    "$ref": "#/types/mongodbatlas:/ClusterBiConnector:ClusterBiConnector",
+                    "$ref": "#/types/mongodbatlas:index/ClusterBiConnector:ClusterBiConnector",
                     "description": "Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.\n"
                 },
                 "clusterId": {
@@ -5168,7 +5168,7 @@
                     "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n"
                 },
                 "connectionStrings": {
-                    "$ref": "#/types/mongodbatlas:/ClusterConnectionStrings:ClusterConnectionStrings",
+                    "$ref": "#/types/mongodbatlas:index/ClusterConnectionStrings:ClusterConnectionStrings",
                     "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n"
                 },
                 "containerId": {
@@ -5186,7 +5186,7 @@
                 "labels": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ClusterLabel:ClusterLabel"
+                        "$ref": "#/types/mongodbatlas:index/ClusterLabel:ClusterLabel"
                     }
                 },
                 "mongoDbMajorVersion": {
@@ -5276,14 +5276,14 @@
                 "replicationSpecs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ClusterReplicationSpec:ClusterReplicationSpec"
+                        "$ref": "#/types/mongodbatlas:index/ClusterReplicationSpec:ClusterReplicationSpec"
                     },
                     "description": "Configuration for cluster regions.  See Replication Spec below for more details.\n"
                 },
                 "snapshotBackupPolicies": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ClusterSnapshotBackupPolicy:ClusterSnapshotBackupPolicy"
+                        "$ref": "#/types/mongodbatlas:index/ClusterSnapshotBackupPolicy:ClusterSnapshotBackupPolicy"
                     },
                     "description": "current snapshot schedule and retention settings for the cluster.\n"
                 },
@@ -5335,7 +5335,7 @@
             ],
             "inputProperties": {
                 "advancedConfiguration": {
-                    "$ref": "#/types/mongodbatlas:/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration"
+                    "$ref": "#/types/mongodbatlas:index/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration"
                 },
                 "autoScalingComputeEnabled": {
                     "type": "boolean",
@@ -5358,7 +5358,7 @@
                     "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `provider_backup_enabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.\n* The default value is false.  M10 and above only.\n"
                 },
                 "biConnector": {
-                    "$ref": "#/types/mongodbatlas:/ClusterBiConnector:ClusterBiConnector",
+                    "$ref": "#/types/mongodbatlas:index/ClusterBiConnector:ClusterBiConnector",
                     "description": "Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.\n"
                 },
                 "clusterType": {
@@ -5376,7 +5376,7 @@
                 "labels": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ClusterLabel:ClusterLabel"
+                        "$ref": "#/types/mongodbatlas:index/ClusterLabel:ClusterLabel"
                     }
                 },
                 "mongoDbMajorVersion": {
@@ -5446,7 +5446,7 @@
                 "replicationSpecs": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ClusterReplicationSpec:ClusterReplicationSpec"
+                        "$ref": "#/types/mongodbatlas:index/ClusterReplicationSpec:ClusterReplicationSpec"
                     },
                     "description": "Configuration for cluster regions.  See Replication Spec below for more details.\n"
                 }
@@ -5460,7 +5460,7 @@
                 "description": "Input properties used for looking up and filtering Cluster resources.\n",
                 "properties": {
                     "advancedConfiguration": {
-                        "$ref": "#/types/mongodbatlas:/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration"
+                        "$ref": "#/types/mongodbatlas:index/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration"
                     },
                     "autoScalingComputeEnabled": {
                         "type": "boolean",
@@ -5483,7 +5483,7 @@
                         "description": "Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.\n**Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).\n* Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `provider_backup_enabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backup_enabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.\n* Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.\n* The default value is false.  M10 and above only.\n"
                     },
                     "biConnector": {
-                        "$ref": "#/types/mongodbatlas:/ClusterBiConnector:ClusterBiConnector",
+                        "$ref": "#/types/mongodbatlas:index/ClusterBiConnector:ClusterBiConnector",
                         "description": "Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.\n"
                     },
                     "clusterId": {
@@ -5495,7 +5495,7 @@
                         "description": "Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n"
                     },
                     "connectionStrings": {
-                        "$ref": "#/types/mongodbatlas:/ClusterConnectionStrings:ClusterConnectionStrings",
+                        "$ref": "#/types/mongodbatlas:index/ClusterConnectionStrings:ClusterConnectionStrings",
                         "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n"
                     },
                     "containerId": {
@@ -5513,7 +5513,7 @@
                     "labels": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/ClusterLabel:ClusterLabel"
+                            "$ref": "#/types/mongodbatlas:index/ClusterLabel:ClusterLabel"
                         }
                     },
                     "mongoDbMajorVersion": {
@@ -5603,14 +5603,14 @@
                     "replicationSpecs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/ClusterReplicationSpec:ClusterReplicationSpec"
+                            "$ref": "#/types/mongodbatlas:index/ClusterReplicationSpec:ClusterReplicationSpec"
                         },
                         "description": "Configuration for cluster regions.  See Replication Spec below for more details.\n"
                     },
                     "snapshotBackupPolicies": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/ClusterSnapshotBackupPolicy:ClusterSnapshotBackupPolicy"
+                            "$ref": "#/types/mongodbatlas:index/ClusterSnapshotBackupPolicy:ClusterSnapshotBackupPolicy"
                         },
                         "description": "current snapshot schedule and retention settings for the cluster.\n"
                     },
@@ -5632,13 +5632,13 @@
                 "actions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/CustomDbRoleAction:CustomDbRoleAction"
+                        "$ref": "#/types/mongodbatlas:index/CustomDbRoleAction:CustomDbRoleAction"
                     }
                 },
                 "inheritedRoles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/CustomDbRoleInheritedRole:CustomDbRoleInheritedRole"
+                        "$ref": "#/types/mongodbatlas:index/CustomDbRoleInheritedRole:CustomDbRoleInheritedRole"
                     }
                 },
                 "projectId": {
@@ -5658,13 +5658,13 @@
                 "actions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/CustomDbRoleAction:CustomDbRoleAction"
+                        "$ref": "#/types/mongodbatlas:index/CustomDbRoleAction:CustomDbRoleAction"
                     }
                 },
                 "inheritedRoles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/CustomDbRoleInheritedRole:CustomDbRoleInheritedRole"
+                        "$ref": "#/types/mongodbatlas:index/CustomDbRoleInheritedRole:CustomDbRoleInheritedRole"
                     }
                 },
                 "projectId": {
@@ -5686,13 +5686,13 @@
                     "actions": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/CustomDbRoleAction:CustomDbRoleAction"
+                            "$ref": "#/types/mongodbatlas:index/CustomDbRoleAction:CustomDbRoleAction"
                         }
                     },
                     "inheritedRoles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/CustomDbRoleInheritedRole:CustomDbRoleInheritedRole"
+                            "$ref": "#/types/mongodbatlas:index/CustomDbRoleInheritedRole:CustomDbRoleInheritedRole"
                         }
                     },
                     "projectId": {
@@ -5725,7 +5725,7 @@
                 "labels": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/DatabaseUserLabel:DatabaseUserLabel"
+                        "$ref": "#/types/mongodbatlas:index/DatabaseUserLabel:DatabaseUserLabel"
                     }
                 },
                 "password": {
@@ -5738,14 +5738,14 @@
                 "roles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/DatabaseUserRole:DatabaseUserRole"
+                        "$ref": "#/types/mongodbatlas:index/DatabaseUserRole:DatabaseUserRole"
                     },
                     "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                        "$ref": "#/types/mongodbatlas:index/DatabaseUserScope:DatabaseUserScope"
                     }
                 },
                 "username": {
@@ -5781,7 +5781,7 @@
                 "labels": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/DatabaseUserLabel:DatabaseUserLabel"
+                        "$ref": "#/types/mongodbatlas:index/DatabaseUserLabel:DatabaseUserLabel"
                     }
                 },
                 "password": {
@@ -5794,14 +5794,14 @@
                 "roles": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/DatabaseUserRole:DatabaseUserRole"
+                        "$ref": "#/types/mongodbatlas:index/DatabaseUserRole:DatabaseUserRole"
                     },
                     "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                        "$ref": "#/types/mongodbatlas:index/DatabaseUserScope:DatabaseUserScope"
                     }
                 },
                 "username": {
@@ -5836,7 +5836,7 @@
                     "labels": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/DatabaseUserLabel:DatabaseUserLabel"
+                            "$ref": "#/types/mongodbatlas:index/DatabaseUserLabel:DatabaseUserLabel"
                         }
                     },
                     "password": {
@@ -5849,14 +5849,14 @@
                     "roles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/DatabaseUserRole:DatabaseUserRole"
+                            "$ref": "#/types/mongodbatlas:index/DatabaseUserRole:DatabaseUserRole"
                         },
                         "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
                     },
                     "scopes": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/DatabaseUserScope:DatabaseUserScope"
+                            "$ref": "#/types/mongodbatlas:index/DatabaseUserScope:DatabaseUserScope"
                         }
                     },
                     "username": {
@@ -5875,15 +5875,15 @@
             "description": "`mongodbatlas.EncryptionAtRest` Allows management of encryption at rest for an Atlas project with one of the following providers:\n\n[Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)\n[Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)\n[Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)\n\nAfter configuring at least one Encryption at Rest provider for the Atlas project, Project Owners can enable Encryption at Rest for each Atlas cluster for which they require encryption. The Encryption at Rest provider does not have to match the cluster cloud service provider.\n\nAtlas does not automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest provider’s documentation and guidance for best practices on key rotation. Atlas automatically creates a 365-day key rotation alert when you configure Encryption at Rest using your Key Management in an Atlas project.\n\nSee [Encryption at Rest](https://docs.atlas.mongodb.com/security-kms-encryption/index.html) for more information, including prerequisites and restrictions.\n\n\u003e **IMPORTANT** Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.EncryptionAtRest(\"test\", {\n    awsKms: {\n        access_key_id: \"AKIAIOSFODNN7EXAMPLE\",\n        customer_master_key_id: \"030gce02-586d-48d2-a966-05ea954fde0g\",\n        enabled: true,\n        region: \"US_EAST_1\",\n        secret_access_key: \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\",\n    },\n    azureKeyVault: {\n        azure_environment: \"AZURE\",\n        client_id: \"g54f9e2-89e3-40fd-8188-EXAMPLEID\",\n        enabled: true,\n        key_identifier: \"https://EXAMPLEKeyVault.vault.azure.net/keys/EXAMPLEKey/d891821e3d364e9eb88fbd3d11807b86\",\n        key_vault_name: \"EXAMPLEKeyVault\",\n        resource_group_name: \"ExampleRGName\",\n        secret: \"EXAMPLESECRET\",\n        subscription_id: \"0ec944e3-g725-44f9-a147-EXAMPLEID\",\n        tenant_id: \"e8e4b6ba-ff32-4c88-a9af-EXAMPLEID\",\n    },\n    googleCloudKms: {\n        enabled: true,\n        key_version_resource_id: \"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\",\n        service_account_key: \"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\\\"}\",\n    },\n    projectId: \"\u003cPROJECT-ID\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.EncryptionAtRest(\"test\",\n    aws_kms=mongodbatlas.EncryptionAtRestAwsKmsArgs(\n        access_key_id=\"AKIAIOSFODNN7EXAMPLE\",\n        customer_master_key_id=\"030gce02-586d-48d2-a966-05ea954fde0g\",\n        enabled=True,\n        region=\"US_EAST_1\",\n        secret_access_key=\"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\",\n    ),\n    azure_key_vault=mongodbatlas.EncryptionAtRestAzureKeyVaultArgs(\n        azure_environment=\"AZURE\",\n        client_id=\"g54f9e2-89e3-40fd-8188-EXAMPLEID\",\n        enabled=True,\n        key_identifier=\"https://EXAMPLEKeyVault.vault.azure.net/keys/EXAMPLEKey/d891821e3d364e9eb88fbd3d11807b86\",\n        key_vault_name=\"EXAMPLEKeyVault\",\n        resource_group_name=\"ExampleRGName\",\n        secret=\"EXAMPLESECRET\",\n        subscription_id=\"0ec944e3-g725-44f9-a147-EXAMPLEID\",\n        tenant_id=\"e8e4b6ba-ff32-4c88-a9af-EXAMPLEID\",\n    ),\n    google_cloud_kms=mongodbatlas.EncryptionAtRestGoogleCloudKmsArgs(\n        enabled=True,\n        key_version_resource_id=\"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\",\n        service_account_key=\"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\\\"}\",\n    ),\n    project_id=\"\u003cPROJECT-ID\u003e\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.EncryptionAtRest(\"test\", new Mongodbatlas.EncryptionAtRestArgs\n        {\n            AwsKms = new Mongodbatlas.Inputs.EncryptionAtRestAwsKmsArgs\n            {\n                Access_key_id = \"AKIAIOSFODNN7EXAMPLE\",\n                Customer_master_key_id = \"030gce02-586d-48d2-a966-05ea954fde0g\",\n                Enabled = true,\n                Region = \"US_EAST_1\",\n                Secret_access_key = \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\",\n            },\n            AzureKeyVault = new Mongodbatlas.Inputs.EncryptionAtRestAzureKeyVaultArgs\n            {\n                Azure_environment = \"AZURE\",\n                Client_id = \"g54f9e2-89e3-40fd-8188-EXAMPLEID\",\n                Enabled = true,\n                Key_identifier = \"https://EXAMPLEKeyVault.vault.azure.net/keys/EXAMPLEKey/d891821e3d364e9eb88fbd3d11807b86\",\n                Key_vault_name = \"EXAMPLEKeyVault\",\n                Resource_group_name = \"ExampleRGName\",\n                Secret = \"EXAMPLESECRET\",\n                Subscription_id = \"0ec944e3-g725-44f9-a147-EXAMPLEID\",\n                Tenant_id = \"e8e4b6ba-ff32-4c88-a9af-EXAMPLEID\",\n            },\n            GoogleCloudKms = new Mongodbatlas.Inputs.EncryptionAtRestGoogleCloudKmsArgs\n            {\n                Enabled = true,\n                Key_version_resource_id = \"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\",\n                Service_account_key = \"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\\\"}\",\n            },\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewEncryptionAtRest(ctx, \"test\", \u0026mongodbatlas.EncryptionAtRestArgs{\n\t\t\tAwsKms: \u0026mongodbatlas.EncryptionAtRestAwsKmsArgs{\n\t\t\t\tAccess_key_id:          pulumi.String(\"AKIAIOSFODNN7EXAMPLE\"),\n\t\t\t\tCustomer_master_key_id: pulumi.String(\"030gce02-586d-48d2-a966-05ea954fde0g\"),\n\t\t\t\tEnabled:                pulumi.Bool(true),\n\t\t\t\tRegion:                 pulumi.String(\"US_EAST_1\"),\n\t\t\t\tSecret_access_key:      pulumi.String(\"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\"),\n\t\t\t},\n\t\t\tAzureKeyVault: \u0026mongodbatlas.EncryptionAtRestAzureKeyVaultArgs{\n\t\t\t\tAzure_environment:   pulumi.String(\"AZURE\"),\n\t\t\t\tClient_id:           pulumi.String(\"g54f9e2-89e3-40fd-8188-EXAMPLEID\"),\n\t\t\t\tEnabled:             pulumi.Bool(true),\n\t\t\t\tKey_identifier:      pulumi.String(\"https://EXAMPLEKeyVault.vault.azure.net/keys/EXAMPLEKey/d891821e3d364e9eb88fbd3d11807b86\"),\n\t\t\t\tKey_vault_name:      pulumi.String(\"EXAMPLEKeyVault\"),\n\t\t\t\tResource_group_name: pulumi.String(\"ExampleRGName\"),\n\t\t\t\tSecret:              pulumi.String(\"EXAMPLESECRET\"),\n\t\t\t\tSubscription_id:     pulumi.String(\"0ec944e3-g725-44f9-a147-EXAMPLEID\"),\n\t\t\t\tTenant_id:           pulumi.String(\"e8e4b6ba-ff32-4c88-a9af-EXAMPLEID\"),\n\t\t\t},\n\t\t\tGoogleCloudKms: \u0026mongodbatlas.EncryptionAtRestGoogleCloudKmsArgs{\n\t\t\t\tEnabled:                 pulumi.Bool(true),\n\t\t\t\tKey_version_resource_id: pulumi.String(\"projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1\"),\n\t\t\t\tService_account_key:     pulumi.String(fmt.Sprintf(\"%v%v%v\", \"{\\\"type\\\": \\\"service_account\\\",\\\"project_id\\\": \\\"my-project-common-0\\\",\\\"private_key_id\\\": \\\"e120598ea4f88249469fcdd75a9a785c1bb3\\\",\\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\\"client_email\\\": \\\"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\\\",\\\"client_id\\\": \\\"10180967717292066\\\",\\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\\"token_uri\\\": \\\"https://accounts.google.com/o/oauth2/token\\\",\\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0\", \"%\", \"40my-project-common-0.iam.gserviceaccount.com\\\"}\")),\n\t\t\t},\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "awsKms": {
-                    "$ref": "#/types/mongodbatlas:/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms",
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms",
                     "description": "Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                 },
                 "azureKeyVault": {
-                    "$ref": "#/types/mongodbatlas:/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault",
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault",
                     "description": "Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                 },
                 "googleCloudKms": {
-                    "$ref": "#/types/mongodbatlas:/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms",
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms",
                     "description": "Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                 },
                 "projectId": {
@@ -5896,15 +5896,15 @@
             ],
             "inputProperties": {
                 "awsKms": {
-                    "$ref": "#/types/mongodbatlas:/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms",
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms",
                     "description": "Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                 },
                 "azureKeyVault": {
-                    "$ref": "#/types/mongodbatlas:/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault",
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault",
                     "description": "Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                 },
                 "googleCloudKms": {
-                    "$ref": "#/types/mongodbatlas:/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms",
+                    "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms",
                     "description": "Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                 },
                 "projectId": {
@@ -5919,15 +5919,15 @@
                 "description": "Input properties used for looking up and filtering EncryptionAtRest resources.\n",
                 "properties": {
                     "awsKms": {
-                        "$ref": "#/types/mongodbatlas:/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms",
+                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAwsKms:EncryptionAtRestAwsKms",
                         "description": "Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                     },
                     "azureKeyVault": {
-                        "$ref": "#/types/mongodbatlas:/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault",
+                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault",
                         "description": "Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                     },
                     "googleCloudKms": {
-                        "$ref": "#/types/mongodbatlas:/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms",
+                        "$ref": "#/types/mongodbatlas:index/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms",
                         "description": "Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.\n"
                     },
                     "projectId": {
@@ -5954,14 +5954,14 @@
                 "customZoneMappings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping"
+                        "$ref": "#/types/mongodbatlas:index/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping"
                     },
                     "description": "Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.\n"
                 },
                 "managedNamespaces": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace"
+                        "$ref": "#/types/mongodbatlas:index/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace"
                     },
                     "description": "Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.\n"
                 },
@@ -5983,14 +5983,14 @@
                 "customZoneMappings": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping"
+                        "$ref": "#/types/mongodbatlas:index/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping"
                     },
                     "description": "Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.\n"
                 },
                 "managedNamespaces": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace"
+                        "$ref": "#/types/mongodbatlas:index/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace"
                     },
                     "description": "Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.\n"
                 },
@@ -6019,14 +6019,14 @@
                     "customZoneMappings": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping"
+                            "$ref": "#/types/mongodbatlas:index/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping"
                         },
                         "description": "Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.\n"
                     },
                     "managedNamespaces": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace"
+                            "$ref": "#/types/mongodbatlas:index/GlobalClusterConfigManagedNamespace:GlobalClusterConfigManagedNamespace"
                         },
                         "description": "Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.\n"
                     },
@@ -6824,7 +6824,7 @@
                 "teams": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ProjectTeam:ProjectTeam"
+                        "$ref": "#/types/mongodbatlas:index/ProjectTeam:ProjectTeam"
                     }
                 }
             },
@@ -6846,7 +6846,7 @@
                 "teams": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/ProjectTeam:ProjectTeam"
+                        "$ref": "#/types/mongodbatlas:index/ProjectTeam:ProjectTeam"
                     }
                 }
             },
@@ -6875,7 +6875,7 @@
                     "teams": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/ProjectTeam:ProjectTeam"
+                            "$ref": "#/types/mongodbatlas:index/ProjectTeam:ProjectTeam"
                         }
                     }
                 },
@@ -7111,7 +7111,7 @@
                 "certificates": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/mongodbatlas:/X509AuthenticationDatabaseUserCertificate:X509AuthenticationDatabaseUserCertificate"
+                        "$ref": "#/types/mongodbatlas:index/X509AuthenticationDatabaseUserCertificate:X509AuthenticationDatabaseUserCertificate"
                     },
                     "description": "Array of objects where each details one unexpired database user certificate.\n"
                 },
@@ -7168,7 +7168,7 @@
                     "certificates": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/X509AuthenticationDatabaseUserCertificate:X509AuthenticationDatabaseUserCertificate"
+                            "$ref": "#/types/mongodbatlas:index/X509AuthenticationDatabaseUserCertificate:X509AuthenticationDatabaseUserCertificate"
                         },
                         "description": "Array of objects where each details one unexpired database user certificate.\n"
                     },
@@ -7223,7 +7223,7 @@
                     "certificates": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/get509AuthenticationDatabaseUserCertificate:get509AuthenticationDatabaseUserCertificate"
+                            "$ref": "#/types/mongodbatlas:index/get509AuthenticationDatabaseUserCertificate:get509AuthenticationDatabaseUserCertificate"
                         },
                         "description": "Array of objects where each details one unexpired database user certificate.\n"
                     },
@@ -7295,23 +7295,23 @@
                     "matchers": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getAlertConfigurationMatcher:getAlertConfigurationMatcher"
+                            "$ref": "#/types/mongodbatlas:index/getAlertConfigurationMatcher:getAlertConfigurationMatcher"
                         }
                     },
                     "metricThreshold": {
-                        "$ref": "#/types/mongodbatlas:/getAlertConfigurationMetricThreshold:getAlertConfigurationMetricThreshold"
+                        "$ref": "#/types/mongodbatlas:index/getAlertConfigurationMetricThreshold:getAlertConfigurationMetricThreshold"
                     },
                     "notifications": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getAlertConfigurationNotification:getAlertConfigurationNotification"
+                            "$ref": "#/types/mongodbatlas:index/getAlertConfigurationNotification:getAlertConfigurationNotification"
                         }
                     },
                     "projectId": {
                         "type": "string"
                     },
                     "threshold": {
-                        "$ref": "#/types/mongodbatlas:/getAlertConfigurationThreshold:getAlertConfigurationThreshold",
+                        "$ref": "#/types/mongodbatlas:index/getAlertConfigurationThreshold:getAlertConfigurationThreshold",
                         "description": "Threshold value outside of which an alert will be triggered.\n"
                     },
                     "updated": {
@@ -7524,7 +7524,7 @@
                     "policies": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getCloudProviderSnapshotBackupPolicyPolicy:getCloudProviderSnapshotBackupPolicyPolicy"
+                            "$ref": "#/types/mongodbatlas:index/getCloudProviderSnapshotBackupPolicyPolicy:getCloudProviderSnapshotBackupPolicyPolicy"
                         },
                         "description": "A list of policy definitions for the cluster.\n* `policies.#.id` - Unique identifier of the backup policy.\n"
                     },
@@ -7732,7 +7732,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getCloudProviderSnapshotRestoreJobsResult:getCloudProviderSnapshotRestoreJobsResult"
+                            "$ref": "#/types/mongodbatlas:index/getCloudProviderSnapshotRestoreJobsResult:getCloudProviderSnapshotRestoreJobsResult"
                         },
                         "description": "Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.\n"
                     },
@@ -7799,7 +7799,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getCloudProviderSnapshotsResult:getCloudProviderSnapshotsResult"
+                            "$ref": "#/types/mongodbatlas:index/getCloudProviderSnapshotsResult:getCloudProviderSnapshotsResult"
                         },
                         "description": "Includes cloudProviderSnapshot object for each item detailed in the results array section.\n"
                     },
@@ -7861,7 +7861,7 @@
                         "description": "Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.\n"
                     },
                     "biConnector": {
-                        "$ref": "#/types/mongodbatlas:/getClusterBiConnector:getClusterBiConnector",
+                        "$ref": "#/types/mongodbatlas:index/getClusterBiConnector:getClusterBiConnector",
                         "description": "Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.\n"
                     },
                     "clusterType": {
@@ -7869,7 +7869,7 @@
                         "description": "Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.\n"
                     },
                     "connectionStrings": {
-                        "$ref": "#/types/mongodbatlas:/getClusterConnectionStrings:getClusterConnectionStrings",
+                        "$ref": "#/types/mongodbatlas:index/getClusterConnectionStrings:getClusterConnectionStrings",
                         "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n- `connection_strings.standard` -   Public mongodb:// connection string for this cluster.\n- `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n- `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.\n- `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.\n- `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
                     },
                     "containerId": {
@@ -7891,7 +7891,7 @@
                     "labels": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getClusterLabel:getClusterLabel"
+                            "$ref": "#/types/mongodbatlas:index/getClusterLabel:getClusterLabel"
                         }
                     },
                     "mongoDbMajorVersion": {
@@ -7980,14 +7980,14 @@
                     "replicationSpecs": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getClusterReplicationSpec:getClusterReplicationSpec"
+                            "$ref": "#/types/mongodbatlas:index/getClusterReplicationSpec:getClusterReplicationSpec"
                         },
                         "description": "Configuration for cluster regions.  See Replication Spec below for more details.\n"
                     },
                     "snapshotBackupPolicies": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getClusterSnapshotBackupPolicy:getClusterSnapshotBackupPolicy"
+                            "$ref": "#/types/mongodbatlas:index/getClusterSnapshotBackupPolicy:getClusterSnapshotBackupPolicy"
                         },
                         "description": "current snapshot schedule and retention settings for the cluster.\n"
                     },
@@ -8071,7 +8071,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getClustersResult:getClustersResult"
+                            "$ref": "#/types/mongodbatlas:index/getClustersResult:getClustersResult"
                         },
                         "description": "A list where each represents a Cluster. See Cluster below for more details.\n"
                     }
@@ -8092,7 +8092,7 @@
                     "inheritedRoles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getCustomDbRoleInheritedRole:getCustomDbRoleInheritedRole"
+                            "$ref": "#/types/mongodbatlas:index/getCustomDbRoleInheritedRole:getCustomDbRoleInheritedRole"
                         }
                     },
                     "projectId": {
@@ -8116,7 +8116,7 @@
                     "actions": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getCustomDbRoleAction:getCustomDbRoleAction"
+                            "$ref": "#/types/mongodbatlas:index/getCustomDbRoleAction:getCustomDbRoleAction"
                         }
                     },
                     "id": {
@@ -8126,7 +8126,7 @@
                     "inheritedRoles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getCustomDbRoleInheritedRole:getCustomDbRoleInheritedRole"
+                            "$ref": "#/types/mongodbatlas:index/getCustomDbRoleInheritedRole:getCustomDbRoleInheritedRole"
                         }
                     },
                     "projectId": {
@@ -8173,7 +8173,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getCustomDbRolesResult:getCustomDbRolesResult"
+                            "$ref": "#/types/mongodbatlas:index/getCustomDbRolesResult:getCustomDbRolesResult"
                         },
                         "description": "A list where each represents a custom db roles.\n"
                     }
@@ -8237,7 +8237,7 @@
                     "labels": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getDatabaseUserLabel:getDatabaseUserLabel"
+                            "$ref": "#/types/mongodbatlas:index/getDatabaseUserLabel:getDatabaseUserLabel"
                         }
                     },
                     "projectId": {
@@ -8246,14 +8246,14 @@
                     "roles": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getDatabaseUserRole:getDatabaseUserRole"
+                            "$ref": "#/types/mongodbatlas:index/getDatabaseUserRole:getDatabaseUserRole"
                         },
                         "description": "List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.\n"
                     },
                     "scopes": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getDatabaseUserScope:getDatabaseUserScope"
+                            "$ref": "#/types/mongodbatlas:index/getDatabaseUserScope:getDatabaseUserScope"
                         },
                         "description": "Array of clusters and Atlas Data Lakes that this user has access to.\n"
                     },
@@ -8307,7 +8307,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getDatabaseUsersResult:getDatabaseUsersResult"
+                            "$ref": "#/types/mongodbatlas:index/getDatabaseUsersResult:getDatabaseUsersResult"
                         },
                         "description": "A list where each represents a Database user.\n"
                     }
@@ -8331,7 +8331,7 @@
                     "managedNamespaces": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getGlobalClusterConfigManagedNamespace:getGlobalClusterConfigManagedNamespace"
+                            "$ref": "#/types/mongodbatlas:index/getGlobalClusterConfigManagedNamespace:getGlobalClusterConfigManagedNamespace"
                         },
                         "description": "Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.\n"
                     },
@@ -8366,7 +8366,7 @@
                     "managedNamespaces": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getGlobalClusterConfigManagedNamespace:getGlobalClusterConfigManagedNamespace"
+                            "$ref": "#/types/mongodbatlas:index/getGlobalClusterConfigManagedNamespace:getGlobalClusterConfigManagedNamespace"
                         },
                         "description": "Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.\n"
                     },
@@ -8566,7 +8566,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getNetworkContainersResult:getNetworkContainersResult"
+                            "$ref": "#/types/mongodbatlas:index/getNetworkContainersResult:getNetworkContainersResult"
                         },
                         "description": "A list where each represents a Network Peering Container.\n"
                     }
@@ -8748,7 +8748,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getNetworkPeeringsResult:getNetworkPeeringsResult"
+                            "$ref": "#/types/mongodbatlas:index/getNetworkPeeringsResult:getNetworkPeeringsResult"
                         },
                         "description": "A list where each represents a Network Peering Connection.\n"
                     }
@@ -8934,7 +8934,7 @@
                     "teams": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getProjectTeam:getProjectTeam"
+                            "$ref": "#/types/mongodbatlas:index/getProjectTeam:getProjectTeam"
                         }
                     }
                 },
@@ -9042,7 +9042,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/mongodbatlas:/getProjectsResult:getProjectsResult"
+                            "$ref": "#/types/mongodbatlas:index/getProjectsResult:getProjectsResult"
                         }
                     },
                     "totalCount": {
