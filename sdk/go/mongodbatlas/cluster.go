@@ -274,13 +274,8 @@ type Cluster struct {
 	// - Set to `false` to disable disk auto-scaling.
 	AutoScalingDiskGbEnabled pulumi.BoolPtrOutput `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
-	BackingProviderName pulumi.StringOutput `pulumi:"backingProviderName"`
-	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-	// * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
-	// * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
-	// * The default value is false.  M10 and above only.
-	BackupEnabled pulumi.BoolPtrOutput `pulumi:"backupEnabled"`
+	BackingProviderName pulumi.StringOutput  `pulumi:"backingProviderName"`
+	BackupEnabled       pulumi.BoolPtrOutput `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnector ClusterBiConnectorOutput `pulumi:"biConnector"`
 	// The cluster ID.
@@ -328,7 +323,7 @@ type Cluster struct {
 	ProviderBackupEnabled pulumi.BoolPtrOutput `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
 	ProviderDiskIops pulumi.IntOutput `pulumi:"providerDiskIops"`
-	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName pulumi.StringOutput `pulumi:"providerDiskTypeName"`
 	// If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
 	ProviderEncryptEbsVolume pulumi.BoolOutput `pulumi:"providerEncryptEbsVolume"`
@@ -411,12 +406,7 @@ type clusterState struct {
 	AutoScalingDiskGbEnabled *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-	// * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
-	// * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
-	// * The default value is false.  M10 and above only.
-	BackupEnabled *bool `pulumi:"backupEnabled"`
+	BackupEnabled       *bool   `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnector *ClusterBiConnector `pulumi:"biConnector"`
 	// The cluster ID.
@@ -464,7 +454,7 @@ type clusterState struct {
 	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
 	ProviderDiskIops *int `pulumi:"providerDiskIops"`
-	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName *string `pulumi:"providerDiskTypeName"`
 	// If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
 	ProviderEncryptEbsVolume *bool `pulumi:"providerEncryptEbsVolume"`
@@ -511,12 +501,7 @@ type ClusterState struct {
 	AutoScalingDiskGbEnabled pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName pulumi.StringPtrInput
-	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-	// * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
-	// * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
-	// * The default value is false.  M10 and above only.
-	BackupEnabled pulumi.BoolPtrInput
+	BackupEnabled       pulumi.BoolPtrInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnector ClusterBiConnectorPtrInput
 	// The cluster ID.
@@ -564,7 +549,7 @@ type ClusterState struct {
 	ProviderBackupEnabled pulumi.BoolPtrInput
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
 	ProviderDiskIops pulumi.IntPtrInput
-	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName pulumi.StringPtrInput
 	// If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
 	ProviderEncryptEbsVolume pulumi.BoolPtrInput
@@ -615,12 +600,7 @@ type clusterArgs struct {
 	AutoScalingDiskGbEnabled *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-	// * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
-	// * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
-	// * The default value is false.  M10 and above only.
-	BackupEnabled *bool `pulumi:"backupEnabled"`
+	BackupEnabled       *bool   `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnector *ClusterBiConnector `pulumi:"biConnector"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -652,7 +632,7 @@ type clusterArgs struct {
 	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
 	ProviderDiskIops *int `pulumi:"providerDiskIops"`
-	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName *string `pulumi:"providerDiskTypeName"`
 	// If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
 	ProviderEncryptEbsVolume *bool `pulumi:"providerEncryptEbsVolume"`
@@ -688,12 +668,7 @@ type ClusterArgs struct {
 	AutoScalingDiskGbEnabled pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName pulumi.StringPtrInput
-	// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-	// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-	// * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
-	// * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
-	// * The default value is false.  M10 and above only.
-	BackupEnabled pulumi.BoolPtrInput
+	BackupEnabled       pulumi.BoolPtrInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnector ClusterBiConnectorPtrInput
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -725,7 +700,7 @@ type ClusterArgs struct {
 	ProviderBackupEnabled pulumi.BoolPtrInput
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
 	ProviderDiskIops pulumi.IntPtrInput
-	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName pulumi.StringPtrInput
 	// If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
 	ProviderEncryptEbsVolume pulumi.BoolPtrInput

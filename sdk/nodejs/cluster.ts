@@ -235,13 +235,6 @@ export class Cluster extends pulumi.CustomResource {
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
     public readonly backingProviderName!: pulumi.Output<string>;
-    /**
-     * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-     * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-     * * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
-     * * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
-     * * The default value is false.  M10 and above only.
-     */
     public readonly backupEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
@@ -333,7 +326,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerDiskIops!: pulumi.Output<number>;
     /**
-     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
      */
     public readonly providerDiskTypeName!: pulumi.Output<string>;
     /**
@@ -524,13 +517,6 @@ export interface ClusterState {
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
     readonly backingProviderName?: pulumi.Input<string>;
-    /**
-     * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-     * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-     * * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
-     * * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
-     * * The default value is false.  M10 and above only.
-     */
     readonly backupEnabled?: pulumi.Input<boolean>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
@@ -622,7 +608,7 @@ export interface ClusterState {
      */
     readonly providerDiskIops?: pulumi.Input<number>;
     /**
-     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
      */
     readonly providerDiskTypeName?: pulumi.Input<string>;
     /**
@@ -701,13 +687,6 @@ export interface ClusterArgs {
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
     readonly backingProviderName?: pulumi.Input<string>;
-    /**
-     * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-     * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
-     * * Any net new Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `providerBackupEnabled`, to enable Cloud Backup.  If you create a new Atlas cluster and set `backupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
-     * * Set to false to disable legacy backups for the cluster. Atlas deletes any stored snapshots.
-     * * The default value is false.  M10 and above only.
-     */
     readonly backupEnabled?: pulumi.Input<boolean>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
@@ -767,7 +746,7 @@ export interface ClusterArgs {
      */
     readonly providerDiskIops?: pulumi.Input<number>;
     /**
-     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+     * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
      */
     readonly providerDiskTypeName?: pulumi.Input<string>;
     /**
