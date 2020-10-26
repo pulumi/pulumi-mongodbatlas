@@ -599,8 +599,8 @@ github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742 h1:Esafd1046DLD
 github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3RllmbCylyMrvgv0=
 github.com/mongodb-forks/digest v1.0.1 h1:+3fpRyZcC5G44YrfrhHAffSSORh3assbetlzq8lp1hU=
 github.com/mongodb-forks/digest v1.0.1/go.mod h1:PA4OEwIwOqB/7OJE/xyY7x2D+5ufAlNv8Cy01DNCWgg=
-github.com/mongodb/terraform-provider-mongodbatlas v0.6.5 h1:mU/GHXnCDi92rSnptu4qxQftN0JJDSzOflgN1lvlT5k=
-github.com/mongodb/terraform-provider-mongodbatlas v0.6.5/go.mod h1:ZPDM2Ji+H50vHUVZPT0y8YK2t79ac5ilbU5qvNQbfHQ=
+github.com/mongodb/terraform-provider-mongodbatlas v0.7.0 h1:Yl7xSi4fFMuRTiW8nruEfQkezajwRhlWMqlGD4yP5Sw=
+github.com/mongodb/terraform-provider-mongodbatlas v0.7.0/go.mod h1:oVSvF9VQK57u18c6d/7j3E76CMkUFt3juXUuRulD46I=
 github.com/mozilla/tls-observatory v0.0.0-20180409132520-8791a200eb40/go.mod h1:SrKMQvPiws7F7iqYp8/TX+IhxCYhzr6N/1yb8cwHsGk=
 github.com/mozilla/tls-observatory v0.0.0-20200220173314-aae45faa4006/go.mod h1:SrKMQvPiws7F7iqYp8/TX+IhxCYhzr6N/1yb8cwHsGk=
 github.com/mwielbut/pointy v1.1.0 h1:U5/YEfoIkaGCHv0St3CgjduqXID4FNRoyZgLM1kY9vg=
@@ -809,8 +809,8 @@ github.com/zclconf/go-cty v1.3.1/go.mod h1:YO23e2L18AG+ZYQfSobnY4G65nvwvprPCxBHk
 github.com/zclconf/go-cty-yaml v1.0.1 h1:up11wlgAaDvlAGENcFDnZgkn0qUJurso7k6EpURKNF8=
 github.com/zclconf/go-cty-yaml v1.0.1/go.mod h1:IP3Ylp0wQpYm50IHK8OZWKMu6sPJIUgKa8XhiVHura0=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
-go.mongodb.org/atlas v0.4.1-0.20200916170654-ac3833accfa2 h1:qjEP4bC8yTi57jBYHtSSA8gzPN4vJl3XG23YBMXCgUg=
-go.mongodb.org/atlas v0.4.1-0.20200916170654-ac3833accfa2/go.mod h1:CIaBeO8GLHhtYLw7xSSXsw7N90Z4MFY87Oy9qcPyuEs=
+go.mongodb.org/atlas v0.5.1-0.20201007214134-b315fe7503d2 h1:b4Ng7d2sCSgYKwLMOetbwLcPE732SiBnJqH5rQrhZOs=
+go.mongodb.org/atlas v0.5.1-0.20201007214134-b315fe7503d2/go.mod h1:CIaBeO8GLHhtYLw7xSSXsw7N90Z4MFY87Oy9qcPyuEs=
 go.opencensus.io v0.15.0/go.mod h1:UffZAU+4sDEINUGP/B7UfBBkq4fqLu9zXAX7ke6CHW0=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=
