@@ -4,12 +4,22 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Clusters can be imported using project ID and network peering peering id, in the format `PROJECTID-PEERID-PROVIDERNAME`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/networkPeering:NetworkPeering my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS
+// ```
+//
+//  See detailed information for arguments and attributes[MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
 type NetworkPeering struct {
 	pulumi.CustomResourceState
 
@@ -265,4 +275,43 @@ type NetworkPeeringArgs struct {
 
 func (NetworkPeeringArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPeeringArgs)(nil)).Elem()
+}
+
+type NetworkPeeringInput interface {
+	pulumi.Input
+
+	ToNetworkPeeringOutput() NetworkPeeringOutput
+	ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput
+}
+
+func (NetworkPeering) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeering)(nil)).Elem()
+}
+
+func (i NetworkPeering) ToNetworkPeeringOutput() NetworkPeeringOutput {
+	return i.ToNetworkPeeringOutputWithContext(context.Background())
+}
+
+func (i NetworkPeering) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkPeeringOutput)
+}
+
+type NetworkPeeringOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkPeeringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkPeeringOutput)(nil)).Elem()
+}
+
+func (o NetworkPeeringOutput) ToNetworkPeeringOutput() NetworkPeeringOutput {
+	return o
+}
+
+func (o NetworkPeeringOutput) ToNetworkPeeringOutputWithContext(ctx context.Context) NetworkPeeringOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkPeeringOutput{})
 }

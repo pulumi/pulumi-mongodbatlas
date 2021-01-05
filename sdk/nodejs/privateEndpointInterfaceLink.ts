@@ -38,6 +38,16 @@ import * as utilities from "./utilities";
  *     projectId: testPrivateEndpoint.projectId,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}-{private_link_id}-{interface_endpoint_id}`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343
+ * ```
+ *
+ *  See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)
  */
 export class PrivateEndpointInterfaceLink extends pulumi.CustomResource {
     /**

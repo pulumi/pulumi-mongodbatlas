@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -64,6 +65,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
 type CloudProviderSnapshot struct {
 	pulumi.CustomResourceState
 
@@ -221,4 +232,43 @@ type CloudProviderSnapshotArgs struct {
 
 func (CloudProviderSnapshotArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudProviderSnapshotArgs)(nil)).Elem()
+}
+
+type CloudProviderSnapshotInput interface {
+	pulumi.Input
+
+	ToCloudProviderSnapshotOutput() CloudProviderSnapshotOutput
+	ToCloudProviderSnapshotOutputWithContext(ctx context.Context) CloudProviderSnapshotOutput
+}
+
+func (CloudProviderSnapshot) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshot)(nil)).Elem()
+}
+
+func (i CloudProviderSnapshot) ToCloudProviderSnapshotOutput() CloudProviderSnapshotOutput {
+	return i.ToCloudProviderSnapshotOutputWithContext(context.Background())
+}
+
+func (i CloudProviderSnapshot) ToCloudProviderSnapshotOutputWithContext(ctx context.Context) CloudProviderSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotOutput)
+}
+
+type CloudProviderSnapshotOutput struct {
+	*pulumi.OutputState
+}
+
+func (CloudProviderSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotOutput)(nil)).Elem()
+}
+
+func (o CloudProviderSnapshotOutput) ToCloudProviderSnapshotOutput() CloudProviderSnapshotOutput {
+	return o
+}
+
+func (o CloudProviderSnapshotOutput) ToCloudProviderSnapshotOutputWithContext(ctx context.Context) CloudProviderSnapshotOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CloudProviderSnapshotOutput{})
 }

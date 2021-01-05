@@ -100,6 +100,16 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// 
     /// &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
+    /// 
+    /// ## Import
+    /// 
+    /// IP Whitelist entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
+    /// ```
+    /// 
+    ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)
     /// </summary>
     public partial class ProjectIpWhitelist : Pulumi.CustomResource
     {

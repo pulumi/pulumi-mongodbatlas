@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -105,6 +104,16 @@ import * as utilities from "./utilities";
  *     roleName: "myCustomRole",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
+ * ```
+ *
+ *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
  */
 export class CustomDbRole extends pulumi.CustomResource {
     /**

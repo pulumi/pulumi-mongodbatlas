@@ -172,6 +172,16 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
+    /// ```
+    /// 
+    ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
     /// </summary>
     public partial class CustomDbRole : Pulumi.CustomResource
     {

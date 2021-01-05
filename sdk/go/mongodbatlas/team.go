@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -45,6 +46,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Teams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
+// ```
+//
+//  See detailed information for arguments and attributes[MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
 type Team struct {
 	pulumi.CustomResourceState
 
@@ -138,4 +149,43 @@ type TeamArgs struct {
 
 func (TeamArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*teamArgs)(nil)).Elem()
+}
+
+type TeamInput interface {
+	pulumi.Input
+
+	ToTeamOutput() TeamOutput
+	ToTeamOutputWithContext(ctx context.Context) TeamOutput
+}
+
+func (Team) ElementType() reflect.Type {
+	return reflect.TypeOf((*Team)(nil)).Elem()
+}
+
+func (i Team) ToTeamOutput() TeamOutput {
+	return i.ToTeamOutputWithContext(context.Background())
+}
+
+func (i Team) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamOutput)
+}
+
+type TeamOutput struct {
+	*pulumi.OutputState
+}
+
+func (TeamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamOutput)(nil)).Elem()
+}
+
+func (o TeamOutput) ToTeamOutput() TeamOutput {
+	return o
+}
+
+func (o TeamOutput) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TeamOutput{})
 }

@@ -36,6 +36,16 @@ class PrivateIpMode(pulumi.CustomResource):
             project_id="<YOUR PROJECT ID>")
         ```
 
+        ## Import
+
+        Project must be imported using project ID, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/privateIpMode:PrivateIpMode my_private_ip_mode 5d09d6a59ccf6445652a444a
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project

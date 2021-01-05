@@ -24,7 +24,16 @@ class Project(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a Project resource with the given unique name, props, and options.
+        ## Import
+
+        Project must be imported using project ID, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)

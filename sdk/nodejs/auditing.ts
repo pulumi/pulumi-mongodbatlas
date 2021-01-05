@@ -20,6 +20,16 @@ import * as utilities from "./utilities";
  *     projectId: "<project-id>",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Auditing must be imported using auditing ID, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
+ * ```
+ *
+ *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
  */
 export class Auditing extends pulumi.CustomResource {
     /**

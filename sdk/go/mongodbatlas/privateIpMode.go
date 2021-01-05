@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,6 +38,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Project must be imported using project ID, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/privateIpMode:PrivateIpMode my_private_ip_mode 5d09d6a59ccf6445652a444a
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)
 type PrivateIpMode struct {
 	pulumi.CustomResourceState
 
@@ -114,4 +125,43 @@ type PrivateIpModeArgs struct {
 
 func (PrivateIpModeArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*privateIpModeArgs)(nil)).Elem()
+}
+
+type PrivateIpModeInput interface {
+	pulumi.Input
+
+	ToPrivateIpModeOutput() PrivateIpModeOutput
+	ToPrivateIpModeOutputWithContext(ctx context.Context) PrivateIpModeOutput
+}
+
+func (PrivateIpMode) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateIpMode)(nil)).Elem()
+}
+
+func (i PrivateIpMode) ToPrivateIpModeOutput() PrivateIpModeOutput {
+	return i.ToPrivateIpModeOutputWithContext(context.Background())
+}
+
+func (i PrivateIpMode) ToPrivateIpModeOutputWithContext(ctx context.Context) PrivateIpModeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModeOutput)
+}
+
+type PrivateIpModeOutput struct {
+	*pulumi.OutputState
+}
+
+func (PrivateIpModeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateIpModeOutput)(nil)).Elem()
+}
+
+func (o PrivateIpModeOutput) ToPrivateIpModeOutput() PrivateIpModeOutput {
+	return o
+}
+
+func (o PrivateIpModeOutput) ToPrivateIpModeOutputWithContext(ctx context.Context) PrivateIpModeOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PrivateIpModeOutput{})
 }

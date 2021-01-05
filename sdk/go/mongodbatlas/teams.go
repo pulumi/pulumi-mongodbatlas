@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -85,4 +86,43 @@ type TeamsArgs struct {
 
 func (TeamsArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*teamsArgs)(nil)).Elem()
+}
+
+type TeamsInput interface {
+	pulumi.Input
+
+	ToTeamsOutput() TeamsOutput
+	ToTeamsOutputWithContext(ctx context.Context) TeamsOutput
+}
+
+func (Teams) ElementType() reflect.Type {
+	return reflect.TypeOf((*Teams)(nil)).Elem()
+}
+
+func (i Teams) ToTeamsOutput() TeamsOutput {
+	return i.ToTeamsOutputWithContext(context.Background())
+}
+
+func (i Teams) ToTeamsOutputWithContext(ctx context.Context) TeamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TeamsOutput)
+}
+
+type TeamsOutput struct {
+	*pulumi.OutputState
+}
+
+func (TeamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TeamsOutput)(nil)).Elem()
+}
+
+func (o TeamsOutput) ToTeamsOutput() TeamsOutput {
+	return o
+}
+
+func (o TeamsOutput) ToTeamsOutputWithContext(ctx context.Context) TeamsOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(TeamsOutput{})
 }

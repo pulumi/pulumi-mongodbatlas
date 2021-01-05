@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -145,6 +146,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Database users can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-my-cluster
+// ```
+//
+//  See detailed information for arguments and attributes[MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
 type GlobalClusterConfig struct {
 	pulumi.CustomResourceState
 
@@ -248,4 +259,43 @@ type GlobalClusterConfigArgs struct {
 
 func (GlobalClusterConfigArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalClusterConfigArgs)(nil)).Elem()
+}
+
+type GlobalClusterConfigInput interface {
+	pulumi.Input
+
+	ToGlobalClusterConfigOutput() GlobalClusterConfigOutput
+	ToGlobalClusterConfigOutputWithContext(ctx context.Context) GlobalClusterConfigOutput
+}
+
+func (GlobalClusterConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalClusterConfig)(nil)).Elem()
+}
+
+func (i GlobalClusterConfig) ToGlobalClusterConfigOutput() GlobalClusterConfigOutput {
+	return i.ToGlobalClusterConfigOutputWithContext(context.Background())
+}
+
+func (i GlobalClusterConfig) ToGlobalClusterConfigOutputWithContext(ctx context.Context) GlobalClusterConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigOutput)
+}
+
+type GlobalClusterConfigOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalClusterConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalClusterConfigOutput)(nil)).Elem()
+}
+
+func (o GlobalClusterConfigOutput) ToGlobalClusterConfigOutput() GlobalClusterConfigOutput {
+	return o
+}
+
+func (o GlobalClusterConfigOutput) ToGlobalClusterConfigOutputWithContext(ctx context.Context) GlobalClusterConfigOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(GlobalClusterConfigOutput{})
 }

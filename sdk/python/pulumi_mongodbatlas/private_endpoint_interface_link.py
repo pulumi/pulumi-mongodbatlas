@@ -53,6 +53,16 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
             project_id=test_private_endpoint.project_id)
         ```
 
+        ## Import
+
+        Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}-{private_link_id}-{interface_endpoint_id}`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint you created in your VPC with the AWS resource.

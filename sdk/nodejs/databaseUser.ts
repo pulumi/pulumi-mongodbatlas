@@ -2,10 +2,18 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
+ * ```
+ */
 export class DatabaseUser extends pulumi.CustomResource {
     /**
      * Get an existing DatabaseUser resource's state with the given name, ID, and optional extra

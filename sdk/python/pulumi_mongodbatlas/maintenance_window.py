@@ -57,6 +57,16 @@ class MaintenanceWindow(pulumi.CustomResource):
             project_id="<your-project-id>")
         ```
 
+        ## Import
+
+        Maintenance Window entries can be imported using project project_id, in the format `PROJECTID`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.

@@ -38,6 +38,16 @@ class Auditing(pulumi.CustomResource):
             project_id="<project-id>")
         ```
 
+        ## Import
+
+        Auditing must be imported using auditing ID, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] audit_authorization_success: JSON-formatted audit filter used by the project
