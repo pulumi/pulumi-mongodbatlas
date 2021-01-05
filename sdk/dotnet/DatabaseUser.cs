@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
+    /// ```
+    /// </summary>
     public partial class DatabaseUser : Pulumi.CustomResource
     {
         /// <summary>

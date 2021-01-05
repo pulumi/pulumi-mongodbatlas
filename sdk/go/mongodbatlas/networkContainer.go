@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -95,6 +96,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Clusters can be imported using project ID and network peering container id, in the format `PROJECTID-CONTAINER-ID`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
+// ```
+//
+//  See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
 type NetworkContainer struct {
 	pulumi.CustomResourceState
 
@@ -268,4 +279,43 @@ type NetworkContainerArgs struct {
 
 func (NetworkContainerArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkContainerArgs)(nil)).Elem()
+}
+
+type NetworkContainerInput interface {
+	pulumi.Input
+
+	ToNetworkContainerOutput() NetworkContainerOutput
+	ToNetworkContainerOutputWithContext(ctx context.Context) NetworkContainerOutput
+}
+
+func (NetworkContainer) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkContainer)(nil)).Elem()
+}
+
+func (i NetworkContainer) ToNetworkContainerOutput() NetworkContainerOutput {
+	return i.ToNetworkContainerOutputWithContext(context.Background())
+}
+
+func (i NetworkContainer) ToNetworkContainerOutputWithContext(ctx context.Context) NetworkContainerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerOutput)
+}
+
+type NetworkContainerOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkContainerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkContainerOutput)(nil)).Elem()
+}
+
+func (o NetworkContainerOutput) ToNetworkContainerOutput() NetworkContainerOutput {
+	return o
+}
+
+func (o NetworkContainerOutput) ToNetworkContainerOutputWithContext(ctx context.Context) NetworkContainerOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkContainerOutput{})
 }

@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -115,6 +116,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
 type AlertConfiguration struct {
 	pulumi.CustomResourceState
 
@@ -248,4 +259,43 @@ type AlertConfigurationArgs struct {
 
 func (AlertConfigurationArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*alertConfigurationArgs)(nil)).Elem()
+}
+
+type AlertConfigurationInput interface {
+	pulumi.Input
+
+	ToAlertConfigurationOutput() AlertConfigurationOutput
+	ToAlertConfigurationOutputWithContext(ctx context.Context) AlertConfigurationOutput
+}
+
+func (AlertConfiguration) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfiguration)(nil)).Elem()
+}
+
+func (i AlertConfiguration) ToAlertConfigurationOutput() AlertConfigurationOutput {
+	return i.ToAlertConfigurationOutputWithContext(context.Background())
+}
+
+func (i AlertConfiguration) ToAlertConfigurationOutputWithContext(ctx context.Context) AlertConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationOutput)
+}
+
+type AlertConfigurationOutput struct {
+	*pulumi.OutputState
+}
+
+func (AlertConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfigurationOutput)(nil)).Elem()
+}
+
+func (o AlertConfigurationOutput) ToAlertConfigurationOutput() AlertConfigurationOutput {
+	return o
+}
+
+func (o AlertConfigurationOutput) ToAlertConfigurationOutputWithContext(ctx context.Context) AlertConfigurationOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AlertConfigurationOutput{})
 }

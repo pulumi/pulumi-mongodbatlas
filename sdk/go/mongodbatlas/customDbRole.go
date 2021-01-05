@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -156,6 +157,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
 type CustomDbRole struct {
 	pulumi.CustomResourceState
 
@@ -243,4 +254,43 @@ type CustomDbRoleArgs struct {
 
 func (CustomDbRoleArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*customDbRoleArgs)(nil)).Elem()
+}
+
+type CustomDbRoleInput interface {
+	pulumi.Input
+
+	ToCustomDbRoleOutput() CustomDbRoleOutput
+	ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput
+}
+
+func (CustomDbRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDbRole)(nil)).Elem()
+}
+
+func (i CustomDbRole) ToCustomDbRoleOutput() CustomDbRoleOutput {
+	return i.ToCustomDbRoleOutputWithContext(context.Background())
+}
+
+func (i CustomDbRole) ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRoleOutput)
+}
+
+type CustomDbRoleOutput struct {
+	*pulumi.OutputState
+}
+
+func (CustomDbRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDbRoleOutput)(nil)).Elem()
+}
+
+func (o CustomDbRoleOutput) ToCustomDbRoleOutput() CustomDbRoleOutput {
+	return o
+}
+
+func (o CustomDbRoleOutput) ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CustomDbRoleOutput{})
 }

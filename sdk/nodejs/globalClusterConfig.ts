@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -100,6 +99,16 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Database users can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-my-cluster
+ * ```
+ *
+ *  See detailed information for arguments and attributes[MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
  */
 export class GlobalClusterConfig extends pulumi.CustomResource {
     /**

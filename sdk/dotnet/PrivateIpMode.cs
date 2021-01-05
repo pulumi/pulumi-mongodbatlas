@@ -33,6 +33,16 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Project must be imported using project ID, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/privateIpMode:PrivateIpMode my_private_ip_mode 5d09d6a59ccf6445652a444a
+    /// ```
+    /// 
+    ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)
     /// </summary>
     public partial class PrivateIpMode : Pulumi.CustomResource
     {

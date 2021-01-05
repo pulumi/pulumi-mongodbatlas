@@ -31,7 +31,14 @@ class DatabaseUser(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a DatabaseUser resource with the given unique name, props, and options.
+        ## Import
+
+        Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth_database_name: Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
@@ -63,7 +70,7 @@ class DatabaseUser(pulumi.CustomResource):
             __props__['auth_database_name'] = auth_database_name
             __props__['aws_iam_type'] = aws_iam_type
             if database_name is not None:
-                warnings.warn("use auth_database_name instead", DeprecationWarning)
+                warnings.warn("""use auth_database_name instead""", DeprecationWarning)
                 pulumi.log.warn("database_name is deprecated: use auth_database_name instead")
             __props__['database_name'] = database_name
             __props__['labels'] = labels

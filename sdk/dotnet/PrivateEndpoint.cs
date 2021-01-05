@@ -40,6 +40,16 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Private Endpoint Connection can be imported using project ID and username, in the format `{project_id}-{private_link_id}`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/privateEndpoint:PrivateEndpoint test 1112222b3bf99403840e8934-3242342343112
+    /// ```
+    /// 
+    ///  See detailed information for arguments and attributes[MongoDB API Private Endpoint Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-private-endpoint-connection/)
     /// </summary>
     public partial class PrivateEndpoint : Pulumi.CustomResource
     {

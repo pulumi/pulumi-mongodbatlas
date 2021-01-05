@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -65,6 +66,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}-{private_link_id}-{interface_endpoint_id}`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343
+// ```
+//
+//  See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)
 type PrivateEndpointInterfaceLink struct {
 	pulumi.CustomResourceState
 
@@ -176,4 +187,43 @@ type PrivateEndpointInterfaceLinkArgs struct {
 
 func (PrivateEndpointInterfaceLinkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*privateEndpointInterfaceLinkArgs)(nil)).Elem()
+}
+
+type PrivateEndpointInterfaceLinkInput interface {
+	pulumi.Input
+
+	ToPrivateEndpointInterfaceLinkOutput() PrivateEndpointInterfaceLinkOutput
+	ToPrivateEndpointInterfaceLinkOutputWithContext(ctx context.Context) PrivateEndpointInterfaceLinkOutput
+}
+
+func (PrivateEndpointInterfaceLink) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateEndpointInterfaceLink)(nil)).Elem()
+}
+
+func (i PrivateEndpointInterfaceLink) ToPrivateEndpointInterfaceLinkOutput() PrivateEndpointInterfaceLinkOutput {
+	return i.ToPrivateEndpointInterfaceLinkOutputWithContext(context.Background())
+}
+
+func (i PrivateEndpointInterfaceLink) ToPrivateEndpointInterfaceLinkOutputWithContext(ctx context.Context) PrivateEndpointInterfaceLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointInterfaceLinkOutput)
+}
+
+type PrivateEndpointInterfaceLinkOutput struct {
+	*pulumi.OutputState
+}
+
+func (PrivateEndpointInterfaceLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateEndpointInterfaceLinkOutput)(nil)).Elem()
+}
+
+func (o PrivateEndpointInterfaceLinkOutput) ToPrivateEndpointInterfaceLinkOutput() PrivateEndpointInterfaceLinkOutput {
+	return o
+}
+
+func (o PrivateEndpointInterfaceLinkOutput) ToPrivateEndpointInterfaceLinkOutputWithContext(ctx context.Context) PrivateEndpointInterfaceLinkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(PrivateEndpointInterfaceLinkOutput{})
 }

@@ -247,6 +247,16 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
+    /// ```
+    /// 
+    ///  See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
     /// </summary>
     public partial class Cluster : Pulumi.CustomResource
     {

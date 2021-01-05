@@ -9,6 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Cloud Backup Snapshot Policy entries can be imported using project project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy test 5d0f1f73cf09a29120e173cf-MyClusterTest
+    /// ```
+    /// 
+    ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
+    /// </summary>
     public partial class CloudProviderSnapshotBackupPolicy : Pulumi.CustomResource
     {
         /// <summary>

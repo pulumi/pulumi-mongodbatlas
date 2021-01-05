@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -167,4 +168,43 @@ type EncryptionAtRestArgs struct {
 
 func (EncryptionAtRestArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*encryptionAtRestArgs)(nil)).Elem()
+}
+
+type EncryptionAtRestInput interface {
+	pulumi.Input
+
+	ToEncryptionAtRestOutput() EncryptionAtRestOutput
+	ToEncryptionAtRestOutputWithContext(ctx context.Context) EncryptionAtRestOutput
+}
+
+func (EncryptionAtRest) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRest)(nil)).Elem()
+}
+
+func (i EncryptionAtRest) ToEncryptionAtRestOutput() EncryptionAtRestOutput {
+	return i.ToEncryptionAtRestOutputWithContext(context.Background())
+}
+
+func (i EncryptionAtRest) ToEncryptionAtRestOutputWithContext(ctx context.Context) EncryptionAtRestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestOutput)
+}
+
+type EncryptionAtRestOutput struct {
+	*pulumi.OutputState
+}
+
+func (EncryptionAtRestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRestOutput)(nil)).Elem()
+}
+
+func (o EncryptionAtRestOutput) ToEncryptionAtRestOutput() EncryptionAtRestOutput {
+	return o
+}
+
+func (o EncryptionAtRestOutput) ToEncryptionAtRestOutputWithContext(ctx context.Context) EncryptionAtRestOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(EncryptionAtRestOutput{})
 }

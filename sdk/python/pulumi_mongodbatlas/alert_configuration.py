@@ -100,6 +100,16 @@ class AlertConfiguration(pulumi.CustomResource):
             ))
         ```
 
+        ## Import
+
+        Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.

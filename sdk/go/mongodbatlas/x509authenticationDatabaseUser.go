@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -92,6 +93,22 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// X.509 Certificates for a User can be imported using project ID and username, in the format `project_id-username`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
 type X509AuthenticationDatabaseUser struct {
 	pulumi.CustomResourceState
 
@@ -198,4 +215,43 @@ type X509AuthenticationDatabaseUserArgs struct {
 
 func (X509AuthenticationDatabaseUserArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*x509authenticationDatabaseUserArgs)(nil)).Elem()
+}
+
+type X509AuthenticationDatabaseUserInput interface {
+	pulumi.Input
+
+	ToX509AuthenticationDatabaseUserOutput() X509AuthenticationDatabaseUserOutput
+	ToX509AuthenticationDatabaseUserOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserOutput
+}
+
+func (X509AuthenticationDatabaseUser) ElementType() reflect.Type {
+	return reflect.TypeOf((*X509AuthenticationDatabaseUser)(nil)).Elem()
+}
+
+func (i X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutput() X509AuthenticationDatabaseUserOutput {
+	return i.ToX509AuthenticationDatabaseUserOutputWithContext(context.Background())
+}
+
+func (i X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserOutput)
+}
+
+type X509AuthenticationDatabaseUserOutput struct {
+	*pulumi.OutputState
+}
+
+func (X509AuthenticationDatabaseUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*X509AuthenticationDatabaseUserOutput)(nil)).Elem()
+}
+
+func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserOutput() X509AuthenticationDatabaseUserOutput {
+	return o
+}
+
+func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserOutput{})
 }

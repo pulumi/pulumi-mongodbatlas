@@ -35,7 +35,16 @@ class NetworkPeering(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a NetworkPeering resource with the given unique name, props, and options.
+        ## Import
+
+        Clusters can be imported using project ID and network peering peering id, in the format `PROJECTID-PEERID-PROVIDERNAME`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/networkPeering:NetworkPeering my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).

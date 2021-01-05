@@ -9,6 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Project must be imported using project ID, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
+    /// ```
+    /// 
+    ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+    /// </summary>
     public partial class Project : Pulumi.CustomResource
     {
         /// <summary>

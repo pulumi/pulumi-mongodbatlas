@@ -2,8 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -70,6 +69,22 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * X.509 Certificates for a User can be imported using project ID and username, in the format `project_id-username`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
+ * ```
+ *
+ *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
+ * ```
+ *
+ *  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
  */
 export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
     /**

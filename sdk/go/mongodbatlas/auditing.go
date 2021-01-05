@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -37,6 +38,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Auditing must be imported using auditing ID, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
 type Auditing struct {
 	pulumi.CustomResourceState
 
@@ -146,4 +157,43 @@ type AuditingArgs struct {
 
 func (AuditingArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*auditingArgs)(nil)).Elem()
+}
+
+type AuditingInput interface {
+	pulumi.Input
+
+	ToAuditingOutput() AuditingOutput
+	ToAuditingOutputWithContext(ctx context.Context) AuditingOutput
+}
+
+func (Auditing) ElementType() reflect.Type {
+	return reflect.TypeOf((*Auditing)(nil)).Elem()
+}
+
+func (i Auditing) ToAuditingOutput() AuditingOutput {
+	return i.ToAuditingOutputWithContext(context.Background())
+}
+
+func (i Auditing) ToAuditingOutputWithContext(ctx context.Context) AuditingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuditingOutput)
+}
+
+type AuditingOutput struct {
+	*pulumi.OutputState
+}
+
+func (AuditingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuditingOutput)(nil)).Elem()
+}
+
+func (o AuditingOutput) ToAuditingOutput() AuditingOutput {
+	return o
+}
+
+func (o AuditingOutput) ToAuditingOutputWithContext(ctx context.Context) AuditingOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(AuditingOutput{})
 }

@@ -214,6 +214,16 @@ class Cluster(pulumi.CustomResource):
             provider_region_name="US_EAST_1")
         ```
 
+        ## Import
+
+        Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_scaling_compute_enabled: Specifies whether cluster tier auto-scaling is enabled. The default is false.

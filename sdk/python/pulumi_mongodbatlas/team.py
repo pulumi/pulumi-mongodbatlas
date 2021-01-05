@@ -45,6 +45,16 @@ class Team(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        Teams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the team you want to create.

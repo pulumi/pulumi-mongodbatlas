@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -112,6 +113,16 @@ import (
 // ```
 //
 // > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
+//
+// ## Import
+//
+// IP Whitelist entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)
 type ProjectIpWhitelist struct {
 	pulumi.CustomResourceState
 
@@ -216,4 +227,43 @@ type ProjectIpWhitelistArgs struct {
 
 func (ProjectIpWhitelistArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectIpWhitelistArgs)(nil)).Elem()
+}
+
+type ProjectIpWhitelistInput interface {
+	pulumi.Input
+
+	ToProjectIpWhitelistOutput() ProjectIpWhitelistOutput
+	ToProjectIpWhitelistOutputWithContext(ctx context.Context) ProjectIpWhitelistOutput
+}
+
+func (ProjectIpWhitelist) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectIpWhitelist)(nil)).Elem()
+}
+
+func (i ProjectIpWhitelist) ToProjectIpWhitelistOutput() ProjectIpWhitelistOutput {
+	return i.ToProjectIpWhitelistOutputWithContext(context.Background())
+}
+
+func (i ProjectIpWhitelist) ToProjectIpWhitelistOutputWithContext(ctx context.Context) ProjectIpWhitelistOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpWhitelistOutput)
+}
+
+type ProjectIpWhitelistOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectIpWhitelistOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectIpWhitelistOutput)(nil)).Elem()
+}
+
+func (o ProjectIpWhitelistOutput) ToProjectIpWhitelistOutput() ProjectIpWhitelistOutput {
+	return o
+}
+
+func (o ProjectIpWhitelistOutput) ToProjectIpWhitelistOutputWithContext(ctx context.Context) ProjectIpWhitelistOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(ProjectIpWhitelistOutput{})
 }

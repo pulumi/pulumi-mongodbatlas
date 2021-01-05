@@ -4,12 +4,22 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## Import
+//
+// Cloud Backup Snapshot Policy entries can be imported using project project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy test 5d0f1f73cf09a29120e173cf-MyClusterTest
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
 type CloudProviderSnapshotBackupPolicy struct {
 	pulumi.CustomResourceState
 
@@ -157,4 +167,43 @@ type CloudProviderSnapshotBackupPolicyArgs struct {
 
 func (CloudProviderSnapshotBackupPolicyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudProviderSnapshotBackupPolicyArgs)(nil)).Elem()
+}
+
+type CloudProviderSnapshotBackupPolicyInput interface {
+	pulumi.Input
+
+	ToCloudProviderSnapshotBackupPolicyOutput() CloudProviderSnapshotBackupPolicyOutput
+	ToCloudProviderSnapshotBackupPolicyOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyOutput
+}
+
+func (CloudProviderSnapshotBackupPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotBackupPolicy)(nil)).Elem()
+}
+
+func (i CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyOutput() CloudProviderSnapshotBackupPolicyOutput {
+	return i.ToCloudProviderSnapshotBackupPolicyOutputWithContext(context.Background())
+}
+
+func (i CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotBackupPolicyOutput)
+}
+
+type CloudProviderSnapshotBackupPolicyOutput struct {
+	*pulumi.OutputState
+}
+
+func (CloudProviderSnapshotBackupPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotBackupPolicyOutput)(nil)).Elem()
+}
+
+func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPolicyOutput() CloudProviderSnapshotBackupPolicyOutput {
+	return o
+}
+
+func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPolicyOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyOutput{})
 }

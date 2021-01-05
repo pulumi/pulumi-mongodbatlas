@@ -115,6 +115,16 @@ class GlobalClusterConfig(pulumi.CustomResource):
             )])
         ```
 
+        ## Import
+
+        Database users can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-my-cluster
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigCustomZoneMappingArgs']]]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.

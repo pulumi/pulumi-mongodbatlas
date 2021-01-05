@@ -4,6 +4,7 @@
 package mongodbatlas
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -124,6 +125,16 @@ import (
 // 	})
 // }
 // ```
+//
+// ## Import
+//
+// Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
+// ```
+//
+//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
 type CloudProviderSnapshotRestoreJob struct {
 	pulumi.CustomResourceState
 
@@ -275,4 +286,43 @@ type CloudProviderSnapshotRestoreJobArgs struct {
 
 func (CloudProviderSnapshotRestoreJobArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudProviderSnapshotRestoreJobArgs)(nil)).Elem()
+}
+
+type CloudProviderSnapshotRestoreJobInput interface {
+	pulumi.Input
+
+	ToCloudProviderSnapshotRestoreJobOutput() CloudProviderSnapshotRestoreJobOutput
+	ToCloudProviderSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobOutput
+}
+
+func (CloudProviderSnapshotRestoreJob) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotRestoreJob)(nil)).Elem()
+}
+
+func (i CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutput() CloudProviderSnapshotRestoreJobOutput {
+	return i.ToCloudProviderSnapshotRestoreJobOutputWithContext(context.Background())
+}
+
+func (i CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobOutput)
+}
+
+type CloudProviderSnapshotRestoreJobOutput struct {
+	*pulumi.OutputState
+}
+
+func (CloudProviderSnapshotRestoreJobOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotRestoreJobOutput)(nil)).Elem()
+}
+
+func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJobOutput() CloudProviderSnapshotRestoreJobOutput {
+	return o
+}
+
+func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobOutput{})
 }
