@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to pulumi-terraform-bridge v2.13.2
-  * This adds support for import specific examples in documentation
+_(none)_
 
 ---
+
+## 1.3.1 (2021-01-05)
+* Upgrade to pulumi-terraform-bridge v2.13.2
+  * This adds support for import specific examples in documentation
 
 ## 1.3.0 (2020-10-26)
 * Upgrade to v0.7.0 of the MongoDbAtlas Terraform Provider
