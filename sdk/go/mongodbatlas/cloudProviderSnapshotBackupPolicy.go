@@ -47,17 +47,18 @@ type CloudProviderSnapshotBackupPolicy struct {
 // NewCloudProviderSnapshotBackupPolicy registers a new resource with the given unique name, arguments, and options.
 func NewCloudProviderSnapshotBackupPolicy(ctx *pulumi.Context,
 	name string, args *CloudProviderSnapshotBackupPolicyArgs, opts ...pulumi.ResourceOption) (*CloudProviderSnapshotBackupPolicy, error) {
-	if args == nil || args.ClusterName == nil {
-		return nil, errors.New("missing required argument 'ClusterName'")
-	}
-	if args == nil || args.Policies == nil {
-		return nil, errors.New("missing required argument 'Policies'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &CloudProviderSnapshotBackupPolicyArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClusterName == nil {
+		return nil, errors.New("invalid value for required argument 'ClusterName'")
+	}
+	if args.Policies == nil {
+		return nil, errors.New("invalid value for required argument 'Policies'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource CloudProviderSnapshotBackupPolicy
 	err := ctx.RegisterResource("mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy", name, args, &resource, opts...)

@@ -90,11 +90,12 @@ type EncryptionAtRest struct {
 // NewEncryptionAtRest registers a new resource with the given unique name, arguments, and options.
 func NewEncryptionAtRest(ctx *pulumi.Context,
 	name string, args *EncryptionAtRestArgs, opts ...pulumi.ResourceOption) (*EncryptionAtRest, error) {
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &EncryptionAtRestArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource EncryptionAtRest
 	err := ctx.RegisterResource("mongodbatlas:index/encryptionAtRest:EncryptionAtRest", name, args, &resource, opts...)

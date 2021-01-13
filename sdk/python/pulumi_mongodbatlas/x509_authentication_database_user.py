@@ -129,7 +129,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
 
             __props__['customer_x509_cas'] = customer_x509_cas
             __props__['months_until_expiration'] = months_until_expiration
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['username'] = username

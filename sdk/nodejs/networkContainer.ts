@@ -172,10 +172,10 @@ export class NetworkContainer extends pulumi.CustomResource {
             inputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as NetworkContainerArgs | undefined;
-            if (!args || args.atlasCidrBlock === undefined) {
+            if ((!args || args.atlasCidrBlock === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'atlasCidrBlock'");
             }
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["atlasCidrBlock"] = args ? args.atlasCidrBlock : undefined;

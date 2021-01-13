@@ -295,7 +295,7 @@ class Cluster(pulumi.CustomResource):
             __props__['name'] = name
             __props__['num_shards'] = num_shards
             __props__['pit_enabled'] = pit_enabled
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['provider_auto_scaling_compute_max_instance_size'] = provider_auto_scaling_compute_max_instance_size
@@ -304,10 +304,10 @@ class Cluster(pulumi.CustomResource):
             __props__['provider_disk_iops'] = provider_disk_iops
             __props__['provider_disk_type_name'] = provider_disk_type_name
             __props__['provider_encrypt_ebs_volume'] = provider_encrypt_ebs_volume
-            if provider_instance_size_name is None:
+            if provider_instance_size_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_instance_size_name'")
             __props__['provider_instance_size_name'] = provider_instance_size_name
-            if provider_name is None:
+            if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
             __props__['provider_name'] = provider_name
             __props__['provider_region_name'] = provider_region_name

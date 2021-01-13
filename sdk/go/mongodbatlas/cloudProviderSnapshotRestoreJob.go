@@ -167,20 +167,21 @@ type CloudProviderSnapshotRestoreJob struct {
 // NewCloudProviderSnapshotRestoreJob registers a new resource with the given unique name, arguments, and options.
 func NewCloudProviderSnapshotRestoreJob(ctx *pulumi.Context,
 	name string, args *CloudProviderSnapshotRestoreJobArgs, opts ...pulumi.ResourceOption) (*CloudProviderSnapshotRestoreJob, error) {
-	if args == nil || args.ClusterName == nil {
-		return nil, errors.New("missing required argument 'ClusterName'")
-	}
-	if args == nil || args.DeliveryType == nil {
-		return nil, errors.New("missing required argument 'DeliveryType'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
-	if args == nil || args.SnapshotId == nil {
-		return nil, errors.New("missing required argument 'SnapshotId'")
-	}
 	if args == nil {
-		args = &CloudProviderSnapshotRestoreJobArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClusterName == nil {
+		return nil, errors.New("invalid value for required argument 'ClusterName'")
+	}
+	if args.DeliveryType == nil {
+		return nil, errors.New("invalid value for required argument 'DeliveryType'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
+	}
+	if args.SnapshotId == nil {
+		return nil, errors.New("invalid value for required argument 'SnapshotId'")
 	}
 	var resource CloudProviderSnapshotRestoreJob
 	err := ctx.RegisterResource("mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob", name, args, &resource, opts...)

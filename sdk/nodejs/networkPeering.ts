@@ -169,13 +169,13 @@ export class NetworkPeering extends pulumi.CustomResource {
             inputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as NetworkPeeringArgs | undefined;
-            if (!args || args.containerId === undefined) {
+            if ((!args || args.containerId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'containerId'");
             }
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if (!args || args.providerName === undefined) {
+            if ((!args || args.providerName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'providerName'");
             }
             inputs["accepterRegionName"] = args ? args.accepterRegionName : undefined;

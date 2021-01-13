@@ -86,15 +86,15 @@ class NetworkPeering(pulumi.CustomResource):
             __props__['aws_account_id'] = aws_account_id
             __props__['azure_directory_id'] = azure_directory_id
             __props__['azure_subscription_id'] = azure_subscription_id
-            if container_id is None:
+            if container_id is None and not opts.urn:
                 raise TypeError("Missing required property 'container_id'")
             __props__['container_id'] = container_id
             __props__['gcp_project_id'] = gcp_project_id
             __props__['network_name'] = network_name
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
-            if provider_name is None:
+            if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
             __props__['provider_name'] = provider_name
             __props__['resource_group_name'] = resource_group_name

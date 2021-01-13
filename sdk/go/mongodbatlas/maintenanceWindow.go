@@ -99,11 +99,12 @@ type MaintenanceWindow struct {
 // NewMaintenanceWindow registers a new resource with the given unique name, arguments, and options.
 func NewMaintenanceWindow(ctx *pulumi.Context,
 	name string, args *MaintenanceWindowArgs, opts ...pulumi.ResourceOption) (*MaintenanceWindow, error) {
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &MaintenanceWindowArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource MaintenanceWindow
 	err := ctx.RegisterResource("mongodbatlas:index/maintenanceWindow:MaintenanceWindow", name, args, &resource, opts...)

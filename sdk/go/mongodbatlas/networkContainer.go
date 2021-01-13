@@ -144,14 +144,15 @@ type NetworkContainer struct {
 // NewNetworkContainer registers a new resource with the given unique name, arguments, and options.
 func NewNetworkContainer(ctx *pulumi.Context,
 	name string, args *NetworkContainerArgs, opts ...pulumi.ResourceOption) (*NetworkContainer, error) {
-	if args == nil || args.AtlasCidrBlock == nil {
-		return nil, errors.New("missing required argument 'AtlasCidrBlock'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &NetworkContainerArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.AtlasCidrBlock == nil {
+		return nil, errors.New("invalid value for required argument 'AtlasCidrBlock'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource NetworkContainer
 	err := ctx.RegisterResource("mongodbatlas:index/networkContainer:NetworkContainer", name, args, &resource, opts...)

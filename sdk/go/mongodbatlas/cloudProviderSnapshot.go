@@ -109,20 +109,21 @@ type CloudProviderSnapshot struct {
 // NewCloudProviderSnapshot registers a new resource with the given unique name, arguments, and options.
 func NewCloudProviderSnapshot(ctx *pulumi.Context,
 	name string, args *CloudProviderSnapshotArgs, opts ...pulumi.ResourceOption) (*CloudProviderSnapshot, error) {
-	if args == nil || args.ClusterName == nil {
-		return nil, errors.New("missing required argument 'ClusterName'")
-	}
-	if args == nil || args.Description == nil {
-		return nil, errors.New("missing required argument 'Description'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
-	if args == nil || args.RetentionInDays == nil {
-		return nil, errors.New("missing required argument 'RetentionInDays'")
-	}
 	if args == nil {
-		args = &CloudProviderSnapshotArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClusterName == nil {
+		return nil, errors.New("invalid value for required argument 'ClusterName'")
+	}
+	if args.Description == nil {
+		return nil, errors.New("invalid value for required argument 'Description'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
+	}
+	if args.RetentionInDays == nil {
+		return nil, errors.New("invalid value for required argument 'RetentionInDays'")
 	}
 	var resource CloudProviderSnapshot
 	err := ctx.RegisterResource("mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot", name, args, &resource, opts...)

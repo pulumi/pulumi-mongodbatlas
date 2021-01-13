@@ -123,13 +123,13 @@ export class PrivateEndpointInterfaceLink extends pulumi.CustomResource {
             inputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as PrivateEndpointInterfaceLinkArgs | undefined;
-            if (!args || args.interfaceEndpointId === undefined) {
+            if ((!args || args.interfaceEndpointId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'interfaceEndpointId'");
             }
-            if (!args || args.privateLinkId === undefined) {
+            if ((!args || args.privateLinkId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'privateLinkId'");
             }
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["interfaceEndpointId"] = args ? args.interfaceEndpointId : undefined;

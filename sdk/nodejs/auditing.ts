@@ -102,7 +102,7 @@ export class Auditing extends pulumi.CustomResource {
             inputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as AuditingArgs | undefined;
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["auditAuthorizationSuccess"] = args ? args.auditAuthorizationSuccess : undefined;

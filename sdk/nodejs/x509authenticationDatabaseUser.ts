@@ -159,7 +159,7 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
             inputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as X509AuthenticationDatabaseUserArgs | undefined;
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["customerX509Cas"] = args ? args.customerX509Cas : undefined;

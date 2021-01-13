@@ -98,17 +98,18 @@ type PrivateEndpoint struct {
 // NewPrivateEndpoint registers a new resource with the given unique name, arguments, and options.
 func NewPrivateEndpoint(ctx *pulumi.Context,
 	name string, args *PrivateEndpointArgs, opts ...pulumi.ResourceOption) (*PrivateEndpoint, error) {
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
-	if args == nil || args.ProviderName == nil {
-		return nil, errors.New("missing required argument 'ProviderName'")
-	}
-	if args == nil || args.Region == nil {
-		return nil, errors.New("missing required argument 'Region'")
-	}
 	if args == nil {
-		args = &PrivateEndpointArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
+	}
+	if args.ProviderName == nil {
+		return nil, errors.New("invalid value for required argument 'ProviderName'")
+	}
+	if args.Region == nil {
+		return nil, errors.New("invalid value for required argument 'Region'")
 	}
 	var resource PrivateEndpoint
 	err := ctx.RegisterResource("mongodbatlas:index/privateEndpoint:PrivateEndpoint", name, args, &resource, opts...)

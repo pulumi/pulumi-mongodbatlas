@@ -81,7 +81,7 @@ export class Project extends pulumi.CustomResource {
             inputs["teams"] = state ? state.teams : undefined;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
-            if (!args || args.orgId === undefined) {
+            if ((!args || args.orgId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'orgId'");
             }
             inputs["name"] = args ? args.name : undefined;

@@ -141,11 +141,12 @@ type ProjectIpWhitelist struct {
 // NewProjectIpWhitelist registers a new resource with the given unique name, arguments, and options.
 func NewProjectIpWhitelist(ctx *pulumi.Context,
 	name string, args *ProjectIpWhitelistArgs, opts ...pulumi.ResourceOption) (*ProjectIpWhitelist, error) {
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &ProjectIpWhitelistArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource ProjectIpWhitelist
 	err := ctx.RegisterResource("mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist", name, args, &resource, opts...)

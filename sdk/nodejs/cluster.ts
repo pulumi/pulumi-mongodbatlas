@@ -440,13 +440,13 @@ export class Cluster extends pulumi.CustomResource {
             inputs["stateName"] = state ? state.stateName : undefined;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if (!args || args.providerInstanceSizeName === undefined) {
+            if ((!args || args.providerInstanceSizeName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'providerInstanceSizeName'");
             }
-            if (!args || args.providerName === undefined) {
+            if ((!args || args.providerName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'providerName'");
             }
             inputs["advancedConfiguration"] = args ? args.advancedConfiguration : undefined;

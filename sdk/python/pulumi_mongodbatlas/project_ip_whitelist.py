@@ -74,7 +74,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             aws_security_group="sg-0026348ec11780bd1",
             comment="TestAcc for awsSecurityGroup",
-            opts=ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
+            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
         ```
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
@@ -118,7 +118,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
             __props__['cidr_block'] = cidr_block
             __props__['comment'] = comment
             __props__['ip_address'] = ip_address
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
         super(ProjectIpWhitelist, __self__).__init__(

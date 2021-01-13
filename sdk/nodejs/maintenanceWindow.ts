@@ -123,7 +123,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             inputs["startAsap"] = state ? state.startAsap : undefined;
         } else {
             const args = argsOrState as MaintenanceWindowArgs | undefined;
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["dayOfWeek"] = args ? args.dayOfWeek : undefined;

@@ -86,13 +86,13 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if interface_endpoint_id is None:
+            if interface_endpoint_id is None and not opts.urn:
                 raise TypeError("Missing required property 'interface_endpoint_id'")
             __props__['interface_endpoint_id'] = interface_endpoint_id
-            if private_link_id is None:
+            if private_link_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_link_id'")
             __props__['private_link_id'] = private_link_id
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['connection_status'] = None

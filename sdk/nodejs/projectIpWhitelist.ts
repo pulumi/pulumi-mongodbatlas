@@ -144,7 +144,7 @@ export class ProjectIpWhitelist extends pulumi.CustomResource {
             inputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as ProjectIpWhitelistArgs | undefined;
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["awsSecurityGroup"] = args ? args.awsSecurityGroup : undefined;

@@ -174,14 +174,15 @@ type GlobalClusterConfig struct {
 // NewGlobalClusterConfig registers a new resource with the given unique name, arguments, and options.
 func NewGlobalClusterConfig(ctx *pulumi.Context,
 	name string, args *GlobalClusterConfigArgs, opts ...pulumi.ResourceOption) (*GlobalClusterConfig, error) {
-	if args == nil || args.ClusterName == nil {
-		return nil, errors.New("missing required argument 'ClusterName'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &GlobalClusterConfigArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ClusterName == nil {
+		return nil, errors.New("invalid value for required argument 'ClusterName'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource GlobalClusterConfig
 	err := ctx.RegisterResource("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig", name, args, &resource, opts...)

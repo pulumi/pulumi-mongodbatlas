@@ -91,16 +91,16 @@ class CloudProviderSnapshot(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if cluster_name is None:
+            if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__['cluster_name'] = cluster_name
-            if description is None:
+            if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__['description'] = description
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
-            if retention_in_days is None:
+            if retention_in_days is None and not opts.urn:
                 raise TypeError("Missing required property 'retention_in_days'")
             __props__['retention_in_days'] = retention_in_days
             __props__['created_at'] = None

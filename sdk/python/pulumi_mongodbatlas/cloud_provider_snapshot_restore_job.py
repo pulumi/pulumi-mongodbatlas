@@ -66,7 +66,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
                 target_cluster_name="MyCluster",
                 target_project_id="5cf5a45a9ccf6400e60981b6",
             ),
-            opts=ResourceOptions(depends_on=["mongodbatlas_cloud_provider_snapshot.test"]))
+            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_cloud_provider_snapshot.test"]))
         ```
         ### Example download delivery type.
 
@@ -131,16 +131,16 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if cluster_name is None:
+            if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__['cluster_name'] = cluster_name
-            if delivery_type is None:
+            if delivery_type is None and not opts.urn:
                 raise TypeError("Missing required property 'delivery_type'")
             __props__['delivery_type'] = delivery_type
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
-            if snapshot_id is None:
+            if snapshot_id is None and not opts.urn:
                 raise TypeError("Missing required property 'snapshot_id'")
             __props__['snapshot_id'] = snapshot_id
             __props__['cancelled'] = None

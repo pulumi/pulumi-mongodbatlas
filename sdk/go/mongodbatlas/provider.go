@@ -24,6 +24,7 @@ func NewProvider(ctx *pulumi.Context,
 	if args == nil {
 		args = &ProviderArgs{}
 	}
+
 	if args.PrivateKey == nil {
 		args.PrivateKey = pulumi.StringPtr(getEnvOrDefault("", nil, "MONGODB_ATLAS_PRIVATE_KEY").(string))
 	}

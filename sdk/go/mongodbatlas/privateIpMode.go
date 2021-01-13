@@ -60,14 +60,15 @@ type PrivateIpMode struct {
 // NewPrivateIpMode registers a new resource with the given unique name, arguments, and options.
 func NewPrivateIpMode(ctx *pulumi.Context,
 	name string, args *PrivateIpModeArgs, opts ...pulumi.ResourceOption) (*PrivateIpMode, error) {
-	if args == nil || args.Enabled == nil {
-		return nil, errors.New("missing required argument 'Enabled'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &PrivateIpModeArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Enabled == nil {
+		return nil, errors.New("invalid value for required argument 'Enabled'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource PrivateIpMode
 	err := ctx.RegisterResource("mongodbatlas:index/privateIpMode:PrivateIpMode", name, args, &resource, opts...)

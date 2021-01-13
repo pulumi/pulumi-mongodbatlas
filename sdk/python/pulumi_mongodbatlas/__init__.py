@@ -59,3 +59,101 @@ from . import outputs
 from . import (
     config,
 )
+
+def _register_module():
+    import pulumi
+    from . import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "mongodbatlas:index/alertConfiguration:AlertConfiguration":
+                return AlertConfiguration(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/auditing:Auditing":
+                return Auditing(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot":
+                return CloudProviderSnapshot(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy":
+                return CloudProviderSnapshotBackupPolicy(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob":
+                return CloudProviderSnapshotRestoreJob(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/cluster:Cluster":
+                return Cluster(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/customDbRole:CustomDbRole":
+                return CustomDbRole(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/databaseUser:DatabaseUser":
+                return DatabaseUser(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
+                return EncryptionAtRest(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
+                return GlobalClusterConfig(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
+                return MaintenanceWindow(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/networkContainer:NetworkContainer":
+                return NetworkContainer(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/networkPeering:NetworkPeering":
+                return NetworkPeering(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/privateEndpoint:PrivateEndpoint":
+                return PrivateEndpoint(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink":
+                return PrivateEndpointInterfaceLink(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/privateIpMode:PrivateIpMode":
+                return PrivateIpMode(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/project:Project":
+                return Project(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist":
+                return ProjectIpWhitelist(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/team:Team":
+                return Team(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/teams:Teams":
+                return Teams(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser":
+                return X509AuthenticationDatabaseUser(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/alertConfiguration", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/auditing", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderSnapshot", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderSnapshotBackupPolicy", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderSnapshotRestoreJob", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/cluster", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/customDbRole", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/databaseUser", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/encryptionAtRest", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/globalClusterConfig", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/maintenanceWindow", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/networkContainer", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/networkPeering", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/privateEndpoint", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/privateEndpointInterfaceLink", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/privateIpMode", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/project", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/projectIpWhitelist", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/team", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/teams", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/x509AuthenticationDatabaseUser", _module_instance)
+
+
+    class Package(pulumi.runtime.ResourcePackage):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Package._version
+
+        def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+            if typ != "pulumi:providers:mongodbatlas":
+                raise Exception(f"unknown provider type {typ}")
+            return Provider(name, pulumi.ResourceOptions(urn=urn))
+
+
+    pulumi.runtime.register_resource_package("mongodbatlas", Package())
+
+_register_module()

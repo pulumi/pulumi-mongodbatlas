@@ -174,13 +174,13 @@ export class AlertConfiguration extends pulumi.CustomResource {
             inputs["updated"] = state ? state.updated : undefined;
         } else {
             const args = argsOrState as AlertConfigurationArgs | undefined;
-            if (!args || args.eventType === undefined) {
+            if ((!args || args.eventType === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'eventType'");
             }
-            if (!args || args.notifications === undefined) {
+            if ((!args || args.notifications === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'notifications'");
             }
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["enabled"] = args ? args.enabled : undefined;

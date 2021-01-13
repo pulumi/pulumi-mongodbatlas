@@ -96,7 +96,7 @@ class MaintenanceWindow(pulumi.CustomResource):
             __props__['defer'] = defer
             __props__['hour_of_day'] = hour_of_day
             __props__['number_of_deferrals'] = number_of_deferrals
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['start_asap'] = None

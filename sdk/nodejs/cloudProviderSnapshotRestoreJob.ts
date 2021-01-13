@@ -198,16 +198,16 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
             inputs["timestamp"] = state ? state.timestamp : undefined;
         } else {
             const args = argsOrState as CloudProviderSnapshotRestoreJobArgs | undefined;
-            if (!args || args.clusterName === undefined) {
+            if ((!args || args.clusterName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if (!args || args.deliveryType === undefined) {
+            if ((!args || args.deliveryType === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'deliveryType'");
             }
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if (!args || args.snapshotId === undefined) {
+            if ((!args || args.snapshotId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'snapshotId'");
             }
             inputs["clusterName"] = args ? args.clusterName : undefined;
