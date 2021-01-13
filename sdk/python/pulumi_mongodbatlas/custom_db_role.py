@@ -154,10 +154,10 @@ class CustomDbRole(pulumi.CustomResource):
 
             __props__['actions'] = actions
             __props__['inherited_roles'] = inherited_roles
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
-            if role_name is None:
+            if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__['role_name'] = role_name
         super(CustomDbRole, __self__).__init__(

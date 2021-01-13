@@ -69,11 +69,12 @@ type Auditing struct {
 // NewAuditing registers a new resource with the given unique name, arguments, and options.
 func NewAuditing(ctx *pulumi.Context,
 	name string, args *AuditingArgs, opts ...pulumi.ResourceOption) (*Auditing, error) {
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &AuditingArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource Auditing
 	err := ctx.RegisterResource("mongodbatlas:index/auditing:Auditing", name, args, &resource, opts...)

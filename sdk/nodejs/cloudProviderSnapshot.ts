@@ -160,16 +160,16 @@ export class CloudProviderSnapshot extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as CloudProviderSnapshotArgs | undefined;
-            if (!args || args.clusterName === undefined) {
+            if ((!args || args.clusterName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if (!args || args.description === undefined) {
+            if ((!args || args.description === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'description'");
             }
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if (!args || args.retentionInDays === undefined) {
+            if ((!args || args.retentionInDays === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'retentionInDays'");
             }
             inputs["clusterName"] = args ? args.clusterName : undefined;

@@ -23,14 +23,15 @@ type Teams struct {
 // NewTeams registers a new resource with the given unique name, arguments, and options.
 func NewTeams(ctx *pulumi.Context,
 	name string, args *TeamsArgs, opts ...pulumi.ResourceOption) (*Teams, error) {
-	if args == nil || args.OrgId == nil {
-		return nil, errors.New("missing required argument 'OrgId'")
-	}
-	if args == nil || args.Usernames == nil {
-		return nil, errors.New("missing required argument 'Usernames'")
-	}
 	if args == nil {
-		args = &TeamsArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.OrgId == nil {
+		return nil, errors.New("invalid value for required argument 'OrgId'")
+	}
+	if args.Usernames == nil {
+		return nil, errors.New("invalid value for required argument 'Usernames'")
 	}
 	var resource Teams
 	err := ctx.RegisterResource("mongodbatlas:index/teams:Teams", name, args, &resource, opts...)

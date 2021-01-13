@@ -66,13 +66,13 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if cluster_name is None:
+            if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__['cluster_name'] = cluster_name
-            if policies is None:
+            if policies is None and not opts.urn:
                 raise TypeError("Missing required property 'policies'")
             __props__['policies'] = policies
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['reference_hour_of_day'] = reference_hour_of_day

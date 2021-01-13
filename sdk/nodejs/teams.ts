@@ -55,10 +55,10 @@ export class Teams extends pulumi.CustomResource {
             inputs["usernames"] = state ? state.usernames : undefined;
         } else {
             const args = argsOrState as TeamsArgs | undefined;
-            if (!args || args.orgId === undefined) {
+            if ((!args || args.orgId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'orgId'");
             }
-            if (!args || args.usernames === undefined) {
+            if ((!args || args.usernames === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'usernames'");
             }
             inputs["name"] = args ? args.name : undefined;

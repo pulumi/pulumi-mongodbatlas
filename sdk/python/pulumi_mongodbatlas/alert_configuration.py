@@ -135,15 +135,15 @@ class AlertConfiguration(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['enabled'] = enabled
-            if event_type is None:
+            if event_type is None and not opts.urn:
                 raise TypeError("Missing required property 'event_type'")
             __props__['event_type'] = event_type
             __props__['matchers'] = matchers
             __props__['metric_threshold'] = metric_threshold
-            if notifications is None:
+            if notifications is None and not opts.urn:
                 raise TypeError("Missing required property 'notifications'")
             __props__['notifications'] = notifications
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['threshold'] = threshold

@@ -101,7 +101,7 @@ class EncryptionAtRest(pulumi.CustomResource):
             __props__['aws_kms'] = aws_kms
             __props__['azure_key_vault'] = azure_key_vault
             __props__['google_cloud_kms'] = google_cloud_kms
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
         super(EncryptionAtRest, __self__).__init__(

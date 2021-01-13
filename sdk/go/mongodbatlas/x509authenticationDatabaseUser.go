@@ -129,11 +129,12 @@ type X509AuthenticationDatabaseUser struct {
 // NewX509AuthenticationDatabaseUser registers a new resource with the given unique name, arguments, and options.
 func NewX509AuthenticationDatabaseUser(ctx *pulumi.Context,
 	name string, args *X509AuthenticationDatabaseUserArgs, opts ...pulumi.ResourceOption) (*X509AuthenticationDatabaseUser, error) {
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &X509AuthenticationDatabaseUserArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource X509AuthenticationDatabaseUser
 	err := ctx.RegisterResource("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, args, &resource, opts...)

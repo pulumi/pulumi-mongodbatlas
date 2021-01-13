@@ -172,10 +172,10 @@ export class CustomDbRole extends pulumi.CustomResource {
             inputs["roleName"] = state ? state.roleName : undefined;
         } else {
             const args = argsOrState as CustomDbRoleArgs | undefined;
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if (!args || args.roleName === undefined) {
+            if ((!args || args.roleName === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'roleName'");
             }
             inputs["actions"] = args ? args.actions : undefined;

@@ -181,14 +181,15 @@ type CustomDbRole struct {
 // NewCustomDbRole registers a new resource with the given unique name, arguments, and options.
 func NewCustomDbRole(ctx *pulumi.Context,
 	name string, args *CustomDbRoleArgs, opts ...pulumi.ResourceOption) (*CustomDbRole, error) {
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
-	if args == nil || args.RoleName == nil {
-		return nil, errors.New("missing required argument 'RoleName'")
-	}
 	if args == nil {
-		args = &CustomDbRoleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
+	}
+	if args.RoleName == nil {
+		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
 	var resource CustomDbRole
 	err := ctx.RegisterResource("mongodbatlas:index/customDbRole:CustomDbRole", name, args, &resource, opts...)

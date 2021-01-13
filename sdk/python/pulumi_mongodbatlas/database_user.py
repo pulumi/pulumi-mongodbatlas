@@ -69,18 +69,18 @@ class DatabaseUser(pulumi.CustomResource):
 
             __props__['auth_database_name'] = auth_database_name
             __props__['aws_iam_type'] = aws_iam_type
-            if database_name is not None:
+            if database_name is not None and not opts.urn:
                 warnings.warn("""use auth_database_name instead""", DeprecationWarning)
                 pulumi.log.warn("database_name is deprecated: use auth_database_name instead")
             __props__['database_name'] = database_name
             __props__['labels'] = labels
             __props__['password'] = password
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['roles'] = roles
             __props__['scopes'] = scopes
-            if username is None:
+            if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__['username'] = username
             __props__['x509_type'] = x509_type

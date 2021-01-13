@@ -97,17 +97,18 @@ type PrivateEndpointInterfaceLink struct {
 // NewPrivateEndpointInterfaceLink registers a new resource with the given unique name, arguments, and options.
 func NewPrivateEndpointInterfaceLink(ctx *pulumi.Context,
 	name string, args *PrivateEndpointInterfaceLinkArgs, opts ...pulumi.ResourceOption) (*PrivateEndpointInterfaceLink, error) {
-	if args == nil || args.InterfaceEndpointId == nil {
-		return nil, errors.New("missing required argument 'InterfaceEndpointId'")
-	}
-	if args == nil || args.PrivateLinkId == nil {
-		return nil, errors.New("missing required argument 'PrivateLinkId'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &PrivateEndpointInterfaceLinkArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.InterfaceEndpointId == nil {
+		return nil, errors.New("invalid value for required argument 'InterfaceEndpointId'")
+	}
+	if args.PrivateLinkId == nil {
+		return nil, errors.New("invalid value for required argument 'PrivateLinkId'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource PrivateEndpointInterfaceLink
 	err := ctx.RegisterResource("mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink", name, args, &resource, opts...)

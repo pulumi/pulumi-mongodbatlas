@@ -151,17 +151,18 @@ type AlertConfiguration struct {
 // NewAlertConfiguration registers a new resource with the given unique name, arguments, and options.
 func NewAlertConfiguration(ctx *pulumi.Context,
 	name string, args *AlertConfigurationArgs, opts ...pulumi.ResourceOption) (*AlertConfiguration, error) {
-	if args == nil || args.EventType == nil {
-		return nil, errors.New("missing required argument 'EventType'")
-	}
-	if args == nil || args.Notifications == nil {
-		return nil, errors.New("missing required argument 'Notifications'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
 	if args == nil {
-		args = &AlertConfigurationArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.EventType == nil {
+		return nil, errors.New("invalid value for required argument 'EventType'")
+	}
+	if args.Notifications == nil {
+		return nil, errors.New("invalid value for required argument 'Notifications'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
 	var resource AlertConfiguration
 	err := ctx.RegisterResource("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, args, &resource, opts...)

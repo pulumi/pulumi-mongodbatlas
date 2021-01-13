@@ -46,14 +46,15 @@ type DatabaseUser struct {
 // NewDatabaseUser registers a new resource with the given unique name, arguments, and options.
 func NewDatabaseUser(ctx *pulumi.Context,
 	name string, args *DatabaseUserArgs, opts ...pulumi.ResourceOption) (*DatabaseUser, error) {
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
-	if args == nil || args.Username == nil {
-		return nil, errors.New("missing required argument 'Username'")
-	}
 	if args == nil {
-		args = &DatabaseUserArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
+	}
+	if args.Username == nil {
+		return nil, errors.New("invalid value for required argument 'Username'")
 	}
 	var resource DatabaseUser
 	err := ctx.RegisterResource("mongodbatlas:index/databaseUser:DatabaseUser", name, args, &resource, opts...)

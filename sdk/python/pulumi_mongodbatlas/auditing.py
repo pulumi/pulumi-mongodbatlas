@@ -75,7 +75,7 @@ class Auditing(pulumi.CustomResource):
             __props__['audit_authorization_success'] = audit_authorization_success
             __props__['audit_filter'] = audit_filter
             __props__['enabled'] = enabled
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['configuration_type'] = None

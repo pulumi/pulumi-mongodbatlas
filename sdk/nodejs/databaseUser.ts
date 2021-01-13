@@ -101,10 +101,10 @@ export class DatabaseUser extends pulumi.CustomResource {
             inputs["x509Type"] = state ? state.x509Type : undefined;
         } else {
             const args = argsOrState as DatabaseUserArgs | undefined;
-            if (!args || args.projectId === undefined) {
+            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if (!args || args.username === undefined) {
+            if ((!args || args.username === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'username'");
             }
             inputs["authDatabaseName"] = args ? args.authDatabaseName : undefined;

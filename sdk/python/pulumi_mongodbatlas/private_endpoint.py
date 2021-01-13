@@ -95,13 +95,13 @@ class PrivateEndpoint(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
-            if provider_name is None:
+            if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
             __props__['provider_name'] = provider_name
-            if region is None:
+            if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__['region'] = region
             __props__['endpoint_service_name'] = None

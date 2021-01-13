@@ -109,10 +109,10 @@ class NetworkContainer(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if atlas_cidr_block is None:
+            if atlas_cidr_block is None and not opts.urn:
                 raise TypeError("Missing required property 'atlas_cidr_block'")
             __props__['atlas_cidr_block'] = atlas_cidr_block
-            if project_id is None:
+            if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
             __props__['provider_name'] = provider_name

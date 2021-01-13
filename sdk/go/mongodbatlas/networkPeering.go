@@ -73,17 +73,18 @@ type NetworkPeering struct {
 // NewNetworkPeering registers a new resource with the given unique name, arguments, and options.
 func NewNetworkPeering(ctx *pulumi.Context,
 	name string, args *NetworkPeeringArgs, opts ...pulumi.ResourceOption) (*NetworkPeering, error) {
-	if args == nil || args.ContainerId == nil {
-		return nil, errors.New("missing required argument 'ContainerId'")
-	}
-	if args == nil || args.ProjectId == nil {
-		return nil, errors.New("missing required argument 'ProjectId'")
-	}
-	if args == nil || args.ProviderName == nil {
-		return nil, errors.New("missing required argument 'ProviderName'")
-	}
 	if args == nil {
-		args = &NetworkPeeringArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.ContainerId == nil {
+		return nil, errors.New("invalid value for required argument 'ContainerId'")
+	}
+	if args.ProjectId == nil {
+		return nil, errors.New("invalid value for required argument 'ProjectId'")
+	}
+	if args.ProviderName == nil {
+		return nil, errors.New("invalid value for required argument 'ProviderName'")
 	}
 	var resource NetworkPeering
 	err := ctx.RegisterResource("mongodbatlas:index/networkPeering:NetworkPeering", name, args, &resource, opts...)
