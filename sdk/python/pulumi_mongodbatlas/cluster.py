@@ -70,18 +70,25 @@ class Cluster(pulumi.CustomResource):
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             auto_scaling_disk_gb_enabled=True,
+            cluster_type="REPLICASET",
             disk_size_gb=100,
             mongo_db_major_version="4.2",
-            num_shards=1,
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
             provider_disk_iops=300,
             provider_encrypt_ebs_volume=True,
             provider_instance_size_name="M40",
             provider_name="AWS",
-            provider_region_name="US_EAST_1",
             provider_volume_type="STANDARD",
-            replication_factor=3)
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST_1",
+                )],
+            )])
         ```
         ### Example Azure cluster.
 
@@ -91,15 +98,22 @@ class Cluster(pulumi.CustomResource):
 
         test = mongodbatlas.Cluster("test",
             auto_scaling_disk_gb_enabled=True,
+            cluster_type="REPLICASET",
             mongo_db_major_version="4.2",
-            num_shards=1,
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
             provider_disk_type_name="P6",
             provider_instance_size_name="M30",
             provider_name="AZURE",
-            provider_region_name="US_EAST_2",
-            replication_factor=3)
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST_1",
+                )],
+            )])
         ```
         ### Example GCP cluster
 
@@ -109,15 +123,22 @@ class Cluster(pulumi.CustomResource):
 
         test = mongodbatlas.Cluster("test",
             auto_scaling_disk_gb_enabled=True,
+            cluster_type="REPLICASET",
             disk_size_gb=40,
             mongo_db_major_version="4.2",
-            num_shards=1,
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
             provider_instance_size_name="M30",
             provider_name="GCP",
-            provider_region_name="US_EAST_4",
-            replication_factor=3)
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST_1",
+                )],
+            )])
         ```
         ### Example Multi Region cluster
 
@@ -253,7 +274,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
         :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
-        :param pulumi.Input[bool] provider_encrypt_ebs_volume: If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        :param pulumi.Input[bool] provider_encrypt_ebs_volume: The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
                **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
@@ -416,7 +437,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
         :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
-        :param pulumi.Input[bool] provider_encrypt_ebs_volume: If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        :param pulumi.Input[bool] provider_encrypt_ebs_volume: The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
                **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
@@ -716,7 +737,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="providerEncryptEbsVolume")
     def provider_encrypt_ebs_volume(self) -> pulumi.Output[bool]:
         """
-        If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 

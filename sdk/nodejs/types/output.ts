@@ -197,6 +197,11 @@ export interface AlertConfigurationThreshold {
     units?: string;
 }
 
+export interface CloudProviderAccessFeatureUsage {
+    featureId: string;
+    featureType: string;
+}
+
 export interface CloudProviderSnapshotBackupPolicyPolicy {
     id: string;
     policyItems: outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem[];
@@ -432,11 +437,11 @@ export interface DatabaseUserScope {
     /**
      * Name of the cluster or Atlas Data Lake that the user has access to.
      */
-    name: string;
+    name?: string;
     /**
      * Type of resource that the user has access to. Valid values are: `CLUSTER` and `DATA_LAKE`
      */
-    type: string;
+    type?: string;
 }
 
 export interface EncryptionAtRestAwsKms {
@@ -456,6 +461,10 @@ export interface EncryptionAtRestAwsKms {
      * The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
      */
     region: string;
+    /**
+     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+     */
+    roleId?: string;
     /**
      * The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
      */
@@ -725,6 +734,46 @@ export interface GetAlertConfigurationThreshold {
      * - `DAYS`
      */
     units: string;
+}
+
+export interface GetCloudProviderAccessAwsIamRole {
+    /**
+     * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+     */
+    atlasAssumedRoleExternalId: string;
+    /**
+     * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+     */
+    atlasAwsAccountArn: string;
+    /**
+     * Date on which this role was authorized.
+     */
+    authorizedDate: string;
+    /**
+     * Date on which this role was created.
+     */
+    createdDate: string;
+    /**
+     * Atlas features this AWS IAM role is linked to.
+     */
+    featureUsages: outputs.GetCloudProviderAccessAwsIamRoleFeatureUsage[];
+    /**
+     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
+     */
+    iamAssumedRoleArn: string;
+    /**
+     * Name of the cloud provider. Currently limited to AWS.
+     */
+    providerName: string;
+    /**
+     * Unique ID of this role.
+     */
+    roleId: string;
+}
+
+export interface GetCloudProviderAccessAwsIamRoleFeatureUsage {
+    featureId: string;
+    featureType: string;
 }
 
 export interface GetCloudProviderSnapshotBackupPolicyPolicy {
@@ -1066,7 +1115,7 @@ export interface GetClustersResult {
      */
     providerVolumeType: string;
     /**
-     * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+     * (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
     replicationFactor: number;
     /**
@@ -1533,6 +1582,76 @@ export interface GetProjectsResult {
 export interface GetProjectsResultTeam {
     roleNames: string[];
     teamId: string;
+}
+
+export interface GetThirdPartyIntegrationsResult {
+    /**
+     * Unique identifier of your New Relic account.
+     */
+    accountId: string;
+    /**
+     * Your API Key.
+     */
+    apiKey: string;
+    /**
+     * Your API Token.
+     */
+    apiToken: string;
+    channelName: string;
+    /**
+     * Your Flowdock Flow name.
+     */
+    flowName: string;
+    /**
+     * Your License Key.
+     */
+    licenseKey: string;
+    /**
+     * Your Flowdock organization name.
+     * * `WEBHOOK`
+     */
+    orgName: string;
+    /**
+     * The unique ID for the project to get all Third-Party service integrations
+     */
+    projectId: string;
+    /**
+     * Your Insights Query Key.
+     * * `OPS_GENIE`
+     */
+    readToken: string;
+    /**
+     * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+     * * `VICTOR_OPS`
+     */
+    region: string;
+    /**
+     * An optional field for your Routing Key.
+     * * `FLOWDOCK`
+     */
+    routingKey: string;
+    /**
+     * An optional field for your webhook secret.
+     */
+    secret: string;
+    /**
+     * Your Service Key.
+     * * `DATADOG`
+     */
+    serviceKey: string;
+    teamName: string;
+    /**
+     * (Required) Thirt-Party service integration type.
+     */
+    type: string;
+    /**
+     * Your webhook URL.
+     */
+    url: string;
+    /**
+     * Your Insights Insert Key.
+     */
+    writeToken: string;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {

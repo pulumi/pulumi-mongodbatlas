@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 // Export members:
 export * from "./alertConfiguration";
 export * from "./auditing";
+export * from "./cloudProviderAccess";
 export * from "./cloudProviderSnapshot";
 export * from "./cloudProviderSnapshotBackupPolicy";
 export * from "./cloudProviderSnapshotRestoreJob";
@@ -17,6 +18,7 @@ export * from "./encryptionAtRest";
 export * from "./get509AuthenticationDatabaseUser";
 export * from "./getAlertConfiguration";
 export * from "./getAuditing";
+export * from "./getCloudProviderAccess";
 export * from "./getCloudProviderSnapshot";
 export * from "./getCloudProviderSnapshotBackupPolicy";
 export * from "./getCloudProviderSnapshotRestoreJob";
@@ -36,11 +38,16 @@ export * from "./getNetworkPeering";
 export * from "./getNetworkPeerings";
 export * from "./getPrivateEndpoint";
 export * from "./getPrivateEndpointInterfaceLink";
+export * from "./getPrivateLinkEndpoint";
+export * from "./getPrivateLinkEndpointService";
 export * from "./getProject";
+export * from "./getProjectIpAccessList";
 export * from "./getProjectIpWhitelist";
 export * from "./getProjects";
 export * from "./getTeam";
 export * from "./getTeams";
+export * from "./getThirdPartyIntegration";
+export * from "./getThirdPartyIntegrations";
 export * from "./globalClusterConfig";
 export * from "./maintenanceWindow";
 export * from "./networkContainer";
@@ -48,11 +55,15 @@ export * from "./networkPeering";
 export * from "./privateEndpoint";
 export * from "./privateEndpointInterfaceLink";
 export * from "./privateIpMode";
+export * from "./privateLinkEndpoint";
+export * from "./privateLinkEndpointService";
 export * from "./project";
+export * from "./projectIpAccessList";
 export * from "./projectIpWhitelist";
 export * from "./provider";
 export * from "./team";
 export * from "./teams";
+export * from "./thirdPartyIntegration";
 export * from "./x509authenticationDatabaseUser";
 
 // Export sub-modules:
@@ -67,6 +78,7 @@ export {
 // Import resources to register:
 import { AlertConfiguration } from "./alertConfiguration";
 import { Auditing } from "./auditing";
+import { CloudProviderAccess } from "./cloudProviderAccess";
 import { CloudProviderSnapshot } from "./cloudProviderSnapshot";
 import { CloudProviderSnapshotBackupPolicy } from "./cloudProviderSnapshotBackupPolicy";
 import { CloudProviderSnapshotRestoreJob } from "./cloudProviderSnapshotRestoreJob";
@@ -81,10 +93,14 @@ import { NetworkPeering } from "./networkPeering";
 import { PrivateEndpoint } from "./privateEndpoint";
 import { PrivateEndpointInterfaceLink } from "./privateEndpointInterfaceLink";
 import { PrivateIpMode } from "./privateIpMode";
+import { PrivateLinkEndpoint } from "./privateLinkEndpoint";
+import { PrivateLinkEndpointService } from "./privateLinkEndpointService";
 import { Project } from "./project";
+import { ProjectIpAccessList } from "./projectIpAccessList";
 import { ProjectIpWhitelist } from "./projectIpWhitelist";
 import { Team } from "./team";
 import { Teams } from "./teams";
+import { ThirdPartyIntegration } from "./thirdPartyIntegration";
 import { X509AuthenticationDatabaseUser } from "./x509authenticationDatabaseUser";
 
 const _module = {
@@ -95,6 +111,8 @@ const _module = {
                 return new AlertConfiguration(name, <any>undefined, { urn })
             case "mongodbatlas:index/auditing:Auditing":
                 return new Auditing(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
+                return new CloudProviderAccess(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot":
                 return new CloudProviderSnapshot(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy":
@@ -123,14 +141,22 @@ const _module = {
                 return new PrivateEndpointInterfaceLink(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateIpMode:PrivateIpMode":
                 return new PrivateIpMode(name, <any>undefined, { urn })
+            case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
+                return new PrivateLinkEndpoint(name, <any>undefined, { urn })
+            case "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
+                return new PrivateLinkEndpointService(name, <any>undefined, { urn })
             case "mongodbatlas:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
+            case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
+                return new ProjectIpAccessList(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist":
                 return new ProjectIpWhitelist(name, <any>undefined, { urn })
             case "mongodbatlas:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
             case "mongodbatlas:index/teams:Teams":
                 return new Teams(name, <any>undefined, { urn })
+            case "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration":
+                return new ThirdPartyIntegration(name, <any>undefined, { urn })
             case "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser":
                 return new X509AuthenticationDatabaseUser(name, <any>undefined, { urn })
             default:
@@ -140,6 +166,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/alertConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/auditing", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccess", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderSnapshot", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderSnapshotBackupPolicy", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderSnapshotRestoreJob", _module)
@@ -154,10 +181,14 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _m
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpointInterfaceLink", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateIpMode", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpoint", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpointService", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpWhitelist", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/teams", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/thirdPartyIntegration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/x509AuthenticationDatabaseUser", _module)
 
 import { Provider } from "./provider";

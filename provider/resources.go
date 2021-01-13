@@ -103,6 +103,7 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_project":                 {Tok: makeResource(mainMod, "Project")},
 			"mongodbatlas_cluster":                 {Tok: makeResource(mainMod, "Cluster")},
 			"mongodbatlas_cloud_provider_snapshot": {Tok: makeResource(mainMod, "CloudProviderSnapshot")},
+			"mongodbatlas_cloud_provider_access":   {Tok: makeResource(mainMod, "CloudProviderAccess")},
 			"mongodbatlas_network_container":       {Tok: makeResource(mainMod, "NetworkContainer")},
 			"mongodbatlas_cloud_provider_snapshot_restore_job": {
 				Tok: makeResource(mainMod, "CloudProviderSnapshotRestoreJob"),
@@ -126,6 +127,10 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_cloud_provider_snapshot_backup_policy": {
 				Tok: makeResource(mainMod, "CloudProviderSnapshotBackupPolicy"),
 			},
+			"mongodbatlas_privatelink_endpoint":         {Tok: makeResource(mainMod, "PrivateLinkEndpoint")},
+			"mongodbatlas_privatelink_endpoint_service": {Tok: makeResource(mainMod, "PrivateLinkEndpointService")},
+			"mongodbatlas_project_ip_access_list":       {Tok: makeResource(mainMod, "ProjectIpAccessList")},
+			"mongodbatlas_third_party_integration":      {Tok: makeResource(mainMod, "ThirdPartyIntegration")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"mongodbatlas_custom_db_role":           {Tok: makeDataSource(mainMod, "getCustomDbRole")},
@@ -148,6 +153,7 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_cloud_provider_snapshot_restore_jobs": {
 				Tok: makeDataSource(mainMod, "getCloudProviderSnapshotRestoreJobs"),
 			},
+			"mongodbatlas_cloud_provider_access": {Tok: makeDataSource(mainMod, "getCloudProviderAccess")},
 			"mongodbatlas_maintenance_window":    {Tok: makeDataSource(mainMod, "getMaintenanceWindow")},
 			"mongodbatlas_auditing":              {Tok: makeDataSource(mainMod, "getAuditing")},
 			"mongodbatlas_team":                  {Tok: makeDataSource(mainMod, "getTeam")},
@@ -167,6 +173,13 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_project_ip_whitelist": {
 				Tok: makeDataSource(mainMod, "getProjectIpWhitelist"),
 			},
+			"mongodbatlas_privatelink_endpoint": {Tok: makeDataSource(mainMod, "getPrivateLinkEndpoint")},
+			"mongodbatlas_privatelink_endpoint_service": {
+				Tok: makeDataSource(mainMod, "getPrivateLinkEndpointService"),
+			},
+			"mongodbatlas_project_ip_access_list":   {Tok: makeDataSource(mainMod, "getProjectIpAccessList")},
+			"mongodbatlas_third_party_integration":  {Tok: makeDataSource(mainMod, "getThirdPartyIntegration")},
+			"mongodbatlas_third_party_integrations": {Tok: makeDataSource(mainMod, "getThirdPartyIntegrations")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

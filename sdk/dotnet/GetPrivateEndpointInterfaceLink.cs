@@ -12,7 +12,10 @@ namespace Pulumi.Mongodbatlas
     public static class GetPrivateEndpointInterfaceLink
     {
         /// <summary>
-        /// `mongodbatlas_private_endpoint_link` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+        /// `mongodbatlas.PrivateEndpointInterfaceLink` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+        /// 
+        /// !&gt; **WARNING:** This datasource is deprecated and will be removed in the next major version
+        ///                 Please transition to privatelink_endpoint_service as soon as possible. [PrivateLink Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-get-one/)
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// </summary>

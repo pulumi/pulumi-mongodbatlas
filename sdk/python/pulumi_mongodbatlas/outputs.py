@@ -14,6 +14,7 @@ __all__ = [
     'AlertConfigurationMetricThreshold',
     'AlertConfigurationNotification',
     'AlertConfigurationThreshold',
+    'CloudProviderAccessFeatureUsage',
     'CloudProviderSnapshotBackupPolicyPolicy',
     'CloudProviderSnapshotBackupPolicyPolicyPolicyItem',
     'CloudProviderSnapshotRestoreJobDeliveryType',
@@ -44,6 +45,8 @@ __all__ = [
     'GetAlertConfigurationMetricThresholdResult',
     'GetAlertConfigurationNotificationResult',
     'GetAlertConfigurationThresholdResult',
+    'GetCloudProviderAccessAwsIamRoleResult',
+    'GetCloudProviderAccessAwsIamRoleFeatureUsageResult',
     'GetCloudProviderSnapshotBackupPolicyPolicyResult',
     'GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetCloudProviderSnapshotRestoreJobsResultResult',
@@ -85,6 +88,7 @@ __all__ = [
     'GetProjectTeamResult',
     'GetProjectsResultResult',
     'GetProjectsResultTeamResult',
+    'GetThirdPartyIntegrationsResultResult',
 ]
 
 @pulumi.output_type
@@ -618,6 +622,30 @@ class AlertConfigurationThreshold(dict):
         - `DAYS`
         """
         return pulumi.get(self, "units")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class CloudProviderAccessFeatureUsage(dict):
+    def __init__(__self__, *,
+                 feature_id: Optional[str] = None,
+                 feature_type: Optional[str] = None):
+        if feature_id is not None:
+            pulumi.set(__self__, "feature_id", feature_id)
+        if feature_type is not None:
+            pulumi.set(__self__, "feature_type", feature_type)
+
+    @property
+    @pulumi.getter(name="featureId")
+    def feature_id(self) -> Optional[str]:
+        return pulumi.get(self, "feature_id")
+
+    @property
+    @pulumi.getter(name="featureType")
+    def feature_type(self) -> Optional[str]:
+        return pulumi.get(self, "feature_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1516,19 +1544,23 @@ class EncryptionAtRestAwsKms(dict):
                  customer_master_key_id: str,
                  enabled: bool,
                  region: str,
-                 secret_access_key: str):
+                 secret_access_key: str,
+                 role_id: Optional[str] = None):
         """
         :param str access_key_id: The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         :param str customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         :param str secret_access_key: The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
+        :param str role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
         """
         pulumi.set(__self__, "access_key_id", access_key_id)
         pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "secret_access_key", secret_access_key)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
 
     @property
     @pulumi.getter(name="accessKeyId")
@@ -1569,6 +1601,14 @@ class EncryptionAtRestAwsKms(dict):
         The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         """
         return pulumi.get(self, "secret_access_key")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[str]:
+        """
+        ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
+        """
+        return pulumi.get(self, "role_id")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2450,6 +2490,120 @@ class GetAlertConfigurationThresholdResult(dict):
 
 
 @pulumi.output_type
+class GetCloudProviderAccessAwsIamRoleResult(dict):
+    def __init__(__self__, *,
+                 atlas_assumed_role_external_id: str,
+                 atlas_aws_account_arn: str,
+                 authorized_date: str,
+                 created_date: str,
+                 feature_usages: Sequence['outputs.GetCloudProviderAccessAwsIamRoleFeatureUsageResult'],
+                 iam_assumed_role_arn: str,
+                 provider_name: str,
+                 role_id: str):
+        """
+        :param str atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        :param str atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        :param str authorized_date: Date on which this role was authorized.
+        :param str created_date: Date on which this role was created.
+        :param Sequence['GetCloudProviderAccessAwsIamRoleFeatureUsageArgs'] feature_usages: Atlas features this AWS IAM role is linked to.
+        :param str iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
+        :param str provider_name: Name of the cloud provider. Currently limited to AWS.
+        :param str role_id: Unique ID of this role.
+        """
+        pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+        pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
+        pulumi.set(__self__, "authorized_date", authorized_date)
+        pulumi.set(__self__, "created_date", created_date)
+        pulumi.set(__self__, "feature_usages", feature_usages)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "role_id", role_id)
+
+    @property
+    @pulumi.getter(name="atlasAssumedRoleExternalId")
+    def atlas_assumed_role_external_id(self) -> str:
+        """
+        Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        """
+        return pulumi.get(self, "atlas_assumed_role_external_id")
+
+    @property
+    @pulumi.getter(name="atlasAwsAccountArn")
+    def atlas_aws_account_arn(self) -> str:
+        """
+        ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
+        return pulumi.get(self, "atlas_aws_account_arn")
+
+    @property
+    @pulumi.getter(name="authorizedDate")
+    def authorized_date(self) -> str:
+        """
+        Date on which this role was authorized.
+        """
+        return pulumi.get(self, "authorized_date")
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        Date on which this role was created.
+        """
+        return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter(name="featureUsages")
+    def feature_usages(self) -> Sequence['outputs.GetCloudProviderAccessAwsIamRoleFeatureUsageResult']:
+        """
+        Atlas features this AWS IAM role is linked to.
+        """
+        return pulumi.get(self, "feature_usages")
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> str:
+        """
+        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
+        """
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Name of the cloud provider. Currently limited to AWS.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
+        """
+        Unique ID of this role.
+        """
+        return pulumi.get(self, "role_id")
+
+
+@pulumi.output_type
+class GetCloudProviderAccessAwsIamRoleFeatureUsageResult(dict):
+    def __init__(__self__, *,
+                 feature_id: str,
+                 feature_type: str):
+        pulumi.set(__self__, "feature_id", feature_id)
+        pulumi.set(__self__, "feature_type", feature_type)
+
+    @property
+    @pulumi.getter(name="featureId")
+    def feature_id(self) -> str:
+        return pulumi.get(self, "feature_id")
+
+    @property
+    @pulumi.getter(name="featureType")
+    def feature_type(self) -> str:
+        return pulumi.get(self, "feature_type")
+
+
+@pulumi.output_type
 class GetCloudProviderSnapshotBackupPolicyPolicyResult(dict):
     def __init__(__self__, *,
                  id: str,
@@ -3207,7 +3361,7 @@ class GetClustersResultResult(dict):
         :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
         :param str provider_region_name: Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param str provider_volume_type: Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
-        :param int replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param int replication_factor: (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param Sequence['GetClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param Sequence['GetClustersResultSnapshotBackupPolicyArgs'] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
         :param str srv_address: Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
@@ -3511,7 +3665,7 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> int:
         """
-        Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
         return pulumi.get(self, "replication_factor")
 
@@ -4883,5 +5037,201 @@ class GetProjectsResultTeamResult(dict):
     @pulumi.getter(name="teamId")
     def team_id(self) -> str:
         return pulumi.get(self, "team_id")
+
+
+@pulumi.output_type
+class GetThirdPartyIntegrationsResultResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 api_key: str,
+                 api_token: str,
+                 channel_name: str,
+                 flow_name: str,
+                 license_key: str,
+                 org_name: str,
+                 project_id: str,
+                 read_token: str,
+                 region: str,
+                 routing_key: str,
+                 secret: str,
+                 service_key: str,
+                 team_name: str,
+                 type: str,
+                 url: str,
+                 write_token: str):
+        """
+        :param str account_id: Unique identifier of your New Relic account.
+        :param str api_key: Your API Key.
+        :param str api_token: Your API Token.
+        :param str flow_name: Your Flowdock Flow name.
+        :param str license_key: Your License Key.
+        :param str org_name: Your Flowdock organization name.
+               * `WEBHOOK`
+        :param str project_id: The unique ID for the project to get all Third-Party service integrations
+        :param str read_token: Your Insights Query Key.
+               * `OPS_GENIE`
+        :param str region: Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+               * `VICTOR_OPS`
+        :param str routing_key: An optional field for your Routing Key.
+               * `FLOWDOCK`
+        :param str secret: An optional field for your webhook secret.
+        :param str service_key: Your Service Key.
+               * `DATADOG`
+        :param str type: (Required) Thirt-Party service integration type.
+        :param str url: Your webhook URL.
+        :param str write_token: Your Insights Insert Key.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "api_token", api_token)
+        pulumi.set(__self__, "channel_name", channel_name)
+        pulumi.set(__self__, "flow_name", flow_name)
+        pulumi.set(__self__, "license_key", license_key)
+        pulumi.set(__self__, "org_name", org_name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "read_token", read_token)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "routing_key", routing_key)
+        pulumi.set(__self__, "secret", secret)
+        pulumi.set(__self__, "service_key", service_key)
+        pulumi.set(__self__, "team_name", team_name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "write_token", write_token)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        Unique identifier of your New Relic account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> str:
+        """
+        Your API Key.
+        """
+        return pulumi.get(self, "api_key")
+
+    @property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> str:
+        """
+        Your API Token.
+        """
+        return pulumi.get(self, "api_token")
+
+    @property
+    @pulumi.getter(name="channelName")
+    def channel_name(self) -> str:
+        return pulumi.get(self, "channel_name")
+
+    @property
+    @pulumi.getter(name="flowName")
+    def flow_name(self) -> str:
+        """
+        Your Flowdock Flow name.
+        """
+        return pulumi.get(self, "flow_name")
+
+    @property
+    @pulumi.getter(name="licenseKey")
+    def license_key(self) -> str:
+        """
+        Your License Key.
+        """
+        return pulumi.get(self, "license_key")
+
+    @property
+    @pulumi.getter(name="orgName")
+    def org_name(self) -> str:
+        """
+        Your Flowdock organization name.
+        * `WEBHOOK`
+        """
+        return pulumi.get(self, "org_name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The unique ID for the project to get all Third-Party service integrations
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="readToken")
+    def read_token(self) -> str:
+        """
+        Your Insights Query Key.
+        * `OPS_GENIE`
+        """
+        return pulumi.get(self, "read_token")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+        * `VICTOR_OPS`
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="routingKey")
+    def routing_key(self) -> str:
+        """
+        An optional field for your Routing Key.
+        * `FLOWDOCK`
+        """
+        return pulumi.get(self, "routing_key")
+
+    @property
+    @pulumi.getter
+    def secret(self) -> str:
+        """
+        An optional field for your webhook secret.
+        """
+        return pulumi.get(self, "secret")
+
+    @property
+    @pulumi.getter(name="serviceKey")
+    def service_key(self) -> str:
+        """
+        Your Service Key.
+        * `DATADOG`
+        """
+        return pulumi.get(self, "service_key")
+
+    @property
+    @pulumi.getter(name="teamName")
+    def team_name(self) -> str:
+        return pulumi.get(self, "team_name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        (Required) Thirt-Party service integration type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        Your webhook URL.
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="writeToken")
+    def write_token(self) -> str:
+        """
+        Your Insights Insert Key.
+        """
+        return pulumi.get(self, "write_token")
 
 

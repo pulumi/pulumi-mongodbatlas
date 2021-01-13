@@ -2,6 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Upgrade to v0.8.0 of the MongoDbAtlas Terraform Provider
 * Upgrade to pulumi-terraform-bridge v2.17.0
 * Upgrade to Pulumi v2.17.0
 

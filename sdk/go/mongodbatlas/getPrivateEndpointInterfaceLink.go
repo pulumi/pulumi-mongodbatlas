@@ -7,7 +7,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// `mongodbatlasPrivateEndpointLink` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+// `PrivateEndpointInterfaceLink` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+//
+// !> **WARNING:** This datasource is deprecated and will be removed in the next major version
+//                 Please transition to privatelinkEndpointService as soon as possible. [PrivateLink Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-get-one/)
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 func LookupPrivateEndpointInterfaceLink(ctx *pulumi.Context, args *LookupPrivateEndpointInterfaceLinkArgs, opts ...pulumi.InvokeOption) (*LookupPrivateEndpointInterfaceLinkResult, error) {

@@ -78,6 +78,8 @@ class DatabaseUser(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__['project_id'] = project_id
+            if roles is None and not opts.urn:
+                raise TypeError("Missing required property 'roles'")
             __props__['roles'] = roles
             __props__['scopes'] = scopes
             if username is None and not opts.urn:
@@ -189,7 +191,7 @@ class DatabaseUser(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def scopes(self) -> pulumi.Output[Sequence['outputs.DatabaseUserScope']]:
+    def scopes(self) -> pulumi.Output[Optional[Sequence['outputs.DatabaseUserScope']]]:
         return pulumi.get(self, "scopes")
 
     @property

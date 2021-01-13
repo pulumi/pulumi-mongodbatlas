@@ -980,6 +980,106 @@ func (o AlertConfigurationThresholdPtrOutput) Units() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type CloudProviderAccessFeatureUsage struct {
+	FeatureId   *string `pulumi:"featureId"`
+	FeatureType *string `pulumi:"featureType"`
+}
+
+// CloudProviderAccessFeatureUsageInput is an input type that accepts CloudProviderAccessFeatureUsageArgs and CloudProviderAccessFeatureUsageOutput values.
+// You can construct a concrete instance of `CloudProviderAccessFeatureUsageInput` via:
+//
+//          CloudProviderAccessFeatureUsageArgs{...}
+type CloudProviderAccessFeatureUsageInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessFeatureUsageOutput() CloudProviderAccessFeatureUsageOutput
+	ToCloudProviderAccessFeatureUsageOutputWithContext(context.Context) CloudProviderAccessFeatureUsageOutput
+}
+
+type CloudProviderAccessFeatureUsageArgs struct {
+	FeatureId   pulumi.StringPtrInput `pulumi:"featureId"`
+	FeatureType pulumi.StringPtrInput `pulumi:"featureType"`
+}
+
+func (CloudProviderAccessFeatureUsageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessFeatureUsage)(nil)).Elem()
+}
+
+func (i CloudProviderAccessFeatureUsageArgs) ToCloudProviderAccessFeatureUsageOutput() CloudProviderAccessFeatureUsageOutput {
+	return i.ToCloudProviderAccessFeatureUsageOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessFeatureUsageArgs) ToCloudProviderAccessFeatureUsageOutputWithContext(ctx context.Context) CloudProviderAccessFeatureUsageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessFeatureUsageOutput)
+}
+
+// CloudProviderAccessFeatureUsageArrayInput is an input type that accepts CloudProviderAccessFeatureUsageArray and CloudProviderAccessFeatureUsageArrayOutput values.
+// You can construct a concrete instance of `CloudProviderAccessFeatureUsageArrayInput` via:
+//
+//          CloudProviderAccessFeatureUsageArray{ CloudProviderAccessFeatureUsageArgs{...} }
+type CloudProviderAccessFeatureUsageArrayInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessFeatureUsageArrayOutput() CloudProviderAccessFeatureUsageArrayOutput
+	ToCloudProviderAccessFeatureUsageArrayOutputWithContext(context.Context) CloudProviderAccessFeatureUsageArrayOutput
+}
+
+type CloudProviderAccessFeatureUsageArray []CloudProviderAccessFeatureUsageInput
+
+func (CloudProviderAccessFeatureUsageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessFeatureUsage)(nil)).Elem()
+}
+
+func (i CloudProviderAccessFeatureUsageArray) ToCloudProviderAccessFeatureUsageArrayOutput() CloudProviderAccessFeatureUsageArrayOutput {
+	return i.ToCloudProviderAccessFeatureUsageArrayOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessFeatureUsageArray) ToCloudProviderAccessFeatureUsageArrayOutputWithContext(ctx context.Context) CloudProviderAccessFeatureUsageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessFeatureUsageArrayOutput)
+}
+
+type CloudProviderAccessFeatureUsageOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessFeatureUsageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessFeatureUsage)(nil)).Elem()
+}
+
+func (o CloudProviderAccessFeatureUsageOutput) ToCloudProviderAccessFeatureUsageOutput() CloudProviderAccessFeatureUsageOutput {
+	return o
+}
+
+func (o CloudProviderAccessFeatureUsageOutput) ToCloudProviderAccessFeatureUsageOutputWithContext(ctx context.Context) CloudProviderAccessFeatureUsageOutput {
+	return o
+}
+
+func (o CloudProviderAccessFeatureUsageOutput) FeatureId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessFeatureUsage) *string { return v.FeatureId }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudProviderAccessFeatureUsageOutput) FeatureType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessFeatureUsage) *string { return v.FeatureType }).(pulumi.StringPtrOutput)
+}
+
+type CloudProviderAccessFeatureUsageArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessFeatureUsageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessFeatureUsage)(nil)).Elem()
+}
+
+func (o CloudProviderAccessFeatureUsageArrayOutput) ToCloudProviderAccessFeatureUsageArrayOutput() CloudProviderAccessFeatureUsageArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessFeatureUsageArrayOutput) ToCloudProviderAccessFeatureUsageArrayOutputWithContext(ctx context.Context) CloudProviderAccessFeatureUsageArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessFeatureUsageArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessFeatureUsageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessFeatureUsage {
+		return vs[0].([]CloudProviderAccessFeatureUsage)[vs[1].(int)]
+	}).(CloudProviderAccessFeatureUsageOutput)
+}
+
 type CloudProviderSnapshotBackupPolicyPolicy struct {
 	Id          string                                              `pulumi:"id"`
 	PolicyItems []CloudProviderSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
@@ -3451,6 +3551,8 @@ type EncryptionAtRestAwsKms struct {
 	Enabled bool `pulumi:"enabled"`
 	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
 	Region string `pulumi:"region"`
+	// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
+	RoleId *string `pulumi:"roleId"`
 	// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
 	SecretAccessKey string `pulumi:"secretAccessKey"`
 }
@@ -3475,6 +3577,8 @@ type EncryptionAtRestAwsKmsArgs struct {
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
 	Region pulumi.StringInput `pulumi:"region"`
+	// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
+	RoleId pulumi.StringPtrInput `pulumi:"roleId"`
 	// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
 	SecretAccessKey pulumi.StringInput `pulumi:"secretAccessKey"`
 }
@@ -3576,6 +3680,11 @@ func (o EncryptionAtRestAwsKmsOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
+func (o EncryptionAtRestAwsKmsOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.RoleId }).(pulumi.StringPtrOutput)
+}
+
 // The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
 func (o EncryptionAtRestAwsKmsOutput) SecretAccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.SecretAccessKey }).(pulumi.StringOutput)
@@ -3636,6 +3745,16 @@ func (o EncryptionAtRestAwsKmsPtrOutput) Region() pulumi.StringPtrOutput {
 			return nil
 		}
 		return &v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
+func (o EncryptionAtRestAwsKmsPtrOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5427,6 +5546,268 @@ func (o GetAlertConfigurationThresholdOutput) Units() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationThreshold) string { return v.Units }).(pulumi.StringOutput)
 }
 
+type GetCloudProviderAccessAwsIamRole struct {
+	// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+	AtlasAssumedRoleExternalId string `pulumi:"atlasAssumedRoleExternalId"`
+	// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+	AtlasAwsAccountArn string `pulumi:"atlasAwsAccountArn"`
+	// Date on which this role was authorized.
+	AuthorizedDate string `pulumi:"authorizedDate"`
+	// Date on which this role was created.
+	CreatedDate string `pulumi:"createdDate"`
+	// Atlas features this AWS IAM role is linked to.
+	FeatureUsages []GetCloudProviderAccessAwsIamRoleFeatureUsage `pulumi:"featureUsages"`
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
+	IamAssumedRoleArn string `pulumi:"iamAssumedRoleArn"`
+	// Name of the cloud provider. Currently limited to AWS.
+	ProviderName string `pulumi:"providerName"`
+	// Unique ID of this role.
+	RoleId string `pulumi:"roleId"`
+}
+
+// GetCloudProviderAccessAwsIamRoleInput is an input type that accepts GetCloudProviderAccessAwsIamRoleArgs and GetCloudProviderAccessAwsIamRoleOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessAwsIamRoleInput` via:
+//
+//          GetCloudProviderAccessAwsIamRoleArgs{...}
+type GetCloudProviderAccessAwsIamRoleInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessAwsIamRoleOutput() GetCloudProviderAccessAwsIamRoleOutput
+	ToGetCloudProviderAccessAwsIamRoleOutputWithContext(context.Context) GetCloudProviderAccessAwsIamRoleOutput
+}
+
+type GetCloudProviderAccessAwsIamRoleArgs struct {
+	// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+	AtlasAssumedRoleExternalId pulumi.StringInput `pulumi:"atlasAssumedRoleExternalId"`
+	// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+	AtlasAwsAccountArn pulumi.StringInput `pulumi:"atlasAwsAccountArn"`
+	// Date on which this role was authorized.
+	AuthorizedDate pulumi.StringInput `pulumi:"authorizedDate"`
+	// Date on which this role was created.
+	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
+	// Atlas features this AWS IAM role is linked to.
+	FeatureUsages GetCloudProviderAccessAwsIamRoleFeatureUsageArrayInput `pulumi:"featureUsages"`
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
+	IamAssumedRoleArn pulumi.StringInput `pulumi:"iamAssumedRoleArn"`
+	// Name of the cloud provider. Currently limited to AWS.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Unique ID of this role.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+}
+
+func (GetCloudProviderAccessAwsIamRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessAwsIamRole)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessAwsIamRoleArgs) ToGetCloudProviderAccessAwsIamRoleOutput() GetCloudProviderAccessAwsIamRoleOutput {
+	return i.ToGetCloudProviderAccessAwsIamRoleOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessAwsIamRoleArgs) ToGetCloudProviderAccessAwsIamRoleOutputWithContext(ctx context.Context) GetCloudProviderAccessAwsIamRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessAwsIamRoleOutput)
+}
+
+// GetCloudProviderAccessAwsIamRoleArrayInput is an input type that accepts GetCloudProviderAccessAwsIamRoleArray and GetCloudProviderAccessAwsIamRoleArrayOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessAwsIamRoleArrayInput` via:
+//
+//          GetCloudProviderAccessAwsIamRoleArray{ GetCloudProviderAccessAwsIamRoleArgs{...} }
+type GetCloudProviderAccessAwsIamRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessAwsIamRoleArrayOutput() GetCloudProviderAccessAwsIamRoleArrayOutput
+	ToGetCloudProviderAccessAwsIamRoleArrayOutputWithContext(context.Context) GetCloudProviderAccessAwsIamRoleArrayOutput
+}
+
+type GetCloudProviderAccessAwsIamRoleArray []GetCloudProviderAccessAwsIamRoleInput
+
+func (GetCloudProviderAccessAwsIamRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessAwsIamRole)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessAwsIamRoleArray) ToGetCloudProviderAccessAwsIamRoleArrayOutput() GetCloudProviderAccessAwsIamRoleArrayOutput {
+	return i.ToGetCloudProviderAccessAwsIamRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessAwsIamRoleArray) ToGetCloudProviderAccessAwsIamRoleArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessAwsIamRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessAwsIamRoleArrayOutput)
+}
+
+type GetCloudProviderAccessAwsIamRoleOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessAwsIamRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessAwsIamRole)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessAwsIamRoleOutput) ToGetCloudProviderAccessAwsIamRoleOutput() GetCloudProviderAccessAwsIamRoleOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessAwsIamRoleOutput) ToGetCloudProviderAccessAwsIamRoleOutputWithContext(ctx context.Context) GetCloudProviderAccessAwsIamRoleOutput {
+	return o
+}
+
+// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+func (o GetCloudProviderAccessAwsIamRoleOutput) AtlasAssumedRoleExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRole) string { return v.AtlasAssumedRoleExternalId }).(pulumi.StringOutput)
+}
+
+// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+func (o GetCloudProviderAccessAwsIamRoleOutput) AtlasAwsAccountArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRole) string { return v.AtlasAwsAccountArn }).(pulumi.StringOutput)
+}
+
+// Date on which this role was authorized.
+func (o GetCloudProviderAccessAwsIamRoleOutput) AuthorizedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRole) string { return v.AuthorizedDate }).(pulumi.StringOutput)
+}
+
+// Date on which this role was created.
+func (o GetCloudProviderAccessAwsIamRoleOutput) CreatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRole) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// Atlas features this AWS IAM role is linked to.
+func (o GetCloudProviderAccessAwsIamRoleOutput) FeatureUsages() GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRole) []GetCloudProviderAccessAwsIamRoleFeatureUsage {
+		return v.FeatureUsages
+	}).(GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput)
+}
+
+// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account.
+func (o GetCloudProviderAccessAwsIamRoleOutput) IamAssumedRoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRole) string { return v.IamAssumedRoleArn }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider. Currently limited to AWS.
+func (o GetCloudProviderAccessAwsIamRoleOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRole) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Unique ID of this role.
+func (o GetCloudProviderAccessAwsIamRoleOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRole) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+type GetCloudProviderAccessAwsIamRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessAwsIamRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessAwsIamRole)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessAwsIamRoleArrayOutput) ToGetCloudProviderAccessAwsIamRoleArrayOutput() GetCloudProviderAccessAwsIamRoleArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessAwsIamRoleArrayOutput) ToGetCloudProviderAccessAwsIamRoleArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessAwsIamRoleArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessAwsIamRoleArrayOutput) Index(i pulumi.IntInput) GetCloudProviderAccessAwsIamRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudProviderAccessAwsIamRole {
+		return vs[0].([]GetCloudProviderAccessAwsIamRole)[vs[1].(int)]
+	}).(GetCloudProviderAccessAwsIamRoleOutput)
+}
+
+type GetCloudProviderAccessAwsIamRoleFeatureUsage struct {
+	FeatureId   string `pulumi:"featureId"`
+	FeatureType string `pulumi:"featureType"`
+}
+
+// GetCloudProviderAccessAwsIamRoleFeatureUsageInput is an input type that accepts GetCloudProviderAccessAwsIamRoleFeatureUsageArgs and GetCloudProviderAccessAwsIamRoleFeatureUsageOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessAwsIamRoleFeatureUsageInput` via:
+//
+//          GetCloudProviderAccessAwsIamRoleFeatureUsageArgs{...}
+type GetCloudProviderAccessAwsIamRoleFeatureUsageInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessAwsIamRoleFeatureUsageOutput() GetCloudProviderAccessAwsIamRoleFeatureUsageOutput
+	ToGetCloudProviderAccessAwsIamRoleFeatureUsageOutputWithContext(context.Context) GetCloudProviderAccessAwsIamRoleFeatureUsageOutput
+}
+
+type GetCloudProviderAccessAwsIamRoleFeatureUsageArgs struct {
+	FeatureId   pulumi.StringInput `pulumi:"featureId"`
+	FeatureType pulumi.StringInput `pulumi:"featureType"`
+}
+
+func (GetCloudProviderAccessAwsIamRoleFeatureUsageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessAwsIamRoleFeatureUsage)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessAwsIamRoleFeatureUsageArgs) ToGetCloudProviderAccessAwsIamRoleFeatureUsageOutput() GetCloudProviderAccessAwsIamRoleFeatureUsageOutput {
+	return i.ToGetCloudProviderAccessAwsIamRoleFeatureUsageOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessAwsIamRoleFeatureUsageArgs) ToGetCloudProviderAccessAwsIamRoleFeatureUsageOutputWithContext(ctx context.Context) GetCloudProviderAccessAwsIamRoleFeatureUsageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessAwsIamRoleFeatureUsageOutput)
+}
+
+// GetCloudProviderAccessAwsIamRoleFeatureUsageArrayInput is an input type that accepts GetCloudProviderAccessAwsIamRoleFeatureUsageArray and GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessAwsIamRoleFeatureUsageArrayInput` via:
+//
+//          GetCloudProviderAccessAwsIamRoleFeatureUsageArray{ GetCloudProviderAccessAwsIamRoleFeatureUsageArgs{...} }
+type GetCloudProviderAccessAwsIamRoleFeatureUsageArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput() GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput
+	ToGetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutputWithContext(context.Context) GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput
+}
+
+type GetCloudProviderAccessAwsIamRoleFeatureUsageArray []GetCloudProviderAccessAwsIamRoleFeatureUsageInput
+
+func (GetCloudProviderAccessAwsIamRoleFeatureUsageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessAwsIamRoleFeatureUsage)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessAwsIamRoleFeatureUsageArray) ToGetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput() GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput {
+	return i.ToGetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessAwsIamRoleFeatureUsageArray) ToGetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput)
+}
+
+type GetCloudProviderAccessAwsIamRoleFeatureUsageOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessAwsIamRoleFeatureUsage)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) ToGetCloudProviderAccessAwsIamRoleFeatureUsageOutput() GetCloudProviderAccessAwsIamRoleFeatureUsageOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) ToGetCloudProviderAccessAwsIamRoleFeatureUsageOutputWithContext(ctx context.Context) GetCloudProviderAccessAwsIamRoleFeatureUsageOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) FeatureId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRoleFeatureUsage) string { return v.FeatureId }).(pulumi.StringOutput)
+}
+
+func (o GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) FeatureType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRoleFeatureUsage) string { return v.FeatureType }).(pulumi.StringOutput)
+}
+
+type GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessAwsIamRoleFeatureUsage)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput) ToGetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput() GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput) ToGetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput) Index(i pulumi.IntInput) GetCloudProviderAccessAwsIamRoleFeatureUsageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudProviderAccessAwsIamRoleFeatureUsage {
+		return vs[0].([]GetCloudProviderAccessAwsIamRoleFeatureUsage)[vs[1].(int)]
+	}).(GetCloudProviderAccessAwsIamRoleFeatureUsageOutput)
+}
+
 type GetCloudProviderSnapshotBackupPolicyPolicy struct {
 	Id          string                                                 `pulumi:"id"`
 	PolicyItems []GetCloudProviderSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
@@ -6969,7 +7350,7 @@ type GetClustersResultType struct {
 	ProviderRegionName string `pulumi:"providerRegionName"`
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	ProviderVolumeType string `pulumi:"providerVolumeType"`
-	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs []GetClustersResultReplicationSpec `pulumi:"replicationSpecs"`
@@ -7066,7 +7447,7 @@ type GetClustersResultTypeArgs struct {
 	ProviderRegionName pulumi.StringInput `pulumi:"providerRegionName"`
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	ProviderVolumeType pulumi.StringInput `pulumi:"providerVolumeType"`
-	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+	// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntInput `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs GetClustersResultReplicationSpecArrayInput `pulumi:"replicationSpecs"`
@@ -7295,7 +7676,7 @@ func (o GetClustersResultTypeOutput) ProviderVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultType) string { return v.ProviderVolumeType }).(pulumi.StringOutput)
 }
 
-// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+// (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 func (o GetClustersResultTypeOutput) ReplicationFactor() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClustersResultType) int { return v.ReplicationFactor }).(pulumi.IntOutput)
 }
@@ -10701,6 +11082,256 @@ func (o GetProjectsResultTeamArrayOutput) Index(i pulumi.IntInput) GetProjectsRe
 	}).(GetProjectsResultTeamOutput)
 }
 
+type GetThirdPartyIntegrationsResultType struct {
+	// Unique identifier of your New Relic account.
+	AccountId string `pulumi:"accountId"`
+	// Your API Key.
+	ApiKey string `pulumi:"apiKey"`
+	// Your API Token.
+	ApiToken    string `pulumi:"apiToken"`
+	ChannelName string `pulumi:"channelName"`
+	// Your Flowdock Flow name.
+	FlowName string `pulumi:"flowName"`
+	// Your License Key.
+	LicenseKey string `pulumi:"licenseKey"`
+	// Your Flowdock organization name.
+	// * `WEBHOOK`
+	OrgName string `pulumi:"orgName"`
+	// The unique ID for the project to get all Third-Party service integrations
+	ProjectId string `pulumi:"projectId"`
+	// Your Insights Query Key.
+	// * `OPS_GENIE`
+	ReadToken string `pulumi:"readToken"`
+	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// * `VICTOR_OPS`
+	Region string `pulumi:"region"`
+	// An optional field for your Routing Key.
+	// * `FLOWDOCK`
+	RoutingKey string `pulumi:"routingKey"`
+	// An optional field for your webhook secret.
+	Secret string `pulumi:"secret"`
+	// Your Service Key.
+	// * `DATADOG`
+	ServiceKey string `pulumi:"serviceKey"`
+	TeamName   string `pulumi:"teamName"`
+	// (Required) Thirt-Party service integration type.
+	Type string `pulumi:"type"`
+	// Your webhook URL.
+	Url string `pulumi:"url"`
+	// Your Insights Insert Key.
+	WriteToken string `pulumi:"writeToken"`
+}
+
+// GetThirdPartyIntegrationsResultTypeInput is an input type that accepts GetThirdPartyIntegrationsResultTypeArgs and GetThirdPartyIntegrationsResultTypeOutput values.
+// You can construct a concrete instance of `GetThirdPartyIntegrationsResultTypeInput` via:
+//
+//          GetThirdPartyIntegrationsResultTypeArgs{...}
+type GetThirdPartyIntegrationsResultTypeInput interface {
+	pulumi.Input
+
+	ToGetThirdPartyIntegrationsResultTypeOutput() GetThirdPartyIntegrationsResultTypeOutput
+	ToGetThirdPartyIntegrationsResultTypeOutputWithContext(context.Context) GetThirdPartyIntegrationsResultTypeOutput
+}
+
+type GetThirdPartyIntegrationsResultTypeArgs struct {
+	// Unique identifier of your New Relic account.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// Your API Key.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Your API Token.
+	ApiToken    pulumi.StringInput `pulumi:"apiToken"`
+	ChannelName pulumi.StringInput `pulumi:"channelName"`
+	// Your Flowdock Flow name.
+	FlowName pulumi.StringInput `pulumi:"flowName"`
+	// Your License Key.
+	LicenseKey pulumi.StringInput `pulumi:"licenseKey"`
+	// Your Flowdock organization name.
+	// * `WEBHOOK`
+	OrgName pulumi.StringInput `pulumi:"orgName"`
+	// The unique ID for the project to get all Third-Party service integrations
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Your Insights Query Key.
+	// * `OPS_GENIE`
+	ReadToken pulumi.StringInput `pulumi:"readToken"`
+	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+	// * `VICTOR_OPS`
+	Region pulumi.StringInput `pulumi:"region"`
+	// An optional field for your Routing Key.
+	// * `FLOWDOCK`
+	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
+	// An optional field for your webhook secret.
+	Secret pulumi.StringInput `pulumi:"secret"`
+	// Your Service Key.
+	// * `DATADOG`
+	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
+	TeamName   pulumi.StringInput `pulumi:"teamName"`
+	// (Required) Thirt-Party service integration type.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Your webhook URL.
+	Url pulumi.StringInput `pulumi:"url"`
+	// Your Insights Insert Key.
+	WriteToken pulumi.StringInput `pulumi:"writeToken"`
+}
+
+func (GetThirdPartyIntegrationsResultTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetThirdPartyIntegrationsResultType)(nil)).Elem()
+}
+
+func (i GetThirdPartyIntegrationsResultTypeArgs) ToGetThirdPartyIntegrationsResultTypeOutput() GetThirdPartyIntegrationsResultTypeOutput {
+	return i.ToGetThirdPartyIntegrationsResultTypeOutputWithContext(context.Background())
+}
+
+func (i GetThirdPartyIntegrationsResultTypeArgs) ToGetThirdPartyIntegrationsResultTypeOutputWithContext(ctx context.Context) GetThirdPartyIntegrationsResultTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetThirdPartyIntegrationsResultTypeOutput)
+}
+
+// GetThirdPartyIntegrationsResultTypeArrayInput is an input type that accepts GetThirdPartyIntegrationsResultTypeArray and GetThirdPartyIntegrationsResultTypeArrayOutput values.
+// You can construct a concrete instance of `GetThirdPartyIntegrationsResultTypeArrayInput` via:
+//
+//          GetThirdPartyIntegrationsResultTypeArray{ GetThirdPartyIntegrationsResultTypeArgs{...} }
+type GetThirdPartyIntegrationsResultTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetThirdPartyIntegrationsResultTypeArrayOutput() GetThirdPartyIntegrationsResultTypeArrayOutput
+	ToGetThirdPartyIntegrationsResultTypeArrayOutputWithContext(context.Context) GetThirdPartyIntegrationsResultTypeArrayOutput
+}
+
+type GetThirdPartyIntegrationsResultTypeArray []GetThirdPartyIntegrationsResultTypeInput
+
+func (GetThirdPartyIntegrationsResultTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetThirdPartyIntegrationsResultType)(nil)).Elem()
+}
+
+func (i GetThirdPartyIntegrationsResultTypeArray) ToGetThirdPartyIntegrationsResultTypeArrayOutput() GetThirdPartyIntegrationsResultTypeArrayOutput {
+	return i.ToGetThirdPartyIntegrationsResultTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetThirdPartyIntegrationsResultTypeArray) ToGetThirdPartyIntegrationsResultTypeArrayOutputWithContext(ctx context.Context) GetThirdPartyIntegrationsResultTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetThirdPartyIntegrationsResultTypeArrayOutput)
+}
+
+type GetThirdPartyIntegrationsResultTypeOutput struct{ *pulumi.OutputState }
+
+func (GetThirdPartyIntegrationsResultTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetThirdPartyIntegrationsResultType)(nil)).Elem()
+}
+
+func (o GetThirdPartyIntegrationsResultTypeOutput) ToGetThirdPartyIntegrationsResultTypeOutput() GetThirdPartyIntegrationsResultTypeOutput {
+	return o
+}
+
+func (o GetThirdPartyIntegrationsResultTypeOutput) ToGetThirdPartyIntegrationsResultTypeOutputWithContext(ctx context.Context) GetThirdPartyIntegrationsResultTypeOutput {
+	return o
+}
+
+// Unique identifier of your New Relic account.
+func (o GetThirdPartyIntegrationsResultTypeOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// Your API Key.
+func (o GetThirdPartyIntegrationsResultTypeOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// Your API Token.
+func (o GetThirdPartyIntegrationsResultTypeOutput) ApiToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.ApiToken }).(pulumi.StringOutput)
+}
+
+func (o GetThirdPartyIntegrationsResultTypeOutput) ChannelName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.ChannelName }).(pulumi.StringOutput)
+}
+
+// Your Flowdock Flow name.
+func (o GetThirdPartyIntegrationsResultTypeOutput) FlowName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.FlowName }).(pulumi.StringOutput)
+}
+
+// Your License Key.
+func (o GetThirdPartyIntegrationsResultTypeOutput) LicenseKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.LicenseKey }).(pulumi.StringOutput)
+}
+
+// Your Flowdock organization name.
+// * `WEBHOOK`
+func (o GetThirdPartyIntegrationsResultTypeOutput) OrgName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.OrgName }).(pulumi.StringOutput)
+}
+
+// The unique ID for the project to get all Third-Party service integrations
+func (o GetThirdPartyIntegrationsResultTypeOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Your Insights Query Key.
+// * `OPS_GENIE`
+func (o GetThirdPartyIntegrationsResultTypeOutput) ReadToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.ReadToken }).(pulumi.StringOutput)
+}
+
+// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+// * `VICTOR_OPS`
+func (o GetThirdPartyIntegrationsResultTypeOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// An optional field for your Routing Key.
+// * `FLOWDOCK`
+func (o GetThirdPartyIntegrationsResultTypeOutput) RoutingKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.RoutingKey }).(pulumi.StringOutput)
+}
+
+// An optional field for your webhook secret.
+func (o GetThirdPartyIntegrationsResultTypeOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+// Your Service Key.
+// * `DATADOG`
+func (o GetThirdPartyIntegrationsResultTypeOutput) ServiceKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.ServiceKey }).(pulumi.StringOutput)
+}
+
+func (o GetThirdPartyIntegrationsResultTypeOutput) TeamName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.TeamName }).(pulumi.StringOutput)
+}
+
+// (Required) Thirt-Party service integration type.
+func (o GetThirdPartyIntegrationsResultTypeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Your webhook URL.
+func (o GetThirdPartyIntegrationsResultTypeOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// Your Insights Insert Key.
+func (o GetThirdPartyIntegrationsResultTypeOutput) WriteToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResultType) string { return v.WriteToken }).(pulumi.StringOutput)
+}
+
+type GetThirdPartyIntegrationsResultTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetThirdPartyIntegrationsResultTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetThirdPartyIntegrationsResultType)(nil)).Elem()
+}
+
+func (o GetThirdPartyIntegrationsResultTypeArrayOutput) ToGetThirdPartyIntegrationsResultTypeArrayOutput() GetThirdPartyIntegrationsResultTypeArrayOutput {
+	return o
+}
+
+func (o GetThirdPartyIntegrationsResultTypeArrayOutput) ToGetThirdPartyIntegrationsResultTypeArrayOutputWithContext(ctx context.Context) GetThirdPartyIntegrationsResultTypeArrayOutput {
+	return o
+}
+
+func (o GetThirdPartyIntegrationsResultTypeArrayOutput) Index(i pulumi.IntInput) GetThirdPartyIntegrationsResultTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetThirdPartyIntegrationsResultType {
+		return vs[0].([]GetThirdPartyIntegrationsResultType)[vs[1].(int)]
+	}).(GetThirdPartyIntegrationsResultTypeOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AlertConfigurationMatcherOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationMatcherArrayOutput{})
@@ -10710,6 +11341,8 @@ func init() {
 	pulumi.RegisterOutputType(AlertConfigurationNotificationArrayOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationThresholdOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationThresholdPtrOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessFeatureUsageOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessFeatureUsageArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput{})
@@ -10768,6 +11401,10 @@ func init() {
 	pulumi.RegisterOutputType(GetAlertConfigurationNotificationOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationNotificationArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationThresholdOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleFeatureUsageOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput{})
@@ -10846,4 +11483,6 @@ func init() {
 	pulumi.RegisterOutputType(GetProjectsResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamArrayOutput{})
+	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultTypeOutput{})
+	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultTypeArrayOutput{})
 }

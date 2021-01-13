@@ -14,6 +14,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.PrivateEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
+        /// !&gt; **WARNING:** This datasource is deprecated and will be removed in the next major version
+        ///                 Please transition to privatelink_endpoint as soon as possible. [PrivateLink Endpoints](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-get-one/)
+        /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// </summary>
         public static Task<GetPrivateEndpointResult> InvokeAsync(GetPrivateEndpointArgs args, InvokeOptions? options = null)
