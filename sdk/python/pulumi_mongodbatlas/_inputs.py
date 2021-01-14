@@ -13,6 +13,7 @@ __all__ = [
     'AlertConfigurationMetricThresholdArgs',
     'AlertConfigurationNotificationArgs',
     'AlertConfigurationThresholdArgs',
+    'CloudProviderAccessFeatureUsageArgs',
     'CloudProviderSnapshotBackupPolicyPolicyArgs',
     'CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs',
     'CloudProviderSnapshotRestoreJobDeliveryTypeArgs',
@@ -696,6 +697,35 @@ class AlertConfigurationThresholdArgs:
     @units.setter
     def units(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "units", value)
+
+
+@pulumi.input_type
+class CloudProviderAccessFeatureUsageArgs:
+    def __init__(__self__, *,
+                 feature_id: Optional[pulumi.Input[str]] = None,
+                 feature_type: Optional[pulumi.Input[str]] = None):
+        if feature_id is not None:
+            pulumi.set(__self__, "feature_id", feature_id)
+        if feature_type is not None:
+            pulumi.set(__self__, "feature_type", feature_type)
+
+    @property
+    @pulumi.getter(name="featureId")
+    def feature_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "feature_id")
+
+    @feature_id.setter
+    def feature_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "feature_id", value)
+
+    @property
+    @pulumi.getter(name="featureType")
+    def feature_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "feature_type")
+
+    @feature_type.setter
+    def feature_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "feature_type", value)
 
 
 @pulumi.input_type
@@ -1817,19 +1847,23 @@ class EncryptionAtRestAwsKmsArgs:
                  customer_master_key_id: pulumi.Input[str],
                  enabled: pulumi.Input[bool],
                  region: pulumi.Input[str],
-                 secret_access_key: pulumi.Input[str]):
+                 secret_access_key: pulumi.Input[str],
+                 role_id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] access_key_id: The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         :param pulumi.Input[str] customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         :param pulumi.Input[str] secret_access_key: The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
+        :param pulumi.Input[str] role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
         """
         pulumi.set(__self__, "access_key_id", access_key_id)
         pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "secret_access_key", secret_access_key)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
 
     @property
     @pulumi.getter(name="accessKeyId")
@@ -1890,6 +1924,18 @@ class EncryptionAtRestAwsKmsArgs:
     @secret_access_key.setter
     def secret_access_key(self, value: pulumi.Input[str]):
         pulumi.set(self, "secret_access_key", value)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_id", value)
 
 
 @pulumi.input_type

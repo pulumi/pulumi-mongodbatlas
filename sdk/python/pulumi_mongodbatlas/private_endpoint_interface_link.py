@@ -24,6 +24,9 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
         """
         `PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
 
+        !> **WARNING:** This resource is deprecated and will be removed in the next major version
+                        Please transition to privatelink_endpoint_service as soon as possible. [PrivateLink Endpoints] (https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
+
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
           * Organization Owner
           * Project Owner

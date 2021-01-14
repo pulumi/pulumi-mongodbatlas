@@ -36,18 +36,33 @@ namespace Pulumi.Mongodbatlas
     ///         var cluster_test = new Mongodbatlas.Cluster("cluster-test", new Mongodbatlas.ClusterArgs
     ///         {
     ///             AutoScalingDiskGbEnabled = true,
+    ///             ClusterType = "REPLICASET",
     ///             DiskSizeGb = 100,
     ///             MongoDbMajorVersion = "4.2",
-    ///             NumShards = 1,
     ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///             ProviderBackupEnabled = true,
     ///             ProviderDiskIops = 300,
     ///             ProviderEncryptEbsVolume = true,
     ///             ProviderInstanceSizeName = "M40",
     ///             ProviderName = "AWS",
-    ///             ProviderRegionName = "US_EAST_1",
     ///             ProviderVolumeType = "STANDARD",
-    ///             ReplicationFactor = 3,
+    ///             ReplicationSpecs = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///                 {
+    ///                     NumShards = 1,
+    ///                     RegionsConfigs = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                         {
+    ///                             ElectableNodes = 3,
+    ///                             Priority = 7,
+    ///                             ReadOnlyNodes = 0,
+    ///                             RegionName = "US_EAST_1",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
     ///         });
     ///     }
     /// 
@@ -66,15 +81,30 @@ namespace Pulumi.Mongodbatlas
     ///         var test = new Mongodbatlas.Cluster("test", new Mongodbatlas.ClusterArgs
     ///         {
     ///             AutoScalingDiskGbEnabled = true,
+    ///             ClusterType = "REPLICASET",
     ///             MongoDbMajorVersion = "4.2",
-    ///             NumShards = 1,
     ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///             ProviderBackupEnabled = true,
     ///             ProviderDiskTypeName = "P6",
     ///             ProviderInstanceSizeName = "M30",
     ///             ProviderName = "AZURE",
-    ///             ProviderRegionName = "US_EAST_2",
-    ///             ReplicationFactor = 3,
+    ///             ReplicationSpecs = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///                 {
+    ///                     NumShards = 1,
+    ///                     RegionsConfigs = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                         {
+    ///                             ElectableNodes = 3,
+    ///                             Priority = 7,
+    ///                             ReadOnlyNodes = 0,
+    ///                             RegionName = "US_EAST_1",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
     ///         });
     ///     }
     /// 
@@ -93,15 +123,30 @@ namespace Pulumi.Mongodbatlas
     ///         var test = new Mongodbatlas.Cluster("test", new Mongodbatlas.ClusterArgs
     ///         {
     ///             AutoScalingDiskGbEnabled = true,
+    ///             ClusterType = "REPLICASET",
     ///             DiskSizeGb = 40,
     ///             MongoDbMajorVersion = "4.2",
-    ///             NumShards = 1,
     ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///             ProviderBackupEnabled = true,
     ///             ProviderInstanceSizeName = "M30",
     ///             ProviderName = "GCP",
-    ///             ProviderRegionName = "US_EAST_4",
-    ///             ReplicationFactor = 3,
+    ///             ReplicationSpecs = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///                 {
+    ///                     NumShards = 1,
+    ///                     RegionsConfigs = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                         {
+    ///                             ElectableNodes = 3,
+    ///                             Priority = 7,
+    ///                             ReadOnlyNodes = 0,
+    ///                             RegionName = "US_EAST_1",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
     ///         });
     ///     }
     /// 
@@ -435,7 +480,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProviderDiskTypeName { get; private set; } = null!;
 
         /// <summary>
-        /// If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        /// The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         /// </summary>
         [Output("providerEncryptEbsVolume")]
         public Output<bool> ProviderEncryptEbsVolume { get; private set; } = null!;
@@ -680,7 +725,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderDiskTypeName { get; set; }
 
         /// <summary>
-        /// If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        /// The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         /// </summary>
         [Input("providerEncryptEbsVolume")]
         public Input<bool>? ProviderEncryptEbsVolume { get; set; }
@@ -916,7 +961,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderDiskTypeName { get; set; }
 
         /// <summary>
-        /// If enabled, the Amazon EBS encryption feature encrypts the server’s root volume for both data at rest within the volume and for data moving between the volume and the cluster.  **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        /// The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         /// </summary>
         [Input("providerEncryptEbsVolume")]
         public Input<bool>? ProviderEncryptEbsVolume { get; set; }

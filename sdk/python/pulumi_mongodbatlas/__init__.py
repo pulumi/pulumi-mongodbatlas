@@ -5,6 +5,7 @@
 # Export this package's modules as members:
 from .alert_configuration import *
 from .auditing import *
+from .cloud_provider_access import *
 from .cloud_provider_snapshot import *
 from .cloud_provider_snapshot_backup_policy import *
 from .cloud_provider_snapshot_restore_job import *
@@ -15,6 +16,7 @@ from .encryption_at_rest import *
 from .get509_authentication_database_user import *
 from .get_alert_configuration import *
 from .get_auditing import *
+from .get_cloud_provider_access import *
 from .get_cloud_provider_snapshot import *
 from .get_cloud_provider_snapshot_backup_policy import *
 from .get_cloud_provider_snapshot_restore_job import *
@@ -34,11 +36,16 @@ from .get_network_peering import *
 from .get_network_peerings import *
 from .get_private_endpoint import *
 from .get_private_endpoint_interface_link import *
+from .get_private_link_endpoint import *
+from .get_private_link_endpoint_service import *
 from .get_project import *
+from .get_project_ip_access_list import *
 from .get_project_ip_whitelist import *
 from .get_projects import *
 from .get_team import *
 from .get_teams import *
+from .get_third_party_integration import *
+from .get_third_party_integrations import *
 from .global_cluster_config import *
 from .maintenance_window import *
 from .network_container import *
@@ -46,11 +53,15 @@ from .network_peering import *
 from .private_endpoint import *
 from .private_endpoint_interface_link import *
 from .private_ip_mode import *
+from .private_link_endpoint import *
+from .private_link_endpoint_service import *
 from .project import *
+from .project_ip_access_list import *
 from .project_ip_whitelist import *
 from .provider import *
 from .team import *
 from .teams import *
+from .third_party_integration import *
 from .x509_authentication_database_user import *
 from ._inputs import *
 from . import outputs
@@ -76,6 +87,8 @@ def _register_module():
                 return AlertConfiguration(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/auditing:Auditing":
                 return Auditing(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
+                return CloudProviderAccess(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot":
                 return CloudProviderSnapshot(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy":
@@ -104,14 +117,22 @@ def _register_module():
                 return PrivateEndpointInterfaceLink(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/privateIpMode:PrivateIpMode":
                 return PrivateIpMode(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
+                return PrivateLinkEndpoint(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
+                return PrivateLinkEndpointService(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/project:Project":
                 return Project(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
+                return ProjectIpAccessList(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist":
                 return ProjectIpWhitelist(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/team:Team":
                 return Team(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/teams:Teams":
                 return Teams(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration":
+                return ThirdPartyIntegration(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser":
                 return X509AuthenticationDatabaseUser(name, pulumi.ResourceOptions(urn=urn))
             else:
@@ -121,6 +142,7 @@ def _register_module():
     _module_instance = Module()
     pulumi.runtime.register_resource_module("mongodbatlas", "index/alertConfiguration", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/auditing", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderAccess", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderSnapshot", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderSnapshotBackupPolicy", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderSnapshotRestoreJob", _module_instance)
@@ -135,10 +157,14 @@ def _register_module():
     pulumi.runtime.register_resource_module("mongodbatlas", "index/privateEndpoint", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/privateEndpointInterfaceLink", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/privateIpMode", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/privateLinkEndpoint", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/privateLinkEndpointService", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/project", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/projectIpAccessList", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/projectIpWhitelist", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/team", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/teams", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/thirdPartyIntegration", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/x509AuthenticationDatabaseUser", _module_instance)
 
 

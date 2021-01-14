@@ -197,6 +197,11 @@ export interface AlertConfigurationThreshold {
     units?: pulumi.Input<string>;
 }
 
+export interface CloudProviderAccessFeatureUsage {
+    featureId?: pulumi.Input<string>;
+    featureType?: pulumi.Input<string>;
+}
+
 export interface CloudProviderSnapshotBackupPolicyPolicy {
     id: pulumi.Input<string>;
     policyItems: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem>[]>;
@@ -456,6 +461,10 @@ export interface EncryptionAtRestAwsKms {
      * The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
      */
     region: pulumi.Input<string>;
+    /**
+     * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+     */
+    roleId?: pulumi.Input<string>;
     /**
      * The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
      */

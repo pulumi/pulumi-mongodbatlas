@@ -37,6 +37,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
+        /// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
+        /// </summary>
+        [Input("roleId")]
+        public Input<string>? RoleId { get; set; }
+
+        /// <summary>
         /// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         /// </summary>
         [Input("secretAccessKey", required: true)]

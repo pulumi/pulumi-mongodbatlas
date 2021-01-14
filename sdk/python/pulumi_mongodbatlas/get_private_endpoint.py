@@ -115,6 +115,9 @@ def get_private_endpoint(private_link_id: Optional[str] = None,
     """
     `PrivateEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
+    !> **WARNING:** This datasource is deprecated and will be removed in the next major version
+                    Please transition to privatelink_endpoint as soon as possible. [PrivateLink Endpoints](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-get-one/)
+
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
 

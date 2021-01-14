@@ -179,7 +179,7 @@ export interface GetClusterResult {
      */
     readonly providerVolumeType: string;
     /**
-     * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+     * (Deprecated) Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
     readonly replicationFactor: number;
     /**

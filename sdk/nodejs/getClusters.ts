@@ -23,8 +23,16 @@ import * as utilities from "./utilities";
  * const testCluster = new mongodbatlas.Cluster("testCluster", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     diskSizeGb: 100,
- *     numShards: 1,
- *     replicationFactor: 3,
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         numShards: 1,
+ *         regionsConfigs: [{
+ *             regionName: "US_EAST_1",
+ *             electableNodes: 3,
+ *             priority: 7,
+ *             readOnlyNodes: 0,
+ *         }],
+ *     }],
  *     providerBackupEnabled: true,
  *     autoScalingDiskGbEnabled: true,
  *     providerName: "AWS",
@@ -32,7 +40,6 @@ import * as utilities from "./utilities";
  *     providerVolumeType: "STANDARD",
  *     providerEncryptEbsVolume: true,
  *     providerInstanceSizeName: "M40",
- *     providerRegionName: "US_EAST_1",
  * });
  * const testClusters = testCluster.projectId.apply(projectId => mongodbatlas.getClusters({
  *     projectId: projectId,

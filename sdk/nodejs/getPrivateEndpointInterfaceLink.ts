@@ -6,7 +6,10 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlasPrivateEndpointLink` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+ * `mongodbatlas.PrivateEndpointInterfaceLink` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+ *
+ * !> **WARNING:** This datasource is deprecated and will be removed in the next major version
+ *                 Please transition to privatelinkEndpointService as soon as possible. [PrivateLink Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-get-one/)
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -29,12 +32,12 @@ import * as utilities from "./utilities";
  *     vpcEndpointType: "Interface",
  *     vpcId: "vpc-7fc0a543",
  * });
- * const testMongodbatlasPrivateEndpointLink = new mongodbatlas.PrivateEndpointLink("test", {
+ * const testMongodbatlasPrivateEndpointInterfaceLink = new mongodbatlas.PrivateEndpointInterfaceLink("test", {
  *     interfaceEndpointId: ptfeService.id,
  *     privateLinkId: testPrivateEndpoint.privateLinkId,
  *     projectId: testPrivateEndpoint.projectId,
  * });
- * const testPrivateEndpointLink = pulumi.all([testMongodbatlasPrivateEndpointLink.interfaceEndpointId, testMongodbatlasPrivateEndpointLink.privateLinkId, testMongodbatlasPrivateEndpointLink.projectId]).apply(([interfaceEndpointId, privateLinkId, projectId]) => mongodbatlas.PrivateEndpointLink({
+ * const testPrivateEndpointInterfaceLink = pulumi.all([mongodbatlas_private_endpoint_link_test.interfaceEndpointId, mongodbatlas_private_endpoint_link_test.privateLinkId, mongodbatlas_private_endpoint_link_test.projectId]).apply(([interfaceEndpointId, privateLinkId, projectId]) => mongodbatlas.getPrivateEndpointInterfaceLink({
  *     interfaceEndpointId: interfaceEndpointId,
  *     privateLinkId: privateLinkId,
  *     projectId: projectId,

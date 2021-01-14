@@ -9,6 +9,9 @@ import (
 
 // `PrivateEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 //
+// !> **WARNING:** This datasource is deprecated and will be removed in the next major version
+//                 Please transition to privatelinkEndpoint as soon as possible. [PrivateLink Endpoints](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-get-one/)
+//
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 func LookupPrivateEndpoint(ctx *pulumi.Context, args *LookupPrivateEndpointArgs, opts ...pulumi.InvokeOption) (*LookupPrivateEndpointResult, error) {
 	var rv LookupPrivateEndpointResult

@@ -28,10 +28,22 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-// 			DiskSizeGb:               pulumi.Float64(100),
-// 			NumShards:                pulumi.Int(1),
-// 			ReplicationFactor:        pulumi.Int(3),
+// 			ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+// 			DiskSizeGb:  pulumi.Float64(100),
+// 			ClusterType: pulumi.String("REPLICASET"),
+// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 					NumShards: pulumi.Int(1),
+// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 							RegionName:     pulumi.String("US_EAST_1"),
+// 							ElectableNodes: pulumi.Int(3),
+// 							Priority:       pulumi.Int(7),
+// 							ReadOnlyNodes:  pulumi.Int(0),
+// 						},
+// 					},
+// 				},
+// 			},
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
 // 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
 // 			ProviderName:             pulumi.String("AWS"),
@@ -39,7 +51,6 @@ import (
 // 			ProviderVolumeType:       pulumi.String("STANDARD"),
 // 			ProviderEncryptEbsVolume: pulumi.Bool(true),
 // 			ProviderInstanceSizeName: pulumi.String("M40"),
-// 			ProviderRegionName:       pulumi.String("US_EAST_1"),
 // 		})
 // 		if err != nil {
 // 			return err

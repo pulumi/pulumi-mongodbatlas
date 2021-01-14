@@ -67,7 +67,7 @@ export class DatabaseUser extends pulumi.CustomResource {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
     public readonly roles!: pulumi.Output<outputs.DatabaseUserRole[]>;
-    public readonly scopes!: pulumi.Output<outputs.DatabaseUserScope[]>;
+    public readonly scopes!: pulumi.Output<outputs.DatabaseUserScope[] | undefined>;
     /**
      * Username for authenticating to MongoDB.
      */
@@ -103,6 +103,9 @@ export class DatabaseUser extends pulumi.CustomResource {
             const args = argsOrState as DatabaseUserArgs | undefined;
             if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'projectId'");
+            }
+            if ((!args || args.roles === undefined) && !(opts && opts.urn)) {
+                throw new Error("Missing required property 'roles'");
             }
             if ((!args || args.username === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'username'");
@@ -197,7 +200,7 @@ export interface DatabaseUserArgs {
     /**
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
-    readonly roles?: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
+    readonly roles: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
     readonly scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
     /**
      * Username for authenticating to MongoDB.
