@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -135,15 +135,15 @@ type PrivateIpModeInput interface {
 	ToPrivateIpModeOutputWithContext(ctx context.Context) PrivateIpModeOutput
 }
 
-func (PrivateIpMode) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateIpMode)(nil)).Elem()
+func (*PrivateIpMode) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateIpMode)(nil))
 }
 
-func (i PrivateIpMode) ToPrivateIpModeOutput() PrivateIpModeOutput {
+func (i *PrivateIpMode) ToPrivateIpModeOutput() PrivateIpModeOutput {
 	return i.ToPrivateIpModeOutputWithContext(context.Background())
 }
 
-func (i PrivateIpMode) ToPrivateIpModeOutputWithContext(ctx context.Context) PrivateIpModeOutput {
+func (i *PrivateIpMode) ToPrivateIpModeOutputWithContext(ctx context.Context) PrivateIpModeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModeOutput)
 }
 
@@ -152,7 +152,7 @@ type PrivateIpModeOutput struct {
 }
 
 func (PrivateIpModeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateIpModeOutput)(nil)).Elem()
+	return reflect.TypeOf((*PrivateIpMode)(nil))
 }
 
 func (o PrivateIpModeOutput) ToPrivateIpModeOutput() PrivateIpModeOutput {

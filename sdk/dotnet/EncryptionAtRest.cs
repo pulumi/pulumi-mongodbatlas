@@ -71,6 +71,7 @@ namespace Pulumi.Mongodbatlas
     /// }
     /// ```
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/encryptionAtRest:EncryptionAtRest")]
     public partial class EncryptionAtRest : Pulumi.CustomResource
     {
         /// <summary>

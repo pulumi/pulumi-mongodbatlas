@@ -303,6 +303,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/cluster:Cluster")]
     public partial class Cluster : Pulumi.CustomResource
     {
         [Output("advancedConfiguration")]

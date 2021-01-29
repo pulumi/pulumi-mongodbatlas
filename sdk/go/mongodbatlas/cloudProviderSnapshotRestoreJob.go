@@ -30,6 +30,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -83,6 +84,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -296,15 +298,15 @@ type CloudProviderSnapshotRestoreJobInput interface {
 	ToCloudProviderSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobOutput
 }
 
-func (CloudProviderSnapshotRestoreJob) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotRestoreJob)(nil)).Elem()
+func (*CloudProviderSnapshotRestoreJob) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotRestoreJob)(nil))
 }
 
-func (i CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutput() CloudProviderSnapshotRestoreJobOutput {
+func (i *CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutput() CloudProviderSnapshotRestoreJobOutput {
 	return i.ToCloudProviderSnapshotRestoreJobOutputWithContext(context.Background())
 }
 
-func (i CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobOutput {
+func (i *CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobOutput)
 }
 
@@ -313,7 +315,7 @@ type CloudProviderSnapshotRestoreJobOutput struct {
 }
 
 func (CloudProviderSnapshotRestoreJobOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotRestoreJobOutput)(nil)).Elem()
+	return reflect.TypeOf((*CloudProviderSnapshotRestoreJob)(nil))
 }
 
 func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJobOutput() CloudProviderSnapshotRestoreJobOutput {

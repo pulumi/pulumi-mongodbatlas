@@ -36,6 +36,7 @@ import (
 // 	"fmt"
 //
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -178,15 +179,15 @@ type EncryptionAtRestInput interface {
 	ToEncryptionAtRestOutputWithContext(ctx context.Context) EncryptionAtRestOutput
 }
 
-func (EncryptionAtRest) ElementType() reflect.Type {
-	return reflect.TypeOf((*EncryptionAtRest)(nil)).Elem()
+func (*EncryptionAtRest) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRest)(nil))
 }
 
-func (i EncryptionAtRest) ToEncryptionAtRestOutput() EncryptionAtRestOutput {
+func (i *EncryptionAtRest) ToEncryptionAtRestOutput() EncryptionAtRestOutput {
 	return i.ToEncryptionAtRestOutputWithContext(context.Background())
 }
 
-func (i EncryptionAtRest) ToEncryptionAtRestOutputWithContext(ctx context.Context) EncryptionAtRestOutput {
+func (i *EncryptionAtRest) ToEncryptionAtRestOutputWithContext(ctx context.Context) EncryptionAtRestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestOutput)
 }
 
@@ -195,7 +196,7 @@ type EncryptionAtRestOutput struct {
 }
 
 func (EncryptionAtRestOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EncryptionAtRestOutput)(nil)).Elem()
+	return reflect.TypeOf((*EncryptionAtRest)(nil))
 }
 
 func (o EncryptionAtRestOutput) ToEncryptionAtRestOutput() EncryptionAtRestOutput {

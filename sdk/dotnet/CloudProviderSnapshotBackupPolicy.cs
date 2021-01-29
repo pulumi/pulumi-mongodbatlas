@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy")]
     public partial class CloudProviderSnapshotBackupPolicy : Pulumi.CustomResource
     {
         /// <summary>

@@ -94,6 +94,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/networkContainer:NetworkContainer")]
     public partial class NetworkContainer : Pulumi.CustomResource
     {
         /// <summary>

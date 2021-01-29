@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/project:Project")]
     public partial class Project : Pulumi.CustomResource
     {
         /// <summary>

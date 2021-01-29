@@ -26,7 +26,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -239,15 +239,15 @@ type PrivateLinkEndpointServiceInput interface {
 	ToPrivateLinkEndpointServiceOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceOutput
 }
 
-func (PrivateLinkEndpointService) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateLinkEndpointService)(nil)).Elem()
+func (*PrivateLinkEndpointService) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateLinkEndpointService)(nil))
 }
 
-func (i PrivateLinkEndpointService) ToPrivateLinkEndpointServiceOutput() PrivateLinkEndpointServiceOutput {
+func (i *PrivateLinkEndpointService) ToPrivateLinkEndpointServiceOutput() PrivateLinkEndpointServiceOutput {
 	return i.ToPrivateLinkEndpointServiceOutputWithContext(context.Background())
 }
 
-func (i PrivateLinkEndpointService) ToPrivateLinkEndpointServiceOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceOutput {
+func (i *PrivateLinkEndpointService) ToPrivateLinkEndpointServiceOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointServiceOutput)
 }
 
@@ -256,7 +256,7 @@ type PrivateLinkEndpointServiceOutput struct {
 }
 
 func (PrivateLinkEndpointServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateLinkEndpointServiceOutput)(nil)).Elem()
+	return reflect.TypeOf((*PrivateLinkEndpointService)(nil))
 }
 
 func (o PrivateLinkEndpointServiceOutput) ToPrivateLinkEndpointServiceOutput() PrivateLinkEndpointServiceOutput {

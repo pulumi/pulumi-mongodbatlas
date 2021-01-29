@@ -28,7 +28,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -53,7 +53,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -77,7 +77,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -289,15 +289,15 @@ type NetworkContainerInput interface {
 	ToNetworkContainerOutputWithContext(ctx context.Context) NetworkContainerOutput
 }
 
-func (NetworkContainer) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkContainer)(nil)).Elem()
+func (*NetworkContainer) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkContainer)(nil))
 }
 
-func (i NetworkContainer) ToNetworkContainerOutput() NetworkContainerOutput {
+func (i *NetworkContainer) ToNetworkContainerOutput() NetworkContainerOutput {
 	return i.ToNetworkContainerOutputWithContext(context.Background())
 }
 
-func (i NetworkContainer) ToNetworkContainerOutputWithContext(ctx context.Context) NetworkContainerOutput {
+func (i *NetworkContainer) ToNetworkContainerOutputWithContext(ctx context.Context) NetworkContainerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerOutput)
 }
 
@@ -306,7 +306,7 @@ type NetworkContainerOutput struct {
 }
 
 func (NetworkContainerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkContainerOutput)(nil)).Elem()
+	return reflect.TypeOf((*NetworkContainer)(nil))
 }
 
 func (o NetworkContainerOutput) ToNetworkContainerOutput() NetworkContainerOutput {

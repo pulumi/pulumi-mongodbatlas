@@ -44,6 +44,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/auditing:Auditing")]
     public partial class Auditing : Pulumi.CustomResource
     {
         /// <summary>

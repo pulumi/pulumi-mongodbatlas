@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  See detailed information for arguments and attributes[MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/networkPeering:NetworkPeering")]
     public partial class NetworkPeering : Pulumi.CustomResource
     {
         /// <summary>

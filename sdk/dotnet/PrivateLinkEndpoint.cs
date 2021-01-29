@@ -51,6 +51,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  See detailed information for arguments and attributes[MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint")]
     public partial class PrivateLinkEndpoint : Pulumi.CustomResource
     {
         /// <summary>

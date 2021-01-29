@@ -15,10 +15,13 @@
 package mongodbatlas
 
 import (
+	"fmt"
+	"path/filepath"
 	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/mongodb/terraform-provider-mongodbatlas/mongodbatlas"
+	"github.com/pulumi/pulumi-mongodbatlas/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
@@ -195,6 +198,15 @@ func Provider() tfbridge.ProviderInfo {
 			Requires: map[string]string{
 				"pulumi": ">=2.15.0,<3.0.0",
 			},
+		},
+		Golang: &tfbridge.GolangInfo{
+			ImportBasePath: filepath.Join(
+				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				tfbridge.GetModuleMajorVersion(version.Version),
+				"go",
+				mainPkg,
+			),
+			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{

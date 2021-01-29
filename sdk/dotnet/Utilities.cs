@@ -77,4 +77,11 @@ namespace Pulumi.Mongodbatlas
             }
         }
     }
+
+    internal sealed class MongodbatlasResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    {
+        public MongodbatlasResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        {
+        }
+    }
 }

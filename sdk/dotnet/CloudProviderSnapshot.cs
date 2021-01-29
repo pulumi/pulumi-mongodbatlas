@@ -68,6 +68,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot")]
     public partial class CloudProviderSnapshot : Pulumi.CustomResource
     {
         /// <summary>

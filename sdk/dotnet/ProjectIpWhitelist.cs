@@ -114,6 +114,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist")]
     public partial class ProjectIpWhitelist : Pulumi.CustomResource
     {
         /// <summary>

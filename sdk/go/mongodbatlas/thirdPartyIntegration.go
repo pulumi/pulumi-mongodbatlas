@@ -307,15 +307,15 @@ type ThirdPartyIntegrationInput interface {
 	ToThirdPartyIntegrationOutputWithContext(ctx context.Context) ThirdPartyIntegrationOutput
 }
 
-func (ThirdPartyIntegration) ElementType() reflect.Type {
-	return reflect.TypeOf((*ThirdPartyIntegration)(nil)).Elem()
+func (*ThirdPartyIntegration) ElementType() reflect.Type {
+	return reflect.TypeOf((*ThirdPartyIntegration)(nil))
 }
 
-func (i ThirdPartyIntegration) ToThirdPartyIntegrationOutput() ThirdPartyIntegrationOutput {
+func (i *ThirdPartyIntegration) ToThirdPartyIntegrationOutput() ThirdPartyIntegrationOutput {
 	return i.ToThirdPartyIntegrationOutputWithContext(context.Background())
 }
 
-func (i ThirdPartyIntegration) ToThirdPartyIntegrationOutputWithContext(ctx context.Context) ThirdPartyIntegrationOutput {
+func (i *ThirdPartyIntegration) ToThirdPartyIntegrationOutputWithContext(ctx context.Context) ThirdPartyIntegrationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationOutput)
 }
 
@@ -324,7 +324,7 @@ type ThirdPartyIntegrationOutput struct {
 }
 
 func (ThirdPartyIntegrationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ThirdPartyIntegrationOutput)(nil)).Elem()
+	return reflect.TypeOf((*ThirdPartyIntegration)(nil))
 }
 
 func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutput() ThirdPartyIntegrationOutput {

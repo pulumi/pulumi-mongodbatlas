@@ -111,6 +111,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList")]
     public partial class ProjectIpAccessList : Pulumi.CustomResource
     {
         /// <summary>

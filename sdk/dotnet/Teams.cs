@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
+    [MongodbatlasResourceType("mongodbatlas:index/teams:Teams")]
     public partial class Teams : Pulumi.CustomResource
     {
         [Output("name")]

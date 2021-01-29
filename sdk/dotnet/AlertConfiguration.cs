@@ -130,6 +130,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/alertConfiguration:AlertConfiguration")]
     public partial class AlertConfiguration : Pulumi.CustomResource
     {
         /// <summary>
