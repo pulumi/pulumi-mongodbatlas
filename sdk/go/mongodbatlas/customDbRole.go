@@ -24,6 +24,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -76,6 +77,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -264,15 +266,15 @@ type CustomDbRoleInput interface {
 	ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput
 }
 
-func (CustomDbRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomDbRole)(nil)).Elem()
+func (*CustomDbRole) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDbRole)(nil))
 }
 
-func (i CustomDbRole) ToCustomDbRoleOutput() CustomDbRoleOutput {
+func (i *CustomDbRole) ToCustomDbRoleOutput() CustomDbRoleOutput {
 	return i.ToCustomDbRoleOutputWithContext(context.Background())
 }
 
-func (i CustomDbRole) ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput {
+func (i *CustomDbRole) ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRoleOutput)
 }
 
@@ -281,7 +283,7 @@ type CustomDbRoleOutput struct {
 }
 
 func (CustomDbRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomDbRoleOutput)(nil)).Elem()
+	return reflect.TypeOf((*CustomDbRole)(nil))
 }
 
 func (o CustomDbRoleOutput) ToCustomDbRoleOutput() CustomDbRoleOutput {

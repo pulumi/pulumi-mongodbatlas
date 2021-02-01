@@ -24,7 +24,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -47,7 +47,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -70,7 +70,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -237,15 +237,15 @@ type ProjectIpAccessListInput interface {
 	ToProjectIpAccessListOutputWithContext(ctx context.Context) ProjectIpAccessListOutput
 }
 
-func (ProjectIpAccessList) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectIpAccessList)(nil)).Elem()
+func (*ProjectIpAccessList) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectIpAccessList)(nil))
 }
 
-func (i ProjectIpAccessList) ToProjectIpAccessListOutput() ProjectIpAccessListOutput {
+func (i *ProjectIpAccessList) ToProjectIpAccessListOutput() ProjectIpAccessListOutput {
 	return i.ToProjectIpAccessListOutputWithContext(context.Background())
 }
 
-func (i ProjectIpAccessList) ToProjectIpAccessListOutputWithContext(ctx context.Context) ProjectIpAccessListOutput {
+func (i *ProjectIpAccessList) ToProjectIpAccessListOutputWithContext(ctx context.Context) ProjectIpAccessListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpAccessListOutput)
 }
 
@@ -254,7 +254,7 @@ type ProjectIpAccessListOutput struct {
 }
 
 func (ProjectIpAccessListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectIpAccessListOutput)(nil)).Elem()
+	return reflect.TypeOf((*ProjectIpAccessList)(nil))
 }
 
 func (o ProjectIpAccessListOutput) ToProjectIpAccessListOutput() ProjectIpAccessListOutput {

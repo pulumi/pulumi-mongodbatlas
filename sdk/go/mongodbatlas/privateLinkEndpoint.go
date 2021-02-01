@@ -27,7 +27,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -206,15 +206,15 @@ type PrivateLinkEndpointInput interface {
 	ToPrivateLinkEndpointOutputWithContext(ctx context.Context) PrivateLinkEndpointOutput
 }
 
-func (PrivateLinkEndpoint) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateLinkEndpoint)(nil)).Elem()
+func (*PrivateLinkEndpoint) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateLinkEndpoint)(nil))
 }
 
-func (i PrivateLinkEndpoint) ToPrivateLinkEndpointOutput() PrivateLinkEndpointOutput {
+func (i *PrivateLinkEndpoint) ToPrivateLinkEndpointOutput() PrivateLinkEndpointOutput {
 	return i.ToPrivateLinkEndpointOutputWithContext(context.Background())
 }
 
-func (i PrivateLinkEndpoint) ToPrivateLinkEndpointOutputWithContext(ctx context.Context) PrivateLinkEndpointOutput {
+func (i *PrivateLinkEndpoint) ToPrivateLinkEndpointOutputWithContext(ctx context.Context) PrivateLinkEndpointOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointOutput)
 }
 
@@ -223,7 +223,7 @@ type PrivateLinkEndpointOutput struct {
 }
 
 func (PrivateLinkEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateLinkEndpointOutput)(nil)).Elem()
+	return reflect.TypeOf((*PrivateLinkEndpoint)(nil))
 }
 
 func (o PrivateLinkEndpointOutput) ToPrivateLinkEndpointOutput() PrivateLinkEndpointOutput {

@@ -27,7 +27,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -50,7 +50,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -73,7 +73,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -240,15 +240,15 @@ type ProjectIpWhitelistInput interface {
 	ToProjectIpWhitelistOutputWithContext(ctx context.Context) ProjectIpWhitelistOutput
 }
 
-func (ProjectIpWhitelist) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectIpWhitelist)(nil)).Elem()
+func (*ProjectIpWhitelist) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectIpWhitelist)(nil))
 }
 
-func (i ProjectIpWhitelist) ToProjectIpWhitelistOutput() ProjectIpWhitelistOutput {
+func (i *ProjectIpWhitelist) ToProjectIpWhitelistOutput() ProjectIpWhitelistOutput {
 	return i.ToProjectIpWhitelistOutputWithContext(context.Background())
 }
 
-func (i ProjectIpWhitelist) ToProjectIpWhitelistOutputWithContext(ctx context.Context) ProjectIpWhitelistOutput {
+func (i *ProjectIpWhitelist) ToProjectIpWhitelistOutputWithContext(ctx context.Context) ProjectIpWhitelistOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpWhitelistOutput)
 }
 
@@ -257,7 +257,7 @@ type ProjectIpWhitelistOutput struct {
 }
 
 func (ProjectIpWhitelistOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectIpWhitelistOutput)(nil)).Elem()
+	return reflect.TypeOf((*ProjectIpWhitelist)(nil))
 }
 
 func (o ProjectIpWhitelistOutput) ToProjectIpWhitelistOutput() ProjectIpWhitelistOutput {

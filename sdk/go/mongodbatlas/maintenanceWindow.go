@@ -29,7 +29,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -52,7 +52,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -199,15 +199,15 @@ type MaintenanceWindowInput interface {
 	ToMaintenanceWindowOutputWithContext(ctx context.Context) MaintenanceWindowOutput
 }
 
-func (MaintenanceWindow) ElementType() reflect.Type {
-	return reflect.TypeOf((*MaintenanceWindow)(nil)).Elem()
+func (*MaintenanceWindow) ElementType() reflect.Type {
+	return reflect.TypeOf((*MaintenanceWindow)(nil))
 }
 
-func (i MaintenanceWindow) ToMaintenanceWindowOutput() MaintenanceWindowOutput {
+func (i *MaintenanceWindow) ToMaintenanceWindowOutput() MaintenanceWindowOutput {
 	return i.ToMaintenanceWindowOutputWithContext(context.Background())
 }
 
-func (i MaintenanceWindow) ToMaintenanceWindowOutputWithContext(ctx context.Context) MaintenanceWindowOutput {
+func (i *MaintenanceWindow) ToMaintenanceWindowOutputWithContext(ctx context.Context) MaintenanceWindowOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(MaintenanceWindowOutput)
 }
 
@@ -216,7 +216,7 @@ type MaintenanceWindowOutput struct {
 }
 
 func (MaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*MaintenanceWindowOutput)(nil)).Elem()
+	return reflect.TypeOf((*MaintenanceWindow)(nil))
 }
 
 func (o MaintenanceWindowOutput) ToMaintenanceWindowOutput() MaintenanceWindowOutput {

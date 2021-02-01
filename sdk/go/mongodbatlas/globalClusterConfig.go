@@ -24,6 +24,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -100,6 +101,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -269,15 +271,15 @@ type GlobalClusterConfigInput interface {
 	ToGlobalClusterConfigOutputWithContext(ctx context.Context) GlobalClusterConfigOutput
 }
 
-func (GlobalClusterConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*GlobalClusterConfig)(nil)).Elem()
+func (*GlobalClusterConfig) ElementType() reflect.Type {
+	return reflect.TypeOf((*GlobalClusterConfig)(nil))
 }
 
-func (i GlobalClusterConfig) ToGlobalClusterConfigOutput() GlobalClusterConfigOutput {
+func (i *GlobalClusterConfig) ToGlobalClusterConfigOutput() GlobalClusterConfigOutput {
 	return i.ToGlobalClusterConfigOutputWithContext(context.Background())
 }
 
-func (i GlobalClusterConfig) ToGlobalClusterConfigOutputWithContext(ctx context.Context) GlobalClusterConfigOutput {
+func (i *GlobalClusterConfig) ToGlobalClusterConfigOutputWithContext(ctx context.Context) GlobalClusterConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigOutput)
 }
 
@@ -286,7 +288,7 @@ type GlobalClusterConfigOutput struct {
 }
 
 func (GlobalClusterConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GlobalClusterConfigOutput)(nil)).Elem()
+	return reflect.TypeOf((*GlobalClusterConfig)(nil))
 }
 
 func (o GlobalClusterConfigOutput) ToGlobalClusterConfigOutput() GlobalClusterConfigOutput {

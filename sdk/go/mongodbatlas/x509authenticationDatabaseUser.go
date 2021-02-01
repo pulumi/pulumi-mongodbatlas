@@ -31,6 +31,7 @@ import (
 // 	"fmt"
 //
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -76,7 +77,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -225,15 +226,15 @@ type X509AuthenticationDatabaseUserInput interface {
 	ToX509AuthenticationDatabaseUserOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserOutput
 }
 
-func (X509AuthenticationDatabaseUser) ElementType() reflect.Type {
-	return reflect.TypeOf((*X509AuthenticationDatabaseUser)(nil)).Elem()
+func (*X509AuthenticationDatabaseUser) ElementType() reflect.Type {
+	return reflect.TypeOf((*X509AuthenticationDatabaseUser)(nil))
 }
 
-func (i X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutput() X509AuthenticationDatabaseUserOutput {
+func (i *X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutput() X509AuthenticationDatabaseUserOutput {
 	return i.ToX509AuthenticationDatabaseUserOutputWithContext(context.Background())
 }
 
-func (i X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserOutput {
+func (i *X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserOutput)
 }
 
@@ -242,7 +243,7 @@ type X509AuthenticationDatabaseUserOutput struct {
 }
 
 func (X509AuthenticationDatabaseUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*X509AuthenticationDatabaseUserOutput)(nil)).Elem()
+	return reflect.TypeOf((*X509AuthenticationDatabaseUser)(nil))
 }
 
 func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserOutput() X509AuthenticationDatabaseUserOutput {

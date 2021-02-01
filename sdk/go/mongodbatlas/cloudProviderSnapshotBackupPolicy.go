@@ -177,15 +177,15 @@ type CloudProviderSnapshotBackupPolicyInput interface {
 	ToCloudProviderSnapshotBackupPolicyOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyOutput
 }
 
-func (CloudProviderSnapshotBackupPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotBackupPolicy)(nil)).Elem()
+func (*CloudProviderSnapshotBackupPolicy) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotBackupPolicy)(nil))
 }
 
-func (i CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyOutput() CloudProviderSnapshotBackupPolicyOutput {
+func (i *CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyOutput() CloudProviderSnapshotBackupPolicyOutput {
 	return i.ToCloudProviderSnapshotBackupPolicyOutputWithContext(context.Background())
 }
 
-func (i CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyOutput {
+func (i *CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotBackupPolicyOutput)
 }
 
@@ -194,7 +194,7 @@ type CloudProviderSnapshotBackupPolicyOutput struct {
 }
 
 func (CloudProviderSnapshotBackupPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotBackupPolicyOutput)(nil)).Elem()
+	return reflect.TypeOf((*CloudProviderSnapshotBackupPolicy)(nil))
 }
 
 func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPolicyOutput() CloudProviderSnapshotBackupPolicyOutput {

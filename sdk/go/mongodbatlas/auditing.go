@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -167,15 +167,15 @@ type AuditingInput interface {
 	ToAuditingOutputWithContext(ctx context.Context) AuditingOutput
 }
 
-func (Auditing) ElementType() reflect.Type {
-	return reflect.TypeOf((*Auditing)(nil)).Elem()
+func (*Auditing) ElementType() reflect.Type {
+	return reflect.TypeOf((*Auditing)(nil))
 }
 
-func (i Auditing) ToAuditingOutput() AuditingOutput {
+func (i *Auditing) ToAuditingOutput() AuditingOutput {
 	return i.ToAuditingOutputWithContext(context.Background())
 }
 
-func (i Auditing) ToAuditingOutputWithContext(ctx context.Context) AuditingOutput {
+func (i *Auditing) ToAuditingOutputWithContext(ctx context.Context) AuditingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuditingOutput)
 }
 
@@ -184,7 +184,7 @@ type AuditingOutput struct {
 }
 
 func (AuditingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuditingOutput)(nil)).Elem()
+	return reflect.TypeOf((*Auditing)(nil))
 }
 
 func (o AuditingOutput) ToAuditingOutput() AuditingOutput {

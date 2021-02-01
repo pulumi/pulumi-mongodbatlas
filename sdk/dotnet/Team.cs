@@ -53,6 +53,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  See detailed information for arguments and attributes[MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/team:Team")]
     public partial class Team : Pulumi.CustomResource
     {
         /// <summary>

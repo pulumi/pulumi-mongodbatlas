@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-create/) Documentation for more information.
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration")]
     public partial class ThirdPartyIntegration : Pulumi.CustomResource
     {
         /// <summary>

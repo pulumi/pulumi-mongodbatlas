@@ -116,6 +116,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser")]
     public partial class X509AuthenticationDatabaseUser : Pulumi.CustomResource
     {
         /// <summary>

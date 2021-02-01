@@ -125,6 +125,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob")]
     public partial class CloudProviderSnapshotRestoreJob : Pulumi.CustomResource
     {
         /// <summary>

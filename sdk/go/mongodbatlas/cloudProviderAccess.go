@@ -153,15 +153,15 @@ type CloudProviderAccessInput interface {
 	ToCloudProviderAccessOutputWithContext(ctx context.Context) CloudProviderAccessOutput
 }
 
-func (CloudProviderAccess) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderAccess)(nil)).Elem()
+func (*CloudProviderAccess) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccess)(nil))
 }
 
-func (i CloudProviderAccess) ToCloudProviderAccessOutput() CloudProviderAccessOutput {
+func (i *CloudProviderAccess) ToCloudProviderAccessOutput() CloudProviderAccessOutput {
 	return i.ToCloudProviderAccessOutputWithContext(context.Background())
 }
 
-func (i CloudProviderAccess) ToCloudProviderAccessOutputWithContext(ctx context.Context) CloudProviderAccessOutput {
+func (i *CloudProviderAccess) ToCloudProviderAccessOutputWithContext(ctx context.Context) CloudProviderAccessOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessOutput)
 }
 
@@ -170,7 +170,7 @@ type CloudProviderAccessOutput struct {
 }
 
 func (CloudProviderAccessOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderAccessOutput)(nil)).Elem()
+	return reflect.TypeOf((*CloudProviderAccess)(nil))
 }
 
 func (o CloudProviderAccessOutput) ToCloudProviderAccessOutput() CloudProviderAccessOutput {

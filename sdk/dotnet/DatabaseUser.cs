@@ -18,6 +18,7 @@ namespace Pulumi.Mongodbatlas
     ///  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
     /// ```
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/databaseUser:DatabaseUser")]
     public partial class DatabaseUser : Pulumi.CustomResource
     {
         /// <summary>

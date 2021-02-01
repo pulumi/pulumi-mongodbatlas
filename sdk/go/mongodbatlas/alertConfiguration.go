@@ -22,6 +22,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -74,6 +75,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -269,15 +271,15 @@ type AlertConfigurationInput interface {
 	ToAlertConfigurationOutputWithContext(ctx context.Context) AlertConfigurationOutput
 }
 
-func (AlertConfiguration) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertConfiguration)(nil)).Elem()
+func (*AlertConfiguration) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfiguration)(nil))
 }
 
-func (i AlertConfiguration) ToAlertConfigurationOutput() AlertConfigurationOutput {
+func (i *AlertConfiguration) ToAlertConfigurationOutput() AlertConfigurationOutput {
 	return i.ToAlertConfigurationOutputWithContext(context.Background())
 }
 
-func (i AlertConfiguration) ToAlertConfigurationOutputWithContext(ctx context.Context) AlertConfigurationOutput {
+func (i *AlertConfiguration) ToAlertConfigurationOutputWithContext(ctx context.Context) AlertConfigurationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationOutput)
 }
 
@@ -286,7 +288,7 @@ type AlertConfigurationOutput struct {
 }
 
 func (AlertConfigurationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertConfigurationOutput)(nil)).Elem()
+	return reflect.TypeOf((*AlertConfiguration)(nil))
 }
 
 func (o AlertConfigurationOutput) ToAlertConfigurationOutput() AlertConfigurationOutput {

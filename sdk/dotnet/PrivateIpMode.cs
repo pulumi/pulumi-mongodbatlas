@@ -44,6 +44,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/privateIpMode:PrivateIpMode")]
     public partial class PrivateIpMode : Pulumi.CustomResource
     {
         /// <summary>

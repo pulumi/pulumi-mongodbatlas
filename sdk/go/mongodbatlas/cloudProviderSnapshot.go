@@ -23,6 +23,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -242,15 +243,15 @@ type CloudProviderSnapshotInput interface {
 	ToCloudProviderSnapshotOutputWithContext(ctx context.Context) CloudProviderSnapshotOutput
 }
 
-func (CloudProviderSnapshot) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshot)(nil)).Elem()
+func (*CloudProviderSnapshot) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshot)(nil))
 }
 
-func (i CloudProviderSnapshot) ToCloudProviderSnapshotOutput() CloudProviderSnapshotOutput {
+func (i *CloudProviderSnapshot) ToCloudProviderSnapshotOutput() CloudProviderSnapshotOutput {
 	return i.ToCloudProviderSnapshotOutputWithContext(context.Background())
 }
 
-func (i CloudProviderSnapshot) ToCloudProviderSnapshotOutputWithContext(ctx context.Context) CloudProviderSnapshotOutput {
+func (i *CloudProviderSnapshot) ToCloudProviderSnapshotOutputWithContext(ctx context.Context) CloudProviderSnapshotOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotOutput)
 }
 
@@ -259,7 +260,7 @@ type CloudProviderSnapshotOutput struct {
 }
 
 func (CloudProviderSnapshotOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotOutput)(nil)).Elem()
+	return reflect.TypeOf((*CloudProviderSnapshot)(nil))
 }
 
 func (o CloudProviderSnapshotOutput) ToCloudProviderSnapshotOutput() CloudProviderSnapshotOutput {

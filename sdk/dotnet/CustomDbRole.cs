@@ -183,6 +183,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/customDbRole:CustomDbRole")]
     public partial class CustomDbRole : Pulumi.CustomResource
     {
         [Output("actions")]

@@ -20,6 +20,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
     /// </summary>
+    [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccess:CloudProviderAccess")]
     public partial class CloudProviderAccess : Pulumi.CustomResource
     {
         /// <summary>
