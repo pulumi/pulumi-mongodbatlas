@@ -15,26 +15,26 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         /// </summary>
-        [Input("accessKeyId", required: true)]
-        public Input<string> AccessKeyId { get; set; } = null!;
+        [Input("accessKeyId")]
+        public Input<string>? AccessKeyId { get; set; }
 
         /// <summary>
         /// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         /// </summary>
-        [Input("customerMasterKeyId", required: true)]
-        public Input<string> CustomerMasterKeyId { get; set; } = null!;
+        [Input("customerMasterKeyId")]
+        public Input<string>? CustomerMasterKeyId { get; set; }
 
         /// <summary>
         /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         /// </summary>
-        [Input("enabled", required: true)]
-        public Input<bool> Enabled { get; set; } = null!;
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
 
         /// <summary>
         /// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         /// </summary>
-        [Input("region", required: true)]
-        public Input<string> Region { get; set; } = null!;
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
@@ -45,8 +45,8 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         /// </summary>
-        [Input("secretAccessKey", required: true)]
-        public Input<string> SecretAccessKey { get; set; } = null!;
+        [Input("secretAccessKey")]
+        public Input<string>? SecretAccessKey { get; set; }
 
         public EncryptionAtRestAwsKmsGetArgs()
         {

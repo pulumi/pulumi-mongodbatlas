@@ -24,13 +24,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointServiceArgs : Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier of the private endpoint service for which you want to create a private endpoint service.
+        /// Unique identifier of the `AWS` or `AZURE` resource.
         /// </summary>
         [Input("endpointServiceId", required: true)]
         public string EndpointServiceId { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the `AWS` or `AZURE` PrivateLink connection.
+        /// Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
         /// </summary>
         [Input("privateLinkId", required: true)]
         public string PrivateLinkId { get; set; } = null!;

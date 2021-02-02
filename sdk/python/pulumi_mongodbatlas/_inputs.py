@@ -20,6 +20,8 @@ __all__ = [
     'ClusterAdvancedConfigurationArgs',
     'ClusterBiConnectorArgs',
     'ClusterConnectionStringsArgs',
+    'ClusterConnectionStringsPrivateEndpointArgs',
+    'ClusterConnectionStringsPrivateEndpointEndpointArgs',
     'ClusterLabelArgs',
     'ClusterReplicationSpecArgs',
     'ClusterReplicationSpecRegionsConfigArgs',
@@ -1092,15 +1094,24 @@ class ClusterConnectionStringsArgs:
                  aws_private_link: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  aws_private_link_srv: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  private: Optional[pulumi.Input[str]] = None,
+                 private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointArgs']]]] = None,
                  private_srv: Optional[pulumi.Input[str]] = None,
                  standard: Optional[pulumi.Input[str]] = None,
                  standard_srv: Optional[pulumi.Input[str]] = None):
         if aws_private_link is not None:
+            warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
+            pulumi.log.warn("aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead")
+        if aws_private_link is not None:
             pulumi.set(__self__, "aws_private_link", aws_private_link)
+        if aws_private_link_srv is not None:
+            warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
+            pulumi.log.warn("aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead")
         if aws_private_link_srv is not None:
             pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         if private is not None:
             pulumi.set(__self__, "private", private)
+        if private_endpoints is not None:
+            pulumi.set(__self__, "private_endpoints", private_endpoints)
         if private_srv is not None:
             pulumi.set(__self__, "private_srv", private_srv)
         if standard is not None:
@@ -1136,6 +1147,15 @@ class ClusterConnectionStringsArgs:
         pulumi.set(self, "private", value)
 
     @property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointArgs']]]]:
+        return pulumi.get(self, "private_endpoints")
+
+    @private_endpoints.setter
+    def private_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointArgs']]]]):
+        pulumi.set(self, "private_endpoints", value)
+
+    @property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "private_srv")
@@ -1161,6 +1181,106 @@ class ClusterConnectionStringsArgs:
     @standard_srv.setter
     def standard_srv(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "standard_srv", value)
+
+
+@pulumi.input_type
+class ClusterConnectionStringsPrivateEndpointArgs:
+    def __init__(__self__, *,
+                 connection_string: Optional[pulumi.Input[str]] = None,
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointEndpointArgs']]]] = None,
+                 srv_connection_string: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        if connection_string is not None:
+            pulumi.set(__self__, "connection_string", connection_string)
+        if endpoints is not None:
+            pulumi.set(__self__, "endpoints", endpoints)
+        if srv_connection_string is not None:
+            pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "connection_string")
+
+    @connection_string.setter
+    def connection_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connection_string", value)
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointEndpointArgs']]]]:
+        return pulumi.get(self, "endpoints")
+
+    @endpoints.setter
+    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointEndpointArgs']]]]):
+        pulumi.set(self, "endpoints", value)
+
+    @property
+    @pulumi.getter(name="srvConnectionString")
+    def srv_connection_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "srv_connection_string")
+
+    @srv_connection_string.setter
+    def srv_connection_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srv_connection_string", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class ClusterConnectionStringsPrivateEndpointEndpointArgs:
+    def __init__(__self__, *,
+                 endpoint_id: Optional[pulumi.Input[str]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
+        """
+        if endpoint_id is not None:
+            pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "endpoint_id")
+
+    @endpoint_id.setter
+    def endpoint_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_id", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
@@ -1843,87 +1963,80 @@ class DatabaseUserScopeArgs:
 @pulumi.input_type
 class EncryptionAtRestAwsKmsArgs:
     def __init__(__self__, *,
-                 access_key_id: pulumi.Input[str],
-                 customer_master_key_id: pulumi.Input[str],
-                 enabled: pulumi.Input[bool],
-                 region: pulumi.Input[str],
-                 secret_access_key: pulumi.Input[str],
-                 role_id: Optional[pulumi.Input[str]] = None):
+                 access_key_id: Optional[pulumi.Input[str]] = None,
+                 customer_master_key_id: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 secret_access_key: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] access_key_id: The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         :param pulumi.Input[str] customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-        :param pulumi.Input[str] secret_access_key: The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         :param pulumi.Input[str] role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
+        :param pulumi.Input[str] secret_access_key: The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         """
-        pulumi.set(__self__, "access_key_id", access_key_id)
-        pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "secret_access_key", secret_access_key)
+        if access_key_id is not None:
+            pulumi.set(__self__, "access_key_id", access_key_id)
+        if customer_master_key_id is not None:
+            pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
+        if secret_access_key is not None:
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
 
     @property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> pulumi.Input[str]:
+    def access_key_id(self) -> Optional[pulumi.Input[str]]:
         """
         The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
-    def access_key_id(self, value: pulumi.Input[str]):
+    def access_key_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "access_key_id", value)
 
     @property
     @pulumi.getter(name="customerMasterKeyId")
-    def customer_master_key_id(self) -> pulumi.Input[str]:
+    def customer_master_key_id(self) -> Optional[pulumi.Input[str]]:
         """
         The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         """
         return pulumi.get(self, "customer_master_key_id")
 
     @customer_master_key_id.setter
-    def customer_master_key_id(self, value: pulumi.Input[str]):
+    def customer_master_key_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "customer_master_key_id", value)
 
     @property
     @pulumi.getter
-    def enabled(self) -> pulumi.Input[bool]:
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: pulumi.Input[bool]):
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter
-    def region(self) -> pulumi.Input[str]:
+    def region(self) -> Optional[pulumi.Input[str]]:
         """
         The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: pulumi.Input[str]):
+    def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
-
-    @property
-    @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> pulumi.Input[str]:
-        """
-        The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-        """
-        return pulumi.get(self, "secret_access_key")
-
-    @secret_access_key.setter
-    def secret_access_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "secret_access_key", value)
 
     @property
     @pulumi.getter(name="roleId")
@@ -1937,23 +2050,35 @@ class EncryptionAtRestAwsKmsArgs:
     def role_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role_id", value)
 
+    @property
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
+        """
+        return pulumi.get(self, "secret_access_key")
+
+    @secret_access_key.setter
+    def secret_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_access_key", value)
+
 
 @pulumi.input_type
 class EncryptionAtRestAzureKeyVaultArgs:
     def __init__(__self__, *,
-                 azure_environment: pulumi.Input[str],
-                 client_id: pulumi.Input[str],
                  enabled: pulumi.Input[bool],
-                 key_identifier: pulumi.Input[str],
-                 key_vault_name: pulumi.Input[str],
-                 resource_group_name: pulumi.Input[str],
-                 secret: pulumi.Input[str],
-                 subscription_id: pulumi.Input[str],
-                 tenant_id: pulumi.Input[str]):
+                 azure_environment: Optional[pulumi.Input[str]] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 key_identifier: Optional[pulumi.Input[str]] = None,
+                 key_vault_name: Optional[pulumi.Input[str]] = None,
+                 resource_group_name: Optional[pulumi.Input[str]] = None,
+                 secret: Optional[pulumi.Input[str]] = None,
+                 subscription_id: Optional[pulumi.Input[str]] = None,
+                 tenant_id: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] azure_environment: The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
         :param pulumi.Input[str] client_id: The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-        :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] key_identifier: The unique identifier of a key in an Azure Key Vault.
         :param pulumi.Input[str] key_vault_name: The name of an Azure Key Vault containing your key.
         :param pulumi.Input[str] resource_group_name: The name of the Azure Resource group that contains an Azure Key Vault.
@@ -1961,174 +2086,185 @@ class EncryptionAtRestAzureKeyVaultArgs:
         :param pulumi.Input[str] subscription_id: The unique identifier associated with an Azure subscription.
         :param pulumi.Input[str] tenant_id: The unique identifier for an Azure AD tenant within an Azure subscription.
         """
-        pulumi.set(__self__, "azure_environment", azure_environment)
-        pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "key_identifier", key_identifier)
-        pulumi.set(__self__, "key_vault_name", key_vault_name)
-        pulumi.set(__self__, "resource_group_name", resource_group_name)
-        pulumi.set(__self__, "secret", secret)
-        pulumi.set(__self__, "subscription_id", subscription_id)
-        pulumi.set(__self__, "tenant_id", tenant_id)
+        if azure_environment is not None:
+            pulumi.set(__self__, "azure_environment", azure_environment)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if key_identifier is not None:
+            pulumi.set(__self__, "key_identifier", key_identifier)
+        if key_vault_name is not None:
+            pulumi.set(__self__, "key_vault_name", key_vault_name)
+        if resource_group_name is not None:
+            pulumi.set(__self__, "resource_group_name", resource_group_name)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
+        if subscription_id is not None:
+            pulumi.set(__self__, "subscription_id", subscription_id)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        """
+        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="azureEnvironment")
-    def azure_environment(self) -> pulumi.Input[str]:
+    def azure_environment(self) -> Optional[pulumi.Input[str]]:
         """
         The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
         """
         return pulumi.get(self, "azure_environment")
 
     @azure_environment.setter
-    def azure_environment(self, value: pulumi.Input[str]):
+    def azure_environment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "azure_environment", value)
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Input[str]:
+    def client_id(self) -> Optional[pulumi.Input[str]]:
         """
         The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: pulumi.Input[str]):
+    def client_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_id", value)
 
     @property
-    @pulumi.getter
-    def enabled(self) -> pulumi.Input[bool]:
-        """
-        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "enabled", value)
-
-    @property
     @pulumi.getter(name="keyIdentifier")
-    def key_identifier(self) -> pulumi.Input[str]:
+    def key_identifier(self) -> Optional[pulumi.Input[str]]:
         """
         The unique identifier of a key in an Azure Key Vault.
         """
         return pulumi.get(self, "key_identifier")
 
     @key_identifier.setter
-    def key_identifier(self, value: pulumi.Input[str]):
+    def key_identifier(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key_identifier", value)
 
     @property
     @pulumi.getter(name="keyVaultName")
-    def key_vault_name(self) -> pulumi.Input[str]:
+    def key_vault_name(self) -> Optional[pulumi.Input[str]]:
         """
         The name of an Azure Key Vault containing your key.
         """
         return pulumi.get(self, "key_vault_name")
 
     @key_vault_name.setter
-    def key_vault_name(self, value: pulumi.Input[str]):
+    def key_vault_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key_vault_name", value)
 
     @property
     @pulumi.getter(name="resourceGroupName")
-    def resource_group_name(self) -> pulumi.Input[str]:
+    def resource_group_name(self) -> Optional[pulumi.Input[str]]:
         """
         The name of the Azure Resource group that contains an Azure Key Vault.
         """
         return pulumi.get(self, "resource_group_name")
 
     @resource_group_name.setter
-    def resource_group_name(self, value: pulumi.Input[str]):
+    def resource_group_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "resource_group_name", value)
 
     @property
     @pulumi.getter
-    def secret(self) -> pulumi.Input[str]:
+    def secret(self) -> Optional[pulumi.Input[str]]:
         """
         The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: pulumi.Input[str]):
+    def secret(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secret", value)
 
     @property
     @pulumi.getter(name="subscriptionId")
-    def subscription_id(self) -> pulumi.Input[str]:
+    def subscription_id(self) -> Optional[pulumi.Input[str]]:
         """
         The unique identifier associated with an Azure subscription.
         """
         return pulumi.get(self, "subscription_id")
 
     @subscription_id.setter
-    def subscription_id(self, value: pulumi.Input[str]):
+    def subscription_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subscription_id", value)
 
     @property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> pulumi.Input[str]:
+    def tenant_id(self) -> Optional[pulumi.Input[str]]:
         """
         The unique identifier for an Azure AD tenant within an Azure subscription.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: pulumi.Input[str]):
+    def tenant_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tenant_id", value)
 
 
 @pulumi.input_type
 class EncryptionAtRestGoogleCloudKmsArgs:
     def __init__(__self__, *,
-                 enabled: pulumi.Input[bool],
-                 key_version_resource_id: pulumi.Input[str],
-                 service_account_key: pulumi.Input[str]):
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 key_version_resource_id: Optional[pulumi.Input[str]] = None,
+                 service_account_key: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] key_version_resource_id: The Key Version Resource ID from your GCP account.
         :param pulumi.Input[str] service_account_key: String-formatted JSON object containing GCP KMS credentials from your GCP account.
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
-        pulumi.set(__self__, "service_account_key", service_account_key)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if key_version_resource_id is not None:
+            pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
+        if service_account_key is not None:
+            pulumi.set(__self__, "service_account_key", service_account_key)
 
     @property
     @pulumi.getter
-    def enabled(self) -> pulumi.Input[bool]:
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: pulumi.Input[bool]):
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter(name="keyVersionResourceId")
-    def key_version_resource_id(self) -> pulumi.Input[str]:
+    def key_version_resource_id(self) -> Optional[pulumi.Input[str]]:
         """
         The Key Version Resource ID from your GCP account.
         """
         return pulumi.get(self, "key_version_resource_id")
 
     @key_version_resource_id.setter
-    def key_version_resource_id(self, value: pulumi.Input[str]):
+    def key_version_resource_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key_version_resource_id", value)
 
     @property
     @pulumi.getter(name="serviceAccountKey")
-    def service_account_key(self) -> pulumi.Input[str]:
+    def service_account_key(self) -> Optional[pulumi.Input[str]]:
         """
         String-formatted JSON object containing GCP KMS credentials from your GCP account.
         """
         return pulumi.get(self, "service_account_key")
 
     @service_account_key.setter
-    def service_account_key(self, value: pulumi.Input[str]):
+    def service_account_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_key", value)
 
 

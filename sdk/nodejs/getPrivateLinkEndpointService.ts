@@ -30,9 +30,10 @@ import * as utilities from "./utilities";
  *     vpcId: "vpc-7fc0a543",
  * });
  * const testMongodbatlasPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("test", {
- *     interfaceEndpointId: ptfeService.id,
+ *     endpointServiceId: ptfeService.id,
  *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
  *     projectId: testPrivateLinkEndpoint.projectId,
+ *     providerName: "AWS",
  * });
  * const testPrivateLinkEndpointService = pulumi.all([testMongodbatlasPrivateLinkEndpointService.interfaceEndpointId, testMongodbatlasPrivateLinkEndpointService.privateLinkId, testMongodbatlasPrivateLinkEndpointService.projectId]).apply(([interfaceEndpointId, privateLinkId, projectId]) => mongodbatlas.getPrivateLinkEndpointService({
  *     interfaceEndpointId: interfaceEndpointId,
@@ -62,11 +63,11 @@ export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServic
  */
 export interface GetPrivateLinkEndpointServiceArgs {
     /**
-     * Unique identifier of the private endpoint service for which you want to create a private endpoint service.
+     * Unique identifier of the `AWS` or `AZURE` resource.
      */
     readonly endpointServiceId: string;
     /**
-     * Unique identifier of the `AWS` or `AZURE` PrivateLink connection.
+     * Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
      */
     readonly privateLinkId: string;
     /**

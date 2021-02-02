@@ -21,9 +21,9 @@ func LookupPrivateLinkEndpointService(ctx *pulumi.Context, args *LookupPrivateLi
 
 // A collection of arguments for invoking getPrivateLinkEndpointService.
 type LookupPrivateLinkEndpointServiceArgs struct {
-	// Unique identifier of the private endpoint service for which you want to create a private endpoint service.
+	// Unique identifier of the `AWS` or `AZURE` resource.
 	EndpointServiceId string `pulumi:"endpointServiceId"`
-	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection.
+	// Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
 	PrivateLinkId string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`

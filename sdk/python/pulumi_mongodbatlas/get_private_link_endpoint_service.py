@@ -174,8 +174,8 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[str] = None,
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
 
-    :param str endpoint_service_id: Unique identifier of the private endpoint service for which you want to create a private endpoint service.
-    :param str private_link_id: Unique identifier of the `AWS` or `AZURE` PrivateLink connection.
+    :param str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` resource.
+    :param str private_link_id: Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
     :param str project_id: Unique identifier for the project.
     :param str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
     """
