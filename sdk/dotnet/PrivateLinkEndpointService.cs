@@ -75,11 +75,18 @@ namespace Pulumi.Mongodbatlas
     public partial class PrivateLinkEndpointService : Pulumi.CustomResource
     {
         /// <summary>
-        /// Status of the interface endpoint.
+        /// Status of the interface endpoint for AWS.
         /// Returns one of the following values:
         /// </summary>
-        [Output("connectionStatus")]
-        public Output<string> ConnectionStatus { get; private set; } = null!;
+        [Output("awsConnectionStatus")]
+        public Output<string> AwsConnectionStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Status of the interface endpoint for AZURE.
+        /// Returns one of the following values:
+        /// </summary>
+        [Output("azureStatus")]
+        public Output<string> AzureStatus { get; private set; } = null!;
 
         /// <summary>
         /// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
@@ -225,11 +232,18 @@ namespace Pulumi.Mongodbatlas
     public sealed class PrivateLinkEndpointServiceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Status of the interface endpoint.
+        /// Status of the interface endpoint for AWS.
         /// Returns one of the following values:
         /// </summary>
-        [Input("connectionStatus")]
-        public Input<string>? ConnectionStatus { get; set; }
+        [Input("awsConnectionStatus")]
+        public Input<string>? AwsConnectionStatus { get; set; }
+
+        /// <summary>
+        /// Status of the interface endpoint for AZURE.
+        /// Returns one of the following values:
+        /// </summary>
+        [Input("azureStatus")]
+        public Input<string>? AzureStatus { get; set; }
 
         /// <summary>
         /// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.

@@ -33,9 +33,12 @@ type LookupPrivateLinkEndpointServiceArgs struct {
 
 // A collection of values returned by getPrivateLinkEndpointService.
 type LookupPrivateLinkEndpointServiceResult struct {
-	// Status of the interface endpoint.
+	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
-	ConnectionStatus string `pulumi:"connectionStatus"`
+	AwsConnectionStatus string `pulumi:"awsConnectionStatus"`
+	// Status of the interface endpoint for AZURE.
+	// Returns one of the following values:
+	AzureStatus string `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested   bool   `pulumi:"deleteRequested"`
 	EndpointServiceId string `pulumi:"endpointServiceId"`

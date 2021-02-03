@@ -612,6 +612,8 @@ github.com/mongodb/terraform-provider-mongodbatlas v0.8.0 h1:68y9ZXklm055QGNRuKZ
 github.com/mongodb/terraform-provider-mongodbatlas v0.8.0/go.mod h1:GoCaTSCKNariV4DNAO+woWjN8CJvJ/CKR5S5bT09sGw=
 github.com/mongodb/terraform-provider-mongodbatlas v0.8.1 h1:7g0qLNdFY1NxEySyMlG2Lpxj30xVfeEy+u2z2iPISYY=
 github.com/mongodb/terraform-provider-mongodbatlas v0.8.1/go.mod h1:Uk3myT0ZkAK9faMBoFCwXxX27dqAtsNDgr0aKg3qc6k=
+github.com/mongodb/terraform-provider-mongodbatlas v0.8.2 h1:VuJcgAV2DvbNTgaKerkiIpKXiLy9uHj2KZ4BlXVxw/I=
+github.com/mongodb/terraform-provider-mongodbatlas v0.8.2/go.mod h1:N609yhVnqNGhr5s48/cw9EbEEF/+KhPWqqtJySOkjlY=
 github.com/mozilla/tls-observatory v0.0.0-20180409132520-8791a200eb40/go.mod h1:SrKMQvPiws7F7iqYp8/TX+IhxCYhzr6N/1yb8cwHsGk=
 github.com/mozilla/tls-observatory v0.0.0-20200220173314-aae45faa4006/go.mod h1:SrKMQvPiws7F7iqYp8/TX+IhxCYhzr6N/1yb8cwHsGk=
 github.com/mwielbut/pointy v1.1.0 h1:U5/YEfoIkaGCHv0St3CgjduqXID4FNRoyZgLM1kY9vg=
@@ -831,6 +833,8 @@ go.mongodb.org/atlas v0.7.0 h1:nBur5go1JSCFCi1VaQ7Ry6du2uHjMFY0w8rI64KQ+b0=
 go.mongodb.org/atlas v0.7.0/go.mod h1:CIaBeO8GLHhtYLw7xSSXsw7N90Z4MFY87Oy9qcPyuEs=
 go.mongodb.org/atlas v0.7.1 h1:hNBtwtKgmhB9vmSX/JyN/cArmhzyy4ihKpmXSMIc4mw=
 go.mongodb.org/atlas v0.7.1/go.mod h1:CIaBeO8GLHhtYLw7xSSXsw7N90Z4MFY87Oy9qcPyuEs=
+go.mongodb.org/atlas v0.7.2 h1:wB3+hP71t3mK+JOSrjBFbrzb5MsZRzDtZlpEKp58KK0=
+go.mongodb.org/atlas v0.7.2/go.mod h1:CIaBeO8GLHhtYLw7xSSXsw7N90Z4MFY87Oy9qcPyuEs=
 go.opencensus.io v0.15.0/go.mod h1:UffZAU+4sDEINUGP/B7UfBBkq4fqLu9zXAX7ke6CHW0=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=

@@ -92,7 +92,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Resource ID of the Azure Private Link Service that Atlas manages.
-        /// Returns one of the following values:
         /// </summary>
         [Output("privateLinkServiceResourceId")]
         public Output<string> PrivateLinkServiceResourceId { get; private set; } = null!;
@@ -114,7 +113,8 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Status of the Private Link Service.
+        /// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+        /// AWS:
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -238,7 +238,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Resource ID of the Azure Private Link Service that Atlas manages.
-        /// Returns one of the following values:
         /// </summary>
         [Input("privateLinkServiceResourceId")]
         public Input<string>? PrivateLinkServiceResourceId { get; set; }
@@ -260,7 +259,8 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Status of the Private Link Service.
+        /// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+        /// AWS:
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

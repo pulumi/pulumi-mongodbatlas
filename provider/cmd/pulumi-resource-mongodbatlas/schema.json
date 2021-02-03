@@ -7574,7 +7574,7 @@
                 },
                 "privateLinkServiceResourceId": {
                     "type": "string",
-                    "description": "Resource ID of the Azure Private Link Service that Atlas manages.\nReturns one of the following values:\n"
+                    "description": "Resource ID of the Azure Private Link Service that Atlas manages.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -7589,7 +7589,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Status of the Private Link Service.\n"
+                    "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n"
                 }
             },
             "required": [
@@ -7658,7 +7658,7 @@
                     },
                     "privateLinkServiceResourceId": {
                         "type": "string",
-                        "description": "Resource ID of the Azure Private Link Service that Atlas manages.\nReturns one of the following values:\n"
+                        "description": "Resource ID of the Azure Private Link Service that Atlas manages.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -7673,7 +7673,7 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "Status of the Private Link Service.\n"
+                        "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n"
                     }
                 },
                 "type": "object"
@@ -7682,9 +7682,13 @@
         "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService": {
             "description": "`mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateLinkEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"test\", {\n    endpointServiceId: ptfeService.id,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    projectId: testPrivateLinkEndpoint.projectId,\n    providerName: \"AWS\",\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    security_group_ids=[\"sg-3f238186\"],\n    service_name=test_private_link_endpoint.endpoint_service_name,\n    subnet_ids=[\"subnet-de0406d2\"],\n    vpc_endpoint_type=\"Interface\",\n    vpc_id=\"vpc-7fc0a543\")\ntest_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\",\n    endpoint_service_id=ptfe_service.id,\n    private_link_id=test_private_link_endpoint.private_link_id,\n    project_id=test_private_link_endpoint.project_id,\n    provider_name=\"AWS\")\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n            ServiceName = testPrivateLinkEndpoint.EndpointServiceName,\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            VpcEndpointType = \"Interface\",\n            VpcId = \"vpc-7fc0a543\",\n        });\n        var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", new Mongodbatlas.PrivateLinkEndpointServiceArgs\n        {\n            EndpointServiceId = ptfeService.Id,\n            PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,\n            ProjectId = testPrivateLinkEndpoint.ProjectId,\n            ProviderName = \"AWS\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"testPrivateLinkEndpoint\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t\tServiceName: testPrivateLinkEndpoint.EndpointServiceName,\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, \"testPrivateLinkEndpointService\", \u0026mongodbatlas.PrivateLinkEndpointServiceArgs{\n\t\t\tEndpointServiceId: ptfeService.ID(),\n\t\t\tPrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,\n\t\t\tProjectId:         testPrivateLinkEndpoint.ProjectId,\n\t\t\tProviderName:      pulumi.String(\"AWS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPrivate Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/) ",
             "properties": {
-                "connectionStatus": {
+                "awsConnectionStatus": {
                     "type": "string",
-                    "description": "Status of the interface endpoint.\nReturns one of the following values:\n"
+                    "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n"
+                },
+                "azureStatus": {
+                    "type": "string",
+                    "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n"
                 },
                 "deleteRequested": {
                     "type": "boolean",
@@ -7728,7 +7732,8 @@
                 }
             },
             "required": [
-                "connectionStatus",
+                "awsConnectionStatus",
+                "azureStatus",
                 "deleteRequested",
                 "endpointServiceId",
                 "errorMessage",
@@ -7771,9 +7776,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering PrivateLinkEndpointService resources.\n",
                 "properties": {
-                    "connectionStatus": {
+                    "awsConnectionStatus": {
                         "type": "string",
-                        "description": "Status of the interface endpoint.\nReturns one of the following values:\n"
+                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n"
+                    },
+                    "azureStatus": {
+                        "type": "string",
+                        "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n"
                     },
                     "deleteRequested": {
                         "type": "boolean",
@@ -10171,7 +10180,7 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "Status of the AWS PrivateLink connection.\nReturns one of the following values:\n"
+                        "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n"
                     }
                 },
                 "type": "object",
@@ -10376,9 +10385,13 @@
             "outputs": {
                 "description": "A collection of values returned by getPrivateLinkEndpointService.\n",
                 "properties": {
-                    "connectionStatus": {
+                    "awsConnectionStatus": {
                         "type": "string",
-                        "description": "Status of the interface endpoint.\nReturns one of the following values:\n"
+                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n"
+                    },
+                    "azureStatus": {
+                        "type": "string",
+                        "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n"
                     },
                     "deleteRequested": {
                         "type": "boolean",
@@ -10423,7 +10436,8 @@
                 },
                 "type": "object",
                 "required": [
-                    "connectionStatus",
+                    "awsConnectionStatus",
+                    "azureStatus",
                     "deleteRequested",
                     "endpointServiceId",
                     "errorMessage",

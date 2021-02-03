@@ -9,7 +9,7 @@ replace (
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk v1.14.0
-	github.com/mongodb/terraform-provider-mongodbatlas v0.8.1
+	github.com/mongodb/terraform-provider-mongodbatlas v0.8.2
 	github.com/pulumi/pulumi-terraform-bridge/v2 v2.18.1
 	github.com/pulumi/pulumi/sdk/v2 v2.18.0
 )

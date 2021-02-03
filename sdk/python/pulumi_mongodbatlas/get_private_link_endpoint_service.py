@@ -19,10 +19,13 @@ class GetPrivateLinkEndpointServiceResult:
     """
     A collection of values returned by getPrivateLinkEndpointService.
     """
-    def __init__(__self__, connection_status=None, delete_requested=None, endpoint_service_id=None, error_message=None, id=None, interface_endpoint_id=None, private_endpoint_connection_name=None, private_endpoint_ip_address=None, private_endpoint_resource_id=None, private_link_id=None, project_id=None, provider_name=None):
-        if connection_status and not isinstance(connection_status, str):
-            raise TypeError("Expected argument 'connection_status' to be a str")
-        pulumi.set(__self__, "connection_status", connection_status)
+    def __init__(__self__, aws_connection_status=None, azure_status=None, delete_requested=None, endpoint_service_id=None, error_message=None, id=None, interface_endpoint_id=None, private_endpoint_connection_name=None, private_endpoint_ip_address=None, private_endpoint_resource_id=None, private_link_id=None, project_id=None, provider_name=None):
+        if aws_connection_status and not isinstance(aws_connection_status, str):
+            raise TypeError("Expected argument 'aws_connection_status' to be a str")
+        pulumi.set(__self__, "aws_connection_status", aws_connection_status)
+        if azure_status and not isinstance(azure_status, str):
+            raise TypeError("Expected argument 'azure_status' to be a str")
+        pulumi.set(__self__, "azure_status", azure_status)
         if delete_requested and not isinstance(delete_requested, bool):
             raise TypeError("Expected argument 'delete_requested' to be a bool")
         pulumi.set(__self__, "delete_requested", delete_requested)
@@ -58,13 +61,22 @@ class GetPrivateLinkEndpointServiceResult:
         pulumi.set(__self__, "provider_name", provider_name)
 
     @property
-    @pulumi.getter(name="connectionStatus")
-    def connection_status(self) -> str:
+    @pulumi.getter(name="awsConnectionStatus")
+    def aws_connection_status(self) -> str:
         """
-        Status of the interface endpoint.
+        Status of the interface endpoint for AWS.
         Returns one of the following values:
         """
-        return pulumi.get(self, "connection_status")
+        return pulumi.get(self, "aws_connection_status")
+
+    @property
+    @pulumi.getter(name="azureStatus")
+    def azure_status(self) -> str:
+        """
+        Status of the interface endpoint for AZURE.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "azure_status")
 
     @property
     @pulumi.getter(name="deleteRequested")
@@ -149,7 +161,8 @@ class AwaitableGetPrivateLinkEndpointServiceResult(GetPrivateLinkEndpointService
         if False:
             yield self
         return GetPrivateLinkEndpointServiceResult(
-            connection_status=self.connection_status,
+            aws_connection_status=self.aws_connection_status,
+            azure_status=self.azure_status,
             delete_requested=self.delete_requested,
             endpoint_service_id=self.endpoint_service_id,
             error_message=self.error_message,
@@ -191,7 +204,8 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService', __args__, opts=opts, typ=GetPrivateLinkEndpointServiceResult).value
 
     return AwaitableGetPrivateLinkEndpointServiceResult(
-        connection_status=__ret__.connection_status,
+        aws_connection_status=__ret__.aws_connection_status,
+        azure_status=__ret__.azure_status,
         delete_requested=__ret__.delete_requested,
         endpoint_service_id=__ret__.endpoint_service_id,
         error_message=__ret__.error_message,

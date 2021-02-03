@@ -79,10 +79,15 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
     }
 
     /**
-     * Status of the interface endpoint.
+     * Status of the interface endpoint for AWS.
      * Returns one of the following values:
      */
-    public /*out*/ readonly connectionStatus!: pulumi.Output<string>;
+    public /*out*/ readonly awsConnectionStatus!: pulumi.Output<string>;
+    /**
+     * Status of the interface endpoint for AZURE.
+     * Returns one of the following values:
+     */
+    public /*out*/ readonly azureStatus!: pulumi.Output<string>;
     /**
      * Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
      */
@@ -136,7 +141,8 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as PrivateLinkEndpointServiceState | undefined;
-            inputs["connectionStatus"] = state ? state.connectionStatus : undefined;
+            inputs["awsConnectionStatus"] = state ? state.awsConnectionStatus : undefined;
+            inputs["azureStatus"] = state ? state.azureStatus : undefined;
             inputs["deleteRequested"] = state ? state.deleteRequested : undefined;
             inputs["endpointServiceId"] = state ? state.endpointServiceId : undefined;
             inputs["errorMessage"] = state ? state.errorMessage : undefined;
@@ -166,7 +172,8 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             inputs["privateLinkId"] = args ? args.privateLinkId : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["providerName"] = args ? args.providerName : undefined;
-            inputs["connectionStatus"] = undefined /*out*/;
+            inputs["awsConnectionStatus"] = undefined /*out*/;
+            inputs["azureStatus"] = undefined /*out*/;
             inputs["deleteRequested"] = undefined /*out*/;
             inputs["errorMessage"] = undefined /*out*/;
             inputs["interfaceEndpointId"] = undefined /*out*/;
@@ -189,10 +196,15 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
  */
 export interface PrivateLinkEndpointServiceState {
     /**
-     * Status of the interface endpoint.
+     * Status of the interface endpoint for AWS.
      * Returns one of the following values:
      */
-    readonly connectionStatus?: pulumi.Input<string>;
+    readonly awsConnectionStatus?: pulumi.Input<string>;
+    /**
+     * Status of the interface endpoint for AZURE.
+     * Returns one of the following values:
+     */
+    readonly azureStatus?: pulumi.Input<string>;
     /**
      * Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
      */

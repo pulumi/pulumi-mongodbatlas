@@ -85,10 +85,15 @@ export interface GetPrivateLinkEndpointServiceArgs {
  */
 export interface GetPrivateLinkEndpointServiceResult {
     /**
-     * Status of the interface endpoint.
+     * Status of the interface endpoint for AWS.
      * Returns one of the following values:
      */
-    readonly connectionStatus: string;
+    readonly awsConnectionStatus: string;
+    /**
+     * Status of the interface endpoint for AZURE.
+     * Returns one of the following values:
+     */
+    readonly azureStatus: string;
     /**
      * Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
      */

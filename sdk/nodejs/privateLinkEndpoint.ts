@@ -92,7 +92,6 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
     public /*out*/ readonly privateLinkServiceName!: pulumi.Output<string>;
     /**
      * Resource ID of the Azure Private Link Service that Atlas manages.
-     * Returns one of the following values:
      */
     public /*out*/ readonly privateLinkServiceResourceId!: pulumi.Output<string>;
     /**
@@ -106,7 +105,8 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Status of the Private Link Service.
+     * Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+     * AWS:
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
@@ -197,7 +197,6 @@ export interface PrivateLinkEndpointState {
     readonly privateLinkServiceName?: pulumi.Input<string>;
     /**
      * Resource ID of the Azure Private Link Service that Atlas manages.
-     * Returns one of the following values:
      */
     readonly privateLinkServiceResourceId?: pulumi.Input<string>;
     /**
@@ -211,7 +210,8 @@ export interface PrivateLinkEndpointState {
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * Status of the Private Link Service.
+     * Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+     * AWS:
      */
     readonly status?: pulumi.Input<string>;
 }

@@ -129,11 +129,11 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] private_link_id: Unique identifier of the AWS PrivateLink connection.
         :param pulumi.Input[str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
         :param pulumi.Input[str] private_link_service_resource_id: Resource ID of the Azure Private Link Service that Atlas manages.
-               Returns one of the following values:
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
-        :param pulumi.Input[str] status: Status of the Private Link Service.
+        :param pulumi.Input[str] status: Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+               AWS:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -205,7 +205,6 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def private_link_service_resource_id(self) -> pulumi.Output[str]:
         """
         Resource ID of the Azure Private Link Service that Atlas manages.
-        Returns one of the following values:
         """
         return pulumi.get(self, "private_link_service_resource_id")
 
@@ -235,7 +234,8 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        Status of the Private Link Service.
+        Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+        AWS:
         """
         return pulumi.get(self, "status")
 

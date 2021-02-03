@@ -81,8 +81,8 @@ export interface GetPrivateEndpointResult {
     readonly privateLinkId: string;
     readonly projectId: string;
     /**
-     * Status of the AWS PrivateLink connection.
-     * Returns one of the following values:
+     * Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+     * AWS:
      */
     readonly status: string;
 }

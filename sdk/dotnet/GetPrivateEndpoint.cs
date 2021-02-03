@@ -66,8 +66,8 @@ namespace Pulumi.Mongodbatlas
         public readonly string PrivateLinkId;
         public readonly string ProjectId;
         /// <summary>
-        /// Status of the AWS PrivateLink connection.
-        /// Returns one of the following values:
+        /// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+        /// AWS:
         /// </summary>
         public readonly string Status;
 

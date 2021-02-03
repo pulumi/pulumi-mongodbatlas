@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.8.1 of the MongoDbAtlas Terraform Provider
+* Upgrade to v0.8.2 of the MongoDbAtlas Terraform Provider
 
 ---
 
