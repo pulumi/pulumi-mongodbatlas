@@ -42,7 +42,7 @@ type LookupPrivateEndpointResult struct {
 	InterfaceEndpoints []string `pulumi:"interfaceEndpoints"`
 	PrivateLinkId      string   `pulumi:"privateLinkId"`
 	ProjectId          string   `pulumi:"projectId"`
-	// Status of the AWS PrivateLink connection.
-	// Returns one of the following values:
+	// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+	// AWS:
 	Status string `pulumi:"status"`
 }

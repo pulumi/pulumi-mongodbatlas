@@ -21,6 +21,8 @@ __all__ = [
     'ClusterAdvancedConfiguration',
     'ClusterBiConnector',
     'ClusterConnectionStrings',
+    'ClusterConnectionStringsPrivateEndpoint',
+    'ClusterConnectionStringsPrivateEndpointEndpoint',
     'ClusterLabel',
     'ClusterReplicationSpec',
     'ClusterReplicationSpecRegionsConfig',
@@ -53,6 +55,8 @@ __all__ = [
     'GetCloudProviderSnapshotsResultResult',
     'GetClusterBiConnectorResult',
     'GetClusterConnectionStringsResult',
+    'GetClusterConnectionStringsPrivateEndpointResult',
+    'GetClusterConnectionStringsPrivateEndpointEndpointResult',
     'GetClusterLabelResult',
     'GetClusterReplicationSpecResult',
     'GetClusterReplicationSpecRegionsConfigResult',
@@ -62,6 +66,8 @@ __all__ = [
     'GetClustersResultResult',
     'GetClustersResultBiConnectorResult',
     'GetClustersResultConnectionStringsResult',
+    'GetClustersResultConnectionStringsPrivateEndpointResult',
+    'GetClustersResultConnectionStringsPrivateEndpointEndpointResult',
     'GetClustersResultLabelResult',
     'GetClustersResultReplicationSpecResult',
     'GetClustersResultReplicationSpecRegionsConfigResult',
@@ -934,6 +940,7 @@ class ClusterConnectionStrings(dict):
                  aws_private_link: Optional[Mapping[str, Any]] = None,
                  aws_private_link_srv: Optional[Mapping[str, Any]] = None,
                  private: Optional[str] = None,
+                 private_endpoints: Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpoint']] = None,
                  private_srv: Optional[str] = None,
                  standard: Optional[str] = None,
                  standard_srv: Optional[str] = None):
@@ -943,6 +950,8 @@ class ClusterConnectionStrings(dict):
             pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         if private is not None:
             pulumi.set(__self__, "private", private)
+        if private_endpoints is not None:
+            pulumi.set(__self__, "private_endpoints", private_endpoints)
         if private_srv is not None:
             pulumi.set(__self__, "private_srv", private_srv)
         if standard is not None:
@@ -966,6 +975,11 @@ class ClusterConnectionStrings(dict):
         return pulumi.get(self, "private")
 
     @property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpoint']]:
+        return pulumi.get(self, "private_endpoints")
+
+    @property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> Optional[str]:
         return pulumi.get(self, "private_srv")
@@ -979,6 +993,84 @@ class ClusterConnectionStrings(dict):
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> Optional[str]:
         return pulumi.get(self, "standard_srv")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClusterConnectionStringsPrivateEndpoint(dict):
+    def __init__(__self__, *,
+                 connection_string: Optional[str] = None,
+                 endpoints: Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpointEndpoint']] = None,
+                 srv_connection_string: Optional[str] = None,
+                 type: Optional[str] = None):
+        if connection_string is not None:
+            pulumi.set(__self__, "connection_string", connection_string)
+        if endpoints is not None:
+            pulumi.set(__self__, "endpoints", endpoints)
+        if srv_connection_string is not None:
+            pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> Optional[str]:
+        return pulumi.get(self, "connection_string")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpointEndpoint']]:
+        return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter(name="srvConnectionString")
+    def srv_connection_string(self) -> Optional[str]:
+        return pulumi.get(self, "srv_connection_string")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+    def _translate_property(self, prop):
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+
+
+@pulumi.output_type
+class ClusterConnectionStringsPrivateEndpointEndpoint(dict):
+    def __init__(__self__, *,
+                 endpoint_id: Optional[str] = None,
+                 provider_name: Optional[str] = None,
+                 region: Optional[str] = None):
+        """
+        :param str provider_name: Cloud service provider on which the servers are provisioned.
+        """
+        if endpoint_id is not None:
+            pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> Optional[str]:
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[str]:
+        """
+        Cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1540,31 +1632,36 @@ class DatabaseUserScope(dict):
 @pulumi.output_type
 class EncryptionAtRestAwsKms(dict):
     def __init__(__self__, *,
-                 access_key_id: str,
-                 customer_master_key_id: str,
-                 enabled: bool,
-                 region: str,
-                 secret_access_key: str,
-                 role_id: Optional[str] = None):
+                 access_key_id: Optional[str] = None,
+                 customer_master_key_id: Optional[str] = None,
+                 enabled: Optional[bool] = None,
+                 region: Optional[str] = None,
+                 role_id: Optional[str] = None,
+                 secret_access_key: Optional[str] = None):
         """
         :param str access_key_id: The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         :param str customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-        :param str secret_access_key: The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         :param str role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
+        :param str secret_access_key: The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         """
-        pulumi.set(__self__, "access_key_id", access_key_id)
-        pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "secret_access_key", secret_access_key)
+        if access_key_id is not None:
+            pulumi.set(__self__, "access_key_id", access_key_id)
+        if customer_master_key_id is not None:
+            pulumi.set(__self__, "customer_master_key_id", customer_master_key_id)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
+        if secret_access_key is not None:
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
 
     @property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> str:
+    def access_key_id(self) -> Optional[str]:
         """
         The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         """
@@ -1572,7 +1669,7 @@ class EncryptionAtRestAwsKms(dict):
 
     @property
     @pulumi.getter(name="customerMasterKeyId")
-    def customer_master_key_id(self) -> str:
+    def customer_master_key_id(self) -> Optional[str]:
         """
         The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         """
@@ -1580,7 +1677,7 @@ class EncryptionAtRestAwsKms(dict):
 
     @property
     @pulumi.getter
-    def enabled(self) -> bool:
+    def enabled(self) -> Optional[bool]:
         """
         Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         """
@@ -1588,19 +1685,11 @@ class EncryptionAtRestAwsKms(dict):
 
     @property
     @pulumi.getter
-    def region(self) -> str:
+    def region(self) -> Optional[str]:
         """
         The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         """
         return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> str:
-        """
-        The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-        """
-        return pulumi.get(self, "secret_access_key")
 
     @property
     @pulumi.getter(name="roleId")
@@ -1610,6 +1699,14 @@ class EncryptionAtRestAwsKms(dict):
         """
         return pulumi.get(self, "role_id")
 
+    @property
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> Optional[str]:
+        """
+        The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
+        """
+        return pulumi.get(self, "secret_access_key")
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -1617,19 +1714,19 @@ class EncryptionAtRestAwsKms(dict):
 @pulumi.output_type
 class EncryptionAtRestAzureKeyVault(dict):
     def __init__(__self__, *,
-                 azure_environment: str,
-                 client_id: str,
                  enabled: bool,
-                 key_identifier: str,
-                 key_vault_name: str,
-                 resource_group_name: str,
-                 secret: str,
-                 subscription_id: str,
-                 tenant_id: str):
+                 azure_environment: Optional[str] = None,
+                 client_id: Optional[str] = None,
+                 key_identifier: Optional[str] = None,
+                 key_vault_name: Optional[str] = None,
+                 resource_group_name: Optional[str] = None,
+                 secret: Optional[str] = None,
+                 subscription_id: Optional[str] = None,
+                 tenant_id: Optional[str] = None):
         """
+        :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str azure_environment: The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
         :param str client_id: The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-        :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str key_identifier: The unique identifier of a key in an Azure Key Vault.
         :param str key_vault_name: The name of an Azure Key Vault containing your key.
         :param str resource_group_name: The name of the Azure Resource group that contains an Azure Key Vault.
@@ -1637,31 +1734,23 @@ class EncryptionAtRestAzureKeyVault(dict):
         :param str subscription_id: The unique identifier associated with an Azure subscription.
         :param str tenant_id: The unique identifier for an Azure AD tenant within an Azure subscription.
         """
-        pulumi.set(__self__, "azure_environment", azure_environment)
-        pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "key_identifier", key_identifier)
-        pulumi.set(__self__, "key_vault_name", key_vault_name)
-        pulumi.set(__self__, "resource_group_name", resource_group_name)
-        pulumi.set(__self__, "secret", secret)
-        pulumi.set(__self__, "subscription_id", subscription_id)
-        pulumi.set(__self__, "tenant_id", tenant_id)
-
-    @property
-    @pulumi.getter(name="azureEnvironment")
-    def azure_environment(self) -> str:
-        """
-        The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
-        """
-        return pulumi.get(self, "azure_environment")
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> str:
-        """
-        The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-        """
-        return pulumi.get(self, "client_id")
+        if azure_environment is not None:
+            pulumi.set(__self__, "azure_environment", azure_environment)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if key_identifier is not None:
+            pulumi.set(__self__, "key_identifier", key_identifier)
+        if key_vault_name is not None:
+            pulumi.set(__self__, "key_vault_name", key_vault_name)
+        if resource_group_name is not None:
+            pulumi.set(__self__, "resource_group_name", resource_group_name)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
+        if subscription_id is not None:
+            pulumi.set(__self__, "subscription_id", subscription_id)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
 
     @property
     @pulumi.getter
@@ -1672,8 +1761,24 @@ class EncryptionAtRestAzureKeyVault(dict):
         return pulumi.get(self, "enabled")
 
     @property
+    @pulumi.getter(name="azureEnvironment")
+    def azure_environment(self) -> Optional[str]:
+        """
+        The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
+        """
+        return pulumi.get(self, "azure_environment")
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[str]:
+        """
+        The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
+        """
+        return pulumi.get(self, "client_id")
+
+    @property
     @pulumi.getter(name="keyIdentifier")
-    def key_identifier(self) -> str:
+    def key_identifier(self) -> Optional[str]:
         """
         The unique identifier of a key in an Azure Key Vault.
         """
@@ -1681,7 +1786,7 @@ class EncryptionAtRestAzureKeyVault(dict):
 
     @property
     @pulumi.getter(name="keyVaultName")
-    def key_vault_name(self) -> str:
+    def key_vault_name(self) -> Optional[str]:
         """
         The name of an Azure Key Vault containing your key.
         """
@@ -1689,7 +1794,7 @@ class EncryptionAtRestAzureKeyVault(dict):
 
     @property
     @pulumi.getter(name="resourceGroupName")
-    def resource_group_name(self) -> str:
+    def resource_group_name(self) -> Optional[str]:
         """
         The name of the Azure Resource group that contains an Azure Key Vault.
         """
@@ -1697,7 +1802,7 @@ class EncryptionAtRestAzureKeyVault(dict):
 
     @property
     @pulumi.getter
-    def secret(self) -> str:
+    def secret(self) -> Optional[str]:
         """
         The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
         """
@@ -1705,7 +1810,7 @@ class EncryptionAtRestAzureKeyVault(dict):
 
     @property
     @pulumi.getter(name="subscriptionId")
-    def subscription_id(self) -> str:
+    def subscription_id(self) -> Optional[str]:
         """
         The unique identifier associated with an Azure subscription.
         """
@@ -1713,7 +1818,7 @@ class EncryptionAtRestAzureKeyVault(dict):
 
     @property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> str:
+    def tenant_id(self) -> Optional[str]:
         """
         The unique identifier for an Azure AD tenant within an Azure subscription.
         """
@@ -1726,21 +1831,24 @@ class EncryptionAtRestAzureKeyVault(dict):
 @pulumi.output_type
 class EncryptionAtRestGoogleCloudKms(dict):
     def __init__(__self__, *,
-                 enabled: bool,
-                 key_version_resource_id: str,
-                 service_account_key: str):
+                 enabled: Optional[bool] = None,
+                 key_version_resource_id: Optional[str] = None,
+                 service_account_key: Optional[str] = None):
         """
         :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str key_version_resource_id: The Key Version Resource ID from your GCP account.
         :param str service_account_key: String-formatted JSON object containing GCP KMS credentials from your GCP account.
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
-        pulumi.set(__self__, "service_account_key", service_account_key)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if key_version_resource_id is not None:
+            pulumi.set(__self__, "key_version_resource_id", key_version_resource_id)
+        if service_account_key is not None:
+            pulumi.set(__self__, "service_account_key", service_account_key)
 
     @property
     @pulumi.getter
-    def enabled(self) -> bool:
+    def enabled(self) -> Optional[bool]:
         """
         Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         """
@@ -1748,7 +1856,7 @@ class EncryptionAtRestGoogleCloudKms(dict):
 
     @property
     @pulumi.getter(name="keyVersionResourceId")
-    def key_version_resource_id(self) -> str:
+    def key_version_resource_id(self) -> Optional[str]:
         """
         The Key Version Resource ID from your GCP account.
         """
@@ -1756,7 +1864,7 @@ class EncryptionAtRestGoogleCloudKms(dict):
 
     @property
     @pulumi.getter(name="serviceAccountKey")
-    def service_account_key(self) -> str:
+    def service_account_key(self) -> Optional[str]:
         """
         String-formatted JSON object containing GCP KMS credentials from your GCP account.
         """
@@ -2970,12 +3078,14 @@ class GetClusterConnectionStringsResult(dict):
                  aws_private_link: Mapping[str, Any],
                  aws_private_link_srv: Mapping[str, Any],
                  private: str,
+                 private_endpoints: Sequence['outputs.GetClusterConnectionStringsPrivateEndpointResult'],
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
         pulumi.set(__self__, "aws_private_link", aws_private_link)
         pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         pulumi.set(__self__, "private", private)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
         pulumi.set(__self__, "private_srv", private_srv)
         pulumi.set(__self__, "standard", standard)
         pulumi.set(__self__, "standard_srv", standard_srv)
@@ -2996,6 +3106,11 @@ class GetClusterConnectionStringsResult(dict):
         return pulumi.get(self, "private")
 
     @property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Sequence['outputs.GetClusterConnectionStringsPrivateEndpointResult']:
+        return pulumi.get(self, "private_endpoints")
+
+    @property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> str:
         return pulumi.get(self, "private_srv")
@@ -3009,6 +3124,71 @@ class GetClusterConnectionStringsResult(dict):
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> str:
         return pulumi.get(self, "standard_srv")
+
+
+@pulumi.output_type
+class GetClusterConnectionStringsPrivateEndpointResult(dict):
+    def __init__(__self__, *,
+                 connection_string: str,
+                 endpoints: Sequence['outputs.GetClusterConnectionStringsPrivateEndpointEndpointResult'],
+                 srv_connection_string: str,
+                 type: str):
+        pulumi.set(__self__, "connection_string", connection_string)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> str:
+        return pulumi.get(self, "connection_string")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetClusterConnectionStringsPrivateEndpointEndpointResult']:
+        return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter(name="srvConnectionString")
+    def srv_connection_string(self) -> str:
+        return pulumi.get(self, "srv_connection_string")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetClusterConnectionStringsPrivateEndpointEndpointResult(dict):
+    def __init__(__self__, *,
+                 endpoint_id: str,
+                 provider_name: str,
+                 region: str):
+        """
+        :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
+        """
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Indicates the cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -3335,10 +3515,17 @@ class GetClustersResultResult(dict):
         :param 'GetClustersResultConnectionStringsArgs' connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
                - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
                - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-               - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.
-               - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
+               - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
+               - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
                - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
                - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+               - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
         :param str container_id: The Network Peering Container ID.
         :param float disk_size_gb: Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
         :param str encryption_at_rest_provider: Indicates whether Encryption at Rest is enabled or disabled.
@@ -3473,10 +3660,17 @@ class GetClustersResultResult(dict):
         Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
         - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-        - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.
-        - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
+        - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
+        - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
         - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+        - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
         """
         return pulumi.get(self, "connection_strings")
 
@@ -3743,12 +3937,14 @@ class GetClustersResultConnectionStringsResult(dict):
                  aws_private_link: Mapping[str, Any],
                  aws_private_link_srv: Mapping[str, Any],
                  private: str,
+                 private_endpoints: Sequence['outputs.GetClustersResultConnectionStringsPrivateEndpointResult'],
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
         pulumi.set(__self__, "aws_private_link", aws_private_link)
         pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         pulumi.set(__self__, "private", private)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
         pulumi.set(__self__, "private_srv", private_srv)
         pulumi.set(__self__, "standard", standard)
         pulumi.set(__self__, "standard_srv", standard_srv)
@@ -3769,6 +3965,11 @@ class GetClustersResultConnectionStringsResult(dict):
         return pulumi.get(self, "private")
 
     @property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Sequence['outputs.GetClustersResultConnectionStringsPrivateEndpointResult']:
+        return pulumi.get(self, "private_endpoints")
+
+    @property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> str:
         return pulumi.get(self, "private_srv")
@@ -3782,6 +3983,71 @@ class GetClustersResultConnectionStringsResult(dict):
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> str:
         return pulumi.get(self, "standard_srv")
+
+
+@pulumi.output_type
+class GetClustersResultConnectionStringsPrivateEndpointResult(dict):
+    def __init__(__self__, *,
+                 connection_string: str,
+                 endpoints: Sequence['outputs.GetClustersResultConnectionStringsPrivateEndpointEndpointResult'],
+                 srv_connection_string: str,
+                 type: str):
+        pulumi.set(__self__, "connection_string", connection_string)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> str:
+        return pulumi.get(self, "connection_string")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetClustersResultConnectionStringsPrivateEndpointEndpointResult']:
+        return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter(name="srvConnectionString")
+    def srv_connection_string(self) -> str:
+        return pulumi.get(self, "srv_connection_string")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetClustersResultConnectionStringsPrivateEndpointEndpointResult(dict):
+    def __init__(__self__, *,
+                 endpoint_id: str,
+                 provider_name: str,
+                 region: str):
+        """
+        :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
+        """
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Indicates the cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type

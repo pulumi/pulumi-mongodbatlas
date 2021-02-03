@@ -1945,12 +1945,15 @@ func (o ClusterBiConnectorPtrOutput) ReadPreference() pulumi.StringPtrOutput {
 }
 
 type ClusterConnectionStrings struct {
-	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
-	Private           *string                `pulumi:"private"`
-	PrivateSrv        *string                `pulumi:"privateSrv"`
-	Standard          *string                `pulumi:"standard"`
-	StandardSrv       *string                `pulumi:"standardSrv"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	AwsPrivateLinkSrv map[string]interface{}                    `pulumi:"awsPrivateLinkSrv"`
+	Private           *string                                   `pulumi:"private"`
+	PrivateEndpoints  []ClusterConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        *string                                   `pulumi:"privateSrv"`
+	Standard          *string                                   `pulumi:"standard"`
+	StandardSrv       *string                                   `pulumi:"standardSrv"`
 }
 
 // ClusterConnectionStringsInput is an input type that accepts ClusterConnectionStringsArgs and ClusterConnectionStringsOutput values.
@@ -1965,12 +1968,15 @@ type ClusterConnectionStringsInput interface {
 }
 
 type ClusterConnectionStringsArgs struct {
-	AwsPrivateLink    pulumi.MapInput       `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput       `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringPtrInput `pulumi:"private"`
-	PrivateSrv        pulumi.StringPtrInput `pulumi:"privateSrv"`
-	Standard          pulumi.StringPtrInput `pulumi:"standard"`
-	StandardSrv       pulumi.StringPtrInput `pulumi:"standardSrv"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	AwsPrivateLinkSrv pulumi.MapInput                                   `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringPtrInput                             `pulumi:"private"`
+	PrivateEndpoints  ClusterConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringPtrInput                             `pulumi:"privateSrv"`
+	Standard          pulumi.StringPtrInput                             `pulumi:"standard"`
+	StandardSrv       pulumi.StringPtrInput                             `pulumi:"standardSrv"`
 }
 
 func (ClusterConnectionStringsArgs) ElementType() reflect.Type {
@@ -2049,16 +2055,23 @@ func (o ClusterConnectionStringsOutput) ToClusterConnectionStringsPtrOutputWithC
 		return &v
 	}).(ClusterConnectionStringsPtrOutput)
 }
+
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
 func (o ClusterConnectionStringsOutput) AwsPrivateLink() pulumi.MapOutput {
 	return o.ApplyT(func(v ClusterConnectionStrings) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
 }
 
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
 func (o ClusterConnectionStringsOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
 	return o.ApplyT(func(v ClusterConnectionStrings) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
 
 func (o ClusterConnectionStringsOutput) Private() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.Private }).(pulumi.StringPtrOutput)
+}
+
+func (o ClusterConnectionStringsOutput) PrivateEndpoints() ClusterConnectionStringsPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v ClusterConnectionStrings) []ClusterConnectionStringsPrivateEndpoint { return v.PrivateEndpoints }).(ClusterConnectionStringsPrivateEndpointArrayOutput)
 }
 
 func (o ClusterConnectionStringsOutput) PrivateSrv() pulumi.StringPtrOutput {
@@ -2091,6 +2104,7 @@ func (o ClusterConnectionStringsPtrOutput) Elem() ClusterConnectionStringsOutput
 	return o.ApplyT(func(v *ClusterConnectionStrings) ClusterConnectionStrings { return *v }).(ClusterConnectionStringsOutput)
 }
 
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
 func (o ClusterConnectionStringsPtrOutput) AwsPrivateLink() pulumi.MapOutput {
 	return o.ApplyT(func(v *ClusterConnectionStrings) map[string]interface{} {
 		if v == nil {
@@ -2100,6 +2114,7 @@ func (o ClusterConnectionStringsPtrOutput) AwsPrivateLink() pulumi.MapOutput {
 	}).(pulumi.MapOutput)
 }
 
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
 func (o ClusterConnectionStringsPtrOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
 	return o.ApplyT(func(v *ClusterConnectionStrings) map[string]interface{} {
 		if v == nil {
@@ -2116,6 +2131,15 @@ func (o ClusterConnectionStringsPtrOutput) Private() pulumi.StringPtrOutput {
 		}
 		return v.Private
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o ClusterConnectionStringsPtrOutput) PrivateEndpoints() ClusterConnectionStringsPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v *ClusterConnectionStrings) []ClusterConnectionStringsPrivateEndpoint {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateEndpoints
+	}).(ClusterConnectionStringsPrivateEndpointArrayOutput)
 }
 
 func (o ClusterConnectionStringsPtrOutput) PrivateSrv() pulumi.StringPtrOutput {
@@ -2143,6 +2167,229 @@ func (o ClusterConnectionStringsPtrOutput) StandardSrv() pulumi.StringPtrOutput 
 		}
 		return v.StandardSrv
 	}).(pulumi.StringPtrOutput)
+}
+
+type ClusterConnectionStringsPrivateEndpoint struct {
+	ConnectionString    *string                                           `pulumi:"connectionString"`
+	Endpoints           []ClusterConnectionStringsPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString *string                                           `pulumi:"srvConnectionString"`
+	Type                *string                                           `pulumi:"type"`
+}
+
+// ClusterConnectionStringsPrivateEndpointInput is an input type that accepts ClusterConnectionStringsPrivateEndpointArgs and ClusterConnectionStringsPrivateEndpointOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringsPrivateEndpointInput` via:
+//
+//          ClusterConnectionStringsPrivateEndpointArgs{...}
+type ClusterConnectionStringsPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToClusterConnectionStringsPrivateEndpointOutput() ClusterConnectionStringsPrivateEndpointOutput
+	ToClusterConnectionStringsPrivateEndpointOutputWithContext(context.Context) ClusterConnectionStringsPrivateEndpointOutput
+}
+
+type ClusterConnectionStringsPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringPtrInput                                     `pulumi:"connectionString"`
+	Endpoints           ClusterConnectionStringsPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringPtrInput                                     `pulumi:"srvConnectionString"`
+	Type                pulumi.StringPtrInput                                     `pulumi:"type"`
+}
+
+func (ClusterConnectionStringsPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (i ClusterConnectionStringsPrivateEndpointArgs) ToClusterConnectionStringsPrivateEndpointOutput() ClusterConnectionStringsPrivateEndpointOutput {
+	return i.ToClusterConnectionStringsPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i ClusterConnectionStringsPrivateEndpointArgs) ToClusterConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPrivateEndpointOutput)
+}
+
+// ClusterConnectionStringsPrivateEndpointArrayInput is an input type that accepts ClusterConnectionStringsPrivateEndpointArray and ClusterConnectionStringsPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringsPrivateEndpointArrayInput` via:
+//
+//          ClusterConnectionStringsPrivateEndpointArray{ ClusterConnectionStringsPrivateEndpointArgs{...} }
+type ClusterConnectionStringsPrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToClusterConnectionStringsPrivateEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointArrayOutput
+	ToClusterConnectionStringsPrivateEndpointArrayOutputWithContext(context.Context) ClusterConnectionStringsPrivateEndpointArrayOutput
+}
+
+type ClusterConnectionStringsPrivateEndpointArray []ClusterConnectionStringsPrivateEndpointInput
+
+func (ClusterConnectionStringsPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (i ClusterConnectionStringsPrivateEndpointArray) ToClusterConnectionStringsPrivateEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointArrayOutput {
+	return i.ToClusterConnectionStringsPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i ClusterConnectionStringsPrivateEndpointArray) ToClusterConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPrivateEndpointArrayOutput)
+}
+
+type ClusterConnectionStringsPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (ClusterConnectionStringsPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (o ClusterConnectionStringsPrivateEndpointOutput) ToClusterConnectionStringsPrivateEndpointOutput() ClusterConnectionStringsPrivateEndpointOutput {
+	return o
+}
+
+func (o ClusterConnectionStringsPrivateEndpointOutput) ToClusterConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointOutput {
+	return o
+}
+
+func (o ClusterConnectionStringsPrivateEndpointOutput) ConnectionString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpoint) *string { return v.ConnectionString }).(pulumi.StringPtrOutput)
+}
+
+func (o ClusterConnectionStringsPrivateEndpointOutput) Endpoints() ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpoint) []ClusterConnectionStringsPrivateEndpointEndpoint {
+		return v.Endpoints
+	}).(ClusterConnectionStringsPrivateEndpointEndpointArrayOutput)
+}
+
+func (o ClusterConnectionStringsPrivateEndpointOutput) SrvConnectionString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpoint) *string { return v.SrvConnectionString }).(pulumi.StringPtrOutput)
+}
+
+func (o ClusterConnectionStringsPrivateEndpointOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpoint) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type ClusterConnectionStringsPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (ClusterConnectionStringsPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (o ClusterConnectionStringsPrivateEndpointArrayOutput) ToClusterConnectionStringsPrivateEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o ClusterConnectionStringsPrivateEndpointArrayOutput) ToClusterConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o ClusterConnectionStringsPrivateEndpointArrayOutput) Index(i pulumi.IntInput) ClusterConnectionStringsPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterConnectionStringsPrivateEndpoint {
+		return vs[0].([]ClusterConnectionStringsPrivateEndpoint)[vs[1].(int)]
+	}).(ClusterConnectionStringsPrivateEndpointOutput)
+}
+
+type ClusterConnectionStringsPrivateEndpointEndpoint struct {
+	EndpointId *string `pulumi:"endpointId"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName *string `pulumi:"providerName"`
+	Region       *string `pulumi:"region"`
+}
+
+// ClusterConnectionStringsPrivateEndpointEndpointInput is an input type that accepts ClusterConnectionStringsPrivateEndpointEndpointArgs and ClusterConnectionStringsPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringsPrivateEndpointEndpointInput` via:
+//
+//          ClusterConnectionStringsPrivateEndpointEndpointArgs{...}
+type ClusterConnectionStringsPrivateEndpointEndpointInput interface {
+	pulumi.Input
+
+	ToClusterConnectionStringsPrivateEndpointEndpointOutput() ClusterConnectionStringsPrivateEndpointEndpointOutput
+	ToClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Context) ClusterConnectionStringsPrivateEndpointEndpointOutput
+}
+
+type ClusterConnectionStringsPrivateEndpointEndpointArgs struct {
+	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
+	Region       pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (ClusterConnectionStringsPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i ClusterConnectionStringsPrivateEndpointEndpointArgs) ToClusterConnectionStringsPrivateEndpointEndpointOutput() ClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return i.ToClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Background())
+}
+
+func (i ClusterConnectionStringsPrivateEndpointEndpointArgs) ToClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPrivateEndpointEndpointOutput)
+}
+
+// ClusterConnectionStringsPrivateEndpointEndpointArrayInput is an input type that accepts ClusterConnectionStringsPrivateEndpointEndpointArray and ClusterConnectionStringsPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringsPrivateEndpointEndpointArrayInput` via:
+//
+//          ClusterConnectionStringsPrivateEndpointEndpointArray{ ClusterConnectionStringsPrivateEndpointEndpointArgs{...} }
+type ClusterConnectionStringsPrivateEndpointEndpointArrayInput interface {
+	pulumi.Input
+
+	ToClusterConnectionStringsPrivateEndpointEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointEndpointArrayOutput
+	ToClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Context) ClusterConnectionStringsPrivateEndpointEndpointArrayOutput
+}
+
+type ClusterConnectionStringsPrivateEndpointEndpointArray []ClusterConnectionStringsPrivateEndpointEndpointInput
+
+func (ClusterConnectionStringsPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i ClusterConnectionStringsPrivateEndpointEndpointArray) ToClusterConnectionStringsPrivateEndpointEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return i.ToClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i ClusterConnectionStringsPrivateEndpointEndpointArray) ToClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPrivateEndpointEndpointArrayOutput)
+}
+
+type ClusterConnectionStringsPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+
+func (ClusterConnectionStringsPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) ToClusterConnectionStringsPrivateEndpointEndpointOutput() ClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) ToClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpointEndpoint) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
+}
+
+// Cloud service provider on which the servers are provisioned.
+func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
+}
+
+func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpointEndpoint) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type ClusterConnectionStringsPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (ClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o ClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ToClusterConnectionStringsPrivateEndpointEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o ClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ToClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o ClusterConnectionStringsPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) ClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterConnectionStringsPrivateEndpointEndpoint {
+		return vs[0].([]ClusterConnectionStringsPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(ClusterConnectionStringsPrivateEndpointEndpointOutput)
 }
 
 type ClusterLabel struct {
@@ -3544,17 +3791,17 @@ func (o DatabaseUserScopeArrayOutput) Index(i pulumi.IntInput) DatabaseUserScope
 
 type EncryptionAtRestAwsKms struct {
 	// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-	AccessKeyId string `pulumi:"accessKeyId"`
+	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
-	CustomerMasterKeyId string `pulumi:"customerMasterKeyId"`
+	CustomerMasterKeyId *string `pulumi:"customerMasterKeyId"`
 	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-	Enabled bool `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
 	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-	Region string `pulumi:"region"`
+	Region *string `pulumi:"region"`
 	// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
 	RoleId *string `pulumi:"roleId"`
 	// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-	SecretAccessKey string `pulumi:"secretAccessKey"`
+	SecretAccessKey *string `pulumi:"secretAccessKey"`
 }
 
 // EncryptionAtRestAwsKmsInput is an input type that accepts EncryptionAtRestAwsKmsArgs and EncryptionAtRestAwsKmsOutput values.
@@ -3570,17 +3817,17 @@ type EncryptionAtRestAwsKmsInput interface {
 
 type EncryptionAtRestAwsKmsArgs struct {
 	// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-	AccessKeyId pulumi.StringInput `pulumi:"accessKeyId"`
+	AccessKeyId pulumi.StringPtrInput `pulumi:"accessKeyId"`
 	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
-	CustomerMasterKeyId pulumi.StringInput `pulumi:"customerMasterKeyId"`
+	CustomerMasterKeyId pulumi.StringPtrInput `pulumi:"customerMasterKeyId"`
 	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-	Region pulumi.StringInput `pulumi:"region"`
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
 	RoleId pulumi.StringPtrInput `pulumi:"roleId"`
 	// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-	SecretAccessKey pulumi.StringInput `pulumi:"secretAccessKey"`
+	SecretAccessKey pulumi.StringPtrInput `pulumi:"secretAccessKey"`
 }
 
 func (EncryptionAtRestAwsKmsArgs) ElementType() reflect.Type {
@@ -3661,23 +3908,23 @@ func (o EncryptionAtRestAwsKmsOutput) ToEncryptionAtRestAwsKmsPtrOutputWithConte
 }
 
 // The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-func (o EncryptionAtRestAwsKmsOutput) AccessKeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.AccessKeyId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAwsKmsOutput) AccessKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.AccessKeyId }).(pulumi.StringPtrOutput)
 }
 
 // The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
-func (o EncryptionAtRestAwsKmsOutput) CustomerMasterKeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.CustomerMasterKeyId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAwsKmsOutput) CustomerMasterKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.CustomerMasterKeyId }).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestAwsKmsOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o EncryptionAtRestAwsKmsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKms) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
 // The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-func (o EncryptionAtRestAwsKmsOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.Region }).(pulumi.StringOutput)
+func (o EncryptionAtRestAwsKmsOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
@@ -3686,8 +3933,8 @@ func (o EncryptionAtRestAwsKmsOutput) RoleId() pulumi.StringPtrOutput {
 }
 
 // The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-func (o EncryptionAtRestAwsKmsOutput) SecretAccessKey() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) string { return v.SecretAccessKey }).(pulumi.StringOutput)
+func (o EncryptionAtRestAwsKmsOutput) SecretAccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.SecretAccessKey }).(pulumi.StringPtrOutput)
 }
 
 type EncryptionAtRestAwsKmsPtrOutput struct{ *pulumi.OutputState }
@@ -3714,7 +3961,7 @@ func (o EncryptionAtRestAwsKmsPtrOutput) AccessKeyId() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.AccessKeyId
+		return v.AccessKeyId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3724,7 +3971,7 @@ func (o EncryptionAtRestAwsKmsPtrOutput) CustomerMasterKeyId() pulumi.StringPtrO
 		if v == nil {
 			return nil
 		}
-		return &v.CustomerMasterKeyId
+		return v.CustomerMasterKeyId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3734,7 +3981,7 @@ func (o EncryptionAtRestAwsKmsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Enabled
+		return v.Enabled
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -3744,7 +3991,7 @@ func (o EncryptionAtRestAwsKmsPtrOutput) Region() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Region
+		return v.Region
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3764,29 +4011,29 @@ func (o EncryptionAtRestAwsKmsPtrOutput) SecretAccessKey() pulumi.StringPtrOutpu
 		if v == nil {
 			return nil
 		}
-		return &v.SecretAccessKey
+		return v.SecretAccessKey
 	}).(pulumi.StringPtrOutput)
 }
 
 type EncryptionAtRestAzureKeyVault struct {
 	// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
-	AzureEnvironment string `pulumi:"azureEnvironment"`
+	AzureEnvironment *string `pulumi:"azureEnvironment"`
 	// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-	ClientId string `pulumi:"clientId"`
+	ClientId *string `pulumi:"clientId"`
 	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
 	Enabled bool `pulumi:"enabled"`
 	// The unique identifier of a key in an Azure Key Vault.
-	KeyIdentifier string `pulumi:"keyIdentifier"`
+	KeyIdentifier *string `pulumi:"keyIdentifier"`
 	// The name of an Azure Key Vault containing your key.
-	KeyVaultName string `pulumi:"keyVaultName"`
+	KeyVaultName *string `pulumi:"keyVaultName"`
 	// The name of the Azure Resource group that contains an Azure Key Vault.
-	ResourceGroupName string `pulumi:"resourceGroupName"`
+	ResourceGroupName *string `pulumi:"resourceGroupName"`
 	// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
-	Secret string `pulumi:"secret"`
+	Secret *string `pulumi:"secret"`
 	// The unique identifier associated with an Azure subscription.
-	SubscriptionId string `pulumi:"subscriptionId"`
+	SubscriptionId *string `pulumi:"subscriptionId"`
 	// The unique identifier for an Azure AD tenant within an Azure subscription.
-	TenantId string `pulumi:"tenantId"`
+	TenantId *string `pulumi:"tenantId"`
 }
 
 // EncryptionAtRestAzureKeyVaultInput is an input type that accepts EncryptionAtRestAzureKeyVaultArgs and EncryptionAtRestAzureKeyVaultOutput values.
@@ -3802,23 +4049,23 @@ type EncryptionAtRestAzureKeyVaultInput interface {
 
 type EncryptionAtRestAzureKeyVaultArgs struct {
 	// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
-	AzureEnvironment pulumi.StringInput `pulumi:"azureEnvironment"`
+	AzureEnvironment pulumi.StringPtrInput `pulumi:"azureEnvironment"`
 	// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-	ClientId pulumi.StringInput `pulumi:"clientId"`
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
 	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// The unique identifier of a key in an Azure Key Vault.
-	KeyIdentifier pulumi.StringInput `pulumi:"keyIdentifier"`
+	KeyIdentifier pulumi.StringPtrInput `pulumi:"keyIdentifier"`
 	// The name of an Azure Key Vault containing your key.
-	KeyVaultName pulumi.StringInput `pulumi:"keyVaultName"`
+	KeyVaultName pulumi.StringPtrInput `pulumi:"keyVaultName"`
 	// The name of the Azure Resource group that contains an Azure Key Vault.
-	ResourceGroupName pulumi.StringInput `pulumi:"resourceGroupName"`
+	ResourceGroupName pulumi.StringPtrInput `pulumi:"resourceGroupName"`
 	// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
-	Secret pulumi.StringInput `pulumi:"secret"`
+	Secret pulumi.StringPtrInput `pulumi:"secret"`
 	// The unique identifier associated with an Azure subscription.
-	SubscriptionId pulumi.StringInput `pulumi:"subscriptionId"`
+	SubscriptionId pulumi.StringPtrInput `pulumi:"subscriptionId"`
 	// The unique identifier for an Azure AD tenant within an Azure subscription.
-	TenantId pulumi.StringInput `pulumi:"tenantId"`
+	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
 }
 
 func (EncryptionAtRestAzureKeyVaultArgs) ElementType() reflect.Type {
@@ -3899,13 +4146,13 @@ func (o EncryptionAtRestAzureKeyVaultOutput) ToEncryptionAtRestAzureKeyVaultPtrO
 }
 
 // The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
-func (o EncryptionAtRestAzureKeyVaultOutput) AzureEnvironment() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.AzureEnvironment }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultOutput) AzureEnvironment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.AzureEnvironment }).(pulumi.StringPtrOutput)
 }
 
 // The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-func (o EncryptionAtRestAzureKeyVaultOutput) ClientId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.ClientId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
@@ -3914,33 +4161,33 @@ func (o EncryptionAtRestAzureKeyVaultOutput) Enabled() pulumi.BoolOutput {
 }
 
 // The unique identifier of a key in an Azure Key Vault.
-func (o EncryptionAtRestAzureKeyVaultOutput) KeyIdentifier() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.KeyIdentifier }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultOutput) KeyIdentifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.KeyIdentifier }).(pulumi.StringPtrOutput)
 }
 
 // The name of an Azure Key Vault containing your key.
-func (o EncryptionAtRestAzureKeyVaultOutput) KeyVaultName() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.KeyVaultName }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultOutput) KeyVaultName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.KeyVaultName }).(pulumi.StringPtrOutput)
 }
 
 // The name of the Azure Resource group that contains an Azure Key Vault.
-func (o EncryptionAtRestAzureKeyVaultOutput) ResourceGroupName() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.ResourceGroupName }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultOutput) ResourceGroupName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.ResourceGroupName }).(pulumi.StringPtrOutput)
 }
 
 // The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
-func (o EncryptionAtRestAzureKeyVaultOutput) Secret() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.Secret }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.Secret }).(pulumi.StringPtrOutput)
 }
 
 // The unique identifier associated with an Azure subscription.
-func (o EncryptionAtRestAzureKeyVaultOutput) SubscriptionId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.SubscriptionId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultOutput) SubscriptionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.SubscriptionId }).(pulumi.StringPtrOutput)
 }
 
 // The unique identifier for an Azure AD tenant within an Azure subscription.
-func (o EncryptionAtRestAzureKeyVaultOutput) TenantId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) string { return v.TenantId }).(pulumi.StringOutput)
+func (o EncryptionAtRestAzureKeyVaultOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.TenantId }).(pulumi.StringPtrOutput)
 }
 
 type EncryptionAtRestAzureKeyVaultPtrOutput struct{ *pulumi.OutputState }
@@ -3967,7 +4214,7 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) AzureEnvironment() pulumi.String
 		if v == nil {
 			return nil
 		}
-		return &v.AzureEnvironment
+		return v.AzureEnvironment
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3977,7 +4224,7 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) ClientId() pulumi.StringPtrOutpu
 		if v == nil {
 			return nil
 		}
-		return &v.ClientId
+		return v.ClientId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3997,7 +4244,7 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyIdentifier() pulumi.StringPtr
 		if v == nil {
 			return nil
 		}
-		return &v.KeyIdentifier
+		return v.KeyIdentifier
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4007,7 +4254,7 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyVaultName() pulumi.StringPtrO
 		if v == nil {
 			return nil
 		}
-		return &v.KeyVaultName
+		return v.KeyVaultName
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4017,7 +4264,7 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) ResourceGroupName() pulumi.Strin
 		if v == nil {
 			return nil
 		}
-		return &v.ResourceGroupName
+		return v.ResourceGroupName
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4027,7 +4274,7 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) Secret() pulumi.StringPtrOutput 
 		if v == nil {
 			return nil
 		}
-		return &v.Secret
+		return v.Secret
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4037,7 +4284,7 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) SubscriptionId() pulumi.StringPt
 		if v == nil {
 			return nil
 		}
-		return &v.SubscriptionId
+		return v.SubscriptionId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4047,17 +4294,17 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) TenantId() pulumi.StringPtrOutpu
 		if v == nil {
 			return nil
 		}
-		return &v.TenantId
+		return v.TenantId
 	}).(pulumi.StringPtrOutput)
 }
 
 type EncryptionAtRestGoogleCloudKms struct {
 	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-	Enabled bool `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
 	// The Key Version Resource ID from your GCP account.
-	KeyVersionResourceId string `pulumi:"keyVersionResourceId"`
+	KeyVersionResourceId *string `pulumi:"keyVersionResourceId"`
 	// String-formatted JSON object containing GCP KMS credentials from your GCP account.
-	ServiceAccountKey string `pulumi:"serviceAccountKey"`
+	ServiceAccountKey *string `pulumi:"serviceAccountKey"`
 }
 
 // EncryptionAtRestGoogleCloudKmsInput is an input type that accepts EncryptionAtRestGoogleCloudKmsArgs and EncryptionAtRestGoogleCloudKmsOutput values.
@@ -4073,11 +4320,11 @@ type EncryptionAtRestGoogleCloudKmsInput interface {
 
 type EncryptionAtRestGoogleCloudKmsArgs struct {
 	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// The Key Version Resource ID from your GCP account.
-	KeyVersionResourceId pulumi.StringInput `pulumi:"keyVersionResourceId"`
+	KeyVersionResourceId pulumi.StringPtrInput `pulumi:"keyVersionResourceId"`
 	// String-formatted JSON object containing GCP KMS credentials from your GCP account.
-	ServiceAccountKey pulumi.StringInput `pulumi:"serviceAccountKey"`
+	ServiceAccountKey pulumi.StringPtrInput `pulumi:"serviceAccountKey"`
 }
 
 func (EncryptionAtRestGoogleCloudKmsArgs) ElementType() reflect.Type {
@@ -4158,18 +4405,18 @@ func (o EncryptionAtRestGoogleCloudKmsOutput) ToEncryptionAtRestGoogleCloudKmsPt
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestGoogleCloudKmsOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o EncryptionAtRestGoogleCloudKmsOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
 // The Key Version Resource ID from your GCP account.
-func (o EncryptionAtRestGoogleCloudKmsOutput) KeyVersionResourceId() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) string { return v.KeyVersionResourceId }).(pulumi.StringOutput)
+func (o EncryptionAtRestGoogleCloudKmsOutput) KeyVersionResourceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) *string { return v.KeyVersionResourceId }).(pulumi.StringPtrOutput)
 }
 
 // String-formatted JSON object containing GCP KMS credentials from your GCP account.
-func (o EncryptionAtRestGoogleCloudKmsOutput) ServiceAccountKey() pulumi.StringOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) string { return v.ServiceAccountKey }).(pulumi.StringOutput)
+func (o EncryptionAtRestGoogleCloudKmsOutput) ServiceAccountKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) *string { return v.ServiceAccountKey }).(pulumi.StringPtrOutput)
 }
 
 type EncryptionAtRestGoogleCloudKmsPtrOutput struct{ *pulumi.OutputState }
@@ -4196,7 +4443,7 @@ func (o EncryptionAtRestGoogleCloudKmsPtrOutput) Enabled() pulumi.BoolPtrOutput 
 		if v == nil {
 			return nil
 		}
-		return &v.Enabled
+		return v.Enabled
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -4206,7 +4453,7 @@ func (o EncryptionAtRestGoogleCloudKmsPtrOutput) KeyVersionResourceId() pulumi.S
 		if v == nil {
 			return nil
 		}
-		return &v.KeyVersionResourceId
+		return v.KeyVersionResourceId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4216,7 +4463,7 @@ func (o EncryptionAtRestGoogleCloudKmsPtrOutput) ServiceAccountKey() pulumi.Stri
 		if v == nil {
 			return nil
 		}
-		return &v.ServiceAccountKey
+		return v.ServiceAccountKey
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -6479,12 +6726,13 @@ func (o GetClusterBiConnectorOutput) ReadPreference() pulumi.StringOutput {
 }
 
 type GetClusterConnectionStrings struct {
-	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
-	Private           string                 `pulumi:"private"`
-	PrivateSrv        string                 `pulumi:"privateSrv"`
-	Standard          string                 `pulumi:"standard"`
-	StandardSrv       string                 `pulumi:"standardSrv"`
+	AwsPrivateLink    map[string]interface{}                       `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]interface{}                       `pulumi:"awsPrivateLinkSrv"`
+	Private           string                                       `pulumi:"private"`
+	PrivateEndpoints  []GetClusterConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        string                                       `pulumi:"privateSrv"`
+	Standard          string                                       `pulumi:"standard"`
+	StandardSrv       string                                       `pulumi:"standardSrv"`
 }
 
 // GetClusterConnectionStringsInput is an input type that accepts GetClusterConnectionStringsArgs and GetClusterConnectionStringsOutput values.
@@ -6499,12 +6747,13 @@ type GetClusterConnectionStringsInput interface {
 }
 
 type GetClusterConnectionStringsArgs struct {
-	AwsPrivateLink    pulumi.MapInput    `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput    `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringInput `pulumi:"private"`
-	PrivateSrv        pulumi.StringInput `pulumi:"privateSrv"`
-	Standard          pulumi.StringInput `pulumi:"standard"`
-	StandardSrv       pulumi.StringInput `pulumi:"standardSrv"`
+	AwsPrivateLink    pulumi.MapInput                                      `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.MapInput                                      `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringInput                                   `pulumi:"private"`
+	PrivateEndpoints  GetClusterConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringInput                                   `pulumi:"privateSrv"`
+	Standard          pulumi.StringInput                                   `pulumi:"standard"`
+	StandardSrv       pulumi.StringInput                                   `pulumi:"standardSrv"`
 }
 
 func (GetClusterConnectionStringsArgs) ElementType() reflect.Type {
@@ -6545,6 +6794,12 @@ func (o GetClusterConnectionStringsOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionStrings) string { return v.Private }).(pulumi.StringOutput)
 }
 
+func (o GetClusterConnectionStringsOutput) PrivateEndpoints() GetClusterConnectionStringsPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v GetClusterConnectionStrings) []GetClusterConnectionStringsPrivateEndpoint {
+		return v.PrivateEndpoints
+	}).(GetClusterConnectionStringsPrivateEndpointArrayOutput)
+}
+
 func (o GetClusterConnectionStringsOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionStrings) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
@@ -6555,6 +6810,229 @@ func (o GetClusterConnectionStringsOutput) Standard() pulumi.StringOutput {
 
 func (o GetClusterConnectionStringsOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnectionStrings) string { return v.StandardSrv }).(pulumi.StringOutput)
+}
+
+type GetClusterConnectionStringsPrivateEndpoint struct {
+	ConnectionString    string                                               `pulumi:"connectionString"`
+	Endpoints           []GetClusterConnectionStringsPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString string                                               `pulumi:"srvConnectionString"`
+	Type                string                                               `pulumi:"type"`
+}
+
+// GetClusterConnectionStringsPrivateEndpointInput is an input type that accepts GetClusterConnectionStringsPrivateEndpointArgs and GetClusterConnectionStringsPrivateEndpointOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringsPrivateEndpointInput` via:
+//
+//          GetClusterConnectionStringsPrivateEndpointArgs{...}
+type GetClusterConnectionStringsPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionStringsPrivateEndpointOutput() GetClusterConnectionStringsPrivateEndpointOutput
+	ToGetClusterConnectionStringsPrivateEndpointOutputWithContext(context.Context) GetClusterConnectionStringsPrivateEndpointOutput
+}
+
+type GetClusterConnectionStringsPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringInput                                           `pulumi:"connectionString"`
+	Endpoints           GetClusterConnectionStringsPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringInput                                           `pulumi:"srvConnectionString"`
+	Type                pulumi.StringInput                                           `pulumi:"type"`
+}
+
+func (GetClusterConnectionStringsPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetClusterConnectionStringsPrivateEndpointArgs) ToGetClusterConnectionStringsPrivateEndpointOutput() GetClusterConnectionStringsPrivateEndpointOutput {
+	return i.ToGetClusterConnectionStringsPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionStringsPrivateEndpointArgs) ToGetClusterConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsPrivateEndpointOutput)
+}
+
+// GetClusterConnectionStringsPrivateEndpointArrayInput is an input type that accepts GetClusterConnectionStringsPrivateEndpointArray and GetClusterConnectionStringsPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringsPrivateEndpointArrayInput` via:
+//
+//          GetClusterConnectionStringsPrivateEndpointArray{ GetClusterConnectionStringsPrivateEndpointArgs{...} }
+type GetClusterConnectionStringsPrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionStringsPrivateEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointArrayOutput
+	ToGetClusterConnectionStringsPrivateEndpointArrayOutputWithContext(context.Context) GetClusterConnectionStringsPrivateEndpointArrayOutput
+}
+
+type GetClusterConnectionStringsPrivateEndpointArray []GetClusterConnectionStringsPrivateEndpointInput
+
+func (GetClusterConnectionStringsPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetClusterConnectionStringsPrivateEndpointArray) ToGetClusterConnectionStringsPrivateEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointArrayOutput {
+	return i.ToGetClusterConnectionStringsPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionStringsPrivateEndpointArray) ToGetClusterConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsPrivateEndpointArrayOutput)
+}
+
+type GetClusterConnectionStringsPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionStringsPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointOutput) ToGetClusterConnectionStringsPrivateEndpointOutput() GetClusterConnectionStringsPrivateEndpointOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointOutput) ToGetClusterConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpoint) string { return v.ConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointOutput) Endpoints() GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpoint) []GetClusterConnectionStringsPrivateEndpointEndpoint {
+		return v.Endpoints
+	}).(GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput)
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointOutput) SrvConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpoint) string { return v.SrvConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpoint) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetClusterConnectionStringsPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionStringsPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointArrayOutput) ToGetClusterConnectionStringsPrivateEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointArrayOutput) ToGetClusterConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionStringsPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnectionStringsPrivateEndpoint {
+		return vs[0].([]GetClusterConnectionStringsPrivateEndpoint)[vs[1].(int)]
+	}).(GetClusterConnectionStringsPrivateEndpointOutput)
+}
+
+type GetClusterConnectionStringsPrivateEndpointEndpoint struct {
+	EndpointId string `pulumi:"endpointId"`
+	// Indicates the cloud service provider on which the servers are provisioned.
+	ProviderName string `pulumi:"providerName"`
+	Region       string `pulumi:"region"`
+}
+
+// GetClusterConnectionStringsPrivateEndpointEndpointInput is an input type that accepts GetClusterConnectionStringsPrivateEndpointEndpointArgs and GetClusterConnectionStringsPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringsPrivateEndpointEndpointInput` via:
+//
+//          GetClusterConnectionStringsPrivateEndpointEndpointArgs{...}
+type GetClusterConnectionStringsPrivateEndpointEndpointInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionStringsPrivateEndpointEndpointOutput() GetClusterConnectionStringsPrivateEndpointEndpointOutput
+	ToGetClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Context) GetClusterConnectionStringsPrivateEndpointEndpointOutput
+}
+
+type GetClusterConnectionStringsPrivateEndpointEndpointArgs struct {
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// Indicates the cloud service provider on which the servers are provisioned.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	Region       pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetClusterConnectionStringsPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i GetClusterConnectionStringsPrivateEndpointEndpointArgs) ToGetClusterConnectionStringsPrivateEndpointEndpointOutput() GetClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return i.ToGetClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionStringsPrivateEndpointEndpointArgs) ToGetClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsPrivateEndpointEndpointOutput)
+}
+
+// GetClusterConnectionStringsPrivateEndpointEndpointArrayInput is an input type that accepts GetClusterConnectionStringsPrivateEndpointEndpointArray and GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringsPrivateEndpointEndpointArrayInput` via:
+//
+//          GetClusterConnectionStringsPrivateEndpointEndpointArray{ GetClusterConnectionStringsPrivateEndpointEndpointArgs{...} }
+type GetClusterConnectionStringsPrivateEndpointEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput
+	ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Context) GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput
+}
+
+type GetClusterConnectionStringsPrivateEndpointEndpointArray []GetClusterConnectionStringsPrivateEndpointEndpointInput
+
+func (GetClusterConnectionStringsPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i GetClusterConnectionStringsPrivateEndpointEndpointArray) ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return i.ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionStringsPrivateEndpointEndpointArray) ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput)
+}
+
+type GetClusterConnectionStringsPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionStringsPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) ToGetClusterConnectionStringsPrivateEndpointEndpointOutput() GetClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) ToGetClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpointEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// Indicates the cloud service provider on which the servers are provisioned.
+func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpointEndpoint) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpointEndpoint) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionStringsPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnectionStringsPrivateEndpointEndpoint {
+		return vs[0].([]GetClusterConnectionStringsPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(GetClusterConnectionStringsPrivateEndpointEndpointOutput)
 }
 
 type GetClusterLabel struct {
@@ -7300,10 +7778,17 @@ type GetClustersResultType struct {
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
 	// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-	// - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.
-	// - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
+	// - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
+	// - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
 	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	ConnectionStrings GetClustersResultConnectionStrings `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
@@ -7397,10 +7882,17 @@ type GetClustersResultTypeArgs struct {
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	// - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
 	// - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-	// - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.
-	// - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
+	// - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
+	// - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
 	// - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	// - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+	// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+	// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+	// - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 	ConnectionStrings GetClustersResultConnectionStringsInput `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringInput `pulumi:"containerId"`
@@ -7554,10 +8046,17 @@ func (o GetClustersResultTypeOutput) ClusterType() pulumi.StringOutput {
 // Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 // - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
 // - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-// - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.
-// - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
+// - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
+// - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
 // - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 // - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+// - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+// - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+// - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
 func (o GetClustersResultTypeOutput) ConnectionStrings() GetClustersResultConnectionStringsOutput {
 	return o.ApplyT(func(v GetClustersResultType) GetClustersResultConnectionStrings { return v.ConnectionStrings }).(GetClustersResultConnectionStringsOutput)
 }
@@ -7789,12 +8288,13 @@ func (o GetClustersResultBiConnectorOutput) ReadPreference() pulumi.StringOutput
 }
 
 type GetClustersResultConnectionStrings struct {
-	AwsPrivateLink    map[string]interface{} `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{} `pulumi:"awsPrivateLinkSrv"`
-	Private           string                 `pulumi:"private"`
-	PrivateSrv        string                 `pulumi:"privateSrv"`
-	Standard          string                 `pulumi:"standard"`
-	StandardSrv       string                 `pulumi:"standardSrv"`
+	AwsPrivateLink    map[string]interface{}                              `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]interface{}                              `pulumi:"awsPrivateLinkSrv"`
+	Private           string                                              `pulumi:"private"`
+	PrivateEndpoints  []GetClustersResultConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        string                                              `pulumi:"privateSrv"`
+	Standard          string                                              `pulumi:"standard"`
+	StandardSrv       string                                              `pulumi:"standardSrv"`
 }
 
 // GetClustersResultConnectionStringsInput is an input type that accepts GetClustersResultConnectionStringsArgs and GetClustersResultConnectionStringsOutput values.
@@ -7809,12 +8309,13 @@ type GetClustersResultConnectionStringsInput interface {
 }
 
 type GetClustersResultConnectionStringsArgs struct {
-	AwsPrivateLink    pulumi.MapInput    `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput    `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringInput `pulumi:"private"`
-	PrivateSrv        pulumi.StringInput `pulumi:"privateSrv"`
-	Standard          pulumi.StringInput `pulumi:"standard"`
-	StandardSrv       pulumi.StringInput `pulumi:"standardSrv"`
+	AwsPrivateLink    pulumi.MapInput                                             `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.MapInput                                             `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringInput                                          `pulumi:"private"`
+	PrivateEndpoints  GetClustersResultConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringInput                                          `pulumi:"privateSrv"`
+	Standard          pulumi.StringInput                                          `pulumi:"standard"`
+	StandardSrv       pulumi.StringInput                                          `pulumi:"standardSrv"`
 }
 
 func (GetClustersResultConnectionStringsArgs) ElementType() reflect.Type {
@@ -7855,6 +8356,12 @@ func (o GetClustersResultConnectionStringsOutput) Private() pulumi.StringOutput 
 	return o.ApplyT(func(v GetClustersResultConnectionStrings) string { return v.Private }).(pulumi.StringOutput)
 }
 
+func (o GetClustersResultConnectionStringsOutput) PrivateEndpoints() GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStrings) []GetClustersResultConnectionStringsPrivateEndpoint {
+		return v.PrivateEndpoints
+	}).(GetClustersResultConnectionStringsPrivateEndpointArrayOutput)
+}
+
 func (o GetClustersResultConnectionStringsOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionStrings) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
@@ -7865,6 +8372,229 @@ func (o GetClustersResultConnectionStringsOutput) Standard() pulumi.StringOutput
 
 func (o GetClustersResultConnectionStringsOutput) StandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultConnectionStrings) string { return v.StandardSrv }).(pulumi.StringOutput)
+}
+
+type GetClustersResultConnectionStringsPrivateEndpoint struct {
+	ConnectionString    string                                                      `pulumi:"connectionString"`
+	Endpoints           []GetClustersResultConnectionStringsPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString string                                                      `pulumi:"srvConnectionString"`
+	Type                string                                                      `pulumi:"type"`
+}
+
+// GetClustersResultConnectionStringsPrivateEndpointInput is an input type that accepts GetClustersResultConnectionStringsPrivateEndpointArgs and GetClustersResultConnectionStringsPrivateEndpointOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringsPrivateEndpointInput` via:
+//
+//          GetClustersResultConnectionStringsPrivateEndpointArgs{...}
+type GetClustersResultConnectionStringsPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToGetClustersResultConnectionStringsPrivateEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointOutput
+	ToGetClustersResultConnectionStringsPrivateEndpointOutputWithContext(context.Context) GetClustersResultConnectionStringsPrivateEndpointOutput
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringInput                                                  `pulumi:"connectionString"`
+	Endpoints           GetClustersResultConnectionStringsPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringInput                                                  `pulumi:"srvConnectionString"`
+	Type                pulumi.StringInput                                                  `pulumi:"type"`
+}
+
+func (GetClustersResultConnectionStringsPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetClustersResultConnectionStringsPrivateEndpointArgs) ToGetClustersResultConnectionStringsPrivateEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointOutput {
+	return i.ToGetClustersResultConnectionStringsPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultConnectionStringsPrivateEndpointArgs) ToGetClustersResultConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsPrivateEndpointOutput)
+}
+
+// GetClustersResultConnectionStringsPrivateEndpointArrayInput is an input type that accepts GetClustersResultConnectionStringsPrivateEndpointArray and GetClustersResultConnectionStringsPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringsPrivateEndpointArrayInput` via:
+//
+//          GetClustersResultConnectionStringsPrivateEndpointArray{ GetClustersResultConnectionStringsPrivateEndpointArgs{...} }
+type GetClustersResultConnectionStringsPrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersResultConnectionStringsPrivateEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointArrayOutput
+	ToGetClustersResultConnectionStringsPrivateEndpointArrayOutputWithContext(context.Context) GetClustersResultConnectionStringsPrivateEndpointArrayOutput
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointArray []GetClustersResultConnectionStringsPrivateEndpointInput
+
+func (GetClustersResultConnectionStringsPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetClustersResultConnectionStringsPrivateEndpointArray) ToGetClustersResultConnectionStringsPrivateEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
+	return i.ToGetClustersResultConnectionStringsPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultConnectionStringsPrivateEndpointArray) ToGetClustersResultConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsPrivateEndpointArrayOutput)
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultConnectionStringsPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointOutput) ToGetClustersResultConnectionStringsPrivateEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointOutput) ToGetClustersResultConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpoint) string { return v.ConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointOutput) Endpoints() GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpoint) []GetClustersResultConnectionStringsPrivateEndpointEndpoint {
+		return v.Endpoints
+	}).(GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput)
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointOutput) SrvConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpoint) string { return v.SrvConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpoint) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultConnectionStringsPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionStringsPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointArrayOutput) ToGetClustersResultConnectionStringsPrivateEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointArrayOutput) ToGetClustersResultConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointArrayOutput) Index(i pulumi.IntInput) GetClustersResultConnectionStringsPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultConnectionStringsPrivateEndpoint {
+		return vs[0].([]GetClustersResultConnectionStringsPrivateEndpoint)[vs[1].(int)]
+	}).(GetClustersResultConnectionStringsPrivateEndpointOutput)
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointEndpoint struct {
+	EndpointId string `pulumi:"endpointId"`
+	// Indicates the cloud service provider on which the servers are provisioned.
+	ProviderName string `pulumi:"providerName"`
+	Region       string `pulumi:"region"`
+}
+
+// GetClustersResultConnectionStringsPrivateEndpointEndpointInput is an input type that accepts GetClustersResultConnectionStringsPrivateEndpointEndpointArgs and GetClustersResultConnectionStringsPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringsPrivateEndpointEndpointInput` via:
+//
+//          GetClustersResultConnectionStringsPrivateEndpointEndpointArgs{...}
+type GetClustersResultConnectionStringsPrivateEndpointEndpointInput interface {
+	pulumi.Input
+
+	ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointOutput
+	ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointOutput
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointEndpointArgs struct {
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// Indicates the cloud service provider on which the servers are provisioned.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	Region       pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetClustersResultConnectionStringsPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i GetClustersResultConnectionStringsPrivateEndpointEndpointArgs) ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
+	return i.ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultConnectionStringsPrivateEndpointEndpointArgs) ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsPrivateEndpointEndpointOutput)
+}
+
+// GetClustersResultConnectionStringsPrivateEndpointEndpointArrayInput is an input type that accepts GetClustersResultConnectionStringsPrivateEndpointEndpointArray and GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringsPrivateEndpointEndpointArrayInput` via:
+//
+//          GetClustersResultConnectionStringsPrivateEndpointEndpointArray{ GetClustersResultConnectionStringsPrivateEndpointEndpointArgs{...} }
+type GetClustersResultConnectionStringsPrivateEndpointEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput
+	ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointEndpointArray []GetClustersResultConnectionStringsPrivateEndpointEndpointInput
+
+func (GetClustersResultConnectionStringsPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i GetClustersResultConnectionStringsPrivateEndpointEndpointArray) ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return i.ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultConnectionStringsPrivateEndpointEndpointArray) ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput)
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpointEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// Indicates the cloud service provider on which the servers are provisioned.
+func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpointEndpoint) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpointEndpoint) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput) ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput) ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultConnectionStringsPrivateEndpointEndpoint {
+		return vs[0].([]GetClustersResultConnectionStringsPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(GetClustersResultConnectionStringsPrivateEndpointEndpointOutput)
 }
 
 type GetClustersResultLabel struct {
@@ -11355,6 +12085,10 @@ func init() {
 	pulumi.RegisterOutputType(ClusterBiConnectorPtrOutput{})
 	pulumi.RegisterOutputType(ClusterConnectionStringsOutput{})
 	pulumi.RegisterOutputType(ClusterConnectionStringsPtrOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ClusterLabelOutput{})
 	pulumi.RegisterOutputType(ClusterLabelArrayOutput{})
 	pulumi.RegisterOutputType(ClusterReplicationSpecOutput{})
@@ -11415,6 +12149,10 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotsResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterBiConnectorOutput{})
 	pulumi.RegisterOutputType(GetClusterConnectionStringsOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterLabelOutput{})
 	pulumi.RegisterOutputType(GetClusterLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterReplicationSpecOutput{})
@@ -11431,6 +12169,10 @@ func init() {
 	pulumi.RegisterOutputType(GetClustersResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultBiConnectorOutput{})
 	pulumi.RegisterOutputType(GetClustersResultConnectionStringsOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultLabelOutput{})
 	pulumi.RegisterOutputType(GetClustersResultLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultReplicationSpecOutput{})

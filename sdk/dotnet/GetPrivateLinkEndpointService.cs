@@ -24,13 +24,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointServiceArgs : Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier of the private endpoint service for which you want to create a private endpoint service.
+        /// Unique identifier of the `AWS` or `AZURE` resource.
         /// </summary>
         [Input("endpointServiceId", required: true)]
         public string EndpointServiceId { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the `AWS` or `AZURE` PrivateLink connection.
+        /// Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
         /// </summary>
         [Input("privateLinkId", required: true)]
         public string PrivateLinkId { get; set; } = null!;
@@ -57,10 +57,15 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointServiceResult
     {
         /// <summary>
-        /// Status of the interface endpoint.
+        /// Status of the interface endpoint for AWS.
         /// Returns one of the following values:
         /// </summary>
-        public readonly string ConnectionStatus;
+        public readonly string AwsConnectionStatus;
+        /// <summary>
+        /// Status of the interface endpoint for AZURE.
+        /// Returns one of the following values:
+        /// </summary>
+        public readonly string AzureStatus;
         /// <summary>
         /// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         /// </summary>
@@ -96,7 +101,9 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetPrivateLinkEndpointServiceResult(
-            string connectionStatus,
+            string awsConnectionStatus,
+
+            string azureStatus,
 
             bool deleteRequested,
 
@@ -120,7 +127,8 @@ namespace Pulumi.Mongodbatlas
 
             string providerName)
         {
-            ConnectionStatus = connectionStatus;
+            AwsConnectionStatus = awsConnectionStatus;
+            AzureStatus = azureStatus;
             DeleteRequested = deleteRequested;
             EndpointServiceId = endpointServiceId;
             ErrorMessage = errorMessage;

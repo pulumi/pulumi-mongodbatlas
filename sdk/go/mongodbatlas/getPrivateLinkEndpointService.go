@@ -21,9 +21,9 @@ func LookupPrivateLinkEndpointService(ctx *pulumi.Context, args *LookupPrivateLi
 
 // A collection of arguments for invoking getPrivateLinkEndpointService.
 type LookupPrivateLinkEndpointServiceArgs struct {
-	// Unique identifier of the private endpoint service for which you want to create a private endpoint service.
+	// Unique identifier of the `AWS` or `AZURE` resource.
 	EndpointServiceId string `pulumi:"endpointServiceId"`
-	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection.
+	// Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
 	PrivateLinkId string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`
@@ -33,9 +33,12 @@ type LookupPrivateLinkEndpointServiceArgs struct {
 
 // A collection of values returned by getPrivateLinkEndpointService.
 type LookupPrivateLinkEndpointServiceResult struct {
-	// Status of the interface endpoint.
+	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
-	ConnectionStatus string `pulumi:"connectionStatus"`
+	AwsConnectionStatus string `pulumi:"awsConnectionStatus"`
+	// Status of the interface endpoint for AZURE.
+	// Returns one of the following values:
+	AzureStatus string `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested   bool   `pulumi:"deleteRequested"`
 	EndpointServiceId string `pulumi:"endpointServiceId"`

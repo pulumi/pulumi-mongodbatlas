@@ -30,10 +30,10 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Private Endpoint Service can be imported using project ID and username, in the format `{project_id}-{private_link_id}-{provider_name}`, e.g.
+ * Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.
  *
  * ```sh
- *  $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS
+ *  $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
  * ```
  *
  *  See detailed information for arguments and attributes[MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
@@ -92,7 +92,6 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
     public /*out*/ readonly privateLinkServiceName!: pulumi.Output<string>;
     /**
      * Resource ID of the Azure Private Link Service that Atlas manages.
-     * Returns one of the following values:
      */
     public /*out*/ readonly privateLinkServiceResourceId!: pulumi.Output<string>;
     /**
@@ -106,7 +105,8 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Status of the Private Link Service.
+     * Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+     * AWS:
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
@@ -197,7 +197,6 @@ export interface PrivateLinkEndpointState {
     readonly privateLinkServiceName?: pulumi.Input<string>;
     /**
      * Resource ID of the Azure Private Link Service that Atlas manages.
-     * Returns one of the following values:
      */
     readonly privateLinkServiceResourceId?: pulumi.Input<string>;
     /**
@@ -211,7 +210,8 @@ export interface PrivateLinkEndpointState {
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * Status of the Private Link Service.
+     * Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+     * AWS:
      */
     readonly status?: pulumi.Input<string>;
 }

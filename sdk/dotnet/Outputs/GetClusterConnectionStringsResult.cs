@@ -16,6 +16,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly ImmutableDictionary<string, object> AwsPrivateLink;
         public readonly ImmutableDictionary<string, object> AwsPrivateLinkSrv;
         public readonly string Private;
+        public readonly ImmutableArray<Outputs.GetClusterConnectionStringsPrivateEndpointResult> PrivateEndpoints;
         public readonly string PrivateSrv;
         public readonly string Standard;
         public readonly string StandardSrv;
@@ -28,6 +29,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string @private,
 
+            ImmutableArray<Outputs.GetClusterConnectionStringsPrivateEndpointResult> privateEndpoints,
+
             string privateSrv,
 
             string standard,
@@ -37,6 +40,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             AwsPrivateLink = awsPrivateLink;
             AwsPrivateLinkSrv = awsPrivateLinkSrv;
             Private = @private;
+            PrivateEndpoints = privateEndpoints;
             PrivateSrv = privateSrv;
             Standard = standard;
             StandardSrv = standardSrv;

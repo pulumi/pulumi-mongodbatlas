@@ -73,16 +73,19 @@ import (
 // Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--vpce-4242342343--3242342343112--AWS
+//  $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
 // ```
 //
 //  See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
 type PrivateLinkEndpointService struct {
 	pulumi.CustomResourceState
 
-	// Status of the interface endpoint.
+	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
-	ConnectionStatus pulumi.StringOutput `pulumi:"connectionStatus"`
+	AwsConnectionStatus pulumi.StringOutput `pulumi:"awsConnectionStatus"`
+	// Status of the interface endpoint for AZURE.
+	// Returns one of the following values:
+	AzureStatus pulumi.StringOutput `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested pulumi.BoolOutput `pulumi:"deleteRequested"`
 	// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
@@ -146,9 +149,12 @@ func GetPrivateLinkEndpointService(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PrivateLinkEndpointService resources.
 type privateLinkEndpointServiceState struct {
-	// Status of the interface endpoint.
+	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
-	ConnectionStatus *string `pulumi:"connectionStatus"`
+	AwsConnectionStatus *string `pulumi:"awsConnectionStatus"`
+	// Status of the interface endpoint for AZURE.
+	// Returns one of the following values:
+	AzureStatus *string `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested *bool `pulumi:"deleteRequested"`
 	// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
@@ -172,9 +178,12 @@ type privateLinkEndpointServiceState struct {
 }
 
 type PrivateLinkEndpointServiceState struct {
-	// Status of the interface endpoint.
+	// Status of the interface endpoint for AWS.
 	// Returns one of the following values:
-	ConnectionStatus pulumi.StringPtrInput
+	AwsConnectionStatus pulumi.StringPtrInput
+	// Status of the interface endpoint for AZURE.
+	// Returns one of the following values:
+	AzureStatus pulumi.StringPtrInput
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested pulumi.BoolPtrInput
 	// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.

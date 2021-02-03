@@ -275,12 +275,35 @@ export interface ClusterBiConnector {
 }
 
 export interface ClusterConnectionStrings {
+    /**
+     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     */
     awsPrivateLink?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     */
     awsPrivateLinkSrv?: pulumi.Input<{[key: string]: any}>;
     private?: pulumi.Input<string>;
+    privateEndpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringsPrivateEndpoint>[]>;
     privateSrv?: pulumi.Input<string>;
     standard?: pulumi.Input<string>;
     standardSrv?: pulumi.Input<string>;
+}
+
+export interface ClusterConnectionStringsPrivateEndpoint {
+    connectionString?: pulumi.Input<string>;
+    endpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringsPrivateEndpointEndpoint>[]>;
+    srvConnectionString?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
+}
+
+export interface ClusterConnectionStringsPrivateEndpointEndpoint {
+    endpointId?: pulumi.Input<string>;
+    /**
+     * Cloud service provider on which the servers are provisioned.
+     */
+    providerName?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
 }
 
 export interface ClusterLabel {
@@ -448,19 +471,19 @@ export interface EncryptionAtRestAwsKms {
     /**
      * The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
      */
-    accessKeyId: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string>;
     /**
      * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
      */
-    customerMasterKeyId: pulumi.Input<string>;
+    customerMasterKeyId?: pulumi.Input<string>;
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
-    enabled: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
      */
-    region: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlas.CloudProviderAccess` resource.
      */
@@ -468,18 +491,18 @@ export interface EncryptionAtRestAwsKms {
     /**
      * The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
      */
-    secretAccessKey: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
 }
 
 export interface EncryptionAtRestAzureKeyVault {
     /**
      * The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
      */
-    azureEnvironment: pulumi.Input<string>;
+    azureEnvironment?: pulumi.Input<string>;
     /**
      * The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
      */
-    clientId: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
@@ -487,42 +510,42 @@ export interface EncryptionAtRestAzureKeyVault {
     /**
      * The unique identifier of a key in an Azure Key Vault.
      */
-    keyIdentifier: pulumi.Input<string>;
+    keyIdentifier?: pulumi.Input<string>;
     /**
      * The name of an Azure Key Vault containing your key.
      */
-    keyVaultName: pulumi.Input<string>;
+    keyVaultName?: pulumi.Input<string>;
     /**
      * The name of the Azure Resource group that contains an Azure Key Vault.
      */
-    resourceGroupName: pulumi.Input<string>;
+    resourceGroupName?: pulumi.Input<string>;
     /**
      * The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
      */
-    secret: pulumi.Input<string>;
+    secret?: pulumi.Input<string>;
     /**
      * The unique identifier associated with an Azure subscription.
      */
-    subscriptionId: pulumi.Input<string>;
+    subscriptionId?: pulumi.Input<string>;
     /**
      * The unique identifier for an Azure AD tenant within an Azure subscription.
      */
-    tenantId: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string>;
 }
 
 export interface EncryptionAtRestGoogleCloudKms {
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
-    enabled: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The Key Version Resource ID from your GCP account.
      */
-    keyVersionResourceId: pulumi.Input<string>;
+    keyVersionResourceId?: pulumi.Input<string>;
     /**
      * String-formatted JSON object containing GCP KMS credentials from your GCP account.
      */
-    serviceAccountKey: pulumi.Input<string>;
+    serviceAccountKey?: pulumi.Input<string>;
 }
 
 export interface GetCustomDbRoleInheritedRole {

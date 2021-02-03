@@ -16,11 +16,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
         /// </summary>
-        public readonly string AzureEnvironment;
+        public readonly string? AzureEnvironment;
         /// <summary>
         /// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
         /// </summary>
-        public readonly string ClientId;
+        public readonly string? ClientId;
         /// <summary>
         /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         /// </summary>
@@ -28,47 +28,47 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// The unique identifier of a key in an Azure Key Vault.
         /// </summary>
-        public readonly string KeyIdentifier;
+        public readonly string? KeyIdentifier;
         /// <summary>
         /// The name of an Azure Key Vault containing your key.
         /// </summary>
-        public readonly string KeyVaultName;
+        public readonly string? KeyVaultName;
         /// <summary>
         /// The name of the Azure Resource group that contains an Azure Key Vault.
         /// </summary>
-        public readonly string ResourceGroupName;
+        public readonly string? ResourceGroupName;
         /// <summary>
         /// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
         /// </summary>
-        public readonly string Secret;
+        public readonly string? Secret;
         /// <summary>
         /// The unique identifier associated with an Azure subscription.
         /// </summary>
-        public readonly string SubscriptionId;
+        public readonly string? SubscriptionId;
         /// <summary>
         /// The unique identifier for an Azure AD tenant within an Azure subscription.
         /// </summary>
-        public readonly string TenantId;
+        public readonly string? TenantId;
 
         [OutputConstructor]
         private EncryptionAtRestAzureKeyVault(
-            string azureEnvironment,
+            string? azureEnvironment,
 
-            string clientId,
+            string? clientId,
 
             bool enabled,
 
-            string keyIdentifier,
+            string? keyIdentifier,
 
-            string keyVaultName,
+            string? keyVaultName,
 
-            string resourceGroupName,
+            string? resourceGroupName,
 
-            string secret,
+            string? secret,
 
-            string subscriptionId,
+            string? subscriptionId,
 
-            string tenantId)
+            string? tenantId)
         {
             AzureEnvironment = azureEnvironment;
             ClientId = clientId;

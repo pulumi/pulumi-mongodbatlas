@@ -15,20 +15,20 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         /// </summary>
-        [Input("enabled", required: true)]
-        public Input<bool> Enabled { get; set; } = null!;
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
 
         /// <summary>
         /// The Key Version Resource ID from your GCP account.
         /// </summary>
-        [Input("keyVersionResourceId", required: true)]
-        public Input<string> KeyVersionResourceId { get; set; } = null!;
+        [Input("keyVersionResourceId")]
+        public Input<string>? KeyVersionResourceId { get; set; }
 
         /// <summary>
         /// String-formatted JSON object containing GCP KMS credentials from your GCP account.
         /// </summary>
-        [Input("serviceAccountKey", required: true)]
-        public Input<string> ServiceAccountKey { get; set; } = null!;
+        [Input("serviceAccountKey")]
+        public Input<string>? ServiceAccountKey { get; set; }
 
         public EncryptionAtRestGoogleCloudKmsArgs()
         {

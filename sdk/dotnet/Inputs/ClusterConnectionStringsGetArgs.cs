@@ -14,6 +14,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     {
         [Input("awsPrivateLink")]
         private InputMap<object>? _awsPrivateLink;
+        [Obsolete(@"This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead")]
         public InputMap<object> AwsPrivateLink
         {
             get => _awsPrivateLink ?? (_awsPrivateLink = new InputMap<object>());
@@ -22,6 +23,7 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         [Input("awsPrivateLinkSrv")]
         private InputMap<object>? _awsPrivateLinkSrv;
+        [Obsolete(@"This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead")]
         public InputMap<object> AwsPrivateLinkSrv
         {
             get => _awsPrivateLinkSrv ?? (_awsPrivateLinkSrv = new InputMap<object>());
@@ -30,6 +32,14 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         [Input("private")]
         public Input<string>? Private { get; set; }
+
+        [Input("privateEndpoints")]
+        private InputList<Inputs.ClusterConnectionStringsPrivateEndpointGetArgs>? _privateEndpoints;
+        public InputList<Inputs.ClusterConnectionStringsPrivateEndpointGetArgs> PrivateEndpoints
+        {
+            get => _privateEndpoints ?? (_privateEndpoints = new InputList<Inputs.ClusterConnectionStringsPrivateEndpointGetArgs>());
+            set => _privateEndpoints = value;
+        }
 
         [Input("privateSrv")]
         public Input<string>? PrivateSrv { get; set; }

@@ -566,6 +566,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
+                    "deprecationMessage": "This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -577,6 +578,7 @@
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
                     },
+                    "deprecationMessage": "This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -585,6 +587,17 @@
                 },
                 "private": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "privateEndpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/ClusterConnectionStringsPrivateEndpoint:ClusterConnectionStringsPrivateEndpoint"
+                    },
                     "language": {
                         "python": {
                             "mapCase": false
@@ -623,9 +636,99 @@
                         "awsPrivateLink",
                         "awsPrivateLinkSrv",
                         "private",
+                        "privateEndpoints",
                         "privateSrv",
                         "standard",
                         "standardSrv"
+                    ]
+                }
+            }
+        },
+        "mongodbatlas:index/ClusterConnectionStringsPrivateEndpoint:ClusterConnectionStringsPrivateEndpoint": {
+            "properties": {
+                "connectionString": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "endpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/ClusterConnectionStringsPrivateEndpointEndpoint:ClusterConnectionStringsPrivateEndpointEndpoint"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "srvConnectionString": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "connectionString",
+                        "endpoints",
+                        "srvConnectionString",
+                        "type"
+                    ]
+                }
+            }
+        },
+        "mongodbatlas:index/ClusterConnectionStringsPrivateEndpointEndpoint:ClusterConnectionStringsPrivateEndpointEndpoint": {
+            "properties": {
+                "endpointId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "providerName": {
+                    "type": "string",
+                    "description": "Cloud service provider on which the servers are provisioned.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "endpointId",
+                        "providerName",
+                        "region"
                     ]
                 }
             }
@@ -1162,14 +1265,7 @@
                     "description": "The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.\n"
                 }
             },
-            "type": "object",
-            "required": [
-                "accessKeyId",
-                "customerMasterKeyId",
-                "enabled",
-                "region",
-                "secretAccessKey"
-            ]
+            "type": "object"
         },
         "mongodbatlas:index/EncryptionAtRestAzureKeyVault:EncryptionAtRestAzureKeyVault": {
             "properties": {
@@ -1212,15 +1308,7 @@
             },
             "type": "object",
             "required": [
-                "azureEnvironment",
-                "clientId",
-                "enabled",
-                "keyIdentifier",
-                "keyVaultName",
-                "resourceGroupName",
-                "secret",
-                "subscriptionId",
-                "tenantId"
+                "enabled"
             ]
         },
         "mongodbatlas:index/EncryptionAtRestGoogleCloudKms:EncryptionAtRestGoogleCloudKms": {
@@ -1238,12 +1326,7 @@
                     "description": "String-formatted JSON object containing GCP KMS credentials from your GCP account.\n"
                 }
             },
-            "type": "object",
-            "required": [
-                "enabled",
-                "keyVersionResourceId",
-                "serviceAccountKey"
-            ]
+            "type": "object"
         },
         "mongodbatlas:index/GlobalClusterConfigCustomZoneMapping:GlobalClusterConfigCustomZoneMapping": {
             "properties": {
@@ -2337,6 +2420,17 @@
                         }
                     }
                 },
+                "privateEndpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getClusterConnectionStringsPrivateEndpoint:getClusterConnectionStringsPrivateEndpoint"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "privateSrv": {
                     "type": "string",
                     "language": {
@@ -2367,9 +2461,101 @@
                 "awsPrivateLink",
                 "awsPrivateLinkSrv",
                 "private",
+                "privateEndpoints",
                 "privateSrv",
                 "standard",
                 "standardSrv"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getClusterConnectionStringsPrivateEndpoint:getClusterConnectionStringsPrivateEndpoint": {
+            "properties": {
+                "connectionString": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "endpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getClusterConnectionStringsPrivateEndpointEndpoint:getClusterConnectionStringsPrivateEndpointEndpoint"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "srvConnectionString": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "connectionString",
+                "endpoints",
+                "srvConnectionString",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getClusterConnectionStringsPrivateEndpointEndpoint:getClusterConnectionStringsPrivateEndpointEndpoint": {
+            "properties": {
+                "endpointId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "providerName": {
+                    "type": "string",
+                    "description": "Indicates the cloud service provider on which the servers are provisioned.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "endpointId",
+                "providerName",
+                "region"
             ],
             "language": {
                 "nodejs": {
@@ -2772,7 +2958,7 @@
                 },
                 "connectionStrings": {
                     "$ref": "#/types/mongodbatlas:index/getClustersResultConnectionStrings:getClustersResultConnectionStrings",
-                    "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n- `connection_strings.standard` -   Public mongodb:// connection string for this cluster.\n- `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n- `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.\n- `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.\n- `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n",
+                    "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n- `connection_strings.standard` -   Public mongodb:// connection string for this cluster.\n- `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n- `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.\n- `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.\n- `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3149,6 +3335,17 @@
                         }
                     }
                 },
+                "privateEndpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultConnectionStringsPrivateEndpoint:getClustersResultConnectionStringsPrivateEndpoint"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "privateSrv": {
                     "type": "string",
                     "language": {
@@ -3179,9 +3376,101 @@
                 "awsPrivateLink",
                 "awsPrivateLinkSrv",
                 "private",
+                "privateEndpoints",
                 "privateSrv",
                 "standard",
                 "standardSrv"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getClustersResultConnectionStringsPrivateEndpoint:getClustersResultConnectionStringsPrivateEndpoint": {
+            "properties": {
+                "connectionString": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "endpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultConnectionStringsPrivateEndpointEndpoint:getClustersResultConnectionStringsPrivateEndpointEndpoint"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "srvConnectionString": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "connectionString",
+                "endpoints",
+                "srvConnectionString",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getClustersResultConnectionStringsPrivateEndpointEndpoint:getClustersResultConnectionStringsPrivateEndpointEndpoint": {
+            "properties": {
+                "endpointId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "providerName": {
+                    "type": "string",
+                    "description": "Indicates the cloud service provider on which the servers are provisioned.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "endpointId",
+                "providerName",
+                "region"
             ],
             "language": {
                 "nodejs": {
@@ -7013,7 +7302,7 @@
             }
         },
         "mongodbatlas:index/privateEndpoint:PrivateEndpoint": {
-            "description": "`mongodbatlas.PrivateEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Connection that can be created in an Atlas project.\n\n!\u003e **WARNING:** This resource is deprecated and will be removed in the next major version\n                Please transition to privatelink_endpoint as soon as possible. [PrivateLink Endpoints] (https://docs.atlas.mongodb.com/reference/api/private-endpoints/)\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\u003e **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.  \n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.PrivateEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.PrivateEndpoint(\"test\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.PrivateEndpoint(\"test\", new Mongodbatlas.PrivateEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewPrivateEndpoint(ctx, \"test\", \u0026mongodbatlas.PrivateEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPrivate Endpoint Connection can be imported using project ID and username, in the format `{project_id}-{private_link_id}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateEndpoint:PrivateEndpoint test 1112222b3bf99403840e8934-3242342343112\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-private-endpoint-connection/) ",
+            "description": "`mongodbatlas.PrivateEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Connection that can be created in an Atlas project.\n\n!\u003e **WARNING:** This resource is deprecated and will be removed in the next major version\n                Please transition to privatelink_endpoint as soon as possible. [PrivateLink Endpoints] (https://docs.atlas.mongodb.com/reference/api/private-endpoints/)\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\u003e **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.  \n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.PrivateEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.PrivateEndpoint(\"test\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.PrivateEndpoint(\"test\", new Mongodbatlas.PrivateEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewPrivateEndpoint(ctx, \"test\", \u0026mongodbatlas.PrivateEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPrivate Endpoint Connection can be imported using project ID and private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateEndpoint:PrivateEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-2\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-private-endpoint-connection/) ",
             "properties": {
                 "endpointServiceName": {
                     "type": "string",
@@ -7251,7 +7540,7 @@
             }
         },
         "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint": {
-            "description": "`mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\u003e **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.  \n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.PrivateLinkEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    providerName: \"AWS/AZURE\",\n    region: \"us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.PrivateLinkEndpoint(\"test\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    provider_name=\"AWS/AZURE\",\n    region=\"us-east-1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.PrivateLinkEndpoint(\"test\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            ProviderName = \"AWS/AZURE\",\n            Region = \"us-east-1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"test\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS/AZURE\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPrivate Endpoint Service can be imported using project ID and username, in the format `{project_id}-{private_link_id}-{provider_name}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//) ",
+            "description": "`mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\u003e **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.  \n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.PrivateLinkEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    providerName: \"AWS/AZURE\",\n    region: \"us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.PrivateLinkEndpoint(\"test\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    provider_name=\"AWS/AZURE\",\n    region=\"us-east-1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.PrivateLinkEndpoint(\"test\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            ProviderName = \"AWS/AZURE\",\n            Region = \"us-east-1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"test\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS/AZURE\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPrivate Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//) ",
             "properties": {
                 "endpointServiceName": {
                     "type": "string",
@@ -7285,7 +7574,7 @@
                 },
                 "privateLinkServiceResourceId": {
                     "type": "string",
-                    "description": "Resource ID of the Azure Private Link Service that Atlas manages.\nReturns one of the following values:\n"
+                    "description": "Resource ID of the Azure Private Link Service that Atlas manages.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -7300,7 +7589,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Status of the Private Link Service.\n"
+                    "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n"
                 }
             },
             "required": [
@@ -7369,7 +7658,7 @@
                     },
                     "privateLinkServiceResourceId": {
                         "type": "string",
-                        "description": "Resource ID of the Azure Private Link Service that Atlas manages.\nReturns one of the following values:\n"
+                        "description": "Resource ID of the Azure Private Link Service that Atlas manages.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -7384,18 +7673,22 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "Status of the Private Link Service.\n"
+                        "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n"
                     }
                 },
                 "type": "object"
             }
         },
         "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService": {
-            "description": "`mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateLinkEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"test\", {\n    endpointServiceId: ptfeService.id,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    projectId: testPrivateLinkEndpoint.projectId,\n    providerName: \"AWS\",\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    security_group_ids=[\"sg-3f238186\"],\n    service_name=test_private_link_endpoint.endpoint_service_name,\n    subnet_ids=[\"subnet-de0406d2\"],\n    vpc_endpoint_type=\"Interface\",\n    vpc_id=\"vpc-7fc0a543\")\ntest_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\",\n    endpoint_service_id=ptfe_service.id,\n    private_link_id=test_private_link_endpoint.private_link_id,\n    project_id=test_private_link_endpoint.project_id,\n    provider_name=\"AWS\")\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n            ServiceName = testPrivateLinkEndpoint.EndpointServiceName,\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            VpcEndpointType = \"Interface\",\n            VpcId = \"vpc-7fc0a543\",\n        });\n        var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", new Mongodbatlas.PrivateLinkEndpointServiceArgs\n        {\n            EndpointServiceId = ptfeService.Id,\n            PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,\n            ProjectId = testPrivateLinkEndpoint.ProjectId,\n            ProviderName = \"AWS\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"testPrivateLinkEndpoint\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t\tServiceName: testPrivateLinkEndpoint.EndpointServiceName,\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, \"testPrivateLinkEndpointService\", \u0026mongodbatlas.PrivateLinkEndpointServiceArgs{\n\t\t\tEndpointServiceId: ptfeService.ID(),\n\t\t\tPrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,\n\t\t\tProjectId:         testPrivateLinkEndpoint.ProjectId,\n\t\t\tProviderName:      pulumi.String(\"AWS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPrivate Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--vpce-4242342343--3242342343112--AWS\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/) ",
+            "description": "`mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateLinkEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"test\", {\n    endpointServiceId: ptfeService.id,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    projectId: testPrivateLinkEndpoint.projectId,\n    providerName: \"AWS\",\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    security_group_ids=[\"sg-3f238186\"],\n    service_name=test_private_link_endpoint.endpoint_service_name,\n    subnet_ids=[\"subnet-de0406d2\"],\n    vpc_endpoint_type=\"Interface\",\n    vpc_id=\"vpc-7fc0a543\")\ntest_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\",\n    endpoint_service_id=ptfe_service.id,\n    private_link_id=test_private_link_endpoint.private_link_id,\n    project_id=test_private_link_endpoint.project_id,\n    provider_name=\"AWS\")\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n            ServiceName = testPrivateLinkEndpoint.EndpointServiceName,\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            VpcEndpointType = \"Interface\",\n            VpcId = \"vpc-7fc0a543\",\n        });\n        var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", new Mongodbatlas.PrivateLinkEndpointServiceArgs\n        {\n            EndpointServiceId = ptfeService.Id,\n            PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,\n            ProjectId = testPrivateLinkEndpoint.ProjectId,\n            ProviderName = \"AWS\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"testPrivateLinkEndpoint\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t\tServiceName: testPrivateLinkEndpoint.EndpointServiceName,\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, \"testPrivateLinkEndpointService\", \u0026mongodbatlas.PrivateLinkEndpointServiceArgs{\n\t\t\tEndpointServiceId: ptfeService.ID(),\n\t\t\tPrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,\n\t\t\tProjectId:         testPrivateLinkEndpoint.ProjectId,\n\t\t\tProviderName:      pulumi.String(\"AWS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPrivate Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/) ",
             "properties": {
-                "connectionStatus": {
+                "awsConnectionStatus": {
                     "type": "string",
-                    "description": "Status of the interface endpoint.\nReturns one of the following values:\n"
+                    "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n"
+                },
+                "azureStatus": {
+                    "type": "string",
+                    "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n"
                 },
                 "deleteRequested": {
                     "type": "boolean",
@@ -7439,7 +7732,8 @@
                 }
             },
             "required": [
-                "connectionStatus",
+                "awsConnectionStatus",
+                "azureStatus",
                 "deleteRequested",
                 "endpointServiceId",
                 "errorMessage",
@@ -7482,9 +7776,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering PrivateLinkEndpointService resources.\n",
                 "properties": {
-                    "connectionStatus": {
+                    "awsConnectionStatus": {
                         "type": "string",
-                        "description": "Status of the interface endpoint.\nReturns one of the following values:\n"
+                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n"
+                    },
+                    "azureStatus": {
+                        "type": "string",
+                        "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n"
                     },
                     "deleteRequested": {
                         "type": "boolean",
@@ -8941,7 +9239,7 @@
                     },
                     "connectionStrings": {
                         "$ref": "#/types/mongodbatlas:index/getClusterConnectionStrings:getClusterConnectionStrings",
-                        "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n- `connection_strings.standard` -   Public mongodb:// connection string for this cluster.\n- `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n- `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.\n- `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.\n- `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n"
+                        "description": "Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.\n- `connection_strings.standard` -   Public mongodb:// connection string for this cluster.\n- `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.\n- `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.\n- `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** Use `connection_strings.private_endpoint[n].srv_connection_string` instead.\n- `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.\n- `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.\n- `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.\n- `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`\n- `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.\n- `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.\n- `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.\n"
                     },
                     "containerId": {
                         "type": "string",
@@ -9882,7 +10180,7 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "Status of the AWS PrivateLink connection.\nReturns one of the following values:\n"
+                        "description": "Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:\nAWS:\n"
                     }
                 },
                 "type": "object",
@@ -10055,17 +10353,17 @@
             }
         },
         "mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService": {
-            "description": "`mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateLinkEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testMongodbatlasPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"test\", {\n    interfaceEndpointId: ptfeService.id,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    projectId: testPrivateLinkEndpoint.projectId,\n});\nconst testPrivateLinkEndpointService = pulumi.all([testMongodbatlasPrivateLinkEndpointService.interfaceEndpointId, testMongodbatlasPrivateLinkEndpointService.privateLinkId, testMongodbatlasPrivateLinkEndpointService.projectId]).apply(([interfaceEndpointId, privateLinkId, projectId]) =\u003e mongodbatlas.getPrivateLinkEndpointService({\n    interfaceEndpointId: interfaceEndpointId,\n    privateLinkId: privateLinkId,\n    projectId: projectId,\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "`mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfe_service\", {\n    securityGroupIds: [\"sg-3f238186\"],\n    serviceName: testPrivateLinkEndpoint.endpointServiceName,\n    subnetIds: [\"subnet-de0406d2\"],\n    vpcEndpointType: \"Interface\",\n    vpcId: \"vpc-7fc0a543\",\n});\nconst testMongodbatlasPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"test\", {\n    endpointServiceId: ptfeService.id,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    projectId: testPrivateLinkEndpoint.projectId,\n    providerName: \"AWS\",\n});\nconst testPrivateLinkEndpointService = pulumi.all([testMongodbatlasPrivateLinkEndpointService.interfaceEndpointId, testMongodbatlasPrivateLinkEndpointService.privateLinkId, testMongodbatlasPrivateLinkEndpointService.projectId]).apply(([interfaceEndpointId, privateLinkId, projectId]) =\u003e mongodbatlas.getPrivateLinkEndpointService({\n    interfaceEndpointId: interfaceEndpointId,\n    privateLinkId: privateLinkId,\n    projectId: projectId,\n}, { async: true }));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getPrivateLinkEndpointService.\n",
                 "properties": {
                     "endpointServiceId": {
                         "type": "string",
-                        "description": "Unique identifier of the private endpoint service for which you want to create a private endpoint service.\n"
+                        "description": "Unique identifier of the `AWS` or `AZURE` resource.\n"
                     },
                     "privateLinkId": {
                         "type": "string",
-                        "description": "Unique identifier of the `AWS` or `AZURE` PrivateLink connection.\n"
+                        "description": "Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -10087,9 +10385,13 @@
             "outputs": {
                 "description": "A collection of values returned by getPrivateLinkEndpointService.\n",
                 "properties": {
-                    "connectionStatus": {
+                    "awsConnectionStatus": {
                         "type": "string",
-                        "description": "Status of the interface endpoint.\nReturns one of the following values:\n"
+                        "description": "Status of the interface endpoint for AWS.\nReturns one of the following values:\n"
+                    },
+                    "azureStatus": {
+                        "type": "string",
+                        "description": "Status of the interface endpoint for AZURE.\nReturns one of the following values:\n"
                     },
                     "deleteRequested": {
                         "type": "boolean",
@@ -10134,7 +10436,8 @@
                 },
                 "type": "object",
                 "required": [
-                    "connectionStatus",
+                    "awsConnectionStatus",
+                    "azureStatus",
                     "deleteRequested",
                     "endpointServiceId",
                     "errorMessage",

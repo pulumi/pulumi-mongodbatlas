@@ -48,10 +48,10 @@ import (
 //
 // ## Import
 //
-// Private Endpoint Service can be imported using project ID and username, in the format `{project_id}-{private_link_id}-{provider_name}`, e.g.
+// Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS
+//  $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
 // ```
 //
 //  See detailed information for arguments and attributes[MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
@@ -71,7 +71,6 @@ type PrivateLinkEndpoint struct {
 	// Name of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceName pulumi.StringOutput `pulumi:"privateLinkServiceName"`
 	// Resource ID of the Azure Private Link Service that Atlas manages.
-	// Returns one of the following values:
 	PrivateLinkServiceResourceId pulumi.StringOutput `pulumi:"privateLinkServiceResourceId"`
 	// Required 	Unique identifier for the project.
 	ProjectId    pulumi.StringOutput `pulumi:"projectId"`
@@ -79,7 +78,8 @@ type PrivateLinkEndpoint struct {
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Status of the Private Link Service.
+	// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+	// AWS:
 	Status pulumi.StringOutput `pulumi:"status"`
 }
 
@@ -134,7 +134,6 @@ type privateLinkEndpointState struct {
 	// Name of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceName *string `pulumi:"privateLinkServiceName"`
 	// Resource ID of the Azure Private Link Service that Atlas manages.
-	// Returns one of the following values:
 	PrivateLinkServiceResourceId *string `pulumi:"privateLinkServiceResourceId"`
 	// Required 	Unique identifier for the project.
 	ProjectId    *string `pulumi:"projectId"`
@@ -142,7 +141,8 @@ type privateLinkEndpointState struct {
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
 	Region *string `pulumi:"region"`
-	// Status of the Private Link Service.
+	// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+	// AWS:
 	Status *string `pulumi:"status"`
 }
 
@@ -160,7 +160,6 @@ type PrivateLinkEndpointState struct {
 	// Name of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceName pulumi.StringPtrInput
 	// Resource ID of the Azure Private Link Service that Atlas manages.
-	// Returns one of the following values:
 	PrivateLinkServiceResourceId pulumi.StringPtrInput
 	// Required 	Unique identifier for the project.
 	ProjectId    pulumi.StringPtrInput
@@ -168,7 +167,8 @@ type PrivateLinkEndpointState struct {
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
 	Region pulumi.StringPtrInput
-	// Status of the Private Link Service.
+	// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
+	// AWS:
 	Status pulumi.StringPtrInput
 }
 

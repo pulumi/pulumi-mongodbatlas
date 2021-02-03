@@ -61,7 +61,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
 
         ```sh
-         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--vpce-4242342343--3242342343112--AWS
+         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
         ```
 
          See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
@@ -104,7 +104,8 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
             __props__['provider_name'] = provider_name
-            __props__['connection_status'] = None
+            __props__['aws_connection_status'] = None
+            __props__['azure_status'] = None
             __props__['delete_requested'] = None
             __props__['error_message'] = None
             __props__['interface_endpoint_id'] = None
@@ -120,7 +121,8 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connection_status: Optional[pulumi.Input[str]] = None,
+            aws_connection_status: Optional[pulumi.Input[str]] = None,
+            azure_status: Optional[pulumi.Input[str]] = None,
             delete_requested: Optional[pulumi.Input[bool]] = None,
             endpoint_service_id: Optional[pulumi.Input[str]] = None,
             error_message: Optional[pulumi.Input[str]] = None,
@@ -138,7 +140,9 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] connection_status: Status of the interface endpoint.
+        :param pulumi.Input[str] aws_connection_status: Status of the interface endpoint for AWS.
+               Returns one of the following values:
+        :param pulumi.Input[str] azure_status: Status of the interface endpoint for AZURE.
                Returns one of the following values:
         :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
@@ -155,7 +159,8 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         __props__ = dict()
 
-        __props__["connection_status"] = connection_status
+        __props__["aws_connection_status"] = aws_connection_status
+        __props__["azure_status"] = azure_status
         __props__["delete_requested"] = delete_requested
         __props__["endpoint_service_id"] = endpoint_service_id
         __props__["error_message"] = error_message
@@ -169,13 +174,22 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         return PrivateLinkEndpointService(resource_name, opts=opts, __props__=__props__)
 
     @property
-    @pulumi.getter(name="connectionStatus")
-    def connection_status(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="awsConnectionStatus")
+    def aws_connection_status(self) -> pulumi.Output[str]:
         """
-        Status of the interface endpoint.
+        Status of the interface endpoint for AWS.
         Returns one of the following values:
         """
-        return pulumi.get(self, "connection_status")
+        return pulumi.get(self, "aws_connection_status")
+
+    @property
+    @pulumi.getter(name="azureStatus")
+    def azure_status(self) -> pulumi.Output[str]:
+        """
+        Status of the interface endpoint for AZURE.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "azure_status")
 
     @property
     @pulumi.getter(name="deleteRequested")

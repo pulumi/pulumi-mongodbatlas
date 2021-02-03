@@ -275,12 +275,35 @@ export interface ClusterBiConnector {
 }
 
 export interface ClusterConnectionStrings {
+    /**
+     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     */
     awsPrivateLink: {[key: string]: any};
+    /**
+     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     */
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
+    privateEndpoints: outputs.ClusterConnectionStringsPrivateEndpoint[];
     privateSrv: string;
     standard: string;
     standardSrv: string;
+}
+
+export interface ClusterConnectionStringsPrivateEndpoint {
+    connectionString: string;
+    endpoints: outputs.ClusterConnectionStringsPrivateEndpointEndpoint[];
+    srvConnectionString: string;
+    type: string;
+}
+
+export interface ClusterConnectionStringsPrivateEndpointEndpoint {
+    endpointId: string;
+    /**
+     * Cloud service provider on which the servers are provisioned.
+     */
+    providerName: string;
+    region: string;
 }
 
 export interface ClusterLabel {
@@ -448,19 +471,19 @@ export interface EncryptionAtRestAwsKms {
     /**
      * The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
      */
-    accessKeyId: string;
+    accessKeyId?: string;
     /**
      * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
      */
-    customerMasterKeyId: string;
+    customerMasterKeyId?: string;
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
      */
-    region: string;
+    region?: string;
     /**
      * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlas.CloudProviderAccess` resource.
      */
@@ -468,18 +491,18 @@ export interface EncryptionAtRestAwsKms {
     /**
      * The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
      */
-    secretAccessKey: string;
+    secretAccessKey?: string;
 }
 
 export interface EncryptionAtRestAzureKeyVault {
     /**
      * The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
      */
-    azureEnvironment: string;
+    azureEnvironment?: string;
     /**
      * The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
      */
-    clientId: string;
+    clientId?: string;
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
@@ -487,42 +510,42 @@ export interface EncryptionAtRestAzureKeyVault {
     /**
      * The unique identifier of a key in an Azure Key Vault.
      */
-    keyIdentifier: string;
+    keyIdentifier?: string;
     /**
      * The name of an Azure Key Vault containing your key.
      */
-    keyVaultName: string;
+    keyVaultName?: string;
     /**
      * The name of the Azure Resource group that contains an Azure Key Vault.
      */
-    resourceGroupName: string;
+    resourceGroupName?: string;
     /**
      * The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
      */
-    secret: string;
+    secret?: string;
     /**
      * The unique identifier associated with an Azure subscription.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * The unique identifier for an Azure AD tenant within an Azure subscription.
      */
-    tenantId: string;
+    tenantId?: string;
 }
 
 export interface EncryptionAtRestGoogleCloudKms {
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * The Key Version Resource ID from your GCP account.
      */
-    keyVersionResourceId: string;
+    keyVersionResourceId?: string;
     /**
      * String-formatted JSON object containing GCP KMS credentials from your GCP account.
      */
-    serviceAccountKey: string;
+    serviceAccountKey?: string;
 }
 
 export interface Get509AuthenticationDatabaseUserCertificate {
@@ -898,9 +921,26 @@ export interface GetClusterConnectionStrings {
     awsPrivateLink: {[key: string]: any};
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
+    privateEndpoints: outputs.GetClusterConnectionStringsPrivateEndpoint[];
     privateSrv: string;
     standard: string;
     standardSrv: string;
+}
+
+export interface GetClusterConnectionStringsPrivateEndpoint {
+    connectionString: string;
+    endpoints: outputs.GetClusterConnectionStringsPrivateEndpointEndpoint[];
+    srvConnectionString: string;
+    type: string;
+}
+
+export interface GetClusterConnectionStringsPrivateEndpointEndpoint {
+    endpointId: string;
+    /**
+     * Indicates the cloud service provider on which the servers are provisioned.
+     */
+    providerName: string;
+    region: string;
 }
 
 export interface GetClusterLabel {
@@ -1019,10 +1059,17 @@ export interface GetClustersResult {
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
      * - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     * - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster.
-     * - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink.
+     * - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
+     * - `connection_strings.aws_private_link_srv` - [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.awsPrivateLink. **DEPRECATED** `connection_strings.private_endpoint[n].srv_connection_string` instead.
      * - `connection_strings.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[n].connection_string` or `connection_strings.private_endpoint[n].srv_connection_string`
+     * - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
      */
     connectionStrings: outputs.GetClustersResultConnectionStrings;
     /**
@@ -1157,9 +1204,26 @@ export interface GetClustersResultConnectionStrings {
     awsPrivateLink: {[key: string]: any};
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
+    privateEndpoints: outputs.GetClustersResultConnectionStringsPrivateEndpoint[];
     privateSrv: string;
     standard: string;
     standardSrv: string;
+}
+
+export interface GetClustersResultConnectionStringsPrivateEndpoint {
+    connectionString: string;
+    endpoints: outputs.GetClustersResultConnectionStringsPrivateEndpointEndpoint[];
+    srvConnectionString: string;
+    type: string;
+}
+
+export interface GetClustersResultConnectionStringsPrivateEndpointEndpoint {
+    endpointId: string;
+    /**
+     * Indicates the cloud service provider on which the servers are provisioned.
+     */
+    providerName: string;
+    region: string;
 }
 
 export interface GetClustersResultLabel {

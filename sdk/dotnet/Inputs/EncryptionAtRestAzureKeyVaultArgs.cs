@@ -15,14 +15,14 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
         /// </summary>
-        [Input("azureEnvironment", required: true)]
-        public Input<string> AzureEnvironment { get; set; } = null!;
+        [Input("azureEnvironment")]
+        public Input<string>? AzureEnvironment { get; set; }
 
         /// <summary>
         /// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
         /// </summary>
-        [Input("clientId", required: true)]
-        public Input<string> ClientId { get; set; } = null!;
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
 
         /// <summary>
         /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
@@ -33,38 +33,38 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// The unique identifier of a key in an Azure Key Vault.
         /// </summary>
-        [Input("keyIdentifier", required: true)]
-        public Input<string> KeyIdentifier { get; set; } = null!;
+        [Input("keyIdentifier")]
+        public Input<string>? KeyIdentifier { get; set; }
 
         /// <summary>
         /// The name of an Azure Key Vault containing your key.
         /// </summary>
-        [Input("keyVaultName", required: true)]
-        public Input<string> KeyVaultName { get; set; } = null!;
+        [Input("keyVaultName")]
+        public Input<string>? KeyVaultName { get; set; }
 
         /// <summary>
         /// The name of the Azure Resource group that contains an Azure Key Vault.
         /// </summary>
-        [Input("resourceGroupName", required: true)]
-        public Input<string> ResourceGroupName { get; set; } = null!;
+        [Input("resourceGroupName")]
+        public Input<string>? ResourceGroupName { get; set; }
 
         /// <summary>
         /// The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
         /// </summary>
-        [Input("secret", required: true)]
-        public Input<string> Secret { get; set; } = null!;
+        [Input("secret")]
+        public Input<string>? Secret { get; set; }
 
         /// <summary>
         /// The unique identifier associated with an Azure subscription.
         /// </summary>
-        [Input("subscriptionId", required: true)]
-        public Input<string> SubscriptionId { get; set; } = null!;
+        [Input("subscriptionId")]
+        public Input<string>? SubscriptionId { get; set; }
 
         /// <summary>
         /// The unique identifier for an Azure AD tenant within an Azure subscription.
         /// </summary>
-        [Input("tenantId", required: true)]
-        public Input<string> TenantId { get; set; } = null!;
+        [Input("tenantId")]
+        public Input<string>? TenantId { get; set; }
 
         public EncryptionAtRestAzureKeyVaultArgs()
         {

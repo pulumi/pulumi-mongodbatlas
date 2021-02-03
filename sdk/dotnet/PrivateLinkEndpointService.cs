@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
     /// Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--vpce-4242342343--3242342343112--AWS
+    ///  $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
     /// ```
     /// 
     ///  See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
@@ -75,11 +75,18 @@ namespace Pulumi.Mongodbatlas
     public partial class PrivateLinkEndpointService : Pulumi.CustomResource
     {
         /// <summary>
-        /// Status of the interface endpoint.
+        /// Status of the interface endpoint for AWS.
         /// Returns one of the following values:
         /// </summary>
-        [Output("connectionStatus")]
-        public Output<string> ConnectionStatus { get; private set; } = null!;
+        [Output("awsConnectionStatus")]
+        public Output<string> AwsConnectionStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Status of the interface endpoint for AZURE.
+        /// Returns one of the following values:
+        /// </summary>
+        [Output("azureStatus")]
+        public Output<string> AzureStatus { get; private set; } = null!;
 
         /// <summary>
         /// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
@@ -225,11 +232,18 @@ namespace Pulumi.Mongodbatlas
     public sealed class PrivateLinkEndpointServiceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Status of the interface endpoint.
+        /// Status of the interface endpoint for AWS.
         /// Returns one of the following values:
         /// </summary>
-        [Input("connectionStatus")]
-        public Input<string>? ConnectionStatus { get; set; }
+        [Input("awsConnectionStatus")]
+        public Input<string>? AwsConnectionStatus { get; set; }
+
+        /// <summary>
+        /// Status of the interface endpoint for AZURE.
+        /// Returns one of the following values:
+        /// </summary>
+        [Input("azureStatus")]
+        public Input<string>? AzureStatus { get; set; }
 
         /// <summary>
         /// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
