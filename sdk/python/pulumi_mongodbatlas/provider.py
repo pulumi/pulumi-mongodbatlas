@@ -48,11 +48,11 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if private_key is None:
-                private_key = _utilities.get_env('MONGODB_ATLAS_PRIVATE_KEY')
+            if private_key is None and not opts.urn:
+                raise TypeError("Missing required property 'private_key'")
             __props__['private_key'] = private_key
-            if public_key is None:
-                public_key = _utilities.get_env('MONGODB_ATLAS_PUBLIC_KEY')
+            if public_key is None and not opts.urn:
+                raise TypeError("Missing required property 'public_key'")
             __props__['public_key'] = public_key
         super(Provider, __self__).__init__(
             'mongodbatlas',

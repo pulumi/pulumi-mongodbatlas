@@ -160,7 +160,8 @@ export class AlertConfiguration extends pulumi.CustomResource {
     constructor(name: string, args: AlertConfigurationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AlertConfigurationArgs | AlertConfigurationState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as AlertConfigurationState | undefined;
             inputs["alertConfigurationId"] = state ? state.alertConfigurationId : undefined;
             inputs["created"] = state ? state.created : undefined;
@@ -174,13 +175,13 @@ export class AlertConfiguration extends pulumi.CustomResource {
             inputs["updated"] = state ? state.updated : undefined;
         } else {
             const args = argsOrState as AlertConfigurationArgs | undefined;
-            if ((!args || args.eventType === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.eventType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'eventType'");
             }
-            if ((!args || args.notifications === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.notifications === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'notifications'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["enabled"] = args ? args.enabled : undefined;
@@ -194,12 +195,8 @@ export class AlertConfiguration extends pulumi.CustomResource {
             inputs["created"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(AlertConfiguration.__pulumiType, name, inputs, opts);
     }

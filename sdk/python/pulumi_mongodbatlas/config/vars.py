@@ -15,12 +15,12 @@ __all__ = [
 
 __config__ = pulumi.Config('mongodbatlas')
 
-private_key = __config__.get('privateKey') or _utilities.get_env('MONGODB_ATLAS_PRIVATE_KEY')
+private_key = __config__.get('privateKey')
 """
 MongoDB Atlas Programmatic Private Key
 """
 
-public_key = __config__.get('publicKey') or _utilities.get_env('MONGODB_ATLAS_PUBLIC_KEY')
+public_key = __config__.get('publicKey')
 """
 MongoDB Atlas Programmatic Public Key
 """

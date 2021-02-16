@@ -135,7 +135,8 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
     constructor(name: string, args: ProjectIpAccessListArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ProjectIpAccessListArgs | ProjectIpAccessListState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ProjectIpAccessListState | undefined;
             inputs["awsSecurityGroup"] = state ? state.awsSecurityGroup : undefined;
             inputs["cidrBlock"] = state ? state.cidrBlock : undefined;
@@ -144,7 +145,7 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
             inputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as ProjectIpAccessListArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["awsSecurityGroup"] = args ? args.awsSecurityGroup : undefined;
@@ -153,12 +154,8 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
             inputs["ipAddress"] = args ? args.ipAddress : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ProjectIpAccessList.__pulumiType, name, inputs, opts);
     }

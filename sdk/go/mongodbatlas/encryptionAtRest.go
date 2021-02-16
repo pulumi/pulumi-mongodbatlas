@@ -36,7 +36,6 @@ import (
 // 	"fmt"
 //
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -191,6 +190,85 @@ func (i *EncryptionAtRest) ToEncryptionAtRestOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestOutput)
 }
 
+func (i *EncryptionAtRest) ToEncryptionAtRestPtrOutput() EncryptionAtRestPtrOutput {
+	return i.ToEncryptionAtRestPtrOutputWithContext(context.Background())
+}
+
+func (i *EncryptionAtRest) ToEncryptionAtRestPtrOutputWithContext(ctx context.Context) EncryptionAtRestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestPtrOutput)
+}
+
+type EncryptionAtRestPtrInput interface {
+	pulumi.Input
+
+	ToEncryptionAtRestPtrOutput() EncryptionAtRestPtrOutput
+	ToEncryptionAtRestPtrOutputWithContext(ctx context.Context) EncryptionAtRestPtrOutput
+}
+
+type encryptionAtRestPtrType EncryptionAtRestArgs
+
+func (*encryptionAtRestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EncryptionAtRest)(nil))
+}
+
+func (i *encryptionAtRestPtrType) ToEncryptionAtRestPtrOutput() EncryptionAtRestPtrOutput {
+	return i.ToEncryptionAtRestPtrOutputWithContext(context.Background())
+}
+
+func (i *encryptionAtRestPtrType) ToEncryptionAtRestPtrOutputWithContext(ctx context.Context) EncryptionAtRestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestPtrOutput)
+}
+
+// EncryptionAtRestArrayInput is an input type that accepts EncryptionAtRestArray and EncryptionAtRestArrayOutput values.
+// You can construct a concrete instance of `EncryptionAtRestArrayInput` via:
+//
+//          EncryptionAtRestArray{ EncryptionAtRestArgs{...} }
+type EncryptionAtRestArrayInput interface {
+	pulumi.Input
+
+	ToEncryptionAtRestArrayOutput() EncryptionAtRestArrayOutput
+	ToEncryptionAtRestArrayOutputWithContext(context.Context) EncryptionAtRestArrayOutput
+}
+
+type EncryptionAtRestArray []EncryptionAtRestInput
+
+func (EncryptionAtRestArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*EncryptionAtRest)(nil))
+}
+
+func (i EncryptionAtRestArray) ToEncryptionAtRestArrayOutput() EncryptionAtRestArrayOutput {
+	return i.ToEncryptionAtRestArrayOutputWithContext(context.Background())
+}
+
+func (i EncryptionAtRestArray) ToEncryptionAtRestArrayOutputWithContext(ctx context.Context) EncryptionAtRestArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestArrayOutput)
+}
+
+// EncryptionAtRestMapInput is an input type that accepts EncryptionAtRestMap and EncryptionAtRestMapOutput values.
+// You can construct a concrete instance of `EncryptionAtRestMapInput` via:
+//
+//          EncryptionAtRestMap{ "key": EncryptionAtRestArgs{...} }
+type EncryptionAtRestMapInput interface {
+	pulumi.Input
+
+	ToEncryptionAtRestMapOutput() EncryptionAtRestMapOutput
+	ToEncryptionAtRestMapOutputWithContext(context.Context) EncryptionAtRestMapOutput
+}
+
+type EncryptionAtRestMap map[string]EncryptionAtRestInput
+
+func (EncryptionAtRestMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*EncryptionAtRest)(nil))
+}
+
+func (i EncryptionAtRestMap) ToEncryptionAtRestMapOutput() EncryptionAtRestMapOutput {
+	return i.ToEncryptionAtRestMapOutputWithContext(context.Background())
+}
+
+func (i EncryptionAtRestMap) ToEncryptionAtRestMapOutputWithContext(ctx context.Context) EncryptionAtRestMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestMapOutput)
+}
+
 type EncryptionAtRestOutput struct {
 	*pulumi.OutputState
 }
@@ -207,6 +285,75 @@ func (o EncryptionAtRestOutput) ToEncryptionAtRestOutputWithContext(ctx context.
 	return o
 }
 
+func (o EncryptionAtRestOutput) ToEncryptionAtRestPtrOutput() EncryptionAtRestPtrOutput {
+	return o.ToEncryptionAtRestPtrOutputWithContext(context.Background())
+}
+
+func (o EncryptionAtRestOutput) ToEncryptionAtRestPtrOutputWithContext(ctx context.Context) EncryptionAtRestPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRest) *EncryptionAtRest {
+		return &v
+	}).(EncryptionAtRestPtrOutput)
+}
+
+type EncryptionAtRestPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (EncryptionAtRestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EncryptionAtRest)(nil))
+}
+
+func (o EncryptionAtRestPtrOutput) ToEncryptionAtRestPtrOutput() EncryptionAtRestPtrOutput {
+	return o
+}
+
+func (o EncryptionAtRestPtrOutput) ToEncryptionAtRestPtrOutputWithContext(ctx context.Context) EncryptionAtRestPtrOutput {
+	return o
+}
+
+type EncryptionAtRestArrayOutput struct{ *pulumi.OutputState }
+
+func (EncryptionAtRestArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EncryptionAtRest)(nil))
+}
+
+func (o EncryptionAtRestArrayOutput) ToEncryptionAtRestArrayOutput() EncryptionAtRestArrayOutput {
+	return o
+}
+
+func (o EncryptionAtRestArrayOutput) ToEncryptionAtRestArrayOutputWithContext(ctx context.Context) EncryptionAtRestArrayOutput {
+	return o
+}
+
+func (o EncryptionAtRestArrayOutput) Index(i pulumi.IntInput) EncryptionAtRestOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EncryptionAtRest {
+		return vs[0].([]EncryptionAtRest)[vs[1].(int)]
+	}).(EncryptionAtRestOutput)
+}
+
+type EncryptionAtRestMapOutput struct{ *pulumi.OutputState }
+
+func (EncryptionAtRestMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]EncryptionAtRest)(nil))
+}
+
+func (o EncryptionAtRestMapOutput) ToEncryptionAtRestMapOutput() EncryptionAtRestMapOutput {
+	return o
+}
+
+func (o EncryptionAtRestMapOutput) ToEncryptionAtRestMapOutputWithContext(ctx context.Context) EncryptionAtRestMapOutput {
+	return o
+}
+
+func (o EncryptionAtRestMapOutput) MapIndex(k pulumi.StringInput) EncryptionAtRestOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EncryptionAtRest {
+		return vs[0].(map[string]EncryptionAtRest)[vs[1].(string)]
+	}).(EncryptionAtRestOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(EncryptionAtRestOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestPtrOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestArrayOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestMapOutput{})
 }

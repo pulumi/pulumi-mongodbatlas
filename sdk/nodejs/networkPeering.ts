@@ -141,7 +141,8 @@ export class NetworkPeering extends pulumi.CustomResource {
     constructor(name: string, args: NetworkPeeringArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NetworkPeeringArgs | NetworkPeeringState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as NetworkPeeringState | undefined;
             inputs["accepterRegionName"] = state ? state.accepterRegionName : undefined;
             inputs["atlasCidrBlock"] = state ? state.atlasCidrBlock : undefined;
@@ -169,13 +170,13 @@ export class NetworkPeering extends pulumi.CustomResource {
             inputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as NetworkPeeringArgs | undefined;
-            if ((!args || args.containerId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.containerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'containerId'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
             inputs["accepterRegionName"] = args ? args.accepterRegionName : undefined;
@@ -203,12 +204,8 @@ export class NetworkPeering extends pulumi.CustomResource {
             inputs["status"] = undefined /*out*/;
             inputs["statusName"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(NetworkPeering.__pulumiType, name, inputs, opts);
     }

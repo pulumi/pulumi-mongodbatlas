@@ -116,7 +116,8 @@ export class PrivateEndpointInterfaceLink extends pulumi.CustomResource {
     constructor(name: string, args: PrivateEndpointInterfaceLinkArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PrivateEndpointInterfaceLinkArgs | PrivateEndpointInterfaceLinkState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as PrivateEndpointInterfaceLinkState | undefined;
             inputs["connectionStatus"] = state ? state.connectionStatus : undefined;
             inputs["deleteRequested"] = state ? state.deleteRequested : undefined;
@@ -126,13 +127,13 @@ export class PrivateEndpointInterfaceLink extends pulumi.CustomResource {
             inputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as PrivateEndpointInterfaceLinkArgs | undefined;
-            if ((!args || args.interfaceEndpointId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.interfaceEndpointId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'interfaceEndpointId'");
             }
-            if ((!args || args.privateLinkId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.privateLinkId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'privateLinkId'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["interfaceEndpointId"] = args ? args.interfaceEndpointId : undefined;
@@ -142,12 +143,8 @@ export class PrivateEndpointInterfaceLink extends pulumi.CustomResource {
             inputs["deleteRequested"] = undefined /*out*/;
             inputs["errorMessage"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(PrivateEndpointInterfaceLink.__pulumiType, name, inputs, opts);
     }

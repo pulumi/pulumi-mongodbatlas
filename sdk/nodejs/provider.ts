@@ -33,18 +33,21 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let inputs: pulumi.Inputs = {};
+        opts = opts || {};
         {
-            inputs["privateKey"] = (args ? args.privateKey : undefined) || utilities.getEnv("MONGODB_ATLAS_PRIVATE_KEY");
-            inputs["publicKey"] = (args ? args.publicKey : undefined) || utilities.getEnv("MONGODB_ATLAS_PUBLIC_KEY");
+            if ((!args || args.privateKey === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'privateKey'");
+            }
+            if ((!args || args.publicKey === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'publicKey'");
+            }
+            inputs["privateKey"] = args ? args.privateKey : undefined;
+            inputs["publicKey"] = args ? args.publicKey : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Provider.__pulumiType, name, inputs, opts);
     }
@@ -57,9 +60,9 @@ export interface ProviderArgs {
     /**
      * MongoDB Atlas Programmatic Private Key
      */
-    readonly privateKey?: pulumi.Input<string>;
+    readonly privateKey: pulumi.Input<string>;
     /**
      * MongoDB Atlas Programmatic Public Key
      */
-    readonly publicKey?: pulumi.Input<string>;
+    readonly publicKey: pulumi.Input<string>;
 }

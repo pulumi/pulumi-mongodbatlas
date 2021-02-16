@@ -111,7 +111,8 @@ export class EncryptionAtRest extends pulumi.CustomResource {
     constructor(name: string, args: EncryptionAtRestArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EncryptionAtRestArgs | EncryptionAtRestState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as EncryptionAtRestState | undefined;
             inputs["awsKms"] = state ? state.awsKms : undefined;
             inputs["azureKeyVault"] = state ? state.azureKeyVault : undefined;
@@ -119,7 +120,7 @@ export class EncryptionAtRest extends pulumi.CustomResource {
             inputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as EncryptionAtRestArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["awsKms"] = args ? args.awsKms : undefined;
@@ -127,12 +128,8 @@ export class EncryptionAtRest extends pulumi.CustomResource {
             inputs["googleCloudKms"] = args ? args.googleCloudKms : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(EncryptionAtRest.__pulumiType, name, inputs, opts);
     }

@@ -139,7 +139,8 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
     constructor(name: string, args: PrivateLinkEndpointServiceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PrivateLinkEndpointServiceArgs | PrivateLinkEndpointServiceState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as PrivateLinkEndpointServiceState | undefined;
             inputs["awsConnectionStatus"] = state ? state.awsConnectionStatus : undefined;
             inputs["azureStatus"] = state ? state.azureStatus : undefined;
@@ -155,16 +156,16 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             inputs["providerName"] = state ? state.providerName : undefined;
         } else {
             const args = argsOrState as PrivateLinkEndpointServiceArgs | undefined;
-            if ((!args || args.endpointServiceId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.endpointServiceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'endpointServiceId'");
             }
-            if ((!args || args.privateLinkId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.privateLinkId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'privateLinkId'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
             inputs["endpointServiceId"] = args ? args.endpointServiceId : undefined;
@@ -180,12 +181,8 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             inputs["privateEndpointConnectionName"] = undefined /*out*/;
             inputs["privateEndpointResourceId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(PrivateLinkEndpointService.__pulumiType, name, inputs, opts);
     }

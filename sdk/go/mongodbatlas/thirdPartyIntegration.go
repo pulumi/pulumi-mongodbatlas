@@ -319,6 +319,85 @@ func (i *ThirdPartyIntegration) ToThirdPartyIntegrationOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationOutput)
 }
 
+func (i *ThirdPartyIntegration) ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput {
+	return i.ToThirdPartyIntegrationPtrOutputWithContext(context.Background())
+}
+
+func (i *ThirdPartyIntegration) ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationPtrOutput)
+}
+
+type ThirdPartyIntegrationPtrInput interface {
+	pulumi.Input
+
+	ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput
+	ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput
+}
+
+type thirdPartyIntegrationPtrType ThirdPartyIntegrationArgs
+
+func (*thirdPartyIntegrationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ThirdPartyIntegration)(nil))
+}
+
+func (i *thirdPartyIntegrationPtrType) ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput {
+	return i.ToThirdPartyIntegrationPtrOutputWithContext(context.Background())
+}
+
+func (i *thirdPartyIntegrationPtrType) ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationPtrOutput)
+}
+
+// ThirdPartyIntegrationArrayInput is an input type that accepts ThirdPartyIntegrationArray and ThirdPartyIntegrationArrayOutput values.
+// You can construct a concrete instance of `ThirdPartyIntegrationArrayInput` via:
+//
+//          ThirdPartyIntegrationArray{ ThirdPartyIntegrationArgs{...} }
+type ThirdPartyIntegrationArrayInput interface {
+	pulumi.Input
+
+	ToThirdPartyIntegrationArrayOutput() ThirdPartyIntegrationArrayOutput
+	ToThirdPartyIntegrationArrayOutputWithContext(context.Context) ThirdPartyIntegrationArrayOutput
+}
+
+type ThirdPartyIntegrationArray []ThirdPartyIntegrationInput
+
+func (ThirdPartyIntegrationArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ThirdPartyIntegration)(nil))
+}
+
+func (i ThirdPartyIntegrationArray) ToThirdPartyIntegrationArrayOutput() ThirdPartyIntegrationArrayOutput {
+	return i.ToThirdPartyIntegrationArrayOutputWithContext(context.Background())
+}
+
+func (i ThirdPartyIntegrationArray) ToThirdPartyIntegrationArrayOutputWithContext(ctx context.Context) ThirdPartyIntegrationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationArrayOutput)
+}
+
+// ThirdPartyIntegrationMapInput is an input type that accepts ThirdPartyIntegrationMap and ThirdPartyIntegrationMapOutput values.
+// You can construct a concrete instance of `ThirdPartyIntegrationMapInput` via:
+//
+//          ThirdPartyIntegrationMap{ "key": ThirdPartyIntegrationArgs{...} }
+type ThirdPartyIntegrationMapInput interface {
+	pulumi.Input
+
+	ToThirdPartyIntegrationMapOutput() ThirdPartyIntegrationMapOutput
+	ToThirdPartyIntegrationMapOutputWithContext(context.Context) ThirdPartyIntegrationMapOutput
+}
+
+type ThirdPartyIntegrationMap map[string]ThirdPartyIntegrationInput
+
+func (ThirdPartyIntegrationMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ThirdPartyIntegration)(nil))
+}
+
+func (i ThirdPartyIntegrationMap) ToThirdPartyIntegrationMapOutput() ThirdPartyIntegrationMapOutput {
+	return i.ToThirdPartyIntegrationMapOutputWithContext(context.Background())
+}
+
+func (i ThirdPartyIntegrationMap) ToThirdPartyIntegrationMapOutputWithContext(ctx context.Context) ThirdPartyIntegrationMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationMapOutput)
+}
+
 type ThirdPartyIntegrationOutput struct {
 	*pulumi.OutputState
 }
@@ -335,6 +414,75 @@ func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutputWithContext(ct
 	return o
 }
 
+func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput {
+	return o.ToThirdPartyIntegrationPtrOutputWithContext(context.Background())
+}
+
+func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput {
+	return o.ApplyT(func(v ThirdPartyIntegration) *ThirdPartyIntegration {
+		return &v
+	}).(ThirdPartyIntegrationPtrOutput)
+}
+
+type ThirdPartyIntegrationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ThirdPartyIntegrationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ThirdPartyIntegration)(nil))
+}
+
+func (o ThirdPartyIntegrationPtrOutput) ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput {
+	return o
+}
+
+func (o ThirdPartyIntegrationPtrOutput) ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput {
+	return o
+}
+
+type ThirdPartyIntegrationArrayOutput struct{ *pulumi.OutputState }
+
+func (ThirdPartyIntegrationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ThirdPartyIntegration)(nil))
+}
+
+func (o ThirdPartyIntegrationArrayOutput) ToThirdPartyIntegrationArrayOutput() ThirdPartyIntegrationArrayOutput {
+	return o
+}
+
+func (o ThirdPartyIntegrationArrayOutput) ToThirdPartyIntegrationArrayOutputWithContext(ctx context.Context) ThirdPartyIntegrationArrayOutput {
+	return o
+}
+
+func (o ThirdPartyIntegrationArrayOutput) Index(i pulumi.IntInput) ThirdPartyIntegrationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ThirdPartyIntegration {
+		return vs[0].([]ThirdPartyIntegration)[vs[1].(int)]
+	}).(ThirdPartyIntegrationOutput)
+}
+
+type ThirdPartyIntegrationMapOutput struct{ *pulumi.OutputState }
+
+func (ThirdPartyIntegrationMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ThirdPartyIntegration)(nil))
+}
+
+func (o ThirdPartyIntegrationMapOutput) ToThirdPartyIntegrationMapOutput() ThirdPartyIntegrationMapOutput {
+	return o
+}
+
+func (o ThirdPartyIntegrationMapOutput) ToThirdPartyIntegrationMapOutputWithContext(ctx context.Context) ThirdPartyIntegrationMapOutput {
+	return o
+}
+
+func (o ThirdPartyIntegrationMapOutput) MapIndex(k pulumi.StringInput) ThirdPartyIntegrationOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ThirdPartyIntegration {
+		return vs[0].(map[string]ThirdPartyIntegration)[vs[1].(string)]
+	}).(ThirdPartyIntegrationOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ThirdPartyIntegrationOutput{})
+	pulumi.RegisterOutputType(ThirdPartyIntegrationPtrOutput{})
+	pulumi.RegisterOutputType(ThirdPartyIntegrationArrayOutput{})
+	pulumi.RegisterOutputType(ThirdPartyIntegrationMapOutput{})
 }

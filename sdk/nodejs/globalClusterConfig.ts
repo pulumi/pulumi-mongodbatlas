@@ -167,7 +167,8 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
     constructor(name: string, args: GlobalClusterConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GlobalClusterConfigArgs | GlobalClusterConfigState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as GlobalClusterConfigState | undefined;
             inputs["clusterName"] = state ? state.clusterName : undefined;
             inputs["customZoneMapping"] = state ? state.customZoneMapping : undefined;
@@ -176,10 +177,10 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
             inputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as GlobalClusterConfigArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clusterName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["clusterName"] = args ? args.clusterName : undefined;
@@ -188,12 +189,8 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["customZoneMapping"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(GlobalClusterConfig.__pulumiType, name, inputs, opts);
     }

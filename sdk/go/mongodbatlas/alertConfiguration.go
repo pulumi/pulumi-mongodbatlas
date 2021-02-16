@@ -22,7 +22,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -75,7 +74,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -283,6 +281,85 @@ func (i *AlertConfiguration) ToAlertConfigurationOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationOutput)
 }
 
+func (i *AlertConfiguration) ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput {
+	return i.ToAlertConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *AlertConfiguration) ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationPtrOutput)
+}
+
+type AlertConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput
+	ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput
+}
+
+type alertConfigurationPtrType AlertConfigurationArgs
+
+func (*alertConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertConfiguration)(nil))
+}
+
+func (i *alertConfigurationPtrType) ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput {
+	return i.ToAlertConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *alertConfigurationPtrType) ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationPtrOutput)
+}
+
+// AlertConfigurationArrayInput is an input type that accepts AlertConfigurationArray and AlertConfigurationArrayOutput values.
+// You can construct a concrete instance of `AlertConfigurationArrayInput` via:
+//
+//          AlertConfigurationArray{ AlertConfigurationArgs{...} }
+type AlertConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToAlertConfigurationArrayOutput() AlertConfigurationArrayOutput
+	ToAlertConfigurationArrayOutputWithContext(context.Context) AlertConfigurationArrayOutput
+}
+
+type AlertConfigurationArray []AlertConfigurationInput
+
+func (AlertConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*AlertConfiguration)(nil))
+}
+
+func (i AlertConfigurationArray) ToAlertConfigurationArrayOutput() AlertConfigurationArrayOutput {
+	return i.ToAlertConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i AlertConfigurationArray) ToAlertConfigurationArrayOutputWithContext(ctx context.Context) AlertConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationArrayOutput)
+}
+
+// AlertConfigurationMapInput is an input type that accepts AlertConfigurationMap and AlertConfigurationMapOutput values.
+// You can construct a concrete instance of `AlertConfigurationMapInput` via:
+//
+//          AlertConfigurationMap{ "key": AlertConfigurationArgs{...} }
+type AlertConfigurationMapInput interface {
+	pulumi.Input
+
+	ToAlertConfigurationMapOutput() AlertConfigurationMapOutput
+	ToAlertConfigurationMapOutputWithContext(context.Context) AlertConfigurationMapOutput
+}
+
+type AlertConfigurationMap map[string]AlertConfigurationInput
+
+func (AlertConfigurationMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*AlertConfiguration)(nil))
+}
+
+func (i AlertConfigurationMap) ToAlertConfigurationMapOutput() AlertConfigurationMapOutput {
+	return i.ToAlertConfigurationMapOutputWithContext(context.Background())
+}
+
+func (i AlertConfigurationMap) ToAlertConfigurationMapOutputWithContext(ctx context.Context) AlertConfigurationMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMapOutput)
+}
+
 type AlertConfigurationOutput struct {
 	*pulumi.OutputState
 }
@@ -299,6 +376,75 @@ func (o AlertConfigurationOutput) ToAlertConfigurationOutputWithContext(ctx cont
 	return o
 }
 
+func (o AlertConfigurationOutput) ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput {
+	return o.ToAlertConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o AlertConfigurationOutput) ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput {
+	return o.ApplyT(func(v AlertConfiguration) *AlertConfiguration {
+		return &v
+	}).(AlertConfigurationPtrOutput)
+}
+
+type AlertConfigurationPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (AlertConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertConfiguration)(nil))
+}
+
+func (o AlertConfigurationPtrOutput) ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput {
+	return o
+}
+
+func (o AlertConfigurationPtrOutput) ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput {
+	return o
+}
+
+type AlertConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (AlertConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AlertConfiguration)(nil))
+}
+
+func (o AlertConfigurationArrayOutput) ToAlertConfigurationArrayOutput() AlertConfigurationArrayOutput {
+	return o
+}
+
+func (o AlertConfigurationArrayOutput) ToAlertConfigurationArrayOutputWithContext(ctx context.Context) AlertConfigurationArrayOutput {
+	return o
+}
+
+func (o AlertConfigurationArrayOutput) Index(i pulumi.IntInput) AlertConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertConfiguration {
+		return vs[0].([]AlertConfiguration)[vs[1].(int)]
+	}).(AlertConfigurationOutput)
+}
+
+type AlertConfigurationMapOutput struct{ *pulumi.OutputState }
+
+func (AlertConfigurationMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]AlertConfiguration)(nil))
+}
+
+func (o AlertConfigurationMapOutput) ToAlertConfigurationMapOutput() AlertConfigurationMapOutput {
+	return o
+}
+
+func (o AlertConfigurationMapOutput) ToAlertConfigurationMapOutputWithContext(ctx context.Context) AlertConfigurationMapOutput {
+	return o
+}
+
+func (o AlertConfigurationMapOutput) MapIndex(k pulumi.StringInput) AlertConfigurationOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AlertConfiguration {
+		return vs[0].(map[string]AlertConfiguration)[vs[1].(string)]
+	}).(AlertConfigurationOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(AlertConfigurationOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationMapOutput{})
 }

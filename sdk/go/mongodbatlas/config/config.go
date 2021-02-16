@@ -10,18 +10,10 @@ import (
 
 // MongoDB Atlas Programmatic Private Key
 func GetPrivateKey(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "mongodbatlas:privateKey")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "MONGODB_ATLAS_PRIVATE_KEY").(string)
+	return config.Get(ctx, "mongodbatlas:privateKey")
 }
 
 // MongoDB Atlas Programmatic Public Key
 func GetPublicKey(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "mongodbatlas:publicKey")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "MONGODB_ATLAS_PUBLIC_KEY").(string)
+	return config.Get(ctx, "mongodbatlas:publicKey")
 }

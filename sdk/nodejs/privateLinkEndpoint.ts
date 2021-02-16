@@ -120,7 +120,8 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
     constructor(name: string, args: PrivateLinkEndpointArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PrivateLinkEndpointArgs | PrivateLinkEndpointState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as PrivateLinkEndpointState | undefined;
             inputs["endpointServiceName"] = state ? state.endpointServiceName : undefined;
             inputs["errorMessage"] = state ? state.errorMessage : undefined;
@@ -135,13 +136,13 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
             inputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as PrivateLinkEndpointArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            if ((!args || args.region === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
             inputs["projectId"] = args ? args.projectId : undefined;
@@ -156,12 +157,8 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
             inputs["privateLinkServiceResourceId"] = undefined /*out*/;
             inputs["status"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(PrivateLinkEndpoint.__pulumiType, name, inputs, opts);
     }

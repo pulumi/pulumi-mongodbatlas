@@ -182,7 +182,8 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
     constructor(name: string, args: CloudProviderSnapshotRestoreJobArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderSnapshotRestoreJobArgs | CloudProviderSnapshotRestoreJobState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as CloudProviderSnapshotRestoreJobState | undefined;
             inputs["cancelled"] = state ? state.cancelled : undefined;
             inputs["clusterName"] = state ? state.clusterName : undefined;
@@ -198,16 +199,16 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
             inputs["timestamp"] = state ? state.timestamp : undefined;
         } else {
             const args = argsOrState as CloudProviderSnapshotRestoreJobArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clusterName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.deliveryType === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.deliveryType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'deliveryType'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.snapshotId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.snapshotId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'snapshotId'");
             }
             inputs["clusterName"] = args ? args.clusterName : undefined;
@@ -223,12 +224,8 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
             inputs["snapshotRestoreJobId"] = undefined /*out*/;
             inputs["timestamp"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(CloudProviderSnapshotRestoreJob.__pulumiType, name, inputs, opts);
     }

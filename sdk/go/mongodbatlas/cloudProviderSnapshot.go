@@ -23,7 +23,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -255,6 +254,85 @@ func (i *CloudProviderSnapshot) ToCloudProviderSnapshotOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotOutput)
 }
 
+func (i *CloudProviderSnapshot) ToCloudProviderSnapshotPtrOutput() CloudProviderSnapshotPtrOutput {
+	return i.ToCloudProviderSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i *CloudProviderSnapshot) ToCloudProviderSnapshotPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotPtrOutput)
+}
+
+type CloudProviderSnapshotPtrInput interface {
+	pulumi.Input
+
+	ToCloudProviderSnapshotPtrOutput() CloudProviderSnapshotPtrOutput
+	ToCloudProviderSnapshotPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotPtrOutput
+}
+
+type cloudProviderSnapshotPtrType CloudProviderSnapshotArgs
+
+func (*cloudProviderSnapshotPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderSnapshot)(nil))
+}
+
+func (i *cloudProviderSnapshotPtrType) ToCloudProviderSnapshotPtrOutput() CloudProviderSnapshotPtrOutput {
+	return i.ToCloudProviderSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudProviderSnapshotPtrType) ToCloudProviderSnapshotPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotPtrOutput)
+}
+
+// CloudProviderSnapshotArrayInput is an input type that accepts CloudProviderSnapshotArray and CloudProviderSnapshotArrayOutput values.
+// You can construct a concrete instance of `CloudProviderSnapshotArrayInput` via:
+//
+//          CloudProviderSnapshotArray{ CloudProviderSnapshotArgs{...} }
+type CloudProviderSnapshotArrayInput interface {
+	pulumi.Input
+
+	ToCloudProviderSnapshotArrayOutput() CloudProviderSnapshotArrayOutput
+	ToCloudProviderSnapshotArrayOutputWithContext(context.Context) CloudProviderSnapshotArrayOutput
+}
+
+type CloudProviderSnapshotArray []CloudProviderSnapshotInput
+
+func (CloudProviderSnapshotArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*CloudProviderSnapshot)(nil))
+}
+
+func (i CloudProviderSnapshotArray) ToCloudProviderSnapshotArrayOutput() CloudProviderSnapshotArrayOutput {
+	return i.ToCloudProviderSnapshotArrayOutputWithContext(context.Background())
+}
+
+func (i CloudProviderSnapshotArray) ToCloudProviderSnapshotArrayOutputWithContext(ctx context.Context) CloudProviderSnapshotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotArrayOutput)
+}
+
+// CloudProviderSnapshotMapInput is an input type that accepts CloudProviderSnapshotMap and CloudProviderSnapshotMapOutput values.
+// You can construct a concrete instance of `CloudProviderSnapshotMapInput` via:
+//
+//          CloudProviderSnapshotMap{ "key": CloudProviderSnapshotArgs{...} }
+type CloudProviderSnapshotMapInput interface {
+	pulumi.Input
+
+	ToCloudProviderSnapshotMapOutput() CloudProviderSnapshotMapOutput
+	ToCloudProviderSnapshotMapOutputWithContext(context.Context) CloudProviderSnapshotMapOutput
+}
+
+type CloudProviderSnapshotMap map[string]CloudProviderSnapshotInput
+
+func (CloudProviderSnapshotMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*CloudProviderSnapshot)(nil))
+}
+
+func (i CloudProviderSnapshotMap) ToCloudProviderSnapshotMapOutput() CloudProviderSnapshotMapOutput {
+	return i.ToCloudProviderSnapshotMapOutputWithContext(context.Background())
+}
+
+func (i CloudProviderSnapshotMap) ToCloudProviderSnapshotMapOutputWithContext(ctx context.Context) CloudProviderSnapshotMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotMapOutput)
+}
+
 type CloudProviderSnapshotOutput struct {
 	*pulumi.OutputState
 }
@@ -271,6 +349,75 @@ func (o CloudProviderSnapshotOutput) ToCloudProviderSnapshotOutputWithContext(ct
 	return o
 }
 
+func (o CloudProviderSnapshotOutput) ToCloudProviderSnapshotPtrOutput() CloudProviderSnapshotPtrOutput {
+	return o.ToCloudProviderSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (o CloudProviderSnapshotOutput) ToCloudProviderSnapshotPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshot) *CloudProviderSnapshot {
+		return &v
+	}).(CloudProviderSnapshotPtrOutput)
+}
+
+type CloudProviderSnapshotPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CloudProviderSnapshotPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderSnapshot)(nil))
+}
+
+func (o CloudProviderSnapshotPtrOutput) ToCloudProviderSnapshotPtrOutput() CloudProviderSnapshotPtrOutput {
+	return o
+}
+
+func (o CloudProviderSnapshotPtrOutput) ToCloudProviderSnapshotPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotPtrOutput {
+	return o
+}
+
+type CloudProviderSnapshotArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderSnapshotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderSnapshot)(nil))
+}
+
+func (o CloudProviderSnapshotArrayOutput) ToCloudProviderSnapshotArrayOutput() CloudProviderSnapshotArrayOutput {
+	return o
+}
+
+func (o CloudProviderSnapshotArrayOutput) ToCloudProviderSnapshotArrayOutputWithContext(ctx context.Context) CloudProviderSnapshotArrayOutput {
+	return o
+}
+
+func (o CloudProviderSnapshotArrayOutput) Index(i pulumi.IntInput) CloudProviderSnapshotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderSnapshot {
+		return vs[0].([]CloudProviderSnapshot)[vs[1].(int)]
+	}).(CloudProviderSnapshotOutput)
+}
+
+type CloudProviderSnapshotMapOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderSnapshotMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]CloudProviderSnapshot)(nil))
+}
+
+func (o CloudProviderSnapshotMapOutput) ToCloudProviderSnapshotMapOutput() CloudProviderSnapshotMapOutput {
+	return o
+}
+
+func (o CloudProviderSnapshotMapOutput) ToCloudProviderSnapshotMapOutputWithContext(ctx context.Context) CloudProviderSnapshotMapOutput {
+	return o
+}
+
+func (o CloudProviderSnapshotMapOutput) MapIndex(k pulumi.StringInput) CloudProviderSnapshotOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CloudProviderSnapshot {
+		return vs[0].(map[string]CloudProviderSnapshot)[vs[1].(string)]
+	}).(CloudProviderSnapshotOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(CloudProviderSnapshotOutput{})
+	pulumi.RegisterOutputType(CloudProviderSnapshotPtrOutput{})
+	pulumi.RegisterOutputType(CloudProviderSnapshotArrayOutput{})
+	pulumi.RegisterOutputType(CloudProviderSnapshotMapOutput{})
 }

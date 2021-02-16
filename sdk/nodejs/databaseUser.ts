@@ -87,7 +87,8 @@ export class DatabaseUser extends pulumi.CustomResource {
     constructor(name: string, args: DatabaseUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DatabaseUserArgs | DatabaseUserState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as DatabaseUserState | undefined;
             inputs["authDatabaseName"] = state ? state.authDatabaseName : undefined;
             inputs["awsIamType"] = state ? state.awsIamType : undefined;
@@ -101,13 +102,13 @@ export class DatabaseUser extends pulumi.CustomResource {
             inputs["x509Type"] = state ? state.x509Type : undefined;
         } else {
             const args = argsOrState as DatabaseUserArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.roles === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roles === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roles'");
             }
-            if ((!args || args.username === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
             inputs["authDatabaseName"] = args ? args.authDatabaseName : undefined;
@@ -121,12 +122,8 @@ export class DatabaseUser extends pulumi.CustomResource {
             inputs["username"] = args ? args.username : undefined;
             inputs["x509Type"] = args ? args.x509Type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(DatabaseUser.__pulumiType, name, inputs, opts);
     }

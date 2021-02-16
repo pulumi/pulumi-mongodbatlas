@@ -156,7 +156,8 @@ export class NetworkContainer extends pulumi.CustomResource {
     constructor(name: string, args: NetworkContainerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NetworkContainerArgs | NetworkContainerState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as NetworkContainerState | undefined;
             inputs["atlasCidrBlock"] = state ? state.atlasCidrBlock : undefined;
             inputs["azureSubscriptionId"] = state ? state.azureSubscriptionId : undefined;
@@ -172,10 +173,10 @@ export class NetworkContainer extends pulumi.CustomResource {
             inputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as NetworkContainerArgs | undefined;
-            if ((!args || args.atlasCidrBlock === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.atlasCidrBlock === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'atlasCidrBlock'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["atlasCidrBlock"] = args ? args.atlasCidrBlock : undefined;
@@ -191,12 +192,8 @@ export class NetworkContainer extends pulumi.CustomResource {
             inputs["vnetName"] = undefined /*out*/;
             inputs["vpcId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(NetworkContainer.__pulumiType, name, inputs, opts);
     }

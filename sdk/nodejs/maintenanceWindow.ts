@@ -113,7 +113,8 @@ export class MaintenanceWindow extends pulumi.CustomResource {
     constructor(name: string, args: MaintenanceWindowArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: MaintenanceWindowArgs | MaintenanceWindowState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as MaintenanceWindowState | undefined;
             inputs["dayOfWeek"] = state ? state.dayOfWeek : undefined;
             inputs["defer"] = state ? state.defer : undefined;
@@ -123,7 +124,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             inputs["startAsap"] = state ? state.startAsap : undefined;
         } else {
             const args = argsOrState as MaintenanceWindowArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["dayOfWeek"] = args ? args.dayOfWeek : undefined;
@@ -133,12 +134,8 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["startAsap"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(MaintenanceWindow.__pulumiType, name, inputs, opts);
     }

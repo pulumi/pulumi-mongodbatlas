@@ -418,7 +418,8 @@ export class Cluster extends pulumi.CustomResource {
     constructor(name: string, args: ClusterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClusterArgs | ClusterState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ClusterState | undefined;
             inputs["advancedConfiguration"] = state ? state.advancedConfiguration : undefined;
             inputs["autoScalingComputeEnabled"] = state ? state.autoScalingComputeEnabled : undefined;
@@ -461,13 +462,13 @@ export class Cluster extends pulumi.CustomResource {
             inputs["stateName"] = state ? state.stateName : undefined;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerInstanceSizeName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.providerInstanceSizeName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerInstanceSizeName'");
             }
-            if ((!args || args.providerName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
             inputs["advancedConfiguration"] = args ? args.advancedConfiguration : undefined;
@@ -510,12 +511,8 @@ export class Cluster extends pulumi.CustomResource {
             inputs["srvAddress"] = undefined /*out*/;
             inputs["stateName"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Cluster.__pulumiType, name, inputs, opts);
     }
