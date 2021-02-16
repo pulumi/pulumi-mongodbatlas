@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
@@ -22,14 +23,14 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		args = &ProviderArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
 	if args.PrivateKey == nil {
-		args.PrivateKey = pulumi.StringPtr(getEnvOrDefault("", nil, "MONGODB_ATLAS_PRIVATE_KEY").(string))
+		return nil, errors.New("invalid value for required argument 'PrivateKey'")
 	}
 	if args.PublicKey == nil {
-		args.PublicKey = pulumi.StringPtr(getEnvOrDefault("", nil, "MONGODB_ATLAS_PUBLIC_KEY").(string))
+		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:mongodbatlas", name, args, &resource, opts...)
@@ -41,17 +42,17 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// MongoDB Atlas Programmatic Private Key
-	PrivateKey *string `pulumi:"privateKey"`
+	PrivateKey string `pulumi:"privateKey"`
 	// MongoDB Atlas Programmatic Public Key
-	PublicKey *string `pulumi:"publicKey"`
+	PublicKey string `pulumi:"publicKey"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	// MongoDB Atlas Programmatic Private Key
-	PrivateKey pulumi.StringPtrInput
+	PrivateKey pulumi.StringInput
 	// MongoDB Atlas Programmatic Public Key
-	PublicKey pulumi.StringPtrInput
+	PublicKey pulumi.StringInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -77,6 +78,35 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
+func (i *Provider) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *Provider) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
+type ProviderPtrInput interface {
+	pulumi.Input
+
+	ToProviderPtrOutput() ProviderPtrOutput
+	ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput
+}
+
+type providerPtrType ProviderArgs
+
+func (*providerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (i *providerPtrType) ToProviderPtrOutput() ProviderPtrOutput {
+	return i.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *providerPtrType) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
+}
+
 type ProviderOutput struct {
 	*pulumi.OutputState
 }
@@ -93,6 +123,33 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+func (o ProviderOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o.ToProviderPtrOutputWithContext(context.Background())
+}
+
+func (o ProviderOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o.ApplyT(func(v Provider) *Provider {
+		return &v
+	}).(ProviderPtrOutput)
+}
+
+type ProviderPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Provider)(nil))
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutput() ProviderPtrOutput {
+	return o
+}
+
+func (o ProviderPtrOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
+	return o
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderPtrOutput{})
 }

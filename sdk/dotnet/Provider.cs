@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
             : base("mongodbatlas", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -48,19 +48,17 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// MongoDB Atlas Programmatic Private Key
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        [Input("privateKey", required: true)]
+        public Input<string> PrivateKey { get; set; } = null!;
 
         /// <summary>
         /// MongoDB Atlas Programmatic Public Key
         /// </summary>
-        [Input("publicKey")]
-        public Input<string>? PublicKey { get; set; }
+        [Input("publicKey", required: true)]
+        public Input<string> PublicKey { get; set; } = null!;
 
         public ProviderArgs()
         {
-            PrivateKey = Utilities.GetEnv("MONGODB_ATLAS_PRIVATE_KEY");
-            PublicKey = Utilities.GetEnv("MONGODB_ATLAS_PUBLIC_KEY");
         }
     }
 }

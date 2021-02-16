@@ -78,26 +78,15 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "mongodbatlas",
-		Description: "A Pulumi package for creating and managing mongodbatlas cloud resources.",
-		Keywords:    []string{"pulumi", "mongodbatlas"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-mongodbatlas",
-		GitHubOrg:   "mongodb",
-		Config: map[string]*tfbridge.SchemaInfo{
-			"public_key": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"MONGODB_ATLAS_PUBLIC_KEY"},
-				},
-			},
-			"private_key": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"MONGODB_ATLAS_PRIVATE_KEY"},
-				},
-			},
-		},
+		P:                    p,
+		Name:                 "mongodbatlas",
+		Description:          "A Pulumi package for creating and managing mongodbatlas cloud resources.",
+		Keywords:             []string{"pulumi", "mongodbatlas"},
+		License:              "Apache-2.0",
+		Homepage:             "https://pulumi.io",
+		Repository:           "https://github.com/pulumi/pulumi-mongodbatlas",
+		GitHubOrg:            "mongodb",
+		Config:               map[string]*tfbridge.SchemaInfo{},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"mongodbatlas_custom_db_role":          {Tok: makeResource(mainMod, "CustomDbRole")},

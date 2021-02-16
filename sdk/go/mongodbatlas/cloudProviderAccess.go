@@ -165,6 +165,85 @@ func (i *CloudProviderAccess) ToCloudProviderAccessOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessOutput)
 }
 
+func (i *CloudProviderAccess) ToCloudProviderAccessPtrOutput() CloudProviderAccessPtrOutput {
+	return i.ToCloudProviderAccessPtrOutputWithContext(context.Background())
+}
+
+func (i *CloudProviderAccess) ToCloudProviderAccessPtrOutputWithContext(ctx context.Context) CloudProviderAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessPtrOutput)
+}
+
+type CloudProviderAccessPtrInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessPtrOutput() CloudProviderAccessPtrOutput
+	ToCloudProviderAccessPtrOutputWithContext(ctx context.Context) CloudProviderAccessPtrOutput
+}
+
+type cloudProviderAccessPtrType CloudProviderAccessArgs
+
+func (*cloudProviderAccessPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderAccess)(nil))
+}
+
+func (i *cloudProviderAccessPtrType) ToCloudProviderAccessPtrOutput() CloudProviderAccessPtrOutput {
+	return i.ToCloudProviderAccessPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudProviderAccessPtrType) ToCloudProviderAccessPtrOutputWithContext(ctx context.Context) CloudProviderAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessPtrOutput)
+}
+
+// CloudProviderAccessArrayInput is an input type that accepts CloudProviderAccessArray and CloudProviderAccessArrayOutput values.
+// You can construct a concrete instance of `CloudProviderAccessArrayInput` via:
+//
+//          CloudProviderAccessArray{ CloudProviderAccessArgs{...} }
+type CloudProviderAccessArrayInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessArrayOutput() CloudProviderAccessArrayOutput
+	ToCloudProviderAccessArrayOutputWithContext(context.Context) CloudProviderAccessArrayOutput
+}
+
+type CloudProviderAccessArray []CloudProviderAccessInput
+
+func (CloudProviderAccessArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*CloudProviderAccess)(nil))
+}
+
+func (i CloudProviderAccessArray) ToCloudProviderAccessArrayOutput() CloudProviderAccessArrayOutput {
+	return i.ToCloudProviderAccessArrayOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessArray) ToCloudProviderAccessArrayOutputWithContext(ctx context.Context) CloudProviderAccessArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessArrayOutput)
+}
+
+// CloudProviderAccessMapInput is an input type that accepts CloudProviderAccessMap and CloudProviderAccessMapOutput values.
+// You can construct a concrete instance of `CloudProviderAccessMapInput` via:
+//
+//          CloudProviderAccessMap{ "key": CloudProviderAccessArgs{...} }
+type CloudProviderAccessMapInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessMapOutput() CloudProviderAccessMapOutput
+	ToCloudProviderAccessMapOutputWithContext(context.Context) CloudProviderAccessMapOutput
+}
+
+type CloudProviderAccessMap map[string]CloudProviderAccessInput
+
+func (CloudProviderAccessMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*CloudProviderAccess)(nil))
+}
+
+func (i CloudProviderAccessMap) ToCloudProviderAccessMapOutput() CloudProviderAccessMapOutput {
+	return i.ToCloudProviderAccessMapOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessMap) ToCloudProviderAccessMapOutputWithContext(ctx context.Context) CloudProviderAccessMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessMapOutput)
+}
+
 type CloudProviderAccessOutput struct {
 	*pulumi.OutputState
 }
@@ -181,6 +260,75 @@ func (o CloudProviderAccessOutput) ToCloudProviderAccessOutputWithContext(ctx co
 	return o
 }
 
+func (o CloudProviderAccessOutput) ToCloudProviderAccessPtrOutput() CloudProviderAccessPtrOutput {
+	return o.ToCloudProviderAccessPtrOutputWithContext(context.Background())
+}
+
+func (o CloudProviderAccessOutput) ToCloudProviderAccessPtrOutputWithContext(ctx context.Context) CloudProviderAccessPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccess) *CloudProviderAccess {
+		return &v
+	}).(CloudProviderAccessPtrOutput)
+}
+
+type CloudProviderAccessPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (CloudProviderAccessPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderAccess)(nil))
+}
+
+func (o CloudProviderAccessPtrOutput) ToCloudProviderAccessPtrOutput() CloudProviderAccessPtrOutput {
+	return o
+}
+
+func (o CloudProviderAccessPtrOutput) ToCloudProviderAccessPtrOutputWithContext(ctx context.Context) CloudProviderAccessPtrOutput {
+	return o
+}
+
+type CloudProviderAccessArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccess)(nil))
+}
+
+func (o CloudProviderAccessArrayOutput) ToCloudProviderAccessArrayOutput() CloudProviderAccessArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessArrayOutput) ToCloudProviderAccessArrayOutputWithContext(ctx context.Context) CloudProviderAccessArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccess {
+		return vs[0].([]CloudProviderAccess)[vs[1].(int)]
+	}).(CloudProviderAccessOutput)
+}
+
+type CloudProviderAccessMapOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]CloudProviderAccess)(nil))
+}
+
+func (o CloudProviderAccessMapOutput) ToCloudProviderAccessMapOutput() CloudProviderAccessMapOutput {
+	return o
+}
+
+func (o CloudProviderAccessMapOutput) ToCloudProviderAccessMapOutputWithContext(ctx context.Context) CloudProviderAccessMapOutput {
+	return o
+}
+
+func (o CloudProviderAccessMapOutput) MapIndex(k pulumi.StringInput) CloudProviderAccessOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CloudProviderAccess {
+		return vs[0].(map[string]CloudProviderAccess)[vs[1].(string)]
+	}).(CloudProviderAccessOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(CloudProviderAccessOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessPtrOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessArrayOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessMapOutput{})
 }

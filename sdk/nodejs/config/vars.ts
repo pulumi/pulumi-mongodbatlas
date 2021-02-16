@@ -9,8 +9,8 @@ let __config = new pulumi.Config("mongodbatlas");
 /**
  * MongoDB Atlas Programmatic Private Key
  */
-export let privateKey: string | undefined = __config.get("privateKey") || utilities.getEnv("MONGODB_ATLAS_PRIVATE_KEY");
+export let privateKey: string | undefined = __config.get("privateKey");
 /**
  * MongoDB Atlas Programmatic Public Key
  */
-export let publicKey: string | undefined = __config.get("publicKey") || utilities.getEnv("MONGODB_ATLAS_PUBLIC_KEY");
+export let publicKey: string | undefined = __config.get("publicKey");

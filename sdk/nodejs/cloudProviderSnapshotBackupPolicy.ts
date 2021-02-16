@@ -92,7 +92,8 @@ export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
     constructor(name: string, args: CloudProviderSnapshotBackupPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderSnapshotBackupPolicyArgs | CloudProviderSnapshotBackupPolicyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as CloudProviderSnapshotBackupPolicyState | undefined;
             inputs["clusterId"] = state ? state.clusterId : undefined;
             inputs["clusterName"] = state ? state.clusterName : undefined;
@@ -105,13 +106,13 @@ export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
             inputs["updateSnapshots"] = state ? state.updateSnapshots : undefined;
         } else {
             const args = argsOrState as CloudProviderSnapshotBackupPolicyArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clusterName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.policies === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.policies === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["clusterName"] = args ? args.clusterName : undefined;
@@ -124,12 +125,8 @@ export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
             inputs["clusterId"] = undefined /*out*/;
             inputs["nextSnapshot"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(CloudProviderSnapshotBackupPolicy.__pulumiType, name, inputs, opts);
     }

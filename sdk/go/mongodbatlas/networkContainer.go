@@ -28,7 +28,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -53,7 +53,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -77,7 +77,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -301,6 +301,85 @@ func (i *NetworkContainer) ToNetworkContainerOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerOutput)
 }
 
+func (i *NetworkContainer) ToNetworkContainerPtrOutput() NetworkContainerPtrOutput {
+	return i.ToNetworkContainerPtrOutputWithContext(context.Background())
+}
+
+func (i *NetworkContainer) ToNetworkContainerPtrOutputWithContext(ctx context.Context) NetworkContainerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerPtrOutput)
+}
+
+type NetworkContainerPtrInput interface {
+	pulumi.Input
+
+	ToNetworkContainerPtrOutput() NetworkContainerPtrOutput
+	ToNetworkContainerPtrOutputWithContext(ctx context.Context) NetworkContainerPtrOutput
+}
+
+type networkContainerPtrType NetworkContainerArgs
+
+func (*networkContainerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkContainer)(nil))
+}
+
+func (i *networkContainerPtrType) ToNetworkContainerPtrOutput() NetworkContainerPtrOutput {
+	return i.ToNetworkContainerPtrOutputWithContext(context.Background())
+}
+
+func (i *networkContainerPtrType) ToNetworkContainerPtrOutputWithContext(ctx context.Context) NetworkContainerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerPtrOutput)
+}
+
+// NetworkContainerArrayInput is an input type that accepts NetworkContainerArray and NetworkContainerArrayOutput values.
+// You can construct a concrete instance of `NetworkContainerArrayInput` via:
+//
+//          NetworkContainerArray{ NetworkContainerArgs{...} }
+type NetworkContainerArrayInput interface {
+	pulumi.Input
+
+	ToNetworkContainerArrayOutput() NetworkContainerArrayOutput
+	ToNetworkContainerArrayOutputWithContext(context.Context) NetworkContainerArrayOutput
+}
+
+type NetworkContainerArray []NetworkContainerInput
+
+func (NetworkContainerArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*NetworkContainer)(nil))
+}
+
+func (i NetworkContainerArray) ToNetworkContainerArrayOutput() NetworkContainerArrayOutput {
+	return i.ToNetworkContainerArrayOutputWithContext(context.Background())
+}
+
+func (i NetworkContainerArray) ToNetworkContainerArrayOutputWithContext(ctx context.Context) NetworkContainerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerArrayOutput)
+}
+
+// NetworkContainerMapInput is an input type that accepts NetworkContainerMap and NetworkContainerMapOutput values.
+// You can construct a concrete instance of `NetworkContainerMapInput` via:
+//
+//          NetworkContainerMap{ "key": NetworkContainerArgs{...} }
+type NetworkContainerMapInput interface {
+	pulumi.Input
+
+	ToNetworkContainerMapOutput() NetworkContainerMapOutput
+	ToNetworkContainerMapOutputWithContext(context.Context) NetworkContainerMapOutput
+}
+
+type NetworkContainerMap map[string]NetworkContainerInput
+
+func (NetworkContainerMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*NetworkContainer)(nil))
+}
+
+func (i NetworkContainerMap) ToNetworkContainerMapOutput() NetworkContainerMapOutput {
+	return i.ToNetworkContainerMapOutputWithContext(context.Background())
+}
+
+func (i NetworkContainerMap) ToNetworkContainerMapOutputWithContext(ctx context.Context) NetworkContainerMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkContainerMapOutput)
+}
+
 type NetworkContainerOutput struct {
 	*pulumi.OutputState
 }
@@ -317,6 +396,75 @@ func (o NetworkContainerOutput) ToNetworkContainerOutputWithContext(ctx context.
 	return o
 }
 
+func (o NetworkContainerOutput) ToNetworkContainerPtrOutput() NetworkContainerPtrOutput {
+	return o.ToNetworkContainerPtrOutputWithContext(context.Background())
+}
+
+func (o NetworkContainerOutput) ToNetworkContainerPtrOutputWithContext(ctx context.Context) NetworkContainerPtrOutput {
+	return o.ApplyT(func(v NetworkContainer) *NetworkContainer {
+		return &v
+	}).(NetworkContainerPtrOutput)
+}
+
+type NetworkContainerPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkContainerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NetworkContainer)(nil))
+}
+
+func (o NetworkContainerPtrOutput) ToNetworkContainerPtrOutput() NetworkContainerPtrOutput {
+	return o
+}
+
+func (o NetworkContainerPtrOutput) ToNetworkContainerPtrOutputWithContext(ctx context.Context) NetworkContainerPtrOutput {
+	return o
+}
+
+type NetworkContainerArrayOutput struct{ *pulumi.OutputState }
+
+func (NetworkContainerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkContainer)(nil))
+}
+
+func (o NetworkContainerArrayOutput) ToNetworkContainerArrayOutput() NetworkContainerArrayOutput {
+	return o
+}
+
+func (o NetworkContainerArrayOutput) ToNetworkContainerArrayOutputWithContext(ctx context.Context) NetworkContainerArrayOutput {
+	return o
+}
+
+func (o NetworkContainerArrayOutput) Index(i pulumi.IntInput) NetworkContainerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkContainer {
+		return vs[0].([]NetworkContainer)[vs[1].(int)]
+	}).(NetworkContainerOutput)
+}
+
+type NetworkContainerMapOutput struct{ *pulumi.OutputState }
+
+func (NetworkContainerMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]NetworkContainer)(nil))
+}
+
+func (o NetworkContainerMapOutput) ToNetworkContainerMapOutput() NetworkContainerMapOutput {
+	return o
+}
+
+func (o NetworkContainerMapOutput) ToNetworkContainerMapOutputWithContext(ctx context.Context) NetworkContainerMapOutput {
+	return o
+}
+
+func (o NetworkContainerMapOutput) MapIndex(k pulumi.StringInput) NetworkContainerOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) NetworkContainer {
+		return vs[0].(map[string]NetworkContainer)[vs[1].(string)]
+	}).(NetworkContainerOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(NetworkContainerOutput{})
+	pulumi.RegisterOutputType(NetworkContainerPtrOutput{})
+	pulumi.RegisterOutputType(NetworkContainerArrayOutput{})
+	pulumi.RegisterOutputType(NetworkContainerMapOutput{})
 }

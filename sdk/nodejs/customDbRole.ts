@@ -164,7 +164,8 @@ export class CustomDbRole extends pulumi.CustomResource {
     constructor(name: string, args: CustomDbRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CustomDbRoleArgs | CustomDbRoleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as CustomDbRoleState | undefined;
             inputs["actions"] = state ? state.actions : undefined;
             inputs["inheritedRoles"] = state ? state.inheritedRoles : undefined;
@@ -172,10 +173,10 @@ export class CustomDbRole extends pulumi.CustomResource {
             inputs["roleName"] = state ? state.roleName : undefined;
         } else {
             const args = argsOrState as CustomDbRoleArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.roleName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
             inputs["actions"] = args ? args.actions : undefined;
@@ -183,12 +184,8 @@ export class CustomDbRole extends pulumi.CustomResource {
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["roleName"] = args ? args.roleName : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(CustomDbRole.__pulumiType, name, inputs, opts);
     }

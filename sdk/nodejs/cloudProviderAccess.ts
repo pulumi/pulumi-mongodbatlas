@@ -91,7 +91,8 @@ export class CloudProviderAccess extends pulumi.CustomResource {
     constructor(name: string, args: CloudProviderAccessArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderAccessArgs | CloudProviderAccessState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as CloudProviderAccessState | undefined;
             inputs["atlasAssumedRoleExternalId"] = state ? state.atlasAssumedRoleExternalId : undefined;
             inputs["atlasAwsAccountArn"] = state ? state.atlasAwsAccountArn : undefined;
@@ -104,10 +105,10 @@ export class CloudProviderAccess extends pulumi.CustomResource {
             inputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as CloudProviderAccessArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.providerName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
             inputs["iamAssumedRoleArn"] = args ? args.iamAssumedRoleArn : undefined;
@@ -120,12 +121,8 @@ export class CloudProviderAccess extends pulumi.CustomResource {
             inputs["featureUsages"] = undefined /*out*/;
             inputs["roleId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(CloudProviderAccess.__pulumiType, name, inputs, opts);
     }

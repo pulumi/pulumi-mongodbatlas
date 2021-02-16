@@ -128,7 +128,8 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     constructor(name: string, args: ThirdPartyIntegrationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ThirdPartyIntegrationArgs | ThirdPartyIntegrationState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as ThirdPartyIntegrationState | undefined;
             inputs["accountId"] = state ? state.accountId : undefined;
             inputs["apiKey"] = state ? state.apiKey : undefined;
@@ -149,10 +150,10 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             inputs["writeToken"] = state ? state.writeToken : undefined;
         } else {
             const args = argsOrState as ThirdPartyIntegrationArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             inputs["accountId"] = args ? args.accountId : undefined;
@@ -173,12 +174,8 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             inputs["url"] = args ? args.url : undefined;
             inputs["writeToken"] = args ? args.writeToken : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(ThirdPartyIntegration.__pulumiType, name, inputs, opts);
     }

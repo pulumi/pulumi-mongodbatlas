@@ -149,7 +149,8 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
     constructor(name: string, args: X509AuthenticationDatabaseUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: X509AuthenticationDatabaseUserArgs | X509AuthenticationDatabaseUserState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as X509AuthenticationDatabaseUserState | undefined;
             inputs["certificates"] = state ? state.certificates : undefined;
             inputs["currentCertificate"] = state ? state.currentCertificate : undefined;
@@ -159,7 +160,7 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
             inputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as X509AuthenticationDatabaseUserArgs | undefined;
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["customerX509Cas"] = args ? args.customerX509Cas : undefined;
@@ -169,12 +170,8 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
             inputs["certificates"] = undefined /*out*/;
             inputs["currentCertificate"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(X509AuthenticationDatabaseUser.__pulumiType, name, inputs, opts);
     }

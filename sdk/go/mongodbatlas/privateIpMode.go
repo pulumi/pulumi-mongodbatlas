@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -147,6 +147,85 @@ func (i *PrivateIpMode) ToPrivateIpModeOutputWithContext(ctx context.Context) Pr
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModeOutput)
 }
 
+func (i *PrivateIpMode) ToPrivateIpModePtrOutput() PrivateIpModePtrOutput {
+	return i.ToPrivateIpModePtrOutputWithContext(context.Background())
+}
+
+func (i *PrivateIpMode) ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModePtrOutput)
+}
+
+type PrivateIpModePtrInput interface {
+	pulumi.Input
+
+	ToPrivateIpModePtrOutput() PrivateIpModePtrOutput
+	ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput
+}
+
+type privateIpModePtrType PrivateIpModeArgs
+
+func (*privateIpModePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateIpMode)(nil))
+}
+
+func (i *privateIpModePtrType) ToPrivateIpModePtrOutput() PrivateIpModePtrOutput {
+	return i.ToPrivateIpModePtrOutputWithContext(context.Background())
+}
+
+func (i *privateIpModePtrType) ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModePtrOutput)
+}
+
+// PrivateIpModeArrayInput is an input type that accepts PrivateIpModeArray and PrivateIpModeArrayOutput values.
+// You can construct a concrete instance of `PrivateIpModeArrayInput` via:
+//
+//          PrivateIpModeArray{ PrivateIpModeArgs{...} }
+type PrivateIpModeArrayInput interface {
+	pulumi.Input
+
+	ToPrivateIpModeArrayOutput() PrivateIpModeArrayOutput
+	ToPrivateIpModeArrayOutputWithContext(context.Context) PrivateIpModeArrayOutput
+}
+
+type PrivateIpModeArray []PrivateIpModeInput
+
+func (PrivateIpModeArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*PrivateIpMode)(nil))
+}
+
+func (i PrivateIpModeArray) ToPrivateIpModeArrayOutput() PrivateIpModeArrayOutput {
+	return i.ToPrivateIpModeArrayOutputWithContext(context.Background())
+}
+
+func (i PrivateIpModeArray) ToPrivateIpModeArrayOutputWithContext(ctx context.Context) PrivateIpModeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModeArrayOutput)
+}
+
+// PrivateIpModeMapInput is an input type that accepts PrivateIpModeMap and PrivateIpModeMapOutput values.
+// You can construct a concrete instance of `PrivateIpModeMapInput` via:
+//
+//          PrivateIpModeMap{ "key": PrivateIpModeArgs{...} }
+type PrivateIpModeMapInput interface {
+	pulumi.Input
+
+	ToPrivateIpModeMapOutput() PrivateIpModeMapOutput
+	ToPrivateIpModeMapOutputWithContext(context.Context) PrivateIpModeMapOutput
+}
+
+type PrivateIpModeMap map[string]PrivateIpModeInput
+
+func (PrivateIpModeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*PrivateIpMode)(nil))
+}
+
+func (i PrivateIpModeMap) ToPrivateIpModeMapOutput() PrivateIpModeMapOutput {
+	return i.ToPrivateIpModeMapOutputWithContext(context.Background())
+}
+
+func (i PrivateIpModeMap) ToPrivateIpModeMapOutputWithContext(ctx context.Context) PrivateIpModeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModeMapOutput)
+}
+
 type PrivateIpModeOutput struct {
 	*pulumi.OutputState
 }
@@ -163,6 +242,75 @@ func (o PrivateIpModeOutput) ToPrivateIpModeOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o PrivateIpModeOutput) ToPrivateIpModePtrOutput() PrivateIpModePtrOutput {
+	return o.ToPrivateIpModePtrOutputWithContext(context.Background())
+}
+
+func (o PrivateIpModeOutput) ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput {
+	return o.ApplyT(func(v PrivateIpMode) *PrivateIpMode {
+		return &v
+	}).(PrivateIpModePtrOutput)
+}
+
+type PrivateIpModePtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PrivateIpModePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateIpMode)(nil))
+}
+
+func (o PrivateIpModePtrOutput) ToPrivateIpModePtrOutput() PrivateIpModePtrOutput {
+	return o
+}
+
+func (o PrivateIpModePtrOutput) ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput {
+	return o
+}
+
+type PrivateIpModeArrayOutput struct{ *pulumi.OutputState }
+
+func (PrivateIpModeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateIpMode)(nil))
+}
+
+func (o PrivateIpModeArrayOutput) ToPrivateIpModeArrayOutput() PrivateIpModeArrayOutput {
+	return o
+}
+
+func (o PrivateIpModeArrayOutput) ToPrivateIpModeArrayOutputWithContext(ctx context.Context) PrivateIpModeArrayOutput {
+	return o
+}
+
+func (o PrivateIpModeArrayOutput) Index(i pulumi.IntInput) PrivateIpModeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrivateIpMode {
+		return vs[0].([]PrivateIpMode)[vs[1].(int)]
+	}).(PrivateIpModeOutput)
+}
+
+type PrivateIpModeMapOutput struct{ *pulumi.OutputState }
+
+func (PrivateIpModeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]PrivateIpMode)(nil))
+}
+
+func (o PrivateIpModeMapOutput) ToPrivateIpModeMapOutput() PrivateIpModeMapOutput {
+	return o
+}
+
+func (o PrivateIpModeMapOutput) ToPrivateIpModeMapOutputWithContext(ctx context.Context) PrivateIpModeMapOutput {
+	return o
+}
+
+func (o PrivateIpModeMapOutput) MapIndex(k pulumi.StringInput) PrivateIpModeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) PrivateIpMode {
+		return vs[0].(map[string]PrivateIpMode)[vs[1].(string)]
+	}).(PrivateIpModeOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(PrivateIpModeOutput{})
+	pulumi.RegisterOutputType(PrivateIpModePtrOutput{})
+	pulumi.RegisterOutputType(PrivateIpModeArrayOutput{})
+	pulumi.RegisterOutputType(PrivateIpModeMapOutput{})
 }

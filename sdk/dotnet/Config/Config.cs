@@ -11,12 +11,12 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// MongoDB Atlas Programmatic Private Key
         /// </summary>
-        public static string? PrivateKey { get; set; } = __config.Get("privateKey") ?? Utilities.GetEnv("MONGODB_ATLAS_PRIVATE_KEY");
+        public static string? PrivateKey { get; set; } = __config.Get("privateKey");
 
         /// <summary>
         /// MongoDB Atlas Programmatic Public Key
         /// </summary>
-        public static string? PublicKey { get; set; } = __config.Get("publicKey") ?? Utilities.GetEnv("MONGODB_ATLAS_PUBLIC_KEY");
+        public static string? PublicKey { get; set; } = __config.Get("publicKey");
 
     }
 }

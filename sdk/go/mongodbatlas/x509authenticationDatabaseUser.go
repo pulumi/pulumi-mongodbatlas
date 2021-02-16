@@ -31,7 +31,6 @@ import (
 // 	"fmt"
 //
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -77,7 +76,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -238,6 +237,85 @@ func (i *X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserOutput)
 }
 
+func (i *X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserPtrOutput() X509AuthenticationDatabaseUserPtrOutput {
+	return i.ToX509AuthenticationDatabaseUserPtrOutputWithContext(context.Background())
+}
+
+func (i *X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserPtrOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserPtrOutput)
+}
+
+type X509AuthenticationDatabaseUserPtrInput interface {
+	pulumi.Input
+
+	ToX509AuthenticationDatabaseUserPtrOutput() X509AuthenticationDatabaseUserPtrOutput
+	ToX509AuthenticationDatabaseUserPtrOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserPtrOutput
+}
+
+type x509authenticationDatabaseUserPtrType X509AuthenticationDatabaseUserArgs
+
+func (*x509authenticationDatabaseUserPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**X509AuthenticationDatabaseUser)(nil))
+}
+
+func (i *x509authenticationDatabaseUserPtrType) ToX509AuthenticationDatabaseUserPtrOutput() X509AuthenticationDatabaseUserPtrOutput {
+	return i.ToX509AuthenticationDatabaseUserPtrOutputWithContext(context.Background())
+}
+
+func (i *x509authenticationDatabaseUserPtrType) ToX509AuthenticationDatabaseUserPtrOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserPtrOutput)
+}
+
+// X509AuthenticationDatabaseUserArrayInput is an input type that accepts X509AuthenticationDatabaseUserArray and X509AuthenticationDatabaseUserArrayOutput values.
+// You can construct a concrete instance of `X509AuthenticationDatabaseUserArrayInput` via:
+//
+//          X509AuthenticationDatabaseUserArray{ X509AuthenticationDatabaseUserArgs{...} }
+type X509AuthenticationDatabaseUserArrayInput interface {
+	pulumi.Input
+
+	ToX509AuthenticationDatabaseUserArrayOutput() X509AuthenticationDatabaseUserArrayOutput
+	ToX509AuthenticationDatabaseUserArrayOutputWithContext(context.Context) X509AuthenticationDatabaseUserArrayOutput
+}
+
+type X509AuthenticationDatabaseUserArray []X509AuthenticationDatabaseUserInput
+
+func (X509AuthenticationDatabaseUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*X509AuthenticationDatabaseUser)(nil))
+}
+
+func (i X509AuthenticationDatabaseUserArray) ToX509AuthenticationDatabaseUserArrayOutput() X509AuthenticationDatabaseUserArrayOutput {
+	return i.ToX509AuthenticationDatabaseUserArrayOutputWithContext(context.Background())
+}
+
+func (i X509AuthenticationDatabaseUserArray) ToX509AuthenticationDatabaseUserArrayOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserArrayOutput)
+}
+
+// X509AuthenticationDatabaseUserMapInput is an input type that accepts X509AuthenticationDatabaseUserMap and X509AuthenticationDatabaseUserMapOutput values.
+// You can construct a concrete instance of `X509AuthenticationDatabaseUserMapInput` via:
+//
+//          X509AuthenticationDatabaseUserMap{ "key": X509AuthenticationDatabaseUserArgs{...} }
+type X509AuthenticationDatabaseUserMapInput interface {
+	pulumi.Input
+
+	ToX509AuthenticationDatabaseUserMapOutput() X509AuthenticationDatabaseUserMapOutput
+	ToX509AuthenticationDatabaseUserMapOutputWithContext(context.Context) X509AuthenticationDatabaseUserMapOutput
+}
+
+type X509AuthenticationDatabaseUserMap map[string]X509AuthenticationDatabaseUserInput
+
+func (X509AuthenticationDatabaseUserMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*X509AuthenticationDatabaseUser)(nil))
+}
+
+func (i X509AuthenticationDatabaseUserMap) ToX509AuthenticationDatabaseUserMapOutput() X509AuthenticationDatabaseUserMapOutput {
+	return i.ToX509AuthenticationDatabaseUserMapOutputWithContext(context.Background())
+}
+
+func (i X509AuthenticationDatabaseUserMap) ToX509AuthenticationDatabaseUserMapOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(X509AuthenticationDatabaseUserMapOutput)
+}
+
 type X509AuthenticationDatabaseUserOutput struct {
 	*pulumi.OutputState
 }
@@ -254,6 +332,75 @@ func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserOu
 	return o
 }
 
+func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserPtrOutput() X509AuthenticationDatabaseUserPtrOutput {
+	return o.ToX509AuthenticationDatabaseUserPtrOutputWithContext(context.Background())
+}
+
+func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserPtrOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserPtrOutput {
+	return o.ApplyT(func(v X509AuthenticationDatabaseUser) *X509AuthenticationDatabaseUser {
+		return &v
+	}).(X509AuthenticationDatabaseUserPtrOutput)
+}
+
+type X509AuthenticationDatabaseUserPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (X509AuthenticationDatabaseUserPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**X509AuthenticationDatabaseUser)(nil))
+}
+
+func (o X509AuthenticationDatabaseUserPtrOutput) ToX509AuthenticationDatabaseUserPtrOutput() X509AuthenticationDatabaseUserPtrOutput {
+	return o
+}
+
+func (o X509AuthenticationDatabaseUserPtrOutput) ToX509AuthenticationDatabaseUserPtrOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserPtrOutput {
+	return o
+}
+
+type X509AuthenticationDatabaseUserArrayOutput struct{ *pulumi.OutputState }
+
+func (X509AuthenticationDatabaseUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]X509AuthenticationDatabaseUser)(nil))
+}
+
+func (o X509AuthenticationDatabaseUserArrayOutput) ToX509AuthenticationDatabaseUserArrayOutput() X509AuthenticationDatabaseUserArrayOutput {
+	return o
+}
+
+func (o X509AuthenticationDatabaseUserArrayOutput) ToX509AuthenticationDatabaseUserArrayOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserArrayOutput {
+	return o
+}
+
+func (o X509AuthenticationDatabaseUserArrayOutput) Index(i pulumi.IntInput) X509AuthenticationDatabaseUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) X509AuthenticationDatabaseUser {
+		return vs[0].([]X509AuthenticationDatabaseUser)[vs[1].(int)]
+	}).(X509AuthenticationDatabaseUserOutput)
+}
+
+type X509AuthenticationDatabaseUserMapOutput struct{ *pulumi.OutputState }
+
+func (X509AuthenticationDatabaseUserMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]X509AuthenticationDatabaseUser)(nil))
+}
+
+func (o X509AuthenticationDatabaseUserMapOutput) ToX509AuthenticationDatabaseUserMapOutput() X509AuthenticationDatabaseUserMapOutput {
+	return o
+}
+
+func (o X509AuthenticationDatabaseUserMapOutput) ToX509AuthenticationDatabaseUserMapOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserMapOutput {
+	return o
+}
+
+func (o X509AuthenticationDatabaseUserMapOutput) MapIndex(k pulumi.StringInput) X509AuthenticationDatabaseUserOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) X509AuthenticationDatabaseUser {
+		return vs[0].(map[string]X509AuthenticationDatabaseUser)[vs[1].(string)]
+	}).(X509AuthenticationDatabaseUserOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserOutput{})
+	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserPtrOutput{})
+	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserArrayOutput{})
+	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserMapOutput{})
 }

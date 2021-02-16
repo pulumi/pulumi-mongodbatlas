@@ -143,7 +143,8 @@ export class CloudProviderSnapshot extends pulumi.CustomResource {
     constructor(name: string, args: CloudProviderSnapshotArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderSnapshotArgs | CloudProviderSnapshotState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as CloudProviderSnapshotState | undefined;
             inputs["clusterName"] = state ? state.clusterName : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
@@ -160,16 +161,16 @@ export class CloudProviderSnapshot extends pulumi.CustomResource {
             inputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as CloudProviderSnapshotArgs | undefined;
-            if ((!args || args.clusterName === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.clusterName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.description === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.description === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'description'");
             }
-            if ((!args || args.projectId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            if ((!args || args.retentionInDays === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.retentionInDays === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'retentionInDays'");
             }
             inputs["clusterName"] = args ? args.clusterName : undefined;
@@ -186,12 +187,8 @@ export class CloudProviderSnapshot extends pulumi.CustomResource {
             inputs["storageSizeBytes"] = undefined /*out*/;
             inputs["type"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(CloudProviderSnapshot.__pulumiType, name, inputs, opts);
     }

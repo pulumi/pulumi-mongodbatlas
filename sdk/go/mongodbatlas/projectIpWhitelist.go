@@ -27,7 +27,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -50,7 +50,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -73,7 +73,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -252,6 +252,85 @@ func (i *ProjectIpWhitelist) ToProjectIpWhitelistOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpWhitelistOutput)
 }
 
+func (i *ProjectIpWhitelist) ToProjectIpWhitelistPtrOutput() ProjectIpWhitelistPtrOutput {
+	return i.ToProjectIpWhitelistPtrOutputWithContext(context.Background())
+}
+
+func (i *ProjectIpWhitelist) ToProjectIpWhitelistPtrOutputWithContext(ctx context.Context) ProjectIpWhitelistPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpWhitelistPtrOutput)
+}
+
+type ProjectIpWhitelistPtrInput interface {
+	pulumi.Input
+
+	ToProjectIpWhitelistPtrOutput() ProjectIpWhitelistPtrOutput
+	ToProjectIpWhitelistPtrOutputWithContext(ctx context.Context) ProjectIpWhitelistPtrOutput
+}
+
+type projectIpWhitelistPtrType ProjectIpWhitelistArgs
+
+func (*projectIpWhitelistPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectIpWhitelist)(nil))
+}
+
+func (i *projectIpWhitelistPtrType) ToProjectIpWhitelistPtrOutput() ProjectIpWhitelistPtrOutput {
+	return i.ToProjectIpWhitelistPtrOutputWithContext(context.Background())
+}
+
+func (i *projectIpWhitelistPtrType) ToProjectIpWhitelistPtrOutputWithContext(ctx context.Context) ProjectIpWhitelistPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpWhitelistPtrOutput)
+}
+
+// ProjectIpWhitelistArrayInput is an input type that accepts ProjectIpWhitelistArray and ProjectIpWhitelistArrayOutput values.
+// You can construct a concrete instance of `ProjectIpWhitelistArrayInput` via:
+//
+//          ProjectIpWhitelistArray{ ProjectIpWhitelistArgs{...} }
+type ProjectIpWhitelistArrayInput interface {
+	pulumi.Input
+
+	ToProjectIpWhitelistArrayOutput() ProjectIpWhitelistArrayOutput
+	ToProjectIpWhitelistArrayOutputWithContext(context.Context) ProjectIpWhitelistArrayOutput
+}
+
+type ProjectIpWhitelistArray []ProjectIpWhitelistInput
+
+func (ProjectIpWhitelistArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*ProjectIpWhitelist)(nil))
+}
+
+func (i ProjectIpWhitelistArray) ToProjectIpWhitelistArrayOutput() ProjectIpWhitelistArrayOutput {
+	return i.ToProjectIpWhitelistArrayOutputWithContext(context.Background())
+}
+
+func (i ProjectIpWhitelistArray) ToProjectIpWhitelistArrayOutputWithContext(ctx context.Context) ProjectIpWhitelistArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpWhitelistArrayOutput)
+}
+
+// ProjectIpWhitelistMapInput is an input type that accepts ProjectIpWhitelistMap and ProjectIpWhitelistMapOutput values.
+// You can construct a concrete instance of `ProjectIpWhitelistMapInput` via:
+//
+//          ProjectIpWhitelistMap{ "key": ProjectIpWhitelistArgs{...} }
+type ProjectIpWhitelistMapInput interface {
+	pulumi.Input
+
+	ToProjectIpWhitelistMapOutput() ProjectIpWhitelistMapOutput
+	ToProjectIpWhitelistMapOutputWithContext(context.Context) ProjectIpWhitelistMapOutput
+}
+
+type ProjectIpWhitelistMap map[string]ProjectIpWhitelistInput
+
+func (ProjectIpWhitelistMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*ProjectIpWhitelist)(nil))
+}
+
+func (i ProjectIpWhitelistMap) ToProjectIpWhitelistMapOutput() ProjectIpWhitelistMapOutput {
+	return i.ToProjectIpWhitelistMapOutputWithContext(context.Background())
+}
+
+func (i ProjectIpWhitelistMap) ToProjectIpWhitelistMapOutputWithContext(ctx context.Context) ProjectIpWhitelistMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpWhitelistMapOutput)
+}
+
 type ProjectIpWhitelistOutput struct {
 	*pulumi.OutputState
 }
@@ -268,6 +347,75 @@ func (o ProjectIpWhitelistOutput) ToProjectIpWhitelistOutputWithContext(ctx cont
 	return o
 }
 
+func (o ProjectIpWhitelistOutput) ToProjectIpWhitelistPtrOutput() ProjectIpWhitelistPtrOutput {
+	return o.ToProjectIpWhitelistPtrOutputWithContext(context.Background())
+}
+
+func (o ProjectIpWhitelistOutput) ToProjectIpWhitelistPtrOutputWithContext(ctx context.Context) ProjectIpWhitelistPtrOutput {
+	return o.ApplyT(func(v ProjectIpWhitelist) *ProjectIpWhitelist {
+		return &v
+	}).(ProjectIpWhitelistPtrOutput)
+}
+
+type ProjectIpWhitelistPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (ProjectIpWhitelistPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProjectIpWhitelist)(nil))
+}
+
+func (o ProjectIpWhitelistPtrOutput) ToProjectIpWhitelistPtrOutput() ProjectIpWhitelistPtrOutput {
+	return o
+}
+
+func (o ProjectIpWhitelistPtrOutput) ToProjectIpWhitelistPtrOutputWithContext(ctx context.Context) ProjectIpWhitelistPtrOutput {
+	return o
+}
+
+type ProjectIpWhitelistArrayOutput struct{ *pulumi.OutputState }
+
+func (ProjectIpWhitelistArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectIpWhitelist)(nil))
+}
+
+func (o ProjectIpWhitelistArrayOutput) ToProjectIpWhitelistArrayOutput() ProjectIpWhitelistArrayOutput {
+	return o
+}
+
+func (o ProjectIpWhitelistArrayOutput) ToProjectIpWhitelistArrayOutputWithContext(ctx context.Context) ProjectIpWhitelistArrayOutput {
+	return o
+}
+
+func (o ProjectIpWhitelistArrayOutput) Index(i pulumi.IntInput) ProjectIpWhitelistOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectIpWhitelist {
+		return vs[0].([]ProjectIpWhitelist)[vs[1].(int)]
+	}).(ProjectIpWhitelistOutput)
+}
+
+type ProjectIpWhitelistMapOutput struct{ *pulumi.OutputState }
+
+func (ProjectIpWhitelistMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]ProjectIpWhitelist)(nil))
+}
+
+func (o ProjectIpWhitelistMapOutput) ToProjectIpWhitelistMapOutput() ProjectIpWhitelistMapOutput {
+	return o
+}
+
+func (o ProjectIpWhitelistMapOutput) ToProjectIpWhitelistMapOutputWithContext(ctx context.Context) ProjectIpWhitelistMapOutput {
+	return o
+}
+
+func (o ProjectIpWhitelistMapOutput) MapIndex(k pulumi.StringInput) ProjectIpWhitelistOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ProjectIpWhitelist {
+		return vs[0].(map[string]ProjectIpWhitelist)[vs[1].(string)]
+	}).(ProjectIpWhitelistOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(ProjectIpWhitelistOutput{})
+	pulumi.RegisterOutputType(ProjectIpWhitelistPtrOutput{})
+	pulumi.RegisterOutputType(ProjectIpWhitelistArrayOutput{})
+	pulumi.RegisterOutputType(ProjectIpWhitelistMapOutput{})
 }

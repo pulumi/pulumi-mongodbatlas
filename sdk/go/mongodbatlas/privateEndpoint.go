@@ -30,7 +30,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -293,6 +293,85 @@ func (i *PrivateEndpoint) ToPrivateEndpointOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointOutput)
 }
 
+func (i *PrivateEndpoint) ToPrivateEndpointPtrOutput() PrivateEndpointPtrOutput {
+	return i.ToPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *PrivateEndpoint) ToPrivateEndpointPtrOutputWithContext(ctx context.Context) PrivateEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointPtrOutput)
+}
+
+type PrivateEndpointPtrInput interface {
+	pulumi.Input
+
+	ToPrivateEndpointPtrOutput() PrivateEndpointPtrOutput
+	ToPrivateEndpointPtrOutputWithContext(ctx context.Context) PrivateEndpointPtrOutput
+}
+
+type privateEndpointPtrType PrivateEndpointArgs
+
+func (*privateEndpointPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateEndpoint)(nil))
+}
+
+func (i *privateEndpointPtrType) ToPrivateEndpointPtrOutput() PrivateEndpointPtrOutput {
+	return i.ToPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *privateEndpointPtrType) ToPrivateEndpointPtrOutputWithContext(ctx context.Context) PrivateEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointPtrOutput)
+}
+
+// PrivateEndpointArrayInput is an input type that accepts PrivateEndpointArray and PrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `PrivateEndpointArrayInput` via:
+//
+//          PrivateEndpointArray{ PrivateEndpointArgs{...} }
+type PrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToPrivateEndpointArrayOutput() PrivateEndpointArrayOutput
+	ToPrivateEndpointArrayOutputWithContext(context.Context) PrivateEndpointArrayOutput
+}
+
+type PrivateEndpointArray []PrivateEndpointInput
+
+func (PrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*PrivateEndpoint)(nil))
+}
+
+func (i PrivateEndpointArray) ToPrivateEndpointArrayOutput() PrivateEndpointArrayOutput {
+	return i.ToPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i PrivateEndpointArray) ToPrivateEndpointArrayOutputWithContext(ctx context.Context) PrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointArrayOutput)
+}
+
+// PrivateEndpointMapInput is an input type that accepts PrivateEndpointMap and PrivateEndpointMapOutput values.
+// You can construct a concrete instance of `PrivateEndpointMapInput` via:
+//
+//          PrivateEndpointMap{ "key": PrivateEndpointArgs{...} }
+type PrivateEndpointMapInput interface {
+	pulumi.Input
+
+	ToPrivateEndpointMapOutput() PrivateEndpointMapOutput
+	ToPrivateEndpointMapOutputWithContext(context.Context) PrivateEndpointMapOutput
+}
+
+type PrivateEndpointMap map[string]PrivateEndpointInput
+
+func (PrivateEndpointMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*PrivateEndpoint)(nil))
+}
+
+func (i PrivateEndpointMap) ToPrivateEndpointMapOutput() PrivateEndpointMapOutput {
+	return i.ToPrivateEndpointMapOutputWithContext(context.Background())
+}
+
+func (i PrivateEndpointMap) ToPrivateEndpointMapOutputWithContext(ctx context.Context) PrivateEndpointMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateEndpointMapOutput)
+}
+
 type PrivateEndpointOutput struct {
 	*pulumi.OutputState
 }
@@ -309,6 +388,75 @@ func (o PrivateEndpointOutput) ToPrivateEndpointOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o PrivateEndpointOutput) ToPrivateEndpointPtrOutput() PrivateEndpointPtrOutput {
+	return o.ToPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateEndpointOutput) ToPrivateEndpointPtrOutputWithContext(ctx context.Context) PrivateEndpointPtrOutput {
+	return o.ApplyT(func(v PrivateEndpoint) *PrivateEndpoint {
+		return &v
+	}).(PrivateEndpointPtrOutput)
+}
+
+type PrivateEndpointPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (PrivateEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateEndpoint)(nil))
+}
+
+func (o PrivateEndpointPtrOutput) ToPrivateEndpointPtrOutput() PrivateEndpointPtrOutput {
+	return o
+}
+
+func (o PrivateEndpointPtrOutput) ToPrivateEndpointPtrOutputWithContext(ctx context.Context) PrivateEndpointPtrOutput {
+	return o
+}
+
+type PrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (PrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateEndpoint)(nil))
+}
+
+func (o PrivateEndpointArrayOutput) ToPrivateEndpointArrayOutput() PrivateEndpointArrayOutput {
+	return o
+}
+
+func (o PrivateEndpointArrayOutput) ToPrivateEndpointArrayOutputWithContext(ctx context.Context) PrivateEndpointArrayOutput {
+	return o
+}
+
+func (o PrivateEndpointArrayOutput) Index(i pulumi.IntInput) PrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrivateEndpoint {
+		return vs[0].([]PrivateEndpoint)[vs[1].(int)]
+	}).(PrivateEndpointOutput)
+}
+
+type PrivateEndpointMapOutput struct{ *pulumi.OutputState }
+
+func (PrivateEndpointMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]PrivateEndpoint)(nil))
+}
+
+func (o PrivateEndpointMapOutput) ToPrivateEndpointMapOutput() PrivateEndpointMapOutput {
+	return o
+}
+
+func (o PrivateEndpointMapOutput) ToPrivateEndpointMapOutputWithContext(ctx context.Context) PrivateEndpointMapOutput {
+	return o
+}
+
+func (o PrivateEndpointMapOutput) MapIndex(k pulumi.StringInput) PrivateEndpointOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) PrivateEndpoint {
+		return vs[0].(map[string]PrivateEndpoint)[vs[1].(string)]
+	}).(PrivateEndpointOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(PrivateEndpointOutput{})
+	pulumi.RegisterOutputType(PrivateEndpointPtrOutput{})
+	pulumi.RegisterOutputType(PrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(PrivateEndpointMapOutput{})
 }

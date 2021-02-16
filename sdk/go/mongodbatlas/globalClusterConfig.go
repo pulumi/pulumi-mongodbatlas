@@ -24,7 +24,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -101,7 +100,6 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/go/mongodbatlas/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -283,6 +281,85 @@ func (i *GlobalClusterConfig) ToGlobalClusterConfigOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigOutput)
 }
 
+func (i *GlobalClusterConfig) ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput {
+	return i.ToGlobalClusterConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *GlobalClusterConfig) ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigPtrOutput)
+}
+
+type GlobalClusterConfigPtrInput interface {
+	pulumi.Input
+
+	ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput
+	ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput
+}
+
+type globalClusterConfigPtrType GlobalClusterConfigArgs
+
+func (*globalClusterConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalClusterConfig)(nil))
+}
+
+func (i *globalClusterConfigPtrType) ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput {
+	return i.ToGlobalClusterConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *globalClusterConfigPtrType) ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigPtrOutput)
+}
+
+// GlobalClusterConfigArrayInput is an input type that accepts GlobalClusterConfigArray and GlobalClusterConfigArrayOutput values.
+// You can construct a concrete instance of `GlobalClusterConfigArrayInput` via:
+//
+//          GlobalClusterConfigArray{ GlobalClusterConfigArgs{...} }
+type GlobalClusterConfigArrayInput interface {
+	pulumi.Input
+
+	ToGlobalClusterConfigArrayOutput() GlobalClusterConfigArrayOutput
+	ToGlobalClusterConfigArrayOutputWithContext(context.Context) GlobalClusterConfigArrayOutput
+}
+
+type GlobalClusterConfigArray []GlobalClusterConfigInput
+
+func (GlobalClusterConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*GlobalClusterConfig)(nil))
+}
+
+func (i GlobalClusterConfigArray) ToGlobalClusterConfigArrayOutput() GlobalClusterConfigArrayOutput {
+	return i.ToGlobalClusterConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GlobalClusterConfigArray) ToGlobalClusterConfigArrayOutputWithContext(ctx context.Context) GlobalClusterConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigArrayOutput)
+}
+
+// GlobalClusterConfigMapInput is an input type that accepts GlobalClusterConfigMap and GlobalClusterConfigMapOutput values.
+// You can construct a concrete instance of `GlobalClusterConfigMapInput` via:
+//
+//          GlobalClusterConfigMap{ "key": GlobalClusterConfigArgs{...} }
+type GlobalClusterConfigMapInput interface {
+	pulumi.Input
+
+	ToGlobalClusterConfigMapOutput() GlobalClusterConfigMapOutput
+	ToGlobalClusterConfigMapOutputWithContext(context.Context) GlobalClusterConfigMapOutput
+}
+
+type GlobalClusterConfigMap map[string]GlobalClusterConfigInput
+
+func (GlobalClusterConfigMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*GlobalClusterConfig)(nil))
+}
+
+func (i GlobalClusterConfigMap) ToGlobalClusterConfigMapOutput() GlobalClusterConfigMapOutput {
+	return i.ToGlobalClusterConfigMapOutputWithContext(context.Background())
+}
+
+func (i GlobalClusterConfigMap) ToGlobalClusterConfigMapOutputWithContext(ctx context.Context) GlobalClusterConfigMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigMapOutput)
+}
+
 type GlobalClusterConfigOutput struct {
 	*pulumi.OutputState
 }
@@ -299,6 +376,75 @@ func (o GlobalClusterConfigOutput) ToGlobalClusterConfigOutputWithContext(ctx co
 	return o
 }
 
+func (o GlobalClusterConfigOutput) ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput {
+	return o.ToGlobalClusterConfigPtrOutputWithContext(context.Background())
+}
+
+func (o GlobalClusterConfigOutput) ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput {
+	return o.ApplyT(func(v GlobalClusterConfig) *GlobalClusterConfig {
+		return &v
+	}).(GlobalClusterConfigPtrOutput)
+}
+
+type GlobalClusterConfigPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (GlobalClusterConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GlobalClusterConfig)(nil))
+}
+
+func (o GlobalClusterConfigPtrOutput) ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput {
+	return o
+}
+
+func (o GlobalClusterConfigPtrOutput) ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput {
+	return o
+}
+
+type GlobalClusterConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GlobalClusterConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GlobalClusterConfig)(nil))
+}
+
+func (o GlobalClusterConfigArrayOutput) ToGlobalClusterConfigArrayOutput() GlobalClusterConfigArrayOutput {
+	return o
+}
+
+func (o GlobalClusterConfigArrayOutput) ToGlobalClusterConfigArrayOutputWithContext(ctx context.Context) GlobalClusterConfigArrayOutput {
+	return o
+}
+
+func (o GlobalClusterConfigArrayOutput) Index(i pulumi.IntInput) GlobalClusterConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GlobalClusterConfig {
+		return vs[0].([]GlobalClusterConfig)[vs[1].(int)]
+	}).(GlobalClusterConfigOutput)
+}
+
+type GlobalClusterConfigMapOutput struct{ *pulumi.OutputState }
+
+func (GlobalClusterConfigMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]GlobalClusterConfig)(nil))
+}
+
+func (o GlobalClusterConfigMapOutput) ToGlobalClusterConfigMapOutput() GlobalClusterConfigMapOutput {
+	return o
+}
+
+func (o GlobalClusterConfigMapOutput) ToGlobalClusterConfigMapOutputWithContext(ctx context.Context) GlobalClusterConfigMapOutput {
+	return o
+}
+
+func (o GlobalClusterConfigMapOutput) MapIndex(k pulumi.StringInput) GlobalClusterConfigOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GlobalClusterConfig {
+		return vs[0].(map[string]GlobalClusterConfig)[vs[1].(string)]
+	}).(GlobalClusterConfigOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(GlobalClusterConfigOutput{})
+	pulumi.RegisterOutputType(GlobalClusterConfigPtrOutput{})
+	pulumi.RegisterOutputType(GlobalClusterConfigArrayOutput{})
+	pulumi.RegisterOutputType(GlobalClusterConfigMapOutput{})
 }
