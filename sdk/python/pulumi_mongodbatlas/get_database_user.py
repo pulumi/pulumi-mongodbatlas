@@ -31,7 +31,7 @@ class GetDatabaseUserResult:
             raise TypeError("Expected argument 'database_name' to be a str")
         if database_name is not None:
             warnings.warn("""use auth_database_name instead""", DeprecationWarning)
-            pulumi.log.warn("database_name is deprecated: use auth_database_name instead")
+            pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
 
         pulumi.set(__self__, "database_name", database_name)
         if id and not isinstance(id, str):

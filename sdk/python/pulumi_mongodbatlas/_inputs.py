@@ -1100,12 +1100,12 @@ class ClusterConnectionStringsArgs:
                  standard_srv: Optional[pulumi.Input[str]] = None):
         if aws_private_link is not None:
             warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""", DeprecationWarning)
-            pulumi.log.warn("aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead")
+            pulumi.log.warn("""aws_private_link is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead""")
         if aws_private_link is not None:
             pulumi.set(__self__, "aws_private_link", aws_private_link)
         if aws_private_link_srv is not None:
             warnings.warn("""This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""", DeprecationWarning)
-            pulumi.log.warn("aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead")
+            pulumi.log.warn("""aws_private_link_srv is deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead""")
         if aws_private_link_srv is not None:
             pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         if private is not None:
