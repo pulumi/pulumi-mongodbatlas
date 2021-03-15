@@ -71,7 +71,7 @@ class DatabaseUser(pulumi.CustomResource):
             __props__['aws_iam_type'] = aws_iam_type
             if database_name is not None and not opts.urn:
                 warnings.warn("""use auth_database_name instead""", DeprecationWarning)
-                pulumi.log.warn("database_name is deprecated: use auth_database_name instead")
+                pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
             __props__['database_name'] = database_name
             __props__['labels'] = labels
             __props__['password'] = password
