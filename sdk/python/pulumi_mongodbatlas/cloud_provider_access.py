@@ -5,15 +5,69 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['CloudProviderAccess']
+__all__ = ['CloudProviderAccessArgs', 'CloudProviderAccess']
+
+@pulumi.input_type
+class CloudProviderAccessArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str],
+                 provider_name: pulumi.Input[str],
+                 iam_assumed_role_arn: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a CloudProviderAccess resource.
+        :param pulumi.Input[str] project_id: The unique ID for the project to get all Cloud Provider Access
+        :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
+        :param pulumi.Input[str] iam_assumed_role_arn: - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        if iam_assumed_role_arn is not None:
+            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique ID for the project to get all Cloud Provider Access
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> pulumi.Input[str]:
+        """
+        The cloud provider for which to create a new role. Currently only AWS is supported.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @iam_assumed_role_arn.setter
+    def iam_assumed_role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_assumed_role_arn", value)
 
 
 class CloudProviderAccess(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -40,6 +94,44 @@ class CloudProviderAccess(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Cloud Provider Access
         :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: CloudProviderAccessArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+        ```
+
+         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
+
+        :param str resource_name: The name of the resource.
+        :param CloudProviderAccessArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(CloudProviderAccessArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

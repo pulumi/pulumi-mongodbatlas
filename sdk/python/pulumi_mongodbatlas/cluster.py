@@ -5,15 +5,478 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['Cluster']
+__all__ = ['ClusterArgs', 'Cluster']
+
+@pulumi.input_type
+class ClusterArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str],
+                 provider_instance_size_name: pulumi.Input[str],
+                 provider_name: pulumi.Input[str],
+                 advanced_configuration: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']] = None,
+                 auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
+                 auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
+                 auto_scaling_disk_gb_enabled: Optional[pulumi.Input[bool]] = None,
+                 backing_provider_name: Optional[pulumi.Input[str]] = None,
+                 backup_enabled: Optional[pulumi.Input[bool]] = None,
+                 bi_connector: Optional[pulumi.Input['ClusterBiConnectorArgs']] = None,
+                 cluster_type: Optional[pulumi.Input[str]] = None,
+                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]] = None,
+                 mongo_db_major_version: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 num_shards: Optional[pulumi.Input[int]] = None,
+                 pit_enabled: Optional[pulumi.Input[bool]] = None,
+                 provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
+                 provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[str]] = None,
+                 provider_backup_enabled: Optional[pulumi.Input[bool]] = None,
+                 provider_disk_iops: Optional[pulumi.Input[int]] = None,
+                 provider_disk_type_name: Optional[pulumi.Input[str]] = None,
+                 provider_encrypt_ebs_volume: Optional[pulumi.Input[bool]] = None,
+                 provider_region_name: Optional[pulumi.Input[str]] = None,
+                 provider_volume_type: Optional[pulumi.Input[str]] = None,
+                 replication_factor: Optional[pulumi.Input[int]] = None,
+                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None):
+        """
+        The set of arguments for constructing a Cluster resource.
+        :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
+               **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
+        :param pulumi.Input[bool] auto_scaling_compute_enabled: Specifies whether cluster tier auto-scaling is enabled. The default is false.
+               - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+               - Set to `false` to disable cluster tier auto-scaling.
+        :param pulumi.Input[bool] auto_scaling_compute_scale_down_enabled: Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
+               - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
+        :param pulumi.Input[bool] auto_scaling_disk_gb_enabled: Specifies whether disk auto-scaling is enabled. The default is true.
+               - Set to `true` to enable disk auto-scaling.
+               - Set to `false` to disable disk auto-scaling.
+        :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+        :param pulumi.Input['ClusterBiConnectorArgs'] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+        :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
+               * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
+               * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
+               * Cannot be used with clusters with local NVMe SSDs
+               * Cannot be used with Azure clusters
+        :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.
+        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+        :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
+        :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, provider_backup_enabled must also be set to true.
+        :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
+        :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
+        :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
+        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        :param pulumi.Input[bool] provider_encrypt_ebs_volume: The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+               Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
+        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
+        pulumi.set(__self__, "provider_name", provider_name)
+        if advanced_configuration is not None:
+            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
+        if auto_scaling_compute_enabled is not None:
+            pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
+        if auto_scaling_compute_scale_down_enabled is not None:
+            pulumi.set(__self__, "auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
+        if auto_scaling_disk_gb_enabled is not None:
+            pulumi.set(__self__, "auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
+        if backing_provider_name is not None:
+            pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        if backup_enabled is not None:
+            pulumi.set(__self__, "backup_enabled", backup_enabled)
+        if bi_connector is not None:
+            pulumi.set(__self__, "bi_connector", bi_connector)
+        if cluster_type is not None:
+            pulumi.set(__self__, "cluster_type", cluster_type)
+        if disk_size_gb is not None:
+            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        if encryption_at_rest_provider is not None:
+            pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if mongo_db_major_version is not None:
+            pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if num_shards is not None:
+            pulumi.set(__self__, "num_shards", num_shards)
+        if pit_enabled is not None:
+            pulumi.set(__self__, "pit_enabled", pit_enabled)
+        if provider_auto_scaling_compute_max_instance_size is not None:
+            pulumi.set(__self__, "provider_auto_scaling_compute_max_instance_size", provider_auto_scaling_compute_max_instance_size)
+        if provider_auto_scaling_compute_min_instance_size is not None:
+            pulumi.set(__self__, "provider_auto_scaling_compute_min_instance_size", provider_auto_scaling_compute_min_instance_size)
+        if provider_backup_enabled is not None:
+            pulumi.set(__self__, "provider_backup_enabled", provider_backup_enabled)
+        if provider_disk_iops is not None:
+            pulumi.set(__self__, "provider_disk_iops", provider_disk_iops)
+        if provider_disk_type_name is not None:
+            pulumi.set(__self__, "provider_disk_type_name", provider_disk_type_name)
+        if provider_encrypt_ebs_volume is not None:
+            pulumi.set(__self__, "provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
+        if provider_region_name is not None:
+            pulumi.set(__self__, "provider_region_name", provider_region_name)
+        if provider_volume_type is not None:
+            pulumi.set(__self__, "provider_volume_type", provider_volume_type)
+        if replication_factor is not None:
+            pulumi.set(__self__, "replication_factor", replication_factor)
+        if replication_specs is not None:
+            pulumi.set(__self__, "replication_specs", replication_specs)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique ID for the project to create the database user.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="providerInstanceSizeName")
+    def provider_instance_size_name(self) -> pulumi.Input[str]:
+        """
+        Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
+        **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        """
+        return pulumi.get(self, "provider_instance_size_name")
+
+    @provider_instance_size_name.setter
+    def provider_instance_size_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "provider_instance_size_name", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> pulumi.Input[str]:
+        """
+        Cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter(name="advancedConfiguration")
+    def advanced_configuration(self) -> Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']]:
+        return pulumi.get(self, "advanced_configuration")
+
+    @advanced_configuration.setter
+    def advanced_configuration(self, value: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']]):
+        pulumi.set(self, "advanced_configuration", value)
+
+    @property
+    @pulumi.getter(name="autoScalingComputeEnabled")
+    def auto_scaling_compute_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether cluster tier auto-scaling is enabled. The default is false.
+        - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+        - Set to `false` to disable cluster tier auto-scaling.
+        """
+        return pulumi.get(self, "auto_scaling_compute_enabled")
+
+    @auto_scaling_compute_enabled.setter
+    def auto_scaling_compute_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_scaling_compute_enabled", value)
+
+    @property
+    @pulumi.getter(name="autoScalingComputeScaleDownEnabled")
+    def auto_scaling_compute_scale_down_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
+        - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
+        """
+        return pulumi.get(self, "auto_scaling_compute_scale_down_enabled")
+
+    @auto_scaling_compute_scale_down_enabled.setter
+    def auto_scaling_compute_scale_down_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_scaling_compute_scale_down_enabled", value)
+
+    @property
+    @pulumi.getter(name="autoScalingDiskGbEnabled")
+    def auto_scaling_disk_gb_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether disk auto-scaling is enabled. The default is true.
+        - Set to `true` to enable disk auto-scaling.
+        - Set to `false` to disable disk auto-scaling.
+        """
+        return pulumi.get(self, "auto_scaling_disk_gb_enabled")
+
+    @auto_scaling_disk_gb_enabled.setter
+    def auto_scaling_disk_gb_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_scaling_disk_gb_enabled", value)
+
+    @property
+    @pulumi.getter(name="backingProviderName")
+    def backing_provider_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud service provider on which the server for a multi-tenant cluster is provisioned.
+        """
+        return pulumi.get(self, "backing_provider_name")
+
+    @backing_provider_name.setter
+    def backing_provider_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backing_provider_name", value)
+
+    @property
+    @pulumi.getter(name="backupEnabled")
+    def backup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "backup_enabled")
+
+    @backup_enabled.setter
+    def backup_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "backup_enabled", value)
+
+    @property
+    @pulumi.getter(name="biConnector")
+    def bi_connector(self) -> Optional[pulumi.Input['ClusterBiConnectorArgs']]:
+        """
+        Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        """
+        return pulumi.get(self, "bi_connector")
+
+    @bi_connector.setter
+    def bi_connector(self, value: Optional[pulumi.Input['ClusterBiConnectorArgs']]):
+        pulumi.set(self, "bi_connector", value)
+
+    @property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @cluster_type.setter
+    def cluster_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_type", value)
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> Optional[pulumi.Input[float]]:
+        """
+        Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
+        * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
+        * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
+        * Cannot be used with clusters with local NVMe SSDs
+        * Cannot be used with Azure clusters
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @disk_size_gb.setter
+    def disk_size_gb(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "disk_size_gb", value)
+
+    @property
+    @pulumi.getter(name="encryptionAtRestProvider")
+    def encryption_at_rest_provider(self) -> Optional[pulumi.Input[str]]:
+        """
+        Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        """
+        return pulumi.get(self, "encryption_at_rest_provider")
+
+    @encryption_at_rest_provider.setter
+    def encryption_at_rest_provider(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "encryption_at_rest_provider", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter(name="mongoDbMajorVersion")
+    def mongo_db_major_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.
+        """
+        return pulumi.get(self, "mongo_db_major_version")
+
+    @mongo_db_major_version.setter
+    def mongo_db_major_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mongo_db_major_version", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="numShards")
+    def num_shards(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of shards to deploy in the specified zone, minimum 1.
+        """
+        return pulumi.get(self, "num_shards")
+
+    @num_shards.setter
+    def num_shards(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_shards", value)
+
+    @property
+    @pulumi.getter(name="pitEnabled")
+    def pit_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, provider_backup_enabled must also be set to true.
+        """
+        return pulumi.get(self, "pit_enabled")
+
+    @pit_enabled.setter
+    def pit_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pit_enabled", value)
+
+    @property
+    @pulumi.getter(name="providerAutoScalingComputeMaxInstanceSize")
+    def provider_auto_scaling_compute_max_instance_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
+        """
+        return pulumi.get(self, "provider_auto_scaling_compute_max_instance_size")
+
+    @provider_auto_scaling_compute_max_instance_size.setter
+    def provider_auto_scaling_compute_max_instance_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_auto_scaling_compute_max_instance_size", value)
+
+    @property
+    @pulumi.getter(name="providerAutoScalingComputeMinInstanceSize")
+    def provider_auto_scaling_compute_min_instance_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
+        """
+        return pulumi.get(self, "provider_auto_scaling_compute_min_instance_size")
+
+    @provider_auto_scaling_compute_min_instance_size.setter
+    def provider_auto_scaling_compute_min_instance_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_auto_scaling_compute_min_instance_size", value)
+
+    @property
+    @pulumi.getter(name="providerBackupEnabled")
+    def provider_backup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag indicating if the cluster uses Cloud Backup for backups.
+        """
+        return pulumi.get(self, "provider_backup_enabled")
+
+    @provider_backup_enabled.setter
+    def provider_backup_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "provider_backup_enabled", value)
+
+    @property
+    @pulumi.getter(name="providerDiskIops")
+    def provider_disk_iops(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        """
+        return pulumi.get(self, "provider_disk_iops")
+
+    @provider_disk_iops.setter
+    def provider_disk_iops(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "provider_disk_iops", value)
+
+    @property
+    @pulumi.getter(name="providerDiskTypeName")
+    def provider_disk_type_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        """
+        return pulumi.get(self, "provider_disk_type_name")
+
+    @provider_disk_type_name.setter
+    def provider_disk_type_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_disk_type_name", value)
+
+    @property
+    @pulumi.getter(name="providerEncryptEbsVolume")
+    def provider_encrypt_ebs_volume(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        """
+        return pulumi.get(self, "provider_encrypt_ebs_volume")
+
+    @provider_encrypt_ebs_volume.setter
+    def provider_encrypt_ebs_volume(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "provider_encrypt_ebs_volume", value)
+
+    @property
+    @pulumi.getter(name="providerRegionName")
+    def provider_region_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
+        """
+        return pulumi.get(self, "provider_region_name")
+
+    @provider_region_name.setter
+    def provider_region_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_region_name", value)
+
+    @property
+    @pulumi.getter(name="providerVolumeType")
+    def provider_volume_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        """
+        return pulumi.get(self, "provider_volume_type")
+
+    @provider_volume_type.setter
+    def provider_volume_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_volume_type", value)
+
+    @property
+    @pulumi.getter(name="replicationFactor")
+    def replication_factor(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
+        """
+        return pulumi.get(self, "replication_factor")
+
+    @replication_factor.setter
+    def replication_factor(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "replication_factor", value)
+
+    @property
+    @pulumi.getter(name="replicationSpecs")
+    def replication_specs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]:
+        """
+        Configuration for cluster regions.  See Replication Spec below for more details.
+        """
+        return pulumi.get(self, "replication_specs")
+
+    @replication_specs.setter
+    def replication_specs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]):
+        pulumi.set(self, "replication_specs", value)
 
 
 class Cluster(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -284,6 +747,255 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ClusterArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **NOTE:** A network container is created for a cluster to reside in if one does not yet exist in the project.  To  use this automatically created container with another resource, such as peering, the `container_id` is exported after creation.
+
+        > **IMPORTANT:**
+        <br> &#8226; Free tier cluster creation (M0) is not supported via API or by this Provider.
+        <br> &#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.
+        <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).\
+        <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+
+        ## Example Usage
+        ### Example AWS cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            auto_scaling_disk_gb_enabled=True,
+            cluster_type="REPLICASET",
+            disk_size_gb=100,
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_backup_enabled=True,
+            provider_disk_iops=300,
+            provider_encrypt_ebs_volume=True,
+            provider_instance_size_name="M40",
+            provider_name="AWS",
+            provider_volume_type="STANDARD",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Azure cluster.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            auto_scaling_disk_gb_enabled=True,
+            cluster_type="REPLICASET",
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_backup_enabled=True,
+            provider_disk_type_name="P6",
+            provider_instance_size_name="M30",
+            provider_name="AZURE",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example GCP cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            auto_scaling_disk_gb_enabled=True,
+            cluster_type="REPLICASET",
+            disk_size_gb=40,
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_backup_enabled=True,
+            provider_instance_size_name="M30",
+            provider_name="GCP",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                    region_name="US_EAST_1",
+                )],
+            )])
+        ```
+        ### Example Multi Region cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            cluster_type="REPLICASET",
+            disk_size_gb=100,
+            num_shards=1,
+            project_id="<YOUR-PROJECT-ID>",
+            provider_backup_enabled=True,
+            provider_disk_iops=300,
+            provider_instance_size_name="M10",
+            provider_name="AWS",
+            provider_volume_type="STANDARD",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="US_EAST_1",
+                    ),
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=2,
+                        priority=6,
+                        read_only_nodes=0,
+                        region_name="US_EAST_2",
+                    ),
+                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=2,
+                        priority=5,
+                        read_only_nodes=2,
+                        region_name="US_WEST_1",
+                    ),
+                ],
+            )])
+        ```
+        ### Example Global cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            cluster_type="GEOSHARDED",
+            disk_size_gb=80,
+            num_shards=1,
+            project_id="<YOUR-PROJECT-ID>",
+            provider_backup_enabled=True,
+            provider_disk_iops=240,
+            provider_instance_size_name="M30",
+            provider_name="AWS",
+            provider_volume_type="STANDARD",
+            replication_specs=[
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    num_shards=2,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="US_EAST_1",
+                    )],
+                    zone_name="Zone 1",
+                ),
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    num_shards=2,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                        region_name="EU_CENTRAL_1",
+                    )],
+                    zone_name="Zone 2",
+                ),
+            ])
+        ```
+        ### Example AWS Shared Tier cluster
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            auto_scaling_disk_gb_enabled=False,
+            backing_provider_name="AWS",
+            disk_size_gb=2,
+            mongo_db_major_version="4.2",
+            project_id="<YOUR-PROJECT-ID>",
+            provider_instance_size_name="M2",
+            provider_name="TENANT",
+            provider_region_name="US_EAST_1")
+        ```
+
+        ## Import
+
+        Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+
+        :param str resource_name: The name of the resource.
+        :param ClusterArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ClusterArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 advanced_configuration: Optional[pulumi.Input[pulumi.InputType['ClusterAdvancedConfigurationArgs']]] = None,
+                 auto_scaling_compute_enabled: Optional[pulumi.Input[bool]] = None,
+                 auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[bool]] = None,
+                 auto_scaling_disk_gb_enabled: Optional[pulumi.Input[bool]] = None,
+                 backing_provider_name: Optional[pulumi.Input[str]] = None,
+                 backup_enabled: Optional[pulumi.Input[bool]] = None,
+                 bi_connector: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorArgs']]] = None,
+                 cluster_type: Optional[pulumi.Input[str]] = None,
+                 disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLabelArgs']]]]] = None,
+                 mongo_db_major_version: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 num_shards: Optional[pulumi.Input[int]] = None,
+                 pit_enabled: Optional[pulumi.Input[bool]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
+                 provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[str]] = None,
+                 provider_backup_enabled: Optional[pulumi.Input[bool]] = None,
+                 provider_disk_iops: Optional[pulumi.Input[int]] = None,
+                 provider_disk_type_name: Optional[pulumi.Input[str]] = None,
+                 provider_encrypt_ebs_volume: Optional[pulumi.Input[bool]] = None,
+                 provider_instance_size_name: Optional[pulumi.Input[str]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None,
+                 provider_region_name: Optional[pulumi.Input[str]] = None,
+                 provider_volume_type: Optional[pulumi.Input[str]] = None,
+                 replication_factor: Optional[pulumi.Input[int]] = None,
+                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

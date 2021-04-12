@@ -5,15 +5,86 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['X509AuthenticationDatabaseUser']
+__all__ = ['X509AuthenticationDatabaseUserArgs', 'X509AuthenticationDatabaseUser']
+
+@pulumi.input_type
+class X509AuthenticationDatabaseUserArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str],
+                 customer_x509_cas: Optional[pulumi.Input[str]] = None,
+                 months_until_expiration: Optional[pulumi.Input[int]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a X509AuthenticationDatabaseUser resource.
+        :param pulumi.Input[str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
+        :param pulumi.Input[str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
+        :param pulumi.Input[int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
+        :param pulumi.Input[str] username: Username of the database user to create a certificate for.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        if customer_x509_cas is not None:
+            pulumi.set(__self__, "customer_x509_cas", customer_x509_cas)
+        if months_until_expiration is not None:
+            pulumi.set(__self__, "months_until_expiration", months_until_expiration)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        Identifier for the Atlas project associated with the X.509 configuration.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="customerX509Cas")
+    def customer_x509_cas(self) -> Optional[pulumi.Input[str]]:
+        """
+        PEM string containing one or more customer CAs for database user authentication.
+        """
+        return pulumi.get(self, "customer_x509_cas")
+
+    @customer_x509_cas.setter
+    def customer_x509_cas(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "customer_x509_cas", value)
+
+    @property
+    @pulumi.getter(name="monthsUntilExpiration")
+    def months_until_expiration(self) -> Optional[pulumi.Input[int]]:
+        """
+        A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
+        """
+        return pulumi.get(self, "months_until_expiration")
+
+    @months_until_expiration.setter
+    def months_until_expiration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "months_until_expiration", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username of the database user to create a certificate for.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
 
 
 class X509AuthenticationDatabaseUser(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -110,6 +181,113 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
         :param pulumi.Input[str] username: Username of the database user to create a certificate for.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: X509AuthenticationDatabaseUserArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
+
+        | Management  | Description  |
+        |---|---|
+        | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
+        | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        ## Example Usage
+
+        ### S
+        ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        user = mongodbatlas.DatabaseUser("user",
+            database_name="$external",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
+            project_id="<PROJECT-ID>",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="atlasAdmin",
+            )],
+            username="myUsername",
+            x509_type="MANAGED")
+        test = mongodbatlas.X509AuthenticationDatabaseUser("test",
+            months_until_expiration=2,
+            project_id=user.project_id,
+            username=user.username)
+        ```
+        ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.X509AuthenticationDatabaseUser("test",
+            customer_x509_cas=\"\"\"  -----BEGIN CERTIFICATE-----
+          MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+          VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+          c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+          SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+          MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+          VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+          BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+          c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+          iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+          cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+          Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+          SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+          7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+          iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+          -----END CERTIFICATE-----"
+
+        \"\"\",
+            project_id="<PROJECT-ID>")
+        ```
+
+        ## Import
+
+        X.509 Certificates for a User can be imported using project ID and username, in the format `project_id-username`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
+
+        :param str resource_name: The name of the resource.
+        :param X509AuthenticationDatabaseUserArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(X509AuthenticationDatabaseUserArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 customer_x509_cas: Optional[pulumi.Input[str]] = None,
+                 months_until_expiration: Optional[pulumi.Input[int]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

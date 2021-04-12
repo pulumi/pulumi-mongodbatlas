@@ -5,13 +5,55 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Teams']
+__all__ = ['TeamsArgs', 'Teams']
+
+@pulumi.input_type
+class TeamsArgs:
+    def __init__(__self__, *,
+                 org_id: pulumi.Input[str],
+                 usernames: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Teams resource.
+        """
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "usernames", usernames)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "org_id", value)
+
+    @property
+    @pulumi.getter
+    def usernames(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "usernames")
+
+    @usernames.setter
+    def usernames(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "usernames", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class Teams(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -26,6 +68,35 @@ class Teams(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: TeamsArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Create a Teams resource with the given unique name, props, and options.
+        :param str resource_name: The name of the resource.
+        :param TeamsArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(TeamsArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -5,15 +5,83 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['CloudProviderSnapshotRestoreJob']
+__all__ = ['CloudProviderSnapshotRestoreJobArgs', 'CloudProviderSnapshotRestoreJob']
+
+@pulumi.input_type
+class CloudProviderSnapshotRestoreJobArgs:
+    def __init__(__self__, *,
+                 cluster_name: pulumi.Input[str],
+                 delivery_type: pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs'],
+                 project_id: pulumi.Input[str],
+                 snapshot_id: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a CloudProviderSnapshotRestoreJob resource.
+        :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
+        :param pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs'] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
+        """
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "delivery_type", delivery_type)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> pulumi.Input[str]:
+        """
+        The name of the Atlas cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="deliveryType")
+    def delivery_type(self) -> pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']:
+        """
+        Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        """
+        return pulumi.get(self, "delivery_type")
+
+    @delivery_type.setter
+    def delivery_type(self, value: pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']):
+        pulumi.set(self, "delivery_type", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "snapshot_id", value)
 
 
 class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -114,6 +182,117 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: CloudProviderSnapshotRestoreJobArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
+        * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
+
+        * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
+
+        * **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.
+
+        > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        ## Example Usage
+        ### Example automated delivery type.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("myCluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            disk_size_gb=5,
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            provider_backup_enabled=True,
+            provider_disk_iops=100,
+            provider_encrypt_ebs_volume=False)
+        test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description="myDescription",
+            retention_in_days=1)
+        test_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob",
+            project_id=test_cloud_provider_snapshot.project_id,
+            cluster_name=test_cloud_provider_snapshot.cluster_name,
+            snapshot_id=test_cloud_provider_snapshot.snapshot_id,
+            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+                automated=True,
+                target_cluster_name="MyCluster",
+                target_project_id="5cf5a45a9ccf6400e60981b6",
+            ),
+            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_cloud_provider_snapshot.test"]))
+        ```
+        ### Example download delivery type.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("myCluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            disk_size_gb=5,
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            provider_backup_enabled=True,
+            provider_disk_iops=100,
+            provider_encrypt_ebs_volume=False)
+        test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description="myDescription",
+            retention_in_days=1)
+        test_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob",
+            project_id=test_cloud_provider_snapshot.project_id,
+            cluster_name=test_cloud_provider_snapshot.cluster_name,
+            snapshot_id=test_cloud_provider_snapshot.snapshot_id,
+            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+                download=True,
+            ))
+        ```
+
+        ## Import
+
+        Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
+
+        :param str resource_name: The name of the resource.
+        :param CloudProviderSnapshotRestoreJobArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(CloudProviderSnapshotRestoreJobArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 delivery_type: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

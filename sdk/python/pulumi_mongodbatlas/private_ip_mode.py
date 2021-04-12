@@ -5,13 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['PrivateIpMode']
+__all__ = ['PrivateIpModeArgs', 'PrivateIpMode']
+
+@pulumi.input_type
+class PrivateIpModeArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[bool],
+                 project_id: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a PrivateIpMode resource.
+        :param pulumi.Input[bool] enabled: Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
+        :param pulumi.Input[str] project_id: The unique ID for the project to enable Only Private IP Mode.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        """
+        Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique ID for the project to enable Only Private IP Mode.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
 
 
 class PrivateIpMode(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -51,6 +89,58 @@ class PrivateIpMode(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
         :param pulumi.Input[str] project_id: The unique ID for the project to enable Only Private IP Mode.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: PrivateIpModeArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `PrivateIpMode` provides a Private IP Mode resource. This allows one to disable Connect via Peering Only mode for a MongoDB Atlas Project.
+
+        > **Deprecated Feature**: <br> This feature has been deprecated. Use [Split Horizon connection strings](https://dochub.mongodb.org/core/atlas-horizon-faq) to connect to your cluster. These connection strings allow you to connect using both VPC/VNet Peering and whitelisted public IP addresses. To learn more about support for Split Horizon, see [this FAQ](https://dochub.mongodb.org/core/atlas-horizon-faq). You need this endpoint to [disable Peering Only](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_private_ip_mode = mongodbatlas.PrivateIpMode("myPrivateIpMode",
+            enabled=False,
+            project_id="<YOUR PROJECT ID>")
+        ```
+
+        ## Import
+
+        Project must be imported using project ID, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/privateIpMode:PrivateIpMode my_private_ip_mode 5d09d6a59ccf6445652a444a
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)
+
+        :param str resource_name: The name of the resource.
+        :param PrivateIpModeArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(PrivateIpModeArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

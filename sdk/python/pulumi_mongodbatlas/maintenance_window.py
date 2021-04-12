@@ -5,13 +5,100 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['MaintenanceWindow']
+__all__ = ['MaintenanceWindowArgs', 'MaintenanceWindow']
+
+@pulumi.input_type
+class MaintenanceWindowArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str],
+                 day_of_week: Optional[pulumi.Input[int]] = None,
+                 defer: Optional[pulumi.Input[bool]] = None,
+                 hour_of_day: Optional[pulumi.Input[int]] = None,
+                 number_of_deferrals: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a MaintenanceWindow resource.
+        :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
+        :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+        :param pulumi.Input[bool] defer: Defer maintenance for the given project for one week.
+        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        if day_of_week is not None:
+            pulumi.set(__self__, "day_of_week", day_of_week)
+        if defer is not None:
+            pulumi.set(__self__, "defer", defer)
+        if hour_of_day is not None:
+            pulumi.set(__self__, "hour_of_day", hour_of_day)
+        if number_of_deferrals is not None:
+            pulumi.set(__self__, "number_of_deferrals", number_of_deferrals)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique identifier of the project for the Maintenance Window.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="dayOfWeek")
+    def day_of_week(self) -> Optional[pulumi.Input[int]]:
+        """
+        Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+        """
+        return pulumi.get(self, "day_of_week")
+
+    @day_of_week.setter
+    def day_of_week(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "day_of_week", value)
+
+    @property
+    @pulumi.getter
+    def defer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defer maintenance for the given project for one week.
+        """
+        return pulumi.get(self, "defer")
+
+    @defer.setter
+    def defer(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "defer", value)
+
+    @property
+    @pulumi.getter(name="hourOfDay")
+    def hour_of_day(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        """
+        return pulumi.get(self, "hour_of_day")
+
+    @hour_of_day.setter
+    def hour_of_day(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hour_of_day", value)
+
+    @property
+    @pulumi.getter(name="numberOfDeferrals")
+    def number_of_deferrals(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+        """
+        return pulumi.get(self, "number_of_deferrals")
+
+    @number_of_deferrals.setter
+    def number_of_deferrals(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "number_of_deferrals", value)
 
 
 class MaintenanceWindow(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -75,6 +162,79 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: MaintenanceWindowArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `MaintenanceWindow` provides a resource to schedule a maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        ## Maintenance Window Considerations:
+
+        - Urgent Maintenance Activities Cannot Wait: Urgent maintenance activities such as security patches cannot wait for your chosen window. Atlas will start those maintenance activities when needed.
+
+        Once maintenance is scheduled for your cluster, you cannot change your maintenance window until the current maintenance efforts have completed.
+        - Maintenance Requires Replica Set Elections: Atlas performs maintenance the same way as the manual maintenance procedure. This requires at least one replica set election during the maintenance window per replica set.
+        - Maintenance Starts As Close to the Hour As Possible: Maintenance always begins as close to the scheduled hour as possible, but in-progress cluster updates or expected system issues could delay the start time.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            day_of_week=3,
+            hour_of_day=4,
+            project_id="<your-project-id>")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            defer=True,
+            project_id="<your-project-id>")
+        ```
+
+        ## Import
+
+        Maintenance Window entries can be imported using project project_id, in the format `PROJECTID`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+
+        :param str resource_name: The name of the resource.
+        :param MaintenanceWindowArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(MaintenanceWindowArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 day_of_week: Optional[pulumi.Input[int]] = None,
+                 defer: Optional[pulumi.Input[bool]] = None,
+                 hour_of_day: Optional[pulumi.Input[int]] = None,
+                 number_of_deferrals: Optional[pulumi.Input[int]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

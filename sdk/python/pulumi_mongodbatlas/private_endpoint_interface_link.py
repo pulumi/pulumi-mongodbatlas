@@ -5,13 +5,66 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['PrivateEndpointInterfaceLink']
+__all__ = ['PrivateEndpointInterfaceLinkArgs', 'PrivateEndpointInterfaceLink']
+
+@pulumi.input_type
+class PrivateEndpointInterfaceLinkArgs:
+    def __init__(__self__, *,
+                 interface_endpoint_id: pulumi.Input[str],
+                 private_link_id: pulumi.Input[str],
+                 project_id: pulumi.Input[str]):
+        """
+        The set of arguments for constructing a PrivateEndpointInterfaceLink resource.
+        :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
+        :param pulumi.Input[str] private_link_id: Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
+        :param pulumi.Input[str] project_id: Unique identifier for the project.
+        """
+        pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
+        pulumi.set(__self__, "private_link_id", private_link_id)
+        pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="interfaceEndpointId")
+    def interface_endpoint_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
+        """
+        return pulumi.get(self, "interface_endpoint_id")
+
+    @interface_endpoint_id.setter
+    def interface_endpoint_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "interface_endpoint_id", value)
+
+    @property
+    @pulumi.getter(name="privateLinkId")
+    def private_link_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
+        """
+        return pulumi.get(self, "private_link_id")
+
+    @private_link_id.setter
+    def private_link_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "private_link_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
 
 
 class PrivateEndpointInterfaceLink(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -72,6 +125,78 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
         :param pulumi.Input[str] private_link_id: Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
         :param pulumi.Input[str] project_id: Unique identifier for the project.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: PrivateEndpointInterfaceLinkArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `PrivateEndpointInterfaceLink` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+
+        !> **WARNING:** This resource is deprecated and will be removed in the next major version
+                        Please transition to privatelink_endpoint_service as soon as possible. [PrivateLink Endpoints] (https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+          * Organization Owner
+          * Project Owner
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_private_endpoint = mongodbatlas.PrivateEndpoint("testPrivateEndpoint",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="us-east-1")
+        ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
+            security_group_ids=["sg-3f238186"],
+            service_name=test_private_endpoint.endpoint_service_name,
+            subnet_ids=["subnet-de0406d2"],
+            vpc_endpoint_type="Interface",
+            vpc_id="vpc-7fc0a543")
+        test_private_endpoint_interface_link = mongodbatlas.PrivateEndpointInterfaceLink("testPrivateEndpointInterfaceLink",
+            interface_endpoint_id=ptfe_service.id,
+            private_link_id=test_private_endpoint.private_link_id,
+            project_id=test_private_endpoint.project_id)
+        ```
+
+        ## Import
+
+        Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}-{private_link_id}-{interface_endpoint_id}`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)
+
+        :param str resource_name: The name of the resource.
+        :param PrivateEndpointInterfaceLinkArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(PrivateEndpointInterfaceLinkArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 interface_endpoint_id: Optional[pulumi.Input[str]] = None,
+                 private_link_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
