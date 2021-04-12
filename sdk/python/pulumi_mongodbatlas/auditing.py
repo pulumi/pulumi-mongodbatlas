@@ -5,13 +5,84 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Auditing']
+__all__ = ['AuditingArgs', 'Auditing']
+
+@pulumi.input_type
+class AuditingArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str],
+                 audit_authorization_success: Optional[pulumi.Input[bool]] = None,
+                 audit_filter: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        The set of arguments for constructing a Auditing resource.
+        :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
+        :param pulumi.Input[bool] audit_authorization_success: JSON-formatted audit filter used by the project
+        :param pulumi.Input[str] audit_filter: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        if audit_authorization_success is not None:
+            pulumi.set(__self__, "audit_authorization_success", audit_authorization_success)
+        if audit_filter is not None:
+            pulumi.set(__self__, "audit_filter", audit_filter)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique ID for the project to configure auditing.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="auditAuthorizationSuccess")
+    def audit_authorization_success(self) -> Optional[pulumi.Input[bool]]:
+        """
+        JSON-formatted audit filter used by the project
+        """
+        return pulumi.get(self, "audit_authorization_success")
+
+    @audit_authorization_success.setter
+    def audit_authorization_success(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "audit_authorization_success", value)
+
+    @property
+    @pulumi.getter(name="auditFilter")
+    def audit_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        """
+        return pulumi.get(self, "audit_filter")
+
+    @audit_filter.setter
+    def audit_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "audit_filter", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
 
 
 class Auditing(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -55,6 +126,60 @@ class Auditing(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AuditingArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `Auditing` provides an Auditing resource. This allows auditing to be created.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Auditing("test",
+            audit_authorization_success=False,
+            audit_filter="{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+            enabled=True,
+            project_id="<project-id>")
+        ```
+
+        ## Import
+
+        Auditing must be imported using auditing ID, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
+
+        :param str resource_name: The name of the resource.
+        :param AuditingArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AuditingArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 audit_authorization_success: Optional[pulumi.Input[bool]] = None,
+                 audit_filter: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

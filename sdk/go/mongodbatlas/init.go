@@ -21,61 +21,62 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "mongodbatlas:index/alertConfiguration:AlertConfiguration":
-		r, err = NewAlertConfiguration(ctx, name, nil, pulumi.URN_(urn))
+		r = &AlertConfiguration{}
 	case "mongodbatlas:index/auditing:Auditing":
-		r, err = NewAuditing(ctx, name, nil, pulumi.URN_(urn))
+		r = &Auditing{}
 	case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
-		r, err = NewCloudProviderAccess(ctx, name, nil, pulumi.URN_(urn))
+		r = &CloudProviderAccess{}
 	case "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot":
-		r, err = NewCloudProviderSnapshot(ctx, name, nil, pulumi.URN_(urn))
+		r = &CloudProviderSnapshot{}
 	case "mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy":
-		r, err = NewCloudProviderSnapshotBackupPolicy(ctx, name, nil, pulumi.URN_(urn))
+		r = &CloudProviderSnapshotBackupPolicy{}
 	case "mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob":
-		r, err = NewCloudProviderSnapshotRestoreJob(ctx, name, nil, pulumi.URN_(urn))
+		r = &CloudProviderSnapshotRestoreJob{}
 	case "mongodbatlas:index/cluster:Cluster":
-		r, err = NewCluster(ctx, name, nil, pulumi.URN_(urn))
+		r = &Cluster{}
 	case "mongodbatlas:index/customDbRole:CustomDbRole":
-		r, err = NewCustomDbRole(ctx, name, nil, pulumi.URN_(urn))
+		r = &CustomDbRole{}
 	case "mongodbatlas:index/databaseUser:DatabaseUser":
-		r, err = NewDatabaseUser(ctx, name, nil, pulumi.URN_(urn))
+		r = &DatabaseUser{}
 	case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
-		r, err = NewEncryptionAtRest(ctx, name, nil, pulumi.URN_(urn))
+		r = &EncryptionAtRest{}
 	case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
-		r, err = NewGlobalClusterConfig(ctx, name, nil, pulumi.URN_(urn))
+		r = &GlobalClusterConfig{}
 	case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
-		r, err = NewMaintenanceWindow(ctx, name, nil, pulumi.URN_(urn))
+		r = &MaintenanceWindow{}
 	case "mongodbatlas:index/networkContainer:NetworkContainer":
-		r, err = NewNetworkContainer(ctx, name, nil, pulumi.URN_(urn))
+		r = &NetworkContainer{}
 	case "mongodbatlas:index/networkPeering:NetworkPeering":
-		r, err = NewNetworkPeering(ctx, name, nil, pulumi.URN_(urn))
+		r = &NetworkPeering{}
 	case "mongodbatlas:index/privateEndpoint:PrivateEndpoint":
-		r, err = NewPrivateEndpoint(ctx, name, nil, pulumi.URN_(urn))
+		r = &PrivateEndpoint{}
 	case "mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink":
-		r, err = NewPrivateEndpointInterfaceLink(ctx, name, nil, pulumi.URN_(urn))
+		r = &PrivateEndpointInterfaceLink{}
 	case "mongodbatlas:index/privateIpMode:PrivateIpMode":
-		r, err = NewPrivateIpMode(ctx, name, nil, pulumi.URN_(urn))
+		r = &PrivateIpMode{}
 	case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
-		r, err = NewPrivateLinkEndpoint(ctx, name, nil, pulumi.URN_(urn))
+		r = &PrivateLinkEndpoint{}
 	case "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
-		r, err = NewPrivateLinkEndpointService(ctx, name, nil, pulumi.URN_(urn))
+		r = &PrivateLinkEndpointService{}
 	case "mongodbatlas:index/project:Project":
-		r, err = NewProject(ctx, name, nil, pulumi.URN_(urn))
+		r = &Project{}
 	case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
-		r, err = NewProjectIpAccessList(ctx, name, nil, pulumi.URN_(urn))
+		r = &ProjectIpAccessList{}
 	case "mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist":
-		r, err = NewProjectIpWhitelist(ctx, name, nil, pulumi.URN_(urn))
+		r = &ProjectIpWhitelist{}
 	case "mongodbatlas:index/team:Team":
-		r, err = NewTeam(ctx, name, nil, pulumi.URN_(urn))
+		r = &Team{}
 	case "mongodbatlas:index/teams:Teams":
-		r, err = NewTeams(ctx, name, nil, pulumi.URN_(urn))
+		r = &Teams{}
 	case "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration":
-		r, err = NewThirdPartyIntegration(ctx, name, nil, pulumi.URN_(urn))
+		r = &ThirdPartyIntegration{}
 	case "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser":
-		r, err = NewX509AuthenticationDatabaseUser(ctx, name, nil, pulumi.URN_(urn))
+		r = &X509AuthenticationDatabaseUser{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
@@ -92,7 +93,9 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
-	return NewProvider(ctx, name, nil, pulumi.URN_(urn))
+	r := &Provider{}
+	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return r, err
 }
 
 func init() {

@@ -5,15 +5,120 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['AlertConfiguration']
+__all__ = ['AlertConfigurationArgs', 'AlertConfiguration']
+
+@pulumi.input_type
+class AlertConfigurationArgs:
+    def __init__(__self__, *,
+                 event_type: pulumi.Input[str],
+                 notifications: pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]],
+                 project_id: pulumi.Input[str],
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]] = None,
+                 metric_threshold: Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']] = None,
+                 threshold: Optional[pulumi.Input['AlertConfigurationThresholdArgs']] = None):
+        """
+        The set of arguments for constructing a AlertConfiguration resource.
+        :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
+        :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
+        :param pulumi.Input['AlertConfigurationThresholdArgs'] threshold: Threshold value outside of which an alert will be triggered.
+        """
+        pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "notifications", notifications)
+        pulumi.set(__self__, "project_id", project_id)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if metric_threshold is not None:
+            pulumi.set(__self__, "metric_threshold", metric_threshold)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> pulumi.Input[str]:
+        """
+        The type of event that will trigger an alert.
+        """
+        return pulumi.get(self, "event_type")
+
+    @event_type.setter
+    def event_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "event_type", value)
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]:
+        return pulumi.get(self, "notifications")
+
+    @notifications.setter
+    def notifications(self, value: pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]):
+        pulumi.set(self, "notifications", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the project where the alert configuration will create.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def matchers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]]:
+        return pulumi.get(self, "matchers")
+
+    @matchers.setter
+    def matchers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]]):
+        pulumi.set(self, "matchers", value)
+
+    @property
+    @pulumi.getter(name="metricThreshold")
+    def metric_threshold(self) -> Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']]:
+        return pulumi.get(self, "metric_threshold")
+
+    @metric_threshold.setter
+    def metric_threshold(self, value: Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']]):
+        pulumi.set(self, "metric_threshold", value)
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> Optional[pulumi.Input['AlertConfigurationThresholdArgs']]:
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: Optional[pulumi.Input['AlertConfigurationThresholdArgs']]):
+        pulumi.set(self, "threshold", value)
 
 
 class AlertConfiguration(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -117,6 +222,120 @@ class AlertConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']] threshold: Threshold value outside of which an alert will be triggered.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: AlertConfigurationArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="OUTSIDE_METRIC_THRESHOLD",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            metric_threshold=mongodbatlas.AlertConfigurationMetricThresholdArgs(
+                metric_name="ASSERT_REGULAR",
+                mode="AVERAGE",
+                operator="LESS_THAN",
+                threshold=99,
+                units="RAW",
+            ),
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                delay_min=0,
+                email_enabled=True,
+                interval_min=5,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+                sms_enabled=False,
+                type_name="GROUP",
+            )],
+            project_id="<PROJECT-ID>")
+        ```
+
+        > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            enabled=True,
+            event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+            matchers=[mongodbatlas.AlertConfigurationMatcherArgs(
+                field_name="HOSTNAME_AND_PORT",
+                operator="EQUALS",
+                value="SECONDARY",
+            )],
+            notifications=[mongodbatlas.AlertConfigurationNotificationArgs(
+                delay_min=0,
+                email_enabled=True,
+                interval_min=5,
+                roles=[
+                    "GROUP_CHARTS_ADMIN",
+                    "GROUP_CLUSTER_MANAGER",
+                ],
+                sms_enabled=False,
+                type_name="GROUP",
+            )],
+            project_id="<PROJECT-ID>",
+            threshold=mongodbatlas.AlertConfigurationThresholdArgs(
+                operator="LESS_THAN",
+                threshold=1,
+                units="HOURS",
+            ))
+        ```
+
+        ## Import
+
+        Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
+
+        :param str resource_name: The name of the resource.
+        :param AlertConfigurationArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(AlertConfigurationArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 event_type: Optional[pulumi.Input[str]] = None,
+                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
+                 metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
+                 notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -5,13 +5,97 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['PrivateLinkEndpointService']
+__all__ = ['PrivateLinkEndpointServiceArgs', 'PrivateLinkEndpointService']
+
+@pulumi.input_type
+class PrivateLinkEndpointServiceArgs:
+    def __init__(__self__, *,
+                 endpoint_service_id: pulumi.Input[str],
+                 private_link_id: pulumi.Input[str],
+                 project_id: pulumi.Input[str],
+                 provider_name: pulumi.Input[str],
+                 private_endpoint_ip_address: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a PrivateLinkEndpointService resource.
+        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        :param pulumi.Input[str] private_link_id: Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+        :param pulumi.Input[str] project_id: Unique identifier for the project.
+        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+        """
+        pulumi.set(__self__, "endpoint_service_id", endpoint_service_id)
+        pulumi.set(__self__, "private_link_id", private_link_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        if private_endpoint_ip_address is not None:
+            pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
+
+    @property
+    @pulumi.getter(name="endpointServiceId")
+    def endpoint_service_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        """
+        return pulumi.get(self, "endpoint_service_id")
+
+    @endpoint_service_id.setter
+    def endpoint_service_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "endpoint_service_id", value)
+
+    @property
+    @pulumi.getter(name="privateLinkId")
+    def private_link_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+        """
+        return pulumi.get(self, "private_link_id")
+
+    @private_link_id.setter
+    def private_link_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "private_link_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        Unique identifier for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> pulumi.Input[str]:
+        """
+        Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter(name="privateEndpointIpAddress")
+    def private_endpoint_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+        """
+        return pulumi.get(self, "private_endpoint_ip_address")
+
+    @private_endpoint_ip_address.setter
+    def private_endpoint_ip_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_endpoint_ip_address", value)
 
 
 class PrivateLinkEndpointService(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -74,6 +158,78 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: Unique identifier for the project.
         :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: PrivateLinkEndpointServiceArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
+          * Organization Owner
+          * Project Owner
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="us-east-1")
+        ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
+            security_group_ids=["sg-3f238186"],
+            service_name=test_private_link_endpoint.endpoint_service_name,
+            subnet_ids=["subnet-de0406d2"],
+            vpc_endpoint_type="Interface",
+            vpc_id="vpc-7fc0a543")
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
+            endpoint_service_id=ptfe_service.id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            project_id=test_private_link_endpoint.project_id,
+            provider_name="AWS")
+        ```
+
+        ## Import
+
+        Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
+
+        :param str resource_name: The name of the resource.
+        :param PrivateLinkEndpointServiceArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(PrivateLinkEndpointServiceArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 endpoint_service_id: Optional[pulumi.Input[str]] = None,
+                 private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
+                 private_link_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

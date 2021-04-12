@@ -5,13 +5,81 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['CloudProviderSnapshot']
+__all__ = ['CloudProviderSnapshotArgs', 'CloudProviderSnapshot']
+
+@pulumi.input_type
+class CloudProviderSnapshotArgs:
+    def __init__(__self__, *,
+                 cluster_name: pulumi.Input[str],
+                 description: pulumi.Input[str],
+                 project_id: pulumi.Input[str],
+                 retention_in_days: pulumi.Input[int]):
+        """
+        The set of arguments for constructing a CloudProviderSnapshot resource.
+        :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
+        :param pulumi.Input[str] description: Description of the on-demand snapshot.
+        :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+        """
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "retention_in_days", retention_in_days)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> pulumi.Input[str]:
+        """
+        The name of the Atlas cluster that contains the snapshots you want to retrieve.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[str]:
+        """
+        Description of the on-demand snapshot.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[str]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique identifier of the project for the Atlas cluster.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="retentionInDays")
+    def retention_in_days(self) -> pulumi.Input[int]:
+        """
+        The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+        """
+        return pulumi.get(self, "retention_in_days")
+
+    @retention_in_days.setter
+    def retention_in_days(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_in_days", value)
 
 
 class CloudProviderSnapshot(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -74,6 +142,79 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: CloudProviderSnapshotArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
+        On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.Cluster("myCluster",
+            project_id="5cf5a45a9ccf6400e60981b6",
+            disk_size_gb=5,
+            provider_name="AWS",
+            provider_region_name="EU_WEST_2",
+            provider_instance_size_name="M10",
+            provider_backup_enabled=True,
+            provider_disk_iops=100,
+            provider_encrypt_ebs_volume=False)
+        test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            description="myDescription",
+            retention_in_days=1)
+        test_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob",
+            project_id=test_cloud_provider_snapshot.project_id,
+            cluster_name=test_cloud_provider_snapshot.cluster_name,
+            snapshot_id=test_cloud_provider_snapshot.snapshot_id,
+            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+                download=True,
+            ))
+        ```
+
+        ## Import
+
+        Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
+
+        :param str resource_name: The name of the resource.
+        :param CloudProviderSnapshotArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(CloudProviderSnapshotArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 retention_in_days: Optional[pulumi.Input[int]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

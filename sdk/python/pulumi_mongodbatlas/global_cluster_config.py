@@ -5,15 +5,83 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['GlobalClusterConfig']
+__all__ = ['GlobalClusterConfigArgs', 'GlobalClusterConfig']
+
+@pulumi.input_type
+class GlobalClusterConfigArgs:
+    def __init__(__self__, *,
+                 cluster_name: pulumi.Input[str],
+                 project_id: pulumi.Input[str],
+                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]] = None,
+                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]] = None):
+        """
+        The set of arguments for constructing a GlobalClusterConfig resource.
+        :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
+               * `cluster_name - (Required) The name of the Global Cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        """
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "project_id", project_id)
+        if custom_zone_mappings is not None:
+            pulumi.set(__self__, "custom_zone_mappings", custom_zone_mappings)
+        if managed_namespaces is not None:
+            pulumi.set(__self__, "managed_namespaces", managed_namespaces)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique ID for the project to create the database user.
+        * `cluster_name - (Required) The name of the Global Cluster.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="customZoneMappings")
+    def custom_zone_mappings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]:
+        """
+        Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
+        """
+        return pulumi.get(self, "custom_zone_mappings")
+
+    @custom_zone_mappings.setter
+    def custom_zone_mappings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]):
+        pulumi.set(self, "custom_zone_mappings", value)
+
+    @property
+    @pulumi.getter(name="managedNamespaces")
+    def managed_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]:
+        """
+        Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        """
+        return pulumi.get(self, "managed_namespaces")
+
+    @managed_namespaces.setter
+    def managed_namespaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]):
+        pulumi.set(self, "managed_namespaces", value)
 
 
 class GlobalClusterConfig(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -132,6 +200,135 @@ class GlobalClusterConfig(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
                * `cluster_name - (Required) The name of the Global Cluster.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: GlobalClusterConfigArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `GlobalClusterConfig` provides a Global Cluster Configuration resource.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        ## Examples Usage
+
+        ### Example Global cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Cluster("test",
+            project_id="<YOUR-PROJECT-ID>",
+            disk_size_gb=80,
+            backup_enabled=False,
+            provider_backup_enabled=True,
+            cluster_type="GEOSHARDED",
+            provider_name="AWS",
+            provider_disk_iops=240,
+            provider_instance_size_name="M30",
+            replication_specs=[
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 1",
+                    num_shards=1,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="EU_CENTRAL_1",
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                    )],
+                ),
+                mongodbatlas.ClusterReplicationSpecArgs(
+                    zone_name="Zone 2",
+                    num_shards=1,
+                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                        region_name="US_EAST_2",
+                        electable_nodes=3,
+                        priority=7,
+                        read_only_nodes=0,
+                    )],
+                ),
+            ])
+        config = mongodbatlas.GlobalClusterConfig("config",
+            project_id=test.project_id,
+            cluster_name=test.name,
+            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
+                db="mydata",
+                collection="publishers",
+                custom_shard_key="city",
+            )],
+            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
+                location="CA",
+                zone="Zone 1",
+            )])
+        ```
+
+        ### Example Global cluster config
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cluster_test = mongodbatlas.Cluster("cluster-test",
+            project_id="<YOUR-PROJECT-ID>",
+            num_shards=1,
+            replication_factor=3,
+            backup_enabled=True,
+            auto_scaling_disk_gb_enabled=True,
+            mongo_db_major_version="4.0",
+            provider_name="AWS",
+            disk_size_gb=100,
+            provider_disk_iops=300,
+            provider_encrypt_ebs_volume=False,
+            provider_instance_size_name="M40",
+            provider_region_name="US_EAST_1")
+        config = mongodbatlas.GlobalClusterConfig("config",
+            project_id=mongodbatlas_cluster["test"]["project_id"],
+            cluster_name=mongodbatlas_cluster["test"]["name"],
+            managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(
+                db="mydata",
+                collection="publishers",
+                custom_shard_key="city",
+            )],
+            custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
+                location="CA",
+                zone="Zone 1",
+            )])
+        ```
+
+        ## Import
+
+        Database users can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-my-cluster
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+
+        :param str resource_name: The name of the resource.
+        :param GlobalClusterConfigArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(GlobalClusterConfigArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigCustomZoneMappingArgs']]]]] = None,
+                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GlobalClusterConfigManagedNamespaceArgs']]]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

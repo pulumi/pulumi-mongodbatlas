@@ -5,13 +5,100 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['ProjectIpWhitelist']
+__all__ = ['ProjectIpWhitelistArgs', 'ProjectIpWhitelist']
+
+@pulumi.input_type
+class ProjectIpWhitelistArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str],
+                 aws_security_group: Optional[pulumi.Input[str]] = None,
+                 cidr_block: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
+                 ip_address: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a ProjectIpWhitelist resource.
+        :param pulumi.Input[str] project_id: The ID of the project in which to add the whitelist entry.
+        :param pulumi.Input[str] aws_security_group: ID of the whitelisted AWS security group. Mutually exclusive with `cidr_block` and `ip_address`.
+        :param pulumi.Input[str] cidr_block: Whitelist entry in Classless Inter-Domain Routing (CIDR) notation. Mutually exclusive with `aws_security_group` and `ip_address`.
+        :param pulumi.Input[str] comment: Comment to add to the whitelist entry.
+        :param pulumi.Input[str] ip_address: Whitelisted IP address. Mutually exclusive with `aws_security_group` and `cidr_block`.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        if aws_security_group is not None:
+            pulumi.set(__self__, "aws_security_group", aws_security_group)
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the project in which to add the whitelist entry.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="awsSecurityGroup")
+    def aws_security_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the whitelisted AWS security group. Mutually exclusive with `cidr_block` and `ip_address`.
+        """
+        return pulumi.get(self, "aws_security_group")
+
+    @aws_security_group.setter
+    def aws_security_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_security_group", value)
+
+    @property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whitelist entry in Classless Inter-Domain Routing (CIDR) notation. Mutually exclusive with `aws_security_group` and `ip_address`.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @cidr_block.setter
+    def cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cidr_block", value)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment to add to the whitelist entry.
+        """
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whitelisted IP address. Mutually exclusive with `aws_security_group` and `cidr_block`.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @ip_address.setter
+    def ip_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_address", value)
 
 
 class ProjectIpWhitelist(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -100,6 +187,104 @@ class ProjectIpWhitelist(pulumi.CustomResource):
         :param pulumi.Input[str] ip_address: Whitelisted IP address. Mutually exclusive with `aws_security_group` and `cidr_block`.
         :param pulumi.Input[str] project_id: The ID of the project in which to add the whitelist entry.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: ProjectIpWhitelistArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `ProjectIpWhitelist` provides an IP Whitelist entry resource. The whitelist grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
+
+        > **IMPORTANT:**
+        Recently we have made changes to modernize the terminology we use in Atlas. The term “Whitelist” has been deprecated in favor of “Access List”.  The Project IP whitelist resource has been deprecated and will be disabled in June 2021.  Please move to using the [Project IP Access List](https://tf-registry.herokuapp.com/providers/mongodb/mongodbatlas/latest/docs/resources/project_ip_access_list) resource before June 2021.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.ß
+
+        > **IMPORTANT:**
+        When you remove an entry from the whitelist, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+
+        ## Example Usage
+        ### Using CIDR Block
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectIpWhitelist("test",
+            cidr_block="1.2.3.4/32",
+            comment="cidr block for tf acc testing",
+            project_id="<PROJECT-ID>")
+        ```
+        ### Using IP Address
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.ProjectIpWhitelist("test",
+            comment="ip address for tf acc testing",
+            ip_address="2.3.4.5",
+            project_id="<PROJECT-ID>")
+        ```
+        ### Using an AWS Security Group
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
+            project_id="<PROJECT-ID>",
+            atlas_cidr_block="192.168.208.0/21",
+            provider_name="AWS",
+            region_name="US_EAST_1")
+        test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
+            project_id="<PROJECT-ID>",
+            container_id=test_network_container.container_id,
+            accepter_region_name="us-east-1",
+            provider_name="AWS",
+            route_table_cidr_block="172.31.0.0/16",
+            vpc_id="vpc-0d93d6f69f1578bd8",
+            aws_account_id="232589400519")
+        test_project_ip_whitelist = mongodbatlas.ProjectIpWhitelist("testProjectIpWhitelist",
+            project_id="<PROJECT-ID>",
+            aws_security_group="sg-0026348ec11780bd1",
+            comment="TestAcc for awsSecurityGroup",
+            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
+        ```
+
+        > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
+
+        ## Import
+
+        IP Whitelist entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
+        ```
+
+         For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/whitelist/)
+
+        :param str resource_name: The name of the resource.
+        :param ProjectIpWhitelistArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(ProjectIpWhitelistArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 aws_security_group: Optional[pulumi.Input[str]] = None,
+                 cidr_block: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
+                 ip_address: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -5,15 +5,86 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['EncryptionAtRest']
+__all__ = ['EncryptionAtRestArgs', 'EncryptionAtRest']
+
+@pulumi.input_type
+class EncryptionAtRestArgs:
+    def __init__(__self__, *,
+                 project_id: pulumi.Input[str],
+                 aws_kms: Optional[pulumi.Input['EncryptionAtRestAwsKmsArgs']] = None,
+                 azure_key_vault: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultArgs']] = None,
+                 google_cloud_kms: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs']] = None):
+        """
+        The set of arguments for constructing a EncryptionAtRest resource.
+        :param pulumi.Input[str] project_id: The unique identifier for the project.
+        :param pulumi.Input['EncryptionAtRestAwsKmsArgs'] aws_kms: Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        :param pulumi.Input['EncryptionAtRestAzureKeyVaultArgs'] azure_key_vault: Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        :param pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs'] google_cloud_kms: Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        if aws_kms is not None:
+            pulumi.set(__self__, "aws_kms", aws_kms)
+        if azure_key_vault is not None:
+            pulumi.set(__self__, "azure_key_vault", azure_key_vault)
+        if google_cloud_kms is not None:
+            pulumi.set(__self__, "google_cloud_kms", google_cloud_kms)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique identifier for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="awsKms")
+    def aws_kms(self) -> Optional[pulumi.Input['EncryptionAtRestAwsKmsArgs']]:
+        """
+        Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        """
+        return pulumi.get(self, "aws_kms")
+
+    @aws_kms.setter
+    def aws_kms(self, value: Optional[pulumi.Input['EncryptionAtRestAwsKmsArgs']]):
+        pulumi.set(self, "aws_kms", value)
+
+    @property
+    @pulumi.getter(name="azureKeyVault")
+    def azure_key_vault(self) -> Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultArgs']]:
+        """
+        Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        """
+        return pulumi.get(self, "azure_key_vault")
+
+    @azure_key_vault.setter
+    def azure_key_vault(self, value: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultArgs']]):
+        pulumi.set(self, "azure_key_vault", value)
+
+    @property
+    @pulumi.getter(name="googleCloudKms")
+    def google_cloud_kms(self) -> Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs']]:
+        """
+        Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        """
+        return pulumi.get(self, "google_cloud_kms")
+
+    @google_cloud_kms.setter
+    def google_cloud_kms(self, value: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs']]):
+        pulumi.set(self, "google_cloud_kms", value)
 
 
 class EncryptionAtRest(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -81,6 +152,84 @@ class EncryptionAtRest(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['EncryptionAtRestGoogleCloudKmsArgs']] google_cloud_kms: Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         :param pulumi.Input[str] project_id: The unique identifier for the project.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: EncryptionAtRestArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `EncryptionAtRest` Allows management of encryption at rest for an Atlas project with one of the following providers:
+
+        [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+        [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+        [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+
+        After configuring at least one Encryption at Rest provider for the Atlas project, Project Owners can enable Encryption at Rest for each Atlas cluster for which they require encryption. The Encryption at Rest provider does not have to match the cluster cloud service provider.
+
+        Atlas does not automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest provider’s documentation and guidance for best practices on key rotation. Atlas automatically creates a 365-day key rotation alert when you configure Encryption at Rest using your Key Management in an Atlas project.
+
+        See [Encryption at Rest](https://docs.atlas.mongodb.com/security-kms-encryption/index.html) for more information, including prerequisites and restrictions.
+
+        > **IMPORTANT** Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EncryptionAtRest("test",
+            aws_kms=mongodbatlas.EncryptionAtRestAwsKmsArgs(
+                access_key_id="AKIAIOSFODNN7EXAMPLE",
+                customer_master_key_id="030gce02-586d-48d2-a966-05ea954fde0g",
+                enabled=True,
+                region="US_EAST_1",
+                secret_access_key="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+            ),
+            azure_key_vault=mongodbatlas.EncryptionAtRestAzureKeyVaultArgs(
+                azure_environment="AZURE",
+                client_id="g54f9e2-89e3-40fd-8188-EXAMPLEID",
+                enabled=True,
+                key_identifier="https://EXAMPLEKeyVault.vault.azure.net/keys/EXAMPLEKey/d891821e3d364e9eb88fbd3d11807b86",
+                key_vault_name="EXAMPLEKeyVault",
+                resource_group_name="ExampleRGName",
+                secret="EXAMPLESECRET",
+                subscription_id="0ec944e3-g725-44f9-a147-EXAMPLEID",
+                tenant_id="e8e4b6ba-ff32-4c88-a9af-EXAMPLEID",
+            ),
+            google_cloud_kms=mongodbatlas.EncryptionAtRestGoogleCloudKmsArgs(
+                enabled=True,
+                key_version_resource_id="projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1",
+                service_account_key="{\"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}",
+            ),
+            project_id="<PROJECT-ID>")
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param EncryptionAtRestArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(EncryptionAtRestArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 aws_kms: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAwsKmsArgs']]] = None,
+                 azure_key_vault: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestAzureKeyVaultArgs']]] = None,
+                 google_cloud_kms: Optional[pulumi.Input[pulumi.InputType['EncryptionAtRestGoogleCloudKmsArgs']]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
