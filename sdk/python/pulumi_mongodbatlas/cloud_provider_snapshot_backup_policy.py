@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -80,6 +80,160 @@ class CloudProviderSnapshotBackupPolicyArgs:
 
     @project_id.setter
     def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="referenceHourOfDay")
+    def reference_hour_of_day(self) -> Optional[pulumi.Input[int]]:
+        """
+        UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
+        """
+        return pulumi.get(self, "reference_hour_of_day")
+
+    @reference_hour_of_day.setter
+    def reference_hour_of_day(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "reference_hour_of_day", value)
+
+    @property
+    @pulumi.getter(name="referenceMinuteOfHour")
+    def reference_minute_of_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+        """
+        return pulumi.get(self, "reference_minute_of_hour")
+
+    @reference_minute_of_hour.setter
+    def reference_minute_of_hour(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "reference_minute_of_hour", value)
+
+    @property
+    @pulumi.getter(name="restoreWindowDays")
+    def restore_window_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        """
+        return pulumi.get(self, "restore_window_days")
+
+    @restore_window_days.setter
+    def restore_window_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "restore_window_days", value)
+
+    @property
+    @pulumi.getter(name="updateSnapshots")
+    def update_snapshots(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+        """
+        return pulumi.get(self, "update_snapshots")
+
+    @update_snapshots.setter
+    def update_snapshots(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "update_snapshots", value)
+
+
+@pulumi.input_type
+class _CloudProviderSnapshotBackupPolicyState:
+    def __init__(__self__, *,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 next_snapshot: Optional[pulumi.Input[str]] = None,
+                 policies: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyArgs']]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 reference_hour_of_day: Optional[pulumi.Input[int]] = None,
+                 reference_minute_of_hour: Optional[pulumi.Input[int]] = None,
+                 restore_window_days: Optional[pulumi.Input[int]] = None,
+                 update_snapshots: Optional[pulumi.Input[bool]] = None):
+        """
+        Input properties used for looking up and filtering CloudProviderSnapshotBackupPolicy resources.
+        :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
+        :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
+        :param pulumi.Input[str] next_snapshot: Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
+        :param pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyArgs']]] policies: Contains a document for each backup policy item in the desired updated backup policy.
+               * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
+        :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
+        :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+        :param pulumi.Input[int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+        """
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if next_snapshot is not None:
+            pulumi.set(__self__, "next_snapshot", next_snapshot)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if reference_hour_of_day is not None:
+            pulumi.set(__self__, "reference_hour_of_day", reference_hour_of_day)
+        if reference_minute_of_hour is not None:
+            pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
+        if restore_window_days is not None:
+            pulumi.set(__self__, "restore_window_days", restore_window_days)
+        if update_snapshots is not None:
+            pulumi.set(__self__, "update_snapshots", update_snapshots)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Atlas cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @cluster_id.setter
+    def cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="nextSnapshot")
+    def next_snapshot(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
+        """
+        return pulumi.get(self, "next_snapshot")
+
+    @next_snapshot.setter
+    def next_snapshot(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "next_snapshot", value)
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyArgs']]]]:
+        """
+        Contains a document for each backup policy item in the desired updated backup policy.
+        * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
+        """
+        return pulumi.get(self, "policies")
+
+    @policies.setter
+    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyArgs']]]]):
+        pulumi.set(self, "policies", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique identifier of the project for the Atlas cluster.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
 
     @property
@@ -225,23 +379,23 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = CloudProviderSnapshotBackupPolicyArgs.__new__(CloudProviderSnapshotBackupPolicyArgs)
 
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
-            __props__['cluster_name'] = cluster_name
+            __props__.__dict__["cluster_name"] = cluster_name
             if policies is None and not opts.urn:
                 raise TypeError("Missing required property 'policies'")
-            __props__['policies'] = policies
+            __props__.__dict__["policies"] = policies
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
-            __props__['reference_hour_of_day'] = reference_hour_of_day
-            __props__['reference_minute_of_hour'] = reference_minute_of_hour
-            __props__['restore_window_days'] = restore_window_days
-            __props__['update_snapshots'] = update_snapshots
-            __props__['cluster_id'] = None
-            __props__['next_snapshot'] = None
+            __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["reference_hour_of_day"] = reference_hour_of_day
+            __props__.__dict__["reference_minute_of_hour"] = reference_minute_of_hour
+            __props__.__dict__["restore_window_days"] = restore_window_days
+            __props__.__dict__["update_snapshots"] = update_snapshots
+            __props__.__dict__["cluster_id"] = None
+            __props__.__dict__["next_snapshot"] = None
         super(CloudProviderSnapshotBackupPolicy, __self__).__init__(
             'mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy',
             resource_name,
@@ -281,17 +435,17 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _CloudProviderSnapshotBackupPolicyState.__new__(_CloudProviderSnapshotBackupPolicyState)
 
-        __props__["cluster_id"] = cluster_id
-        __props__["cluster_name"] = cluster_name
-        __props__["next_snapshot"] = next_snapshot
-        __props__["policies"] = policies
-        __props__["project_id"] = project_id
-        __props__["reference_hour_of_day"] = reference_hour_of_day
-        __props__["reference_minute_of_hour"] = reference_minute_of_hour
-        __props__["restore_window_days"] = restore_window_days
-        __props__["update_snapshots"] = update_snapshots
+        __props__.__dict__["cluster_id"] = cluster_id
+        __props__.__dict__["cluster_name"] = cluster_name
+        __props__.__dict__["next_snapshot"] = next_snapshot
+        __props__.__dict__["policies"] = policies
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["reference_hour_of_day"] = reference_hour_of_day
+        __props__.__dict__["reference_minute_of_hour"] = reference_minute_of_hour
+        __props__.__dict__["restore_window_days"] = restore_window_days
+        __props__.__dict__["update_snapshots"] = update_snapshots
         return CloudProviderSnapshotBackupPolicy(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -366,10 +520,4 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
         Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
         """
         return pulumi.get(self, "update_snapshots")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

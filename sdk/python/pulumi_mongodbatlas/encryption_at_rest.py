@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -81,6 +81,78 @@ class EncryptionAtRestArgs:
     @google_cloud_kms.setter
     def google_cloud_kms(self, value: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs']]):
         pulumi.set(self, "google_cloud_kms", value)
+
+
+@pulumi.input_type
+class _EncryptionAtRestState:
+    def __init__(__self__, *,
+                 aws_kms: Optional[pulumi.Input['EncryptionAtRestAwsKmsArgs']] = None,
+                 azure_key_vault: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultArgs']] = None,
+                 google_cloud_kms: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs']] = None,
+                 project_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering EncryptionAtRest resources.
+        :param pulumi.Input['EncryptionAtRestAwsKmsArgs'] aws_kms: Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        :param pulumi.Input['EncryptionAtRestAzureKeyVaultArgs'] azure_key_vault: Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        :param pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs'] google_cloud_kms: Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        :param pulumi.Input[str] project_id: The unique identifier for the project.
+        """
+        if aws_kms is not None:
+            pulumi.set(__self__, "aws_kms", aws_kms)
+        if azure_key_vault is not None:
+            pulumi.set(__self__, "azure_key_vault", azure_key_vault)
+        if google_cloud_kms is not None:
+            pulumi.set(__self__, "google_cloud_kms", google_cloud_kms)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="awsKms")
+    def aws_kms(self) -> Optional[pulumi.Input['EncryptionAtRestAwsKmsArgs']]:
+        """
+        Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        """
+        return pulumi.get(self, "aws_kms")
+
+    @aws_kms.setter
+    def aws_kms(self, value: Optional[pulumi.Input['EncryptionAtRestAwsKmsArgs']]):
+        pulumi.set(self, "aws_kms", value)
+
+    @property
+    @pulumi.getter(name="azureKeyVault")
+    def azure_key_vault(self) -> Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultArgs']]:
+        """
+        Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        """
+        return pulumi.get(self, "azure_key_vault")
+
+    @azure_key_vault.setter
+    def azure_key_vault(self, value: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultArgs']]):
+        pulumi.set(self, "azure_key_vault", value)
+
+    @property
+    @pulumi.getter(name="googleCloudKms")
+    def google_cloud_kms(self) -> Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs']]:
+        """
+        Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+        """
+        return pulumi.get(self, "google_cloud_kms")
+
+    @google_cloud_kms.setter
+    def google_cloud_kms(self, value: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsArgs']]):
+        pulumi.set(self, "google_cloud_kms", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique identifier for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
 
 
 class EncryptionAtRest(pulumi.CustomResource):
@@ -245,14 +317,14 @@ class EncryptionAtRest(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = EncryptionAtRestArgs.__new__(EncryptionAtRestArgs)
 
-            __props__['aws_kms'] = aws_kms
-            __props__['azure_key_vault'] = azure_key_vault
-            __props__['google_cloud_kms'] = google_cloud_kms
+            __props__.__dict__["aws_kms"] = aws_kms
+            __props__.__dict__["azure_key_vault"] = azure_key_vault
+            __props__.__dict__["google_cloud_kms"] = google_cloud_kms
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
+            __props__.__dict__["project_id"] = project_id
         super(EncryptionAtRest, __self__).__init__(
             'mongodbatlas:index/encryptionAtRest:EncryptionAtRest',
             resource_name,
@@ -281,12 +353,12 @@ class EncryptionAtRest(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _EncryptionAtRestState.__new__(_EncryptionAtRestState)
 
-        __props__["aws_kms"] = aws_kms
-        __props__["azure_key_vault"] = azure_key_vault
-        __props__["google_cloud_kms"] = google_cloud_kms
-        __props__["project_id"] = project_id
+        __props__.__dict__["aws_kms"] = aws_kms
+        __props__.__dict__["azure_key_vault"] = azure_key_vault
+        __props__.__dict__["google_cloud_kms"] = google_cloud_kms
+        __props__.__dict__["project_id"] = project_id
         return EncryptionAtRest(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -320,10 +392,4 @@ class EncryptionAtRest(pulumi.CustomResource):
         The unique identifier for the project.
         """
         return pulumi.get(self, "project_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['PrivateEndpointInterfaceLinkArgs', 'PrivateEndpointInterfaceLink']
 
@@ -60,6 +60,112 @@ class PrivateEndpointInterfaceLinkArgs:
 
     @project_id.setter
     def project_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "project_id", value)
+
+
+@pulumi.input_type
+class _PrivateEndpointInterfaceLinkState:
+    def __init__(__self__, *,
+                 connection_status: Optional[pulumi.Input[str]] = None,
+                 delete_requested: Optional[pulumi.Input[bool]] = None,
+                 error_message: Optional[pulumi.Input[str]] = None,
+                 interface_endpoint_id: Optional[pulumi.Input[str]] = None,
+                 private_link_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering PrivateEndpointInterfaceLink resources.
+        :param pulumi.Input[str] connection_status: Status of the interface endpoint.
+               Returns one of the following values:
+        :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
+        :param pulumi.Input[str] error_message: Error message pertaining to the interface endpoint. Returns null if there are no errors.
+        :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
+        :param pulumi.Input[str] private_link_id: Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
+        :param pulumi.Input[str] project_id: Unique identifier for the project.
+        """
+        if connection_status is not None:
+            pulumi.set(__self__, "connection_status", connection_status)
+        if delete_requested is not None:
+            pulumi.set(__self__, "delete_requested", delete_requested)
+        if error_message is not None:
+            pulumi.set(__self__, "error_message", error_message)
+        if interface_endpoint_id is not None:
+            pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
+        if private_link_id is not None:
+            pulumi.set(__self__, "private_link_id", private_link_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="connectionStatus")
+    def connection_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the interface endpoint.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "connection_status")
+
+    @connection_status.setter
+    def connection_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connection_status", value)
+
+    @property
+    @pulumi.getter(name="deleteRequested")
+    def delete_requested(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
+        """
+        return pulumi.get(self, "delete_requested")
+
+    @delete_requested.setter
+    def delete_requested(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "delete_requested", value)
+
+    @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Error message pertaining to the interface endpoint. Returns null if there are no errors.
+        """
+        return pulumi.get(self, "error_message")
+
+    @error_message.setter
+    def error_message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "error_message", value)
+
+    @property
+    @pulumi.getter(name="interfaceEndpointId")
+    def interface_endpoint_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the interface endpoint you created in your VPC with the AWS resource.
+        """
+        return pulumi.get(self, "interface_endpoint_id")
+
+    @interface_endpoint_id.setter
+    def interface_endpoint_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_endpoint_id", value)
+
+    @property
+    @pulumi.getter(name="privateLinkId")
+    def private_link_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the AWS PrivateLink connection which is created by `PrivateEndpoint` resource.
+        """
+        return pulumi.get(self, "private_link_id")
+
+    @private_link_id.setter
+    def private_link_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_link_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -212,20 +318,20 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = PrivateEndpointInterfaceLinkArgs.__new__(PrivateEndpointInterfaceLinkArgs)
 
             if interface_endpoint_id is None and not opts.urn:
                 raise TypeError("Missing required property 'interface_endpoint_id'")
-            __props__['interface_endpoint_id'] = interface_endpoint_id
+            __props__.__dict__["interface_endpoint_id"] = interface_endpoint_id
             if private_link_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_link_id'")
-            __props__['private_link_id'] = private_link_id
+            __props__.__dict__["private_link_id"] = private_link_id
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
-            __props__['connection_status'] = None
-            __props__['delete_requested'] = None
-            __props__['error_message'] = None
+            __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["connection_status"] = None
+            __props__.__dict__["delete_requested"] = None
+            __props__.__dict__["error_message"] = None
         super(PrivateEndpointInterfaceLink, __self__).__init__(
             'mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink',
             resource_name,
@@ -259,14 +365,14 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _PrivateEndpointInterfaceLinkState.__new__(_PrivateEndpointInterfaceLinkState)
 
-        __props__["connection_status"] = connection_status
-        __props__["delete_requested"] = delete_requested
-        __props__["error_message"] = error_message
-        __props__["interface_endpoint_id"] = interface_endpoint_id
-        __props__["private_link_id"] = private_link_id
-        __props__["project_id"] = project_id
+        __props__.__dict__["connection_status"] = connection_status
+        __props__.__dict__["delete_requested"] = delete_requested
+        __props__.__dict__["error_message"] = error_message
+        __props__.__dict__["interface_endpoint_id"] = interface_endpoint_id
+        __props__.__dict__["private_link_id"] = private_link_id
+        __props__.__dict__["project_id"] = project_id
         return PrivateEndpointInterfaceLink(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -317,10 +423,4 @@ class PrivateEndpointInterfaceLink(pulumi.CustomResource):
         Unique identifier for the project.
         """
         return pulumi.get(self, "project_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

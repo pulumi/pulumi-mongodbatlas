@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -115,6 +115,162 @@ class AlertConfigurationArgs:
     @threshold.setter
     def threshold(self, value: Optional[pulumi.Input['AlertConfigurationThresholdArgs']]):
         pulumi.set(self, "threshold", value)
+
+
+@pulumi.input_type
+class _AlertConfigurationState:
+    def __init__(__self__, *,
+                 alert_configuration_id: Optional[pulumi.Input[str]] = None,
+                 created: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 event_type: Optional[pulumi.Input[str]] = None,
+                 matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]] = None,
+                 metric_threshold: Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']] = None,
+                 notifications: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 threshold: Optional[pulumi.Input['AlertConfigurationThresholdArgs']] = None,
+                 updated: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering AlertConfiguration resources.
+        :param pulumi.Input[str] alert_configuration_id: Unique identifier for the alert configuration.
+        :param pulumi.Input[str] created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
+        :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
+        :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
+        :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input['AlertConfigurationThresholdArgs'] threshold: Threshold value outside of which an alert will be triggered.
+        :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
+        """
+        if alert_configuration_id is not None:
+            pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if event_type is not None:
+            pulumi.set(__self__, "event_type", event_type)
+        if matchers is not None:
+            pulumi.set(__self__, "matchers", matchers)
+        if metric_threshold is not None:
+            pulumi.set(__self__, "metric_threshold", metric_threshold)
+        if notifications is not None:
+            pulumi.set(__self__, "notifications", notifications)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
+        if updated is not None:
+            pulumi.set(__self__, "updated", updated)
+
+    @property
+    @pulumi.getter(name="alertConfigurationId")
+    def alert_configuration_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier for the alert configuration.
+        """
+        return pulumi.get(self, "alert_configuration_id")
+
+    @alert_configuration_id.setter
+    def alert_configuration_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alert_configuration_id", value)
+
+    @property
+    @pulumi.getter
+    def created(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
+        """
+        return pulumi.get(self, "created")
+
+    @created.setter
+    def created(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="eventType")
+    def event_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of event that will trigger an alert.
+        """
+        return pulumi.get(self, "event_type")
+
+    @event_type.setter
+    def event_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "event_type", value)
+
+    @property
+    @pulumi.getter
+    def matchers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]]:
+        return pulumi.get(self, "matchers")
+
+    @matchers.setter
+    def matchers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]]):
+        pulumi.set(self, "matchers", value)
+
+    @property
+    @pulumi.getter(name="metricThreshold")
+    def metric_threshold(self) -> Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']]:
+        return pulumi.get(self, "metric_threshold")
+
+    @metric_threshold.setter
+    def metric_threshold(self, value: Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']]):
+        pulumi.set(self, "metric_threshold", value)
+
+    @property
+    @pulumi.getter
+    def notifications(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]]:
+        return pulumi.get(self, "notifications")
+
+    @notifications.setter
+    def notifications(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]]):
+        pulumi.set(self, "notifications", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the project where the alert configuration will create.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> Optional[pulumi.Input['AlertConfigurationThresholdArgs']]:
+        """
+        Threshold value outside of which an alert will be triggered.
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: Optional[pulumi.Input['AlertConfigurationThresholdArgs']]):
+        pulumi.set(self, "threshold", value)
+
+    @property
+    @pulumi.getter
+    def updated(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
+        """
+        return pulumi.get(self, "updated")
+
+    @updated.setter
+    def updated(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated", value)
 
 
 class AlertConfiguration(pulumi.CustomResource):
@@ -351,24 +507,24 @@ class AlertConfiguration(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AlertConfigurationArgs.__new__(AlertConfigurationArgs)
 
-            __props__['enabled'] = enabled
+            __props__.__dict__["enabled"] = enabled
             if event_type is None and not opts.urn:
                 raise TypeError("Missing required property 'event_type'")
-            __props__['event_type'] = event_type
-            __props__['matchers'] = matchers
-            __props__['metric_threshold'] = metric_threshold
+            __props__.__dict__["event_type"] = event_type
+            __props__.__dict__["matchers"] = matchers
+            __props__.__dict__["metric_threshold"] = metric_threshold
             if notifications is None and not opts.urn:
                 raise TypeError("Missing required property 'notifications'")
-            __props__['notifications'] = notifications
+            __props__.__dict__["notifications"] = notifications
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
-            __props__['threshold'] = threshold
-            __props__['alert_configuration_id'] = None
-            __props__['created'] = None
-            __props__['updated'] = None
+            __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["threshold"] = threshold
+            __props__.__dict__["alert_configuration_id"] = None
+            __props__.__dict__["created"] = None
+            __props__.__dict__["updated"] = None
         super(AlertConfiguration, __self__).__init__(
             'mongodbatlas:index/alertConfiguration:AlertConfiguration',
             resource_name,
@@ -406,18 +562,18 @@ class AlertConfiguration(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AlertConfigurationState.__new__(_AlertConfigurationState)
 
-        __props__["alert_configuration_id"] = alert_configuration_id
-        __props__["created"] = created
-        __props__["enabled"] = enabled
-        __props__["event_type"] = event_type
-        __props__["matchers"] = matchers
-        __props__["metric_threshold"] = metric_threshold
-        __props__["notifications"] = notifications
-        __props__["project_id"] = project_id
-        __props__["threshold"] = threshold
-        __props__["updated"] = updated
+        __props__.__dict__["alert_configuration_id"] = alert_configuration_id
+        __props__.__dict__["created"] = created
+        __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["event_type"] = event_type
+        __props__.__dict__["matchers"] = matchers
+        __props__.__dict__["metric_threshold"] = metric_threshold
+        __props__.__dict__["notifications"] = notifications
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["threshold"] = threshold
+        __props__.__dict__["updated"] = updated
         return AlertConfiguration(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -490,10 +646,4 @@ class AlertConfiguration(pulumi.CustomResource):
         Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
         return pulumi.get(self, "updated")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

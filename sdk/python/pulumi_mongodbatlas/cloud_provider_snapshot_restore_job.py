@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -78,6 +78,206 @@ class CloudProviderSnapshotRestoreJobArgs:
     @snapshot_id.setter
     def snapshot_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "snapshot_id", value)
+
+
+@pulumi.input_type
+class _CloudProviderSnapshotRestoreJobState:
+    def __init__(__self__, *,
+                 cancelled: Optional[pulumi.Input[bool]] = None,
+                 cluster_name: Optional[pulumi.Input[str]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 delivery_type: Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']] = None,
+                 delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expired: Optional[pulumi.Input[bool]] = None,
+                 expires_at: Optional[pulumi.Input[str]] = None,
+                 finished_at: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 snapshot_id: Optional[pulumi.Input[str]] = None,
+                 snapshot_restore_job_id: Optional[pulumi.Input[str]] = None,
+                 timestamp: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering CloudProviderSnapshotRestoreJob resources.
+        :param pulumi.Input[bool] cancelled: Indicates whether the restore job was canceled.
+        :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
+        :param pulumi.Input[str] created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
+        :param pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs'] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+        :param pulumi.Input[bool] expired: Indicates whether the restore job expired.
+        :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
+        :param pulumi.Input[str] finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
+        :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
+        :param pulumi.Input[str] snapshot_restore_job_id: The unique identifier of the restore job.
+        :param pulumi.Input[str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        """
+        if cancelled is not None:
+            pulumi.set(__self__, "cancelled", cancelled)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if delivery_type is not None:
+            pulumi.set(__self__, "delivery_type", delivery_type)
+        if delivery_urls is not None:
+            pulumi.set(__self__, "delivery_urls", delivery_urls)
+        if expired is not None:
+            pulumi.set(__self__, "expired", expired)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if finished_at is not None:
+            pulumi.set(__self__, "finished_at", finished_at)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if snapshot_restore_job_id is not None:
+            pulumi.set(__self__, "snapshot_restore_job_id", snapshot_restore_job_id)
+        if timestamp is not None:
+            pulumi.set(__self__, "timestamp", timestamp)
+
+    @property
+    @pulumi.getter
+    def cancelled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the restore job was canceled.
+        """
+        return pulumi.get(self, "cancelled")
+
+    @cancelled.setter
+    def cancelled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cancelled", value)
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Atlas cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @cluster_name.setter
+    def cluster_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_name", value)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC ISO 8601 formatted point in time when Atlas created the restore job.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="deliveryType")
+    def delivery_type(self) -> Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]:
+        """
+        Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        """
+        return pulumi.get(self, "delivery_type")
+
+    @delivery_type.setter
+    def delivery_type(self, value: Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]):
+        pulumi.set(self, "delivery_type", value)
+
+    @property
+    @pulumi.getter(name="deliveryUrls")
+    def delivery_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+        """
+        return pulumi.get(self, "delivery_urls")
+
+    @delivery_urls.setter
+    def delivery_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "delivery_urls", value)
+
+    @property
+    @pulumi.getter
+    def expired(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the restore job expired.
+        """
+        return pulumi.get(self, "expired")
+
+    @expired.setter
+    def expired(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "expired", value)
+
+    @property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC ISO 8601 formatted point in time when the restore job expires.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @expires_at.setter
+    def expires_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expires_at", value)
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        UTC ISO 8601 formatted point in time when the restore job completed.
+        """
+        return pulumi.get(self, "finished_at")
+
+    @finished_at.setter
+    def finished_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "finished_at", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the snapshot to restore.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_id", value)
+
+    @property
+    @pulumi.getter(name="snapshotRestoreJobId")
+    def snapshot_restore_job_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique identifier of the restore job.
+        """
+        return pulumi.get(self, "snapshot_restore_job_id")
+
+    @snapshot_restore_job_id.setter
+    def snapshot_restore_job_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "snapshot_restore_job_id", value)
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        """
+        return pulumi.get(self, "timestamp")
+
+    @timestamp.setter
+    def timestamp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "timestamp", value)
 
 
 class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
@@ -308,28 +508,28 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = CloudProviderSnapshotRestoreJobArgs.__new__(CloudProviderSnapshotRestoreJobArgs)
 
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
-            __props__['cluster_name'] = cluster_name
+            __props__.__dict__["cluster_name"] = cluster_name
             if delivery_type is None and not opts.urn:
                 raise TypeError("Missing required property 'delivery_type'")
-            __props__['delivery_type'] = delivery_type
+            __props__.__dict__["delivery_type"] = delivery_type
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
+            __props__.__dict__["project_id"] = project_id
             if snapshot_id is None and not opts.urn:
                 raise TypeError("Missing required property 'snapshot_id'")
-            __props__['snapshot_id'] = snapshot_id
-            __props__['cancelled'] = None
-            __props__['created_at'] = None
-            __props__['delivery_urls'] = None
-            __props__['expired'] = None
-            __props__['expires_at'] = None
-            __props__['finished_at'] = None
-            __props__['snapshot_restore_job_id'] = None
-            __props__['timestamp'] = None
+            __props__.__dict__["snapshot_id"] = snapshot_id
+            __props__.__dict__["cancelled"] = None
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["delivery_urls"] = None
+            __props__.__dict__["expired"] = None
+            __props__.__dict__["expires_at"] = None
+            __props__.__dict__["finished_at"] = None
+            __props__.__dict__["snapshot_restore_job_id"] = None
+            __props__.__dict__["timestamp"] = None
         super(CloudProviderSnapshotRestoreJob, __self__).__init__(
             'mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob',
             resource_name,
@@ -374,20 +574,20 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _CloudProviderSnapshotRestoreJobState.__new__(_CloudProviderSnapshotRestoreJobState)
 
-        __props__["cancelled"] = cancelled
-        __props__["cluster_name"] = cluster_name
-        __props__["created_at"] = created_at
-        __props__["delivery_type"] = delivery_type
-        __props__["delivery_urls"] = delivery_urls
-        __props__["expired"] = expired
-        __props__["expires_at"] = expires_at
-        __props__["finished_at"] = finished_at
-        __props__["project_id"] = project_id
-        __props__["snapshot_id"] = snapshot_id
-        __props__["snapshot_restore_job_id"] = snapshot_restore_job_id
-        __props__["timestamp"] = timestamp
+        __props__.__dict__["cancelled"] = cancelled
+        __props__.__dict__["cluster_name"] = cluster_name
+        __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["delivery_type"] = delivery_type
+        __props__.__dict__["delivery_urls"] = delivery_urls
+        __props__.__dict__["expired"] = expired
+        __props__.__dict__["expires_at"] = expires_at
+        __props__.__dict__["finished_at"] = finished_at
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["snapshot_id"] = snapshot_id
+        __props__.__dict__["snapshot_restore_job_id"] = snapshot_restore_job_id
+        __props__.__dict__["timestamp"] = timestamp
         return CloudProviderSnapshotRestoreJob(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -485,10 +685,4 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
         """
         return pulumi.get(self, "timestamp")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 
 __all__ = [
@@ -99,6 +99,23 @@ __all__ = [
 
 @pulumi.output_type
 class AlertConfigurationMatcher(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fieldName":
+            suggest = "field_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertConfigurationMatcher. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertConfigurationMatcher.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertConfigurationMatcher.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  field_name: Optional[str] = None,
                  operator: Optional[str] = None,
@@ -155,12 +172,26 @@ class AlertConfigurationMatcher(dict):
         """
         return pulumi.get(self, "value")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class AlertConfigurationMetricThreshold(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "metricName":
+            suggest = "metric_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertConfigurationMetricThreshold. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertConfigurationMetricThreshold.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertConfigurationMetricThreshold.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  metric_name: Optional[str] = None,
                  mode: Optional[str] = None,
@@ -265,12 +296,64 @@ class AlertConfigurationMetricThreshold(dict):
         """
         return pulumi.get(self, "units")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class AlertConfigurationNotification(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiToken":
+            suggest = "api_token"
+        elif key == "channelName":
+            suggest = "channel_name"
+        elif key == "datadogApiKey":
+            suggest = "datadog_api_key"
+        elif key == "datadogRegion":
+            suggest = "datadog_region"
+        elif key == "delayMin":
+            suggest = "delay_min"
+        elif key == "emailAddress":
+            suggest = "email_address"
+        elif key == "emailEnabled":
+            suggest = "email_enabled"
+        elif key == "flowName":
+            suggest = "flow_name"
+        elif key == "flowdockApiToken":
+            suggest = "flowdock_api_token"
+        elif key == "intervalMin":
+            suggest = "interval_min"
+        elif key == "mobileNumber":
+            suggest = "mobile_number"
+        elif key == "opsGenieApiKey":
+            suggest = "ops_genie_api_key"
+        elif key == "opsGenieRegion":
+            suggest = "ops_genie_region"
+        elif key == "orgName":
+            suggest = "org_name"
+        elif key == "serviceKey":
+            suggest = "service_key"
+        elif key == "smsEnabled":
+            suggest = "sms_enabled"
+        elif key == "teamId":
+            suggest = "team_id"
+        elif key == "typeName":
+            suggest = "type_name"
+        elif key == "victorOpsApiKey":
+            suggest = "victor_ops_api_key"
+        elif key == "victorOpsRoutingKey":
+            suggest = "victor_ops_routing_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertConfigurationNotification. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertConfigurationNotification.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertConfigurationNotification.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  api_token: Optional[str] = None,
                  channel_name: Optional[str] = None,
@@ -543,9 +626,6 @@ class AlertConfigurationNotification(dict):
         """
         return pulumi.get(self, "victor_ops_routing_key")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class AlertConfigurationThreshold(dict):
@@ -629,12 +709,28 @@ class AlertConfigurationThreshold(dict):
         """
         return pulumi.get(self, "units")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CloudProviderAccessFeatureUsage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "featureId":
+            suggest = "feature_id"
+        elif key == "featureType":
+            suggest = "feature_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessFeatureUsage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderAccessFeatureUsage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderAccessFeatureUsage.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  feature_id: Optional[str] = None,
                  feature_type: Optional[str] = None):
@@ -653,12 +749,26 @@ class CloudProviderAccessFeatureUsage(dict):
     def feature_type(self) -> Optional[str]:
         return pulumi.get(self, "feature_type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CloudProviderSnapshotBackupPolicyPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "policyItems":
+            suggest = "policy_items"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderSnapshotBackupPolicyPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderSnapshotBackupPolicyPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderSnapshotBackupPolicyPolicy.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  id: str,
                  policy_items: Sequence['outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem']):
@@ -675,12 +785,32 @@ class CloudProviderSnapshotBackupPolicyPolicy(dict):
     def policy_items(self) -> Sequence['outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem']:
         return pulumi.get(self, "policy_items")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CloudProviderSnapshotBackupPolicyPolicyPolicyItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "frequencyInterval":
+            suggest = "frequency_interval"
+        elif key == "frequencyType":
+            suggest = "frequency_type"
+        elif key == "retentionUnit":
+            suggest = "retention_unit"
+        elif key == "retentionValue":
+            suggest = "retention_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderSnapshotBackupPolicyPolicyPolicyItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderSnapshotBackupPolicyPolicyPolicyItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderSnapshotBackupPolicyPolicyPolicyItem.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  frequency_interval: int,
                  frequency_type: str,
@@ -718,12 +848,36 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItem(dict):
     def retention_value(self) -> int:
         return pulumi.get(self, "retention_value")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CloudProviderSnapshotRestoreJobDeliveryType(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "oplogInc":
+            suggest = "oplog_inc"
+        elif key == "oplogTs":
+            suggest = "oplog_ts"
+        elif key == "pointInTime":
+            suggest = "point_in_time"
+        elif key == "pointInTimeUtcSeconds":
+            suggest = "point_in_time_utc_seconds"
+        elif key == "targetClusterName":
+            suggest = "target_cluster_name"
+        elif key == "targetProjectId":
+            suggest = "target_project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderSnapshotRestoreJobDeliveryType. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderSnapshotRestoreJobDeliveryType.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderSnapshotRestoreJobDeliveryType.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  automated: Optional[bool] = None,
                  download: Optional[bool] = None,
@@ -796,12 +950,38 @@ class CloudProviderSnapshotRestoreJobDeliveryType(dict):
     def target_project_id(self) -> Optional[str]:
         return pulumi.get(self, "target_project_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterAdvancedConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failIndexKeyTooLong":
+            suggest = "fail_index_key_too_long"
+        elif key == "javascriptEnabled":
+            suggest = "javascript_enabled"
+        elif key == "minimumEnabledTlsProtocol":
+            suggest = "minimum_enabled_tls_protocol"
+        elif key == "noTableScan":
+            suggest = "no_table_scan"
+        elif key == "oplogSizeMb":
+            suggest = "oplog_size_mb"
+        elif key == "sampleRefreshIntervalBiConnector":
+            suggest = "sample_refresh_interval_bi_connector"
+        elif key == "sampleSizeBiConnector":
+            suggest = "sample_size_bi_connector"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterAdvancedConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterAdvancedConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterAdvancedConfiguration.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  fail_index_key_too_long: Optional[bool] = None,
                  javascript_enabled: Optional[bool] = None,
@@ -890,12 +1070,26 @@ class ClusterAdvancedConfiguration(dict):
         """
         return pulumi.get(self, "sample_size_bi_connector")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterBiConnector(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "readPreference":
+            suggest = "read_preference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterBiConnector. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterBiConnector.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterBiConnector.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  enabled: Optional[str] = None,
                  read_preference: Optional[str] = None):
@@ -930,12 +1124,34 @@ class ClusterBiConnector(dict):
         """
         return pulumi.get(self, "read_preference")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterConnectionStrings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "awsPrivateLink":
+            suggest = "aws_private_link"
+        elif key == "awsPrivateLinkSrv":
+            suggest = "aws_private_link_srv"
+        elif key == "privateEndpoints":
+            suggest = "private_endpoints"
+        elif key == "privateSrv":
+            suggest = "private_srv"
+        elif key == "standardSrv":
+            suggest = "standard_srv"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionStrings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterConnectionStrings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterConnectionStrings.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  aws_private_link: Optional[Mapping[str, Any]] = None,
                  aws_private_link_srv: Optional[Mapping[str, Any]] = None,
@@ -994,12 +1210,28 @@ class ClusterConnectionStrings(dict):
     def standard_srv(self) -> Optional[str]:
         return pulumi.get(self, "standard_srv")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterConnectionStringsPrivateEndpoint(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionString":
+            suggest = "connection_string"
+        elif key == "srvConnectionString":
+            suggest = "srv_connection_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionStringsPrivateEndpoint. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterConnectionStringsPrivateEndpoint.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterConnectionStringsPrivateEndpoint.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  connection_string: Optional[str] = None,
                  endpoints: Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpointEndpoint']] = None,
@@ -1034,12 +1266,28 @@ class ClusterConnectionStringsPrivateEndpoint(dict):
     def type(self) -> Optional[str]:
         return pulumi.get(self, "type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterConnectionStringsPrivateEndpointEndpoint(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endpointId":
+            suggest = "endpoint_id"
+        elif key == "providerName":
+            suggest = "provider_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionStringsPrivateEndpointEndpoint. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterConnectionStringsPrivateEndpointEndpoint.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterConnectionStringsPrivateEndpointEndpoint.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  endpoint_id: Optional[str] = None,
                  provider_name: Optional[str] = None,
@@ -1072,9 +1320,6 @@ class ClusterConnectionStringsPrivateEndpointEndpoint(dict):
     def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterLabel(dict):
@@ -1106,12 +1351,30 @@ class ClusterLabel(dict):
         """
         return pulumi.get(self, "value")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterReplicationSpec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "numShards":
+            suggest = "num_shards"
+        elif key == "regionsConfigs":
+            suggest = "regions_configs"
+        elif key == "zoneName":
+            suggest = "zone_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterReplicationSpec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterReplicationSpec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterReplicationSpec.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  num_shards: int,
                  id: Optional[str] = None,
@@ -1163,12 +1426,32 @@ class ClusterReplicationSpec(dict):
         """
         return pulumi.get(self, "zone_name")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterReplicationSpecRegionsConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "analyticsNodes":
+            suggest = "analytics_nodes"
+        elif key == "electableNodes":
+            suggest = "electable_nodes"
+        elif key == "readOnlyNodes":
+            suggest = "read_only_nodes"
+        elif key == "regionName":
+            suggest = "region_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterReplicationSpecRegionsConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterReplicationSpecRegionsConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterReplicationSpecRegionsConfig.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  analytics_nodes: Optional[int] = None,
                  electable_nodes: Optional[int] = None,
@@ -1245,12 +1528,38 @@ class ClusterReplicationSpecRegionsConfig(dict):
         """
         return pulumi.get(self, "region_name")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterSnapshotBackupPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clusterId":
+            suggest = "cluster_id"
+        elif key == "clusterName":
+            suggest = "cluster_name"
+        elif key == "nextSnapshot":
+            suggest = "next_snapshot"
+        elif key == "referenceHourOfDay":
+            suggest = "reference_hour_of_day"
+        elif key == "referenceMinuteOfHour":
+            suggest = "reference_minute_of_hour"
+        elif key == "restoreWindowDays":
+            suggest = "restore_window_days"
+        elif key == "updateSnapshots":
+            suggest = "update_snapshots"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterSnapshotBackupPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterSnapshotBackupPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterSnapshotBackupPolicy.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cluster_id: Optional[str] = None,
                  cluster_name: Optional[str] = None,
@@ -1323,12 +1632,26 @@ class ClusterSnapshotBackupPolicy(dict):
     def update_snapshots(self) -> Optional[bool]:
         return pulumi.get(self, "update_snapshots")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterSnapshotBackupPolicyPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "policyItems":
+            suggest = "policy_items"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterSnapshotBackupPolicyPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterSnapshotBackupPolicyPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterSnapshotBackupPolicyPolicy.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  id: Optional[str] = None,
                  policy_items: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']] = None):
@@ -1353,12 +1676,32 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
     def policy_items(self) -> Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']]:
         return pulumi.get(self, "policy_items")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "frequencyInterval":
+            suggest = "frequency_interval"
+        elif key == "frequencyType":
+            suggest = "frequency_type"
+        elif key == "retentionUnit":
+            suggest = "retention_unit"
+        elif key == "retentionValue":
+            suggest = "retention_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterSnapshotBackupPolicyPolicyPolicyItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterSnapshotBackupPolicyPolicyPolicyItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterSnapshotBackupPolicyPolicyPolicyItem.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  frequency_interval: Optional[int] = None,
                  frequency_type: Optional[str] = None,
@@ -1407,9 +1750,6 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
     def retention_value(self) -> Optional[int]:
         return pulumi.get(self, "retention_value")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CustomDbRoleAction(dict):
@@ -1441,12 +1781,28 @@ class CustomDbRoleAction(dict):
         """
         return pulumi.get(self, "resources")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CustomDbRoleActionResource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "collectionName":
+            suggest = "collection_name"
+        elif key == "databaseName":
+            suggest = "database_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CustomDbRoleActionResource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CustomDbRoleActionResource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CustomDbRoleActionResource.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cluster: Optional[bool] = None,
                  collection_name: Optional[str] = None,
@@ -1479,12 +1835,28 @@ class CustomDbRoleActionResource(dict):
         """
         return pulumi.get(self, "database_name")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class CustomDbRoleInheritedRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "databaseName":
+            suggest = "database_name"
+        elif key == "roleName":
+            suggest = "role_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CustomDbRoleInheritedRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CustomDbRoleInheritedRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CustomDbRoleInheritedRole.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  database_name: str,
                  role_name: str):
@@ -1510,9 +1882,6 @@ class CustomDbRoleInheritedRole(dict):
         Name of the inherited role. This can either be another custom role or a built-in role.
         """
         return pulumi.get(self, "role_name")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
@@ -1545,12 +1914,30 @@ class DatabaseUserLabel(dict):
         """
         return pulumi.get(self, "value")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DatabaseUserRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "collectionName":
+            suggest = "collection_name"
+        elif key == "databaseName":
+            suggest = "database_name"
+        elif key == "roleName":
+            suggest = "role_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabaseUserRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabaseUserRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabaseUserRole.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  collection_name: Optional[str] = None,
                  database_name: Optional[str] = None,
@@ -1591,9 +1978,6 @@ class DatabaseUserRole(dict):
         """
         return pulumi.get(self, "role_name")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class DatabaseUserScope(dict):
@@ -1625,12 +2009,32 @@ class DatabaseUserScope(dict):
         """
         return pulumi.get(self, "type")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class EncryptionAtRestAwsKms(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKeyId":
+            suggest = "access_key_id"
+        elif key == "customerMasterKeyId":
+            suggest = "customer_master_key_id"
+        elif key == "roleId":
+            suggest = "role_id"
+        elif key == "secretAccessKey":
+            suggest = "secret_access_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestAwsKms. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EncryptionAtRestAwsKms.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EncryptionAtRestAwsKms.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  access_key_id: Optional[str] = None,
                  customer_master_key_id: Optional[str] = None,
@@ -1707,12 +2111,38 @@ class EncryptionAtRestAwsKms(dict):
         """
         return pulumi.get(self, "secret_access_key")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class EncryptionAtRestAzureKeyVault(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "azureEnvironment":
+            suggest = "azure_environment"
+        elif key == "clientId":
+            suggest = "client_id"
+        elif key == "keyIdentifier":
+            suggest = "key_identifier"
+        elif key == "keyVaultName":
+            suggest = "key_vault_name"
+        elif key == "resourceGroupName":
+            suggest = "resource_group_name"
+        elif key == "subscriptionId":
+            suggest = "subscription_id"
+        elif key == "tenantId":
+            suggest = "tenant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestAzureKeyVault. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EncryptionAtRestAzureKeyVault.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EncryptionAtRestAzureKeyVault.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  enabled: bool,
                  azure_environment: Optional[str] = None,
@@ -1824,12 +2254,28 @@ class EncryptionAtRestAzureKeyVault(dict):
         """
         return pulumi.get(self, "tenant_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class EncryptionAtRestGoogleCloudKms(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keyVersionResourceId":
+            suggest = "key_version_resource_id"
+        elif key == "serviceAccountKey":
+            suggest = "service_account_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestGoogleCloudKms. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EncryptionAtRestGoogleCloudKms.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EncryptionAtRestGoogleCloudKms.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  enabled: Optional[bool] = None,
                  key_version_resource_id: Optional[str] = None,
@@ -1870,9 +2316,6 @@ class EncryptionAtRestGoogleCloudKms(dict):
         """
         return pulumi.get(self, "service_account_key")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class GlobalClusterConfigCustomZoneMapping(dict):
@@ -1904,12 +2347,26 @@ class GlobalClusterConfigCustomZoneMapping(dict):
         """
         return pulumi.get(self, "zone")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class GlobalClusterConfigManagedNamespace(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "customShardKey":
+            suggest = "custom_shard_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in GlobalClusterConfigManagedNamespace. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        GlobalClusterConfigManagedNamespace.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        GlobalClusterConfigManagedNamespace.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  collection: str,
                  custom_shard_key: str,
@@ -1947,12 +2404,28 @@ class GlobalClusterConfigManagedNamespace(dict):
         """
         return pulumi.get(self, "db")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class ProjectTeam(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "roleNames":
+            suggest = "role_names"
+        elif key == "teamId":
+            suggest = "team_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProjectTeam. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProjectTeam.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProjectTeam.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  role_names: Sequence[str],
                  team_id: str):
@@ -1993,12 +2466,30 @@ class ProjectTeam(dict):
         """
         return pulumi.get(self, "team_id")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class X509AuthenticationDatabaseUserCertificate(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "groupId":
+            suggest = "group_id"
+        elif key == "notAfter":
+            suggest = "not_after"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in X509AuthenticationDatabaseUserCertificate. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        X509AuthenticationDatabaseUserCertificate.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        X509AuthenticationDatabaseUserCertificate.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
                  group_id: Optional[str] = None,
@@ -2040,9 +2531,6 @@ class X509AuthenticationDatabaseUserCertificate(dict):
     @pulumi.getter
     def subject(self) -> Optional[str]:
         return pulumi.get(self, "subject")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type
