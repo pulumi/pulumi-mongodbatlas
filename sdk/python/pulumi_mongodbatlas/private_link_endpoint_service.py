@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['PrivateLinkEndpointServiceArgs', 'PrivateLinkEndpointService']
 
@@ -92,6 +92,210 @@ class PrivateLinkEndpointServiceArgs:
     @private_endpoint_ip_address.setter
     def private_endpoint_ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_endpoint_ip_address", value)
+
+
+@pulumi.input_type
+class _PrivateLinkEndpointServiceState:
+    def __init__(__self__, *,
+                 aws_connection_status: Optional[pulumi.Input[str]] = None,
+                 azure_status: Optional[pulumi.Input[str]] = None,
+                 delete_requested: Optional[pulumi.Input[bool]] = None,
+                 endpoint_service_id: Optional[pulumi.Input[str]] = None,
+                 error_message: Optional[pulumi.Input[str]] = None,
+                 interface_endpoint_id: Optional[pulumi.Input[str]] = None,
+                 private_endpoint_connection_name: Optional[pulumi.Input[str]] = None,
+                 private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
+                 private_endpoint_resource_id: Optional[pulumi.Input[str]] = None,
+                 private_link_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering PrivateLinkEndpointService resources.
+        :param pulumi.Input[str] aws_connection_status: Status of the interface endpoint for AWS.
+               Returns one of the following values:
+        :param pulumi.Input[str] azure_status: Status of the interface endpoint for AZURE.
+               Returns one of the following values:
+        :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
+        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        :param pulumi.Input[str] error_message: Error message pertaining to the interface endpoint. Returns null if there are no errors.
+        :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint.
+        :param pulumi.Input[str] private_endpoint_connection_name: Name of the connection for this private endpoint that Atlas generates.
+        :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+        :param pulumi.Input[str] private_endpoint_resource_id: Unique identifier of the private endpoint.
+        :param pulumi.Input[str] private_link_id: Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+        :param pulumi.Input[str] project_id: Unique identifier for the project.
+        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        """
+        if aws_connection_status is not None:
+            pulumi.set(__self__, "aws_connection_status", aws_connection_status)
+        if azure_status is not None:
+            pulumi.set(__self__, "azure_status", azure_status)
+        if delete_requested is not None:
+            pulumi.set(__self__, "delete_requested", delete_requested)
+        if endpoint_service_id is not None:
+            pulumi.set(__self__, "endpoint_service_id", endpoint_service_id)
+        if error_message is not None:
+            pulumi.set(__self__, "error_message", error_message)
+        if interface_endpoint_id is not None:
+            pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
+        if private_endpoint_connection_name is not None:
+            pulumi.set(__self__, "private_endpoint_connection_name", private_endpoint_connection_name)
+        if private_endpoint_ip_address is not None:
+            pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
+        if private_endpoint_resource_id is not None:
+            pulumi.set(__self__, "private_endpoint_resource_id", private_endpoint_resource_id)
+        if private_link_id is not None:
+            pulumi.set(__self__, "private_link_id", private_link_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+
+    @property
+    @pulumi.getter(name="awsConnectionStatus")
+    def aws_connection_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the interface endpoint for AWS.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "aws_connection_status")
+
+    @aws_connection_status.setter
+    def aws_connection_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_connection_status", value)
+
+    @property
+    @pulumi.getter(name="azureStatus")
+    def azure_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the interface endpoint for AZURE.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "azure_status")
+
+    @azure_status.setter
+    def azure_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "azure_status", value)
+
+    @property
+    @pulumi.getter(name="deleteRequested")
+    def delete_requested(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
+        """
+        return pulumi.get(self, "delete_requested")
+
+    @delete_requested.setter
+    def delete_requested(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "delete_requested", value)
+
+    @property
+    @pulumi.getter(name="endpointServiceId")
+    def endpoint_service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        """
+        return pulumi.get(self, "endpoint_service_id")
+
+    @endpoint_service_id.setter
+    def endpoint_service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_service_id", value)
+
+    @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Error message pertaining to the interface endpoint. Returns null if there are no errors.
+        """
+        return pulumi.get(self, "error_message")
+
+    @error_message.setter
+    def error_message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "error_message", value)
+
+    @property
+    @pulumi.getter(name="interfaceEndpointId")
+    def interface_endpoint_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the interface endpoint.
+        """
+        return pulumi.get(self, "interface_endpoint_id")
+
+    @interface_endpoint_id.setter
+    def interface_endpoint_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_endpoint_id", value)
+
+    @property
+    @pulumi.getter(name="privateEndpointConnectionName")
+    def private_endpoint_connection_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the connection for this private endpoint that Atlas generates.
+        """
+        return pulumi.get(self, "private_endpoint_connection_name")
+
+    @private_endpoint_connection_name.setter
+    def private_endpoint_connection_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_endpoint_connection_name", value)
+
+    @property
+    @pulumi.getter(name="privateEndpointIpAddress")
+    def private_endpoint_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+        """
+        return pulumi.get(self, "private_endpoint_ip_address")
+
+    @private_endpoint_ip_address.setter
+    def private_endpoint_ip_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_endpoint_ip_address", value)
+
+    @property
+    @pulumi.getter(name="privateEndpointResourceId")
+    def private_endpoint_resource_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the private endpoint.
+        """
+        return pulumi.get(self, "private_endpoint_resource_id")
+
+    @private_endpoint_resource_id.setter
+    def private_endpoint_resource_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_endpoint_resource_id", value)
+
+    @property
+    @pulumi.getter(name="privateLinkId")
+    def private_link_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+        """
+        return pulumi.get(self, "private_link_id")
+
+    @private_link_id.setter
+    def private_link_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_link_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_name", value)
 
 
 class PrivateLinkEndpointService(pulumi.CustomResource):
@@ -245,28 +449,28 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = PrivateLinkEndpointServiceArgs.__new__(PrivateLinkEndpointServiceArgs)
 
             if endpoint_service_id is None and not opts.urn:
                 raise TypeError("Missing required property 'endpoint_service_id'")
-            __props__['endpoint_service_id'] = endpoint_service_id
-            __props__['private_endpoint_ip_address'] = private_endpoint_ip_address
+            __props__.__dict__["endpoint_service_id"] = endpoint_service_id
+            __props__.__dict__["private_endpoint_ip_address"] = private_endpoint_ip_address
             if private_link_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_link_id'")
-            __props__['private_link_id'] = private_link_id
+            __props__.__dict__["private_link_id"] = private_link_id
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
+            __props__.__dict__["project_id"] = project_id
             if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
-            __props__['provider_name'] = provider_name
-            __props__['aws_connection_status'] = None
-            __props__['azure_status'] = None
-            __props__['delete_requested'] = None
-            __props__['error_message'] = None
-            __props__['interface_endpoint_id'] = None
-            __props__['private_endpoint_connection_name'] = None
-            __props__['private_endpoint_resource_id'] = None
+            __props__.__dict__["provider_name"] = provider_name
+            __props__.__dict__["aws_connection_status"] = None
+            __props__.__dict__["azure_status"] = None
+            __props__.__dict__["delete_requested"] = None
+            __props__.__dict__["error_message"] = None
+            __props__.__dict__["interface_endpoint_id"] = None
+            __props__.__dict__["private_endpoint_connection_name"] = None
+            __props__.__dict__["private_endpoint_resource_id"] = None
         super(PrivateLinkEndpointService, __self__).__init__(
             'mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService',
             resource_name,
@@ -313,20 +517,20 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _PrivateLinkEndpointServiceState.__new__(_PrivateLinkEndpointServiceState)
 
-        __props__["aws_connection_status"] = aws_connection_status
-        __props__["azure_status"] = azure_status
-        __props__["delete_requested"] = delete_requested
-        __props__["endpoint_service_id"] = endpoint_service_id
-        __props__["error_message"] = error_message
-        __props__["interface_endpoint_id"] = interface_endpoint_id
-        __props__["private_endpoint_connection_name"] = private_endpoint_connection_name
-        __props__["private_endpoint_ip_address"] = private_endpoint_ip_address
-        __props__["private_endpoint_resource_id"] = private_endpoint_resource_id
-        __props__["private_link_id"] = private_link_id
-        __props__["project_id"] = project_id
-        __props__["provider_name"] = provider_name
+        __props__.__dict__["aws_connection_status"] = aws_connection_status
+        __props__.__dict__["azure_status"] = azure_status
+        __props__.__dict__["delete_requested"] = delete_requested
+        __props__.__dict__["endpoint_service_id"] = endpoint_service_id
+        __props__.__dict__["error_message"] = error_message
+        __props__.__dict__["interface_endpoint_id"] = interface_endpoint_id
+        __props__.__dict__["private_endpoint_connection_name"] = private_endpoint_connection_name
+        __props__.__dict__["private_endpoint_ip_address"] = private_endpoint_ip_address
+        __props__.__dict__["private_endpoint_resource_id"] = private_endpoint_resource_id
+        __props__.__dict__["private_link_id"] = private_link_id
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["provider_name"] = provider_name
         return PrivateLinkEndpointService(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -426,10 +630,4 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
         """
         return pulumi.get(self, "provider_name")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

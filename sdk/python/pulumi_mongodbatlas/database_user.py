@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -170,6 +170,167 @@ class DatabaseUserArgs:
         pulumi.set(self, "x509_type", value)
 
 
+@pulumi.input_type
+class _DatabaseUserState:
+    def __init__(__self__, *,
+                 auth_database_name: Optional[pulumi.Input[str]] = None,
+                 aws_iam_type: Optional[pulumi.Input[str]] = None,
+                 database_name: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None,
+                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
+                 x509_type: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering DatabaseUser resources.
+        :param pulumi.Input[str] auth_database_name: Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+               Accepted values include:
+        :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param pulumi.Input[str] username: Username for authenticating to MongoDB.
+        :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        """
+        if auth_database_name is not None:
+            pulumi.set(__self__, "auth_database_name", auth_database_name)
+        if aws_iam_type is not None:
+            pulumi.set(__self__, "aws_iam_type", aws_iam_type)
+        if database_name is not None:
+            warnings.warn("""use auth_database_name instead""", DeprecationWarning)
+            pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
+        if database_name is not None:
+            pulumi.set(__self__, "database_name", database_name)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+        if x509_type is not None:
+            pulumi.set(__self__, "x509_type", x509_type)
+
+    @property
+    @pulumi.getter(name="authDatabaseName")
+    def auth_database_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+        Accepted values include:
+        """
+        return pulumi.get(self, "auth_database_name")
+
+    @auth_database_name.setter
+    def auth_database_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_database_name", value)
+
+    @property
+    @pulumi.getter(name="awsIamType")
+    def aws_iam_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        """
+        return pulumi.get(self, "aws_iam_type")
+
+    @aws_iam_type.setter
+    def aws_iam_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_iam_type", value)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        """
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "database_name", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]:
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID for the project to create the database user.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]]:
+        """
+        List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        """
+        return pulumi.get(self, "roles")
+
+    @roles.setter
+    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]]):
+        pulumi.set(self, "roles", value)
+
+    @property
+    @pulumi.getter
+    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]:
+        return pulumi.get(self, "scopes")
+
+    @scopes.setter
+    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]):
+        pulumi.set(self, "scopes", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username for authenticating to MongoDB.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter(name="x509Type")
+    def x509_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+        """
+        return pulumi.get(self, "x509_type")
+
+    @x509_type.setter
+    def x509_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "x509_type", value)
+
+
 class DatabaseUser(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -266,27 +427,27 @@ class DatabaseUser(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = DatabaseUserArgs.__new__(DatabaseUserArgs)
 
-            __props__['auth_database_name'] = auth_database_name
-            __props__['aws_iam_type'] = aws_iam_type
+            __props__.__dict__["auth_database_name"] = auth_database_name
+            __props__.__dict__["aws_iam_type"] = aws_iam_type
             if database_name is not None and not opts.urn:
                 warnings.warn("""use auth_database_name instead""", DeprecationWarning)
                 pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
-            __props__['database_name'] = database_name
-            __props__['labels'] = labels
-            __props__['password'] = password
+            __props__.__dict__["database_name"] = database_name
+            __props__.__dict__["labels"] = labels
+            __props__.__dict__["password"] = password
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
+            __props__.__dict__["project_id"] = project_id
             if roles is None and not opts.urn:
                 raise TypeError("Missing required property 'roles'")
-            __props__['roles'] = roles
-            __props__['scopes'] = scopes
+            __props__.__dict__["roles"] = roles
+            __props__.__dict__["scopes"] = scopes
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
-            __props__['username'] = username
-            __props__['x509_type'] = x509_type
+            __props__.__dict__["username"] = username
+            __props__.__dict__["x509_type"] = x509_type
         super(DatabaseUser, __self__).__init__(
             'mongodbatlas:index/databaseUser:DatabaseUser',
             resource_name,
@@ -325,18 +486,18 @@ class DatabaseUser(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _DatabaseUserState.__new__(_DatabaseUserState)
 
-        __props__["auth_database_name"] = auth_database_name
-        __props__["aws_iam_type"] = aws_iam_type
-        __props__["database_name"] = database_name
-        __props__["labels"] = labels
-        __props__["password"] = password
-        __props__["project_id"] = project_id
-        __props__["roles"] = roles
-        __props__["scopes"] = scopes
-        __props__["username"] = username
-        __props__["x509_type"] = x509_type
+        __props__.__dict__["auth_database_name"] = auth_database_name
+        __props__.__dict__["aws_iam_type"] = aws_iam_type
+        __props__.__dict__["database_name"] = database_name
+        __props__.__dict__["labels"] = labels
+        __props__.__dict__["password"] = password
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["roles"] = roles
+        __props__.__dict__["scopes"] = scopes
+        __props__.__dict__["username"] = username
+        __props__.__dict__["x509_type"] = x509_type
         return DatabaseUser(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -410,10 +571,4 @@ class DatabaseUser(pulumi.CustomResource):
         X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         """
         return pulumi.get(self, "x509_type")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

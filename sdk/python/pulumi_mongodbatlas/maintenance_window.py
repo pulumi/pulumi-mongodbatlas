@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['MaintenanceWindowArgs', 'MaintenanceWindow']
 
@@ -95,6 +95,110 @@ class MaintenanceWindowArgs:
     @number_of_deferrals.setter
     def number_of_deferrals(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "number_of_deferrals", value)
+
+
+@pulumi.input_type
+class _MaintenanceWindowState:
+    def __init__(__self__, *,
+                 day_of_week: Optional[pulumi.Input[int]] = None,
+                 defer: Optional[pulumi.Input[bool]] = None,
+                 hour_of_day: Optional[pulumi.Input[int]] = None,
+                 number_of_deferrals: Optional[pulumi.Input[int]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 start_asap: Optional[pulumi.Input[bool]] = None):
+        """
+        Input properties used for looking up and filtering MaintenanceWindow resources.
+        :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+        :param pulumi.Input[bool] defer: Defer maintenance for the given project for one week.
+        :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+        :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
+        :param pulumi.Input[bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        """
+        if day_of_week is not None:
+            pulumi.set(__self__, "day_of_week", day_of_week)
+        if defer is not None:
+            pulumi.set(__self__, "defer", defer)
+        if hour_of_day is not None:
+            pulumi.set(__self__, "hour_of_day", hour_of_day)
+        if number_of_deferrals is not None:
+            pulumi.set(__self__, "number_of_deferrals", number_of_deferrals)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if start_asap is not None:
+            pulumi.set(__self__, "start_asap", start_asap)
+
+    @property
+    @pulumi.getter(name="dayOfWeek")
+    def day_of_week(self) -> Optional[pulumi.Input[int]]:
+        """
+        Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+        """
+        return pulumi.get(self, "day_of_week")
+
+    @day_of_week.setter
+    def day_of_week(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "day_of_week", value)
+
+    @property
+    @pulumi.getter
+    def defer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defer maintenance for the given project for one week.
+        """
+        return pulumi.get(self, "defer")
+
+    @defer.setter
+    def defer(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "defer", value)
+
+    @property
+    @pulumi.getter(name="hourOfDay")
+    def hour_of_day(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+        """
+        return pulumi.get(self, "hour_of_day")
+
+    @hour_of_day.setter
+    def hour_of_day(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hour_of_day", value)
+
+    @property
+    @pulumi.getter(name="numberOfDeferrals")
+    def number_of_deferrals(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+        """
+        return pulumi.get(self, "number_of_deferrals")
+
+    @number_of_deferrals.setter
+    def number_of_deferrals(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "number_of_deferrals", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique identifier of the project for the Maintenance Window.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="startAsap")
+    def start_asap(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        """
+        return pulumi.get(self, "start_asap")
+
+    @start_asap.setter
+    def start_asap(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "start_asap", value)
 
 
 class MaintenanceWindow(pulumi.CustomResource):
@@ -250,16 +354,16 @@ class MaintenanceWindow(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = MaintenanceWindowArgs.__new__(MaintenanceWindowArgs)
 
-            __props__['day_of_week'] = day_of_week
-            __props__['defer'] = defer
-            __props__['hour_of_day'] = hour_of_day
-            __props__['number_of_deferrals'] = number_of_deferrals
+            __props__.__dict__["day_of_week"] = day_of_week
+            __props__.__dict__["defer"] = defer
+            __props__.__dict__["hour_of_day"] = hour_of_day
+            __props__.__dict__["number_of_deferrals"] = number_of_deferrals
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
-            __props__['start_asap'] = None
+            __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["start_asap"] = None
         super(MaintenanceWindow, __self__).__init__(
             'mongodbatlas:index/maintenanceWindow:MaintenanceWindow',
             resource_name,
@@ -292,14 +396,14 @@ class MaintenanceWindow(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _MaintenanceWindowState.__new__(_MaintenanceWindowState)
 
-        __props__["day_of_week"] = day_of_week
-        __props__["defer"] = defer
-        __props__["hour_of_day"] = hour_of_day
-        __props__["number_of_deferrals"] = number_of_deferrals
-        __props__["project_id"] = project_id
-        __props__["start_asap"] = start_asap
+        __props__.__dict__["day_of_week"] = day_of_week
+        __props__.__dict__["defer"] = defer
+        __props__.__dict__["hour_of_day"] = hour_of_day
+        __props__.__dict__["number_of_deferrals"] = number_of_deferrals
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["start_asap"] = start_asap
         return MaintenanceWindow(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -349,10 +453,4 @@ class MaintenanceWindow(pulumi.CustomResource):
         Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
         """
         return pulumi.get(self, "start_asap")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

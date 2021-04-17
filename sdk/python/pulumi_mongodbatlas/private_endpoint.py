@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['PrivateEndpointArgs', 'PrivateEndpoint']
 
@@ -95,6 +95,178 @@ class PrivateEndpointArgs:
     @region.setter
     def region(self, value: pulumi.Input[str]):
         pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class _PrivateEndpointState:
+    def __init__(__self__, *,
+                 endpoint_service_name: Optional[pulumi.Input[str]] = None,
+                 error_message: Optional[pulumi.Input[str]] = None,
+                 interface_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_link_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering PrivateEndpoint resources.
+        :param pulumi.Input[str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+        :param pulumi.Input[str] error_message: Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] interface_endpoints: Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        :param pulumi.Input[str] private_link_id: Unique identifier of the AWS PrivateLink connection.
+        :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
+               Accepted values are:
+               * `us-east-1`
+               * `us-east-2`
+               * `us-west-1`
+               * `us-west-2`
+               * `ca-central-1`
+               * `sa-east-1`
+               * `eu-north-1`
+               * `eu-west-1`
+               * `eu-west-2`
+               * `eu-west-3`
+               * `eu-central-1`
+               * `me-south-1`
+               * `ap-northeast-1`
+               * `ap-northeast-2`
+               * `ap-south-1`
+               * `ap-southeast-1`
+               * `ap-southeast-2`
+               * `ap-east-1`
+        :param pulumi.Input[str] status: Status of the AWS PrivateLink connection.
+               Returns one of the following values:
+        """
+        if endpoint_service_name is not None:
+            pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
+        if error_message is not None:
+            pulumi.set(__self__, "error_message", error_message)
+        if interface_endpoints is not None:
+            pulumi.set(__self__, "interface_endpoints", interface_endpoints)
+        if private_link_id is not None:
+            pulumi.set(__self__, "private_link_id", private_link_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="endpointServiceName")
+    def endpoint_service_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+        """
+        return pulumi.get(self, "endpoint_service_name")
+
+    @endpoint_service_name.setter
+    def endpoint_service_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_service_name", value)
+
+    @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+        """
+        return pulumi.get(self, "error_message")
+
+    @error_message.setter
+    def error_message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "error_message", value)
+
+    @property
+    @pulumi.getter(name="interfaceEndpoints")
+    def interface_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        """
+        return pulumi.get(self, "interface_endpoints")
+
+    @interface_endpoints.setter
+    def interface_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "interface_endpoints", value)
+
+    @property
+    @pulumi.getter(name="privateLinkId")
+    def private_link_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the AWS PrivateLink connection.
+        """
+        return pulumi.get(self, "private_link_id")
+
+    @private_link_id.setter
+    def private_link_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_link_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Required 	Unique identifier for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud provider region in which you want to create the private endpoint connection.
+        Accepted values are:
+        * `us-east-1`
+        * `us-east-2`
+        * `us-west-1`
+        * `us-west-2`
+        * `ca-central-1`
+        * `sa-east-1`
+        * `eu-north-1`
+        * `eu-west-1`
+        * `eu-west-2`
+        * `eu-west-3`
+        * `eu-central-1`
+        * `me-south-1`
+        * `ap-northeast-1`
+        * `ap-northeast-2`
+        * `ap-south-1`
+        * `ap-southeast-1`
+        * `ap-southeast-2`
+        * `ap-east-1`
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the AWS PrivateLink connection.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
 
 
 class PrivateEndpoint(pulumi.CustomResource):
@@ -246,22 +418,22 @@ class PrivateEndpoint(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = PrivateEndpointArgs.__new__(PrivateEndpointArgs)
 
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
+            __props__.__dict__["project_id"] = project_id
             if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
-            __props__['provider_name'] = provider_name
+            __props__.__dict__["provider_name"] = provider_name
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
-            __props__['region'] = region
-            __props__['endpoint_service_name'] = None
-            __props__['error_message'] = None
-            __props__['interface_endpoints'] = None
-            __props__['private_link_id'] = None
-            __props__['status'] = None
+            __props__.__dict__["region"] = region
+            __props__.__dict__["endpoint_service_name"] = None
+            __props__.__dict__["error_message"] = None
+            __props__.__dict__["interface_endpoints"] = None
+            __props__.__dict__["private_link_id"] = None
+            __props__.__dict__["status"] = None
         super(PrivateEndpoint, __self__).__init__(
             'mongodbatlas:index/privateEndpoint:PrivateEndpoint',
             resource_name,
@@ -317,16 +489,16 @@ class PrivateEndpoint(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _PrivateEndpointState.__new__(_PrivateEndpointState)
 
-        __props__["endpoint_service_name"] = endpoint_service_name
-        __props__["error_message"] = error_message
-        __props__["interface_endpoints"] = interface_endpoints
-        __props__["private_link_id"] = private_link_id
-        __props__["project_id"] = project_id
-        __props__["provider_name"] = provider_name
-        __props__["region"] = region
-        __props__["status"] = status
+        __props__.__dict__["endpoint_service_name"] = endpoint_service_name
+        __props__.__dict__["error_message"] = error_message
+        __props__.__dict__["interface_endpoints"] = interface_endpoints
+        __props__.__dict__["private_link_id"] = private_link_id
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["provider_name"] = provider_name
+        __props__.__dict__["region"] = region
+        __props__.__dict__["status"] = status
         return PrivateEndpoint(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -409,10 +581,4 @@ class PrivateEndpoint(pulumi.CustomResource):
         Returns one of the following values:
         """
         return pulumi.get(self, "status")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

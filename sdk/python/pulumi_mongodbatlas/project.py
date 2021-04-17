@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -52,6 +52,90 @@ class ProjectArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
+        return pulumi.get(self, "teams")
+
+    @teams.setter
+    def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]):
+        pulumi.set(self, "teams", value)
+
+
+@pulumi.input_type
+class _ProjectState:
+    def __init__(__self__, *,
+                 cluster_count: Optional[pulumi.Input[int]] = None,
+                 created: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None):
+        """
+        Input properties used for looking up and filtering Project resources.
+        :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project..
+        :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
+        :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
+        """
+        if cluster_count is not None:
+            pulumi.set(__self__, "cluster_count", cluster_count)
+        if created is not None:
+            pulumi.set(__self__, "created", created)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
+        if teams is not None:
+            pulumi.set(__self__, "teams", teams)
+
+    @property
+    @pulumi.getter(name="clusterCount")
+    def cluster_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of Atlas clusters deployed in the project..
+        """
+        return pulumi.get(self, "cluster_count")
+
+    @cluster_count.setter
+    def cluster_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cluster_count", value)
+
+    @property
+    @pulumi.getter
+    def created(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ISO-8601-formatted timestamp of when Atlas created the project..
+        """
+        return pulumi.get(self, "created")
+
+    @created.setter
+    def created(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the organization you want to create the project within.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
 
     @property
     @pulumi.getter
@@ -143,15 +227,15 @@ class Project(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = ProjectArgs.__new__(ProjectArgs)
 
-            __props__['name'] = name
+            __props__.__dict__["name"] = name
             if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")
-            __props__['org_id'] = org_id
-            __props__['teams'] = teams
-            __props__['cluster_count'] = None
-            __props__['created'] = None
+            __props__.__dict__["org_id"] = org_id
+            __props__.__dict__["teams"] = teams
+            __props__.__dict__["cluster_count"] = None
+            __props__.__dict__["created"] = None
         super(Project, __self__).__init__(
             'mongodbatlas:index/project:Project',
             resource_name,
@@ -181,13 +265,13 @@ class Project(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _ProjectState.__new__(_ProjectState)
 
-        __props__["cluster_count"] = cluster_count
-        __props__["created"] = created
-        __props__["name"] = name
-        __props__["org_id"] = org_id
-        __props__["teams"] = teams
+        __props__.__dict__["cluster_count"] = cluster_count
+        __props__.__dict__["created"] = created
+        __props__.__dict__["name"] = name
+        __props__.__dict__["org_id"] = org_id
+        __props__.__dict__["teams"] = teams
         return Project(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -226,10 +310,4 @@ class Project(pulumi.CustomResource):
     @pulumi.getter
     def teams(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectTeam']]]:
         return pulumi.get(self, "teams")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

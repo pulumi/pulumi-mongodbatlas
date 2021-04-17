@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['NetworkContainerArgs', 'NetworkContainer']
 
@@ -100,6 +100,216 @@ class NetworkContainerArgs:
     @region_name.setter
     def region_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region_name", value)
+
+
+@pulumi.input_type
+class _NetworkContainerState:
+    def __init__(__self__, *,
+                 atlas_cidr_block: Optional[pulumi.Input[str]] = None,
+                 azure_subscription_id: Optional[pulumi.Input[str]] = None,
+                 container_id: Optional[pulumi.Input[str]] = None,
+                 gcp_project_id: Optional[pulumi.Input[str]] = None,
+                 network_name: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None,
+                 provisioned: Optional[pulumi.Input[bool]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 region_name: Optional[pulumi.Input[str]] = None,
+                 vnet_name: Optional[pulumi.Input[str]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering NetworkContainer resources.
+        :param pulumi.Input[str] atlas_cidr_block: CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
+               * Lower bound: 10.0.0.0 -	Upper bound: 10.255.255.255 -	Prefix: 10/8
+               * Lower bound: 172.16.0.0 -	Upper bound:172.31.255.255 -	Prefix:	172.16/12
+               * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
+        :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
+               * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        :param pulumi.Input[str] container_id: The Network Peering Container ID.
+        :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        :param pulumi.Input[str] network_name: Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+               **AZURE ONLY:**
+        :param pulumi.Input[str] project_id: Unique identifier for the Atlas project for this Network Peering Container.
+        :param pulumi.Input[str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
+        :param pulumi.Input[bool] provisioned: Indicates whether the project has Network Peering connections deployed in the container.
+               **AWS ONLY:**
+        :param pulumi.Input[str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param pulumi.Input[str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[str] vpc_id: Unique identifier of Atlas' AWS VPC.
+               **CGP ONLY:**
+        """
+        if atlas_cidr_block is not None:
+            pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
+        if azure_subscription_id is not None:
+            pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
+        if container_id is not None:
+            pulumi.set(__self__, "container_id", container_id)
+        if gcp_project_id is not None:
+            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+        if network_name is not None:
+            pulumi.set(__self__, "network_name", network_name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+        if provisioned is not None:
+            pulumi.set(__self__, "provisioned", provisioned)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if region_name is not None:
+            pulumi.set(__self__, "region_name", region_name)
+        if vnet_name is not None:
+            pulumi.set(__self__, "vnet_name", vnet_name)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="atlasCidrBlock")
+    def atlas_cidr_block(self) -> Optional[pulumi.Input[str]]:
+        """
+        CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
+        * Lower bound: 10.0.0.0 -	Upper bound: 10.255.255.255 -	Prefix: 10/8
+        * Lower bound: 172.16.0.0 -	Upper bound:172.31.255.255 -	Prefix:	172.16/12
+        * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
+        """
+        return pulumi.get(self, "atlas_cidr_block")
+
+    @atlas_cidr_block.setter
+    def atlas_cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "atlas_cidr_block", value)
+
+    @property
+    @pulumi.getter(name="azureSubscriptionId")
+    def azure_subscription_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Azure subscription in which the VNet resides.
+        * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        """
+        return pulumi.get(self, "azure_subscription_id")
+
+    @azure_subscription_id.setter
+    def azure_subscription_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "azure_subscription_id", value)
+
+    @property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Network Peering Container ID.
+        """
+        return pulumi.get(self, "container_id")
+
+    @container_id.setter
+    def container_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container_id", value)
+
+    @property
+    @pulumi.getter(name="gcpProjectId")
+    def gcp_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        """
+        return pulumi.get(self, "gcp_project_id")
+
+    @gcp_project_id.setter
+    def gcp_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gcp_project_id", value)
+
+    @property
+    @pulumi.getter(name="networkName")
+    def network_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        **AZURE ONLY:**
+        """
+        return pulumi.get(self, "network_name")
+
+    @network_name.setter
+    def network_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_name", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier for the Atlas project for this Network Peering Container.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter
+    def provisioned(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the project has Network Peering connections deployed in the container.
+        **AWS ONLY:**
+        """
+        return pulumi.get(self, "provisioned")
+
+    @provisioned.setter
+    def provisioned(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "provisioned", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        """
+        return pulumi.get(self, "region_name")
+
+    @region_name.setter
+    def region_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region_name", value)
+
+    @property
+    @pulumi.getter(name="vnetName")
+    def vnet_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "vnet_name")
+
+    @vnet_name.setter
+    def vnet_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vnet_name", value)
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of Atlas' AWS VPC.
+        **CGP ONLY:**
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_id", value)
 
 
 class NetworkContainer(pulumi.CustomResource):
@@ -286,24 +496,24 @@ class NetworkContainer(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = NetworkContainerArgs.__new__(NetworkContainerArgs)
 
             if atlas_cidr_block is None and not opts.urn:
                 raise TypeError("Missing required property 'atlas_cidr_block'")
-            __props__['atlas_cidr_block'] = atlas_cidr_block
+            __props__.__dict__["atlas_cidr_block"] = atlas_cidr_block
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
-            __props__['provider_name'] = provider_name
-            __props__['region'] = region
-            __props__['region_name'] = region_name
-            __props__['azure_subscription_id'] = None
-            __props__['container_id'] = None
-            __props__['gcp_project_id'] = None
-            __props__['network_name'] = None
-            __props__['provisioned'] = None
-            __props__['vnet_name'] = None
-            __props__['vpc_id'] = None
+            __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["provider_name"] = provider_name
+            __props__.__dict__["region"] = region
+            __props__.__dict__["region_name"] = region_name
+            __props__.__dict__["azure_subscription_id"] = None
+            __props__.__dict__["container_id"] = None
+            __props__.__dict__["gcp_project_id"] = None
+            __props__.__dict__["network_name"] = None
+            __props__.__dict__["provisioned"] = None
+            __props__.__dict__["vnet_name"] = None
+            __props__.__dict__["vpc_id"] = None
         super(NetworkContainer, __self__).__init__(
             'mongodbatlas:index/networkContainer:NetworkContainer',
             resource_name,
@@ -354,20 +564,20 @@ class NetworkContainer(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _NetworkContainerState.__new__(_NetworkContainerState)
 
-        __props__["atlas_cidr_block"] = atlas_cidr_block
-        __props__["azure_subscription_id"] = azure_subscription_id
-        __props__["container_id"] = container_id
-        __props__["gcp_project_id"] = gcp_project_id
-        __props__["network_name"] = network_name
-        __props__["project_id"] = project_id
-        __props__["provider_name"] = provider_name
-        __props__["provisioned"] = provisioned
-        __props__["region"] = region
-        __props__["region_name"] = region_name
-        __props__["vnet_name"] = vnet_name
-        __props__["vpc_id"] = vpc_id
+        __props__.__dict__["atlas_cidr_block"] = atlas_cidr_block
+        __props__.__dict__["azure_subscription_id"] = azure_subscription_id
+        __props__.__dict__["container_id"] = container_id
+        __props__.__dict__["gcp_project_id"] = gcp_project_id
+        __props__.__dict__["network_name"] = network_name
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["provider_name"] = provider_name
+        __props__.__dict__["provisioned"] = provisioned
+        __props__.__dict__["region"] = region
+        __props__.__dict__["region_name"] = region_name
+        __props__.__dict__["vnet_name"] = vnet_name
+        __props__.__dict__["vpc_id"] = vpc_id
         return NetworkContainer(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -469,10 +679,4 @@ class NetworkContainer(pulumi.CustomResource):
         **CGP ONLY:**
         """
         return pulumi.get(self, "vpc_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

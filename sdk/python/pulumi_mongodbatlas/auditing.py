@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['AuditingArgs', 'Auditing']
 
@@ -79,6 +79,100 @@ class AuditingArgs:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
+
+
+@pulumi.input_type
+class _AuditingState:
+    def __init__(__self__, *,
+                 audit_authorization_success: Optional[pulumi.Input[bool]] = None,
+                 audit_filter: Optional[pulumi.Input[str]] = None,
+                 configuration_type: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Auditing resources.
+        :param pulumi.Input[bool] audit_authorization_success: JSON-formatted audit filter used by the project
+        :param pulumi.Input[str] audit_filter: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        :param pulumi.Input[str] configuration_type: Denotes the configuration method for the audit filter. Possible values are: 
+               * NONE - auditing not configured for the project.
+               * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
+               * FILTER_JSON - auditing configured via Atlas custom filter or API.
+        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
+        """
+        if audit_authorization_success is not None:
+            pulumi.set(__self__, "audit_authorization_success", audit_authorization_success)
+        if audit_filter is not None:
+            pulumi.set(__self__, "audit_filter", audit_filter)
+        if configuration_type is not None:
+            pulumi.set(__self__, "configuration_type", configuration_type)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+
+    @property
+    @pulumi.getter(name="auditAuthorizationSuccess")
+    def audit_authorization_success(self) -> Optional[pulumi.Input[bool]]:
+        """
+        JSON-formatted audit filter used by the project
+        """
+        return pulumi.get(self, "audit_authorization_success")
+
+    @audit_authorization_success.setter
+    def audit_authorization_success(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "audit_authorization_success", value)
+
+    @property
+    @pulumi.getter(name="auditFilter")
+    def audit_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        """
+        return pulumi.get(self, "audit_filter")
+
+    @audit_filter.setter
+    def audit_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "audit_filter", value)
+
+    @property
+    @pulumi.getter(name="configurationType")
+    def configuration_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Denotes the configuration method for the audit filter. Possible values are: 
+        * NONE - auditing not configured for the project.
+        * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
+        * FILTER_JSON - auditing configured via Atlas custom filter or API.
+        """
+        return pulumi.get(self, "configuration_type")
+
+    @configuration_type.setter
+    def configuration_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "configuration_type", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID for the project to configure auditing.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
 
 
 class Auditing(pulumi.CustomResource):
@@ -195,15 +289,15 @@ class Auditing(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = AuditingArgs.__new__(AuditingArgs)
 
-            __props__['audit_authorization_success'] = audit_authorization_success
-            __props__['audit_filter'] = audit_filter
-            __props__['enabled'] = enabled
+            __props__.__dict__["audit_authorization_success"] = audit_authorization_success
+            __props__.__dict__["audit_filter"] = audit_filter
+            __props__.__dict__["enabled"] = enabled
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
-            __props__['configuration_type'] = None
+            __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["configuration_type"] = None
         super(Auditing, __self__).__init__(
             'mongodbatlas:index/auditing:Auditing',
             resource_name,
@@ -237,13 +331,13 @@ class Auditing(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _AuditingState.__new__(_AuditingState)
 
-        __props__["audit_authorization_success"] = audit_authorization_success
-        __props__["audit_filter"] = audit_filter
-        __props__["configuration_type"] = configuration_type
-        __props__["enabled"] = enabled
-        __props__["project_id"] = project_id
+        __props__.__dict__["audit_authorization_success"] = audit_authorization_success
+        __props__.__dict__["audit_filter"] = audit_filter
+        __props__.__dict__["configuration_type"] = configuration_type
+        __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["project_id"] = project_id
         return Auditing(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -288,10 +382,4 @@ class Auditing(pulumi.CustomResource):
         The unique ID for the project to configure auditing.
         """
         return pulumi.get(self, "project_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

@@ -4,7 +4,7 @@
 package mongodbatlas
 
 import (
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // `Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.

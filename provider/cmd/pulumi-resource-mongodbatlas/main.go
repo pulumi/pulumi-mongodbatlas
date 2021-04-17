@@ -17,10 +17,10 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 
-	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider"
-	"github.com/pulumi/pulumi-mongodbatlas/provider/pkg/version"
+	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v2"
+	"github.com/pulumi/pulumi-mongodbatlas/provider/v2/pkg/version"
 )
 
 func main() {

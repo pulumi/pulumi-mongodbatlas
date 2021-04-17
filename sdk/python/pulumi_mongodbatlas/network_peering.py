@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['NetworkPeeringArgs', 'NetworkPeering']
 
@@ -263,6 +263,386 @@ class NetworkPeeringArgs:
         pulumi.set(self, "vpc_id", value)
 
 
+@pulumi.input_type
+class _NetworkPeeringState:
+    def __init__(__self__, *,
+                 accepter_region_name: Optional[pulumi.Input[str]] = None,
+                 atlas_cidr_block: Optional[pulumi.Input[str]] = None,
+                 atlas_gcp_project_id: Optional[pulumi.Input[str]] = None,
+                 atlas_id: Optional[pulumi.Input[str]] = None,
+                 atlas_vpc_name: Optional[pulumi.Input[str]] = None,
+                 aws_account_id: Optional[pulumi.Input[str]] = None,
+                 azure_directory_id: Optional[pulumi.Input[str]] = None,
+                 azure_subscription_id: Optional[pulumi.Input[str]] = None,
+                 connection_id: Optional[pulumi.Input[str]] = None,
+                 container_id: Optional[pulumi.Input[str]] = None,
+                 error_message: Optional[pulumi.Input[str]] = None,
+                 error_state: Optional[pulumi.Input[str]] = None,
+                 error_state_name: Optional[pulumi.Input[str]] = None,
+                 gcp_project_id: Optional[pulumi.Input[str]] = None,
+                 network_name: Optional[pulumi.Input[str]] = None,
+                 peer_id: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 provider_name: Optional[pulumi.Input[str]] = None,
+                 resource_group_name: Optional[pulumi.Input[str]] = None,
+                 route_table_cidr_block: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 status_name: Optional[pulumi.Input[str]] = None,
+                 vnet_name: Optional[pulumi.Input[str]] = None,
+                 vpc_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering NetworkPeering resources.
+        :param pulumi.Input[str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        :param pulumi.Input[str] aws_account_id: AWS Account ID of the owner of the peer VPC.
+        :param pulumi.Input[str] azure_directory_id: Unique identifier for an Azure AD directory.
+        :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
+        :param pulumi.Input[str] connection_id: Unique identifier of the Atlas network peering container.
+        :param pulumi.Input[str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+        :param pulumi.Input[str] error_message: When `"status" : "FAILED"`, Atlas provides a description of the error.
+        :param pulumi.Input[str] error_state: Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
+        :param pulumi.Input[str] error_state_name: Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
+        :param pulumi.Input[str] gcp_project_id: GCP project ID of the owner of the network peer.
+        :param pulumi.Input[str] network_name: Name of the network peer to which Atlas connects.
+        :param pulumi.Input[str] peer_id: Unique identifier of the Atlas network peer.
+        :param pulumi.Input[str] project_id: The unique ID for the MongoDB Atlas project to create the database user.
+        :param pulumi.Input[str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+        :param pulumi.Input[str] resource_group_name: Name of your Azure resource group.
+        :param pulumi.Input[str] route_table_cidr_block: AWS VPC CIDR block or subnet.
+        :param pulumi.Input[str] status: Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
+        :param pulumi.Input[str] status_name: (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
+        :param pulumi.Input[str] vnet_name: Name of your Azure VNet.
+        :param pulumi.Input[str] vpc_id: Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+        """
+        if accepter_region_name is not None:
+            pulumi.set(__self__, "accepter_region_name", accepter_region_name)
+        if atlas_cidr_block is not None:
+            pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
+        if atlas_gcp_project_id is not None:
+            pulumi.set(__self__, "atlas_gcp_project_id", atlas_gcp_project_id)
+        if atlas_id is not None:
+            pulumi.set(__self__, "atlas_id", atlas_id)
+        if atlas_vpc_name is not None:
+            pulumi.set(__self__, "atlas_vpc_name", atlas_vpc_name)
+        if aws_account_id is not None:
+            pulumi.set(__self__, "aws_account_id", aws_account_id)
+        if azure_directory_id is not None:
+            pulumi.set(__self__, "azure_directory_id", azure_directory_id)
+        if azure_subscription_id is not None:
+            pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
+        if connection_id is not None:
+            pulumi.set(__self__, "connection_id", connection_id)
+        if container_id is not None:
+            pulumi.set(__self__, "container_id", container_id)
+        if error_message is not None:
+            pulumi.set(__self__, "error_message", error_message)
+        if error_state is not None:
+            pulumi.set(__self__, "error_state", error_state)
+        if error_state_name is not None:
+            pulumi.set(__self__, "error_state_name", error_state_name)
+        if gcp_project_id is not None:
+            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+        if network_name is not None:
+            pulumi.set(__self__, "network_name", network_name)
+        if peer_id is not None:
+            pulumi.set(__self__, "peer_id", peer_id)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+        if resource_group_name is not None:
+            pulumi.set(__self__, "resource_group_name", resource_group_name)
+        if route_table_cidr_block is not None:
+            pulumi.set(__self__, "route_table_cidr_block", route_table_cidr_block)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if status_name is not None:
+            pulumi.set(__self__, "status_name", status_name)
+        if vnet_name is not None:
+            pulumi.set(__self__, "vnet_name", vnet_name)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="accepterRegionName")
+    def accepter_region_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        """
+        return pulumi.get(self, "accepter_region_name")
+
+    @accepter_region_name.setter
+    def accepter_region_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accepter_region_name", value)
+
+    @property
+    @pulumi.getter(name="atlasCidrBlock")
+    def atlas_cidr_block(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "atlas_cidr_block")
+
+    @atlas_cidr_block.setter
+    def atlas_cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "atlas_cidr_block", value)
+
+    @property
+    @pulumi.getter(name="atlasGcpProjectId")
+    def atlas_gcp_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
+        """
+        return pulumi.get(self, "atlas_gcp_project_id")
+
+    @atlas_gcp_project_id.setter
+    def atlas_gcp_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "atlas_gcp_project_id", value)
+
+    @property
+    @pulumi.getter(name="atlasId")
+    def atlas_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "atlas_id")
+
+    @atlas_id.setter
+    def atlas_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "atlas_id", value)
+
+    @property
+    @pulumi.getter(name="atlasVpcName")
+    def atlas_vpc_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "atlas_vpc_name")
+
+    @atlas_vpc_name.setter
+    def atlas_vpc_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "atlas_vpc_name", value)
+
+    @property
+    @pulumi.getter(name="awsAccountId")
+    def aws_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS Account ID of the owner of the peer VPC.
+        """
+        return pulumi.get(self, "aws_account_id")
+
+    @aws_account_id.setter
+    def aws_account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_account_id", value)
+
+    @property
+    @pulumi.getter(name="azureDirectoryId")
+    def azure_directory_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier for an Azure AD directory.
+        """
+        return pulumi.get(self, "azure_directory_id")
+
+    @azure_directory_id.setter
+    def azure_directory_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "azure_directory_id", value)
+
+    @property
+    @pulumi.getter(name="azureSubscriptionId")
+    def azure_subscription_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Azure subscription in which the VNet resides.
+        """
+        return pulumi.get(self, "azure_subscription_id")
+
+    @azure_subscription_id.setter
+    def azure_subscription_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "azure_subscription_id", value)
+
+    @property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Atlas network peering container.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @connection_id.setter
+    def connection_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connection_id", value)
+
+    @property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+        """
+        return pulumi.get(self, "container_id")
+
+    @container_id.setter
+    def container_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container_id", value)
+
+    @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        When `"status" : "FAILED"`, Atlas provides a description of the error.
+        """
+        return pulumi.get(self, "error_message")
+
+    @error_message.setter
+    def error_message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "error_message", value)
+
+    @property
+    @pulumi.getter(name="errorState")
+    def error_state(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
+        """
+        return pulumi.get(self, "error_state")
+
+    @error_state.setter
+    def error_state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "error_state", value)
+
+    @property
+    @pulumi.getter(name="errorStateName")
+    def error_state_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
+        """
+        return pulumi.get(self, "error_state_name")
+
+    @error_state_name.setter
+    def error_state_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "error_state_name", value)
+
+    @property
+    @pulumi.getter(name="gcpProjectId")
+    def gcp_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        GCP project ID of the owner of the network peer.
+        """
+        return pulumi.get(self, "gcp_project_id")
+
+    @gcp_project_id.setter
+    def gcp_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gcp_project_id", value)
+
+    @property
+    @pulumi.getter(name="networkName")
+    def network_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the network peer to which Atlas connects.
+        """
+        return pulumi.get(self, "network_name")
+
+    @network_name.setter
+    def network_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_name", value)
+
+    @property
+    @pulumi.getter(name="peerId")
+    def peer_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the Atlas network peer.
+        """
+        return pulumi.get(self, "peer_id")
+
+    @peer_id.setter
+    def peer_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "peer_id", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID for the MongoDB Atlas project to create the database user.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
+        """
+        return pulumi.get(self, "provider_name")
+
+    @provider_name.setter
+    def provider_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter(name="resourceGroupName")
+    def resource_group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of your Azure resource group.
+        """
+        return pulumi.get(self, "resource_group_name")
+
+    @resource_group_name.setter
+    def resource_group_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "resource_group_name", value)
+
+    @property
+    @pulumi.getter(name="routeTableCidrBlock")
+    def route_table_cidr_block(self) -> Optional[pulumi.Input[str]]:
+        """
+        AWS VPC CIDR block or subnet.
+        """
+        return pulumi.get(self, "route_table_cidr_block")
+
+    @route_table_cidr_block.setter
+    def route_table_cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_table_cidr_block", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="statusName")
+    def status_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
+        """
+        return pulumi.get(self, "status_name")
+
+    @status_name.setter
+    def status_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status_name", value)
+
+    @property
+    @pulumi.getter(name="vnetName")
+    def vnet_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of your Azure VNet.
+        """
+        return pulumi.get(self, "vnet_name")
+
+    @vnet_name.setter
+    def vnet_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vnet_name", value)
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc_id", value)
+
+
 class NetworkPeering(pulumi.CustomResource):
     @overload
     def __init__(__self__,
@@ -381,38 +761,38 @@ class NetworkPeering(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = NetworkPeeringArgs.__new__(NetworkPeeringArgs)
 
-            __props__['accepter_region_name'] = accepter_region_name
-            __props__['atlas_cidr_block'] = atlas_cidr_block
-            __props__['atlas_gcp_project_id'] = atlas_gcp_project_id
-            __props__['atlas_vpc_name'] = atlas_vpc_name
-            __props__['aws_account_id'] = aws_account_id
-            __props__['azure_directory_id'] = azure_directory_id
-            __props__['azure_subscription_id'] = azure_subscription_id
+            __props__.__dict__["accepter_region_name"] = accepter_region_name
+            __props__.__dict__["atlas_cidr_block"] = atlas_cidr_block
+            __props__.__dict__["atlas_gcp_project_id"] = atlas_gcp_project_id
+            __props__.__dict__["atlas_vpc_name"] = atlas_vpc_name
+            __props__.__dict__["aws_account_id"] = aws_account_id
+            __props__.__dict__["azure_directory_id"] = azure_directory_id
+            __props__.__dict__["azure_subscription_id"] = azure_subscription_id
             if container_id is None and not opts.urn:
                 raise TypeError("Missing required property 'container_id'")
-            __props__['container_id'] = container_id
-            __props__['gcp_project_id'] = gcp_project_id
-            __props__['network_name'] = network_name
+            __props__.__dict__["container_id"] = container_id
+            __props__.__dict__["gcp_project_id"] = gcp_project_id
+            __props__.__dict__["network_name"] = network_name
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
+            __props__.__dict__["project_id"] = project_id
             if provider_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_name'")
-            __props__['provider_name'] = provider_name
-            __props__['resource_group_name'] = resource_group_name
-            __props__['route_table_cidr_block'] = route_table_cidr_block
-            __props__['vnet_name'] = vnet_name
-            __props__['vpc_id'] = vpc_id
-            __props__['atlas_id'] = None
-            __props__['connection_id'] = None
-            __props__['error_message'] = None
-            __props__['error_state'] = None
-            __props__['error_state_name'] = None
-            __props__['peer_id'] = None
-            __props__['status'] = None
-            __props__['status_name'] = None
+            __props__.__dict__["provider_name"] = provider_name
+            __props__.__dict__["resource_group_name"] = resource_group_name
+            __props__.__dict__["route_table_cidr_block"] = route_table_cidr_block
+            __props__.__dict__["vnet_name"] = vnet_name
+            __props__.__dict__["vpc_id"] = vpc_id
+            __props__.__dict__["atlas_id"] = None
+            __props__.__dict__["connection_id"] = None
+            __props__.__dict__["error_message"] = None
+            __props__.__dict__["error_state"] = None
+            __props__.__dict__["error_state_name"] = None
+            __props__.__dict__["peer_id"] = None
+            __props__.__dict__["status"] = None
+            __props__.__dict__["status_name"] = None
         super(NetworkPeering, __self__).__init__(
             'mongodbatlas:index/networkPeering:NetworkPeering',
             resource_name,
@@ -478,32 +858,32 @@ class NetworkPeering(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _NetworkPeeringState.__new__(_NetworkPeeringState)
 
-        __props__["accepter_region_name"] = accepter_region_name
-        __props__["atlas_cidr_block"] = atlas_cidr_block
-        __props__["atlas_gcp_project_id"] = atlas_gcp_project_id
-        __props__["atlas_id"] = atlas_id
-        __props__["atlas_vpc_name"] = atlas_vpc_name
-        __props__["aws_account_id"] = aws_account_id
-        __props__["azure_directory_id"] = azure_directory_id
-        __props__["azure_subscription_id"] = azure_subscription_id
-        __props__["connection_id"] = connection_id
-        __props__["container_id"] = container_id
-        __props__["error_message"] = error_message
-        __props__["error_state"] = error_state
-        __props__["error_state_name"] = error_state_name
-        __props__["gcp_project_id"] = gcp_project_id
-        __props__["network_name"] = network_name
-        __props__["peer_id"] = peer_id
-        __props__["project_id"] = project_id
-        __props__["provider_name"] = provider_name
-        __props__["resource_group_name"] = resource_group_name
-        __props__["route_table_cidr_block"] = route_table_cidr_block
-        __props__["status"] = status
-        __props__["status_name"] = status_name
-        __props__["vnet_name"] = vnet_name
-        __props__["vpc_id"] = vpc_id
+        __props__.__dict__["accepter_region_name"] = accepter_region_name
+        __props__.__dict__["atlas_cidr_block"] = atlas_cidr_block
+        __props__.__dict__["atlas_gcp_project_id"] = atlas_gcp_project_id
+        __props__.__dict__["atlas_id"] = atlas_id
+        __props__.__dict__["atlas_vpc_name"] = atlas_vpc_name
+        __props__.__dict__["aws_account_id"] = aws_account_id
+        __props__.__dict__["azure_directory_id"] = azure_directory_id
+        __props__.__dict__["azure_subscription_id"] = azure_subscription_id
+        __props__.__dict__["connection_id"] = connection_id
+        __props__.__dict__["container_id"] = container_id
+        __props__.__dict__["error_message"] = error_message
+        __props__.__dict__["error_state"] = error_state
+        __props__.__dict__["error_state_name"] = error_state_name
+        __props__.__dict__["gcp_project_id"] = gcp_project_id
+        __props__.__dict__["network_name"] = network_name
+        __props__.__dict__["peer_id"] = peer_id
+        __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["provider_name"] = provider_name
+        __props__.__dict__["resource_group_name"] = resource_group_name
+        __props__.__dict__["route_table_cidr_block"] = route_table_cidr_block
+        __props__.__dict__["status"] = status
+        __props__.__dict__["status_name"] = status_name
+        __props__.__dict__["vnet_name"] = vnet_name
+        __props__.__dict__["vpc_id"] = vpc_id
         return NetworkPeering(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -688,10 +1068,4 @@ class NetworkPeering(pulumi.CustomResource):
         Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the network_container resource).
         """
         return pulumi.get(self, "vpc_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
