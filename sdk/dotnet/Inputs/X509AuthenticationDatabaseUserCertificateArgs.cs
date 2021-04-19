@@ -9,26 +9,4 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
-
-    public sealed class X509AuthenticationDatabaseUserCertificateArgs : Pulumi.ResourceArgs
-    {
-        [Input("createdAt")]
-        public Input<string>? CreatedAt { get; set; }
-
-        [Input("groupId")]
-        public Input<string>? GroupId { get; set; }
-
-        [Input("id")]
-        public Input<int>? Id { get; set; }
-
-        [Input("notAfter")]
-        public Input<string>? NotAfter { get; set; }
-
-        [Input("subject")]
-        public Input<string>? Subject { get; set; }
-
-        public X509AuthenticationDatabaseUserCertificateArgs()
-        {
-        }
-    }
 }

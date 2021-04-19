@@ -289,9 +289,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
                  delivery_type: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         `CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
         * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
@@ -490,15 +488,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
                  delivery_type: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):

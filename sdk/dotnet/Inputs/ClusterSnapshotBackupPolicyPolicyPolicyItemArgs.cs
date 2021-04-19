@@ -9,29 +9,4 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
-
-    public sealed class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs : Pulumi.ResourceArgs
-    {
-        [Input("frequencyInterval")]
-        public Input<int>? FrequencyInterval { get; set; }
-
-        [Input("frequencyType")]
-        public Input<string>? FrequencyType { get; set; }
-
-        /// <summary>
-        /// Unique identifer of the replication document for a zone in a Global Cluster.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
-        [Input("retentionUnit")]
-        public Input<string>? RetentionUnit { get; set; }
-
-        [Input("retentionValue")]
-        public Input<int>? RetentionValue { get; set; }
-
-        public ClusterSnapshotBackupPolicyPolicyPolicyItemArgs()
-        {
-        }
-    }
 }

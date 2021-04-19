@@ -147,9 +147,7 @@ class CustomDbRole(pulumi.CustomResource):
                  inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomDbRoleInheritedRoleArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
+                 __props__=None):
         """
         `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 
@@ -392,15 +390,7 @@ class CustomDbRole(pulumi.CustomResource):
                  inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CustomDbRoleInheritedRoleArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
-                 __props__=None,
-                 __name__=None,
-                 __opts__=None):
-        if __name__ is not None:
-            warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
-            resource_name = __name__
-        if __opts__ is not None:
-            warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
-            opts = __opts__
+                 __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
         if not isinstance(opts, pulumi.ResourceOptions):

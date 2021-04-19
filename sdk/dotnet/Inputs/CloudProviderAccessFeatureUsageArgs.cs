@@ -9,17 +9,4 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
-
-    public sealed class CloudProviderAccessFeatureUsageArgs : Pulumi.ResourceArgs
-    {
-        [Input("featureId")]
-        public Input<string>? FeatureId { get; set; }
-
-        [Input("featureType")]
-        public Input<string>? FeatureType { get; set; }
-
-        public CloudProviderAccessFeatureUsageArgs()
-        {
-        }
-    }
 }
