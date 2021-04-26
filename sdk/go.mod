@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-mongodbatlas/sdk
+module github.com/pulumi/pulumi-mongodbatlas/sdk/v2
 
 go 1.16
 
