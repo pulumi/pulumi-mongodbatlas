@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Ensure SDK is being marked as v2 correctly
+_(none)_
 
 ---
+
+## 2.0.1 (2021-04-26)
+* Ensure SDK is being marked as v2 correctly
 
 ## 2.0.0 (2021-04-19)
 * Depend on Pulumi 3.0, which includes improvements to Python resource arguments and key translation, Go SDK performance,
