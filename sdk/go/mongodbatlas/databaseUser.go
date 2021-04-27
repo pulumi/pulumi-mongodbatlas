@@ -31,13 +31,15 @@ type DatabaseUser struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrOutput       `pulumi:"databaseName"`
 	Labels       DatabaseUserLabelArrayOutput `pulumi:"labels"`
-	Password     pulumi.StringPtrOutput       `pulumi:"password"`
+	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+	LdapAuthType pulumi.StringPtrOutput `pulumi:"ldapAuthType"`
+	Password     pulumi.StringPtrOutput `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  DatabaseUserRoleArrayOutput  `pulumi:"roles"`
 	Scopes DatabaseUserScopeArrayOutput `pulumi:"scopes"`
-	// Username for authenticating to MongoDB.
+	// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
 	Username pulumi.StringOutput `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
 	X509Type pulumi.StringPtrOutput `pulumi:"x509Type"`
@@ -91,13 +93,15 @@ type databaseUserState struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName *string             `pulumi:"databaseName"`
 	Labels       []DatabaseUserLabel `pulumi:"labels"`
-	Password     *string             `pulumi:"password"`
+	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+	LdapAuthType *string `pulumi:"ldapAuthType"`
+	Password     *string `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  []DatabaseUserRole  `pulumi:"roles"`
 	Scopes []DatabaseUserScope `pulumi:"scopes"`
-	// Username for authenticating to MongoDB.
+	// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
 	Username *string `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
 	X509Type *string `pulumi:"x509Type"`
@@ -114,13 +118,15 @@ type DatabaseUserState struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrInput
 	Labels       DatabaseUserLabelArrayInput
+	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+	LdapAuthType pulumi.StringPtrInput
 	Password     pulumi.StringPtrInput
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringPtrInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  DatabaseUserRoleArrayInput
 	Scopes DatabaseUserScopeArrayInput
-	// Username for authenticating to MongoDB.
+	// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
 	Username pulumi.StringPtrInput
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
 	X509Type pulumi.StringPtrInput
@@ -141,13 +147,15 @@ type databaseUserArgs struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName *string             `pulumi:"databaseName"`
 	Labels       []DatabaseUserLabel `pulumi:"labels"`
-	Password     *string             `pulumi:"password"`
+	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+	LdapAuthType *string `pulumi:"ldapAuthType"`
+	Password     *string `pulumi:"password"`
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  []DatabaseUserRole  `pulumi:"roles"`
 	Scopes []DatabaseUserScope `pulumi:"scopes"`
-	// Username for authenticating to MongoDB.
+	// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
 	Username string `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
 	X509Type *string `pulumi:"x509Type"`
@@ -165,13 +173,15 @@ type DatabaseUserArgs struct {
 	// Deprecated: use auth_database_name instead
 	DatabaseName pulumi.StringPtrInput
 	Labels       DatabaseUserLabelArrayInput
+	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+	LdapAuthType pulumi.StringPtrInput
 	Password     pulumi.StringPtrInput
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  DatabaseUserRoleArrayInput
 	Scopes DatabaseUserScopeArrayInput
-	// Username for authenticating to MongoDB.
+	// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
 	Username pulumi.StringInput
 	// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
 	X509Type pulumi.StringPtrInput

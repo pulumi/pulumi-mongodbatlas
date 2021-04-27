@@ -17,7 +17,8 @@ class NetworkContainerArgs:
                  project_id: pulumi.Input[str],
                  provider_name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 region_name: Optional[pulumi.Input[str]] = None):
+                 region_name: Optional[pulumi.Input[str]] = None,
+                 regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a NetworkContainer resource.
         :param pulumi.Input[str] atlas_cidr_block: CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
@@ -28,6 +29,7 @@ class NetworkContainerArgs:
         :param pulumi.Input[str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         """
         pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
         pulumi.set(__self__, "project_id", project_id)
@@ -37,6 +39,8 @@ class NetworkContainerArgs:
             pulumi.set(__self__, "region", region)
         if region_name is not None:
             pulumi.set(__self__, "region_name", region_name)
+        if regions is not None:
+            pulumi.set(__self__, "regions", regions)
 
     @property
     @pulumi.getter(name="atlasCidrBlock")
@@ -101,6 +105,18 @@ class NetworkContainerArgs:
     def region_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region_name", value)
 
+    @property
+    @pulumi.getter
+    def regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        """
+        return pulumi.get(self, "regions")
+
+    @regions.setter
+    def regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "regions", value)
+
 
 @pulumi.input_type
 class _NetworkContainerState:
@@ -115,6 +131,7 @@ class _NetworkContainerState:
                  provisioned: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  region_name: Optional[pulumi.Input[str]] = None,
+                 regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vnet_name: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
@@ -135,6 +152,7 @@ class _NetworkContainerState:
                **AWS ONLY:**
         :param pulumi.Input[str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         :param pulumi.Input[str] vpc_id: Unique identifier of Atlas' AWS VPC.
                **CGP ONLY:**
         """
@@ -158,6 +176,8 @@ class _NetworkContainerState:
             pulumi.set(__self__, "region", region)
         if region_name is not None:
             pulumi.set(__self__, "region_name", region_name)
+        if regions is not None:
+            pulumi.set(__self__, "regions", regions)
         if vnet_name is not None:
             pulumi.set(__self__, "vnet_name", vnet_name)
         if vpc_id is not None:
@@ -290,6 +310,18 @@ class _NetworkContainerState:
         pulumi.set(self, "region_name", value)
 
     @property
+    @pulumi.getter
+    def regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        """
+        return pulumi.get(self, "regions")
+
+    @regions.setter
+    def regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "regions", value)
+
+    @property
     @pulumi.getter(name="vnetName")
     def vnet_name(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vnet_name")
@@ -322,6 +354,7 @@ class NetworkContainer(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  region_name: Optional[pulumi.Input[str]] = None,
+                 regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         `NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully.
@@ -356,7 +389,11 @@ class NetworkContainer(pulumi.CustomResource):
         test = mongodbatlas.NetworkContainer("test",
             atlas_cidr_block="10.8.0.0/21",
             project_id="<YOUR-PROJECT-ID>",
-            provider_name="GCP")
+            provider_name="GCP",
+            regions=[
+                "US_EAST_4",
+                "US_WEST_3",
+            ])
         ```
         ### Example with Azure
 
@@ -391,6 +428,7 @@ class NetworkContainer(pulumi.CustomResource):
         :param pulumi.Input[str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         """
         ...
     @overload
@@ -431,7 +469,11 @@ class NetworkContainer(pulumi.CustomResource):
         test = mongodbatlas.NetworkContainer("test",
             atlas_cidr_block="10.8.0.0/21",
             project_id="<YOUR-PROJECT-ID>",
-            provider_name="GCP")
+            provider_name="GCP",
+            regions=[
+                "US_EAST_4",
+                "US_WEST_3",
+            ])
         ```
         ### Example with Azure
 
@@ -476,6 +518,7 @@ class NetworkContainer(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  region_name: Optional[pulumi.Input[str]] = None,
+                 regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -497,6 +540,7 @@ class NetworkContainer(pulumi.CustomResource):
             __props__.__dict__["provider_name"] = provider_name
             __props__.__dict__["region"] = region
             __props__.__dict__["region_name"] = region_name
+            __props__.__dict__["regions"] = regions
             __props__.__dict__["azure_subscription_id"] = None
             __props__.__dict__["container_id"] = None
             __props__.__dict__["gcp_project_id"] = None
@@ -524,6 +568,7 @@ class NetworkContainer(pulumi.CustomResource):
             provisioned: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             region_name: Optional[pulumi.Input[str]] = None,
+            regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             vnet_name: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'NetworkContainer':
         """
@@ -549,6 +594,7 @@ class NetworkContainer(pulumi.CustomResource):
                **AWS ONLY:**
         :param pulumi.Input[str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
         :param pulumi.Input[str] vpc_id: Unique identifier of Atlas' AWS VPC.
                **CGP ONLY:**
         """
@@ -566,6 +612,7 @@ class NetworkContainer(pulumi.CustomResource):
         __props__.__dict__["provisioned"] = provisioned
         __props__.__dict__["region"] = region
         __props__.__dict__["region_name"] = region_name
+        __props__.__dict__["regions"] = regions
         __props__.__dict__["vnet_name"] = vnet_name
         __props__.__dict__["vpc_id"] = vpc_id
         return NetworkContainer(resource_name, opts=opts, __props__=__props__)
@@ -655,6 +702,14 @@ class NetworkContainer(pulumi.CustomResource):
         The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         """
         return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter
+    def regions(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        """
+        return pulumi.get(self, "regions")
 
     @property
     @pulumi.getter(name="vnetName")

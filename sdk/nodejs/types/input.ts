@@ -197,9 +197,23 @@ export interface AlertConfigurationThreshold {
     units?: pulumi.Input<string>;
 }
 
+export interface CloudProviderAccessAuthorizationAws {
+    iamAssumedRoleArn: pulumi.Input<string>;
+}
+
+export interface CloudProviderAccessAuthorizationFeatureUsage {
+    featureId?: pulumi.Input<string>;
+    featureType?: pulumi.Input<string>;
+}
+
 export interface CloudProviderAccessFeatureUsage {
     featureId?: pulumi.Input<string>;
     featureType?: pulumi.Input<string>;
+}
+
+export interface CloudProviderAccessSetupAws {
+    atlasAssumedRoleExternalId?: pulumi.Input<string>;
+    atlasAwsAccountArn?: pulumi.Input<string>;
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicy {
@@ -268,6 +282,20 @@ export interface ClusterBiConnector {
      * - Set to `false` to disable BI Connector for Atlas.
      */
     enabled?: pulumi.Input<string>;
+    /**
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     */
+    readPreference?: pulumi.Input<string>;
+}
+
+export interface ClusterBiConnectorConfig {
+    /**
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * *
+     * - Set to `true` to enable BI Connector for Atlas.
+     * - Set to `false` to disable BI Connector for Atlas.
+     */
+    enabled?: pulumi.Input<boolean>;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      */
@@ -468,9 +496,6 @@ export interface DatabaseUserScope {
 }
 
 export interface EncryptionAtRestAwsKms {
-    /**
-     * The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-     */
     accessKeyId?: pulumi.Input<string>;
     /**
      * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
@@ -488,9 +513,6 @@ export interface EncryptionAtRestAwsKms {
      * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlas.CloudProviderAccess` resource.
      */
     roleId?: pulumi.Input<string>;
-    /**
-     * The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-     */
     secretAccessKey?: pulumi.Input<string>;
 }
 
@@ -595,6 +617,25 @@ export interface GlobalClusterConfigManagedNamespace {
      * The name of the database containing the collection.
      */
     db: pulumi.Input<string>;
+}
+
+export interface LdapConfigurationUserToDnMapping {
+    ldapQuery?: pulumi.Input<string>;
+    match?: pulumi.Input<string>;
+    substitution?: pulumi.Input<string>;
+}
+
+export interface LdapVerifyLink {
+    href?: pulumi.Input<string>;
+    rel?: pulumi.Input<string>;
+}
+
+export interface LdapVerifyValidation {
+    /**
+     * The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+     */
+    status?: pulumi.Input<string>;
+    validationType?: pulumi.Input<string>;
 }
 
 export interface ProjectTeam {

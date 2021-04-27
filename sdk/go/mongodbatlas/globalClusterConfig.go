@@ -36,7 +36,6 @@ import (
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
 // 			ClusterType:              pulumi.String("GEOSHARDED"),
 // 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderDiskIops:         pulumi.Int(240),
 // 			ProviderInstanceSizeName: pulumi.String("M30"),
 // 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 // 				&mongodbatlas.ClusterReplicationSpecArgs{
@@ -114,8 +113,6 @@ import (
 // 			MongoDbMajorVersion:      pulumi.String("4.0"),
 // 			ProviderName:             pulumi.String("AWS"),
 // 			DiskSizeGb:               pulumi.Float64(100),
-// 			ProviderDiskIops:         pulumi.Int(300),
-// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
 // 			ProviderInstanceSizeName: pulumi.String("M40"),
 // 			ProviderRegionName:       pulumi.String("US_EAST_1"),
 // 		})

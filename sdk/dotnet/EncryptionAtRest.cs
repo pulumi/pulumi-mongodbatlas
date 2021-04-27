@@ -40,11 +40,10 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             AwsKms = new Mongodbatlas.Inputs.EncryptionAtRestAwsKmsArgs
     ///             {
-    ///                 Access_key_id = "AKIAIOSFODNN7EXAMPLE",
-    ///                 Customer_master_key_id = "030gce02-586d-48d2-a966-05ea954fde0g",
+    ///                 Customer_master_key_id = "5ce83906-6563-46b7-8045-11c20e3a5766",
     ///                 Enabled = true,
     ///                 Region = "US_EAST_1",
-    ///                 Secret_access_key = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+    ///                 Role_id = "60815e2fe01a49138a928ebb",
     ///             },
     ///             AzureKeyVault = new Mongodbatlas.Inputs.EncryptionAtRestAzureKeyVaultArgs
     ///             {

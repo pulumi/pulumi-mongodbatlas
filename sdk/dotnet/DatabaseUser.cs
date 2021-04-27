@@ -43,6 +43,12 @@ namespace Pulumi.Mongodbatlas
         [Output("labels")]
         public Output<ImmutableArray<Outputs.DatabaseUserLabel>> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        /// </summary>
+        [Output("ldapAuthType")]
+        public Output<string?> LdapAuthType { get; private set; } = null!;
+
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
@@ -62,7 +68,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.DatabaseUserScope>> Scopes { get; private set; } = null!;
 
         /// <summary>
-        /// Username for authenticating to MongoDB.
+        /// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
@@ -146,6 +152,12 @@ namespace Pulumi.Mongodbatlas
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        /// </summary>
+        [Input("ldapAuthType")]
+        public Input<string>? LdapAuthType { get; set; }
+
         [Input("password")]
         public Input<string>? Password { get; set; }
 
@@ -176,7 +188,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Username for authenticating to MongoDB.
+        /// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
@@ -221,6 +233,12 @@ namespace Pulumi.Mongodbatlas
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        /// </summary>
+        [Input("ldapAuthType")]
+        public Input<string>? LdapAuthType { get; set; }
+
         [Input("password")]
         public Input<string>? Password { get; set; }
 
@@ -251,7 +269,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Username for authenticating to MongoDB.
+        /// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }

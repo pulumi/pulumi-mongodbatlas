@@ -330,15 +330,15 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             provider_name="AWS",
             region="us-east-1")
         ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
-            security_group_ids=["sg-3f238186"],
+            vpc_id="vpc-7fc0a543",
             service_name=test_private_link_endpoint.endpoint_service_name,
-            subnet_ids=["subnet-de0406d2"],
             vpc_endpoint_type="Interface",
-            vpc_id="vpc-7fc0a543")
+            subnet_ids=["subnet-de0406d2"],
+            security_group_ids=["sg-3f238186"])
         test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
-            endpoint_service_id=ptfe_service.id,
-            private_link_id=test_private_link_endpoint.private_link_id,
             project_id=test_private_link_endpoint.project_id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            endpoint_service_id=ptfe_service.id,
             provider_name="AWS")
         ```
 
@@ -387,15 +387,15 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             provider_name="AWS",
             region="us-east-1")
         ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
-            security_group_ids=["sg-3f238186"],
+            vpc_id="vpc-7fc0a543",
             service_name=test_private_link_endpoint.endpoint_service_name,
-            subnet_ids=["subnet-de0406d2"],
             vpc_endpoint_type="Interface",
-            vpc_id="vpc-7fc0a543")
+            subnet_ids=["subnet-de0406d2"],
+            security_group_ids=["sg-3f238186"])
         test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService",
-            endpoint_service_id=ptfe_service.id,
-            private_link_id=test_private_link_endpoint.private_link_id,
             project_id=test_private_link_endpoint.project_id,
+            private_link_id=test_private_link_endpoint.private_link_id,
+            endpoint_service_id=ptfe_service.id,
             provider_name="AWS")
         ```
 

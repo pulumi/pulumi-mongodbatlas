@@ -17,8 +17,6 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
     /// ```
-    /// 
-    ///  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccess:CloudProviderAccess")]
     public partial class CloudProviderAccess : Pulumi.CustomResource
@@ -54,13 +52,13 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.CloudProviderAccessFeatureUsage>> FeatureUsages { get; private set; } = null!;
 
         /// <summary>
-        /// - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        /// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         /// </summary>
         [Output("iamAssumedRoleArn")]
         public Output<string?> IamAssumedRoleArn { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to get all Cloud Provider Access
+        /// The unique ID for the project
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -72,7 +70,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProviderName { get; private set; } = null!;
 
         /// <summary>
-        /// Unique ID of this role.
+        /// Unique ID of this role returned by mongodb atlas api
         /// </summary>
         [Output("roleId")]
         public Output<string> RoleId { get; private set; } = null!;
@@ -124,13 +122,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class CloudProviderAccessArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        /// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         /// </summary>
         [Input("iamAssumedRoleArn")]
         public Input<string>? IamAssumedRoleArn { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to get all Cloud Provider Access
+        /// The unique ID for the project
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -185,13 +183,13 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        /// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         /// </summary>
         [Input("iamAssumedRoleArn")]
         public Input<string>? IamAssumedRoleArn { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to get all Cloud Provider Access
+        /// The unique ID for the project
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -203,7 +201,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderName { get; set; }
 
         /// <summary>
-        /// Unique ID of this role.
+        /// Unique ID of this role returned by mongodb atlas api
         /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }

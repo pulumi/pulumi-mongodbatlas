@@ -980,6 +980,232 @@ func (o AlertConfigurationThresholdPtrOutput) Units() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type CloudProviderAccessAuthorizationAws struct {
+	IamAssumedRoleArn string `pulumi:"iamAssumedRoleArn"`
+}
+
+// CloudProviderAccessAuthorizationAwsInput is an input type that accepts CloudProviderAccessAuthorizationAwsArgs and CloudProviderAccessAuthorizationAwsOutput values.
+// You can construct a concrete instance of `CloudProviderAccessAuthorizationAwsInput` via:
+//
+//          CloudProviderAccessAuthorizationAwsArgs{...}
+type CloudProviderAccessAuthorizationAwsInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessAuthorizationAwsOutput() CloudProviderAccessAuthorizationAwsOutput
+	ToCloudProviderAccessAuthorizationAwsOutputWithContext(context.Context) CloudProviderAccessAuthorizationAwsOutput
+}
+
+type CloudProviderAccessAuthorizationAwsArgs struct {
+	IamAssumedRoleArn pulumi.StringInput `pulumi:"iamAssumedRoleArn"`
+}
+
+func (CloudProviderAccessAuthorizationAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessAuthorizationAws)(nil)).Elem()
+}
+
+func (i CloudProviderAccessAuthorizationAwsArgs) ToCloudProviderAccessAuthorizationAwsOutput() CloudProviderAccessAuthorizationAwsOutput {
+	return i.ToCloudProviderAccessAuthorizationAwsOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessAuthorizationAwsArgs) ToCloudProviderAccessAuthorizationAwsOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationAwsOutput)
+}
+
+func (i CloudProviderAccessAuthorizationAwsArgs) ToCloudProviderAccessAuthorizationAwsPtrOutput() CloudProviderAccessAuthorizationAwsPtrOutput {
+	return i.ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessAuthorizationAwsArgs) ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationAwsOutput).ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(ctx)
+}
+
+// CloudProviderAccessAuthorizationAwsPtrInput is an input type that accepts CloudProviderAccessAuthorizationAwsArgs, CloudProviderAccessAuthorizationAwsPtr and CloudProviderAccessAuthorizationAwsPtrOutput values.
+// You can construct a concrete instance of `CloudProviderAccessAuthorizationAwsPtrInput` via:
+//
+//          CloudProviderAccessAuthorizationAwsArgs{...}
+//
+//  or:
+//
+//          nil
+type CloudProviderAccessAuthorizationAwsPtrInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessAuthorizationAwsPtrOutput() CloudProviderAccessAuthorizationAwsPtrOutput
+	ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(context.Context) CloudProviderAccessAuthorizationAwsPtrOutput
+}
+
+type cloudProviderAccessAuthorizationAwsPtrType CloudProviderAccessAuthorizationAwsArgs
+
+func CloudProviderAccessAuthorizationAwsPtr(v *CloudProviderAccessAuthorizationAwsArgs) CloudProviderAccessAuthorizationAwsPtrInput {
+	return (*cloudProviderAccessAuthorizationAwsPtrType)(v)
+}
+
+func (*cloudProviderAccessAuthorizationAwsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderAccessAuthorizationAws)(nil)).Elem()
+}
+
+func (i *cloudProviderAccessAuthorizationAwsPtrType) ToCloudProviderAccessAuthorizationAwsPtrOutput() CloudProviderAccessAuthorizationAwsPtrOutput {
+	return i.ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudProviderAccessAuthorizationAwsPtrType) ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationAwsPtrOutput)
+}
+
+type CloudProviderAccessAuthorizationAwsOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessAuthorizationAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessAuthorizationAws)(nil)).Elem()
+}
+
+func (o CloudProviderAccessAuthorizationAwsOutput) ToCloudProviderAccessAuthorizationAwsOutput() CloudProviderAccessAuthorizationAwsOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationAwsOutput) ToCloudProviderAccessAuthorizationAwsOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAwsOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationAwsOutput) ToCloudProviderAccessAuthorizationAwsPtrOutput() CloudProviderAccessAuthorizationAwsPtrOutput {
+	return o.ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(context.Background())
+}
+
+func (o CloudProviderAccessAuthorizationAwsOutput) ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAwsPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationAws) *CloudProviderAccessAuthorizationAws {
+		return &v
+	}).(CloudProviderAccessAuthorizationAwsPtrOutput)
+}
+func (o CloudProviderAccessAuthorizationAwsOutput) IamAssumedRoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationAws) string { return v.IamAssumedRoleArn }).(pulumi.StringOutput)
+}
+
+type CloudProviderAccessAuthorizationAwsPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessAuthorizationAwsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderAccessAuthorizationAws)(nil)).Elem()
+}
+
+func (o CloudProviderAccessAuthorizationAwsPtrOutput) ToCloudProviderAccessAuthorizationAwsPtrOutput() CloudProviderAccessAuthorizationAwsPtrOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationAwsPtrOutput) ToCloudProviderAccessAuthorizationAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationAwsPtrOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationAwsPtrOutput) Elem() CloudProviderAccessAuthorizationAwsOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorizationAws) CloudProviderAccessAuthorizationAws { return *v }).(CloudProviderAccessAuthorizationAwsOutput)
+}
+
+func (o CloudProviderAccessAuthorizationAwsPtrOutput) IamAssumedRoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorizationAws) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.IamAssumedRoleArn
+	}).(pulumi.StringPtrOutput)
+}
+
+type CloudProviderAccessAuthorizationFeatureUsage struct {
+	FeatureId   *string `pulumi:"featureId"`
+	FeatureType *string `pulumi:"featureType"`
+}
+
+// CloudProviderAccessAuthorizationFeatureUsageInput is an input type that accepts CloudProviderAccessAuthorizationFeatureUsageArgs and CloudProviderAccessAuthorizationFeatureUsageOutput values.
+// You can construct a concrete instance of `CloudProviderAccessAuthorizationFeatureUsageInput` via:
+//
+//          CloudProviderAccessAuthorizationFeatureUsageArgs{...}
+type CloudProviderAccessAuthorizationFeatureUsageInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessAuthorizationFeatureUsageOutput() CloudProviderAccessAuthorizationFeatureUsageOutput
+	ToCloudProviderAccessAuthorizationFeatureUsageOutputWithContext(context.Context) CloudProviderAccessAuthorizationFeatureUsageOutput
+}
+
+type CloudProviderAccessAuthorizationFeatureUsageArgs struct {
+	FeatureId   pulumi.StringPtrInput `pulumi:"featureId"`
+	FeatureType pulumi.StringPtrInput `pulumi:"featureType"`
+}
+
+func (CloudProviderAccessAuthorizationFeatureUsageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessAuthorizationFeatureUsage)(nil)).Elem()
+}
+
+func (i CloudProviderAccessAuthorizationFeatureUsageArgs) ToCloudProviderAccessAuthorizationFeatureUsageOutput() CloudProviderAccessAuthorizationFeatureUsageOutput {
+	return i.ToCloudProviderAccessAuthorizationFeatureUsageOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessAuthorizationFeatureUsageArgs) ToCloudProviderAccessAuthorizationFeatureUsageOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationFeatureUsageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationFeatureUsageOutput)
+}
+
+// CloudProviderAccessAuthorizationFeatureUsageArrayInput is an input type that accepts CloudProviderAccessAuthorizationFeatureUsageArray and CloudProviderAccessAuthorizationFeatureUsageArrayOutput values.
+// You can construct a concrete instance of `CloudProviderAccessAuthorizationFeatureUsageArrayInput` via:
+//
+//          CloudProviderAccessAuthorizationFeatureUsageArray{ CloudProviderAccessAuthorizationFeatureUsageArgs{...} }
+type CloudProviderAccessAuthorizationFeatureUsageArrayInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessAuthorizationFeatureUsageArrayOutput() CloudProviderAccessAuthorizationFeatureUsageArrayOutput
+	ToCloudProviderAccessAuthorizationFeatureUsageArrayOutputWithContext(context.Context) CloudProviderAccessAuthorizationFeatureUsageArrayOutput
+}
+
+type CloudProviderAccessAuthorizationFeatureUsageArray []CloudProviderAccessAuthorizationFeatureUsageInput
+
+func (CloudProviderAccessAuthorizationFeatureUsageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessAuthorizationFeatureUsage)(nil)).Elem()
+}
+
+func (i CloudProviderAccessAuthorizationFeatureUsageArray) ToCloudProviderAccessAuthorizationFeatureUsageArrayOutput() CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
+	return i.ToCloudProviderAccessAuthorizationFeatureUsageArrayOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessAuthorizationFeatureUsageArray) ToCloudProviderAccessAuthorizationFeatureUsageArrayOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationFeatureUsageArrayOutput)
+}
+
+type CloudProviderAccessAuthorizationFeatureUsageOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessAuthorizationFeatureUsageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessAuthorizationFeatureUsage)(nil)).Elem()
+}
+
+func (o CloudProviderAccessAuthorizationFeatureUsageOutput) ToCloudProviderAccessAuthorizationFeatureUsageOutput() CloudProviderAccessAuthorizationFeatureUsageOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationFeatureUsageOutput) ToCloudProviderAccessAuthorizationFeatureUsageOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationFeatureUsageOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationFeatureUsageOutput) FeatureId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationFeatureUsage) *string { return v.FeatureId }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudProviderAccessAuthorizationFeatureUsageOutput) FeatureType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationFeatureUsage) *string { return v.FeatureType }).(pulumi.StringPtrOutput)
+}
+
+type CloudProviderAccessAuthorizationFeatureUsageArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessAuthorizationFeatureUsageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessAuthorizationFeatureUsage)(nil)).Elem()
+}
+
+func (o CloudProviderAccessAuthorizationFeatureUsageArrayOutput) ToCloudProviderAccessAuthorizationFeatureUsageArrayOutput() CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationFeatureUsageArrayOutput) ToCloudProviderAccessAuthorizationFeatureUsageArrayOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
+	return o
+}
+
+func (o CloudProviderAccessAuthorizationFeatureUsageArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessAuthorizationFeatureUsageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessAuthorizationFeatureUsage {
+		return vs[0].([]CloudProviderAccessAuthorizationFeatureUsage)[vs[1].(int)]
+	}).(CloudProviderAccessAuthorizationFeatureUsageOutput)
+}
+
 type CloudProviderAccessFeatureUsage struct {
 	FeatureId   *string `pulumi:"featureId"`
 	FeatureType *string `pulumi:"featureType"`
@@ -1078,6 +1304,147 @@ func (o CloudProviderAccessFeatureUsageArrayOutput) Index(i pulumi.IntInput) Clo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessFeatureUsage {
 		return vs[0].([]CloudProviderAccessFeatureUsage)[vs[1].(int)]
 	}).(CloudProviderAccessFeatureUsageOutput)
+}
+
+type CloudProviderAccessSetupAws struct {
+	AtlasAssumedRoleExternalId *string `pulumi:"atlasAssumedRoleExternalId"`
+	AtlasAwsAccountArn         *string `pulumi:"atlasAwsAccountArn"`
+}
+
+// CloudProviderAccessSetupAwsInput is an input type that accepts CloudProviderAccessSetupAwsArgs and CloudProviderAccessSetupAwsOutput values.
+// You can construct a concrete instance of `CloudProviderAccessSetupAwsInput` via:
+//
+//          CloudProviderAccessSetupAwsArgs{...}
+type CloudProviderAccessSetupAwsInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessSetupAwsOutput() CloudProviderAccessSetupAwsOutput
+	ToCloudProviderAccessSetupAwsOutputWithContext(context.Context) CloudProviderAccessSetupAwsOutput
+}
+
+type CloudProviderAccessSetupAwsArgs struct {
+	AtlasAssumedRoleExternalId pulumi.StringPtrInput `pulumi:"atlasAssumedRoleExternalId"`
+	AtlasAwsAccountArn         pulumi.StringPtrInput `pulumi:"atlasAwsAccountArn"`
+}
+
+func (CloudProviderAccessSetupAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessSetupAws)(nil)).Elem()
+}
+
+func (i CloudProviderAccessSetupAwsArgs) ToCloudProviderAccessSetupAwsOutput() CloudProviderAccessSetupAwsOutput {
+	return i.ToCloudProviderAccessSetupAwsOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessSetupAwsArgs) ToCloudProviderAccessSetupAwsOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAwsOutput)
+}
+
+func (i CloudProviderAccessSetupAwsArgs) ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput {
+	return i.ToCloudProviderAccessSetupAwsPtrOutputWithContext(context.Background())
+}
+
+func (i CloudProviderAccessSetupAwsArgs) ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAwsOutput).ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx)
+}
+
+// CloudProviderAccessSetupAwsPtrInput is an input type that accepts CloudProviderAccessSetupAwsArgs, CloudProviderAccessSetupAwsPtr and CloudProviderAccessSetupAwsPtrOutput values.
+// You can construct a concrete instance of `CloudProviderAccessSetupAwsPtrInput` via:
+//
+//          CloudProviderAccessSetupAwsArgs{...}
+//
+//  or:
+//
+//          nil
+type CloudProviderAccessSetupAwsPtrInput interface {
+	pulumi.Input
+
+	ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput
+	ToCloudProviderAccessSetupAwsPtrOutputWithContext(context.Context) CloudProviderAccessSetupAwsPtrOutput
+}
+
+type cloudProviderAccessSetupAwsPtrType CloudProviderAccessSetupAwsArgs
+
+func CloudProviderAccessSetupAwsPtr(v *CloudProviderAccessSetupAwsArgs) CloudProviderAccessSetupAwsPtrInput {
+	return (*cloudProviderAccessSetupAwsPtrType)(v)
+}
+
+func (*cloudProviderAccessSetupAwsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderAccessSetupAws)(nil)).Elem()
+}
+
+func (i *cloudProviderAccessSetupAwsPtrType) ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput {
+	return i.ToCloudProviderAccessSetupAwsPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudProviderAccessSetupAwsPtrType) ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAwsPtrOutput)
+}
+
+type CloudProviderAccessSetupAwsOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessSetupAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessSetupAws)(nil)).Elem()
+}
+
+func (o CloudProviderAccessSetupAwsOutput) ToCloudProviderAccessSetupAwsOutput() CloudProviderAccessSetupAwsOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupAwsOutput) ToCloudProviderAccessSetupAwsOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupAwsOutput) ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput {
+	return o.ToCloudProviderAccessSetupAwsPtrOutputWithContext(context.Background())
+}
+
+func (o CloudProviderAccessSetupAwsOutput) ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupAws) *CloudProviderAccessSetupAws {
+		return &v
+	}).(CloudProviderAccessSetupAwsPtrOutput)
+}
+func (o CloudProviderAccessSetupAwsOutput) AtlasAssumedRoleExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupAws) *string { return v.AtlasAssumedRoleExternalId }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudProviderAccessSetupAwsOutput) AtlasAwsAccountArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupAws) *string { return v.AtlasAwsAccountArn }).(pulumi.StringPtrOutput)
+}
+
+type CloudProviderAccessSetupAwsPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessSetupAwsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderAccessSetupAws)(nil)).Elem()
+}
+
+func (o CloudProviderAccessSetupAwsPtrOutput) ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupAwsPtrOutput) ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsPtrOutput {
+	return o
+}
+
+func (o CloudProviderAccessSetupAwsPtrOutput) Elem() CloudProviderAccessSetupAwsOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetupAws) CloudProviderAccessSetupAws { return *v }).(CloudProviderAccessSetupAwsOutput)
+}
+
+func (o CloudProviderAccessSetupAwsPtrOutput) AtlasAssumedRoleExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetupAws) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AtlasAssumedRoleExternalId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudProviderAccessSetupAwsPtrOutput) AtlasAwsAccountArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetupAws) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AtlasAwsAccountArn
+	}).(pulumi.StringPtrOutput)
 }
 
 type CloudProviderSnapshotBackupPolicyPolicy struct {
@@ -1937,6 +2304,168 @@ func (o ClusterBiConnectorPtrOutput) Enabled() pulumi.StringPtrOutput {
 // Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 func (o ClusterBiConnectorPtrOutput) ReadPreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterBiConnector) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ReadPreference
+	}).(pulumi.StringPtrOutput)
+}
+
+type ClusterBiConnectorConfig struct {
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// *
+	// - Set to `true` to enable BI Connector for Atlas.
+	// - Set to `false` to disable BI Connector for Atlas.
+	Enabled *bool `pulumi:"enabled"`
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference *string `pulumi:"readPreference"`
+}
+
+// ClusterBiConnectorConfigInput is an input type that accepts ClusterBiConnectorConfigArgs and ClusterBiConnectorConfigOutput values.
+// You can construct a concrete instance of `ClusterBiConnectorConfigInput` via:
+//
+//          ClusterBiConnectorConfigArgs{...}
+type ClusterBiConnectorConfigInput interface {
+	pulumi.Input
+
+	ToClusterBiConnectorConfigOutput() ClusterBiConnectorConfigOutput
+	ToClusterBiConnectorConfigOutputWithContext(context.Context) ClusterBiConnectorConfigOutput
+}
+
+type ClusterBiConnectorConfigArgs struct {
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// *
+	// - Set to `true` to enable BI Connector for Atlas.
+	// - Set to `false` to disable BI Connector for Atlas.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference pulumi.StringPtrInput `pulumi:"readPreference"`
+}
+
+func (ClusterBiConnectorConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterBiConnectorConfig)(nil)).Elem()
+}
+
+func (i ClusterBiConnectorConfigArgs) ToClusterBiConnectorConfigOutput() ClusterBiConnectorConfigOutput {
+	return i.ToClusterBiConnectorConfigOutputWithContext(context.Background())
+}
+
+func (i ClusterBiConnectorConfigArgs) ToClusterBiConnectorConfigOutputWithContext(ctx context.Context) ClusterBiConnectorConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterBiConnectorConfigOutput)
+}
+
+func (i ClusterBiConnectorConfigArgs) ToClusterBiConnectorConfigPtrOutput() ClusterBiConnectorConfigPtrOutput {
+	return i.ToClusterBiConnectorConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterBiConnectorConfigArgs) ToClusterBiConnectorConfigPtrOutputWithContext(ctx context.Context) ClusterBiConnectorConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterBiConnectorConfigOutput).ToClusterBiConnectorConfigPtrOutputWithContext(ctx)
+}
+
+// ClusterBiConnectorConfigPtrInput is an input type that accepts ClusterBiConnectorConfigArgs, ClusterBiConnectorConfigPtr and ClusterBiConnectorConfigPtrOutput values.
+// You can construct a concrete instance of `ClusterBiConnectorConfigPtrInput` via:
+//
+//          ClusterBiConnectorConfigArgs{...}
+//
+//  or:
+//
+//          nil
+type ClusterBiConnectorConfigPtrInput interface {
+	pulumi.Input
+
+	ToClusterBiConnectorConfigPtrOutput() ClusterBiConnectorConfigPtrOutput
+	ToClusterBiConnectorConfigPtrOutputWithContext(context.Context) ClusterBiConnectorConfigPtrOutput
+}
+
+type clusterBiConnectorConfigPtrType ClusterBiConnectorConfigArgs
+
+func ClusterBiConnectorConfigPtr(v *ClusterBiConnectorConfigArgs) ClusterBiConnectorConfigPtrInput {
+	return (*clusterBiConnectorConfigPtrType)(v)
+}
+
+func (*clusterBiConnectorConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterBiConnectorConfig)(nil)).Elem()
+}
+
+func (i *clusterBiConnectorConfigPtrType) ToClusterBiConnectorConfigPtrOutput() ClusterBiConnectorConfigPtrOutput {
+	return i.ToClusterBiConnectorConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterBiConnectorConfigPtrType) ToClusterBiConnectorConfigPtrOutputWithContext(ctx context.Context) ClusterBiConnectorConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterBiConnectorConfigPtrOutput)
+}
+
+type ClusterBiConnectorConfigOutput struct{ *pulumi.OutputState }
+
+func (ClusterBiConnectorConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterBiConnectorConfig)(nil)).Elem()
+}
+
+func (o ClusterBiConnectorConfigOutput) ToClusterBiConnectorConfigOutput() ClusterBiConnectorConfigOutput {
+	return o
+}
+
+func (o ClusterBiConnectorConfigOutput) ToClusterBiConnectorConfigOutputWithContext(ctx context.Context) ClusterBiConnectorConfigOutput {
+	return o
+}
+
+func (o ClusterBiConnectorConfigOutput) ToClusterBiConnectorConfigPtrOutput() ClusterBiConnectorConfigPtrOutput {
+	return o.ToClusterBiConnectorConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterBiConnectorConfigOutput) ToClusterBiConnectorConfigPtrOutputWithContext(ctx context.Context) ClusterBiConnectorConfigPtrOutput {
+	return o.ApplyT(func(v ClusterBiConnectorConfig) *ClusterBiConnectorConfig {
+		return &v
+	}).(ClusterBiConnectorConfigPtrOutput)
+}
+
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// *
+// - Set to `true` to enable BI Connector for Atlas.
+// - Set to `false` to disable BI Connector for Atlas.
+func (o ClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ClusterBiConnectorConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+func (o ClusterBiConnectorConfigOutput) ReadPreference() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterBiConnectorConfig) *string { return v.ReadPreference }).(pulumi.StringPtrOutput)
+}
+
+type ClusterBiConnectorConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterBiConnectorConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterBiConnectorConfig)(nil)).Elem()
+}
+
+func (o ClusterBiConnectorConfigPtrOutput) ToClusterBiConnectorConfigPtrOutput() ClusterBiConnectorConfigPtrOutput {
+	return o
+}
+
+func (o ClusterBiConnectorConfigPtrOutput) ToClusterBiConnectorConfigPtrOutputWithContext(ctx context.Context) ClusterBiConnectorConfigPtrOutput {
+	return o
+}
+
+func (o ClusterBiConnectorConfigPtrOutput) Elem() ClusterBiConnectorConfigOutput {
+	return o.ApplyT(func(v *ClusterBiConnectorConfig) ClusterBiConnectorConfig { return *v }).(ClusterBiConnectorConfigOutput)
+}
+
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// *
+// - Set to `true` to enable BI Connector for Atlas.
+// - Set to `false` to disable BI Connector for Atlas.
+func (o ClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ClusterBiConnectorConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+func (o ClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterBiConnectorConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -3790,7 +4319,6 @@ func (o DatabaseUserScopeArrayOutput) Index(i pulumi.IntInput) DatabaseUserScope
 }
 
 type EncryptionAtRestAwsKms struct {
-	// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId *string `pulumi:"customerMasterKeyId"`
@@ -3799,8 +4327,7 @@ type EncryptionAtRestAwsKms struct {
 	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
 	Region *string `pulumi:"region"`
 	// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
-	RoleId *string `pulumi:"roleId"`
-	// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
+	RoleId          *string `pulumi:"roleId"`
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 }
 
@@ -3816,7 +4343,6 @@ type EncryptionAtRestAwsKmsInput interface {
 }
 
 type EncryptionAtRestAwsKmsArgs struct {
-	// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
 	AccessKeyId pulumi.StringPtrInput `pulumi:"accessKeyId"`
 	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId pulumi.StringPtrInput `pulumi:"customerMasterKeyId"`
@@ -3825,8 +4351,7 @@ type EncryptionAtRestAwsKmsArgs struct {
 	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
-	RoleId pulumi.StringPtrInput `pulumi:"roleId"`
-	// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
+	RoleId          pulumi.StringPtrInput `pulumi:"roleId"`
 	SecretAccessKey pulumi.StringPtrInput `pulumi:"secretAccessKey"`
 }
 
@@ -3906,8 +4431,6 @@ func (o EncryptionAtRestAwsKmsOutput) ToEncryptionAtRestAwsKmsPtrOutputWithConte
 		return &v
 	}).(EncryptionAtRestAwsKmsPtrOutput)
 }
-
-// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
 func (o EncryptionAtRestAwsKmsOutput) AccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.AccessKeyId }).(pulumi.StringPtrOutput)
 }
@@ -3932,7 +4455,6 @@ func (o EncryptionAtRestAwsKmsOutput) RoleId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.RoleId }).(pulumi.StringPtrOutput)
 }
 
-// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
 func (o EncryptionAtRestAwsKmsOutput) SecretAccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.SecretAccessKey }).(pulumi.StringPtrOutput)
 }
@@ -3955,7 +4477,6 @@ func (o EncryptionAtRestAwsKmsPtrOutput) Elem() EncryptionAtRestAwsKmsOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKms) EncryptionAtRestAwsKms { return *v }).(EncryptionAtRestAwsKmsOutput)
 }
 
-// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
 func (o EncryptionAtRestAwsKmsPtrOutput) AccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
 		if v == nil {
@@ -4005,7 +4526,6 @@ func (o EncryptionAtRestAwsKmsPtrOutput) RoleId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
 func (o EncryptionAtRestAwsKmsPtrOutput) SecretAccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
 		if v == nil {
@@ -4686,6 +5206,315 @@ func (o GlobalClusterConfigManagedNamespaceArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GlobalClusterConfigManagedNamespace {
 		return vs[0].([]GlobalClusterConfigManagedNamespace)[vs[1].(int)]
 	}).(GlobalClusterConfigManagedNamespaceOutput)
+}
+
+type LdapConfigurationUserToDnMapping struct {
+	LdapQuery    *string `pulumi:"ldapQuery"`
+	Match        *string `pulumi:"match"`
+	Substitution *string `pulumi:"substitution"`
+}
+
+// LdapConfigurationUserToDnMappingInput is an input type that accepts LdapConfigurationUserToDnMappingArgs and LdapConfigurationUserToDnMappingOutput values.
+// You can construct a concrete instance of `LdapConfigurationUserToDnMappingInput` via:
+//
+//          LdapConfigurationUserToDnMappingArgs{...}
+type LdapConfigurationUserToDnMappingInput interface {
+	pulumi.Input
+
+	ToLdapConfigurationUserToDnMappingOutput() LdapConfigurationUserToDnMappingOutput
+	ToLdapConfigurationUserToDnMappingOutputWithContext(context.Context) LdapConfigurationUserToDnMappingOutput
+}
+
+type LdapConfigurationUserToDnMappingArgs struct {
+	LdapQuery    pulumi.StringPtrInput `pulumi:"ldapQuery"`
+	Match        pulumi.StringPtrInput `pulumi:"match"`
+	Substitution pulumi.StringPtrInput `pulumi:"substitution"`
+}
+
+func (LdapConfigurationUserToDnMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LdapConfigurationUserToDnMapping)(nil)).Elem()
+}
+
+func (i LdapConfigurationUserToDnMappingArgs) ToLdapConfigurationUserToDnMappingOutput() LdapConfigurationUserToDnMappingOutput {
+	return i.ToLdapConfigurationUserToDnMappingOutputWithContext(context.Background())
+}
+
+func (i LdapConfigurationUserToDnMappingArgs) ToLdapConfigurationUserToDnMappingOutputWithContext(ctx context.Context) LdapConfigurationUserToDnMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationUserToDnMappingOutput)
+}
+
+// LdapConfigurationUserToDnMappingArrayInput is an input type that accepts LdapConfigurationUserToDnMappingArray and LdapConfigurationUserToDnMappingArrayOutput values.
+// You can construct a concrete instance of `LdapConfigurationUserToDnMappingArrayInput` via:
+//
+//          LdapConfigurationUserToDnMappingArray{ LdapConfigurationUserToDnMappingArgs{...} }
+type LdapConfigurationUserToDnMappingArrayInput interface {
+	pulumi.Input
+
+	ToLdapConfigurationUserToDnMappingArrayOutput() LdapConfigurationUserToDnMappingArrayOutput
+	ToLdapConfigurationUserToDnMappingArrayOutputWithContext(context.Context) LdapConfigurationUserToDnMappingArrayOutput
+}
+
+type LdapConfigurationUserToDnMappingArray []LdapConfigurationUserToDnMappingInput
+
+func (LdapConfigurationUserToDnMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LdapConfigurationUserToDnMapping)(nil)).Elem()
+}
+
+func (i LdapConfigurationUserToDnMappingArray) ToLdapConfigurationUserToDnMappingArrayOutput() LdapConfigurationUserToDnMappingArrayOutput {
+	return i.ToLdapConfigurationUserToDnMappingArrayOutputWithContext(context.Background())
+}
+
+func (i LdapConfigurationUserToDnMappingArray) ToLdapConfigurationUserToDnMappingArrayOutputWithContext(ctx context.Context) LdapConfigurationUserToDnMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationUserToDnMappingArrayOutput)
+}
+
+type LdapConfigurationUserToDnMappingOutput struct{ *pulumi.OutputState }
+
+func (LdapConfigurationUserToDnMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LdapConfigurationUserToDnMapping)(nil)).Elem()
+}
+
+func (o LdapConfigurationUserToDnMappingOutput) ToLdapConfigurationUserToDnMappingOutput() LdapConfigurationUserToDnMappingOutput {
+	return o
+}
+
+func (o LdapConfigurationUserToDnMappingOutput) ToLdapConfigurationUserToDnMappingOutputWithContext(ctx context.Context) LdapConfigurationUserToDnMappingOutput {
+	return o
+}
+
+func (o LdapConfigurationUserToDnMappingOutput) LdapQuery() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LdapConfigurationUserToDnMapping) *string { return v.LdapQuery }).(pulumi.StringPtrOutput)
+}
+
+func (o LdapConfigurationUserToDnMappingOutput) Match() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LdapConfigurationUserToDnMapping) *string { return v.Match }).(pulumi.StringPtrOutput)
+}
+
+func (o LdapConfigurationUserToDnMappingOutput) Substitution() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LdapConfigurationUserToDnMapping) *string { return v.Substitution }).(pulumi.StringPtrOutput)
+}
+
+type LdapConfigurationUserToDnMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (LdapConfigurationUserToDnMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LdapConfigurationUserToDnMapping)(nil)).Elem()
+}
+
+func (o LdapConfigurationUserToDnMappingArrayOutput) ToLdapConfigurationUserToDnMappingArrayOutput() LdapConfigurationUserToDnMappingArrayOutput {
+	return o
+}
+
+func (o LdapConfigurationUserToDnMappingArrayOutput) ToLdapConfigurationUserToDnMappingArrayOutputWithContext(ctx context.Context) LdapConfigurationUserToDnMappingArrayOutput {
+	return o
+}
+
+func (o LdapConfigurationUserToDnMappingArrayOutput) Index(i pulumi.IntInput) LdapConfigurationUserToDnMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LdapConfigurationUserToDnMapping {
+		return vs[0].([]LdapConfigurationUserToDnMapping)[vs[1].(int)]
+	}).(LdapConfigurationUserToDnMappingOutput)
+}
+
+type LdapVerifyLink struct {
+	Href *string `pulumi:"href"`
+	Rel  *string `pulumi:"rel"`
+}
+
+// LdapVerifyLinkInput is an input type that accepts LdapVerifyLinkArgs and LdapVerifyLinkOutput values.
+// You can construct a concrete instance of `LdapVerifyLinkInput` via:
+//
+//          LdapVerifyLinkArgs{...}
+type LdapVerifyLinkInput interface {
+	pulumi.Input
+
+	ToLdapVerifyLinkOutput() LdapVerifyLinkOutput
+	ToLdapVerifyLinkOutputWithContext(context.Context) LdapVerifyLinkOutput
+}
+
+type LdapVerifyLinkArgs struct {
+	Href pulumi.StringPtrInput `pulumi:"href"`
+	Rel  pulumi.StringPtrInput `pulumi:"rel"`
+}
+
+func (LdapVerifyLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LdapVerifyLink)(nil)).Elem()
+}
+
+func (i LdapVerifyLinkArgs) ToLdapVerifyLinkOutput() LdapVerifyLinkOutput {
+	return i.ToLdapVerifyLinkOutputWithContext(context.Background())
+}
+
+func (i LdapVerifyLinkArgs) ToLdapVerifyLinkOutputWithContext(ctx context.Context) LdapVerifyLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyLinkOutput)
+}
+
+// LdapVerifyLinkArrayInput is an input type that accepts LdapVerifyLinkArray and LdapVerifyLinkArrayOutput values.
+// You can construct a concrete instance of `LdapVerifyLinkArrayInput` via:
+//
+//          LdapVerifyLinkArray{ LdapVerifyLinkArgs{...} }
+type LdapVerifyLinkArrayInput interface {
+	pulumi.Input
+
+	ToLdapVerifyLinkArrayOutput() LdapVerifyLinkArrayOutput
+	ToLdapVerifyLinkArrayOutputWithContext(context.Context) LdapVerifyLinkArrayOutput
+}
+
+type LdapVerifyLinkArray []LdapVerifyLinkInput
+
+func (LdapVerifyLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LdapVerifyLink)(nil)).Elem()
+}
+
+func (i LdapVerifyLinkArray) ToLdapVerifyLinkArrayOutput() LdapVerifyLinkArrayOutput {
+	return i.ToLdapVerifyLinkArrayOutputWithContext(context.Background())
+}
+
+func (i LdapVerifyLinkArray) ToLdapVerifyLinkArrayOutputWithContext(ctx context.Context) LdapVerifyLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyLinkArrayOutput)
+}
+
+type LdapVerifyLinkOutput struct{ *pulumi.OutputState }
+
+func (LdapVerifyLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LdapVerifyLink)(nil)).Elem()
+}
+
+func (o LdapVerifyLinkOutput) ToLdapVerifyLinkOutput() LdapVerifyLinkOutput {
+	return o
+}
+
+func (o LdapVerifyLinkOutput) ToLdapVerifyLinkOutputWithContext(ctx context.Context) LdapVerifyLinkOutput {
+	return o
+}
+
+func (o LdapVerifyLinkOutput) Href() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LdapVerifyLink) *string { return v.Href }).(pulumi.StringPtrOutput)
+}
+
+func (o LdapVerifyLinkOutput) Rel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LdapVerifyLink) *string { return v.Rel }).(pulumi.StringPtrOutput)
+}
+
+type LdapVerifyLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (LdapVerifyLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LdapVerifyLink)(nil)).Elem()
+}
+
+func (o LdapVerifyLinkArrayOutput) ToLdapVerifyLinkArrayOutput() LdapVerifyLinkArrayOutput {
+	return o
+}
+
+func (o LdapVerifyLinkArrayOutput) ToLdapVerifyLinkArrayOutputWithContext(ctx context.Context) LdapVerifyLinkArrayOutput {
+	return o
+}
+
+func (o LdapVerifyLinkArrayOutput) Index(i pulumi.IntInput) LdapVerifyLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LdapVerifyLink {
+		return vs[0].([]LdapVerifyLink)[vs[1].(int)]
+	}).(LdapVerifyLinkOutput)
+}
+
+type LdapVerifyValidation struct {
+	// The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+	Status         *string `pulumi:"status"`
+	ValidationType *string `pulumi:"validationType"`
+}
+
+// LdapVerifyValidationInput is an input type that accepts LdapVerifyValidationArgs and LdapVerifyValidationOutput values.
+// You can construct a concrete instance of `LdapVerifyValidationInput` via:
+//
+//          LdapVerifyValidationArgs{...}
+type LdapVerifyValidationInput interface {
+	pulumi.Input
+
+	ToLdapVerifyValidationOutput() LdapVerifyValidationOutput
+	ToLdapVerifyValidationOutputWithContext(context.Context) LdapVerifyValidationOutput
+}
+
+type LdapVerifyValidationArgs struct {
+	// The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+	Status         pulumi.StringPtrInput `pulumi:"status"`
+	ValidationType pulumi.StringPtrInput `pulumi:"validationType"`
+}
+
+func (LdapVerifyValidationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LdapVerifyValidation)(nil)).Elem()
+}
+
+func (i LdapVerifyValidationArgs) ToLdapVerifyValidationOutput() LdapVerifyValidationOutput {
+	return i.ToLdapVerifyValidationOutputWithContext(context.Background())
+}
+
+func (i LdapVerifyValidationArgs) ToLdapVerifyValidationOutputWithContext(ctx context.Context) LdapVerifyValidationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyValidationOutput)
+}
+
+// LdapVerifyValidationArrayInput is an input type that accepts LdapVerifyValidationArray and LdapVerifyValidationArrayOutput values.
+// You can construct a concrete instance of `LdapVerifyValidationArrayInput` via:
+//
+//          LdapVerifyValidationArray{ LdapVerifyValidationArgs{...} }
+type LdapVerifyValidationArrayInput interface {
+	pulumi.Input
+
+	ToLdapVerifyValidationArrayOutput() LdapVerifyValidationArrayOutput
+	ToLdapVerifyValidationArrayOutputWithContext(context.Context) LdapVerifyValidationArrayOutput
+}
+
+type LdapVerifyValidationArray []LdapVerifyValidationInput
+
+func (LdapVerifyValidationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LdapVerifyValidation)(nil)).Elem()
+}
+
+func (i LdapVerifyValidationArray) ToLdapVerifyValidationArrayOutput() LdapVerifyValidationArrayOutput {
+	return i.ToLdapVerifyValidationArrayOutputWithContext(context.Background())
+}
+
+func (i LdapVerifyValidationArray) ToLdapVerifyValidationArrayOutputWithContext(ctx context.Context) LdapVerifyValidationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyValidationArrayOutput)
+}
+
+type LdapVerifyValidationOutput struct{ *pulumi.OutputState }
+
+func (LdapVerifyValidationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LdapVerifyValidation)(nil)).Elem()
+}
+
+func (o LdapVerifyValidationOutput) ToLdapVerifyValidationOutput() LdapVerifyValidationOutput {
+	return o
+}
+
+func (o LdapVerifyValidationOutput) ToLdapVerifyValidationOutputWithContext(ctx context.Context) LdapVerifyValidationOutput {
+	return o
+}
+
+// The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+func (o LdapVerifyValidationOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LdapVerifyValidation) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o LdapVerifyValidationOutput) ValidationType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LdapVerifyValidation) *string { return v.ValidationType }).(pulumi.StringPtrOutput)
+}
+
+type LdapVerifyValidationArrayOutput struct{ *pulumi.OutputState }
+
+func (LdapVerifyValidationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LdapVerifyValidation)(nil)).Elem()
+}
+
+func (o LdapVerifyValidationArrayOutput) ToLdapVerifyValidationArrayOutput() LdapVerifyValidationArrayOutput {
+	return o
+}
+
+func (o LdapVerifyValidationArrayOutput) ToLdapVerifyValidationArrayOutputWithContext(ctx context.Context) LdapVerifyValidationArrayOutput {
+	return o
+}
+
+func (o LdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) LdapVerifyValidationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LdapVerifyValidation {
+		return vs[0].([]LdapVerifyValidation)[vs[1].(int)]
+	}).(LdapVerifyValidationOutput)
 }
 
 type ProjectTeam struct {
@@ -6055,6 +6884,67 @@ func (o GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput) Index(i pulumi.
 	}).(GetCloudProviderAccessAwsIamRoleFeatureUsageOutput)
 }
 
+type GetCloudProviderAccessSetupAws struct {
+	// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+	AtlasAssumedRoleExternalId string `pulumi:"atlasAssumedRoleExternalId"`
+	// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+	AtlasAwsAccountArn string `pulumi:"atlasAwsAccountArn"`
+}
+
+// GetCloudProviderAccessSetupAwsInput is an input type that accepts GetCloudProviderAccessSetupAwsArgs and GetCloudProviderAccessSetupAwsOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessSetupAwsInput` via:
+//
+//          GetCloudProviderAccessSetupAwsArgs{...}
+type GetCloudProviderAccessSetupAwsInput interface {
+	pulumi.Input
+
+	ToGetCloudProviderAccessSetupAwsOutput() GetCloudProviderAccessSetupAwsOutput
+	ToGetCloudProviderAccessSetupAwsOutputWithContext(context.Context) GetCloudProviderAccessSetupAwsOutput
+}
+
+type GetCloudProviderAccessSetupAwsArgs struct {
+	// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+	AtlasAssumedRoleExternalId pulumi.StringInput `pulumi:"atlasAssumedRoleExternalId"`
+	// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+	AtlasAwsAccountArn pulumi.StringInput `pulumi:"atlasAwsAccountArn"`
+}
+
+func (GetCloudProviderAccessSetupAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessSetupAws)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessSetupAwsArgs) ToGetCloudProviderAccessSetupAwsOutput() GetCloudProviderAccessSetupAwsOutput {
+	return i.ToGetCloudProviderAccessSetupAwsOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessSetupAwsArgs) ToGetCloudProviderAccessSetupAwsOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessSetupAwsOutput)
+}
+
+type GetCloudProviderAccessSetupAwsOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessSetupAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessSetupAws)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessSetupAwsOutput) ToGetCloudProviderAccessSetupAwsOutput() GetCloudProviderAccessSetupAwsOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupAwsOutput) ToGetCloudProviderAccessSetupAwsOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAwsOutput {
+	return o
+}
+
+// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+func (o GetCloudProviderAccessSetupAwsOutput) AtlasAssumedRoleExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupAws) string { return v.AtlasAssumedRoleExternalId }).(pulumi.StringOutput)
+}
+
+// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+func (o GetCloudProviderAccessSetupAwsOutput) AtlasAwsAccountArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupAws) string { return v.AtlasAwsAccountArn }).(pulumi.StringOutput)
+}
+
 type GetCloudProviderSnapshotBackupPolicyPolicy struct {
 	Id          string                                                 `pulumi:"id"`
 	PolicyItems []GetCloudProviderSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
@@ -6723,6 +7613,67 @@ func (o GetClusterBiConnectorOutput) Enabled() pulumi.StringOutput {
 // Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 func (o GetClusterBiConnectorOutput) ReadPreference() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterBiConnector) string { return v.ReadPreference }).(pulumi.StringOutput)
+}
+
+type GetClusterBiConnectorConfig struct {
+	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+	Enabled bool `pulumi:"enabled"`
+	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference string `pulumi:"readPreference"`
+}
+
+// GetClusterBiConnectorConfigInput is an input type that accepts GetClusterBiConnectorConfigArgs and GetClusterBiConnectorConfigOutput values.
+// You can construct a concrete instance of `GetClusterBiConnectorConfigInput` via:
+//
+//          GetClusterBiConnectorConfigArgs{...}
+type GetClusterBiConnectorConfigInput interface {
+	pulumi.Input
+
+	ToGetClusterBiConnectorConfigOutput() GetClusterBiConnectorConfigOutput
+	ToGetClusterBiConnectorConfigOutputWithContext(context.Context) GetClusterBiConnectorConfigOutput
+}
+
+type GetClusterBiConnectorConfigArgs struct {
+	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
+}
+
+func (GetClusterBiConnectorConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterBiConnectorConfig)(nil)).Elem()
+}
+
+func (i GetClusterBiConnectorConfigArgs) ToGetClusterBiConnectorConfigOutput() GetClusterBiConnectorConfigOutput {
+	return i.ToGetClusterBiConnectorConfigOutputWithContext(context.Background())
+}
+
+func (i GetClusterBiConnectorConfigArgs) ToGetClusterBiConnectorConfigOutputWithContext(ctx context.Context) GetClusterBiConnectorConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterBiConnectorConfigOutput)
+}
+
+type GetClusterBiConnectorConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClusterBiConnectorConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterBiConnectorConfig)(nil)).Elem()
+}
+
+func (o GetClusterBiConnectorConfigOutput) ToGetClusterBiConnectorConfigOutput() GetClusterBiConnectorConfigOutput {
+	return o
+}
+
+func (o GetClusterBiConnectorConfigOutput) ToGetClusterBiConnectorConfigOutputWithContext(ctx context.Context) GetClusterBiConnectorConfigOutput {
+	return o
+}
+
+// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+func (o GetClusterBiConnectorConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClusterBiConnectorConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+func (o GetClusterBiConnectorConfigOutput) ReadPreference() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterBiConnectorConfig) string { return v.ReadPreference }).(pulumi.StringOutput)
 }
 
 type GetClusterConnectionStrings struct {
@@ -7771,8 +8722,12 @@ type GetClustersResultType struct {
 	BackingProviderName string `pulumi:"backingProviderName"`
 	// Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
 	BackupEnabled bool `pulumi:"backupEnabled"`
-	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+	//
+	// Deprecated: use bi_connector_config instead
 	BiConnector GetClustersResultBiConnector `pulumi:"biConnector"`
+	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	BiConnectorConfig GetClustersResultBiConnectorConfig `pulumi:"biConnectorConfig"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -7825,7 +8780,7 @@ type GetClustersResultType struct {
 	ProviderDiskIops int `pulumi:"providerDiskIops"`
 	// Describes Azure disk type of the server’s root volume (Azure Only).
 	ProviderDiskTypeName string `pulumi:"providerDiskTypeName"`
-	// Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+	// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
 	ProviderEncryptEbsVolume bool `pulumi:"providerEncryptEbsVolume"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size.
 	ProviderInstanceSizeName string `pulumi:"providerInstanceSizeName"`
@@ -7875,8 +8830,12 @@ type GetClustersResultTypeArgs struct {
 	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
 	// Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
 	BackupEnabled pulumi.BoolInput `pulumi:"backupEnabled"`
-	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+	//
+	// Deprecated: use bi_connector_config instead
 	BiConnector GetClustersResultBiConnectorInput `pulumi:"biConnector"`
+	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	BiConnectorConfig GetClustersResultBiConnectorConfigInput `pulumi:"biConnectorConfig"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -7929,7 +8888,7 @@ type GetClustersResultTypeArgs struct {
 	ProviderDiskIops pulumi.IntInput `pulumi:"providerDiskIops"`
 	// Describes Azure disk type of the server’s root volume (Azure Only).
 	ProviderDiskTypeName pulumi.StringInput `pulumi:"providerDiskTypeName"`
-	// Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+	// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
 	ProviderEncryptEbsVolume pulumi.BoolInput `pulumi:"providerEncryptEbsVolume"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size.
 	ProviderInstanceSizeName pulumi.StringInput `pulumi:"providerInstanceSizeName"`
@@ -8033,9 +8992,16 @@ func (o GetClustersResultTypeOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultType) bool { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
 
-// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+//
+// Deprecated: use bi_connector_config instead
 func (o GetClustersResultTypeOutput) BiConnector() GetClustersResultBiConnectorOutput {
 	return o.ApplyT(func(v GetClustersResultType) GetClustersResultBiConnector { return v.BiConnector }).(GetClustersResultBiConnectorOutput)
+}
+
+// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+func (o GetClustersResultTypeOutput) BiConnectorConfig() GetClustersResultBiConnectorConfigOutput {
+	return o.ApplyT(func(v GetClustersResultType) GetClustersResultBiConnectorConfig { return v.BiConnectorConfig }).(GetClustersResultBiConnectorConfigOutput)
 }
 
 // Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -8150,7 +9116,7 @@ func (o GetClustersResultTypeOutput) ProviderDiskTypeName() pulumi.StringOutput 
 	return o.ApplyT(func(v GetClustersResultType) string { return v.ProviderDiskTypeName }).(pulumi.StringOutput)
 }
 
-// Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
 func (o GetClustersResultTypeOutput) ProviderEncryptEbsVolume() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultType) bool { return v.ProviderEncryptEbsVolume }).(pulumi.BoolOutput)
 }
@@ -8285,6 +9251,67 @@ func (o GetClustersResultBiConnectorOutput) Enabled() pulumi.StringOutput {
 // Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 func (o GetClustersResultBiConnectorOutput) ReadPreference() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultBiConnector) string { return v.ReadPreference }).(pulumi.StringOutput)
+}
+
+type GetClustersResultBiConnectorConfig struct {
+	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+	Enabled bool `pulumi:"enabled"`
+	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference string `pulumi:"readPreference"`
+}
+
+// GetClustersResultBiConnectorConfigInput is an input type that accepts GetClustersResultBiConnectorConfigArgs and GetClustersResultBiConnectorConfigOutput values.
+// You can construct a concrete instance of `GetClustersResultBiConnectorConfigInput` via:
+//
+//          GetClustersResultBiConnectorConfigArgs{...}
+type GetClustersResultBiConnectorConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersResultBiConnectorConfigOutput() GetClustersResultBiConnectorConfigOutput
+	ToGetClustersResultBiConnectorConfigOutputWithContext(context.Context) GetClustersResultBiConnectorConfigOutput
+}
+
+type GetClustersResultBiConnectorConfigArgs struct {
+	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
+}
+
+func (GetClustersResultBiConnectorConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultBiConnectorConfig)(nil)).Elem()
+}
+
+func (i GetClustersResultBiConnectorConfigArgs) ToGetClustersResultBiConnectorConfigOutput() GetClustersResultBiConnectorConfigOutput {
+	return i.ToGetClustersResultBiConnectorConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultBiConnectorConfigArgs) ToGetClustersResultBiConnectorConfigOutputWithContext(ctx context.Context) GetClustersResultBiConnectorConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultBiConnectorConfigOutput)
+}
+
+type GetClustersResultBiConnectorConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultBiConnectorConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultBiConnectorConfig)(nil)).Elem()
+}
+
+func (o GetClustersResultBiConnectorConfigOutput) ToGetClustersResultBiConnectorConfigOutput() GetClustersResultBiConnectorConfigOutput {
+	return o
+}
+
+func (o GetClustersResultBiConnectorConfigOutput) ToGetClustersResultBiConnectorConfigOutputWithContext(ctx context.Context) GetClustersResultBiConnectorConfigOutput {
+	return o
+}
+
+// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+func (o GetClustersResultBiConnectorConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersResultBiConnectorConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+func (o GetClustersResultBiConnectorConfigOutput) ReadPreference() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultBiConnectorConfig) string { return v.ReadPreference }).(pulumi.StringOutput)
 }
 
 type GetClustersResultConnectionStrings struct {
@@ -10386,7 +11413,7 @@ func (o GetDatabaseUserScopeArrayOutput) Index(i pulumi.IntInput) GetDatabaseUse
 type GetDatabaseUsersResultType struct {
 	// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Possible values include:
-	// * `admin` if `x509Type` and `awsIamType` are omitted or NONE.
+	// * `admin` if `x509Type` and `awsIamType` and `ldapAuthType` are omitted or NONE.
 	// * `$external` if:
 	// * `x509Type` is MANAGED or CUSTOMER, or
 	// * `awsIamType` is USER or ROLE.
@@ -10394,6 +11421,8 @@ type GetDatabaseUsersResultType struct {
 	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
 	AwsIamType string                        `pulumi:"awsIamType"`
 	Labels     []GetDatabaseUsersResultLabel `pulumi:"labels"`
+	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+	LdapAuthType string `pulumi:"ldapAuthType"`
 	// The unique ID for the project to get all database users.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -10420,7 +11449,7 @@ type GetDatabaseUsersResultTypeInput interface {
 type GetDatabaseUsersResultTypeArgs struct {
 	// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Possible values include:
-	// * `admin` if `x509Type` and `awsIamType` are omitted or NONE.
+	// * `admin` if `x509Type` and `awsIamType` and `ldapAuthType` are omitted or NONE.
 	// * `$external` if:
 	// * `x509Type` is MANAGED or CUSTOMER, or
 	// * `awsIamType` is USER or ROLE.
@@ -10428,6 +11457,8 @@ type GetDatabaseUsersResultTypeArgs struct {
 	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
 	AwsIamType pulumi.StringInput                    `pulumi:"awsIamType"`
 	Labels     GetDatabaseUsersResultLabelArrayInput `pulumi:"labels"`
+	// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+	LdapAuthType pulumi.StringInput `pulumi:"ldapAuthType"`
 	// The unique ID for the project to get all database users.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -10493,7 +11524,7 @@ func (o GetDatabaseUsersResultTypeOutput) ToGetDatabaseUsersResultTypeOutputWith
 
 // (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 // Possible values include:
-// * `admin` if `x509Type` and `awsIamType` are omitted or NONE.
+// * `admin` if `x509Type` and `awsIamType` and `ldapAuthType` are omitted or NONE.
 // * `$external` if:
 // * `x509Type` is MANAGED or CUSTOMER, or
 // * `awsIamType` is USER or ROLE.
@@ -10508,6 +11539,11 @@ func (o GetDatabaseUsersResultTypeOutput) AwsIamType() pulumi.StringOutput {
 
 func (o GetDatabaseUsersResultTypeOutput) Labels() GetDatabaseUsersResultLabelArrayOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultType) []GetDatabaseUsersResultLabel { return v.Labels }).(GetDatabaseUsersResultLabelArrayOutput)
+}
+
+// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+func (o GetDatabaseUsersResultTypeOutput) LdapAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseUsersResultType) string { return v.LdapAuthType }).(pulumi.StringOutput)
 }
 
 // The unique ID for the project to get all database users.
@@ -10994,6 +12030,315 @@ func (o GetGlobalClusterConfigManagedNamespaceArrayOutput) Index(i pulumi.IntInp
 	}).(GetGlobalClusterConfigManagedNamespaceOutput)
 }
 
+type GetLdapConfigurationUserToDnMapping struct {
+	LdapQuery    string `pulumi:"ldapQuery"`
+	Match        string `pulumi:"match"`
+	Substitution string `pulumi:"substitution"`
+}
+
+// GetLdapConfigurationUserToDnMappingInput is an input type that accepts GetLdapConfigurationUserToDnMappingArgs and GetLdapConfigurationUserToDnMappingOutput values.
+// You can construct a concrete instance of `GetLdapConfigurationUserToDnMappingInput` via:
+//
+//          GetLdapConfigurationUserToDnMappingArgs{...}
+type GetLdapConfigurationUserToDnMappingInput interface {
+	pulumi.Input
+
+	ToGetLdapConfigurationUserToDnMappingOutput() GetLdapConfigurationUserToDnMappingOutput
+	ToGetLdapConfigurationUserToDnMappingOutputWithContext(context.Context) GetLdapConfigurationUserToDnMappingOutput
+}
+
+type GetLdapConfigurationUserToDnMappingArgs struct {
+	LdapQuery    pulumi.StringInput `pulumi:"ldapQuery"`
+	Match        pulumi.StringInput `pulumi:"match"`
+	Substitution pulumi.StringInput `pulumi:"substitution"`
+}
+
+func (GetLdapConfigurationUserToDnMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLdapConfigurationUserToDnMapping)(nil)).Elem()
+}
+
+func (i GetLdapConfigurationUserToDnMappingArgs) ToGetLdapConfigurationUserToDnMappingOutput() GetLdapConfigurationUserToDnMappingOutput {
+	return i.ToGetLdapConfigurationUserToDnMappingOutputWithContext(context.Background())
+}
+
+func (i GetLdapConfigurationUserToDnMappingArgs) ToGetLdapConfigurationUserToDnMappingOutputWithContext(ctx context.Context) GetLdapConfigurationUserToDnMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLdapConfigurationUserToDnMappingOutput)
+}
+
+// GetLdapConfigurationUserToDnMappingArrayInput is an input type that accepts GetLdapConfigurationUserToDnMappingArray and GetLdapConfigurationUserToDnMappingArrayOutput values.
+// You can construct a concrete instance of `GetLdapConfigurationUserToDnMappingArrayInput` via:
+//
+//          GetLdapConfigurationUserToDnMappingArray{ GetLdapConfigurationUserToDnMappingArgs{...} }
+type GetLdapConfigurationUserToDnMappingArrayInput interface {
+	pulumi.Input
+
+	ToGetLdapConfigurationUserToDnMappingArrayOutput() GetLdapConfigurationUserToDnMappingArrayOutput
+	ToGetLdapConfigurationUserToDnMappingArrayOutputWithContext(context.Context) GetLdapConfigurationUserToDnMappingArrayOutput
+}
+
+type GetLdapConfigurationUserToDnMappingArray []GetLdapConfigurationUserToDnMappingInput
+
+func (GetLdapConfigurationUserToDnMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLdapConfigurationUserToDnMapping)(nil)).Elem()
+}
+
+func (i GetLdapConfigurationUserToDnMappingArray) ToGetLdapConfigurationUserToDnMappingArrayOutput() GetLdapConfigurationUserToDnMappingArrayOutput {
+	return i.ToGetLdapConfigurationUserToDnMappingArrayOutputWithContext(context.Background())
+}
+
+func (i GetLdapConfigurationUserToDnMappingArray) ToGetLdapConfigurationUserToDnMappingArrayOutputWithContext(ctx context.Context) GetLdapConfigurationUserToDnMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLdapConfigurationUserToDnMappingArrayOutput)
+}
+
+type GetLdapConfigurationUserToDnMappingOutput struct{ *pulumi.OutputState }
+
+func (GetLdapConfigurationUserToDnMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLdapConfigurationUserToDnMapping)(nil)).Elem()
+}
+
+func (o GetLdapConfigurationUserToDnMappingOutput) ToGetLdapConfigurationUserToDnMappingOutput() GetLdapConfigurationUserToDnMappingOutput {
+	return o
+}
+
+func (o GetLdapConfigurationUserToDnMappingOutput) ToGetLdapConfigurationUserToDnMappingOutputWithContext(ctx context.Context) GetLdapConfigurationUserToDnMappingOutput {
+	return o
+}
+
+func (o GetLdapConfigurationUserToDnMappingOutput) LdapQuery() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.LdapQuery }).(pulumi.StringOutput)
+}
+
+func (o GetLdapConfigurationUserToDnMappingOutput) Match() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.Match }).(pulumi.StringOutput)
+}
+
+func (o GetLdapConfigurationUserToDnMappingOutput) Substitution() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLdapConfigurationUserToDnMapping) string { return v.Substitution }).(pulumi.StringOutput)
+}
+
+type GetLdapConfigurationUserToDnMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLdapConfigurationUserToDnMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLdapConfigurationUserToDnMapping)(nil)).Elem()
+}
+
+func (o GetLdapConfigurationUserToDnMappingArrayOutput) ToGetLdapConfigurationUserToDnMappingArrayOutput() GetLdapConfigurationUserToDnMappingArrayOutput {
+	return o
+}
+
+func (o GetLdapConfigurationUserToDnMappingArrayOutput) ToGetLdapConfigurationUserToDnMappingArrayOutputWithContext(ctx context.Context) GetLdapConfigurationUserToDnMappingArrayOutput {
+	return o
+}
+
+func (o GetLdapConfigurationUserToDnMappingArrayOutput) Index(i pulumi.IntInput) GetLdapConfigurationUserToDnMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLdapConfigurationUserToDnMapping {
+		return vs[0].([]GetLdapConfigurationUserToDnMapping)[vs[1].(int)]
+	}).(GetLdapConfigurationUserToDnMappingOutput)
+}
+
+type GetLdapVerifyLink struct {
+	Href string `pulumi:"href"`
+	Rel  string `pulumi:"rel"`
+}
+
+// GetLdapVerifyLinkInput is an input type that accepts GetLdapVerifyLinkArgs and GetLdapVerifyLinkOutput values.
+// You can construct a concrete instance of `GetLdapVerifyLinkInput` via:
+//
+//          GetLdapVerifyLinkArgs{...}
+type GetLdapVerifyLinkInput interface {
+	pulumi.Input
+
+	ToGetLdapVerifyLinkOutput() GetLdapVerifyLinkOutput
+	ToGetLdapVerifyLinkOutputWithContext(context.Context) GetLdapVerifyLinkOutput
+}
+
+type GetLdapVerifyLinkArgs struct {
+	Href pulumi.StringInput `pulumi:"href"`
+	Rel  pulumi.StringInput `pulumi:"rel"`
+}
+
+func (GetLdapVerifyLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLdapVerifyLink)(nil)).Elem()
+}
+
+func (i GetLdapVerifyLinkArgs) ToGetLdapVerifyLinkOutput() GetLdapVerifyLinkOutput {
+	return i.ToGetLdapVerifyLinkOutputWithContext(context.Background())
+}
+
+func (i GetLdapVerifyLinkArgs) ToGetLdapVerifyLinkOutputWithContext(ctx context.Context) GetLdapVerifyLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLdapVerifyLinkOutput)
+}
+
+// GetLdapVerifyLinkArrayInput is an input type that accepts GetLdapVerifyLinkArray and GetLdapVerifyLinkArrayOutput values.
+// You can construct a concrete instance of `GetLdapVerifyLinkArrayInput` via:
+//
+//          GetLdapVerifyLinkArray{ GetLdapVerifyLinkArgs{...} }
+type GetLdapVerifyLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetLdapVerifyLinkArrayOutput() GetLdapVerifyLinkArrayOutput
+	ToGetLdapVerifyLinkArrayOutputWithContext(context.Context) GetLdapVerifyLinkArrayOutput
+}
+
+type GetLdapVerifyLinkArray []GetLdapVerifyLinkInput
+
+func (GetLdapVerifyLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLdapVerifyLink)(nil)).Elem()
+}
+
+func (i GetLdapVerifyLinkArray) ToGetLdapVerifyLinkArrayOutput() GetLdapVerifyLinkArrayOutput {
+	return i.ToGetLdapVerifyLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetLdapVerifyLinkArray) ToGetLdapVerifyLinkArrayOutputWithContext(ctx context.Context) GetLdapVerifyLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLdapVerifyLinkArrayOutput)
+}
+
+type GetLdapVerifyLinkOutput struct{ *pulumi.OutputState }
+
+func (GetLdapVerifyLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLdapVerifyLink)(nil)).Elem()
+}
+
+func (o GetLdapVerifyLinkOutput) ToGetLdapVerifyLinkOutput() GetLdapVerifyLinkOutput {
+	return o
+}
+
+func (o GetLdapVerifyLinkOutput) ToGetLdapVerifyLinkOutputWithContext(ctx context.Context) GetLdapVerifyLinkOutput {
+	return o
+}
+
+func (o GetLdapVerifyLinkOutput) Href() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLdapVerifyLink) string { return v.Href }).(pulumi.StringOutput)
+}
+
+func (o GetLdapVerifyLinkOutput) Rel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLdapVerifyLink) string { return v.Rel }).(pulumi.StringOutput)
+}
+
+type GetLdapVerifyLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLdapVerifyLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLdapVerifyLink)(nil)).Elem()
+}
+
+func (o GetLdapVerifyLinkArrayOutput) ToGetLdapVerifyLinkArrayOutput() GetLdapVerifyLinkArrayOutput {
+	return o
+}
+
+func (o GetLdapVerifyLinkArrayOutput) ToGetLdapVerifyLinkArrayOutputWithContext(ctx context.Context) GetLdapVerifyLinkArrayOutput {
+	return o
+}
+
+func (o GetLdapVerifyLinkArrayOutput) Index(i pulumi.IntInput) GetLdapVerifyLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLdapVerifyLink {
+		return vs[0].([]GetLdapVerifyLink)[vs[1].(int)]
+	}).(GetLdapVerifyLinkOutput)
+}
+
+type GetLdapVerifyValidation struct {
+	// The current status of the LDAP over TLS/SSL configuration.
+	Status         string `pulumi:"status"`
+	ValidationType string `pulumi:"validationType"`
+}
+
+// GetLdapVerifyValidationInput is an input type that accepts GetLdapVerifyValidationArgs and GetLdapVerifyValidationOutput values.
+// You can construct a concrete instance of `GetLdapVerifyValidationInput` via:
+//
+//          GetLdapVerifyValidationArgs{...}
+type GetLdapVerifyValidationInput interface {
+	pulumi.Input
+
+	ToGetLdapVerifyValidationOutput() GetLdapVerifyValidationOutput
+	ToGetLdapVerifyValidationOutputWithContext(context.Context) GetLdapVerifyValidationOutput
+}
+
+type GetLdapVerifyValidationArgs struct {
+	// The current status of the LDAP over TLS/SSL configuration.
+	Status         pulumi.StringInput `pulumi:"status"`
+	ValidationType pulumi.StringInput `pulumi:"validationType"`
+}
+
+func (GetLdapVerifyValidationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLdapVerifyValidation)(nil)).Elem()
+}
+
+func (i GetLdapVerifyValidationArgs) ToGetLdapVerifyValidationOutput() GetLdapVerifyValidationOutput {
+	return i.ToGetLdapVerifyValidationOutputWithContext(context.Background())
+}
+
+func (i GetLdapVerifyValidationArgs) ToGetLdapVerifyValidationOutputWithContext(ctx context.Context) GetLdapVerifyValidationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLdapVerifyValidationOutput)
+}
+
+// GetLdapVerifyValidationArrayInput is an input type that accepts GetLdapVerifyValidationArray and GetLdapVerifyValidationArrayOutput values.
+// You can construct a concrete instance of `GetLdapVerifyValidationArrayInput` via:
+//
+//          GetLdapVerifyValidationArray{ GetLdapVerifyValidationArgs{...} }
+type GetLdapVerifyValidationArrayInput interface {
+	pulumi.Input
+
+	ToGetLdapVerifyValidationArrayOutput() GetLdapVerifyValidationArrayOutput
+	ToGetLdapVerifyValidationArrayOutputWithContext(context.Context) GetLdapVerifyValidationArrayOutput
+}
+
+type GetLdapVerifyValidationArray []GetLdapVerifyValidationInput
+
+func (GetLdapVerifyValidationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLdapVerifyValidation)(nil)).Elem()
+}
+
+func (i GetLdapVerifyValidationArray) ToGetLdapVerifyValidationArrayOutput() GetLdapVerifyValidationArrayOutput {
+	return i.ToGetLdapVerifyValidationArrayOutputWithContext(context.Background())
+}
+
+func (i GetLdapVerifyValidationArray) ToGetLdapVerifyValidationArrayOutputWithContext(ctx context.Context) GetLdapVerifyValidationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLdapVerifyValidationArrayOutput)
+}
+
+type GetLdapVerifyValidationOutput struct{ *pulumi.OutputState }
+
+func (GetLdapVerifyValidationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLdapVerifyValidation)(nil)).Elem()
+}
+
+func (o GetLdapVerifyValidationOutput) ToGetLdapVerifyValidationOutput() GetLdapVerifyValidationOutput {
+	return o
+}
+
+func (o GetLdapVerifyValidationOutput) ToGetLdapVerifyValidationOutputWithContext(ctx context.Context) GetLdapVerifyValidationOutput {
+	return o
+}
+
+// The current status of the LDAP over TLS/SSL configuration.
+func (o GetLdapVerifyValidationOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLdapVerifyValidation) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o GetLdapVerifyValidationOutput) ValidationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLdapVerifyValidation) string { return v.ValidationType }).(pulumi.StringOutput)
+}
+
+type GetLdapVerifyValidationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLdapVerifyValidationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLdapVerifyValidation)(nil)).Elem()
+}
+
+func (o GetLdapVerifyValidationArrayOutput) ToGetLdapVerifyValidationArrayOutput() GetLdapVerifyValidationArrayOutput {
+	return o
+}
+
+func (o GetLdapVerifyValidationArrayOutput) ToGetLdapVerifyValidationArrayOutputWithContext(ctx context.Context) GetLdapVerifyValidationArrayOutput {
+	return o
+}
+
+func (o GetLdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) GetLdapVerifyValidationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLdapVerifyValidation {
+		return vs[0].([]GetLdapVerifyValidation)[vs[1].(int)]
+	}).(GetLdapVerifyValidationOutput)
+}
+
 type GetNetworkContainersResultType struct {
 	// CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
 	AtlasCidrBlock string `pulumi:"atlasCidrBlock"`
@@ -11013,6 +12358,8 @@ type GetNetworkContainersResultType struct {
 	Region string `pulumi:"region"`
 	// The Atlas AWS region name for where this container exists.
 	RegionName string `pulumi:"regionName"`
+	// Atlas GCP regions where the container resides.
+	Regions []string `pulumi:"regions"`
 	// The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
 	VnetName string `pulumi:"vnetName"`
 	// Unique identifier of the project’s VPC.
@@ -11049,6 +12396,8 @@ type GetNetworkContainersResultTypeArgs struct {
 	Region pulumi.StringInput `pulumi:"region"`
 	// The Atlas AWS region name for where this container exists.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
+	// Atlas GCP regions where the container resides.
+	Regions pulumi.StringArrayInput `pulumi:"regions"`
 	// The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
 	VnetName pulumi.StringInput `pulumi:"vnetName"`
 	// Unique identifier of the project’s VPC.
@@ -11149,6 +12498,11 @@ func (o GetNetworkContainersResultTypeOutput) Region() pulumi.StringOutput {
 // The Atlas AWS region name for where this container exists.
 func (o GetNetworkContainersResultTypeOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNetworkContainersResultType) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// Atlas GCP regions where the container resides.
+func (o GetNetworkContainersResultTypeOutput) Regions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNetworkContainersResultType) []string { return v.Regions }).(pulumi.StringArrayOutput)
 }
 
 // The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
@@ -12071,8 +13425,14 @@ func init() {
 	pulumi.RegisterOutputType(AlertConfigurationNotificationArrayOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationThresholdOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationThresholdPtrOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAwsOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAwsPtrOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessFeatureUsageOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessFeatureUsageArrayOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput{})
@@ -12083,6 +13443,8 @@ func init() {
 	pulumi.RegisterOutputType(ClusterAdvancedConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(ClusterBiConnectorOutput{})
 	pulumi.RegisterOutputType(ClusterBiConnectorPtrOutput{})
+	pulumi.RegisterOutputType(ClusterBiConnectorConfigOutput{})
+	pulumi.RegisterOutputType(ClusterBiConnectorConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterConnectionStringsOutput{})
 	pulumi.RegisterOutputType(ClusterConnectionStringsPtrOutput{})
 	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointOutput{})
@@ -12123,6 +13485,12 @@ func init() {
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigManagedNamespaceOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigManagedNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(LdapConfigurationUserToDnMappingOutput{})
+	pulumi.RegisterOutputType(LdapConfigurationUserToDnMappingArrayOutput{})
+	pulumi.RegisterOutputType(LdapVerifyLinkOutput{})
+	pulumi.RegisterOutputType(LdapVerifyLinkArrayOutput{})
+	pulumi.RegisterOutputType(LdapVerifyValidationOutput{})
+	pulumi.RegisterOutputType(LdapVerifyValidationArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTeamOutput{})
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
@@ -12139,6 +13507,7 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleFeatureUsageOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAwsOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput{})
@@ -12148,6 +13517,7 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotsResultTypeOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotsResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterBiConnectorOutput{})
+	pulumi.RegisterOutputType(GetClusterBiConnectorConfigOutput{})
 	pulumi.RegisterOutputType(GetClusterConnectionStringsOutput{})
 	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointOutput{})
 	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointArrayOutput{})
@@ -12168,6 +13538,7 @@ func init() {
 	pulumi.RegisterOutputType(GetClustersResultTypeOutput{})
 	pulumi.RegisterOutputType(GetClustersResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultBiConnectorOutput{})
+	pulumi.RegisterOutputType(GetClustersResultBiConnectorConfigOutput{})
 	pulumi.RegisterOutputType(GetClustersResultConnectionStringsOutput{})
 	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointOutput{})
 	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointArrayOutput{})
@@ -12215,6 +13586,12 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseUsersResultScopeArrayOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceArrayOutput{})
+	pulumi.RegisterOutputType(GetLdapConfigurationUserToDnMappingOutput{})
+	pulumi.RegisterOutputType(GetLdapConfigurationUserToDnMappingArrayOutput{})
+	pulumi.RegisterOutputType(GetLdapVerifyLinkOutput{})
+	pulumi.RegisterOutputType(GetLdapVerifyLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetLdapVerifyValidationOutput{})
+	pulumi.RegisterOutputType(GetLdapVerifyValidationArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultTypeOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkPeeringsResultTypeOutput{})

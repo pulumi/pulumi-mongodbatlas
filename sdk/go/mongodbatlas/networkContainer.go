@@ -63,6 +63,10 @@ import (
 // 			AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
 // 			ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
 // 			ProviderName:   pulumi.String("GCP"),
+// 			Regions: pulumi.StringArray{
+// 				pulumi.String("US_EAST_4"),
+// 				pulumi.String("US_WEST_3"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -135,7 +139,9 @@ type NetworkContainer struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	RegionName pulumi.StringOutput `pulumi:"regionName"`
-	VnetName   pulumi.StringOutput `pulumi:"vnetName"`
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	Regions  pulumi.StringArrayOutput `pulumi:"regions"`
+	VnetName pulumi.StringOutput      `pulumi:"vnetName"`
 	// Unique identifier of Atlas' AWS VPC.
 	// **CGP ONLY:**
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
@@ -202,7 +208,9 @@ type networkContainerState struct {
 	Region *string `pulumi:"region"`
 	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	RegionName *string `pulumi:"regionName"`
-	VnetName   *string `pulumi:"vnetName"`
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	Regions  []string `pulumi:"regions"`
+	VnetName *string  `pulumi:"vnetName"`
 	// Unique identifier of Atlas' AWS VPC.
 	// **CGP ONLY:**
 	VpcId *string `pulumi:"vpcId"`
@@ -235,7 +243,9 @@ type NetworkContainerState struct {
 	Region pulumi.StringPtrInput
 	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	RegionName pulumi.StringPtrInput
-	VnetName   pulumi.StringPtrInput
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	Regions  pulumi.StringArrayInput
+	VnetName pulumi.StringPtrInput
 	// Unique identifier of Atlas' AWS VPC.
 	// **CGP ONLY:**
 	VpcId pulumi.StringPtrInput
@@ -259,6 +269,8 @@ type networkContainerArgs struct {
 	Region *string `pulumi:"region"`
 	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	RegionName *string `pulumi:"regionName"`
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	Regions []string `pulumi:"regions"`
 }
 
 // The set of arguments for constructing a NetworkContainer resource.
@@ -276,6 +288,8 @@ type NetworkContainerArgs struct {
 	Region pulumi.StringPtrInput
 	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	RegionName pulumi.StringPtrInput
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	Regions pulumi.StringArrayInput
 }
 
 func (NetworkContainerArgs) ElementType() reflect.Type {

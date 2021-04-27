@@ -24,20 +24,20 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := mongodbatlas.NewDatabaseUser(ctx, "testDatabaseUser", &mongodbatlas.DatabaseUserArgs{
-// 			DatabaseName: pulumi.String("admin"),
+// 			Username:     pulumi.String("test-acc-username"),
 // 			Password:     pulumi.String("test-acc-password"),
 // 			ProjectId:    pulumi.String("<PROJECT-ID>"),
+// 			DatabaseName: pulumi.String("admin"),
 // 			Roles: mongodbatlas.DatabaseUserRoleArray{
 // 				&mongodbatlas.DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
 // 					RoleName:     pulumi.String("readWrite"),
+// 					DatabaseName: pulumi.String("admin"),
 // 				},
 // 				&mongodbatlas.DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
 // 					RoleName:     pulumi.String("atlasAdmin"),
+// 					DatabaseName: pulumi.String("admin"),
 // 				},
 // 			},
-// 			Username: pulumi.String("test-acc-username"),
 // 		})
 // 		if err != nil {
 // 			return err

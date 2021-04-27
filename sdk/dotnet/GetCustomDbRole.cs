@@ -30,6 +30,8 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         var testRole = new Mongodbatlas.CustomDbRole("testRole", new Mongodbatlas.CustomDbRoleArgs
         ///         {
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             RoleName = "myCustomRole",
         ///             Actions = 
         ///             {
         ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
@@ -57,8 +59,6 @@ namespace Pulumi.Mongodbatlas
         ///                     },
         ///                 },
         ///             },
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             RoleName = "myCustomRole",
         ///         });
         ///         var test = Output.Tuple(testRole.ProjectId, testRole.RoleName).Apply(values =&gt;
         ///         {

@@ -14,12 +14,16 @@ __all__ = [
     'AlertConfigurationMetricThreshold',
     'AlertConfigurationNotification',
     'AlertConfigurationThreshold',
+    'CloudProviderAccessAuthorizationAws',
+    'CloudProviderAccessAuthorizationFeatureUsage',
     'CloudProviderAccessFeatureUsage',
+    'CloudProviderAccessSetupAws',
     'CloudProviderSnapshotBackupPolicyPolicy',
     'CloudProviderSnapshotBackupPolicyPolicyPolicyItem',
     'CloudProviderSnapshotRestoreJobDeliveryType',
     'ClusterAdvancedConfiguration',
     'ClusterBiConnector',
+    'ClusterBiConnectorConfig',
     'ClusterConnectionStrings',
     'ClusterConnectionStringsPrivateEndpoint',
     'ClusterConnectionStringsPrivateEndpointEndpoint',
@@ -40,6 +44,9 @@ __all__ = [
     'EncryptionAtRestGoogleCloudKms',
     'GlobalClusterConfigCustomZoneMapping',
     'GlobalClusterConfigManagedNamespace',
+    'LdapConfigurationUserToDnMapping',
+    'LdapVerifyLink',
+    'LdapVerifyValidation',
     'ProjectTeam',
     'X509AuthenticationDatabaseUserCertificate',
     'Get509AuthenticationDatabaseUserCertificateResult',
@@ -49,11 +56,13 @@ __all__ = [
     'GetAlertConfigurationThresholdResult',
     'GetCloudProviderAccessAwsIamRoleResult',
     'GetCloudProviderAccessAwsIamRoleFeatureUsageResult',
+    'GetCloudProviderAccessSetupAwsResult',
     'GetCloudProviderSnapshotBackupPolicyPolicyResult',
     'GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetCloudProviderSnapshotRestoreJobsResultResult',
     'GetCloudProviderSnapshotsResultResult',
     'GetClusterBiConnectorResult',
+    'GetClusterBiConnectorConfigResult',
     'GetClusterConnectionStringsResult',
     'GetClusterConnectionStringsPrivateEndpointResult',
     'GetClusterConnectionStringsPrivateEndpointEndpointResult',
@@ -65,6 +74,7 @@ __all__ = [
     'GetClusterSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetClustersResultResult',
     'GetClustersResultBiConnectorResult',
+    'GetClustersResultBiConnectorConfigResult',
     'GetClustersResultConnectionStringsResult',
     'GetClustersResultConnectionStringsPrivateEndpointResult',
     'GetClustersResultConnectionStringsPrivateEndpointEndpointResult',
@@ -89,6 +99,9 @@ __all__ = [
     'GetDatabaseUsersResultRoleResult',
     'GetDatabaseUsersResultScopeResult',
     'GetGlobalClusterConfigManagedNamespaceResult',
+    'GetLdapConfigurationUserToDnMappingResult',
+    'GetLdapVerifyLinkResult',
+    'GetLdapVerifyValidationResult',
     'GetNetworkContainersResultResult',
     'GetNetworkPeeringsResultResult',
     'GetProjectTeamResult',
@@ -711,6 +724,75 @@ class AlertConfigurationThreshold(dict):
 
 
 @pulumi.output_type
+class CloudProviderAccessAuthorizationAws(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "iamAssumedRoleArn":
+            suggest = "iam_assumed_role_arn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessAuthorizationAws. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderAccessAuthorizationAws.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderAccessAuthorizationAws.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 iam_assumed_role_arn: str):
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> str:
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+
+@pulumi.output_type
+class CloudProviderAccessAuthorizationFeatureUsage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "featureId":
+            suggest = "feature_id"
+        elif key == "featureType":
+            suggest = "feature_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessAuthorizationFeatureUsage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderAccessAuthorizationFeatureUsage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderAccessAuthorizationFeatureUsage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 feature_id: Optional[str] = None,
+                 feature_type: Optional[str] = None):
+        if feature_id is not None:
+            pulumi.set(__self__, "feature_id", feature_id)
+        if feature_type is not None:
+            pulumi.set(__self__, "feature_type", feature_type)
+
+    @property
+    @pulumi.getter(name="featureId")
+    def feature_id(self) -> Optional[str]:
+        return pulumi.get(self, "feature_id")
+
+    @property
+    @pulumi.getter(name="featureType")
+    def feature_type(self) -> Optional[str]:
+        return pulumi.get(self, "feature_type")
+
+
+@pulumi.output_type
 class CloudProviderAccessFeatureUsage(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -748,6 +830,46 @@ class CloudProviderAccessFeatureUsage(dict):
     @pulumi.getter(name="featureType")
     def feature_type(self) -> Optional[str]:
         return pulumi.get(self, "feature_type")
+
+
+@pulumi.output_type
+class CloudProviderAccessSetupAws(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "atlasAssumedRoleExternalId":
+            suggest = "atlas_assumed_role_external_id"
+        elif key == "atlasAwsAccountArn":
+            suggest = "atlas_aws_account_arn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessSetupAws. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudProviderAccessSetupAws.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudProviderAccessSetupAws.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 atlas_assumed_role_external_id: Optional[str] = None,
+                 atlas_aws_account_arn: Optional[str] = None):
+        if atlas_assumed_role_external_id is not None:
+            pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+        if atlas_aws_account_arn is not None:
+            pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
+
+    @property
+    @pulumi.getter(name="atlasAssumedRoleExternalId")
+    def atlas_assumed_role_external_id(self) -> Optional[str]:
+        return pulumi.get(self, "atlas_assumed_role_external_id")
+
+    @property
+    @pulumi.getter(name="atlasAwsAccountArn")
+    def atlas_aws_account_arn(self) -> Optional[str]:
+        return pulumi.get(self, "atlas_aws_account_arn")
 
 
 @pulumi.output_type
@@ -1108,6 +1230,60 @@ class ClusterBiConnector(dict):
     @property
     @pulumi.getter
     def enabled(self) -> Optional[str]:
+        """
+        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        *
+        - Set to `true` to enable BI Connector for Atlas.
+        - Set to `false` to disable BI Connector for Atlas.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> Optional[str]:
+        """
+        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        return pulumi.get(self, "read_preference")
+
+
+@pulumi.output_type
+class ClusterBiConnectorConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "readPreference":
+            suggest = "read_preference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClusterBiConnectorConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClusterBiConnectorConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClusterBiConnectorConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 read_preference: Optional[str] = None):
+        """
+        :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+               *
+               - Set to `true` to enable BI Connector for Atlas.
+               - Set to `false` to disable BI Connector for Atlas.
+        :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if read_preference is not None:
+            pulumi.set(__self__, "read_preference", read_preference)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
         *
@@ -2043,12 +2219,10 @@ class EncryptionAtRestAwsKms(dict):
                  role_id: Optional[str] = None,
                  secret_access_key: Optional[str] = None):
         """
-        :param str access_key_id: The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         :param str customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         :param bool enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param str region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         :param str role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
-        :param str secret_access_key: The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         """
         if access_key_id is not None:
             pulumi.set(__self__, "access_key_id", access_key_id)
@@ -2066,9 +2240,6 @@ class EncryptionAtRestAwsKms(dict):
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> Optional[str]:
-        """
-        The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-        """
         return pulumi.get(self, "access_key_id")
 
     @property
@@ -2106,9 +2277,6 @@ class EncryptionAtRestAwsKms(dict):
     @property
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> Optional[str]:
-        """
-        The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-        """
         return pulumi.get(self, "secret_access_key")
 
 
@@ -2403,6 +2571,117 @@ class GlobalClusterConfigManagedNamespace(dict):
         The name of the database containing the collection.
         """
         return pulumi.get(self, "db")
+
+
+@pulumi.output_type
+class LdapConfigurationUserToDnMapping(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ldapQuery":
+            suggest = "ldap_query"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LdapConfigurationUserToDnMapping. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LdapConfigurationUserToDnMapping.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LdapConfigurationUserToDnMapping.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ldap_query: Optional[str] = None,
+                 match: Optional[str] = None,
+                 substitution: Optional[str] = None):
+        if ldap_query is not None:
+            pulumi.set(__self__, "ldap_query", ldap_query)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if substitution is not None:
+            pulumi.set(__self__, "substitution", substitution)
+
+    @property
+    @pulumi.getter(name="ldapQuery")
+    def ldap_query(self) -> Optional[str]:
+        return pulumi.get(self, "ldap_query")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def substitution(self) -> Optional[str]:
+        return pulumi.get(self, "substitution")
+
+
+@pulumi.output_type
+class LdapVerifyLink(dict):
+    def __init__(__self__, *,
+                 href: Optional[str] = None,
+                 rel: Optional[str] = None):
+        if href is not None:
+            pulumi.set(__self__, "href", href)
+        if rel is not None:
+            pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> Optional[str]:
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def rel(self) -> Optional[str]:
+        return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class LdapVerifyValidation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "validationType":
+            suggest = "validation_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LdapVerifyValidation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LdapVerifyValidation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LdapVerifyValidation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 status: Optional[str] = None,
+                 validation_type: Optional[str] = None):
+        """
+        :param str status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+        """
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if validation_type is not None:
+            pulumi.set(__self__, "validation_type", validation_type)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="validationType")
+    def validation_type(self) -> Optional[str]:
+        return pulumi.get(self, "validation_type")
 
 
 @pulumi.output_type
@@ -3200,6 +3479,35 @@ class GetCloudProviderAccessAwsIamRoleFeatureUsageResult(dict):
 
 
 @pulumi.output_type
+class GetCloudProviderAccessSetupAwsResult(dict):
+    def __init__(__self__, *,
+                 atlas_assumed_role_external_id: str,
+                 atlas_aws_account_arn: str):
+        """
+        :param str atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        :param str atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
+        pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+        pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
+
+    @property
+    @pulumi.getter(name="atlasAssumedRoleExternalId")
+    def atlas_assumed_role_external_id(self) -> str:
+        """
+        Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        """
+        return pulumi.get(self, "atlas_assumed_role_external_id")
+
+    @property
+    @pulumi.getter(name="atlasAwsAccountArn")
+    def atlas_aws_account_arn(self) -> str:
+        """
+        ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
+        return pulumi.get(self, "atlas_aws_account_arn")
+
+
+@pulumi.output_type
 class GetCloudProviderSnapshotBackupPolicyPolicyResult(dict):
     def __init__(__self__, *,
                  id: str,
@@ -3546,6 +3854,35 @@ class GetClusterBiConnectorResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> str:
+        """
+        Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> str:
+        """
+        Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        return pulumi.get(self, "read_preference")
+
+
+@pulumi.output_type
+class GetClusterBiConnectorConfigResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 read_preference: str):
+        """
+        :param bool enabled: Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+        :param str read_preference: Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "read_preference", read_preference)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
         """
         Indicates whether or not BI Connector for Atlas is enabled on the cluster.
         """
@@ -3962,6 +4299,7 @@ class GetClustersResultResult(dict):
                  backing_provider_name: str,
                  backup_enabled: bool,
                  bi_connector: 'outputs.GetClustersResultBiConnectorResult',
+                 bi_connector_config: 'outputs.GetClustersResultBiConnectorConfigResult',
                  cluster_type: str,
                  connection_strings: 'outputs.GetClustersResultConnectionStringsResult',
                  container_id: str,
@@ -3998,7 +4336,8 @@ class GetClustersResultResult(dict):
         :param bool auto_scaling_disk_gb_enabled: Indicates whether disk auto-scaling is enabled.
         :param str backing_provider_name: Indicates Cloud service provider on which the server for a multi-tenant cluster is provisioned.
         :param bool backup_enabled: Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
-        :param 'GetClustersResultBiConnectorArgs' bi_connector: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param 'GetClustersResultBiConnectorArgs' bi_connector: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
+        :param 'GetClustersResultBiConnectorConfigArgs' bi_connector_config: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param str cluster_type: Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param 'GetClustersResultConnectionStringsArgs' connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
                - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
@@ -4031,7 +4370,7 @@ class GetClustersResultResult(dict):
         :param bool provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
         :param int provider_disk_iops: Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
         :param str provider_disk_type_name: Describes Azure disk type of the server’s root volume (Azure Only).
-        :param bool provider_encrypt_ebs_volume: Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+        :param bool provider_encrypt_ebs_volume: **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
         :param str provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size.
         :param str provider_name: Indicates the cloud service provider on which the servers are provisioned.
         :param str provider_region_name: Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
@@ -4054,6 +4393,7 @@ class GetClustersResultResult(dict):
         pulumi.set(__self__, "backing_provider_name", backing_provider_name)
         pulumi.set(__self__, "backup_enabled", backup_enabled)
         pulumi.set(__self__, "bi_connector", bi_connector)
+        pulumi.set(__self__, "bi_connector_config", bi_connector_config)
         pulumi.set(__self__, "cluster_type", cluster_type)
         pulumi.set(__self__, "connection_strings", connection_strings)
         pulumi.set(__self__, "container_id", container_id)
@@ -4129,9 +4469,17 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> 'outputs.GetClustersResultBiConnectorResult':
         """
-        Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
         return pulumi.get(self, "bi_connector")
+
+    @property
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> 'outputs.GetClustersResultBiConnectorConfigResult':
+        """
+        Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        """
+        return pulumi.get(self, "bi_connector_config")
 
     @property
     @pulumi.getter(name="clusterType")
@@ -4307,7 +4655,7 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="providerEncryptEbsVolume")
     def provider_encrypt_ebs_volume(self) -> bool:
         """
-        Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+        **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
@@ -4405,6 +4753,35 @@ class GetClustersResultBiConnectorResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> str:
+        """
+        Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> str:
+        """
+        Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        return pulumi.get(self, "read_preference")
+
+
+@pulumi.output_type
+class GetClustersResultBiConnectorConfigResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 read_preference: str):
+        """
+        :param bool enabled: Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+        :param str read_preference: Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "read_preference", read_preference)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
         """
         Indicates whether or not BI Connector for Atlas is enabled on the cluster.
         """
@@ -5092,6 +5469,7 @@ class GetDatabaseUsersResultResult(dict):
                  auth_database_name: str,
                  aws_iam_type: str,
                  labels: Sequence['outputs.GetDatabaseUsersResultLabelResult'],
+                 ldap_auth_type: str,
                  project_id: str,
                  roles: Sequence['outputs.GetDatabaseUsersResultRoleResult'],
                  scopes: Sequence['outputs.GetDatabaseUsersResultScopeResult'],
@@ -5100,11 +5478,12 @@ class GetDatabaseUsersResultResult(dict):
         """
         :param str auth_database_name: (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Possible values include:
-               * `admin` if `x509_type` and `aws_iam_type` are omitted or NONE.
+               * `admin` if `x509_type` and `aws_iam_type` and `ldap_auth_type` are omitted or NONE.
                * `$external` if:
                * `x509_type` is MANAGED or CUSTOMER, or
                * `aws_iam_type` is USER or ROLE.
         :param str aws_iam_type: The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+        :param str ldap_auth_type: Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
         :param str project_id: The unique ID for the project to get all database users.
         :param Sequence['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param Sequence['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Lakes that this user has access to.
@@ -5114,6 +5493,7 @@ class GetDatabaseUsersResultResult(dict):
         pulumi.set(__self__, "auth_database_name", auth_database_name)
         pulumi.set(__self__, "aws_iam_type", aws_iam_type)
         pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "scopes", scopes)
@@ -5126,7 +5506,7 @@ class GetDatabaseUsersResultResult(dict):
         """
         (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
         Possible values include:
-        * `admin` if `x509_type` and `aws_iam_type` are omitted or NONE.
+        * `admin` if `x509_type` and `aws_iam_type` and `ldap_auth_type` are omitted or NONE.
         * `$external` if:
         * `x509_type` is MANAGED or CUSTOMER, or
         * `aws_iam_type` is USER or ROLE.
@@ -5145,6 +5525,14 @@ class GetDatabaseUsersResultResult(dict):
     @pulumi.getter
     def labels(self) -> Sequence['outputs.GetDatabaseUsersResultLabelResult']:
         return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter(name="ldapAuthType")
+    def ldap_auth_type(self) -> str:
+        """
+        Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+        """
+        return pulumi.get(self, "ldap_auth_type")
 
     @property
     @pulumi.getter(name="projectId")
@@ -5322,6 +5710,76 @@ class GetGlobalClusterConfigManagedNamespaceResult(dict):
 
 
 @pulumi.output_type
+class GetLdapConfigurationUserToDnMappingResult(dict):
+    def __init__(__self__, *,
+                 ldap_query: str,
+                 match: str,
+                 substitution: str):
+        pulumi.set(__self__, "ldap_query", ldap_query)
+        pulumi.set(__self__, "match", match)
+        pulumi.set(__self__, "substitution", substitution)
+
+    @property
+    @pulumi.getter(name="ldapQuery")
+    def ldap_query(self) -> str:
+        return pulumi.get(self, "ldap_query")
+
+    @property
+    @pulumi.getter
+    def match(self) -> str:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def substitution(self) -> str:
+        return pulumi.get(self, "substitution")
+
+
+@pulumi.output_type
+class GetLdapVerifyLinkResult(dict):
+    def __init__(__self__, *,
+                 href: str,
+                 rel: str):
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> str:
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def rel(self) -> str:
+        return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class GetLdapVerifyValidationResult(dict):
+    def __init__(__self__, *,
+                 status: str,
+                 validation_type: str):
+        """
+        :param str status: The current status of the LDAP over TLS/SSL configuration.
+        """
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "validation_type", validation_type)
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The current status of the LDAP over TLS/SSL configuration.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="validationType")
+    def validation_type(self) -> str:
+        return pulumi.get(self, "validation_type")
+
+
+@pulumi.output_type
 class GetNetworkContainersResultResult(dict):
     def __init__(__self__, *,
                  atlas_cidr_block: str,
@@ -5333,6 +5791,7 @@ class GetNetworkContainersResultResult(dict):
                  provisioned: bool,
                  region: str,
                  region_name: str,
+                 regions: Sequence[str],
                  vnet_name: str,
                  vpc_id: str):
         """
@@ -5345,6 +5804,7 @@ class GetNetworkContainersResultResult(dict):
         :param bool provisioned: Indicates whether the project has Network Peering connections deployed in the container.
         :param str region: The Atlas Azure region name for where this container exists.
         :param str region_name: The Atlas AWS region name for where this container exists.
+        :param Sequence[str] regions: Atlas GCP regions where the container resides.
         :param str vnet_name: The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
         :param str vpc_id: Unique identifier of the project’s VPC.
         """
@@ -5357,6 +5817,7 @@ class GetNetworkContainersResultResult(dict):
         pulumi.set(__self__, "provisioned", provisioned)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "regions", regions)
         pulumi.set(__self__, "vnet_name", vnet_name)
         pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -5431,6 +5892,14 @@ class GetNetworkContainersResultResult(dict):
         The Atlas AWS region name for where this container exists.
         """
         return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter
+    def regions(self) -> Sequence[str]:
+        """
+        Atlas GCP regions where the container resides.
+        """
+        return pulumi.get(self, "regions")
 
     @property
     @pulumi.getter(name="vnetName")

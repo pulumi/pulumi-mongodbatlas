@@ -43,8 +43,12 @@ type LookupClusterResult struct {
 	BackingProviderName string `pulumi:"backingProviderName"`
 	// Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
 	BackupEnabled bool `pulumi:"backupEnabled"`
-	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+	//
+	// Deprecated: use bi_connector_config instead
 	BiConnector GetClusterBiConnector `pulumi:"biConnector"`
+	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	BiConnectorConfig GetClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -100,7 +104,7 @@ type LookupClusterResult struct {
 	ProviderDiskIops int `pulumi:"providerDiskIops"`
 	// Describes Azure disk type of the server’s root volume (Azure Only).
 	ProviderDiskTypeName string `pulumi:"providerDiskTypeName"`
-	// Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+	// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
 	ProviderEncryptEbsVolume bool `pulumi:"providerEncryptEbsVolume"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size.
 	ProviderInstanceSizeName string `pulumi:"providerInstanceSizeName"`

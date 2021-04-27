@@ -250,7 +250,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             aws_security_group="sg-0026348ec11780bd1",
             comment="TestAcc for awsSecurityGroup",
-            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
+            opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
@@ -333,7 +333,7 @@ class ProjectIpWhitelist(pulumi.CustomResource):
             project_id="<PROJECT-ID>",
             aws_security_group="sg-0026348ec11780bd1",
             comment="TestAcc for awsSecurityGroup",
-            opts=pulumi.ResourceOptions(depends_on=["mongodbatlas_network_peering.test"]))
+            opts=pulumi.ResourceOptions(depends_on=[test_network_peering]))
         ```
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.

@@ -94,7 +94,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             DependsOn = 
     ///             {
-    ///                 "mongodbatlas_network_peering.test",
+    ///                 testNetworkPeering,
     ///             },
     ///         });
     ///     }

@@ -24,23 +24,23 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const user = new mongodbatlas.DatabaseUser("user", {
- *     databaseName: "$external",
+ *     projectId: "<PROJECT-ID>",
+ *     username: "myUsername",
+ *     x509Type: "MANAGED",
+ *     databaseName: `$external`,
+ *     roles: [{
+ *         roleName: "atlasAdmin",
+ *         databaseName: "admin",
+ *     }],
  *     labels: [{
  *         key: "My Key",
  *         value: "My Value",
  *     }],
- *     projectId: "<PROJECT-ID>",
- *     roles: [{
- *         databaseName: "admin",
- *         roleName: "atlasAdmin",
- *     }],
- *     username: "myUsername",
- *     x509Type: "MANAGED",
  * });
  * const test = new mongodbatlas.X509AuthenticationDatabaseUser("test", {
- *     monthsUntilExpiration: 2,
  *     projectId: user.projectId,
  *     username: user.username,
+ *     monthsUntilExpiration: 2,
  * });
  * ```
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project

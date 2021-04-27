@@ -8,17 +8,21 @@ import * as utilities from "./utilities";
 export * from "./alertConfiguration";
 export * from "./auditing";
 export * from "./cloudProviderAccess";
+export * from "./cloudProviderAccessAuthorization";
+export * from "./cloudProviderAccessSetup";
 export * from "./cloudProviderSnapshot";
 export * from "./cloudProviderSnapshotBackupPolicy";
 export * from "./cloudProviderSnapshotRestoreJob";
 export * from "./cluster";
 export * from "./customDbRole";
+export * from "./customDnsConfigurationClusterAws";
 export * from "./databaseUser";
 export * from "./encryptionAtRest";
 export * from "./get509AuthenticationDatabaseUser";
 export * from "./getAlertConfiguration";
 export * from "./getAuditing";
 export * from "./getCloudProviderAccess";
+export * from "./getCloudProviderAccessSetup";
 export * from "./getCloudProviderSnapshot";
 export * from "./getCloudProviderSnapshotBackupPolicy";
 export * from "./getCloudProviderSnapshotRestoreJob";
@@ -28,9 +32,12 @@ export * from "./getCluster";
 export * from "./getClusters";
 export * from "./getCustomDbRole";
 export * from "./getCustomDbRoles";
+export * from "./getCustomDnsConfigurationClusterAws";
 export * from "./getDatabaseUser";
 export * from "./getDatabaseUsers";
 export * from "./getGlobalClusterConfig";
+export * from "./getLdapConfiguration";
+export * from "./getLdapVerify";
 export * from "./getMaintenanceWindow";
 export * from "./getNetworkContainer";
 export * from "./getNetworkContainers";
@@ -49,6 +56,8 @@ export * from "./getTeams";
 export * from "./getThirdPartyIntegration";
 export * from "./getThirdPartyIntegrations";
 export * from "./globalClusterConfig";
+export * from "./ldapConfiguration";
+export * from "./ldapVerify";
 export * from "./maintenanceWindow";
 export * from "./networkContainer";
 export * from "./networkPeering";
@@ -79,14 +88,19 @@ export {
 import { AlertConfiguration } from "./alertConfiguration";
 import { Auditing } from "./auditing";
 import { CloudProviderAccess } from "./cloudProviderAccess";
+import { CloudProviderAccessAuthorization } from "./cloudProviderAccessAuthorization";
+import { CloudProviderAccessSetup } from "./cloudProviderAccessSetup";
 import { CloudProviderSnapshot } from "./cloudProviderSnapshot";
 import { CloudProviderSnapshotBackupPolicy } from "./cloudProviderSnapshotBackupPolicy";
 import { CloudProviderSnapshotRestoreJob } from "./cloudProviderSnapshotRestoreJob";
 import { Cluster } from "./cluster";
 import { CustomDbRole } from "./customDbRole";
+import { CustomDnsConfigurationClusterAws } from "./customDnsConfigurationClusterAws";
 import { DatabaseUser } from "./databaseUser";
 import { EncryptionAtRest } from "./encryptionAtRest";
 import { GlobalClusterConfig } from "./globalClusterConfig";
+import { LdapConfiguration } from "./ldapConfiguration";
+import { LdapVerify } from "./ldapVerify";
 import { MaintenanceWindow } from "./maintenanceWindow";
 import { NetworkContainer } from "./networkContainer";
 import { NetworkPeering } from "./networkPeering";
@@ -113,6 +127,10 @@ const _module = {
                 return new Auditing(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
                 return new CloudProviderAccess(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
+                return new CloudProviderAccessAuthorization(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup":
+                return new CloudProviderAccessSetup(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot":
                 return new CloudProviderSnapshot(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy":
@@ -123,12 +141,18 @@ const _module = {
                 return new Cluster(name, <any>undefined, { urn })
             case "mongodbatlas:index/customDbRole:CustomDbRole":
                 return new CustomDbRole(name, <any>undefined, { urn })
+            case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
+                return new CustomDnsConfigurationClusterAws(name, <any>undefined, { urn })
             case "mongodbatlas:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
             case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
                 return new EncryptionAtRest(name, <any>undefined, { urn })
             case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
                 return new GlobalClusterConfig(name, <any>undefined, { urn })
+            case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
+                return new LdapConfiguration(name, <any>undefined, { urn })
+            case "mongodbatlas:index/ldapVerify:LdapVerify":
+                return new LdapVerify(name, <any>undefined, { urn })
             case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
                 return new MaintenanceWindow(name, <any>undefined, { urn })
             case "mongodbatlas:index/networkContainer:NetworkContainer":
@@ -167,14 +191,19 @@ const _module = {
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/alertConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/auditing", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccess", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessAuthorization", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessSetup", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderSnapshot", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderSnapshotBackupPolicy", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderSnapshotRestoreJob", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDbRole", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDnsConfigurationClusterAws", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/encryptionAtRest", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/globalClusterConfig", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/maintenanceWindow", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkContainer", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _module)

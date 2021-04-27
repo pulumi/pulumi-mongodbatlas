@@ -40,23 +40,23 @@ namespace Pulumi.Mongodbatlas
     ///         });
     ///         var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new Aws.Ec2.VpcEndpointArgs
     ///         {
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 "sg-3f238186",
-    ///             },
+    ///             VpcId = "vpc-7fc0a543",
     ///             ServiceName = testPrivateEndpoint.EndpointServiceName,
+    ///             VpcEndpointType = "Interface",
     ///             SubnetIds = 
     ///             {
     ///                 "subnet-de0406d2",
     ///             },
-    ///             VpcEndpointType = "Interface",
-    ///             VpcId = "vpc-7fc0a543",
+    ///             SecurityGroupIds = 
+    ///             {
+    ///                 "sg-3f238186",
+    ///             },
     ///         });
     ///         var testPrivateEndpointInterfaceLink = new Mongodbatlas.PrivateEndpointInterfaceLink("testPrivateEndpointInterfaceLink", new Mongodbatlas.PrivateEndpointInterfaceLinkArgs
     ///         {
-    ///             InterfaceEndpointId = ptfeService.Id,
-    ///             PrivateLinkId = testPrivateEndpoint.PrivateLinkId,
     ///             ProjectId = testPrivateEndpoint.ProjectId,
+    ///             PrivateLinkId = testPrivateEndpoint.PrivateLinkId,
+    ///             InterfaceEndpointId = ptfeService.Id,
     ///         });
     ///     }
     /// 

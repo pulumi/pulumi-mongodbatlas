@@ -43,11 +43,8 @@ import (
 // 			MongoDbMajorVersion:      pulumi.String("4.2"),
 // 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderDiskIops:         pulumi.Int(300),
-// 			ProviderEncryptEbsVolume: pulumi.Bool(true),
 // 			ProviderInstanceSizeName: pulumi.String("M40"),
 // 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderVolumeType:       pulumi.String("STANDARD"),
 // 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 // 				&mongodbatlas.ClusterReplicationSpecArgs{
 // 					NumShards: pulumi.Int(1),
@@ -171,10 +168,8 @@ import (
 // 			NumShards:                pulumi.Int(1),
 // 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderDiskIops:         pulumi.Int(300),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
 // 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderVolumeType:       pulumi.String("STANDARD"),
 // 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 // 				&mongodbatlas.ClusterReplicationSpecArgs{
 // 					NumShards: pulumi.Int(1),
@@ -226,10 +221,8 @@ import (
 // 			NumShards:                pulumi.Int(1),
 // 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderDiskIops:         pulumi.Int(240),
 // 			ProviderInstanceSizeName: pulumi.String("M30"),
 // 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderVolumeType:       pulumi.String("STANDARD"),
 // 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
 // 				&mongodbatlas.ClusterReplicationSpecArgs{
 // 					NumShards: pulumi.Int(2),
@@ -320,8 +313,12 @@ type Cluster struct {
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName pulumi.StringOutput  `pulumi:"backingProviderName"`
 	BackupEnabled       pulumi.BoolPtrOutput `pulumi:"backupEnabled"`
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+	//
+	// Deprecated: use bi_connector_config instead
+	BiConnector ClusterBiConnectorPtrOutput `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
-	BiConnector ClusterBiConnectorOutput `pulumi:"biConnector"`
+	BiConnectorConfig ClusterBiConnectorConfigOutput `pulumi:"biConnectorConfig"`
 	// The cluster ID.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -365,12 +362,15 @@ type Cluster struct {
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringOutput `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// Flag indicating if the cluster uses Cloud Backup for backups.
 	ProviderBackupEnabled pulumi.BoolPtrOutput `pulumi:"providerBackupEnabled"`
-	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
+	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	ProviderDiskIops pulumi.IntOutput `pulumi:"providerDiskIops"`
 	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName pulumi.StringOutput `pulumi:"providerDiskTypeName"`
-	// The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
-	ProviderEncryptEbsVolume pulumi.BoolOutput `pulumi:"providerEncryptEbsVolume"`
+	// **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+	//
+	// Deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed
+	ProviderEncryptEbsVolume     pulumi.BoolOutput `pulumi:"providerEncryptEbsVolume"`
+	ProviderEncryptEbsVolumeFlag pulumi.BoolOutput `pulumi:"providerEncryptEbsVolumeFlag"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
 	ProviderInstanceSizeName pulumi.StringOutput `pulumi:"providerInstanceSizeName"`
@@ -379,7 +379,7 @@ type Cluster struct {
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName pulumi.StringOutput `pulumi:"providerRegionName"`
-	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	ProviderVolumeType pulumi.StringOutput `pulumi:"providerVolumeType"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntOutput `pulumi:"replicationFactor"`
@@ -452,8 +452,12 @@ type clusterState struct {
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName *string `pulumi:"backingProviderName"`
 	BackupEnabled       *bool   `pulumi:"backupEnabled"`
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+	//
+	// Deprecated: use bi_connector_config instead
 	BiConnector *ClusterBiConnector `pulumi:"biConnector"`
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
 	// The cluster ID.
 	ClusterId *string `pulumi:"clusterId"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -497,12 +501,15 @@ type clusterState struct {
 	ProviderAutoScalingComputeMinInstanceSize *string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// Flag indicating if the cluster uses Cloud Backup for backups.
 	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
-	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
+	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	ProviderDiskIops *int `pulumi:"providerDiskIops"`
 	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName *string `pulumi:"providerDiskTypeName"`
-	// The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
-	ProviderEncryptEbsVolume *bool `pulumi:"providerEncryptEbsVolume"`
+	// **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+	//
+	// Deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed
+	ProviderEncryptEbsVolume     *bool `pulumi:"providerEncryptEbsVolume"`
+	ProviderEncryptEbsVolumeFlag *bool `pulumi:"providerEncryptEbsVolumeFlag"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
 	ProviderInstanceSizeName *string `pulumi:"providerInstanceSizeName"`
@@ -511,7 +518,7 @@ type clusterState struct {
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName *string `pulumi:"providerRegionName"`
-	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	ProviderVolumeType *string `pulumi:"providerVolumeType"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor *int `pulumi:"replicationFactor"`
@@ -547,8 +554,12 @@ type ClusterState struct {
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName pulumi.StringPtrInput
 	BackupEnabled       pulumi.BoolPtrInput
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+	//
+	// Deprecated: use bi_connector_config instead
 	BiConnector ClusterBiConnectorPtrInput
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	BiConnectorConfig ClusterBiConnectorConfigPtrInput
 	// The cluster ID.
 	ClusterId pulumi.StringPtrInput
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -592,12 +603,15 @@ type ClusterState struct {
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringPtrInput
 	// Flag indicating if the cluster uses Cloud Backup for backups.
 	ProviderBackupEnabled pulumi.BoolPtrInput
-	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
+	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	ProviderDiskIops pulumi.IntPtrInput
 	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName pulumi.StringPtrInput
-	// The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
-	ProviderEncryptEbsVolume pulumi.BoolPtrInput
+	// **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+	//
+	// Deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed
+	ProviderEncryptEbsVolume     pulumi.BoolPtrInput
+	ProviderEncryptEbsVolumeFlag pulumi.BoolPtrInput
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
 	ProviderInstanceSizeName pulumi.StringPtrInput
@@ -606,7 +620,7 @@ type ClusterState struct {
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName pulumi.StringPtrInput
-	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	ProviderVolumeType pulumi.StringPtrInput
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntPtrInput
@@ -646,8 +660,12 @@ type clusterArgs struct {
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName *string `pulumi:"backingProviderName"`
 	BackupEnabled       *bool   `pulumi:"backupEnabled"`
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+	//
+	// Deprecated: use bi_connector_config instead
 	BiConnector *ClusterBiConnector `pulumi:"biConnector"`
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType *string `pulumi:"clusterType"`
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -675,11 +693,13 @@ type clusterArgs struct {
 	ProviderAutoScalingComputeMinInstanceSize *string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// Flag indicating if the cluster uses Cloud Backup for backups.
 	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
-	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
+	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	ProviderDiskIops *int `pulumi:"providerDiskIops"`
 	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName *string `pulumi:"providerDiskTypeName"`
-	// The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+	// **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+	//
+	// Deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed
 	ProviderEncryptEbsVolume *bool `pulumi:"providerEncryptEbsVolume"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
@@ -689,7 +709,7 @@ type clusterArgs struct {
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName *string `pulumi:"providerRegionName"`
-	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	ProviderVolumeType *string `pulumi:"providerVolumeType"`
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor *int `pulumi:"replicationFactor"`
@@ -714,8 +734,12 @@ type ClusterArgs struct {
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName pulumi.StringPtrInput
 	BackupEnabled       pulumi.BoolPtrInput
-	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+	//
+	// Deprecated: use bi_connector_config instead
 	BiConnector ClusterBiConnectorPtrInput
+	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+	BiConnectorConfig ClusterBiConnectorConfigPtrInput
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringPtrInput
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -743,11 +767,13 @@ type ClusterArgs struct {
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringPtrInput
 	// Flag indicating if the cluster uses Cloud Backup for backups.
 	ProviderBackupEnabled pulumi.BoolPtrInput
-	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
+	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	ProviderDiskIops pulumi.IntPtrInput
 	// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
 	ProviderDiskTypeName pulumi.StringPtrInput
-	// The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+	// **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+	//
+	// Deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed
 	ProviderEncryptEbsVolume pulumi.BoolPtrInput
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
 	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
@@ -757,7 +783,7 @@ type ClusterArgs struct {
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
 	// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
 	ProviderRegionName pulumi.StringPtrInput
-	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+	// The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
 	ProviderVolumeType pulumi.StringPtrInput
 	// Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
 	ReplicationFactor pulumi.IntPtrInput

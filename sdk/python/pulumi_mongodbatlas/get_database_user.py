@@ -20,7 +20,7 @@ class GetDatabaseUserResult:
     """
     A collection of values returned by getDatabaseUser.
     """
-    def __init__(__self__, auth_database_name=None, aws_iam_type=None, database_name=None, id=None, labels=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
+    def __init__(__self__, auth_database_name=None, aws_iam_type=None, database_name=None, id=None, labels=None, ldap_auth_type=None, project_id=None, roles=None, scopes=None, username=None, x509_type=None):
         if auth_database_name and not isinstance(auth_database_name, str):
             raise TypeError("Expected argument 'auth_database_name' to be a str")
         pulumi.set(__self__, "auth_database_name", auth_database_name)
@@ -40,6 +40,9 @@ class GetDatabaseUserResult:
         if labels and not isinstance(labels, list):
             raise TypeError("Expected argument 'labels' to be a list")
         pulumi.set(__self__, "labels", labels)
+        if ldap_auth_type and not isinstance(ldap_auth_type, str):
+            raise TypeError("Expected argument 'ldap_auth_type' to be a str")
+        pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -91,6 +94,14 @@ class GetDatabaseUserResult:
         return pulumi.get(self, "labels")
 
     @property
+    @pulumi.getter(name="ldapAuthType")
+    def ldap_auth_type(self) -> str:
+        """
+        Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+        """
+        return pulumi.get(self, "ldap_auth_type")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         return pulumi.get(self, "project_id")
@@ -136,6 +147,7 @@ class AwaitableGetDatabaseUserResult(GetDatabaseUserResult):
             database_name=self.database_name,
             id=self.id,
             labels=self.labels,
+            ldap_auth_type=self.ldap_auth_type,
             project_id=self.project_id,
             roles=self.roles,
             scopes=self.scopes,
@@ -178,6 +190,7 @@ def get_database_user(auth_database_name: Optional[str] = None,
         database_name=__ret__.database_name,
         id=__ret__.id,
         labels=__ret__.labels,
+        ldap_auth_type=__ret__.ldap_auth_type,
         project_id=__ret__.project_id,
         roles=__ret__.roles,
         scopes=__ret__.scopes,

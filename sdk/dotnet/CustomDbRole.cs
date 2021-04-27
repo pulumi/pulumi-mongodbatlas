@@ -86,6 +86,8 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         var inheritedRoleOne = new Mongodbatlas.CustomDbRole("inheritedRoleOne", new Mongodbatlas.CustomDbRoleArgs
     ///         {
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             RoleName = "insertRole",
     ///             Actions = 
     ///             {
     ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
@@ -101,11 +103,11 @@ namespace Pulumi.Mongodbatlas
     ///                     },
     ///                 },
     ///             },
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             RoleName = "insertRole",
     ///         });
     ///         var inheritedRoleTwo = new Mongodbatlas.CustomDbRole("inheritedRoleTwo", new Mongodbatlas.CustomDbRoleArgs
     ///         {
+    ///             ProjectId = inheritedRoleOne.ProjectId,
+    ///             RoleName = "statusServerRole",
     ///             Actions = 
     ///             {
     ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
@@ -120,11 +122,11 @@ namespace Pulumi.Mongodbatlas
     ///                     },
     ///                 },
     ///             },
-    ///             ProjectId = inheritedRoleOne.ProjectId,
-    ///             RoleName = "statusServerRole",
     ///         });
     ///         var testRole = new Mongodbatlas.CustomDbRole("testRole", new Mongodbatlas.CustomDbRoleArgs
     ///         {
+    ///             ProjectId = inheritedRoleOne.ProjectId,
+    ///             RoleName = "myCustomRole",
     ///             Actions = 
     ///             {
     ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
@@ -156,17 +158,15 @@ namespace Pulumi.Mongodbatlas
     ///             {
     ///                 new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs
     ///                 {
-    ///                     DatabaseName = "admin",
     ///                     RoleName = inheritedRoleOne.RoleName,
+    ///                     DatabaseName = "admin",
     ///                 },
     ///                 new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs
     ///                 {
-    ///                     DatabaseName = "admin",
     ///                     RoleName = inheritedRoleTwo.RoleName,
+    ///                     DatabaseName = "admin",
     ///                 },
     ///             },
-    ///             ProjectId = inheritedRoleOne.ProjectId,
-    ///             RoleName = "myCustomRole",
     ///         });
     ///     }
     /// 

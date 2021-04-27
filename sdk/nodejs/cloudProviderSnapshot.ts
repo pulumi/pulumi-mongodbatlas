@@ -23,9 +23,8 @@ import * as utilities from "./utilities";
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",
  *     providerBackupEnabled: true,
- *     providerDiskIops: 100,
- *     providerEncryptEbsVolume: false,
  * });
+ * // enable cloud backup snapshots
  * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
  *     projectId: myCluster.projectId,
  *     clusterName: myCluster.name,

@@ -12,23 +12,6 @@ import * as utilities from "./utilities";
  *                 Please transition to privatelinkEndpoint as soon as possible. [PrivateLink Endpoints](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-get-one/)
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testMongodbatlasPrivateEndpoint = new mongodbatlas.PrivateEndpoint("test", {
- *     projectId: "<PROJECT-ID>",
- *     providerName: "AWS",
- *     region: "us-east-1",
- * });
- * const testPrivateEndpoint = pulumi.all([testMongodbatlasPrivateEndpoint.privateLinkId, testMongodbatlasPrivateEndpoint.projectId]).apply(([privateLinkId, projectId]) => mongodbatlas.getPrivateEndpoint({
- *     privateLinkId: privateLinkId,
- *     projectId: projectId,
- * }, { async: true }));
- * ```
  */
 export function getPrivateEndpoint(args: GetPrivateEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateEndpointResult> {
     if (!opts) {

@@ -196,7 +196,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
             provider_backup_enabled=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
-            provider_disk_iops=240,
             provider_instance_size_name="M30",
             replication_specs=[
                 mongodbatlas.ClusterReplicationSpecArgs(
@@ -249,8 +248,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
             mongo_db_major_version="4.0",
             provider_name="AWS",
             disk_size_gb=100,
-            provider_disk_iops=300,
-            provider_encrypt_ebs_volume=False,
             provider_instance_size_name="M40",
             provider_region_name="US_EAST_1")
         config = mongodbatlas.GlobalClusterConfig("config",
@@ -310,7 +307,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
             provider_backup_enabled=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
-            provider_disk_iops=240,
             provider_instance_size_name="M30",
             replication_specs=[
                 mongodbatlas.ClusterReplicationSpecArgs(
@@ -363,8 +359,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
             mongo_db_major_version="4.0",
             provider_name="AWS",
             disk_size_gb=100,
-            provider_disk_iops=300,
-            provider_encrypt_ebs_volume=False,
             provider_instance_size_name="M40",
             provider_region_name="US_EAST_1")
         config = mongodbatlas.GlobalClusterConfig("config",

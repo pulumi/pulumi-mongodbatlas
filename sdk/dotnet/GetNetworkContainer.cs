@@ -90,6 +90,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string RegionName;
         /// <summary>
+        /// Atlas GCP regions where the container resides.
+        /// </summary>
+        public readonly ImmutableArray<string> Regions;
+        /// <summary>
         /// The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
         /// </summary>
         public readonly string VnetName;
@@ -122,6 +126,8 @@ namespace Pulumi.Mongodbatlas
 
             string regionName,
 
+            ImmutableArray<string> regions,
+
             string vnetName,
 
             string vpcId)
@@ -137,6 +143,7 @@ namespace Pulumi.Mongodbatlas
             Provisioned = provisioned;
             Region = region;
             RegionName = regionName;
+            Regions = regions;
             VnetName = vnetName;
             VpcId = vpcId;
         }

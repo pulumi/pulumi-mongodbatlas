@@ -34,7 +34,6 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderBackupEnabled = true,
     ///             ClusterType = "GEOSHARDED",
     ///             ProviderName = "AWS",
-    ///             ProviderDiskIops = 240,
     ///             ProviderInstanceSizeName = "M30",
     ///             ReplicationSpecs = 
     ///             {
@@ -117,8 +116,6 @@ namespace Pulumi.Mongodbatlas
     ///             MongoDbMajorVersion = "4.0",
     ///             ProviderName = "AWS",
     ///             DiskSizeGb = 100,
-    ///             ProviderDiskIops = 300,
-    ///             ProviderEncryptEbsVolume = false,
     ///             ProviderInstanceSizeName = "M40",
     ///             ProviderRegionName = "US_EAST_1",
     ///         });

@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  *     providerBackupEnabled: true,
  *     clusterType: "GEOSHARDED",
  *     providerName: "AWS",
- *     providerDiskIops: 240,
  *     providerInstanceSizeName: "M30",
  *     replicationSpecs: [
  *         {
@@ -80,8 +79,6 @@ import * as utilities from "./utilities";
  *     mongoDbMajorVersion: "4.0",
  *     providerName: "AWS",
  *     diskSizeGb: 100,
- *     providerDiskIops: 300,
- *     providerEncryptEbsVolume: false,
  *     providerInstanceSizeName: "M40",
  *     providerRegionName: "US_EAST_1",
  * });

@@ -32,33 +32,33 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
         ///         {
+        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///             ClusterName = "MyCluster",
         ///             Description = "MyDescription",
-        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///             RetentionInDays = 1,
         ///         });
         ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
         ///         {
+        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///             ClusterName = "MyCluster",
+        ///             SnapshotId = testCloudProviderSnapshot.Id,
         ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
         ///             {
         ///                 Automated = true,
         ///                 Target_cluster_name = "MyCluster",
         ///                 Target_project_id = "5cf5a45a9ccf6400e60981b6",
         ///             },
-        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
-        ///             SnapshotId = testCloudProviderSnapshot.Id,
         ///         });
-        ///         var testCloudProviderSnapshotRestoreJobs = Output.Tuple(testCloudProviderSnapshotRestoreJob.ClusterName, testCloudProviderSnapshotRestoreJob.ProjectId).Apply(values =&gt;
+        ///         var testCloudProviderSnapshotRestoreJobs = Output.Tuple(testCloudProviderSnapshotRestoreJob.ProjectId, testCloudProviderSnapshotRestoreJob.ClusterName).Apply(values =&gt;
         ///         {
-        ///             var clusterName = values.Item1;
-        ///             var projectId = values.Item2;
+        ///             var projectId = values.Item1;
+        ///             var clusterName = values.Item2;
         ///             return Mongodbatlas.GetCloudProviderSnapshotRestoreJobs.InvokeAsync(new Mongodbatlas.GetCloudProviderSnapshotRestoreJobsArgs
         ///             {
-        ///                 ClusterName = clusterName,
-        ///                 ItemsPerPage = 5,
-        ///                 PageNum = 1,
         ///                 ProjectId = projectId,
+        ///                 ClusterName = clusterName,
+        ///                 PageNum = 1,
+        ///                 ItemsPerPage = 5,
         ///             });
         ///         });
         ///     }

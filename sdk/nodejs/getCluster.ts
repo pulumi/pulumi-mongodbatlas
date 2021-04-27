@@ -67,9 +67,15 @@ export interface GetClusterResult {
      */
     readonly backupEnabled: boolean;
     /**
-     * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+     * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+     *
+     * @deprecated use bi_connector_config instead
      */
     readonly biConnector: outputs.GetClusterBiConnector;
+    /**
+     * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+     */
+    readonly biConnectorConfig: outputs.GetClusterBiConnectorConfig;
     /**
      * Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      */
@@ -166,7 +172,7 @@ export interface GetClusterResult {
      */
     readonly providerDiskTypeName: string;
     /**
-     * Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+     * **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
      */
     readonly providerEncryptEbsVolume: boolean;
     /**

@@ -9,37 +9,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("test", {
- *     clusterName: "MyCluster",
- *     description: "MyDescription",
- *     projectId: "5cf5a45a9ccf6400e60981b6",
- *     retentionInDays: 1,
- * });
- * const testMongodbatlasCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob("test", {
- *     clusterName: "MyCluster",
- *     deliveryType: {
- *         automated: true,
- *         target_cluster_name: "MyCluster",
- *         target_project_id: "5cf5a45a9ccf6400e60981b6",
- *     },
- *     projectId: "5cf5a45a9ccf6400e60981b6",
- *     snapshotId: testCloudProviderSnapshot.id,
- * });
- * const testCloudProviderSnapshotRestoreJob = pulumi.all([testMongodbatlasCloudProviderSnapshotRestoreJob.clusterName, testMongodbatlasCloudProviderSnapshotRestoreJob.id, testMongodbatlasCloudProviderSnapshotRestoreJob.projectId]).apply(([clusterName, id, projectId]) => mongodbatlas.getCloudProviderSnapshotRestoreJob({
- *     clusterName: clusterName,
- *     jobId: id,
- *     projectId: projectId,
- * }, { async: true }));
- * ```
  */
 export function getCloudProviderSnapshotRestoreJob(args: GetCloudProviderSnapshotRestoreJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotRestoreJobResult> {
     if (!opts) {

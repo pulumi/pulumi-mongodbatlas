@@ -190,11 +190,10 @@ class EncryptionAtRest(pulumi.CustomResource):
 
         test = mongodbatlas.EncryptionAtRest("test",
             aws_kms=mongodbatlas.EncryptionAtRestAwsKmsArgs(
-                access_key_id="AKIAIOSFODNN7EXAMPLE",
-                customer_master_key_id="030gce02-586d-48d2-a966-05ea954fde0g",
+                customer_master_key_id="5ce83906-6563-46b7-8045-11c20e3a5766",
                 enabled=True,
                 region="US_EAST_1",
-                secret_access_key="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+                role_id="60815e2fe01a49138a928ebb",
             ),
             azure_key_vault=mongodbatlas.EncryptionAtRestAzureKeyVaultArgs(
                 azure_environment="AZURE",
@@ -253,11 +252,10 @@ class EncryptionAtRest(pulumi.CustomResource):
 
         test = mongodbatlas.EncryptionAtRest("test",
             aws_kms=mongodbatlas.EncryptionAtRestAwsKmsArgs(
-                access_key_id="AKIAIOSFODNN7EXAMPLE",
-                customer_master_key_id="030gce02-586d-48d2-a966-05ea954fde0g",
+                customer_master_key_id="5ce83906-6563-46b7-8045-11c20e3a5766",
                 enabled=True,
                 region="US_EAST_1",
-                secret_access_key="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+                role_id="60815e2fe01a49138a928ebb",
             ),
             azure_key_vault=mongodbatlas.EncryptionAtRestAzureKeyVaultArgs(
                 azure_environment="AZURE",

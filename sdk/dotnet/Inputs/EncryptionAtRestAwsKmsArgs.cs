@@ -12,9 +12,6 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class EncryptionAtRestAwsKmsArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-        /// </summary>
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }
 
@@ -42,9 +39,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 
-        /// <summary>
-        /// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-        /// </summary>
         [Input("secretAccessKey")]
         public Input<string>? SecretAccessKey { get; set; }
 

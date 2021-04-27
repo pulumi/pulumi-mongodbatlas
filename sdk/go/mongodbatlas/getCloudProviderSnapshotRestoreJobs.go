@@ -26,23 +26,23 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
+// 			ProjectId:       pulumi.String("5cf5a45a9ccf6400e60981b6"),
 // 			ClusterName:     pulumi.String("MyCluster"),
 // 			Description:     pulumi.String("MyDescription"),
-// 			ProjectId:       pulumi.String("5cf5a45a9ccf6400e60981b6"),
 // 			RetentionInDays: pulumi.Int(1),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		testCloudProviderSnapshotRestoreJob, err := mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
+// 			ProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
 // 			ClusterName: pulumi.String("MyCluster"),
+// 			SnapshotId:  testCloudProviderSnapshot.ID(),
 // 			DeliveryType: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs{
 // 				Automated:           pulumi.Bool(true),
 // 				Target_cluster_name: pulumi.String("MyCluster"),
 // 				Target_project_id:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
 // 			},
-// 			ProjectId:  pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			SnapshotId: testCloudProviderSnapshot.ID(),
 // 		})
 // 		if err != nil {
 // 			return err

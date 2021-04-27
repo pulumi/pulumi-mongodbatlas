@@ -22,6 +22,7 @@ class DatabaseUserArgs:
                  aws_iam_type: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
+                 ldap_auth_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
                  x509_type: Optional[pulumi.Input[str]] = None):
@@ -29,11 +30,12 @@ class DatabaseUserArgs:
         The set of arguments for constructing a DatabaseUser resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-        :param pulumi.Input[str] username: Username for authenticating to MongoDB.
+        :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] auth_database_name: Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Accepted values include:
         :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        :param pulumi.Input[str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -50,6 +52,8 @@ class DatabaseUserArgs:
             pulumi.set(__self__, "database_name", database_name)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if ldap_auth_type is not None:
+            pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if scopes is not None:
@@ -85,7 +89,7 @@ class DatabaseUserArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        Username for authenticating to MongoDB.
+        Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         """
         return pulumi.get(self, "username")
 
@@ -140,6 +144,18 @@ class DatabaseUserArgs:
         pulumi.set(self, "labels", value)
 
     @property
+    @pulumi.getter(name="ldapAuthType")
+    def ldap_auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        """
+        return pulumi.get(self, "ldap_auth_type")
+
+    @ldap_auth_type.setter
+    def ldap_auth_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ldap_auth_type", value)
+
+    @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "password")
@@ -177,6 +193,7 @@ class _DatabaseUserState:
                  aws_iam_type: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
+                 ldap_auth_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None,
@@ -189,9 +206,10 @@ class _DatabaseUserState:
                Accepted values include:
         :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        :param pulumi.Input[str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-        :param pulumi.Input[str] username: Username for authenticating to MongoDB.
+        :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         """
         if auth_database_name is not None:
@@ -205,6 +223,8 @@ class _DatabaseUserState:
             pulumi.set(__self__, "database_name", database_name)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if ldap_auth_type is not None:
+            pulumi.set(__self__, "ldap_auth_type", ldap_auth_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if project_id is not None:
@@ -265,6 +285,18 @@ class _DatabaseUserState:
         pulumi.set(self, "labels", value)
 
     @property
+    @pulumi.getter(name="ldapAuthType")
+    def ldap_auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        """
+        return pulumi.get(self, "ldap_auth_type")
+
+    @ldap_auth_type.setter
+    def ldap_auth_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ldap_auth_type", value)
+
+    @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "password")
@@ -310,7 +342,7 @@ class _DatabaseUserState:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        Username for authenticating to MongoDB.
+        Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         """
         return pulumi.get(self, "username")
 
@@ -340,6 +372,7 @@ class DatabaseUser(pulumi.CustomResource):
                  aws_iam_type: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserLabelArgs']]]]] = None,
+                 ldap_auth_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
@@ -362,9 +395,10 @@ class DatabaseUser(pulumi.CustomResource):
                Accepted values include:
         :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        :param pulumi.Input[str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-        :param pulumi.Input[str] username: Username for authenticating to MongoDB.
+        :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         """
         ...
@@ -401,6 +435,7 @@ class DatabaseUser(pulumi.CustomResource):
                  aws_iam_type: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserLabelArgs']]]]] = None,
+                 ldap_auth_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
@@ -426,6 +461,7 @@ class DatabaseUser(pulumi.CustomResource):
                 pulumi.log.warn("""database_name is deprecated: use auth_database_name instead""")
             __props__.__dict__["database_name"] = database_name
             __props__.__dict__["labels"] = labels
+            __props__.__dict__["ldap_auth_type"] = ldap_auth_type
             __props__.__dict__["password"] = password
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
@@ -452,6 +488,7 @@ class DatabaseUser(pulumi.CustomResource):
             aws_iam_type: Optional[pulumi.Input[str]] = None,
             database_name: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserLabelArgs']]]]] = None,
+            ldap_auth_type: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]]] = None,
@@ -469,9 +506,10 @@ class DatabaseUser(pulumi.CustomResource):
                Accepted values include:
         :param pulumi.Input[str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         :param pulumi.Input[str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        :param pulumi.Input[str] ldap_auth_type: Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseUserRoleArgs']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-        :param pulumi.Input[str] username: Username for authenticating to MongoDB.
+        :param pulumi.Input[str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -482,6 +520,7 @@ class DatabaseUser(pulumi.CustomResource):
         __props__.__dict__["aws_iam_type"] = aws_iam_type
         __props__.__dict__["database_name"] = database_name
         __props__.__dict__["labels"] = labels
+        __props__.__dict__["ldap_auth_type"] = ldap_auth_type
         __props__.__dict__["password"] = password
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["roles"] = roles
@@ -521,6 +560,14 @@ class DatabaseUser(pulumi.CustomResource):
         return pulumi.get(self, "labels")
 
     @property
+    @pulumi.getter(name="ldapAuthType")
+    def ldap_auth_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+        """
+        return pulumi.get(self, "ldap_auth_type")
+
+    @property
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "password")
@@ -550,7 +597,7 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter
     def username(self) -> pulumi.Output[str]:
         """
-        Username for authenticating to MongoDB.
+        Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         """
         return pulumi.get(self, "username")
 

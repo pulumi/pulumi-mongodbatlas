@@ -25,6 +25,7 @@ class ClusterArgs:
                  backing_provider_name: Optional[pulumi.Input[str]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector: Optional[pulumi.Input['ClusterBiConnectorArgs']] = None,
+                 bi_connector_config: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
@@ -58,7 +59,8 @@ class ClusterArgs:
                - Set to `true` to enable disk auto-scaling.
                - Set to `false` to disable disk auto-scaling.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
-        :param pulumi.Input['ClusterBiConnectorArgs'] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param pulumi.Input['ClusterBiConnectorArgs'] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
+        :param pulumi.Input['ClusterBiConnectorConfigArgs'] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -73,12 +75,12 @@ class ClusterArgs:
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
-        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
-        :param pulumi.Input[bool] provider_encrypt_ebs_volume: The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
-        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         """
@@ -98,7 +100,12 @@ class ClusterArgs:
         if backup_enabled is not None:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector is not None:
+            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        if bi_connector is not None:
             pulumi.set(__self__, "bi_connector", bi_connector)
+        if bi_connector_config is not None:
+            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
         if cluster_type is not None:
             pulumi.set(__self__, "cluster_type", cluster_type)
         if disk_size_gb is not None:
@@ -125,6 +132,9 @@ class ClusterArgs:
             pulumi.set(__self__, "provider_disk_iops", provider_disk_iops)
         if provider_disk_type_name is not None:
             pulumi.set(__self__, "provider_disk_type_name", provider_disk_type_name)
+        if provider_encrypt_ebs_volume is not None:
+            warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
+            pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
         if provider_encrypt_ebs_volume is not None:
             pulumi.set(__self__, "provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
         if provider_region_name is not None:
@@ -248,13 +258,25 @@ class ClusterArgs:
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['ClusterBiConnectorArgs']]:
         """
-        Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
     def bi_connector(self, value: Optional[pulumi.Input['ClusterBiConnectorArgs']]):
         pulumi.set(self, "bi_connector", value)
+
+    @property
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> Optional[pulumi.Input['ClusterBiConnectorConfigArgs']]:
+        """
+        Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        """
+        return pulumi.get(self, "bi_connector_config")
+
+    @bi_connector_config.setter
+    def bi_connector_config(self, value: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']]):
+        pulumi.set(self, "bi_connector_config", value)
 
     @property
     @pulumi.getter(name="clusterType")
@@ -393,7 +415,7 @@ class ClusterArgs:
     @pulumi.getter(name="providerDiskIops")
     def provider_disk_iops(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         """
         return pulumi.get(self, "provider_disk_iops")
 
@@ -417,7 +439,7 @@ class ClusterArgs:
     @pulumi.getter(name="providerEncryptEbsVolume")
     def provider_encrypt_ebs_volume(self) -> Optional[pulumi.Input[bool]]:
         """
-        The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
@@ -442,7 +464,7 @@ class ClusterArgs:
     @pulumi.getter(name="providerVolumeType")
     def provider_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         """
         return pulumi.get(self, "provider_volume_type")
 
@@ -485,6 +507,7 @@ class _ClusterState:
                  backing_provider_name: Optional[pulumi.Input[str]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector: Optional[pulumi.Input['ClusterBiConnectorArgs']] = None,
+                 bi_connector_config: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  connection_strings: Optional[pulumi.Input['ClusterConnectionStringsArgs']] = None,
@@ -508,6 +531,7 @@ class _ClusterState:
                  provider_disk_iops: Optional[pulumi.Input[int]] = None,
                  provider_disk_type_name: Optional[pulumi.Input[str]] = None,
                  provider_encrypt_ebs_volume: Optional[pulumi.Input[bool]] = None,
+                 provider_encrypt_ebs_volume_flag: Optional[pulumi.Input[bool]] = None,
                  provider_instance_size_name: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  provider_region_name: Optional[pulumi.Input[str]] = None,
@@ -528,7 +552,8 @@ class _ClusterState:
                - Set to `true` to enable disk auto-scaling.
                - Set to `false` to disable disk auto-scaling.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
-        :param pulumi.Input['ClusterBiConnectorArgs'] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param pulumi.Input['ClusterBiConnectorArgs'] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
+        :param pulumi.Input['ClusterBiConnectorConfigArgs'] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param pulumi.Input['ClusterConnectionStringsArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -552,15 +577,15 @@ class _ClusterState:
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
-        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
-        :param pulumi.Input[bool] provider_encrypt_ebs_volume: The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
                **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
-        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
@@ -586,7 +611,12 @@ class _ClusterState:
         if backup_enabled is not None:
             pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector is not None:
+            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+        if bi_connector is not None:
             pulumi.set(__self__, "bi_connector", bi_connector)
+        if bi_connector_config is not None:
+            pulumi.set(__self__, "bi_connector_config", bi_connector_config)
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_type is not None:
@@ -632,7 +662,12 @@ class _ClusterState:
         if provider_disk_type_name is not None:
             pulumi.set(__self__, "provider_disk_type_name", provider_disk_type_name)
         if provider_encrypt_ebs_volume is not None:
+            warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
+            pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
+        if provider_encrypt_ebs_volume is not None:
             pulumi.set(__self__, "provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
+        if provider_encrypt_ebs_volume_flag is not None:
+            pulumi.set(__self__, "provider_encrypt_ebs_volume_flag", provider_encrypt_ebs_volume_flag)
         if provider_instance_size_name is not None:
             pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
         if provider_name is not None:
@@ -727,13 +762,25 @@ class _ClusterState:
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['ClusterBiConnectorArgs']]:
         """
-        Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
         return pulumi.get(self, "bi_connector")
 
     @bi_connector.setter
     def bi_connector(self, value: Optional[pulumi.Input['ClusterBiConnectorArgs']]):
         pulumi.set(self, "bi_connector", value)
+
+    @property
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> Optional[pulumi.Input['ClusterBiConnectorConfigArgs']]:
+        """
+        Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        """
+        return pulumi.get(self, "bi_connector_config")
+
+    @bi_connector_config.setter
+    def bi_connector_config(self, value: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']]):
+        pulumi.set(self, "bi_connector_config", value)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -980,7 +1027,7 @@ class _ClusterState:
     @pulumi.getter(name="providerDiskIops")
     def provider_disk_iops(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         """
         return pulumi.get(self, "provider_disk_iops")
 
@@ -1004,13 +1051,22 @@ class _ClusterState:
     @pulumi.getter(name="providerEncryptEbsVolume")
     def provider_encrypt_ebs_volume(self) -> Optional[pulumi.Input[bool]]:
         """
-        The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @provider_encrypt_ebs_volume.setter
     def provider_encrypt_ebs_volume(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "provider_encrypt_ebs_volume", value)
+
+    @property
+    @pulumi.getter(name="providerEncryptEbsVolumeFlag")
+    def provider_encrypt_ebs_volume_flag(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "provider_encrypt_ebs_volume_flag")
+
+    @provider_encrypt_ebs_volume_flag.setter
+    def provider_encrypt_ebs_volume_flag(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "provider_encrypt_ebs_volume_flag", value)
 
     @property
     @pulumi.getter(name="providerInstanceSizeName")
@@ -1054,7 +1110,7 @@ class _ClusterState:
     @pulumi.getter(name="providerVolumeType")
     def provider_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         """
         return pulumi.get(self, "provider_volume_type")
 
@@ -1141,6 +1197,7 @@ class Cluster(pulumi.CustomResource):
                  backing_provider_name: Optional[pulumi.Input[str]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorArgs']]] = None,
+                 bi_connector_config: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
@@ -1190,11 +1247,8 @@ class Cluster(pulumi.CustomResource):
             mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
-            provider_disk_iops=300,
-            provider_encrypt_ebs_volume=True,
             provider_instance_size_name="M40",
             provider_name="AWS",
-            provider_volume_type="STANDARD",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
@@ -1267,10 +1321,8 @@ class Cluster(pulumi.CustomResource):
             num_shards=1,
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
-            provider_disk_iops=300,
             provider_instance_size_name="M10",
             provider_name="AWS",
-            provider_volume_type="STANDARD",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[
@@ -1307,10 +1359,8 @@ class Cluster(pulumi.CustomResource):
             num_shards=1,
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
-            provider_disk_iops=240,
             provider_instance_size_name="M30",
             provider_name="AWS",
-            provider_volume_type="STANDARD",
             replication_specs=[
                 mongodbatlas.ClusterReplicationSpecArgs(
                     num_shards=2,
@@ -1371,7 +1421,8 @@ class Cluster(pulumi.CustomResource):
                - Set to `true` to enable disk auto-scaling.
                - Set to `false` to disable disk auto-scaling.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
-        :param pulumi.Input[pulumi.InputType['ClusterBiConnectorArgs']] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param pulumi.Input[pulumi.InputType['ClusterBiConnectorArgs']] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
+        :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -1387,15 +1438,15 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
-        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
-        :param pulumi.Input[bool] provider_encrypt_ebs_volume: The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
                **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
-        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         """
@@ -1432,11 +1483,8 @@ class Cluster(pulumi.CustomResource):
             mongo_db_major_version="4.2",
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
-            provider_disk_iops=300,
-            provider_encrypt_ebs_volume=True,
             provider_instance_size_name="M40",
             provider_name="AWS",
-            provider_volume_type="STANDARD",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
@@ -1509,10 +1557,8 @@ class Cluster(pulumi.CustomResource):
             num_shards=1,
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
-            provider_disk_iops=300,
             provider_instance_size_name="M10",
             provider_name="AWS",
-            provider_volume_type="STANDARD",
             replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
                 num_shards=1,
                 regions_configs=[
@@ -1549,10 +1595,8 @@ class Cluster(pulumi.CustomResource):
             num_shards=1,
             project_id="<YOUR-PROJECT-ID>",
             provider_backup_enabled=True,
-            provider_disk_iops=240,
             provider_instance_size_name="M30",
             provider_name="AWS",
-            provider_volume_type="STANDARD",
             replication_specs=[
                 mongodbatlas.ClusterReplicationSpecArgs(
                     num_shards=2,
@@ -1624,6 +1668,7 @@ class Cluster(pulumi.CustomResource):
                  backing_provider_name: Optional[pulumi.Input[str]] = None,
                  backup_enabled: Optional[pulumi.Input[bool]] = None,
                  bi_connector: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorArgs']]] = None,
+                 bi_connector_config: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']]] = None,
                  cluster_type: Optional[pulumi.Input[str]] = None,
                  disk_size_gb: Optional[pulumi.Input[float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[str]] = None,
@@ -1663,7 +1708,11 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["auto_scaling_disk_gb_enabled"] = auto_scaling_disk_gb_enabled
             __props__.__dict__["backing_provider_name"] = backing_provider_name
             __props__.__dict__["backup_enabled"] = backup_enabled
+            if bi_connector is not None and not opts.urn:
+                warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+                pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
             __props__.__dict__["bi_connector"] = bi_connector
+            __props__.__dict__["bi_connector_config"] = bi_connector_config
             __props__.__dict__["cluster_type"] = cluster_type
             __props__.__dict__["disk_size_gb"] = disk_size_gb
             __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
@@ -1680,6 +1729,9 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["provider_backup_enabled"] = provider_backup_enabled
             __props__.__dict__["provider_disk_iops"] = provider_disk_iops
             __props__.__dict__["provider_disk_type_name"] = provider_disk_type_name
+            if provider_encrypt_ebs_volume is not None and not opts.urn:
+                warnings.warn("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""", DeprecationWarning)
+                pulumi.log.warn("""provider_encrypt_ebs_volume is deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
             __props__.__dict__["provider_encrypt_ebs_volume"] = provider_encrypt_ebs_volume
             if provider_instance_size_name is None and not opts.urn:
                 raise TypeError("Missing required property 'provider_instance_size_name'")
@@ -1699,6 +1751,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["mongo_uri_updated"] = None
             __props__.__dict__["mongo_uri_with_options"] = None
             __props__.__dict__["paused"] = None
+            __props__.__dict__["provider_encrypt_ebs_volume_flag"] = None
             __props__.__dict__["snapshot_backup_policies"] = None
             __props__.__dict__["srv_address"] = None
             __props__.__dict__["state_name"] = None
@@ -1719,6 +1772,7 @@ class Cluster(pulumi.CustomResource):
             backing_provider_name: Optional[pulumi.Input[str]] = None,
             backup_enabled: Optional[pulumi.Input[bool]] = None,
             bi_connector: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorArgs']]] = None,
+            bi_connector_config: Optional[pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             cluster_type: Optional[pulumi.Input[str]] = None,
             connection_strings: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionStringsArgs']]] = None,
@@ -1742,6 +1796,7 @@ class Cluster(pulumi.CustomResource):
             provider_disk_iops: Optional[pulumi.Input[int]] = None,
             provider_disk_type_name: Optional[pulumi.Input[str]] = None,
             provider_encrypt_ebs_volume: Optional[pulumi.Input[bool]] = None,
+            provider_encrypt_ebs_volume_flag: Optional[pulumi.Input[bool]] = None,
             provider_instance_size_name: Optional[pulumi.Input[str]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
             provider_region_name: Optional[pulumi.Input[str]] = None,
@@ -1767,7 +1822,8 @@ class Cluster(pulumi.CustomResource):
                - Set to `true` to enable disk auto-scaling.
                - Set to `false` to disable disk auto-scaling.
         :param pulumi.Input[str] backing_provider_name: Cloud service provider on which the server for a multi-tenant cluster is provisioned.
-        :param pulumi.Input[pulumi.InputType['ClusterBiConnectorArgs']] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param pulumi.Input[pulumi.InputType['ClusterBiConnectorArgs']] bi_connector: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
+        :param pulumi.Input[pulumi.InputType['ClusterBiConnectorConfigArgs']] bi_connector_config: Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param pulumi.Input[pulumi.InputType['ClusterConnectionStringsArgs']] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -1791,15 +1847,15 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups.
-        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        :param pulumi.Input[int] provider_disk_iops: The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
-        :param pulumi.Input[bool] provider_encrypt_ebs_volume: The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
                **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
-        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]] snapshot_backup_policies: current snapshot schedule and retention settings for the cluster.
@@ -1823,6 +1879,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["backing_provider_name"] = backing_provider_name
         __props__.__dict__["backup_enabled"] = backup_enabled
         __props__.__dict__["bi_connector"] = bi_connector
+        __props__.__dict__["bi_connector_config"] = bi_connector_config
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["cluster_type"] = cluster_type
         __props__.__dict__["connection_strings"] = connection_strings
@@ -1846,6 +1903,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["provider_disk_iops"] = provider_disk_iops
         __props__.__dict__["provider_disk_type_name"] = provider_disk_type_name
         __props__.__dict__["provider_encrypt_ebs_volume"] = provider_encrypt_ebs_volume
+        __props__.__dict__["provider_encrypt_ebs_volume_flag"] = provider_encrypt_ebs_volume_flag
         __props__.__dict__["provider_instance_size_name"] = provider_instance_size_name
         __props__.__dict__["provider_name"] = provider_name
         __props__.__dict__["provider_region_name"] = provider_region_name
@@ -1906,11 +1964,19 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> pulumi.Output['outputs.ClusterBiConnector']:
+    def bi_connector(self) -> pulumi.Output[Optional['outputs.ClusterBiConnector']]:
+        """
+        Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
+        """
+        return pulumi.get(self, "bi_connector")
+
+    @property
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> pulumi.Output['outputs.ClusterBiConnectorConfig']:
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         """
-        return pulumi.get(self, "bi_connector")
+        return pulumi.get(self, "bi_connector_config")
 
     @property
     @pulumi.getter(name="clusterId")
@@ -2077,7 +2143,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="providerDiskIops")
     def provider_disk_iops(self) -> pulumi.Output[int]:
         """
-        The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.
+        The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         """
         return pulumi.get(self, "provider_disk_iops")
 
@@ -2093,9 +2159,14 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="providerEncryptEbsVolume")
     def provider_encrypt_ebs_volume(self) -> pulumi.Output[bool]:
         """
-        The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+        **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
+
+    @property
+    @pulumi.getter(name="providerEncryptEbsVolumeFlag")
+    def provider_encrypt_ebs_volume_flag(self) -> pulumi.Output[bool]:
+        return pulumi.get(self, "provider_encrypt_ebs_volume_flag")
 
     @property
     @pulumi.getter(name="providerInstanceSizeName")
@@ -2127,7 +2198,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="providerVolumeType")
     def provider_volume_type(self) -> pulumi.Output[str]:
         """
-        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+        The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         """
         return pulumi.get(self, "provider_volume_type")
 

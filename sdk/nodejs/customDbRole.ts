@@ -52,7 +52,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const inheritedRoleOne = new mongodbatlas.CustomDbRole("inherited_role_one", {
+ * const inheritedRoleOne = new mongodbatlas.CustomDbRole("inheritedRoleOne", {
+ *     projectId: "<PROJECT-ID>",
+ *     roleName: "insertRole",
  *     actions: [{
  *         action: "INSERT",
  *         resources: [{
@@ -60,20 +62,20 @@ import * as utilities from "./utilities";
  *             databaseName: "anyDatabase",
  *         }],
  *     }],
- *     projectId: "<PROJECT-ID>",
- *     roleName: "insertRole",
  * });
- * const inheritedRoleTwo = new mongodbatlas.CustomDbRole("inherited_role_two", {
+ * const inheritedRoleTwo = new mongodbatlas.CustomDbRole("inheritedRoleTwo", {
+ *     projectId: inheritedRoleOne.projectId,
+ *     roleName: "statusServerRole",
  *     actions: [{
  *         action: "SERVER_STATUS",
  *         resources: [{
  *             cluster: true,
  *         }],
  *     }],
- *     projectId: inheritedRoleOne.projectId,
- *     roleName: "statusServerRole",
  * });
- * const testRole = new mongodbatlas.CustomDbRole("test_role", {
+ * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ *     projectId: inheritedRoleOne.projectId,
+ *     roleName: "myCustomRole",
  *     actions: [
  *         {
  *             action: "UPDATE",
@@ -92,16 +94,14 @@ import * as utilities from "./utilities";
  *     ],
  *     inheritedRoles: [
  *         {
- *             databaseName: "admin",
  *             roleName: inheritedRoleOne.roleName,
+ *             databaseName: "admin",
  *         },
  *         {
- *             databaseName: "admin",
  *             roleName: inheritedRoleTwo.roleName,
+ *             databaseName: "admin",
  *         },
  *     ],
- *     projectId: inheritedRoleOne.projectId,
- *     roleName: "myCustomRole",
  * });
  * ```
  *

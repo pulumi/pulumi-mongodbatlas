@@ -20,22 +20,22 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("test", {
+ * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
  *     projectId: "<PROJECT_ID>",
  *     providerName: "AWS",
  *     region: "us-east-1",
  * });
- * const ptfeService = new aws.ec2.VpcEndpoint("ptfe_service", {
- *     securityGroupIds: ["sg-3f238186"],
- *     serviceName: testPrivateLinkEndpoint.endpointServiceName,
- *     subnetIds: ["subnet-de0406d2"],
- *     vpcEndpointType: "Interface",
+ * const ptfeService = new aws.ec2.VpcEndpoint("ptfeService", {
  *     vpcId: "vpc-7fc0a543",
+ *     serviceName: testPrivateLinkEndpoint.endpointServiceName,
+ *     vpcEndpointType: "Interface",
+ *     subnetIds: ["subnet-de0406d2"],
+ *     securityGroupIds: ["sg-3f238186"],
  * });
- * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("test", {
- *     endpointServiceId: ptfeService.id,
- *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", {
  *     projectId: testPrivateLinkEndpoint.projectId,
+ *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ *     endpointServiceId: ptfeService.id,
  *     providerName: "AWS",
  * });
  * ```

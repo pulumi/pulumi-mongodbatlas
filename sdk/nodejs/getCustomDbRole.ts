@@ -16,7 +16,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CustomDbRole("test_role", {
+ * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ *     projectId: "<PROJECT-ID>",
+ *     roleName: "myCustomRole",
  *     actions: [
  *         {
  *             action: "UPDATE",
@@ -33,13 +35,11 @@ import * as utilities from "./utilities";
  *             }],
  *         },
  *     ],
- *     projectId: "<PROJECT-ID>",
- *     roleName: "myCustomRole",
  * });
  * const test = pulumi.all([testRole.projectId, testRole.roleName]).apply(([projectId, roleName]) => mongodbatlas.getCustomDbRole({
  *     projectId: projectId,
  *     roleName: roleName,
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getCustomDbRole(args: GetCustomDbRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRoleResult> {

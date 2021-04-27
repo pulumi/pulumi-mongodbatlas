@@ -9,38 +9,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("test", {
- *     projectId: "<PROJECT_ID>",
- *     providerName: "AWS",
- *     region: "us-east-1",
- * });
- * const ptfeService = new aws.ec2.VpcEndpoint("ptfe_service", {
- *     securityGroupIds: ["sg-3f238186"],
- *     serviceName: testPrivateLinkEndpoint.endpointServiceName,
- *     subnetIds: ["subnet-de0406d2"],
- *     vpcEndpointType: "Interface",
- *     vpcId: "vpc-7fc0a543",
- * });
- * const testMongodbatlasPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("test", {
- *     endpointServiceId: ptfeService.id,
- *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
- *     projectId: testPrivateLinkEndpoint.projectId,
- *     providerName: "AWS",
- * });
- * const testPrivateLinkEndpointService = pulumi.all([testMongodbatlasPrivateLinkEndpointService.interfaceEndpointId, testMongodbatlasPrivateLinkEndpointService.privateLinkId, testMongodbatlasPrivateLinkEndpointService.projectId]).apply(([interfaceEndpointId, privateLinkId, projectId]) => mongodbatlas.getPrivateLinkEndpointService({
- *     interfaceEndpointId: interfaceEndpointId,
- *     privateLinkId: privateLinkId,
- *     projectId: projectId,
- * }, { async: true }));
- * ```
  */
 export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointServiceResult> {
     if (!opts) {

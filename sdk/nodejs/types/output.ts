@@ -197,9 +197,23 @@ export interface AlertConfigurationThreshold {
     units?: string;
 }
 
+export interface CloudProviderAccessAuthorizationAws {
+    iamAssumedRoleArn: string;
+}
+
+export interface CloudProviderAccessAuthorizationFeatureUsage {
+    featureId: string;
+    featureType: string;
+}
+
 export interface CloudProviderAccessFeatureUsage {
     featureId: string;
     featureType: string;
+}
+
+export interface CloudProviderAccessSetupAws {
+    atlasAssumedRoleExternalId: string;
+    atlasAwsAccountArn: string;
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicy {
@@ -267,7 +281,21 @@ export interface ClusterBiConnector {
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
-    enabled: string;
+    enabled?: string;
+    /**
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     */
+    readPreference?: string;
+}
+
+export interface ClusterBiConnectorConfig {
+    /**
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * *
+     * - Set to `true` to enable BI Connector for Atlas.
+     * - Set to `false` to disable BI Connector for Atlas.
+     */
+    enabled: boolean;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      */
@@ -468,9 +496,6 @@ export interface DatabaseUserScope {
 }
 
 export interface EncryptionAtRestAwsKms {
-    /**
-     * The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-     */
     accessKeyId?: string;
     /**
      * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
@@ -488,9 +513,6 @@ export interface EncryptionAtRestAwsKms {
      * ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `mongodbatlas.CloudProviderAccess` resource.
      */
     roleId?: string;
-    /**
-     * The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-     */
     secretAccessKey?: string;
 }
 
@@ -799,6 +821,17 @@ export interface GetCloudProviderAccessAwsIamRoleFeatureUsage {
     featureType: string;
 }
 
+export interface GetCloudProviderAccessSetupAws {
+    /**
+     * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+     */
+    atlasAssumedRoleExternalId: string;
+    /**
+     * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+     */
+    atlasAwsAccountArn: string;
+}
+
 export interface GetCloudProviderSnapshotBackupPolicyPolicy {
     id: string;
     policyItems: outputs.GetCloudProviderSnapshotBackupPolicyPolicyPolicyItem[];
@@ -911,6 +944,17 @@ export interface GetClusterBiConnector {
      * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
      */
     enabled: string;
+    /**
+     * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     */
+    readPreference: string;
+}
+
+export interface GetClusterBiConnectorConfig {
+    /**
+     * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+     */
+    enabled: boolean;
     /**
      * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      */
@@ -1048,9 +1092,15 @@ export interface GetClustersResult {
      */
     backupEnabled: boolean;
     /**
-     * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+     * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+     *
+     * @deprecated use bi_connector_config instead
      */
     biConnector: outputs.GetClustersResultBiConnector;
+    /**
+     * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+     */
+    biConnectorConfig: outputs.GetClustersResultBiConnectorConfig;
     /**
      * Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      */
@@ -1142,7 +1192,7 @@ export interface GetClustersResult {
      */
     providerDiskTypeName: string;
     /**
-     * Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+     * **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
      */
     providerEncryptEbsVolume: boolean;
     /**
@@ -1194,6 +1244,17 @@ export interface GetClustersResultBiConnector {
      * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
      */
     enabled: string;
+    /**
+     * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     */
+    readPreference: string;
+}
+
+export interface GetClustersResultBiConnectorConfig {
+    /**
+     * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
+     */
+    enabled: boolean;
     /**
      * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      */
@@ -1400,7 +1461,7 @@ export interface GetDatabaseUsersResult {
     /**
      * (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Possible values include:
-     * * `admin` if `x509Type` and `awsIamType` are omitted or NONE.
+     * * `admin` if `x509Type` and `awsIamType` and `ldapAuthType` are omitted or NONE.
      * * `$external` if:
      * * `x509Type` is MANAGED or CUSTOMER, or
      * * `awsIamType` is USER or ROLE.
@@ -1411,6 +1472,10 @@ export interface GetDatabaseUsersResult {
      */
     awsIamType: string;
     labels: outputs.GetDatabaseUsersResultLabel[];
+    /**
+     * Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+     */
+    ldapAuthType: string;
     /**
      * The unique ID for the project to get all database users.
      */
@@ -1482,6 +1547,25 @@ export interface GetGlobalClusterConfigManagedNamespace {
     db: string;
 }
 
+export interface GetLdapConfigurationUserToDnMapping {
+    ldapQuery: string;
+    match: string;
+    substitution: string;
+}
+
+export interface GetLdapVerifyLink {
+    href: string;
+    rel: string;
+}
+
+export interface GetLdapVerifyValidation {
+    /**
+     * The current status of the LDAP over TLS/SSL configuration.
+     */
+    status: string;
+    validationType: string;
+}
+
 export interface GetNetworkContainersResult {
     /**
      * CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
@@ -1519,6 +1603,10 @@ export interface GetNetworkContainersResult {
      * The Atlas AWS region name for where this container exists.
      */
     regionName: string;
+    /**
+     * Atlas GCP regions where the container resides.
+     */
+    regions: string[];
     /**
      * The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
      */
@@ -1742,6 +1830,25 @@ export interface GlobalClusterConfigManagedNamespace {
      * The name of the database containing the collection.
      */
     db: string;
+}
+
+export interface LdapConfigurationUserToDnMapping {
+    ldapQuery: string;
+    match: string;
+    substitution: string;
+}
+
+export interface LdapVerifyLink {
+    href: string;
+    rel: string;
+}
+
+export interface LdapVerifyValidation {
+    /**
+     * The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+     */
+    status: string;
+    validationType: string;
 }
 
 export interface ProjectTeam {

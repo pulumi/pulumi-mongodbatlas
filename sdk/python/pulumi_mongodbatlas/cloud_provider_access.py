@@ -20,9 +20,9 @@ class CloudProviderAccessArgs:
                  iam_assumed_role_arn: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CloudProviderAccess resource.
-        :param pulumi.Input[str] project_id: The unique ID for the project to get all Cloud Provider Access
+        :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
-        :param pulumi.Input[str] iam_assumed_role_arn: - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        :param pulumi.Input[str] iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -33,7 +33,7 @@ class CloudProviderAccessArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
         """
-        The unique ID for the project to get all Cloud Provider Access
+        The unique ID for the project
         """
         return pulumi.get(self, "project_id")
 
@@ -57,7 +57,7 @@ class CloudProviderAccessArgs:
     @pulumi.getter(name="iamAssumedRoleArn")
     def iam_assumed_role_arn(self) -> Optional[pulumi.Input[str]]:
         """
-        - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         """
         return pulumi.get(self, "iam_assumed_role_arn")
 
@@ -85,10 +85,10 @@ class _CloudProviderAccessState:
         :param pulumi.Input[str] authorized_date: Date on which this role was authorized.
         :param pulumi.Input[str] created_date: Date on which this role was created.
         :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessFeatureUsageArgs']]] feature_usages: Atlas features this AWS IAM role is linked to.
-        :param pulumi.Input[str] iam_assumed_role_arn: - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
-        :param pulumi.Input[str] project_id: The unique ID for the project to get all Cloud Provider Access
+        :param pulumi.Input[str] iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
-        :param pulumi.Input[str] role_id: Unique ID of this role.
+        :param pulumi.Input[str] role_id: Unique ID of this role returned by mongodb atlas api
         """
         if atlas_assumed_role_external_id is not None:
             pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
@@ -173,7 +173,7 @@ class _CloudProviderAccessState:
     @pulumi.getter(name="iamAssumedRoleArn")
     def iam_assumed_role_arn(self) -> Optional[pulumi.Input[str]]:
         """
-        - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         """
         return pulumi.get(self, "iam_assumed_role_arn")
 
@@ -185,7 +185,7 @@ class _CloudProviderAccessState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique ID for the project to get all Cloud Provider Access
+        The unique ID for the project
         """
         return pulumi.get(self, "project_id")
 
@@ -209,7 +209,7 @@ class _CloudProviderAccessState:
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique ID of this role.
+        Unique ID of this role returned by mongodb atlas api
         """
         return pulumi.get(self, "role_id")
 
@@ -236,12 +236,10 @@ class CloudProviderAccess(pulumi.CustomResource):
          $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
         ```
 
-         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] iam_assumed_role_arn: - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
-        :param pulumi.Input[str] project_id: The unique ID for the project to get all Cloud Provider Access
+        :param pulumi.Input[str] iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
         """
         ...
@@ -258,8 +256,6 @@ class CloudProviderAccess(pulumi.CustomResource):
         ```sh
          $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
         ```
-
-         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
 
         :param str resource_name: The name of the resource.
         :param CloudProviderAccessArgs args: The arguments to use to populate this resource's properties.
@@ -335,10 +331,10 @@ class CloudProviderAccess(pulumi.CustomResource):
         :param pulumi.Input[str] authorized_date: Date on which this role was authorized.
         :param pulumi.Input[str] created_date: Date on which this role was created.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessFeatureUsageArgs']]]] feature_usages: Atlas features this AWS IAM role is linked to.
-        :param pulumi.Input[str] iam_assumed_role_arn: - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
-        :param pulumi.Input[str] project_id: The unique ID for the project to get all Cloud Provider Access
+        :param pulumi.Input[str] iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        :param pulumi.Input[str] project_id: The unique ID for the project
         :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
-        :param pulumi.Input[str] role_id: Unique ID of this role.
+        :param pulumi.Input[str] role_id: Unique ID of this role returned by mongodb atlas api
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -399,7 +395,7 @@ class CloudProviderAccess(pulumi.CustomResource):
     @pulumi.getter(name="iamAssumedRoleArn")
     def iam_assumed_role_arn(self) -> pulumi.Output[Optional[str]]:
         """
-        - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
         """
         return pulumi.get(self, "iam_assumed_role_arn")
 
@@ -407,7 +403,7 @@ class CloudProviderAccess(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The unique ID for the project to get all Cloud Provider Access
+        The unique ID for the project
         """
         return pulumi.get(self, "project_id")
 
@@ -423,7 +419,7 @@ class CloudProviderAccess(pulumi.CustomResource):
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Output[str]:
         """
-        Unique ID of this role.
+        Unique ID of this role returned by mongodb atlas api
         """
         return pulumi.get(self, "role_id")
 

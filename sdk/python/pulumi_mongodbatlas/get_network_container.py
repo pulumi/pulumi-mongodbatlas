@@ -19,7 +19,7 @@ class GetNetworkContainerResult:
     """
     A collection of values returned by getNetworkContainer.
     """
-    def __init__(__self__, atlas_cidr_block=None, azure_subscription_id=None, container_id=None, gcp_project_id=None, id=None, network_name=None, project_id=None, provider_name=None, provisioned=None, region=None, region_name=None, vnet_name=None, vpc_id=None):
+    def __init__(__self__, atlas_cidr_block=None, azure_subscription_id=None, container_id=None, gcp_project_id=None, id=None, network_name=None, project_id=None, provider_name=None, provisioned=None, region=None, region_name=None, regions=None, vnet_name=None, vpc_id=None):
         if atlas_cidr_block and not isinstance(atlas_cidr_block, str):
             raise TypeError("Expected argument 'atlas_cidr_block' to be a str")
         pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
@@ -53,6 +53,9 @@ class GetNetworkContainerResult:
         if region_name and not isinstance(region_name, str):
             raise TypeError("Expected argument 'region_name' to be a str")
         pulumi.set(__self__, "region_name", region_name)
+        if regions and not isinstance(regions, list):
+            raise TypeError("Expected argument 'regions' to be a list")
+        pulumi.set(__self__, "regions", regions)
         if vnet_name and not isinstance(vnet_name, str):
             raise TypeError("Expected argument 'vnet_name' to be a str")
         pulumi.set(__self__, "vnet_name", vnet_name)
@@ -143,6 +146,14 @@ class GetNetworkContainerResult:
         return pulumi.get(self, "region_name")
 
     @property
+    @pulumi.getter
+    def regions(self) -> Sequence[str]:
+        """
+        Atlas GCP regions where the container resides.
+        """
+        return pulumi.get(self, "regions")
+
+    @property
     @pulumi.getter(name="vnetName")
     def vnet_name(self) -> str:
         """
@@ -176,6 +187,7 @@ class AwaitableGetNetworkContainerResult(GetNetworkContainerResult):
             provisioned=self.provisioned,
             region=self.region,
             region_name=self.region_name,
+            regions=self.regions,
             vnet_name=self.vnet_name,
             vpc_id=self.vpc_id)
 
@@ -217,5 +229,6 @@ def get_network_container(container_id: Optional[str] = None,
         provisioned=__ret__.provisioned,
         region=__ret__.region,
         region_name=__ret__.region_name,
+        regions=__ret__.regions,
         vnet_name=__ret__.vnet_name,
         vpc_id=__ret__.vpc_id)

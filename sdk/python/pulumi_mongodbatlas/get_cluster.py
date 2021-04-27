@@ -20,7 +20,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None):
+    def __init__(__self__, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, bi_connector_config=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None):
         if auto_scaling_compute_enabled and not isinstance(auto_scaling_compute_enabled, bool):
             raise TypeError("Expected argument 'auto_scaling_compute_enabled' to be a bool")
         pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
@@ -38,7 +38,14 @@ class GetClusterResult:
         pulumi.set(__self__, "backup_enabled", backup_enabled)
         if bi_connector and not isinstance(bi_connector, dict):
             raise TypeError("Expected argument 'bi_connector' to be a dict")
+        if bi_connector is not None:
+            warnings.warn("""use bi_connector_config instead""", DeprecationWarning)
+            pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
+
         pulumi.set(__self__, "bi_connector", bi_connector)
+        if bi_connector_config and not isinstance(bi_connector_config, dict):
+            raise TypeError("Expected argument 'bi_connector_config' to be a dict")
+        pulumi.set(__self__, "bi_connector_config", bi_connector_config)
         if cluster_type and not isinstance(cluster_type, str):
             raise TypeError("Expected argument 'cluster_type' to be a str")
         pulumi.set(__self__, "cluster_type", cluster_type)
@@ -180,9 +187,17 @@ class GetClusterResult:
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> 'outputs.GetClusterBiConnectorResult':
         """
-        Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
         return pulumi.get(self, "bi_connector")
+
+    @property
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> 'outputs.GetClusterBiConnectorConfigResult':
+        """
+        Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        """
+        return pulumi.get(self, "bi_connector_config")
 
     @property
     @pulumi.getter(name="clusterType")
@@ -371,7 +386,7 @@ class GetClusterResult:
     @pulumi.getter(name="providerEncryptEbsVolume")
     def provider_encrypt_ebs_volume(self) -> bool:
         """
-        Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+        **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
@@ -466,6 +481,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             backing_provider_name=self.backing_provider_name,
             backup_enabled=self.backup_enabled,
             bi_connector=self.bi_connector,
+            bi_connector_config=self.bi_connector_config,
             cluster_type=self.cluster_type,
             connection_strings=self.connection_strings,
             container_id=self.container_id,
@@ -532,6 +548,7 @@ def get_cluster(name: Optional[str] = None,
         backing_provider_name=__ret__.backing_provider_name,
         backup_enabled=__ret__.backup_enabled,
         bi_connector=__ret__.bi_connector,
+        bi_connector_config=__ret__.bi_connector_config,
         cluster_type=__ret__.cluster_type,
         connection_strings=__ret__.connection_strings,
         container_id=__ret__.container_id,

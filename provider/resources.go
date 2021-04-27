@@ -78,7 +78,10 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:   "mongodb",
 		Config:      map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"mongodbatlas_custom_db_role":          {Tok: makeResource(mainMod, "CustomDbRole")},
+			"mongodbatlas_custom_db_role": {Tok: makeResource(mainMod, "CustomDbRole")},
+			"mongodbatlas_custom_dns_configuration_cluster_aws": {
+				Tok: makeResource(mainMod, "CustomDnsConfigurationClusterAws"),
+			},
 			"mongodbatlas_database_user":           {Tok: makeResource(mainMod, "DatabaseUser")},
 			"mongodbatlas_project_ip_whitelist":    {Tok: makeResource(mainMod, "ProjectIpWhitelist")},
 			"mongodbatlas_project":                 {Tok: makeResource(mainMod, "Project")},
@@ -88,6 +91,12 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_network_container":       {Tok: makeResource(mainMod, "NetworkContainer")},
 			"mongodbatlas_cloud_provider_snapshot_restore_job": {
 				Tok: makeResource(mainMod, "CloudProviderSnapshotRestoreJob"),
+			},
+			"mongodbatlas_cloud_provider_access_authorization": {
+				Tok: makeResource(mainMod, "CloudProviderAccessAuthorization"),
+			},
+			"mongodbatlas_cloud_provider_access_setup": {
+				Tok: makeResource(mainMod, "CloudProviderAccessSetup"),
 			},
 			"mongodbatlas_network_peering":       {Tok: makeResource(mainMod, "NetworkPeering")},
 			"mongodbatlas_encryption_at_rest":    {Tok: makeResource(mainMod, "EncryptionAtRest")},
@@ -112,22 +121,25 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_privatelink_endpoint_service": {Tok: makeResource(mainMod, "PrivateLinkEndpointService")},
 			"mongodbatlas_project_ip_access_list":       {Tok: makeResource(mainMod, "ProjectIpAccessList")},
 			"mongodbatlas_third_party_integration":      {Tok: makeResource(mainMod, "ThirdPartyIntegration")},
+			"mongodbatlas_ldap_configuration":           {Tok: makeResource(mainMod, "LdapConfiguration")},
+			"mongodbatlas_ldap_verify":                  {Tok: makeResource(mainMod, "LdapVerify")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"mongodbatlas_custom_db_role":           {Tok: makeDataSource(mainMod, "getCustomDbRole")},
-			"mongodbatlas_custom_db_roles":          {Tok: makeDataSource(mainMod, "getCustomDbRoles")},
-			"mongodbatlas_database_user":            {Tok: makeDataSource(mainMod, "getDatabaseUser")},
-			"mongodbatlas_database_users":           {Tok: makeDataSource(mainMod, "getDatabaseUsers")},
-			"mongodbatlas_project":                  {Tok: makeDataSource(mainMod, "getProject")},
-			"mongodbatlas_projects":                 {Tok: makeDataSource(mainMod, "getProjects")},
-			"mongodbatlas_cluster":                  {Tok: makeDataSource(mainMod, "getCluster")},
-			"mongodbatlas_clusters":                 {Tok: makeDataSource(mainMod, "getClusters")},
-			"mongodbatlas_cloud_provider_snapshot":  {Tok: makeDataSource(mainMod, "getCloudProviderSnapshot")},
-			"mongodbatlas_cloud_provider_snapshots": {Tok: makeDataSource(mainMod, "getCloudProviderSnapshots")},
-			"mongodbatlas_network_container":        {Tok: makeDataSource(mainMod, "getNetworkContainer")},
-			"mongodbatlas_network_containers":       {Tok: makeDataSource(mainMod, "getNetworkContainers")},
-			"mongodbatlas_network_peering":          {Tok: makeDataSource(mainMod, "getNetworkPeering")},
-			"mongodbatlas_network_peerings":         {Tok: makeDataSource(mainMod, "getNetworkPeerings")},
+			"mongodbatlas_custom_db_role":              {Tok: makeDataSource(mainMod, "getCustomDbRole")},
+			"mongodbatlas_custom_db_roles":             {Tok: makeDataSource(mainMod, "getCustomDbRoles")},
+			"mongodbatlas_database_user":               {Tok: makeDataSource(mainMod, "getDatabaseUser")},
+			"mongodbatlas_database_users":              {Tok: makeDataSource(mainMod, "getDatabaseUsers")},
+			"mongodbatlas_project":                     {Tok: makeDataSource(mainMod, "getProject")},
+			"mongodbatlas_projects":                    {Tok: makeDataSource(mainMod, "getProjects")},
+			"mongodbatlas_cluster":                     {Tok: makeDataSource(mainMod, "getCluster")},
+			"mongodbatlas_clusters":                    {Tok: makeDataSource(mainMod, "getClusters")},
+			"mongodbatlas_cloud_provider_snapshot":     {Tok: makeDataSource(mainMod, "getCloudProviderSnapshot")},
+			"mongodbatlas_cloud_provider_snapshots":    {Tok: makeDataSource(mainMod, "getCloudProviderSnapshots")},
+			"mongodbatlas_cloud_provider_access_setup": {Tok: makeDataSource(mainMod, "getCloudProviderAccessSetup")},
+			"mongodbatlas_network_container":           {Tok: makeDataSource(mainMod, "getNetworkContainer")},
+			"mongodbatlas_network_containers":          {Tok: makeDataSource(mainMod, "getNetworkContainers")},
+			"mongodbatlas_network_peering":             {Tok: makeDataSource(mainMod, "getNetworkPeering")},
+			"mongodbatlas_network_peerings":            {Tok: makeDataSource(mainMod, "getNetworkPeerings")},
 			"mongodbatlas_cloud_provider_snapshot_restore_job": {
 				Tok: makeDataSource(mainMod, "getCloudProviderSnapshotRestoreJob"),
 			},
@@ -161,11 +173,16 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_project_ip_access_list":   {Tok: makeDataSource(mainMod, "getProjectIpAccessList")},
 			"mongodbatlas_third_party_integration":  {Tok: makeDataSource(mainMod, "getThirdPartyIntegration")},
 			"mongodbatlas_third_party_integrations": {Tok: makeDataSource(mainMod, "getThirdPartyIntegrations")},
+			"mongodbatlas_custom_dns_configuration_cluster_aws": {
+				Tok: makeDataSource(mainMod, "getCustomDnsConfigurationClusterAws"),
+			},
+			"mongodbatlas_ldap_configuration": {Tok: makeDataSource(mainMod, "getLdapConfiguration")},
+			"mongodbatlas_ldap_verify":        {Tok: makeDataSource(mainMod, "getLdapVerify")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0-alpha.0",
+				"@pulumi/pulumi": "^3.0.0",
 			},
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
@@ -174,7 +191,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
-				"pulumi": ">=3.0.0a1,<4.0.0",
+				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		Golang: &tfbridge.GolangInfo{
@@ -188,7 +205,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "3.*-*",
+				"Pulumi":                       "3.*",
 				"System.Collections.Immutable": "1.6.0",
 			},
 		},

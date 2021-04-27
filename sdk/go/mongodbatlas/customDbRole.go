@@ -82,6 +82,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		inheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleOne", &mongodbatlas.CustomDbRoleArgs{
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			RoleName:  pulumi.String("insertRole"),
 // 			Actions: mongodbatlas.CustomDbRoleActionArray{
 // 				&mongodbatlas.CustomDbRoleActionArgs{
 // 					Action: pulumi.String("INSERT"),
@@ -93,13 +95,13 @@ import (
 // 					},
 // 				},
 // 			},
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			RoleName:  pulumi.String("insertRole"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		inheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleTwo", &mongodbatlas.CustomDbRoleArgs{
+// 			ProjectId: inheritedRoleOne.ProjectId,
+// 			RoleName:  pulumi.String("statusServerRole"),
 // 			Actions: mongodbatlas.CustomDbRoleActionArray{
 // 				&mongodbatlas.CustomDbRoleActionArgs{
 // 					Action: pulumi.String("SERVER_STATUS"),
@@ -110,13 +112,13 @@ import (
 // 					},
 // 				},
 // 			},
-// 			ProjectId: inheritedRoleOne.ProjectId,
-// 			RoleName:  pulumi.String("statusServerRole"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+// 			ProjectId: inheritedRoleOne.ProjectId,
+// 			RoleName:  pulumi.String("myCustomRole"),
 // 			Actions: mongodbatlas.CustomDbRoleActionArray{
 // 				&mongodbatlas.CustomDbRoleActionArgs{
 // 					Action: pulumi.String("UPDATE"),
@@ -139,16 +141,14 @@ import (
 // 			},
 // 			InheritedRoles: mongodbatlas.CustomDbRoleInheritedRoleArray{
 // 				&mongodbatlas.CustomDbRoleInheritedRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
 // 					RoleName:     inheritedRoleOne.RoleName,
+// 					DatabaseName: pulumi.String("admin"),
 // 				},
 // 				&mongodbatlas.CustomDbRoleInheritedRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
 // 					RoleName:     inheritedRoleTwo.RoleName,
+// 					DatabaseName: pulumi.String("admin"),
 // 				},
 // 			},
-// 			ProjectId: inheritedRoleOne.ProjectId,
-// 			RoleName:  pulumi.String("myCustomRole"),
 // 		})
 // 		if err != nil {
 // 			return err

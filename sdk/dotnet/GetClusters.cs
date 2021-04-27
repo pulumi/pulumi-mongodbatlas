@@ -57,9 +57,6 @@ namespace Pulumi.Mongodbatlas
         ///             ProviderBackupEnabled = true,
         ///             AutoScalingDiskGbEnabled = true,
         ///             ProviderName = "AWS",
-        ///             ProviderDiskIops = 300,
-        ///             ProviderVolumeType = "STANDARD",
-        ///             ProviderEncryptEbsVolume = true,
         ///             ProviderInstanceSizeName = "M40",
         ///         });
         ///         var testClusters = testCluster.ProjectId.Apply(projectId =&gt; Mongodbatlas.GetClusters.InvokeAsync(new Mongodbatlas.GetClustersArgs
