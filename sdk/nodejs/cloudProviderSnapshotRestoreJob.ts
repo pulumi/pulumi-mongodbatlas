@@ -31,9 +31,8 @@ import * as utilities from "./utilities";
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",
  *     providerBackupEnabled: true,
- *     providerDiskIops: 100,
- *     providerEncryptEbsVolume: false,
  * });
+ * // enable cloud backup snapshots
  * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
  *     projectId: myCluster.projectId,
  *     clusterName: myCluster.name,
@@ -50,7 +49,7 @@ import * as utilities from "./utilities";
  *         target_project_id: "5cf5a45a9ccf6400e60981b6",
  *     },
  * }, {
- *     dependsOn: ["mongodbatlas_cloud_provider_snapshot.test"],
+ *     dependsOn: [testCloudProviderSnapshot],
  * });
  * ```
  * ### Example download delivery type.
@@ -66,9 +65,8 @@ import * as utilities from "./utilities";
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",
  *     providerBackupEnabled: true,
- *     providerDiskIops: 100,
- *     providerEncryptEbsVolume: false,
  * });
+ * // enable cloud backup snapshots
  * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
  *     projectId: myCluster.projectId,
  *     clusterName: myCluster.name,

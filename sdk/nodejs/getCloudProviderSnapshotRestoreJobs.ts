@@ -18,28 +18,28 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("test", {
+ * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     description: "MyDescription",
- *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     retentionInDays: 1,
  * });
- * const testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob("test", {
+ * const testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", {
+ *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
+ *     snapshotId: testCloudProviderSnapshot.id,
  *     deliveryType: {
  *         automated: true,
  *         target_cluster_name: "MyCluster",
  *         target_project_id: "5cf5a45a9ccf6400e60981b6",
  *     },
- *     projectId: "5cf5a45a9ccf6400e60981b6",
- *     snapshotId: testCloudProviderSnapshot.id,
  * });
- * const testCloudProviderSnapshotRestoreJobs = pulumi.all([testCloudProviderSnapshotRestoreJob.clusterName, testCloudProviderSnapshotRestoreJob.projectId]).apply(([clusterName, projectId]) => mongodbatlas.getCloudProviderSnapshotRestoreJobs({
- *     clusterName: clusterName,
- *     itemsPerPage: 5,
- *     pageNum: 1,
+ * const testCloudProviderSnapshotRestoreJobs = pulumi.all([testCloudProviderSnapshotRestoreJob.projectId, testCloudProviderSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudProviderSnapshotRestoreJobs({
  *     projectId: projectId,
- * }, { async: true }));
+ *     clusterName: clusterName,
+ *     pageNum: 1,
+ *     itemsPerPage: 5,
+ * }));
  * ```
  */
 export function getCloudProviderSnapshotRestoreJobs(args: GetCloudProviderSnapshotRestoreJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotRestoreJobsResult> {

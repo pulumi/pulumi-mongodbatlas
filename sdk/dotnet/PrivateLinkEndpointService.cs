@@ -37,23 +37,23 @@ namespace Pulumi.Mongodbatlas
     ///         });
     ///         var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new Aws.Ec2.VpcEndpointArgs
     ///         {
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 "sg-3f238186",
-    ///             },
+    ///             VpcId = "vpc-7fc0a543",
     ///             ServiceName = testPrivateLinkEndpoint.EndpointServiceName,
+    ///             VpcEndpointType = "Interface",
     ///             SubnetIds = 
     ///             {
     ///                 "subnet-de0406d2",
     ///             },
-    ///             VpcEndpointType = "Interface",
-    ///             VpcId = "vpc-7fc0a543",
+    ///             SecurityGroupIds = 
+    ///             {
+    ///                 "sg-3f238186",
+    ///             },
     ///         });
     ///         var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", new Mongodbatlas.PrivateLinkEndpointServiceArgs
     ///         {
-    ///             EndpointServiceId = ptfeService.Id,
-    ///             PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
     ///             ProjectId = testPrivateLinkEndpoint.ProjectId,
+    ///             PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+    ///             EndpointServiceId = ptfeService.Id,
     ///             ProviderName = "AWS",
     ///         });
     ///     }

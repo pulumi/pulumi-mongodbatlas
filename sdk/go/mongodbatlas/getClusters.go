@@ -47,9 +47,6 @@ import (
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
 // 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
 // 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderDiskIops:         pulumi.Int(300),
-// 			ProviderVolumeType:       pulumi.String("STANDARD"),
-// 			ProviderEncryptEbsVolume: pulumi.Bool(true),
 // 			ProviderInstanceSizeName: pulumi.String("M40"),
 // 		})
 // 		if err != nil {

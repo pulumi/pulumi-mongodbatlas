@@ -36,31 +36,6 @@ import * as utilities from "./utilities";
  *     projectId: id,
  * }, { async: true }));
  * ```
- * ### Using name attribute to query
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testMongodbatlasProject = new mongodbatlas.Project("test", {
- *     orgId: "<ORG_ID>",
- *     teams: [
- *         {
- *             roleNames: ["GROUP_OWNER"],
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *         },
- *         {
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *         },
- *     ],
- * });
- * const testProject = testMongodbatlasProject.name.apply(name => mongodbatlas.getProject({
- *     name: name,
- * }, { async: true }));
- * ```
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};

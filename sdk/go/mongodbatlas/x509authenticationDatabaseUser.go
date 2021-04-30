@@ -37,30 +37,30 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		user, err := mongodbatlas.NewDatabaseUser(ctx, "user", &mongodbatlas.DatabaseUserArgs{
+// 			ProjectId:    pulumi.String("<PROJECT-ID>"),
+// 			Username:     pulumi.String("myUsername"),
+// 			X509Type:     pulumi.String("MANAGED"),
 // 			DatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
+// 			Roles: mongodbatlas.DatabaseUserRoleArray{
+// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 					RoleName:     pulumi.String("atlasAdmin"),
+// 					DatabaseName: pulumi.String("admin"),
+// 				},
+// 			},
 // 			Labels: mongodbatlas.DatabaseUserLabelArray{
 // 				&mongodbatlas.DatabaseUserLabelArgs{
 // 					Key:   pulumi.String("My Key"),
 // 					Value: pulumi.String("My Value"),
 // 				},
 // 			},
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Roles: mongodbatlas.DatabaseUserRoleArray{
-// 				&mongodbatlas.DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
-// 					RoleName:     pulumi.String("atlasAdmin"),
-// 				},
-// 			},
-// 			Username: pulumi.String("myUsername"),
-// 			X509Type: pulumi.String("MANAGED"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "test", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
-// 			MonthsUntilExpiration: pulumi.Int(2),
 // 			ProjectId:             user.ProjectId,
 // 			Username:              user.Username,
+// 			MonthsUntilExpiration: pulumi.Int(2),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -72,6 +72,10 @@ export interface GetDatabaseUserResult {
      */
     readonly id: string;
     readonly labels: outputs.GetDatabaseUserLabel[];
+    /**
+     * Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+     */
+    readonly ldapAuthType: string;
     readonly projectId: string;
     /**
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.

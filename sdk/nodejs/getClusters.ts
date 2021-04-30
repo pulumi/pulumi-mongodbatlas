@@ -36,9 +36,6 @@ import * as utilities from "./utilities";
  *     providerBackupEnabled: true,
  *     autoScalingDiskGbEnabled: true,
  *     providerName: "AWS",
- *     providerDiskIops: 300,
- *     providerVolumeType: "STANDARD",
- *     providerEncryptEbsVolume: true,
  *     providerInstanceSizeName: "M40",
  * });
  * const testClusters = testCluster.projectId.apply(projectId => mongodbatlas.getClusters({

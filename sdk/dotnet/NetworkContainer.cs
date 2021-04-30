@@ -57,6 +57,11 @@ namespace Pulumi.Mongodbatlas
     ///             AtlasCidrBlock = "10.8.0.0/21",
     ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///             ProviderName = "GCP",
+    ///             Regions = 
+    ///             {
+    ///                 "US_EAST_4",
+    ///                 "US_WEST_3",
+    ///             },
     ///         });
     ///     }
     /// 
@@ -163,6 +168,12 @@ namespace Pulumi.Mongodbatlas
         [Output("regionName")]
         public Output<string> RegionName { get; private set; } = null!;
 
+        /// <summary>
+        /// Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// </summary>
+        [Output("regions")]
+        public Output<ImmutableArray<string>> Regions { get; private set; } = null!;
+
         [Output("vnetName")]
         public Output<string> VnetName { get; private set; } = null!;
 
@@ -252,6 +263,18 @@ namespace Pulumi.Mongodbatlas
         [Input("regionName")]
         public Input<string>? RegionName { get; set; }
 
+        [Input("regions")]
+        private InputList<string>? _regions;
+
+        /// <summary>
+        /// Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// </summary>
+        public InputList<string> Regions
+        {
+            get => _regions ?? (_regions = new InputList<string>());
+            set => _regions = value;
+        }
+
         public NetworkContainerArgs()
         {
         }
@@ -324,6 +347,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("regionName")]
         public Input<string>? RegionName { get; set; }
+
+        [Input("regions")]
+        private InputList<string>? _regions;
+
+        /// <summary>
+        /// Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// </summary>
+        public InputList<string> Regions
+        {
+            get => _regions ?? (_regions = new InputList<string>());
+            set => _regions = value;
+        }
 
         [Input("vnetName")]
         public Input<string>? VnetName { get; set; }

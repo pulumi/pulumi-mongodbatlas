@@ -58,6 +58,10 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     public readonly databaseName!: pulumi.Output<string | undefined>;
     public readonly labels!: pulumi.Output<outputs.DatabaseUserLabel[]>;
+    /**
+     * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     */
+    public readonly ldapAuthType!: pulumi.Output<string | undefined>;
     public readonly password!: pulumi.Output<string | undefined>;
     /**
      * The unique ID for the project to create the database user.
@@ -69,7 +73,7 @@ export class DatabaseUser extends pulumi.CustomResource {
     public readonly roles!: pulumi.Output<outputs.DatabaseUserRole[]>;
     public readonly scopes!: pulumi.Output<outputs.DatabaseUserScope[] | undefined>;
     /**
-     * Username for authenticating to MongoDB.
+     * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      */
     public readonly username!: pulumi.Output<string>;
     /**
@@ -94,6 +98,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             inputs["awsIamType"] = state ? state.awsIamType : undefined;
             inputs["databaseName"] = state ? state.databaseName : undefined;
             inputs["labels"] = state ? state.labels : undefined;
+            inputs["ldapAuthType"] = state ? state.ldapAuthType : undefined;
             inputs["password"] = state ? state.password : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
             inputs["roles"] = state ? state.roles : undefined;
@@ -115,6 +120,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             inputs["awsIamType"] = args ? args.awsIamType : undefined;
             inputs["databaseName"] = args ? args.databaseName : undefined;
             inputs["labels"] = args ? args.labels : undefined;
+            inputs["ldapAuthType"] = args ? args.ldapAuthType : undefined;
             inputs["password"] = args ? args.password : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["roles"] = args ? args.roles : undefined;
@@ -149,6 +155,10 @@ export interface DatabaseUserState {
      */
     readonly databaseName?: pulumi.Input<string>;
     readonly labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
+    /**
+     * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     */
+    readonly ldapAuthType?: pulumi.Input<string>;
     readonly password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.
@@ -160,7 +170,7 @@ export interface DatabaseUserState {
     readonly roles?: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
     readonly scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
     /**
-     * Username for authenticating to MongoDB.
+     * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      */
     readonly username?: pulumi.Input<string>;
     /**
@@ -189,6 +199,10 @@ export interface DatabaseUserArgs {
      */
     readonly databaseName?: pulumi.Input<string>;
     readonly labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
+    /**
+     * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+     */
+    readonly ldapAuthType?: pulumi.Input<string>;
     readonly password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.
@@ -200,7 +214,7 @@ export interface DatabaseUserArgs {
     readonly roles: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
     readonly scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
     /**
-     * Username for authenticating to MongoDB.
+     * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      */
     readonly username: pulumi.Input<string>;
     /**

@@ -18,8 +18,6 @@ import (
 // ```sh
 //  $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
 // ```
-//
-//  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
 type CloudProviderAccess struct {
 	pulumi.CustomResourceState
 
@@ -33,13 +31,13 @@ type CloudProviderAccess struct {
 	CreatedDate pulumi.StringOutput `pulumi:"createdDate"`
 	// Atlas features this AWS IAM role is linked to.
 	FeatureUsages CloudProviderAccessFeatureUsageArrayOutput `pulumi:"featureUsages"`
-	// - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn pulumi.StringPtrOutput `pulumi:"iamAssumedRoleArn"`
-	// The unique ID for the project to get all Cloud Provider Access
+	// The unique ID for the project
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
-	// Unique ID of this role.
+	// Unique ID of this role returned by mongodb atlas api
 	RoleId pulumi.StringOutput `pulumi:"roleId"`
 }
 
@@ -88,13 +86,13 @@ type cloudProviderAccessState struct {
 	CreatedDate *string `pulumi:"createdDate"`
 	// Atlas features this AWS IAM role is linked to.
 	FeatureUsages []CloudProviderAccessFeatureUsage `pulumi:"featureUsages"`
-	// - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn *string `pulumi:"iamAssumedRoleArn"`
-	// The unique ID for the project to get all Cloud Provider Access
+	// The unique ID for the project
 	ProjectId *string `pulumi:"projectId"`
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
 	ProviderName *string `pulumi:"providerName"`
-	// Unique ID of this role.
+	// Unique ID of this role returned by mongodb atlas api
 	RoleId *string `pulumi:"roleId"`
 }
 
@@ -109,13 +107,13 @@ type CloudProviderAccessState struct {
 	CreatedDate pulumi.StringPtrInput
 	// Atlas features this AWS IAM role is linked to.
 	FeatureUsages CloudProviderAccessFeatureUsageArrayInput
-	// - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn pulumi.StringPtrInput
-	// The unique ID for the project to get all Cloud Provider Access
+	// The unique ID for the project
 	ProjectId pulumi.StringPtrInput
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
 	ProviderName pulumi.StringPtrInput
-	// Unique ID of this role.
+	// Unique ID of this role returned by mongodb atlas api
 	RoleId pulumi.StringPtrInput
 }
 
@@ -124,9 +122,9 @@ func (CloudProviderAccessState) ElementType() reflect.Type {
 }
 
 type cloudProviderAccessArgs struct {
-	// - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn *string `pulumi:"iamAssumedRoleArn"`
-	// The unique ID for the project to get all Cloud Provider Access
+	// The unique ID for the project
 	ProjectId string `pulumi:"projectId"`
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
 	ProviderName string `pulumi:"providerName"`
@@ -134,9 +132,9 @@ type cloudProviderAccessArgs struct {
 
 // The set of arguments for constructing a CloudProviderAccess resource.
 type CloudProviderAccessArgs struct {
-	// - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn pulumi.StringPtrInput
-	// The unique ID for the project to get all Cloud Provider Access
+	// The unique ID for the project
 	ProjectId pulumi.StringInput
 	// The cloud provider for which to create a new role. Currently only AWS is supported.
 	ProviderName pulumi.StringInput

@@ -97,9 +97,6 @@ def get_clusters(project_id: Optional[str] = None,
         provider_backup_enabled=True,
         auto_scaling_disk_gb_enabled=True,
         provider_name="AWS",
-        provider_disk_iops=300,
-        provider_volume_type="STANDARD",
-        provider_encrypt_ebs_volume=True,
         provider_instance_size_name="M40")
     test_clusters = test_cluster.project_id.apply(lambda project_id: mongodbatlas.get_clusters(project_id=project_id))
     ```

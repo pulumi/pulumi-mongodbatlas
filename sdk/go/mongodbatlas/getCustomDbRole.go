@@ -24,6 +24,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		testRole, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			RoleName:  pulumi.String("myCustomRole"),
 // 			Actions: mongodbatlas.CustomDbRoleActionArray{
 // 				&mongodbatlas.CustomDbRoleActionArgs{
 // 					Action: pulumi.String("UPDATE"),
@@ -44,8 +46,6 @@ import (
 // 					},
 // 				},
 // 			},
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			RoleName:  pulumi.String("myCustomRole"),
 // 		})
 // 		if err != nil {
 // 			return err

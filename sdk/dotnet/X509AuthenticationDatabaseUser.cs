@@ -33,7 +33,18 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         var user = new Mongodbatlas.DatabaseUser("user", new Mongodbatlas.DatabaseUserArgs
     ///         {
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             Username = "myUsername",
+    ///             X509Type = "MANAGED",
     ///             DatabaseName = "$external",
+    ///             Roles = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///                 {
+    ///                     RoleName = "atlasAdmin",
+    ///                     DatabaseName = "admin",
+    ///                 },
+    ///             },
     ///             Labels = 
     ///             {
     ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
@@ -42,23 +53,12 @@ namespace Pulumi.Mongodbatlas
     ///                     Value = "My Value",
     ///                 },
     ///             },
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             Roles = 
-    ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-    ///                 {
-    ///                     DatabaseName = "admin",
-    ///                     RoleName = "atlasAdmin",
-    ///                 },
-    ///             },
-    ///             Username = "myUsername",
-    ///             X509Type = "MANAGED",
     ///         });
     ///         var test = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new Mongodbatlas.X509AuthenticationDatabaseUserArgs
     ///         {
-    ///             MonthsUntilExpiration = 2,
     ///             ProjectId = user.ProjectId,
     ///             Username = user.Username,
+    ///             MonthsUntilExpiration = 2,
     ///         });
     ///     }
     /// 

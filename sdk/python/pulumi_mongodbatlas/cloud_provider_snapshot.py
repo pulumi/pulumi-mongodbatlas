@@ -322,9 +322,8 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True,
-            provider_disk_iops=100,
-            provider_encrypt_ebs_volume=False)
+            provider_backup_enabled=True)
+        # enable cloud backup snapshots
         test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
@@ -380,9 +379,8 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True,
-            provider_disk_iops=100,
-            provider_encrypt_ebs_volume=False)
+            provider_backup_enabled=True)
+        # enable cloud backup snapshots
         test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,

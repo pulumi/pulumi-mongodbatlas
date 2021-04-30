@@ -53,6 +53,8 @@ type LookupNetworkContainerResult struct {
 	Region string `pulumi:"region"`
 	// The Atlas AWS region name for where this container will exist.
 	RegionName string `pulumi:"regionName"`
+	// Atlas GCP regions where the container resides.
+	Regions []string `pulumi:"regions"`
 	// The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
 	VnetName string `pulumi:"vnetName"`
 	// Unique identifier of the project’s VPC.

@@ -9,24 +9,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testMongodbatlasPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("test", {
- *     projectId: "<PROJECT-ID>",
- *     providerName: "AWS",
- *     region: "us-east-1",
- * });
- * const testPrivateLinkEndpoint = pulumi.all([testMongodbatlasPrivateLinkEndpoint.privateLinkId, testMongodbatlasPrivateLinkEndpoint.projectId]).apply(([privateLinkId, projectId]) => mongodbatlas.getPrivateLinkEndpoint({
- *     privateLinkId: privateLinkId,
- *     projectId: projectId,
- *     providerName: "AWS",
- * }, { async: true }));
- * ```
  */
 export function getPrivateLinkEndpoint(args: GetPrivateLinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointResult> {
     if (!opts) {

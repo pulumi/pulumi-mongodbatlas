@@ -30,23 +30,23 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new Mongodbatlas.DatabaseUserArgs
         ///         {
-        ///             DatabaseName = "admin",
+        ///             Username = "test-acc-username",
         ///             Password = "test-acc-password",
         ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             DatabaseName = "admin",
         ///             Roles = 
         ///             {
         ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///                 {
-        ///                     DatabaseName = "admin",
         ///                     RoleName = "readWrite",
+        ///                     DatabaseName = "admin",
         ///                 },
         ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///                 {
-        ///                     DatabaseName = "admin",
         ///                     RoleName = "atlasAdmin",
+        ///                     DatabaseName = "admin",
         ///                 },
         ///             },
-        ///             Username = "test-acc-username",
         ///         });
         ///         var testCustomDbRoles = Output.Create(Mongodbatlas.GetCustomDbRoles.InvokeAsync(new Mongodbatlas.GetCustomDbRolesArgs
         ///         {

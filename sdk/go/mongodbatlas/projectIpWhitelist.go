@@ -88,7 +88,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
+// 		testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
 // 			ProjectId:           pulumi.String("<PROJECT-ID>"),
 // 			ContainerId:         testNetworkContainer.ContainerId,
 // 			AccepterRegionName:  pulumi.String("us-east-1"),
@@ -105,7 +105,7 @@ import (
 // 			AwsSecurityGroup: pulumi.String("sg-0026348ec11780bd1"),
 // 			Comment:          pulumi.String("TestAcc for awsSecurityGroup"),
 // 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			"mongodbatlas_network_peering.test",
+// 			testNetworkPeering,
 // 		}))
 // 		if err != nil {
 // 			return err

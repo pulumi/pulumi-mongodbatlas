@@ -63,7 +63,7 @@ import * as utilities from "./utilities";
  *     awsSecurityGroup: "sg-0026348ec11780bd1",
  *     comment: "TestAcc for awsSecurityGroup",
  * }, {
- *     dependsOn: ["mongodbatlas_network_peering.test"],
+ *     dependsOn: [testNetworkPeering],
  * });
  * ```
  *

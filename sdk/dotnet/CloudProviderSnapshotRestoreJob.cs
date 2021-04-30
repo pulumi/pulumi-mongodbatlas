@@ -40,9 +40,8 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderRegionName = "EU_WEST_2",
     ///             ProviderInstanceSizeName = "M10",
     ///             ProviderBackupEnabled = true,
-    ///             ProviderDiskIops = 100,
-    ///             ProviderEncryptEbsVolume = false,
     ///         });
+    ///         // enable cloud backup snapshots
     ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
     ///         {
     ///             ProjectId = myCluster.ProjectId,
@@ -65,7 +64,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             DependsOn = 
     ///             {
-    ///                 "mongodbatlas_cloud_provider_snapshot.test",
+    ///                 testCloudProviderSnapshot,
     ///             },
     ///         });
     ///     }
@@ -90,9 +89,8 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderRegionName = "EU_WEST_2",
     ///             ProviderInstanceSizeName = "M10",
     ///             ProviderBackupEnabled = true,
-    ///             ProviderDiskIops = 100,
-    ///             ProviderEncryptEbsVolume = false,
     ///         });
+    ///         // enable cloud backup snapshots
     ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
     ///         {
     ///             ProjectId = myCluster.ProjectId,

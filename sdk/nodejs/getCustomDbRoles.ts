@@ -16,25 +16,25 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testDatabaseUser = new mongodbatlas.DatabaseUser("test", {
- *     databaseName: "admin",
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ *     username: "test-acc-username",
  *     password: "test-acc-password",
  *     projectId: "<PROJECT-ID>",
+ *     databaseName: "admin",
  *     roles: [
  *         {
- *             databaseName: "admin",
  *             roleName: "readWrite",
+ *             databaseName: "admin",
  *         },
  *         {
- *             databaseName: "admin",
  *             roleName: "atlasAdmin",
+ *             databaseName: "admin",
  *         },
  *     ],
- *     username: "test-acc-username",
  * });
- * const testCustomDbRoles = mongodbatlas_custom_db_role_test.projectId.apply(projectId => mongodbatlas.getCustomDbRoles({
- *     projectId: projectId,
- * }, { async: true }));
+ * const testCustomDbRoles = mongodbatlas.getCustomDbRoles({
+ *     projectId: mongodbatlas_custom_db_role.test.project_id,
+ * });
  * ```
  */
 export function getCustomDbRoles(args: GetCustomDbRolesArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRolesResult> {

@@ -195,25 +195,27 @@ class CustomDbRole(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         inherited_role_one = mongodbatlas.CustomDbRole("inheritedRoleOne",
+            project_id="<PROJECT-ID>",
+            role_name="insertRole",
             actions=[mongodbatlas.CustomDbRoleActionArgs(
                 action="INSERT",
                 resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
                     collection_name="",
                     database_name="anyDatabase",
                 )],
-            )],
-            project_id="<PROJECT-ID>",
-            role_name="insertRole")
+            )])
         inherited_role_two = mongodbatlas.CustomDbRole("inheritedRoleTwo",
+            project_id=inherited_role_one.project_id,
+            role_name="statusServerRole",
             actions=[mongodbatlas.CustomDbRoleActionArgs(
                 action="SERVER_STATUS",
                 resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
                     cluster=True,
                 )],
-            )],
-            project_id=inherited_role_one.project_id,
-            role_name="statusServerRole")
+            )])
         test_role = mongodbatlas.CustomDbRole("testRole",
+            project_id=inherited_role_one.project_id,
+            role_name="myCustomRole",
             actions=[
                 mongodbatlas.CustomDbRoleActionArgs(
                     action="UPDATE",
@@ -232,16 +234,14 @@ class CustomDbRole(pulumi.CustomResource):
             ],
             inherited_roles=[
                 mongodbatlas.CustomDbRoleInheritedRoleArgs(
-                    database_name="admin",
                     role_name=inherited_role_one.role_name,
+                    database_name="admin",
                 ),
                 mongodbatlas.CustomDbRoleInheritedRoleArgs(
-                    database_name="admin",
                     role_name=inherited_role_two.role_name,
+                    database_name="admin",
                 ),
-            ],
-            project_id=inherited_role_one.project_id,
-            role_name="myCustomRole")
+            ])
         ```
 
         ## Import
@@ -312,25 +312,27 @@ class CustomDbRole(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         inherited_role_one = mongodbatlas.CustomDbRole("inheritedRoleOne",
+            project_id="<PROJECT-ID>",
+            role_name="insertRole",
             actions=[mongodbatlas.CustomDbRoleActionArgs(
                 action="INSERT",
                 resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
                     collection_name="",
                     database_name="anyDatabase",
                 )],
-            )],
-            project_id="<PROJECT-ID>",
-            role_name="insertRole")
+            )])
         inherited_role_two = mongodbatlas.CustomDbRole("inheritedRoleTwo",
+            project_id=inherited_role_one.project_id,
+            role_name="statusServerRole",
             actions=[mongodbatlas.CustomDbRoleActionArgs(
                 action="SERVER_STATUS",
                 resources=[mongodbatlas.CustomDbRoleActionResourceArgs(
                     cluster=True,
                 )],
-            )],
-            project_id=inherited_role_one.project_id,
-            role_name="statusServerRole")
+            )])
         test_role = mongodbatlas.CustomDbRole("testRole",
+            project_id=inherited_role_one.project_id,
+            role_name="myCustomRole",
             actions=[
                 mongodbatlas.CustomDbRoleActionArgs(
                     action="UPDATE",
@@ -349,16 +351,14 @@ class CustomDbRole(pulumi.CustomResource):
             ],
             inherited_roles=[
                 mongodbatlas.CustomDbRoleInheritedRoleArgs(
-                    database_name="admin",
                     role_name=inherited_role_one.role_name,
+                    database_name="admin",
                 ),
                 mongodbatlas.CustomDbRoleInheritedRoleArgs(
-                    database_name="admin",
                     role_name=inherited_role_two.role_name,
+                    database_name="admin",
                 ),
-            ],
-            project_id=inherited_role_one.project_id,
-            role_name="myCustomRole")
+            ])
         ```
 
         ## Import

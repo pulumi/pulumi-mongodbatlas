@@ -39,6 +39,10 @@ import * as utilities from "./utilities";
  *     atlasCidrBlock: "10.8.0.0/21",
  *     projectId: "<YOUR-PROJECT-ID>",
  *     providerName: "GCP",
+ *     regions: [
+ *         "US_EAST_4",
+ *         "US_WEST_3",
+ *     ],
  * });
  * ```
  * ### Example with Azure
@@ -139,6 +143,10 @@ export class NetworkContainer extends pulumi.CustomResource {
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     public readonly regionName!: pulumi.Output<string>;
+    /**
+     * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+     */
+    public readonly regions!: pulumi.Output<string[] | undefined>;
     public /*out*/ readonly vnetName!: pulumi.Output<string>;
     /**
      * Unique identifier of Atlas' AWS VPC.
@@ -169,6 +177,7 @@ export class NetworkContainer extends pulumi.CustomResource {
             inputs["provisioned"] = state ? state.provisioned : undefined;
             inputs["region"] = state ? state.region : undefined;
             inputs["regionName"] = state ? state.regionName : undefined;
+            inputs["regions"] = state ? state.regions : undefined;
             inputs["vnetName"] = state ? state.vnetName : undefined;
             inputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
@@ -184,6 +193,7 @@ export class NetworkContainer extends pulumi.CustomResource {
             inputs["providerName"] = args ? args.providerName : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["regionName"] = args ? args.regionName : undefined;
+            inputs["regions"] = args ? args.regions : undefined;
             inputs["azureSubscriptionId"] = undefined /*out*/;
             inputs["containerId"] = undefined /*out*/;
             inputs["gcpProjectId"] = undefined /*out*/;
@@ -249,6 +259,10 @@ export interface NetworkContainerState {
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     readonly regionName?: pulumi.Input<string>;
+    /**
+     * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+     */
+    readonly regions?: pulumi.Input<pulumi.Input<string>[]>;
     readonly vnetName?: pulumi.Input<string>;
     /**
      * Unique identifier of Atlas' AWS VPC.
@@ -284,4 +298,8 @@ export interface NetworkContainerArgs {
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     readonly regionName?: pulumi.Input<string>;
+    /**
+     * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+     */
+    readonly regions?: pulumi.Input<pulumi.Input<string>[]>;
 }

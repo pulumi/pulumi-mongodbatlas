@@ -72,6 +72,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetDatabaseUserLabelResult> Labels;
+        /// <summary>
+        /// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+        /// </summary>
+        public readonly string LdapAuthType;
         public readonly string ProjectId;
         /// <summary>
         /// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -99,6 +103,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetDatabaseUserLabelResult> labels,
 
+            string ldapAuthType,
+
             string projectId,
 
             ImmutableArray<Outputs.GetDatabaseUserRoleResult> roles,
@@ -114,6 +120,7 @@ namespace Pulumi.Mongodbatlas
             DatabaseName = databaseName;
             Id = id;
             Labels = labels;
+            LdapAuthType = ldapAuthType;
             ProjectId = projectId;
             Roles = roles;
             Scopes = scopes;

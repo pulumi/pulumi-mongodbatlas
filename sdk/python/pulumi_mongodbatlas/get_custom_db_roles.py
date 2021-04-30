@@ -78,20 +78,20 @@ def get_custom_db_roles(project_id: Optional[str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
-        database_name="admin",
+        username="test-acc-username",
         password="test-acc-password",
         project_id="<PROJECT-ID>",
+        database_name="admin",
         roles=[
             mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
                 role_name="readWrite",
+                database_name="admin",
             ),
             mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
                 role_name="atlasAdmin",
+                database_name="admin",
             ),
-        ],
-        username="test-acc-username")
+        ])
     test_custom_db_roles = mongodbatlas.get_custom_db_roles(project_id=mongodbatlas_custom_db_role["test"]["project_id"])
     ```
 

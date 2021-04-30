@@ -32,12 +32,9 @@ import * as utilities from "./utilities";
  *     mongoDbMajorVersion: "4.2",
  *     projectId: "<YOUR-PROJECT-ID>",
  *     providerBackupEnabled: true,
- *     providerDiskIops: 300,
- *     providerEncryptEbsVolume: true,
  *     providerInstanceSizeName: "M40",
  *     //Provider Settings "block"
  *     providerName: "AWS",
- *     providerVolumeType: "STANDARD",
  *     replicationSpecs: [{
  *         numShards: 1,
  *         regionsConfigs: [{
@@ -115,11 +112,9 @@ import * as utilities from "./utilities";
  *     numShards: 1,
  *     projectId: "<YOUR-PROJECT-ID>",
  *     providerBackupEnabled: true,
- *     providerDiskIops: 300,
  *     providerInstanceSizeName: "M10",
  *     //Provider Settings "block"
  *     providerName: "AWS",
- *     providerVolumeType: "STANDARD",
  *     replicationSpecs: [{
  *         numShards: 1,
  *         regionsConfigs: [
@@ -157,11 +152,9 @@ import * as utilities from "./utilities";
  *     numShards: 1,
  *     projectId: "<YOUR-PROJECT-ID>",
  *     providerBackupEnabled: true,
- *     providerDiskIops: 240,
  *     providerInstanceSizeName: "M30",
  *     //Provider Settings "block"
  *     providerName: "AWS",
- *     providerVolumeType: "STANDARD",
  *     replicationSpecs: [
  *         {
  *             numShards: 2,
@@ -267,9 +260,15 @@ export class Cluster extends pulumi.CustomResource {
     public readonly backingProviderName!: pulumi.Output<string>;
     public readonly backupEnabled!: pulumi.Output<boolean | undefined>;
     /**
+     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+     *
+     * @deprecated use bi_connector_config instead
+     */
+    public readonly biConnector!: pulumi.Output<outputs.ClusterBiConnector | undefined>;
+    /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
-    public readonly biConnector!: pulumi.Output<outputs.ClusterBiConnector>;
+    public readonly biConnectorConfig!: pulumi.Output<outputs.ClusterBiConnectorConfig>;
     /**
      * The cluster ID.
      */
@@ -352,7 +351,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerBackupEnabled!: pulumi.Output<boolean | undefined>;
     /**
-     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
+     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
      */
     public readonly providerDiskIops!: pulumi.Output<number>;
     /**
@@ -360,9 +359,12 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerDiskTypeName!: pulumi.Output<string>;
     /**
-     * The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+     * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+     *
+     * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      */
     public readonly providerEncryptEbsVolume!: pulumi.Output<boolean>;
+    public /*out*/ readonly providerEncryptEbsVolumeFlag!: pulumi.Output<boolean>;
     /**
      * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
      * **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
@@ -378,7 +380,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerRegionName!: pulumi.Output<string>;
     /**
-     * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+     * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      */
     public readonly providerVolumeType!: pulumi.Output<string>;
     /**
@@ -428,6 +430,7 @@ export class Cluster extends pulumi.CustomResource {
             inputs["backingProviderName"] = state ? state.backingProviderName : undefined;
             inputs["backupEnabled"] = state ? state.backupEnabled : undefined;
             inputs["biConnector"] = state ? state.biConnector : undefined;
+            inputs["biConnectorConfig"] = state ? state.biConnectorConfig : undefined;
             inputs["clusterId"] = state ? state.clusterId : undefined;
             inputs["clusterType"] = state ? state.clusterType : undefined;
             inputs["connectionStrings"] = state ? state.connectionStrings : undefined;
@@ -451,6 +454,7 @@ export class Cluster extends pulumi.CustomResource {
             inputs["providerDiskIops"] = state ? state.providerDiskIops : undefined;
             inputs["providerDiskTypeName"] = state ? state.providerDiskTypeName : undefined;
             inputs["providerEncryptEbsVolume"] = state ? state.providerEncryptEbsVolume : undefined;
+            inputs["providerEncryptEbsVolumeFlag"] = state ? state.providerEncryptEbsVolumeFlag : undefined;
             inputs["providerInstanceSizeName"] = state ? state.providerInstanceSizeName : undefined;
             inputs["providerName"] = state ? state.providerName : undefined;
             inputs["providerRegionName"] = state ? state.providerRegionName : undefined;
@@ -478,6 +482,7 @@ export class Cluster extends pulumi.CustomResource {
             inputs["backingProviderName"] = args ? args.backingProviderName : undefined;
             inputs["backupEnabled"] = args ? args.backupEnabled : undefined;
             inputs["biConnector"] = args ? args.biConnector : undefined;
+            inputs["biConnectorConfig"] = args ? args.biConnectorConfig : undefined;
             inputs["clusterType"] = args ? args.clusterType : undefined;
             inputs["diskSizeGb"] = args ? args.diskSizeGb : undefined;
             inputs["encryptionAtRestProvider"] = args ? args.encryptionAtRestProvider : undefined;
@@ -507,6 +512,7 @@ export class Cluster extends pulumi.CustomResource {
             inputs["mongoUriUpdated"] = undefined /*out*/;
             inputs["mongoUriWithOptions"] = undefined /*out*/;
             inputs["paused"] = undefined /*out*/;
+            inputs["providerEncryptEbsVolumeFlag"] = undefined /*out*/;
             inputs["snapshotBackupPolicies"] = undefined /*out*/;
             inputs["srvAddress"] = undefined /*out*/;
             inputs["stateName"] = undefined /*out*/;
@@ -546,9 +552,15 @@ export interface ClusterState {
     readonly backingProviderName?: pulumi.Input<string>;
     readonly backupEnabled?: pulumi.Input<boolean>;
     /**
-     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+     *
+     * @deprecated use bi_connector_config instead
      */
     readonly biConnector?: pulumi.Input<inputs.ClusterBiConnector>;
+    /**
+     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+     */
+    readonly biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
     /**
      * The cluster ID.
      */
@@ -631,7 +643,7 @@ export interface ClusterState {
      */
     readonly providerBackupEnabled?: pulumi.Input<boolean>;
     /**
-     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
+     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
      */
     readonly providerDiskIops?: pulumi.Input<number>;
     /**
@@ -639,9 +651,12 @@ export interface ClusterState {
      */
     readonly providerDiskTypeName?: pulumi.Input<string>;
     /**
-     * The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+     * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+     *
+     * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      */
     readonly providerEncryptEbsVolume?: pulumi.Input<boolean>;
+    readonly providerEncryptEbsVolumeFlag?: pulumi.Input<boolean>;
     /**
      * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
      * **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
@@ -657,7 +672,7 @@ export interface ClusterState {
      */
     readonly providerRegionName?: pulumi.Input<string>;
     /**
-     * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+     * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      */
     readonly providerVolumeType?: pulumi.Input<string>;
     /**
@@ -716,9 +731,15 @@ export interface ClusterArgs {
     readonly backingProviderName?: pulumi.Input<string>;
     readonly backupEnabled?: pulumi.Input<boolean>;
     /**
-     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
+     *
+     * @deprecated use bi_connector_config instead
      */
     readonly biConnector?: pulumi.Input<inputs.ClusterBiConnector>;
+    /**
+     * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+     */
+    readonly biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
     /**
      * Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      */
@@ -769,7 +790,7 @@ export interface ClusterArgs {
      */
     readonly providerBackupEnabled?: pulumi.Input<boolean>;
     /**
-     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.
+     * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
      */
     readonly providerDiskIops?: pulumi.Input<number>;
     /**
@@ -777,7 +798,9 @@ export interface ClusterArgs {
      */
     readonly providerDiskTypeName?: pulumi.Input<string>;
     /**
-     * The default value is true.  Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+     * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
+     *
+     * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      */
     readonly providerEncryptEbsVolume?: pulumi.Input<boolean>;
     /**
@@ -795,7 +818,7 @@ export interface ClusterArgs {
      */
     readonly providerRegionName?: pulumi.Input<string>;
     /**
-     * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` required if setting IOPS higher than the default instance IOPS.
+     * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      */
     readonly providerVolumeType?: pulumi.Input<string>;
     /**

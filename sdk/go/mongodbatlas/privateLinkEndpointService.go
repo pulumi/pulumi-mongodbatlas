@@ -25,7 +25,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v3/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
 // 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -41,23 +41,23 @@ import (
 // 			return err
 // 		}
 // 		ptfeService, err := ec2.NewVpcEndpoint(ctx, "ptfeService", &ec2.VpcEndpointArgs{
-// 			SecurityGroupIds: pulumi.StringArray{
-// 				pulumi.String("sg-3f238186"),
-// 			},
-// 			ServiceName: testPrivateLinkEndpoint.EndpointServiceName,
+// 			VpcId:           pulumi.String("vpc-7fc0a543"),
+// 			ServiceName:     testPrivateLinkEndpoint.EndpointServiceName,
+// 			VpcEndpointType: pulumi.String("Interface"),
 // 			SubnetIds: pulumi.StringArray{
 // 				pulumi.String("subnet-de0406d2"),
 // 			},
-// 			VpcEndpointType: pulumi.String("Interface"),
-// 			VpcId:           pulumi.String("vpc-7fc0a543"),
+// 			SecurityGroupIds: pulumi.StringArray{
+// 				pulumi.String("sg-3f238186"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "testPrivateLinkEndpointService", &mongodbatlas.PrivateLinkEndpointServiceArgs{
-// 			EndpointServiceId: ptfeService.ID(),
-// 			PrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,
 // 			ProjectId:         testPrivateLinkEndpoint.ProjectId,
+// 			PrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,
+// 			EndpointServiceId: ptfeService.ID(),
 // 			ProviderName:      pulumi.String("AWS"),
 // 		})
 // 		if err != nil {

@@ -99,22 +99,22 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     user = mongodbatlas.DatabaseUser("user",
+        project_id="<PROJECT-ID>",
+        username="myUsername",
+        x509_type="MANAGED",
         database_name="$external",
+        roles=[mongodbatlas.DatabaseUserRoleArgs(
+            role_name="atlasAdmin",
+            database_name="admin",
+        )],
         labels=[mongodbatlas.DatabaseUserLabelArgs(
             key="My Key",
             value="My Value",
-        )],
-        project_id="<PROJECT-ID>",
-        roles=[mongodbatlas.DatabaseUserRoleArgs(
-            database_name="admin",
-            role_name="atlasAdmin",
-        )],
-        username="myUsername",
-        x509_type="MANAGED")
+        )])
     test_x509_authentication_database_user = mongodbatlas.X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser",
-        months_until_expiration=2,
         project_id=user.project_id,
-        username=user.username)
+        username=user.username,
+        months_until_expiration=2)
     test509_authentication_database_user = pulumi.Output.all(test_x509_authentication_database_user.project_id, test_x509_authentication_database_user.username).apply(lambda project_id, username: mongodbatlas.get509_authentication_database_user(project_id=project_id,
         username=username))
     ```
@@ -124,25 +124,24 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     test_x509_authentication_database_user = mongodbatlas.X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser",
-        customer_x509_cas=\"\"\"  -----BEGIN CERTIFICATE-----
-      MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
-      VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
-      c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
-      SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
-      MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
-      VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
-      BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
-      c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
-      iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
-      cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
-      Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
-      SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
-      7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
-      iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-      -----END CERTIFICATE-----"
-
-    \"\"\",
-        project_id="<PROJECT-ID>")
+        project_id="<PROJECT-ID>",
+        customer_x509_cas=\"\"\"-----BEGIN CERTIFICATE-----
+    MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+    VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+    c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+    SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+    MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+    VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+    BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+    c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+    iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+    cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+    Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+    SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+    7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+    iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+    -----END CERTIFICATE-----"
+    \"\"\")
     test509_authentication_database_user = test_x509_authentication_database_user.project_id.apply(lambda project_id: mongodbatlas.get509_authentication_database_user(project_id=project_id))
     ```
 

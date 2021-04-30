@@ -85,6 +85,10 @@ export interface GetNetworkContainerResult {
      */
     readonly regionName: string;
     /**
+     * Atlas GCP regions where the container resides.
+     */
+    readonly regions: string[];
+    /**
      * The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
      */
     readonly vnetName: string;

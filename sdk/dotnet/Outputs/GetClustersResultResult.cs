@@ -34,9 +34,13 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool BackupEnabled;
         /// <summary>
-        /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         /// </summary>
         public readonly Outputs.GetClustersResultBiConnectorResult BiConnector;
+        /// <summary>
+        /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        /// </summary>
+        public readonly Outputs.GetClustersResultBiConnectorConfigResult BiConnectorConfig;
         /// <summary>
         /// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         /// </summary>
@@ -128,7 +132,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderDiskTypeName;
         /// <summary>
-        /// Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance.
+        /// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
         /// </summary>
         public readonly bool ProviderEncryptEbsVolume;
         /// <summary>
@@ -187,6 +191,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             bool backupEnabled,
 
             Outputs.GetClustersResultBiConnectorResult biConnector,
+
+            Outputs.GetClustersResultBiConnectorConfigResult biConnectorConfig,
 
             string clusterType,
 
@@ -254,6 +260,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             BackingProviderName = backingProviderName;
             BackupEnabled = backupEnabled;
             BiConnector = biConnector;
+            BiConnectorConfig = biConnectorConfig;
             ClusterType = clusterType;
             ConnectionStrings = connectionStrings;
             ContainerId = containerId;

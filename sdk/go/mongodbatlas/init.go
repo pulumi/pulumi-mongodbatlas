@@ -26,6 +26,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Auditing{}
 	case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
 		r = &CloudProviderAccess{}
+	case "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
+		r = &CloudProviderAccessAuthorization{}
+	case "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup":
+		r = &CloudProviderAccessSetup{}
 	case "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot":
 		r = &CloudProviderSnapshot{}
 	case "mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy":
@@ -36,12 +40,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Cluster{}
 	case "mongodbatlas:index/customDbRole:CustomDbRole":
 		r = &CustomDbRole{}
+	case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
+		r = &CustomDnsConfigurationClusterAws{}
 	case "mongodbatlas:index/databaseUser:DatabaseUser":
 		r = &DatabaseUser{}
 	case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
 		r = &EncryptionAtRest{}
 	case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
 		r = &GlobalClusterConfig{}
+	case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
+		r = &LdapConfiguration{}
+	case "mongodbatlas:index/ldapVerify:LdapVerify":
+		r = &LdapVerify{}
 	case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
 		r = &MaintenanceWindow{}
 	case "mongodbatlas:index/networkContainer:NetworkContainer":
@@ -120,6 +130,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/cloudProviderAccessAuthorization",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/cloudProviderAccessSetup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/cloudProviderSnapshot",
 		&module{version},
 	)
@@ -145,6 +165,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/customDnsConfigurationClusterAws",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/databaseUser",
 		&module{version},
 	)
@@ -156,6 +181,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/globalClusterConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/ldapConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/ldapVerify",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

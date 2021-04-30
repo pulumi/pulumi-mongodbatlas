@@ -13,8 +13,6 @@ import * as utilities from "./utilities";
  * ```sh
  *  $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
  * ```
- *
- *  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-create-one-role/) Documentation for more information.
  */
 export class CloudProviderAccess extends pulumi.CustomResource {
     /**
@@ -65,11 +63,11 @@ export class CloudProviderAccess extends pulumi.CustomResource {
      */
     public /*out*/ readonly featureUsages!: pulumi.Output<outputs.CloudProviderAccessFeatureUsage[]>;
     /**
-     * - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      */
     public readonly iamAssumedRoleArn!: pulumi.Output<string | undefined>;
     /**
-     * The unique ID for the project to get all Cloud Provider Access
+     * The unique ID for the project
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -77,7 +75,7 @@ export class CloudProviderAccess extends pulumi.CustomResource {
      */
     public readonly providerName!: pulumi.Output<string>;
     /**
-     * Unique ID of this role.
+     * Unique ID of this role returned by mongodb atlas api
      */
     public /*out*/ readonly roleId!: pulumi.Output<string>;
 
@@ -153,11 +151,11 @@ export interface CloudProviderAccessState {
      */
     readonly featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessFeatureUsage>[]>;
     /**
-     * - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      */
     readonly iamAssumedRoleArn?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to get all Cloud Provider Access
+     * The unique ID for the project
      */
     readonly projectId?: pulumi.Input<string>;
     /**
@@ -165,7 +163,7 @@ export interface CloudProviderAccessState {
      */
     readonly providerName?: pulumi.Input<string>;
     /**
-     * Unique ID of this role.
+     * Unique ID of this role returned by mongodb atlas api
      */
     readonly roleId?: pulumi.Input<string>;
 }
@@ -175,11 +173,11 @@ export interface CloudProviderAccessState {
  */
 export interface CloudProviderAccessArgs {
     /**
-     * - ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      */
     readonly iamAssumedRoleArn?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to get all Cloud Provider Access
+     * The unique ID for the project
      */
     readonly projectId: pulumi.Input<string>;
     /**

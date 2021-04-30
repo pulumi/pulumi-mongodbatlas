@@ -13,9 +13,6 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class EncryptionAtRestAwsKms
     {
-        /// <summary>
-        /// The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-        /// </summary>
         public readonly string? AccessKeyId;
         /// <summary>
         /// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
@@ -33,9 +30,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `mongodbatlas.CloudProviderAccess` resource.
         /// </summary>
         public readonly string? RoleId;
-        /// <summary>
-        /// The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-        /// </summary>
         public readonly string? SecretAccessKey;
 
         [OutputConstructor]

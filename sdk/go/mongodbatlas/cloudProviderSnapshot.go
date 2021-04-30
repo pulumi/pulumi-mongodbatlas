@@ -35,8 +35,6 @@ import (
 // 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderDiskIops:         pulumi.Int(100),
-// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err

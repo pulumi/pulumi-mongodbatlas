@@ -42,8 +42,6 @@ import (
 // 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderDiskIops:         pulumi.Int(100),
-// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -67,7 +65,7 @@ import (
 // 				Target_project_id:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
 // 			},
 // 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			"mongodbatlas_cloud_provider_snapshot.test",
+// 			testCloudProviderSnapshot,
 // 		}))
 // 		if err != nil {
 // 			return err
@@ -95,8 +93,6 @@ import (
 // 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
 // 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderDiskIops:         pulumi.Int(100),
-// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err

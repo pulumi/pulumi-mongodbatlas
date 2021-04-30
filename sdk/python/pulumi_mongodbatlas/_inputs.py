@@ -13,12 +13,16 @@ __all__ = [
     'AlertConfigurationMetricThresholdArgs',
     'AlertConfigurationNotificationArgs',
     'AlertConfigurationThresholdArgs',
+    'CloudProviderAccessAuthorizationAwsArgs',
+    'CloudProviderAccessAuthorizationFeatureUsageArgs',
     'CloudProviderAccessFeatureUsageArgs',
+    'CloudProviderAccessSetupAwsArgs',
     'CloudProviderSnapshotBackupPolicyPolicyArgs',
     'CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs',
     'CloudProviderSnapshotRestoreJobDeliveryTypeArgs',
     'ClusterAdvancedConfigurationArgs',
     'ClusterBiConnectorArgs',
+    'ClusterBiConnectorConfigArgs',
     'ClusterConnectionStringsArgs',
     'ClusterConnectionStringsPrivateEndpointArgs',
     'ClusterConnectionStringsPrivateEndpointEndpointArgs',
@@ -39,6 +43,9 @@ __all__ = [
     'EncryptionAtRestGoogleCloudKmsArgs',
     'GlobalClusterConfigCustomZoneMappingArgs',
     'GlobalClusterConfigManagedNamespaceArgs',
+    'LdapConfigurationUserToDnMappingArgs',
+    'LdapVerifyLinkArgs',
+    'LdapVerifyValidationArgs',
     'ProjectTeamArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
     'GetCustomDbRoleInheritedRoleArgs',
@@ -702,6 +709,51 @@ class AlertConfigurationThresholdArgs:
 
 
 @pulumi.input_type
+class CloudProviderAccessAuthorizationAwsArgs:
+    def __init__(__self__, *,
+                 iam_assumed_role_arn: pulumi.Input[str]):
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @iam_assumed_role_arn.setter
+    def iam_assumed_role_arn(self, value: pulumi.Input[str]):
+        pulumi.set(self, "iam_assumed_role_arn", value)
+
+
+@pulumi.input_type
+class CloudProviderAccessAuthorizationFeatureUsageArgs:
+    def __init__(__self__, *,
+                 feature_id: Optional[pulumi.Input[str]] = None,
+                 feature_type: Optional[pulumi.Input[str]] = None):
+        if feature_id is not None:
+            pulumi.set(__self__, "feature_id", feature_id)
+        if feature_type is not None:
+            pulumi.set(__self__, "feature_type", feature_type)
+
+    @property
+    @pulumi.getter(name="featureId")
+    def feature_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "feature_id")
+
+    @feature_id.setter
+    def feature_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "feature_id", value)
+
+    @property
+    @pulumi.getter(name="featureType")
+    def feature_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "feature_type")
+
+    @feature_type.setter
+    def feature_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "feature_type", value)
+
+
+@pulumi.input_type
 class CloudProviderAccessFeatureUsageArgs:
     def __init__(__self__, *,
                  feature_id: Optional[pulumi.Input[str]] = None,
@@ -728,6 +780,35 @@ class CloudProviderAccessFeatureUsageArgs:
     @feature_type.setter
     def feature_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "feature_type", value)
+
+
+@pulumi.input_type
+class CloudProviderAccessSetupAwsArgs:
+    def __init__(__self__, *,
+                 atlas_assumed_role_external_id: Optional[pulumi.Input[str]] = None,
+                 atlas_aws_account_arn: Optional[pulumi.Input[str]] = None):
+        if atlas_assumed_role_external_id is not None:
+            pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
+        if atlas_aws_account_arn is not None:
+            pulumi.set(__self__, "atlas_aws_account_arn", atlas_aws_account_arn)
+
+    @property
+    @pulumi.getter(name="atlasAssumedRoleExternalId")
+    def atlas_assumed_role_external_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "atlas_assumed_role_external_id")
+
+    @atlas_assumed_role_external_id.setter
+    def atlas_assumed_role_external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "atlas_assumed_role_external_id", value)
+
+    @property
+    @pulumi.getter(name="atlasAwsAccountArn")
+    def atlas_aws_account_arn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "atlas_aws_account_arn")
+
+    @atlas_aws_account_arn.setter
+    def atlas_aws_account_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "atlas_aws_account_arn", value)
 
 
 @pulumi.input_type
@@ -1073,6 +1154,51 @@ class ClusterBiConnectorArgs:
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        return pulumi.get(self, "read_preference")
+
+    @read_preference.setter
+    def read_preference(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "read_preference", value)
+
+
+@pulumi.input_type
+class ClusterBiConnectorConfigArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 read_preference: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+               *
+               - Set to `true` to enable BI Connector for Atlas.
+               - Set to `false` to disable BI Connector for Atlas.
+        :param pulumi.Input[str] read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if read_preference is not None:
+            pulumi.set(__self__, "read_preference", read_preference)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        *
+        - Set to `true` to enable BI Connector for Atlas.
+        - Set to `false` to disable BI Connector for Atlas.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
 
     @property
@@ -1970,12 +2096,10 @@ class EncryptionAtRestAwsKmsArgs:
                  role_id: Optional[pulumi.Input[str]] = None,
                  secret_access_key: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] access_key_id: The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
         :param pulumi.Input[str] customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         :param pulumi.Input[str] role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
-        :param pulumi.Input[str] secret_access_key: The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
         """
         if access_key_id is not None:
             pulumi.set(__self__, "access_key_id", access_key_id)
@@ -1993,9 +2117,6 @@ class EncryptionAtRestAwsKmsArgs:
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The IAM access key ID with permissions to access the customer master key specified by customerMasterKeyID.
-        """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
@@ -2053,9 +2174,6 @@ class EncryptionAtRestAwsKmsArgs:
     @property
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        The IAM secret access key with permissions to access the customer master key specified by customerMasterKeyID.
-        """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
@@ -2357,6 +2475,111 @@ class GlobalClusterConfigManagedNamespaceArgs:
     @db.setter
     def db(self, value: pulumi.Input[str]):
         pulumi.set(self, "db", value)
+
+
+@pulumi.input_type
+class LdapConfigurationUserToDnMappingArgs:
+    def __init__(__self__, *,
+                 ldap_query: Optional[pulumi.Input[str]] = None,
+                 match: Optional[pulumi.Input[str]] = None,
+                 substitution: Optional[pulumi.Input[str]] = None):
+        if ldap_query is not None:
+            pulumi.set(__self__, "ldap_query", ldap_query)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if substitution is not None:
+            pulumi.set(__self__, "substitution", substitution)
+
+    @property
+    @pulumi.getter(name="ldapQuery")
+    def ldap_query(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ldap_query")
+
+    @ldap_query.setter
+    def ldap_query(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ldap_query", value)
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match")
+
+    @match.setter
+    def match(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match", value)
+
+    @property
+    @pulumi.getter
+    def substitution(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "substitution")
+
+    @substitution.setter
+    def substitution(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "substitution", value)
+
+
+@pulumi.input_type
+class LdapVerifyLinkArgs:
+    def __init__(__self__, *,
+                 href: Optional[pulumi.Input[str]] = None,
+                 rel: Optional[pulumi.Input[str]] = None):
+        if href is not None:
+            pulumi.set(__self__, "href", href)
+        if rel is not None:
+            pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "href")
+
+    @href.setter
+    def href(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "href", value)
+
+    @property
+    @pulumi.getter
+    def rel(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "rel")
+
+    @rel.setter
+    def rel(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rel", value)
+
+
+@pulumi.input_type
+class LdapVerifyValidationArgs:
+    def __init__(__self__, *,
+                 status: Optional[pulumi.Input[str]] = None,
+                 validation_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+        """
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if validation_type is not None:
+            pulumi.set(__self__, "validation_type", validation_type)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="validationType")
+    def validation_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "validation_type")
+
+    @validation_type.setter
+    def validation_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "validation_type", value)
 
 
 @pulumi.input_type

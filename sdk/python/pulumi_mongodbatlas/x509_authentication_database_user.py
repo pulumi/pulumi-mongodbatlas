@@ -216,22 +216,22 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         user = mongodbatlas.DatabaseUser("user",
+            project_id="<PROJECT-ID>",
+            username="myUsername",
+            x509_type="MANAGED",
             database_name="$external",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                role_name="atlasAdmin",
+                database_name="admin",
+            )],
             labels=[mongodbatlas.DatabaseUserLabelArgs(
                 key="My Key",
                 value="My Value",
-            )],
-            project_id="<PROJECT-ID>",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="atlasAdmin",
-            )],
-            username="myUsername",
-            x509_type="MANAGED")
+            )])
         test = mongodbatlas.X509AuthenticationDatabaseUser("test",
-            months_until_expiration=2,
             project_id=user.project_id,
-            username=user.username)
+            username=user.username,
+            months_until_expiration=2)
         ```
         ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         ```python
@@ -308,22 +308,22 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         user = mongodbatlas.DatabaseUser("user",
+            project_id="<PROJECT-ID>",
+            username="myUsername",
+            x509_type="MANAGED",
             database_name="$external",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                role_name="atlasAdmin",
+                database_name="admin",
+            )],
             labels=[mongodbatlas.DatabaseUserLabelArgs(
                 key="My Key",
                 value="My Value",
-            )],
-            project_id="<PROJECT-ID>",
-            roles=[mongodbatlas.DatabaseUserRoleArgs(
-                database_name="admin",
-                role_name="atlasAdmin",
-            )],
-            username="myUsername",
-            x509_type="MANAGED")
+            )])
         test = mongodbatlas.X509AuthenticationDatabaseUser("test",
-            months_until_expiration=2,
             project_id=user.project_id,
-            username=user.username)
+            username=user.username,
+            months_until_expiration=2)
         ```
         ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
         ```python
