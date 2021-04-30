@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.9.0 of the MongoDbAtlas Terraform Provider
+_(none)_
 
 ---
+
+## 2.1.0 (2021-04-30)
+* Upgrade to v0.9.0 of the MongoDbAtlas Terraform Provider
 
 ## 2.0.1 (2021-04-26)
 * Ensure SDK is being marked as v2 correctly
