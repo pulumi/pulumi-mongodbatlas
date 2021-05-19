@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? FlowdockApiToken { get; set; }
 
         /// <summary>
-        /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
         /// </summary>
         [Input("intervalMin")]
         public Input<int>? IntervalMin { get; set; }

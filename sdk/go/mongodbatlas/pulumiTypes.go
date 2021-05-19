@@ -455,7 +455,7 @@ type AlertConfigurationNotification struct {
 	FlowName *string `pulumi:"flowName"`
 	// The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	FlowdockApiToken *string `pulumi:"flowdockApiToken"`
-	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
 	IntervalMin *int `pulumi:"intervalMin"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber *string `pulumi:"mobileNumber"`
@@ -516,7 +516,7 @@ type AlertConfigurationNotificationArgs struct {
 	FlowName pulumi.StringPtrInput `pulumi:"flowName"`
 	// The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	FlowdockApiToken pulumi.StringPtrInput `pulumi:"flowdockApiToken"`
-	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
 	IntervalMin pulumi.IntPtrInput `pulumi:"intervalMin"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber pulumi.StringPtrInput `pulumi:"mobileNumber"`
@@ -643,7 +643,7 @@ func (o AlertConfigurationNotificationOutput) FlowdockApiToken() pulumi.StringPt
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.FlowdockApiToken }).(pulumi.StringPtrOutput)
 }
 
-// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
 func (o AlertConfigurationNotificationOutput) IntervalMin() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *int { return v.IntervalMin }).(pulumi.IntPtrOutput)
 }

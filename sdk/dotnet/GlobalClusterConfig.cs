@@ -159,6 +159,9 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig")]
     public partial class GlobalClusterConfig : Pulumi.CustomResource
     {
+        /// <summary>
+        /// The name of the Global Cluster.
+        /// </summary>
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
 
@@ -182,7 +185,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The unique ID for the project to create the database user.
-        /// * `cluster_name - (Required) The name of the Global Cluster.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -233,6 +235,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GlobalClusterConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the Global Cluster.
+        /// </summary>
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
@@ -262,7 +267,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The unique ID for the project to create the database user.
-        /// * `cluster_name - (Required) The name of the Global Cluster.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -274,6 +278,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GlobalClusterConfigState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the Global Cluster.
+        /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
 
@@ -315,7 +322,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The unique ID for the project to create the database user.
-        /// * `cluster_name - (Required) The name of the Global Cluster.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

@@ -400,7 +400,7 @@ class AlertConfigurationNotification(dict):
         :param bool email_enabled: Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
         :param str flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
         :param str flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
         :param str mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param str ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
@@ -538,7 +538,7 @@ class AlertConfigurationNotification(dict):
     @pulumi.getter(name="intervalMin")
     def interval_min(self) -> Optional[int]:
         """
-        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
         """
         return pulumi.get(self, "interval_min")
 

@@ -285,7 +285,7 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[bool] email_enabled: Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
         :param pulumi.Input[str] flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
         :param pulumi.Input[str] flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        :param pulumi.Input[int] interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        :param pulumi.Input[int] interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
         :param pulumi.Input[str] mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param pulumi.Input[str] ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[str] ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
@@ -459,7 +459,7 @@ class AlertConfigurationNotificationArgs:
     @pulumi.getter(name="intervalMin")
     def interval_min(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
         """
         return pulumi.get(self, "interval_min")
 

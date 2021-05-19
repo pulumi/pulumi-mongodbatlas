@@ -156,6 +156,7 @@ import (
 type GlobalClusterConfig struct {
 	pulumi.CustomResourceState
 
+	// The name of the Global Cluster.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
 	CustomZoneMapping pulumi.MapOutput `pulumi:"customZoneMapping"`
@@ -164,7 +165,6 @@ type GlobalClusterConfig struct {
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GlobalClusterConfigManagedNamespaceArrayOutput `pulumi:"managedNamespaces"`
 	// The unique ID for the project to create the database user.
-	// * `clusterName - (Required) The name of the Global Cluster.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
 
@@ -203,6 +203,7 @@ func GetGlobalClusterConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GlobalClusterConfig resources.
 type globalClusterConfigState struct {
+	// The name of the Global Cluster.
 	ClusterName *string `pulumi:"clusterName"`
 	// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
 	CustomZoneMapping map[string]interface{} `pulumi:"customZoneMapping"`
@@ -211,11 +212,11 @@ type globalClusterConfigState struct {
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
 	// The unique ID for the project to create the database user.
-	// * `clusterName - (Required) The name of the Global Cluster.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 type GlobalClusterConfigState struct {
+	// The name of the Global Cluster.
 	ClusterName pulumi.StringPtrInput
 	// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
 	CustomZoneMapping pulumi.MapInput
@@ -224,7 +225,6 @@ type GlobalClusterConfigState struct {
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GlobalClusterConfigManagedNamespaceArrayInput
 	// The unique ID for the project to create the database user.
-	// * `clusterName - (Required) The name of the Global Cluster.
 	ProjectId pulumi.StringPtrInput
 }
 
@@ -233,25 +233,25 @@ func (GlobalClusterConfigState) ElementType() reflect.Type {
 }
 
 type globalClusterConfigArgs struct {
+	// The name of the Global Cluster.
 	ClusterName string `pulumi:"clusterName"`
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings []GlobalClusterConfigCustomZoneMapping `pulumi:"customZoneMappings"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
 	// The unique ID for the project to create the database user.
-	// * `clusterName - (Required) The name of the Global Cluster.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // The set of arguments for constructing a GlobalClusterConfig resource.
 type GlobalClusterConfigArgs struct {
+	// The name of the Global Cluster.
 	ClusterName pulumi.StringInput
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings GlobalClusterConfigCustomZoneMappingArrayInput
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GlobalClusterConfigManagedNamespaceArrayInput
 	// The unique ID for the project to create the database user.
-	// * `clusterName - (Required) The name of the Global Cluster.
 	ProjectId pulumi.StringInput
 }
 

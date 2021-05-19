@@ -592,6 +592,8 @@ github.com/google/go-containerregistry v0.0.0-20200110202235-f4fb41bf00a3 h1:lvf
 github.com/google/go-containerregistry v0.0.0-20200110202235-f4fb41bf00a3/go.mod h1:2wIuQute9+hhWqvL3vEI7YB0EKluF4WcPzI1eAliazk=
 github.com/google/go-querystring v1.0.0 h1:Xkwi/a1rcvNg1PPYe5vI8GbeBY/jrVuDX5ASuANWTrk=
 github.com/google/go-querystring v1.0.0/go.mod h1:odCYkC5MyYFN7vkCjXpyrEuKhc/BUO6wN/zVPAxq5ck=
+github.com/google/go-querystring v1.1.0 h1:AnCroh3fv4ZBgVIf1Iwtovgjaw/GiKJo8M8yD/fhyJ8=
+github.com/google/go-querystring v1.1.0/go.mod h1:Kcdr2DB4koayq7X8pmAG4sNG59So17icRSOU623lUBU=
 github.com/google/go-replayers/grpcreplay v1.0.0 h1:B5kVOzJ1hBgnevTgIWhSTatQ3608yu/2NnU0Ta1d0kY=
 github.com/google/go-replayers/grpcreplay v1.0.0/go.mod h1:8Ig2Idjpr6gifRd6pNVggX6TC1Zw6Jx74AKp7QNH2QE=
 github.com/google/go-replayers/httpreplay v0.1.2 h1:HCfx+dQzwN9XbGTHF8qJ+67WN8glL9FTWV5rraCJ/jU=
@@ -979,6 +981,8 @@ github.com/mongodb/terraform-provider-mongodbatlas v0.8.2 h1:VuJcgAV2DvbNTgaKerk
 github.com/mongodb/terraform-provider-mongodbatlas v0.8.2/go.mod h1:N609yhVnqNGhr5s48/cw9EbEEF/+KhPWqqtJySOkjlY=
 github.com/mongodb/terraform-provider-mongodbatlas v0.9.0 h1:r2NhKtVjRuCiU0Qk6pjSpElJ49jUi+2TF1492PdQsig=
 github.com/mongodb/terraform-provider-mongodbatlas v0.9.0/go.mod h1:78w92ekKGpvc3mjZiulhDMsCTBs9G/YAeAExNyFZTWY=
+github.com/mongodb/terraform-provider-mongodbatlas v0.9.1 h1:cV+bn7WGcBkRF7ndFAvQjw63nYquqA73JC3RyWuA+iU=
+github.com/mongodb/terraform-provider-mongodbatlas v0.9.1/go.mod h1:4fwHjCz6x2RR/JaiboWFgrKcnhVZwkrUrVmeWBejal8=
 github.com/morikuni/aec v1.0.0 h1:nP9CBfwrvYnBRgY6qfDQkygYDmYwOilePFkwzv4dU8A=
 github.com/morikuni/aec v1.0.0/go.mod h1:BbKIizmSmc5MMPqRYbxO4ZU0S0+P200+tUnFx7PXmsc=
 github.com/mozilla/tls-observatory v0.0.0-20180409132520-8791a200eb40/go.mod h1:SrKMQvPiws7F7iqYp8/TX+IhxCYhzr6N/1yb8cwHsGk=
@@ -1327,6 +1331,8 @@ go.mongodb.org/atlas v0.7.2 h1:wB3+hP71t3mK+JOSrjBFbrzb5MsZRzDtZlpEKp58KK0=
 go.mongodb.org/atlas v0.7.2/go.mod h1:CIaBeO8GLHhtYLw7xSSXsw7N90Z4MFY87Oy9qcPyuEs=
 go.mongodb.org/atlas v0.7.3-0.20210302081736-7ccf7e1f4351 h1:3NuN2K6VtDuDNfAKX/4j6H4pLaT8LIkvfXD3F7Oy30c=
 go.mongodb.org/atlas v0.7.3-0.20210302081736-7ccf7e1f4351/go.mod h1:CIaBeO8GLHhtYLw7xSSXsw7N90Z4MFY87Oy9qcPyuEs=
+go.mongodb.org/atlas v0.8.1-0.20210511153422-07efff1e0565 h1:CgUwlSaOr8IzFSnAYE+QApclcjUFYFctIYUB4WODNSw=
+go.mongodb.org/atlas v0.8.1-0.20210511153422-07efff1e0565/go.mod h1:MMWDsc2akjTDSG4tVQrxv/82p3QbBnqeELbtTl45sbg=
 go.opencensus.io v0.15.0/go.mod h1:UffZAU+4sDEINUGP/B7UfBBkq4fqLu9zXAX7ke6CHW0=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=

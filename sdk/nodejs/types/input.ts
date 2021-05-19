@@ -108,7 +108,7 @@ export interface AlertConfigurationNotification {
      */
     flowdockApiToken?: pulumi.Input<string>;
     /**
-     * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
+     * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
      */
     intervalMin?: pulumi.Input<number>;
     /**
