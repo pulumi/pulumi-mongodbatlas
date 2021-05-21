@@ -352,6 +352,7 @@ export class Cluster extends pulumi.CustomResource {
     public readonly providerBackupEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+     * * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
      */
     public readonly providerDiskIops!: pulumi.Output<number>;
     /**
@@ -644,6 +645,7 @@ export interface ClusterState {
     readonly providerBackupEnabled?: pulumi.Input<boolean>;
     /**
      * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+     * * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
      */
     readonly providerDiskIops?: pulumi.Input<number>;
     /**
@@ -791,6 +793,7 @@ export interface ClusterArgs {
     readonly providerBackupEnabled?: pulumi.Input<boolean>;
     /**
      * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+     * * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
      */
     readonly providerDiskIops?: pulumi.Input<number>;
     /**

@@ -9,67 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
-    /// <summary>
-    /// `mongodbatlas.EncryptionAtRest` Allows management of encryption at rest for an Atlas project with one of the following providers:
-    /// 
-    /// [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
-    /// [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
-    /// [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
-    /// 
-    /// After configuring at least one Encryption at Rest provider for the Atlas project, Project Owners can enable Encryption at Rest for each Atlas cluster for which they require encryption. The Encryption at Rest provider does not have to match the cluster cloud service provider.
-    /// 
-    /// Atlas does not automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest provider’s documentation and guidance for best practices on key rotation. Atlas automatically creates a 365-day key rotation alert when you configure Encryption at Rest using your Key Management in an Atlas project.
-    /// 
-    /// See [Encryption at Rest](https://docs.atlas.mongodb.com/security-kms-encryption/index.html) for more information, including prerequisites and restrictions.
-    /// 
-    /// &gt; **IMPORTANT** Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.
-    /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var test = new Mongodbatlas.EncryptionAtRest("test", new Mongodbatlas.EncryptionAtRestArgs
-    ///         {
-    ///             AwsKms = new Mongodbatlas.Inputs.EncryptionAtRestAwsKmsArgs
-    ///             {
-    ///                 Customer_master_key_id = "5ce83906-6563-46b7-8045-11c20e3a5766",
-    ///                 Enabled = true,
-    ///                 Region = "US_EAST_1",
-    ///                 Role_id = "60815e2fe01a49138a928ebb",
-    ///             },
-    ///             AzureKeyVault = new Mongodbatlas.Inputs.EncryptionAtRestAzureKeyVaultArgs
-    ///             {
-    ///                 Azure_environment = "AZURE",
-    ///                 Client_id = "g54f9e2-89e3-40fd-8188-EXAMPLEID",
-    ///                 Enabled = true,
-    ///                 Key_identifier = "https://EXAMPLEKeyVault.vault.azure.net/keys/EXAMPLEKey/d891821e3d364e9eb88fbd3d11807b86",
-    ///                 Key_vault_name = "EXAMPLEKeyVault",
-    ///                 Resource_group_name = "ExampleRGName",
-    ///                 Secret = "EXAMPLESECRET",
-    ///                 Subscription_id = "0ec944e3-g725-44f9-a147-EXAMPLEID",
-    ///                 Tenant_id = "e8e4b6ba-ff32-4c88-a9af-EXAMPLEID",
-    ///             },
-    ///             GoogleCloudKms = new Mongodbatlas.Inputs.EncryptionAtRestGoogleCloudKmsArgs
-    ///             {
-    ///                 Enabled = true,
-    ///                 Key_version_resource_id = "projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1",
-    ///                 Service_account_key = "{\"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0@my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}",
-    ///             },
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/encryptionAtRest:EncryptionAtRest")]
     public partial class EncryptionAtRest : Pulumi.CustomResource
     {

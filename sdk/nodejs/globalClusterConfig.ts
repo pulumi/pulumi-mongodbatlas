@@ -135,6 +135,9 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === GlobalClusterConfig.__pulumiType;
     }
 
+    /**
+     * The name of the Global Cluster.
+     */
     public readonly clusterName!: pulumi.Output<string>;
     /**
      * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
@@ -150,7 +153,6 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
     public readonly managedNamespaces!: pulumi.Output<outputs.GlobalClusterConfigManagedNamespace[]>;
     /**
      * The unique ID for the project to create the database user.
-     * * `clusterName - (Required) The name of the Global Cluster.
      */
     public readonly projectId!: pulumi.Output<string>;
 
@@ -197,6 +199,9 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GlobalClusterConfig resources.
  */
 export interface GlobalClusterConfigState {
+    /**
+     * The name of the Global Cluster.
+     */
     readonly clusterName?: pulumi.Input<string>;
     /**
      * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
@@ -212,7 +217,6 @@ export interface GlobalClusterConfigState {
     readonly managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
     /**
      * The unique ID for the project to create the database user.
-     * * `clusterName - (Required) The name of the Global Cluster.
      */
     readonly projectId?: pulumi.Input<string>;
 }
@@ -221,6 +225,9 @@ export interface GlobalClusterConfigState {
  * The set of arguments for constructing a GlobalClusterConfig resource.
  */
 export interface GlobalClusterConfigArgs {
+    /**
+     * The name of the Global Cluster.
+     */
     readonly clusterName: pulumi.Input<string>;
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
@@ -232,7 +239,6 @@ export interface GlobalClusterConfigArgs {
     readonly managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
     /**
      * The unique ID for the project to create the database user.
-     * * `clusterName - (Required) The name of the Global Cluster.
      */
     readonly projectId: pulumi.Input<string>;
 }
