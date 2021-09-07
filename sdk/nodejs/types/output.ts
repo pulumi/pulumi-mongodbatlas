@@ -27,7 +27,7 @@ export interface AlertConfigurationMatcher {
     value?: string;
 }
 
-export interface AlertConfigurationMetricThreshold {
+export interface AlertConfigurationMetricThresholdConfig {
     /**
      * Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
      */
@@ -162,7 +162,7 @@ export interface AlertConfigurationNotification {
     victorOpsRoutingKey?: string;
 }
 
-export interface AlertConfigurationThreshold {
+export interface AlertConfigurationThresholdConfig {
     /**
      * Operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
@@ -197,21 +197,89 @@ export interface AlertConfigurationThreshold {
     units?: string;
 }
 
+export interface CloudBackupSchedulePolicyItemDaily {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: number;
+    frequencyType: string;
+    id: string;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
+}
+
+export interface CloudBackupSchedulePolicyItemHourly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: number;
+    frequencyType: string;
+    id: string;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
+}
+
+export interface CloudBackupSchedulePolicyItemMonthly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: number;
+    frequencyType: string;
+    id: string;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
+}
+
+export interface CloudBackupSchedulePolicyItemWeekly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: number;
+    frequencyType: string;
+    id: string;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
+}
+
 export interface CloudProviderAccessAuthorizationAws {
     iamAssumedRoleArn: string;
 }
 
 export interface CloudProviderAccessAuthorizationFeatureUsage {
-    featureId: string;
+    featureId: {[key: string]: any};
     featureType: string;
 }
 
 export interface CloudProviderAccessFeatureUsage {
-    featureId: string;
+    featureId: {[key: string]: any};
     featureType: string;
 }
 
-export interface CloudProviderAccessSetupAws {
+export interface CloudProviderAccessSetupAwsConfig {
     atlasAssumedRoleExternalId: string;
     atlasAwsAccountArn: string;
 }
@@ -229,7 +297,7 @@ export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
     retentionValue: number;
 }
 
-export interface CloudProviderSnapshotRestoreJobDeliveryType {
+export interface CloudProviderSnapshotRestoreJobDeliveryTypeConfig {
     automated?: boolean;
     download?: boolean;
     oplogInc?: number;
@@ -274,20 +342,6 @@ export interface ClusterAdvancedConfiguration {
     sampleSizeBiConnector: number;
 }
 
-export interface ClusterBiConnector {
-    /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
-     * - Set to `false` to disable BI Connector for Atlas.
-     */
-    enabled?: string;
-    /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-     */
-    readPreference?: string;
-}
-
 export interface ClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
@@ -302,7 +356,7 @@ export interface ClusterBiConnectorConfig {
     readPreference: string;
 }
 
-export interface ClusterConnectionStrings {
+export interface ClusterConnectionString {
     /**
      * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
      */
@@ -312,20 +366,20 @@ export interface ClusterConnectionStrings {
      */
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
-    privateEndpoints: outputs.ClusterConnectionStringsPrivateEndpoint[];
+    privateEndpoints: outputs.ClusterConnectionStringPrivateEndpoint[];
     privateSrv: string;
     standard: string;
     standardSrv: string;
 }
 
-export interface ClusterConnectionStringsPrivateEndpoint {
+export interface ClusterConnectionStringPrivateEndpoint {
     connectionString: string;
-    endpoints: outputs.ClusterConnectionStringsPrivateEndpointEndpoint[];
+    endpoints: outputs.ClusterConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
     type: string;
 }
 
-export interface ClusterConnectionStringsPrivateEndpointEndpoint {
+export interface ClusterConnectionStringPrivateEndpointEndpoint {
     endpointId: string;
     /**
      * Cloud service provider on which the servers are provisioned.
@@ -458,6 +512,66 @@ export interface CustomDbRoleInheritedRole {
     roleName: string;
 }
 
+export interface DataLakeAws {
+    externalId: string;
+    iamAssumedRoleArn: string;
+    iamUserArn: string;
+    roleId: string;
+    testS3Bucket: string;
+}
+
+export interface DataLakeDataProcessRegion {
+    cloudProvider: string;
+    region: string;
+}
+
+export interface DataLakeStorageDatabase {
+    collections: outputs.DataLakeStorageDatabaseCollection[];
+    maxWildcardCollections: number;
+    /**
+     * Name of the Atlas Data Lake.
+     */
+    name: string;
+    views: outputs.DataLakeStorageDatabaseView[];
+}
+
+export interface DataLakeStorageDatabaseCollection {
+    dataSources: outputs.DataLakeStorageDatabaseCollectionDataSource[];
+    /**
+     * Name of the Atlas Data Lake.
+     */
+    name: string;
+}
+
+export interface DataLakeStorageDatabaseCollectionDataSource {
+    defaultFormat: string;
+    path: string;
+    storeName: string;
+}
+
+export interface DataLakeStorageDatabaseView {
+    /**
+     * Name of the Atlas Data Lake.
+     */
+    name: string;
+    pipeline: string;
+    source: string;
+}
+
+export interface DataLakeStorageStore {
+    additionalStorageClasses: string[];
+    bucket: string;
+    delimiter: string;
+    includeTags: boolean;
+    /**
+     * Name of the Atlas Data Lake.
+     */
+    name: string;
+    prefix: string;
+    provider: string;
+    region: string;
+}
+
 export interface DatabaseUserLabel {
     /**
      * The key that you want to write.
@@ -495,7 +609,7 @@ export interface DatabaseUserScope {
     type?: string;
 }
 
-export interface EncryptionAtRestAwsKms {
+export interface EncryptionAtRestAwsKmsConfig {
     accessKeyId?: string;
     /**
      * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
@@ -516,7 +630,7 @@ export interface EncryptionAtRestAwsKms {
     secretAccessKey?: string;
 }
 
-export interface EncryptionAtRestAzureKeyVault {
+export interface EncryptionAtRestAzureKeyVaultConfig {
     /**
      * The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
      */
@@ -555,7 +669,7 @@ export interface EncryptionAtRestAzureKeyVault {
     tenantId?: string;
 }
 
-export interface EncryptionAtRestGoogleCloudKms {
+export interface EncryptionAtRestGoogleCloudKmsConfig {
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
@@ -568,6 +682,15 @@ export interface EncryptionAtRestGoogleCloudKms {
      * String-formatted JSON object containing GCP KMS credentials from your GCP account.
      */
     serviceAccountKey?: string;
+}
+
+export interface EventTriggerEventProcessors {
+    awsEventbridge?: outputs.EventTriggerEventProcessorsAwsEventbridge;
+}
+
+export interface EventTriggerEventProcessorsAwsEventbridge {
+    configAccountId?: string;
+    configRegion?: string;
 }
 
 export interface Get509AuthenticationDatabaseUserCertificate {
@@ -601,7 +724,7 @@ export interface GetAlertConfigurationMatcher {
     value: string;
 }
 
-export interface GetAlertConfigurationMetricThreshold {
+export interface GetAlertConfigurationMetricThresholdConfig {
     /**
      * Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
      */
@@ -746,7 +869,7 @@ export interface GetAlertConfigurationNotification {
     victorOpsRoutingKey: string;
 }
 
-export interface GetAlertConfigurationThreshold {
+export interface GetAlertConfigurationThresholdConfig {
     /**
      * Operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
@@ -779,6 +902,98 @@ export interface GetAlertConfigurationThreshold {
      * - `DAYS`
      */
     units: string;
+}
+
+export interface GetCloudBackupSchedulePolicyItemDaily {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
+}
+
+export interface GetCloudBackupSchedulePolicyItemHourly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
+}
+
+export interface GetCloudBackupSchedulePolicyItemMonthly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
+}
+
+export interface GetCloudBackupSchedulePolicyItemWeekly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: number;
+    /**
+     * Frequency associated with the backup policy item.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the backup policy item.
+     */
+    id: string;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
 }
 
 export interface GetCloudProviderAccessAwsIamRole {
@@ -817,11 +1032,11 @@ export interface GetCloudProviderAccessAwsIamRole {
 }
 
 export interface GetCloudProviderAccessAwsIamRoleFeatureUsage {
-    featureId: string;
+    featureId: {[key: string]: any};
     featureType: string;
 }
 
-export interface GetCloudProviderAccessSetupAws {
+export interface GetCloudProviderAccessSetupAwsConfig {
     /**
      * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
      */
@@ -939,17 +1154,6 @@ export interface GetCloudProviderSnapshotsResult {
     type: string;
 }
 
-export interface GetClusterBiConnector {
-    /**
-     * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-     */
-    enabled: string;
-    /**
-     * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-     */
-    readPreference: string;
-}
-
 export interface GetClusterBiConnectorConfig {
     /**
      * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
@@ -961,24 +1165,24 @@ export interface GetClusterBiConnectorConfig {
     readPreference: string;
 }
 
-export interface GetClusterConnectionStrings {
+export interface GetClusterConnectionString {
     awsPrivateLink: {[key: string]: any};
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
-    privateEndpoints: outputs.GetClusterConnectionStringsPrivateEndpoint[];
+    privateEndpoints: outputs.GetClusterConnectionStringPrivateEndpoint[];
     privateSrv: string;
     standard: string;
     standardSrv: string;
 }
 
-export interface GetClusterConnectionStringsPrivateEndpoint {
+export interface GetClusterConnectionStringPrivateEndpoint {
     connectionString: string;
-    endpoints: outputs.GetClusterConnectionStringsPrivateEndpointEndpoint[];
+    endpoints: outputs.GetClusterConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
     type: string;
 }
 
-export interface GetClusterConnectionStringsPrivateEndpointEndpoint {
+export interface GetClusterConnectionStringPrivateEndpointEndpoint {
     endpointId: string;
     /**
      * Indicates the cloud service provider on which the servers are provisioned.
@@ -1096,11 +1300,11 @@ export interface GetClustersResult {
      *
      * @deprecated use bi_connector_config instead
      */
-    biConnector: outputs.GetClustersResultBiConnector;
+    biConnector: {[key: string]: string};
     /**
      * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
-    biConnectorConfig: outputs.GetClustersResultBiConnectorConfig;
+    biConnectorConfigs: outputs.GetClustersResultBiConnectorConfig[];
     /**
      * Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      */
@@ -1121,7 +1325,7 @@ export interface GetClustersResult {
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
      */
-    connectionStrings: outputs.GetClustersResultConnectionStrings;
+    connectionStrings: outputs.GetClustersResultConnectionString[];
     /**
      * The Network Peering Container ID.
      */
@@ -1180,7 +1384,7 @@ export interface GetClustersResult {
      */
     providerAutoScalingComputeMinInstanceSize: string;
     /**
-     * Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+     * Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
      */
     providerBackupEnabled: boolean;
     /**
@@ -1239,17 +1443,6 @@ export interface GetClustersResult {
     stateName: string;
 }
 
-export interface GetClustersResultBiConnector {
-    /**
-     * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-     */
-    enabled: string;
-    /**
-     * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-     */
-    readPreference: string;
-}
-
 export interface GetClustersResultBiConnectorConfig {
     /**
      * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
@@ -1261,24 +1454,24 @@ export interface GetClustersResultBiConnectorConfig {
     readPreference: string;
 }
 
-export interface GetClustersResultConnectionStrings {
+export interface GetClustersResultConnectionString {
     awsPrivateLink: {[key: string]: any};
     awsPrivateLinkSrv: {[key: string]: any};
     private: string;
-    privateEndpoints: outputs.GetClustersResultConnectionStringsPrivateEndpoint[];
+    privateEndpoints: outputs.GetClustersResultConnectionStringPrivateEndpoint[];
     privateSrv: string;
     standard: string;
     standardSrv: string;
 }
 
-export interface GetClustersResultConnectionStringsPrivateEndpoint {
+export interface GetClustersResultConnectionStringPrivateEndpoint {
     connectionString: string;
-    endpoints: outputs.GetClustersResultConnectionStringsPrivateEndpointEndpoint[];
+    endpoints: outputs.GetClustersResultConnectionStringPrivateEndpointEndpoint[];
     srvConnectionString: string;
     type: string;
 }
 
-export interface GetClustersResultConnectionStringsPrivateEndpointEndpoint {
+export interface GetClustersResultConnectionStringPrivateEndpointEndpoint {
     endpointId: string;
     /**
      * Indicates the cloud service provider on which the servers are provisioned.
@@ -1423,6 +1616,163 @@ export interface GetCustomDbRolesResultInheritedRole {
     roleName: string;
 }
 
+export interface GetDataLakeAw {
+    externalId: string;
+    iamAssumedRoleArn: string;
+    iamUserArn: string;
+    roleId: string;
+    testS3Bucket: string;
+}
+
+export interface GetDataLakeDataProcessRegion {
+    cloudProvider: string;
+    region: string;
+}
+
+export interface GetDataLakeStorageDatabase {
+    collections: outputs.GetDataLakeStorageDatabaseCollection[];
+    maxWildcardCollections: number;
+    /**
+     * Name of the data lake.
+     */
+    name: string;
+    views: outputs.GetDataLakeStorageDatabaseView[];
+}
+
+export interface GetDataLakeStorageDatabaseCollection {
+    dataSources: outputs.GetDataLakeStorageDatabaseCollectionDataSource[];
+    /**
+     * Name of the data lake.
+     */
+    name: string;
+}
+
+export interface GetDataLakeStorageDatabaseCollectionDataSource {
+    defaultFormat: string;
+    path: string;
+    storeName: string;
+}
+
+export interface GetDataLakeStorageDatabaseView {
+    /**
+     * Name of the data lake.
+     */
+    name: string;
+    pipeline: string;
+    source: string;
+}
+
+export interface GetDataLakeStorageStore {
+    additionalStorageClasses: string[];
+    bucket: string;
+    delimiter: string;
+    includeTags: boolean;
+    /**
+     * Name of the data lake.
+     */
+    name: string;
+    prefix: string;
+    provider: string;
+    region: string;
+}
+
+export interface GetDataLakesResult {
+    aws: outputs.GetDataLakesResultAw[];
+    /**
+     * The cloud provider region to which Atlas Data Lake routes client connections for data processing.
+     * * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
+     * * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
+     */
+    dataProcessRegions: outputs.GetDataLakesResultDataProcessRegion[];
+    /**
+     * The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
+     */
+    hostnames: string[];
+    name: string;
+    /**
+     * The unique ID for the project to get all data lakes.
+     */
+    projectId: string;
+    /**
+     * Current state of the Atlas Data Lake:
+     */
+    state: string;
+    /**
+     * Configuration details for mapping each data store to queryable databases and collections.
+     * * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
+     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+     * * `storage_databases.#.collections.#.name` - Name of the collection.
+     * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
+     * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
+     * * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+     * * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
+     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
+     * * `storage_databases.#.views.#.name` - Name of the view.
+     * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
+     * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
+     */
+    storageDatabases: outputs.GetDataLakesResultStorageDatabase[];
+    /**
+     * Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
+     * * `storage_stores.#.name` - Name of the data store.
+     * * `storage_stores.#.provider` - Defines where the data is stored.
+     * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
+     * * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+     * * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
+     * * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
+     * * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
+     */
+    storageStores: outputs.GetDataLakesResultStorageStore[];
+}
+
+export interface GetDataLakesResultAw {
+    externalId: string;
+    iamAssumedRoleArn: string;
+    iamUserArn: string;
+    roleId: string;
+    testS3Bucket: string;
+}
+
+export interface GetDataLakesResultDataProcessRegion {
+    cloudProvider: string;
+    region: string;
+}
+
+export interface GetDataLakesResultStorageDatabase {
+    collections: outputs.GetDataLakesResultStorageDatabaseCollection[];
+    maxWildcardCollections: number;
+    name: string;
+    views: outputs.GetDataLakesResultStorageDatabaseView[];
+}
+
+export interface GetDataLakesResultStorageDatabaseCollection {
+    dataSources: outputs.GetDataLakesResultStorageDatabaseCollectionDataSource[];
+    name: string;
+}
+
+export interface GetDataLakesResultStorageDatabaseCollectionDataSource {
+    defaultFormat: string;
+    path: string;
+    storeName: string;
+}
+
+export interface GetDataLakesResultStorageDatabaseView {
+    name: string;
+    pipeline: string;
+    source: string;
+}
+
+export interface GetDataLakesResultStorageStore {
+    additionalStorageClasses: string[];
+    bucket: string;
+    delimiter: string;
+    includeTags: boolean;
+    name: string;
+    prefix: string;
+    provider: string;
+    region: string;
+}
+
 export interface GetDatabaseUserLabel {
     /**
      * The key that you want to write.
@@ -1532,6 +1882,96 @@ export interface GetDatabaseUsersResultScope {
     type: string;
 }
 
+export interface GetEventTriggerEventProcessor {
+    awsEventbridges: outputs.GetEventTriggerEventProcessorAwsEventbridge[];
+}
+
+export interface GetEventTriggerEventProcessorAwsEventbridge {
+    configAccountId: string;
+    configRegion: string;
+}
+
+export interface GetEventTriggersResult {
+    /**
+     * The name of the MongoDB collection that the trigger watches for change events.
+     */
+    configCollection: string;
+    /**
+     * The name of the MongoDB database that contains the watched collection.
+     */
+    configDatabase: string;
+    /**
+     * If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     */
+    configFullDocument: boolean;
+    configFullDocumentBefore: boolean;
+    /**
+     * A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+     */
+    configMatch: string;
+    /**
+     * The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+     */
+    configOperationType: string;
+    /**
+     * The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+     */
+    configOperationTypes: string[];
+    /**
+     * A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     */
+    configProject: string;
+    /**
+     * A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     */
+    configProviders: string[];
+    /**
+     * A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     */
+    configSchedule: string;
+    configScheduleType: string;
+    /**
+     * The ID of the MongoDB Service associated with the trigger.
+     */
+    configServiceId: string;
+    /**
+     * Status of a trigger.
+     */
+    disabled: boolean;
+    /**
+     * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
+     * * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
+     * * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
+     */
+    eventProcessors: outputs.GetEventTriggersResultEventProcessor[];
+    /**
+     * The ID of the function associated with the trigger.
+     */
+    functionId: string;
+    /**
+     * The name of the function associated with the trigger.
+     */
+    functionName: string;
+    /**
+     * The name of the trigger.
+     */
+    name: string;
+    triggerId: string;
+    /**
+     * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
+     */
+    type: string;
+}
+
+export interface GetEventTriggersResultEventProcessor {
+    awsEventbridges: outputs.GetEventTriggersResultEventProcessorAwsEventbridge[];
+}
+
+export interface GetEventTriggersResultEventProcessorAwsEventbridge {
+    configAccountId: string;
+    configRegion: string;
+}
+
 export interface GetGlobalClusterConfigManagedNamespace {
     /**
      * (Required) The name of the collection associated with the managed namespace.
@@ -1622,9 +2062,6 @@ export interface GetNetworkPeeringsResult {
      * Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
     accepterRegionName: string;
-    /**
-     * Unique identifier for an Azure AD directory.
-     */
     atlasCidrBlock: string;
     /**
      * Account ID of the owner of the peer VPC.
@@ -1697,6 +2134,52 @@ export interface GetNetworkPeeringsResult {
     vpcId: string;
 }
 
+export interface GetOnlineArchiveCriteria {
+    dateField: string;
+    dateFormat: string;
+    expireAfterDays: number;
+    query: string;
+    type: string;
+}
+
+export interface GetOnlineArchivePartitionField {
+    fieldName: string;
+    fieldType: string;
+    order: number;
+}
+
+export interface GetOnlineArchivesResult {
+    archiveId: string;
+    /**
+     * Name of the cluster that contains the collection.
+     */
+    clusterName: string;
+    collName: string;
+    criterias: outputs.GetOnlineArchivesResultCriteria[];
+    dbName: string;
+    partitionFields: outputs.GetOnlineArchivesResultPartitionField[];
+    paused: boolean;
+    /**
+     * The unique ID for the project.
+     */
+    projectId: string;
+    state: string;
+}
+
+export interface GetOnlineArchivesResultCriteria {
+    dateField: string;
+    dateFormat: string;
+    expireAfterDays: number;
+    query: string;
+    type: string;
+}
+
+export interface GetOnlineArchivesResultPartitionField {
+    fieldName: string;
+    fieldType: string;
+    order: number;
+}
+
 export interface GetProjectTeam {
     roleNames: string[];
     teamId: string;
@@ -1734,6 +2217,51 @@ export interface GetProjectsResult {
 export interface GetProjectsResultTeam {
     roleNames: string[];
     teamId: string;
+}
+
+export interface GetSearchIndexesResult {
+    /**
+     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     */
+    analyzer: string;
+    /**
+     * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+     */
+    analyzers?: string;
+    /**
+     * Name of the cluster containing the collection with one or more Atlas Search indexes.
+     */
+    clusterName: string;
+    /**
+     * Name of the collection with one or more Atlas Search indexes.
+     */
+    collectionName: string;
+    /**
+     * (Required) Name of the database the collection is in.
+     */
+    database: string;
+    indexId: string;
+    /**
+     * Flag indicating whether the index uses dynamic or static mappings.
+     */
+    mappingsDynamic?: boolean;
+    /**
+     * Object containing one or more field specifications.
+     */
+    mappingsFields?: string;
+    /**
+     * Name of the index.
+     */
+    name: string;
+    /**
+     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     */
+    projectId: string;
+    /**
+     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+     */
+    searchAnalyzer?: string;
+    status: string;
 }
 
 export interface GetThirdPartyIntegrationsResult {
@@ -1849,6 +2377,20 @@ export interface LdapVerifyValidation {
      */
     status: string;
     validationType: string;
+}
+
+export interface OnlineArchiveCriteria {
+    dateField?: string;
+    dateFormat: string;
+    expireAfterDays?: number;
+    query?: string;
+    type: string;
+}
+
+export interface OnlineArchivePartitionField {
+    fieldName: string;
+    fieldType: string;
+    order: number;
 }
 
 export interface ProjectTeam {

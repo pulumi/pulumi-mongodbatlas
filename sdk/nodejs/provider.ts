@@ -43,8 +43,10 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.publicKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
             }
+            inputs["baseUrl"] = args ? args.baseUrl : undefined;
             inputs["privateKey"] = args ? args.privateKey : undefined;
             inputs["publicKey"] = args ? args.publicKey : undefined;
+            inputs["realmBaseUrl"] = args ? args.realmBaseUrl : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -58,6 +60,10 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
+     * MongoDB Atlas Base URL
+     */
+    readonly baseUrl?: pulumi.Input<string>;
+    /**
      * MongoDB Atlas Programmatic Private Key
      */
     readonly privateKey: pulumi.Input<string>;
@@ -65,4 +71,8 @@ export interface ProviderArgs {
      * MongoDB Atlas Programmatic Public Key
      */
     readonly publicKey: pulumi.Input<string>;
+    /**
+     * MongoDB Realm Base URL
+     */
+    readonly realmBaseUrl?: pulumi.Input<string>;
 }

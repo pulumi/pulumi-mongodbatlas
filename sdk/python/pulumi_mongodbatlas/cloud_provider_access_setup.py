@@ -45,7 +45,8 @@ class CloudProviderAccessSetupArgs:
 @pulumi.input_type
 class _CloudProviderAccessSetupState:
     def __init__(__self__, *,
-                 aws: Optional[pulumi.Input['CloudProviderAccessSetupAwsArgs']] = None,
+                 aws: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]] = None,
                  created_date: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
@@ -54,7 +55,12 @@ class _CloudProviderAccessSetupState:
         Input properties used for looking up and filtering CloudProviderAccessSetup resources.
         """
         if aws is not None:
+            warnings.warn("""use aws_config instead""", DeprecationWarning)
+            pulumi.log.warn("""aws is deprecated: use aws_config instead""")
+        if aws is not None:
             pulumi.set(__self__, "aws", aws)
+        if aws_configs is not None:
+            pulumi.set(__self__, "aws_configs", aws_configs)
         if created_date is not None:
             pulumi.set(__self__, "created_date", created_date)
         if project_id is not None:
@@ -66,12 +72,21 @@ class _CloudProviderAccessSetupState:
 
     @property
     @pulumi.getter
-    def aws(self) -> Optional[pulumi.Input['CloudProviderAccessSetupAwsArgs']]:
+    def aws(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "aws")
 
     @aws.setter
-    def aws(self, value: Optional[pulumi.Input['CloudProviderAccessSetupAwsArgs']]):
+    def aws(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "aws", value)
+
+    @property
+    @pulumi.getter(name="awsConfigs")
+    def aws_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]]:
+        return pulumi.get(self, "aws_configs")
+
+    @aws_configs.setter
+    def aws_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]]):
+        pulumi.set(self, "aws_configs", value)
 
     @property
     @pulumi.getter(name="createdDate")
@@ -167,6 +182,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                 raise TypeError("Missing required property 'provider_name'")
             __props__.__dict__["provider_name"] = provider_name
             __props__.__dict__["aws"] = None
+            __props__.__dict__["aws_configs"] = None
             __props__.__dict__["created_date"] = None
             __props__.__dict__["role_id"] = None
         super(CloudProviderAccessSetup, __self__).__init__(
@@ -179,7 +195,8 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws: Optional[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAwsArgs']]] = None,
+            aws: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderAccessSetupAwsConfigArgs']]]]] = None,
             created_date: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
@@ -197,6 +214,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         __props__ = _CloudProviderAccessSetupState.__new__(_CloudProviderAccessSetupState)
 
         __props__.__dict__["aws"] = aws
+        __props__.__dict__["aws_configs"] = aws_configs
         __props__.__dict__["created_date"] = created_date
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["provider_name"] = provider_name
@@ -205,8 +223,13 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def aws(self) -> pulumi.Output['outputs.CloudProviderAccessSetupAws']:
+    def aws(self) -> pulumi.Output[Mapping[str, str]]:
         return pulumi.get(self, "aws")
+
+    @property
+    @pulumi.getter(name="awsConfigs")
+    def aws_configs(self) -> pulumi.Output[Sequence['outputs.CloudProviderAccessSetupAwsConfig']]:
+        return pulumi.get(self, "aws_configs")
 
     @property
     @pulumi.getter(name="createdDate")

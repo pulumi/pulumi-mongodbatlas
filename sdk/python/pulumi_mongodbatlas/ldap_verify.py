@@ -340,8 +340,8 @@ class LdapVerify(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="US_EAST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True,
-            provider_encrypt_ebs_volume=False)
+            cloud_backup=True)
+        #enable cloud provider snapshots
         test_ldap_verify = mongodbatlas.LdapVerify("testLdapVerify",
             project_id=test_project.id,
             hostname="HOSTNAME",
@@ -393,8 +393,8 @@ class LdapVerify(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="US_EAST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True,
-            provider_encrypt_ebs_volume=False)
+            cloud_backup=True)
+        #enable cloud provider snapshots
         test_ldap_verify = mongodbatlas.LdapVerify("testLdapVerify",
             project_id=test_project.id,
             hostname="HOSTNAME",

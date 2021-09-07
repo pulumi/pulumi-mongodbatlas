@@ -41,18 +41,26 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
+	// MongoDB Atlas Base URL
+	BaseUrl *string `pulumi:"baseUrl"`
 	// MongoDB Atlas Programmatic Private Key
 	PrivateKey string `pulumi:"privateKey"`
 	// MongoDB Atlas Programmatic Public Key
 	PublicKey string `pulumi:"publicKey"`
+	// MongoDB Realm Base URL
+	RealmBaseUrl *string `pulumi:"realmBaseUrl"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
+	// MongoDB Atlas Base URL
+	BaseUrl pulumi.StringPtrInput
 	// MongoDB Atlas Programmatic Private Key
 	PrivateKey pulumi.StringInput
 	// MongoDB Atlas Programmatic Public Key
 	PublicKey pulumi.StringInput
+	// MongoDB Realm Base URL
+	RealmBaseUrl pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {

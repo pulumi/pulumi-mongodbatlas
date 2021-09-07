@@ -46,6 +46,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// MongoDB Atlas Base URL
+        /// </summary>
+        [Input("baseUrl")]
+        public Input<string>? BaseUrl { get; set; }
+
+        /// <summary>
         /// MongoDB Atlas Programmatic Private Key
         /// </summary>
         [Input("privateKey", required: true)]
@@ -56,6 +62,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("publicKey", required: true)]
         public Input<string> PublicKey { get; set; } = null!;
+
+        /// <summary>
+        /// MongoDB Realm Base URL
+        /// </summary>
+        [Input("realmBaseUrl")]
+        public Input<string>? RealmBaseUrl { get; set; }
 
         public ProviderArgs()
         {

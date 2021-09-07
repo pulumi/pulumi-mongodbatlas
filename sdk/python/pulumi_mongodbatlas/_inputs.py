@@ -10,22 +10,25 @@ from . import _utilities
 
 __all__ = [
     'AlertConfigurationMatcherArgs',
-    'AlertConfigurationMetricThresholdArgs',
+    'AlertConfigurationMetricThresholdConfigArgs',
     'AlertConfigurationNotificationArgs',
-    'AlertConfigurationThresholdArgs',
+    'AlertConfigurationThresholdConfigArgs',
+    'CloudBackupSchedulePolicyItemDailyArgs',
+    'CloudBackupSchedulePolicyItemHourlyArgs',
+    'CloudBackupSchedulePolicyItemMonthlyArgs',
+    'CloudBackupSchedulePolicyItemWeeklyArgs',
     'CloudProviderAccessAuthorizationAwsArgs',
     'CloudProviderAccessAuthorizationFeatureUsageArgs',
     'CloudProviderAccessFeatureUsageArgs',
-    'CloudProviderAccessSetupAwsArgs',
+    'CloudProviderAccessSetupAwsConfigArgs',
     'CloudProviderSnapshotBackupPolicyPolicyArgs',
     'CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs',
-    'CloudProviderSnapshotRestoreJobDeliveryTypeArgs',
+    'CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs',
     'ClusterAdvancedConfigurationArgs',
-    'ClusterBiConnectorArgs',
     'ClusterBiConnectorConfigArgs',
-    'ClusterConnectionStringsArgs',
-    'ClusterConnectionStringsPrivateEndpointArgs',
-    'ClusterConnectionStringsPrivateEndpointEndpointArgs',
+    'ClusterConnectionStringArgs',
+    'ClusterConnectionStringPrivateEndpointArgs',
+    'ClusterConnectionStringPrivateEndpointEndpointArgs',
     'ClusterLabelArgs',
     'ClusterReplicationSpecArgs',
     'ClusterReplicationSpecRegionsConfigArgs',
@@ -35,17 +38,28 @@ __all__ = [
     'CustomDbRoleActionArgs',
     'CustomDbRoleActionResourceArgs',
     'CustomDbRoleInheritedRoleArgs',
+    'DataLakeAwsArgs',
+    'DataLakeDataProcessRegionArgs',
+    'DataLakeStorageDatabaseArgs',
+    'DataLakeStorageDatabaseCollectionArgs',
+    'DataLakeStorageDatabaseCollectionDataSourceArgs',
+    'DataLakeStorageDatabaseViewArgs',
+    'DataLakeStorageStoreArgs',
     'DatabaseUserLabelArgs',
     'DatabaseUserRoleArgs',
     'DatabaseUserScopeArgs',
-    'EncryptionAtRestAwsKmsArgs',
-    'EncryptionAtRestAzureKeyVaultArgs',
-    'EncryptionAtRestGoogleCloudKmsArgs',
+    'EncryptionAtRestAwsKmsConfigArgs',
+    'EncryptionAtRestAzureKeyVaultConfigArgs',
+    'EncryptionAtRestGoogleCloudKmsConfigArgs',
+    'EventTriggerEventProcessorsArgs',
+    'EventTriggerEventProcessorsAwsEventbridgeArgs',
     'GlobalClusterConfigCustomZoneMappingArgs',
     'GlobalClusterConfigManagedNamespaceArgs',
     'LdapConfigurationUserToDnMappingArgs',
     'LdapVerifyLinkArgs',
     'LdapVerifyValidationArgs',
+    'OnlineArchiveCriteriaArgs',
+    'OnlineArchivePartitionFieldArgs',
     'ProjectTeamArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
     'GetCustomDbRoleInheritedRoleArgs',
@@ -124,7 +138,7 @@ class AlertConfigurationMatcherArgs:
 
 
 @pulumi.input_type
-class AlertConfigurationMetricThresholdArgs:
+class AlertConfigurationMetricThresholdConfigArgs:
     def __init__(__self__, *,
                  metric_name: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
@@ -614,7 +628,7 @@ class AlertConfigurationNotificationArgs:
 
 
 @pulumi.input_type
-class AlertConfigurationThresholdArgs:
+class AlertConfigurationThresholdConfigArgs:
     def __init__(__self__, *,
                  operator: Optional[pulumi.Input[str]] = None,
                  threshold: Optional[pulumi.Input[float]] = None,
@@ -709,6 +723,310 @@ class AlertConfigurationThresholdArgs:
 
 
 @pulumi.input_type
+class CloudBackupSchedulePolicyItemDailyArgs:
+    def __init__(__self__, *,
+                 frequency_interval: pulumi.Input[int],
+                 retention_unit: pulumi.Input[str],
+                 retention_value: pulumi.Input[int],
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> pulumi.Input[int]:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[str]:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[str]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[int]:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_value", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+@pulumi.input_type
+class CloudBackupSchedulePolicyItemHourlyArgs:
+    def __init__(__self__, *,
+                 frequency_interval: pulumi.Input[int],
+                 retention_unit: pulumi.Input[str],
+                 retention_value: pulumi.Input[int],
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> pulumi.Input[int]:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[str]:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[str]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[int]:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_value", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+@pulumi.input_type
+class CloudBackupSchedulePolicyItemMonthlyArgs:
+    def __init__(__self__, *,
+                 frequency_interval: pulumi.Input[int],
+                 retention_unit: pulumi.Input[str],
+                 retention_value: pulumi.Input[int],
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> pulumi.Input[int]:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[str]:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[str]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[int]:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_value", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+@pulumi.input_type
+class CloudBackupSchedulePolicyItemWeeklyArgs:
+    def __init__(__self__, *,
+                 frequency_interval: pulumi.Input[int],
+                 retention_unit: pulumi.Input[str],
+                 retention_value: pulumi.Input[int],
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> pulumi.Input[int]:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @frequency_interval.setter
+    def frequency_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "frequency_interval", value)
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[str]:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[str]):
+        pulumi.set(self, "retention_unit", value)
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[int]:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[int]):
+        pulumi.set(self, "retention_value", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+@pulumi.input_type
 class CloudProviderAccessAuthorizationAwsArgs:
     def __init__(__self__, *,
                  iam_assumed_role_arn: pulumi.Input[str]):
@@ -727,7 +1045,7 @@ class CloudProviderAccessAuthorizationAwsArgs:
 @pulumi.input_type
 class CloudProviderAccessAuthorizationFeatureUsageArgs:
     def __init__(__self__, *,
-                 feature_id: Optional[pulumi.Input[str]] = None,
+                 feature_id: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  feature_type: Optional[pulumi.Input[str]] = None):
         if feature_id is not None:
             pulumi.set(__self__, "feature_id", feature_id)
@@ -736,11 +1054,11 @@ class CloudProviderAccessAuthorizationFeatureUsageArgs:
 
     @property
     @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[pulumi.Input[str]]:
+    def feature_id(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         return pulumi.get(self, "feature_id")
 
     @feature_id.setter
-    def feature_id(self, value: Optional[pulumi.Input[str]]):
+    def feature_id(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "feature_id", value)
 
     @property
@@ -756,7 +1074,7 @@ class CloudProviderAccessAuthorizationFeatureUsageArgs:
 @pulumi.input_type
 class CloudProviderAccessFeatureUsageArgs:
     def __init__(__self__, *,
-                 feature_id: Optional[pulumi.Input[str]] = None,
+                 feature_id: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  feature_type: Optional[pulumi.Input[str]] = None):
         if feature_id is not None:
             pulumi.set(__self__, "feature_id", feature_id)
@@ -765,11 +1083,11 @@ class CloudProviderAccessFeatureUsageArgs:
 
     @property
     @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[pulumi.Input[str]]:
+    def feature_id(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
         return pulumi.get(self, "feature_id")
 
     @feature_id.setter
-    def feature_id(self, value: Optional[pulumi.Input[str]]):
+    def feature_id(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "feature_id", value)
 
     @property
@@ -783,7 +1101,7 @@ class CloudProviderAccessFeatureUsageArgs:
 
 
 @pulumi.input_type
-class CloudProviderAccessSetupAwsArgs:
+class CloudProviderAccessSetupAwsConfigArgs:
     def __init__(__self__, *,
                  atlas_assumed_role_external_id: Optional[pulumi.Input[str]] = None,
                  atlas_aws_account_arn: Optional[pulumi.Input[str]] = None):
@@ -899,7 +1217,7 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs:
 
 
 @pulumi.input_type
-class CloudProviderSnapshotRestoreJobDeliveryTypeArgs:
+class CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs:
     def __init__(__self__, *,
                  automated: Optional[pulumi.Input[bool]] = None,
                  download: Optional[pulumi.Input[bool]] = None,
@@ -1125,51 +1443,6 @@ class ClusterAdvancedConfigurationArgs:
 
 
 @pulumi.input_type
-class ClusterBiConnectorArgs:
-    def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[str]] = None,
-                 read_preference: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
-               - Set to `true` to enable BI Connector for Atlas.
-               - Set to `false` to disable BI Connector for Atlas.
-        :param pulumi.Input[str] read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if read_preference is not None:
-            pulumi.set(__self__, "read_preference", read_preference)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
-        - Set to `true` to enable BI Connector for Atlas.
-        - Set to `false` to disable BI Connector for Atlas.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "enabled", value)
-
-    @property
-    @pulumi.getter(name="readPreference")
-    def read_preference(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-        """
-        return pulumi.get(self, "read_preference")
-
-    @read_preference.setter
-    def read_preference(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "read_preference", value)
-
-
-@pulumi.input_type
 class ClusterBiConnectorConfigArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None,
@@ -1215,12 +1488,12 @@ class ClusterBiConnectorConfigArgs:
 
 
 @pulumi.input_type
-class ClusterConnectionStringsArgs:
+class ClusterConnectionStringArgs:
     def __init__(__self__, *,
                  aws_private_link: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  aws_private_link_srv: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  private: Optional[pulumi.Input[str]] = None,
-                 private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointArgs']]]] = None,
+                 private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]] = None,
                  private_srv: Optional[pulumi.Input[str]] = None,
                  standard: Optional[pulumi.Input[str]] = None,
                  standard_srv: Optional[pulumi.Input[str]] = None):
@@ -1274,11 +1547,11 @@ class ClusterConnectionStringsArgs:
 
     @property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointArgs']]]]:
+    def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]:
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
-    def private_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointArgs']]]]):
+    def private_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]):
         pulumi.set(self, "private_endpoints", value)
 
     @property
@@ -1310,10 +1583,10 @@ class ClusterConnectionStringsArgs:
 
 
 @pulumi.input_type
-class ClusterConnectionStringsPrivateEndpointArgs:
+class ClusterConnectionStringPrivateEndpointArgs:
     def __init__(__self__, *,
                  connection_string: Optional[pulumi.Input[str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointEndpointArgs']]]] = None,
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]] = None,
                  srv_connection_string: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         if connection_string is not None:
@@ -1336,11 +1609,11 @@ class ClusterConnectionStringsPrivateEndpointArgs:
 
     @property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointEndpointArgs']]]]:
+    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]]:
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringsPrivateEndpointEndpointArgs']]]]):
+    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
 
     @property
@@ -1363,7 +1636,7 @@ class ClusterConnectionStringsPrivateEndpointArgs:
 
 
 @pulumi.input_type
-class ClusterConnectionStringsPrivateEndpointEndpointArgs:
+class ClusterConnectionStringPrivateEndpointEndpointArgs:
     def __init__(__self__, *,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
@@ -1521,12 +1794,13 @@ class ClusterReplicationSpecArgs:
 @pulumi.input_type
 class ClusterReplicationSpecRegionsConfigArgs:
     def __init__(__self__, *,
+                 region_name: pulumi.Input[str],
                  analytics_nodes: Optional[pulumi.Input[int]] = None,
                  electable_nodes: Optional[pulumi.Input[int]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
-                 read_only_nodes: Optional[pulumi.Input[int]] = None,
-                 region_name: Optional[pulumi.Input[str]] = None):
+                 read_only_nodes: Optional[pulumi.Input[int]] = None):
         """
+        :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[int] analytics_nodes: The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
         :param pulumi.Input[int] electable_nodes: Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
                * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
@@ -1537,8 +1811,8 @@ class ClusterReplicationSpecRegionsConfigArgs:
                * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
                * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
         :param pulumi.Input[int] read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
-        :param pulumi.Input[str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         """
+        pulumi.set(__self__, "region_name", region_name)
         if analytics_nodes is not None:
             pulumi.set(__self__, "analytics_nodes", analytics_nodes)
         if electable_nodes is not None:
@@ -1547,8 +1821,18 @@ class ClusterReplicationSpecRegionsConfigArgs:
             pulumi.set(__self__, "priority", priority)
         if read_only_nodes is not None:
             pulumi.set(__self__, "read_only_nodes", read_only_nodes)
-        if region_name is not None:
-            pulumi.set(__self__, "region_name", region_name)
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> pulumi.Input[str]:
+        """
+        Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region_name")
+
+    @region_name.setter
+    def region_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region_name", value)
 
     @property
     @pulumi.getter(name="analyticsNodes")
@@ -1603,18 +1887,6 @@ class ClusterReplicationSpecRegionsConfigArgs:
     @read_only_nodes.setter
     def read_only_nodes(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "read_only_nodes", value)
-
-    @property
-    @pulumi.getter(name="regionName")
-    def region_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        """
-        return pulumi.get(self, "region_name")
-
-    @region_name.setter
-    def region_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "region_name", value)
 
 
 @pulumi.input_type
@@ -1954,6 +2226,385 @@ class CustomDbRoleInheritedRoleArgs:
 
 
 @pulumi.input_type
+class DataLakeAwsArgs:
+    def __init__(__self__, *,
+                 role_id: pulumi.Input[str],
+                 test_s3_bucket: pulumi.Input[str],
+                 external_id: Optional[pulumi.Input[str]] = None,
+                 iam_assumed_role_arn: Optional[pulumi.Input[str]] = None,
+                 iam_user_arn: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
+        if iam_assumed_role_arn is not None:
+            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        if iam_user_arn is not None:
+            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role_id", value)
+
+    @property
+    @pulumi.getter(name="testS3Bucket")
+    def test_s3_bucket(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "test_s3_bucket")
+
+    @test_s3_bucket.setter
+    def test_s3_bucket(self, value: pulumi.Input[str]):
+        pulumi.set(self, "test_s3_bucket", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @iam_assumed_role_arn.setter
+    def iam_assumed_role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_assumed_role_arn", value)
+
+    @property
+    @pulumi.getter(name="iamUserArn")
+    def iam_user_arn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "iam_user_arn")
+
+    @iam_user_arn.setter
+    def iam_user_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "iam_user_arn", value)
+
+
+@pulumi.input_type
+class DataLakeDataProcessRegionArgs:
+    def __init__(__self__, *,
+                 cloud_provider: pulumi.Input[str],
+                 region: pulumi.Input[str]):
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "cloud_provider")
+
+    @cloud_provider.setter
+    def cloud_provider(self, value: pulumi.Input[str]):
+        pulumi.set(self, "cloud_provider", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[str]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class DataLakeStorageDatabaseArgs:
+    def __init__(__self__, *,
+                 collections: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionArgs']]]] = None,
+                 max_wildcard_collections: Optional[pulumi.Input[int]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 views: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseViewArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
+        """
+        if collections is not None:
+            pulumi.set(__self__, "collections", collections)
+        if max_wildcard_collections is not None:
+            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if views is not None:
+            pulumi.set(__self__, "views", views)
+
+    @property
+    @pulumi.getter
+    def collections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionArgs']]]]:
+        return pulumi.get(self, "collections")
+
+    @collections.setter
+    def collections(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionArgs']]]]):
+        pulumi.set(self, "collections", value)
+
+    @property
+    @pulumi.getter(name="maxWildcardCollections")
+    def max_wildcard_collections(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "max_wildcard_collections")
+
+    @max_wildcard_collections.setter
+    def max_wildcard_collections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_wildcard_collections", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def views(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseViewArgs']]]]:
+        return pulumi.get(self, "views")
+
+    @views.setter
+    def views(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseViewArgs']]]]):
+        pulumi.set(self, "views", value)
+
+
+@pulumi.input_type
+class DataLakeStorageDatabaseCollectionArgs:
+    def __init__(__self__, *,
+                 data_sources: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionDataSourceArgs']]]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
+        """
+        if data_sources is not None:
+            pulumi.set(__self__, "data_sources", data_sources)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="dataSources")
+    def data_sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionDataSourceArgs']]]]:
+        return pulumi.get(self, "data_sources")
+
+    @data_sources.setter
+    def data_sources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakeStorageDatabaseCollectionDataSourceArgs']]]]):
+        pulumi.set(self, "data_sources", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class DataLakeStorageDatabaseCollectionDataSourceArgs:
+    def __init__(__self__, *,
+                 default_format: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 store_name: Optional[pulumi.Input[str]] = None):
+        if default_format is not None:
+            pulumi.set(__self__, "default_format", default_format)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if store_name is not None:
+            pulumi.set(__self__, "store_name", store_name)
+
+    @property
+    @pulumi.getter(name="defaultFormat")
+    def default_format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_format")
+
+    @default_format.setter
+    def default_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_format", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="storeName")
+    def store_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "store_name")
+
+    @store_name.setter
+    def store_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "store_name", value)
+
+
+@pulumi.input_type
+class DataLakeStorageDatabaseViewArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 pipeline: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pipeline is not None:
+            pulumi.set(__self__, "pipeline", pipeline)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def pipeline(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pipeline")
+
+    @pipeline.setter
+    def pipeline(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pipeline", value)
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source", value)
+
+
+@pulumi.input_type
+class DataLakeStorageStoreArgs:
+    def __init__(__self__, *,
+                 additional_storage_classes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 delimiter: Optional[pulumi.Input[str]] = None,
+                 include_tags: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 provider: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the Atlas Data Lake.
+        """
+        if additional_storage_classes is not None:
+            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if delimiter is not None:
+            pulumi.set(__self__, "delimiter", delimiter)
+        if include_tags is not None:
+            pulumi.set(__self__, "include_tags", include_tags)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+        if provider is not None:
+            pulumi.set(__self__, "provider", provider)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="additionalStorageClasses")
+    def additional_storage_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "additional_storage_classes")
+
+    @additional_storage_classes.setter
+    def additional_storage_classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "additional_storage_classes", value)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "delimiter")
+
+    @delimiter.setter
+    def delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delimiter", value)
+
+    @property
+    @pulumi.getter(name="includeTags")
+    def include_tags(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "include_tags")
+
+    @include_tags.setter
+    def include_tags(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "include_tags", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def provider(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "provider")
+
+    @provider.setter
+    def provider(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
 class DatabaseUserLabelArgs:
     def __init__(__self__, *,
                  key: Optional[pulumi.Input[str]] = None,
@@ -2087,7 +2738,7 @@ class DatabaseUserScopeArgs:
 
 
 @pulumi.input_type
-class EncryptionAtRestAwsKmsArgs:
+class EncryptionAtRestAwsKmsConfigArgs:
     def __init__(__self__, *,
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  customer_master_key_id: Optional[pulumi.Input[str]] = None,
@@ -2182,7 +2833,7 @@ class EncryptionAtRestAwsKmsArgs:
 
 
 @pulumi.input_type
-class EncryptionAtRestAzureKeyVaultArgs:
+class EncryptionAtRestAzureKeyVaultConfigArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[bool],
                  azure_environment: Optional[pulumi.Input[str]] = None,
@@ -2332,7 +2983,7 @@ class EncryptionAtRestAzureKeyVaultArgs:
 
 
 @pulumi.input_type
-class EncryptionAtRestGoogleCloudKmsArgs:
+class EncryptionAtRestGoogleCloudKmsConfigArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  key_version_resource_id: Optional[pulumi.Input[str]] = None,
@@ -2384,6 +3035,52 @@ class EncryptionAtRestGoogleCloudKmsArgs:
     @service_account_key.setter
     def service_account_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_key", value)
+
+
+@pulumi.input_type
+class EventTriggerEventProcessorsArgs:
+    def __init__(__self__, *,
+                 aws_eventbridge: Optional[pulumi.Input['EventTriggerEventProcessorsAwsEventbridgeArgs']] = None):
+        if aws_eventbridge is not None:
+            pulumi.set(__self__, "aws_eventbridge", aws_eventbridge)
+
+    @property
+    @pulumi.getter(name="awsEventbridge")
+    def aws_eventbridge(self) -> Optional[pulumi.Input['EventTriggerEventProcessorsAwsEventbridgeArgs']]:
+        return pulumi.get(self, "aws_eventbridge")
+
+    @aws_eventbridge.setter
+    def aws_eventbridge(self, value: Optional[pulumi.Input['EventTriggerEventProcessorsAwsEventbridgeArgs']]):
+        pulumi.set(self, "aws_eventbridge", value)
+
+
+@pulumi.input_type
+class EventTriggerEventProcessorsAwsEventbridgeArgs:
+    def __init__(__self__, *,
+                 config_account_id: Optional[pulumi.Input[str]] = None,
+                 config_region: Optional[pulumi.Input[str]] = None):
+        if config_account_id is not None:
+            pulumi.set(__self__, "config_account_id", config_account_id)
+        if config_region is not None:
+            pulumi.set(__self__, "config_region", config_region)
+
+    @property
+    @pulumi.getter(name="configAccountId")
+    def config_account_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "config_account_id")
+
+    @config_account_id.setter
+    def config_account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "config_account_id", value)
+
+    @property
+    @pulumi.getter(name="configRegion")
+    def config_region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "config_region")
+
+    @config_region.setter
+    def config_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "config_region", value)
 
 
 @pulumi.input_type
@@ -2580,6 +3277,109 @@ class LdapVerifyValidationArgs:
     @validation_type.setter
     def validation_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "validation_type", value)
+
+
+@pulumi.input_type
+class OnlineArchiveCriteriaArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str],
+                 date_field: Optional[pulumi.Input[str]] = None,
+                 date_format: Optional[pulumi.Input[str]] = None,
+                 expire_after_days: Optional[pulumi.Input[int]] = None,
+                 query: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "type", type)
+        if date_field is not None:
+            pulumi.set(__self__, "date_field", date_field)
+        if date_format is not None:
+            pulumi.set(__self__, "date_format", date_format)
+        if expire_after_days is not None:
+            pulumi.set(__self__, "expire_after_days", expire_after_days)
+        if query is not None:
+            pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="dateField")
+    def date_field(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "date_field")
+
+    @date_field.setter
+    def date_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "date_field", value)
+
+    @property
+    @pulumi.getter(name="dateFormat")
+    def date_format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "date_format")
+
+    @date_format.setter
+    def date_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "date_format", value)
+
+    @property
+    @pulumi.getter(name="expireAfterDays")
+    def expire_after_days(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "expire_after_days")
+
+    @expire_after_days.setter
+    def expire_after_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "expire_after_days", value)
+
+    @property
+    @pulumi.getter
+    def query(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "query", value)
+
+
+@pulumi.input_type
+class OnlineArchivePartitionFieldArgs:
+    def __init__(__self__, *,
+                 field_name: pulumi.Input[str],
+                 order: pulumi.Input[int],
+                 field_type: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "order", order)
+        if field_type is not None:
+            pulumi.set(__self__, "field_type", field_type)
+
+    @property
+    @pulumi.getter(name="fieldName")
+    def field_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "field_name")
+
+    @field_name.setter
+    def field_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "field_name", value)
+
+    @property
+    @pulumi.getter
+    def order(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "order")
+
+    @order.setter
+    def order(self, value: pulumi.Input[int]):
+        pulumi.set(self, "order", value)
+
+    @property
+    @pulumi.getter(name="fieldType")
+    def field_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "field_type")
+
+    @field_type.setter
+    def field_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "field_type", value)
 
 
 @pulumi.input_type

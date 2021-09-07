@@ -45,8 +45,8 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         /// </summary>
-        [Input("regionName")]
-        public Input<string>? RegionName { get; set; }
+        [Input("regionName", required: true)]
+        public Input<string> RegionName { get; set; } = null!;
 
         public ClusterReplicationSpecRegionsConfigArgs()
         {

@@ -14,11 +14,13 @@ import (
 type CloudProviderAccessSetup struct {
 	pulumi.CustomResourceState
 
-	Aws          CloudProviderAccessSetupAwsOutput `pulumi:"aws"`
-	CreatedDate  pulumi.StringOutput               `pulumi:"createdDate"`
-	ProjectId    pulumi.StringOutput               `pulumi:"projectId"`
-	ProviderName pulumi.StringOutput               `pulumi:"providerName"`
-	RoleId       pulumi.StringOutput               `pulumi:"roleId"`
+	// Deprecated: use aws_config instead
+	Aws          pulumi.StringMapOutput                       `pulumi:"aws"`
+	AwsConfigs   CloudProviderAccessSetupAwsConfigArrayOutput `pulumi:"awsConfigs"`
+	CreatedDate  pulumi.StringOutput                          `pulumi:"createdDate"`
+	ProjectId    pulumi.StringOutput                          `pulumi:"projectId"`
+	ProviderName pulumi.StringOutput                          `pulumi:"providerName"`
+	RoleId       pulumi.StringOutput                          `pulumi:"roleId"`
 }
 
 // NewCloudProviderAccessSetup registers a new resource with the given unique name, arguments, and options.
@@ -56,15 +58,19 @@ func GetCloudProviderAccessSetup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudProviderAccessSetup resources.
 type cloudProviderAccessSetupState struct {
-	Aws          *CloudProviderAccessSetupAws `pulumi:"aws"`
-	CreatedDate  *string                      `pulumi:"createdDate"`
-	ProjectId    *string                      `pulumi:"projectId"`
-	ProviderName *string                      `pulumi:"providerName"`
-	RoleId       *string                      `pulumi:"roleId"`
+	// Deprecated: use aws_config instead
+	Aws          map[string]string                   `pulumi:"aws"`
+	AwsConfigs   []CloudProviderAccessSetupAwsConfig `pulumi:"awsConfigs"`
+	CreatedDate  *string                             `pulumi:"createdDate"`
+	ProjectId    *string                             `pulumi:"projectId"`
+	ProviderName *string                             `pulumi:"providerName"`
+	RoleId       *string                             `pulumi:"roleId"`
 }
 
 type CloudProviderAccessSetupState struct {
-	Aws          CloudProviderAccessSetupAwsPtrInput
+	// Deprecated: use aws_config instead
+	Aws          pulumi.StringMapInput
+	AwsConfigs   CloudProviderAccessSetupAwsConfigArrayInput
 	CreatedDate  pulumi.StringPtrInput
 	ProjectId    pulumi.StringPtrInput
 	ProviderName pulumi.StringPtrInput

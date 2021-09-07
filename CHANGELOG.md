@@ -2,7 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v1.0.1 of the MongoDbAtlas Terraform Provider
+  **Please Note:** This includes a breaking change to remove the following resources:
+  * `mongodbatlas.PrivateEndpoint`
+  * `mongodbatlas.ProjectIpWhitelist`
+  * `mongodbatlas.PrivateEndpointInterfaceLink`
+  * `mongodbatlas.getPrivateEndpoint`
+  * `mongodbatlas.getPrivateEndpointInterfaceLink`
+  * `mongodbatlas.getProjectIpWhitelist`
+  * You can read the full upstream provider upgrade guide in the [upstream provider changelog](https://github.com/mongodb/terraform-provider-mongodbatlas/blob/master/CHANGELOG.md#v100-2021-08-11)
 
 ---
 

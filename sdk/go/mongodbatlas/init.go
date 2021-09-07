@@ -24,6 +24,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AlertConfiguration{}
 	case "mongodbatlas:index/auditing:Auditing":
 		r = &Auditing{}
+	case "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
+		r = &CloudBackupSchedule{}
 	case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
 		r = &CloudProviderAccess{}
 	case "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
@@ -42,10 +44,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomDbRole{}
 	case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
 		r = &CustomDnsConfigurationClusterAws{}
+	case "mongodbatlas:index/dataLake:DataLake":
+		r = &DataLake{}
 	case "mongodbatlas:index/databaseUser:DatabaseUser":
 		r = &DatabaseUser{}
 	case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
 		r = &EncryptionAtRest{}
+	case "mongodbatlas:index/eventTrigger:EventTrigger":
+		r = &EventTrigger{}
 	case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
 		r = &GlobalClusterConfig{}
 	case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -58,10 +64,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NetworkContainer{}
 	case "mongodbatlas:index/networkPeering:NetworkPeering":
 		r = &NetworkPeering{}
-	case "mongodbatlas:index/privateEndpoint:PrivateEndpoint":
-		r = &PrivateEndpoint{}
-	case "mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink":
-		r = &PrivateEndpointInterfaceLink{}
+	case "mongodbatlas:index/onlineArchive:OnlineArchive":
+		r = &OnlineArchive{}
 	case "mongodbatlas:index/privateIpMode:PrivateIpMode":
 		r = &PrivateIpMode{}
 	case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
@@ -72,8 +76,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Project{}
 	case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
 		r = &ProjectIpAccessList{}
-	case "mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist":
-		r = &ProjectIpWhitelist{}
+	case "mongodbatlas:index/searchIndex:SearchIndex":
+		r = &SearchIndex{}
 	case "mongodbatlas:index/team:Team":
 		r = &Team{}
 	case "mongodbatlas:index/teams:Teams":
@@ -125,6 +129,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/cloudBackupSchedule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/cloudProviderAccess",
 		&module{version},
 	)
@@ -170,12 +179,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/dataLake",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/databaseUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/encryptionAtRest",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/eventTrigger",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -210,12 +229,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
-		"index/privateEndpoint",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
-		"index/privateEndpointInterfaceLink",
+		"index/onlineArchive",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -245,7 +259,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
-		"index/projectIpWhitelist",
+		"index/searchIndex",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

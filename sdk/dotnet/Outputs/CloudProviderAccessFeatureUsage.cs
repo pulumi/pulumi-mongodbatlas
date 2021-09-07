@@ -13,12 +13,12 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class CloudProviderAccessFeatureUsage
     {
-        public readonly string? FeatureId;
+        public readonly ImmutableDictionary<string, object>? FeatureId;
         public readonly string? FeatureType;
 
         [OutputConstructor]
         private CloudProviderAccessFeatureUsage(
-            string? featureId,
+            ImmutableDictionary<string, object>? featureId,
 
             string? featureType)
         {

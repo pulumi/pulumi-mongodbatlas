@@ -42,11 +42,14 @@ namespace Pulumi.Mongodbatlas
         ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///             ClusterName = "MyCluster",
         ///             SnapshotId = testCloudProviderSnapshot.Id,
-        ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+        ///             DeliveryType = 
         ///             {
-        ///                 Automated = true,
-        ///                 Target_cluster_name = "MyCluster",
-        ///                 Target_project_id = "5cf5a45a9ccf6400e60981b6",
+        ///                 
+        ///                 {
+        ///                     { "automated", true },
+        ///                     { "targetClusterName", "MyCluster" },
+        ///                     { "targetProjectId", "5cf5a45a9ccf6400e60981b6" },
+        ///                 },
         ///             },
         ///         });
         ///         var testCloudProviderSnapshotRestoreJobs = Output.Tuple(testCloudProviderSnapshotRestoreJob.ProjectId, testCloudProviderSnapshotRestoreJob.ClusterName).Apply(values =&gt;

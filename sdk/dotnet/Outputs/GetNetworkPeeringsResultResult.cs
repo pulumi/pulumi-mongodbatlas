@@ -17,9 +17,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         /// </summary>
         public readonly string AccepterRegionName;
-        /// <summary>
-        /// Unique identifier for an Azure AD directory.
-        /// </summary>
         public readonly string AtlasCidrBlock;
         /// <summary>
         /// Account ID of the owner of the peer VPC.

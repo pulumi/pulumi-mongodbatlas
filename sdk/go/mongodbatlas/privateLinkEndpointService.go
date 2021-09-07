@@ -19,14 +19,14 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
-// ## Example Usage
+// ## Example with AWS
 //
 // ```go
 // package main
 //
 // import (
 // 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //

@@ -19,6 +19,7 @@ class PrivateLinkEndpointArgs:
         """
         The set of arguments for constructing a PrivateLinkEndpoint resource.
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
         """
@@ -41,6 +42,9 @@ class PrivateLinkEndpointArgs:
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Input[str]:
+        """
+        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
@@ -85,6 +89,7 @@ class _PrivateLinkEndpointState:
         :param pulumi.Input[str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
         :param pulumi.Input[str] private_link_service_resource_id: Resource ID of the Azure Private Link Service that Atlas manages.
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
         :param pulumi.Input[str] status: Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
@@ -212,6 +217,9 @@ class _PrivateLinkEndpointState:
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
@@ -290,6 +298,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
         """
@@ -415,6 +424,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
         :param pulumi.Input[str] private_link_service_resource_id: Resource ID of the Azure Private Link Service that Atlas manages.
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
         :param pulumi.Input[str] status: Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
@@ -504,6 +514,9 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Output[str]:
+        """
+        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        """
         return pulumi.get(self, "provider_name")
 
     @property

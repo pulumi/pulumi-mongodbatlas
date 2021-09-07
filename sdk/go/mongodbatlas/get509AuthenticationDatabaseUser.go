@@ -21,7 +21,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -67,7 +67,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //

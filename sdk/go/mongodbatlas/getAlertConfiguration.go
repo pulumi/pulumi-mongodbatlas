@@ -37,13 +37,15 @@ type LookupAlertConfigurationResult struct {
 	// The type of event that will trigger an alert.
 	EventType string `pulumi:"eventType"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string                               `pulumi:"id"`
-	Matchers        []GetAlertConfigurationMatcher       `pulumi:"matchers"`
-	MetricThreshold GetAlertConfigurationMetricThreshold `pulumi:"metricThreshold"`
-	Notifications   []GetAlertConfigurationNotification  `pulumi:"notifications"`
-	ProjectId       string                               `pulumi:"projectId"`
+	Id                     string                                       `pulumi:"id"`
+	Matchers               []GetAlertConfigurationMatcher               `pulumi:"matchers"`
+	MetricThreshold        map[string]string                            `pulumi:"metricThreshold"`
+	MetricThresholdConfigs []GetAlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfigs"`
+	Notifications          []GetAlertConfigurationNotification          `pulumi:"notifications"`
+	ProjectId              string                                       `pulumi:"projectId"`
 	// Threshold value outside of which an alert will be triggered.
-	Threshold GetAlertConfigurationThreshold `pulumi:"threshold"`
+	Threshold        map[string]string                      `pulumi:"threshold"`
+	ThresholdConfigs []GetAlertConfigurationThresholdConfig `pulumi:"thresholdConfigs"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated string `pulumi:"updated"`
 }

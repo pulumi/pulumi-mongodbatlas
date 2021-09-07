@@ -27,7 +27,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -73,7 +73,8 @@ type PrivateLinkEndpoint struct {
 	// Resource ID of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceResourceId pulumi.StringOutput `pulumi:"privateLinkServiceResourceId"`
 	// Required 	Unique identifier for the project.
-	ProjectId    pulumi.StringOutput `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
@@ -136,7 +137,8 @@ type privateLinkEndpointState struct {
 	// Resource ID of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceResourceId *string `pulumi:"privateLinkServiceResourceId"`
 	// Required 	Unique identifier for the project.
-	ProjectId    *string `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
+	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
 	ProviderName *string `pulumi:"providerName"`
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
@@ -162,7 +164,8 @@ type PrivateLinkEndpointState struct {
 	// Resource ID of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceResourceId pulumi.StringPtrInput
 	// Required 	Unique identifier for the project.
-	ProjectId    pulumi.StringPtrInput
+	ProjectId pulumi.StringPtrInput
+	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
 	ProviderName pulumi.StringPtrInput
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
@@ -178,7 +181,8 @@ func (PrivateLinkEndpointState) ElementType() reflect.Type {
 
 type privateLinkEndpointArgs struct {
 	// Required 	Unique identifier for the project.
-	ProjectId    string `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
+	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
 	ProviderName string `pulumi:"providerName"`
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
@@ -188,7 +192,8 @@ type privateLinkEndpointArgs struct {
 // The set of arguments for constructing a PrivateLinkEndpoint resource.
 type PrivateLinkEndpointArgs struct {
 	// Required 	Unique identifier for the project.
-	ProjectId    pulumi.StringInput
+	ProjectId pulumi.StringInput
+	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
 	ProviderName pulumi.StringInput
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)

@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.Cluster` describes a Cluster. The. The data source requires your Project ID.
+ * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -71,11 +71,11 @@ export interface GetClusterResult {
      *
      * @deprecated use bi_connector_config instead
      */
-    readonly biConnector: outputs.GetClusterBiConnector;
+    readonly biConnector: {[key: string]: string};
     /**
      * Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
-    readonly biConnectorConfig: outputs.GetClusterBiConnectorConfig;
+    readonly biConnectorConfigs: outputs.GetClusterBiConnectorConfig[];
     /**
      * Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      */
@@ -96,7 +96,7 @@ export interface GetClusterResult {
      * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
      */
-    readonly connectionStrings: outputs.GetClusterConnectionStrings;
+    readonly connectionStrings: outputs.GetClusterConnectionString[];
     /**
      * The Network Peering Container ID.
      */
@@ -160,7 +160,7 @@ export interface GetClusterResult {
      */
     readonly providerAutoScalingComputeMinInstanceSize: string;
     /**
-     * Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+     * **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
      */
     readonly providerBackupEnabled: boolean;
     /**
@@ -175,6 +175,7 @@ export interface GetClusterResult {
      * **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
      */
     readonly providerEncryptEbsVolume: boolean;
+    readonly providerEncryptEbsVolumeFlag: boolean;
     /**
      * Atlas provides different instance sizes, each with a default storage capacity and RAM size.
      */

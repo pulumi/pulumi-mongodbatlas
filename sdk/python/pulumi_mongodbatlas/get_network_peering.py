@@ -101,9 +101,6 @@ class GetNetworkPeeringResult:
     @property
     @pulumi.getter(name="atlasCidrBlock")
     def atlas_cidr_block(self) -> str:
-        """
-        Unique identifier for an Azure AD directory.
-        """
         return pulumi.get(self, "atlas_cidr_block")
 
     @property

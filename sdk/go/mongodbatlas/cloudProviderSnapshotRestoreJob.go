@@ -29,7 +29,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -41,7 +41,7 @@ import (
 // 			ProviderName:             pulumi.String("AWS"),
 // 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			CloudBackup:              pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -59,10 +59,10 @@ import (
 // 			ProjectId:   testCloudProviderSnapshot.ProjectId,
 // 			ClusterName: testCloudProviderSnapshot.ClusterName,
 // 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-// 			DeliveryType: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs{
-// 				Automated:           pulumi.Bool(true),
-// 				Target_cluster_name: pulumi.String("MyCluster"),
-// 				Target_project_id:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+// 			DeliveryTypeConfig: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
+// 				Automated:         pulumi.Bool(true),
+// 				TargetClusterName: pulumi.String("MyCluster"),
+// 				TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
 // 			},
 // 		}, pulumi.DependsOn([]pulumi.Resource{
 // 			testCloudProviderSnapshot,
@@ -80,7 +80,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -92,7 +92,7 @@ import (
 // 			ProviderName:             pulumi.String("AWS"),
 // 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			CloudBackup:              pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -110,7 +110,7 @@ import (
 // 			ProjectId:   testCloudProviderSnapshot.ProjectId,
 // 			ClusterName: testCloudProviderSnapshot.ClusterName,
 // 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-// 			DeliveryType: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs{
+// 			DeliveryTypeConfig: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
 // 				Download: pulumi.Bool(true),
 // 			},
 // 		})
@@ -141,7 +141,11 @@ type CloudProviderSnapshotRestoreJob struct {
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
-	DeliveryType CloudProviderSnapshotRestoreJobDeliveryTypeOutput `pulumi:"deliveryType"`
+	//
+	// Deprecated: use delivery_type_config instead
+	DeliveryType pulumi.StringMapOutput `pulumi:"deliveryType"`
+	// Type of restore job to create. Possible values are: automated and download.
+	DeliveryTypeConfig CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput `pulumi:"deliveryTypeConfig"`
 	// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
 	DeliveryUrls pulumi.StringArrayOutput `pulumi:"deliveryUrls"`
 	// Indicates whether the restore job expired.
@@ -169,9 +173,6 @@ func NewCloudProviderSnapshotRestoreJob(ctx *pulumi.Context,
 
 	if args.ClusterName == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterName'")
-	}
-	if args.DeliveryType == nil {
-		return nil, errors.New("invalid value for required argument 'DeliveryType'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -208,7 +209,11 @@ type cloudProviderSnapshotRestoreJobState struct {
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
-	DeliveryType *CloudProviderSnapshotRestoreJobDeliveryType `pulumi:"deliveryType"`
+	//
+	// Deprecated: use delivery_type_config instead
+	DeliveryType map[string]string `pulumi:"deliveryType"`
+	// Type of restore job to create. Possible values are: automated and download.
+	DeliveryTypeConfig *CloudProviderSnapshotRestoreJobDeliveryTypeConfig `pulumi:"deliveryTypeConfig"`
 	// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
 	DeliveryUrls []string `pulumi:"deliveryUrls"`
 	// Indicates whether the restore job expired.
@@ -235,7 +240,11 @@ type CloudProviderSnapshotRestoreJobState struct {
 	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
 	CreatedAt pulumi.StringPtrInput
 	// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
-	DeliveryType CloudProviderSnapshotRestoreJobDeliveryTypePtrInput
+	//
+	// Deprecated: use delivery_type_config instead
+	DeliveryType pulumi.StringMapInput
+	// Type of restore job to create. Possible values are: automated and download.
+	DeliveryTypeConfig CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput
 	// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
 	DeliveryUrls pulumi.StringArrayInput
 	// Indicates whether the restore job expired.
@@ -262,7 +271,11 @@ type cloudProviderSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName string `pulumi:"clusterName"`
 	// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
-	DeliveryType CloudProviderSnapshotRestoreJobDeliveryType `pulumi:"deliveryType"`
+	//
+	// Deprecated: use delivery_type_config instead
+	DeliveryType map[string]string `pulumi:"deliveryType"`
+	// Type of restore job to create. Possible values are: automated and download.
+	DeliveryTypeConfig *CloudProviderSnapshotRestoreJobDeliveryTypeConfig `pulumi:"deliveryTypeConfig"`
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
 	ProjectId string `pulumi:"projectId"`
 	// Unique identifier of the snapshot to restore.
@@ -274,7 +287,11 @@ type CloudProviderSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName pulumi.StringInput
 	// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
-	DeliveryType CloudProviderSnapshotRestoreJobDeliveryTypeInput
+	//
+	// Deprecated: use delivery_type_config instead
+	DeliveryType pulumi.StringMapInput
+	// Type of restore job to create. Possible values are: automated and download.
+	DeliveryTypeConfig CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput
 	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
 	ProjectId pulumi.StringInput
 	// Unique identifier of the snapshot to restore.

@@ -13,7 +13,10 @@ namespace Pulumi.Mongodbatlas
     public partial class CloudProviderAccessSetup : Pulumi.CustomResource
     {
         [Output("aws")]
-        public Output<Outputs.CloudProviderAccessSetupAws> Aws { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Aws { get; private set; } = null!;
+
+        [Output("awsConfigs")]
+        public Output<ImmutableArray<Outputs.CloudProviderAccessSetupAwsConfig>> AwsConfigs { get; private set; } = null!;
 
         [Output("createdDate")]
         public Output<string> CreatedDate { get; private set; } = null!;
@@ -87,7 +90,21 @@ namespace Pulumi.Mongodbatlas
     public sealed class CloudProviderAccessSetupState : Pulumi.ResourceArgs
     {
         [Input("aws")]
-        public Input<Inputs.CloudProviderAccessSetupAwsGetArgs>? Aws { get; set; }
+        private InputMap<string>? _aws;
+        [Obsolete(@"use aws_config instead")]
+        public InputMap<string> Aws
+        {
+            get => _aws ?? (_aws = new InputMap<string>());
+            set => _aws = value;
+        }
+
+        [Input("awsConfigs")]
+        private InputList<Inputs.CloudProviderAccessSetupAwsConfigGetArgs>? _awsConfigs;
+        public InputList<Inputs.CloudProviderAccessSetupAwsConfigGetArgs> AwsConfigs
+        {
+            get => _awsConfigs ?? (_awsConfigs = new InputList<Inputs.CloudProviderAccessSetupAwsConfigGetArgs>());
+            set => _awsConfigs = value;
+        }
 
         [Input("createdDate")]
         public Input<string>? CreatedDate { get; set; }

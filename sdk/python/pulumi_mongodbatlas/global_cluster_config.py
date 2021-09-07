@@ -196,8 +196,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
         test = mongodbatlas.Cluster("test",
             project_id="<YOUR-PROJECT-ID>",
             disk_size_gb=80,
-            backup_enabled=False,
-            provider_backup_enabled=True,
+            cloud_backup=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
             provider_instance_size_name="M30",
@@ -245,15 +244,22 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             project_id="<YOUR-PROJECT-ID>",
-            num_shards=1,
-            replication_factor=3,
+            cluster_type="REPLICASET",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST_1",
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                )],
+            )],
             backup_enabled=True,
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="4.0",
             provider_name="AWS",
             disk_size_gb=100,
-            provider_instance_size_name="M40",
-            provider_region_name="US_EAST_1")
+            provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
             project_id=mongodbatlas_cluster["test"]["project_id"],
             cluster_name=mongodbatlas_cluster["test"]["name"],
@@ -307,8 +313,7 @@ class GlobalClusterConfig(pulumi.CustomResource):
         test = mongodbatlas.Cluster("test",
             project_id="<YOUR-PROJECT-ID>",
             disk_size_gb=80,
-            backup_enabled=False,
-            provider_backup_enabled=True,
+            cloud_backup=True,
             cluster_type="GEOSHARDED",
             provider_name="AWS",
             provider_instance_size_name="M30",
@@ -356,15 +361,22 @@ class GlobalClusterConfig(pulumi.CustomResource):
 
         cluster_test = mongodbatlas.Cluster("cluster-test",
             project_id="<YOUR-PROJECT-ID>",
-            num_shards=1,
-            replication_factor=3,
+            cluster_type="REPLICASET",
+            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+                num_shards=1,
+                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                    region_name="US_EAST_1",
+                    electable_nodes=3,
+                    priority=7,
+                    read_only_nodes=0,
+                )],
+            )],
             backup_enabled=True,
             auto_scaling_disk_gb_enabled=True,
             mongo_db_major_version="4.0",
             provider_name="AWS",
             disk_size_gb=100,
-            provider_instance_size_name="M40",
-            provider_region_name="US_EAST_1")
+            provider_instance_size_name="M40")
         config = mongodbatlas.GlobalClusterConfig("config",
             project_id=mongodbatlas_cluster["test"]["project_id"],
             cluster_name=mongodbatlas_cluster["test"]["name"],

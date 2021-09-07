@@ -9,6 +9,11 @@ namespace Pulumi.Mongodbatlas
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("mongodbatlas");
         /// <summary>
+        /// MongoDB Atlas Base URL
+        /// </summary>
+        public static string? BaseUrl { get; set; } = __config.Get("baseUrl");
+
+        /// <summary>
         /// MongoDB Atlas Programmatic Private Key
         /// </summary>
         public static string? PrivateKey { get; set; } = __config.Get("privateKey");
@@ -17,6 +22,11 @@ namespace Pulumi.Mongodbatlas
         /// MongoDB Atlas Programmatic Public Key
         /// </summary>
         public static string? PublicKey { get; set; } = __config.Get("publicKey");
+
+        /// <summary>
+        /// MongoDB Realm Base URL
+        /// </summary>
+        public static string? RealmBaseUrl { get; set; } = __config.Get("realmBaseUrl");
 
     }
 }

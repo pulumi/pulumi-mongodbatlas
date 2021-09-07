@@ -27,7 +27,7 @@ export interface AlertConfigurationMatcher {
     value?: pulumi.Input<string>;
 }
 
-export interface AlertConfigurationMetricThreshold {
+export interface AlertConfigurationMetricThresholdConfig {
     /**
      * Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
      */
@@ -162,7 +162,7 @@ export interface AlertConfigurationNotification {
     victorOpsRoutingKey?: pulumi.Input<string>;
 }
 
-export interface AlertConfigurationThreshold {
+export interface AlertConfigurationThresholdConfig {
     /**
      * Operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
@@ -197,21 +197,89 @@ export interface AlertConfigurationThreshold {
     units?: pulumi.Input<string>;
 }
 
+export interface CloudBackupSchedulePolicyItemDaily {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: pulumi.Input<number>;
+    frequencyType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface CloudBackupSchedulePolicyItemHourly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: pulumi.Input<number>;
+    frequencyType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface CloudBackupSchedulePolicyItemMonthly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: pulumi.Input<number>;
+    frequencyType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
+export interface CloudBackupSchedulePolicyItemWeekly {
+    /**
+     * Desired frequency of the new backup policy item specified by `frequencyType`.
+     */
+    frequencyInterval: pulumi.Input<number>;
+    frequencyType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * Scope of the backup policy item: days, weeks, or months.
+     */
+    retentionUnit: pulumi.Input<string>;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: pulumi.Input<number>;
+}
+
 export interface CloudProviderAccessAuthorizationAws {
     iamAssumedRoleArn: pulumi.Input<string>;
 }
 
 export interface CloudProviderAccessAuthorizationFeatureUsage {
-    featureId?: pulumi.Input<string>;
+    featureId?: pulumi.Input<{[key: string]: any}>;
     featureType?: pulumi.Input<string>;
 }
 
 export interface CloudProviderAccessFeatureUsage {
-    featureId?: pulumi.Input<string>;
+    featureId?: pulumi.Input<{[key: string]: any}>;
     featureType?: pulumi.Input<string>;
 }
 
-export interface CloudProviderAccessSetupAws {
+export interface CloudProviderAccessSetupAwsConfig {
     atlasAssumedRoleExternalId?: pulumi.Input<string>;
     atlasAwsAccountArn?: pulumi.Input<string>;
 }
@@ -229,7 +297,7 @@ export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
     retentionValue: pulumi.Input<number>;
 }
 
-export interface CloudProviderSnapshotRestoreJobDeliveryType {
+export interface CloudProviderSnapshotRestoreJobDeliveryTypeConfig {
     automated?: pulumi.Input<boolean>;
     download?: pulumi.Input<boolean>;
     oplogInc?: pulumi.Input<number>;
@@ -274,20 +342,6 @@ export interface ClusterAdvancedConfiguration {
     sampleSizeBiConnector?: pulumi.Input<number>;
 }
 
-export interface ClusterBiConnector {
-    /**
-     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-     * *
-     * - Set to `true` to enable BI Connector for Atlas.
-     * - Set to `false` to disable BI Connector for Atlas.
-     */
-    enabled?: pulumi.Input<string>;
-    /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-     */
-    readPreference?: pulumi.Input<string>;
-}
-
 export interface ClusterBiConnectorConfig {
     /**
      * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
@@ -302,7 +356,7 @@ export interface ClusterBiConnectorConfig {
     readPreference?: pulumi.Input<string>;
 }
 
-export interface ClusterConnectionStrings {
+export interface ClusterConnectionString {
     /**
      * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
      */
@@ -312,20 +366,20 @@ export interface ClusterConnectionStrings {
      */
     awsPrivateLinkSrv?: pulumi.Input<{[key: string]: any}>;
     private?: pulumi.Input<string>;
-    privateEndpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringsPrivateEndpoint>[]>;
+    privateEndpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringPrivateEndpoint>[]>;
     privateSrv?: pulumi.Input<string>;
     standard?: pulumi.Input<string>;
     standardSrv?: pulumi.Input<string>;
 }
 
-export interface ClusterConnectionStringsPrivateEndpoint {
+export interface ClusterConnectionStringPrivateEndpoint {
     connectionString?: pulumi.Input<string>;
-    endpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringsPrivateEndpointEndpoint>[]>;
+    endpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringPrivateEndpointEndpoint>[]>;
     srvConnectionString?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
 }
 
-export interface ClusterConnectionStringsPrivateEndpointEndpoint {
+export interface ClusterConnectionStringPrivateEndpointEndpoint {
     endpointId?: pulumi.Input<string>;
     /**
      * Cloud service provider on which the servers are provisioned.
@@ -390,7 +444,7 @@ export interface ClusterReplicationSpecRegionsConfig {
     /**
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
-    regionName?: pulumi.Input<string>;
+    regionName: pulumi.Input<string>;
 }
 
 export interface ClusterSnapshotBackupPolicy {
@@ -458,6 +512,66 @@ export interface CustomDbRoleInheritedRole {
     roleName: pulumi.Input<string>;
 }
 
+export interface DataLakeAws {
+    externalId?: pulumi.Input<string>;
+    iamAssumedRoleArn?: pulumi.Input<string>;
+    iamUserArn?: pulumi.Input<string>;
+    roleId: pulumi.Input<string>;
+    testS3Bucket: pulumi.Input<string>;
+}
+
+export interface DataLakeDataProcessRegion {
+    cloudProvider: pulumi.Input<string>;
+    region: pulumi.Input<string>;
+}
+
+export interface DataLakeStorageDatabase {
+    collections?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageDatabaseCollection>[]>;
+    maxWildcardCollections?: pulumi.Input<number>;
+    /**
+     * Name of the Atlas Data Lake.
+     */
+    name?: pulumi.Input<string>;
+    views?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageDatabaseView>[]>;
+}
+
+export interface DataLakeStorageDatabaseCollection {
+    dataSources?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageDatabaseCollectionDataSource>[]>;
+    /**
+     * Name of the Atlas Data Lake.
+     */
+    name?: pulumi.Input<string>;
+}
+
+export interface DataLakeStorageDatabaseCollectionDataSource {
+    defaultFormat?: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
+    storeName?: pulumi.Input<string>;
+}
+
+export interface DataLakeStorageDatabaseView {
+    /**
+     * Name of the Atlas Data Lake.
+     */
+    name?: pulumi.Input<string>;
+    pipeline?: pulumi.Input<string>;
+    source?: pulumi.Input<string>;
+}
+
+export interface DataLakeStorageStore {
+    additionalStorageClasses?: pulumi.Input<pulumi.Input<string>[]>;
+    bucket?: pulumi.Input<string>;
+    delimiter?: pulumi.Input<string>;
+    includeTags?: pulumi.Input<boolean>;
+    /**
+     * Name of the Atlas Data Lake.
+     */
+    name?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string>;
+    provider?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+}
+
 export interface DatabaseUserLabel {
     /**
      * The key that you want to write.
@@ -495,7 +609,7 @@ export interface DatabaseUserScope {
     type?: pulumi.Input<string>;
 }
 
-export interface EncryptionAtRestAwsKms {
+export interface EncryptionAtRestAwsKmsConfig {
     accessKeyId?: pulumi.Input<string>;
     /**
      * The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
@@ -516,7 +630,7 @@ export interface EncryptionAtRestAwsKms {
     secretAccessKey?: pulumi.Input<string>;
 }
 
-export interface EncryptionAtRestAzureKeyVault {
+export interface EncryptionAtRestAzureKeyVaultConfig {
     /**
      * The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
      */
@@ -555,7 +669,7 @@ export interface EncryptionAtRestAzureKeyVault {
     tenantId?: pulumi.Input<string>;
 }
 
-export interface EncryptionAtRestGoogleCloudKms {
+export interface EncryptionAtRestGoogleCloudKmsConfig {
     /**
      * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
@@ -568,6 +682,15 @@ export interface EncryptionAtRestGoogleCloudKms {
      * String-formatted JSON object containing GCP KMS credentials from your GCP account.
      */
     serviceAccountKey?: pulumi.Input<string>;
+}
+
+export interface EventTriggerEventProcessors {
+    awsEventbridge?: pulumi.Input<inputs.EventTriggerEventProcessorsAwsEventbridge>;
+}
+
+export interface EventTriggerEventProcessorsAwsEventbridge {
+    configAccountId?: pulumi.Input<string>;
+    configRegion?: pulumi.Input<string>;
 }
 
 export interface GetCustomDbRoleInheritedRole {
@@ -636,6 +759,20 @@ export interface LdapVerifyValidation {
      */
     status?: pulumi.Input<string>;
     validationType?: pulumi.Input<string>;
+}
+
+export interface OnlineArchiveCriteria {
+    dateField?: pulumi.Input<string>;
+    dateFormat?: pulumi.Input<string>;
+    expireAfterDays?: pulumi.Input<number>;
+    query?: pulumi.Input<string>;
+    type: pulumi.Input<string>;
+}
+
+export interface OnlineArchivePartitionField {
+    fieldName: pulumi.Input<string>;
+    fieldType?: pulumi.Input<string>;
+    order: pulumi.Input<number>;
 }
 
 export interface ProjectTeam {

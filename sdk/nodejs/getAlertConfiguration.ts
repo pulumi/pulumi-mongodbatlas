@@ -60,13 +60,15 @@ export interface GetAlertConfigurationResult {
      */
     readonly id: string;
     readonly matchers: outputs.GetAlertConfigurationMatcher[];
-    readonly metricThreshold: outputs.GetAlertConfigurationMetricThreshold;
+    readonly metricThreshold: {[key: string]: string};
+    readonly metricThresholdConfigs: outputs.GetAlertConfigurationMetricThresholdConfig[];
     readonly notifications: outputs.GetAlertConfigurationNotification[];
     readonly projectId: string;
     /**
      * Threshold value outside of which an alert will be triggered.
      */
-    readonly threshold: outputs.GetAlertConfigurationThreshold;
+    readonly threshold: {[key: string]: string};
+    readonly thresholdConfigs: outputs.GetAlertConfigurationThresholdConfig[];
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */

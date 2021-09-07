@@ -5,6 +5,7 @@
 # Export this package's modules as members:
 from .alert_configuration import *
 from .auditing import *
+from .cloud_backup_schedule import *
 from .cloud_provider_access import *
 from .cloud_provider_access_authorization import *
 from .cloud_provider_access_setup import *
@@ -14,11 +15,14 @@ from .cloud_provider_snapshot_restore_job import *
 from .cluster import *
 from .custom_db_role import *
 from .custom_dns_configuration_cluster_aws import *
+from .data_lake import *
 from .database_user import *
 from .encryption_at_rest import *
+from .event_trigger import *
 from .get509_authentication_database_user import *
 from .get_alert_configuration import *
 from .get_auditing import *
+from .get_cloud_backup_schedule import *
 from .get_cloud_provider_access import *
 from .get_cloud_provider_access_setup import *
 from .get_cloud_provider_snapshot import *
@@ -31,8 +35,12 @@ from .get_clusters import *
 from .get_custom_db_role import *
 from .get_custom_db_roles import *
 from .get_custom_dns_configuration_cluster_aws import *
+from .get_data_lake import *
+from .get_data_lakes import *
 from .get_database_user import *
 from .get_database_users import *
+from .get_event_trigger import *
+from .get_event_triggers import *
 from .get_global_cluster_config import *
 from .get_ldap_configuration import *
 from .get_ldap_verify import *
@@ -41,14 +49,15 @@ from .get_network_container import *
 from .get_network_containers import *
 from .get_network_peering import *
 from .get_network_peerings import *
-from .get_private_endpoint import *
-from .get_private_endpoint_interface_link import *
+from .get_online_archive import *
+from .get_online_archives import *
 from .get_private_link_endpoint import *
 from .get_private_link_endpoint_service import *
 from .get_project import *
 from .get_project_ip_access_list import *
-from .get_project_ip_whitelist import *
 from .get_projects import *
+from .get_search_index import *
+from .get_search_indexes import *
 from .get_team import *
 from .get_teams import *
 from .get_third_party_integration import *
@@ -59,15 +68,14 @@ from .ldap_verify import *
 from .maintenance_window import *
 from .network_container import *
 from .network_peering import *
-from .private_endpoint import *
-from .private_endpoint_interface_link import *
+from .online_archive import *
 from .private_ip_mode import *
 from .private_link_endpoint import *
 from .private_link_endpoint_service import *
 from .project import *
 from .project_ip_access_list import *
-from .project_ip_whitelist import *
 from .provider import *
+from .search_index import *
 from .team import *
 from .teams import *
 from .third_party_integration import *
@@ -96,6 +104,8 @@ def _register_module():
                 return AlertConfiguration(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/auditing:Auditing":
                 return Auditing(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
+                return CloudBackupSchedule(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
                 return CloudProviderAccess(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
@@ -114,10 +124,14 @@ def _register_module():
                 return CustomDbRole(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
                 return CustomDnsConfigurationClusterAws(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/dataLake:DataLake":
+                return DataLake(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/databaseUser:DatabaseUser":
                 return DatabaseUser(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
                 return EncryptionAtRest(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/eventTrigger:EventTrigger":
+                return EventTrigger(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
                 return GlobalClusterConfig(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -130,10 +144,8 @@ def _register_module():
                 return NetworkContainer(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/networkPeering:NetworkPeering":
                 return NetworkPeering(name, pulumi.ResourceOptions(urn=urn))
-            elif typ == "mongodbatlas:index/privateEndpoint:PrivateEndpoint":
-                return PrivateEndpoint(name, pulumi.ResourceOptions(urn=urn))
-            elif typ == "mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink":
-                return PrivateEndpointInterfaceLink(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/onlineArchive:OnlineArchive":
+                return OnlineArchive(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/privateIpMode:PrivateIpMode":
                 return PrivateIpMode(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
@@ -144,8 +156,8 @@ def _register_module():
                 return Project(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
                 return ProjectIpAccessList(name, pulumi.ResourceOptions(urn=urn))
-            elif typ == "mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist":
-                return ProjectIpWhitelist(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "mongodbatlas:index/searchIndex:SearchIndex":
+                return SearchIndex(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/team:Team":
                 return Team(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "mongodbatlas:index/teams:Teams":
@@ -161,6 +173,7 @@ def _register_module():
     _module_instance = Module()
     pulumi.runtime.register_resource_module("mongodbatlas", "index/alertConfiguration", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/auditing", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudBackupSchedule", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderAccess", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderAccessAuthorization", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/cloudProviderAccessSetup", _module_instance)
@@ -170,22 +183,23 @@ def _register_module():
     pulumi.runtime.register_resource_module("mongodbatlas", "index/cluster", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/customDbRole", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/customDnsConfigurationClusterAws", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/dataLake", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/databaseUser", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/encryptionAtRest", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/eventTrigger", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/globalClusterConfig", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/ldapConfiguration", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/ldapVerify", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/maintenanceWindow", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/networkContainer", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/networkPeering", _module_instance)
-    pulumi.runtime.register_resource_module("mongodbatlas", "index/privateEndpoint", _module_instance)
-    pulumi.runtime.register_resource_module("mongodbatlas", "index/privateEndpointInterfaceLink", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/onlineArchive", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/privateIpMode", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/privateLinkEndpoint", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/privateLinkEndpointService", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/project", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/projectIpAccessList", _module_instance)
-    pulumi.runtime.register_resource_module("mongodbatlas", "index/projectIpWhitelist", _module_instance)
+    pulumi.runtime.register_resource_module("mongodbatlas", "index/searchIndex", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/team", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/teams", _module_instance)
     pulumi.runtime.register_resource_module("mongodbatlas", "index/thirdPartyIntegration", _module_instance)

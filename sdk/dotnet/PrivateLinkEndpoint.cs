@@ -102,6 +102,9 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
 
@@ -171,6 +174,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
 
@@ -248,6 +254,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
 

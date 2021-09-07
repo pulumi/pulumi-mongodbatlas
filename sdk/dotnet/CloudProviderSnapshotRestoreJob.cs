@@ -39,7 +39,7 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderName = "AWS",
     ///             ProviderRegionName = "EU_WEST_2",
     ///             ProviderInstanceSizeName = "M10",
-    ///             ProviderBackupEnabled = true,
+    ///             CloudBackup = true,
     ///         });
     ///         // enable cloud backup snapshots
     ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
@@ -54,11 +54,11 @@ namespace Pulumi.Mongodbatlas
     ///             ProjectId = testCloudProviderSnapshot.ProjectId,
     ///             ClusterName = testCloudProviderSnapshot.ClusterName,
     ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
-    ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+    ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs
     ///             {
     ///                 Automated = true,
-    ///                 Target_cluster_name = "MyCluster",
-    ///                 Target_project_id = "5cf5a45a9ccf6400e60981b6",
+    ///                 TargetClusterName = "MyCluster",
+    ///                 TargetProjectId = "5cf5a45a9ccf6400e60981b6",
     ///             },
     ///         }, new CustomResourceOptions
     ///         {
@@ -88,7 +88,7 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderName = "AWS",
     ///             ProviderRegionName = "EU_WEST_2",
     ///             ProviderInstanceSizeName = "M10",
-    ///             ProviderBackupEnabled = true,
+    ///             CloudBackup = true,
     ///         });
     ///         // enable cloud backup snapshots
     ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
     ///             ProjectId = testCloudProviderSnapshot.ProjectId,
     ///             ClusterName = testCloudProviderSnapshot.ClusterName,
     ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
-    ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+    ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs
     ///             {
     ///                 Download = true,
     ///             },
@@ -148,7 +148,13 @@ namespace Pulumi.Mongodbatlas
         /// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
         /// </summary>
         [Output("deliveryType")]
-        public Output<Outputs.CloudProviderSnapshotRestoreJobDeliveryType> DeliveryType { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> DeliveryType { get; private set; } = null!;
+
+        /// <summary>
+        /// Type of restore job to create. Possible values are: automated and download.
+        /// </summary>
+        [Output("deliveryTypeConfig")]
+        public Output<Outputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig?> DeliveryTypeConfig { get; private set; } = null!;
 
         /// <summary>
         /// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
@@ -250,11 +256,24 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
+        [Input("deliveryType")]
+        private InputMap<string>? _deliveryType;
+
         /// <summary>
         /// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
         /// </summary>
-        [Input("deliveryType", required: true)]
-        public Input<Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs> DeliveryType { get; set; } = null!;
+        [Obsolete(@"use delivery_type_config instead")]
+        public InputMap<string> DeliveryType
+        {
+            get => _deliveryType ?? (_deliveryType = new InputMap<string>());
+            set => _deliveryType = value;
+        }
+
+        /// <summary>
+        /// Type of restore job to create. Possible values are: automated and download.
+        /// </summary>
+        [Input("deliveryTypeConfig")]
+        public Input<Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs>? DeliveryTypeConfig { get; set; }
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
@@ -293,11 +312,24 @@ namespace Pulumi.Mongodbatlas
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        [Input("deliveryType")]
+        private InputMap<string>? _deliveryType;
+
         /// <summary>
         /// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
         /// </summary>
-        [Input("deliveryType")]
-        public Input<Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeGetArgs>? DeliveryType { get; set; }
+        [Obsolete(@"use delivery_type_config instead")]
+        public InputMap<string> DeliveryType
+        {
+            get => _deliveryType ?? (_deliveryType = new InputMap<string>());
+            set => _deliveryType = value;
+        }
+
+        /// <summary>
+        /// Type of restore job to create. Possible values are: automated and download.
+        /// </summary>
+        [Input("deliveryTypeConfig")]
+        public Input<Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigGetArgs>? DeliveryTypeConfig { get; set; }
 
         [Input("deliveryUrls")]
         private InputList<string>? _deliveryUrls;

@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *             readOnlyNodes: 0,
  *         }],
  *     }],
- *     providerBackupEnabled: true,
+ *     cloudBackup: true,
  *     autoScalingDiskGbEnabled: true,
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M40",

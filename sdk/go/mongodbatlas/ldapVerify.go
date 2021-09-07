@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -37,8 +37,7 @@ import (
 // 			ProviderName:             pulumi.String("AWS"),
 // 			ProviderRegionName:       pulumi.String("US_EAST_2"),
 // 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderEncryptEbsVolume: pulumi.Bool(false),
+// 			CloudBackup:              pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err

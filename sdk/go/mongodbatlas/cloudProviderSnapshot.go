@@ -16,54 +16,6 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			DiskSizeGb:               pulumi.Float64(5),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
-// 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
-// 			ProjectId:       myCluster.ProjectId,
-// 			ClusterName:     myCluster.Name,
-// 			Description:     pulumi.String("myDescription"),
-// 			RetentionInDays: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
-// 			ProjectId:   testCloudProviderSnapshot.ProjectId,
-// 			ClusterName: testCloudProviderSnapshot.ClusterName,
-// 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-// 			DeliveryType: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs{
-// 				Download: pulumi.Bool(true),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.

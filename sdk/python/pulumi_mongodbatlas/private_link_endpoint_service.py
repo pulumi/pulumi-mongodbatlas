@@ -318,7 +318,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-        ## Example Usage
+        ## Example with AWS
 
         ```python
         import pulumi
@@ -375,7 +375,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-        ## Example Usage
+        ## Example with AWS
 
         ```python
         import pulumi

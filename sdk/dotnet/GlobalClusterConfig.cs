@@ -30,8 +30,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///             DiskSizeGb = 80,
-    ///             BackupEnabled = false,
-    ///             ProviderBackupEnabled = true,
+    ///             CloudBackup = true,
     ///             ClusterType = "GEOSHARDED",
     ///             ProviderName = "AWS",
     ///             ProviderInstanceSizeName = "M30",
@@ -109,15 +108,30 @@ namespace Pulumi.Mongodbatlas
     ///         var cluster_test = new Mongodbatlas.Cluster("cluster-test", new Mongodbatlas.ClusterArgs
     ///         {
     ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///             NumShards = 1,
-    ///             ReplicationFactor = 3,
+    ///             ClusterType = "REPLICASET",
+    ///             ReplicationSpecs = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///                 {
+    ///                     NumShards = 1,
+    ///                     RegionsConfigs = 
+    ///                     {
+    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                         {
+    ///                             RegionName = "US_EAST_1",
+    ///                             ElectableNodes = 3,
+    ///                             Priority = 7,
+    ///                             ReadOnlyNodes = 0,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
     ///             BackupEnabled = true,
     ///             AutoScalingDiskGbEnabled = true,
     ///             MongoDbMajorVersion = "4.0",
     ///             ProviderName = "AWS",
     ///             DiskSizeGb = 100,
     ///             ProviderInstanceSizeName = "M40",
-    ///             ProviderRegionName = "US_EAST_1",
     ///         });
     ///         var config = new Mongodbatlas.GlobalClusterConfig("config", new Mongodbatlas.GlobalClusterConfigArgs
     ///         {

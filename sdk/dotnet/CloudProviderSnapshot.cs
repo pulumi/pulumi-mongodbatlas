@@ -32,7 +32,7 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderName = "AWS",
     ///             ProviderRegionName = "EU_WEST_2",
     ///             ProviderInstanceSizeName = "M10",
-    ///             ProviderBackupEnabled = true,
+    ///             CloudBackup = true,
     ///         });
     ///         // enable cloud backup snapshots
     ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
@@ -47,9 +47,12 @@ namespace Pulumi.Mongodbatlas
     ///             ProjectId = testCloudProviderSnapshot.ProjectId,
     ///             ClusterName = testCloudProviderSnapshot.ClusterName,
     ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
-    ///             DeliveryType = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+    ///             DeliveryType = 
     ///             {
-    ///                 Download = true,
+    ///                 
+    ///                 {
+    ///                     { "download", true },
+    ///                 },
     ///             },
     ///         });
     ///     }

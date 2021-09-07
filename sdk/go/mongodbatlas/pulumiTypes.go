@@ -149,7 +149,7 @@ func (o AlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) AlertConf
 	}).(AlertConfigurationMatcherOutput)
 }
 
-type AlertConfigurationMetricThreshold struct {
+type AlertConfigurationMetricThresholdConfig struct {
 	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 	MetricName *string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
@@ -182,18 +182,18 @@ type AlertConfigurationMetricThreshold struct {
 	Units *string `pulumi:"units"`
 }
 
-// AlertConfigurationMetricThresholdInput is an input type that accepts AlertConfigurationMetricThresholdArgs and AlertConfigurationMetricThresholdOutput values.
-// You can construct a concrete instance of `AlertConfigurationMetricThresholdInput` via:
+// AlertConfigurationMetricThresholdConfigInput is an input type that accepts AlertConfigurationMetricThresholdConfigArgs and AlertConfigurationMetricThresholdConfigOutput values.
+// You can construct a concrete instance of `AlertConfigurationMetricThresholdConfigInput` via:
 //
-//          AlertConfigurationMetricThresholdArgs{...}
-type AlertConfigurationMetricThresholdInput interface {
+//          AlertConfigurationMetricThresholdConfigArgs{...}
+type AlertConfigurationMetricThresholdConfigInput interface {
 	pulumi.Input
 
-	ToAlertConfigurationMetricThresholdOutput() AlertConfigurationMetricThresholdOutput
-	ToAlertConfigurationMetricThresholdOutputWithContext(context.Context) AlertConfigurationMetricThresholdOutput
+	ToAlertConfigurationMetricThresholdConfigOutput() AlertConfigurationMetricThresholdConfigOutput
+	ToAlertConfigurationMetricThresholdConfigOutputWithContext(context.Context) AlertConfigurationMetricThresholdConfigOutput
 }
 
-type AlertConfigurationMetricThresholdArgs struct {
+type AlertConfigurationMetricThresholdConfigArgs struct {
 	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 	MetricName pulumi.StringPtrInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
@@ -226,104 +226,104 @@ type AlertConfigurationMetricThresholdArgs struct {
 	Units pulumi.StringPtrInput `pulumi:"units"`
 }
 
-func (AlertConfigurationMetricThresholdArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertConfigurationMetricThreshold)(nil)).Elem()
+func (AlertConfigurationMetricThresholdConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfigurationMetricThresholdConfig)(nil)).Elem()
 }
 
-func (i AlertConfigurationMetricThresholdArgs) ToAlertConfigurationMetricThresholdOutput() AlertConfigurationMetricThresholdOutput {
-	return i.ToAlertConfigurationMetricThresholdOutputWithContext(context.Background())
+func (i AlertConfigurationMetricThresholdConfigArgs) ToAlertConfigurationMetricThresholdConfigOutput() AlertConfigurationMetricThresholdConfigOutput {
+	return i.ToAlertConfigurationMetricThresholdConfigOutputWithContext(context.Background())
 }
 
-func (i AlertConfigurationMetricThresholdArgs) ToAlertConfigurationMetricThresholdOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMetricThresholdOutput)
+func (i AlertConfigurationMetricThresholdConfigArgs) ToAlertConfigurationMetricThresholdConfigOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMetricThresholdConfigOutput)
 }
 
-func (i AlertConfigurationMetricThresholdArgs) ToAlertConfigurationMetricThresholdPtrOutput() AlertConfigurationMetricThresholdPtrOutput {
-	return i.ToAlertConfigurationMetricThresholdPtrOutputWithContext(context.Background())
+func (i AlertConfigurationMetricThresholdConfigArgs) ToAlertConfigurationMetricThresholdConfigPtrOutput() AlertConfigurationMetricThresholdConfigPtrOutput {
+	return i.ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(context.Background())
 }
 
-func (i AlertConfigurationMetricThresholdArgs) ToAlertConfigurationMetricThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMetricThresholdOutput).ToAlertConfigurationMetricThresholdPtrOutputWithContext(ctx)
+func (i AlertConfigurationMetricThresholdConfigArgs) ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMetricThresholdConfigOutput).ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(ctx)
 }
 
-// AlertConfigurationMetricThresholdPtrInput is an input type that accepts AlertConfigurationMetricThresholdArgs, AlertConfigurationMetricThresholdPtr and AlertConfigurationMetricThresholdPtrOutput values.
-// You can construct a concrete instance of `AlertConfigurationMetricThresholdPtrInput` via:
+// AlertConfigurationMetricThresholdConfigPtrInput is an input type that accepts AlertConfigurationMetricThresholdConfigArgs, AlertConfigurationMetricThresholdConfigPtr and AlertConfigurationMetricThresholdConfigPtrOutput values.
+// You can construct a concrete instance of `AlertConfigurationMetricThresholdConfigPtrInput` via:
 //
-//          AlertConfigurationMetricThresholdArgs{...}
+//          AlertConfigurationMetricThresholdConfigArgs{...}
 //
 //  or:
 //
 //          nil
-type AlertConfigurationMetricThresholdPtrInput interface {
+type AlertConfigurationMetricThresholdConfigPtrInput interface {
 	pulumi.Input
 
-	ToAlertConfigurationMetricThresholdPtrOutput() AlertConfigurationMetricThresholdPtrOutput
-	ToAlertConfigurationMetricThresholdPtrOutputWithContext(context.Context) AlertConfigurationMetricThresholdPtrOutput
+	ToAlertConfigurationMetricThresholdConfigPtrOutput() AlertConfigurationMetricThresholdConfigPtrOutput
+	ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(context.Context) AlertConfigurationMetricThresholdConfigPtrOutput
 }
 
-type alertConfigurationMetricThresholdPtrType AlertConfigurationMetricThresholdArgs
+type alertConfigurationMetricThresholdConfigPtrType AlertConfigurationMetricThresholdConfigArgs
 
-func AlertConfigurationMetricThresholdPtr(v *AlertConfigurationMetricThresholdArgs) AlertConfigurationMetricThresholdPtrInput {
-	return (*alertConfigurationMetricThresholdPtrType)(v)
+func AlertConfigurationMetricThresholdConfigPtr(v *AlertConfigurationMetricThresholdConfigArgs) AlertConfigurationMetricThresholdConfigPtrInput {
+	return (*alertConfigurationMetricThresholdConfigPtrType)(v)
 }
 
-func (*alertConfigurationMetricThresholdPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertConfigurationMetricThreshold)(nil)).Elem()
+func (*alertConfigurationMetricThresholdConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertConfigurationMetricThresholdConfig)(nil)).Elem()
 }
 
-func (i *alertConfigurationMetricThresholdPtrType) ToAlertConfigurationMetricThresholdPtrOutput() AlertConfigurationMetricThresholdPtrOutput {
-	return i.ToAlertConfigurationMetricThresholdPtrOutputWithContext(context.Background())
+func (i *alertConfigurationMetricThresholdConfigPtrType) ToAlertConfigurationMetricThresholdConfigPtrOutput() AlertConfigurationMetricThresholdConfigPtrOutput {
+	return i.ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(context.Background())
 }
 
-func (i *alertConfigurationMetricThresholdPtrType) ToAlertConfigurationMetricThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMetricThresholdPtrOutput)
+func (i *alertConfigurationMetricThresholdConfigPtrType) ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMetricThresholdConfigPtrOutput)
 }
 
-type AlertConfigurationMetricThresholdOutput struct{ *pulumi.OutputState }
+type AlertConfigurationMetricThresholdConfigOutput struct{ *pulumi.OutputState }
 
-func (AlertConfigurationMetricThresholdOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertConfigurationMetricThreshold)(nil)).Elem()
+func (AlertConfigurationMetricThresholdConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfigurationMetricThresholdConfig)(nil)).Elem()
 }
 
-func (o AlertConfigurationMetricThresholdOutput) ToAlertConfigurationMetricThresholdOutput() AlertConfigurationMetricThresholdOutput {
+func (o AlertConfigurationMetricThresholdConfigOutput) ToAlertConfigurationMetricThresholdConfigOutput() AlertConfigurationMetricThresholdConfigOutput {
 	return o
 }
 
-func (o AlertConfigurationMetricThresholdOutput) ToAlertConfigurationMetricThresholdOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdOutput {
+func (o AlertConfigurationMetricThresholdConfigOutput) ToAlertConfigurationMetricThresholdConfigOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdConfigOutput {
 	return o
 }
 
-func (o AlertConfigurationMetricThresholdOutput) ToAlertConfigurationMetricThresholdPtrOutput() AlertConfigurationMetricThresholdPtrOutput {
-	return o.ToAlertConfigurationMetricThresholdPtrOutputWithContext(context.Background())
+func (o AlertConfigurationMetricThresholdConfigOutput) ToAlertConfigurationMetricThresholdConfigPtrOutput() AlertConfigurationMetricThresholdConfigPtrOutput {
+	return o.ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(context.Background())
 }
 
-func (o AlertConfigurationMetricThresholdOutput) ToAlertConfigurationMetricThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *AlertConfigurationMetricThreshold {
+func (o AlertConfigurationMetricThresholdConfigOutput) ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdConfigPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *AlertConfigurationMetricThresholdConfig {
 		return &v
-	}).(AlertConfigurationMetricThresholdPtrOutput)
+	}).(AlertConfigurationMetricThresholdConfigPtrOutput)
 }
 
 // Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
-func (o AlertConfigurationMetricThresholdOutput) MetricName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.MetricName }).(pulumi.StringPtrOutput)
+func (o AlertConfigurationMetricThresholdConfigOutput) MetricName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.MetricName }).(pulumi.StringPtrOutput)
 }
 
 // This must be set to AVERAGE. Atlas computes the current metric value as an average.
-func (o AlertConfigurationMetricThresholdOutput) Mode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.Mode }).(pulumi.StringPtrOutput)
+func (o AlertConfigurationMetricThresholdConfigOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
 // Operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
 // - `GREATER_THAN`
 // - `LESS_THAN`
-func (o AlertConfigurationMetricThresholdOutput) Operator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.Operator }).(pulumi.StringPtrOutput)
+func (o AlertConfigurationMetricThresholdConfigOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Operator }).(pulumi.StringPtrOutput)
 }
 
 // Threshold value outside of which an alert will be triggered.
-func (o AlertConfigurationMetricThresholdOutput) Threshold() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *float64 { return v.Threshold }).(pulumi.Float64PtrOutput)
+func (o AlertConfigurationMetricThresholdConfigOutput) Threshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *float64 { return v.Threshold }).(pulumi.Float64PtrOutput)
 }
 
 // The units for the threshold value. Depends on the type of metric.
@@ -344,31 +344,31 @@ func (o AlertConfigurationMetricThresholdOutput) Threshold() pulumi.Float64PtrOu
 // - `MINUTES`
 // - `HOURS`
 // - `DAYS`
-func (o AlertConfigurationMetricThresholdOutput) Units() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationMetricThreshold) *string { return v.Units }).(pulumi.StringPtrOutput)
+func (o AlertConfigurationMetricThresholdConfigOutput) Units() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Units }).(pulumi.StringPtrOutput)
 }
 
-type AlertConfigurationMetricThresholdPtrOutput struct{ *pulumi.OutputState }
+type AlertConfigurationMetricThresholdConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (AlertConfigurationMetricThresholdPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertConfigurationMetricThreshold)(nil)).Elem()
+func (AlertConfigurationMetricThresholdConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertConfigurationMetricThresholdConfig)(nil)).Elem()
 }
 
-func (o AlertConfigurationMetricThresholdPtrOutput) ToAlertConfigurationMetricThresholdPtrOutput() AlertConfigurationMetricThresholdPtrOutput {
+func (o AlertConfigurationMetricThresholdConfigPtrOutput) ToAlertConfigurationMetricThresholdConfigPtrOutput() AlertConfigurationMetricThresholdConfigPtrOutput {
 	return o
 }
 
-func (o AlertConfigurationMetricThresholdPtrOutput) ToAlertConfigurationMetricThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdPtrOutput {
+func (o AlertConfigurationMetricThresholdConfigPtrOutput) ToAlertConfigurationMetricThresholdConfigPtrOutputWithContext(ctx context.Context) AlertConfigurationMetricThresholdConfigPtrOutput {
 	return o
 }
 
-func (o AlertConfigurationMetricThresholdPtrOutput) Elem() AlertConfigurationMetricThresholdOutput {
-	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) AlertConfigurationMetricThreshold { return *v }).(AlertConfigurationMetricThresholdOutput)
+func (o AlertConfigurationMetricThresholdConfigPtrOutput) Elem() AlertConfigurationMetricThresholdConfigOutput {
+	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) AlertConfigurationMetricThresholdConfig { return *v }).(AlertConfigurationMetricThresholdConfigOutput)
 }
 
 // Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
-func (o AlertConfigurationMetricThresholdPtrOutput) MetricName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
+func (o AlertConfigurationMetricThresholdConfigPtrOutput) MetricName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -377,8 +377,8 @@ func (o AlertConfigurationMetricThresholdPtrOutput) MetricName() pulumi.StringPt
 }
 
 // This must be set to AVERAGE. Atlas computes the current metric value as an average.
-func (o AlertConfigurationMetricThresholdPtrOutput) Mode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
+func (o AlertConfigurationMetricThresholdConfigPtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -390,8 +390,8 @@ func (o AlertConfigurationMetricThresholdPtrOutput) Mode() pulumi.StringPtrOutpu
 // Accepted values are:
 // - `GREATER_THAN`
 // - `LESS_THAN`
-func (o AlertConfigurationMetricThresholdPtrOutput) Operator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
+func (o AlertConfigurationMetricThresholdConfigPtrOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -400,8 +400,8 @@ func (o AlertConfigurationMetricThresholdPtrOutput) Operator() pulumi.StringPtrO
 }
 
 // Threshold value outside of which an alert will be triggered.
-func (o AlertConfigurationMetricThresholdPtrOutput) Threshold() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *float64 {
+func (o AlertConfigurationMetricThresholdConfigPtrOutput) Threshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *float64 {
 		if v == nil {
 			return nil
 		}
@@ -427,8 +427,8 @@ func (o AlertConfigurationMetricThresholdPtrOutput) Threshold() pulumi.Float64Pt
 // - `MINUTES`
 // - `HOURS`
 // - `DAYS`
-func (o AlertConfigurationMetricThresholdPtrOutput) Units() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlertConfigurationMetricThreshold) *string {
+func (o AlertConfigurationMetricThresholdConfigPtrOutput) Units() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -731,7 +731,7 @@ func (o AlertConfigurationNotificationArrayOutput) Index(i pulumi.IntInput) Aler
 	}).(AlertConfigurationNotificationOutput)
 }
 
-type AlertConfigurationThreshold struct {
+type AlertConfigurationThresholdConfig struct {
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
 	// - `GREATER_THAN`
@@ -760,18 +760,18 @@ type AlertConfigurationThreshold struct {
 	Units *string `pulumi:"units"`
 }
 
-// AlertConfigurationThresholdInput is an input type that accepts AlertConfigurationThresholdArgs and AlertConfigurationThresholdOutput values.
-// You can construct a concrete instance of `AlertConfigurationThresholdInput` via:
+// AlertConfigurationThresholdConfigInput is an input type that accepts AlertConfigurationThresholdConfigArgs and AlertConfigurationThresholdConfigOutput values.
+// You can construct a concrete instance of `AlertConfigurationThresholdConfigInput` via:
 //
-//          AlertConfigurationThresholdArgs{...}
-type AlertConfigurationThresholdInput interface {
+//          AlertConfigurationThresholdConfigArgs{...}
+type AlertConfigurationThresholdConfigInput interface {
 	pulumi.Input
 
-	ToAlertConfigurationThresholdOutput() AlertConfigurationThresholdOutput
-	ToAlertConfigurationThresholdOutputWithContext(context.Context) AlertConfigurationThresholdOutput
+	ToAlertConfigurationThresholdConfigOutput() AlertConfigurationThresholdConfigOutput
+	ToAlertConfigurationThresholdConfigOutputWithContext(context.Context) AlertConfigurationThresholdConfigOutput
 }
 
-type AlertConfigurationThresholdArgs struct {
+type AlertConfigurationThresholdConfigArgs struct {
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
 	// - `GREATER_THAN`
@@ -800,94 +800,94 @@ type AlertConfigurationThresholdArgs struct {
 	Units pulumi.StringPtrInput `pulumi:"units"`
 }
 
-func (AlertConfigurationThresholdArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertConfigurationThreshold)(nil)).Elem()
+func (AlertConfigurationThresholdConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfigurationThresholdConfig)(nil)).Elem()
 }
 
-func (i AlertConfigurationThresholdArgs) ToAlertConfigurationThresholdOutput() AlertConfigurationThresholdOutput {
-	return i.ToAlertConfigurationThresholdOutputWithContext(context.Background())
+func (i AlertConfigurationThresholdConfigArgs) ToAlertConfigurationThresholdConfigOutput() AlertConfigurationThresholdConfigOutput {
+	return i.ToAlertConfigurationThresholdConfigOutputWithContext(context.Background())
 }
 
-func (i AlertConfigurationThresholdArgs) ToAlertConfigurationThresholdOutputWithContext(ctx context.Context) AlertConfigurationThresholdOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdOutput)
+func (i AlertConfigurationThresholdConfigArgs) ToAlertConfigurationThresholdConfigOutputWithContext(ctx context.Context) AlertConfigurationThresholdConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdConfigOutput)
 }
 
-func (i AlertConfigurationThresholdArgs) ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput {
-	return i.ToAlertConfigurationThresholdPtrOutputWithContext(context.Background())
+func (i AlertConfigurationThresholdConfigArgs) ToAlertConfigurationThresholdConfigPtrOutput() AlertConfigurationThresholdConfigPtrOutput {
+	return i.ToAlertConfigurationThresholdConfigPtrOutputWithContext(context.Background())
 }
 
-func (i AlertConfigurationThresholdArgs) ToAlertConfigurationThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdOutput).ToAlertConfigurationThresholdPtrOutputWithContext(ctx)
+func (i AlertConfigurationThresholdConfigArgs) ToAlertConfigurationThresholdConfigPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdConfigOutput).ToAlertConfigurationThresholdConfigPtrOutputWithContext(ctx)
 }
 
-// AlertConfigurationThresholdPtrInput is an input type that accepts AlertConfigurationThresholdArgs, AlertConfigurationThresholdPtr and AlertConfigurationThresholdPtrOutput values.
-// You can construct a concrete instance of `AlertConfigurationThresholdPtrInput` via:
+// AlertConfigurationThresholdConfigPtrInput is an input type that accepts AlertConfigurationThresholdConfigArgs, AlertConfigurationThresholdConfigPtr and AlertConfigurationThresholdConfigPtrOutput values.
+// You can construct a concrete instance of `AlertConfigurationThresholdConfigPtrInput` via:
 //
-//          AlertConfigurationThresholdArgs{...}
+//          AlertConfigurationThresholdConfigArgs{...}
 //
 //  or:
 //
 //          nil
-type AlertConfigurationThresholdPtrInput interface {
+type AlertConfigurationThresholdConfigPtrInput interface {
 	pulumi.Input
 
-	ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput
-	ToAlertConfigurationThresholdPtrOutputWithContext(context.Context) AlertConfigurationThresholdPtrOutput
+	ToAlertConfigurationThresholdConfigPtrOutput() AlertConfigurationThresholdConfigPtrOutput
+	ToAlertConfigurationThresholdConfigPtrOutputWithContext(context.Context) AlertConfigurationThresholdConfigPtrOutput
 }
 
-type alertConfigurationThresholdPtrType AlertConfigurationThresholdArgs
+type alertConfigurationThresholdConfigPtrType AlertConfigurationThresholdConfigArgs
 
-func AlertConfigurationThresholdPtr(v *AlertConfigurationThresholdArgs) AlertConfigurationThresholdPtrInput {
-	return (*alertConfigurationThresholdPtrType)(v)
+func AlertConfigurationThresholdConfigPtr(v *AlertConfigurationThresholdConfigArgs) AlertConfigurationThresholdConfigPtrInput {
+	return (*alertConfigurationThresholdConfigPtrType)(v)
 }
 
-func (*alertConfigurationThresholdPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertConfigurationThreshold)(nil)).Elem()
+func (*alertConfigurationThresholdConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertConfigurationThresholdConfig)(nil)).Elem()
 }
 
-func (i *alertConfigurationThresholdPtrType) ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput {
-	return i.ToAlertConfigurationThresholdPtrOutputWithContext(context.Background())
+func (i *alertConfigurationThresholdConfigPtrType) ToAlertConfigurationThresholdConfigPtrOutput() AlertConfigurationThresholdConfigPtrOutput {
+	return i.ToAlertConfigurationThresholdConfigPtrOutputWithContext(context.Background())
 }
 
-func (i *alertConfigurationThresholdPtrType) ToAlertConfigurationThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdPtrOutput)
+func (i *alertConfigurationThresholdConfigPtrType) ToAlertConfigurationThresholdConfigPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationThresholdConfigPtrOutput)
 }
 
-type AlertConfigurationThresholdOutput struct{ *pulumi.OutputState }
+type AlertConfigurationThresholdConfigOutput struct{ *pulumi.OutputState }
 
-func (AlertConfigurationThresholdOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertConfigurationThreshold)(nil)).Elem()
+func (AlertConfigurationThresholdConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertConfigurationThresholdConfig)(nil)).Elem()
 }
 
-func (o AlertConfigurationThresholdOutput) ToAlertConfigurationThresholdOutput() AlertConfigurationThresholdOutput {
+func (o AlertConfigurationThresholdConfigOutput) ToAlertConfigurationThresholdConfigOutput() AlertConfigurationThresholdConfigOutput {
 	return o
 }
 
-func (o AlertConfigurationThresholdOutput) ToAlertConfigurationThresholdOutputWithContext(ctx context.Context) AlertConfigurationThresholdOutput {
+func (o AlertConfigurationThresholdConfigOutput) ToAlertConfigurationThresholdConfigOutputWithContext(ctx context.Context) AlertConfigurationThresholdConfigOutput {
 	return o
 }
 
-func (o AlertConfigurationThresholdOutput) ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput {
-	return o.ToAlertConfigurationThresholdPtrOutputWithContext(context.Background())
+func (o AlertConfigurationThresholdConfigOutput) ToAlertConfigurationThresholdConfigPtrOutput() AlertConfigurationThresholdConfigPtrOutput {
+	return o.ToAlertConfigurationThresholdConfigPtrOutputWithContext(context.Background())
 }
 
-func (o AlertConfigurationThresholdOutput) ToAlertConfigurationThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationThreshold) *AlertConfigurationThreshold {
+func (o AlertConfigurationThresholdConfigOutput) ToAlertConfigurationThresholdConfigPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdConfigPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *AlertConfigurationThresholdConfig {
 		return &v
-	}).(AlertConfigurationThresholdPtrOutput)
+	}).(AlertConfigurationThresholdConfigPtrOutput)
 }
 
 // Operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
 // - `GREATER_THAN`
 // - `LESS_THAN`
-func (o AlertConfigurationThresholdOutput) Operator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationThreshold) *string { return v.Operator }).(pulumi.StringPtrOutput)
+func (o AlertConfigurationThresholdConfigOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *string { return v.Operator }).(pulumi.StringPtrOutput)
 }
 
 // Threshold value outside of which an alert will be triggered.
-func (o AlertConfigurationThresholdOutput) Threshold() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v AlertConfigurationThreshold) *float64 { return v.Threshold }).(pulumi.Float64PtrOutput)
+func (o AlertConfigurationThresholdConfigOutput) Threshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *float64 { return v.Threshold }).(pulumi.Float64PtrOutput)
 }
 
 // The units for the threshold value. Depends on the type of metric.
@@ -908,34 +908,34 @@ func (o AlertConfigurationThresholdOutput) Threshold() pulumi.Float64PtrOutput {
 // - `MINUTES`
 // - `HOURS`
 // - `DAYS`
-func (o AlertConfigurationThresholdOutput) Units() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertConfigurationThreshold) *string { return v.Units }).(pulumi.StringPtrOutput)
+func (o AlertConfigurationThresholdConfigOutput) Units() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *string { return v.Units }).(pulumi.StringPtrOutput)
 }
 
-type AlertConfigurationThresholdPtrOutput struct{ *pulumi.OutputState }
+type AlertConfigurationThresholdConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (AlertConfigurationThresholdPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertConfigurationThreshold)(nil)).Elem()
+func (AlertConfigurationThresholdConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertConfigurationThresholdConfig)(nil)).Elem()
 }
 
-func (o AlertConfigurationThresholdPtrOutput) ToAlertConfigurationThresholdPtrOutput() AlertConfigurationThresholdPtrOutput {
+func (o AlertConfigurationThresholdConfigPtrOutput) ToAlertConfigurationThresholdConfigPtrOutput() AlertConfigurationThresholdConfigPtrOutput {
 	return o
 }
 
-func (o AlertConfigurationThresholdPtrOutput) ToAlertConfigurationThresholdPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdPtrOutput {
+func (o AlertConfigurationThresholdConfigPtrOutput) ToAlertConfigurationThresholdConfigPtrOutputWithContext(ctx context.Context) AlertConfigurationThresholdConfigPtrOutput {
 	return o
 }
 
-func (o AlertConfigurationThresholdPtrOutput) Elem() AlertConfigurationThresholdOutput {
-	return o.ApplyT(func(v *AlertConfigurationThreshold) AlertConfigurationThreshold { return *v }).(AlertConfigurationThresholdOutput)
+func (o AlertConfigurationThresholdConfigPtrOutput) Elem() AlertConfigurationThresholdConfigOutput {
+	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) AlertConfigurationThresholdConfig { return *v }).(AlertConfigurationThresholdConfigOutput)
 }
 
 // Operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
 // - `GREATER_THAN`
 // - `LESS_THAN`
-func (o AlertConfigurationThresholdPtrOutput) Operator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlertConfigurationThreshold) *string {
+func (o AlertConfigurationThresholdConfigPtrOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -944,8 +944,8 @@ func (o AlertConfigurationThresholdPtrOutput) Operator() pulumi.StringPtrOutput 
 }
 
 // Threshold value outside of which an alert will be triggered.
-func (o AlertConfigurationThresholdPtrOutput) Threshold() pulumi.Float64PtrOutput {
-	return o.ApplyT(func(v *AlertConfigurationThreshold) *float64 {
+func (o AlertConfigurationThresholdConfigPtrOutput) Threshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) *float64 {
 		if v == nil {
 			return nil
 		}
@@ -971,13 +971,809 @@ func (o AlertConfigurationThresholdPtrOutput) Threshold() pulumi.Float64PtrOutpu
 // - `MINUTES`
 // - `HOURS`
 // - `DAYS`
-func (o AlertConfigurationThresholdPtrOutput) Units() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlertConfigurationThreshold) *string {
+func (o AlertConfigurationThresholdConfigPtrOutput) Units() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) *string {
 		if v == nil {
 			return nil
 		}
 		return v.Units
 	}).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupSchedulePolicyItemDaily struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval int     `pulumi:"frequencyInterval"`
+	FrequencyType     *string `pulumi:"frequencyType"`
+	Id                *string `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// CloudBackupSchedulePolicyItemDailyInput is an input type that accepts CloudBackupSchedulePolicyItemDailyArgs and CloudBackupSchedulePolicyItemDailyOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemDailyInput` via:
+//
+//          CloudBackupSchedulePolicyItemDailyArgs{...}
+type CloudBackupSchedulePolicyItemDailyInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemDailyOutput() CloudBackupSchedulePolicyItemDailyOutput
+	ToCloudBackupSchedulePolicyItemDailyOutputWithContext(context.Context) CloudBackupSchedulePolicyItemDailyOutput
+}
+
+type CloudBackupSchedulePolicyItemDailyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval pulumi.IntInput       `pulumi:"frequencyInterval"`
+	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
+	Id                pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (CloudBackupSchedulePolicyItemDailyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemDaily)(nil)).Elem()
+}
+
+func (i CloudBackupSchedulePolicyItemDailyArgs) ToCloudBackupSchedulePolicyItemDailyOutput() CloudBackupSchedulePolicyItemDailyOutput {
+	return i.ToCloudBackupSchedulePolicyItemDailyOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemDailyArgs) ToCloudBackupSchedulePolicyItemDailyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemDailyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemDailyOutput)
+}
+
+func (i CloudBackupSchedulePolicyItemDailyArgs) ToCloudBackupSchedulePolicyItemDailyPtrOutput() CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return i.ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemDailyArgs) ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemDailyOutput).ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(ctx)
+}
+
+// CloudBackupSchedulePolicyItemDailyPtrInput is an input type that accepts CloudBackupSchedulePolicyItemDailyArgs, CloudBackupSchedulePolicyItemDailyPtr and CloudBackupSchedulePolicyItemDailyPtrOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemDailyPtrInput` via:
+//
+//          CloudBackupSchedulePolicyItemDailyArgs{...}
+//
+//  or:
+//
+//          nil
+type CloudBackupSchedulePolicyItemDailyPtrInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemDailyPtrOutput() CloudBackupSchedulePolicyItemDailyPtrOutput
+	ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(context.Context) CloudBackupSchedulePolicyItemDailyPtrOutput
+}
+
+type cloudBackupSchedulePolicyItemDailyPtrType CloudBackupSchedulePolicyItemDailyArgs
+
+func CloudBackupSchedulePolicyItemDailyPtr(v *CloudBackupSchedulePolicyItemDailyArgs) CloudBackupSchedulePolicyItemDailyPtrInput {
+	return (*cloudBackupSchedulePolicyItemDailyPtrType)(v)
+}
+
+func (*cloudBackupSchedulePolicyItemDailyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSchedulePolicyItemDaily)(nil)).Elem()
+}
+
+func (i *cloudBackupSchedulePolicyItemDailyPtrType) ToCloudBackupSchedulePolicyItemDailyPtrOutput() CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return i.ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudBackupSchedulePolicyItemDailyPtrType) ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemDailyPtrOutput)
+}
+
+type CloudBackupSchedulePolicyItemDailyOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemDailyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemDaily)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemDailyOutput) ToCloudBackupSchedulePolicyItemDailyOutput() CloudBackupSchedulePolicyItemDailyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemDailyOutput) ToCloudBackupSchedulePolicyItemDailyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemDailyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemDailyOutput) ToCloudBackupSchedulePolicyItemDailyPtrOutput() CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return o.ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(context.Background())
+}
+
+func (o CloudBackupSchedulePolicyItemDailyOutput) ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) *CloudBackupSchedulePolicyItemDaily {
+		return &v
+	}).(CloudBackupSchedulePolicyItemDailyPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o CloudBackupSchedulePolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemDailyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemDailyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o CloudBackupSchedulePolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o CloudBackupSchedulePolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type CloudBackupSchedulePolicyItemDailyPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemDailyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSchedulePolicyItemDaily)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) ToCloudBackupSchedulePolicyItemDailyPtrOutput() CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) ToCloudBackupSchedulePolicyItemDailyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) Elem() CloudBackupSchedulePolicyItemDailyOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) CloudBackupSchedulePolicyItemDaily { return *v }).(CloudBackupSchedulePolicyItemDailyOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type CloudBackupSchedulePolicyItemHourly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval int     `pulumi:"frequencyInterval"`
+	FrequencyType     *string `pulumi:"frequencyType"`
+	Id                *string `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// CloudBackupSchedulePolicyItemHourlyInput is an input type that accepts CloudBackupSchedulePolicyItemHourlyArgs and CloudBackupSchedulePolicyItemHourlyOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemHourlyInput` via:
+//
+//          CloudBackupSchedulePolicyItemHourlyArgs{...}
+type CloudBackupSchedulePolicyItemHourlyInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemHourlyOutput() CloudBackupSchedulePolicyItemHourlyOutput
+	ToCloudBackupSchedulePolicyItemHourlyOutputWithContext(context.Context) CloudBackupSchedulePolicyItemHourlyOutput
+}
+
+type CloudBackupSchedulePolicyItemHourlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval pulumi.IntInput       `pulumi:"frequencyInterval"`
+	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
+	Id                pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (CloudBackupSchedulePolicyItemHourlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemHourly)(nil)).Elem()
+}
+
+func (i CloudBackupSchedulePolicyItemHourlyArgs) ToCloudBackupSchedulePolicyItemHourlyOutput() CloudBackupSchedulePolicyItemHourlyOutput {
+	return i.ToCloudBackupSchedulePolicyItemHourlyOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemHourlyArgs) ToCloudBackupSchedulePolicyItemHourlyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemHourlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemHourlyOutput)
+}
+
+func (i CloudBackupSchedulePolicyItemHourlyArgs) ToCloudBackupSchedulePolicyItemHourlyPtrOutput() CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return i.ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemHourlyArgs) ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemHourlyOutput).ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(ctx)
+}
+
+// CloudBackupSchedulePolicyItemHourlyPtrInput is an input type that accepts CloudBackupSchedulePolicyItemHourlyArgs, CloudBackupSchedulePolicyItemHourlyPtr and CloudBackupSchedulePolicyItemHourlyPtrOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemHourlyPtrInput` via:
+//
+//          CloudBackupSchedulePolicyItemHourlyArgs{...}
+//
+//  or:
+//
+//          nil
+type CloudBackupSchedulePolicyItemHourlyPtrInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemHourlyPtrOutput() CloudBackupSchedulePolicyItemHourlyPtrOutput
+	ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(context.Context) CloudBackupSchedulePolicyItemHourlyPtrOutput
+}
+
+type cloudBackupSchedulePolicyItemHourlyPtrType CloudBackupSchedulePolicyItemHourlyArgs
+
+func CloudBackupSchedulePolicyItemHourlyPtr(v *CloudBackupSchedulePolicyItemHourlyArgs) CloudBackupSchedulePolicyItemHourlyPtrInput {
+	return (*cloudBackupSchedulePolicyItemHourlyPtrType)(v)
+}
+
+func (*cloudBackupSchedulePolicyItemHourlyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSchedulePolicyItemHourly)(nil)).Elem()
+}
+
+func (i *cloudBackupSchedulePolicyItemHourlyPtrType) ToCloudBackupSchedulePolicyItemHourlyPtrOutput() CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return i.ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudBackupSchedulePolicyItemHourlyPtrType) ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemHourlyPtrOutput)
+}
+
+type CloudBackupSchedulePolicyItemHourlyOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemHourlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemHourly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyOutput) ToCloudBackupSchedulePolicyItemHourlyOutput() CloudBackupSchedulePolicyItemHourlyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyOutput) ToCloudBackupSchedulePolicyItemHourlyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemHourlyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyOutput) ToCloudBackupSchedulePolicyItemHourlyPtrOutput() CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return o.ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(context.Background())
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyOutput) ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) *CloudBackupSchedulePolicyItemHourly {
+		return &v
+	}).(CloudBackupSchedulePolicyItemHourlyPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o CloudBackupSchedulePolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o CloudBackupSchedulePolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o CloudBackupSchedulePolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type CloudBackupSchedulePolicyItemHourlyPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemHourlyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSchedulePolicyItemHourly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) ToCloudBackupSchedulePolicyItemHourlyPtrOutput() CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) ToCloudBackupSchedulePolicyItemHourlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) Elem() CloudBackupSchedulePolicyItemHourlyOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) CloudBackupSchedulePolicyItemHourly { return *v }).(CloudBackupSchedulePolicyItemHourlyOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type CloudBackupSchedulePolicyItemMonthly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval int     `pulumi:"frequencyInterval"`
+	FrequencyType     *string `pulumi:"frequencyType"`
+	Id                *string `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// CloudBackupSchedulePolicyItemMonthlyInput is an input type that accepts CloudBackupSchedulePolicyItemMonthlyArgs and CloudBackupSchedulePolicyItemMonthlyOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemMonthlyInput` via:
+//
+//          CloudBackupSchedulePolicyItemMonthlyArgs{...}
+type CloudBackupSchedulePolicyItemMonthlyInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemMonthlyOutput() CloudBackupSchedulePolicyItemMonthlyOutput
+	ToCloudBackupSchedulePolicyItemMonthlyOutputWithContext(context.Context) CloudBackupSchedulePolicyItemMonthlyOutput
+}
+
+type CloudBackupSchedulePolicyItemMonthlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval pulumi.IntInput       `pulumi:"frequencyInterval"`
+	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
+	Id                pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (CloudBackupSchedulePolicyItemMonthlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+}
+
+func (i CloudBackupSchedulePolicyItemMonthlyArgs) ToCloudBackupSchedulePolicyItemMonthlyOutput() CloudBackupSchedulePolicyItemMonthlyOutput {
+	return i.ToCloudBackupSchedulePolicyItemMonthlyOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemMonthlyArgs) ToCloudBackupSchedulePolicyItemMonthlyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemMonthlyOutput)
+}
+
+func (i CloudBackupSchedulePolicyItemMonthlyArgs) ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+	return i.ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemMonthlyArgs) ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemMonthlyOutput).ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx)
+}
+
+// CloudBackupSchedulePolicyItemMonthlyPtrInput is an input type that accepts CloudBackupSchedulePolicyItemMonthlyArgs, CloudBackupSchedulePolicyItemMonthlyPtr and CloudBackupSchedulePolicyItemMonthlyPtrOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemMonthlyPtrInput` via:
+//
+//          CloudBackupSchedulePolicyItemMonthlyArgs{...}
+//
+//  or:
+//
+//          nil
+type CloudBackupSchedulePolicyItemMonthlyPtrInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput
+	ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput
+}
+
+type cloudBackupSchedulePolicyItemMonthlyPtrType CloudBackupSchedulePolicyItemMonthlyArgs
+
+func CloudBackupSchedulePolicyItemMonthlyPtr(v *CloudBackupSchedulePolicyItemMonthlyArgs) CloudBackupSchedulePolicyItemMonthlyPtrInput {
+	return (*cloudBackupSchedulePolicyItemMonthlyPtrType)(v)
+}
+
+func (*cloudBackupSchedulePolicyItemMonthlyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+}
+
+func (i *cloudBackupSchedulePolicyItemMonthlyPtrType) ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+	return i.ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudBackupSchedulePolicyItemMonthlyPtrType) ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemMonthlyPtrOutput)
+}
+
+type CloudBackupSchedulePolicyItemMonthlyOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemMonthlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) ToCloudBackupSchedulePolicyItemMonthlyOutput() CloudBackupSchedulePolicyItemMonthlyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) ToCloudBackupSchedulePolicyItemMonthlyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+	return o.ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(context.Background())
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) *CloudBackupSchedulePolicyItemMonthly {
+		return &v
+	}).(CloudBackupSchedulePolicyItemMonthlyPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type CloudBackupSchedulePolicyItemMonthlyPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemMonthlyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) Elem() CloudBackupSchedulePolicyItemMonthlyOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) CloudBackupSchedulePolicyItemMonthly { return *v }).(CloudBackupSchedulePolicyItemMonthlyOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
+}
+
+type CloudBackupSchedulePolicyItemWeekly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval int     `pulumi:"frequencyInterval"`
+	FrequencyType     *string `pulumi:"frequencyType"`
+	Id                *string `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// CloudBackupSchedulePolicyItemWeeklyInput is an input type that accepts CloudBackupSchedulePolicyItemWeeklyArgs and CloudBackupSchedulePolicyItemWeeklyOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemWeeklyInput` via:
+//
+//          CloudBackupSchedulePolicyItemWeeklyArgs{...}
+type CloudBackupSchedulePolicyItemWeeklyInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemWeeklyOutput() CloudBackupSchedulePolicyItemWeeklyOutput
+	ToCloudBackupSchedulePolicyItemWeeklyOutputWithContext(context.Context) CloudBackupSchedulePolicyItemWeeklyOutput
+}
+
+type CloudBackupSchedulePolicyItemWeeklyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval pulumi.IntInput       `pulumi:"frequencyInterval"`
+	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
+	Id                pulumi.StringPtrInput `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (CloudBackupSchedulePolicyItemWeeklyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+}
+
+func (i CloudBackupSchedulePolicyItemWeeklyArgs) ToCloudBackupSchedulePolicyItemWeeklyOutput() CloudBackupSchedulePolicyItemWeeklyOutput {
+	return i.ToCloudBackupSchedulePolicyItemWeeklyOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemWeeklyArgs) ToCloudBackupSchedulePolicyItemWeeklyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemWeeklyOutput)
+}
+
+func (i CloudBackupSchedulePolicyItemWeeklyArgs) ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+	return i.ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSchedulePolicyItemWeeklyArgs) ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemWeeklyOutput).ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx)
+}
+
+// CloudBackupSchedulePolicyItemWeeklyPtrInput is an input type that accepts CloudBackupSchedulePolicyItemWeeklyArgs, CloudBackupSchedulePolicyItemWeeklyPtr and CloudBackupSchedulePolicyItemWeeklyPtrOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemWeeklyPtrInput` via:
+//
+//          CloudBackupSchedulePolicyItemWeeklyArgs{...}
+//
+//  or:
+//
+//          nil
+type CloudBackupSchedulePolicyItemWeeklyPtrInput interface {
+	pulumi.Input
+
+	ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput
+	ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput
+}
+
+type cloudBackupSchedulePolicyItemWeeklyPtrType CloudBackupSchedulePolicyItemWeeklyArgs
+
+func CloudBackupSchedulePolicyItemWeeklyPtr(v *CloudBackupSchedulePolicyItemWeeklyArgs) CloudBackupSchedulePolicyItemWeeklyPtrInput {
+	return (*cloudBackupSchedulePolicyItemWeeklyPtrType)(v)
+}
+
+func (*cloudBackupSchedulePolicyItemWeeklyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+}
+
+func (i *cloudBackupSchedulePolicyItemWeeklyPtrType) ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+	return i.ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudBackupSchedulePolicyItemWeeklyPtrType) ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemWeeklyPtrOutput)
+}
+
+type CloudBackupSchedulePolicyItemWeeklyOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemWeeklyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) ToCloudBackupSchedulePolicyItemWeeklyOutput() CloudBackupSchedulePolicyItemWeeklyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) ToCloudBackupSchedulePolicyItemWeeklyOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+	return o.ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(context.Background())
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) *CloudBackupSchedulePolicyItemWeekly {
+		return &v
+	}).(CloudBackupSchedulePolicyItemWeeklyPtrOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type CloudBackupSchedulePolicyItemWeeklyPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSchedulePolicyItemWeeklyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+	return o
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) Elem() CloudBackupSchedulePolicyItemWeeklyOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) CloudBackupSchedulePolicyItemWeekly { return *v }).(CloudBackupSchedulePolicyItemWeeklyOutput)
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.FrequencyInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionUnit
+	}).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionValue
+	}).(pulumi.IntPtrOutput)
 }
 
 type CloudProviderAccessAuthorizationAws struct {
@@ -1107,8 +1903,8 @@ func (o CloudProviderAccessAuthorizationAwsPtrOutput) IamAssumedRoleArn() pulumi
 }
 
 type CloudProviderAccessAuthorizationFeatureUsage struct {
-	FeatureId   *string `pulumi:"featureId"`
-	FeatureType *string `pulumi:"featureType"`
+	FeatureId   map[string]interface{} `pulumi:"featureId"`
+	FeatureType *string                `pulumi:"featureType"`
 }
 
 // CloudProviderAccessAuthorizationFeatureUsageInput is an input type that accepts CloudProviderAccessAuthorizationFeatureUsageArgs and CloudProviderAccessAuthorizationFeatureUsageOutput values.
@@ -1123,7 +1919,7 @@ type CloudProviderAccessAuthorizationFeatureUsageInput interface {
 }
 
 type CloudProviderAccessAuthorizationFeatureUsageArgs struct {
-	FeatureId   pulumi.StringPtrInput `pulumi:"featureId"`
+	FeatureId   pulumi.MapInput       `pulumi:"featureId"`
 	FeatureType pulumi.StringPtrInput `pulumi:"featureType"`
 }
 
@@ -1178,8 +1974,8 @@ func (o CloudProviderAccessAuthorizationFeatureUsageOutput) ToCloudProviderAcces
 	return o
 }
 
-func (o CloudProviderAccessAuthorizationFeatureUsageOutput) FeatureId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CloudProviderAccessAuthorizationFeatureUsage) *string { return v.FeatureId }).(pulumi.StringPtrOutput)
+func (o CloudProviderAccessAuthorizationFeatureUsageOutput) FeatureId() pulumi.MapOutput {
+	return o.ApplyT(func(v CloudProviderAccessAuthorizationFeatureUsage) map[string]interface{} { return v.FeatureId }).(pulumi.MapOutput)
 }
 
 func (o CloudProviderAccessAuthorizationFeatureUsageOutput) FeatureType() pulumi.StringPtrOutput {
@@ -1207,8 +2003,8 @@ func (o CloudProviderAccessAuthorizationFeatureUsageArrayOutput) Index(i pulumi.
 }
 
 type CloudProviderAccessFeatureUsage struct {
-	FeatureId   *string `pulumi:"featureId"`
-	FeatureType *string `pulumi:"featureType"`
+	FeatureId   map[string]interface{} `pulumi:"featureId"`
+	FeatureType *string                `pulumi:"featureType"`
 }
 
 // CloudProviderAccessFeatureUsageInput is an input type that accepts CloudProviderAccessFeatureUsageArgs and CloudProviderAccessFeatureUsageOutput values.
@@ -1223,7 +2019,7 @@ type CloudProviderAccessFeatureUsageInput interface {
 }
 
 type CloudProviderAccessFeatureUsageArgs struct {
-	FeatureId   pulumi.StringPtrInput `pulumi:"featureId"`
+	FeatureId   pulumi.MapInput       `pulumi:"featureId"`
 	FeatureType pulumi.StringPtrInput `pulumi:"featureType"`
 }
 
@@ -1278,8 +2074,8 @@ func (o CloudProviderAccessFeatureUsageOutput) ToCloudProviderAccessFeatureUsage
 	return o
 }
 
-func (o CloudProviderAccessFeatureUsageOutput) FeatureId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CloudProviderAccessFeatureUsage) *string { return v.FeatureId }).(pulumi.StringPtrOutput)
+func (o CloudProviderAccessFeatureUsageOutput) FeatureId() pulumi.MapOutput {
+	return o.ApplyT(func(v CloudProviderAccessFeatureUsage) map[string]interface{} { return v.FeatureId }).(pulumi.MapOutput)
 }
 
 func (o CloudProviderAccessFeatureUsageOutput) FeatureType() pulumi.StringPtrOutput {
@@ -1306,145 +2102,104 @@ func (o CloudProviderAccessFeatureUsageArrayOutput) Index(i pulumi.IntInput) Clo
 	}).(CloudProviderAccessFeatureUsageOutput)
 }
 
-type CloudProviderAccessSetupAws struct {
+type CloudProviderAccessSetupAwsConfig struct {
 	AtlasAssumedRoleExternalId *string `pulumi:"atlasAssumedRoleExternalId"`
 	AtlasAwsAccountArn         *string `pulumi:"atlasAwsAccountArn"`
 }
 
-// CloudProviderAccessSetupAwsInput is an input type that accepts CloudProviderAccessSetupAwsArgs and CloudProviderAccessSetupAwsOutput values.
-// You can construct a concrete instance of `CloudProviderAccessSetupAwsInput` via:
+// CloudProviderAccessSetupAwsConfigInput is an input type that accepts CloudProviderAccessSetupAwsConfigArgs and CloudProviderAccessSetupAwsConfigOutput values.
+// You can construct a concrete instance of `CloudProviderAccessSetupAwsConfigInput` via:
 //
-//          CloudProviderAccessSetupAwsArgs{...}
-type CloudProviderAccessSetupAwsInput interface {
+//          CloudProviderAccessSetupAwsConfigArgs{...}
+type CloudProviderAccessSetupAwsConfigInput interface {
 	pulumi.Input
 
-	ToCloudProviderAccessSetupAwsOutput() CloudProviderAccessSetupAwsOutput
-	ToCloudProviderAccessSetupAwsOutputWithContext(context.Context) CloudProviderAccessSetupAwsOutput
+	ToCloudProviderAccessSetupAwsConfigOutput() CloudProviderAccessSetupAwsConfigOutput
+	ToCloudProviderAccessSetupAwsConfigOutputWithContext(context.Context) CloudProviderAccessSetupAwsConfigOutput
 }
 
-type CloudProviderAccessSetupAwsArgs struct {
+type CloudProviderAccessSetupAwsConfigArgs struct {
 	AtlasAssumedRoleExternalId pulumi.StringPtrInput `pulumi:"atlasAssumedRoleExternalId"`
 	AtlasAwsAccountArn         pulumi.StringPtrInput `pulumi:"atlasAwsAccountArn"`
 }
 
-func (CloudProviderAccessSetupAwsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderAccessSetupAws)(nil)).Elem()
+func (CloudProviderAccessSetupAwsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessSetupAwsConfig)(nil)).Elem()
 }
 
-func (i CloudProviderAccessSetupAwsArgs) ToCloudProviderAccessSetupAwsOutput() CloudProviderAccessSetupAwsOutput {
-	return i.ToCloudProviderAccessSetupAwsOutputWithContext(context.Background())
+func (i CloudProviderAccessSetupAwsConfigArgs) ToCloudProviderAccessSetupAwsConfigOutput() CloudProviderAccessSetupAwsConfigOutput {
+	return i.ToCloudProviderAccessSetupAwsConfigOutputWithContext(context.Background())
 }
 
-func (i CloudProviderAccessSetupAwsArgs) ToCloudProviderAccessSetupAwsOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAwsOutput)
+func (i CloudProviderAccessSetupAwsConfigArgs) ToCloudProviderAccessSetupAwsConfigOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAwsConfigOutput)
 }
 
-func (i CloudProviderAccessSetupAwsArgs) ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput {
-	return i.ToCloudProviderAccessSetupAwsPtrOutputWithContext(context.Background())
-}
-
-func (i CloudProviderAccessSetupAwsArgs) ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAwsOutput).ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx)
-}
-
-// CloudProviderAccessSetupAwsPtrInput is an input type that accepts CloudProviderAccessSetupAwsArgs, CloudProviderAccessSetupAwsPtr and CloudProviderAccessSetupAwsPtrOutput values.
-// You can construct a concrete instance of `CloudProviderAccessSetupAwsPtrInput` via:
+// CloudProviderAccessSetupAwsConfigArrayInput is an input type that accepts CloudProviderAccessSetupAwsConfigArray and CloudProviderAccessSetupAwsConfigArrayOutput values.
+// You can construct a concrete instance of `CloudProviderAccessSetupAwsConfigArrayInput` via:
 //
-//          CloudProviderAccessSetupAwsArgs{...}
-//
-//  or:
-//
-//          nil
-type CloudProviderAccessSetupAwsPtrInput interface {
+//          CloudProviderAccessSetupAwsConfigArray{ CloudProviderAccessSetupAwsConfigArgs{...} }
+type CloudProviderAccessSetupAwsConfigArrayInput interface {
 	pulumi.Input
 
-	ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput
-	ToCloudProviderAccessSetupAwsPtrOutputWithContext(context.Context) CloudProviderAccessSetupAwsPtrOutput
+	ToCloudProviderAccessSetupAwsConfigArrayOutput() CloudProviderAccessSetupAwsConfigArrayOutput
+	ToCloudProviderAccessSetupAwsConfigArrayOutputWithContext(context.Context) CloudProviderAccessSetupAwsConfigArrayOutput
 }
 
-type cloudProviderAccessSetupAwsPtrType CloudProviderAccessSetupAwsArgs
+type CloudProviderAccessSetupAwsConfigArray []CloudProviderAccessSetupAwsConfigInput
 
-func CloudProviderAccessSetupAwsPtr(v *CloudProviderAccessSetupAwsArgs) CloudProviderAccessSetupAwsPtrInput {
-	return (*cloudProviderAccessSetupAwsPtrType)(v)
+func (CloudProviderAccessSetupAwsConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessSetupAwsConfig)(nil)).Elem()
 }
 
-func (*cloudProviderAccessSetupAwsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderAccessSetupAws)(nil)).Elem()
+func (i CloudProviderAccessSetupAwsConfigArray) ToCloudProviderAccessSetupAwsConfigArrayOutput() CloudProviderAccessSetupAwsConfigArrayOutput {
+	return i.ToCloudProviderAccessSetupAwsConfigArrayOutputWithContext(context.Background())
 }
 
-func (i *cloudProviderAccessSetupAwsPtrType) ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput {
-	return i.ToCloudProviderAccessSetupAwsPtrOutputWithContext(context.Background())
+func (i CloudProviderAccessSetupAwsConfigArray) ToCloudProviderAccessSetupAwsConfigArrayOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAwsConfigArrayOutput)
 }
 
-func (i *cloudProviderAccessSetupAwsPtrType) ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessSetupAwsPtrOutput)
+type CloudProviderAccessSetupAwsConfigOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessSetupAwsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderAccessSetupAwsConfig)(nil)).Elem()
 }
 
-type CloudProviderAccessSetupAwsOutput struct{ *pulumi.OutputState }
-
-func (CloudProviderAccessSetupAwsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderAccessSetupAws)(nil)).Elem()
-}
-
-func (o CloudProviderAccessSetupAwsOutput) ToCloudProviderAccessSetupAwsOutput() CloudProviderAccessSetupAwsOutput {
+func (o CloudProviderAccessSetupAwsConfigOutput) ToCloudProviderAccessSetupAwsConfigOutput() CloudProviderAccessSetupAwsConfigOutput {
 	return o
 }
 
-func (o CloudProviderAccessSetupAwsOutput) ToCloudProviderAccessSetupAwsOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsOutput {
+func (o CloudProviderAccessSetupAwsConfigOutput) ToCloudProviderAccessSetupAwsConfigOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsConfigOutput {
 	return o
 }
 
-func (o CloudProviderAccessSetupAwsOutput) ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput {
-	return o.ToCloudProviderAccessSetupAwsPtrOutputWithContext(context.Background())
+func (o CloudProviderAccessSetupAwsConfigOutput) AtlasAssumedRoleExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupAwsConfig) *string { return v.AtlasAssumedRoleExternalId }).(pulumi.StringPtrOutput)
 }
 
-func (o CloudProviderAccessSetupAwsOutput) ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsPtrOutput {
-	return o.ApplyT(func(v CloudProviderAccessSetupAws) *CloudProviderAccessSetupAws {
-		return &v
-	}).(CloudProviderAccessSetupAwsPtrOutput)
-}
-func (o CloudProviderAccessSetupAwsOutput) AtlasAssumedRoleExternalId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CloudProviderAccessSetupAws) *string { return v.AtlasAssumedRoleExternalId }).(pulumi.StringPtrOutput)
+func (o CloudProviderAccessSetupAwsConfigOutput) AtlasAwsAccountArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderAccessSetupAwsConfig) *string { return v.AtlasAwsAccountArn }).(pulumi.StringPtrOutput)
 }
 
-func (o CloudProviderAccessSetupAwsOutput) AtlasAwsAccountArn() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CloudProviderAccessSetupAws) *string { return v.AtlasAwsAccountArn }).(pulumi.StringPtrOutput)
+type CloudProviderAccessSetupAwsConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudProviderAccessSetupAwsConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudProviderAccessSetupAwsConfig)(nil)).Elem()
 }
 
-type CloudProviderAccessSetupAwsPtrOutput struct{ *pulumi.OutputState }
-
-func (CloudProviderAccessSetupAwsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderAccessSetupAws)(nil)).Elem()
-}
-
-func (o CloudProviderAccessSetupAwsPtrOutput) ToCloudProviderAccessSetupAwsPtrOutput() CloudProviderAccessSetupAwsPtrOutput {
+func (o CloudProviderAccessSetupAwsConfigArrayOutput) ToCloudProviderAccessSetupAwsConfigArrayOutput() CloudProviderAccessSetupAwsConfigArrayOutput {
 	return o
 }
 
-func (o CloudProviderAccessSetupAwsPtrOutput) ToCloudProviderAccessSetupAwsPtrOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsPtrOutput {
+func (o CloudProviderAccessSetupAwsConfigArrayOutput) ToCloudProviderAccessSetupAwsConfigArrayOutputWithContext(ctx context.Context) CloudProviderAccessSetupAwsConfigArrayOutput {
 	return o
 }
 
-func (o CloudProviderAccessSetupAwsPtrOutput) Elem() CloudProviderAccessSetupAwsOutput {
-	return o.ApplyT(func(v *CloudProviderAccessSetupAws) CloudProviderAccessSetupAws { return *v }).(CloudProviderAccessSetupAwsOutput)
-}
-
-func (o CloudProviderAccessSetupAwsPtrOutput) AtlasAssumedRoleExternalId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudProviderAccessSetupAws) *string {
-		if v == nil {
-			return nil
-		}
-		return v.AtlasAssumedRoleExternalId
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o CloudProviderAccessSetupAwsPtrOutput) AtlasAwsAccountArn() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudProviderAccessSetupAws) *string {
-		if v == nil {
-			return nil
-		}
-		return v.AtlasAwsAccountArn
-	}).(pulumi.StringPtrOutput)
+func (o CloudProviderAccessSetupAwsConfigArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessSetupAwsConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessSetupAwsConfig {
+		return vs[0].([]CloudProviderAccessSetupAwsConfig)[vs[1].(int)]
+	}).(CloudProviderAccessSetupAwsConfigOutput)
 }
 
 type CloudProviderSnapshotBackupPolicyPolicy struct {
@@ -1667,7 +2422,7 @@ func (o CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayOutput) Index(i pu
 	}).(CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput)
 }
 
-type CloudProviderSnapshotRestoreJobDeliveryType struct {
+type CloudProviderSnapshotRestoreJobDeliveryTypeConfig struct {
 	Automated             *bool `pulumi:"automated"`
 	Download              *bool `pulumi:"download"`
 	OplogInc              *int  `pulumi:"oplogInc"`
@@ -1679,18 +2434,18 @@ type CloudProviderSnapshotRestoreJobDeliveryType struct {
 	TargetProjectId   *string `pulumi:"targetProjectId"`
 }
 
-// CloudProviderSnapshotRestoreJobDeliveryTypeInput is an input type that accepts CloudProviderSnapshotRestoreJobDeliveryTypeArgs and CloudProviderSnapshotRestoreJobDeliveryTypeOutput values.
-// You can construct a concrete instance of `CloudProviderSnapshotRestoreJobDeliveryTypeInput` via:
+// CloudProviderSnapshotRestoreJobDeliveryTypeConfigInput is an input type that accepts CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs and CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput values.
+// You can construct a concrete instance of `CloudProviderSnapshotRestoreJobDeliveryTypeConfigInput` via:
 //
-//          CloudProviderSnapshotRestoreJobDeliveryTypeArgs{...}
-type CloudProviderSnapshotRestoreJobDeliveryTypeInput interface {
+//          CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{...}
+type CloudProviderSnapshotRestoreJobDeliveryTypeConfigInput interface {
 	pulumi.Input
 
-	ToCloudProviderSnapshotRestoreJobDeliveryTypeOutput() CloudProviderSnapshotRestoreJobDeliveryTypeOutput
-	ToCloudProviderSnapshotRestoreJobDeliveryTypeOutputWithContext(context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeOutput
+	ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput() CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput
+	ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigOutputWithContext(context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput
 }
 
-type CloudProviderSnapshotRestoreJobDeliveryTypeArgs struct {
+type CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs struct {
 	Automated             pulumi.BoolPtrInput `pulumi:"automated"`
 	Download              pulumi.BoolPtrInput `pulumi:"download"`
 	OplogInc              pulumi.IntPtrInput  `pulumi:"oplogInc"`
@@ -1702,137 +2457,137 @@ type CloudProviderSnapshotRestoreJobDeliveryTypeArgs struct {
 	TargetProjectId   pulumi.StringPtrInput `pulumi:"targetProjectId"`
 }
 
-func (CloudProviderSnapshotRestoreJobDeliveryTypeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotRestoreJobDeliveryType)(nil)).Elem()
+func (CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotRestoreJobDeliveryTypeConfig)(nil)).Elem()
 }
 
-func (i CloudProviderSnapshotRestoreJobDeliveryTypeArgs) ToCloudProviderSnapshotRestoreJobDeliveryTypeOutput() CloudProviderSnapshotRestoreJobDeliveryTypeOutput {
-	return i.ToCloudProviderSnapshotRestoreJobDeliveryTypeOutputWithContext(context.Background())
+func (i CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput() CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput {
+	return i.ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigOutputWithContext(context.Background())
 }
 
-func (i CloudProviderSnapshotRestoreJobDeliveryTypeArgs) ToCloudProviderSnapshotRestoreJobDeliveryTypeOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobDeliveryTypeOutput)
+func (i CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput)
 }
 
-func (i CloudProviderSnapshotRestoreJobDeliveryTypeArgs) ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput {
-	return i.ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(context.Background())
+func (i CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return i.ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(context.Background())
 }
 
-func (i CloudProviderSnapshotRestoreJobDeliveryTypeArgs) ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobDeliveryTypeOutput).ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(ctx)
+func (i CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput).ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx)
 }
 
-// CloudProviderSnapshotRestoreJobDeliveryTypePtrInput is an input type that accepts CloudProviderSnapshotRestoreJobDeliveryTypeArgs, CloudProviderSnapshotRestoreJobDeliveryTypePtr and CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput values.
-// You can construct a concrete instance of `CloudProviderSnapshotRestoreJobDeliveryTypePtrInput` via:
+// CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput is an input type that accepts CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs, CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtr and CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput values.
+// You can construct a concrete instance of `CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput` via:
 //
-//          CloudProviderSnapshotRestoreJobDeliveryTypeArgs{...}
+//          CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{...}
 //
 //  or:
 //
 //          nil
-type CloudProviderSnapshotRestoreJobDeliveryTypePtrInput interface {
+type CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput interface {
 	pulumi.Input
 
-	ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput
-	ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(context.Context) CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput
+	ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput
+	ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput
 }
 
-type cloudProviderSnapshotRestoreJobDeliveryTypePtrType CloudProviderSnapshotRestoreJobDeliveryTypeArgs
+type cloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrType CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs
 
-func CloudProviderSnapshotRestoreJobDeliveryTypePtr(v *CloudProviderSnapshotRestoreJobDeliveryTypeArgs) CloudProviderSnapshotRestoreJobDeliveryTypePtrInput {
-	return (*cloudProviderSnapshotRestoreJobDeliveryTypePtrType)(v)
+func CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtr(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs) CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput {
+	return (*cloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrType)(v)
 }
 
-func (*cloudProviderSnapshotRestoreJobDeliveryTypePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderSnapshotRestoreJobDeliveryType)(nil)).Elem()
+func (*cloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderSnapshotRestoreJobDeliveryTypeConfig)(nil)).Elem()
 }
 
-func (i *cloudProviderSnapshotRestoreJobDeliveryTypePtrType) ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput {
-	return i.ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(context.Background())
+func (i *cloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrType) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return i.ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(context.Background())
 }
 
-func (i *cloudProviderSnapshotRestoreJobDeliveryTypePtrType) ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput)
+func (i *cloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrType) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput)
 }
 
-type CloudProviderSnapshotRestoreJobDeliveryTypeOutput struct{ *pulumi.OutputState }
+type CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput struct{ *pulumi.OutputState }
 
-func (CloudProviderSnapshotRestoreJobDeliveryTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotRestoreJobDeliveryType)(nil)).Elem()
+func (CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudProviderSnapshotRestoreJobDeliveryTypeConfig)(nil)).Elem()
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypeOutput() CloudProviderSnapshotRestoreJobDeliveryTypeOutput {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput() CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput {
 	return o
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypeOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeOutput {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput {
 	return o
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput {
-	return o.ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(context.Background())
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return o.ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(context.Background())
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *CloudProviderSnapshotRestoreJobDeliveryType {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *CloudProviderSnapshotRestoreJobDeliveryTypeConfig {
 		return &v
-	}).(CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput)
+	}).(CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput)
 }
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) Automated() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *bool { return v.Automated }).(pulumi.BoolPtrOutput)
-}
-
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) Download() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *bool { return v.Download }).(pulumi.BoolPtrOutput)
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) Automated() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.Automated }).(pulumi.BoolPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) OplogInc() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *int { return v.OplogInc }).(pulumi.IntPtrOutput)
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) Download() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.Download }).(pulumi.BoolPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) OplogTs() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *int { return v.OplogTs }).(pulumi.IntPtrOutput)
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) OplogInc() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *int { return v.OplogInc }).(pulumi.IntPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) PointInTime() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *bool { return v.PointInTime }).(pulumi.BoolPtrOutput)
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) OplogTs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *int { return v.OplogTs }).(pulumi.IntPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *int { return v.PointInTimeUtcSeconds }).(pulumi.IntPtrOutput)
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) PointInTime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.PointInTime }).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *int { return v.PointInTimeUtcSeconds }).(pulumi.IntPtrOutput)
 }
 
 // Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) TargetClusterName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *string { return v.TargetClusterName }).(pulumi.StringPtrOutput)
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) TargetClusterName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetClusterName }).(pulumi.StringPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypeOutput) TargetProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryType) *string { return v.TargetProjectId }).(pulumi.StringPtrOutput)
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) TargetProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetProjectId }).(pulumi.StringPtrOutput)
 }
 
-type CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput struct{ *pulumi.OutputState }
+type CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderSnapshotRestoreJobDeliveryType)(nil)).Elem()
+func (CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudProviderSnapshotRestoreJobDeliveryTypeConfig)(nil)).Elem()
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
 	return o
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypePtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) ToCloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
 	return o
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Elem() CloudProviderSnapshotRestoreJobDeliveryTypeOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) CloudProviderSnapshotRestoreJobDeliveryType {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Elem() CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) CloudProviderSnapshotRestoreJobDeliveryTypeConfig {
 		return *v
-	}).(CloudProviderSnapshotRestoreJobDeliveryTypeOutput)
+	}).(CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Automated() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *bool {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Automated() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *bool {
 		if v == nil {
 			return nil
 		}
@@ -1840,8 +2595,8 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Automated() pulumi
 	}).(pulumi.BoolPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Download() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *bool {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Download() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *bool {
 		if v == nil {
 			return nil
 		}
@@ -1849,8 +2604,8 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) Download() pulumi.
 	}).(pulumi.BoolPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) OplogInc() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *int {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) OplogInc() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *int {
 		if v == nil {
 			return nil
 		}
@@ -1858,8 +2613,8 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) OplogInc() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) OplogTs() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *int {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) OplogTs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *int {
 		if v == nil {
 			return nil
 		}
@@ -1867,8 +2622,8 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) OplogTs() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) PointInTime() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *bool {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) PointInTime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *bool {
 		if v == nil {
 			return nil
 		}
@@ -1876,8 +2631,8 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) PointInTime() pulu
 	}).(pulumi.BoolPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *int {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *int {
 		if v == nil {
 			return nil
 		}
@@ -1886,8 +2641,8 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) PointInTimeUtcSeco
 }
 
 // Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) TargetClusterName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *string {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetClusterName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -1895,8 +2650,8 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) TargetClusterName(
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput) TargetProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryType) *string {
+func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -2149,168 +2904,6 @@ func (o ClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-type ClusterBiConnector struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-	// *
-	// - Set to `true` to enable BI Connector for Atlas.
-	// - Set to `false` to disable BI Connector for Atlas.
-	Enabled *string `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	ReadPreference *string `pulumi:"readPreference"`
-}
-
-// ClusterBiConnectorInput is an input type that accepts ClusterBiConnectorArgs and ClusterBiConnectorOutput values.
-// You can construct a concrete instance of `ClusterBiConnectorInput` via:
-//
-//          ClusterBiConnectorArgs{...}
-type ClusterBiConnectorInput interface {
-	pulumi.Input
-
-	ToClusterBiConnectorOutput() ClusterBiConnectorOutput
-	ToClusterBiConnectorOutputWithContext(context.Context) ClusterBiConnectorOutput
-}
-
-type ClusterBiConnectorArgs struct {
-	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-	// *
-	// - Set to `true` to enable BI Connector for Atlas.
-	// - Set to `false` to disable BI Connector for Atlas.
-	Enabled pulumi.StringPtrInput `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	ReadPreference pulumi.StringPtrInput `pulumi:"readPreference"`
-}
-
-func (ClusterBiConnectorArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterBiConnector)(nil)).Elem()
-}
-
-func (i ClusterBiConnectorArgs) ToClusterBiConnectorOutput() ClusterBiConnectorOutput {
-	return i.ToClusterBiConnectorOutputWithContext(context.Background())
-}
-
-func (i ClusterBiConnectorArgs) ToClusterBiConnectorOutputWithContext(ctx context.Context) ClusterBiConnectorOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterBiConnectorOutput)
-}
-
-func (i ClusterBiConnectorArgs) ToClusterBiConnectorPtrOutput() ClusterBiConnectorPtrOutput {
-	return i.ToClusterBiConnectorPtrOutputWithContext(context.Background())
-}
-
-func (i ClusterBiConnectorArgs) ToClusterBiConnectorPtrOutputWithContext(ctx context.Context) ClusterBiConnectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterBiConnectorOutput).ToClusterBiConnectorPtrOutputWithContext(ctx)
-}
-
-// ClusterBiConnectorPtrInput is an input type that accepts ClusterBiConnectorArgs, ClusterBiConnectorPtr and ClusterBiConnectorPtrOutput values.
-// You can construct a concrete instance of `ClusterBiConnectorPtrInput` via:
-//
-//          ClusterBiConnectorArgs{...}
-//
-//  or:
-//
-//          nil
-type ClusterBiConnectorPtrInput interface {
-	pulumi.Input
-
-	ToClusterBiConnectorPtrOutput() ClusterBiConnectorPtrOutput
-	ToClusterBiConnectorPtrOutputWithContext(context.Context) ClusterBiConnectorPtrOutput
-}
-
-type clusterBiConnectorPtrType ClusterBiConnectorArgs
-
-func ClusterBiConnectorPtr(v *ClusterBiConnectorArgs) ClusterBiConnectorPtrInput {
-	return (*clusterBiConnectorPtrType)(v)
-}
-
-func (*clusterBiConnectorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClusterBiConnector)(nil)).Elem()
-}
-
-func (i *clusterBiConnectorPtrType) ToClusterBiConnectorPtrOutput() ClusterBiConnectorPtrOutput {
-	return i.ToClusterBiConnectorPtrOutputWithContext(context.Background())
-}
-
-func (i *clusterBiConnectorPtrType) ToClusterBiConnectorPtrOutputWithContext(ctx context.Context) ClusterBiConnectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterBiConnectorPtrOutput)
-}
-
-type ClusterBiConnectorOutput struct{ *pulumi.OutputState }
-
-func (ClusterBiConnectorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterBiConnector)(nil)).Elem()
-}
-
-func (o ClusterBiConnectorOutput) ToClusterBiConnectorOutput() ClusterBiConnectorOutput {
-	return o
-}
-
-func (o ClusterBiConnectorOutput) ToClusterBiConnectorOutputWithContext(ctx context.Context) ClusterBiConnectorOutput {
-	return o
-}
-
-func (o ClusterBiConnectorOutput) ToClusterBiConnectorPtrOutput() ClusterBiConnectorPtrOutput {
-	return o.ToClusterBiConnectorPtrOutputWithContext(context.Background())
-}
-
-func (o ClusterBiConnectorOutput) ToClusterBiConnectorPtrOutputWithContext(ctx context.Context) ClusterBiConnectorPtrOutput {
-	return o.ApplyT(func(v ClusterBiConnector) *ClusterBiConnector {
-		return &v
-	}).(ClusterBiConnectorPtrOutput)
-}
-
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-// *
-// - Set to `true` to enable BI Connector for Atlas.
-// - Set to `false` to disable BI Connector for Atlas.
-func (o ClusterBiConnectorOutput) Enabled() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterBiConnector) *string { return v.Enabled }).(pulumi.StringPtrOutput)
-}
-
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-func (o ClusterBiConnectorOutput) ReadPreference() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterBiConnector) *string { return v.ReadPreference }).(pulumi.StringPtrOutput)
-}
-
-type ClusterBiConnectorPtrOutput struct{ *pulumi.OutputState }
-
-func (ClusterBiConnectorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClusterBiConnector)(nil)).Elem()
-}
-
-func (o ClusterBiConnectorPtrOutput) ToClusterBiConnectorPtrOutput() ClusterBiConnectorPtrOutput {
-	return o
-}
-
-func (o ClusterBiConnectorPtrOutput) ToClusterBiConnectorPtrOutputWithContext(ctx context.Context) ClusterBiConnectorPtrOutput {
-	return o
-}
-
-func (o ClusterBiConnectorPtrOutput) Elem() ClusterBiConnectorOutput {
-	return o.ApplyT(func(v *ClusterBiConnector) ClusterBiConnector { return *v }).(ClusterBiConnectorOutput)
-}
-
-// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-// *
-// - Set to `true` to enable BI Connector for Atlas.
-// - Set to `false` to disable BI Connector for Atlas.
-func (o ClusterBiConnectorPtrOutput) Enabled() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ClusterBiConnector) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Enabled
-	}).(pulumi.StringPtrOutput)
-}
-
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-func (o ClusterBiConnectorPtrOutput) ReadPreference() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ClusterBiConnector) *string {
-		if v == nil {
-			return nil
-		}
-		return v.ReadPreference
-	}).(pulumi.StringPtrOutput)
-}
-
 type ClusterBiConnectorConfig struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
 	// *
@@ -2473,452 +3066,363 @@ func (o ClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-type ClusterConnectionStrings struct {
+type ClusterConnectionString struct {
 	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
 	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
 	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
-	AwsPrivateLinkSrv map[string]interface{}                    `pulumi:"awsPrivateLinkSrv"`
-	Private           *string                                   `pulumi:"private"`
-	PrivateEndpoints  []ClusterConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv        *string                                   `pulumi:"privateSrv"`
-	Standard          *string                                   `pulumi:"standard"`
-	StandardSrv       *string                                   `pulumi:"standardSrv"`
+	AwsPrivateLinkSrv map[string]interface{}                   `pulumi:"awsPrivateLinkSrv"`
+	Private           *string                                  `pulumi:"private"`
+	PrivateEndpoints  []ClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        *string                                  `pulumi:"privateSrv"`
+	Standard          *string                                  `pulumi:"standard"`
+	StandardSrv       *string                                  `pulumi:"standardSrv"`
 }
 
-// ClusterConnectionStringsInput is an input type that accepts ClusterConnectionStringsArgs and ClusterConnectionStringsOutput values.
-// You can construct a concrete instance of `ClusterConnectionStringsInput` via:
+// ClusterConnectionStringInput is an input type that accepts ClusterConnectionStringArgs and ClusterConnectionStringOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringInput` via:
 //
-//          ClusterConnectionStringsArgs{...}
-type ClusterConnectionStringsInput interface {
+//          ClusterConnectionStringArgs{...}
+type ClusterConnectionStringInput interface {
 	pulumi.Input
 
-	ToClusterConnectionStringsOutput() ClusterConnectionStringsOutput
-	ToClusterConnectionStringsOutputWithContext(context.Context) ClusterConnectionStringsOutput
+	ToClusterConnectionStringOutput() ClusterConnectionStringOutput
+	ToClusterConnectionStringOutputWithContext(context.Context) ClusterConnectionStringOutput
 }
 
-type ClusterConnectionStringsArgs struct {
+type ClusterConnectionStringArgs struct {
 	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
 	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
 	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
-	AwsPrivateLinkSrv pulumi.MapInput                                   `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringPtrInput                             `pulumi:"private"`
-	PrivateEndpoints  ClusterConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv        pulumi.StringPtrInput                             `pulumi:"privateSrv"`
-	Standard          pulumi.StringPtrInput                             `pulumi:"standard"`
-	StandardSrv       pulumi.StringPtrInput                             `pulumi:"standardSrv"`
+	AwsPrivateLinkSrv pulumi.MapInput                                  `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringPtrInput                            `pulumi:"private"`
+	PrivateEndpoints  ClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringPtrInput                            `pulumi:"privateSrv"`
+	Standard          pulumi.StringPtrInput                            `pulumi:"standard"`
+	StandardSrv       pulumi.StringPtrInput                            `pulumi:"standardSrv"`
 }
 
-func (ClusterConnectionStringsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterConnectionStrings)(nil)).Elem()
+func (ClusterConnectionStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionString)(nil)).Elem()
 }
 
-func (i ClusterConnectionStringsArgs) ToClusterConnectionStringsOutput() ClusterConnectionStringsOutput {
-	return i.ToClusterConnectionStringsOutputWithContext(context.Background())
+func (i ClusterConnectionStringArgs) ToClusterConnectionStringOutput() ClusterConnectionStringOutput {
+	return i.ToClusterConnectionStringOutputWithContext(context.Background())
 }
 
-func (i ClusterConnectionStringsArgs) ToClusterConnectionStringsOutputWithContext(ctx context.Context) ClusterConnectionStringsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsOutput)
+func (i ClusterConnectionStringArgs) ToClusterConnectionStringOutputWithContext(ctx context.Context) ClusterConnectionStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringOutput)
 }
 
-func (i ClusterConnectionStringsArgs) ToClusterConnectionStringsPtrOutput() ClusterConnectionStringsPtrOutput {
-	return i.ToClusterConnectionStringsPtrOutputWithContext(context.Background())
-}
-
-func (i ClusterConnectionStringsArgs) ToClusterConnectionStringsPtrOutputWithContext(ctx context.Context) ClusterConnectionStringsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsOutput).ToClusterConnectionStringsPtrOutputWithContext(ctx)
-}
-
-// ClusterConnectionStringsPtrInput is an input type that accepts ClusterConnectionStringsArgs, ClusterConnectionStringsPtr and ClusterConnectionStringsPtrOutput values.
-// You can construct a concrete instance of `ClusterConnectionStringsPtrInput` via:
+// ClusterConnectionStringArrayInput is an input type that accepts ClusterConnectionStringArray and ClusterConnectionStringArrayOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringArrayInput` via:
 //
-//          ClusterConnectionStringsArgs{...}
-//
-//  or:
-//
-//          nil
-type ClusterConnectionStringsPtrInput interface {
+//          ClusterConnectionStringArray{ ClusterConnectionStringArgs{...} }
+type ClusterConnectionStringArrayInput interface {
 	pulumi.Input
 
-	ToClusterConnectionStringsPtrOutput() ClusterConnectionStringsPtrOutput
-	ToClusterConnectionStringsPtrOutputWithContext(context.Context) ClusterConnectionStringsPtrOutput
+	ToClusterConnectionStringArrayOutput() ClusterConnectionStringArrayOutput
+	ToClusterConnectionStringArrayOutputWithContext(context.Context) ClusterConnectionStringArrayOutput
 }
 
-type clusterConnectionStringsPtrType ClusterConnectionStringsArgs
+type ClusterConnectionStringArray []ClusterConnectionStringInput
 
-func ClusterConnectionStringsPtr(v *ClusterConnectionStringsArgs) ClusterConnectionStringsPtrInput {
-	return (*clusterConnectionStringsPtrType)(v)
+func (ClusterConnectionStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionString)(nil)).Elem()
 }
 
-func (*clusterConnectionStringsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClusterConnectionStrings)(nil)).Elem()
+func (i ClusterConnectionStringArray) ToClusterConnectionStringArrayOutput() ClusterConnectionStringArrayOutput {
+	return i.ToClusterConnectionStringArrayOutputWithContext(context.Background())
 }
 
-func (i *clusterConnectionStringsPtrType) ToClusterConnectionStringsPtrOutput() ClusterConnectionStringsPtrOutput {
-	return i.ToClusterConnectionStringsPtrOutputWithContext(context.Background())
+func (i ClusterConnectionStringArray) ToClusterConnectionStringArrayOutputWithContext(ctx context.Context) ClusterConnectionStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringArrayOutput)
 }
 
-func (i *clusterConnectionStringsPtrType) ToClusterConnectionStringsPtrOutputWithContext(ctx context.Context) ClusterConnectionStringsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPtrOutput)
+type ClusterConnectionStringOutput struct{ *pulumi.OutputState }
+
+func (ClusterConnectionStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionString)(nil)).Elem()
 }
 
-type ClusterConnectionStringsOutput struct{ *pulumi.OutputState }
-
-func (ClusterConnectionStringsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterConnectionStrings)(nil)).Elem()
-}
-
-func (o ClusterConnectionStringsOutput) ToClusterConnectionStringsOutput() ClusterConnectionStringsOutput {
+func (o ClusterConnectionStringOutput) ToClusterConnectionStringOutput() ClusterConnectionStringOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsOutput) ToClusterConnectionStringsOutputWithContext(ctx context.Context) ClusterConnectionStringsOutput {
+func (o ClusterConnectionStringOutput) ToClusterConnectionStringOutputWithContext(ctx context.Context) ClusterConnectionStringOutput {
 	return o
-}
-
-func (o ClusterConnectionStringsOutput) ToClusterConnectionStringsPtrOutput() ClusterConnectionStringsPtrOutput {
-	return o.ToClusterConnectionStringsPtrOutputWithContext(context.Background())
-}
-
-func (o ClusterConnectionStringsOutput) ToClusterConnectionStringsPtrOutputWithContext(ctx context.Context) ClusterConnectionStringsPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *ClusterConnectionStrings {
-		return &v
-	}).(ClusterConnectionStringsPtrOutput)
 }
 
 // Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
-func (o ClusterConnectionStringsOutput) AwsPrivateLink() pulumi.MapOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+func (o ClusterConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
+	return o.ApplyT(func(v ClusterConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
 }
 
 // Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
-func (o ClusterConnectionStringsOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+func (o ClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
+	return o.ApplyT(func(v ClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
 
-func (o ClusterConnectionStringsOutput) Private() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.Private }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringOutput) Private() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionString) *string { return v.Private }).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterConnectionStringsOutput) PrivateEndpoints() ClusterConnectionStringsPrivateEndpointArrayOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) []ClusterConnectionStringsPrivateEndpoint { return v.PrivateEndpoints }).(ClusterConnectionStringsPrivateEndpointArrayOutput)
+func (o ClusterConnectionStringOutput) PrivateEndpoints() ClusterConnectionStringPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v ClusterConnectionString) []ClusterConnectionStringPrivateEndpoint { return v.PrivateEndpoints }).(ClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
-func (o ClusterConnectionStringsOutput) PrivateSrv() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringOutput) PrivateSrv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionString) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterConnectionStringsOutput) Standard() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.Standard }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringOutput) Standard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionString) *string { return v.Standard }).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterConnectionStringsOutput) StandardSrv() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStrings) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringOutput) StandardSrv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionString) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
 }
 
-type ClusterConnectionStringsPtrOutput struct{ *pulumi.OutputState }
+type ClusterConnectionStringArrayOutput struct{ *pulumi.OutputState }
 
-func (ClusterConnectionStringsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ClusterConnectionStrings)(nil)).Elem()
+func (ClusterConnectionStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionString)(nil)).Elem()
 }
 
-func (o ClusterConnectionStringsPtrOutput) ToClusterConnectionStringsPtrOutput() ClusterConnectionStringsPtrOutput {
+func (o ClusterConnectionStringArrayOutput) ToClusterConnectionStringArrayOutput() ClusterConnectionStringArrayOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPtrOutput) ToClusterConnectionStringsPtrOutputWithContext(ctx context.Context) ClusterConnectionStringsPtrOutput {
+func (o ClusterConnectionStringArrayOutput) ToClusterConnectionStringArrayOutputWithContext(ctx context.Context) ClusterConnectionStringArrayOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPtrOutput) Elem() ClusterConnectionStringsOutput {
-	return o.ApplyT(func(v *ClusterConnectionStrings) ClusterConnectionStrings { return *v }).(ClusterConnectionStringsOutput)
+func (o ClusterConnectionStringArrayOutput) Index(i pulumi.IntInput) ClusterConnectionStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterConnectionString {
+		return vs[0].([]ClusterConnectionString)[vs[1].(int)]
+	}).(ClusterConnectionStringOutput)
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
-func (o ClusterConnectionStringsPtrOutput) AwsPrivateLink() pulumi.MapOutput {
-	return o.ApplyT(func(v *ClusterConnectionStrings) map[string]interface{} {
-		if v == nil {
-			return nil
-		}
-		return v.AwsPrivateLink
-	}).(pulumi.MapOutput)
+type ClusterConnectionStringPrivateEndpoint struct {
+	ConnectionString    *string                                          `pulumi:"connectionString"`
+	Endpoints           []ClusterConnectionStringPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString *string                                          `pulumi:"srvConnectionString"`
+	Type                *string                                          `pulumi:"type"`
 }
 
-// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
-func (o ClusterConnectionStringsPtrOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
-	return o.ApplyT(func(v *ClusterConnectionStrings) map[string]interface{} {
-		if v == nil {
-			return nil
-		}
-		return v.AwsPrivateLinkSrv
-	}).(pulumi.MapOutput)
-}
-
-func (o ClusterConnectionStringsPtrOutput) Private() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ClusterConnectionStrings) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Private
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o ClusterConnectionStringsPtrOutput) PrivateEndpoints() ClusterConnectionStringsPrivateEndpointArrayOutput {
-	return o.ApplyT(func(v *ClusterConnectionStrings) []ClusterConnectionStringsPrivateEndpoint {
-		if v == nil {
-			return nil
-		}
-		return v.PrivateEndpoints
-	}).(ClusterConnectionStringsPrivateEndpointArrayOutput)
-}
-
-func (o ClusterConnectionStringsPtrOutput) PrivateSrv() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ClusterConnectionStrings) *string {
-		if v == nil {
-			return nil
-		}
-		return v.PrivateSrv
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o ClusterConnectionStringsPtrOutput) Standard() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ClusterConnectionStrings) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Standard
-	}).(pulumi.StringPtrOutput)
-}
-
-func (o ClusterConnectionStringsPtrOutput) StandardSrv() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ClusterConnectionStrings) *string {
-		if v == nil {
-			return nil
-		}
-		return v.StandardSrv
-	}).(pulumi.StringPtrOutput)
-}
-
-type ClusterConnectionStringsPrivateEndpoint struct {
-	ConnectionString    *string                                           `pulumi:"connectionString"`
-	Endpoints           []ClusterConnectionStringsPrivateEndpointEndpoint `pulumi:"endpoints"`
-	SrvConnectionString *string                                           `pulumi:"srvConnectionString"`
-	Type                *string                                           `pulumi:"type"`
-}
-
-// ClusterConnectionStringsPrivateEndpointInput is an input type that accepts ClusterConnectionStringsPrivateEndpointArgs and ClusterConnectionStringsPrivateEndpointOutput values.
-// You can construct a concrete instance of `ClusterConnectionStringsPrivateEndpointInput` via:
+// ClusterConnectionStringPrivateEndpointInput is an input type that accepts ClusterConnectionStringPrivateEndpointArgs and ClusterConnectionStringPrivateEndpointOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringPrivateEndpointInput` via:
 //
-//          ClusterConnectionStringsPrivateEndpointArgs{...}
-type ClusterConnectionStringsPrivateEndpointInput interface {
+//          ClusterConnectionStringPrivateEndpointArgs{...}
+type ClusterConnectionStringPrivateEndpointInput interface {
 	pulumi.Input
 
-	ToClusterConnectionStringsPrivateEndpointOutput() ClusterConnectionStringsPrivateEndpointOutput
-	ToClusterConnectionStringsPrivateEndpointOutputWithContext(context.Context) ClusterConnectionStringsPrivateEndpointOutput
+	ToClusterConnectionStringPrivateEndpointOutput() ClusterConnectionStringPrivateEndpointOutput
+	ToClusterConnectionStringPrivateEndpointOutputWithContext(context.Context) ClusterConnectionStringPrivateEndpointOutput
 }
 
-type ClusterConnectionStringsPrivateEndpointArgs struct {
-	ConnectionString    pulumi.StringPtrInput                                     `pulumi:"connectionString"`
-	Endpoints           ClusterConnectionStringsPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
-	SrvConnectionString pulumi.StringPtrInput                                     `pulumi:"srvConnectionString"`
-	Type                pulumi.StringPtrInput                                     `pulumi:"type"`
+type ClusterConnectionStringPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringPtrInput                                    `pulumi:"connectionString"`
+	Endpoints           ClusterConnectionStringPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringPtrInput                                    `pulumi:"srvConnectionString"`
+	Type                pulumi.StringPtrInput                                    `pulumi:"type"`
 }
 
-func (ClusterConnectionStringsPrivateEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+func (ClusterConnectionStringPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionStringPrivateEndpoint)(nil)).Elem()
 }
 
-func (i ClusterConnectionStringsPrivateEndpointArgs) ToClusterConnectionStringsPrivateEndpointOutput() ClusterConnectionStringsPrivateEndpointOutput {
-	return i.ToClusterConnectionStringsPrivateEndpointOutputWithContext(context.Background())
+func (i ClusterConnectionStringPrivateEndpointArgs) ToClusterConnectionStringPrivateEndpointOutput() ClusterConnectionStringPrivateEndpointOutput {
+	return i.ToClusterConnectionStringPrivateEndpointOutputWithContext(context.Background())
 }
 
-func (i ClusterConnectionStringsPrivateEndpointArgs) ToClusterConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPrivateEndpointOutput)
+func (i ClusterConnectionStringPrivateEndpointArgs) ToClusterConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringPrivateEndpointOutput)
 }
 
-// ClusterConnectionStringsPrivateEndpointArrayInput is an input type that accepts ClusterConnectionStringsPrivateEndpointArray and ClusterConnectionStringsPrivateEndpointArrayOutput values.
-// You can construct a concrete instance of `ClusterConnectionStringsPrivateEndpointArrayInput` via:
+// ClusterConnectionStringPrivateEndpointArrayInput is an input type that accepts ClusterConnectionStringPrivateEndpointArray and ClusterConnectionStringPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringPrivateEndpointArrayInput` via:
 //
-//          ClusterConnectionStringsPrivateEndpointArray{ ClusterConnectionStringsPrivateEndpointArgs{...} }
-type ClusterConnectionStringsPrivateEndpointArrayInput interface {
+//          ClusterConnectionStringPrivateEndpointArray{ ClusterConnectionStringPrivateEndpointArgs{...} }
+type ClusterConnectionStringPrivateEndpointArrayInput interface {
 	pulumi.Input
 
-	ToClusterConnectionStringsPrivateEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointArrayOutput
-	ToClusterConnectionStringsPrivateEndpointArrayOutputWithContext(context.Context) ClusterConnectionStringsPrivateEndpointArrayOutput
+	ToClusterConnectionStringPrivateEndpointArrayOutput() ClusterConnectionStringPrivateEndpointArrayOutput
+	ToClusterConnectionStringPrivateEndpointArrayOutputWithContext(context.Context) ClusterConnectionStringPrivateEndpointArrayOutput
 }
 
-type ClusterConnectionStringsPrivateEndpointArray []ClusterConnectionStringsPrivateEndpointInput
+type ClusterConnectionStringPrivateEndpointArray []ClusterConnectionStringPrivateEndpointInput
 
-func (ClusterConnectionStringsPrivateEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+func (ClusterConnectionStringPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionStringPrivateEndpoint)(nil)).Elem()
 }
 
-func (i ClusterConnectionStringsPrivateEndpointArray) ToClusterConnectionStringsPrivateEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointArrayOutput {
-	return i.ToClusterConnectionStringsPrivateEndpointArrayOutputWithContext(context.Background())
+func (i ClusterConnectionStringPrivateEndpointArray) ToClusterConnectionStringPrivateEndpointArrayOutput() ClusterConnectionStringPrivateEndpointArrayOutput {
+	return i.ToClusterConnectionStringPrivateEndpointArrayOutputWithContext(context.Background())
 }
 
-func (i ClusterConnectionStringsPrivateEndpointArray) ToClusterConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPrivateEndpointArrayOutput)
+func (i ClusterConnectionStringPrivateEndpointArray) ToClusterConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
-type ClusterConnectionStringsPrivateEndpointOutput struct{ *pulumi.OutputState }
+type ClusterConnectionStringPrivateEndpointOutput struct{ *pulumi.OutputState }
 
-func (ClusterConnectionStringsPrivateEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+func (ClusterConnectionStringPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionStringPrivateEndpoint)(nil)).Elem()
 }
 
-func (o ClusterConnectionStringsPrivateEndpointOutput) ToClusterConnectionStringsPrivateEndpointOutput() ClusterConnectionStringsPrivateEndpointOutput {
+func (o ClusterConnectionStringPrivateEndpointOutput) ToClusterConnectionStringPrivateEndpointOutput() ClusterConnectionStringPrivateEndpointOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPrivateEndpointOutput) ToClusterConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointOutput {
+func (o ClusterConnectionStringPrivateEndpointOutput) ToClusterConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringPrivateEndpointOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPrivateEndpointOutput) ConnectionString() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpoint) *string { return v.ConnectionString }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringPrivateEndpointOutput) ConnectionString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpoint) *string { return v.ConnectionString }).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterConnectionStringsPrivateEndpointOutput) Endpoints() ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpoint) []ClusterConnectionStringsPrivateEndpointEndpoint {
+func (o ClusterConnectionStringPrivateEndpointOutput) Endpoints() ClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpoint) []ClusterConnectionStringPrivateEndpointEndpoint {
 		return v.Endpoints
-	}).(ClusterConnectionStringsPrivateEndpointEndpointArrayOutput)
+	}).(ClusterConnectionStringPrivateEndpointEndpointArrayOutput)
 }
 
-func (o ClusterConnectionStringsPrivateEndpointOutput) SrvConnectionString() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpoint) *string { return v.SrvConnectionString }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringPrivateEndpointOutput) SrvConnectionString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpoint) *string { return v.SrvConnectionString }).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterConnectionStringsPrivateEndpointOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpoint) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringPrivateEndpointOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpoint) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-type ClusterConnectionStringsPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+type ClusterConnectionStringPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
 
-func (ClusterConnectionStringsPrivateEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+func (ClusterConnectionStringPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionStringPrivateEndpoint)(nil)).Elem()
 }
 
-func (o ClusterConnectionStringsPrivateEndpointArrayOutput) ToClusterConnectionStringsPrivateEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointArrayOutput {
+func (o ClusterConnectionStringPrivateEndpointArrayOutput) ToClusterConnectionStringPrivateEndpointArrayOutput() ClusterConnectionStringPrivateEndpointArrayOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPrivateEndpointArrayOutput) ToClusterConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointArrayOutput {
+func (o ClusterConnectionStringPrivateEndpointArrayOutput) ToClusterConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringPrivateEndpointArrayOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPrivateEndpointArrayOutput) Index(i pulumi.IntInput) ClusterConnectionStringsPrivateEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterConnectionStringsPrivateEndpoint {
-		return vs[0].([]ClusterConnectionStringsPrivateEndpoint)[vs[1].(int)]
-	}).(ClusterConnectionStringsPrivateEndpointOutput)
+func (o ClusterConnectionStringPrivateEndpointArrayOutput) Index(i pulumi.IntInput) ClusterConnectionStringPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterConnectionStringPrivateEndpoint {
+		return vs[0].([]ClusterConnectionStringPrivateEndpoint)[vs[1].(int)]
+	}).(ClusterConnectionStringPrivateEndpointOutput)
 }
 
-type ClusterConnectionStringsPrivateEndpointEndpoint struct {
+type ClusterConnectionStringPrivateEndpointEndpoint struct {
 	EndpointId *string `pulumi:"endpointId"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName *string `pulumi:"providerName"`
 	Region       *string `pulumi:"region"`
 }
 
-// ClusterConnectionStringsPrivateEndpointEndpointInput is an input type that accepts ClusterConnectionStringsPrivateEndpointEndpointArgs and ClusterConnectionStringsPrivateEndpointEndpointOutput values.
-// You can construct a concrete instance of `ClusterConnectionStringsPrivateEndpointEndpointInput` via:
+// ClusterConnectionStringPrivateEndpointEndpointInput is an input type that accepts ClusterConnectionStringPrivateEndpointEndpointArgs and ClusterConnectionStringPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          ClusterConnectionStringsPrivateEndpointEndpointArgs{...}
-type ClusterConnectionStringsPrivateEndpointEndpointInput interface {
+//          ClusterConnectionStringPrivateEndpointEndpointArgs{...}
+type ClusterConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
-	ToClusterConnectionStringsPrivateEndpointEndpointOutput() ClusterConnectionStringsPrivateEndpointEndpointOutput
-	ToClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Context) ClusterConnectionStringsPrivateEndpointEndpointOutput
+	ToClusterConnectionStringPrivateEndpointEndpointOutput() ClusterConnectionStringPrivateEndpointEndpointOutput
+	ToClusterConnectionStringPrivateEndpointEndpointOutputWithContext(context.Context) ClusterConnectionStringPrivateEndpointEndpointOutput
 }
 
-type ClusterConnectionStringsPrivateEndpointEndpointArgs struct {
+type ClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
 	Region       pulumi.StringPtrInput `pulumi:"region"`
 }
 
-func (ClusterConnectionStringsPrivateEndpointEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (ClusterConnectionStringPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (i ClusterConnectionStringsPrivateEndpointEndpointArgs) ToClusterConnectionStringsPrivateEndpointEndpointOutput() ClusterConnectionStringsPrivateEndpointEndpointOutput {
-	return i.ToClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Background())
+func (i ClusterConnectionStringPrivateEndpointEndpointArgs) ToClusterConnectionStringPrivateEndpointEndpointOutput() ClusterConnectionStringPrivateEndpointEndpointOutput {
+	return i.ToClusterConnectionStringPrivateEndpointEndpointOutputWithContext(context.Background())
 }
 
-func (i ClusterConnectionStringsPrivateEndpointEndpointArgs) ToClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPrivateEndpointEndpointOutput)
+func (i ClusterConnectionStringPrivateEndpointEndpointArgs) ToClusterConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringPrivateEndpointEndpointOutput)
 }
 
-// ClusterConnectionStringsPrivateEndpointEndpointArrayInput is an input type that accepts ClusterConnectionStringsPrivateEndpointEndpointArray and ClusterConnectionStringsPrivateEndpointEndpointArrayOutput values.
-// You can construct a concrete instance of `ClusterConnectionStringsPrivateEndpointEndpointArrayInput` via:
+// ClusterConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts ClusterConnectionStringPrivateEndpointEndpointArray and ClusterConnectionStringPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `ClusterConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          ClusterConnectionStringsPrivateEndpointEndpointArray{ ClusterConnectionStringsPrivateEndpointEndpointArgs{...} }
-type ClusterConnectionStringsPrivateEndpointEndpointArrayInput interface {
+//          ClusterConnectionStringPrivateEndpointEndpointArray{ ClusterConnectionStringPrivateEndpointEndpointArgs{...} }
+type ClusterConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
-	ToClusterConnectionStringsPrivateEndpointEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointEndpointArrayOutput
-	ToClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Context) ClusterConnectionStringsPrivateEndpointEndpointArrayOutput
+	ToClusterConnectionStringPrivateEndpointEndpointArrayOutput() ClusterConnectionStringPrivateEndpointEndpointArrayOutput
+	ToClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Context) ClusterConnectionStringPrivateEndpointEndpointArrayOutput
 }
 
-type ClusterConnectionStringsPrivateEndpointEndpointArray []ClusterConnectionStringsPrivateEndpointEndpointInput
+type ClusterConnectionStringPrivateEndpointEndpointArray []ClusterConnectionStringPrivateEndpointEndpointInput
 
-func (ClusterConnectionStringsPrivateEndpointEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (ClusterConnectionStringPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (i ClusterConnectionStringsPrivateEndpointEndpointArray) ToClusterConnectionStringsPrivateEndpointEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return i.ToClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+func (i ClusterConnectionStringPrivateEndpointEndpointArray) ToClusterConnectionStringPrivateEndpointEndpointArrayOutput() ClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return i.ToClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Background())
 }
 
-func (i ClusterConnectionStringsPrivateEndpointEndpointArray) ToClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringsPrivateEndpointEndpointArrayOutput)
+func (i ClusterConnectionStringPrivateEndpointEndpointArray) ToClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterConnectionStringPrivateEndpointEndpointArrayOutput)
 }
 
-type ClusterConnectionStringsPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+type ClusterConnectionStringPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
 
-func (ClusterConnectionStringsPrivateEndpointEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (ClusterConnectionStringPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) ToClusterConnectionStringsPrivateEndpointEndpointOutput() ClusterConnectionStringsPrivateEndpointEndpointOutput {
+func (o ClusterConnectionStringPrivateEndpointEndpointOutput) ToClusterConnectionStringPrivateEndpointEndpointOutput() ClusterConnectionStringPrivateEndpointEndpointOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) ToClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointEndpointOutput {
+func (o ClusterConnectionStringPrivateEndpointEndpointOutput) ToClusterConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) ClusterConnectionStringPrivateEndpointEndpointOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) EndpointId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpointEndpoint) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpointEndpoint) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
 // Cloud service provider on which the servers are provisioned.
-func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
 
-func (o ClusterConnectionStringsPrivateEndpointEndpointOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterConnectionStringsPrivateEndpointEndpoint) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o ClusterConnectionStringPrivateEndpointEndpointOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterConnectionStringPrivateEndpointEndpoint) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-type ClusterConnectionStringsPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+type ClusterConnectionStringPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
 
-func (ClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (ClusterConnectionStringPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (o ClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ToClusterConnectionStringsPrivateEndpointEndpointArrayOutput() ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+func (o ClusterConnectionStringPrivateEndpointEndpointArrayOutput) ToClusterConnectionStringPrivateEndpointEndpointArrayOutput() ClusterConnectionStringPrivateEndpointEndpointArrayOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ToClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+func (o ClusterConnectionStringPrivateEndpointEndpointArrayOutput) ToClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) ClusterConnectionStringPrivateEndpointEndpointArrayOutput {
 	return o
 }
 
-func (o ClusterConnectionStringsPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) ClusterConnectionStringsPrivateEndpointEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterConnectionStringsPrivateEndpointEndpoint {
-		return vs[0].([]ClusterConnectionStringsPrivateEndpointEndpoint)[vs[1].(int)]
-	}).(ClusterConnectionStringsPrivateEndpointEndpointOutput)
+func (o ClusterConnectionStringPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) ClusterConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterConnectionStringPrivateEndpointEndpoint {
+		return vs[0].([]ClusterConnectionStringPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(ClusterConnectionStringPrivateEndpointEndpointOutput)
 }
 
 type ClusterLabel struct {
@@ -3167,7 +3671,7 @@ type ClusterReplicationSpecRegionsConfig struct {
 	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
 	ReadOnlyNodes *int `pulumi:"readOnlyNodes"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-	RegionName *string `pulumi:"regionName"`
+	RegionName string `pulumi:"regionName"`
 }
 
 // ClusterReplicationSpecRegionsConfigInput is an input type that accepts ClusterReplicationSpecRegionsConfigArgs and ClusterReplicationSpecRegionsConfigOutput values.
@@ -3197,7 +3701,7 @@ type ClusterReplicationSpecRegionsConfigArgs struct {
 	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
 	ReadOnlyNodes pulumi.IntPtrInput `pulumi:"readOnlyNodes"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
+	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
 func (ClusterReplicationSpecRegionsConfigArgs) ElementType() reflect.Type {
@@ -3278,8 +3782,8 @@ func (o ClusterReplicationSpecRegionsConfigOutput) ReadOnlyNodes() pulumi.IntPtr
 }
 
 // Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-func (o ClusterReplicationSpecRegionsConfigOutput) RegionName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *string { return v.RegionName }).(pulumi.StringPtrOutput)
+func (o ClusterReplicationSpecRegionsConfigOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
 type ClusterReplicationSpecRegionsConfigArrayOutput struct{ *pulumi.OutputState }
@@ -3991,6 +4495,907 @@ func (o CustomDbRoleInheritedRoleArrayOutput) Index(i pulumi.IntInput) CustomDbR
 	}).(CustomDbRoleInheritedRoleOutput)
 }
 
+type DataLakeAws struct {
+	ExternalId        *string `pulumi:"externalId"`
+	IamAssumedRoleArn *string `pulumi:"iamAssumedRoleArn"`
+	IamUserArn        *string `pulumi:"iamUserArn"`
+	RoleId            string  `pulumi:"roleId"`
+	TestS3Bucket      string  `pulumi:"testS3Bucket"`
+}
+
+// DataLakeAwsInput is an input type that accepts DataLakeAwsArgs and DataLakeAwsOutput values.
+// You can construct a concrete instance of `DataLakeAwsInput` via:
+//
+//          DataLakeAwsArgs{...}
+type DataLakeAwsInput interface {
+	pulumi.Input
+
+	ToDataLakeAwsOutput() DataLakeAwsOutput
+	ToDataLakeAwsOutputWithContext(context.Context) DataLakeAwsOutput
+}
+
+type DataLakeAwsArgs struct {
+	ExternalId        pulumi.StringPtrInput `pulumi:"externalId"`
+	IamAssumedRoleArn pulumi.StringPtrInput `pulumi:"iamAssumedRoleArn"`
+	IamUserArn        pulumi.StringPtrInput `pulumi:"iamUserArn"`
+	RoleId            pulumi.StringInput    `pulumi:"roleId"`
+	TestS3Bucket      pulumi.StringInput    `pulumi:"testS3Bucket"`
+}
+
+func (DataLakeAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeAws)(nil)).Elem()
+}
+
+func (i DataLakeAwsArgs) ToDataLakeAwsOutput() DataLakeAwsOutput {
+	return i.ToDataLakeAwsOutputWithContext(context.Background())
+}
+
+func (i DataLakeAwsArgs) ToDataLakeAwsOutputWithContext(ctx context.Context) DataLakeAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeAwsOutput)
+}
+
+func (i DataLakeAwsArgs) ToDataLakeAwsPtrOutput() DataLakeAwsPtrOutput {
+	return i.ToDataLakeAwsPtrOutputWithContext(context.Background())
+}
+
+func (i DataLakeAwsArgs) ToDataLakeAwsPtrOutputWithContext(ctx context.Context) DataLakeAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeAwsOutput).ToDataLakeAwsPtrOutputWithContext(ctx)
+}
+
+// DataLakeAwsPtrInput is an input type that accepts DataLakeAwsArgs, DataLakeAwsPtr and DataLakeAwsPtrOutput values.
+// You can construct a concrete instance of `DataLakeAwsPtrInput` via:
+//
+//          DataLakeAwsArgs{...}
+//
+//  or:
+//
+//          nil
+type DataLakeAwsPtrInput interface {
+	pulumi.Input
+
+	ToDataLakeAwsPtrOutput() DataLakeAwsPtrOutput
+	ToDataLakeAwsPtrOutputWithContext(context.Context) DataLakeAwsPtrOutput
+}
+
+type dataLakeAwsPtrType DataLakeAwsArgs
+
+func DataLakeAwsPtr(v *DataLakeAwsArgs) DataLakeAwsPtrInput {
+	return (*dataLakeAwsPtrType)(v)
+}
+
+func (*dataLakeAwsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DataLakeAws)(nil)).Elem()
+}
+
+func (i *dataLakeAwsPtrType) ToDataLakeAwsPtrOutput() DataLakeAwsPtrOutput {
+	return i.ToDataLakeAwsPtrOutputWithContext(context.Background())
+}
+
+func (i *dataLakeAwsPtrType) ToDataLakeAwsPtrOutputWithContext(ctx context.Context) DataLakeAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeAwsPtrOutput)
+}
+
+type DataLakeAwsOutput struct{ *pulumi.OutputState }
+
+func (DataLakeAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeAws)(nil)).Elem()
+}
+
+func (o DataLakeAwsOutput) ToDataLakeAwsOutput() DataLakeAwsOutput {
+	return o
+}
+
+func (o DataLakeAwsOutput) ToDataLakeAwsOutputWithContext(ctx context.Context) DataLakeAwsOutput {
+	return o
+}
+
+func (o DataLakeAwsOutput) ToDataLakeAwsPtrOutput() DataLakeAwsPtrOutput {
+	return o.ToDataLakeAwsPtrOutputWithContext(context.Background())
+}
+
+func (o DataLakeAwsOutput) ToDataLakeAwsPtrOutputWithContext(ctx context.Context) DataLakeAwsPtrOutput {
+	return o.ApplyT(func(v DataLakeAws) *DataLakeAws {
+		return &v
+	}).(DataLakeAwsPtrOutput)
+}
+func (o DataLakeAwsOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeAws) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeAwsOutput) IamAssumedRoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeAws) *string { return v.IamAssumedRoleArn }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeAwsOutput) IamUserArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeAws) *string { return v.IamUserArn }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeAwsOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v DataLakeAws) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+func (o DataLakeAwsOutput) TestS3Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v DataLakeAws) string { return v.TestS3Bucket }).(pulumi.StringOutput)
+}
+
+type DataLakeAwsPtrOutput struct{ *pulumi.OutputState }
+
+func (DataLakeAwsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DataLakeAws)(nil)).Elem()
+}
+
+func (o DataLakeAwsPtrOutput) ToDataLakeAwsPtrOutput() DataLakeAwsPtrOutput {
+	return o
+}
+
+func (o DataLakeAwsPtrOutput) ToDataLakeAwsPtrOutputWithContext(ctx context.Context) DataLakeAwsPtrOutput {
+	return o
+}
+
+func (o DataLakeAwsPtrOutput) Elem() DataLakeAwsOutput {
+	return o.ApplyT(func(v *DataLakeAws) DataLakeAws { return *v }).(DataLakeAwsOutput)
+}
+
+func (o DataLakeAwsPtrOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataLakeAws) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExternalId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeAwsPtrOutput) IamAssumedRoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataLakeAws) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IamAssumedRoleArn
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeAwsPtrOutput) IamUserArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataLakeAws) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IamUserArn
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeAwsPtrOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataLakeAws) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RoleId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeAwsPtrOutput) TestS3Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataLakeAws) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TestS3Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+type DataLakeDataProcessRegion struct {
+	CloudProvider string `pulumi:"cloudProvider"`
+	Region        string `pulumi:"region"`
+}
+
+// DataLakeDataProcessRegionInput is an input type that accepts DataLakeDataProcessRegionArgs and DataLakeDataProcessRegionOutput values.
+// You can construct a concrete instance of `DataLakeDataProcessRegionInput` via:
+//
+//          DataLakeDataProcessRegionArgs{...}
+type DataLakeDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToDataLakeDataProcessRegionOutput() DataLakeDataProcessRegionOutput
+	ToDataLakeDataProcessRegionOutputWithContext(context.Context) DataLakeDataProcessRegionOutput
+}
+
+type DataLakeDataProcessRegionArgs struct {
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	Region        pulumi.StringInput `pulumi:"region"`
+}
+
+func (DataLakeDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeDataProcessRegion)(nil)).Elem()
+}
+
+func (i DataLakeDataProcessRegionArgs) ToDataLakeDataProcessRegionOutput() DataLakeDataProcessRegionOutput {
+	return i.ToDataLakeDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i DataLakeDataProcessRegionArgs) ToDataLakeDataProcessRegionOutputWithContext(ctx context.Context) DataLakeDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeDataProcessRegionOutput)
+}
+
+func (i DataLakeDataProcessRegionArgs) ToDataLakeDataProcessRegionPtrOutput() DataLakeDataProcessRegionPtrOutput {
+	return i.ToDataLakeDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (i DataLakeDataProcessRegionArgs) ToDataLakeDataProcessRegionPtrOutputWithContext(ctx context.Context) DataLakeDataProcessRegionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeDataProcessRegionOutput).ToDataLakeDataProcessRegionPtrOutputWithContext(ctx)
+}
+
+// DataLakeDataProcessRegionPtrInput is an input type that accepts DataLakeDataProcessRegionArgs, DataLakeDataProcessRegionPtr and DataLakeDataProcessRegionPtrOutput values.
+// You can construct a concrete instance of `DataLakeDataProcessRegionPtrInput` via:
+//
+//          DataLakeDataProcessRegionArgs{...}
+//
+//  or:
+//
+//          nil
+type DataLakeDataProcessRegionPtrInput interface {
+	pulumi.Input
+
+	ToDataLakeDataProcessRegionPtrOutput() DataLakeDataProcessRegionPtrOutput
+	ToDataLakeDataProcessRegionPtrOutputWithContext(context.Context) DataLakeDataProcessRegionPtrOutput
+}
+
+type dataLakeDataProcessRegionPtrType DataLakeDataProcessRegionArgs
+
+func DataLakeDataProcessRegionPtr(v *DataLakeDataProcessRegionArgs) DataLakeDataProcessRegionPtrInput {
+	return (*dataLakeDataProcessRegionPtrType)(v)
+}
+
+func (*dataLakeDataProcessRegionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DataLakeDataProcessRegion)(nil)).Elem()
+}
+
+func (i *dataLakeDataProcessRegionPtrType) ToDataLakeDataProcessRegionPtrOutput() DataLakeDataProcessRegionPtrOutput {
+	return i.ToDataLakeDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (i *dataLakeDataProcessRegionPtrType) ToDataLakeDataProcessRegionPtrOutputWithContext(ctx context.Context) DataLakeDataProcessRegionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeDataProcessRegionPtrOutput)
+}
+
+type DataLakeDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (DataLakeDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeDataProcessRegion)(nil)).Elem()
+}
+
+func (o DataLakeDataProcessRegionOutput) ToDataLakeDataProcessRegionOutput() DataLakeDataProcessRegionOutput {
+	return o
+}
+
+func (o DataLakeDataProcessRegionOutput) ToDataLakeDataProcessRegionOutputWithContext(ctx context.Context) DataLakeDataProcessRegionOutput {
+	return o
+}
+
+func (o DataLakeDataProcessRegionOutput) ToDataLakeDataProcessRegionPtrOutput() DataLakeDataProcessRegionPtrOutput {
+	return o.ToDataLakeDataProcessRegionPtrOutputWithContext(context.Background())
+}
+
+func (o DataLakeDataProcessRegionOutput) ToDataLakeDataProcessRegionPtrOutputWithContext(ctx context.Context) DataLakeDataProcessRegionPtrOutput {
+	return o.ApplyT(func(v DataLakeDataProcessRegion) *DataLakeDataProcessRegion {
+		return &v
+	}).(DataLakeDataProcessRegionPtrOutput)
+}
+func (o DataLakeDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v DataLakeDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+func (o DataLakeDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v DataLakeDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type DataLakeDataProcessRegionPtrOutput struct{ *pulumi.OutputState }
+
+func (DataLakeDataProcessRegionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DataLakeDataProcessRegion)(nil)).Elem()
+}
+
+func (o DataLakeDataProcessRegionPtrOutput) ToDataLakeDataProcessRegionPtrOutput() DataLakeDataProcessRegionPtrOutput {
+	return o
+}
+
+func (o DataLakeDataProcessRegionPtrOutput) ToDataLakeDataProcessRegionPtrOutputWithContext(ctx context.Context) DataLakeDataProcessRegionPtrOutput {
+	return o
+}
+
+func (o DataLakeDataProcessRegionPtrOutput) Elem() DataLakeDataProcessRegionOutput {
+	return o.ApplyT(func(v *DataLakeDataProcessRegion) DataLakeDataProcessRegion { return *v }).(DataLakeDataProcessRegionOutput)
+}
+
+func (o DataLakeDataProcessRegionPtrOutput) CloudProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataLakeDataProcessRegion) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CloudProvider
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataLakeDataProcessRegion) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+type DataLakeStorageDatabase struct {
+	Collections            []DataLakeStorageDatabaseCollection `pulumi:"collections"`
+	MaxWildcardCollections *int                                `pulumi:"maxWildcardCollections"`
+	// Name of the Atlas Data Lake.
+	Name  *string                       `pulumi:"name"`
+	Views []DataLakeStorageDatabaseView `pulumi:"views"`
+}
+
+// DataLakeStorageDatabaseInput is an input type that accepts DataLakeStorageDatabaseArgs and DataLakeStorageDatabaseOutput values.
+// You can construct a concrete instance of `DataLakeStorageDatabaseInput` via:
+//
+//          DataLakeStorageDatabaseArgs{...}
+type DataLakeStorageDatabaseInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageDatabaseOutput() DataLakeStorageDatabaseOutput
+	ToDataLakeStorageDatabaseOutputWithContext(context.Context) DataLakeStorageDatabaseOutput
+}
+
+type DataLakeStorageDatabaseArgs struct {
+	Collections            DataLakeStorageDatabaseCollectionArrayInput `pulumi:"collections"`
+	MaxWildcardCollections pulumi.IntPtrInput                          `pulumi:"maxWildcardCollections"`
+	// Name of the Atlas Data Lake.
+	Name  pulumi.StringPtrInput                 `pulumi:"name"`
+	Views DataLakeStorageDatabaseViewArrayInput `pulumi:"views"`
+}
+
+func (DataLakeStorageDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageDatabase)(nil)).Elem()
+}
+
+func (i DataLakeStorageDatabaseArgs) ToDataLakeStorageDatabaseOutput() DataLakeStorageDatabaseOutput {
+	return i.ToDataLakeStorageDatabaseOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageDatabaseArgs) ToDataLakeStorageDatabaseOutputWithContext(ctx context.Context) DataLakeStorageDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageDatabaseOutput)
+}
+
+// DataLakeStorageDatabaseArrayInput is an input type that accepts DataLakeStorageDatabaseArray and DataLakeStorageDatabaseArrayOutput values.
+// You can construct a concrete instance of `DataLakeStorageDatabaseArrayInput` via:
+//
+//          DataLakeStorageDatabaseArray{ DataLakeStorageDatabaseArgs{...} }
+type DataLakeStorageDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageDatabaseArrayOutput() DataLakeStorageDatabaseArrayOutput
+	ToDataLakeStorageDatabaseArrayOutputWithContext(context.Context) DataLakeStorageDatabaseArrayOutput
+}
+
+type DataLakeStorageDatabaseArray []DataLakeStorageDatabaseInput
+
+func (DataLakeStorageDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageDatabase)(nil)).Elem()
+}
+
+func (i DataLakeStorageDatabaseArray) ToDataLakeStorageDatabaseArrayOutput() DataLakeStorageDatabaseArrayOutput {
+	return i.ToDataLakeStorageDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageDatabaseArray) ToDataLakeStorageDatabaseArrayOutputWithContext(ctx context.Context) DataLakeStorageDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageDatabaseArrayOutput)
+}
+
+type DataLakeStorageDatabaseOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageDatabase)(nil)).Elem()
+}
+
+func (o DataLakeStorageDatabaseOutput) ToDataLakeStorageDatabaseOutput() DataLakeStorageDatabaseOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseOutput) ToDataLakeStorageDatabaseOutputWithContext(ctx context.Context) DataLakeStorageDatabaseOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseOutput) Collections() DataLakeStorageDatabaseCollectionArrayOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabase) []DataLakeStorageDatabaseCollection { return v.Collections }).(DataLakeStorageDatabaseCollectionArrayOutput)
+}
+
+func (o DataLakeStorageDatabaseOutput) MaxWildcardCollections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabase) *int { return v.MaxWildcardCollections }).(pulumi.IntPtrOutput)
+}
+
+// Name of the Atlas Data Lake.
+func (o DataLakeStorageDatabaseOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabase) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageDatabaseOutput) Views() DataLakeStorageDatabaseViewArrayOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabase) []DataLakeStorageDatabaseView { return v.Views }).(DataLakeStorageDatabaseViewArrayOutput)
+}
+
+type DataLakeStorageDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageDatabase)(nil)).Elem()
+}
+
+func (o DataLakeStorageDatabaseArrayOutput) ToDataLakeStorageDatabaseArrayOutput() DataLakeStorageDatabaseArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseArrayOutput) ToDataLakeStorageDatabaseArrayOutputWithContext(ctx context.Context) DataLakeStorageDatabaseArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseArrayOutput) Index(i pulumi.IntInput) DataLakeStorageDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DataLakeStorageDatabase {
+		return vs[0].([]DataLakeStorageDatabase)[vs[1].(int)]
+	}).(DataLakeStorageDatabaseOutput)
+}
+
+type DataLakeStorageDatabaseCollection struct {
+	DataSources []DataLakeStorageDatabaseCollectionDataSource `pulumi:"dataSources"`
+	// Name of the Atlas Data Lake.
+	Name *string `pulumi:"name"`
+}
+
+// DataLakeStorageDatabaseCollectionInput is an input type that accepts DataLakeStorageDatabaseCollectionArgs and DataLakeStorageDatabaseCollectionOutput values.
+// You can construct a concrete instance of `DataLakeStorageDatabaseCollectionInput` via:
+//
+//          DataLakeStorageDatabaseCollectionArgs{...}
+type DataLakeStorageDatabaseCollectionInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageDatabaseCollectionOutput() DataLakeStorageDatabaseCollectionOutput
+	ToDataLakeStorageDatabaseCollectionOutputWithContext(context.Context) DataLakeStorageDatabaseCollectionOutput
+}
+
+type DataLakeStorageDatabaseCollectionArgs struct {
+	DataSources DataLakeStorageDatabaseCollectionDataSourceArrayInput `pulumi:"dataSources"`
+	// Name of the Atlas Data Lake.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (DataLakeStorageDatabaseCollectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (i DataLakeStorageDatabaseCollectionArgs) ToDataLakeStorageDatabaseCollectionOutput() DataLakeStorageDatabaseCollectionOutput {
+	return i.ToDataLakeStorageDatabaseCollectionOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageDatabaseCollectionArgs) ToDataLakeStorageDatabaseCollectionOutputWithContext(ctx context.Context) DataLakeStorageDatabaseCollectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageDatabaseCollectionOutput)
+}
+
+// DataLakeStorageDatabaseCollectionArrayInput is an input type that accepts DataLakeStorageDatabaseCollectionArray and DataLakeStorageDatabaseCollectionArrayOutput values.
+// You can construct a concrete instance of `DataLakeStorageDatabaseCollectionArrayInput` via:
+//
+//          DataLakeStorageDatabaseCollectionArray{ DataLakeStorageDatabaseCollectionArgs{...} }
+type DataLakeStorageDatabaseCollectionArrayInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageDatabaseCollectionArrayOutput() DataLakeStorageDatabaseCollectionArrayOutput
+	ToDataLakeStorageDatabaseCollectionArrayOutputWithContext(context.Context) DataLakeStorageDatabaseCollectionArrayOutput
+}
+
+type DataLakeStorageDatabaseCollectionArray []DataLakeStorageDatabaseCollectionInput
+
+func (DataLakeStorageDatabaseCollectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (i DataLakeStorageDatabaseCollectionArray) ToDataLakeStorageDatabaseCollectionArrayOutput() DataLakeStorageDatabaseCollectionArrayOutput {
+	return i.ToDataLakeStorageDatabaseCollectionArrayOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageDatabaseCollectionArray) ToDataLakeStorageDatabaseCollectionArrayOutputWithContext(ctx context.Context) DataLakeStorageDatabaseCollectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageDatabaseCollectionArrayOutput)
+}
+
+type DataLakeStorageDatabaseCollectionOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageDatabaseCollectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (o DataLakeStorageDatabaseCollectionOutput) ToDataLakeStorageDatabaseCollectionOutput() DataLakeStorageDatabaseCollectionOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseCollectionOutput) ToDataLakeStorageDatabaseCollectionOutputWithContext(ctx context.Context) DataLakeStorageDatabaseCollectionOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseCollectionOutput) DataSources() DataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabaseCollection) []DataLakeStorageDatabaseCollectionDataSource {
+		return v.DataSources
+	}).(DataLakeStorageDatabaseCollectionDataSourceArrayOutput)
+}
+
+// Name of the Atlas Data Lake.
+func (o DataLakeStorageDatabaseCollectionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabaseCollection) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type DataLakeStorageDatabaseCollectionArrayOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageDatabaseCollectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (o DataLakeStorageDatabaseCollectionArrayOutput) ToDataLakeStorageDatabaseCollectionArrayOutput() DataLakeStorageDatabaseCollectionArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseCollectionArrayOutput) ToDataLakeStorageDatabaseCollectionArrayOutputWithContext(ctx context.Context) DataLakeStorageDatabaseCollectionArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseCollectionArrayOutput) Index(i pulumi.IntInput) DataLakeStorageDatabaseCollectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DataLakeStorageDatabaseCollection {
+		return vs[0].([]DataLakeStorageDatabaseCollection)[vs[1].(int)]
+	}).(DataLakeStorageDatabaseCollectionOutput)
+}
+
+type DataLakeStorageDatabaseCollectionDataSource struct {
+	DefaultFormat *string `pulumi:"defaultFormat"`
+	Path          *string `pulumi:"path"`
+	StoreName     *string `pulumi:"storeName"`
+}
+
+// DataLakeStorageDatabaseCollectionDataSourceInput is an input type that accepts DataLakeStorageDatabaseCollectionDataSourceArgs and DataLakeStorageDatabaseCollectionDataSourceOutput values.
+// You can construct a concrete instance of `DataLakeStorageDatabaseCollectionDataSourceInput` via:
+//
+//          DataLakeStorageDatabaseCollectionDataSourceArgs{...}
+type DataLakeStorageDatabaseCollectionDataSourceInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageDatabaseCollectionDataSourceOutput() DataLakeStorageDatabaseCollectionDataSourceOutput
+	ToDataLakeStorageDatabaseCollectionDataSourceOutputWithContext(context.Context) DataLakeStorageDatabaseCollectionDataSourceOutput
+}
+
+type DataLakeStorageDatabaseCollectionDataSourceArgs struct {
+	DefaultFormat pulumi.StringPtrInput `pulumi:"defaultFormat"`
+	Path          pulumi.StringPtrInput `pulumi:"path"`
+	StoreName     pulumi.StringPtrInput `pulumi:"storeName"`
+}
+
+func (DataLakeStorageDatabaseCollectionDataSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (i DataLakeStorageDatabaseCollectionDataSourceArgs) ToDataLakeStorageDatabaseCollectionDataSourceOutput() DataLakeStorageDatabaseCollectionDataSourceOutput {
+	return i.ToDataLakeStorageDatabaseCollectionDataSourceOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageDatabaseCollectionDataSourceArgs) ToDataLakeStorageDatabaseCollectionDataSourceOutputWithContext(ctx context.Context) DataLakeStorageDatabaseCollectionDataSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageDatabaseCollectionDataSourceOutput)
+}
+
+// DataLakeStorageDatabaseCollectionDataSourceArrayInput is an input type that accepts DataLakeStorageDatabaseCollectionDataSourceArray and DataLakeStorageDatabaseCollectionDataSourceArrayOutput values.
+// You can construct a concrete instance of `DataLakeStorageDatabaseCollectionDataSourceArrayInput` via:
+//
+//          DataLakeStorageDatabaseCollectionDataSourceArray{ DataLakeStorageDatabaseCollectionDataSourceArgs{...} }
+type DataLakeStorageDatabaseCollectionDataSourceArrayInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageDatabaseCollectionDataSourceArrayOutput() DataLakeStorageDatabaseCollectionDataSourceArrayOutput
+	ToDataLakeStorageDatabaseCollectionDataSourceArrayOutputWithContext(context.Context) DataLakeStorageDatabaseCollectionDataSourceArrayOutput
+}
+
+type DataLakeStorageDatabaseCollectionDataSourceArray []DataLakeStorageDatabaseCollectionDataSourceInput
+
+func (DataLakeStorageDatabaseCollectionDataSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (i DataLakeStorageDatabaseCollectionDataSourceArray) ToDataLakeStorageDatabaseCollectionDataSourceArrayOutput() DataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return i.ToDataLakeStorageDatabaseCollectionDataSourceArrayOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageDatabaseCollectionDataSourceArray) ToDataLakeStorageDatabaseCollectionDataSourceArrayOutputWithContext(ctx context.Context) DataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageDatabaseCollectionDataSourceArrayOutput)
+}
+
+type DataLakeStorageDatabaseCollectionDataSourceOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageDatabaseCollectionDataSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (o DataLakeStorageDatabaseCollectionDataSourceOutput) ToDataLakeStorageDatabaseCollectionDataSourceOutput() DataLakeStorageDatabaseCollectionDataSourceOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseCollectionDataSourceOutput) ToDataLakeStorageDatabaseCollectionDataSourceOutputWithContext(ctx context.Context) DataLakeStorageDatabaseCollectionDataSourceOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseCollectionDataSourceOutput) DefaultFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabaseCollectionDataSource) *string { return v.DefaultFormat }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageDatabaseCollectionDataSourceOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabaseCollectionDataSource) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageDatabaseCollectionDataSourceOutput) StoreName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabaseCollectionDataSource) *string { return v.StoreName }).(pulumi.StringPtrOutput)
+}
+
+type DataLakeStorageDatabaseCollectionDataSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageDatabaseCollectionDataSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (o DataLakeStorageDatabaseCollectionDataSourceArrayOutput) ToDataLakeStorageDatabaseCollectionDataSourceArrayOutput() DataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseCollectionDataSourceArrayOutput) ToDataLakeStorageDatabaseCollectionDataSourceArrayOutputWithContext(ctx context.Context) DataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseCollectionDataSourceArrayOutput) Index(i pulumi.IntInput) DataLakeStorageDatabaseCollectionDataSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DataLakeStorageDatabaseCollectionDataSource {
+		return vs[0].([]DataLakeStorageDatabaseCollectionDataSource)[vs[1].(int)]
+	}).(DataLakeStorageDatabaseCollectionDataSourceOutput)
+}
+
+type DataLakeStorageDatabaseView struct {
+	// Name of the Atlas Data Lake.
+	Name     *string `pulumi:"name"`
+	Pipeline *string `pulumi:"pipeline"`
+	Source   *string `pulumi:"source"`
+}
+
+// DataLakeStorageDatabaseViewInput is an input type that accepts DataLakeStorageDatabaseViewArgs and DataLakeStorageDatabaseViewOutput values.
+// You can construct a concrete instance of `DataLakeStorageDatabaseViewInput` via:
+//
+//          DataLakeStorageDatabaseViewArgs{...}
+type DataLakeStorageDatabaseViewInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageDatabaseViewOutput() DataLakeStorageDatabaseViewOutput
+	ToDataLakeStorageDatabaseViewOutputWithContext(context.Context) DataLakeStorageDatabaseViewOutput
+}
+
+type DataLakeStorageDatabaseViewArgs struct {
+	// Name of the Atlas Data Lake.
+	Name     pulumi.StringPtrInput `pulumi:"name"`
+	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
+	Source   pulumi.StringPtrInput `pulumi:"source"`
+}
+
+func (DataLakeStorageDatabaseViewArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageDatabaseView)(nil)).Elem()
+}
+
+func (i DataLakeStorageDatabaseViewArgs) ToDataLakeStorageDatabaseViewOutput() DataLakeStorageDatabaseViewOutput {
+	return i.ToDataLakeStorageDatabaseViewOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageDatabaseViewArgs) ToDataLakeStorageDatabaseViewOutputWithContext(ctx context.Context) DataLakeStorageDatabaseViewOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageDatabaseViewOutput)
+}
+
+// DataLakeStorageDatabaseViewArrayInput is an input type that accepts DataLakeStorageDatabaseViewArray and DataLakeStorageDatabaseViewArrayOutput values.
+// You can construct a concrete instance of `DataLakeStorageDatabaseViewArrayInput` via:
+//
+//          DataLakeStorageDatabaseViewArray{ DataLakeStorageDatabaseViewArgs{...} }
+type DataLakeStorageDatabaseViewArrayInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageDatabaseViewArrayOutput() DataLakeStorageDatabaseViewArrayOutput
+	ToDataLakeStorageDatabaseViewArrayOutputWithContext(context.Context) DataLakeStorageDatabaseViewArrayOutput
+}
+
+type DataLakeStorageDatabaseViewArray []DataLakeStorageDatabaseViewInput
+
+func (DataLakeStorageDatabaseViewArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageDatabaseView)(nil)).Elem()
+}
+
+func (i DataLakeStorageDatabaseViewArray) ToDataLakeStorageDatabaseViewArrayOutput() DataLakeStorageDatabaseViewArrayOutput {
+	return i.ToDataLakeStorageDatabaseViewArrayOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageDatabaseViewArray) ToDataLakeStorageDatabaseViewArrayOutputWithContext(ctx context.Context) DataLakeStorageDatabaseViewArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageDatabaseViewArrayOutput)
+}
+
+type DataLakeStorageDatabaseViewOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageDatabaseViewOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageDatabaseView)(nil)).Elem()
+}
+
+func (o DataLakeStorageDatabaseViewOutput) ToDataLakeStorageDatabaseViewOutput() DataLakeStorageDatabaseViewOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseViewOutput) ToDataLakeStorageDatabaseViewOutputWithContext(ctx context.Context) DataLakeStorageDatabaseViewOutput {
+	return o
+}
+
+// Name of the Atlas Data Lake.
+func (o DataLakeStorageDatabaseViewOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabaseView) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageDatabaseViewOutput) Pipeline() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabaseView) *string { return v.Pipeline }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageDatabaseViewOutput) Source() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageDatabaseView) *string { return v.Source }).(pulumi.StringPtrOutput)
+}
+
+type DataLakeStorageDatabaseViewArrayOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageDatabaseViewArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageDatabaseView)(nil)).Elem()
+}
+
+func (o DataLakeStorageDatabaseViewArrayOutput) ToDataLakeStorageDatabaseViewArrayOutput() DataLakeStorageDatabaseViewArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseViewArrayOutput) ToDataLakeStorageDatabaseViewArrayOutputWithContext(ctx context.Context) DataLakeStorageDatabaseViewArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageDatabaseViewArrayOutput) Index(i pulumi.IntInput) DataLakeStorageDatabaseViewOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DataLakeStorageDatabaseView {
+		return vs[0].([]DataLakeStorageDatabaseView)[vs[1].(int)]
+	}).(DataLakeStorageDatabaseViewOutput)
+}
+
+type DataLakeStorageStore struct {
+	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
+	Bucket                   *string  `pulumi:"bucket"`
+	Delimiter                *string  `pulumi:"delimiter"`
+	IncludeTags              *bool    `pulumi:"includeTags"`
+	// Name of the Atlas Data Lake.
+	Name     *string `pulumi:"name"`
+	Prefix   *string `pulumi:"prefix"`
+	Provider *string `pulumi:"provider"`
+	Region   *string `pulumi:"region"`
+}
+
+// DataLakeStorageStoreInput is an input type that accepts DataLakeStorageStoreArgs and DataLakeStorageStoreOutput values.
+// You can construct a concrete instance of `DataLakeStorageStoreInput` via:
+//
+//          DataLakeStorageStoreArgs{...}
+type DataLakeStorageStoreInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageStoreOutput() DataLakeStorageStoreOutput
+	ToDataLakeStorageStoreOutputWithContext(context.Context) DataLakeStorageStoreOutput
+}
+
+type DataLakeStorageStoreArgs struct {
+	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
+	Bucket                   pulumi.StringPtrInput   `pulumi:"bucket"`
+	Delimiter                pulumi.StringPtrInput   `pulumi:"delimiter"`
+	IncludeTags              pulumi.BoolPtrInput     `pulumi:"includeTags"`
+	// Name of the Atlas Data Lake.
+	Name     pulumi.StringPtrInput `pulumi:"name"`
+	Prefix   pulumi.StringPtrInput `pulumi:"prefix"`
+	Provider pulumi.StringPtrInput `pulumi:"provider"`
+	Region   pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (DataLakeStorageStoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageStore)(nil)).Elem()
+}
+
+func (i DataLakeStorageStoreArgs) ToDataLakeStorageStoreOutput() DataLakeStorageStoreOutput {
+	return i.ToDataLakeStorageStoreOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageStoreArgs) ToDataLakeStorageStoreOutputWithContext(ctx context.Context) DataLakeStorageStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageStoreOutput)
+}
+
+// DataLakeStorageStoreArrayInput is an input type that accepts DataLakeStorageStoreArray and DataLakeStorageStoreArrayOutput values.
+// You can construct a concrete instance of `DataLakeStorageStoreArrayInput` via:
+//
+//          DataLakeStorageStoreArray{ DataLakeStorageStoreArgs{...} }
+type DataLakeStorageStoreArrayInput interface {
+	pulumi.Input
+
+	ToDataLakeStorageStoreArrayOutput() DataLakeStorageStoreArrayOutput
+	ToDataLakeStorageStoreArrayOutputWithContext(context.Context) DataLakeStorageStoreArrayOutput
+}
+
+type DataLakeStorageStoreArray []DataLakeStorageStoreInput
+
+func (DataLakeStorageStoreArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageStore)(nil)).Elem()
+}
+
+func (i DataLakeStorageStoreArray) ToDataLakeStorageStoreArrayOutput() DataLakeStorageStoreArrayOutput {
+	return i.ToDataLakeStorageStoreArrayOutputWithContext(context.Background())
+}
+
+func (i DataLakeStorageStoreArray) ToDataLakeStorageStoreArrayOutputWithContext(ctx context.Context) DataLakeStorageStoreArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataLakeStorageStoreArrayOutput)
+}
+
+type DataLakeStorageStoreOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataLakeStorageStore)(nil)).Elem()
+}
+
+func (o DataLakeStorageStoreOutput) ToDataLakeStorageStoreOutput() DataLakeStorageStoreOutput {
+	return o
+}
+
+func (o DataLakeStorageStoreOutput) ToDataLakeStorageStoreOutputWithContext(ctx context.Context) DataLakeStorageStoreOutput {
+	return o
+}
+
+func (o DataLakeStorageStoreOutput) AdditionalStorageClasses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DataLakeStorageStore) []string { return v.AdditionalStorageClasses }).(pulumi.StringArrayOutput)
+}
+
+func (o DataLakeStorageStoreOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageStore) *string { return v.Bucket }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageStoreOutput) Delimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageStore) *string { return v.Delimiter }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageStoreOutput) IncludeTags() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageStore) *bool { return v.IncludeTags }).(pulumi.BoolPtrOutput)
+}
+
+// Name of the Atlas Data Lake.
+func (o DataLakeStorageStoreOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageStore) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageStoreOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageStore) *string { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageStoreOutput) Provider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageStore) *string { return v.Provider }).(pulumi.StringPtrOutput)
+}
+
+func (o DataLakeStorageStoreOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataLakeStorageStore) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type DataLakeStorageStoreArrayOutput struct{ *pulumi.OutputState }
+
+func (DataLakeStorageStoreArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DataLakeStorageStore)(nil)).Elem()
+}
+
+func (o DataLakeStorageStoreArrayOutput) ToDataLakeStorageStoreArrayOutput() DataLakeStorageStoreArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageStoreArrayOutput) ToDataLakeStorageStoreArrayOutputWithContext(ctx context.Context) DataLakeStorageStoreArrayOutput {
+	return o
+}
+
+func (o DataLakeStorageStoreArrayOutput) Index(i pulumi.IntInput) DataLakeStorageStoreOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DataLakeStorageStore {
+		return vs[0].([]DataLakeStorageStore)[vs[1].(int)]
+	}).(DataLakeStorageStoreOutput)
+}
+
 type DatabaseUserLabel struct {
 	// The key that you want to write.
 	Key *string `pulumi:"key"`
@@ -4318,7 +5723,7 @@ func (o DatabaseUserScopeArrayOutput) Index(i pulumi.IntInput) DatabaseUserScope
 	}).(DatabaseUserScopeOutput)
 }
 
-type EncryptionAtRestAwsKms struct {
+type EncryptionAtRestAwsKmsConfig struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId *string `pulumi:"customerMasterKeyId"`
@@ -4331,18 +5736,18 @@ type EncryptionAtRestAwsKms struct {
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
 }
 
-// EncryptionAtRestAwsKmsInput is an input type that accepts EncryptionAtRestAwsKmsArgs and EncryptionAtRestAwsKmsOutput values.
-// You can construct a concrete instance of `EncryptionAtRestAwsKmsInput` via:
+// EncryptionAtRestAwsKmsConfigInput is an input type that accepts EncryptionAtRestAwsKmsConfigArgs and EncryptionAtRestAwsKmsConfigOutput values.
+// You can construct a concrete instance of `EncryptionAtRestAwsKmsConfigInput` via:
 //
-//          EncryptionAtRestAwsKmsArgs{...}
-type EncryptionAtRestAwsKmsInput interface {
+//          EncryptionAtRestAwsKmsConfigArgs{...}
+type EncryptionAtRestAwsKmsConfigInput interface {
 	pulumi.Input
 
-	ToEncryptionAtRestAwsKmsOutput() EncryptionAtRestAwsKmsOutput
-	ToEncryptionAtRestAwsKmsOutputWithContext(context.Context) EncryptionAtRestAwsKmsOutput
+	ToEncryptionAtRestAwsKmsConfigOutput() EncryptionAtRestAwsKmsConfigOutput
+	ToEncryptionAtRestAwsKmsConfigOutputWithContext(context.Context) EncryptionAtRestAwsKmsConfigOutput
 }
 
-type EncryptionAtRestAwsKmsArgs struct {
+type EncryptionAtRestAwsKmsConfigArgs struct {
 	AccessKeyId pulumi.StringPtrInput `pulumi:"accessKeyId"`
 	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId pulumi.StringPtrInput `pulumi:"customerMasterKeyId"`
@@ -4355,130 +5760,130 @@ type EncryptionAtRestAwsKmsArgs struct {
 	SecretAccessKey pulumi.StringPtrInput `pulumi:"secretAccessKey"`
 }
 
-func (EncryptionAtRestAwsKmsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EncryptionAtRestAwsKms)(nil)).Elem()
+func (EncryptionAtRestAwsKmsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRestAwsKmsConfig)(nil)).Elem()
 }
 
-func (i EncryptionAtRestAwsKmsArgs) ToEncryptionAtRestAwsKmsOutput() EncryptionAtRestAwsKmsOutput {
-	return i.ToEncryptionAtRestAwsKmsOutputWithContext(context.Background())
+func (i EncryptionAtRestAwsKmsConfigArgs) ToEncryptionAtRestAwsKmsConfigOutput() EncryptionAtRestAwsKmsConfigOutput {
+	return i.ToEncryptionAtRestAwsKmsConfigOutputWithContext(context.Background())
 }
 
-func (i EncryptionAtRestAwsKmsArgs) ToEncryptionAtRestAwsKmsOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAwsKmsOutput)
+func (i EncryptionAtRestAwsKmsConfigArgs) ToEncryptionAtRestAwsKmsConfigOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAwsKmsConfigOutput)
 }
 
-func (i EncryptionAtRestAwsKmsArgs) ToEncryptionAtRestAwsKmsPtrOutput() EncryptionAtRestAwsKmsPtrOutput {
-	return i.ToEncryptionAtRestAwsKmsPtrOutputWithContext(context.Background())
+func (i EncryptionAtRestAwsKmsConfigArgs) ToEncryptionAtRestAwsKmsConfigPtrOutput() EncryptionAtRestAwsKmsConfigPtrOutput {
+	return i.ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(context.Background())
 }
 
-func (i EncryptionAtRestAwsKmsArgs) ToEncryptionAtRestAwsKmsPtrOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAwsKmsOutput).ToEncryptionAtRestAwsKmsPtrOutputWithContext(ctx)
+func (i EncryptionAtRestAwsKmsConfigArgs) ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAwsKmsConfigOutput).ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(ctx)
 }
 
-// EncryptionAtRestAwsKmsPtrInput is an input type that accepts EncryptionAtRestAwsKmsArgs, EncryptionAtRestAwsKmsPtr and EncryptionAtRestAwsKmsPtrOutput values.
-// You can construct a concrete instance of `EncryptionAtRestAwsKmsPtrInput` via:
+// EncryptionAtRestAwsKmsConfigPtrInput is an input type that accepts EncryptionAtRestAwsKmsConfigArgs, EncryptionAtRestAwsKmsConfigPtr and EncryptionAtRestAwsKmsConfigPtrOutput values.
+// You can construct a concrete instance of `EncryptionAtRestAwsKmsConfigPtrInput` via:
 //
-//          EncryptionAtRestAwsKmsArgs{...}
+//          EncryptionAtRestAwsKmsConfigArgs{...}
 //
 //  or:
 //
 //          nil
-type EncryptionAtRestAwsKmsPtrInput interface {
+type EncryptionAtRestAwsKmsConfigPtrInput interface {
 	pulumi.Input
 
-	ToEncryptionAtRestAwsKmsPtrOutput() EncryptionAtRestAwsKmsPtrOutput
-	ToEncryptionAtRestAwsKmsPtrOutputWithContext(context.Context) EncryptionAtRestAwsKmsPtrOutput
+	ToEncryptionAtRestAwsKmsConfigPtrOutput() EncryptionAtRestAwsKmsConfigPtrOutput
+	ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(context.Context) EncryptionAtRestAwsKmsConfigPtrOutput
 }
 
-type encryptionAtRestAwsKmsPtrType EncryptionAtRestAwsKmsArgs
+type encryptionAtRestAwsKmsConfigPtrType EncryptionAtRestAwsKmsConfigArgs
 
-func EncryptionAtRestAwsKmsPtr(v *EncryptionAtRestAwsKmsArgs) EncryptionAtRestAwsKmsPtrInput {
-	return (*encryptionAtRestAwsKmsPtrType)(v)
+func EncryptionAtRestAwsKmsConfigPtr(v *EncryptionAtRestAwsKmsConfigArgs) EncryptionAtRestAwsKmsConfigPtrInput {
+	return (*encryptionAtRestAwsKmsConfigPtrType)(v)
 }
 
-func (*encryptionAtRestAwsKmsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EncryptionAtRestAwsKms)(nil)).Elem()
+func (*encryptionAtRestAwsKmsConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EncryptionAtRestAwsKmsConfig)(nil)).Elem()
 }
 
-func (i *encryptionAtRestAwsKmsPtrType) ToEncryptionAtRestAwsKmsPtrOutput() EncryptionAtRestAwsKmsPtrOutput {
-	return i.ToEncryptionAtRestAwsKmsPtrOutputWithContext(context.Background())
+func (i *encryptionAtRestAwsKmsConfigPtrType) ToEncryptionAtRestAwsKmsConfigPtrOutput() EncryptionAtRestAwsKmsConfigPtrOutput {
+	return i.ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(context.Background())
 }
 
-func (i *encryptionAtRestAwsKmsPtrType) ToEncryptionAtRestAwsKmsPtrOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAwsKmsPtrOutput)
+func (i *encryptionAtRestAwsKmsConfigPtrType) ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAwsKmsConfigPtrOutput)
 }
 
-type EncryptionAtRestAwsKmsOutput struct{ *pulumi.OutputState }
+type EncryptionAtRestAwsKmsConfigOutput struct{ *pulumi.OutputState }
 
-func (EncryptionAtRestAwsKmsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EncryptionAtRestAwsKms)(nil)).Elem()
+func (EncryptionAtRestAwsKmsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRestAwsKmsConfig)(nil)).Elem()
 }
 
-func (o EncryptionAtRestAwsKmsOutput) ToEncryptionAtRestAwsKmsOutput() EncryptionAtRestAwsKmsOutput {
+func (o EncryptionAtRestAwsKmsConfigOutput) ToEncryptionAtRestAwsKmsConfigOutput() EncryptionAtRestAwsKmsConfigOutput {
 	return o
 }
 
-func (o EncryptionAtRestAwsKmsOutput) ToEncryptionAtRestAwsKmsOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsOutput {
+func (o EncryptionAtRestAwsKmsConfigOutput) ToEncryptionAtRestAwsKmsConfigOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsConfigOutput {
 	return o
 }
 
-func (o EncryptionAtRestAwsKmsOutput) ToEncryptionAtRestAwsKmsPtrOutput() EncryptionAtRestAwsKmsPtrOutput {
-	return o.ToEncryptionAtRestAwsKmsPtrOutputWithContext(context.Background())
+func (o EncryptionAtRestAwsKmsConfigOutput) ToEncryptionAtRestAwsKmsConfigPtrOutput() EncryptionAtRestAwsKmsConfigPtrOutput {
+	return o.ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(context.Background())
 }
 
-func (o EncryptionAtRestAwsKmsOutput) ToEncryptionAtRestAwsKmsPtrOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) *EncryptionAtRestAwsKms {
+func (o EncryptionAtRestAwsKmsConfigOutput) ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsConfigPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *EncryptionAtRestAwsKmsConfig {
 		return &v
-	}).(EncryptionAtRestAwsKmsPtrOutput)
+	}).(EncryptionAtRestAwsKmsConfigPtrOutput)
 }
-func (o EncryptionAtRestAwsKmsOutput) AccessKeyId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.AccessKeyId }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAwsKmsConfigOutput) AccessKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.AccessKeyId }).(pulumi.StringPtrOutput)
 }
 
 // The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
-func (o EncryptionAtRestAwsKmsOutput) CustomerMasterKeyId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.CustomerMasterKeyId }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAwsKmsConfigOutput) CustomerMasterKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.CustomerMasterKeyId }).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestAwsKmsOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+func (o EncryptionAtRestAwsKmsConfigOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
 // The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-func (o EncryptionAtRestAwsKmsOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAwsKmsConfigOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
-func (o EncryptionAtRestAwsKmsOutput) RoleId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.RoleId }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAwsKmsConfigOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.RoleId }).(pulumi.StringPtrOutput)
 }
 
-func (o EncryptionAtRestAwsKmsOutput) SecretAccessKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAwsKms) *string { return v.SecretAccessKey }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAwsKmsConfigOutput) SecretAccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.SecretAccessKey }).(pulumi.StringPtrOutput)
 }
 
-type EncryptionAtRestAwsKmsPtrOutput struct{ *pulumi.OutputState }
+type EncryptionAtRestAwsKmsConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (EncryptionAtRestAwsKmsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EncryptionAtRestAwsKms)(nil)).Elem()
+func (EncryptionAtRestAwsKmsConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EncryptionAtRestAwsKmsConfig)(nil)).Elem()
 }
 
-func (o EncryptionAtRestAwsKmsPtrOutput) ToEncryptionAtRestAwsKmsPtrOutput() EncryptionAtRestAwsKmsPtrOutput {
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) ToEncryptionAtRestAwsKmsConfigPtrOutput() EncryptionAtRestAwsKmsConfigPtrOutput {
 	return o
 }
 
-func (o EncryptionAtRestAwsKmsPtrOutput) ToEncryptionAtRestAwsKmsPtrOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsPtrOutput {
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) ToEncryptionAtRestAwsKmsConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestAwsKmsConfigPtrOutput {
 	return o
 }
 
-func (o EncryptionAtRestAwsKmsPtrOutput) Elem() EncryptionAtRestAwsKmsOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAwsKms) EncryptionAtRestAwsKms { return *v }).(EncryptionAtRestAwsKmsOutput)
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) Elem() EncryptionAtRestAwsKmsConfigOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) EncryptionAtRestAwsKmsConfig { return *v }).(EncryptionAtRestAwsKmsConfigOutput)
 }
 
-func (o EncryptionAtRestAwsKmsPtrOutput) AccessKeyId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) AccessKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4487,8 +5892,8 @@ func (o EncryptionAtRestAwsKmsPtrOutput) AccessKeyId() pulumi.StringPtrOutput {
 }
 
 // The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
-func (o EncryptionAtRestAwsKmsPtrOutput) CustomerMasterKeyId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) CustomerMasterKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4497,8 +5902,8 @@ func (o EncryptionAtRestAwsKmsPtrOutput) CustomerMasterKeyId() pulumi.StringPtrO
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestAwsKmsPtrOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *bool {
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *bool {
 		if v == nil {
 			return nil
 		}
@@ -4507,8 +5912,8 @@ func (o EncryptionAtRestAwsKmsPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
-func (o EncryptionAtRestAwsKmsPtrOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4517,8 +5922,8 @@ func (o EncryptionAtRestAwsKmsPtrOutput) Region() pulumi.StringPtrOutput {
 }
 
 // ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `roleId` attribute of the `CloudProviderAccess` resource.
-func (o EncryptionAtRestAwsKmsPtrOutput) RoleId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4526,8 +5931,8 @@ func (o EncryptionAtRestAwsKmsPtrOutput) RoleId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-func (o EncryptionAtRestAwsKmsPtrOutput) SecretAccessKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAwsKms) *string {
+func (o EncryptionAtRestAwsKmsConfigPtrOutput) SecretAccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4535,7 +5940,7 @@ func (o EncryptionAtRestAwsKmsPtrOutput) SecretAccessKey() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-type EncryptionAtRestAzureKeyVault struct {
+type EncryptionAtRestAzureKeyVaultConfig struct {
 	// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
 	AzureEnvironment *string `pulumi:"azureEnvironment"`
 	// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
@@ -4556,18 +5961,18 @@ type EncryptionAtRestAzureKeyVault struct {
 	TenantId *string `pulumi:"tenantId"`
 }
 
-// EncryptionAtRestAzureKeyVaultInput is an input type that accepts EncryptionAtRestAzureKeyVaultArgs and EncryptionAtRestAzureKeyVaultOutput values.
-// You can construct a concrete instance of `EncryptionAtRestAzureKeyVaultInput` via:
+// EncryptionAtRestAzureKeyVaultConfigInput is an input type that accepts EncryptionAtRestAzureKeyVaultConfigArgs and EncryptionAtRestAzureKeyVaultConfigOutput values.
+// You can construct a concrete instance of `EncryptionAtRestAzureKeyVaultConfigInput` via:
 //
-//          EncryptionAtRestAzureKeyVaultArgs{...}
-type EncryptionAtRestAzureKeyVaultInput interface {
+//          EncryptionAtRestAzureKeyVaultConfigArgs{...}
+type EncryptionAtRestAzureKeyVaultConfigInput interface {
 	pulumi.Input
 
-	ToEncryptionAtRestAzureKeyVaultOutput() EncryptionAtRestAzureKeyVaultOutput
-	ToEncryptionAtRestAzureKeyVaultOutputWithContext(context.Context) EncryptionAtRestAzureKeyVaultOutput
+	ToEncryptionAtRestAzureKeyVaultConfigOutput() EncryptionAtRestAzureKeyVaultConfigOutput
+	ToEncryptionAtRestAzureKeyVaultConfigOutputWithContext(context.Context) EncryptionAtRestAzureKeyVaultConfigOutput
 }
 
-type EncryptionAtRestAzureKeyVaultArgs struct {
+type EncryptionAtRestAzureKeyVaultConfigArgs struct {
 	// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
 	AzureEnvironment pulumi.StringPtrInput `pulumi:"azureEnvironment"`
 	// The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
@@ -4588,149 +5993,149 @@ type EncryptionAtRestAzureKeyVaultArgs struct {
 	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
 }
 
-func (EncryptionAtRestAzureKeyVaultArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EncryptionAtRestAzureKeyVault)(nil)).Elem()
+func (EncryptionAtRestAzureKeyVaultConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRestAzureKeyVaultConfig)(nil)).Elem()
 }
 
-func (i EncryptionAtRestAzureKeyVaultArgs) ToEncryptionAtRestAzureKeyVaultOutput() EncryptionAtRestAzureKeyVaultOutput {
-	return i.ToEncryptionAtRestAzureKeyVaultOutputWithContext(context.Background())
+func (i EncryptionAtRestAzureKeyVaultConfigArgs) ToEncryptionAtRestAzureKeyVaultConfigOutput() EncryptionAtRestAzureKeyVaultConfigOutput {
+	return i.ToEncryptionAtRestAzureKeyVaultConfigOutputWithContext(context.Background())
 }
 
-func (i EncryptionAtRestAzureKeyVaultArgs) ToEncryptionAtRestAzureKeyVaultOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAzureKeyVaultOutput)
+func (i EncryptionAtRestAzureKeyVaultConfigArgs) ToEncryptionAtRestAzureKeyVaultConfigOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAzureKeyVaultConfigOutput)
 }
 
-func (i EncryptionAtRestAzureKeyVaultArgs) ToEncryptionAtRestAzureKeyVaultPtrOutput() EncryptionAtRestAzureKeyVaultPtrOutput {
-	return i.ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(context.Background())
+func (i EncryptionAtRestAzureKeyVaultConfigArgs) ToEncryptionAtRestAzureKeyVaultConfigPtrOutput() EncryptionAtRestAzureKeyVaultConfigPtrOutput {
+	return i.ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(context.Background())
 }
 
-func (i EncryptionAtRestAzureKeyVaultArgs) ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAzureKeyVaultOutput).ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(ctx)
+func (i EncryptionAtRestAzureKeyVaultConfigArgs) ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAzureKeyVaultConfigOutput).ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(ctx)
 }
 
-// EncryptionAtRestAzureKeyVaultPtrInput is an input type that accepts EncryptionAtRestAzureKeyVaultArgs, EncryptionAtRestAzureKeyVaultPtr and EncryptionAtRestAzureKeyVaultPtrOutput values.
-// You can construct a concrete instance of `EncryptionAtRestAzureKeyVaultPtrInput` via:
+// EncryptionAtRestAzureKeyVaultConfigPtrInput is an input type that accepts EncryptionAtRestAzureKeyVaultConfigArgs, EncryptionAtRestAzureKeyVaultConfigPtr and EncryptionAtRestAzureKeyVaultConfigPtrOutput values.
+// You can construct a concrete instance of `EncryptionAtRestAzureKeyVaultConfigPtrInput` via:
 //
-//          EncryptionAtRestAzureKeyVaultArgs{...}
+//          EncryptionAtRestAzureKeyVaultConfigArgs{...}
 //
 //  or:
 //
 //          nil
-type EncryptionAtRestAzureKeyVaultPtrInput interface {
+type EncryptionAtRestAzureKeyVaultConfigPtrInput interface {
 	pulumi.Input
 
-	ToEncryptionAtRestAzureKeyVaultPtrOutput() EncryptionAtRestAzureKeyVaultPtrOutput
-	ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(context.Context) EncryptionAtRestAzureKeyVaultPtrOutput
+	ToEncryptionAtRestAzureKeyVaultConfigPtrOutput() EncryptionAtRestAzureKeyVaultConfigPtrOutput
+	ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(context.Context) EncryptionAtRestAzureKeyVaultConfigPtrOutput
 }
 
-type encryptionAtRestAzureKeyVaultPtrType EncryptionAtRestAzureKeyVaultArgs
+type encryptionAtRestAzureKeyVaultConfigPtrType EncryptionAtRestAzureKeyVaultConfigArgs
 
-func EncryptionAtRestAzureKeyVaultPtr(v *EncryptionAtRestAzureKeyVaultArgs) EncryptionAtRestAzureKeyVaultPtrInput {
-	return (*encryptionAtRestAzureKeyVaultPtrType)(v)
+func EncryptionAtRestAzureKeyVaultConfigPtr(v *EncryptionAtRestAzureKeyVaultConfigArgs) EncryptionAtRestAzureKeyVaultConfigPtrInput {
+	return (*encryptionAtRestAzureKeyVaultConfigPtrType)(v)
 }
 
-func (*encryptionAtRestAzureKeyVaultPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EncryptionAtRestAzureKeyVault)(nil)).Elem()
+func (*encryptionAtRestAzureKeyVaultConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EncryptionAtRestAzureKeyVaultConfig)(nil)).Elem()
 }
 
-func (i *encryptionAtRestAzureKeyVaultPtrType) ToEncryptionAtRestAzureKeyVaultPtrOutput() EncryptionAtRestAzureKeyVaultPtrOutput {
-	return i.ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(context.Background())
+func (i *encryptionAtRestAzureKeyVaultConfigPtrType) ToEncryptionAtRestAzureKeyVaultConfigPtrOutput() EncryptionAtRestAzureKeyVaultConfigPtrOutput {
+	return i.ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(context.Background())
 }
 
-func (i *encryptionAtRestAzureKeyVaultPtrType) ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAzureKeyVaultPtrOutput)
+func (i *encryptionAtRestAzureKeyVaultConfigPtrType) ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestAzureKeyVaultConfigPtrOutput)
 }
 
-type EncryptionAtRestAzureKeyVaultOutput struct{ *pulumi.OutputState }
+type EncryptionAtRestAzureKeyVaultConfigOutput struct{ *pulumi.OutputState }
 
-func (EncryptionAtRestAzureKeyVaultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EncryptionAtRestAzureKeyVault)(nil)).Elem()
+func (EncryptionAtRestAzureKeyVaultConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRestAzureKeyVaultConfig)(nil)).Elem()
 }
 
-func (o EncryptionAtRestAzureKeyVaultOutput) ToEncryptionAtRestAzureKeyVaultOutput() EncryptionAtRestAzureKeyVaultOutput {
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) ToEncryptionAtRestAzureKeyVaultConfigOutput() EncryptionAtRestAzureKeyVaultConfigOutput {
 	return o
 }
 
-func (o EncryptionAtRestAzureKeyVaultOutput) ToEncryptionAtRestAzureKeyVaultOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultOutput {
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) ToEncryptionAtRestAzureKeyVaultConfigOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultConfigOutput {
 	return o
 }
 
-func (o EncryptionAtRestAzureKeyVaultOutput) ToEncryptionAtRestAzureKeyVaultPtrOutput() EncryptionAtRestAzureKeyVaultPtrOutput {
-	return o.ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(context.Background())
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) ToEncryptionAtRestAzureKeyVaultConfigPtrOutput() EncryptionAtRestAzureKeyVaultConfigPtrOutput {
+	return o.ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(context.Background())
 }
 
-func (o EncryptionAtRestAzureKeyVaultOutput) ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *EncryptionAtRestAzureKeyVault {
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultConfigPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *EncryptionAtRestAzureKeyVaultConfig {
 		return &v
-	}).(EncryptionAtRestAzureKeyVaultPtrOutput)
+	}).(EncryptionAtRestAzureKeyVaultConfigPtrOutput)
 }
 
 // The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
-func (o EncryptionAtRestAzureKeyVaultOutput) AzureEnvironment() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.AzureEnvironment }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) AzureEnvironment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.AzureEnvironment }).(pulumi.StringPtrOutput)
 }
 
 // The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-func (o EncryptionAtRestAzureKeyVaultOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestAzureKeyVaultOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // The unique identifier of a key in an Azure Key Vault.
-func (o EncryptionAtRestAzureKeyVaultOutput) KeyIdentifier() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.KeyIdentifier }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) KeyIdentifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.KeyIdentifier }).(pulumi.StringPtrOutput)
 }
 
 // The name of an Azure Key Vault containing your key.
-func (o EncryptionAtRestAzureKeyVaultOutput) KeyVaultName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.KeyVaultName }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) KeyVaultName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.KeyVaultName }).(pulumi.StringPtrOutput)
 }
 
 // The name of the Azure Resource group that contains an Azure Key Vault.
-func (o EncryptionAtRestAzureKeyVaultOutput) ResourceGroupName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.ResourceGroupName }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) ResourceGroupName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.ResourceGroupName }).(pulumi.StringPtrOutput)
 }
 
 // The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
-func (o EncryptionAtRestAzureKeyVaultOutput) Secret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.Secret }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.Secret }).(pulumi.StringPtrOutput)
 }
 
 // The unique identifier associated with an Azure subscription.
-func (o EncryptionAtRestAzureKeyVaultOutput) SubscriptionId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.SubscriptionId }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) SubscriptionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.SubscriptionId }).(pulumi.StringPtrOutput)
 }
 
 // The unique identifier for an Azure AD tenant within an Azure subscription.
-func (o EncryptionAtRestAzureKeyVaultOutput) TenantId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestAzureKeyVault) *string { return v.TenantId }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.TenantId }).(pulumi.StringPtrOutput)
 }
 
-type EncryptionAtRestAzureKeyVaultPtrOutput struct{ *pulumi.OutputState }
+type EncryptionAtRestAzureKeyVaultConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (EncryptionAtRestAzureKeyVaultPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EncryptionAtRestAzureKeyVault)(nil)).Elem()
+func (EncryptionAtRestAzureKeyVaultConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EncryptionAtRestAzureKeyVaultConfig)(nil)).Elem()
 }
 
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) ToEncryptionAtRestAzureKeyVaultPtrOutput() EncryptionAtRestAzureKeyVaultPtrOutput {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ToEncryptionAtRestAzureKeyVaultConfigPtrOutput() EncryptionAtRestAzureKeyVaultConfigPtrOutput {
 	return o
 }
 
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) ToEncryptionAtRestAzureKeyVaultPtrOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultPtrOutput {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ToEncryptionAtRestAzureKeyVaultConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestAzureKeyVaultConfigPtrOutput {
 	return o
 }
 
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) Elem() EncryptionAtRestAzureKeyVaultOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) EncryptionAtRestAzureKeyVault { return *v }).(EncryptionAtRestAzureKeyVaultOutput)
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Elem() EncryptionAtRestAzureKeyVaultConfigOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) EncryptionAtRestAzureKeyVaultConfig { return *v }).(EncryptionAtRestAzureKeyVaultConfigOutput)
 }
 
 // The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) AzureEnvironment() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) AzureEnvironment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4739,8 +6144,8 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) AzureEnvironment() pulumi.String
 }
 
 // The client ID, also known as the application ID, for an Azure application associated with the Azure AD tenant.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4749,8 +6154,8 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) ClientId() pulumi.StringPtrOutpu
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *bool {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *bool {
 		if v == nil {
 			return nil
 		}
@@ -4759,8 +6164,8 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // The unique identifier of a key in an Azure Key Vault.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyIdentifier() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) KeyIdentifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4769,8 +6174,8 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyIdentifier() pulumi.StringPtr
 }
 
 // The name of an Azure Key Vault containing your key.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyVaultName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) KeyVaultName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4779,8 +6184,8 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) KeyVaultName() pulumi.StringPtrO
 }
 
 // The name of the Azure Resource group that contains an Azure Key Vault.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) ResourceGroupName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ResourceGroupName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4789,8 +6194,8 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) ResourceGroupName() pulumi.Strin
 }
 
 // The secret associated with the Azure Key Vault specified by azureKeyVault.tenantID.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) Secret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4799,8 +6204,8 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) Secret() pulumi.StringPtrOutput 
 }
 
 // The unique identifier associated with an Azure subscription.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) SubscriptionId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) SubscriptionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4809,8 +6214,8 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) SubscriptionId() pulumi.StringPt
 }
 
 // The unique identifier for an Azure AD tenant within an Azure subscription.
-func (o EncryptionAtRestAzureKeyVaultPtrOutput) TenantId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVault) *string {
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4818,7 +6223,7 @@ func (o EncryptionAtRestAzureKeyVaultPtrOutput) TenantId() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-type EncryptionAtRestGoogleCloudKms struct {
+type EncryptionAtRestGoogleCloudKmsConfig struct {
 	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
 	Enabled *bool `pulumi:"enabled"`
 	// The Key Version Resource ID from your GCP account.
@@ -4827,18 +6232,18 @@ type EncryptionAtRestGoogleCloudKms struct {
 	ServiceAccountKey *string `pulumi:"serviceAccountKey"`
 }
 
-// EncryptionAtRestGoogleCloudKmsInput is an input type that accepts EncryptionAtRestGoogleCloudKmsArgs and EncryptionAtRestGoogleCloudKmsOutput values.
-// You can construct a concrete instance of `EncryptionAtRestGoogleCloudKmsInput` via:
+// EncryptionAtRestGoogleCloudKmsConfigInput is an input type that accepts EncryptionAtRestGoogleCloudKmsConfigArgs and EncryptionAtRestGoogleCloudKmsConfigOutput values.
+// You can construct a concrete instance of `EncryptionAtRestGoogleCloudKmsConfigInput` via:
 //
-//          EncryptionAtRestGoogleCloudKmsArgs{...}
-type EncryptionAtRestGoogleCloudKmsInput interface {
+//          EncryptionAtRestGoogleCloudKmsConfigArgs{...}
+type EncryptionAtRestGoogleCloudKmsConfigInput interface {
 	pulumi.Input
 
-	ToEncryptionAtRestGoogleCloudKmsOutput() EncryptionAtRestGoogleCloudKmsOutput
-	ToEncryptionAtRestGoogleCloudKmsOutputWithContext(context.Context) EncryptionAtRestGoogleCloudKmsOutput
+	ToEncryptionAtRestGoogleCloudKmsConfigOutput() EncryptionAtRestGoogleCloudKmsConfigOutput
+	ToEncryptionAtRestGoogleCloudKmsConfigOutputWithContext(context.Context) EncryptionAtRestGoogleCloudKmsConfigOutput
 }
 
-type EncryptionAtRestGoogleCloudKmsArgs struct {
+type EncryptionAtRestGoogleCloudKmsConfigArgs struct {
 	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// The Key Version Resource ID from your GCP account.
@@ -4847,119 +6252,119 @@ type EncryptionAtRestGoogleCloudKmsArgs struct {
 	ServiceAccountKey pulumi.StringPtrInput `pulumi:"serviceAccountKey"`
 }
 
-func (EncryptionAtRestGoogleCloudKmsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*EncryptionAtRestGoogleCloudKms)(nil)).Elem()
+func (EncryptionAtRestGoogleCloudKmsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRestGoogleCloudKmsConfig)(nil)).Elem()
 }
 
-func (i EncryptionAtRestGoogleCloudKmsArgs) ToEncryptionAtRestGoogleCloudKmsOutput() EncryptionAtRestGoogleCloudKmsOutput {
-	return i.ToEncryptionAtRestGoogleCloudKmsOutputWithContext(context.Background())
+func (i EncryptionAtRestGoogleCloudKmsConfigArgs) ToEncryptionAtRestGoogleCloudKmsConfigOutput() EncryptionAtRestGoogleCloudKmsConfigOutput {
+	return i.ToEncryptionAtRestGoogleCloudKmsConfigOutputWithContext(context.Background())
 }
 
-func (i EncryptionAtRestGoogleCloudKmsArgs) ToEncryptionAtRestGoogleCloudKmsOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestGoogleCloudKmsOutput)
+func (i EncryptionAtRestGoogleCloudKmsConfigArgs) ToEncryptionAtRestGoogleCloudKmsConfigOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestGoogleCloudKmsConfigOutput)
 }
 
-func (i EncryptionAtRestGoogleCloudKmsArgs) ToEncryptionAtRestGoogleCloudKmsPtrOutput() EncryptionAtRestGoogleCloudKmsPtrOutput {
-	return i.ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(context.Background())
+func (i EncryptionAtRestGoogleCloudKmsConfigArgs) ToEncryptionAtRestGoogleCloudKmsConfigPtrOutput() EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
+	return i.ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(context.Background())
 }
 
-func (i EncryptionAtRestGoogleCloudKmsArgs) ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestGoogleCloudKmsOutput).ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(ctx)
+func (i EncryptionAtRestGoogleCloudKmsConfigArgs) ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestGoogleCloudKmsConfigOutput).ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(ctx)
 }
 
-// EncryptionAtRestGoogleCloudKmsPtrInput is an input type that accepts EncryptionAtRestGoogleCloudKmsArgs, EncryptionAtRestGoogleCloudKmsPtr and EncryptionAtRestGoogleCloudKmsPtrOutput values.
-// You can construct a concrete instance of `EncryptionAtRestGoogleCloudKmsPtrInput` via:
+// EncryptionAtRestGoogleCloudKmsConfigPtrInput is an input type that accepts EncryptionAtRestGoogleCloudKmsConfigArgs, EncryptionAtRestGoogleCloudKmsConfigPtr and EncryptionAtRestGoogleCloudKmsConfigPtrOutput values.
+// You can construct a concrete instance of `EncryptionAtRestGoogleCloudKmsConfigPtrInput` via:
 //
-//          EncryptionAtRestGoogleCloudKmsArgs{...}
+//          EncryptionAtRestGoogleCloudKmsConfigArgs{...}
 //
 //  or:
 //
 //          nil
-type EncryptionAtRestGoogleCloudKmsPtrInput interface {
+type EncryptionAtRestGoogleCloudKmsConfigPtrInput interface {
 	pulumi.Input
 
-	ToEncryptionAtRestGoogleCloudKmsPtrOutput() EncryptionAtRestGoogleCloudKmsPtrOutput
-	ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(context.Context) EncryptionAtRestGoogleCloudKmsPtrOutput
+	ToEncryptionAtRestGoogleCloudKmsConfigPtrOutput() EncryptionAtRestGoogleCloudKmsConfigPtrOutput
+	ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(context.Context) EncryptionAtRestGoogleCloudKmsConfigPtrOutput
 }
 
-type encryptionAtRestGoogleCloudKmsPtrType EncryptionAtRestGoogleCloudKmsArgs
+type encryptionAtRestGoogleCloudKmsConfigPtrType EncryptionAtRestGoogleCloudKmsConfigArgs
 
-func EncryptionAtRestGoogleCloudKmsPtr(v *EncryptionAtRestGoogleCloudKmsArgs) EncryptionAtRestGoogleCloudKmsPtrInput {
-	return (*encryptionAtRestGoogleCloudKmsPtrType)(v)
+func EncryptionAtRestGoogleCloudKmsConfigPtr(v *EncryptionAtRestGoogleCloudKmsConfigArgs) EncryptionAtRestGoogleCloudKmsConfigPtrInput {
+	return (*encryptionAtRestGoogleCloudKmsConfigPtrType)(v)
 }
 
-func (*encryptionAtRestGoogleCloudKmsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EncryptionAtRestGoogleCloudKms)(nil)).Elem()
+func (*encryptionAtRestGoogleCloudKmsConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EncryptionAtRestGoogleCloudKmsConfig)(nil)).Elem()
 }
 
-func (i *encryptionAtRestGoogleCloudKmsPtrType) ToEncryptionAtRestGoogleCloudKmsPtrOutput() EncryptionAtRestGoogleCloudKmsPtrOutput {
-	return i.ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(context.Background())
+func (i *encryptionAtRestGoogleCloudKmsConfigPtrType) ToEncryptionAtRestGoogleCloudKmsConfigPtrOutput() EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
+	return i.ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(context.Background())
 }
 
-func (i *encryptionAtRestGoogleCloudKmsPtrType) ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestGoogleCloudKmsPtrOutput)
+func (i *encryptionAtRestGoogleCloudKmsConfigPtrType) ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EncryptionAtRestGoogleCloudKmsConfigPtrOutput)
 }
 
-type EncryptionAtRestGoogleCloudKmsOutput struct{ *pulumi.OutputState }
+type EncryptionAtRestGoogleCloudKmsConfigOutput struct{ *pulumi.OutputState }
 
-func (EncryptionAtRestGoogleCloudKmsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EncryptionAtRestGoogleCloudKms)(nil)).Elem()
+func (EncryptionAtRestGoogleCloudKmsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EncryptionAtRestGoogleCloudKmsConfig)(nil)).Elem()
 }
 
-func (o EncryptionAtRestGoogleCloudKmsOutput) ToEncryptionAtRestGoogleCloudKmsOutput() EncryptionAtRestGoogleCloudKmsOutput {
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ToEncryptionAtRestGoogleCloudKmsConfigOutput() EncryptionAtRestGoogleCloudKmsConfigOutput {
 	return o
 }
 
-func (o EncryptionAtRestGoogleCloudKmsOutput) ToEncryptionAtRestGoogleCloudKmsOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsOutput {
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ToEncryptionAtRestGoogleCloudKmsConfigOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsConfigOutput {
 	return o
 }
 
-func (o EncryptionAtRestGoogleCloudKmsOutput) ToEncryptionAtRestGoogleCloudKmsPtrOutput() EncryptionAtRestGoogleCloudKmsPtrOutput {
-	return o.ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(context.Background())
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ToEncryptionAtRestGoogleCloudKmsConfigPtrOutput() EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
+	return o.ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(context.Background())
 }
 
-func (o EncryptionAtRestGoogleCloudKmsOutput) ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) *EncryptionAtRestGoogleCloudKms {
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *EncryptionAtRestGoogleCloudKmsConfig {
 		return &v
-	}).(EncryptionAtRestGoogleCloudKmsPtrOutput)
+	}).(EncryptionAtRestGoogleCloudKmsConfigPtrOutput)
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestGoogleCloudKmsOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
 // The Key Version Resource ID from your GCP account.
-func (o EncryptionAtRestGoogleCloudKmsOutput) KeyVersionResourceId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) *string { return v.KeyVersionResourceId }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) KeyVersionResourceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *string { return v.KeyVersionResourceId }).(pulumi.StringPtrOutput)
 }
 
 // String-formatted JSON object containing GCP KMS credentials from your GCP account.
-func (o EncryptionAtRestGoogleCloudKmsOutput) ServiceAccountKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKms) *string { return v.ServiceAccountKey }).(pulumi.StringPtrOutput)
+func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ServiceAccountKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *string { return v.ServiceAccountKey }).(pulumi.StringPtrOutput)
 }
 
-type EncryptionAtRestGoogleCloudKmsPtrOutput struct{ *pulumi.OutputState }
+type EncryptionAtRestGoogleCloudKmsConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (EncryptionAtRestGoogleCloudKmsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EncryptionAtRestGoogleCloudKms)(nil)).Elem()
+func (EncryptionAtRestGoogleCloudKmsConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EncryptionAtRestGoogleCloudKmsConfig)(nil)).Elem()
 }
 
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) ToEncryptionAtRestGoogleCloudKmsPtrOutput() EncryptionAtRestGoogleCloudKmsPtrOutput {
+func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) ToEncryptionAtRestGoogleCloudKmsConfigPtrOutput() EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
 	return o
 }
 
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) ToEncryptionAtRestGoogleCloudKmsPtrOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsPtrOutput {
+func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) ToEncryptionAtRestGoogleCloudKmsConfigPtrOutputWithContext(ctx context.Context) EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
 	return o
 }
 
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) Elem() EncryptionAtRestGoogleCloudKmsOutput {
-	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKms) EncryptionAtRestGoogleCloudKms { return *v }).(EncryptionAtRestGoogleCloudKmsOutput)
+func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) Elem() EncryptionAtRestGoogleCloudKmsConfigOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) EncryptionAtRestGoogleCloudKmsConfig { return *v }).(EncryptionAtRestGoogleCloudKmsConfigOutput)
 }
 
 // Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKms) *bool {
+func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *bool {
 		if v == nil {
 			return nil
 		}
@@ -4968,8 +6373,8 @@ func (o EncryptionAtRestGoogleCloudKmsPtrOutput) Enabled() pulumi.BoolPtrOutput 
 }
 
 // The Key Version Resource ID from your GCP account.
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) KeyVersionResourceId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKms) *string {
+func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) KeyVersionResourceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *string {
 		if v == nil {
 			return nil
 		}
@@ -4978,12 +6383,283 @@ func (o EncryptionAtRestGoogleCloudKmsPtrOutput) KeyVersionResourceId() pulumi.S
 }
 
 // String-formatted JSON object containing GCP KMS credentials from your GCP account.
-func (o EncryptionAtRestGoogleCloudKmsPtrOutput) ServiceAccountKey() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKms) *string {
+func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) ServiceAccountKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *string {
 		if v == nil {
 			return nil
 		}
 		return v.ServiceAccountKey
+	}).(pulumi.StringPtrOutput)
+}
+
+type EventTriggerEventProcessors struct {
+	AwsEventbridge *EventTriggerEventProcessorsAwsEventbridge `pulumi:"awsEventbridge"`
+}
+
+// EventTriggerEventProcessorsInput is an input type that accepts EventTriggerEventProcessorsArgs and EventTriggerEventProcessorsOutput values.
+// You can construct a concrete instance of `EventTriggerEventProcessorsInput` via:
+//
+//          EventTriggerEventProcessorsArgs{...}
+type EventTriggerEventProcessorsInput interface {
+	pulumi.Input
+
+	ToEventTriggerEventProcessorsOutput() EventTriggerEventProcessorsOutput
+	ToEventTriggerEventProcessorsOutputWithContext(context.Context) EventTriggerEventProcessorsOutput
+}
+
+type EventTriggerEventProcessorsArgs struct {
+	AwsEventbridge EventTriggerEventProcessorsAwsEventbridgePtrInput `pulumi:"awsEventbridge"`
+}
+
+func (EventTriggerEventProcessorsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventTriggerEventProcessors)(nil)).Elem()
+}
+
+func (i EventTriggerEventProcessorsArgs) ToEventTriggerEventProcessorsOutput() EventTriggerEventProcessorsOutput {
+	return i.ToEventTriggerEventProcessorsOutputWithContext(context.Background())
+}
+
+func (i EventTriggerEventProcessorsArgs) ToEventTriggerEventProcessorsOutputWithContext(ctx context.Context) EventTriggerEventProcessorsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerEventProcessorsOutput)
+}
+
+func (i EventTriggerEventProcessorsArgs) ToEventTriggerEventProcessorsPtrOutput() EventTriggerEventProcessorsPtrOutput {
+	return i.ToEventTriggerEventProcessorsPtrOutputWithContext(context.Background())
+}
+
+func (i EventTriggerEventProcessorsArgs) ToEventTriggerEventProcessorsPtrOutputWithContext(ctx context.Context) EventTriggerEventProcessorsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerEventProcessorsOutput).ToEventTriggerEventProcessorsPtrOutputWithContext(ctx)
+}
+
+// EventTriggerEventProcessorsPtrInput is an input type that accepts EventTriggerEventProcessorsArgs, EventTriggerEventProcessorsPtr and EventTriggerEventProcessorsPtrOutput values.
+// You can construct a concrete instance of `EventTriggerEventProcessorsPtrInput` via:
+//
+//          EventTriggerEventProcessorsArgs{...}
+//
+//  or:
+//
+//          nil
+type EventTriggerEventProcessorsPtrInput interface {
+	pulumi.Input
+
+	ToEventTriggerEventProcessorsPtrOutput() EventTriggerEventProcessorsPtrOutput
+	ToEventTriggerEventProcessorsPtrOutputWithContext(context.Context) EventTriggerEventProcessorsPtrOutput
+}
+
+type eventTriggerEventProcessorsPtrType EventTriggerEventProcessorsArgs
+
+func EventTriggerEventProcessorsPtr(v *EventTriggerEventProcessorsArgs) EventTriggerEventProcessorsPtrInput {
+	return (*eventTriggerEventProcessorsPtrType)(v)
+}
+
+func (*eventTriggerEventProcessorsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EventTriggerEventProcessors)(nil)).Elem()
+}
+
+func (i *eventTriggerEventProcessorsPtrType) ToEventTriggerEventProcessorsPtrOutput() EventTriggerEventProcessorsPtrOutput {
+	return i.ToEventTriggerEventProcessorsPtrOutputWithContext(context.Background())
+}
+
+func (i *eventTriggerEventProcessorsPtrType) ToEventTriggerEventProcessorsPtrOutputWithContext(ctx context.Context) EventTriggerEventProcessorsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerEventProcessorsPtrOutput)
+}
+
+type EventTriggerEventProcessorsOutput struct{ *pulumi.OutputState }
+
+func (EventTriggerEventProcessorsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventTriggerEventProcessors)(nil)).Elem()
+}
+
+func (o EventTriggerEventProcessorsOutput) ToEventTriggerEventProcessorsOutput() EventTriggerEventProcessorsOutput {
+	return o
+}
+
+func (o EventTriggerEventProcessorsOutput) ToEventTriggerEventProcessorsOutputWithContext(ctx context.Context) EventTriggerEventProcessorsOutput {
+	return o
+}
+
+func (o EventTriggerEventProcessorsOutput) ToEventTriggerEventProcessorsPtrOutput() EventTriggerEventProcessorsPtrOutput {
+	return o.ToEventTriggerEventProcessorsPtrOutputWithContext(context.Background())
+}
+
+func (o EventTriggerEventProcessorsOutput) ToEventTriggerEventProcessorsPtrOutputWithContext(ctx context.Context) EventTriggerEventProcessorsPtrOutput {
+	return o.ApplyT(func(v EventTriggerEventProcessors) *EventTriggerEventProcessors {
+		return &v
+	}).(EventTriggerEventProcessorsPtrOutput)
+}
+func (o EventTriggerEventProcessorsOutput) AwsEventbridge() EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return o.ApplyT(func(v EventTriggerEventProcessors) *EventTriggerEventProcessorsAwsEventbridge {
+		return v.AwsEventbridge
+	}).(EventTriggerEventProcessorsAwsEventbridgePtrOutput)
+}
+
+type EventTriggerEventProcessorsPtrOutput struct{ *pulumi.OutputState }
+
+func (EventTriggerEventProcessorsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EventTriggerEventProcessors)(nil)).Elem()
+}
+
+func (o EventTriggerEventProcessorsPtrOutput) ToEventTriggerEventProcessorsPtrOutput() EventTriggerEventProcessorsPtrOutput {
+	return o
+}
+
+func (o EventTriggerEventProcessorsPtrOutput) ToEventTriggerEventProcessorsPtrOutputWithContext(ctx context.Context) EventTriggerEventProcessorsPtrOutput {
+	return o
+}
+
+func (o EventTriggerEventProcessorsPtrOutput) Elem() EventTriggerEventProcessorsOutput {
+	return o.ApplyT(func(v *EventTriggerEventProcessors) EventTriggerEventProcessors { return *v }).(EventTriggerEventProcessorsOutput)
+}
+
+func (o EventTriggerEventProcessorsPtrOutput) AwsEventbridge() EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return o.ApplyT(func(v *EventTriggerEventProcessors) *EventTriggerEventProcessorsAwsEventbridge {
+		if v == nil {
+			return nil
+		}
+		return v.AwsEventbridge
+	}).(EventTriggerEventProcessorsAwsEventbridgePtrOutput)
+}
+
+type EventTriggerEventProcessorsAwsEventbridge struct {
+	ConfigAccountId *string `pulumi:"configAccountId"`
+	ConfigRegion    *string `pulumi:"configRegion"`
+}
+
+// EventTriggerEventProcessorsAwsEventbridgeInput is an input type that accepts EventTriggerEventProcessorsAwsEventbridgeArgs and EventTriggerEventProcessorsAwsEventbridgeOutput values.
+// You can construct a concrete instance of `EventTriggerEventProcessorsAwsEventbridgeInput` via:
+//
+//          EventTriggerEventProcessorsAwsEventbridgeArgs{...}
+type EventTriggerEventProcessorsAwsEventbridgeInput interface {
+	pulumi.Input
+
+	ToEventTriggerEventProcessorsAwsEventbridgeOutput() EventTriggerEventProcessorsAwsEventbridgeOutput
+	ToEventTriggerEventProcessorsAwsEventbridgeOutputWithContext(context.Context) EventTriggerEventProcessorsAwsEventbridgeOutput
+}
+
+type EventTriggerEventProcessorsAwsEventbridgeArgs struct {
+	ConfigAccountId pulumi.StringPtrInput `pulumi:"configAccountId"`
+	ConfigRegion    pulumi.StringPtrInput `pulumi:"configRegion"`
+}
+
+func (EventTriggerEventProcessorsAwsEventbridgeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventTriggerEventProcessorsAwsEventbridge)(nil)).Elem()
+}
+
+func (i EventTriggerEventProcessorsAwsEventbridgeArgs) ToEventTriggerEventProcessorsAwsEventbridgeOutput() EventTriggerEventProcessorsAwsEventbridgeOutput {
+	return i.ToEventTriggerEventProcessorsAwsEventbridgeOutputWithContext(context.Background())
+}
+
+func (i EventTriggerEventProcessorsAwsEventbridgeArgs) ToEventTriggerEventProcessorsAwsEventbridgeOutputWithContext(ctx context.Context) EventTriggerEventProcessorsAwsEventbridgeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerEventProcessorsAwsEventbridgeOutput)
+}
+
+func (i EventTriggerEventProcessorsAwsEventbridgeArgs) ToEventTriggerEventProcessorsAwsEventbridgePtrOutput() EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return i.ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(context.Background())
+}
+
+func (i EventTriggerEventProcessorsAwsEventbridgeArgs) ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(ctx context.Context) EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerEventProcessorsAwsEventbridgeOutput).ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(ctx)
+}
+
+// EventTriggerEventProcessorsAwsEventbridgePtrInput is an input type that accepts EventTriggerEventProcessorsAwsEventbridgeArgs, EventTriggerEventProcessorsAwsEventbridgePtr and EventTriggerEventProcessorsAwsEventbridgePtrOutput values.
+// You can construct a concrete instance of `EventTriggerEventProcessorsAwsEventbridgePtrInput` via:
+//
+//          EventTriggerEventProcessorsAwsEventbridgeArgs{...}
+//
+//  or:
+//
+//          nil
+type EventTriggerEventProcessorsAwsEventbridgePtrInput interface {
+	pulumi.Input
+
+	ToEventTriggerEventProcessorsAwsEventbridgePtrOutput() EventTriggerEventProcessorsAwsEventbridgePtrOutput
+	ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(context.Context) EventTriggerEventProcessorsAwsEventbridgePtrOutput
+}
+
+type eventTriggerEventProcessorsAwsEventbridgePtrType EventTriggerEventProcessorsAwsEventbridgeArgs
+
+func EventTriggerEventProcessorsAwsEventbridgePtr(v *EventTriggerEventProcessorsAwsEventbridgeArgs) EventTriggerEventProcessorsAwsEventbridgePtrInput {
+	return (*eventTriggerEventProcessorsAwsEventbridgePtrType)(v)
+}
+
+func (*eventTriggerEventProcessorsAwsEventbridgePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EventTriggerEventProcessorsAwsEventbridge)(nil)).Elem()
+}
+
+func (i *eventTriggerEventProcessorsAwsEventbridgePtrType) ToEventTriggerEventProcessorsAwsEventbridgePtrOutput() EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return i.ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(context.Background())
+}
+
+func (i *eventTriggerEventProcessorsAwsEventbridgePtrType) ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(ctx context.Context) EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerEventProcessorsAwsEventbridgePtrOutput)
+}
+
+type EventTriggerEventProcessorsAwsEventbridgeOutput struct{ *pulumi.OutputState }
+
+func (EventTriggerEventProcessorsAwsEventbridgeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EventTriggerEventProcessorsAwsEventbridge)(nil)).Elem()
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ToEventTriggerEventProcessorsAwsEventbridgeOutput() EventTriggerEventProcessorsAwsEventbridgeOutput {
+	return o
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ToEventTriggerEventProcessorsAwsEventbridgeOutputWithContext(ctx context.Context) EventTriggerEventProcessorsAwsEventbridgeOutput {
+	return o
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ToEventTriggerEventProcessorsAwsEventbridgePtrOutput() EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return o.ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(context.Background())
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(ctx context.Context) EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return o.ApplyT(func(v EventTriggerEventProcessorsAwsEventbridge) *EventTriggerEventProcessorsAwsEventbridge {
+		return &v
+	}).(EventTriggerEventProcessorsAwsEventbridgePtrOutput)
+}
+func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ConfigAccountId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EventTriggerEventProcessorsAwsEventbridge) *string { return v.ConfigAccountId }).(pulumi.StringPtrOutput)
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgeOutput) ConfigRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EventTriggerEventProcessorsAwsEventbridge) *string { return v.ConfigRegion }).(pulumi.StringPtrOutput)
+}
+
+type EventTriggerEventProcessorsAwsEventbridgePtrOutput struct{ *pulumi.OutputState }
+
+func (EventTriggerEventProcessorsAwsEventbridgePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EventTriggerEventProcessorsAwsEventbridge)(nil)).Elem()
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ToEventTriggerEventProcessorsAwsEventbridgePtrOutput() EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return o
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ToEventTriggerEventProcessorsAwsEventbridgePtrOutputWithContext(ctx context.Context) EventTriggerEventProcessorsAwsEventbridgePtrOutput {
+	return o
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) Elem() EventTriggerEventProcessorsAwsEventbridgeOutput {
+	return o.ApplyT(func(v *EventTriggerEventProcessorsAwsEventbridge) EventTriggerEventProcessorsAwsEventbridge {
+		return *v
+	}).(EventTriggerEventProcessorsAwsEventbridgeOutput)
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigAccountId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EventTriggerEventProcessorsAwsEventbridge) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ConfigAccountId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EventTriggerEventProcessorsAwsEventbridge) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ConfigRegion
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5517,6 +7193,298 @@ func (o LdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) LdapVerifyVali
 	}).(LdapVerifyValidationOutput)
 }
 
+type OnlineArchiveCriteria struct {
+	DateField       *string `pulumi:"dateField"`
+	DateFormat      *string `pulumi:"dateFormat"`
+	ExpireAfterDays *int    `pulumi:"expireAfterDays"`
+	Query           *string `pulumi:"query"`
+	Type            string  `pulumi:"type"`
+}
+
+// OnlineArchiveCriteriaInput is an input type that accepts OnlineArchiveCriteriaArgs and OnlineArchiveCriteriaOutput values.
+// You can construct a concrete instance of `OnlineArchiveCriteriaInput` via:
+//
+//          OnlineArchiveCriteriaArgs{...}
+type OnlineArchiveCriteriaInput interface {
+	pulumi.Input
+
+	ToOnlineArchiveCriteriaOutput() OnlineArchiveCriteriaOutput
+	ToOnlineArchiveCriteriaOutputWithContext(context.Context) OnlineArchiveCriteriaOutput
+}
+
+type OnlineArchiveCriteriaArgs struct {
+	DateField       pulumi.StringPtrInput `pulumi:"dateField"`
+	DateFormat      pulumi.StringPtrInput `pulumi:"dateFormat"`
+	ExpireAfterDays pulumi.IntPtrInput    `pulumi:"expireAfterDays"`
+	Query           pulumi.StringPtrInput `pulumi:"query"`
+	Type            pulumi.StringInput    `pulumi:"type"`
+}
+
+func (OnlineArchiveCriteriaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OnlineArchiveCriteria)(nil)).Elem()
+}
+
+func (i OnlineArchiveCriteriaArgs) ToOnlineArchiveCriteriaOutput() OnlineArchiveCriteriaOutput {
+	return i.ToOnlineArchiveCriteriaOutputWithContext(context.Background())
+}
+
+func (i OnlineArchiveCriteriaArgs) ToOnlineArchiveCriteriaOutputWithContext(ctx context.Context) OnlineArchiveCriteriaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveCriteriaOutput)
+}
+
+func (i OnlineArchiveCriteriaArgs) ToOnlineArchiveCriteriaPtrOutput() OnlineArchiveCriteriaPtrOutput {
+	return i.ToOnlineArchiveCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (i OnlineArchiveCriteriaArgs) ToOnlineArchiveCriteriaPtrOutputWithContext(ctx context.Context) OnlineArchiveCriteriaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveCriteriaOutput).ToOnlineArchiveCriteriaPtrOutputWithContext(ctx)
+}
+
+// OnlineArchiveCriteriaPtrInput is an input type that accepts OnlineArchiveCriteriaArgs, OnlineArchiveCriteriaPtr and OnlineArchiveCriteriaPtrOutput values.
+// You can construct a concrete instance of `OnlineArchiveCriteriaPtrInput` via:
+//
+//          OnlineArchiveCriteriaArgs{...}
+//
+//  or:
+//
+//          nil
+type OnlineArchiveCriteriaPtrInput interface {
+	pulumi.Input
+
+	ToOnlineArchiveCriteriaPtrOutput() OnlineArchiveCriteriaPtrOutput
+	ToOnlineArchiveCriteriaPtrOutputWithContext(context.Context) OnlineArchiveCriteriaPtrOutput
+}
+
+type onlineArchiveCriteriaPtrType OnlineArchiveCriteriaArgs
+
+func OnlineArchiveCriteriaPtr(v *OnlineArchiveCriteriaArgs) OnlineArchiveCriteriaPtrInput {
+	return (*onlineArchiveCriteriaPtrType)(v)
+}
+
+func (*onlineArchiveCriteriaPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OnlineArchiveCriteria)(nil)).Elem()
+}
+
+func (i *onlineArchiveCriteriaPtrType) ToOnlineArchiveCriteriaPtrOutput() OnlineArchiveCriteriaPtrOutput {
+	return i.ToOnlineArchiveCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (i *onlineArchiveCriteriaPtrType) ToOnlineArchiveCriteriaPtrOutputWithContext(ctx context.Context) OnlineArchiveCriteriaPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveCriteriaPtrOutput)
+}
+
+type OnlineArchiveCriteriaOutput struct{ *pulumi.OutputState }
+
+func (OnlineArchiveCriteriaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OnlineArchiveCriteria)(nil)).Elem()
+}
+
+func (o OnlineArchiveCriteriaOutput) ToOnlineArchiveCriteriaOutput() OnlineArchiveCriteriaOutput {
+	return o
+}
+
+func (o OnlineArchiveCriteriaOutput) ToOnlineArchiveCriteriaOutputWithContext(ctx context.Context) OnlineArchiveCriteriaOutput {
+	return o
+}
+
+func (o OnlineArchiveCriteriaOutput) ToOnlineArchiveCriteriaPtrOutput() OnlineArchiveCriteriaPtrOutput {
+	return o.ToOnlineArchiveCriteriaPtrOutputWithContext(context.Background())
+}
+
+func (o OnlineArchiveCriteriaOutput) ToOnlineArchiveCriteriaPtrOutputWithContext(ctx context.Context) OnlineArchiveCriteriaPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveCriteria) *OnlineArchiveCriteria {
+		return &v
+	}).(OnlineArchiveCriteriaPtrOutput)
+}
+func (o OnlineArchiveCriteriaOutput) DateField() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveCriteria) *string { return v.DateField }).(pulumi.StringPtrOutput)
+}
+
+func (o OnlineArchiveCriteriaOutput) DateFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveCriteria) *string { return v.DateFormat }).(pulumi.StringPtrOutput)
+}
+
+func (o OnlineArchiveCriteriaOutput) ExpireAfterDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveCriteria) *int { return v.ExpireAfterDays }).(pulumi.IntPtrOutput)
+}
+
+func (o OnlineArchiveCriteriaOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OnlineArchiveCriteria) *string { return v.Query }).(pulumi.StringPtrOutput)
+}
+
+func (o OnlineArchiveCriteriaOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v OnlineArchiveCriteria) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type OnlineArchiveCriteriaPtrOutput struct{ *pulumi.OutputState }
+
+func (OnlineArchiveCriteriaPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OnlineArchiveCriteria)(nil)).Elem()
+}
+
+func (o OnlineArchiveCriteriaPtrOutput) ToOnlineArchiveCriteriaPtrOutput() OnlineArchiveCriteriaPtrOutput {
+	return o
+}
+
+func (o OnlineArchiveCriteriaPtrOutput) ToOnlineArchiveCriteriaPtrOutputWithContext(ctx context.Context) OnlineArchiveCriteriaPtrOutput {
+	return o
+}
+
+func (o OnlineArchiveCriteriaPtrOutput) Elem() OnlineArchiveCriteriaOutput {
+	return o.ApplyT(func(v *OnlineArchiveCriteria) OnlineArchiveCriteria { return *v }).(OnlineArchiveCriteriaOutput)
+}
+
+func (o OnlineArchiveCriteriaPtrOutput) DateField() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DateField
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o OnlineArchiveCriteriaPtrOutput) DateFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DateFormat
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o OnlineArchiveCriteriaPtrOutput) ExpireAfterDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveCriteria) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ExpireAfterDays
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o OnlineArchiveCriteriaPtrOutput) Query() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Query
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o OnlineArchiveCriteriaPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type OnlineArchivePartitionField struct {
+	FieldName string  `pulumi:"fieldName"`
+	FieldType *string `pulumi:"fieldType"`
+	Order     int     `pulumi:"order"`
+}
+
+// OnlineArchivePartitionFieldInput is an input type that accepts OnlineArchivePartitionFieldArgs and OnlineArchivePartitionFieldOutput values.
+// You can construct a concrete instance of `OnlineArchivePartitionFieldInput` via:
+//
+//          OnlineArchivePartitionFieldArgs{...}
+type OnlineArchivePartitionFieldInput interface {
+	pulumi.Input
+
+	ToOnlineArchivePartitionFieldOutput() OnlineArchivePartitionFieldOutput
+	ToOnlineArchivePartitionFieldOutputWithContext(context.Context) OnlineArchivePartitionFieldOutput
+}
+
+type OnlineArchivePartitionFieldArgs struct {
+	FieldName pulumi.StringInput    `pulumi:"fieldName"`
+	FieldType pulumi.StringPtrInput `pulumi:"fieldType"`
+	Order     pulumi.IntInput       `pulumi:"order"`
+}
+
+func (OnlineArchivePartitionFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OnlineArchivePartitionField)(nil)).Elem()
+}
+
+func (i OnlineArchivePartitionFieldArgs) ToOnlineArchivePartitionFieldOutput() OnlineArchivePartitionFieldOutput {
+	return i.ToOnlineArchivePartitionFieldOutputWithContext(context.Background())
+}
+
+func (i OnlineArchivePartitionFieldArgs) ToOnlineArchivePartitionFieldOutputWithContext(ctx context.Context) OnlineArchivePartitionFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchivePartitionFieldOutput)
+}
+
+// OnlineArchivePartitionFieldArrayInput is an input type that accepts OnlineArchivePartitionFieldArray and OnlineArchivePartitionFieldArrayOutput values.
+// You can construct a concrete instance of `OnlineArchivePartitionFieldArrayInput` via:
+//
+//          OnlineArchivePartitionFieldArray{ OnlineArchivePartitionFieldArgs{...} }
+type OnlineArchivePartitionFieldArrayInput interface {
+	pulumi.Input
+
+	ToOnlineArchivePartitionFieldArrayOutput() OnlineArchivePartitionFieldArrayOutput
+	ToOnlineArchivePartitionFieldArrayOutputWithContext(context.Context) OnlineArchivePartitionFieldArrayOutput
+}
+
+type OnlineArchivePartitionFieldArray []OnlineArchivePartitionFieldInput
+
+func (OnlineArchivePartitionFieldArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OnlineArchivePartitionField)(nil)).Elem()
+}
+
+func (i OnlineArchivePartitionFieldArray) ToOnlineArchivePartitionFieldArrayOutput() OnlineArchivePartitionFieldArrayOutput {
+	return i.ToOnlineArchivePartitionFieldArrayOutputWithContext(context.Background())
+}
+
+func (i OnlineArchivePartitionFieldArray) ToOnlineArchivePartitionFieldArrayOutputWithContext(ctx context.Context) OnlineArchivePartitionFieldArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchivePartitionFieldArrayOutput)
+}
+
+type OnlineArchivePartitionFieldOutput struct{ *pulumi.OutputState }
+
+func (OnlineArchivePartitionFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OnlineArchivePartitionField)(nil)).Elem()
+}
+
+func (o OnlineArchivePartitionFieldOutput) ToOnlineArchivePartitionFieldOutput() OnlineArchivePartitionFieldOutput {
+	return o
+}
+
+func (o OnlineArchivePartitionFieldOutput) ToOnlineArchivePartitionFieldOutputWithContext(ctx context.Context) OnlineArchivePartitionFieldOutput {
+	return o
+}
+
+func (o OnlineArchivePartitionFieldOutput) FieldName() pulumi.StringOutput {
+	return o.ApplyT(func(v OnlineArchivePartitionField) string { return v.FieldName }).(pulumi.StringOutput)
+}
+
+func (o OnlineArchivePartitionFieldOutput) FieldType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OnlineArchivePartitionField) *string { return v.FieldType }).(pulumi.StringPtrOutput)
+}
+
+func (o OnlineArchivePartitionFieldOutput) Order() pulumi.IntOutput {
+	return o.ApplyT(func(v OnlineArchivePartitionField) int { return v.Order }).(pulumi.IntOutput)
+}
+
+type OnlineArchivePartitionFieldArrayOutput struct{ *pulumi.OutputState }
+
+func (OnlineArchivePartitionFieldArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OnlineArchivePartitionField)(nil)).Elem()
+}
+
+func (o OnlineArchivePartitionFieldArrayOutput) ToOnlineArchivePartitionFieldArrayOutput() OnlineArchivePartitionFieldArrayOutput {
+	return o
+}
+
+func (o OnlineArchivePartitionFieldArrayOutput) ToOnlineArchivePartitionFieldArrayOutputWithContext(ctx context.Context) OnlineArchivePartitionFieldArrayOutput {
+	return o
+}
+
+func (o OnlineArchivePartitionFieldArrayOutput) Index(i pulumi.IntInput) OnlineArchivePartitionFieldOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OnlineArchivePartitionField {
+		return vs[0].([]OnlineArchivePartitionField)[vs[1].(int)]
+	}).(OnlineArchivePartitionFieldOutput)
+}
+
 type ProjectTeam struct {
 	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
 	// The following are valid roles:
@@ -6019,7 +7987,7 @@ func (o GetAlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) GetAle
 	}).(GetAlertConfigurationMatcherOutput)
 }
 
-type GetAlertConfigurationMetricThreshold struct {
+type GetAlertConfigurationMetricThresholdConfig struct {
 	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 	MetricName string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
@@ -6052,18 +8020,18 @@ type GetAlertConfigurationMetricThreshold struct {
 	Units string `pulumi:"units"`
 }
 
-// GetAlertConfigurationMetricThresholdInput is an input type that accepts GetAlertConfigurationMetricThresholdArgs and GetAlertConfigurationMetricThresholdOutput values.
-// You can construct a concrete instance of `GetAlertConfigurationMetricThresholdInput` via:
+// GetAlertConfigurationMetricThresholdConfigInput is an input type that accepts GetAlertConfigurationMetricThresholdConfigArgs and GetAlertConfigurationMetricThresholdConfigOutput values.
+// You can construct a concrete instance of `GetAlertConfigurationMetricThresholdConfigInput` via:
 //
-//          GetAlertConfigurationMetricThresholdArgs{...}
-type GetAlertConfigurationMetricThresholdInput interface {
+//          GetAlertConfigurationMetricThresholdConfigArgs{...}
+type GetAlertConfigurationMetricThresholdConfigInput interface {
 	pulumi.Input
 
-	ToGetAlertConfigurationMetricThresholdOutput() GetAlertConfigurationMetricThresholdOutput
-	ToGetAlertConfigurationMetricThresholdOutputWithContext(context.Context) GetAlertConfigurationMetricThresholdOutput
+	ToGetAlertConfigurationMetricThresholdConfigOutput() GetAlertConfigurationMetricThresholdConfigOutput
+	ToGetAlertConfigurationMetricThresholdConfigOutputWithContext(context.Context) GetAlertConfigurationMetricThresholdConfigOutput
 }
 
-type GetAlertConfigurationMetricThresholdArgs struct {
+type GetAlertConfigurationMetricThresholdConfigArgs struct {
 	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
 	MetricName pulumi.StringInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
@@ -6096,53 +8064,78 @@ type GetAlertConfigurationMetricThresholdArgs struct {
 	Units pulumi.StringInput `pulumi:"units"`
 }
 
-func (GetAlertConfigurationMetricThresholdArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetAlertConfigurationMetricThreshold)(nil)).Elem()
+func (GetAlertConfigurationMetricThresholdConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertConfigurationMetricThresholdConfig)(nil)).Elem()
 }
 
-func (i GetAlertConfigurationMetricThresholdArgs) ToGetAlertConfigurationMetricThresholdOutput() GetAlertConfigurationMetricThresholdOutput {
-	return i.ToGetAlertConfigurationMetricThresholdOutputWithContext(context.Background())
+func (i GetAlertConfigurationMetricThresholdConfigArgs) ToGetAlertConfigurationMetricThresholdConfigOutput() GetAlertConfigurationMetricThresholdConfigOutput {
+	return i.ToGetAlertConfigurationMetricThresholdConfigOutputWithContext(context.Background())
 }
 
-func (i GetAlertConfigurationMetricThresholdArgs) ToGetAlertConfigurationMetricThresholdOutputWithContext(ctx context.Context) GetAlertConfigurationMetricThresholdOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAlertConfigurationMetricThresholdOutput)
+func (i GetAlertConfigurationMetricThresholdConfigArgs) ToGetAlertConfigurationMetricThresholdConfigOutputWithContext(ctx context.Context) GetAlertConfigurationMetricThresholdConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertConfigurationMetricThresholdConfigOutput)
 }
 
-type GetAlertConfigurationMetricThresholdOutput struct{ *pulumi.OutputState }
+// GetAlertConfigurationMetricThresholdConfigArrayInput is an input type that accepts GetAlertConfigurationMetricThresholdConfigArray and GetAlertConfigurationMetricThresholdConfigArrayOutput values.
+// You can construct a concrete instance of `GetAlertConfigurationMetricThresholdConfigArrayInput` via:
+//
+//          GetAlertConfigurationMetricThresholdConfigArray{ GetAlertConfigurationMetricThresholdConfigArgs{...} }
+type GetAlertConfigurationMetricThresholdConfigArrayInput interface {
+	pulumi.Input
 
-func (GetAlertConfigurationMetricThresholdOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetAlertConfigurationMetricThreshold)(nil)).Elem()
+	ToGetAlertConfigurationMetricThresholdConfigArrayOutput() GetAlertConfigurationMetricThresholdConfigArrayOutput
+	ToGetAlertConfigurationMetricThresholdConfigArrayOutputWithContext(context.Context) GetAlertConfigurationMetricThresholdConfigArrayOutput
 }
 
-func (o GetAlertConfigurationMetricThresholdOutput) ToGetAlertConfigurationMetricThresholdOutput() GetAlertConfigurationMetricThresholdOutput {
+type GetAlertConfigurationMetricThresholdConfigArray []GetAlertConfigurationMetricThresholdConfigInput
+
+func (GetAlertConfigurationMetricThresholdConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertConfigurationMetricThresholdConfig)(nil)).Elem()
+}
+
+func (i GetAlertConfigurationMetricThresholdConfigArray) ToGetAlertConfigurationMetricThresholdConfigArrayOutput() GetAlertConfigurationMetricThresholdConfigArrayOutput {
+	return i.ToGetAlertConfigurationMetricThresholdConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertConfigurationMetricThresholdConfigArray) ToGetAlertConfigurationMetricThresholdConfigArrayOutputWithContext(ctx context.Context) GetAlertConfigurationMetricThresholdConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertConfigurationMetricThresholdConfigArrayOutput)
+}
+
+type GetAlertConfigurationMetricThresholdConfigOutput struct{ *pulumi.OutputState }
+
+func (GetAlertConfigurationMetricThresholdConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertConfigurationMetricThresholdConfig)(nil)).Elem()
+}
+
+func (o GetAlertConfigurationMetricThresholdConfigOutput) ToGetAlertConfigurationMetricThresholdConfigOutput() GetAlertConfigurationMetricThresholdConfigOutput {
 	return o
 }
 
-func (o GetAlertConfigurationMetricThresholdOutput) ToGetAlertConfigurationMetricThresholdOutputWithContext(ctx context.Context) GetAlertConfigurationMetricThresholdOutput {
+func (o GetAlertConfigurationMetricThresholdConfigOutput) ToGetAlertConfigurationMetricThresholdConfigOutputWithContext(ctx context.Context) GetAlertConfigurationMetricThresholdConfigOutput {
 	return o
 }
 
 // Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
-func (o GetAlertConfigurationMetricThresholdOutput) MetricName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAlertConfigurationMetricThreshold) string { return v.MetricName }).(pulumi.StringOutput)
+func (o GetAlertConfigurationMetricThresholdConfigOutput) MetricName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.MetricName }).(pulumi.StringOutput)
 }
 
 // This must be set to AVERAGE. Atlas computes the current metric value as an average.
-func (o GetAlertConfigurationMetricThresholdOutput) Mode() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAlertConfigurationMetricThreshold) string { return v.Mode }).(pulumi.StringOutput)
+func (o GetAlertConfigurationMetricThresholdConfigOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.Mode }).(pulumi.StringOutput)
 }
 
 // Operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
 // - `GREATER_THAN`
 // - `LESS_THAN`
-func (o GetAlertConfigurationMetricThresholdOutput) Operator() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAlertConfigurationMetricThreshold) string { return v.Operator }).(pulumi.StringOutput)
+func (o GetAlertConfigurationMetricThresholdConfigOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
 
 // Threshold value outside of which an alert will be triggered.
-func (o GetAlertConfigurationMetricThresholdOutput) Threshold() pulumi.Float64Output {
-	return o.ApplyT(func(v GetAlertConfigurationMetricThreshold) float64 { return v.Threshold }).(pulumi.Float64Output)
+func (o GetAlertConfigurationMetricThresholdConfigOutput) Threshold() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) float64 { return v.Threshold }).(pulumi.Float64Output)
 }
 
 // The units for the threshold value. Depends on the type of metric.
@@ -6163,8 +8156,28 @@ func (o GetAlertConfigurationMetricThresholdOutput) Threshold() pulumi.Float64Ou
 // - `MINUTES`
 // - `HOURS`
 // - `DAYS`
-func (o GetAlertConfigurationMetricThresholdOutput) Units() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAlertConfigurationMetricThreshold) string { return v.Units }).(pulumi.StringOutput)
+func (o GetAlertConfigurationMetricThresholdConfigOutput) Units() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.Units }).(pulumi.StringOutput)
+}
+
+type GetAlertConfigurationMetricThresholdConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertConfigurationMetricThresholdConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertConfigurationMetricThresholdConfig)(nil)).Elem()
+}
+
+func (o GetAlertConfigurationMetricThresholdConfigArrayOutput) ToGetAlertConfigurationMetricThresholdConfigArrayOutput() GetAlertConfigurationMetricThresholdConfigArrayOutput {
+	return o
+}
+
+func (o GetAlertConfigurationMetricThresholdConfigArrayOutput) ToGetAlertConfigurationMetricThresholdConfigArrayOutputWithContext(ctx context.Context) GetAlertConfigurationMetricThresholdConfigArrayOutput {
+	return o
+}
+
+func (o GetAlertConfigurationMetricThresholdConfigArrayOutput) Index(i pulumi.IntInput) GetAlertConfigurationMetricThresholdConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertConfigurationMetricThresholdConfig {
+		return vs[0].([]GetAlertConfigurationMetricThresholdConfig)[vs[1].(int)]
+	}).(GetAlertConfigurationMetricThresholdConfigOutput)
 }
 
 type GetAlertConfigurationNotification struct {
@@ -6492,7 +8505,7 @@ func (o GetAlertConfigurationNotificationArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetAlertConfigurationNotificationOutput)
 }
 
-type GetAlertConfigurationThreshold struct {
+type GetAlertConfigurationThresholdConfig struct {
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
 	// - `GREATER_THAN`
@@ -6521,18 +8534,18 @@ type GetAlertConfigurationThreshold struct {
 	Units string `pulumi:"units"`
 }
 
-// GetAlertConfigurationThresholdInput is an input type that accepts GetAlertConfigurationThresholdArgs and GetAlertConfigurationThresholdOutput values.
-// You can construct a concrete instance of `GetAlertConfigurationThresholdInput` via:
+// GetAlertConfigurationThresholdConfigInput is an input type that accepts GetAlertConfigurationThresholdConfigArgs and GetAlertConfigurationThresholdConfigOutput values.
+// You can construct a concrete instance of `GetAlertConfigurationThresholdConfigInput` via:
 //
-//          GetAlertConfigurationThresholdArgs{...}
-type GetAlertConfigurationThresholdInput interface {
+//          GetAlertConfigurationThresholdConfigArgs{...}
+type GetAlertConfigurationThresholdConfigInput interface {
 	pulumi.Input
 
-	ToGetAlertConfigurationThresholdOutput() GetAlertConfigurationThresholdOutput
-	ToGetAlertConfigurationThresholdOutputWithContext(context.Context) GetAlertConfigurationThresholdOutput
+	ToGetAlertConfigurationThresholdConfigOutput() GetAlertConfigurationThresholdConfigOutput
+	ToGetAlertConfigurationThresholdConfigOutputWithContext(context.Context) GetAlertConfigurationThresholdConfigOutput
 }
 
-type GetAlertConfigurationThresholdArgs struct {
+type GetAlertConfigurationThresholdConfigArgs struct {
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
 	// - `GREATER_THAN`
@@ -6561,29 +8574,54 @@ type GetAlertConfigurationThresholdArgs struct {
 	Units pulumi.StringInput `pulumi:"units"`
 }
 
-func (GetAlertConfigurationThresholdArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetAlertConfigurationThreshold)(nil)).Elem()
+func (GetAlertConfigurationThresholdConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertConfigurationThresholdConfig)(nil)).Elem()
 }
 
-func (i GetAlertConfigurationThresholdArgs) ToGetAlertConfigurationThresholdOutput() GetAlertConfigurationThresholdOutput {
-	return i.ToGetAlertConfigurationThresholdOutputWithContext(context.Background())
+func (i GetAlertConfigurationThresholdConfigArgs) ToGetAlertConfigurationThresholdConfigOutput() GetAlertConfigurationThresholdConfigOutput {
+	return i.ToGetAlertConfigurationThresholdConfigOutputWithContext(context.Background())
 }
 
-func (i GetAlertConfigurationThresholdArgs) ToGetAlertConfigurationThresholdOutputWithContext(ctx context.Context) GetAlertConfigurationThresholdOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAlertConfigurationThresholdOutput)
+func (i GetAlertConfigurationThresholdConfigArgs) ToGetAlertConfigurationThresholdConfigOutputWithContext(ctx context.Context) GetAlertConfigurationThresholdConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertConfigurationThresholdConfigOutput)
 }
 
-type GetAlertConfigurationThresholdOutput struct{ *pulumi.OutputState }
+// GetAlertConfigurationThresholdConfigArrayInput is an input type that accepts GetAlertConfigurationThresholdConfigArray and GetAlertConfigurationThresholdConfigArrayOutput values.
+// You can construct a concrete instance of `GetAlertConfigurationThresholdConfigArrayInput` via:
+//
+//          GetAlertConfigurationThresholdConfigArray{ GetAlertConfigurationThresholdConfigArgs{...} }
+type GetAlertConfigurationThresholdConfigArrayInput interface {
+	pulumi.Input
 
-func (GetAlertConfigurationThresholdOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetAlertConfigurationThreshold)(nil)).Elem()
+	ToGetAlertConfigurationThresholdConfigArrayOutput() GetAlertConfigurationThresholdConfigArrayOutput
+	ToGetAlertConfigurationThresholdConfigArrayOutputWithContext(context.Context) GetAlertConfigurationThresholdConfigArrayOutput
 }
 
-func (o GetAlertConfigurationThresholdOutput) ToGetAlertConfigurationThresholdOutput() GetAlertConfigurationThresholdOutput {
+type GetAlertConfigurationThresholdConfigArray []GetAlertConfigurationThresholdConfigInput
+
+func (GetAlertConfigurationThresholdConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertConfigurationThresholdConfig)(nil)).Elem()
+}
+
+func (i GetAlertConfigurationThresholdConfigArray) ToGetAlertConfigurationThresholdConfigArrayOutput() GetAlertConfigurationThresholdConfigArrayOutput {
+	return i.ToGetAlertConfigurationThresholdConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlertConfigurationThresholdConfigArray) ToGetAlertConfigurationThresholdConfigArrayOutputWithContext(ctx context.Context) GetAlertConfigurationThresholdConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlertConfigurationThresholdConfigArrayOutput)
+}
+
+type GetAlertConfigurationThresholdConfigOutput struct{ *pulumi.OutputState }
+
+func (GetAlertConfigurationThresholdConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlertConfigurationThresholdConfig)(nil)).Elem()
+}
+
+func (o GetAlertConfigurationThresholdConfigOutput) ToGetAlertConfigurationThresholdConfigOutput() GetAlertConfigurationThresholdConfigOutput {
 	return o
 }
 
-func (o GetAlertConfigurationThresholdOutput) ToGetAlertConfigurationThresholdOutputWithContext(ctx context.Context) GetAlertConfigurationThresholdOutput {
+func (o GetAlertConfigurationThresholdConfigOutput) ToGetAlertConfigurationThresholdConfigOutputWithContext(ctx context.Context) GetAlertConfigurationThresholdConfigOutput {
 	return o
 }
 
@@ -6591,13 +8629,13 @@ func (o GetAlertConfigurationThresholdOutput) ToGetAlertConfigurationThresholdOu
 // Accepted values are:
 // - `GREATER_THAN`
 // - `LESS_THAN`
-func (o GetAlertConfigurationThresholdOutput) Operator() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAlertConfigurationThreshold) string { return v.Operator }).(pulumi.StringOutput)
+func (o GetAlertConfigurationThresholdConfigOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
 
 // Threshold value outside of which an alert will be triggered.
-func (o GetAlertConfigurationThresholdOutput) Threshold() pulumi.Float64Output {
-	return o.ApplyT(func(v GetAlertConfigurationThreshold) float64 { return v.Threshold }).(pulumi.Float64Output)
+func (o GetAlertConfigurationThresholdConfigOutput) Threshold() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAlertConfigurationThresholdConfig) float64 { return v.Threshold }).(pulumi.Float64Output)
 }
 
 // The units for the threshold value. Depends on the type of metric.
@@ -6618,8 +8656,560 @@ func (o GetAlertConfigurationThresholdOutput) Threshold() pulumi.Float64Output {
 // - `MINUTES`
 // - `HOURS`
 // - `DAYS`
-func (o GetAlertConfigurationThresholdOutput) Units() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAlertConfigurationThreshold) string { return v.Units }).(pulumi.StringOutput)
+func (o GetAlertConfigurationThresholdConfigOutput) Units() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationThresholdConfig) string { return v.Units }).(pulumi.StringOutput)
+}
+
+type GetAlertConfigurationThresholdConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlertConfigurationThresholdConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlertConfigurationThresholdConfig)(nil)).Elem()
+}
+
+func (o GetAlertConfigurationThresholdConfigArrayOutput) ToGetAlertConfigurationThresholdConfigArrayOutput() GetAlertConfigurationThresholdConfigArrayOutput {
+	return o
+}
+
+func (o GetAlertConfigurationThresholdConfigArrayOutput) ToGetAlertConfigurationThresholdConfigArrayOutputWithContext(ctx context.Context) GetAlertConfigurationThresholdConfigArrayOutput {
+	return o
+}
+
+func (o GetAlertConfigurationThresholdConfigArrayOutput) Index(i pulumi.IntInput) GetAlertConfigurationThresholdConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertConfigurationThresholdConfig {
+		return vs[0].([]GetAlertConfigurationThresholdConfig)[vs[1].(int)]
+	}).(GetAlertConfigurationThresholdConfigOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemDaily struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetCloudBackupSchedulePolicyItemDailyInput is an input type that accepts GetCloudBackupSchedulePolicyItemDailyArgs and GetCloudBackupSchedulePolicyItemDailyOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemDailyInput` via:
+//
+//          GetCloudBackupSchedulePolicyItemDailyArgs{...}
+type GetCloudBackupSchedulePolicyItemDailyInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemDailyOutput() GetCloudBackupSchedulePolicyItemDailyOutput
+	ToGetCloudBackupSchedulePolicyItemDailyOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemDailyOutput
+}
+
+type GetCloudBackupSchedulePolicyItemDailyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetCloudBackupSchedulePolicyItemDailyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemDaily)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemDailyArgs) ToGetCloudBackupSchedulePolicyItemDailyOutput() GetCloudBackupSchedulePolicyItemDailyOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemDailyOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemDailyArgs) ToGetCloudBackupSchedulePolicyItemDailyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemDailyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemDailyOutput)
+}
+
+// GetCloudBackupSchedulePolicyItemDailyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemDailyArray and GetCloudBackupSchedulePolicyItemDailyArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemDailyArrayInput` via:
+//
+//          GetCloudBackupSchedulePolicyItemDailyArray{ GetCloudBackupSchedulePolicyItemDailyArgs{...} }
+type GetCloudBackupSchedulePolicyItemDailyArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemDailyArrayOutput() GetCloudBackupSchedulePolicyItemDailyArrayOutput
+	ToGetCloudBackupSchedulePolicyItemDailyArrayOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemDailyArrayOutput
+}
+
+type GetCloudBackupSchedulePolicyItemDailyArray []GetCloudBackupSchedulePolicyItemDailyInput
+
+func (GetCloudBackupSchedulePolicyItemDailyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemDaily)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemDailyArray) ToGetCloudBackupSchedulePolicyItemDailyArrayOutput() GetCloudBackupSchedulePolicyItemDailyArrayOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemDailyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemDailyArray) ToGetCloudBackupSchedulePolicyItemDailyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemDailyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemDailyArrayOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemDailyOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemDailyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemDaily)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemDailyOutput) ToGetCloudBackupSchedulePolicyItemDailyOutput() GetCloudBackupSchedulePolicyItemDailyOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemDailyOutput) ToGetCloudBackupSchedulePolicyItemDailyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemDailyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o GetCloudBackupSchedulePolicyItemDailyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemDailyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemDailyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o GetCloudBackupSchedulePolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o GetCloudBackupSchedulePolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemDailyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemDailyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemDaily)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemDailyArrayOutput) ToGetCloudBackupSchedulePolicyItemDailyArrayOutput() GetCloudBackupSchedulePolicyItemDailyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemDailyArrayOutput) ToGetCloudBackupSchedulePolicyItemDailyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemDailyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemDailyArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSchedulePolicyItemDailyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemDaily {
+		return vs[0].([]GetCloudBackupSchedulePolicyItemDaily)[vs[1].(int)]
+	}).(GetCloudBackupSchedulePolicyItemDailyOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemHourly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetCloudBackupSchedulePolicyItemHourlyInput is an input type that accepts GetCloudBackupSchedulePolicyItemHourlyArgs and GetCloudBackupSchedulePolicyItemHourlyOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemHourlyInput` via:
+//
+//          GetCloudBackupSchedulePolicyItemHourlyArgs{...}
+type GetCloudBackupSchedulePolicyItemHourlyInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemHourlyOutput() GetCloudBackupSchedulePolicyItemHourlyOutput
+	ToGetCloudBackupSchedulePolicyItemHourlyOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemHourlyOutput
+}
+
+type GetCloudBackupSchedulePolicyItemHourlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetCloudBackupSchedulePolicyItemHourlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemHourly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemHourlyArgs) ToGetCloudBackupSchedulePolicyItemHourlyOutput() GetCloudBackupSchedulePolicyItemHourlyOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemHourlyOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemHourlyArgs) ToGetCloudBackupSchedulePolicyItemHourlyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemHourlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemHourlyOutput)
+}
+
+// GetCloudBackupSchedulePolicyItemHourlyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemHourlyArray and GetCloudBackupSchedulePolicyItemHourlyArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemHourlyArrayInput` via:
+//
+//          GetCloudBackupSchedulePolicyItemHourlyArray{ GetCloudBackupSchedulePolicyItemHourlyArgs{...} }
+type GetCloudBackupSchedulePolicyItemHourlyArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemHourlyArrayOutput() GetCloudBackupSchedulePolicyItemHourlyArrayOutput
+	ToGetCloudBackupSchedulePolicyItemHourlyArrayOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemHourlyArrayOutput
+}
+
+type GetCloudBackupSchedulePolicyItemHourlyArray []GetCloudBackupSchedulePolicyItemHourlyInput
+
+func (GetCloudBackupSchedulePolicyItemHourlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemHourly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemHourlyArray) ToGetCloudBackupSchedulePolicyItemHourlyArrayOutput() GetCloudBackupSchedulePolicyItemHourlyArrayOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemHourlyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemHourlyArray) ToGetCloudBackupSchedulePolicyItemHourlyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemHourlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemHourlyArrayOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemHourlyOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemHourlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemHourly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemHourlyOutput) ToGetCloudBackupSchedulePolicyItemHourlyOutput() GetCloudBackupSchedulePolicyItemHourlyOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemHourlyOutput) ToGetCloudBackupSchedulePolicyItemHourlyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemHourlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o GetCloudBackupSchedulePolicyItemHourlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemHourlyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemHourlyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o GetCloudBackupSchedulePolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o GetCloudBackupSchedulePolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemHourlyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemHourlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemHourly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemHourlyArrayOutput) ToGetCloudBackupSchedulePolicyItemHourlyArrayOutput() GetCloudBackupSchedulePolicyItemHourlyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemHourlyArrayOutput) ToGetCloudBackupSchedulePolicyItemHourlyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemHourlyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemHourlyArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSchedulePolicyItemHourlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemHourly {
+		return vs[0].([]GetCloudBackupSchedulePolicyItemHourly)[vs[1].(int)]
+	}).(GetCloudBackupSchedulePolicyItemHourlyOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemMonthly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetCloudBackupSchedulePolicyItemMonthlyInput is an input type that accepts GetCloudBackupSchedulePolicyItemMonthlyArgs and GetCloudBackupSchedulePolicyItemMonthlyOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemMonthlyInput` via:
+//
+//          GetCloudBackupSchedulePolicyItemMonthlyArgs{...}
+type GetCloudBackupSchedulePolicyItemMonthlyInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemMonthlyOutput() GetCloudBackupSchedulePolicyItemMonthlyOutput
+	ToGetCloudBackupSchedulePolicyItemMonthlyOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemMonthlyOutput
+}
+
+type GetCloudBackupSchedulePolicyItemMonthlyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetCloudBackupSchedulePolicyItemMonthlyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemMonthlyArgs) ToGetCloudBackupSchedulePolicyItemMonthlyOutput() GetCloudBackupSchedulePolicyItemMonthlyOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemMonthlyOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemMonthlyArgs) ToGetCloudBackupSchedulePolicyItemMonthlyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemMonthlyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemMonthlyOutput)
+}
+
+// GetCloudBackupSchedulePolicyItemMonthlyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemMonthlyArray and GetCloudBackupSchedulePolicyItemMonthlyArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemMonthlyArrayInput` via:
+//
+//          GetCloudBackupSchedulePolicyItemMonthlyArray{ GetCloudBackupSchedulePolicyItemMonthlyArgs{...} }
+type GetCloudBackupSchedulePolicyItemMonthlyArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemMonthlyArrayOutput() GetCloudBackupSchedulePolicyItemMonthlyArrayOutput
+	ToGetCloudBackupSchedulePolicyItemMonthlyArrayOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemMonthlyArrayOutput
+}
+
+type GetCloudBackupSchedulePolicyItemMonthlyArray []GetCloudBackupSchedulePolicyItemMonthlyInput
+
+func (GetCloudBackupSchedulePolicyItemMonthlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemMonthlyArray) ToGetCloudBackupSchedulePolicyItemMonthlyArrayOutput() GetCloudBackupSchedulePolicyItemMonthlyArrayOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemMonthlyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemMonthlyArray) ToGetCloudBackupSchedulePolicyItemMonthlyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemMonthlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemMonthlyArrayOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemMonthlyOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemMonthlyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) ToGetCloudBackupSchedulePolicyItemMonthlyOutput() GetCloudBackupSchedulePolicyItemMonthlyOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) ToGetCloudBackupSchedulePolicyItemMonthlyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemMonthlyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemMonthlyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemMonthlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemMonthlyArrayOutput) ToGetCloudBackupSchedulePolicyItemMonthlyArrayOutput() GetCloudBackupSchedulePolicyItemMonthlyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemMonthlyArrayOutput) ToGetCloudBackupSchedulePolicyItemMonthlyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemMonthlyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemMonthlyArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSchedulePolicyItemMonthlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemMonthly {
+		return vs[0].([]GetCloudBackupSchedulePolicyItemMonthly)[vs[1].(int)]
+	}).(GetCloudBackupSchedulePolicyItemMonthlyOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemWeekly struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id string `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetCloudBackupSchedulePolicyItemWeeklyInput is an input type that accepts GetCloudBackupSchedulePolicyItemWeeklyArgs and GetCloudBackupSchedulePolicyItemWeeklyOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemWeeklyInput` via:
+//
+//          GetCloudBackupSchedulePolicyItemWeeklyArgs{...}
+type GetCloudBackupSchedulePolicyItemWeeklyInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemWeeklyOutput() GetCloudBackupSchedulePolicyItemWeeklyOutput
+	ToGetCloudBackupSchedulePolicyItemWeeklyOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemWeeklyOutput
+}
+
+type GetCloudBackupSchedulePolicyItemWeeklyArgs struct {
+	// Desired frequency of the new backup policy item specified by `frequencyType`.
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the backup policy item.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the backup policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Scope of the backup policy item: days, weeks, or months.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetCloudBackupSchedulePolicyItemWeeklyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemWeeklyArgs) ToGetCloudBackupSchedulePolicyItemWeeklyOutput() GetCloudBackupSchedulePolicyItemWeeklyOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemWeeklyOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemWeeklyArgs) ToGetCloudBackupSchedulePolicyItemWeeklyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemWeeklyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemWeeklyOutput)
+}
+
+// GetCloudBackupSchedulePolicyItemWeeklyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemWeeklyArray and GetCloudBackupSchedulePolicyItemWeeklyArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemWeeklyArrayInput` via:
+//
+//          GetCloudBackupSchedulePolicyItemWeeklyArray{ GetCloudBackupSchedulePolicyItemWeeklyArgs{...} }
+type GetCloudBackupSchedulePolicyItemWeeklyArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSchedulePolicyItemWeeklyArrayOutput() GetCloudBackupSchedulePolicyItemWeeklyArrayOutput
+	ToGetCloudBackupSchedulePolicyItemWeeklyArrayOutputWithContext(context.Context) GetCloudBackupSchedulePolicyItemWeeklyArrayOutput
+}
+
+type GetCloudBackupSchedulePolicyItemWeeklyArray []GetCloudBackupSchedulePolicyItemWeeklyInput
+
+func (GetCloudBackupSchedulePolicyItemWeeklyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+}
+
+func (i GetCloudBackupSchedulePolicyItemWeeklyArray) ToGetCloudBackupSchedulePolicyItemWeeklyArrayOutput() GetCloudBackupSchedulePolicyItemWeeklyArrayOutput {
+	return i.ToGetCloudBackupSchedulePolicyItemWeeklyArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSchedulePolicyItemWeeklyArray) ToGetCloudBackupSchedulePolicyItemWeeklyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemWeeklyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSchedulePolicyItemWeeklyArrayOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemWeeklyOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemWeeklyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) ToGetCloudBackupSchedulePolicyItemWeeklyOutput() GetCloudBackupSchedulePolicyItemWeeklyOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) ToGetCloudBackupSchedulePolicyItemWeeklyOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemWeeklyOutput {
+	return o
+}
+
+// Desired frequency of the new backup policy item specified by `frequencyType`.
+func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
+}
+
+// Frequency associated with the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the backup policy item.
+func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Scope of the backup policy item: days, weeks, or months.
+func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetCloudBackupSchedulePolicyItemWeeklyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSchedulePolicyItemWeeklyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+}
+
+func (o GetCloudBackupSchedulePolicyItemWeeklyArrayOutput) ToGetCloudBackupSchedulePolicyItemWeeklyArrayOutput() GetCloudBackupSchedulePolicyItemWeeklyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemWeeklyArrayOutput) ToGetCloudBackupSchedulePolicyItemWeeklyArrayOutputWithContext(ctx context.Context) GetCloudBackupSchedulePolicyItemWeeklyArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSchedulePolicyItemWeeklyArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSchedulePolicyItemWeeklyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemWeekly {
+		return vs[0].([]GetCloudBackupSchedulePolicyItemWeekly)[vs[1].(int)]
+	}).(GetCloudBackupSchedulePolicyItemWeeklyOutput)
 }
 
 type GetCloudProviderAccessAwsIamRole struct {
@@ -6785,8 +9375,8 @@ func (o GetCloudProviderAccessAwsIamRoleArrayOutput) Index(i pulumi.IntInput) Ge
 }
 
 type GetCloudProviderAccessAwsIamRoleFeatureUsage struct {
-	FeatureId   string `pulumi:"featureId"`
-	FeatureType string `pulumi:"featureType"`
+	FeatureId   map[string]interface{} `pulumi:"featureId"`
+	FeatureType string                 `pulumi:"featureType"`
 }
 
 // GetCloudProviderAccessAwsIamRoleFeatureUsageInput is an input type that accepts GetCloudProviderAccessAwsIamRoleFeatureUsageArgs and GetCloudProviderAccessAwsIamRoleFeatureUsageOutput values.
@@ -6801,7 +9391,7 @@ type GetCloudProviderAccessAwsIamRoleFeatureUsageInput interface {
 }
 
 type GetCloudProviderAccessAwsIamRoleFeatureUsageArgs struct {
-	FeatureId   pulumi.StringInput `pulumi:"featureId"`
+	FeatureId   pulumi.MapInput    `pulumi:"featureId"`
 	FeatureType pulumi.StringInput `pulumi:"featureType"`
 }
 
@@ -6856,8 +9446,8 @@ func (o GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) ToGetCloudProviderAc
 	return o
 }
 
-func (o GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) FeatureId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRoleFeatureUsage) string { return v.FeatureId }).(pulumi.StringOutput)
+func (o GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) FeatureId() pulumi.MapOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessAwsIamRoleFeatureUsage) map[string]interface{} { return v.FeatureId }).(pulumi.MapOutput)
 }
 
 func (o GetCloudProviderAccessAwsIamRoleFeatureUsageOutput) FeatureType() pulumi.StringOutput {
@@ -6884,65 +9474,110 @@ func (o GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput) Index(i pulumi.
 	}).(GetCloudProviderAccessAwsIamRoleFeatureUsageOutput)
 }
 
-type GetCloudProviderAccessSetupAws struct {
+type GetCloudProviderAccessSetupAwsConfig struct {
 	// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
 	AtlasAssumedRoleExternalId string `pulumi:"atlasAssumedRoleExternalId"`
 	// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
 	AtlasAwsAccountArn string `pulumi:"atlasAwsAccountArn"`
 }
 
-// GetCloudProviderAccessSetupAwsInput is an input type that accepts GetCloudProviderAccessSetupAwsArgs and GetCloudProviderAccessSetupAwsOutput values.
-// You can construct a concrete instance of `GetCloudProviderAccessSetupAwsInput` via:
+// GetCloudProviderAccessSetupAwsConfigInput is an input type that accepts GetCloudProviderAccessSetupAwsConfigArgs and GetCloudProviderAccessSetupAwsConfigOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessSetupAwsConfigInput` via:
 //
-//          GetCloudProviderAccessSetupAwsArgs{...}
-type GetCloudProviderAccessSetupAwsInput interface {
+//          GetCloudProviderAccessSetupAwsConfigArgs{...}
+type GetCloudProviderAccessSetupAwsConfigInput interface {
 	pulumi.Input
 
-	ToGetCloudProviderAccessSetupAwsOutput() GetCloudProviderAccessSetupAwsOutput
-	ToGetCloudProviderAccessSetupAwsOutputWithContext(context.Context) GetCloudProviderAccessSetupAwsOutput
+	ToGetCloudProviderAccessSetupAwsConfigOutput() GetCloudProviderAccessSetupAwsConfigOutput
+	ToGetCloudProviderAccessSetupAwsConfigOutputWithContext(context.Context) GetCloudProviderAccessSetupAwsConfigOutput
 }
 
-type GetCloudProviderAccessSetupAwsArgs struct {
+type GetCloudProviderAccessSetupAwsConfigArgs struct {
 	// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
 	AtlasAssumedRoleExternalId pulumi.StringInput `pulumi:"atlasAssumedRoleExternalId"`
 	// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
 	AtlasAwsAccountArn pulumi.StringInput `pulumi:"atlasAwsAccountArn"`
 }
 
-func (GetCloudProviderAccessSetupAwsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCloudProviderAccessSetupAws)(nil)).Elem()
+func (GetCloudProviderAccessSetupAwsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessSetupAwsConfig)(nil)).Elem()
 }
 
-func (i GetCloudProviderAccessSetupAwsArgs) ToGetCloudProviderAccessSetupAwsOutput() GetCloudProviderAccessSetupAwsOutput {
-	return i.ToGetCloudProviderAccessSetupAwsOutputWithContext(context.Background())
+func (i GetCloudProviderAccessSetupAwsConfigArgs) ToGetCloudProviderAccessSetupAwsConfigOutput() GetCloudProviderAccessSetupAwsConfigOutput {
+	return i.ToGetCloudProviderAccessSetupAwsConfigOutputWithContext(context.Background())
 }
 
-func (i GetCloudProviderAccessSetupAwsArgs) ToGetCloudProviderAccessSetupAwsOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAwsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessSetupAwsOutput)
+func (i GetCloudProviderAccessSetupAwsConfigArgs) ToGetCloudProviderAccessSetupAwsConfigOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAwsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessSetupAwsConfigOutput)
 }
 
-type GetCloudProviderAccessSetupAwsOutput struct{ *pulumi.OutputState }
+// GetCloudProviderAccessSetupAwsConfigArrayInput is an input type that accepts GetCloudProviderAccessSetupAwsConfigArray and GetCloudProviderAccessSetupAwsConfigArrayOutput values.
+// You can construct a concrete instance of `GetCloudProviderAccessSetupAwsConfigArrayInput` via:
+//
+//          GetCloudProviderAccessSetupAwsConfigArray{ GetCloudProviderAccessSetupAwsConfigArgs{...} }
+type GetCloudProviderAccessSetupAwsConfigArrayInput interface {
+	pulumi.Input
 
-func (GetCloudProviderAccessSetupAwsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCloudProviderAccessSetupAws)(nil)).Elem()
+	ToGetCloudProviderAccessSetupAwsConfigArrayOutput() GetCloudProviderAccessSetupAwsConfigArrayOutput
+	ToGetCloudProviderAccessSetupAwsConfigArrayOutputWithContext(context.Context) GetCloudProviderAccessSetupAwsConfigArrayOutput
 }
 
-func (o GetCloudProviderAccessSetupAwsOutput) ToGetCloudProviderAccessSetupAwsOutput() GetCloudProviderAccessSetupAwsOutput {
+type GetCloudProviderAccessSetupAwsConfigArray []GetCloudProviderAccessSetupAwsConfigInput
+
+func (GetCloudProviderAccessSetupAwsConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessSetupAwsConfig)(nil)).Elem()
+}
+
+func (i GetCloudProviderAccessSetupAwsConfigArray) ToGetCloudProviderAccessSetupAwsConfigArrayOutput() GetCloudProviderAccessSetupAwsConfigArrayOutput {
+	return i.ToGetCloudProviderAccessSetupAwsConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudProviderAccessSetupAwsConfigArray) ToGetCloudProviderAccessSetupAwsConfigArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAwsConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudProviderAccessSetupAwsConfigArrayOutput)
+}
+
+type GetCloudProviderAccessSetupAwsConfigOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessSetupAwsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudProviderAccessSetupAwsConfig)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessSetupAwsConfigOutput) ToGetCloudProviderAccessSetupAwsConfigOutput() GetCloudProviderAccessSetupAwsConfigOutput {
 	return o
 }
 
-func (o GetCloudProviderAccessSetupAwsOutput) ToGetCloudProviderAccessSetupAwsOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAwsOutput {
+func (o GetCloudProviderAccessSetupAwsConfigOutput) ToGetCloudProviderAccessSetupAwsConfigOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAwsConfigOutput {
 	return o
 }
 
 // Unique external ID Atlas uses when assuming the IAM role in your AWS account.
-func (o GetCloudProviderAccessSetupAwsOutput) AtlasAssumedRoleExternalId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCloudProviderAccessSetupAws) string { return v.AtlasAssumedRoleExternalId }).(pulumi.StringOutput)
+func (o GetCloudProviderAccessSetupAwsConfigOutput) AtlasAssumedRoleExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupAwsConfig) string { return v.AtlasAssumedRoleExternalId }).(pulumi.StringOutput)
 }
 
 // ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
-func (o GetCloudProviderAccessSetupAwsOutput) AtlasAwsAccountArn() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCloudProviderAccessSetupAws) string { return v.AtlasAwsAccountArn }).(pulumi.StringOutput)
+func (o GetCloudProviderAccessSetupAwsConfigOutput) AtlasAwsAccountArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudProviderAccessSetupAwsConfig) string { return v.AtlasAwsAccountArn }).(pulumi.StringOutput)
+}
+
+type GetCloudProviderAccessSetupAwsConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudProviderAccessSetupAwsConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudProviderAccessSetupAwsConfig)(nil)).Elem()
+}
+
+func (o GetCloudProviderAccessSetupAwsConfigArrayOutput) ToGetCloudProviderAccessSetupAwsConfigArrayOutput() GetCloudProviderAccessSetupAwsConfigArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupAwsConfigArrayOutput) ToGetCloudProviderAccessSetupAwsConfigArrayOutputWithContext(ctx context.Context) GetCloudProviderAccessSetupAwsConfigArrayOutput {
+	return o
+}
+
+func (o GetCloudProviderAccessSetupAwsConfigArrayOutput) Index(i pulumi.IntInput) GetCloudProviderAccessSetupAwsConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudProviderAccessSetupAwsConfig {
+		return vs[0].([]GetCloudProviderAccessSetupAwsConfig)[vs[1].(int)]
+	}).(GetCloudProviderAccessSetupAwsConfigOutput)
 }
 
 type GetCloudProviderSnapshotBackupPolicyPolicy struct {
@@ -7554,67 +10189,6 @@ func (o GetCloudProviderSnapshotsResultTypeArrayOutput) Index(i pulumi.IntInput)
 	}).(GetCloudProviderSnapshotsResultTypeOutput)
 }
 
-type GetClusterBiConnector struct {
-	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-	Enabled string `pulumi:"enabled"`
-	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	ReadPreference string `pulumi:"readPreference"`
-}
-
-// GetClusterBiConnectorInput is an input type that accepts GetClusterBiConnectorArgs and GetClusterBiConnectorOutput values.
-// You can construct a concrete instance of `GetClusterBiConnectorInput` via:
-//
-//          GetClusterBiConnectorArgs{...}
-type GetClusterBiConnectorInput interface {
-	pulumi.Input
-
-	ToGetClusterBiConnectorOutput() GetClusterBiConnectorOutput
-	ToGetClusterBiConnectorOutputWithContext(context.Context) GetClusterBiConnectorOutput
-}
-
-type GetClusterBiConnectorArgs struct {
-	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-	Enabled pulumi.StringInput `pulumi:"enabled"`
-	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
-}
-
-func (GetClusterBiConnectorArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterBiConnector)(nil)).Elem()
-}
-
-func (i GetClusterBiConnectorArgs) ToGetClusterBiConnectorOutput() GetClusterBiConnectorOutput {
-	return i.ToGetClusterBiConnectorOutputWithContext(context.Background())
-}
-
-func (i GetClusterBiConnectorArgs) ToGetClusterBiConnectorOutputWithContext(ctx context.Context) GetClusterBiConnectorOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClusterBiConnectorOutput)
-}
-
-type GetClusterBiConnectorOutput struct{ *pulumi.OutputState }
-
-func (GetClusterBiConnectorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterBiConnector)(nil)).Elem()
-}
-
-func (o GetClusterBiConnectorOutput) ToGetClusterBiConnectorOutput() GetClusterBiConnectorOutput {
-	return o
-}
-
-func (o GetClusterBiConnectorOutput) ToGetClusterBiConnectorOutputWithContext(ctx context.Context) GetClusterBiConnectorOutput {
-	return o
-}
-
-// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-func (o GetClusterBiConnectorOutput) Enabled() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterBiConnector) string { return v.Enabled }).(pulumi.StringOutput)
-}
-
-// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-func (o GetClusterBiConnectorOutput) ReadPreference() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterBiConnector) string { return v.ReadPreference }).(pulumi.StringOutput)
-}
-
 type GetClusterBiConnectorConfig struct {
 	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
@@ -7652,6 +10226,31 @@ func (i GetClusterBiConnectorConfigArgs) ToGetClusterBiConnectorConfigOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetClusterBiConnectorConfigOutput)
 }
 
+// GetClusterBiConnectorConfigArrayInput is an input type that accepts GetClusterBiConnectorConfigArray and GetClusterBiConnectorConfigArrayOutput values.
+// You can construct a concrete instance of `GetClusterBiConnectorConfigArrayInput` via:
+//
+//          GetClusterBiConnectorConfigArray{ GetClusterBiConnectorConfigArgs{...} }
+type GetClusterBiConnectorConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterBiConnectorConfigArrayOutput() GetClusterBiConnectorConfigArrayOutput
+	ToGetClusterBiConnectorConfigArrayOutputWithContext(context.Context) GetClusterBiConnectorConfigArrayOutput
+}
+
+type GetClusterBiConnectorConfigArray []GetClusterBiConnectorConfigInput
+
+func (GetClusterBiConnectorConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterBiConnectorConfig)(nil)).Elem()
+}
+
+func (i GetClusterBiConnectorConfigArray) ToGetClusterBiConnectorConfigArrayOutput() GetClusterBiConnectorConfigArrayOutput {
+	return i.ToGetClusterBiConnectorConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterBiConnectorConfigArray) ToGetClusterBiConnectorConfigArrayOutputWithContext(ctx context.Context) GetClusterBiConnectorConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterBiConnectorConfigArrayOutput)
+}
+
 type GetClusterBiConnectorConfigOutput struct{ *pulumi.OutputState }
 
 func (GetClusterBiConnectorConfigOutput) ElementType() reflect.Type {
@@ -7676,314 +10275,379 @@ func (o GetClusterBiConnectorConfigOutput) ReadPreference() pulumi.StringOutput 
 	return o.ApplyT(func(v GetClusterBiConnectorConfig) string { return v.ReadPreference }).(pulumi.StringOutput)
 }
 
-type GetClusterConnectionStrings struct {
-	AwsPrivateLink    map[string]interface{}                       `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{}                       `pulumi:"awsPrivateLinkSrv"`
-	Private           string                                       `pulumi:"private"`
-	PrivateEndpoints  []GetClusterConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv        string                                       `pulumi:"privateSrv"`
-	Standard          string                                       `pulumi:"standard"`
-	StandardSrv       string                                       `pulumi:"standardSrv"`
+type GetClusterBiConnectorConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterBiConnectorConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterBiConnectorConfig)(nil)).Elem()
 }
 
-// GetClusterConnectionStringsInput is an input type that accepts GetClusterConnectionStringsArgs and GetClusterConnectionStringsOutput values.
-// You can construct a concrete instance of `GetClusterConnectionStringsInput` via:
+func (o GetClusterBiConnectorConfigArrayOutput) ToGetClusterBiConnectorConfigArrayOutput() GetClusterBiConnectorConfigArrayOutput {
+	return o
+}
+
+func (o GetClusterBiConnectorConfigArrayOutput) ToGetClusterBiConnectorConfigArrayOutputWithContext(ctx context.Context) GetClusterBiConnectorConfigArrayOutput {
+	return o
+}
+
+func (o GetClusterBiConnectorConfigArrayOutput) Index(i pulumi.IntInput) GetClusterBiConnectorConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterBiConnectorConfig {
+		return vs[0].([]GetClusterBiConnectorConfig)[vs[1].(int)]
+	}).(GetClusterBiConnectorConfigOutput)
+}
+
+type GetClusterConnectionString struct {
+	AwsPrivateLink    map[string]interface{}                      `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]interface{}                      `pulumi:"awsPrivateLinkSrv"`
+	Private           string                                      `pulumi:"private"`
+	PrivateEndpoints  []GetClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        string                                      `pulumi:"privateSrv"`
+	Standard          string                                      `pulumi:"standard"`
+	StandardSrv       string                                      `pulumi:"standardSrv"`
+}
+
+// GetClusterConnectionStringInput is an input type that accepts GetClusterConnectionStringArgs and GetClusterConnectionStringOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringInput` via:
 //
-//          GetClusterConnectionStringsArgs{...}
-type GetClusterConnectionStringsInput interface {
+//          GetClusterConnectionStringArgs{...}
+type GetClusterConnectionStringInput interface {
 	pulumi.Input
 
-	ToGetClusterConnectionStringsOutput() GetClusterConnectionStringsOutput
-	ToGetClusterConnectionStringsOutputWithContext(context.Context) GetClusterConnectionStringsOutput
+	ToGetClusterConnectionStringOutput() GetClusterConnectionStringOutput
+	ToGetClusterConnectionStringOutputWithContext(context.Context) GetClusterConnectionStringOutput
 }
 
-type GetClusterConnectionStringsArgs struct {
-	AwsPrivateLink    pulumi.MapInput                                      `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput                                      `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringInput                                   `pulumi:"private"`
-	PrivateEndpoints  GetClusterConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv        pulumi.StringInput                                   `pulumi:"privateSrv"`
-	Standard          pulumi.StringInput                                   `pulumi:"standard"`
-	StandardSrv       pulumi.StringInput                                   `pulumi:"standardSrv"`
+type GetClusterConnectionStringArgs struct {
+	AwsPrivateLink    pulumi.MapInput                                     `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.MapInput                                     `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringInput                                  `pulumi:"private"`
+	PrivateEndpoints  GetClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringInput                                  `pulumi:"privateSrv"`
+	Standard          pulumi.StringInput                                  `pulumi:"standard"`
+	StandardSrv       pulumi.StringInput                                  `pulumi:"standardSrv"`
 }
 
-func (GetClusterConnectionStringsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterConnectionStrings)(nil)).Elem()
+func (GetClusterConnectionStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionString)(nil)).Elem()
 }
 
-func (i GetClusterConnectionStringsArgs) ToGetClusterConnectionStringsOutput() GetClusterConnectionStringsOutput {
-	return i.ToGetClusterConnectionStringsOutputWithContext(context.Background())
+func (i GetClusterConnectionStringArgs) ToGetClusterConnectionStringOutput() GetClusterConnectionStringOutput {
+	return i.ToGetClusterConnectionStringOutputWithContext(context.Background())
 }
 
-func (i GetClusterConnectionStringsArgs) ToGetClusterConnectionStringsOutputWithContext(ctx context.Context) GetClusterConnectionStringsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsOutput)
+func (i GetClusterConnectionStringArgs) ToGetClusterConnectionStringOutputWithContext(ctx context.Context) GetClusterConnectionStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringOutput)
 }
 
-type GetClusterConnectionStringsOutput struct{ *pulumi.OutputState }
+// GetClusterConnectionStringArrayInput is an input type that accepts GetClusterConnectionStringArray and GetClusterConnectionStringArrayOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringArrayInput` via:
+//
+//          GetClusterConnectionStringArray{ GetClusterConnectionStringArgs{...} }
+type GetClusterConnectionStringArrayInput interface {
+	pulumi.Input
 
-func (GetClusterConnectionStringsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterConnectionStrings)(nil)).Elem()
+	ToGetClusterConnectionStringArrayOutput() GetClusterConnectionStringArrayOutput
+	ToGetClusterConnectionStringArrayOutputWithContext(context.Context) GetClusterConnectionStringArrayOutput
 }
 
-func (o GetClusterConnectionStringsOutput) ToGetClusterConnectionStringsOutput() GetClusterConnectionStringsOutput {
+type GetClusterConnectionStringArray []GetClusterConnectionStringInput
+
+func (GetClusterConnectionStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionString)(nil)).Elem()
+}
+
+func (i GetClusterConnectionStringArray) ToGetClusterConnectionStringArrayOutput() GetClusterConnectionStringArrayOutput {
+	return i.ToGetClusterConnectionStringArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionStringArray) ToGetClusterConnectionStringArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringArrayOutput)
+}
+
+type GetClusterConnectionStringOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionString)(nil)).Elem()
+}
+
+func (o GetClusterConnectionStringOutput) ToGetClusterConnectionStringOutput() GetClusterConnectionStringOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsOutput) ToGetClusterConnectionStringsOutputWithContext(ctx context.Context) GetClusterConnectionStringsOutput {
+func (o GetClusterConnectionStringOutput) ToGetClusterConnectionStringOutputWithContext(ctx context.Context) GetClusterConnectionStringOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsOutput) AwsPrivateLink() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClusterConnectionStrings) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+func (o GetClusterConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
 }
 
-func (o GetClusterConnectionStringsOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClusterConnectionStrings) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+func (o GetClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
 
-func (o GetClusterConnectionStringsOutput) Private() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStrings) string { return v.Private }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringOutput) Private() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
 
-func (o GetClusterConnectionStringsOutput) PrivateEndpoints() GetClusterConnectionStringsPrivateEndpointArrayOutput {
-	return o.ApplyT(func(v GetClusterConnectionStrings) []GetClusterConnectionStringsPrivateEndpoint {
+func (o GetClusterConnectionStringOutput) PrivateEndpoints() GetClusterConnectionStringPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) []GetClusterConnectionStringPrivateEndpoint {
 		return v.PrivateEndpoints
-	}).(GetClusterConnectionStringsPrivateEndpointArrayOutput)
+	}).(GetClusterConnectionStringPrivateEndpointArrayOutput)
 }
 
-func (o GetClusterConnectionStringsOutput) PrivateSrv() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStrings) string { return v.PrivateSrv }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
-func (o GetClusterConnectionStringsOutput) Standard() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStrings) string { return v.Standard }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringOutput) Standard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
-func (o GetClusterConnectionStringsOutput) StandardSrv() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStrings) string { return v.StandardSrv }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringOutput) StandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
 
-type GetClusterConnectionStringsPrivateEndpoint struct {
-	ConnectionString    string                                               `pulumi:"connectionString"`
-	Endpoints           []GetClusterConnectionStringsPrivateEndpointEndpoint `pulumi:"endpoints"`
-	SrvConnectionString string                                               `pulumi:"srvConnectionString"`
-	Type                string                                               `pulumi:"type"`
+type GetClusterConnectionStringArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionString)(nil)).Elem()
 }
 
-// GetClusterConnectionStringsPrivateEndpointInput is an input type that accepts GetClusterConnectionStringsPrivateEndpointArgs and GetClusterConnectionStringsPrivateEndpointOutput values.
-// You can construct a concrete instance of `GetClusterConnectionStringsPrivateEndpointInput` via:
-//
-//          GetClusterConnectionStringsPrivateEndpointArgs{...}
-type GetClusterConnectionStringsPrivateEndpointInput interface {
-	pulumi.Input
-
-	ToGetClusterConnectionStringsPrivateEndpointOutput() GetClusterConnectionStringsPrivateEndpointOutput
-	ToGetClusterConnectionStringsPrivateEndpointOutputWithContext(context.Context) GetClusterConnectionStringsPrivateEndpointOutput
-}
-
-type GetClusterConnectionStringsPrivateEndpointArgs struct {
-	ConnectionString    pulumi.StringInput                                           `pulumi:"connectionString"`
-	Endpoints           GetClusterConnectionStringsPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
-	SrvConnectionString pulumi.StringInput                                           `pulumi:"srvConnectionString"`
-	Type                pulumi.StringInput                                           `pulumi:"type"`
-}
-
-func (GetClusterConnectionStringsPrivateEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
-}
-
-func (i GetClusterConnectionStringsPrivateEndpointArgs) ToGetClusterConnectionStringsPrivateEndpointOutput() GetClusterConnectionStringsPrivateEndpointOutput {
-	return i.ToGetClusterConnectionStringsPrivateEndpointOutputWithContext(context.Background())
-}
-
-func (i GetClusterConnectionStringsPrivateEndpointArgs) ToGetClusterConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsPrivateEndpointOutput)
-}
-
-// GetClusterConnectionStringsPrivateEndpointArrayInput is an input type that accepts GetClusterConnectionStringsPrivateEndpointArray and GetClusterConnectionStringsPrivateEndpointArrayOutput values.
-// You can construct a concrete instance of `GetClusterConnectionStringsPrivateEndpointArrayInput` via:
-//
-//          GetClusterConnectionStringsPrivateEndpointArray{ GetClusterConnectionStringsPrivateEndpointArgs{...} }
-type GetClusterConnectionStringsPrivateEndpointArrayInput interface {
-	pulumi.Input
-
-	ToGetClusterConnectionStringsPrivateEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointArrayOutput
-	ToGetClusterConnectionStringsPrivateEndpointArrayOutputWithContext(context.Context) GetClusterConnectionStringsPrivateEndpointArrayOutput
-}
-
-type GetClusterConnectionStringsPrivateEndpointArray []GetClusterConnectionStringsPrivateEndpointInput
-
-func (GetClusterConnectionStringsPrivateEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
-}
-
-func (i GetClusterConnectionStringsPrivateEndpointArray) ToGetClusterConnectionStringsPrivateEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointArrayOutput {
-	return i.ToGetClusterConnectionStringsPrivateEndpointArrayOutputWithContext(context.Background())
-}
-
-func (i GetClusterConnectionStringsPrivateEndpointArray) ToGetClusterConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsPrivateEndpointArrayOutput)
-}
-
-type GetClusterConnectionStringsPrivateEndpointOutput struct{ *pulumi.OutputState }
-
-func (GetClusterConnectionStringsPrivateEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
-}
-
-func (o GetClusterConnectionStringsPrivateEndpointOutput) ToGetClusterConnectionStringsPrivateEndpointOutput() GetClusterConnectionStringsPrivateEndpointOutput {
+func (o GetClusterConnectionStringArrayOutput) ToGetClusterConnectionStringArrayOutput() GetClusterConnectionStringArrayOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointOutput) ToGetClusterConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointOutput {
+func (o GetClusterConnectionStringArrayOutput) ToGetClusterConnectionStringArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringArrayOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointOutput) ConnectionString() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpoint) string { return v.ConnectionString }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnectionString {
+		return vs[0].([]GetClusterConnectionString)[vs[1].(int)]
+	}).(GetClusterConnectionStringOutput)
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointOutput) Endpoints() GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpoint) []GetClusterConnectionStringsPrivateEndpointEndpoint {
+type GetClusterConnectionStringPrivateEndpoint struct {
+	ConnectionString    string                                              `pulumi:"connectionString"`
+	Endpoints           []GetClusterConnectionStringPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString string                                              `pulumi:"srvConnectionString"`
+	Type                string                                              `pulumi:"type"`
+}
+
+// GetClusterConnectionStringPrivateEndpointInput is an input type that accepts GetClusterConnectionStringPrivateEndpointArgs and GetClusterConnectionStringPrivateEndpointOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringPrivateEndpointInput` via:
+//
+//          GetClusterConnectionStringPrivateEndpointArgs{...}
+type GetClusterConnectionStringPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionStringPrivateEndpointOutput() GetClusterConnectionStringPrivateEndpointOutput
+	ToGetClusterConnectionStringPrivateEndpointOutputWithContext(context.Context) GetClusterConnectionStringPrivateEndpointOutput
+}
+
+type GetClusterConnectionStringPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringInput                                          `pulumi:"connectionString"`
+	Endpoints           GetClusterConnectionStringPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringInput                                          `pulumi:"srvConnectionString"`
+	Type                pulumi.StringInput                                          `pulumi:"type"`
+}
+
+func (GetClusterConnectionStringPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetClusterConnectionStringPrivateEndpointArgs) ToGetClusterConnectionStringPrivateEndpointOutput() GetClusterConnectionStringPrivateEndpointOutput {
+	return i.ToGetClusterConnectionStringPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionStringPrivateEndpointArgs) ToGetClusterConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringPrivateEndpointOutput)
+}
+
+// GetClusterConnectionStringPrivateEndpointArrayInput is an input type that accepts GetClusterConnectionStringPrivateEndpointArray and GetClusterConnectionStringPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringPrivateEndpointArrayInput` via:
+//
+//          GetClusterConnectionStringPrivateEndpointArray{ GetClusterConnectionStringPrivateEndpointArgs{...} }
+type GetClusterConnectionStringPrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionStringPrivateEndpointArrayOutput() GetClusterConnectionStringPrivateEndpointArrayOutput
+	ToGetClusterConnectionStringPrivateEndpointArrayOutputWithContext(context.Context) GetClusterConnectionStringPrivateEndpointArrayOutput
+}
+
+type GetClusterConnectionStringPrivateEndpointArray []GetClusterConnectionStringPrivateEndpointInput
+
+func (GetClusterConnectionStringPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetClusterConnectionStringPrivateEndpointArray) ToGetClusterConnectionStringPrivateEndpointArrayOutput() GetClusterConnectionStringPrivateEndpointArrayOutput {
+	return i.ToGetClusterConnectionStringPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionStringPrivateEndpointArray) ToGetClusterConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringPrivateEndpointArrayOutput)
+}
+
+type GetClusterConnectionStringPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionStringPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetClusterConnectionStringPrivateEndpointOutput) ToGetClusterConnectionStringPrivateEndpointOutput() GetClusterConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringPrivateEndpointOutput) ToGetClusterConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o GetClusterConnectionStringPrivateEndpointOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringPrivateEndpoint) string { return v.ConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetClusterConnectionStringPrivateEndpointOutput) Endpoints() GetClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringPrivateEndpoint) []GetClusterConnectionStringPrivateEndpointEndpoint {
 		return v.Endpoints
-	}).(GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput)
+	}).(GetClusterConnectionStringPrivateEndpointEndpointArrayOutput)
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointOutput) SrvConnectionString() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpoint) string { return v.SrvConnectionString }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringPrivateEndpointOutput) SrvConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringPrivateEndpoint) string { return v.SrvConnectionString }).(pulumi.StringOutput)
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpoint) string { return v.Type }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringPrivateEndpointOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringPrivateEndpoint) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type GetClusterConnectionStringsPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+type GetClusterConnectionStringPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
 
-func (GetClusterConnectionStringsPrivateEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClusterConnectionStringsPrivateEndpoint)(nil)).Elem()
+func (GetClusterConnectionStringPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionStringPrivateEndpoint)(nil)).Elem()
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointArrayOutput) ToGetClusterConnectionStringsPrivateEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointArrayOutput {
+func (o GetClusterConnectionStringPrivateEndpointArrayOutput) ToGetClusterConnectionStringPrivateEndpointArrayOutput() GetClusterConnectionStringPrivateEndpointArrayOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointArrayOutput) ToGetClusterConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointArrayOutput {
+func (o GetClusterConnectionStringPrivateEndpointArrayOutput) ToGetClusterConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringPrivateEndpointArrayOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionStringsPrivateEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnectionStringsPrivateEndpoint {
-		return vs[0].([]GetClusterConnectionStringsPrivateEndpoint)[vs[1].(int)]
-	}).(GetClusterConnectionStringsPrivateEndpointOutput)
+func (o GetClusterConnectionStringPrivateEndpointArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionStringPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnectionStringPrivateEndpoint {
+		return vs[0].([]GetClusterConnectionStringPrivateEndpoint)[vs[1].(int)]
+	}).(GetClusterConnectionStringPrivateEndpointOutput)
 }
 
-type GetClusterConnectionStringsPrivateEndpointEndpoint struct {
+type GetClusterConnectionStringPrivateEndpointEndpoint struct {
 	EndpointId string `pulumi:"endpointId"`
 	// Indicates the cloud service provider on which the servers are provisioned.
 	ProviderName string `pulumi:"providerName"`
 	Region       string `pulumi:"region"`
 }
 
-// GetClusterConnectionStringsPrivateEndpointEndpointInput is an input type that accepts GetClusterConnectionStringsPrivateEndpointEndpointArgs and GetClusterConnectionStringsPrivateEndpointEndpointOutput values.
-// You can construct a concrete instance of `GetClusterConnectionStringsPrivateEndpointEndpointInput` via:
+// GetClusterConnectionStringPrivateEndpointEndpointInput is an input type that accepts GetClusterConnectionStringPrivateEndpointEndpointArgs and GetClusterConnectionStringPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          GetClusterConnectionStringsPrivateEndpointEndpointArgs{...}
-type GetClusterConnectionStringsPrivateEndpointEndpointInput interface {
+//          GetClusterConnectionStringPrivateEndpointEndpointArgs{...}
+type GetClusterConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
-	ToGetClusterConnectionStringsPrivateEndpointEndpointOutput() GetClusterConnectionStringsPrivateEndpointEndpointOutput
-	ToGetClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Context) GetClusterConnectionStringsPrivateEndpointEndpointOutput
+	ToGetClusterConnectionStringPrivateEndpointEndpointOutput() GetClusterConnectionStringPrivateEndpointEndpointOutput
+	ToGetClusterConnectionStringPrivateEndpointEndpointOutputWithContext(context.Context) GetClusterConnectionStringPrivateEndpointEndpointOutput
 }
 
-type GetClusterConnectionStringsPrivateEndpointEndpointArgs struct {
+type GetClusterConnectionStringPrivateEndpointEndpointArgs struct {
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// Indicates the cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	Region       pulumi.StringInput `pulumi:"region"`
 }
 
-func (GetClusterConnectionStringsPrivateEndpointEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (GetClusterConnectionStringPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (i GetClusterConnectionStringsPrivateEndpointEndpointArgs) ToGetClusterConnectionStringsPrivateEndpointEndpointOutput() GetClusterConnectionStringsPrivateEndpointEndpointOutput {
-	return i.ToGetClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Background())
+func (i GetClusterConnectionStringPrivateEndpointEndpointArgs) ToGetClusterConnectionStringPrivateEndpointEndpointOutput() GetClusterConnectionStringPrivateEndpointEndpointOutput {
+	return i.ToGetClusterConnectionStringPrivateEndpointEndpointOutputWithContext(context.Background())
 }
 
-func (i GetClusterConnectionStringsPrivateEndpointEndpointArgs) ToGetClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsPrivateEndpointEndpointOutput)
+func (i GetClusterConnectionStringPrivateEndpointEndpointArgs) ToGetClusterConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringPrivateEndpointEndpointOutput)
 }
 
-// GetClusterConnectionStringsPrivateEndpointEndpointArrayInput is an input type that accepts GetClusterConnectionStringsPrivateEndpointEndpointArray and GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput values.
-// You can construct a concrete instance of `GetClusterConnectionStringsPrivateEndpointEndpointArrayInput` via:
+// GetClusterConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts GetClusterConnectionStringPrivateEndpointEndpointArray and GetClusterConnectionStringPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `GetClusterConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          GetClusterConnectionStringsPrivateEndpointEndpointArray{ GetClusterConnectionStringsPrivateEndpointEndpointArgs{...} }
-type GetClusterConnectionStringsPrivateEndpointEndpointArrayInput interface {
+//          GetClusterConnectionStringPrivateEndpointEndpointArray{ GetClusterConnectionStringPrivateEndpointEndpointArgs{...} }
+type GetClusterConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
-	ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput
-	ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Context) GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput
+	ToGetClusterConnectionStringPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringPrivateEndpointEndpointArrayOutput
+	ToGetClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Context) GetClusterConnectionStringPrivateEndpointEndpointArrayOutput
 }
 
-type GetClusterConnectionStringsPrivateEndpointEndpointArray []GetClusterConnectionStringsPrivateEndpointEndpointInput
+type GetClusterConnectionStringPrivateEndpointEndpointArray []GetClusterConnectionStringPrivateEndpointEndpointInput
 
-func (GetClusterConnectionStringsPrivateEndpointEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (GetClusterConnectionStringPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (i GetClusterConnectionStringsPrivateEndpointEndpointArray) ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return i.ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+func (i GetClusterConnectionStringPrivateEndpointEndpointArray) ToGetClusterConnectionStringPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return i.ToGetClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Background())
 }
 
-func (i GetClusterConnectionStringsPrivateEndpointEndpointArray) ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput)
+func (i GetClusterConnectionStringPrivateEndpointEndpointArray) ToGetClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionStringPrivateEndpointEndpointArrayOutput)
 }
 
-type GetClusterConnectionStringsPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+type GetClusterConnectionStringPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
 
-func (GetClusterConnectionStringsPrivateEndpointEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (GetClusterConnectionStringPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) ToGetClusterConnectionStringsPrivateEndpointEndpointOutput() GetClusterConnectionStringsPrivateEndpointEndpointOutput {
+func (o GetClusterConnectionStringPrivateEndpointEndpointOutput) ToGetClusterConnectionStringPrivateEndpointEndpointOutput() GetClusterConnectionStringPrivateEndpointEndpointOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) ToGetClusterConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointEndpointOutput {
+func (o GetClusterConnectionStringPrivateEndpointEndpointOutput) ToGetClusterConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClusterConnectionStringPrivateEndpointEndpointOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) EndpointId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpointEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringPrivateEndpointEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
 }
 
 // Indicates the cloud service provider on which the servers are provisioned.
-func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) ProviderName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpointEndpoint) string { return v.ProviderName }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringPrivateEndpointEndpoint) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointEndpointOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClusterConnectionStringsPrivateEndpointEndpoint) string { return v.Region }).(pulumi.StringOutput)
+func (o GetClusterConnectionStringPrivateEndpointEndpointOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnectionStringPrivateEndpointEndpoint) string { return v.Region }).(pulumi.StringOutput)
 }
 
-type GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+type GetClusterConnectionStringPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
 
-func (GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClusterConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (GetClusterConnectionStringPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+func (o GetClusterConnectionStringPrivateEndpointEndpointArrayOutput) ToGetClusterConnectionStringPrivateEndpointEndpointArrayOutput() GetClusterConnectionStringPrivateEndpointEndpointArrayOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput) ToGetClusterConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput {
+func (o GetClusterConnectionStringPrivateEndpointEndpointArrayOutput) ToGetClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClusterConnectionStringPrivateEndpointEndpointArrayOutput {
 	return o
 }
 
-func (o GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionStringsPrivateEndpointEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnectionStringsPrivateEndpointEndpoint {
-		return vs[0].([]GetClusterConnectionStringsPrivateEndpointEndpoint)[vs[1].(int)]
-	}).(GetClusterConnectionStringsPrivateEndpointEndpointOutput)
+func (o GetClusterConnectionStringPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnectionStringPrivateEndpointEndpoint {
+		return vs[0].([]GetClusterConnectionStringPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(GetClusterConnectionStringPrivateEndpointEndpointOutput)
 }
 
 type GetClusterLabel struct {
@@ -8725,9 +11389,9 @@ type GetClustersResultType struct {
 	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
 	// Deprecated: use bi_connector_config instead
-	BiConnector GetClustersResultBiConnector `pulumi:"biConnector"`
+	BiConnector map[string]string `pulumi:"biConnector"`
 	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
-	BiConnectorConfig GetClustersResultBiConnectorConfig `pulumi:"biConnectorConfig"`
+	BiConnectorConfigs []GetClustersResultBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -8744,7 +11408,7 @@ type GetClustersResultType struct {
 	// - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-	ConnectionStrings GetClustersResultConnectionStrings `pulumi:"connectionStrings"`
+	ConnectionStrings []GetClustersResultConnectionString `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
 	// Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
@@ -8774,7 +11438,7 @@ type GetClustersResultType struct {
 	ProviderAutoScalingComputeMaxInstanceSize string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// (Optional) Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
 	ProviderBackupEnabled bool `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops int `pulumi:"providerDiskIops"`
@@ -8833,9 +11497,9 @@ type GetClustersResultTypeArgs struct {
 	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
 	// Deprecated: use bi_connector_config instead
-	BiConnector GetClustersResultBiConnectorInput `pulumi:"biConnector"`
+	BiConnector pulumi.StringMapInput `pulumi:"biConnector"`
 	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
-	BiConnectorConfig GetClustersResultBiConnectorConfigInput `pulumi:"biConnectorConfig"`
+	BiConnectorConfigs GetClustersResultBiConnectorConfigArrayInput `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -8852,7 +11516,7 @@ type GetClustersResultTypeArgs struct {
 	// - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-	ConnectionStrings GetClustersResultConnectionStringsInput `pulumi:"connectionStrings"`
+	ConnectionStrings GetClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringInput `pulumi:"containerId"`
 	// Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
@@ -8882,7 +11546,7 @@ type GetClustersResultTypeArgs struct {
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringInput `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// (Optional) Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringInput `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
 	ProviderBackupEnabled pulumi.BoolInput `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops pulumi.IntInput `pulumi:"providerDiskIops"`
@@ -8995,13 +11659,13 @@ func (o GetClustersResultTypeOutput) BackupEnabled() pulumi.BoolOutput {
 // Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 //
 // Deprecated: use bi_connector_config instead
-func (o GetClustersResultTypeOutput) BiConnector() GetClustersResultBiConnectorOutput {
-	return o.ApplyT(func(v GetClustersResultType) GetClustersResultBiConnector { return v.BiConnector }).(GetClustersResultBiConnectorOutput)
+func (o GetClustersResultTypeOutput) BiConnector() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClustersResultType) map[string]string { return v.BiConnector }).(pulumi.StringMapOutput)
 }
 
 // Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
-func (o GetClustersResultTypeOutput) BiConnectorConfig() GetClustersResultBiConnectorConfigOutput {
-	return o.ApplyT(func(v GetClustersResultType) GetClustersResultBiConnectorConfig { return v.BiConnectorConfig }).(GetClustersResultBiConnectorConfigOutput)
+func (o GetClustersResultTypeOutput) BiConnectorConfigs() GetClustersResultBiConnectorConfigArrayOutput {
+	return o.ApplyT(func(v GetClustersResultType) []GetClustersResultBiConnectorConfig { return v.BiConnectorConfigs }).(GetClustersResultBiConnectorConfigArrayOutput)
 }
 
 // Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -9023,8 +11687,8 @@ func (o GetClustersResultTypeOutput) ClusterType() pulumi.StringOutput {
 // - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 // - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 // - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-func (o GetClustersResultTypeOutput) ConnectionStrings() GetClustersResultConnectionStringsOutput {
-	return o.ApplyT(func(v GetClustersResultType) GetClustersResultConnectionStrings { return v.ConnectionStrings }).(GetClustersResultConnectionStringsOutput)
+func (o GetClustersResultTypeOutput) ConnectionStrings() GetClustersResultConnectionStringArrayOutput {
+	return o.ApplyT(func(v GetClustersResultType) []GetClustersResultConnectionString { return v.ConnectionStrings }).(GetClustersResultConnectionStringArrayOutput)
 }
 
 // The Network Peering Container ID.
@@ -9101,7 +11765,7 @@ func (o GetClustersResultTypeOutput) ProviderAutoScalingComputeMinInstanceSize()
 	return o.ApplyT(func(v GetClustersResultType) string { return v.ProviderAutoScalingComputeMinInstanceSize }).(pulumi.StringOutput)
 }
 
-// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
 func (o GetClustersResultTypeOutput) ProviderBackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultType) bool { return v.ProviderBackupEnabled }).(pulumi.BoolOutput)
 }
@@ -9192,67 +11856,6 @@ func (o GetClustersResultTypeArrayOutput) Index(i pulumi.IntInput) GetClustersRe
 	}).(GetClustersResultTypeOutput)
 }
 
-type GetClustersResultBiConnector struct {
-	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-	Enabled string `pulumi:"enabled"`
-	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	ReadPreference string `pulumi:"readPreference"`
-}
-
-// GetClustersResultBiConnectorInput is an input type that accepts GetClustersResultBiConnectorArgs and GetClustersResultBiConnectorOutput values.
-// You can construct a concrete instance of `GetClustersResultBiConnectorInput` via:
-//
-//          GetClustersResultBiConnectorArgs{...}
-type GetClustersResultBiConnectorInput interface {
-	pulumi.Input
-
-	ToGetClustersResultBiConnectorOutput() GetClustersResultBiConnectorOutput
-	ToGetClustersResultBiConnectorOutputWithContext(context.Context) GetClustersResultBiConnectorOutput
-}
-
-type GetClustersResultBiConnectorArgs struct {
-	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-	Enabled pulumi.StringInput `pulumi:"enabled"`
-	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
-}
-
-func (GetClustersResultBiConnectorArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClustersResultBiConnector)(nil)).Elem()
-}
-
-func (i GetClustersResultBiConnectorArgs) ToGetClustersResultBiConnectorOutput() GetClustersResultBiConnectorOutput {
-	return i.ToGetClustersResultBiConnectorOutputWithContext(context.Background())
-}
-
-func (i GetClustersResultBiConnectorArgs) ToGetClustersResultBiConnectorOutputWithContext(ctx context.Context) GetClustersResultBiConnectorOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultBiConnectorOutput)
-}
-
-type GetClustersResultBiConnectorOutput struct{ *pulumi.OutputState }
-
-func (GetClustersResultBiConnectorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClustersResultBiConnector)(nil)).Elem()
-}
-
-func (o GetClustersResultBiConnectorOutput) ToGetClustersResultBiConnectorOutput() GetClustersResultBiConnectorOutput {
-	return o
-}
-
-func (o GetClustersResultBiConnectorOutput) ToGetClustersResultBiConnectorOutputWithContext(ctx context.Context) GetClustersResultBiConnectorOutput {
-	return o
-}
-
-// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-func (o GetClustersResultBiConnectorOutput) Enabled() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultBiConnector) string { return v.Enabled }).(pulumi.StringOutput)
-}
-
-// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-func (o GetClustersResultBiConnectorOutput) ReadPreference() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultBiConnector) string { return v.ReadPreference }).(pulumi.StringOutput)
-}
-
 type GetClustersResultBiConnectorConfig struct {
 	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
@@ -9290,6 +11893,31 @@ func (i GetClustersResultBiConnectorConfigArgs) ToGetClustersResultBiConnectorCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultBiConnectorConfigOutput)
 }
 
+// GetClustersResultBiConnectorConfigArrayInput is an input type that accepts GetClustersResultBiConnectorConfigArray and GetClustersResultBiConnectorConfigArrayOutput values.
+// You can construct a concrete instance of `GetClustersResultBiConnectorConfigArrayInput` via:
+//
+//          GetClustersResultBiConnectorConfigArray{ GetClustersResultBiConnectorConfigArgs{...} }
+type GetClustersResultBiConnectorConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersResultBiConnectorConfigArrayOutput() GetClustersResultBiConnectorConfigArrayOutput
+	ToGetClustersResultBiConnectorConfigArrayOutputWithContext(context.Context) GetClustersResultBiConnectorConfigArrayOutput
+}
+
+type GetClustersResultBiConnectorConfigArray []GetClustersResultBiConnectorConfigInput
+
+func (GetClustersResultBiConnectorConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultBiConnectorConfig)(nil)).Elem()
+}
+
+func (i GetClustersResultBiConnectorConfigArray) ToGetClustersResultBiConnectorConfigArrayOutput() GetClustersResultBiConnectorConfigArrayOutput {
+	return i.ToGetClustersResultBiConnectorConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultBiConnectorConfigArray) ToGetClustersResultBiConnectorConfigArrayOutputWithContext(ctx context.Context) GetClustersResultBiConnectorConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultBiConnectorConfigArrayOutput)
+}
+
 type GetClustersResultBiConnectorConfigOutput struct{ *pulumi.OutputState }
 
 func (GetClustersResultBiConnectorConfigOutput) ElementType() reflect.Type {
@@ -9314,314 +11942,379 @@ func (o GetClustersResultBiConnectorConfigOutput) ReadPreference() pulumi.String
 	return o.ApplyT(func(v GetClustersResultBiConnectorConfig) string { return v.ReadPreference }).(pulumi.StringOutput)
 }
 
-type GetClustersResultConnectionStrings struct {
-	AwsPrivateLink    map[string]interface{}                              `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv map[string]interface{}                              `pulumi:"awsPrivateLinkSrv"`
-	Private           string                                              `pulumi:"private"`
-	PrivateEndpoints  []GetClustersResultConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
-	PrivateSrv        string                                              `pulumi:"privateSrv"`
-	Standard          string                                              `pulumi:"standard"`
-	StandardSrv       string                                              `pulumi:"standardSrv"`
+type GetClustersResultBiConnectorConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultBiConnectorConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultBiConnectorConfig)(nil)).Elem()
 }
 
-// GetClustersResultConnectionStringsInput is an input type that accepts GetClustersResultConnectionStringsArgs and GetClustersResultConnectionStringsOutput values.
-// You can construct a concrete instance of `GetClustersResultConnectionStringsInput` via:
+func (o GetClustersResultBiConnectorConfigArrayOutput) ToGetClustersResultBiConnectorConfigArrayOutput() GetClustersResultBiConnectorConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersResultBiConnectorConfigArrayOutput) ToGetClustersResultBiConnectorConfigArrayOutputWithContext(ctx context.Context) GetClustersResultBiConnectorConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersResultBiConnectorConfigArrayOutput) Index(i pulumi.IntInput) GetClustersResultBiConnectorConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultBiConnectorConfig {
+		return vs[0].([]GetClustersResultBiConnectorConfig)[vs[1].(int)]
+	}).(GetClustersResultBiConnectorConfigOutput)
+}
+
+type GetClustersResultConnectionString struct {
+	AwsPrivateLink    map[string]interface{}                             `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv map[string]interface{}                             `pulumi:"awsPrivateLinkSrv"`
+	Private           string                                             `pulumi:"private"`
+	PrivateEndpoints  []GetClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        string                                             `pulumi:"privateSrv"`
+	Standard          string                                             `pulumi:"standard"`
+	StandardSrv       string                                             `pulumi:"standardSrv"`
+}
+
+// GetClustersResultConnectionStringInput is an input type that accepts GetClustersResultConnectionStringArgs and GetClustersResultConnectionStringOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringInput` via:
 //
-//          GetClustersResultConnectionStringsArgs{...}
-type GetClustersResultConnectionStringsInput interface {
+//          GetClustersResultConnectionStringArgs{...}
+type GetClustersResultConnectionStringInput interface {
 	pulumi.Input
 
-	ToGetClustersResultConnectionStringsOutput() GetClustersResultConnectionStringsOutput
-	ToGetClustersResultConnectionStringsOutputWithContext(context.Context) GetClustersResultConnectionStringsOutput
+	ToGetClustersResultConnectionStringOutput() GetClustersResultConnectionStringOutput
+	ToGetClustersResultConnectionStringOutputWithContext(context.Context) GetClustersResultConnectionStringOutput
 }
 
-type GetClustersResultConnectionStringsArgs struct {
-	AwsPrivateLink    pulumi.MapInput                                             `pulumi:"awsPrivateLink"`
-	AwsPrivateLinkSrv pulumi.MapInput                                             `pulumi:"awsPrivateLinkSrv"`
-	Private           pulumi.StringInput                                          `pulumi:"private"`
-	PrivateEndpoints  GetClustersResultConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	PrivateSrv        pulumi.StringInput                                          `pulumi:"privateSrv"`
-	Standard          pulumi.StringInput                                          `pulumi:"standard"`
-	StandardSrv       pulumi.StringInput                                          `pulumi:"standardSrv"`
+type GetClustersResultConnectionStringArgs struct {
+	AwsPrivateLink    pulumi.MapInput                                            `pulumi:"awsPrivateLink"`
+	AwsPrivateLinkSrv pulumi.MapInput                                            `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringInput                                         `pulumi:"private"`
+	PrivateEndpoints  GetClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringInput                                         `pulumi:"privateSrv"`
+	Standard          pulumi.StringInput                                         `pulumi:"standard"`
+	StandardSrv       pulumi.StringInput                                         `pulumi:"standardSrv"`
 }
 
-func (GetClustersResultConnectionStringsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClustersResultConnectionStrings)(nil)).Elem()
+func (GetClustersResultConnectionStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionString)(nil)).Elem()
 }
 
-func (i GetClustersResultConnectionStringsArgs) ToGetClustersResultConnectionStringsOutput() GetClustersResultConnectionStringsOutput {
-	return i.ToGetClustersResultConnectionStringsOutputWithContext(context.Background())
+func (i GetClustersResultConnectionStringArgs) ToGetClustersResultConnectionStringOutput() GetClustersResultConnectionStringOutput {
+	return i.ToGetClustersResultConnectionStringOutputWithContext(context.Background())
 }
 
-func (i GetClustersResultConnectionStringsArgs) ToGetClustersResultConnectionStringsOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsOutput)
+func (i GetClustersResultConnectionStringArgs) ToGetClustersResultConnectionStringOutputWithContext(ctx context.Context) GetClustersResultConnectionStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringOutput)
 }
 
-type GetClustersResultConnectionStringsOutput struct{ *pulumi.OutputState }
+// GetClustersResultConnectionStringArrayInput is an input type that accepts GetClustersResultConnectionStringArray and GetClustersResultConnectionStringArrayOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringArrayInput` via:
+//
+//          GetClustersResultConnectionStringArray{ GetClustersResultConnectionStringArgs{...} }
+type GetClustersResultConnectionStringArrayInput interface {
+	pulumi.Input
 
-func (GetClustersResultConnectionStringsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClustersResultConnectionStrings)(nil)).Elem()
+	ToGetClustersResultConnectionStringArrayOutput() GetClustersResultConnectionStringArrayOutput
+	ToGetClustersResultConnectionStringArrayOutputWithContext(context.Context) GetClustersResultConnectionStringArrayOutput
 }
 
-func (o GetClustersResultConnectionStringsOutput) ToGetClustersResultConnectionStringsOutput() GetClustersResultConnectionStringsOutput {
+type GetClustersResultConnectionStringArray []GetClustersResultConnectionStringInput
+
+func (GetClustersResultConnectionStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionString)(nil)).Elem()
+}
+
+func (i GetClustersResultConnectionStringArray) ToGetClustersResultConnectionStringArrayOutput() GetClustersResultConnectionStringArrayOutput {
+	return i.ToGetClustersResultConnectionStringArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultConnectionStringArray) ToGetClustersResultConnectionStringArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringArrayOutput)
+}
+
+type GetClustersResultConnectionStringOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultConnectionStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionString)(nil)).Elem()
+}
+
+func (o GetClustersResultConnectionStringOutput) ToGetClustersResultConnectionStringOutput() GetClustersResultConnectionStringOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsOutput) ToGetClustersResultConnectionStringsOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsOutput {
+func (o GetClustersResultConnectionStringOutput) ToGetClustersResultConnectionStringOutputWithContext(ctx context.Context) GetClustersResultConnectionStringOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsOutput) AwsPrivateLink() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStrings) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+func (o GetClustersResultConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
 }
 
-func (o GetClustersResultConnectionStringsOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStrings) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+func (o GetClustersResultConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
 }
 
-func (o GetClustersResultConnectionStringsOutput) Private() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStrings) string { return v.Private }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringOutput) Private() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.Private }).(pulumi.StringOutput)
 }
 
-func (o GetClustersResultConnectionStringsOutput) PrivateEndpoints() GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStrings) []GetClustersResultConnectionStringsPrivateEndpoint {
+func (o GetClustersResultConnectionStringOutput) PrivateEndpoints() GetClustersResultConnectionStringPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) []GetClustersResultConnectionStringPrivateEndpoint {
 		return v.PrivateEndpoints
-	}).(GetClustersResultConnectionStringsPrivateEndpointArrayOutput)
+	}).(GetClustersResultConnectionStringPrivateEndpointArrayOutput)
 }
 
-func (o GetClustersResultConnectionStringsOutput) PrivateSrv() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStrings) string { return v.PrivateSrv }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
 
-func (o GetClustersResultConnectionStringsOutput) Standard() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStrings) string { return v.Standard }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringOutput) Standard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.Standard }).(pulumi.StringOutput)
 }
 
-func (o GetClustersResultConnectionStringsOutput) StandardSrv() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStrings) string { return v.StandardSrv }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringOutput) StandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
 }
 
-type GetClustersResultConnectionStringsPrivateEndpoint struct {
-	ConnectionString    string                                                      `pulumi:"connectionString"`
-	Endpoints           []GetClustersResultConnectionStringsPrivateEndpointEndpoint `pulumi:"endpoints"`
-	SrvConnectionString string                                                      `pulumi:"srvConnectionString"`
-	Type                string                                                      `pulumi:"type"`
+type GetClustersResultConnectionStringArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultConnectionStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionString)(nil)).Elem()
 }
 
-// GetClustersResultConnectionStringsPrivateEndpointInput is an input type that accepts GetClustersResultConnectionStringsPrivateEndpointArgs and GetClustersResultConnectionStringsPrivateEndpointOutput values.
-// You can construct a concrete instance of `GetClustersResultConnectionStringsPrivateEndpointInput` via:
-//
-//          GetClustersResultConnectionStringsPrivateEndpointArgs{...}
-type GetClustersResultConnectionStringsPrivateEndpointInput interface {
-	pulumi.Input
-
-	ToGetClustersResultConnectionStringsPrivateEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointOutput
-	ToGetClustersResultConnectionStringsPrivateEndpointOutputWithContext(context.Context) GetClustersResultConnectionStringsPrivateEndpointOutput
-}
-
-type GetClustersResultConnectionStringsPrivateEndpointArgs struct {
-	ConnectionString    pulumi.StringInput                                                  `pulumi:"connectionString"`
-	Endpoints           GetClustersResultConnectionStringsPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
-	SrvConnectionString pulumi.StringInput                                                  `pulumi:"srvConnectionString"`
-	Type                pulumi.StringInput                                                  `pulumi:"type"`
-}
-
-func (GetClustersResultConnectionStringsPrivateEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClustersResultConnectionStringsPrivateEndpoint)(nil)).Elem()
-}
-
-func (i GetClustersResultConnectionStringsPrivateEndpointArgs) ToGetClustersResultConnectionStringsPrivateEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointOutput {
-	return i.ToGetClustersResultConnectionStringsPrivateEndpointOutputWithContext(context.Background())
-}
-
-func (i GetClustersResultConnectionStringsPrivateEndpointArgs) ToGetClustersResultConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsPrivateEndpointOutput)
-}
-
-// GetClustersResultConnectionStringsPrivateEndpointArrayInput is an input type that accepts GetClustersResultConnectionStringsPrivateEndpointArray and GetClustersResultConnectionStringsPrivateEndpointArrayOutput values.
-// You can construct a concrete instance of `GetClustersResultConnectionStringsPrivateEndpointArrayInput` via:
-//
-//          GetClustersResultConnectionStringsPrivateEndpointArray{ GetClustersResultConnectionStringsPrivateEndpointArgs{...} }
-type GetClustersResultConnectionStringsPrivateEndpointArrayInput interface {
-	pulumi.Input
-
-	ToGetClustersResultConnectionStringsPrivateEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointArrayOutput
-	ToGetClustersResultConnectionStringsPrivateEndpointArrayOutputWithContext(context.Context) GetClustersResultConnectionStringsPrivateEndpointArrayOutput
-}
-
-type GetClustersResultConnectionStringsPrivateEndpointArray []GetClustersResultConnectionStringsPrivateEndpointInput
-
-func (GetClustersResultConnectionStringsPrivateEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClustersResultConnectionStringsPrivateEndpoint)(nil)).Elem()
-}
-
-func (i GetClustersResultConnectionStringsPrivateEndpointArray) ToGetClustersResultConnectionStringsPrivateEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
-	return i.ToGetClustersResultConnectionStringsPrivateEndpointArrayOutputWithContext(context.Background())
-}
-
-func (i GetClustersResultConnectionStringsPrivateEndpointArray) ToGetClustersResultConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsPrivateEndpointArrayOutput)
-}
-
-type GetClustersResultConnectionStringsPrivateEndpointOutput struct{ *pulumi.OutputState }
-
-func (GetClustersResultConnectionStringsPrivateEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClustersResultConnectionStringsPrivateEndpoint)(nil)).Elem()
-}
-
-func (o GetClustersResultConnectionStringsPrivateEndpointOutput) ToGetClustersResultConnectionStringsPrivateEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointOutput {
+func (o GetClustersResultConnectionStringArrayOutput) ToGetClustersResultConnectionStringArrayOutput() GetClustersResultConnectionStringArrayOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointOutput) ToGetClustersResultConnectionStringsPrivateEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointOutput {
+func (o GetClustersResultConnectionStringArrayOutput) ToGetClustersResultConnectionStringArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringArrayOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointOutput) ConnectionString() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpoint) string { return v.ConnectionString }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringArrayOutput) Index(i pulumi.IntInput) GetClustersResultConnectionStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultConnectionString {
+		return vs[0].([]GetClustersResultConnectionString)[vs[1].(int)]
+	}).(GetClustersResultConnectionStringOutput)
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointOutput) Endpoints() GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpoint) []GetClustersResultConnectionStringsPrivateEndpointEndpoint {
+type GetClustersResultConnectionStringPrivateEndpoint struct {
+	ConnectionString    string                                                     `pulumi:"connectionString"`
+	Endpoints           []GetClustersResultConnectionStringPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString string                                                     `pulumi:"srvConnectionString"`
+	Type                string                                                     `pulumi:"type"`
+}
+
+// GetClustersResultConnectionStringPrivateEndpointInput is an input type that accepts GetClustersResultConnectionStringPrivateEndpointArgs and GetClustersResultConnectionStringPrivateEndpointOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringPrivateEndpointInput` via:
+//
+//          GetClustersResultConnectionStringPrivateEndpointArgs{...}
+type GetClustersResultConnectionStringPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToGetClustersResultConnectionStringPrivateEndpointOutput() GetClustersResultConnectionStringPrivateEndpointOutput
+	ToGetClustersResultConnectionStringPrivateEndpointOutputWithContext(context.Context) GetClustersResultConnectionStringPrivateEndpointOutput
+}
+
+type GetClustersResultConnectionStringPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringInput                                                 `pulumi:"connectionString"`
+	Endpoints           GetClustersResultConnectionStringPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringInput                                                 `pulumi:"srvConnectionString"`
+	Type                pulumi.StringInput                                                 `pulumi:"type"`
+}
+
+func (GetClustersResultConnectionStringPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetClustersResultConnectionStringPrivateEndpointArgs) ToGetClustersResultConnectionStringPrivateEndpointOutput() GetClustersResultConnectionStringPrivateEndpointOutput {
+	return i.ToGetClustersResultConnectionStringPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultConnectionStringPrivateEndpointArgs) ToGetClustersResultConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringPrivateEndpointOutput)
+}
+
+// GetClustersResultConnectionStringPrivateEndpointArrayInput is an input type that accepts GetClustersResultConnectionStringPrivateEndpointArray and GetClustersResultConnectionStringPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringPrivateEndpointArrayInput` via:
+//
+//          GetClustersResultConnectionStringPrivateEndpointArray{ GetClustersResultConnectionStringPrivateEndpointArgs{...} }
+type GetClustersResultConnectionStringPrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersResultConnectionStringPrivateEndpointArrayOutput() GetClustersResultConnectionStringPrivateEndpointArrayOutput
+	ToGetClustersResultConnectionStringPrivateEndpointArrayOutputWithContext(context.Context) GetClustersResultConnectionStringPrivateEndpointArrayOutput
+}
+
+type GetClustersResultConnectionStringPrivateEndpointArray []GetClustersResultConnectionStringPrivateEndpointInput
+
+func (GetClustersResultConnectionStringPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetClustersResultConnectionStringPrivateEndpointArray) ToGetClustersResultConnectionStringPrivateEndpointArrayOutput() GetClustersResultConnectionStringPrivateEndpointArrayOutput {
+	return i.ToGetClustersResultConnectionStringPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultConnectionStringPrivateEndpointArray) ToGetClustersResultConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringPrivateEndpointArrayOutput)
+}
+
+type GetClustersResultConnectionStringPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultConnectionStringPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetClustersResultConnectionStringPrivateEndpointOutput) ToGetClustersResultConnectionStringPrivateEndpointOutput() GetClustersResultConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringPrivateEndpointOutput) ToGetClustersResultConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o GetClustersResultConnectionStringPrivateEndpointOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringPrivateEndpoint) string { return v.ConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetClustersResultConnectionStringPrivateEndpointOutput) Endpoints() GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringPrivateEndpoint) []GetClustersResultConnectionStringPrivateEndpointEndpoint {
 		return v.Endpoints
-	}).(GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput)
+	}).(GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput)
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointOutput) SrvConnectionString() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpoint) string { return v.SrvConnectionString }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringPrivateEndpointOutput) SrvConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringPrivateEndpoint) string { return v.SrvConnectionString }).(pulumi.StringOutput)
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpoint) string { return v.Type }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringPrivateEndpointOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringPrivateEndpoint) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type GetClustersResultConnectionStringsPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+type GetClustersResultConnectionStringPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
 
-func (GetClustersResultConnectionStringsPrivateEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClustersResultConnectionStringsPrivateEndpoint)(nil)).Elem()
+func (GetClustersResultConnectionStringPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionStringPrivateEndpoint)(nil)).Elem()
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointArrayOutput) ToGetClustersResultConnectionStringsPrivateEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
+func (o GetClustersResultConnectionStringPrivateEndpointArrayOutput) ToGetClustersResultConnectionStringPrivateEndpointArrayOutput() GetClustersResultConnectionStringPrivateEndpointArrayOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointArrayOutput) ToGetClustersResultConnectionStringsPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointArrayOutput {
+func (o GetClustersResultConnectionStringPrivateEndpointArrayOutput) ToGetClustersResultConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringPrivateEndpointArrayOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointArrayOutput) Index(i pulumi.IntInput) GetClustersResultConnectionStringsPrivateEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultConnectionStringsPrivateEndpoint {
-		return vs[0].([]GetClustersResultConnectionStringsPrivateEndpoint)[vs[1].(int)]
-	}).(GetClustersResultConnectionStringsPrivateEndpointOutput)
+func (o GetClustersResultConnectionStringPrivateEndpointArrayOutput) Index(i pulumi.IntInput) GetClustersResultConnectionStringPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultConnectionStringPrivateEndpoint {
+		return vs[0].([]GetClustersResultConnectionStringPrivateEndpoint)[vs[1].(int)]
+	}).(GetClustersResultConnectionStringPrivateEndpointOutput)
 }
 
-type GetClustersResultConnectionStringsPrivateEndpointEndpoint struct {
+type GetClustersResultConnectionStringPrivateEndpointEndpoint struct {
 	EndpointId string `pulumi:"endpointId"`
 	// Indicates the cloud service provider on which the servers are provisioned.
 	ProviderName string `pulumi:"providerName"`
 	Region       string `pulumi:"region"`
 }
 
-// GetClustersResultConnectionStringsPrivateEndpointEndpointInput is an input type that accepts GetClustersResultConnectionStringsPrivateEndpointEndpointArgs and GetClustersResultConnectionStringsPrivateEndpointEndpointOutput values.
-// You can construct a concrete instance of `GetClustersResultConnectionStringsPrivateEndpointEndpointInput` via:
+// GetClustersResultConnectionStringPrivateEndpointEndpointInput is an input type that accepts GetClustersResultConnectionStringPrivateEndpointEndpointArgs and GetClustersResultConnectionStringPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          GetClustersResultConnectionStringsPrivateEndpointEndpointArgs{...}
-type GetClustersResultConnectionStringsPrivateEndpointEndpointInput interface {
+//          GetClustersResultConnectionStringPrivateEndpointEndpointArgs{...}
+type GetClustersResultConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
-	ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointOutput
-	ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointOutput
+	ToGetClustersResultConnectionStringPrivateEndpointEndpointOutput() GetClustersResultConnectionStringPrivateEndpointEndpointOutput
+	ToGetClustersResultConnectionStringPrivateEndpointEndpointOutputWithContext(context.Context) GetClustersResultConnectionStringPrivateEndpointEndpointOutput
 }
 
-type GetClustersResultConnectionStringsPrivateEndpointEndpointArgs struct {
+type GetClustersResultConnectionStringPrivateEndpointEndpointArgs struct {
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// Indicates the cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 	Region       pulumi.StringInput `pulumi:"region"`
 }
 
-func (GetClustersResultConnectionStringsPrivateEndpointEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClustersResultConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (GetClustersResultConnectionStringPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (i GetClustersResultConnectionStringsPrivateEndpointEndpointArgs) ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
-	return i.ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutputWithContext(context.Background())
+func (i GetClustersResultConnectionStringPrivateEndpointEndpointArgs) ToGetClustersResultConnectionStringPrivateEndpointEndpointOutput() GetClustersResultConnectionStringPrivateEndpointEndpointOutput {
+	return i.ToGetClustersResultConnectionStringPrivateEndpointEndpointOutputWithContext(context.Background())
 }
 
-func (i GetClustersResultConnectionStringsPrivateEndpointEndpointArgs) ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsPrivateEndpointEndpointOutput)
+func (i GetClustersResultConnectionStringPrivateEndpointEndpointArgs) ToGetClustersResultConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringPrivateEndpointEndpointOutput)
 }
 
-// GetClustersResultConnectionStringsPrivateEndpointEndpointArrayInput is an input type that accepts GetClustersResultConnectionStringsPrivateEndpointEndpointArray and GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput values.
-// You can construct a concrete instance of `GetClustersResultConnectionStringsPrivateEndpointEndpointArrayInput` via:
+// GetClustersResultConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts GetClustersResultConnectionStringPrivateEndpointEndpointArray and GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `GetClustersResultConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          GetClustersResultConnectionStringsPrivateEndpointEndpointArray{ GetClustersResultConnectionStringsPrivateEndpointEndpointArgs{...} }
-type GetClustersResultConnectionStringsPrivateEndpointEndpointArrayInput interface {
+//          GetClustersResultConnectionStringPrivateEndpointEndpointArray{ GetClustersResultConnectionStringPrivateEndpointEndpointArgs{...} }
+type GetClustersResultConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
-	ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput
-	ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput
+	ToGetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput
+	ToGetClustersResultConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Context) GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput
 }
 
-type GetClustersResultConnectionStringsPrivateEndpointEndpointArray []GetClustersResultConnectionStringsPrivateEndpointEndpointInput
+type GetClustersResultConnectionStringPrivateEndpointEndpointArray []GetClustersResultConnectionStringPrivateEndpointEndpointInput
 
-func (GetClustersResultConnectionStringsPrivateEndpointEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClustersResultConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (GetClustersResultConnectionStringPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (i GetClustersResultConnectionStringsPrivateEndpointEndpointArray) ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return i.ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+func (i GetClustersResultConnectionStringPrivateEndpointEndpointArray) ToGetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
+	return i.ToGetClustersResultConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Background())
 }
 
-func (i GetClustersResultConnectionStringsPrivateEndpointEndpointArray) ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput)
+func (i GetClustersResultConnectionStringPrivateEndpointEndpointArray) ToGetClustersResultConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput)
 }
 
-type GetClustersResultConnectionStringsPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+type GetClustersResultConnectionStringPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
 
-func (GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetClustersResultConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (GetClustersResultConnectionStringPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
+func (o GetClustersResultConnectionStringPrivateEndpointEndpointOutput) ToGetClustersResultConnectionStringPrivateEndpointEndpointOutput() GetClustersResultConnectionStringPrivateEndpointEndpointOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) ToGetClustersResultConnectionStringsPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
+func (o GetClustersResultConnectionStringPrivateEndpointEndpointOutput) ToGetClustersResultConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetClustersResultConnectionStringPrivateEndpointEndpointOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) EndpointId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpointEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringPrivateEndpointEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
 }
 
 // Indicates the cloud service provider on which the servers are provisioned.
-func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) ProviderName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpointEndpoint) string { return v.ProviderName }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringPrivateEndpointEndpoint) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointEndpointOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetClustersResultConnectionStringsPrivateEndpointEndpoint) string { return v.Region }).(pulumi.StringOutput)
+func (o GetClustersResultConnectionStringPrivateEndpointEndpointOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultConnectionStringPrivateEndpointEndpoint) string { return v.Region }).(pulumi.StringOutput)
 }
 
-type GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+type GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
 
-func (GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetClustersResultConnectionStringsPrivateEndpointEndpoint)(nil)).Elem()
+func (GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput) ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
+func (o GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) ToGetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput() GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput) ToGetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput {
+func (o GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) ToGetClustersResultConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
 	return o
 }
 
-func (o GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) GetClustersResultConnectionStringsPrivateEndpointEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultConnectionStringsPrivateEndpointEndpoint {
-		return vs[0].([]GetClustersResultConnectionStringsPrivateEndpointEndpoint)[vs[1].(int)]
-	}).(GetClustersResultConnectionStringsPrivateEndpointEndpointOutput)
+func (o GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) GetClustersResultConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultConnectionStringPrivateEndpointEndpoint {
+		return vs[0].([]GetClustersResultConnectionStringPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(GetClustersResultConnectionStringPrivateEndpointEndpointOutput)
 }
 
 type GetClustersResultLabel struct {
@@ -11086,6 +13779,1794 @@ func (o GetCustomDbRolesResultInheritedRoleArrayOutput) Index(i pulumi.IntInput)
 	}).(GetCustomDbRolesResultInheritedRoleOutput)
 }
 
+type GetDataLakeAw struct {
+	ExternalId        string `pulumi:"externalId"`
+	IamAssumedRoleArn string `pulumi:"iamAssumedRoleArn"`
+	IamUserArn        string `pulumi:"iamUserArn"`
+	RoleId            string `pulumi:"roleId"`
+	TestS3Bucket      string `pulumi:"testS3Bucket"`
+}
+
+// GetDataLakeAwInput is an input type that accepts GetDataLakeAwArgs and GetDataLakeAwOutput values.
+// You can construct a concrete instance of `GetDataLakeAwInput` via:
+//
+//          GetDataLakeAwArgs{...}
+type GetDataLakeAwInput interface {
+	pulumi.Input
+
+	ToGetDataLakeAwOutput() GetDataLakeAwOutput
+	ToGetDataLakeAwOutputWithContext(context.Context) GetDataLakeAwOutput
+}
+
+type GetDataLakeAwArgs struct {
+	ExternalId        pulumi.StringInput `pulumi:"externalId"`
+	IamAssumedRoleArn pulumi.StringInput `pulumi:"iamAssumedRoleArn"`
+	IamUserArn        pulumi.StringInput `pulumi:"iamUserArn"`
+	RoleId            pulumi.StringInput `pulumi:"roleId"`
+	TestS3Bucket      pulumi.StringInput `pulumi:"testS3Bucket"`
+}
+
+func (GetDataLakeAwArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeAw)(nil)).Elem()
+}
+
+func (i GetDataLakeAwArgs) ToGetDataLakeAwOutput() GetDataLakeAwOutput {
+	return i.ToGetDataLakeAwOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeAwArgs) ToGetDataLakeAwOutputWithContext(ctx context.Context) GetDataLakeAwOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeAwOutput)
+}
+
+// GetDataLakeAwArrayInput is an input type that accepts GetDataLakeAwArray and GetDataLakeAwArrayOutput values.
+// You can construct a concrete instance of `GetDataLakeAwArrayInput` via:
+//
+//          GetDataLakeAwArray{ GetDataLakeAwArgs{...} }
+type GetDataLakeAwArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakeAwArrayOutput() GetDataLakeAwArrayOutput
+	ToGetDataLakeAwArrayOutputWithContext(context.Context) GetDataLakeAwArrayOutput
+}
+
+type GetDataLakeAwArray []GetDataLakeAwInput
+
+func (GetDataLakeAwArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeAw)(nil)).Elem()
+}
+
+func (i GetDataLakeAwArray) ToGetDataLakeAwArrayOutput() GetDataLakeAwArrayOutput {
+	return i.ToGetDataLakeAwArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeAwArray) ToGetDataLakeAwArrayOutputWithContext(ctx context.Context) GetDataLakeAwArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeAwArrayOutput)
+}
+
+type GetDataLakeAwOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeAwOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeAw)(nil)).Elem()
+}
+
+func (o GetDataLakeAwOutput) ToGetDataLakeAwOutput() GetDataLakeAwOutput {
+	return o
+}
+
+func (o GetDataLakeAwOutput) ToGetDataLakeAwOutputWithContext(ctx context.Context) GetDataLakeAwOutput {
+	return o
+}
+
+func (o GetDataLakeAwOutput) ExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeAw) string { return v.ExternalId }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeAwOutput) IamAssumedRoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeAw) string { return v.IamAssumedRoleArn }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeAwOutput) IamUserArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeAw) string { return v.IamUserArn }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeAwOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeAw) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeAwOutput) TestS3Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeAw) string { return v.TestS3Bucket }).(pulumi.StringOutput)
+}
+
+type GetDataLakeAwArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeAwArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeAw)(nil)).Elem()
+}
+
+func (o GetDataLakeAwArrayOutput) ToGetDataLakeAwArrayOutput() GetDataLakeAwArrayOutput {
+	return o
+}
+
+func (o GetDataLakeAwArrayOutput) ToGetDataLakeAwArrayOutputWithContext(ctx context.Context) GetDataLakeAwArrayOutput {
+	return o
+}
+
+func (o GetDataLakeAwArrayOutput) Index(i pulumi.IntInput) GetDataLakeAwOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakeAw {
+		return vs[0].([]GetDataLakeAw)[vs[1].(int)]
+	}).(GetDataLakeAwOutput)
+}
+
+type GetDataLakeDataProcessRegion struct {
+	CloudProvider string `pulumi:"cloudProvider"`
+	Region        string `pulumi:"region"`
+}
+
+// GetDataLakeDataProcessRegionInput is an input type that accepts GetDataLakeDataProcessRegionArgs and GetDataLakeDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetDataLakeDataProcessRegionInput` via:
+//
+//          GetDataLakeDataProcessRegionArgs{...}
+type GetDataLakeDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetDataLakeDataProcessRegionOutput() GetDataLakeDataProcessRegionOutput
+	ToGetDataLakeDataProcessRegionOutputWithContext(context.Context) GetDataLakeDataProcessRegionOutput
+}
+
+type GetDataLakeDataProcessRegionArgs struct {
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	Region        pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetDataLakeDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetDataLakeDataProcessRegionArgs) ToGetDataLakeDataProcessRegionOutput() GetDataLakeDataProcessRegionOutput {
+	return i.ToGetDataLakeDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeDataProcessRegionArgs) ToGetDataLakeDataProcessRegionOutputWithContext(ctx context.Context) GetDataLakeDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeDataProcessRegionOutput)
+}
+
+// GetDataLakeDataProcessRegionArrayInput is an input type that accepts GetDataLakeDataProcessRegionArray and GetDataLakeDataProcessRegionArrayOutput values.
+// You can construct a concrete instance of `GetDataLakeDataProcessRegionArrayInput` via:
+//
+//          GetDataLakeDataProcessRegionArray{ GetDataLakeDataProcessRegionArgs{...} }
+type GetDataLakeDataProcessRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakeDataProcessRegionArrayOutput() GetDataLakeDataProcessRegionArrayOutput
+	ToGetDataLakeDataProcessRegionArrayOutputWithContext(context.Context) GetDataLakeDataProcessRegionArrayOutput
+}
+
+type GetDataLakeDataProcessRegionArray []GetDataLakeDataProcessRegionInput
+
+func (GetDataLakeDataProcessRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetDataLakeDataProcessRegionArray) ToGetDataLakeDataProcessRegionArrayOutput() GetDataLakeDataProcessRegionArrayOutput {
+	return i.ToGetDataLakeDataProcessRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeDataProcessRegionArray) ToGetDataLakeDataProcessRegionArrayOutputWithContext(ctx context.Context) GetDataLakeDataProcessRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeDataProcessRegionArrayOutput)
+}
+
+type GetDataLakeDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetDataLakeDataProcessRegionOutput) ToGetDataLakeDataProcessRegionOutput() GetDataLakeDataProcessRegionOutput {
+	return o
+}
+
+func (o GetDataLakeDataProcessRegionOutput) ToGetDataLakeDataProcessRegionOutputWithContext(ctx context.Context) GetDataLakeDataProcessRegionOutput {
+	return o
+}
+
+func (o GetDataLakeDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetDataLakeDataProcessRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeDataProcessRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetDataLakeDataProcessRegionArrayOutput) ToGetDataLakeDataProcessRegionArrayOutput() GetDataLakeDataProcessRegionArrayOutput {
+	return o
+}
+
+func (o GetDataLakeDataProcessRegionArrayOutput) ToGetDataLakeDataProcessRegionArrayOutputWithContext(ctx context.Context) GetDataLakeDataProcessRegionArrayOutput {
+	return o
+}
+
+func (o GetDataLakeDataProcessRegionArrayOutput) Index(i pulumi.IntInput) GetDataLakeDataProcessRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakeDataProcessRegion {
+		return vs[0].([]GetDataLakeDataProcessRegion)[vs[1].(int)]
+	}).(GetDataLakeDataProcessRegionOutput)
+}
+
+type GetDataLakeStorageDatabase struct {
+	Collections            []GetDataLakeStorageDatabaseCollection `pulumi:"collections"`
+	MaxWildcardCollections int                                    `pulumi:"maxWildcardCollections"`
+	// Name of the data lake.
+	Name  string                           `pulumi:"name"`
+	Views []GetDataLakeStorageDatabaseView `pulumi:"views"`
+}
+
+// GetDataLakeStorageDatabaseInput is an input type that accepts GetDataLakeStorageDatabaseArgs and GetDataLakeStorageDatabaseOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageDatabaseInput` via:
+//
+//          GetDataLakeStorageDatabaseArgs{...}
+type GetDataLakeStorageDatabaseInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageDatabaseOutput() GetDataLakeStorageDatabaseOutput
+	ToGetDataLakeStorageDatabaseOutputWithContext(context.Context) GetDataLakeStorageDatabaseOutput
+}
+
+type GetDataLakeStorageDatabaseArgs struct {
+	Collections            GetDataLakeStorageDatabaseCollectionArrayInput `pulumi:"collections"`
+	MaxWildcardCollections pulumi.IntInput                                `pulumi:"maxWildcardCollections"`
+	// Name of the data lake.
+	Name  pulumi.StringInput                       `pulumi:"name"`
+	Views GetDataLakeStorageDatabaseViewArrayInput `pulumi:"views"`
+}
+
+func (GetDataLakeStorageDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageDatabase)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageDatabaseArgs) ToGetDataLakeStorageDatabaseOutput() GetDataLakeStorageDatabaseOutput {
+	return i.ToGetDataLakeStorageDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageDatabaseArgs) ToGetDataLakeStorageDatabaseOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageDatabaseOutput)
+}
+
+// GetDataLakeStorageDatabaseArrayInput is an input type that accepts GetDataLakeStorageDatabaseArray and GetDataLakeStorageDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageDatabaseArrayInput` via:
+//
+//          GetDataLakeStorageDatabaseArray{ GetDataLakeStorageDatabaseArgs{...} }
+type GetDataLakeStorageDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageDatabaseArrayOutput() GetDataLakeStorageDatabaseArrayOutput
+	ToGetDataLakeStorageDatabaseArrayOutputWithContext(context.Context) GetDataLakeStorageDatabaseArrayOutput
+}
+
+type GetDataLakeStorageDatabaseArray []GetDataLakeStorageDatabaseInput
+
+func (GetDataLakeStorageDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageDatabase)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageDatabaseArray) ToGetDataLakeStorageDatabaseArrayOutput() GetDataLakeStorageDatabaseArrayOutput {
+	return i.ToGetDataLakeStorageDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageDatabaseArray) ToGetDataLakeStorageDatabaseArrayOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageDatabaseArrayOutput)
+}
+
+type GetDataLakeStorageDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageDatabase)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageDatabaseOutput) ToGetDataLakeStorageDatabaseOutput() GetDataLakeStorageDatabaseOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseOutput) ToGetDataLakeStorageDatabaseOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseOutput) Collections() GetDataLakeStorageDatabaseCollectionArrayOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabase) []GetDataLakeStorageDatabaseCollection { return v.Collections }).(GetDataLakeStorageDatabaseCollectionArrayOutput)
+}
+
+func (o GetDataLakeStorageDatabaseOutput) MaxWildcardCollections() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabase) int { return v.MaxWildcardCollections }).(pulumi.IntOutput)
+}
+
+// Name of the data lake.
+func (o GetDataLakeStorageDatabaseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabase) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageDatabaseOutput) Views() GetDataLakeStorageDatabaseViewArrayOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabase) []GetDataLakeStorageDatabaseView { return v.Views }).(GetDataLakeStorageDatabaseViewArrayOutput)
+}
+
+type GetDataLakeStorageDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageDatabase)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageDatabaseArrayOutput) ToGetDataLakeStorageDatabaseArrayOutput() GetDataLakeStorageDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseArrayOutput) ToGetDataLakeStorageDatabaseArrayOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseArrayOutput) Index(i pulumi.IntInput) GetDataLakeStorageDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakeStorageDatabase {
+		return vs[0].([]GetDataLakeStorageDatabase)[vs[1].(int)]
+	}).(GetDataLakeStorageDatabaseOutput)
+}
+
+type GetDataLakeStorageDatabaseCollection struct {
+	DataSources []GetDataLakeStorageDatabaseCollectionDataSource `pulumi:"dataSources"`
+	// Name of the data lake.
+	Name string `pulumi:"name"`
+}
+
+// GetDataLakeStorageDatabaseCollectionInput is an input type that accepts GetDataLakeStorageDatabaseCollectionArgs and GetDataLakeStorageDatabaseCollectionOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageDatabaseCollectionInput` via:
+//
+//          GetDataLakeStorageDatabaseCollectionArgs{...}
+type GetDataLakeStorageDatabaseCollectionInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageDatabaseCollectionOutput() GetDataLakeStorageDatabaseCollectionOutput
+	ToGetDataLakeStorageDatabaseCollectionOutputWithContext(context.Context) GetDataLakeStorageDatabaseCollectionOutput
+}
+
+type GetDataLakeStorageDatabaseCollectionArgs struct {
+	DataSources GetDataLakeStorageDatabaseCollectionDataSourceArrayInput `pulumi:"dataSources"`
+	// Name of the data lake.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetDataLakeStorageDatabaseCollectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageDatabaseCollectionArgs) ToGetDataLakeStorageDatabaseCollectionOutput() GetDataLakeStorageDatabaseCollectionOutput {
+	return i.ToGetDataLakeStorageDatabaseCollectionOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageDatabaseCollectionArgs) ToGetDataLakeStorageDatabaseCollectionOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseCollectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageDatabaseCollectionOutput)
+}
+
+// GetDataLakeStorageDatabaseCollectionArrayInput is an input type that accepts GetDataLakeStorageDatabaseCollectionArray and GetDataLakeStorageDatabaseCollectionArrayOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageDatabaseCollectionArrayInput` via:
+//
+//          GetDataLakeStorageDatabaseCollectionArray{ GetDataLakeStorageDatabaseCollectionArgs{...} }
+type GetDataLakeStorageDatabaseCollectionArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageDatabaseCollectionArrayOutput() GetDataLakeStorageDatabaseCollectionArrayOutput
+	ToGetDataLakeStorageDatabaseCollectionArrayOutputWithContext(context.Context) GetDataLakeStorageDatabaseCollectionArrayOutput
+}
+
+type GetDataLakeStorageDatabaseCollectionArray []GetDataLakeStorageDatabaseCollectionInput
+
+func (GetDataLakeStorageDatabaseCollectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageDatabaseCollectionArray) ToGetDataLakeStorageDatabaseCollectionArrayOutput() GetDataLakeStorageDatabaseCollectionArrayOutput {
+	return i.ToGetDataLakeStorageDatabaseCollectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageDatabaseCollectionArray) ToGetDataLakeStorageDatabaseCollectionArrayOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseCollectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageDatabaseCollectionArrayOutput)
+}
+
+type GetDataLakeStorageDatabaseCollectionOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageDatabaseCollectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageDatabaseCollectionOutput) ToGetDataLakeStorageDatabaseCollectionOutput() GetDataLakeStorageDatabaseCollectionOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseCollectionOutput) ToGetDataLakeStorageDatabaseCollectionOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseCollectionOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseCollectionOutput) DataSources() GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabaseCollection) []GetDataLakeStorageDatabaseCollectionDataSource {
+		return v.DataSources
+	}).(GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput)
+}
+
+// Name of the data lake.
+func (o GetDataLakeStorageDatabaseCollectionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabaseCollection) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetDataLakeStorageDatabaseCollectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageDatabaseCollectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageDatabaseCollectionArrayOutput) ToGetDataLakeStorageDatabaseCollectionArrayOutput() GetDataLakeStorageDatabaseCollectionArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseCollectionArrayOutput) ToGetDataLakeStorageDatabaseCollectionArrayOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseCollectionArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseCollectionArrayOutput) Index(i pulumi.IntInput) GetDataLakeStorageDatabaseCollectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakeStorageDatabaseCollection {
+		return vs[0].([]GetDataLakeStorageDatabaseCollection)[vs[1].(int)]
+	}).(GetDataLakeStorageDatabaseCollectionOutput)
+}
+
+type GetDataLakeStorageDatabaseCollectionDataSource struct {
+	DefaultFormat string `pulumi:"defaultFormat"`
+	Path          string `pulumi:"path"`
+	StoreName     string `pulumi:"storeName"`
+}
+
+// GetDataLakeStorageDatabaseCollectionDataSourceInput is an input type that accepts GetDataLakeStorageDatabaseCollectionDataSourceArgs and GetDataLakeStorageDatabaseCollectionDataSourceOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageDatabaseCollectionDataSourceInput` via:
+//
+//          GetDataLakeStorageDatabaseCollectionDataSourceArgs{...}
+type GetDataLakeStorageDatabaseCollectionDataSourceInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageDatabaseCollectionDataSourceOutput() GetDataLakeStorageDatabaseCollectionDataSourceOutput
+	ToGetDataLakeStorageDatabaseCollectionDataSourceOutputWithContext(context.Context) GetDataLakeStorageDatabaseCollectionDataSourceOutput
+}
+
+type GetDataLakeStorageDatabaseCollectionDataSourceArgs struct {
+	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
+	Path          pulumi.StringInput `pulumi:"path"`
+	StoreName     pulumi.StringInput `pulumi:"storeName"`
+}
+
+func (GetDataLakeStorageDatabaseCollectionDataSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageDatabaseCollectionDataSourceArgs) ToGetDataLakeStorageDatabaseCollectionDataSourceOutput() GetDataLakeStorageDatabaseCollectionDataSourceOutput {
+	return i.ToGetDataLakeStorageDatabaseCollectionDataSourceOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageDatabaseCollectionDataSourceArgs) ToGetDataLakeStorageDatabaseCollectionDataSourceOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseCollectionDataSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageDatabaseCollectionDataSourceOutput)
+}
+
+// GetDataLakeStorageDatabaseCollectionDataSourceArrayInput is an input type that accepts GetDataLakeStorageDatabaseCollectionDataSourceArray and GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageDatabaseCollectionDataSourceArrayInput` via:
+//
+//          GetDataLakeStorageDatabaseCollectionDataSourceArray{ GetDataLakeStorageDatabaseCollectionDataSourceArgs{...} }
+type GetDataLakeStorageDatabaseCollectionDataSourceArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageDatabaseCollectionDataSourceArrayOutput() GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput
+	ToGetDataLakeStorageDatabaseCollectionDataSourceArrayOutputWithContext(context.Context) GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput
+}
+
+type GetDataLakeStorageDatabaseCollectionDataSourceArray []GetDataLakeStorageDatabaseCollectionDataSourceInput
+
+func (GetDataLakeStorageDatabaseCollectionDataSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageDatabaseCollectionDataSourceArray) ToGetDataLakeStorageDatabaseCollectionDataSourceArrayOutput() GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return i.ToGetDataLakeStorageDatabaseCollectionDataSourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageDatabaseCollectionDataSourceArray) ToGetDataLakeStorageDatabaseCollectionDataSourceArrayOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput)
+}
+
+type GetDataLakeStorageDatabaseCollectionDataSourceOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageDatabaseCollectionDataSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageDatabaseCollectionDataSourceOutput) ToGetDataLakeStorageDatabaseCollectionDataSourceOutput() GetDataLakeStorageDatabaseCollectionDataSourceOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseCollectionDataSourceOutput) ToGetDataLakeStorageDatabaseCollectionDataSourceOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseCollectionDataSourceOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseCollectionDataSourceOutput) DefaultFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabaseCollectionDataSource) string { return v.DefaultFormat }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageDatabaseCollectionDataSourceOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabaseCollectionDataSource) string { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageDatabaseCollectionDataSourceOutput) StoreName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabaseCollectionDataSource) string { return v.StoreName }).(pulumi.StringOutput)
+}
+
+type GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput) ToGetDataLakeStorageDatabaseCollectionDataSourceArrayOutput() GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput) ToGetDataLakeStorageDatabaseCollectionDataSourceArrayOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput) Index(i pulumi.IntInput) GetDataLakeStorageDatabaseCollectionDataSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakeStorageDatabaseCollectionDataSource {
+		return vs[0].([]GetDataLakeStorageDatabaseCollectionDataSource)[vs[1].(int)]
+	}).(GetDataLakeStorageDatabaseCollectionDataSourceOutput)
+}
+
+type GetDataLakeStorageDatabaseView struct {
+	// Name of the data lake.
+	Name     string `pulumi:"name"`
+	Pipeline string `pulumi:"pipeline"`
+	Source   string `pulumi:"source"`
+}
+
+// GetDataLakeStorageDatabaseViewInput is an input type that accepts GetDataLakeStorageDatabaseViewArgs and GetDataLakeStorageDatabaseViewOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageDatabaseViewInput` via:
+//
+//          GetDataLakeStorageDatabaseViewArgs{...}
+type GetDataLakeStorageDatabaseViewInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageDatabaseViewOutput() GetDataLakeStorageDatabaseViewOutput
+	ToGetDataLakeStorageDatabaseViewOutputWithContext(context.Context) GetDataLakeStorageDatabaseViewOutput
+}
+
+type GetDataLakeStorageDatabaseViewArgs struct {
+	// Name of the data lake.
+	Name     pulumi.StringInput `pulumi:"name"`
+	Pipeline pulumi.StringInput `pulumi:"pipeline"`
+	Source   pulumi.StringInput `pulumi:"source"`
+}
+
+func (GetDataLakeStorageDatabaseViewArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageDatabaseView)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageDatabaseViewArgs) ToGetDataLakeStorageDatabaseViewOutput() GetDataLakeStorageDatabaseViewOutput {
+	return i.ToGetDataLakeStorageDatabaseViewOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageDatabaseViewArgs) ToGetDataLakeStorageDatabaseViewOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseViewOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageDatabaseViewOutput)
+}
+
+// GetDataLakeStorageDatabaseViewArrayInput is an input type that accepts GetDataLakeStorageDatabaseViewArray and GetDataLakeStorageDatabaseViewArrayOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageDatabaseViewArrayInput` via:
+//
+//          GetDataLakeStorageDatabaseViewArray{ GetDataLakeStorageDatabaseViewArgs{...} }
+type GetDataLakeStorageDatabaseViewArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageDatabaseViewArrayOutput() GetDataLakeStorageDatabaseViewArrayOutput
+	ToGetDataLakeStorageDatabaseViewArrayOutputWithContext(context.Context) GetDataLakeStorageDatabaseViewArrayOutput
+}
+
+type GetDataLakeStorageDatabaseViewArray []GetDataLakeStorageDatabaseViewInput
+
+func (GetDataLakeStorageDatabaseViewArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageDatabaseView)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageDatabaseViewArray) ToGetDataLakeStorageDatabaseViewArrayOutput() GetDataLakeStorageDatabaseViewArrayOutput {
+	return i.ToGetDataLakeStorageDatabaseViewArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageDatabaseViewArray) ToGetDataLakeStorageDatabaseViewArrayOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseViewArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageDatabaseViewArrayOutput)
+}
+
+type GetDataLakeStorageDatabaseViewOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageDatabaseViewOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageDatabaseView)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageDatabaseViewOutput) ToGetDataLakeStorageDatabaseViewOutput() GetDataLakeStorageDatabaseViewOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseViewOutput) ToGetDataLakeStorageDatabaseViewOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseViewOutput {
+	return o
+}
+
+// Name of the data lake.
+func (o GetDataLakeStorageDatabaseViewOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabaseView) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageDatabaseViewOutput) Pipeline() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabaseView) string { return v.Pipeline }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageDatabaseViewOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageDatabaseView) string { return v.Source }).(pulumi.StringOutput)
+}
+
+type GetDataLakeStorageDatabaseViewArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageDatabaseViewArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageDatabaseView)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageDatabaseViewArrayOutput) ToGetDataLakeStorageDatabaseViewArrayOutput() GetDataLakeStorageDatabaseViewArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseViewArrayOutput) ToGetDataLakeStorageDatabaseViewArrayOutputWithContext(ctx context.Context) GetDataLakeStorageDatabaseViewArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageDatabaseViewArrayOutput) Index(i pulumi.IntInput) GetDataLakeStorageDatabaseViewOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakeStorageDatabaseView {
+		return vs[0].([]GetDataLakeStorageDatabaseView)[vs[1].(int)]
+	}).(GetDataLakeStorageDatabaseViewOutput)
+}
+
+type GetDataLakeStorageStore struct {
+	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
+	Bucket                   string   `pulumi:"bucket"`
+	Delimiter                string   `pulumi:"delimiter"`
+	IncludeTags              bool     `pulumi:"includeTags"`
+	// Name of the data lake.
+	Name     string `pulumi:"name"`
+	Prefix   string `pulumi:"prefix"`
+	Provider string `pulumi:"provider"`
+	Region   string `pulumi:"region"`
+}
+
+// GetDataLakeStorageStoreInput is an input type that accepts GetDataLakeStorageStoreArgs and GetDataLakeStorageStoreOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageStoreInput` via:
+//
+//          GetDataLakeStorageStoreArgs{...}
+type GetDataLakeStorageStoreInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageStoreOutput() GetDataLakeStorageStoreOutput
+	ToGetDataLakeStorageStoreOutputWithContext(context.Context) GetDataLakeStorageStoreOutput
+}
+
+type GetDataLakeStorageStoreArgs struct {
+	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
+	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
+	Delimiter                pulumi.StringInput      `pulumi:"delimiter"`
+	IncludeTags              pulumi.BoolInput        `pulumi:"includeTags"`
+	// Name of the data lake.
+	Name     pulumi.StringInput `pulumi:"name"`
+	Prefix   pulumi.StringInput `pulumi:"prefix"`
+	Provider pulumi.StringInput `pulumi:"provider"`
+	Region   pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetDataLakeStorageStoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageStore)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageStoreArgs) ToGetDataLakeStorageStoreOutput() GetDataLakeStorageStoreOutput {
+	return i.ToGetDataLakeStorageStoreOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageStoreArgs) ToGetDataLakeStorageStoreOutputWithContext(ctx context.Context) GetDataLakeStorageStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageStoreOutput)
+}
+
+// GetDataLakeStorageStoreArrayInput is an input type that accepts GetDataLakeStorageStoreArray and GetDataLakeStorageStoreArrayOutput values.
+// You can construct a concrete instance of `GetDataLakeStorageStoreArrayInput` via:
+//
+//          GetDataLakeStorageStoreArray{ GetDataLakeStorageStoreArgs{...} }
+type GetDataLakeStorageStoreArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakeStorageStoreArrayOutput() GetDataLakeStorageStoreArrayOutput
+	ToGetDataLakeStorageStoreArrayOutputWithContext(context.Context) GetDataLakeStorageStoreArrayOutput
+}
+
+type GetDataLakeStorageStoreArray []GetDataLakeStorageStoreInput
+
+func (GetDataLakeStorageStoreArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageStore)(nil)).Elem()
+}
+
+func (i GetDataLakeStorageStoreArray) ToGetDataLakeStorageStoreArrayOutput() GetDataLakeStorageStoreArrayOutput {
+	return i.ToGetDataLakeStorageStoreArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakeStorageStoreArray) ToGetDataLakeStorageStoreArrayOutputWithContext(ctx context.Context) GetDataLakeStorageStoreArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakeStorageStoreArrayOutput)
+}
+
+type GetDataLakeStorageStoreOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakeStorageStore)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageStoreOutput) ToGetDataLakeStorageStoreOutput() GetDataLakeStorageStoreOutput {
+	return o
+}
+
+func (o GetDataLakeStorageStoreOutput) ToGetDataLakeStorageStoreOutputWithContext(ctx context.Context) GetDataLakeStorageStoreOutput {
+	return o
+}
+
+func (o GetDataLakeStorageStoreOutput) AdditionalStorageClasses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDataLakeStorageStore) []string { return v.AdditionalStorageClasses }).(pulumi.StringArrayOutput)
+}
+
+func (o GetDataLakeStorageStoreOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageStoreOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageStore) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageStoreOutput) IncludeTags() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDataLakeStorageStore) bool { return v.IncludeTags }).(pulumi.BoolOutput)
+}
+
+// Name of the data lake.
+func (o GetDataLakeStorageStoreOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageStore) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageStoreOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageStore) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageStoreOutput) Provider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageStore) string { return v.Provider }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakeStorageStoreOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakeStorageStore) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetDataLakeStorageStoreArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakeStorageStoreArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakeStorageStore)(nil)).Elem()
+}
+
+func (o GetDataLakeStorageStoreArrayOutput) ToGetDataLakeStorageStoreArrayOutput() GetDataLakeStorageStoreArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageStoreArrayOutput) ToGetDataLakeStorageStoreArrayOutputWithContext(ctx context.Context) GetDataLakeStorageStoreArrayOutput {
+	return o
+}
+
+func (o GetDataLakeStorageStoreArrayOutput) Index(i pulumi.IntInput) GetDataLakeStorageStoreOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakeStorageStore {
+		return vs[0].([]GetDataLakeStorageStore)[vs[1].(int)]
+	}).(GetDataLakeStorageStoreOutput)
+}
+
+type GetDataLakesResultType struct {
+	Aws []GetDataLakesResultAw `pulumi:"aws"`
+	// The cloud provider region to which Atlas Data Lake routes client connections for data processing.
+	// * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
+	// * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
+	DataProcessRegions []GetDataLakesResultDataProcessRegion `pulumi:"dataProcessRegions"`
+	// The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
+	Hostnames []string `pulumi:"hostnames"`
+	Name      string   `pulumi:"name"`
+	// The unique ID for the project to get all data lakes.
+	ProjectId string `pulumi:"projectId"`
+	// Current state of the Atlas Data Lake:
+	State string `pulumi:"state"`
+	// Configuration details for mapping each data store to queryable databases and collections.
+	// * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+	// * `storage_databases.#.collections.#.name` - Name of the collection.
+	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
+	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
+	// * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+	// * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
+	// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
+	// * `storage_databases.#.views.#.name` - Name of the view.
+	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
+	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
+	StorageDatabases []GetDataLakesResultStorageDatabase `pulumi:"storageDatabases"`
+	// Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
+	// * `storage_stores.#.name` - Name of the data store.
+	// * `storage_stores.#.provider` - Defines where the data is stored.
+	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
+	// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+	// * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
+	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
+	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
+	StorageStores []GetDataLakesResultStorageStore `pulumi:"storageStores"`
+}
+
+// GetDataLakesResultTypeInput is an input type that accepts GetDataLakesResultTypeArgs and GetDataLakesResultTypeOutput values.
+// You can construct a concrete instance of `GetDataLakesResultTypeInput` via:
+//
+//          GetDataLakesResultTypeArgs{...}
+type GetDataLakesResultTypeInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultTypeOutput() GetDataLakesResultTypeOutput
+	ToGetDataLakesResultTypeOutputWithContext(context.Context) GetDataLakesResultTypeOutput
+}
+
+type GetDataLakesResultTypeArgs struct {
+	Aws GetDataLakesResultAwArrayInput `pulumi:"aws"`
+	// The cloud provider region to which Atlas Data Lake routes client connections for data processing.
+	// * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
+	// * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
+	DataProcessRegions GetDataLakesResultDataProcessRegionArrayInput `pulumi:"dataProcessRegions"`
+	// The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
+	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
+	Name      pulumi.StringInput      `pulumi:"name"`
+	// The unique ID for the project to get all data lakes.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Current state of the Atlas Data Lake:
+	State pulumi.StringInput `pulumi:"state"`
+	// Configuration details for mapping each data store to queryable databases and collections.
+	// * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+	// * `storage_databases.#.collections.#.name` - Name of the collection.
+	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
+	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
+	// * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+	// * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
+	// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
+	// * `storage_databases.#.views.#.name` - Name of the view.
+	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
+	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
+	StorageDatabases GetDataLakesResultStorageDatabaseArrayInput `pulumi:"storageDatabases"`
+	// Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
+	// * `storage_stores.#.name` - Name of the data store.
+	// * `storage_stores.#.provider` - Defines where the data is stored.
+	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
+	// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+	// * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
+	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
+	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
+	StorageStores GetDataLakesResultStorageStoreArrayInput `pulumi:"storageStores"`
+}
+
+func (GetDataLakesResultTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultType)(nil)).Elem()
+}
+
+func (i GetDataLakesResultTypeArgs) ToGetDataLakesResultTypeOutput() GetDataLakesResultTypeOutput {
+	return i.ToGetDataLakesResultTypeOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultTypeArgs) ToGetDataLakesResultTypeOutputWithContext(ctx context.Context) GetDataLakesResultTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultTypeOutput)
+}
+
+// GetDataLakesResultTypeArrayInput is an input type that accepts GetDataLakesResultTypeArray and GetDataLakesResultTypeArrayOutput values.
+// You can construct a concrete instance of `GetDataLakesResultTypeArrayInput` via:
+//
+//          GetDataLakesResultTypeArray{ GetDataLakesResultTypeArgs{...} }
+type GetDataLakesResultTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultTypeArrayOutput() GetDataLakesResultTypeArrayOutput
+	ToGetDataLakesResultTypeArrayOutputWithContext(context.Context) GetDataLakesResultTypeArrayOutput
+}
+
+type GetDataLakesResultTypeArray []GetDataLakesResultTypeInput
+
+func (GetDataLakesResultTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultType)(nil)).Elem()
+}
+
+func (i GetDataLakesResultTypeArray) ToGetDataLakesResultTypeArrayOutput() GetDataLakesResultTypeArrayOutput {
+	return i.ToGetDataLakesResultTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultTypeArray) ToGetDataLakesResultTypeArrayOutputWithContext(ctx context.Context) GetDataLakesResultTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultTypeArrayOutput)
+}
+
+type GetDataLakesResultTypeOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultType)(nil)).Elem()
+}
+
+func (o GetDataLakesResultTypeOutput) ToGetDataLakesResultTypeOutput() GetDataLakesResultTypeOutput {
+	return o
+}
+
+func (o GetDataLakesResultTypeOutput) ToGetDataLakesResultTypeOutputWithContext(ctx context.Context) GetDataLakesResultTypeOutput {
+	return o
+}
+
+func (o GetDataLakesResultTypeOutput) Aws() GetDataLakesResultAwArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultType) []GetDataLakesResultAw { return v.Aws }).(GetDataLakesResultAwArrayOutput)
+}
+
+// The cloud provider region to which Atlas Data Lake routes client connections for data processing.
+// * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
+// * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
+func (o GetDataLakesResultTypeOutput) DataProcessRegions() GetDataLakesResultDataProcessRegionArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultType) []GetDataLakesResultDataProcessRegion { return v.DataProcessRegions }).(GetDataLakesResultDataProcessRegionArrayOutput)
+}
+
+// The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
+func (o GetDataLakesResultTypeOutput) Hostnames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultType) []string { return v.Hostnames }).(pulumi.StringArrayOutput)
+}
+
+func (o GetDataLakesResultTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The unique ID for the project to get all data lakes.
+func (o GetDataLakesResultTypeOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultType) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Current state of the Atlas Data Lake:
+func (o GetDataLakesResultTypeOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultType) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Configuration details for mapping each data store to queryable databases and collections.
+// * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
+// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+// * `storage_databases.#.collections.#.name` - Name of the collection.
+// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
+// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
+// * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+// * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
+// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
+// * `storage_databases.#.views.#.name` - Name of the view.
+// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
+// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
+func (o GetDataLakesResultTypeOutput) StorageDatabases() GetDataLakesResultStorageDatabaseArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultType) []GetDataLakesResultStorageDatabase { return v.StorageDatabases }).(GetDataLakesResultStorageDatabaseArrayOutput)
+}
+
+// Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
+// * `storage_stores.#.name` - Name of the data store.
+// * `storage_stores.#.provider` - Defines where the data is stored.
+// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
+// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+// * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
+// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
+// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
+func (o GetDataLakesResultTypeOutput) StorageStores() GetDataLakesResultStorageStoreArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultType) []GetDataLakesResultStorageStore { return v.StorageStores }).(GetDataLakesResultStorageStoreArrayOutput)
+}
+
+type GetDataLakesResultTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultType)(nil)).Elem()
+}
+
+func (o GetDataLakesResultTypeArrayOutput) ToGetDataLakesResultTypeArrayOutput() GetDataLakesResultTypeArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultTypeArrayOutput) ToGetDataLakesResultTypeArrayOutputWithContext(ctx context.Context) GetDataLakesResultTypeArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultTypeArrayOutput) Index(i pulumi.IntInput) GetDataLakesResultTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakesResultType {
+		return vs[0].([]GetDataLakesResultType)[vs[1].(int)]
+	}).(GetDataLakesResultTypeOutput)
+}
+
+type GetDataLakesResultAw struct {
+	ExternalId        string `pulumi:"externalId"`
+	IamAssumedRoleArn string `pulumi:"iamAssumedRoleArn"`
+	IamUserArn        string `pulumi:"iamUserArn"`
+	RoleId            string `pulumi:"roleId"`
+	TestS3Bucket      string `pulumi:"testS3Bucket"`
+}
+
+// GetDataLakesResultAwInput is an input type that accepts GetDataLakesResultAwArgs and GetDataLakesResultAwOutput values.
+// You can construct a concrete instance of `GetDataLakesResultAwInput` via:
+//
+//          GetDataLakesResultAwArgs{...}
+type GetDataLakesResultAwInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultAwOutput() GetDataLakesResultAwOutput
+	ToGetDataLakesResultAwOutputWithContext(context.Context) GetDataLakesResultAwOutput
+}
+
+type GetDataLakesResultAwArgs struct {
+	ExternalId        pulumi.StringInput `pulumi:"externalId"`
+	IamAssumedRoleArn pulumi.StringInput `pulumi:"iamAssumedRoleArn"`
+	IamUserArn        pulumi.StringInput `pulumi:"iamUserArn"`
+	RoleId            pulumi.StringInput `pulumi:"roleId"`
+	TestS3Bucket      pulumi.StringInput `pulumi:"testS3Bucket"`
+}
+
+func (GetDataLakesResultAwArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultAw)(nil)).Elem()
+}
+
+func (i GetDataLakesResultAwArgs) ToGetDataLakesResultAwOutput() GetDataLakesResultAwOutput {
+	return i.ToGetDataLakesResultAwOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultAwArgs) ToGetDataLakesResultAwOutputWithContext(ctx context.Context) GetDataLakesResultAwOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultAwOutput)
+}
+
+// GetDataLakesResultAwArrayInput is an input type that accepts GetDataLakesResultAwArray and GetDataLakesResultAwArrayOutput values.
+// You can construct a concrete instance of `GetDataLakesResultAwArrayInput` via:
+//
+//          GetDataLakesResultAwArray{ GetDataLakesResultAwArgs{...} }
+type GetDataLakesResultAwArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultAwArrayOutput() GetDataLakesResultAwArrayOutput
+	ToGetDataLakesResultAwArrayOutputWithContext(context.Context) GetDataLakesResultAwArrayOutput
+}
+
+type GetDataLakesResultAwArray []GetDataLakesResultAwInput
+
+func (GetDataLakesResultAwArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultAw)(nil)).Elem()
+}
+
+func (i GetDataLakesResultAwArray) ToGetDataLakesResultAwArrayOutput() GetDataLakesResultAwArrayOutput {
+	return i.ToGetDataLakesResultAwArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultAwArray) ToGetDataLakesResultAwArrayOutputWithContext(ctx context.Context) GetDataLakesResultAwArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultAwArrayOutput)
+}
+
+type GetDataLakesResultAwOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultAwOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultAw)(nil)).Elem()
+}
+
+func (o GetDataLakesResultAwOutput) ToGetDataLakesResultAwOutput() GetDataLakesResultAwOutput {
+	return o
+}
+
+func (o GetDataLakesResultAwOutput) ToGetDataLakesResultAwOutputWithContext(ctx context.Context) GetDataLakesResultAwOutput {
+	return o
+}
+
+func (o GetDataLakesResultAwOutput) ExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultAw) string { return v.ExternalId }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultAwOutput) IamAssumedRoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultAw) string { return v.IamAssumedRoleArn }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultAwOutput) IamUserArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultAw) string { return v.IamUserArn }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultAwOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultAw) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultAwOutput) TestS3Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultAw) string { return v.TestS3Bucket }).(pulumi.StringOutput)
+}
+
+type GetDataLakesResultAwArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultAwArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultAw)(nil)).Elem()
+}
+
+func (o GetDataLakesResultAwArrayOutput) ToGetDataLakesResultAwArrayOutput() GetDataLakesResultAwArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultAwArrayOutput) ToGetDataLakesResultAwArrayOutputWithContext(ctx context.Context) GetDataLakesResultAwArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultAwArrayOutput) Index(i pulumi.IntInput) GetDataLakesResultAwOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakesResultAw {
+		return vs[0].([]GetDataLakesResultAw)[vs[1].(int)]
+	}).(GetDataLakesResultAwOutput)
+}
+
+type GetDataLakesResultDataProcessRegion struct {
+	CloudProvider string `pulumi:"cloudProvider"`
+	Region        string `pulumi:"region"`
+}
+
+// GetDataLakesResultDataProcessRegionInput is an input type that accepts GetDataLakesResultDataProcessRegionArgs and GetDataLakesResultDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetDataLakesResultDataProcessRegionInput` via:
+//
+//          GetDataLakesResultDataProcessRegionArgs{...}
+type GetDataLakesResultDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultDataProcessRegionOutput() GetDataLakesResultDataProcessRegionOutput
+	ToGetDataLakesResultDataProcessRegionOutputWithContext(context.Context) GetDataLakesResultDataProcessRegionOutput
+}
+
+type GetDataLakesResultDataProcessRegionArgs struct {
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	Region        pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetDataLakesResultDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetDataLakesResultDataProcessRegionArgs) ToGetDataLakesResultDataProcessRegionOutput() GetDataLakesResultDataProcessRegionOutput {
+	return i.ToGetDataLakesResultDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultDataProcessRegionArgs) ToGetDataLakesResultDataProcessRegionOutputWithContext(ctx context.Context) GetDataLakesResultDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultDataProcessRegionOutput)
+}
+
+// GetDataLakesResultDataProcessRegionArrayInput is an input type that accepts GetDataLakesResultDataProcessRegionArray and GetDataLakesResultDataProcessRegionArrayOutput values.
+// You can construct a concrete instance of `GetDataLakesResultDataProcessRegionArrayInput` via:
+//
+//          GetDataLakesResultDataProcessRegionArray{ GetDataLakesResultDataProcessRegionArgs{...} }
+type GetDataLakesResultDataProcessRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultDataProcessRegionArrayOutput() GetDataLakesResultDataProcessRegionArrayOutput
+	ToGetDataLakesResultDataProcessRegionArrayOutputWithContext(context.Context) GetDataLakesResultDataProcessRegionArrayOutput
+}
+
+type GetDataLakesResultDataProcessRegionArray []GetDataLakesResultDataProcessRegionInput
+
+func (GetDataLakesResultDataProcessRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetDataLakesResultDataProcessRegionArray) ToGetDataLakesResultDataProcessRegionArrayOutput() GetDataLakesResultDataProcessRegionArrayOutput {
+	return i.ToGetDataLakesResultDataProcessRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultDataProcessRegionArray) ToGetDataLakesResultDataProcessRegionArrayOutputWithContext(ctx context.Context) GetDataLakesResultDataProcessRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultDataProcessRegionArrayOutput)
+}
+
+type GetDataLakesResultDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetDataLakesResultDataProcessRegionOutput) ToGetDataLakesResultDataProcessRegionOutput() GetDataLakesResultDataProcessRegionOutput {
+	return o
+}
+
+func (o GetDataLakesResultDataProcessRegionOutput) ToGetDataLakesResultDataProcessRegionOutputWithContext(ctx context.Context) GetDataLakesResultDataProcessRegionOutput {
+	return o
+}
+
+func (o GetDataLakesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetDataLakesResultDataProcessRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultDataProcessRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetDataLakesResultDataProcessRegionArrayOutput) ToGetDataLakesResultDataProcessRegionArrayOutput() GetDataLakesResultDataProcessRegionArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultDataProcessRegionArrayOutput) ToGetDataLakesResultDataProcessRegionArrayOutputWithContext(ctx context.Context) GetDataLakesResultDataProcessRegionArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultDataProcessRegionArrayOutput) Index(i pulumi.IntInput) GetDataLakesResultDataProcessRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakesResultDataProcessRegion {
+		return vs[0].([]GetDataLakesResultDataProcessRegion)[vs[1].(int)]
+	}).(GetDataLakesResultDataProcessRegionOutput)
+}
+
+type GetDataLakesResultStorageDatabase struct {
+	Collections            []GetDataLakesResultStorageDatabaseCollection `pulumi:"collections"`
+	MaxWildcardCollections int                                           `pulumi:"maxWildcardCollections"`
+	Name                   string                                        `pulumi:"name"`
+	Views                  []GetDataLakesResultStorageDatabaseView       `pulumi:"views"`
+}
+
+// GetDataLakesResultStorageDatabaseInput is an input type that accepts GetDataLakesResultStorageDatabaseArgs and GetDataLakesResultStorageDatabaseOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageDatabaseInput` via:
+//
+//          GetDataLakesResultStorageDatabaseArgs{...}
+type GetDataLakesResultStorageDatabaseInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageDatabaseOutput() GetDataLakesResultStorageDatabaseOutput
+	ToGetDataLakesResultStorageDatabaseOutputWithContext(context.Context) GetDataLakesResultStorageDatabaseOutput
+}
+
+type GetDataLakesResultStorageDatabaseArgs struct {
+	Collections            GetDataLakesResultStorageDatabaseCollectionArrayInput `pulumi:"collections"`
+	MaxWildcardCollections pulumi.IntInput                                       `pulumi:"maxWildcardCollections"`
+	Name                   pulumi.StringInput                                    `pulumi:"name"`
+	Views                  GetDataLakesResultStorageDatabaseViewArrayInput       `pulumi:"views"`
+}
+
+func (GetDataLakesResultStorageDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageDatabase)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageDatabaseArgs) ToGetDataLakesResultStorageDatabaseOutput() GetDataLakesResultStorageDatabaseOutput {
+	return i.ToGetDataLakesResultStorageDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageDatabaseArgs) ToGetDataLakesResultStorageDatabaseOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageDatabaseOutput)
+}
+
+// GetDataLakesResultStorageDatabaseArrayInput is an input type that accepts GetDataLakesResultStorageDatabaseArray and GetDataLakesResultStorageDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageDatabaseArrayInput` via:
+//
+//          GetDataLakesResultStorageDatabaseArray{ GetDataLakesResultStorageDatabaseArgs{...} }
+type GetDataLakesResultStorageDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageDatabaseArrayOutput() GetDataLakesResultStorageDatabaseArrayOutput
+	ToGetDataLakesResultStorageDatabaseArrayOutputWithContext(context.Context) GetDataLakesResultStorageDatabaseArrayOutput
+}
+
+type GetDataLakesResultStorageDatabaseArray []GetDataLakesResultStorageDatabaseInput
+
+func (GetDataLakesResultStorageDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageDatabase)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageDatabaseArray) ToGetDataLakesResultStorageDatabaseArrayOutput() GetDataLakesResultStorageDatabaseArrayOutput {
+	return i.ToGetDataLakesResultStorageDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageDatabaseArray) ToGetDataLakesResultStorageDatabaseArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageDatabaseArrayOutput)
+}
+
+type GetDataLakesResultStorageDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageDatabase)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageDatabaseOutput) ToGetDataLakesResultStorageDatabaseOutput() GetDataLakesResultStorageDatabaseOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseOutput) ToGetDataLakesResultStorageDatabaseOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseOutput) Collections() GetDataLakesResultStorageDatabaseCollectionArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabase) []GetDataLakesResultStorageDatabaseCollection {
+		return v.Collections
+	}).(GetDataLakesResultStorageDatabaseCollectionArrayOutput)
+}
+
+func (o GetDataLakesResultStorageDatabaseOutput) MaxWildcardCollections() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabase) int { return v.MaxWildcardCollections }).(pulumi.IntOutput)
+}
+
+func (o GetDataLakesResultStorageDatabaseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabase) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageDatabaseOutput) Views() GetDataLakesResultStorageDatabaseViewArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabase) []GetDataLakesResultStorageDatabaseView { return v.Views }).(GetDataLakesResultStorageDatabaseViewArrayOutput)
+}
+
+type GetDataLakesResultStorageDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageDatabase)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageDatabaseArrayOutput) ToGetDataLakesResultStorageDatabaseArrayOutput() GetDataLakesResultStorageDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseArrayOutput) ToGetDataLakesResultStorageDatabaseArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseArrayOutput) Index(i pulumi.IntInput) GetDataLakesResultStorageDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakesResultStorageDatabase {
+		return vs[0].([]GetDataLakesResultStorageDatabase)[vs[1].(int)]
+	}).(GetDataLakesResultStorageDatabaseOutput)
+}
+
+type GetDataLakesResultStorageDatabaseCollection struct {
+	DataSources []GetDataLakesResultStorageDatabaseCollectionDataSource `pulumi:"dataSources"`
+	Name        string                                                  `pulumi:"name"`
+}
+
+// GetDataLakesResultStorageDatabaseCollectionInput is an input type that accepts GetDataLakesResultStorageDatabaseCollectionArgs and GetDataLakesResultStorageDatabaseCollectionOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageDatabaseCollectionInput` via:
+//
+//          GetDataLakesResultStorageDatabaseCollectionArgs{...}
+type GetDataLakesResultStorageDatabaseCollectionInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageDatabaseCollectionOutput() GetDataLakesResultStorageDatabaseCollectionOutput
+	ToGetDataLakesResultStorageDatabaseCollectionOutputWithContext(context.Context) GetDataLakesResultStorageDatabaseCollectionOutput
+}
+
+type GetDataLakesResultStorageDatabaseCollectionArgs struct {
+	DataSources GetDataLakesResultStorageDatabaseCollectionDataSourceArrayInput `pulumi:"dataSources"`
+	Name        pulumi.StringInput                                              `pulumi:"name"`
+}
+
+func (GetDataLakesResultStorageDatabaseCollectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageDatabaseCollectionArgs) ToGetDataLakesResultStorageDatabaseCollectionOutput() GetDataLakesResultStorageDatabaseCollectionOutput {
+	return i.ToGetDataLakesResultStorageDatabaseCollectionOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageDatabaseCollectionArgs) ToGetDataLakesResultStorageDatabaseCollectionOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseCollectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageDatabaseCollectionOutput)
+}
+
+// GetDataLakesResultStorageDatabaseCollectionArrayInput is an input type that accepts GetDataLakesResultStorageDatabaseCollectionArray and GetDataLakesResultStorageDatabaseCollectionArrayOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageDatabaseCollectionArrayInput` via:
+//
+//          GetDataLakesResultStorageDatabaseCollectionArray{ GetDataLakesResultStorageDatabaseCollectionArgs{...} }
+type GetDataLakesResultStorageDatabaseCollectionArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageDatabaseCollectionArrayOutput() GetDataLakesResultStorageDatabaseCollectionArrayOutput
+	ToGetDataLakesResultStorageDatabaseCollectionArrayOutputWithContext(context.Context) GetDataLakesResultStorageDatabaseCollectionArrayOutput
+}
+
+type GetDataLakesResultStorageDatabaseCollectionArray []GetDataLakesResultStorageDatabaseCollectionInput
+
+func (GetDataLakesResultStorageDatabaseCollectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageDatabaseCollectionArray) ToGetDataLakesResultStorageDatabaseCollectionArrayOutput() GetDataLakesResultStorageDatabaseCollectionArrayOutput {
+	return i.ToGetDataLakesResultStorageDatabaseCollectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageDatabaseCollectionArray) ToGetDataLakesResultStorageDatabaseCollectionArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseCollectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageDatabaseCollectionArrayOutput)
+}
+
+type GetDataLakesResultStorageDatabaseCollectionOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageDatabaseCollectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionOutput) ToGetDataLakesResultStorageDatabaseCollectionOutput() GetDataLakesResultStorageDatabaseCollectionOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionOutput) ToGetDataLakesResultStorageDatabaseCollectionOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseCollectionOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionOutput) DataSources() GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabaseCollection) []GetDataLakesResultStorageDatabaseCollectionDataSource {
+		return v.DataSources
+	}).(GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput)
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabaseCollection) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetDataLakesResultStorageDatabaseCollectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageDatabaseCollectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageDatabaseCollection)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionArrayOutput) ToGetDataLakesResultStorageDatabaseCollectionArrayOutput() GetDataLakesResultStorageDatabaseCollectionArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionArrayOutput) ToGetDataLakesResultStorageDatabaseCollectionArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseCollectionArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionArrayOutput) Index(i pulumi.IntInput) GetDataLakesResultStorageDatabaseCollectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakesResultStorageDatabaseCollection {
+		return vs[0].([]GetDataLakesResultStorageDatabaseCollection)[vs[1].(int)]
+	}).(GetDataLakesResultStorageDatabaseCollectionOutput)
+}
+
+type GetDataLakesResultStorageDatabaseCollectionDataSource struct {
+	DefaultFormat string `pulumi:"defaultFormat"`
+	Path          string `pulumi:"path"`
+	StoreName     string `pulumi:"storeName"`
+}
+
+// GetDataLakesResultStorageDatabaseCollectionDataSourceInput is an input type that accepts GetDataLakesResultStorageDatabaseCollectionDataSourceArgs and GetDataLakesResultStorageDatabaseCollectionDataSourceOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageDatabaseCollectionDataSourceInput` via:
+//
+//          GetDataLakesResultStorageDatabaseCollectionDataSourceArgs{...}
+type GetDataLakesResultStorageDatabaseCollectionDataSourceInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageDatabaseCollectionDataSourceOutput() GetDataLakesResultStorageDatabaseCollectionDataSourceOutput
+	ToGetDataLakesResultStorageDatabaseCollectionDataSourceOutputWithContext(context.Context) GetDataLakesResultStorageDatabaseCollectionDataSourceOutput
+}
+
+type GetDataLakesResultStorageDatabaseCollectionDataSourceArgs struct {
+	DefaultFormat pulumi.StringInput `pulumi:"defaultFormat"`
+	Path          pulumi.StringInput `pulumi:"path"`
+	StoreName     pulumi.StringInput `pulumi:"storeName"`
+}
+
+func (GetDataLakesResultStorageDatabaseCollectionDataSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageDatabaseCollectionDataSourceArgs) ToGetDataLakesResultStorageDatabaseCollectionDataSourceOutput() GetDataLakesResultStorageDatabaseCollectionDataSourceOutput {
+	return i.ToGetDataLakesResultStorageDatabaseCollectionDataSourceOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageDatabaseCollectionDataSourceArgs) ToGetDataLakesResultStorageDatabaseCollectionDataSourceOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseCollectionDataSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageDatabaseCollectionDataSourceOutput)
+}
+
+// GetDataLakesResultStorageDatabaseCollectionDataSourceArrayInput is an input type that accepts GetDataLakesResultStorageDatabaseCollectionDataSourceArray and GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageDatabaseCollectionDataSourceArrayInput` via:
+//
+//          GetDataLakesResultStorageDatabaseCollectionDataSourceArray{ GetDataLakesResultStorageDatabaseCollectionDataSourceArgs{...} }
+type GetDataLakesResultStorageDatabaseCollectionDataSourceArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput() GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput
+	ToGetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutputWithContext(context.Context) GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput
+}
+
+type GetDataLakesResultStorageDatabaseCollectionDataSourceArray []GetDataLakesResultStorageDatabaseCollectionDataSourceInput
+
+func (GetDataLakesResultStorageDatabaseCollectionDataSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageDatabaseCollectionDataSourceArray) ToGetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput() GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput {
+	return i.ToGetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageDatabaseCollectionDataSourceArray) ToGetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput)
+}
+
+type GetDataLakesResultStorageDatabaseCollectionDataSourceOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageDatabaseCollectionDataSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionDataSourceOutput) ToGetDataLakesResultStorageDatabaseCollectionDataSourceOutput() GetDataLakesResultStorageDatabaseCollectionDataSourceOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionDataSourceOutput) ToGetDataLakesResultStorageDatabaseCollectionDataSourceOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseCollectionDataSourceOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionDataSourceOutput) DefaultFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabaseCollectionDataSource) string { return v.DefaultFormat }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionDataSourceOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabaseCollectionDataSource) string { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionDataSourceOutput) StoreName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabaseCollectionDataSource) string { return v.StoreName }).(pulumi.StringOutput)
+}
+
+type GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageDatabaseCollectionDataSource)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput) ToGetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput() GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput) ToGetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput) Index(i pulumi.IntInput) GetDataLakesResultStorageDatabaseCollectionDataSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakesResultStorageDatabaseCollectionDataSource {
+		return vs[0].([]GetDataLakesResultStorageDatabaseCollectionDataSource)[vs[1].(int)]
+	}).(GetDataLakesResultStorageDatabaseCollectionDataSourceOutput)
+}
+
+type GetDataLakesResultStorageDatabaseView struct {
+	Name     string `pulumi:"name"`
+	Pipeline string `pulumi:"pipeline"`
+	Source   string `pulumi:"source"`
+}
+
+// GetDataLakesResultStorageDatabaseViewInput is an input type that accepts GetDataLakesResultStorageDatabaseViewArgs and GetDataLakesResultStorageDatabaseViewOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageDatabaseViewInput` via:
+//
+//          GetDataLakesResultStorageDatabaseViewArgs{...}
+type GetDataLakesResultStorageDatabaseViewInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageDatabaseViewOutput() GetDataLakesResultStorageDatabaseViewOutput
+	ToGetDataLakesResultStorageDatabaseViewOutputWithContext(context.Context) GetDataLakesResultStorageDatabaseViewOutput
+}
+
+type GetDataLakesResultStorageDatabaseViewArgs struct {
+	Name     pulumi.StringInput `pulumi:"name"`
+	Pipeline pulumi.StringInput `pulumi:"pipeline"`
+	Source   pulumi.StringInput `pulumi:"source"`
+}
+
+func (GetDataLakesResultStorageDatabaseViewArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageDatabaseView)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageDatabaseViewArgs) ToGetDataLakesResultStorageDatabaseViewOutput() GetDataLakesResultStorageDatabaseViewOutput {
+	return i.ToGetDataLakesResultStorageDatabaseViewOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageDatabaseViewArgs) ToGetDataLakesResultStorageDatabaseViewOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseViewOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageDatabaseViewOutput)
+}
+
+// GetDataLakesResultStorageDatabaseViewArrayInput is an input type that accepts GetDataLakesResultStorageDatabaseViewArray and GetDataLakesResultStorageDatabaseViewArrayOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageDatabaseViewArrayInput` via:
+//
+//          GetDataLakesResultStorageDatabaseViewArray{ GetDataLakesResultStorageDatabaseViewArgs{...} }
+type GetDataLakesResultStorageDatabaseViewArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageDatabaseViewArrayOutput() GetDataLakesResultStorageDatabaseViewArrayOutput
+	ToGetDataLakesResultStorageDatabaseViewArrayOutputWithContext(context.Context) GetDataLakesResultStorageDatabaseViewArrayOutput
+}
+
+type GetDataLakesResultStorageDatabaseViewArray []GetDataLakesResultStorageDatabaseViewInput
+
+func (GetDataLakesResultStorageDatabaseViewArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageDatabaseView)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageDatabaseViewArray) ToGetDataLakesResultStorageDatabaseViewArrayOutput() GetDataLakesResultStorageDatabaseViewArrayOutput {
+	return i.ToGetDataLakesResultStorageDatabaseViewArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageDatabaseViewArray) ToGetDataLakesResultStorageDatabaseViewArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseViewArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageDatabaseViewArrayOutput)
+}
+
+type GetDataLakesResultStorageDatabaseViewOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageDatabaseViewOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageDatabaseView)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageDatabaseViewOutput) ToGetDataLakesResultStorageDatabaseViewOutput() GetDataLakesResultStorageDatabaseViewOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseViewOutput) ToGetDataLakesResultStorageDatabaseViewOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseViewOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseViewOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabaseView) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageDatabaseViewOutput) Pipeline() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabaseView) string { return v.Pipeline }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageDatabaseViewOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageDatabaseView) string { return v.Source }).(pulumi.StringOutput)
+}
+
+type GetDataLakesResultStorageDatabaseViewArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageDatabaseViewArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageDatabaseView)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageDatabaseViewArrayOutput) ToGetDataLakesResultStorageDatabaseViewArrayOutput() GetDataLakesResultStorageDatabaseViewArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseViewArrayOutput) ToGetDataLakesResultStorageDatabaseViewArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageDatabaseViewArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageDatabaseViewArrayOutput) Index(i pulumi.IntInput) GetDataLakesResultStorageDatabaseViewOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakesResultStorageDatabaseView {
+		return vs[0].([]GetDataLakesResultStorageDatabaseView)[vs[1].(int)]
+	}).(GetDataLakesResultStorageDatabaseViewOutput)
+}
+
+type GetDataLakesResultStorageStore struct {
+	AdditionalStorageClasses []string `pulumi:"additionalStorageClasses"`
+	Bucket                   string   `pulumi:"bucket"`
+	Delimiter                string   `pulumi:"delimiter"`
+	IncludeTags              bool     `pulumi:"includeTags"`
+	Name                     string   `pulumi:"name"`
+	Prefix                   string   `pulumi:"prefix"`
+	Provider                 string   `pulumi:"provider"`
+	Region                   string   `pulumi:"region"`
+}
+
+// GetDataLakesResultStorageStoreInput is an input type that accepts GetDataLakesResultStorageStoreArgs and GetDataLakesResultStorageStoreOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageStoreInput` via:
+//
+//          GetDataLakesResultStorageStoreArgs{...}
+type GetDataLakesResultStorageStoreInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageStoreOutput() GetDataLakesResultStorageStoreOutput
+	ToGetDataLakesResultStorageStoreOutputWithContext(context.Context) GetDataLakesResultStorageStoreOutput
+}
+
+type GetDataLakesResultStorageStoreArgs struct {
+	AdditionalStorageClasses pulumi.StringArrayInput `pulumi:"additionalStorageClasses"`
+	Bucket                   pulumi.StringInput      `pulumi:"bucket"`
+	Delimiter                pulumi.StringInput      `pulumi:"delimiter"`
+	IncludeTags              pulumi.BoolInput        `pulumi:"includeTags"`
+	Name                     pulumi.StringInput      `pulumi:"name"`
+	Prefix                   pulumi.StringInput      `pulumi:"prefix"`
+	Provider                 pulumi.StringInput      `pulumi:"provider"`
+	Region                   pulumi.StringInput      `pulumi:"region"`
+}
+
+func (GetDataLakesResultStorageStoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageStore)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageStoreArgs) ToGetDataLakesResultStorageStoreOutput() GetDataLakesResultStorageStoreOutput {
+	return i.ToGetDataLakesResultStorageStoreOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageStoreArgs) ToGetDataLakesResultStorageStoreOutputWithContext(ctx context.Context) GetDataLakesResultStorageStoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageStoreOutput)
+}
+
+// GetDataLakesResultStorageStoreArrayInput is an input type that accepts GetDataLakesResultStorageStoreArray and GetDataLakesResultStorageStoreArrayOutput values.
+// You can construct a concrete instance of `GetDataLakesResultStorageStoreArrayInput` via:
+//
+//          GetDataLakesResultStorageStoreArray{ GetDataLakesResultStorageStoreArgs{...} }
+type GetDataLakesResultStorageStoreArrayInput interface {
+	pulumi.Input
+
+	ToGetDataLakesResultStorageStoreArrayOutput() GetDataLakesResultStorageStoreArrayOutput
+	ToGetDataLakesResultStorageStoreArrayOutputWithContext(context.Context) GetDataLakesResultStorageStoreArrayOutput
+}
+
+type GetDataLakesResultStorageStoreArray []GetDataLakesResultStorageStoreInput
+
+func (GetDataLakesResultStorageStoreArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageStore)(nil)).Elem()
+}
+
+func (i GetDataLakesResultStorageStoreArray) ToGetDataLakesResultStorageStoreArrayOutput() GetDataLakesResultStorageStoreArrayOutput {
+	return i.ToGetDataLakesResultStorageStoreArrayOutputWithContext(context.Background())
+}
+
+func (i GetDataLakesResultStorageStoreArray) ToGetDataLakesResultStorageStoreArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageStoreArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataLakesResultStorageStoreArrayOutput)
+}
+
+type GetDataLakesResultStorageStoreOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageStoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataLakesResultStorageStore)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageStoreOutput) ToGetDataLakesResultStorageStoreOutput() GetDataLakesResultStorageStoreOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageStoreOutput) ToGetDataLakesResultStorageStoreOutputWithContext(ctx context.Context) GetDataLakesResultStorageStoreOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageStoreOutput) AdditionalStorageClasses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageStore) []string { return v.AdditionalStorageClasses }).(pulumi.StringArrayOutput)
+}
+
+func (o GetDataLakesResultStorageStoreOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageStore) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageStoreOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageStore) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageStoreOutput) IncludeTags() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageStore) bool { return v.IncludeTags }).(pulumi.BoolOutput)
+}
+
+func (o GetDataLakesResultStorageStoreOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageStore) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageStoreOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageStore) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageStoreOutput) Provider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageStore) string { return v.Provider }).(pulumi.StringOutput)
+}
+
+func (o GetDataLakesResultStorageStoreOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataLakesResultStorageStore) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetDataLakesResultStorageStoreArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDataLakesResultStorageStoreArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDataLakesResultStorageStore)(nil)).Elem()
+}
+
+func (o GetDataLakesResultStorageStoreArrayOutput) ToGetDataLakesResultStorageStoreArrayOutput() GetDataLakesResultStorageStoreArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageStoreArrayOutput) ToGetDataLakesResultStorageStoreArrayOutputWithContext(ctx context.Context) GetDataLakesResultStorageStoreArrayOutput {
+	return o
+}
+
+func (o GetDataLakesResultStorageStoreArrayOutput) Index(i pulumi.IntInput) GetDataLakesResultStorageStoreOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataLakesResultStorageStore {
+		return vs[0].([]GetDataLakesResultStorageStore)[vs[1].(int)]
+	}).(GetDataLakesResultStorageStoreOutput)
+}
+
 type GetDatabaseUserLabel struct {
 	// The key that you want to write.
 	Key string `pulumi:"key"`
@@ -11915,6 +16396,654 @@ func (o GetDatabaseUsersResultScopeArrayOutput) Index(i pulumi.IntInput) GetData
 	}).(GetDatabaseUsersResultScopeOutput)
 }
 
+type GetEventTriggerEventProcessor struct {
+	AwsEventbridges []GetEventTriggerEventProcessorAwsEventbridge `pulumi:"awsEventbridges"`
+}
+
+// GetEventTriggerEventProcessorInput is an input type that accepts GetEventTriggerEventProcessorArgs and GetEventTriggerEventProcessorOutput values.
+// You can construct a concrete instance of `GetEventTriggerEventProcessorInput` via:
+//
+//          GetEventTriggerEventProcessorArgs{...}
+type GetEventTriggerEventProcessorInput interface {
+	pulumi.Input
+
+	ToGetEventTriggerEventProcessorOutput() GetEventTriggerEventProcessorOutput
+	ToGetEventTriggerEventProcessorOutputWithContext(context.Context) GetEventTriggerEventProcessorOutput
+}
+
+type GetEventTriggerEventProcessorArgs struct {
+	AwsEventbridges GetEventTriggerEventProcessorAwsEventbridgeArrayInput `pulumi:"awsEventbridges"`
+}
+
+func (GetEventTriggerEventProcessorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggerEventProcessor)(nil)).Elem()
+}
+
+func (i GetEventTriggerEventProcessorArgs) ToGetEventTriggerEventProcessorOutput() GetEventTriggerEventProcessorOutput {
+	return i.ToGetEventTriggerEventProcessorOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggerEventProcessorArgs) ToGetEventTriggerEventProcessorOutputWithContext(ctx context.Context) GetEventTriggerEventProcessorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggerEventProcessorOutput)
+}
+
+// GetEventTriggerEventProcessorArrayInput is an input type that accepts GetEventTriggerEventProcessorArray and GetEventTriggerEventProcessorArrayOutput values.
+// You can construct a concrete instance of `GetEventTriggerEventProcessorArrayInput` via:
+//
+//          GetEventTriggerEventProcessorArray{ GetEventTriggerEventProcessorArgs{...} }
+type GetEventTriggerEventProcessorArrayInput interface {
+	pulumi.Input
+
+	ToGetEventTriggerEventProcessorArrayOutput() GetEventTriggerEventProcessorArrayOutput
+	ToGetEventTriggerEventProcessorArrayOutputWithContext(context.Context) GetEventTriggerEventProcessorArrayOutput
+}
+
+type GetEventTriggerEventProcessorArray []GetEventTriggerEventProcessorInput
+
+func (GetEventTriggerEventProcessorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggerEventProcessor)(nil)).Elem()
+}
+
+func (i GetEventTriggerEventProcessorArray) ToGetEventTriggerEventProcessorArrayOutput() GetEventTriggerEventProcessorArrayOutput {
+	return i.ToGetEventTriggerEventProcessorArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggerEventProcessorArray) ToGetEventTriggerEventProcessorArrayOutputWithContext(ctx context.Context) GetEventTriggerEventProcessorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggerEventProcessorArrayOutput)
+}
+
+type GetEventTriggerEventProcessorOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggerEventProcessorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggerEventProcessor)(nil)).Elem()
+}
+
+func (o GetEventTriggerEventProcessorOutput) ToGetEventTriggerEventProcessorOutput() GetEventTriggerEventProcessorOutput {
+	return o
+}
+
+func (o GetEventTriggerEventProcessorOutput) ToGetEventTriggerEventProcessorOutputWithContext(ctx context.Context) GetEventTriggerEventProcessorOutput {
+	return o
+}
+
+func (o GetEventTriggerEventProcessorOutput) AwsEventbridges() GetEventTriggerEventProcessorAwsEventbridgeArrayOutput {
+	return o.ApplyT(func(v GetEventTriggerEventProcessor) []GetEventTriggerEventProcessorAwsEventbridge {
+		return v.AwsEventbridges
+	}).(GetEventTriggerEventProcessorAwsEventbridgeArrayOutput)
+}
+
+type GetEventTriggerEventProcessorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggerEventProcessorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggerEventProcessor)(nil)).Elem()
+}
+
+func (o GetEventTriggerEventProcessorArrayOutput) ToGetEventTriggerEventProcessorArrayOutput() GetEventTriggerEventProcessorArrayOutput {
+	return o
+}
+
+func (o GetEventTriggerEventProcessorArrayOutput) ToGetEventTriggerEventProcessorArrayOutputWithContext(ctx context.Context) GetEventTriggerEventProcessorArrayOutput {
+	return o
+}
+
+func (o GetEventTriggerEventProcessorArrayOutput) Index(i pulumi.IntInput) GetEventTriggerEventProcessorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventTriggerEventProcessor {
+		return vs[0].([]GetEventTriggerEventProcessor)[vs[1].(int)]
+	}).(GetEventTriggerEventProcessorOutput)
+}
+
+type GetEventTriggerEventProcessorAwsEventbridge struct {
+	ConfigAccountId string `pulumi:"configAccountId"`
+	ConfigRegion    string `pulumi:"configRegion"`
+}
+
+// GetEventTriggerEventProcessorAwsEventbridgeInput is an input type that accepts GetEventTriggerEventProcessorAwsEventbridgeArgs and GetEventTriggerEventProcessorAwsEventbridgeOutput values.
+// You can construct a concrete instance of `GetEventTriggerEventProcessorAwsEventbridgeInput` via:
+//
+//          GetEventTriggerEventProcessorAwsEventbridgeArgs{...}
+type GetEventTriggerEventProcessorAwsEventbridgeInput interface {
+	pulumi.Input
+
+	ToGetEventTriggerEventProcessorAwsEventbridgeOutput() GetEventTriggerEventProcessorAwsEventbridgeOutput
+	ToGetEventTriggerEventProcessorAwsEventbridgeOutputWithContext(context.Context) GetEventTriggerEventProcessorAwsEventbridgeOutput
+}
+
+type GetEventTriggerEventProcessorAwsEventbridgeArgs struct {
+	ConfigAccountId pulumi.StringInput `pulumi:"configAccountId"`
+	ConfigRegion    pulumi.StringInput `pulumi:"configRegion"`
+}
+
+func (GetEventTriggerEventProcessorAwsEventbridgeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggerEventProcessorAwsEventbridge)(nil)).Elem()
+}
+
+func (i GetEventTriggerEventProcessorAwsEventbridgeArgs) ToGetEventTriggerEventProcessorAwsEventbridgeOutput() GetEventTriggerEventProcessorAwsEventbridgeOutput {
+	return i.ToGetEventTriggerEventProcessorAwsEventbridgeOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggerEventProcessorAwsEventbridgeArgs) ToGetEventTriggerEventProcessorAwsEventbridgeOutputWithContext(ctx context.Context) GetEventTriggerEventProcessorAwsEventbridgeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggerEventProcessorAwsEventbridgeOutput)
+}
+
+// GetEventTriggerEventProcessorAwsEventbridgeArrayInput is an input type that accepts GetEventTriggerEventProcessorAwsEventbridgeArray and GetEventTriggerEventProcessorAwsEventbridgeArrayOutput values.
+// You can construct a concrete instance of `GetEventTriggerEventProcessorAwsEventbridgeArrayInput` via:
+//
+//          GetEventTriggerEventProcessorAwsEventbridgeArray{ GetEventTriggerEventProcessorAwsEventbridgeArgs{...} }
+type GetEventTriggerEventProcessorAwsEventbridgeArrayInput interface {
+	pulumi.Input
+
+	ToGetEventTriggerEventProcessorAwsEventbridgeArrayOutput() GetEventTriggerEventProcessorAwsEventbridgeArrayOutput
+	ToGetEventTriggerEventProcessorAwsEventbridgeArrayOutputWithContext(context.Context) GetEventTriggerEventProcessorAwsEventbridgeArrayOutput
+}
+
+type GetEventTriggerEventProcessorAwsEventbridgeArray []GetEventTriggerEventProcessorAwsEventbridgeInput
+
+func (GetEventTriggerEventProcessorAwsEventbridgeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggerEventProcessorAwsEventbridge)(nil)).Elem()
+}
+
+func (i GetEventTriggerEventProcessorAwsEventbridgeArray) ToGetEventTriggerEventProcessorAwsEventbridgeArrayOutput() GetEventTriggerEventProcessorAwsEventbridgeArrayOutput {
+	return i.ToGetEventTriggerEventProcessorAwsEventbridgeArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggerEventProcessorAwsEventbridgeArray) ToGetEventTriggerEventProcessorAwsEventbridgeArrayOutputWithContext(ctx context.Context) GetEventTriggerEventProcessorAwsEventbridgeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggerEventProcessorAwsEventbridgeArrayOutput)
+}
+
+type GetEventTriggerEventProcessorAwsEventbridgeOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggerEventProcessorAwsEventbridgeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggerEventProcessorAwsEventbridge)(nil)).Elem()
+}
+
+func (o GetEventTriggerEventProcessorAwsEventbridgeOutput) ToGetEventTriggerEventProcessorAwsEventbridgeOutput() GetEventTriggerEventProcessorAwsEventbridgeOutput {
+	return o
+}
+
+func (o GetEventTriggerEventProcessorAwsEventbridgeOutput) ToGetEventTriggerEventProcessorAwsEventbridgeOutputWithContext(ctx context.Context) GetEventTriggerEventProcessorAwsEventbridgeOutput {
+	return o
+}
+
+func (o GetEventTriggerEventProcessorAwsEventbridgeOutput) ConfigAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggerEventProcessorAwsEventbridge) string { return v.ConfigAccountId }).(pulumi.StringOutput)
+}
+
+func (o GetEventTriggerEventProcessorAwsEventbridgeOutput) ConfigRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggerEventProcessorAwsEventbridge) string { return v.ConfigRegion }).(pulumi.StringOutput)
+}
+
+type GetEventTriggerEventProcessorAwsEventbridgeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggerEventProcessorAwsEventbridgeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggerEventProcessorAwsEventbridge)(nil)).Elem()
+}
+
+func (o GetEventTriggerEventProcessorAwsEventbridgeArrayOutput) ToGetEventTriggerEventProcessorAwsEventbridgeArrayOutput() GetEventTriggerEventProcessorAwsEventbridgeArrayOutput {
+	return o
+}
+
+func (o GetEventTriggerEventProcessorAwsEventbridgeArrayOutput) ToGetEventTriggerEventProcessorAwsEventbridgeArrayOutputWithContext(ctx context.Context) GetEventTriggerEventProcessorAwsEventbridgeArrayOutput {
+	return o
+}
+
+func (o GetEventTriggerEventProcessorAwsEventbridgeArrayOutput) Index(i pulumi.IntInput) GetEventTriggerEventProcessorAwsEventbridgeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventTriggerEventProcessorAwsEventbridge {
+		return vs[0].([]GetEventTriggerEventProcessorAwsEventbridge)[vs[1].(int)]
+	}).(GetEventTriggerEventProcessorAwsEventbridgeOutput)
+}
+
+type GetEventTriggersResultType struct {
+	// The name of the MongoDB collection that the trigger watches for change events.
+	ConfigCollection string `pulumi:"configCollection"`
+	// The name of the MongoDB database that contains the watched collection.
+	ConfigDatabase string `pulumi:"configDatabase"`
+	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument       bool `pulumi:"configFullDocument"`
+	ConfigFullDocumentBefore bool `pulumi:"configFullDocumentBefore"`
+	// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+	ConfigMatch string `pulumi:"configMatch"`
+	// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+	ConfigOperationType string `pulumi:"configOperationType"`
+	// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+	ConfigOperationTypes []string `pulumi:"configOperationTypes"`
+	// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	ConfigProject string `pulumi:"configProject"`
+	// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	ConfigProviders []string `pulumi:"configProviders"`
+	// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	ConfigSchedule     string `pulumi:"configSchedule"`
+	ConfigScheduleType string `pulumi:"configScheduleType"`
+	// The ID of the MongoDB Service associated with the trigger.
+	ConfigServiceId string `pulumi:"configServiceId"`
+	// Status of a trigger.
+	Disabled bool `pulumi:"disabled"`
+	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
+	// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
+	// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
+	EventProcessors []GetEventTriggersResultEventProcessor `pulumi:"eventProcessors"`
+	// The ID of the function associated with the trigger.
+	FunctionId string `pulumi:"functionId"`
+	// The name of the function associated with the trigger.
+	FunctionName string `pulumi:"functionName"`
+	// The name of the trigger.
+	Name      string `pulumi:"name"`
+	TriggerId string `pulumi:"triggerId"`
+	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
+	Type string `pulumi:"type"`
+}
+
+// GetEventTriggersResultTypeInput is an input type that accepts GetEventTriggersResultTypeArgs and GetEventTriggersResultTypeOutput values.
+// You can construct a concrete instance of `GetEventTriggersResultTypeInput` via:
+//
+//          GetEventTriggersResultTypeArgs{...}
+type GetEventTriggersResultTypeInput interface {
+	pulumi.Input
+
+	ToGetEventTriggersResultTypeOutput() GetEventTriggersResultTypeOutput
+	ToGetEventTriggersResultTypeOutputWithContext(context.Context) GetEventTriggersResultTypeOutput
+}
+
+type GetEventTriggersResultTypeArgs struct {
+	// The name of the MongoDB collection that the trigger watches for change events.
+	ConfigCollection pulumi.StringInput `pulumi:"configCollection"`
+	// The name of the MongoDB database that contains the watched collection.
+	ConfigDatabase pulumi.StringInput `pulumi:"configDatabase"`
+	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument       pulumi.BoolInput `pulumi:"configFullDocument"`
+	ConfigFullDocumentBefore pulumi.BoolInput `pulumi:"configFullDocumentBefore"`
+	// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+	ConfigMatch pulumi.StringInput `pulumi:"configMatch"`
+	// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+	ConfigOperationType pulumi.StringInput `pulumi:"configOperationType"`
+	// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+	ConfigOperationTypes pulumi.StringArrayInput `pulumi:"configOperationTypes"`
+	// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	ConfigProject pulumi.StringInput `pulumi:"configProject"`
+	// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	ConfigProviders pulumi.StringArrayInput `pulumi:"configProviders"`
+	// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	ConfigSchedule     pulumi.StringInput `pulumi:"configSchedule"`
+	ConfigScheduleType pulumi.StringInput `pulumi:"configScheduleType"`
+	// The ID of the MongoDB Service associated with the trigger.
+	ConfigServiceId pulumi.StringInput `pulumi:"configServiceId"`
+	// Status of a trigger.
+	Disabled pulumi.BoolInput `pulumi:"disabled"`
+	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
+	// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
+	// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
+	EventProcessors GetEventTriggersResultEventProcessorArrayInput `pulumi:"eventProcessors"`
+	// The ID of the function associated with the trigger.
+	FunctionId pulumi.StringInput `pulumi:"functionId"`
+	// The name of the function associated with the trigger.
+	FunctionName pulumi.StringInput `pulumi:"functionName"`
+	// The name of the trigger.
+	Name      pulumi.StringInput `pulumi:"name"`
+	TriggerId pulumi.StringInput `pulumi:"triggerId"`
+	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetEventTriggersResultTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggersResultType)(nil)).Elem()
+}
+
+func (i GetEventTriggersResultTypeArgs) ToGetEventTriggersResultTypeOutput() GetEventTriggersResultTypeOutput {
+	return i.ToGetEventTriggersResultTypeOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggersResultTypeArgs) ToGetEventTriggersResultTypeOutputWithContext(ctx context.Context) GetEventTriggersResultTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggersResultTypeOutput)
+}
+
+// GetEventTriggersResultTypeArrayInput is an input type that accepts GetEventTriggersResultTypeArray and GetEventTriggersResultTypeArrayOutput values.
+// You can construct a concrete instance of `GetEventTriggersResultTypeArrayInput` via:
+//
+//          GetEventTriggersResultTypeArray{ GetEventTriggersResultTypeArgs{...} }
+type GetEventTriggersResultTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetEventTriggersResultTypeArrayOutput() GetEventTriggersResultTypeArrayOutput
+	ToGetEventTriggersResultTypeArrayOutputWithContext(context.Context) GetEventTriggersResultTypeArrayOutput
+}
+
+type GetEventTriggersResultTypeArray []GetEventTriggersResultTypeInput
+
+func (GetEventTriggersResultTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggersResultType)(nil)).Elem()
+}
+
+func (i GetEventTriggersResultTypeArray) ToGetEventTriggersResultTypeArrayOutput() GetEventTriggersResultTypeArrayOutput {
+	return i.ToGetEventTriggersResultTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggersResultTypeArray) ToGetEventTriggersResultTypeArrayOutputWithContext(ctx context.Context) GetEventTriggersResultTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggersResultTypeArrayOutput)
+}
+
+type GetEventTriggersResultTypeOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggersResultTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggersResultType)(nil)).Elem()
+}
+
+func (o GetEventTriggersResultTypeOutput) ToGetEventTriggersResultTypeOutput() GetEventTriggersResultTypeOutput {
+	return o
+}
+
+func (o GetEventTriggersResultTypeOutput) ToGetEventTriggersResultTypeOutputWithContext(ctx context.Context) GetEventTriggersResultTypeOutput {
+	return o
+}
+
+// The name of the MongoDB collection that the trigger watches for change events.
+func (o GetEventTriggersResultTypeOutput) ConfigCollection() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.ConfigCollection }).(pulumi.StringOutput)
+}
+
+// The name of the MongoDB database that contains the watched collection.
+func (o GetEventTriggersResultTypeOutput) ConfigDatabase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.ConfigDatabase }).(pulumi.StringOutput)
+}
+
+// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+func (o GetEventTriggersResultTypeOutput) ConfigFullDocument() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) bool { return v.ConfigFullDocument }).(pulumi.BoolOutput)
+}
+
+func (o GetEventTriggersResultTypeOutput) ConfigFullDocumentBefore() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) bool { return v.ConfigFullDocumentBefore }).(pulumi.BoolOutput)
+}
+
+// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+func (o GetEventTriggersResultTypeOutput) ConfigMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.ConfigMatch }).(pulumi.StringOutput)
+}
+
+// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+func (o GetEventTriggersResultTypeOutput) ConfigOperationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.ConfigOperationType }).(pulumi.StringOutput)
+}
+
+// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+func (o GetEventTriggersResultTypeOutput) ConfigOperationTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) []string { return v.ConfigOperationTypes }).(pulumi.StringArrayOutput)
+}
+
+// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+func (o GetEventTriggersResultTypeOutput) ConfigProject() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.ConfigProject }).(pulumi.StringOutput)
+}
+
+// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+func (o GetEventTriggersResultTypeOutput) ConfigProviders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) []string { return v.ConfigProviders }).(pulumi.StringArrayOutput)
+}
+
+// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+func (o GetEventTriggersResultTypeOutput) ConfigSchedule() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.ConfigSchedule }).(pulumi.StringOutput)
+}
+
+func (o GetEventTriggersResultTypeOutput) ConfigScheduleType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.ConfigScheduleType }).(pulumi.StringOutput)
+}
+
+// The ID of the MongoDB Service associated with the trigger.
+func (o GetEventTriggersResultTypeOutput) ConfigServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.ConfigServiceId }).(pulumi.StringOutput)
+}
+
+// Status of a trigger.
+func (o GetEventTriggersResultTypeOutput) Disabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) bool { return v.Disabled }).(pulumi.BoolOutput)
+}
+
+// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
+// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
+// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
+func (o GetEventTriggersResultTypeOutput) EventProcessors() GetEventTriggersResultEventProcessorArrayOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) []GetEventTriggersResultEventProcessor { return v.EventProcessors }).(GetEventTriggersResultEventProcessorArrayOutput)
+}
+
+// The ID of the function associated with the trigger.
+func (o GetEventTriggersResultTypeOutput) FunctionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.FunctionId }).(pulumi.StringOutput)
+}
+
+// The name of the function associated with the trigger.
+func (o GetEventTriggersResultTypeOutput) FunctionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.FunctionName }).(pulumi.StringOutput)
+}
+
+// The name of the trigger.
+func (o GetEventTriggersResultTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetEventTriggersResultTypeOutput) TriggerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.TriggerId }).(pulumi.StringOutput)
+}
+
+// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
+func (o GetEventTriggersResultTypeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultType) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetEventTriggersResultTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggersResultTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggersResultType)(nil)).Elem()
+}
+
+func (o GetEventTriggersResultTypeArrayOutput) ToGetEventTriggersResultTypeArrayOutput() GetEventTriggersResultTypeArrayOutput {
+	return o
+}
+
+func (o GetEventTriggersResultTypeArrayOutput) ToGetEventTriggersResultTypeArrayOutputWithContext(ctx context.Context) GetEventTriggersResultTypeArrayOutput {
+	return o
+}
+
+func (o GetEventTriggersResultTypeArrayOutput) Index(i pulumi.IntInput) GetEventTriggersResultTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventTriggersResultType {
+		return vs[0].([]GetEventTriggersResultType)[vs[1].(int)]
+	}).(GetEventTriggersResultTypeOutput)
+}
+
+type GetEventTriggersResultEventProcessor struct {
+	AwsEventbridges []GetEventTriggersResultEventProcessorAwsEventbridge `pulumi:"awsEventbridges"`
+}
+
+// GetEventTriggersResultEventProcessorInput is an input type that accepts GetEventTriggersResultEventProcessorArgs and GetEventTriggersResultEventProcessorOutput values.
+// You can construct a concrete instance of `GetEventTriggersResultEventProcessorInput` via:
+//
+//          GetEventTriggersResultEventProcessorArgs{...}
+type GetEventTriggersResultEventProcessorInput interface {
+	pulumi.Input
+
+	ToGetEventTriggersResultEventProcessorOutput() GetEventTriggersResultEventProcessorOutput
+	ToGetEventTriggersResultEventProcessorOutputWithContext(context.Context) GetEventTriggersResultEventProcessorOutput
+}
+
+type GetEventTriggersResultEventProcessorArgs struct {
+	AwsEventbridges GetEventTriggersResultEventProcessorAwsEventbridgeArrayInput `pulumi:"awsEventbridges"`
+}
+
+func (GetEventTriggersResultEventProcessorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggersResultEventProcessor)(nil)).Elem()
+}
+
+func (i GetEventTriggersResultEventProcessorArgs) ToGetEventTriggersResultEventProcessorOutput() GetEventTriggersResultEventProcessorOutput {
+	return i.ToGetEventTriggersResultEventProcessorOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggersResultEventProcessorArgs) ToGetEventTriggersResultEventProcessorOutputWithContext(ctx context.Context) GetEventTriggersResultEventProcessorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggersResultEventProcessorOutput)
+}
+
+// GetEventTriggersResultEventProcessorArrayInput is an input type that accepts GetEventTriggersResultEventProcessorArray and GetEventTriggersResultEventProcessorArrayOutput values.
+// You can construct a concrete instance of `GetEventTriggersResultEventProcessorArrayInput` via:
+//
+//          GetEventTriggersResultEventProcessorArray{ GetEventTriggersResultEventProcessorArgs{...} }
+type GetEventTriggersResultEventProcessorArrayInput interface {
+	pulumi.Input
+
+	ToGetEventTriggersResultEventProcessorArrayOutput() GetEventTriggersResultEventProcessorArrayOutput
+	ToGetEventTriggersResultEventProcessorArrayOutputWithContext(context.Context) GetEventTriggersResultEventProcessorArrayOutput
+}
+
+type GetEventTriggersResultEventProcessorArray []GetEventTriggersResultEventProcessorInput
+
+func (GetEventTriggersResultEventProcessorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggersResultEventProcessor)(nil)).Elem()
+}
+
+func (i GetEventTriggersResultEventProcessorArray) ToGetEventTriggersResultEventProcessorArrayOutput() GetEventTriggersResultEventProcessorArrayOutput {
+	return i.ToGetEventTriggersResultEventProcessorArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggersResultEventProcessorArray) ToGetEventTriggersResultEventProcessorArrayOutputWithContext(ctx context.Context) GetEventTriggersResultEventProcessorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggersResultEventProcessorArrayOutput)
+}
+
+type GetEventTriggersResultEventProcessorOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggersResultEventProcessorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggersResultEventProcessor)(nil)).Elem()
+}
+
+func (o GetEventTriggersResultEventProcessorOutput) ToGetEventTriggersResultEventProcessorOutput() GetEventTriggersResultEventProcessorOutput {
+	return o
+}
+
+func (o GetEventTriggersResultEventProcessorOutput) ToGetEventTriggersResultEventProcessorOutputWithContext(ctx context.Context) GetEventTriggersResultEventProcessorOutput {
+	return o
+}
+
+func (o GetEventTriggersResultEventProcessorOutput) AwsEventbridges() GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput {
+	return o.ApplyT(func(v GetEventTriggersResultEventProcessor) []GetEventTriggersResultEventProcessorAwsEventbridge {
+		return v.AwsEventbridges
+	}).(GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput)
+}
+
+type GetEventTriggersResultEventProcessorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggersResultEventProcessorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggersResultEventProcessor)(nil)).Elem()
+}
+
+func (o GetEventTriggersResultEventProcessorArrayOutput) ToGetEventTriggersResultEventProcessorArrayOutput() GetEventTriggersResultEventProcessorArrayOutput {
+	return o
+}
+
+func (o GetEventTriggersResultEventProcessorArrayOutput) ToGetEventTriggersResultEventProcessorArrayOutputWithContext(ctx context.Context) GetEventTriggersResultEventProcessorArrayOutput {
+	return o
+}
+
+func (o GetEventTriggersResultEventProcessorArrayOutput) Index(i pulumi.IntInput) GetEventTriggersResultEventProcessorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventTriggersResultEventProcessor {
+		return vs[0].([]GetEventTriggersResultEventProcessor)[vs[1].(int)]
+	}).(GetEventTriggersResultEventProcessorOutput)
+}
+
+type GetEventTriggersResultEventProcessorAwsEventbridge struct {
+	ConfigAccountId string `pulumi:"configAccountId"`
+	ConfigRegion    string `pulumi:"configRegion"`
+}
+
+// GetEventTriggersResultEventProcessorAwsEventbridgeInput is an input type that accepts GetEventTriggersResultEventProcessorAwsEventbridgeArgs and GetEventTriggersResultEventProcessorAwsEventbridgeOutput values.
+// You can construct a concrete instance of `GetEventTriggersResultEventProcessorAwsEventbridgeInput` via:
+//
+//          GetEventTriggersResultEventProcessorAwsEventbridgeArgs{...}
+type GetEventTriggersResultEventProcessorAwsEventbridgeInput interface {
+	pulumi.Input
+
+	ToGetEventTriggersResultEventProcessorAwsEventbridgeOutput() GetEventTriggersResultEventProcessorAwsEventbridgeOutput
+	ToGetEventTriggersResultEventProcessorAwsEventbridgeOutputWithContext(context.Context) GetEventTriggersResultEventProcessorAwsEventbridgeOutput
+}
+
+type GetEventTriggersResultEventProcessorAwsEventbridgeArgs struct {
+	ConfigAccountId pulumi.StringInput `pulumi:"configAccountId"`
+	ConfigRegion    pulumi.StringInput `pulumi:"configRegion"`
+}
+
+func (GetEventTriggersResultEventProcessorAwsEventbridgeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggersResultEventProcessorAwsEventbridge)(nil)).Elem()
+}
+
+func (i GetEventTriggersResultEventProcessorAwsEventbridgeArgs) ToGetEventTriggersResultEventProcessorAwsEventbridgeOutput() GetEventTriggersResultEventProcessorAwsEventbridgeOutput {
+	return i.ToGetEventTriggersResultEventProcessorAwsEventbridgeOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggersResultEventProcessorAwsEventbridgeArgs) ToGetEventTriggersResultEventProcessorAwsEventbridgeOutputWithContext(ctx context.Context) GetEventTriggersResultEventProcessorAwsEventbridgeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggersResultEventProcessorAwsEventbridgeOutput)
+}
+
+// GetEventTriggersResultEventProcessorAwsEventbridgeArrayInput is an input type that accepts GetEventTriggersResultEventProcessorAwsEventbridgeArray and GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput values.
+// You can construct a concrete instance of `GetEventTriggersResultEventProcessorAwsEventbridgeArrayInput` via:
+//
+//          GetEventTriggersResultEventProcessorAwsEventbridgeArray{ GetEventTriggersResultEventProcessorAwsEventbridgeArgs{...} }
+type GetEventTriggersResultEventProcessorAwsEventbridgeArrayInput interface {
+	pulumi.Input
+
+	ToGetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput() GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput
+	ToGetEventTriggersResultEventProcessorAwsEventbridgeArrayOutputWithContext(context.Context) GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput
+}
+
+type GetEventTriggersResultEventProcessorAwsEventbridgeArray []GetEventTriggersResultEventProcessorAwsEventbridgeInput
+
+func (GetEventTriggersResultEventProcessorAwsEventbridgeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggersResultEventProcessorAwsEventbridge)(nil)).Elem()
+}
+
+func (i GetEventTriggersResultEventProcessorAwsEventbridgeArray) ToGetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput() GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput {
+	return i.ToGetEventTriggersResultEventProcessorAwsEventbridgeArrayOutputWithContext(context.Background())
+}
+
+func (i GetEventTriggersResultEventProcessorAwsEventbridgeArray) ToGetEventTriggersResultEventProcessorAwsEventbridgeArrayOutputWithContext(ctx context.Context) GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput)
+}
+
+type GetEventTriggersResultEventProcessorAwsEventbridgeOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggersResultEventProcessorAwsEventbridgeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEventTriggersResultEventProcessorAwsEventbridge)(nil)).Elem()
+}
+
+func (o GetEventTriggersResultEventProcessorAwsEventbridgeOutput) ToGetEventTriggersResultEventProcessorAwsEventbridgeOutput() GetEventTriggersResultEventProcessorAwsEventbridgeOutput {
+	return o
+}
+
+func (o GetEventTriggersResultEventProcessorAwsEventbridgeOutput) ToGetEventTriggersResultEventProcessorAwsEventbridgeOutputWithContext(ctx context.Context) GetEventTriggersResultEventProcessorAwsEventbridgeOutput {
+	return o
+}
+
+func (o GetEventTriggersResultEventProcessorAwsEventbridgeOutput) ConfigAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultEventProcessorAwsEventbridge) string { return v.ConfigAccountId }).(pulumi.StringOutput)
+}
+
+func (o GetEventTriggersResultEventProcessorAwsEventbridgeOutput) ConfigRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEventTriggersResultEventProcessorAwsEventbridge) string { return v.ConfigRegion }).(pulumi.StringOutput)
+}
+
+type GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetEventTriggersResultEventProcessorAwsEventbridge)(nil)).Elem()
+}
+
+func (o GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput) ToGetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput() GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput {
+	return o
+}
+
+func (o GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput) ToGetEventTriggersResultEventProcessorAwsEventbridgeArrayOutputWithContext(ctx context.Context) GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput {
+	return o
+}
+
+func (o GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput) Index(i pulumi.IntInput) GetEventTriggersResultEventProcessorAwsEventbridgeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventTriggersResultEventProcessorAwsEventbridge {
+		return vs[0].([]GetEventTriggersResultEventProcessorAwsEventbridge)[vs[1].(int)]
+	}).(GetEventTriggersResultEventProcessorAwsEventbridgeOutput)
+}
+
 type GetGlobalClusterConfigManagedNamespace struct {
 	// (Required) The name of the collection associated with the managed namespace.
 	Collection string `pulumi:"collection"`
@@ -12538,8 +17667,7 @@ func (o GetNetworkContainersResultTypeArrayOutput) Index(i pulumi.IntInput) GetN
 type GetNetworkPeeringsResultType struct {
 	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName string `pulumi:"accepterRegionName"`
-	// Unique identifier for an Azure AD directory.
-	AtlasCidrBlock string `pulumi:"atlasCidrBlock"`
+	AtlasCidrBlock     string `pulumi:"atlasCidrBlock"`
 	// Account ID of the owner of the peer VPC.
 	AwsAccountId string `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.
@@ -12591,8 +17719,7 @@ type GetNetworkPeeringsResultTypeInput interface {
 type GetNetworkPeeringsResultTypeArgs struct {
 	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringInput `pulumi:"accepterRegionName"`
-	// Unique identifier for an Azure AD directory.
-	AtlasCidrBlock pulumi.StringInput `pulumi:"atlasCidrBlock"`
+	AtlasCidrBlock     pulumi.StringInput `pulumi:"atlasCidrBlock"`
 	// Account ID of the owner of the peer VPC.
 	AwsAccountId pulumi.StringInput `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.
@@ -12686,7 +17813,6 @@ func (o GetNetworkPeeringsResultTypeOutput) AccepterRegionName() pulumi.StringOu
 	return o.ApplyT(func(v GetNetworkPeeringsResultType) string { return v.AccepterRegionName }).(pulumi.StringOutput)
 }
 
-// Unique identifier for an Azure AD directory.
 func (o GetNetworkPeeringsResultTypeOutput) AtlasCidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNetworkPeeringsResultType) string { return v.AtlasCidrBlock }).(pulumi.StringOutput)
 }
@@ -12798,6 +17924,602 @@ func (o GetNetworkPeeringsResultTypeArrayOutput) Index(i pulumi.IntInput) GetNet
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNetworkPeeringsResultType {
 		return vs[0].([]GetNetworkPeeringsResultType)[vs[1].(int)]
 	}).(GetNetworkPeeringsResultTypeOutput)
+}
+
+type GetOnlineArchiveCriteria struct {
+	DateField       string `pulumi:"dateField"`
+	DateFormat      string `pulumi:"dateFormat"`
+	ExpireAfterDays int    `pulumi:"expireAfterDays"`
+	Query           string `pulumi:"query"`
+	Type            string `pulumi:"type"`
+}
+
+// GetOnlineArchiveCriteriaInput is an input type that accepts GetOnlineArchiveCriteriaArgs and GetOnlineArchiveCriteriaOutput values.
+// You can construct a concrete instance of `GetOnlineArchiveCriteriaInput` via:
+//
+//          GetOnlineArchiveCriteriaArgs{...}
+type GetOnlineArchiveCriteriaInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchiveCriteriaOutput() GetOnlineArchiveCriteriaOutput
+	ToGetOnlineArchiveCriteriaOutputWithContext(context.Context) GetOnlineArchiveCriteriaOutput
+}
+
+type GetOnlineArchiveCriteriaArgs struct {
+	DateField       pulumi.StringInput `pulumi:"dateField"`
+	DateFormat      pulumi.StringInput `pulumi:"dateFormat"`
+	ExpireAfterDays pulumi.IntInput    `pulumi:"expireAfterDays"`
+	Query           pulumi.StringInput `pulumi:"query"`
+	Type            pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetOnlineArchiveCriteriaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchiveCriteria)(nil)).Elem()
+}
+
+func (i GetOnlineArchiveCriteriaArgs) ToGetOnlineArchiveCriteriaOutput() GetOnlineArchiveCriteriaOutput {
+	return i.ToGetOnlineArchiveCriteriaOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchiveCriteriaArgs) ToGetOnlineArchiveCriteriaOutputWithContext(ctx context.Context) GetOnlineArchiveCriteriaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchiveCriteriaOutput)
+}
+
+// GetOnlineArchiveCriteriaArrayInput is an input type that accepts GetOnlineArchiveCriteriaArray and GetOnlineArchiveCriteriaArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchiveCriteriaArrayInput` via:
+//
+//          GetOnlineArchiveCriteriaArray{ GetOnlineArchiveCriteriaArgs{...} }
+type GetOnlineArchiveCriteriaArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchiveCriteriaArrayOutput() GetOnlineArchiveCriteriaArrayOutput
+	ToGetOnlineArchiveCriteriaArrayOutputWithContext(context.Context) GetOnlineArchiveCriteriaArrayOutput
+}
+
+type GetOnlineArchiveCriteriaArray []GetOnlineArchiveCriteriaInput
+
+func (GetOnlineArchiveCriteriaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchiveCriteria)(nil)).Elem()
+}
+
+func (i GetOnlineArchiveCriteriaArray) ToGetOnlineArchiveCriteriaArrayOutput() GetOnlineArchiveCriteriaArrayOutput {
+	return i.ToGetOnlineArchiveCriteriaArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchiveCriteriaArray) ToGetOnlineArchiveCriteriaArrayOutputWithContext(ctx context.Context) GetOnlineArchiveCriteriaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchiveCriteriaArrayOutput)
+}
+
+type GetOnlineArchiveCriteriaOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchiveCriteriaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchiveCriteria)(nil)).Elem()
+}
+
+func (o GetOnlineArchiveCriteriaOutput) ToGetOnlineArchiveCriteriaOutput() GetOnlineArchiveCriteriaOutput {
+	return o
+}
+
+func (o GetOnlineArchiveCriteriaOutput) ToGetOnlineArchiveCriteriaOutputWithContext(ctx context.Context) GetOnlineArchiveCriteriaOutput {
+	return o
+}
+
+func (o GetOnlineArchiveCriteriaOutput) DateField() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchiveCriteria) string { return v.DateField }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchiveCriteriaOutput) DateFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchiveCriteria) string { return v.DateFormat }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchiveCriteriaOutput) ExpireAfterDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchiveCriteria) int { return v.ExpireAfterDays }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchiveCriteriaOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchiveCriteria) string { return v.Query }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchiveCriteriaOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchiveCriteria) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetOnlineArchiveCriteriaArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchiveCriteriaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchiveCriteria)(nil)).Elem()
+}
+
+func (o GetOnlineArchiveCriteriaArrayOutput) ToGetOnlineArchiveCriteriaArrayOutput() GetOnlineArchiveCriteriaArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchiveCriteriaArrayOutput) ToGetOnlineArchiveCriteriaArrayOutputWithContext(ctx context.Context) GetOnlineArchiveCriteriaArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchiveCriteriaArrayOutput) Index(i pulumi.IntInput) GetOnlineArchiveCriteriaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchiveCriteria {
+		return vs[0].([]GetOnlineArchiveCriteria)[vs[1].(int)]
+	}).(GetOnlineArchiveCriteriaOutput)
+}
+
+type GetOnlineArchivePartitionField struct {
+	FieldName string `pulumi:"fieldName"`
+	FieldType string `pulumi:"fieldType"`
+	Order     int    `pulumi:"order"`
+}
+
+// GetOnlineArchivePartitionFieldInput is an input type that accepts GetOnlineArchivePartitionFieldArgs and GetOnlineArchivePartitionFieldOutput values.
+// You can construct a concrete instance of `GetOnlineArchivePartitionFieldInput` via:
+//
+//          GetOnlineArchivePartitionFieldArgs{...}
+type GetOnlineArchivePartitionFieldInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivePartitionFieldOutput() GetOnlineArchivePartitionFieldOutput
+	ToGetOnlineArchivePartitionFieldOutputWithContext(context.Context) GetOnlineArchivePartitionFieldOutput
+}
+
+type GetOnlineArchivePartitionFieldArgs struct {
+	FieldName pulumi.StringInput `pulumi:"fieldName"`
+	FieldType pulumi.StringInput `pulumi:"fieldType"`
+	Order     pulumi.IntInput    `pulumi:"order"`
+}
+
+func (GetOnlineArchivePartitionFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivePartitionField)(nil)).Elem()
+}
+
+func (i GetOnlineArchivePartitionFieldArgs) ToGetOnlineArchivePartitionFieldOutput() GetOnlineArchivePartitionFieldOutput {
+	return i.ToGetOnlineArchivePartitionFieldOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivePartitionFieldArgs) ToGetOnlineArchivePartitionFieldOutputWithContext(ctx context.Context) GetOnlineArchivePartitionFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivePartitionFieldOutput)
+}
+
+// GetOnlineArchivePartitionFieldArrayInput is an input type that accepts GetOnlineArchivePartitionFieldArray and GetOnlineArchivePartitionFieldArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchivePartitionFieldArrayInput` via:
+//
+//          GetOnlineArchivePartitionFieldArray{ GetOnlineArchivePartitionFieldArgs{...} }
+type GetOnlineArchivePartitionFieldArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivePartitionFieldArrayOutput() GetOnlineArchivePartitionFieldArrayOutput
+	ToGetOnlineArchivePartitionFieldArrayOutputWithContext(context.Context) GetOnlineArchivePartitionFieldArrayOutput
+}
+
+type GetOnlineArchivePartitionFieldArray []GetOnlineArchivePartitionFieldInput
+
+func (GetOnlineArchivePartitionFieldArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivePartitionField)(nil)).Elem()
+}
+
+func (i GetOnlineArchivePartitionFieldArray) ToGetOnlineArchivePartitionFieldArrayOutput() GetOnlineArchivePartitionFieldArrayOutput {
+	return i.ToGetOnlineArchivePartitionFieldArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivePartitionFieldArray) ToGetOnlineArchivePartitionFieldArrayOutputWithContext(ctx context.Context) GetOnlineArchivePartitionFieldArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivePartitionFieldArrayOutput)
+}
+
+type GetOnlineArchivePartitionFieldOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivePartitionFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivePartitionField)(nil)).Elem()
+}
+
+func (o GetOnlineArchivePartitionFieldOutput) ToGetOnlineArchivePartitionFieldOutput() GetOnlineArchivePartitionFieldOutput {
+	return o
+}
+
+func (o GetOnlineArchivePartitionFieldOutput) ToGetOnlineArchivePartitionFieldOutputWithContext(ctx context.Context) GetOnlineArchivePartitionFieldOutput {
+	return o
+}
+
+func (o GetOnlineArchivePartitionFieldOutput) FieldName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivePartitionField) string { return v.FieldName }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivePartitionFieldOutput) FieldType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivePartitionField) string { return v.FieldType }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivePartitionFieldOutput) Order() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchivePartitionField) int { return v.Order }).(pulumi.IntOutput)
+}
+
+type GetOnlineArchivePartitionFieldArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivePartitionFieldArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivePartitionField)(nil)).Elem()
+}
+
+func (o GetOnlineArchivePartitionFieldArrayOutput) ToGetOnlineArchivePartitionFieldArrayOutput() GetOnlineArchivePartitionFieldArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivePartitionFieldArrayOutput) ToGetOnlineArchivePartitionFieldArrayOutputWithContext(ctx context.Context) GetOnlineArchivePartitionFieldArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivePartitionFieldArrayOutput) Index(i pulumi.IntInput) GetOnlineArchivePartitionFieldOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchivePartitionField {
+		return vs[0].([]GetOnlineArchivePartitionField)[vs[1].(int)]
+	}).(GetOnlineArchivePartitionFieldOutput)
+}
+
+type GetOnlineArchivesResultType struct {
+	ArchiveId string `pulumi:"archiveId"`
+	// Name of the cluster that contains the collection.
+	ClusterName     string                                  `pulumi:"clusterName"`
+	CollName        string                                  `pulumi:"collName"`
+	Criterias       []GetOnlineArchivesResultCriteria       `pulumi:"criterias"`
+	DbName          string                                  `pulumi:"dbName"`
+	PartitionFields []GetOnlineArchivesResultPartitionField `pulumi:"partitionFields"`
+	Paused          bool                                    `pulumi:"paused"`
+	// The unique ID for the project.
+	ProjectId string `pulumi:"projectId"`
+	State     string `pulumi:"state"`
+}
+
+// GetOnlineArchivesResultTypeInput is an input type that accepts GetOnlineArchivesResultTypeArgs and GetOnlineArchivesResultTypeOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultTypeInput` via:
+//
+//          GetOnlineArchivesResultTypeArgs{...}
+type GetOnlineArchivesResultTypeInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultTypeOutput() GetOnlineArchivesResultTypeOutput
+	ToGetOnlineArchivesResultTypeOutputWithContext(context.Context) GetOnlineArchivesResultTypeOutput
+}
+
+type GetOnlineArchivesResultTypeArgs struct {
+	ArchiveId pulumi.StringInput `pulumi:"archiveId"`
+	// Name of the cluster that contains the collection.
+	ClusterName     pulumi.StringInput                              `pulumi:"clusterName"`
+	CollName        pulumi.StringInput                              `pulumi:"collName"`
+	Criterias       GetOnlineArchivesResultCriteriaArrayInput       `pulumi:"criterias"`
+	DbName          pulumi.StringInput                              `pulumi:"dbName"`
+	PartitionFields GetOnlineArchivesResultPartitionFieldArrayInput `pulumi:"partitionFields"`
+	Paused          pulumi.BoolInput                                `pulumi:"paused"`
+	// The unique ID for the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	State     pulumi.StringInput `pulumi:"state"`
+}
+
+func (GetOnlineArchivesResultTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultType)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultTypeArgs) ToGetOnlineArchivesResultTypeOutput() GetOnlineArchivesResultTypeOutput {
+	return i.ToGetOnlineArchivesResultTypeOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultTypeArgs) ToGetOnlineArchivesResultTypeOutputWithContext(ctx context.Context) GetOnlineArchivesResultTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultTypeOutput)
+}
+
+// GetOnlineArchivesResultTypeArrayInput is an input type that accepts GetOnlineArchivesResultTypeArray and GetOnlineArchivesResultTypeArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultTypeArrayInput` via:
+//
+//          GetOnlineArchivesResultTypeArray{ GetOnlineArchivesResultTypeArgs{...} }
+type GetOnlineArchivesResultTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultTypeArrayOutput() GetOnlineArchivesResultTypeArrayOutput
+	ToGetOnlineArchivesResultTypeArrayOutputWithContext(context.Context) GetOnlineArchivesResultTypeArrayOutput
+}
+
+type GetOnlineArchivesResultTypeArray []GetOnlineArchivesResultTypeInput
+
+func (GetOnlineArchivesResultTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultType)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultTypeArray) ToGetOnlineArchivesResultTypeArrayOutput() GetOnlineArchivesResultTypeArrayOutput {
+	return i.ToGetOnlineArchivesResultTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultTypeArray) ToGetOnlineArchivesResultTypeArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultTypeArrayOutput)
+}
+
+type GetOnlineArchivesResultTypeOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultType)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultTypeOutput) ToGetOnlineArchivesResultTypeOutput() GetOnlineArchivesResultTypeOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultTypeOutput) ToGetOnlineArchivesResultTypeOutputWithContext(ctx context.Context) GetOnlineArchivesResultTypeOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultTypeOutput) ArchiveId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) string { return v.ArchiveId }).(pulumi.StringOutput)
+}
+
+// Name of the cluster that contains the collection.
+func (o GetOnlineArchivesResultTypeOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultTypeOutput) CollName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) string { return v.CollName }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultTypeOutput) Criterias() GetOnlineArchivesResultCriteriaArrayOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) []GetOnlineArchivesResultCriteria { return v.Criterias }).(GetOnlineArchivesResultCriteriaArrayOutput)
+}
+
+func (o GetOnlineArchivesResultTypeOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultTypeOutput) PartitionFields() GetOnlineArchivesResultPartitionFieldArrayOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) []GetOnlineArchivesResultPartitionField { return v.PartitionFields }).(GetOnlineArchivesResultPartitionFieldArrayOutput)
+}
+
+func (o GetOnlineArchivesResultTypeOutput) Paused() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) bool { return v.Paused }).(pulumi.BoolOutput)
+}
+
+// The unique ID for the project.
+func (o GetOnlineArchivesResultTypeOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultTypeOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultType) string { return v.State }).(pulumi.StringOutput)
+}
+
+type GetOnlineArchivesResultTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultType)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultTypeArrayOutput) ToGetOnlineArchivesResultTypeArrayOutput() GetOnlineArchivesResultTypeArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultTypeArrayOutput) ToGetOnlineArchivesResultTypeArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultTypeArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultTypeArrayOutput) Index(i pulumi.IntInput) GetOnlineArchivesResultTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchivesResultType {
+		return vs[0].([]GetOnlineArchivesResultType)[vs[1].(int)]
+	}).(GetOnlineArchivesResultTypeOutput)
+}
+
+type GetOnlineArchivesResultCriteria struct {
+	DateField       string `pulumi:"dateField"`
+	DateFormat      string `pulumi:"dateFormat"`
+	ExpireAfterDays int    `pulumi:"expireAfterDays"`
+	Query           string `pulumi:"query"`
+	Type            string `pulumi:"type"`
+}
+
+// GetOnlineArchivesResultCriteriaInput is an input type that accepts GetOnlineArchivesResultCriteriaArgs and GetOnlineArchivesResultCriteriaOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultCriteriaInput` via:
+//
+//          GetOnlineArchivesResultCriteriaArgs{...}
+type GetOnlineArchivesResultCriteriaInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultCriteriaOutput() GetOnlineArchivesResultCriteriaOutput
+	ToGetOnlineArchivesResultCriteriaOutputWithContext(context.Context) GetOnlineArchivesResultCriteriaOutput
+}
+
+type GetOnlineArchivesResultCriteriaArgs struct {
+	DateField       pulumi.StringInput `pulumi:"dateField"`
+	DateFormat      pulumi.StringInput `pulumi:"dateFormat"`
+	ExpireAfterDays pulumi.IntInput    `pulumi:"expireAfterDays"`
+	Query           pulumi.StringInput `pulumi:"query"`
+	Type            pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetOnlineArchivesResultCriteriaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultCriteria)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultCriteriaArgs) ToGetOnlineArchivesResultCriteriaOutput() GetOnlineArchivesResultCriteriaOutput {
+	return i.ToGetOnlineArchivesResultCriteriaOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultCriteriaArgs) ToGetOnlineArchivesResultCriteriaOutputWithContext(ctx context.Context) GetOnlineArchivesResultCriteriaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultCriteriaOutput)
+}
+
+// GetOnlineArchivesResultCriteriaArrayInput is an input type that accepts GetOnlineArchivesResultCriteriaArray and GetOnlineArchivesResultCriteriaArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultCriteriaArrayInput` via:
+//
+//          GetOnlineArchivesResultCriteriaArray{ GetOnlineArchivesResultCriteriaArgs{...} }
+type GetOnlineArchivesResultCriteriaArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultCriteriaArrayOutput() GetOnlineArchivesResultCriteriaArrayOutput
+	ToGetOnlineArchivesResultCriteriaArrayOutputWithContext(context.Context) GetOnlineArchivesResultCriteriaArrayOutput
+}
+
+type GetOnlineArchivesResultCriteriaArray []GetOnlineArchivesResultCriteriaInput
+
+func (GetOnlineArchivesResultCriteriaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultCriteria)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultCriteriaArray) ToGetOnlineArchivesResultCriteriaArrayOutput() GetOnlineArchivesResultCriteriaArrayOutput {
+	return i.ToGetOnlineArchivesResultCriteriaArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultCriteriaArray) ToGetOnlineArchivesResultCriteriaArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultCriteriaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultCriteriaArrayOutput)
+}
+
+type GetOnlineArchivesResultCriteriaOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultCriteriaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultCriteria)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultCriteriaOutput) ToGetOnlineArchivesResultCriteriaOutput() GetOnlineArchivesResultCriteriaOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultCriteriaOutput) ToGetOnlineArchivesResultCriteriaOutputWithContext(ctx context.Context) GetOnlineArchivesResultCriteriaOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultCriteriaOutput) DateField() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultCriteria) string { return v.DateField }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultCriteriaOutput) DateFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultCriteria) string { return v.DateFormat }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultCriteriaOutput) ExpireAfterDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultCriteria) int { return v.ExpireAfterDays }).(pulumi.IntOutput)
+}
+
+func (o GetOnlineArchivesResultCriteriaOutput) Query() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultCriteria) string { return v.Query }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultCriteriaOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultCriteria) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetOnlineArchivesResultCriteriaArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultCriteriaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultCriteria)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultCriteriaArrayOutput) ToGetOnlineArchivesResultCriteriaArrayOutput() GetOnlineArchivesResultCriteriaArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultCriteriaArrayOutput) ToGetOnlineArchivesResultCriteriaArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultCriteriaArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultCriteriaArrayOutput) Index(i pulumi.IntInput) GetOnlineArchivesResultCriteriaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchivesResultCriteria {
+		return vs[0].([]GetOnlineArchivesResultCriteria)[vs[1].(int)]
+	}).(GetOnlineArchivesResultCriteriaOutput)
+}
+
+type GetOnlineArchivesResultPartitionField struct {
+	FieldName string `pulumi:"fieldName"`
+	FieldType string `pulumi:"fieldType"`
+	Order     int    `pulumi:"order"`
+}
+
+// GetOnlineArchivesResultPartitionFieldInput is an input type that accepts GetOnlineArchivesResultPartitionFieldArgs and GetOnlineArchivesResultPartitionFieldOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultPartitionFieldInput` via:
+//
+//          GetOnlineArchivesResultPartitionFieldArgs{...}
+type GetOnlineArchivesResultPartitionFieldInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultPartitionFieldOutput() GetOnlineArchivesResultPartitionFieldOutput
+	ToGetOnlineArchivesResultPartitionFieldOutputWithContext(context.Context) GetOnlineArchivesResultPartitionFieldOutput
+}
+
+type GetOnlineArchivesResultPartitionFieldArgs struct {
+	FieldName pulumi.StringInput `pulumi:"fieldName"`
+	FieldType pulumi.StringInput `pulumi:"fieldType"`
+	Order     pulumi.IntInput    `pulumi:"order"`
+}
+
+func (GetOnlineArchivesResultPartitionFieldArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultPartitionField)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultPartitionFieldArgs) ToGetOnlineArchivesResultPartitionFieldOutput() GetOnlineArchivesResultPartitionFieldOutput {
+	return i.ToGetOnlineArchivesResultPartitionFieldOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultPartitionFieldArgs) ToGetOnlineArchivesResultPartitionFieldOutputWithContext(ctx context.Context) GetOnlineArchivesResultPartitionFieldOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultPartitionFieldOutput)
+}
+
+// GetOnlineArchivesResultPartitionFieldArrayInput is an input type that accepts GetOnlineArchivesResultPartitionFieldArray and GetOnlineArchivesResultPartitionFieldArrayOutput values.
+// You can construct a concrete instance of `GetOnlineArchivesResultPartitionFieldArrayInput` via:
+//
+//          GetOnlineArchivesResultPartitionFieldArray{ GetOnlineArchivesResultPartitionFieldArgs{...} }
+type GetOnlineArchivesResultPartitionFieldArrayInput interface {
+	pulumi.Input
+
+	ToGetOnlineArchivesResultPartitionFieldArrayOutput() GetOnlineArchivesResultPartitionFieldArrayOutput
+	ToGetOnlineArchivesResultPartitionFieldArrayOutputWithContext(context.Context) GetOnlineArchivesResultPartitionFieldArrayOutput
+}
+
+type GetOnlineArchivesResultPartitionFieldArray []GetOnlineArchivesResultPartitionFieldInput
+
+func (GetOnlineArchivesResultPartitionFieldArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultPartitionField)(nil)).Elem()
+}
+
+func (i GetOnlineArchivesResultPartitionFieldArray) ToGetOnlineArchivesResultPartitionFieldArrayOutput() GetOnlineArchivesResultPartitionFieldArrayOutput {
+	return i.ToGetOnlineArchivesResultPartitionFieldArrayOutputWithContext(context.Background())
+}
+
+func (i GetOnlineArchivesResultPartitionFieldArray) ToGetOnlineArchivesResultPartitionFieldArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultPartitionFieldArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOnlineArchivesResultPartitionFieldArrayOutput)
+}
+
+type GetOnlineArchivesResultPartitionFieldOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultPartitionFieldOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOnlineArchivesResultPartitionField)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultPartitionFieldOutput) ToGetOnlineArchivesResultPartitionFieldOutput() GetOnlineArchivesResultPartitionFieldOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultPartitionFieldOutput) ToGetOnlineArchivesResultPartitionFieldOutputWithContext(ctx context.Context) GetOnlineArchivesResultPartitionFieldOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultPartitionFieldOutput) FieldName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultPartitionField) string { return v.FieldName }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultPartitionFieldOutput) FieldType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultPartitionField) string { return v.FieldType }).(pulumi.StringOutput)
+}
+
+func (o GetOnlineArchivesResultPartitionFieldOutput) Order() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOnlineArchivesResultPartitionField) int { return v.Order }).(pulumi.IntOutput)
+}
+
+type GetOnlineArchivesResultPartitionFieldArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOnlineArchivesResultPartitionFieldArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOnlineArchivesResultPartitionField)(nil)).Elem()
+}
+
+func (o GetOnlineArchivesResultPartitionFieldArrayOutput) ToGetOnlineArchivesResultPartitionFieldArrayOutput() GetOnlineArchivesResultPartitionFieldArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultPartitionFieldArrayOutput) ToGetOnlineArchivesResultPartitionFieldArrayOutputWithContext(ctx context.Context) GetOnlineArchivesResultPartitionFieldArrayOutput {
+	return o
+}
+
+func (o GetOnlineArchivesResultPartitionFieldArrayOutput) Index(i pulumi.IntInput) GetOnlineArchivesResultPartitionFieldOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOnlineArchivesResultPartitionField {
+		return vs[0].([]GetOnlineArchivesResultPartitionField)[vs[1].(int)]
+	}).(GetOnlineArchivesResultPartitionFieldOutput)
 }
 
 type GetProjectTeam struct {
@@ -13166,6 +18888,196 @@ func (o GetProjectsResultTeamArrayOutput) Index(i pulumi.IntInput) GetProjectsRe
 	}).(GetProjectsResultTeamOutput)
 }
 
+type GetSearchIndexesResultType struct {
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	Analyzer string `pulumi:"analyzer"`
+	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+	Analyzers *string `pulumi:"analyzers"`
+	// Name of the cluster containing the collection with one or more Atlas Search indexes.
+	ClusterName string `pulumi:"clusterName"`
+	// Name of the collection with one or more Atlas Search indexes.
+	CollectionName string `pulumi:"collectionName"`
+	// (Required) Name of the database the collection is in.
+	Database string `pulumi:"database"`
+	IndexId  string `pulumi:"indexId"`
+	// Flag indicating whether the index uses dynamic or static mappings.
+	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
+	// Object containing one or more field specifications.
+	MappingsFields *string `pulumi:"mappingsFields"`
+	// Name of the index.
+	Name string `pulumi:"name"`
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	ProjectId string `pulumi:"projectId"`
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
+	Status         string  `pulumi:"status"`
+}
+
+// GetSearchIndexesResultTypeInput is an input type that accepts GetSearchIndexesResultTypeArgs and GetSearchIndexesResultTypeOutput values.
+// You can construct a concrete instance of `GetSearchIndexesResultTypeInput` via:
+//
+//          GetSearchIndexesResultTypeArgs{...}
+type GetSearchIndexesResultTypeInput interface {
+	pulumi.Input
+
+	ToGetSearchIndexesResultTypeOutput() GetSearchIndexesResultTypeOutput
+	ToGetSearchIndexesResultTypeOutputWithContext(context.Context) GetSearchIndexesResultTypeOutput
+}
+
+type GetSearchIndexesResultTypeArgs struct {
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	Analyzer pulumi.StringInput `pulumi:"analyzer"`
+	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+	Analyzers pulumi.StringPtrInput `pulumi:"analyzers"`
+	// Name of the cluster containing the collection with one or more Atlas Search indexes.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// Name of the collection with one or more Atlas Search indexes.
+	CollectionName pulumi.StringInput `pulumi:"collectionName"`
+	// (Required) Name of the database the collection is in.
+	Database pulumi.StringInput `pulumi:"database"`
+	IndexId  pulumi.StringInput `pulumi:"indexId"`
+	// Flag indicating whether the index uses dynamic or static mappings.
+	MappingsDynamic pulumi.BoolPtrInput `pulumi:"mappingsDynamic"`
+	// Object containing one or more field specifications.
+	MappingsFields pulumi.StringPtrInput `pulumi:"mappingsFields"`
+	// Name of the index.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+	SearchAnalyzer pulumi.StringPtrInput `pulumi:"searchAnalyzer"`
+	Status         pulumi.StringInput    `pulumi:"status"`
+}
+
+func (GetSearchIndexesResultTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSearchIndexesResultType)(nil)).Elem()
+}
+
+func (i GetSearchIndexesResultTypeArgs) ToGetSearchIndexesResultTypeOutput() GetSearchIndexesResultTypeOutput {
+	return i.ToGetSearchIndexesResultTypeOutputWithContext(context.Background())
+}
+
+func (i GetSearchIndexesResultTypeArgs) ToGetSearchIndexesResultTypeOutputWithContext(ctx context.Context) GetSearchIndexesResultTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSearchIndexesResultTypeOutput)
+}
+
+// GetSearchIndexesResultTypeArrayInput is an input type that accepts GetSearchIndexesResultTypeArray and GetSearchIndexesResultTypeArrayOutput values.
+// You can construct a concrete instance of `GetSearchIndexesResultTypeArrayInput` via:
+//
+//          GetSearchIndexesResultTypeArray{ GetSearchIndexesResultTypeArgs{...} }
+type GetSearchIndexesResultTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetSearchIndexesResultTypeArrayOutput() GetSearchIndexesResultTypeArrayOutput
+	ToGetSearchIndexesResultTypeArrayOutputWithContext(context.Context) GetSearchIndexesResultTypeArrayOutput
+}
+
+type GetSearchIndexesResultTypeArray []GetSearchIndexesResultTypeInput
+
+func (GetSearchIndexesResultTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSearchIndexesResultType)(nil)).Elem()
+}
+
+func (i GetSearchIndexesResultTypeArray) ToGetSearchIndexesResultTypeArrayOutput() GetSearchIndexesResultTypeArrayOutput {
+	return i.ToGetSearchIndexesResultTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetSearchIndexesResultTypeArray) ToGetSearchIndexesResultTypeArrayOutputWithContext(ctx context.Context) GetSearchIndexesResultTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSearchIndexesResultTypeArrayOutput)
+}
+
+type GetSearchIndexesResultTypeOutput struct{ *pulumi.OutputState }
+
+func (GetSearchIndexesResultTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSearchIndexesResultType)(nil)).Elem()
+}
+
+func (o GetSearchIndexesResultTypeOutput) ToGetSearchIndexesResultTypeOutput() GetSearchIndexesResultTypeOutput {
+	return o
+}
+
+func (o GetSearchIndexesResultTypeOutput) ToGetSearchIndexesResultTypeOutputWithContext(ctx context.Context) GetSearchIndexesResultTypeOutput {
+	return o
+}
+
+// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+func (o GetSearchIndexesResultTypeOutput) Analyzer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) string { return v.Analyzer }).(pulumi.StringOutput)
+}
+
+// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+func (o GetSearchIndexesResultTypeOutput) Analyzers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) *string { return v.Analyzers }).(pulumi.StringPtrOutput)
+}
+
+// Name of the cluster containing the collection with one or more Atlas Search indexes.
+func (o GetSearchIndexesResultTypeOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Name of the collection with one or more Atlas Search indexes.
+func (o GetSearchIndexesResultTypeOutput) CollectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) string { return v.CollectionName }).(pulumi.StringOutput)
+}
+
+// (Required) Name of the database the collection is in.
+func (o GetSearchIndexesResultTypeOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) string { return v.Database }).(pulumi.StringOutput)
+}
+
+func (o GetSearchIndexesResultTypeOutput) IndexId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) string { return v.IndexId }).(pulumi.StringOutput)
+}
+
+// Flag indicating whether the index uses dynamic or static mappings.
+func (o GetSearchIndexesResultTypeOutput) MappingsDynamic() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) *bool { return v.MappingsDynamic }).(pulumi.BoolPtrOutput)
+}
+
+// Object containing one or more field specifications.
+func (o GetSearchIndexesResultTypeOutput) MappingsFields() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) *string { return v.MappingsFields }).(pulumi.StringPtrOutput)
+}
+
+// Name of the index.
+func (o GetSearchIndexesResultTypeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+func (o GetSearchIndexesResultTypeOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+func (o GetSearchIndexesResultTypeOutput) SearchAnalyzer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) *string { return v.SearchAnalyzer }).(pulumi.StringPtrOutput)
+}
+
+func (o GetSearchIndexesResultTypeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultType) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetSearchIndexesResultTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSearchIndexesResultTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSearchIndexesResultType)(nil)).Elem()
+}
+
+func (o GetSearchIndexesResultTypeArrayOutput) ToGetSearchIndexesResultTypeArrayOutput() GetSearchIndexesResultTypeArrayOutput {
+	return o
+}
+
+func (o GetSearchIndexesResultTypeArrayOutput) ToGetSearchIndexesResultTypeArrayOutputWithContext(ctx context.Context) GetSearchIndexesResultTypeArrayOutput {
+	return o
+}
+
+func (o GetSearchIndexesResultTypeArrayOutput) Index(i pulumi.IntInput) GetSearchIndexesResultTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSearchIndexesResultType {
+		return vs[0].([]GetSearchIndexesResultType)[vs[1].(int)]
+	}).(GetSearchIndexesResultTypeOutput)
+}
+
 type GetThirdPartyIntegrationsResultType struct {
 	// Unique identifier of your New Relic account.
 	AccountId string `pulumi:"accountId"`
@@ -13419,38 +19331,44 @@ func (o GetThirdPartyIntegrationsResultTypeArrayOutput) Index(i pulumi.IntInput)
 func init() {
 	pulumi.RegisterOutputType(AlertConfigurationMatcherOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationMatcherArrayOutput{})
-	pulumi.RegisterOutputType(AlertConfigurationMetricThresholdOutput{})
-	pulumi.RegisterOutputType(AlertConfigurationMetricThresholdPtrOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationMetricThresholdConfigOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationMetricThresholdConfigPtrOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationNotificationOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationNotificationArrayOutput{})
-	pulumi.RegisterOutputType(AlertConfigurationThresholdOutput{})
-	pulumi.RegisterOutputType(AlertConfigurationThresholdPtrOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationThresholdConfigOutput{})
+	pulumi.RegisterOutputType(AlertConfigurationThresholdConfigPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemDailyOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemDailyPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemHourlyOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemHourlyPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemMonthlyOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemMonthlyPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAwsOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAwsPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessFeatureUsageOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessFeatureUsageArrayOutput{})
-	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsOutput{})
-	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsPtrOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsConfigOutput{})
+	pulumi.RegisterOutputType(CloudProviderAccessSetupAwsConfigArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayOutput{})
-	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobDeliveryTypeOutput{})
-	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobDeliveryTypePtrOutput{})
+	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput{})
+	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(ClusterAdvancedConfigurationPtrOutput{})
-	pulumi.RegisterOutputType(ClusterBiConnectorOutput{})
-	pulumi.RegisterOutputType(ClusterBiConnectorPtrOutput{})
 	pulumi.RegisterOutputType(ClusterBiConnectorConfigOutput{})
 	pulumi.RegisterOutputType(ClusterBiConnectorConfigPtrOutput{})
-	pulumi.RegisterOutputType(ClusterConnectionStringsOutput{})
-	pulumi.RegisterOutputType(ClusterConnectionStringsPtrOutput{})
-	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointOutput{})
-	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointArrayOutput{})
-	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointEndpointOutput{})
-	pulumi.RegisterOutputType(ClusterConnectionStringsPrivateEndpointEndpointArrayOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringArrayOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(ClusterConnectionStringPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ClusterLabelOutput{})
 	pulumi.RegisterOutputType(ClusterLabelArrayOutput{})
 	pulumi.RegisterOutputType(ClusterReplicationSpecOutput{})
@@ -13469,18 +19387,36 @@ func init() {
 	pulumi.RegisterOutputType(CustomDbRoleActionResourceArrayOutput{})
 	pulumi.RegisterOutputType(CustomDbRoleInheritedRoleOutput{})
 	pulumi.RegisterOutputType(CustomDbRoleInheritedRoleArrayOutput{})
+	pulumi.RegisterOutputType(DataLakeAwsOutput{})
+	pulumi.RegisterOutputType(DataLakeAwsPtrOutput{})
+	pulumi.RegisterOutputType(DataLakeDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(DataLakeDataProcessRegionPtrOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageDatabaseOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageDatabaseCollectionOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageDatabaseCollectionArrayOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageDatabaseCollectionDataSourceOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageDatabaseCollectionDataSourceArrayOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageDatabaseViewOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageDatabaseViewArrayOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageStoreOutput{})
+	pulumi.RegisterOutputType(DataLakeStorageStoreArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseUserLabelOutput{})
 	pulumi.RegisterOutputType(DatabaseUserLabelArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseUserRoleOutput{})
 	pulumi.RegisterOutputType(DatabaseUserRoleArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseUserScopeOutput{})
 	pulumi.RegisterOutputType(DatabaseUserScopeArrayOutput{})
-	pulumi.RegisterOutputType(EncryptionAtRestAwsKmsOutput{})
-	pulumi.RegisterOutputType(EncryptionAtRestAwsKmsPtrOutput{})
-	pulumi.RegisterOutputType(EncryptionAtRestAzureKeyVaultOutput{})
-	pulumi.RegisterOutputType(EncryptionAtRestAzureKeyVaultPtrOutput{})
-	pulumi.RegisterOutputType(EncryptionAtRestGoogleCloudKmsOutput{})
-	pulumi.RegisterOutputType(EncryptionAtRestGoogleCloudKmsPtrOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestAwsKmsConfigOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestAwsKmsConfigPtrOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestAzureKeyVaultConfigOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestAzureKeyVaultConfigPtrOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestGoogleCloudKmsConfigOutput{})
+	pulumi.RegisterOutputType(EncryptionAtRestGoogleCloudKmsConfigPtrOutput{})
+	pulumi.RegisterOutputType(EventTriggerEventProcessorsOutput{})
+	pulumi.RegisterOutputType(EventTriggerEventProcessorsPtrOutput{})
+	pulumi.RegisterOutputType(EventTriggerEventProcessorsAwsEventbridgeOutput{})
+	pulumi.RegisterOutputType(EventTriggerEventProcessorsAwsEventbridgePtrOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigManagedNamespaceOutput{})
@@ -13491,6 +19427,10 @@ func init() {
 	pulumi.RegisterOutputType(LdapVerifyLinkArrayOutput{})
 	pulumi.RegisterOutputType(LdapVerifyValidationOutput{})
 	pulumi.RegisterOutputType(LdapVerifyValidationArrayOutput{})
+	pulumi.RegisterOutputType(OnlineArchiveCriteriaOutput{})
+	pulumi.RegisterOutputType(OnlineArchiveCriteriaPtrOutput{})
+	pulumi.RegisterOutputType(OnlineArchivePartitionFieldOutput{})
+	pulumi.RegisterOutputType(OnlineArchivePartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTeamOutput{})
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
@@ -13499,15 +19439,26 @@ func init() {
 	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserCertificateArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMatcherOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMatcherArrayOutput{})
-	pulumi.RegisterOutputType(GetAlertConfigurationMetricThresholdOutput{})
+	pulumi.RegisterOutputType(GetAlertConfigurationMetricThresholdConfigOutput{})
+	pulumi.RegisterOutputType(GetAlertConfigurationMetricThresholdConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationNotificationOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationNotificationArrayOutput{})
-	pulumi.RegisterOutputType(GetAlertConfigurationThresholdOutput{})
+	pulumi.RegisterOutputType(GetAlertConfigurationThresholdConfigOutput{})
+	pulumi.RegisterOutputType(GetAlertConfigurationThresholdConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemDailyOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemDailyArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemHourlyOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemHourlyArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemMonthlyOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemMonthlyArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleFeatureUsageOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput{})
-	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAwsOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAwsConfigOutput{})
+	pulumi.RegisterOutputType(GetCloudProviderAccessSetupAwsConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput{})
@@ -13516,13 +19467,14 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotRestoreJobsResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotsResultTypeOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotsResultTypeArrayOutput{})
-	pulumi.RegisterOutputType(GetClusterBiConnectorOutput{})
 	pulumi.RegisterOutputType(GetClusterBiConnectorConfigOutput{})
-	pulumi.RegisterOutputType(GetClusterConnectionStringsOutput{})
-	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointOutput{})
-	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointArrayOutput{})
-	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointEndpointOutput{})
-	pulumi.RegisterOutputType(GetClusterConnectionStringsPrivateEndpointEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterBiConnectorConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionStringPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterLabelOutput{})
 	pulumi.RegisterOutputType(GetClusterLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterReplicationSpecOutput{})
@@ -13537,13 +19489,14 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultTypeOutput{})
 	pulumi.RegisterOutputType(GetClustersResultTypeArrayOutput{})
-	pulumi.RegisterOutputType(GetClustersResultBiConnectorOutput{})
 	pulumi.RegisterOutputType(GetClustersResultBiConnectorConfigOutput{})
-	pulumi.RegisterOutputType(GetClustersResultConnectionStringsOutput{})
-	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointOutput{})
-	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointArrayOutput{})
-	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointEndpointOutput{})
-	pulumi.RegisterOutputType(GetClustersResultConnectionStringsPrivateEndpointEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersResultBiConnectorConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultLabelOutput{})
 	pulumi.RegisterOutputType(GetClustersResultLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultReplicationSpecOutput{})
@@ -13570,6 +19523,36 @@ func init() {
 	pulumi.RegisterOutputType(GetCustomDbRolesResultActionResourceArrayOutput{})
 	pulumi.RegisterOutputType(GetCustomDbRolesResultInheritedRoleOutput{})
 	pulumi.RegisterOutputType(GetCustomDbRolesResultInheritedRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakeAwOutput{})
+	pulumi.RegisterOutputType(GetDataLakeAwArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakeDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetDataLakeDataProcessRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageDatabaseOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageDatabaseCollectionOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageDatabaseCollectionArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageDatabaseCollectionDataSourceOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageDatabaseViewOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageDatabaseViewArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageStoreOutput{})
+	pulumi.RegisterOutputType(GetDataLakeStorageStoreArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultTypeOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultAwOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultAwArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultDataProcessRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageDatabaseOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageDatabaseCollectionOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageDatabaseCollectionArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageDatabaseCollectionDataSourceOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageDatabaseViewOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageDatabaseViewArrayOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageStoreOutput{})
+	pulumi.RegisterOutputType(GetDataLakesResultStorageStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUserLabelOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUserLabelArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUserRoleOutput{})
@@ -13584,6 +19567,16 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseUsersResultRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultScopeOutput{})
 	pulumi.RegisterOutputType(GetDatabaseUsersResultScopeArrayOutput{})
+	pulumi.RegisterOutputType(GetEventTriggerEventProcessorOutput{})
+	pulumi.RegisterOutputType(GetEventTriggerEventProcessorArrayOutput{})
+	pulumi.RegisterOutputType(GetEventTriggerEventProcessorAwsEventbridgeOutput{})
+	pulumi.RegisterOutputType(GetEventTriggerEventProcessorAwsEventbridgeArrayOutput{})
+	pulumi.RegisterOutputType(GetEventTriggersResultTypeOutput{})
+	pulumi.RegisterOutputType(GetEventTriggersResultTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetEventTriggersResultEventProcessorOutput{})
+	pulumi.RegisterOutputType(GetEventTriggersResultEventProcessorArrayOutput{})
+	pulumi.RegisterOutputType(GetEventTriggersResultEventProcessorAwsEventbridgeOutput{})
+	pulumi.RegisterOutputType(GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceArrayOutput{})
 	pulumi.RegisterOutputType(GetLdapConfigurationUserToDnMappingOutput{})
@@ -13596,12 +19589,24 @@ func init() {
 	pulumi.RegisterOutputType(GetNetworkContainersResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkPeeringsResultTypeOutput{})
 	pulumi.RegisterOutputType(GetNetworkPeeringsResultTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchiveCriteriaOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchiveCriteriaArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivePartitionFieldOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivePartitionFieldArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultTypeOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultCriteriaOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultCriteriaArrayOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldOutput{})
+	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTypeOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamArrayOutput{})
+	pulumi.RegisterOutputType(GetSearchIndexesResultTypeOutput{})
+	pulumi.RegisterOutputType(GetSearchIndexesResultTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultTypeOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultTypeArrayOutput{})
 }

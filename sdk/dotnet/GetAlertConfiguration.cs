@@ -62,13 +62,15 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationMatcherResult> Matchers;
-        public readonly Outputs.GetAlertConfigurationMetricThresholdResult MetricThreshold;
+        public readonly ImmutableDictionary<string, string> MetricThreshold;
+        public readonly ImmutableArray<Outputs.GetAlertConfigurationMetricThresholdConfigResult> MetricThresholdConfigs;
         public readonly ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> Notifications;
         public readonly string ProjectId;
         /// <summary>
         /// Threshold value outside of which an alert will be triggered.
         /// </summary>
-        public readonly Outputs.GetAlertConfigurationThresholdResult Threshold;
+        public readonly ImmutableDictionary<string, string> Threshold;
+        public readonly ImmutableArray<Outputs.GetAlertConfigurationThresholdConfigResult> ThresholdConfigs;
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         /// </summary>
@@ -88,13 +90,17 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetAlertConfigurationMatcherResult> matchers,
 
-            Outputs.GetAlertConfigurationMetricThresholdResult metricThreshold,
+            ImmutableDictionary<string, string> metricThreshold,
+
+            ImmutableArray<Outputs.GetAlertConfigurationMetricThresholdConfigResult> metricThresholdConfigs,
 
             ImmutableArray<Outputs.GetAlertConfigurationNotificationResult> notifications,
 
             string projectId,
 
-            Outputs.GetAlertConfigurationThresholdResult threshold,
+            ImmutableDictionary<string, string> threshold,
+
+            ImmutableArray<Outputs.GetAlertConfigurationThresholdConfigResult> thresholdConfigs,
 
             string updated)
         {
@@ -105,9 +111,11 @@ namespace Pulumi.Mongodbatlas
             Id = id;
             Matchers = matchers;
             MetricThreshold = metricThreshold;
+            MetricThresholdConfigs = metricThresholdConfigs;
             Notifications = notifications;
             ProjectId = projectId;
             Threshold = threshold;
+            ThresholdConfigs = thresholdConfigs;
             Updated = updated;
         }
     }

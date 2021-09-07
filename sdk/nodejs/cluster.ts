@@ -6,198 +6,6 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
- * > **NOTE:** A network container is created for a cluster to reside in if one does not yet exist in the project.  To  use this automatically created container with another resource, such as peering, the `containerId` is exported after creation.
- *
- * > **IMPORTANT:**
- * <br> &#8226; Free tier cluster creation (M0) is not supported via API or by this Provider.
- * <br> &#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.
- * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).\
- * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- *
- * ## Example Usage
- * ### Example AWS cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     autoScalingDiskGbEnabled: true,
- *     clusterType: "REPLICASET",
- *     diskSizeGb: 100,
- *     mongoDbMajorVersion: "4.2",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerBackupEnabled: true,
- *     providerInstanceSizeName: "M40",
- *     //Provider Settings "block"
- *     providerName: "AWS",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *             regionName: "US_EAST_1",
- *         }],
- *     }],
- * });
- * ```
- * ### Example Azure cluster.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.Cluster("test", {
- *     autoScalingDiskGbEnabled: true,
- *     clusterType: "REPLICASET",
- *     mongoDbMajorVersion: "4.2",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerBackupEnabled: true,
- *     providerDiskTypeName: "P6",
- *     providerInstanceSizeName: "M30",
- *     //Provider Settings "block"
- *     providerName: "AZURE",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *             regionName: "US_EAST_1",
- *         }],
- *     }],
- * });
- * ```
- * ### Example GCP cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.Cluster("test", {
- *     autoScalingDiskGbEnabled: true,
- *     clusterType: "REPLICASET",
- *     diskSizeGb: 40,
- *     mongoDbMajorVersion: "4.2",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerBackupEnabled: true,
- *     providerInstanceSizeName: "M30",
- *     //Provider Settings "block"
- *     providerName: "GCP",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *             regionName: "US_EAST_1",
- *         }],
- *     }],
- * });
- * ```
- * ### Example Multi Region cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     clusterType: "REPLICASET",
- *     diskSizeGb: 100,
- *     numShards: 1,
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerBackupEnabled: true,
- *     providerInstanceSizeName: "M10",
- *     //Provider Settings "block"
- *     providerName: "AWS",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [
- *             {
- *                 electableNodes: 3,
- *                 priority: 7,
- *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_1",
- *             },
- *             {
- *                 electableNodes: 2,
- *                 priority: 6,
- *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_2",
- *             },
- *             {
- *                 electableNodes: 2,
- *                 priority: 5,
- *                 readOnlyNodes: 2,
- *                 regionName: "US_WEST_1",
- *             },
- *         ],
- *     }],
- * });
- * ```
- * ### Example Global cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     clusterType: "GEOSHARDED",
- *     diskSizeGb: 80,
- *     numShards: 1,
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerBackupEnabled: true,
- *     providerInstanceSizeName: "M30",
- *     //Provider Settings "block"
- *     providerName: "AWS",
- *     replicationSpecs: [
- *         {
- *             numShards: 2,
- *             regionsConfigs: [{
- *                 electableNodes: 3,
- *                 priority: 7,
- *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_1",
- *             }],
- *             zoneName: "Zone 1",
- *         },
- *         {
- *             numShards: 2,
- *             regionsConfigs: [{
- *                 electableNodes: 3,
- *                 priority: 7,
- *                 readOnlyNodes: 0,
- *                 regionName: "EU_CENTRAL_1",
- *             }],
- *             zoneName: "Zone 2",
- *         },
- *     ],
- * });
- * ```
- * ### Example AWS Shared Tier cluster
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     autoScalingDiskGbEnabled: false,
- *     backingProviderName: "AWS",
- *     diskSizeGb: 2,
- *     //These must be the following values
- *     mongoDbMajorVersion: "4.2",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M2",
- *     //Provider Settings "block"
- *     providerName: "TENANT",
- *     providerRegionName: "US_EAST_1",
- * });
- * ```
- *
  * ## Import
  *
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -258,17 +66,24 @@ export class Cluster extends pulumi.CustomResource {
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
     public readonly backingProviderName!: pulumi.Output<string>;
+    /**
+     * Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+     */
     public readonly backupEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
      *
      * @deprecated use bi_connector_config instead
      */
-    public readonly biConnector!: pulumi.Output<outputs.ClusterBiConnector | undefined>;
+    public readonly biConnector!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     public readonly biConnectorConfig!: pulumi.Output<outputs.ClusterBiConnectorConfig>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
+     */
+    public readonly cloudBackup!: pulumi.Output<boolean | undefined>;
     /**
      * The cluster ID.
      */
@@ -280,7 +95,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
-    public /*out*/ readonly connectionStrings!: pulumi.Output<outputs.ClusterConnectionStrings>;
+    public /*out*/ readonly connectionStrings!: pulumi.Output<outputs.ClusterConnectionString[]>;
     /**
      * The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      */
@@ -331,7 +146,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly paused!: pulumi.Output<boolean>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
+     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
     public readonly pitEnabled!: pulumi.Output<boolean>;
     /**
@@ -347,7 +162,9 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly providerAutoScalingComputeMinInstanceSize!: pulumi.Output<string>;
     /**
-     * Flag indicating if the cluster uses Cloud Backup for backups.
+     * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
+     *
+     * @deprecated This field is deprecated,please use cloud_backup instead
      */
     public readonly providerBackupEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -432,6 +249,7 @@ export class Cluster extends pulumi.CustomResource {
             inputs["backupEnabled"] = state ? state.backupEnabled : undefined;
             inputs["biConnector"] = state ? state.biConnector : undefined;
             inputs["biConnectorConfig"] = state ? state.biConnectorConfig : undefined;
+            inputs["cloudBackup"] = state ? state.cloudBackup : undefined;
             inputs["clusterId"] = state ? state.clusterId : undefined;
             inputs["clusterType"] = state ? state.clusterType : undefined;
             inputs["connectionStrings"] = state ? state.connectionStrings : undefined;
@@ -484,6 +302,7 @@ export class Cluster extends pulumi.CustomResource {
             inputs["backupEnabled"] = args ? args.backupEnabled : undefined;
             inputs["biConnector"] = args ? args.biConnector : undefined;
             inputs["biConnectorConfig"] = args ? args.biConnectorConfig : undefined;
+            inputs["cloudBackup"] = args ? args.cloudBackup : undefined;
             inputs["clusterType"] = args ? args.clusterType : undefined;
             inputs["diskSizeGb"] = args ? args.diskSizeGb : undefined;
             inputs["encryptionAtRestProvider"] = args ? args.encryptionAtRestProvider : undefined;
@@ -551,17 +370,24 @@ export interface ClusterState {
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
     readonly backingProviderName?: pulumi.Input<string>;
+    /**
+     * Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+     */
     readonly backupEnabled?: pulumi.Input<boolean>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
      *
      * @deprecated use bi_connector_config instead
      */
-    readonly biConnector?: pulumi.Input<inputs.ClusterBiConnector>;
+    readonly biConnector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     readonly biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
+     */
+    readonly cloudBackup?: pulumi.Input<boolean>;
     /**
      * The cluster ID.
      */
@@ -573,7 +399,7 @@ export interface ClusterState {
     /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
-    readonly connectionStrings?: pulumi.Input<inputs.ClusterConnectionStrings>;
+    readonly connectionStrings?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionString>[]>;
     /**
      * The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      */
@@ -624,7 +450,7 @@ export interface ClusterState {
      */
     readonly paused?: pulumi.Input<boolean>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
+     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
     readonly pitEnabled?: pulumi.Input<boolean>;
     /**
@@ -640,7 +466,9 @@ export interface ClusterState {
      */
     readonly providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
     /**
-     * Flag indicating if the cluster uses Cloud Backup for backups.
+     * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
+     *
+     * @deprecated This field is deprecated,please use cloud_backup instead
      */
     readonly providerBackupEnabled?: pulumi.Input<boolean>;
     /**
@@ -731,17 +559,24 @@ export interface ClusterArgs {
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
     readonly backingProviderName?: pulumi.Input<string>;
+    /**
+     * Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+     */
     readonly backupEnabled?: pulumi.Input<boolean>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
      *
      * @deprecated use bi_connector_config instead
      */
-    readonly biConnector?: pulumi.Input<inputs.ClusterBiConnector>;
+    readonly biConnector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     readonly biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
+     */
+    readonly cloudBackup?: pulumi.Input<boolean>;
     /**
      * Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      */
@@ -772,7 +607,7 @@ export interface ClusterArgs {
      */
     readonly numShards?: pulumi.Input<number>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
+     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
     readonly pitEnabled?: pulumi.Input<boolean>;
     /**
@@ -788,7 +623,9 @@ export interface ClusterArgs {
      */
     readonly providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
     /**
-     * Flag indicating if the cluster uses Cloud Backup for backups.
+     * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
+     *
+     * @deprecated This field is deprecated,please use cloud_backup instead
      */
     readonly providerBackupEnabled?: pulumi.Input<boolean>;
     /**

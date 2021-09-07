@@ -9,11 +9,18 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'base_url',
     'private_key',
     'public_key',
+    'realm_base_url',
 ]
 
 __config__ = pulumi.Config('mongodbatlas')
+
+base_url = __config__.get('baseUrl')
+"""
+MongoDB Atlas Base URL
+"""
 
 private_key = __config__.get('privateKey')
 """
@@ -23,5 +30,10 @@ MongoDB Atlas Programmatic Private Key
 public_key = __config__.get('publicKey')
 """
 MongoDB Atlas Programmatic Public Key
+"""
+
+realm_base_url = __config__.get('realmBaseUrl')
+"""
+MongoDB Realm Base URL
 """
 
