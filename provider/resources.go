@@ -19,11 +19,10 @@ import (
 	"path/filepath"
 	"unicode"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/mongodb/terraform-provider-mongodbatlas/mongodbatlas"
-	"github.com/pulumi/pulumi-mongodbatlas/provider/v2/pkg/version"
+	"github.com/pulumi/pulumi-mongodbatlas/provider/v3/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 )
 
@@ -64,7 +63,7 @@ func makeResource(mod string, res string) tokens.Type {
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(mongodbatlas.Provider().(*schema.Provider))
+	p := shimv2.NewProvider(mongodbatlas.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -83,11 +82,11 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeResource(mainMod, "CustomDnsConfigurationClusterAws"),
 			},
 			"mongodbatlas_database_user":           {Tok: makeResource(mainMod, "DatabaseUser")},
-			"mongodbatlas_project_ip_whitelist":    {Tok: makeResource(mainMod, "ProjectIpWhitelist")},
 			"mongodbatlas_project":                 {Tok: makeResource(mainMod, "Project")},
 			"mongodbatlas_cluster":                 {Tok: makeResource(mainMod, "Cluster")},
 			"mongodbatlas_cloud_provider_snapshot": {Tok: makeResource(mainMod, "CloudProviderSnapshot")},
 			"mongodbatlas_cloud_provider_access":   {Tok: makeResource(mainMod, "CloudProviderAccess")},
+			"mongodbatlas_cloud_backup_schedule":   {Tok: makeResource(mainMod, "CloudBackupSchedule")},
 			"mongodbatlas_network_container":       {Tok: makeResource(mainMod, "NetworkContainer")},
 			"mongodbatlas_cloud_provider_snapshot_restore_job": {
 				Tok: makeResource(mainMod, "CloudProviderSnapshotRestoreJob"),
@@ -110,19 +109,19 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_x509_authentication_database_user": {
 				Tok: makeResource(mainMod, "X509AuthenticationDatabaseUser"),
 			},
-			"mongodbatlas_private_endpoint": {Tok: makeResource(mainMod, "PrivateEndpoint")},
-			"mongodbatlas_private_endpoint_interface_link": {
-				Tok: makeResource(mainMod, "PrivateEndpointInterfaceLink"),
-			},
 			"mongodbatlas_cloud_provider_snapshot_backup_policy": {
 				Tok: makeResource(mainMod, "CloudProviderSnapshotBackupPolicy"),
 			},
-			"mongodbatlas_privatelink_endpoint":         {Tok: makeResource(mainMod, "PrivateLinkEndpoint")},
-			"mongodbatlas_privatelink_endpoint_service": {Tok: makeResource(mainMod, "PrivateLinkEndpointService")},
 			"mongodbatlas_project_ip_access_list":       {Tok: makeResource(mainMod, "ProjectIpAccessList")},
 			"mongodbatlas_third_party_integration":      {Tok: makeResource(mainMod, "ThirdPartyIntegration")},
 			"mongodbatlas_ldap_configuration":           {Tok: makeResource(mainMod, "LdapConfiguration")},
 			"mongodbatlas_ldap_verify":                  {Tok: makeResource(mainMod, "LdapVerify")},
+			"mongodbatlas_data_lake":                    {Tok: makeResource(mainMod, "DataLake")},
+			"mongodbatlas_event_trigger":                {Tok: makeResource(mainMod, "EventTrigger")},
+			"mongodbatlas_online_archive":               {Tok: makeResource(mainMod, "OnlineArchive")},
+			"mongodbatlas_privatelink_endpoint":         {Tok: makeResource(mainMod, "PrivateLinkEndpoint")},
+			"mongodbatlas_privatelink_endpoint_service": {Tok: makeResource(mainMod, "PrivateLinkEndpointService")},
+			"mongodbatlas_search_index":                 {Tok: makeResource(mainMod, "SearchIndex")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"mongodbatlas_custom_db_role":              {Tok: makeDataSource(mainMod, "getCustomDbRole")},
@@ -156,15 +155,8 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_x509_authentication_database_user": {
 				Tok: makeDataSource(mainMod, "get509AuthenticationDatabaseUser"),
 			},
-			"mongodbatlas_private_endpoint": {Tok: makeDataSource(mainMod, "getPrivateEndpoint")},
-			"mongodbatlas_private_endpoint_interface_link": {
-				Tok: makeDataSource(mainMod, "getPrivateEndpointInterfaceLink"),
-			},
 			"mongodbatlas_cloud_provider_snapshot_backup_policy": {
 				Tok: makeDataSource(mainMod, "getCloudProviderSnapshotBackupPolicy"),
-			},
-			"mongodbatlas_project_ip_whitelist": {
-				Tok: makeDataSource(mainMod, "getProjectIpWhitelist"),
 			},
 			"mongodbatlas_privatelink_endpoint": {Tok: makeDataSource(mainMod, "getPrivateLinkEndpoint")},
 			"mongodbatlas_privatelink_endpoint_service": {
@@ -176,8 +168,17 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_custom_dns_configuration_cluster_aws": {
 				Tok: makeDataSource(mainMod, "getCustomDnsConfigurationClusterAws"),
 			},
-			"mongodbatlas_ldap_configuration": {Tok: makeDataSource(mainMod, "getLdapConfiguration")},
-			"mongodbatlas_ldap_verify":        {Tok: makeDataSource(mainMod, "getLdapVerify")},
+			"mongodbatlas_ldap_configuration":    {Tok: makeDataSource(mainMod, "getLdapConfiguration")},
+			"mongodbatlas_ldap_verify":           {Tok: makeDataSource(mainMod, "getLdapVerify")},
+			"mongodbatlas_cloud_backup_schedule": {Tok: makeDataSource(mainMod, "getCloudBackupSchedule")},
+			"mongodbatlas_data_lake":             {Tok: makeDataSource(mainMod, "getDataLake")},
+			"mongodbatlas_data_lakes":            {Tok: makeDataSource(mainMod, "getDataLakes")},
+			"mongodbatlas_event_trigger":         {Tok: makeDataSource(mainMod, "getEventTrigger")},
+			"mongodbatlas_event_triggers":        {Tok: makeDataSource(mainMod, "getEventTriggers")},
+			"mongodbatlas_online_archive":        {Tok: makeDataSource(mainMod, "getOnlineArchive")},
+			"mongodbatlas_online_archives":       {Tok: makeDataSource(mainMod, "getOnlineArchives")},
+			"mongodbatlas_search_index":          {Tok: makeDataSource(mainMod, "getSearchIndex")},
+			"mongodbatlas_search_indexes":        {Tok: makeDataSource(mainMod, "getSearchIndexes")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
@@ -205,8 +206,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
-				"Pulumi":                       "3.*",
-				"System.Collections.Immutable": "1.6.0",
+				"Pulumi": "3.*",
 			},
 		},
 	}

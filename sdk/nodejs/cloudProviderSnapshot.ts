@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",
- *     providerBackupEnabled: true,
+ *     cloudBackup: true,
  * });
  * // enable cloud backup snapshots
  * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
@@ -35,9 +35,9 @@ import * as utilities from "./utilities";
  *     projectId: testCloudProviderSnapshot.projectId,
  *     clusterName: testCloudProviderSnapshot.clusterName,
  *     snapshotId: testCloudProviderSnapshot.snapshotId,
- *     deliveryType: {
+ *     deliveryType: [{
  *         download: true,
- *     },
+ *     }],
  * });
  * ```
  *

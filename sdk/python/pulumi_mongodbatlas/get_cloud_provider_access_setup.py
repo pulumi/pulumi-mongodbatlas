@@ -20,10 +20,13 @@ class GetCloudProviderAccessSetupResult:
     """
     A collection of values returned by getCloudProviderAccessSetup.
     """
-    def __init__(__self__, aws=None, created_date=None, id=None, project_id=None, provider_name=None, role_id=None):
+    def __init__(__self__, aws=None, aws_configs=None, created_date=None, id=None, project_id=None, provider_name=None, role_id=None):
         if aws and not isinstance(aws, dict):
             raise TypeError("Expected argument 'aws' to be a dict")
         pulumi.set(__self__, "aws", aws)
+        if aws_configs and not isinstance(aws_configs, list):
+            raise TypeError("Expected argument 'aws_configs' to be a list")
+        pulumi.set(__self__, "aws_configs", aws_configs)
         if created_date and not isinstance(created_date, str):
             raise TypeError("Expected argument 'created_date' to be a str")
         pulumi.set(__self__, "created_date", created_date)
@@ -42,11 +45,16 @@ class GetCloudProviderAccessSetupResult:
 
     @property
     @pulumi.getter
-    def aws(self) -> 'outputs.GetCloudProviderAccessSetupAwsResult':
+    def aws(self) -> Mapping[str, str]:
         """
         aws related role information
         """
         return pulumi.get(self, "aws")
+
+    @property
+    @pulumi.getter(name="awsConfigs")
+    def aws_configs(self) -> Sequence['outputs.GetCloudProviderAccessSetupAwsConfigResult']:
+        return pulumi.get(self, "aws_configs")
 
     @property
     @pulumi.getter(name="createdDate")
@@ -87,6 +95,7 @@ class AwaitableGetCloudProviderAccessSetupResult(GetCloudProviderAccessSetupResu
             yield self
         return GetCloudProviderAccessSetupResult(
             aws=self.aws,
+            aws_configs=self.aws_configs,
             created_date=self.created_date,
             id=self.id,
             project_id=self.project_id,
@@ -134,6 +143,7 @@ def get_cloud_provider_access_setup(project_id: Optional[str] = None,
 
     return AwaitableGetCloudProviderAccessSetupResult(
         aws=__ret__.aws,
+        aws_configs=__ret__.aws_configs,
         created_date=__ret__.created_date,
         id=__ret__.id,
         project_id=__ret__.project_id,

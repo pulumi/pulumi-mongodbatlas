@@ -28,11 +28,11 @@ import * as utilities from "./utilities";
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     clusterName: "MyCluster",
  *     snapshotId: testCloudProviderSnapshot.id,
- *     deliveryType: {
+ *     deliveryType: [{
  *         automated: true,
- *         target_cluster_name: "MyCluster",
- *         target_project_id: "5cf5a45a9ccf6400e60981b6",
- *     },
+ *         targetClusterName: "MyCluster",
+ *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
+ *     }],
  * });
  * const testCloudProviderSnapshotRestoreJobs = pulumi.all([testCloudProviderSnapshotRestoreJob.projectId, testCloudProviderSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudProviderSnapshotRestoreJobs({
  *     projectId: projectId,

@@ -33,7 +33,11 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
         return obj['__pulumiType'] === CloudProviderAccessSetup.__pulumiType;
     }
 
-    public /*out*/ readonly aws!: pulumi.Output<outputs.CloudProviderAccessSetupAws>;
+    /**
+     * @deprecated use aws_config instead
+     */
+    public /*out*/ readonly aws!: pulumi.Output<{[key: string]: string}>;
+    public /*out*/ readonly awsConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAwsConfig[]>;
     public /*out*/ readonly createdDate!: pulumi.Output<string>;
     public readonly projectId!: pulumi.Output<string>;
     public readonly providerName!: pulumi.Output<string>;
@@ -53,6 +57,7 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as CloudProviderAccessSetupState | undefined;
             inputs["aws"] = state ? state.aws : undefined;
+            inputs["awsConfigs"] = state ? state.awsConfigs : undefined;
             inputs["createdDate"] = state ? state.createdDate : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
             inputs["providerName"] = state ? state.providerName : undefined;
@@ -68,6 +73,7 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["providerName"] = args ? args.providerName : undefined;
             inputs["aws"] = undefined /*out*/;
+            inputs["awsConfigs"] = undefined /*out*/;
             inputs["createdDate"] = undefined /*out*/;
             inputs["roleId"] = undefined /*out*/;
         }
@@ -82,7 +88,11 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudProviderAccessSetup resources.
  */
 export interface CloudProviderAccessSetupState {
-    readonly aws?: pulumi.Input<inputs.CloudProviderAccessSetupAws>;
+    /**
+     * @deprecated use aws_config instead
+     */
+    readonly aws?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;
     readonly createdDate?: pulumi.Input<string>;
     readonly projectId?: pulumi.Input<string>;
     readonly providerName?: pulumi.Input<string>;

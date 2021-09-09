@@ -11,22 +11,25 @@ from . import outputs
 
 __all__ = [
     'AlertConfigurationMatcher',
-    'AlertConfigurationMetricThreshold',
+    'AlertConfigurationMetricThresholdConfig',
     'AlertConfigurationNotification',
-    'AlertConfigurationThreshold',
+    'AlertConfigurationThresholdConfig',
+    'CloudBackupSchedulePolicyItemDaily',
+    'CloudBackupSchedulePolicyItemHourly',
+    'CloudBackupSchedulePolicyItemMonthly',
+    'CloudBackupSchedulePolicyItemWeekly',
     'CloudProviderAccessAuthorizationAws',
     'CloudProviderAccessAuthorizationFeatureUsage',
     'CloudProviderAccessFeatureUsage',
-    'CloudProviderAccessSetupAws',
+    'CloudProviderAccessSetupAwsConfig',
     'CloudProviderSnapshotBackupPolicyPolicy',
     'CloudProviderSnapshotBackupPolicyPolicyPolicyItem',
-    'CloudProviderSnapshotRestoreJobDeliveryType',
+    'CloudProviderSnapshotRestoreJobDeliveryTypeConfig',
     'ClusterAdvancedConfiguration',
-    'ClusterBiConnector',
     'ClusterBiConnectorConfig',
-    'ClusterConnectionStrings',
-    'ClusterConnectionStringsPrivateEndpoint',
-    'ClusterConnectionStringsPrivateEndpointEndpoint',
+    'ClusterConnectionString',
+    'ClusterConnectionStringPrivateEndpoint',
+    'ClusterConnectionStringPrivateEndpointEndpoint',
     'ClusterLabel',
     'ClusterReplicationSpec',
     'ClusterReplicationSpecRegionsConfig',
@@ -36,36 +39,50 @@ __all__ = [
     'CustomDbRoleAction',
     'CustomDbRoleActionResource',
     'CustomDbRoleInheritedRole',
+    'DataLakeAws',
+    'DataLakeDataProcessRegion',
+    'DataLakeStorageDatabase',
+    'DataLakeStorageDatabaseCollection',
+    'DataLakeStorageDatabaseCollectionDataSource',
+    'DataLakeStorageDatabaseView',
+    'DataLakeStorageStore',
     'DatabaseUserLabel',
     'DatabaseUserRole',
     'DatabaseUserScope',
-    'EncryptionAtRestAwsKms',
-    'EncryptionAtRestAzureKeyVault',
-    'EncryptionAtRestGoogleCloudKms',
+    'EncryptionAtRestAwsKmsConfig',
+    'EncryptionAtRestAzureKeyVaultConfig',
+    'EncryptionAtRestGoogleCloudKmsConfig',
+    'EventTriggerEventProcessors',
+    'EventTriggerEventProcessorsAwsEventbridge',
     'GlobalClusterConfigCustomZoneMapping',
     'GlobalClusterConfigManagedNamespace',
     'LdapConfigurationUserToDnMapping',
     'LdapVerifyLink',
     'LdapVerifyValidation',
+    'OnlineArchiveCriteria',
+    'OnlineArchivePartitionField',
     'ProjectTeam',
     'X509AuthenticationDatabaseUserCertificate',
     'Get509AuthenticationDatabaseUserCertificateResult',
     'GetAlertConfigurationMatcherResult',
-    'GetAlertConfigurationMetricThresholdResult',
+    'GetAlertConfigurationMetricThresholdConfigResult',
     'GetAlertConfigurationNotificationResult',
-    'GetAlertConfigurationThresholdResult',
+    'GetAlertConfigurationThresholdConfigResult',
+    'GetCloudBackupSchedulePolicyItemDailyResult',
+    'GetCloudBackupSchedulePolicyItemHourlyResult',
+    'GetCloudBackupSchedulePolicyItemMonthlyResult',
+    'GetCloudBackupSchedulePolicyItemWeeklyResult',
     'GetCloudProviderAccessAwsIamRoleResult',
     'GetCloudProviderAccessAwsIamRoleFeatureUsageResult',
-    'GetCloudProviderAccessSetupAwsResult',
+    'GetCloudProviderAccessSetupAwsConfigResult',
     'GetCloudProviderSnapshotBackupPolicyPolicyResult',
     'GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetCloudProviderSnapshotRestoreJobsResultResult',
     'GetCloudProviderSnapshotsResultResult',
-    'GetClusterBiConnectorResult',
     'GetClusterBiConnectorConfigResult',
-    'GetClusterConnectionStringsResult',
-    'GetClusterConnectionStringsPrivateEndpointResult',
-    'GetClusterConnectionStringsPrivateEndpointEndpointResult',
+    'GetClusterConnectionStringResult',
+    'GetClusterConnectionStringPrivateEndpointResult',
+    'GetClusterConnectionStringPrivateEndpointEndpointResult',
     'GetClusterLabelResult',
     'GetClusterReplicationSpecResult',
     'GetClusterReplicationSpecRegionsConfigResult',
@@ -73,11 +90,10 @@ __all__ = [
     'GetClusterSnapshotBackupPolicyPolicyResult',
     'GetClusterSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetClustersResultResult',
-    'GetClustersResultBiConnectorResult',
     'GetClustersResultBiConnectorConfigResult',
-    'GetClustersResultConnectionStringsResult',
-    'GetClustersResultConnectionStringsPrivateEndpointResult',
-    'GetClustersResultConnectionStringsPrivateEndpointEndpointResult',
+    'GetClustersResultConnectionStringResult',
+    'GetClustersResultConnectionStringPrivateEndpointResult',
+    'GetClustersResultConnectionStringPrivateEndpointEndpointResult',
     'GetClustersResultLabelResult',
     'GetClustersResultReplicationSpecResult',
     'GetClustersResultReplicationSpecRegionsConfigResult',
@@ -91,6 +107,21 @@ __all__ = [
     'GetCustomDbRolesResultActionResult',
     'GetCustomDbRolesResultActionResourceResult',
     'GetCustomDbRolesResultInheritedRoleResult',
+    'GetDataLakeAwResult',
+    'GetDataLakeDataProcessRegionResult',
+    'GetDataLakeStorageDatabaseResult',
+    'GetDataLakeStorageDatabaseCollectionResult',
+    'GetDataLakeStorageDatabaseCollectionDataSourceResult',
+    'GetDataLakeStorageDatabaseViewResult',
+    'GetDataLakeStorageStoreResult',
+    'GetDataLakesResultResult',
+    'GetDataLakesResultAwResult',
+    'GetDataLakesResultDataProcessRegionResult',
+    'GetDataLakesResultStorageDatabaseResult',
+    'GetDataLakesResultStorageDatabaseCollectionResult',
+    'GetDataLakesResultStorageDatabaseCollectionDataSourceResult',
+    'GetDataLakesResultStorageDatabaseViewResult',
+    'GetDataLakesResultStorageStoreResult',
     'GetDatabaseUserLabelResult',
     'GetDatabaseUserRoleResult',
     'GetDatabaseUserScopeResult',
@@ -98,15 +129,26 @@ __all__ = [
     'GetDatabaseUsersResultLabelResult',
     'GetDatabaseUsersResultRoleResult',
     'GetDatabaseUsersResultScopeResult',
+    'GetEventTriggerEventProcessorResult',
+    'GetEventTriggerEventProcessorAwsEventbridgeResult',
+    'GetEventTriggersResultResult',
+    'GetEventTriggersResultEventProcessorResult',
+    'GetEventTriggersResultEventProcessorAwsEventbridgeResult',
     'GetGlobalClusterConfigManagedNamespaceResult',
     'GetLdapConfigurationUserToDnMappingResult',
     'GetLdapVerifyLinkResult',
     'GetLdapVerifyValidationResult',
     'GetNetworkContainersResultResult',
     'GetNetworkPeeringsResultResult',
+    'GetOnlineArchiveCriteriaResult',
+    'GetOnlineArchivePartitionFieldResult',
+    'GetOnlineArchivesResultResult',
+    'GetOnlineArchivesResultCriteriaResult',
+    'GetOnlineArchivesResultPartitionFieldResult',
     'GetProjectTeamResult',
     'GetProjectsResultResult',
     'GetProjectsResultTeamResult',
+    'GetSearchIndexesResultResult',
     'GetThirdPartyIntegrationsResultResult',
 ]
 
@@ -187,7 +229,7 @@ class AlertConfigurationMatcher(dict):
 
 
 @pulumi.output_type
-class AlertConfigurationMetricThreshold(dict):
+class AlertConfigurationMetricThresholdConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -195,14 +237,14 @@ class AlertConfigurationMetricThreshold(dict):
             suggest = "metric_name"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AlertConfigurationMetricThreshold. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in AlertConfigurationMetricThresholdConfig. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AlertConfigurationMetricThreshold.__key_warning(key)
+        AlertConfigurationMetricThresholdConfig.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AlertConfigurationMetricThreshold.__key_warning(key)
+        AlertConfigurationMetricThresholdConfig.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -641,7 +683,7 @@ class AlertConfigurationNotification(dict):
 
 
 @pulumi.output_type
-class AlertConfigurationThreshold(dict):
+class AlertConfigurationThresholdConfig(dict):
     def __init__(__self__, *,
                  operator: Optional[str] = None,
                  threshold: Optional[float] = None,
@@ -724,6 +766,322 @@ class AlertConfigurationThreshold(dict):
 
 
 @pulumi.output_type
+class CloudBackupSchedulePolicyItemDaily(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "frequencyInterval":
+            suggest = "frequency_interval"
+        elif key == "retentionUnit":
+            suggest = "retention_unit"
+        elif key == "retentionValue":
+            suggest = "retention_value"
+        elif key == "frequencyType":
+            suggest = "frequency_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupSchedulePolicyItemDaily. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupSchedulePolicyItemDaily.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupSchedulePolicyItemDaily.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 frequency_interval: int,
+                 retention_unit: str,
+                 retention_value: int,
+                 frequency_type: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> int:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> str:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[str]:
+        return pulumi.get(self, "frequency_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class CloudBackupSchedulePolicyItemHourly(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "frequencyInterval":
+            suggest = "frequency_interval"
+        elif key == "retentionUnit":
+            suggest = "retention_unit"
+        elif key == "retentionValue":
+            suggest = "retention_value"
+        elif key == "frequencyType":
+            suggest = "frequency_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupSchedulePolicyItemHourly. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupSchedulePolicyItemHourly.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupSchedulePolicyItemHourly.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 frequency_interval: int,
+                 retention_unit: str,
+                 retention_value: int,
+                 frequency_type: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> int:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> str:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[str]:
+        return pulumi.get(self, "frequency_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class CloudBackupSchedulePolicyItemMonthly(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "frequencyInterval":
+            suggest = "frequency_interval"
+        elif key == "retentionUnit":
+            suggest = "retention_unit"
+        elif key == "retentionValue":
+            suggest = "retention_value"
+        elif key == "frequencyType":
+            suggest = "frequency_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupSchedulePolicyItemMonthly. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupSchedulePolicyItemMonthly.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupSchedulePolicyItemMonthly.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 frequency_interval: int,
+                 retention_unit: str,
+                 retention_value: int,
+                 frequency_type: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> int:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> str:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[str]:
+        return pulumi.get(self, "frequency_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class CloudBackupSchedulePolicyItemWeekly(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "frequencyInterval":
+            suggest = "frequency_interval"
+        elif key == "retentionUnit":
+            suggest = "retention_unit"
+        elif key == "retentionValue":
+            suggest = "retention_value"
+        elif key == "frequencyType":
+            suggest = "frequency_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupSchedulePolicyItemWeekly. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupSchedulePolicyItemWeekly.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupSchedulePolicyItemWeekly.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 frequency_interval: int,
+                 retention_unit: str,
+                 retention_value: int,
+                 frequency_type: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> int:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> str:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[str]:
+        return pulumi.get(self, "frequency_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class CloudProviderAccessAuthorizationAws(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -774,7 +1132,7 @@ class CloudProviderAccessAuthorizationFeatureUsage(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 feature_id: Optional[str] = None,
+                 feature_id: Optional[Mapping[str, Any]] = None,
                  feature_type: Optional[str] = None):
         if feature_id is not None:
             pulumi.set(__self__, "feature_id", feature_id)
@@ -783,7 +1141,7 @@ class CloudProviderAccessAuthorizationFeatureUsage(dict):
 
     @property
     @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[str]:
+    def feature_id(self) -> Optional[Mapping[str, Any]]:
         return pulumi.get(self, "feature_id")
 
     @property
@@ -814,7 +1172,7 @@ class CloudProviderAccessFeatureUsage(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 feature_id: Optional[str] = None,
+                 feature_id: Optional[Mapping[str, Any]] = None,
                  feature_type: Optional[str] = None):
         if feature_id is not None:
             pulumi.set(__self__, "feature_id", feature_id)
@@ -823,7 +1181,7 @@ class CloudProviderAccessFeatureUsage(dict):
 
     @property
     @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[str]:
+    def feature_id(self) -> Optional[Mapping[str, Any]]:
         return pulumi.get(self, "feature_id")
 
     @property
@@ -833,7 +1191,7 @@ class CloudProviderAccessFeatureUsage(dict):
 
 
 @pulumi.output_type
-class CloudProviderAccessSetupAws(dict):
+class CloudProviderAccessSetupAwsConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -843,14 +1201,14 @@ class CloudProviderAccessSetupAws(dict):
             suggest = "atlas_aws_account_arn"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessSetupAws. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderAccessSetupAwsConfig. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        CloudProviderAccessSetupAws.__key_warning(key)
+        CloudProviderAccessSetupAwsConfig.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        CloudProviderAccessSetupAws.__key_warning(key)
+        CloudProviderAccessSetupAwsConfig.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -972,7 +1330,7 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItem(dict):
 
 
 @pulumi.output_type
-class CloudProviderSnapshotRestoreJobDeliveryType(dict):
+class CloudProviderSnapshotRestoreJobDeliveryTypeConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -990,14 +1348,14 @@ class CloudProviderSnapshotRestoreJobDeliveryType(dict):
             suggest = "target_project_id"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in CloudProviderSnapshotRestoreJobDeliveryType. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in CloudProviderSnapshotRestoreJobDeliveryTypeConfig. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        CloudProviderSnapshotRestoreJobDeliveryType.__key_warning(key)
+        CloudProviderSnapshotRestoreJobDeliveryTypeConfig.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        CloudProviderSnapshotRestoreJobDeliveryType.__key_warning(key)
+        CloudProviderSnapshotRestoreJobDeliveryTypeConfig.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -1194,60 +1552,6 @@ class ClusterAdvancedConfiguration(dict):
 
 
 @pulumi.output_type
-class ClusterBiConnector(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "readPreference":
-            suggest = "read_preference"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ClusterBiConnector. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ClusterBiConnector.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ClusterBiConnector.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 enabled: Optional[str] = None,
-                 read_preference: Optional[str] = None):
-        """
-        :param str enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-               *
-               - Set to `true` to enable BI Connector for Atlas.
-               - Set to `false` to disable BI Connector for Atlas.
-        :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-        """
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
-        if read_preference is not None:
-            pulumi.set(__self__, "read_preference", read_preference)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> Optional[str]:
-        """
-        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
-        *
-        - Set to `true` to enable BI Connector for Atlas.
-        - Set to `false` to disable BI Connector for Atlas.
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="readPreference")
-    def read_preference(self) -> Optional[str]:
-        """
-        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-        """
-        return pulumi.get(self, "read_preference")
-
-
-@pulumi.output_type
 class ClusterBiConnectorConfig(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1302,7 +1606,7 @@ class ClusterBiConnectorConfig(dict):
 
 
 @pulumi.output_type
-class ClusterConnectionStrings(dict):
+class ClusterConnectionString(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -1318,21 +1622,21 @@ class ClusterConnectionStrings(dict):
             suggest = "standard_srv"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionStrings. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionString. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ClusterConnectionStrings.__key_warning(key)
+        ClusterConnectionString.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ClusterConnectionStrings.__key_warning(key)
+        ClusterConnectionString.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  aws_private_link: Optional[Mapping[str, Any]] = None,
                  aws_private_link_srv: Optional[Mapping[str, Any]] = None,
                  private: Optional[str] = None,
-                 private_endpoints: Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpoint']] = None,
+                 private_endpoints: Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpoint']] = None,
                  private_srv: Optional[str] = None,
                  standard: Optional[str] = None,
                  standard_srv: Optional[str] = None):
@@ -1368,7 +1672,7 @@ class ClusterConnectionStrings(dict):
 
     @property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpoint']]:
+    def private_endpoints(self) -> Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpoint']]:
         return pulumi.get(self, "private_endpoints")
 
     @property
@@ -1388,7 +1692,7 @@ class ClusterConnectionStrings(dict):
 
 
 @pulumi.output_type
-class ClusterConnectionStringsPrivateEndpoint(dict):
+class ClusterConnectionStringPrivateEndpoint(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -1398,19 +1702,19 @@ class ClusterConnectionStringsPrivateEndpoint(dict):
             suggest = "srv_connection_string"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionStringsPrivateEndpoint. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionStringPrivateEndpoint. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ClusterConnectionStringsPrivateEndpoint.__key_warning(key)
+        ClusterConnectionStringPrivateEndpoint.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ClusterConnectionStringsPrivateEndpoint.__key_warning(key)
+        ClusterConnectionStringPrivateEndpoint.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  connection_string: Optional[str] = None,
-                 endpoints: Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpointEndpoint']] = None,
+                 endpoints: Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpointEndpoint']] = None,
                  srv_connection_string: Optional[str] = None,
                  type: Optional[str] = None):
         if connection_string is not None:
@@ -1429,7 +1733,7 @@ class ClusterConnectionStringsPrivateEndpoint(dict):
 
     @property
     @pulumi.getter
-    def endpoints(self) -> Optional[Sequence['outputs.ClusterConnectionStringsPrivateEndpointEndpoint']]:
+    def endpoints(self) -> Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpointEndpoint']]:
         return pulumi.get(self, "endpoints")
 
     @property
@@ -1444,7 +1748,7 @@ class ClusterConnectionStringsPrivateEndpoint(dict):
 
 
 @pulumi.output_type
-class ClusterConnectionStringsPrivateEndpointEndpoint(dict):
+class ClusterConnectionStringPrivateEndpointEndpoint(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -1454,14 +1758,14 @@ class ClusterConnectionStringsPrivateEndpointEndpoint(dict):
             suggest = "provider_name"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionStringsPrivateEndpointEndpoint. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ClusterConnectionStringPrivateEndpointEndpoint. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ClusterConnectionStringsPrivateEndpointEndpoint.__key_warning(key)
+        ClusterConnectionStringPrivateEndpointEndpoint.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ClusterConnectionStringsPrivateEndpointEndpoint.__key_warning(key)
+        ClusterConnectionStringPrivateEndpointEndpoint.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -1608,14 +1912,14 @@ class ClusterReplicationSpecRegionsConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "analyticsNodes":
+        if key == "regionName":
+            suggest = "region_name"
+        elif key == "analyticsNodes":
             suggest = "analytics_nodes"
         elif key == "electableNodes":
             suggest = "electable_nodes"
         elif key == "readOnlyNodes":
             suggest = "read_only_nodes"
-        elif key == "regionName":
-            suggest = "region_name"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ClusterReplicationSpecRegionsConfig. Access the value via the '{suggest}' property getter instead.")
@@ -1629,12 +1933,13 @@ class ClusterReplicationSpecRegionsConfig(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 region_name: str,
                  analytics_nodes: Optional[int] = None,
                  electable_nodes: Optional[int] = None,
                  priority: Optional[int] = None,
-                 read_only_nodes: Optional[int] = None,
-                 region_name: Optional[str] = None):
+                 read_only_nodes: Optional[int] = None):
         """
+        :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param int analytics_nodes: The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
         :param int electable_nodes: Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
                * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
@@ -1645,8 +1950,8 @@ class ClusterReplicationSpecRegionsConfig(dict):
                * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
                * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
         :param int read_only_nodes: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
-        :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         """
+        pulumi.set(__self__, "region_name", region_name)
         if analytics_nodes is not None:
             pulumi.set(__self__, "analytics_nodes", analytics_nodes)
         if electable_nodes is not None:
@@ -1655,8 +1960,14 @@ class ClusterReplicationSpecRegionsConfig(dict):
             pulumi.set(__self__, "priority", priority)
         if read_only_nodes is not None:
             pulumi.set(__self__, "read_only_nodes", read_only_nodes)
-        if region_name is not None:
-            pulumi.set(__self__, "region_name", region_name)
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region_name")
 
     @property
     @pulumi.getter(name="analyticsNodes")
@@ -1695,14 +2006,6 @@ class ClusterReplicationSpecRegionsConfig(dict):
         Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         """
         return pulumi.get(self, "read_only_nodes")
-
-    @property
-    @pulumi.getter(name="regionName")
-    def region_name(self) -> Optional[str]:
-        """
-        Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        """
-        return pulumi.get(self, "region_name")
 
 
 @pulumi.output_type
@@ -2061,6 +2364,391 @@ class CustomDbRoleInheritedRole(dict):
 
 
 @pulumi.output_type
+class DataLakeAws(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "roleId":
+            suggest = "role_id"
+        elif key == "testS3Bucket":
+            suggest = "test_s3_bucket"
+        elif key == "externalId":
+            suggest = "external_id"
+        elif key == "iamAssumedRoleArn":
+            suggest = "iam_assumed_role_arn"
+        elif key == "iamUserArn":
+            suggest = "iam_user_arn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DataLakeAws. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DataLakeAws.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DataLakeAws.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 role_id: str,
+                 test_s3_bucket: str,
+                 external_id: Optional[str] = None,
+                 iam_assumed_role_arn: Optional[str] = None,
+                 iam_user_arn: Optional[str] = None):
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
+        if iam_assumed_role_arn is not None:
+            pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        if iam_user_arn is not None:
+            pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
+        return pulumi.get(self, "role_id")
+
+    @property
+    @pulumi.getter(name="testS3Bucket")
+    def test_s3_bucket(self) -> str:
+        return pulumi.get(self, "test_s3_bucket")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[str]:
+        return pulumi.get(self, "external_id")
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> Optional[str]:
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @property
+    @pulumi.getter(name="iamUserArn")
+    def iam_user_arn(self) -> Optional[str]:
+        return pulumi.get(self, "iam_user_arn")
+
+
+@pulumi.output_type
+class DataLakeDataProcessRegion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cloudProvider":
+            suggest = "cloud_provider"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DataLakeDataProcessRegion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DataLakeDataProcessRegion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DataLakeDataProcessRegion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 region: str):
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class DataLakeStorageDatabase(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxWildcardCollections":
+            suggest = "max_wildcard_collections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DataLakeStorageDatabase. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DataLakeStorageDatabase.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DataLakeStorageDatabase.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 collections: Optional[Sequence['outputs.DataLakeStorageDatabaseCollection']] = None,
+                 max_wildcard_collections: Optional[int] = None,
+                 name: Optional[str] = None,
+                 views: Optional[Sequence['outputs.DataLakeStorageDatabaseView']] = None):
+        """
+        :param str name: Name of the Atlas Data Lake.
+        """
+        if collections is not None:
+            pulumi.set(__self__, "collections", collections)
+        if max_wildcard_collections is not None:
+            pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if views is not None:
+            pulumi.set(__self__, "views", views)
+
+    @property
+    @pulumi.getter
+    def collections(self) -> Optional[Sequence['outputs.DataLakeStorageDatabaseCollection']]:
+        return pulumi.get(self, "collections")
+
+    @property
+    @pulumi.getter(name="maxWildcardCollections")
+    def max_wildcard_collections(self) -> Optional[int]:
+        return pulumi.get(self, "max_wildcard_collections")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def views(self) -> Optional[Sequence['outputs.DataLakeStorageDatabaseView']]:
+        return pulumi.get(self, "views")
+
+
+@pulumi.output_type
+class DataLakeStorageDatabaseCollection(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dataSources":
+            suggest = "data_sources"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DataLakeStorageDatabaseCollection. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DataLakeStorageDatabaseCollection.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DataLakeStorageDatabaseCollection.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 data_sources: Optional[Sequence['outputs.DataLakeStorageDatabaseCollectionDataSource']] = None,
+                 name: Optional[str] = None):
+        """
+        :param str name: Name of the Atlas Data Lake.
+        """
+        if data_sources is not None:
+            pulumi.set(__self__, "data_sources", data_sources)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="dataSources")
+    def data_sources(self) -> Optional[Sequence['outputs.DataLakeStorageDatabaseCollectionDataSource']]:
+        return pulumi.get(self, "data_sources")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class DataLakeStorageDatabaseCollectionDataSource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultFormat":
+            suggest = "default_format"
+        elif key == "storeName":
+            suggest = "store_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DataLakeStorageDatabaseCollectionDataSource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DataLakeStorageDatabaseCollectionDataSource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DataLakeStorageDatabaseCollectionDataSource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_format: Optional[str] = None,
+                 path: Optional[str] = None,
+                 store_name: Optional[str] = None):
+        if default_format is not None:
+            pulumi.set(__self__, "default_format", default_format)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if store_name is not None:
+            pulumi.set(__self__, "store_name", store_name)
+
+    @property
+    @pulumi.getter(name="defaultFormat")
+    def default_format(self) -> Optional[str]:
+        return pulumi.get(self, "default_format")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="storeName")
+    def store_name(self) -> Optional[str]:
+        return pulumi.get(self, "store_name")
+
+
+@pulumi.output_type
+class DataLakeStorageDatabaseView(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 pipeline: Optional[str] = None,
+                 source: Optional[str] = None):
+        """
+        :param str name: Name of the Atlas Data Lake.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pipeline is not None:
+            pulumi.set(__self__, "pipeline", pipeline)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def pipeline(self) -> Optional[str]:
+        return pulumi.get(self, "pipeline")
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[str]:
+        return pulumi.get(self, "source")
+
+
+@pulumi.output_type
+class DataLakeStorageStore(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalStorageClasses":
+            suggest = "additional_storage_classes"
+        elif key == "includeTags":
+            suggest = "include_tags"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DataLakeStorageStore. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DataLakeStorageStore.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DataLakeStorageStore.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_storage_classes: Optional[Sequence[str]] = None,
+                 bucket: Optional[str] = None,
+                 delimiter: Optional[str] = None,
+                 include_tags: Optional[bool] = None,
+                 name: Optional[str] = None,
+                 prefix: Optional[str] = None,
+                 provider: Optional[str] = None,
+                 region: Optional[str] = None):
+        """
+        :param str name: Name of the Atlas Data Lake.
+        """
+        if additional_storage_classes is not None:
+            pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if delimiter is not None:
+            pulumi.set(__self__, "delimiter", delimiter)
+        if include_tags is not None:
+            pulumi.set(__self__, "include_tags", include_tags)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+        if provider is not None:
+            pulumi.set(__self__, "provider", provider)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="additionalStorageClasses")
+    def additional_storage_classes(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "additional_storage_classes")
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> Optional[str]:
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> Optional[str]:
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="includeTags")
+    def include_tags(self) -> Optional[bool]:
+        return pulumi.get(self, "include_tags")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the Atlas Data Lake.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def provider(self) -> Optional[str]:
+        return pulumi.get(self, "provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class DatabaseUserLabel(dict):
     def __init__(__self__, *,
                  key: Optional[str] = None,
@@ -2187,7 +2875,7 @@ class DatabaseUserScope(dict):
 
 
 @pulumi.output_type
-class EncryptionAtRestAwsKms(dict):
+class EncryptionAtRestAwsKmsConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2201,14 +2889,14 @@ class EncryptionAtRestAwsKms(dict):
             suggest = "secret_access_key"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestAwsKms. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestAwsKmsConfig. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        EncryptionAtRestAwsKms.__key_warning(key)
+        EncryptionAtRestAwsKmsConfig.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        EncryptionAtRestAwsKms.__key_warning(key)
+        EncryptionAtRestAwsKmsConfig.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -2281,7 +2969,7 @@ class EncryptionAtRestAwsKms(dict):
 
 
 @pulumi.output_type
-class EncryptionAtRestAzureKeyVault(dict):
+class EncryptionAtRestAzureKeyVaultConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2301,14 +2989,14 @@ class EncryptionAtRestAzureKeyVault(dict):
             suggest = "tenant_id"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestAzureKeyVault. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestAzureKeyVaultConfig. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        EncryptionAtRestAzureKeyVault.__key_warning(key)
+        EncryptionAtRestAzureKeyVaultConfig.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        EncryptionAtRestAzureKeyVault.__key_warning(key)
+        EncryptionAtRestAzureKeyVaultConfig.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -2424,7 +3112,7 @@ class EncryptionAtRestAzureKeyVault(dict):
 
 
 @pulumi.output_type
-class EncryptionAtRestGoogleCloudKms(dict):
+class EncryptionAtRestGoogleCloudKmsConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -2434,14 +3122,14 @@ class EncryptionAtRestGoogleCloudKms(dict):
             suggest = "service_account_key"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestGoogleCloudKms. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in EncryptionAtRestGoogleCloudKmsConfig. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        EncryptionAtRestGoogleCloudKms.__key_warning(key)
+        EncryptionAtRestGoogleCloudKmsConfig.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        EncryptionAtRestGoogleCloudKms.__key_warning(key)
+        EncryptionAtRestGoogleCloudKmsConfig.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -2483,6 +3171,76 @@ class EncryptionAtRestGoogleCloudKms(dict):
         String-formatted JSON object containing GCP KMS credentials from your GCP account.
         """
         return pulumi.get(self, "service_account_key")
+
+
+@pulumi.output_type
+class EventTriggerEventProcessors(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "awsEventbridge":
+            suggest = "aws_eventbridge"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventTriggerEventProcessors. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventTriggerEventProcessors.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventTriggerEventProcessors.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 aws_eventbridge: Optional['outputs.EventTriggerEventProcessorsAwsEventbridge'] = None):
+        if aws_eventbridge is not None:
+            pulumi.set(__self__, "aws_eventbridge", aws_eventbridge)
+
+    @property
+    @pulumi.getter(name="awsEventbridge")
+    def aws_eventbridge(self) -> Optional['outputs.EventTriggerEventProcessorsAwsEventbridge']:
+        return pulumi.get(self, "aws_eventbridge")
+
+
+@pulumi.output_type
+class EventTriggerEventProcessorsAwsEventbridge(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "configAccountId":
+            suggest = "config_account_id"
+        elif key == "configRegion":
+            suggest = "config_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in EventTriggerEventProcessorsAwsEventbridge. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        EventTriggerEventProcessorsAwsEventbridge.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        EventTriggerEventProcessorsAwsEventbridge.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 config_account_id: Optional[str] = None,
+                 config_region: Optional[str] = None):
+        if config_account_id is not None:
+            pulumi.set(__self__, "config_account_id", config_account_id)
+        if config_region is not None:
+            pulumi.set(__self__, "config_region", config_region)
+
+    @property
+    @pulumi.getter(name="configAccountId")
+    def config_account_id(self) -> Optional[str]:
+        return pulumi.get(self, "config_account_id")
+
+    @property
+    @pulumi.getter(name="configRegion")
+    def config_region(self) -> Optional[str]:
+        return pulumi.get(self, "config_region")
 
 
 @pulumi.output_type
@@ -2682,6 +3440,117 @@ class LdapVerifyValidation(dict):
     @pulumi.getter(name="validationType")
     def validation_type(self) -> Optional[str]:
         return pulumi.get(self, "validation_type")
+
+
+@pulumi.output_type
+class OnlineArchiveCriteria(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dateField":
+            suggest = "date_field"
+        elif key == "dateFormat":
+            suggest = "date_format"
+        elif key == "expireAfterDays":
+            suggest = "expire_after_days"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OnlineArchiveCriteria. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OnlineArchiveCriteria.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OnlineArchiveCriteria.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: str,
+                 date_field: Optional[str] = None,
+                 date_format: Optional[str] = None,
+                 expire_after_days: Optional[int] = None,
+                 query: Optional[str] = None):
+        pulumi.set(__self__, "type", type)
+        if date_field is not None:
+            pulumi.set(__self__, "date_field", date_field)
+        if date_format is not None:
+            pulumi.set(__self__, "date_format", date_format)
+        if expire_after_days is not None:
+            pulumi.set(__self__, "expire_after_days", expire_after_days)
+        if query is not None:
+            pulumi.set(__self__, "query", query)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="dateField")
+    def date_field(self) -> Optional[str]:
+        return pulumi.get(self, "date_field")
+
+    @property
+    @pulumi.getter(name="dateFormat")
+    def date_format(self) -> Optional[str]:
+        return pulumi.get(self, "date_format")
+
+    @property
+    @pulumi.getter(name="expireAfterDays")
+    def expire_after_days(self) -> Optional[int]:
+        return pulumi.get(self, "expire_after_days")
+
+    @property
+    @pulumi.getter
+    def query(self) -> Optional[str]:
+        return pulumi.get(self, "query")
+
+
+@pulumi.output_type
+class OnlineArchivePartitionField(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fieldName":
+            suggest = "field_name"
+        elif key == "fieldType":
+            suggest = "field_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OnlineArchivePartitionField. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OnlineArchivePartitionField.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OnlineArchivePartitionField.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 field_name: str,
+                 order: int,
+                 field_type: Optional[str] = None):
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "order", order)
+        if field_type is not None:
+            pulumi.set(__self__, "field_type", field_type)
+
+    @property
+    @pulumi.getter(name="fieldName")
+    def field_name(self) -> str:
+        return pulumi.get(self, "field_name")
+
+    @property
+    @pulumi.getter
+    def order(self) -> int:
+        return pulumi.get(self, "order")
+
+    @property
+    @pulumi.getter(name="fieldType")
+    def field_type(self) -> Optional[str]:
+        return pulumi.get(self, "field_type")
 
 
 @pulumi.output_type
@@ -2909,7 +3778,7 @@ class GetAlertConfigurationMatcherResult(dict):
 
 
 @pulumi.output_type
-class GetAlertConfigurationMetricThresholdResult(dict):
+class GetAlertConfigurationMetricThresholdConfigResult(dict):
     def __init__(__self__, *,
                  metric_name: str,
                  mode: str,
@@ -3285,7 +4154,7 @@ class GetAlertConfigurationNotificationResult(dict):
 
 
 @pulumi.output_type
-class GetAlertConfigurationThresholdResult(dict):
+class GetAlertConfigurationThresholdConfigResult(dict):
     def __init__(__self__, *,
                  operator: str,
                  threshold: float,
@@ -3362,6 +4231,254 @@ class GetAlertConfigurationThresholdResult(dict):
         - `DAYS`
         """
         return pulumi.get(self, "units")
+
+
+@pulumi.output_type
+class GetCloudBackupSchedulePolicyItemDailyResult(dict):
+    def __init__(__self__, *,
+                 frequency_interval: int,
+                 frequency_type: str,
+                 id: str,
+                 retention_unit: str,
+                 retention_value: int):
+        """
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param str frequency_type: Frequency associated with the backup policy item.
+        :param str id: Unique identifier of the backup policy item.
+        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> int:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> str:
+        """
+        Frequency associated with the backup policy item.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier of the backup policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> str:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+
+@pulumi.output_type
+class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
+    def __init__(__self__, *,
+                 frequency_interval: int,
+                 frequency_type: str,
+                 id: str,
+                 retention_unit: str,
+                 retention_value: int):
+        """
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param str frequency_type: Frequency associated with the backup policy item.
+        :param str id: Unique identifier of the backup policy item.
+        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> int:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> str:
+        """
+        Frequency associated with the backup policy item.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier of the backup policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> str:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+
+@pulumi.output_type
+class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
+    def __init__(__self__, *,
+                 frequency_interval: int,
+                 frequency_type: str,
+                 id: str,
+                 retention_unit: str,
+                 retention_value: int):
+        """
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param str frequency_type: Frequency associated with the backup policy item.
+        :param str id: Unique identifier of the backup policy item.
+        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> int:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> str:
+        """
+        Frequency associated with the backup policy item.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier of the backup policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> str:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+
+@pulumi.output_type
+class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
+    def __init__(__self__, *,
+                 frequency_interval: int,
+                 frequency_type: str,
+                 id: str,
+                 retention_unit: str,
+                 retention_value: int):
+        """
+        :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
+        :param str frequency_type: Frequency associated with the backup policy item.
+        :param str id: Unique identifier of the backup policy item.
+        :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
+        :param int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_interval", frequency_interval)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+
+    @property
+    @pulumi.getter(name="frequencyInterval")
+    def frequency_interval(self) -> int:
+        """
+        Desired frequency of the new backup policy item specified by `frequency_type`.
+        """
+        return pulumi.get(self, "frequency_interval")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> str:
+        """
+        Frequency associated with the backup policy item.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier of the backup policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> str:
+        """
+        Scope of the backup policy item: days, weeks, or months.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
 
 
 @pulumi.output_type
@@ -3462,14 +4579,14 @@ class GetCloudProviderAccessAwsIamRoleResult(dict):
 @pulumi.output_type
 class GetCloudProviderAccessAwsIamRoleFeatureUsageResult(dict):
     def __init__(__self__, *,
-                 feature_id: str,
+                 feature_id: Mapping[str, Any],
                  feature_type: str):
         pulumi.set(__self__, "feature_id", feature_id)
         pulumi.set(__self__, "feature_type", feature_type)
 
     @property
     @pulumi.getter(name="featureId")
-    def feature_id(self) -> str:
+    def feature_id(self) -> Mapping[str, Any]:
         return pulumi.get(self, "feature_id")
 
     @property
@@ -3479,7 +4596,7 @@ class GetCloudProviderAccessAwsIamRoleFeatureUsageResult(dict):
 
 
 @pulumi.output_type
-class GetCloudProviderAccessSetupAwsResult(dict):
+class GetCloudProviderAccessSetupAwsConfigResult(dict):
     def __init__(__self__, *,
                  atlas_assumed_role_external_id: str,
                  atlas_aws_account_arn: str):
@@ -3840,35 +4957,6 @@ class GetCloudProviderSnapshotsResultResult(dict):
 
 
 @pulumi.output_type
-class GetClusterBiConnectorResult(dict):
-    def __init__(__self__, *,
-                 enabled: str,
-                 read_preference: str):
-        """
-        :param str enabled: Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-        :param str read_preference: Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-        """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "read_preference", read_preference)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> str:
-        """
-        Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="readPreference")
-    def read_preference(self) -> str:
-        """
-        Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-        """
-        return pulumi.get(self, "read_preference")
-
-
-@pulumi.output_type
 class GetClusterBiConnectorConfigResult(dict):
     def __init__(__self__, *,
                  enabled: bool,
@@ -3898,12 +4986,12 @@ class GetClusterBiConnectorConfigResult(dict):
 
 
 @pulumi.output_type
-class GetClusterConnectionStringsResult(dict):
+class GetClusterConnectionStringResult(dict):
     def __init__(__self__, *,
                  aws_private_link: Mapping[str, Any],
                  aws_private_link_srv: Mapping[str, Any],
                  private: str,
-                 private_endpoints: Sequence['outputs.GetClusterConnectionStringsPrivateEndpointResult'],
+                 private_endpoints: Sequence['outputs.GetClusterConnectionStringPrivateEndpointResult'],
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
@@ -3932,7 +5020,7 @@ class GetClusterConnectionStringsResult(dict):
 
     @property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Sequence['outputs.GetClusterConnectionStringsPrivateEndpointResult']:
+    def private_endpoints(self) -> Sequence['outputs.GetClusterConnectionStringPrivateEndpointResult']:
         return pulumi.get(self, "private_endpoints")
 
     @property
@@ -3952,10 +5040,10 @@ class GetClusterConnectionStringsResult(dict):
 
 
 @pulumi.output_type
-class GetClusterConnectionStringsPrivateEndpointResult(dict):
+class GetClusterConnectionStringPrivateEndpointResult(dict):
     def __init__(__self__, *,
                  connection_string: str,
-                 endpoints: Sequence['outputs.GetClusterConnectionStringsPrivateEndpointEndpointResult'],
+                 endpoints: Sequence['outputs.GetClusterConnectionStringPrivateEndpointEndpointResult'],
                  srv_connection_string: str,
                  type: str):
         pulumi.set(__self__, "connection_string", connection_string)
@@ -3970,7 +5058,7 @@ class GetClusterConnectionStringsPrivateEndpointResult(dict):
 
     @property
     @pulumi.getter
-    def endpoints(self) -> Sequence['outputs.GetClusterConnectionStringsPrivateEndpointEndpointResult']:
+    def endpoints(self) -> Sequence['outputs.GetClusterConnectionStringPrivateEndpointEndpointResult']:
         return pulumi.get(self, "endpoints")
 
     @property
@@ -3985,7 +5073,7 @@ class GetClusterConnectionStringsPrivateEndpointResult(dict):
 
 
 @pulumi.output_type
-class GetClusterConnectionStringsPrivateEndpointEndpointResult(dict):
+class GetClusterConnectionStringPrivateEndpointEndpointResult(dict):
     def __init__(__self__, *,
                  endpoint_id: str,
                  provider_name: str,
@@ -4298,10 +5386,10 @@ class GetClustersResultResult(dict):
                  auto_scaling_disk_gb_enabled: bool,
                  backing_provider_name: str,
                  backup_enabled: bool,
-                 bi_connector: 'outputs.GetClustersResultBiConnectorResult',
-                 bi_connector_config: 'outputs.GetClustersResultBiConnectorConfigResult',
+                 bi_connector: Mapping[str, str],
+                 bi_connector_configs: Sequence['outputs.GetClustersResultBiConnectorConfigResult'],
                  cluster_type: str,
-                 connection_strings: 'outputs.GetClustersResultConnectionStringsResult',
+                 connection_strings: Sequence['outputs.GetClustersResultConnectionStringResult'],
                  container_id: str,
                  disk_size_gb: float,
                  encryption_at_rest_provider: str,
@@ -4336,10 +5424,10 @@ class GetClustersResultResult(dict):
         :param bool auto_scaling_disk_gb_enabled: Indicates whether disk auto-scaling is enabled.
         :param str backing_provider_name: Indicates Cloud service provider on which the server for a multi-tenant cluster is provisioned.
         :param bool backup_enabled: Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
-        :param 'GetClustersResultBiConnectorArgs' bi_connector: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
-        :param 'GetClustersResultBiConnectorConfigArgs' bi_connector_config: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
+        :param Mapping[str, str] bi_connector: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
+        :param Sequence['GetClustersResultBiConnectorConfigArgs'] bi_connector_configs: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param str cluster_type: Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
-        :param 'GetClustersResultConnectionStringsArgs' connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        :param Sequence['GetClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
                - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
                - `connection_strings.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
                - `connection_strings.aws_private_link` -  [Private-endpoint-aware](https://docs.atlas.mongodb.com/security-private-endpoint/#private-endpoint-connection-strings) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a AWS PrivateLink connection to this cluster. **DEPRECATED** Use `connection_strings.private_endpoint[n].connection_string` instead.
@@ -4367,7 +5455,7 @@ class GetClustersResultResult(dict):
         :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param str provider_auto_scaling_compute_max_instance_size: (Optional) Maximum instance size to which your cluster can automatically scale.
         :param str provider_auto_scaling_compute_min_instance_size: (Optional) Minimum instance size to which your cluster can automatically scale.
-        :param bool provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+        :param bool provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloud_backup` instead.
         :param int provider_disk_iops: Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
         :param str provider_disk_type_name: Describes Azure disk type of the server’s root volume (Azure Only).
         :param bool provider_encrypt_ebs_volume: **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
@@ -4393,7 +5481,7 @@ class GetClustersResultResult(dict):
         pulumi.set(__self__, "backing_provider_name", backing_provider_name)
         pulumi.set(__self__, "backup_enabled", backup_enabled)
         pulumi.set(__self__, "bi_connector", bi_connector)
-        pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
         pulumi.set(__self__, "cluster_type", cluster_type)
         pulumi.set(__self__, "connection_strings", connection_strings)
         pulumi.set(__self__, "container_id", container_id)
@@ -4467,19 +5555,19 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> 'outputs.GetClustersResultBiConnectorResult':
+    def bi_connector(self) -> Mapping[str, str]:
         """
         Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
         return pulumi.get(self, "bi_connector")
 
     @property
-    @pulumi.getter(name="biConnectorConfig")
-    def bi_connector_config(self) -> 'outputs.GetClustersResultBiConnectorConfigResult':
+    @pulumi.getter(name="biConnectorConfigs")
+    def bi_connector_configs(self) -> Sequence['outputs.GetClustersResultBiConnectorConfigResult']:
         """
         Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         """
-        return pulumi.get(self, "bi_connector_config")
+        return pulumi.get(self, "bi_connector_configs")
 
     @property
     @pulumi.getter(name="clusterType")
@@ -4491,7 +5579,7 @@ class GetClustersResultResult(dict):
 
     @property
     @pulumi.getter(name="connectionStrings")
-    def connection_strings(self) -> 'outputs.GetClustersResultConnectionStringsResult':
+    def connection_strings(self) -> Sequence['outputs.GetClustersResultConnectionStringResult']:
         """
         Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
@@ -4631,7 +5719,7 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="providerBackupEnabled")
     def provider_backup_enabled(self) -> bool:
         """
-        Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+        Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloud_backup` instead.
         """
         return pulumi.get(self, "provider_backup_enabled")
 
@@ -4739,35 +5827,6 @@ class GetClustersResultResult(dict):
 
 
 @pulumi.output_type
-class GetClustersResultBiConnectorResult(dict):
-    def __init__(__self__, *,
-                 enabled: str,
-                 read_preference: str):
-        """
-        :param str enabled: Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-        :param str read_preference: Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-        """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "read_preference", read_preference)
-
-    @property
-    @pulumi.getter
-    def enabled(self) -> str:
-        """
-        Indicates whether or not BI Connector for Atlas is enabled on the cluster.
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
-    @pulumi.getter(name="readPreference")
-    def read_preference(self) -> str:
-        """
-        Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
-        """
-        return pulumi.get(self, "read_preference")
-
-
-@pulumi.output_type
 class GetClustersResultBiConnectorConfigResult(dict):
     def __init__(__self__, *,
                  enabled: bool,
@@ -4797,12 +5856,12 @@ class GetClustersResultBiConnectorConfigResult(dict):
 
 
 @pulumi.output_type
-class GetClustersResultConnectionStringsResult(dict):
+class GetClustersResultConnectionStringResult(dict):
     def __init__(__self__, *,
                  aws_private_link: Mapping[str, Any],
                  aws_private_link_srv: Mapping[str, Any],
                  private: str,
-                 private_endpoints: Sequence['outputs.GetClustersResultConnectionStringsPrivateEndpointResult'],
+                 private_endpoints: Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointResult'],
                  private_srv: str,
                  standard: str,
                  standard_srv: str):
@@ -4831,7 +5890,7 @@ class GetClustersResultConnectionStringsResult(dict):
 
     @property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Sequence['outputs.GetClustersResultConnectionStringsPrivateEndpointResult']:
+    def private_endpoints(self) -> Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointResult']:
         return pulumi.get(self, "private_endpoints")
 
     @property
@@ -4851,10 +5910,10 @@ class GetClustersResultConnectionStringsResult(dict):
 
 
 @pulumi.output_type
-class GetClustersResultConnectionStringsPrivateEndpointResult(dict):
+class GetClustersResultConnectionStringPrivateEndpointResult(dict):
     def __init__(__self__, *,
                  connection_string: str,
-                 endpoints: Sequence['outputs.GetClustersResultConnectionStringsPrivateEndpointEndpointResult'],
+                 endpoints: Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointEndpointResult'],
                  srv_connection_string: str,
                  type: str):
         pulumi.set(__self__, "connection_string", connection_string)
@@ -4869,7 +5928,7 @@ class GetClustersResultConnectionStringsPrivateEndpointResult(dict):
 
     @property
     @pulumi.getter
-    def endpoints(self) -> Sequence['outputs.GetClustersResultConnectionStringsPrivateEndpointEndpointResult']:
+    def endpoints(self) -> Sequence['outputs.GetClustersResultConnectionStringPrivateEndpointEndpointResult']:
         return pulumi.get(self, "endpoints")
 
     @property
@@ -4884,7 +5943,7 @@ class GetClustersResultConnectionStringsPrivateEndpointResult(dict):
 
 
 @pulumi.output_type
-class GetClustersResultConnectionStringsPrivateEndpointEndpointResult(dict):
+class GetClustersResultConnectionStringPrivateEndpointEndpointResult(dict):
     def __init__(__self__, *,
                  endpoint_id: str,
                  provider_name: str,
@@ -5370,6 +6429,605 @@ class GetCustomDbRolesResultInheritedRoleResult(dict):
 
 
 @pulumi.output_type
+class GetDataLakeAwResult(dict):
+    def __init__(__self__, *,
+                 external_id: str,
+                 iam_assumed_role_arn: str,
+                 iam_user_arn: str,
+                 role_id: str,
+                 test_s3_bucket: str):
+        pulumi.set(__self__, "external_id", external_id)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> str:
+        return pulumi.get(self, "external_id")
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> str:
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @property
+    @pulumi.getter(name="iamUserArn")
+    def iam_user_arn(self) -> str:
+        return pulumi.get(self, "iam_user_arn")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
+        return pulumi.get(self, "role_id")
+
+    @property
+    @pulumi.getter(name="testS3Bucket")
+    def test_s3_bucket(self) -> str:
+        return pulumi.get(self, "test_s3_bucket")
+
+
+@pulumi.output_type
+class GetDataLakeDataProcessRegionResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 region: str):
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetDataLakeStorageDatabaseResult(dict):
+    def __init__(__self__, *,
+                 collections: Sequence['outputs.GetDataLakeStorageDatabaseCollectionResult'],
+                 max_wildcard_collections: int,
+                 name: str,
+                 views: Sequence['outputs.GetDataLakeStorageDatabaseViewResult']):
+        """
+        :param str name: Name of the data lake.
+        """
+        pulumi.set(__self__, "collections", collections)
+        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "views", views)
+
+    @property
+    @pulumi.getter
+    def collections(self) -> Sequence['outputs.GetDataLakeStorageDatabaseCollectionResult']:
+        return pulumi.get(self, "collections")
+
+    @property
+    @pulumi.getter(name="maxWildcardCollections")
+    def max_wildcard_collections(self) -> int:
+        return pulumi.get(self, "max_wildcard_collections")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the data lake.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def views(self) -> Sequence['outputs.GetDataLakeStorageDatabaseViewResult']:
+        return pulumi.get(self, "views")
+
+
+@pulumi.output_type
+class GetDataLakeStorageDatabaseCollectionResult(dict):
+    def __init__(__self__, *,
+                 data_sources: Sequence['outputs.GetDataLakeStorageDatabaseCollectionDataSourceResult'],
+                 name: str):
+        """
+        :param str name: Name of the data lake.
+        """
+        pulumi.set(__self__, "data_sources", data_sources)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="dataSources")
+    def data_sources(self) -> Sequence['outputs.GetDataLakeStorageDatabaseCollectionDataSourceResult']:
+        return pulumi.get(self, "data_sources")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the data lake.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetDataLakeStorageDatabaseCollectionDataSourceResult(dict):
+    def __init__(__self__, *,
+                 default_format: str,
+                 path: str,
+                 store_name: str):
+        pulumi.set(__self__, "default_format", default_format)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "store_name", store_name)
+
+    @property
+    @pulumi.getter(name="defaultFormat")
+    def default_format(self) -> str:
+        return pulumi.get(self, "default_format")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="storeName")
+    def store_name(self) -> str:
+        return pulumi.get(self, "store_name")
+
+
+@pulumi.output_type
+class GetDataLakeStorageDatabaseViewResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 pipeline: str,
+                 source: str):
+        """
+        :param str name: Name of the data lake.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pipeline", pipeline)
+        pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the data lake.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def pipeline(self) -> str:
+        return pulumi.get(self, "pipeline")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        return pulumi.get(self, "source")
+
+
+@pulumi.output_type
+class GetDataLakeStorageStoreResult(dict):
+    def __init__(__self__, *,
+                 additional_storage_classes: Sequence[str],
+                 bucket: str,
+                 delimiter: str,
+                 include_tags: bool,
+                 name: str,
+                 prefix: str,
+                 provider: str,
+                 region: str):
+        """
+        :param str name: Name of the data lake.
+        """
+        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "include_tags", include_tags)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="additionalStorageClasses")
+    def additional_storage_classes(self) -> Sequence[str]:
+        return pulumi.get(self, "additional_storage_classes")
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="includeTags")
+    def include_tags(self) -> bool:
+        return pulumi.get(self, "include_tags")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the data lake.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def provider(self) -> str:
+        return pulumi.get(self, "provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetDataLakesResultResult(dict):
+    def __init__(__self__, *,
+                 aws: Sequence['outputs.GetDataLakesResultAwResult'],
+                 data_process_regions: Sequence['outputs.GetDataLakesResultDataProcessRegionResult'],
+                 hostnames: Sequence[str],
+                 name: str,
+                 project_id: str,
+                 state: str,
+                 storage_databases: Sequence['outputs.GetDataLakesResultStorageDatabaseResult'],
+                 storage_stores: Sequence['outputs.GetDataLakesResultStorageStoreResult']):
+        """
+        :param Sequence['GetDataLakesResultDataProcessRegionArgs'] data_process_regions: The cloud provider region to which Atlas Data Lake routes client connections for data processing.
+               * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
+               * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
+        :param Sequence[str] hostnames: The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
+        :param str project_id: The unique ID for the project to get all data lakes.
+        :param str state: Current state of the Atlas Data Lake:
+        :param Sequence['GetDataLakesResultStorageDatabaseArgs'] storage_databases: Configuration details for mapping each data store to queryable databases and collections.
+               * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
+               * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+               * `storage_databases.#.collections.#.name` - Name of the collection.
+               * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
+               * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
+               * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+               * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
+               * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
+               * `storage_databases.#.views.#.name` - Name of the view.
+               * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
+               * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
+        :param Sequence['GetDataLakesResultStorageStoreArgs'] storage_stores: Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
+               * `storage_stores.#.name` - Name of the data store.
+               * `storage_stores.#.provider` - Defines where the data is stored.
+               * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
+               * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+               * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
+               * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
+               * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
+        """
+        pulumi.set(__self__, "aws", aws)
+        pulumi.set(__self__, "data_process_regions", data_process_regions)
+        pulumi.set(__self__, "hostnames", hostnames)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "storage_databases", storage_databases)
+        pulumi.set(__self__, "storage_stores", storage_stores)
+
+    @property
+    @pulumi.getter
+    def aws(self) -> Sequence['outputs.GetDataLakesResultAwResult']:
+        return pulumi.get(self, "aws")
+
+    @property
+    @pulumi.getter(name="dataProcessRegions")
+    def data_process_regions(self) -> Sequence['outputs.GetDataLakesResultDataProcessRegionResult']:
+        """
+        The cloud provider region to which Atlas Data Lake routes client connections for data processing.
+        * `data_process_region.0.cloud_provider` - Name of the cloud service provider.
+        * `data_process_region.0.region` -Name of the region to which Data Lake routes client connections for data processing.
+        """
+        return pulumi.get(self, "data_process_regions")
+
+    @property
+    @pulumi.getter
+    def hostnames(self) -> Sequence[str]:
+        """
+        The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
+        """
+        return pulumi.get(self, "hostnames")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The unique ID for the project to get all data lakes.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        Current state of the Atlas Data Lake:
+        """
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter(name="storageDatabases")
+    def storage_databases(self) -> Sequence['outputs.GetDataLakesResultStorageDatabaseResult']:
+        """
+        Configuration details for mapping each data store to queryable databases and collections.
+        * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
+        * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+        * `storage_databases.#.collections.#.name` - Name of the collection.
+        * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
+        * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`.
+        * `storage_databases.#.collections.#.data_sources.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+        * `storage_databases.#.collections.#.data_sources.#.path` - Controls how Atlas Data Lake searches for and parses files in the storeName before mapping them to the `<collection>`.
+        * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection.
+        * `storage_databases.#.views.#.name` - Name of the view.
+        * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
+        * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
+        """
+        return pulumi.get(self, "storage_databases")
+
+    @property
+    @pulumi.getter(name="storageStores")
+    def storage_stores(self) -> Sequence['outputs.GetDataLakesResultStorageStoreResult']:
+        """
+        Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections.
+        * `storage_stores.#.name` - Name of the data store.
+        * `storage_stores.#.provider` - Defines where the data is stored.
+        * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
+        * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+        * `storage_stores.#.prefix` - Prefix Data Lake applies when searching for files in the S3 bucket .
+        * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
+        * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
+        """
+        return pulumi.get(self, "storage_stores")
+
+
+@pulumi.output_type
+class GetDataLakesResultAwResult(dict):
+    def __init__(__self__, *,
+                 external_id: str,
+                 iam_assumed_role_arn: str,
+                 iam_user_arn: str,
+                 role_id: str,
+                 test_s3_bucket: str):
+        pulumi.set(__self__, "external_id", external_id)
+        pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
+        pulumi.set(__self__, "iam_user_arn", iam_user_arn)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "test_s3_bucket", test_s3_bucket)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> str:
+        return pulumi.get(self, "external_id")
+
+    @property
+    @pulumi.getter(name="iamAssumedRoleArn")
+    def iam_assumed_role_arn(self) -> str:
+        return pulumi.get(self, "iam_assumed_role_arn")
+
+    @property
+    @pulumi.getter(name="iamUserArn")
+    def iam_user_arn(self) -> str:
+        return pulumi.get(self, "iam_user_arn")
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
+        return pulumi.get(self, "role_id")
+
+    @property
+    @pulumi.getter(name="testS3Bucket")
+    def test_s3_bucket(self) -> str:
+        return pulumi.get(self, "test_s3_bucket")
+
+
+@pulumi.output_type
+class GetDataLakesResultDataProcessRegionResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 region: str):
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetDataLakesResultStorageDatabaseResult(dict):
+    def __init__(__self__, *,
+                 collections: Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionResult'],
+                 max_wildcard_collections: int,
+                 name: str,
+                 views: Sequence['outputs.GetDataLakesResultStorageDatabaseViewResult']):
+        pulumi.set(__self__, "collections", collections)
+        pulumi.set(__self__, "max_wildcard_collections", max_wildcard_collections)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "views", views)
+
+    @property
+    @pulumi.getter
+    def collections(self) -> Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionResult']:
+        return pulumi.get(self, "collections")
+
+    @property
+    @pulumi.getter(name="maxWildcardCollections")
+    def max_wildcard_collections(self) -> int:
+        return pulumi.get(self, "max_wildcard_collections")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def views(self) -> Sequence['outputs.GetDataLakesResultStorageDatabaseViewResult']:
+        return pulumi.get(self, "views")
+
+
+@pulumi.output_type
+class GetDataLakesResultStorageDatabaseCollectionResult(dict):
+    def __init__(__self__, *,
+                 data_sources: Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionDataSourceResult'],
+                 name: str):
+        pulumi.set(__self__, "data_sources", data_sources)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="dataSources")
+    def data_sources(self) -> Sequence['outputs.GetDataLakesResultStorageDatabaseCollectionDataSourceResult']:
+        return pulumi.get(self, "data_sources")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetDataLakesResultStorageDatabaseCollectionDataSourceResult(dict):
+    def __init__(__self__, *,
+                 default_format: str,
+                 path: str,
+                 store_name: str):
+        pulumi.set(__self__, "default_format", default_format)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "store_name", store_name)
+
+    @property
+    @pulumi.getter(name="defaultFormat")
+    def default_format(self) -> str:
+        return pulumi.get(self, "default_format")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="storeName")
+    def store_name(self) -> str:
+        return pulumi.get(self, "store_name")
+
+
+@pulumi.output_type
+class GetDataLakesResultStorageDatabaseViewResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 pipeline: str,
+                 source: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pipeline", pipeline)
+        pulumi.set(__self__, "source", source)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def pipeline(self) -> str:
+        return pulumi.get(self, "pipeline")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        return pulumi.get(self, "source")
+
+
+@pulumi.output_type
+class GetDataLakesResultStorageStoreResult(dict):
+    def __init__(__self__, *,
+                 additional_storage_classes: Sequence[str],
+                 bucket: str,
+                 delimiter: str,
+                 include_tags: bool,
+                 name: str,
+                 prefix: str,
+                 provider: str,
+                 region: str):
+        pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "delimiter", delimiter)
+        pulumi.set(__self__, "include_tags", include_tags)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="additionalStorageClasses")
+    def additional_storage_classes(self) -> Sequence[str]:
+        return pulumi.get(self, "additional_storage_classes")
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> str:
+        return pulumi.get(self, "delimiter")
+
+    @property
+    @pulumi.getter(name="includeTags")
+    def include_tags(self) -> bool:
+        return pulumi.get(self, "include_tags")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def provider(self) -> str:
+        return pulumi.get(self, "provider")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class GetDatabaseUserLabelResult(dict):
     def __init__(__self__, *,
                  key: str,
@@ -5670,6 +7328,276 @@ class GetDatabaseUsersResultScopeResult(dict):
 
 
 @pulumi.output_type
+class GetEventTriggerEventProcessorResult(dict):
+    def __init__(__self__, *,
+                 aws_eventbridges: Sequence['outputs.GetEventTriggerEventProcessorAwsEventbridgeResult']):
+        pulumi.set(__self__, "aws_eventbridges", aws_eventbridges)
+
+    @property
+    @pulumi.getter(name="awsEventbridges")
+    def aws_eventbridges(self) -> Sequence['outputs.GetEventTriggerEventProcessorAwsEventbridgeResult']:
+        return pulumi.get(self, "aws_eventbridges")
+
+
+@pulumi.output_type
+class GetEventTriggerEventProcessorAwsEventbridgeResult(dict):
+    def __init__(__self__, *,
+                 config_account_id: str,
+                 config_region: str):
+        pulumi.set(__self__, "config_account_id", config_account_id)
+        pulumi.set(__self__, "config_region", config_region)
+
+    @property
+    @pulumi.getter(name="configAccountId")
+    def config_account_id(self) -> str:
+        return pulumi.get(self, "config_account_id")
+
+    @property
+    @pulumi.getter(name="configRegion")
+    def config_region(self) -> str:
+        return pulumi.get(self, "config_region")
+
+
+@pulumi.output_type
+class GetEventTriggersResultResult(dict):
+    def __init__(__self__, *,
+                 config_collection: str,
+                 config_database: str,
+                 config_full_document: bool,
+                 config_full_document_before: bool,
+                 config_match: str,
+                 config_operation_type: str,
+                 config_operation_types: Sequence[str],
+                 config_project: str,
+                 config_providers: Sequence[str],
+                 config_schedule: str,
+                 config_schedule_type: str,
+                 config_service_id: str,
+                 disabled: bool,
+                 event_processors: Sequence['outputs.GetEventTriggersResultEventProcessorResult'],
+                 function_id: str,
+                 function_name: str,
+                 name: str,
+                 trigger_id: str,
+                 type: str):
+        """
+        :param str config_collection: The name of the MongoDB collection that the trigger watches for change events.
+        :param str config_database: The name of the MongoDB database that contains the watched collection.
+        :param bool config_full_document: If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+        :param str config_match: A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+        :param str config_operation_type: The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+        :param Sequence[str] config_operation_types: The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+        :param str config_project: A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+        :param Sequence[str] config_providers: A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+        :param str config_schedule: A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+        :param str config_service_id: The ID of the MongoDB Service associated with the trigger.
+        :param bool disabled: Status of a trigger.
+        :param Sequence['GetEventTriggersResultEventProcessorArgs'] event_processors: An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
+               * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
+               * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
+        :param str function_id: The ID of the function associated with the trigger.
+        :param str function_name: The name of the function associated with the trigger.
+        :param str name: The name of the trigger.
+        :param str type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
+        """
+        pulumi.set(__self__, "config_collection", config_collection)
+        pulumi.set(__self__, "config_database", config_database)
+        pulumi.set(__self__, "config_full_document", config_full_document)
+        pulumi.set(__self__, "config_full_document_before", config_full_document_before)
+        pulumi.set(__self__, "config_match", config_match)
+        pulumi.set(__self__, "config_operation_type", config_operation_type)
+        pulumi.set(__self__, "config_operation_types", config_operation_types)
+        pulumi.set(__self__, "config_project", config_project)
+        pulumi.set(__self__, "config_providers", config_providers)
+        pulumi.set(__self__, "config_schedule", config_schedule)
+        pulumi.set(__self__, "config_schedule_type", config_schedule_type)
+        pulumi.set(__self__, "config_service_id", config_service_id)
+        pulumi.set(__self__, "disabled", disabled)
+        pulumi.set(__self__, "event_processors", event_processors)
+        pulumi.set(__self__, "function_id", function_id)
+        pulumi.set(__self__, "function_name", function_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "trigger_id", trigger_id)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="configCollection")
+    def config_collection(self) -> str:
+        """
+        The name of the MongoDB collection that the trigger watches for change events.
+        """
+        return pulumi.get(self, "config_collection")
+
+    @property
+    @pulumi.getter(name="configDatabase")
+    def config_database(self) -> str:
+        """
+        The name of the MongoDB database that contains the watched collection.
+        """
+        return pulumi.get(self, "config_database")
+
+    @property
+    @pulumi.getter(name="configFullDocument")
+    def config_full_document(self) -> bool:
+        """
+        If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+        """
+        return pulumi.get(self, "config_full_document")
+
+    @property
+    @pulumi.getter(name="configFullDocumentBefore")
+    def config_full_document_before(self) -> bool:
+        return pulumi.get(self, "config_full_document_before")
+
+    @property
+    @pulumi.getter(name="configMatch")
+    def config_match(self) -> str:
+        """
+        A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+        """
+        return pulumi.get(self, "config_match")
+
+    @property
+    @pulumi.getter(name="configOperationType")
+    def config_operation_type(self) -> str:
+        """
+        The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+        """
+        return pulumi.get(self, "config_operation_type")
+
+    @property
+    @pulumi.getter(name="configOperationTypes")
+    def config_operation_types(self) -> Sequence[str]:
+        """
+        The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+        """
+        return pulumi.get(self, "config_operation_types")
+
+    @property
+    @pulumi.getter(name="configProject")
+    def config_project(self) -> str:
+        """
+        A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+        """
+        return pulumi.get(self, "config_project")
+
+    @property
+    @pulumi.getter(name="configProviders")
+    def config_providers(self) -> Sequence[str]:
+        """
+        A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+        """
+        return pulumi.get(self, "config_providers")
+
+    @property
+    @pulumi.getter(name="configSchedule")
+    def config_schedule(self) -> str:
+        """
+        A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+        """
+        return pulumi.get(self, "config_schedule")
+
+    @property
+    @pulumi.getter(name="configScheduleType")
+    def config_schedule_type(self) -> str:
+        return pulumi.get(self, "config_schedule_type")
+
+    @property
+    @pulumi.getter(name="configServiceId")
+    def config_service_id(self) -> str:
+        """
+        The ID of the MongoDB Service associated with the trigger.
+        """
+        return pulumi.get(self, "config_service_id")
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> bool:
+        """
+        Status of a trigger.
+        """
+        return pulumi.get(self, "disabled")
+
+    @property
+    @pulumi.getter(name="eventProcessors")
+    def event_processors(self) -> Sequence['outputs.GetEventTriggersResultEventProcessorResult']:
+        """
+        An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
+        * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
+        * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
+        """
+        return pulumi.get(self, "event_processors")
+
+    @property
+    @pulumi.getter(name="functionId")
+    def function_id(self) -> str:
+        """
+        The ID of the function associated with the trigger.
+        """
+        return pulumi.get(self, "function_id")
+
+    @property
+    @pulumi.getter(name="functionName")
+    def function_name(self) -> str:
+        """
+        The name of the function associated with the trigger.
+        """
+        return pulumi.get(self, "function_name")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the trigger.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="triggerId")
+    def trigger_id(self) -> str:
+        return pulumi.get(self, "trigger_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetEventTriggersResultEventProcessorResult(dict):
+    def __init__(__self__, *,
+                 aws_eventbridges: Sequence['outputs.GetEventTriggersResultEventProcessorAwsEventbridgeResult']):
+        pulumi.set(__self__, "aws_eventbridges", aws_eventbridges)
+
+    @property
+    @pulumi.getter(name="awsEventbridges")
+    def aws_eventbridges(self) -> Sequence['outputs.GetEventTriggersResultEventProcessorAwsEventbridgeResult']:
+        return pulumi.get(self, "aws_eventbridges")
+
+
+@pulumi.output_type
+class GetEventTriggersResultEventProcessorAwsEventbridgeResult(dict):
+    def __init__(__self__, *,
+                 config_account_id: str,
+                 config_region: str):
+        pulumi.set(__self__, "config_account_id", config_account_id)
+        pulumi.set(__self__, "config_region", config_region)
+
+    @property
+    @pulumi.getter(name="configAccountId")
+    def config_account_id(self) -> str:
+        return pulumi.get(self, "config_account_id")
+
+    @property
+    @pulumi.getter(name="configRegion")
+    def config_region(self) -> str:
+        return pulumi.get(self, "config_region")
+
+
+@pulumi.output_type
 class GetGlobalClusterConfigManagedNamespaceResult(dict):
     def __init__(__self__, *,
                  collection: str,
@@ -5943,7 +7871,6 @@ class GetNetworkPeeringsResultResult(dict):
                  vpc_id: str):
         """
         :param str accepter_region_name: Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param str atlas_cidr_block: Unique identifier for an Azure AD directory.
         :param str aws_account_id: Account ID of the owner of the peer VPC.
         :param str azure_directory_id: Unique identifier for an Azure AD directory.
         :param str azure_subscription_id: Unique identifer of the Azure subscription in which the VNet resides.
@@ -5994,9 +7921,6 @@ class GetNetworkPeeringsResultResult(dict):
     @property
     @pulumi.getter(name="atlasCidrBlock")
     def atlas_cidr_block(self) -> str:
-        """
-        Unique identifier for an Azure AD directory.
-        """
         return pulumi.get(self, "atlas_cidr_block")
 
     @property
@@ -6142,6 +8066,216 @@ class GetNetworkPeeringsResultResult(dict):
 
 
 @pulumi.output_type
+class GetOnlineArchiveCriteriaResult(dict):
+    def __init__(__self__, *,
+                 date_field: str,
+                 date_format: str,
+                 expire_after_days: int,
+                 query: str,
+                 type: str):
+        pulumi.set(__self__, "date_field", date_field)
+        pulumi.set(__self__, "date_format", date_format)
+        pulumi.set(__self__, "expire_after_days", expire_after_days)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="dateField")
+    def date_field(self) -> str:
+        return pulumi.get(self, "date_field")
+
+    @property
+    @pulumi.getter(name="dateFormat")
+    def date_format(self) -> str:
+        return pulumi.get(self, "date_format")
+
+    @property
+    @pulumi.getter(name="expireAfterDays")
+    def expire_after_days(self) -> int:
+        return pulumi.get(self, "expire_after_days")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetOnlineArchivePartitionFieldResult(dict):
+    def __init__(__self__, *,
+                 field_name: str,
+                 field_type: str,
+                 order: int):
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "field_type", field_type)
+        pulumi.set(__self__, "order", order)
+
+    @property
+    @pulumi.getter(name="fieldName")
+    def field_name(self) -> str:
+        return pulumi.get(self, "field_name")
+
+    @property
+    @pulumi.getter(name="fieldType")
+    def field_type(self) -> str:
+        return pulumi.get(self, "field_type")
+
+    @property
+    @pulumi.getter
+    def order(self) -> int:
+        return pulumi.get(self, "order")
+
+
+@pulumi.output_type
+class GetOnlineArchivesResultResult(dict):
+    def __init__(__self__, *,
+                 archive_id: str,
+                 cluster_name: str,
+                 coll_name: str,
+                 criterias: Sequence['outputs.GetOnlineArchivesResultCriteriaResult'],
+                 db_name: str,
+                 partition_fields: Sequence['outputs.GetOnlineArchivesResultPartitionFieldResult'],
+                 paused: bool,
+                 project_id: str,
+                 state: str):
+        """
+        :param str cluster_name: Name of the cluster that contains the collection.
+        :param str project_id: The unique ID for the project.
+        """
+        pulumi.set(__self__, "archive_id", archive_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "coll_name", coll_name)
+        pulumi.set(__self__, "criterias", criterias)
+        pulumi.set(__self__, "db_name", db_name)
+        pulumi.set(__self__, "partition_fields", partition_fields)
+        pulumi.set(__self__, "paused", paused)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "state", state)
+
+    @property
+    @pulumi.getter(name="archiveId")
+    def archive_id(self) -> str:
+        return pulumi.get(self, "archive_id")
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        """
+        Name of the cluster that contains the collection.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="collName")
+    def coll_name(self) -> str:
+        return pulumi.get(self, "coll_name")
+
+    @property
+    @pulumi.getter
+    def criterias(self) -> Sequence['outputs.GetOnlineArchivesResultCriteriaResult']:
+        return pulumi.get(self, "criterias")
+
+    @property
+    @pulumi.getter(name="dbName")
+    def db_name(self) -> str:
+        return pulumi.get(self, "db_name")
+
+    @property
+    @pulumi.getter(name="partitionFields")
+    def partition_fields(self) -> Sequence['outputs.GetOnlineArchivesResultPartitionFieldResult']:
+        return pulumi.get(self, "partition_fields")
+
+    @property
+    @pulumi.getter
+    def paused(self) -> bool:
+        return pulumi.get(self, "paused")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The unique ID for the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class GetOnlineArchivesResultCriteriaResult(dict):
+    def __init__(__self__, *,
+                 date_field: str,
+                 date_format: str,
+                 expire_after_days: int,
+                 query: str,
+                 type: str):
+        pulumi.set(__self__, "date_field", date_field)
+        pulumi.set(__self__, "date_format", date_format)
+        pulumi.set(__self__, "expire_after_days", expire_after_days)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="dateField")
+    def date_field(self) -> str:
+        return pulumi.get(self, "date_field")
+
+    @property
+    @pulumi.getter(name="dateFormat")
+    def date_format(self) -> str:
+        return pulumi.get(self, "date_format")
+
+    @property
+    @pulumi.getter(name="expireAfterDays")
+    def expire_after_days(self) -> int:
+        return pulumi.get(self, "expire_after_days")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetOnlineArchivesResultPartitionFieldResult(dict):
+    def __init__(__self__, *,
+                 field_name: str,
+                 field_type: str,
+                 order: int):
+        pulumi.set(__self__, "field_name", field_name)
+        pulumi.set(__self__, "field_type", field_type)
+        pulumi.set(__self__, "order", order)
+
+    @property
+    @pulumi.getter(name="fieldName")
+    def field_name(self) -> str:
+        return pulumi.get(self, "field_name")
+
+    @property
+    @pulumi.getter(name="fieldType")
+    def field_type(self) -> str:
+        return pulumi.get(self, "field_type")
+
+    @property
+    @pulumi.getter
+    def order(self) -> int:
+        return pulumi.get(self, "order")
+
+
+@pulumi.output_type
 class GetProjectTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[str],
@@ -6260,6 +8394,141 @@ class GetProjectsResultTeamResult(dict):
     @pulumi.getter(name="teamId")
     def team_id(self) -> str:
         return pulumi.get(self, "team_id")
+
+
+@pulumi.output_type
+class GetSearchIndexesResultResult(dict):
+    def __init__(__self__, *,
+                 analyzer: str,
+                 cluster_name: str,
+                 collection_name: str,
+                 database: str,
+                 index_id: str,
+                 name: str,
+                 project_id: str,
+                 status: str,
+                 analyzers: Optional[str] = None,
+                 mappings_dynamic: Optional[bool] = None,
+                 mappings_fields: Optional[str] = None,
+                 search_analyzer: Optional[str] = None):
+        """
+        :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+        :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
+        :param str collection_name: Name of the collection with one or more Atlas Search indexes.
+        :param str database: (Required) Name of the database the collection is in.
+        :param str name: Name of the index.
+        :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+        :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
+        :param str mappings_fields: Object containing one or more field specifications.
+        :param str search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+        """
+        pulumi.set(__self__, "analyzer", analyzer)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "collection_name", collection_name)
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "index_id", index_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "status", status)
+        if analyzers is not None:
+            pulumi.set(__self__, "analyzers", analyzers)
+        if mappings_dynamic is not None:
+            pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
+        if mappings_fields is not None:
+            pulumi.set(__self__, "mappings_fields", mappings_fields)
+        if search_analyzer is not None:
+            pulumi.set(__self__, "search_analyzer", search_analyzer)
+
+    @property
+    @pulumi.getter
+    def analyzer(self) -> str:
+        """
+        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+        """
+        return pulumi.get(self, "analyzer")
+
+    @property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> str:
+        """
+        Name of the cluster containing the collection with one or more Atlas Search indexes.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter(name="collectionName")
+    def collection_name(self) -> str:
+        """
+        Name of the collection with one or more Atlas Search indexes.
+        """
+        return pulumi.get(self, "collection_name")
+
+    @property
+    @pulumi.getter
+    def database(self) -> str:
+        """
+        (Required) Name of the database the collection is in.
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter(name="indexId")
+    def index_id(self) -> str:
+        return pulumi.get(self, "index_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the index.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def analyzers(self) -> Optional[str]:
+        """
+        [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+        """
+        return pulumi.get(self, "analyzers")
+
+    @property
+    @pulumi.getter(name="mappingsDynamic")
+    def mappings_dynamic(self) -> Optional[bool]:
+        """
+        Flag indicating whether the index uses dynamic or static mappings.
+        """
+        return pulumi.get(self, "mappings_dynamic")
+
+    @property
+    @pulumi.getter(name="mappingsFields")
+    def mappings_fields(self) -> Optional[str]:
+        """
+        Object containing one or more field specifications.
+        """
+        return pulumi.get(self, "mappings_fields")
+
+    @property
+    @pulumi.getter(name="searchAnalyzer")
+    def search_analyzer(self) -> Optional[str]:
+        """
+        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+        """
+        return pulumi.get(self, "search_analyzer")
 
 
 @pulumi.output_type

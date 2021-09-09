@@ -21,9 +21,9 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     providerRegionName: "US_EAST_2",
  *     providerInstanceSizeName: "M10",
- *     providerBackupEnabled: true,
- *     providerEncryptEbsVolume: false,
+ *     cloudBackup: true,
  * });
+ * //enable cloud provider snapshots
  * const testLdapVerify = new mongodbatlas.LdapVerify("testLdapVerify", {
  *     projectId: testProject.id,
  *     hostname: "HOSTNAME",

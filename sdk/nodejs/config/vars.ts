@@ -7,6 +7,10 @@ import * as utilities from "../utilities";
 let __config = new pulumi.Config("mongodbatlas");
 
 /**
+ * MongoDB Atlas Base URL
+ */
+export let baseUrl: string | undefined = __config.get("baseUrl");
+/**
  * MongoDB Atlas Programmatic Private Key
  */
 export let privateKey: string | undefined = __config.get("privateKey");
@@ -14,3 +18,7 @@ export let privateKey: string | undefined = __config.get("privateKey");
  * MongoDB Atlas Programmatic Public Key
  */
 export let publicKey: string | undefined = __config.get("publicKey");
+/**
+ * MongoDB Realm Base URL
+ */
+export let realmBaseUrl: string | undefined = __config.get("realmBaseUrl");

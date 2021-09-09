@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -37,12 +37,12 @@ import (
 // 					Value:     pulumi.String("SECONDARY"),
 // 				},
 // 			},
-// 			MetricThreshold: &mongodbatlas.AlertConfigurationMetricThresholdArgs{
-// 				Metric_name: pulumi.String("ASSERT_REGULAR"),
-// 				Mode:        pulumi.String("AVERAGE"),
-// 				Operator:    pulumi.String("LESS_THAN"),
-// 				Threshold:   pulumi.Float64(99),
-// 				Units:       pulumi.String("RAW"),
+// 			MetricThresholdConfig: &mongodbatlas.AlertConfigurationMetricThresholdConfigArgs{
+// 				MetricName: pulumi.String("ASSERT_REGULAR"),
+// 				Mode:       pulumi.String("AVERAGE"),
+// 				Operator:   pulumi.String("LESS_THAN"),
+// 				Threshold:  pulumi.Float64(99),
+// 				Units:      pulumi.String("RAW"),
 // 			},
 // 			Notifications: mongodbatlas.AlertConfigurationNotificationArray{
 // 				&mongodbatlas.AlertConfigurationNotificationArgs{
@@ -73,7 +73,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -103,7 +103,7 @@ import (
 // 				},
 // 			},
 // 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Threshold: &mongodbatlas.AlertConfigurationThresholdArgs{
+// 			ThresholdConfig: &mongodbatlas.AlertConfigurationThresholdConfigArgs{
 // 				Operator:  pulumi.String("LESS_THAN"),
 // 				Threshold: pulumi.Float64(1),
 // 				Units:     pulumi.String("HOURS"),
@@ -136,14 +136,19 @@ type AlertConfiguration struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
-	EventType       pulumi.StringOutput                        `pulumi:"eventType"`
-	Matchers        AlertConfigurationMatcherArrayOutput       `pulumi:"matchers"`
-	MetricThreshold AlertConfigurationMetricThresholdPtrOutput `pulumi:"metricThreshold"`
-	Notifications   AlertConfigurationNotificationArrayOutput  `pulumi:"notifications"`
+	EventType pulumi.StringOutput                  `pulumi:"eventType"`
+	Matchers  AlertConfigurationMatcherArrayOutput `pulumi:"matchers"`
+	// Deprecated: use metric_threshold_config instead
+	MetricThreshold       pulumi.StringMapOutput                           `pulumi:"metricThreshold"`
+	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrOutput `pulumi:"metricThresholdConfig"`
+	Notifications         AlertConfigurationNotificationArrayOutput        `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Threshold value outside of which an alert will be triggered.
-	Threshold AlertConfigurationThresholdPtrOutput `pulumi:"threshold"`
+	//
+	// Deprecated: use threshold_config instead
+	Threshold       pulumi.StringMapOutput                     `pulumi:"threshold"`
+	ThresholdConfig AlertConfigurationThresholdConfigPtrOutput `pulumi:"thresholdConfig"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated pulumi.StringOutput `pulumi:"updated"`
 }
@@ -193,14 +198,19 @@ type alertConfigurationState struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
-	EventType       *string                            `pulumi:"eventType"`
-	Matchers        []AlertConfigurationMatcher        `pulumi:"matchers"`
-	MetricThreshold *AlertConfigurationMetricThreshold `pulumi:"metricThreshold"`
-	Notifications   []AlertConfigurationNotification   `pulumi:"notifications"`
+	EventType *string                     `pulumi:"eventType"`
+	Matchers  []AlertConfigurationMatcher `pulumi:"matchers"`
+	// Deprecated: use metric_threshold_config instead
+	MetricThreshold       map[string]string                        `pulumi:"metricThreshold"`
+	MetricThresholdConfig *AlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfig"`
+	Notifications         []AlertConfigurationNotification         `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId *string `pulumi:"projectId"`
 	// Threshold value outside of which an alert will be triggered.
-	Threshold *AlertConfigurationThreshold `pulumi:"threshold"`
+	//
+	// Deprecated: use threshold_config instead
+	Threshold       map[string]string                  `pulumi:"threshold"`
+	ThresholdConfig *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated *string `pulumi:"updated"`
 }
@@ -213,14 +223,19 @@ type AlertConfigurationState struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolPtrInput
 	// The type of event that will trigger an alert.
-	EventType       pulumi.StringPtrInput
-	Matchers        AlertConfigurationMatcherArrayInput
-	MetricThreshold AlertConfigurationMetricThresholdPtrInput
-	Notifications   AlertConfigurationNotificationArrayInput
+	EventType pulumi.StringPtrInput
+	Matchers  AlertConfigurationMatcherArrayInput
+	// Deprecated: use metric_threshold_config instead
+	MetricThreshold       pulumi.StringMapInput
+	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrInput
+	Notifications         AlertConfigurationNotificationArrayInput
 	// The ID of the project where the alert configuration will create.
 	ProjectId pulumi.StringPtrInput
 	// Threshold value outside of which an alert will be triggered.
-	Threshold AlertConfigurationThresholdPtrInput
+	//
+	// Deprecated: use threshold_config instead
+	Threshold       pulumi.StringMapInput
+	ThresholdConfig AlertConfigurationThresholdConfigPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated pulumi.StringPtrInput
 }
@@ -233,14 +248,19 @@ type alertConfigurationArgs struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// The type of event that will trigger an alert.
-	EventType       string                             `pulumi:"eventType"`
-	Matchers        []AlertConfigurationMatcher        `pulumi:"matchers"`
-	MetricThreshold *AlertConfigurationMetricThreshold `pulumi:"metricThreshold"`
-	Notifications   []AlertConfigurationNotification   `pulumi:"notifications"`
+	EventType string                      `pulumi:"eventType"`
+	Matchers  []AlertConfigurationMatcher `pulumi:"matchers"`
+	// Deprecated: use metric_threshold_config instead
+	MetricThreshold       map[string]string                        `pulumi:"metricThreshold"`
+	MetricThresholdConfig *AlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfig"`
+	Notifications         []AlertConfigurationNotification         `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
 	ProjectId string `pulumi:"projectId"`
 	// Threshold value outside of which an alert will be triggered.
-	Threshold *AlertConfigurationThreshold `pulumi:"threshold"`
+	//
+	// Deprecated: use threshold_config instead
+	Threshold       map[string]string                  `pulumi:"threshold"`
+	ThresholdConfig *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
 }
 
 // The set of arguments for constructing a AlertConfiguration resource.
@@ -248,14 +268,19 @@ type AlertConfigurationArgs struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled pulumi.BoolPtrInput
 	// The type of event that will trigger an alert.
-	EventType       pulumi.StringInput
-	Matchers        AlertConfigurationMatcherArrayInput
-	MetricThreshold AlertConfigurationMetricThresholdPtrInput
-	Notifications   AlertConfigurationNotificationArrayInput
+	EventType pulumi.StringInput
+	Matchers  AlertConfigurationMatcherArrayInput
+	// Deprecated: use metric_threshold_config instead
+	MetricThreshold       pulumi.StringMapInput
+	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrInput
+	Notifications         AlertConfigurationNotificationArrayInput
 	// The ID of the project where the alert configuration will create.
 	ProjectId pulumi.StringInput
 	// Threshold value outside of which an alert will be triggered.
-	Threshold AlertConfigurationThresholdPtrInput
+	//
+	// Deprecated: use threshold_config instead
+	Threshold       pulumi.StringMapInput
+	ThresholdConfig AlertConfigurationThresholdConfigPtrInput
 }
 
 func (AlertConfigurationArgs) ElementType() reflect.Type {

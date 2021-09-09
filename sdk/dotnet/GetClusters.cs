@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
         ///                     },
         ///                 },
         ///             },
-        ///             ProviderBackupEnabled = true,
+        ///             CloudBackup = true,
         ///             AutoScalingDiskGbEnabled = true,
         ///             ProviderName = "AWS",
         ///             ProviderInstanceSizeName = "M40",

@@ -98,6 +98,9 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      * Required 	Unique identifier for the project.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+     */
     public readonly providerName!: pulumi.Output<string>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
@@ -200,6 +203,9 @@ export interface PrivateLinkEndpointState {
      * Required 	Unique identifier for the project.
      */
     readonly projectId?: pulumi.Input<string>;
+    /**
+     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+     */
     readonly providerName?: pulumi.Input<string>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
@@ -221,6 +227,9 @@ export interface PrivateLinkEndpointArgs {
      * Required 	Unique identifier for the project.
      */
     readonly projectId: pulumi.Input<string>;
+    /**
+     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+     */
     readonly providerName: pulumi.Input<string>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.

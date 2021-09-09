@@ -17,7 +17,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -56,7 +56,8 @@ type LookupCloudProviderAccessSetupArgs struct {
 // A collection of values returned by getCloudProviderAccessSetup.
 type LookupCloudProviderAccessSetupResult struct {
 	// aws related role information
-	Aws GetCloudProviderAccessSetupAws `pulumi:"aws"`
+	Aws        map[string]string                      `pulumi:"aws"`
+	AwsConfigs []GetCloudProviderAccessSetupAwsConfig `pulumi:"awsConfigs"`
 	// Date on which this role was created.
 	CreatedDate string `pulumi:"createdDate"`
 	// The provider-assigned unique ID for this managed resource.

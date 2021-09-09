@@ -23,7 +23,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -32,8 +32,7 @@ import (
 // 		test, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
 // 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
 // 			DiskSizeGb:               pulumi.Float64(80),
-// 			BackupEnabled:            pulumi.Bool(false),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
+// 			CloudBackup:              pulumi.Bool(true),
 // 			ClusterType:              pulumi.String("GEOSHARDED"),
 // 			ProviderName:             pulumi.String("AWS"),
 // 			ProviderInstanceSizeName: pulumi.String("M30"),
@@ -98,23 +97,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-// 			NumShards:                pulumi.Int(1),
-// 			ReplicationFactor:        pulumi.Int(3),
+// 			ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+// 			ClusterType: pulumi.String("REPLICASET"),
+// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 					NumShards: pulumi.Int(1),
+// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 							RegionName:     pulumi.String("US_EAST_1"),
+// 							ElectableNodes: pulumi.Int(3),
+// 							Priority:       pulumi.Int(7),
+// 							ReadOnlyNodes:  pulumi.Int(0),
+// 						},
+// 					},
+// 				},
+// 			},
 // 			BackupEnabled:            pulumi.Bool(true),
 // 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
 // 			MongoDbMajorVersion:      pulumi.String("4.0"),
 // 			ProviderName:             pulumi.String("AWS"),
 // 			DiskSizeGb:               pulumi.Float64(100),
 // 			ProviderInstanceSizeName: pulumi.String("M40"),
-// 			ProviderRegionName:       pulumi.String("US_EAST_1"),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -36,11 +36,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         /// </summary>
-        public readonly Outputs.GetClustersResultBiConnectorResult BiConnector;
+        public readonly ImmutableDictionary<string, string> BiConnector;
         /// <summary>
         /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         /// </summary>
-        public readonly Outputs.GetClustersResultBiConnectorConfigResult BiConnectorConfig;
+        public readonly ImmutableArray<Outputs.GetClustersResultBiConnectorConfigResult> BiConnectorConfigs;
         /// <summary>
         /// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         /// </summary>
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
         /// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
         /// </summary>
-        public readonly Outputs.GetClustersResultConnectionStringsResult ConnectionStrings;
+        public readonly ImmutableArray<Outputs.GetClustersResultConnectionStringResult> ConnectionStrings;
         /// <summary>
         /// The Network Peering Container ID.
         /// </summary>
@@ -120,7 +120,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderAutoScalingComputeMinInstanceSize;
         /// <summary>
-        /// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+        /// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloud_backup` instead.
         /// </summary>
         public readonly bool ProviderBackupEnabled;
         /// <summary>
@@ -190,13 +190,13 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool backupEnabled,
 
-            Outputs.GetClustersResultBiConnectorResult biConnector,
+            ImmutableDictionary<string, string> biConnector,
 
-            Outputs.GetClustersResultBiConnectorConfigResult biConnectorConfig,
+            ImmutableArray<Outputs.GetClustersResultBiConnectorConfigResult> biConnectorConfigs,
 
             string clusterType,
 
-            Outputs.GetClustersResultConnectionStringsResult connectionStrings,
+            ImmutableArray<Outputs.GetClustersResultConnectionStringResult> connectionStrings,
 
             string containerId,
 
@@ -260,7 +260,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             BackingProviderName = backingProviderName;
             BackupEnabled = backupEnabled;
             BiConnector = biConnector;
-            BiConnectorConfig = biConnectorConfig;
+            BiConnectorConfigs = biConnectorConfigs;
             ClusterType = clusterType;
             ConnectionStrings = connectionStrings;
             ContainerId = containerId;

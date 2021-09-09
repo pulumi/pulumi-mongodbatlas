@@ -20,14 +20,16 @@ class AlertConfigurationArgs:
                  project_id: pulumi.Input[str],
                  enabled: Optional[pulumi.Input[bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]] = None,
-                 metric_threshold: Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']] = None,
-                 threshold: Optional[pulumi.Input['AlertConfigurationThresholdArgs']] = None):
+                 metric_threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metric_threshold_config: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']] = None,
+                 threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 threshold_config: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']] = None):
         """
         The set of arguments for constructing a AlertConfiguration resource.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
-        :param pulumi.Input['AlertConfigurationThresholdArgs'] threshold: Threshold value outside of which an alert will be triggered.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] threshold: Threshold value outside of which an alert will be triggered.
         """
         pulumi.set(__self__, "event_type", event_type)
         pulumi.set(__self__, "notifications", notifications)
@@ -37,9 +39,19 @@ class AlertConfigurationArgs:
         if matchers is not None:
             pulumi.set(__self__, "matchers", matchers)
         if metric_threshold is not None:
+            warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
+            pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+        if metric_threshold is not None:
             pulumi.set(__self__, "metric_threshold", metric_threshold)
+        if metric_threshold_config is not None:
+            pulumi.set(__self__, "metric_threshold_config", metric_threshold_config)
+        if threshold is not None:
+            warnings.warn("""use threshold_config instead""", DeprecationWarning)
+            pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
         if threshold is not None:
             pulumi.set(__self__, "threshold", threshold)
+        if threshold_config is not None:
+            pulumi.set(__self__, "threshold_config", threshold_config)
 
     @property
     @pulumi.getter(name="eventType")
@@ -97,24 +109,42 @@ class AlertConfigurationArgs:
 
     @property
     @pulumi.getter(name="metricThreshold")
-    def metric_threshold(self) -> Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']]:
+    def metric_threshold(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "metric_threshold")
 
     @metric_threshold.setter
-    def metric_threshold(self, value: Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']]):
+    def metric_threshold(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "metric_threshold", value)
 
     @property
+    @pulumi.getter(name="metricThresholdConfig")
+    def metric_threshold_config(self) -> Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']]:
+        return pulumi.get(self, "metric_threshold_config")
+
+    @metric_threshold_config.setter
+    def metric_threshold_config(self, value: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']]):
+        pulumi.set(self, "metric_threshold_config", value)
+
+    @property
     @pulumi.getter
-    def threshold(self) -> Optional[pulumi.Input['AlertConfigurationThresholdArgs']]:
+    def threshold(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Threshold value outside of which an alert will be triggered.
         """
         return pulumi.get(self, "threshold")
 
     @threshold.setter
-    def threshold(self, value: Optional[pulumi.Input['AlertConfigurationThresholdArgs']]):
+    def threshold(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "threshold", value)
+
+    @property
+    @pulumi.getter(name="thresholdConfig")
+    def threshold_config(self) -> Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']]:
+        return pulumi.get(self, "threshold_config")
+
+    @threshold_config.setter
+    def threshold_config(self, value: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']]):
+        pulumi.set(self, "threshold_config", value)
 
 
 @pulumi.input_type
@@ -125,10 +155,12 @@ class _AlertConfigurationState:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]] = None,
-                 metric_threshold: Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']] = None,
+                 metric_threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metric_threshold_config: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']] = None,
                  notifications: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 threshold: Optional[pulumi.Input['AlertConfigurationThresholdArgs']] = None,
+                 threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 threshold_config: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']] = None,
                  updated: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AlertConfiguration resources.
@@ -137,7 +169,7 @@ class _AlertConfigurationState:
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
-        :param pulumi.Input['AlertConfigurationThresholdArgs'] threshold: Threshold value outside of which an alert will be triggered.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] threshold: Threshold value outside of which an alert will be triggered.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
         if alert_configuration_id is not None:
@@ -151,13 +183,23 @@ class _AlertConfigurationState:
         if matchers is not None:
             pulumi.set(__self__, "matchers", matchers)
         if metric_threshold is not None:
+            warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
+            pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
+        if metric_threshold is not None:
             pulumi.set(__self__, "metric_threshold", metric_threshold)
+        if metric_threshold_config is not None:
+            pulumi.set(__self__, "metric_threshold_config", metric_threshold_config)
         if notifications is not None:
             pulumi.set(__self__, "notifications", notifications)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if threshold is not None:
+            warnings.warn("""use threshold_config instead""", DeprecationWarning)
+            pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
+        if threshold is not None:
             pulumi.set(__self__, "threshold", threshold)
+        if threshold_config is not None:
+            pulumi.set(__self__, "threshold_config", threshold_config)
         if updated is not None:
             pulumi.set(__self__, "updated", updated)
 
@@ -220,12 +262,21 @@ class _AlertConfigurationState:
 
     @property
     @pulumi.getter(name="metricThreshold")
-    def metric_threshold(self) -> Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']]:
+    def metric_threshold(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "metric_threshold")
 
     @metric_threshold.setter
-    def metric_threshold(self, value: Optional[pulumi.Input['AlertConfigurationMetricThresholdArgs']]):
+    def metric_threshold(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "metric_threshold", value)
+
+    @property
+    @pulumi.getter(name="metricThresholdConfig")
+    def metric_threshold_config(self) -> Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']]:
+        return pulumi.get(self, "metric_threshold_config")
+
+    @metric_threshold_config.setter
+    def metric_threshold_config(self, value: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']]):
+        pulumi.set(self, "metric_threshold_config", value)
 
     @property
     @pulumi.getter
@@ -250,15 +301,24 @@ class _AlertConfigurationState:
 
     @property
     @pulumi.getter
-    def threshold(self) -> Optional[pulumi.Input['AlertConfigurationThresholdArgs']]:
+    def threshold(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Threshold value outside of which an alert will be triggered.
         """
         return pulumi.get(self, "threshold")
 
     @threshold.setter
-    def threshold(self, value: Optional[pulumi.Input['AlertConfigurationThresholdArgs']]):
+    def threshold(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "threshold", value)
+
+    @property
+    @pulumi.getter(name="thresholdConfig")
+    def threshold_config(self) -> Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']]:
+        return pulumi.get(self, "threshold_config")
+
+    @threshold_config.setter
+    def threshold_config(self, value: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']]):
+        pulumi.set(self, "threshold_config", value)
 
     @property
     @pulumi.getter
@@ -281,10 +341,12 @@ class AlertConfiguration(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
-                 metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
+                 metric_threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metric_threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdConfigArgs']]] = None,
                  notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']]] = None,
+                 threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdConfigArgs']]] = None,
                  __props__=None):
         """
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
@@ -305,7 +367,7 @@ class AlertConfiguration(pulumi.CustomResource):
                 operator="EQUALS",
                 value="SECONDARY",
             )],
-            metric_threshold=mongodbatlas.AlertConfigurationMetricThresholdArgs(
+            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
                 metric_name="ASSERT_REGULAR",
                 mode="AVERAGE",
                 operator="LESS_THAN",
@@ -352,7 +414,7 @@ class AlertConfiguration(pulumi.CustomResource):
                 type_name="GROUP",
             )],
             project_id="<PROJECT-ID>",
-            threshold=mongodbatlas.AlertConfigurationThresholdArgs(
+            threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
                 operator="LESS_THAN",
                 threshold=1,
                 units="HOURS",
@@ -374,7 +436,7 @@ class AlertConfiguration(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
-        :param pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']] threshold: Threshold value outside of which an alert will be triggered.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] threshold: Threshold value outside of which an alert will be triggered.
         """
         ...
     @overload
@@ -401,7 +463,7 @@ class AlertConfiguration(pulumi.CustomResource):
                 operator="EQUALS",
                 value="SECONDARY",
             )],
-            metric_threshold=mongodbatlas.AlertConfigurationMetricThresholdArgs(
+            metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(
                 metric_name="ASSERT_REGULAR",
                 mode="AVERAGE",
                 operator="LESS_THAN",
@@ -448,7 +510,7 @@ class AlertConfiguration(pulumi.CustomResource):
                 type_name="GROUP",
             )],
             project_id="<PROJECT-ID>",
-            threshold=mongodbatlas.AlertConfigurationThresholdArgs(
+            threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(
                 operator="LESS_THAN",
                 threshold=1,
                 units="HOURS",
@@ -483,10 +545,12 @@ class AlertConfiguration(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
-                 metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
+                 metric_threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metric_threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdConfigArgs']]] = None,
                  notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']]] = None,
+                 threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdConfigArgs']]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -504,14 +568,22 @@ class AlertConfiguration(pulumi.CustomResource):
                 raise TypeError("Missing required property 'event_type'")
             __props__.__dict__["event_type"] = event_type
             __props__.__dict__["matchers"] = matchers
+            if metric_threshold is not None and not opts.urn:
+                warnings.warn("""use metric_threshold_config instead""", DeprecationWarning)
+                pulumi.log.warn("""metric_threshold is deprecated: use metric_threshold_config instead""")
             __props__.__dict__["metric_threshold"] = metric_threshold
+            __props__.__dict__["metric_threshold_config"] = metric_threshold_config
             if notifications is None and not opts.urn:
                 raise TypeError("Missing required property 'notifications'")
             __props__.__dict__["notifications"] = notifications
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            if threshold is not None and not opts.urn:
+                warnings.warn("""use threshold_config instead""", DeprecationWarning)
+                pulumi.log.warn("""threshold is deprecated: use threshold_config instead""")
             __props__.__dict__["threshold"] = threshold
+            __props__.__dict__["threshold_config"] = threshold_config
             __props__.__dict__["alert_configuration_id"] = None
             __props__.__dict__["created"] = None
             __props__.__dict__["updated"] = None
@@ -530,10 +602,12 @@ class AlertConfiguration(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[bool]] = None,
             event_type: Optional[pulumi.Input[str]] = None,
             matchers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationMatcherArgs']]]]] = None,
-            metric_threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdArgs']]] = None,
+            metric_threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            metric_threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationMetricThresholdConfigArgs']]] = None,
             notifications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlertConfigurationNotificationArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            threshold: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']]] = None,
+            threshold: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            threshold_config: Optional[pulumi.Input[pulumi.InputType['AlertConfigurationThresholdConfigArgs']]] = None,
             updated: Optional[pulumi.Input[str]] = None) -> 'AlertConfiguration':
         """
         Get an existing AlertConfiguration resource's state with the given name, id, and optional extra
@@ -547,7 +621,7 @@ class AlertConfiguration(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[str] event_type: The type of event that will trigger an alert.
         :param pulumi.Input[str] project_id: The ID of the project where the alert configuration will create.
-        :param pulumi.Input[pulumi.InputType['AlertConfigurationThresholdArgs']] threshold: Threshold value outside of which an alert will be triggered.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] threshold: Threshold value outside of which an alert will be triggered.
         :param pulumi.Input[str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -560,9 +634,11 @@ class AlertConfiguration(pulumi.CustomResource):
         __props__.__dict__["event_type"] = event_type
         __props__.__dict__["matchers"] = matchers
         __props__.__dict__["metric_threshold"] = metric_threshold
+        __props__.__dict__["metric_threshold_config"] = metric_threshold_config
         __props__.__dict__["notifications"] = notifications
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["threshold"] = threshold
+        __props__.__dict__["threshold_config"] = threshold_config
         __props__.__dict__["updated"] = updated
         return AlertConfiguration(resource_name, opts=opts, __props__=__props__)
 
@@ -605,8 +681,13 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="metricThreshold")
-    def metric_threshold(self) -> pulumi.Output[Optional['outputs.AlertConfigurationMetricThreshold']]:
+    def metric_threshold(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         return pulumi.get(self, "metric_threshold")
+
+    @property
+    @pulumi.getter(name="metricThresholdConfig")
+    def metric_threshold_config(self) -> pulumi.Output[Optional['outputs.AlertConfigurationMetricThresholdConfig']]:
+        return pulumi.get(self, "metric_threshold_config")
 
     @property
     @pulumi.getter
@@ -623,11 +704,16 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def threshold(self) -> pulumi.Output[Optional['outputs.AlertConfigurationThreshold']]:
+    def threshold(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Threshold value outside of which an alert will be triggered.
         """
         return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter(name="thresholdConfig")
+    def threshold_config(self) -> pulumi.Output[Optional['outputs.AlertConfigurationThresholdConfig']]:
+        return pulumi.get(self, "threshold_config")
 
     @property
     @pulumi.getter

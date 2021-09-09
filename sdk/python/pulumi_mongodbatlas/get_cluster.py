@@ -20,7 +20,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, bi_connector_config=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None):
+    def __init__(__self__, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None):
         if auto_scaling_compute_enabled and not isinstance(auto_scaling_compute_enabled, bool):
             raise TypeError("Expected argument 'auto_scaling_compute_enabled' to be a bool")
         pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
@@ -43,14 +43,14 @@ class GetClusterResult:
             pulumi.log.warn("""bi_connector is deprecated: use bi_connector_config instead""")
 
         pulumi.set(__self__, "bi_connector", bi_connector)
-        if bi_connector_config and not isinstance(bi_connector_config, dict):
-            raise TypeError("Expected argument 'bi_connector_config' to be a dict")
-        pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+        if bi_connector_configs and not isinstance(bi_connector_configs, list):
+            raise TypeError("Expected argument 'bi_connector_configs' to be a list")
+        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
         if cluster_type and not isinstance(cluster_type, str):
             raise TypeError("Expected argument 'cluster_type' to be a str")
         pulumi.set(__self__, "cluster_type", cluster_type)
-        if connection_strings and not isinstance(connection_strings, dict):
-            raise TypeError("Expected argument 'connection_strings' to be a dict")
+        if connection_strings and not isinstance(connection_strings, list):
+            raise TypeError("Expected argument 'connection_strings' to be a list")
         pulumi.set(__self__, "connection_strings", connection_strings)
         if container_id and not isinstance(container_id, str):
             raise TypeError("Expected argument 'container_id' to be a str")
@@ -115,6 +115,9 @@ class GetClusterResult:
         if provider_encrypt_ebs_volume and not isinstance(provider_encrypt_ebs_volume, bool):
             raise TypeError("Expected argument 'provider_encrypt_ebs_volume' to be a bool")
         pulumi.set(__self__, "provider_encrypt_ebs_volume", provider_encrypt_ebs_volume)
+        if provider_encrypt_ebs_volume_flag and not isinstance(provider_encrypt_ebs_volume_flag, bool):
+            raise TypeError("Expected argument 'provider_encrypt_ebs_volume_flag' to be a bool")
+        pulumi.set(__self__, "provider_encrypt_ebs_volume_flag", provider_encrypt_ebs_volume_flag)
         if provider_instance_size_name and not isinstance(provider_instance_size_name, str):
             raise TypeError("Expected argument 'provider_instance_size_name' to be a str")
         pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
@@ -185,19 +188,19 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="biConnector")
-    def bi_connector(self) -> 'outputs.GetClusterBiConnectorResult':
+    def bi_connector(self) -> Mapping[str, str]:
         """
         Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         """
         return pulumi.get(self, "bi_connector")
 
     @property
-    @pulumi.getter(name="biConnectorConfig")
-    def bi_connector_config(self) -> 'outputs.GetClusterBiConnectorConfigResult':
+    @pulumi.getter(name="biConnectorConfigs")
+    def bi_connector_configs(self) -> Sequence['outputs.GetClusterBiConnectorConfigResult']:
         """
         Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         """
-        return pulumi.get(self, "bi_connector_config")
+        return pulumi.get(self, "bi_connector_configs")
 
     @property
     @pulumi.getter(name="clusterType")
@@ -209,7 +212,7 @@ class GetClusterResult:
 
     @property
     @pulumi.getter(name="connectionStrings")
-    def connection_strings(self) -> 'outputs.GetClusterConnectionStringsResult':
+    def connection_strings(self) -> Sequence['outputs.GetClusterConnectionStringResult']:
         """
         Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         - `connection_strings.standard` -   Public mongodb:// connection string for this cluster.
@@ -362,7 +365,7 @@ class GetClusterResult:
     @pulumi.getter(name="providerBackupEnabled")
     def provider_backup_enabled(self) -> bool:
         """
-        Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+        **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
         """
         return pulumi.get(self, "provider_backup_enabled")
 
@@ -389,6 +392,11 @@ class GetClusterResult:
         **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
+
+    @property
+    @pulumi.getter(name="providerEncryptEbsVolumeFlag")
+    def provider_encrypt_ebs_volume_flag(self) -> bool:
+        return pulumi.get(self, "provider_encrypt_ebs_volume_flag")
 
     @property
     @pulumi.getter(name="providerInstanceSizeName")
@@ -481,7 +489,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             backing_provider_name=self.backing_provider_name,
             backup_enabled=self.backup_enabled,
             bi_connector=self.bi_connector,
-            bi_connector_config=self.bi_connector_config,
+            bi_connector_configs=self.bi_connector_configs,
             cluster_type=self.cluster_type,
             connection_strings=self.connection_strings,
             container_id=self.container_id,
@@ -505,6 +513,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             provider_disk_iops=self.provider_disk_iops,
             provider_disk_type_name=self.provider_disk_type_name,
             provider_encrypt_ebs_volume=self.provider_encrypt_ebs_volume,
+            provider_encrypt_ebs_volume_flag=self.provider_encrypt_ebs_volume_flag,
             provider_instance_size_name=self.provider_instance_size_name,
             provider_name=self.provider_name,
             provider_region_name=self.provider_region_name,
@@ -520,7 +529,7 @@ def get_cluster(name: Optional[str] = None,
                 project_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
-    `Cluster` describes a Cluster. The. The data source requires your Project ID.
+    `Cluster` describes a Cluster. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -548,7 +557,7 @@ def get_cluster(name: Optional[str] = None,
         backing_provider_name=__ret__.backing_provider_name,
         backup_enabled=__ret__.backup_enabled,
         bi_connector=__ret__.bi_connector,
-        bi_connector_config=__ret__.bi_connector_config,
+        bi_connector_configs=__ret__.bi_connector_configs,
         cluster_type=__ret__.cluster_type,
         connection_strings=__ret__.connection_strings,
         container_id=__ret__.container_id,
@@ -572,6 +581,7 @@ def get_cluster(name: Optional[str] = None,
         provider_disk_iops=__ret__.provider_disk_iops,
         provider_disk_type_name=__ret__.provider_disk_type_name,
         provider_encrypt_ebs_volume=__ret__.provider_encrypt_ebs_volume,
+        provider_encrypt_ebs_volume_flag=__ret__.provider_encrypt_ebs_volume_flag,
         provider_instance_size_name=__ret__.provider_instance_size_name,
         provider_name=__ret__.provider_name,
         provider_region_name=__ret__.provider_region_name,

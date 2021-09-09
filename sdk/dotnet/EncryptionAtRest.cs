@@ -16,19 +16,28 @@ namespace Pulumi.Mongodbatlas
         /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
         [Output("awsKms")]
-        public Output<Outputs.EncryptionAtRestAwsKms?> AwsKms { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> AwsKms { get; private set; } = null!;
+
+        [Output("awsKmsConfig")]
+        public Output<Outputs.EncryptionAtRestAwsKmsConfig?> AwsKmsConfig { get; private set; } = null!;
 
         /// <summary>
         /// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
         [Output("azureKeyVault")]
-        public Output<Outputs.EncryptionAtRestAzureKeyVault?> AzureKeyVault { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> AzureKeyVault { get; private set; } = null!;
+
+        [Output("azureKeyVaultConfig")]
+        public Output<Outputs.EncryptionAtRestAzureKeyVaultConfig?> AzureKeyVaultConfig { get; private set; } = null!;
 
         /// <summary>
         /// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
         [Output("googleCloudKms")]
-        public Output<Outputs.EncryptionAtRestGoogleCloudKms?> GoogleCloudKms { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> GoogleCloudKms { get; private set; } = null!;
+
+        [Output("googleCloudKmsConfig")]
+        public Output<Outputs.EncryptionAtRestGoogleCloudKmsConfig?> GoogleCloudKmsConfig { get; private set; } = null!;
 
         /// <summary>
         /// The unique identifier for the project.
@@ -82,23 +91,53 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class EncryptionAtRestArgs : Pulumi.ResourceArgs
     {
+        [Input("awsKms")]
+        private InputMap<string>? _awsKms;
+
         /// <summary>
         /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Input("awsKms")]
-        public Input<Inputs.EncryptionAtRestAwsKmsArgs>? AwsKms { get; set; }
+        [Obsolete(@"use aws_kms_config instead")]
+        public InputMap<string> AwsKms
+        {
+            get => _awsKms ?? (_awsKms = new InputMap<string>());
+            set => _awsKms = value;
+        }
+
+        [Input("awsKmsConfig")]
+        public Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>? AwsKmsConfig { get; set; }
+
+        [Input("azureKeyVault")]
+        private InputMap<string>? _azureKeyVault;
 
         /// <summary>
         /// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Input("azureKeyVault")]
-        public Input<Inputs.EncryptionAtRestAzureKeyVaultArgs>? AzureKeyVault { get; set; }
+        [Obsolete(@"use azure_key_vault_config instead")]
+        public InputMap<string> AzureKeyVault
+        {
+            get => _azureKeyVault ?? (_azureKeyVault = new InputMap<string>());
+            set => _azureKeyVault = value;
+        }
+
+        [Input("azureKeyVaultConfig")]
+        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? AzureKeyVaultConfig { get; set; }
+
+        [Input("googleCloudKms")]
+        private InputMap<string>? _googleCloudKms;
 
         /// <summary>
         /// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Input("googleCloudKms")]
-        public Input<Inputs.EncryptionAtRestGoogleCloudKmsArgs>? GoogleCloudKms { get; set; }
+        [Obsolete(@"use google_cloud_kms_config instead")]
+        public InputMap<string> GoogleCloudKms
+        {
+            get => _googleCloudKms ?? (_googleCloudKms = new InputMap<string>());
+            set => _googleCloudKms = value;
+        }
+
+        [Input("googleCloudKmsConfig")]
+        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>? GoogleCloudKmsConfig { get; set; }
 
         /// <summary>
         /// The unique identifier for the project.
@@ -113,23 +152,53 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class EncryptionAtRestState : Pulumi.ResourceArgs
     {
+        [Input("awsKms")]
+        private InputMap<string>? _awsKms;
+
         /// <summary>
         /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Input("awsKms")]
-        public Input<Inputs.EncryptionAtRestAwsKmsGetArgs>? AwsKms { get; set; }
+        [Obsolete(@"use aws_kms_config instead")]
+        public InputMap<string> AwsKms
+        {
+            get => _awsKms ?? (_awsKms = new InputMap<string>());
+            set => _awsKms = value;
+        }
+
+        [Input("awsKmsConfig")]
+        public Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>? AwsKmsConfig { get; set; }
+
+        [Input("azureKeyVault")]
+        private InputMap<string>? _azureKeyVault;
 
         /// <summary>
         /// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Input("azureKeyVault")]
-        public Input<Inputs.EncryptionAtRestAzureKeyVaultGetArgs>? AzureKeyVault { get; set; }
+        [Obsolete(@"use azure_key_vault_config instead")]
+        public InputMap<string> AzureKeyVault
+        {
+            get => _azureKeyVault ?? (_azureKeyVault = new InputMap<string>());
+            set => _azureKeyVault = value;
+        }
+
+        [Input("azureKeyVaultConfig")]
+        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? AzureKeyVaultConfig { get; set; }
+
+        [Input("googleCloudKms")]
+        private InputMap<string>? _googleCloudKms;
 
         /// <summary>
         /// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
         /// </summary>
-        [Input("googleCloudKms")]
-        public Input<Inputs.EncryptionAtRestGoogleCloudKmsGetArgs>? GoogleCloudKms { get; set; }
+        [Obsolete(@"use google_cloud_kms_config instead")]
+        public InputMap<string> GoogleCloudKms
+        {
+            get => _googleCloudKms ?? (_googleCloudKms = new InputMap<string>());
+            set => _googleCloudKms = value;
+        }
+
+        [Input("googleCloudKmsConfig")]
+        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>? GoogleCloudKmsConfig { get; set; }
 
         /// <summary>
         /// The unique identifier for the project.

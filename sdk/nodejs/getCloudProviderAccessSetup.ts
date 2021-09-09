@@ -67,7 +67,8 @@ export interface GetCloudProviderAccessSetupResult {
     /**
      * aws related role information
      */
-    readonly aws: outputs.GetCloudProviderAccessSetupAws;
+    readonly aws: {[key: string]: string};
+    readonly awsConfigs: outputs.GetCloudProviderAccessSetupAwsConfig[];
     /**
      * Date on which this role was created.
      */

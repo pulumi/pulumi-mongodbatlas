@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",
- *     providerBackupEnabled: true,
+ *     cloudBackup: true,
  * });
  * // enable cloud backup snapshots
  * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
@@ -43,10 +43,10 @@ import * as utilities from "./utilities";
  *     projectId: testCloudProviderSnapshot.projectId,
  *     clusterName: testCloudProviderSnapshot.clusterName,
  *     snapshotId: testCloudProviderSnapshot.snapshotId,
- *     deliveryType: {
+ *     deliveryTypeConfig: {
  *         automated: true,
- *         target_cluster_name: "MyCluster",
- *         target_project_id: "5cf5a45a9ccf6400e60981b6",
+ *         targetClusterName: "MyCluster",
+ *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
  *     },
  * }, {
  *     dependsOn: [testCloudProviderSnapshot],
@@ -64,7 +64,7 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     providerRegionName: "EU_WEST_2",
  *     providerInstanceSizeName: "M10",
- *     providerBackupEnabled: true,
+ *     cloudBackup: true,
  * });
  * // enable cloud backup snapshots
  * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
@@ -77,7 +77,7 @@ import * as utilities from "./utilities";
  *     projectId: testCloudProviderSnapshot.projectId,
  *     clusterName: testCloudProviderSnapshot.clusterName,
  *     snapshotId: testCloudProviderSnapshot.snapshotId,
- *     deliveryType: {
+ *     deliveryTypeConfig: {
  *         download: true,
  *     },
  * });
@@ -135,8 +135,14 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
      * Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+     *
+     * @deprecated use delivery_type_config instead
      */
-    public readonly deliveryType!: pulumi.Output<outputs.CloudProviderSnapshotRestoreJobDeliveryType>;
+    public readonly deliveryType!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Type of restore job to create. Possible values are: automated and download.
+     */
+    public readonly deliveryTypeConfig!: pulumi.Output<outputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig | undefined>;
     /**
      * One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
      */
@@ -187,6 +193,7 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
             inputs["clusterName"] = state ? state.clusterName : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["deliveryType"] = state ? state.deliveryType : undefined;
+            inputs["deliveryTypeConfig"] = state ? state.deliveryTypeConfig : undefined;
             inputs["deliveryUrls"] = state ? state.deliveryUrls : undefined;
             inputs["expired"] = state ? state.expired : undefined;
             inputs["expiresAt"] = state ? state.expiresAt : undefined;
@@ -200,9 +207,6 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
             if ((!args || args.clusterName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterName'");
             }
-            if ((!args || args.deliveryType === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'deliveryType'");
-            }
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -211,6 +215,7 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
             }
             inputs["clusterName"] = args ? args.clusterName : undefined;
             inputs["deliveryType"] = args ? args.deliveryType : undefined;
+            inputs["deliveryTypeConfig"] = args ? args.deliveryTypeConfig : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["snapshotId"] = args ? args.snapshotId : undefined;
             inputs["cancelled"] = undefined /*out*/;
@@ -247,8 +252,14 @@ export interface CloudProviderSnapshotRestoreJobState {
     readonly createdAt?: pulumi.Input<string>;
     /**
      * Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+     *
+     * @deprecated use delivery_type_config instead
      */
-    readonly deliveryType?: pulumi.Input<inputs.CloudProviderSnapshotRestoreJobDeliveryType>;
+    readonly deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Type of restore job to create. Possible values are: automated and download.
+     */
+    readonly deliveryTypeConfig?: pulumi.Input<inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig>;
     /**
      * One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
      */
@@ -293,8 +304,14 @@ export interface CloudProviderSnapshotRestoreJobArgs {
     readonly clusterName: pulumi.Input<string>;
     /**
      * Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+     *
+     * @deprecated use delivery_type_config instead
      */
-    readonly deliveryType: pulumi.Input<inputs.CloudProviderSnapshotRestoreJobDeliveryType>;
+    readonly deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Type of restore job to create. Possible values are: automated and download.
+     */
+    readonly deliveryTypeConfig?: pulumi.Input<inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig>;
     /**
      * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
      */

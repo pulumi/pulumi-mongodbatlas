@@ -37,9 +37,9 @@ namespace Pulumi.Mongodbatlas
     ///                     Value = "SECONDARY",
     ///                 },
     ///             },
-    ///             MetricThreshold = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdArgs
+    ///             MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs
     ///             {
-    ///                 Metric_name = "ASSERT_REGULAR",
+    ///                 MetricName = "ASSERT_REGULAR",
     ///                 Mode = "AVERAGE",
     ///                 Operator = "LESS_THAN",
     ///                 Threshold = 99,
@@ -108,7 +108,7 @@ namespace Pulumi.Mongodbatlas
     ///                 },
     ///             },
     ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             Threshold = new Mongodbatlas.Inputs.AlertConfigurationThresholdArgs
+    ///             ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs
     ///             {
     ///                 Operator = "LESS_THAN",
     ///                 Threshold = 1,
@@ -161,7 +161,10 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.AlertConfigurationMatcher>> Matchers { get; private set; } = null!;
 
         [Output("metricThreshold")]
-        public Output<Outputs.AlertConfigurationMetricThreshold?> MetricThreshold { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> MetricThreshold { get; private set; } = null!;
+
+        [Output("metricThresholdConfig")]
+        public Output<Outputs.AlertConfigurationMetricThresholdConfig?> MetricThresholdConfig { get; private set; } = null!;
 
         [Output("notifications")]
         public Output<ImmutableArray<Outputs.AlertConfigurationNotification>> Notifications { get; private set; } = null!;
@@ -176,7 +179,10 @@ namespace Pulumi.Mongodbatlas
         /// Threshold value outside of which an alert will be triggered.
         /// </summary>
         [Output("threshold")]
-        public Output<Outputs.AlertConfigurationThreshold?> Threshold { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Threshold { get; private set; } = null!;
+
+        [Output("thresholdConfig")]
+        public Output<Outputs.AlertConfigurationThresholdConfig?> ThresholdConfig { get; private set; } = null!;
 
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -251,7 +257,16 @@ namespace Pulumi.Mongodbatlas
         }
 
         [Input("metricThreshold")]
-        public Input<Inputs.AlertConfigurationMetricThresholdArgs>? MetricThreshold { get; set; }
+        private InputMap<string>? _metricThreshold;
+        [Obsolete(@"use metric_threshold_config instead")]
+        public InputMap<string> MetricThreshold
+        {
+            get => _metricThreshold ?? (_metricThreshold = new InputMap<string>());
+            set => _metricThreshold = value;
+        }
+
+        [Input("metricThresholdConfig")]
+        public Input<Inputs.AlertConfigurationMetricThresholdConfigArgs>? MetricThresholdConfig { get; set; }
 
         [Input("notifications", required: true)]
         private InputList<Inputs.AlertConfigurationNotificationArgs>? _notifications;
@@ -267,11 +282,21 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        [Input("threshold")]
+        private InputMap<string>? _threshold;
+
         /// <summary>
         /// Threshold value outside of which an alert will be triggered.
         /// </summary>
-        [Input("threshold")]
-        public Input<Inputs.AlertConfigurationThresholdArgs>? Threshold { get; set; }
+        [Obsolete(@"use threshold_config instead")]
+        public InputMap<string> Threshold
+        {
+            get => _threshold ?? (_threshold = new InputMap<string>());
+            set => _threshold = value;
+        }
+
+        [Input("thresholdConfig")]
+        public Input<Inputs.AlertConfigurationThresholdConfigArgs>? ThresholdConfig { get; set; }
 
         public AlertConfigurationArgs()
         {
@@ -313,7 +338,16 @@ namespace Pulumi.Mongodbatlas
         }
 
         [Input("metricThreshold")]
-        public Input<Inputs.AlertConfigurationMetricThresholdGetArgs>? MetricThreshold { get; set; }
+        private InputMap<string>? _metricThreshold;
+        [Obsolete(@"use metric_threshold_config instead")]
+        public InputMap<string> MetricThreshold
+        {
+            get => _metricThreshold ?? (_metricThreshold = new InputMap<string>());
+            set => _metricThreshold = value;
+        }
+
+        [Input("metricThresholdConfig")]
+        public Input<Inputs.AlertConfigurationMetricThresholdConfigGetArgs>? MetricThresholdConfig { get; set; }
 
         [Input("notifications")]
         private InputList<Inputs.AlertConfigurationNotificationGetArgs>? _notifications;
@@ -329,11 +363,21 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("threshold")]
+        private InputMap<string>? _threshold;
+
         /// <summary>
         /// Threshold value outside of which an alert will be triggered.
         /// </summary>
-        [Input("threshold")]
-        public Input<Inputs.AlertConfigurationThresholdGetArgs>? Threshold { get; set; }
+        [Obsolete(@"use threshold_config instead")]
+        public InputMap<string> Threshold
+        {
+            get => _threshold ?? (_threshold = new InputMap<string>());
+            set => _threshold = value;
+        }
+
+        [Input("thresholdConfig")]
+        public Input<Inputs.AlertConfigurationThresholdConfigGetArgs>? ThresholdConfig { get; set; }
 
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.

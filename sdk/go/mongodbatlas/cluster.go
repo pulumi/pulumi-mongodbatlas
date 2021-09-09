@@ -11,281 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
-// > **NOTE:** A network container is created for a cluster to reside in if one does not yet exist in the project.  To  use this automatically created container with another resource, such as peering, the `containerId` is exported after creation.
-//
-// > **IMPORTANT:**
-// <br> &#8226; Free tier cluster creation (M0) is not supported via API or by this Provider.
-// <br> &#8226; Shared tier clusters (M2, M5) cannot be upgraded to higher tiers via API or by this Provider.
-// <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).\
-// <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-//
-// ## Example Usage
-// ### Example AWS cluster
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
-// 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
-// 			ClusterType:              pulumi.String("REPLICASET"),
-// 			DiskSizeGb:               pulumi.Float64(100),
-// 			MongoDbMajorVersion:      pulumi.String("4.2"),
-// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderInstanceSizeName: pulumi.String("M40"),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
-// 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-// 							ElectableNodes: pulumi.Int(3),
-// 							Priority:       pulumi.Int(7),
-// 							ReadOnlyNodes:  pulumi.Int(0),
-// 							RegionName:     pulumi.String("US_EAST_1"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Example Azure cluster.
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-// 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
-// 			ClusterType:              pulumi.String("REPLICASET"),
-// 			MongoDbMajorVersion:      pulumi.String("4.2"),
-// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderDiskTypeName:     pulumi.String("P6"),
-// 			ProviderInstanceSizeName: pulumi.String("M30"),
-// 			ProviderName:             pulumi.String("AZURE"),
-// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
-// 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-// 							ElectableNodes: pulumi.Int(3),
-// 							Priority:       pulumi.Int(7),
-// 							ReadOnlyNodes:  pulumi.Int(0),
-// 							RegionName:     pulumi.String("US_EAST_1"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Example GCP cluster
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCluster(ctx, "test", &mongodbatlas.ClusterArgs{
-// 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
-// 			ClusterType:              pulumi.String("REPLICASET"),
-// 			DiskSizeGb:               pulumi.Float64(40),
-// 			MongoDbMajorVersion:      pulumi.String("4.2"),
-// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderInstanceSizeName: pulumi.String("M30"),
-// 			ProviderName:             pulumi.String("GCP"),
-// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
-// 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-// 							ElectableNodes: pulumi.Int(3),
-// 							Priority:       pulumi.Int(7),
-// 							ReadOnlyNodes:  pulumi.Int(0),
-// 							RegionName:     pulumi.String("US_EAST_1"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Example Multi Region cluster
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
-// 			ClusterType:              pulumi.String("REPLICASET"),
-// 			DiskSizeGb:               pulumi.Float64(100),
-// 			NumShards:                pulumi.Int(1),
-// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
-// 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-// 							ElectableNodes: pulumi.Int(3),
-// 							Priority:       pulumi.Int(7),
-// 							ReadOnlyNodes:  pulumi.Int(0),
-// 							RegionName:     pulumi.String("US_EAST_1"),
-// 						},
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-// 							ElectableNodes: pulumi.Int(2),
-// 							Priority:       pulumi.Int(6),
-// 							ReadOnlyNodes:  pulumi.Int(0),
-// 							RegionName:     pulumi.String("US_EAST_2"),
-// 						},
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-// 							ElectableNodes: pulumi.Int(2),
-// 							Priority:       pulumi.Int(5),
-// 							ReadOnlyNodes:  pulumi.Int(2),
-// 							RegionName:     pulumi.String("US_WEST_1"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Example Global cluster
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
-// 			ClusterType:              pulumi.String("GEOSHARDED"),
-// 			DiskSizeGb:               pulumi.Float64(80),
-// 			NumShards:                pulumi.Int(1),
-// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderBackupEnabled:    pulumi.Bool(true),
-// 			ProviderInstanceSizeName: pulumi.String("M30"),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
-// 					NumShards: pulumi.Int(2),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-// 							ElectableNodes: pulumi.Int(3),
-// 							Priority:       pulumi.Int(7),
-// 							ReadOnlyNodes:  pulumi.Int(0),
-// 							RegionName:     pulumi.String("US_EAST_1"),
-// 						},
-// 					},
-// 					ZoneName: pulumi.String("Zone 1"),
-// 				},
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
-// 					NumShards: pulumi.Int(2),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
-// 							ElectableNodes: pulumi.Int(3),
-// 							Priority:       pulumi.Int(7),
-// 							ReadOnlyNodes:  pulumi.Int(0),
-// 							RegionName:     pulumi.String("EU_CENTRAL_1"),
-// 						},
-// 					},
-// 					ZoneName: pulumi.String("Zone 2"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Example AWS Shared Tier cluster
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v2/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
-// 			AutoScalingDiskGbEnabled: pulumi.Bool(false),
-// 			BackingProviderName:      pulumi.String("AWS"),
-// 			DiskSizeGb:               pulumi.Float64(2),
-// 			MongoDbMajorVersion:      pulumi.String("4.2"),
-// 			ProjectId:                pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderInstanceSizeName: pulumi.String("M2"),
-// 			ProviderName:             pulumi.String("TENANT"),
-// 			ProviderRegionName:       pulumi.String("US_EAST_1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -311,20 +36,23 @@ type Cluster struct {
 	// - Set to `false` to disable disk auto-scaling.
 	AutoScalingDiskGbEnabled pulumi.BoolPtrOutput `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
-	BackingProviderName pulumi.StringOutput  `pulumi:"backingProviderName"`
-	BackupEnabled       pulumi.BoolPtrOutput `pulumi:"backupEnabled"`
+	BackingProviderName pulumi.StringOutput `pulumi:"backingProviderName"`
+	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	BackupEnabled pulumi.BoolPtrOutput `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
 	// Deprecated: use bi_connector_config instead
-	BiConnector ClusterBiConnectorPtrOutput `pulumi:"biConnector"`
+	BiConnector pulumi.StringMapOutput `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigOutput `pulumi:"biConnectorConfig"`
+	// Flag indicating if the cluster uses Cloud Backup for backups.
+	CloudBackup pulumi.BoolPtrOutput `pulumi:"cloudBackup"`
 	// The cluster ID.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringOutput `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-	ConnectionStrings ClusterConnectionStringsOutput `pulumi:"connectionStrings"`
+	ConnectionStrings ClusterConnectionStringArrayOutput `pulumi:"connectionStrings"`
 	// The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
 	ContainerId pulumi.StringOutput `pulumi:"containerId"`
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -352,7 +80,7 @@ type Cluster struct {
 	NumShards pulumi.IntPtrOutput `pulumi:"numShards"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused pulumi.BoolOutput `pulumi:"paused"`
-	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
+	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolOutput `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -360,7 +88,9 @@ type Cluster struct {
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringOutput `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringOutput `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup for backups.
+	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
+	//
+	// Deprecated: This field is deprecated,please use cloud_backup instead
 	ProviderBackupEnabled pulumi.BoolPtrOutput `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -452,19 +182,22 @@ type clusterState struct {
 	AutoScalingDiskGbEnabled *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	BackupEnabled       *bool   `pulumi:"backupEnabled"`
+	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
 	// Deprecated: use bi_connector_config instead
-	BiConnector *ClusterBiConnector `pulumi:"biConnector"`
+	BiConnector map[string]string `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
+	// Flag indicating if the cluster uses Cloud Backup for backups.
+	CloudBackup *bool `pulumi:"cloudBackup"`
 	// The cluster ID.
 	ClusterId *string `pulumi:"clusterId"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType *string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-	ConnectionStrings *ClusterConnectionStrings `pulumi:"connectionStrings"`
+	ConnectionStrings []ClusterConnectionString `pulumi:"connectionStrings"`
 	// The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
 	ContainerId *string `pulumi:"containerId"`
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -492,7 +225,7 @@ type clusterState struct {
 	NumShards *int `pulumi:"numShards"`
 	// Flag that indicates whether the cluster is paused or not.
 	Paused *bool `pulumi:"paused"`
-	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
+	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled *bool `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the database user.
 	ProjectId *string `pulumi:"projectId"`
@@ -500,7 +233,9 @@ type clusterState struct {
 	ProviderAutoScalingComputeMaxInstanceSize *string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize *string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup for backups.
+	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
+	//
+	// Deprecated: This field is deprecated,please use cloud_backup instead
 	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -555,19 +290,22 @@ type ClusterState struct {
 	AutoScalingDiskGbEnabled pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName pulumi.StringPtrInput
-	BackupEnabled       pulumi.BoolPtrInput
+	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	BackupEnabled pulumi.BoolPtrInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
 	// Deprecated: use bi_connector_config instead
-	BiConnector ClusterBiConnectorPtrInput
+	BiConnector pulumi.StringMapInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigPtrInput
+	// Flag indicating if the cluster uses Cloud Backup for backups.
+	CloudBackup pulumi.BoolPtrInput
 	// The cluster ID.
 	ClusterId pulumi.StringPtrInput
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringPtrInput
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-	ConnectionStrings ClusterConnectionStringsPtrInput
+	ConnectionStrings ClusterConnectionStringArrayInput
 	// The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
 	ContainerId pulumi.StringPtrInput
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -595,7 +333,7 @@ type ClusterState struct {
 	NumShards pulumi.IntPtrInput
 	// Flag that indicates whether the cluster is paused or not.
 	Paused pulumi.BoolPtrInput
-	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
+	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolPtrInput
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringPtrInput
@@ -603,7 +341,9 @@ type ClusterState struct {
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringPtrInput
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringPtrInput
-	// Flag indicating if the cluster uses Cloud Backup for backups.
+	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
+	//
+	// Deprecated: This field is deprecated,please use cloud_backup instead
 	ProviderBackupEnabled pulumi.BoolPtrInput
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -662,13 +402,16 @@ type clusterArgs struct {
 	AutoScalingDiskGbEnabled *bool `pulumi:"autoScalingDiskGbEnabled"`
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	BackupEnabled       *bool   `pulumi:"backupEnabled"`
+	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	BackupEnabled *bool `pulumi:"backupEnabled"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
 	// Deprecated: use bi_connector_config instead
-	BiConnector *ClusterBiConnector `pulumi:"biConnector"`
+	BiConnector map[string]string `pulumi:"biConnector"`
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig *ClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
+	// Flag indicating if the cluster uses Cloud Backup for backups.
+	CloudBackup *bool `pulumi:"cloudBackup"`
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType *string `pulumi:"clusterType"`
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -686,7 +429,7 @@ type clusterArgs struct {
 	Name *string `pulumi:"name"`
 	// Number of shards to deploy in the specified zone, minimum 1.
 	NumShards *int `pulumi:"numShards"`
-	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
+	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled *bool `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
@@ -694,7 +437,9 @@ type clusterArgs struct {
 	ProviderAutoScalingComputeMaxInstanceSize *string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize *string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup for backups.
+	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
+	//
+	// Deprecated: This field is deprecated,please use cloud_backup instead
 	ProviderBackupEnabled *bool `pulumi:"providerBackupEnabled"`
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -737,13 +482,16 @@ type ClusterArgs struct {
 	AutoScalingDiskGbEnabled pulumi.BoolPtrInput
 	// Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 	BackingProviderName pulumi.StringPtrInput
-	BackupEnabled       pulumi.BoolPtrInput
+	// Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
+	BackupEnabled pulumi.BoolPtrInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
 	// Deprecated: use bi_connector_config instead
-	BiConnector ClusterBiConnectorPtrInput
+	BiConnector pulumi.StringMapInput
 	// Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
 	BiConnectorConfig ClusterBiConnectorConfigPtrInput
+	// Flag indicating if the cluster uses Cloud Backup for backups.
+	CloudBackup pulumi.BoolPtrInput
 	// Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringPtrInput
 	// Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
@@ -761,7 +509,7 @@ type ClusterArgs struct {
 	Name pulumi.StringPtrInput
 	// Number of shards to deploy in the specified zone, minimum 1.
 	NumShards pulumi.IntPtrInput
-	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, providerBackupEnabled must also be set to true.
+	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolPtrInput
 	// The unique ID for the project to create the database user.
 	ProjectId pulumi.StringInput
@@ -769,7 +517,9 @@ type ClusterArgs struct {
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringPtrInput
 	// Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringPtrInput
-	// Flag indicating if the cluster uses Cloud Backup for backups.
+	// Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
+	//
+	// Deprecated: This field is deprecated,please use cloud_backup instead
 	ProviderBackupEnabled pulumi.BoolPtrInput
 	// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
 	// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.

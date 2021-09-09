@@ -8,6 +8,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
+// MongoDB Atlas Base URL
+func GetBaseUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:baseUrl")
+}
+
 // MongoDB Atlas Programmatic Private Key
 func GetPrivateKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:privateKey")
@@ -16,4 +21,9 @@ func GetPrivateKey(ctx *pulumi.Context) string {
 // MongoDB Atlas Programmatic Public Key
 func GetPublicKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:publicKey")
+}
+
+// MongoDB Realm Base URL
+func GetRealmBaseUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:realmBaseUrl")
 }

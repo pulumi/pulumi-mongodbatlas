@@ -16,20 +16,28 @@ __all__ = ['CloudProviderSnapshotRestoreJobArgs', 'CloudProviderSnapshotRestoreJ
 class CloudProviderSnapshotRestoreJobArgs:
     def __init__(__self__, *,
                  cluster_name: pulumi.Input[str],
-                 delivery_type: pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs'],
                  project_id: pulumi.Input[str],
-                 snapshot_id: pulumi.Input[str]):
+                 snapshot_id: pulumi.Input[str],
+                 delivery_type: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 delivery_type_config: Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']] = None):
         """
         The set of arguments for constructing a CloudProviderSnapshotRestoreJob resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs'] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible values are: automated and download.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "delivery_type", delivery_type)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if delivery_type is not None:
+            warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
+            pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+        if delivery_type is not None:
+            pulumi.set(__self__, "delivery_type", delivery_type)
+        if delivery_type_config is not None:
+            pulumi.set(__self__, "delivery_type_config", delivery_type_config)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -42,18 +50,6 @@ class CloudProviderSnapshotRestoreJobArgs:
     @cluster_name.setter
     def cluster_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "cluster_name", value)
-
-    @property
-    @pulumi.getter(name="deliveryType")
-    def delivery_type(self) -> pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']:
-        """
-        Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
-        """
-        return pulumi.get(self, "delivery_type")
-
-    @delivery_type.setter
-    def delivery_type(self, value: pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']):
-        pulumi.set(self, "delivery_type", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -79,6 +75,30 @@ class CloudProviderSnapshotRestoreJobArgs:
     def snapshot_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "snapshot_id", value)
 
+    @property
+    @pulumi.getter(name="deliveryType")
+    def delivery_type(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        """
+        return pulumi.get(self, "delivery_type")
+
+    @delivery_type.setter
+    def delivery_type(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "delivery_type", value)
+
+    @property
+    @pulumi.getter(name="deliveryTypeConfig")
+    def delivery_type_config(self) -> Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']]:
+        """
+        Type of restore job to create. Possible values are: automated and download.
+        """
+        return pulumi.get(self, "delivery_type_config")
+
+    @delivery_type_config.setter
+    def delivery_type_config(self, value: Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']]):
+        pulumi.set(self, "delivery_type_config", value)
+
 
 @pulumi.input_type
 class _CloudProviderSnapshotRestoreJobState:
@@ -86,7 +106,8 @@ class _CloudProviderSnapshotRestoreJobState:
                  cancelled: Optional[pulumi.Input[bool]] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
-                 delivery_type: Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']] = None,
+                 delivery_type: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 delivery_type_config: Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
                  delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  expired: Optional[pulumi.Input[bool]] = None,
                  expires_at: Optional[pulumi.Input[str]] = None,
@@ -100,7 +121,8 @@ class _CloudProviderSnapshotRestoreJobState:
         :param pulumi.Input[bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        :param pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs'] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible values are: automated and download.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         :param pulumi.Input[bool] expired: Indicates whether the restore job expired.
         :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
@@ -117,7 +139,12 @@ class _CloudProviderSnapshotRestoreJobState:
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if delivery_type is not None:
+            warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
+            pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
+        if delivery_type is not None:
             pulumi.set(__self__, "delivery_type", delivery_type)
+        if delivery_type_config is not None:
+            pulumi.set(__self__, "delivery_type_config", delivery_type_config)
         if delivery_urls is not None:
             pulumi.set(__self__, "delivery_urls", delivery_urls)
         if expired is not None:
@@ -173,15 +200,27 @@ class _CloudProviderSnapshotRestoreJobState:
 
     @property
     @pulumi.getter(name="deliveryType")
-    def delivery_type(self) -> Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]:
+    def delivery_type(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
         """
         return pulumi.get(self, "delivery_type")
 
     @delivery_type.setter
-    def delivery_type(self, value: Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]):
+    def delivery_type(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "delivery_type", value)
+
+    @property
+    @pulumi.getter(name="deliveryTypeConfig")
+    def delivery_type_config(self) -> Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']]:
+        """
+        Type of restore job to create. Possible values are: automated and download.
+        """
+        return pulumi.get(self, "delivery_type_config")
+
+    @delivery_type_config.setter
+    def delivery_type_config(self, value: Optional[pulumi.Input['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']]):
+        pulumi.set(self, "delivery_type_config", value)
 
     @property
     @pulumi.getter(name="deliveryUrls")
@@ -286,7 +325,8 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 delivery_type: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]] = None,
+                 delivery_type: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 delivery_type_config: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -315,7 +355,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True)
+            cloud_backup=True)
         # enable cloud backup snapshots
         test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
             project_id=my_cluster.project_id,
@@ -326,7 +366,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
             snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+            delivery_type_config=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs(
                 automated=True,
                 target_cluster_name="MyCluster",
                 target_project_id="5cf5a45a9ccf6400e60981b6",
@@ -345,7 +385,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True)
+            cloud_backup=True)
         # enable cloud backup snapshots
         test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
             project_id=my_cluster.project_id,
@@ -356,7 +396,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
             snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+            delivery_type_config=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs(
                 download=True,
             ))
         ```
@@ -374,7 +414,8 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']] delivery_type_config: Type of restore job to create. Possible values are: automated and download.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] snapshot_id: Unique identifier of the snapshot to restore.
         """
@@ -409,7 +450,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True)
+            cloud_backup=True)
         # enable cloud backup snapshots
         test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
             project_id=my_cluster.project_id,
@@ -420,7 +461,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
             snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+            delivery_type_config=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs(
                 automated=True,
                 target_cluster_name="MyCluster",
                 target_project_id="5cf5a45a9ccf6400e60981b6",
@@ -439,7 +480,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True)
+            cloud_backup=True)
         # enable cloud backup snapshots
         test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
             project_id=my_cluster.project_id,
@@ -450,7 +491,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
             snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
+            delivery_type_config=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs(
                 download=True,
             ))
         ```
@@ -481,7 +522,8 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[str]] = None,
-                 delivery_type: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]] = None,
+                 delivery_type: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 delivery_type_config: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -499,9 +541,11 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
-            if delivery_type is None and not opts.urn:
-                raise TypeError("Missing required property 'delivery_type'")
+            if delivery_type is not None and not opts.urn:
+                warnings.warn("""use delivery_type_config instead""", DeprecationWarning)
+                pulumi.log.warn("""delivery_type is deprecated: use delivery_type_config instead""")
             __props__.__dict__["delivery_type"] = delivery_type
+            __props__.__dict__["delivery_type_config"] = delivery_type_config
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -529,7 +573,8 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
             cancelled: Optional[pulumi.Input[bool]] = None,
             cluster_name: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            delivery_type: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']]] = None,
+            delivery_type: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            delivery_type_config: Optional[pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']]] = None,
             delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             expired: Optional[pulumi.Input[bool]] = None,
             expires_at: Optional[pulumi.Input[str]] = None,
@@ -548,7 +593,8 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[str] created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
-        :param pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeArgs']] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] delivery_type: Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+        :param pulumi.Input[pulumi.InputType['CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs']] delivery_type_config: Type of restore job to create. Possible values are: automated and download.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         :param pulumi.Input[bool] expired: Indicates whether the restore job expired.
         :param pulumi.Input[str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
@@ -566,6 +612,7 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
         __props__.__dict__["cluster_name"] = cluster_name
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["delivery_type"] = delivery_type
+        __props__.__dict__["delivery_type_config"] = delivery_type_config
         __props__.__dict__["delivery_urls"] = delivery_urls
         __props__.__dict__["expired"] = expired
         __props__.__dict__["expires_at"] = expires_at
@@ -602,11 +649,19 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deliveryType")
-    def delivery_type(self) -> pulumi.Output['outputs.CloudProviderSnapshotRestoreJobDeliveryType']:
+    def delivery_type(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
         """
         return pulumi.get(self, "delivery_type")
+
+    @property
+    @pulumi.getter(name="deliveryTypeConfig")
+    def delivery_type_config(self) -> pulumi.Output[Optional['outputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig']]:
+        """
+        Type of restore job to create. Possible values are: automated and download.
+        """
+        return pulumi.get(self, "delivery_type_config")
 
     @property
     @pulumi.getter(name="deliveryUrls")

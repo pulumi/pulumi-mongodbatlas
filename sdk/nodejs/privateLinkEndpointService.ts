@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
- * ## Example Usage
+ * ## Example with AWS
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

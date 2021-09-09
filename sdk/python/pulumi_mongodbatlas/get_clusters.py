@@ -94,7 +94,7 @@ def get_clusters(project_id: Optional[str] = None,
                 read_only_nodes=0,
             )],
         )],
-        provider_backup_enabled=True,
+        cloud_backup=True,
         auto_scaling_disk_gb_enabled=True,
         provider_name="AWS",
         provider_instance_size_name="M40")

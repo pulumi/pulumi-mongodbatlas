@@ -127,11 +127,11 @@ def get_cloud_provider_snapshot_restore_jobs(cluster_name: Optional[str] = None,
         project_id="5cf5a45a9ccf6400e60981b6",
         cluster_name="MyCluster",
         snapshot_id=test_cloud_provider_snapshot.id,
-        delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
-            automated=True,
-            target_cluster_name="MyCluster",
-            target_project_id="5cf5a45a9ccf6400e60981b6",
-        ))
+        delivery_type=[{
+            "automated": True,
+            "targetClusterName": "MyCluster",
+            "targetProjectId": "5cf5a45a9ccf6400e60981b6",
+        }])
     test_cloud_provider_snapshot_restore_jobs = pulumi.Output.all(test_cloud_provider_snapshot_restore_job.project_id, test_cloud_provider_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_provider_snapshot_restore_jobs(project_id=project_id,
         cluster_name=cluster_name,
         page_num=1,

@@ -89,7 +89,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// aws related role information
         /// </summary>
-        public readonly Outputs.GetCloudProviderAccessSetupAwsResult Aws;
+        public readonly ImmutableDictionary<string, string> Aws;
+        public readonly ImmutableArray<Outputs.GetCloudProviderAccessSetupAwsConfigResult> AwsConfigs;
         /// <summary>
         /// Date on which this role was created.
         /// </summary>
@@ -104,7 +105,9 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetCloudProviderAccessSetupResult(
-            Outputs.GetCloudProviderAccessSetupAwsResult aws,
+            ImmutableDictionary<string, string> aws,
+
+            ImmutableArray<Outputs.GetCloudProviderAccessSetupAwsConfigResult> awsConfigs,
 
             string createdDate,
 
@@ -117,6 +120,7 @@ namespace Pulumi.Mongodbatlas
             string roleId)
         {
             Aws = aws;
+            AwsConfigs = awsConfigs;
             CreatedDate = createdDate;
             Id = id;
             ProjectId = projectId;

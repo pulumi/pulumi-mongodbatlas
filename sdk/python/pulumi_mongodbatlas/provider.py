@@ -14,14 +14,22 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  private_key: pulumi.Input[str],
-                 public_key: pulumi.Input[str]):
+                 public_key: pulumi.Input[str],
+                 base_url: Optional[pulumi.Input[str]] = None,
+                 realm_base_url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[str] public_key: MongoDB Atlas Programmatic Public Key
+        :param pulumi.Input[str] base_url: MongoDB Atlas Base URL
+        :param pulumi.Input[str] realm_base_url: MongoDB Realm Base URL
         """
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "public_key", public_key)
+        if base_url is not None:
+            pulumi.set(__self__, "base_url", base_url)
+        if realm_base_url is not None:
+            pulumi.set(__self__, "realm_base_url", realm_base_url)
 
     @property
     @pulumi.getter(name="privateKey")
@@ -47,14 +55,40 @@ class ProviderArgs:
     def public_key(self, value: pulumi.Input[str]):
         pulumi.set(self, "public_key", value)
 
+    @property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        MongoDB Atlas Base URL
+        """
+        return pulumi.get(self, "base_url")
+
+    @base_url.setter
+    def base_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "base_url", value)
+
+    @property
+    @pulumi.getter(name="realmBaseUrl")
+    def realm_base_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        MongoDB Realm Base URL
+        """
+        return pulumi.get(self, "realm_base_url")
+
+    @realm_base_url.setter
+    def realm_base_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "realm_base_url", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 base_url: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
+                 realm_base_url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         The provider type for the mongodbatlas package. By default, resources use package-wide configuration
@@ -64,8 +98,10 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] base_url: MongoDB Atlas Base URL
         :param pulumi.Input[str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[str] public_key: MongoDB Atlas Programmatic Public Key
+        :param pulumi.Input[str] realm_base_url: MongoDB Realm Base URL
         """
         ...
     @overload
@@ -94,8 +130,10 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 base_url: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
+                 realm_base_url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -108,12 +146,14 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            __props__.__dict__["base_url"] = base_url
             if private_key is None and not opts.urn:
                 raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = private_key
             if public_key is None and not opts.urn:
                 raise TypeError("Missing required property 'public_key'")
             __props__.__dict__["public_key"] = public_key
+            __props__.__dict__["realm_base_url"] = realm_base_url
         super(Provider, __self__).__init__(
             'mongodbatlas',
             resource_name,

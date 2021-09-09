@@ -322,7 +322,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True)
+            cloud_backup=True)
         # enable cloud backup snapshots
         test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
             project_id=my_cluster.project_id,
@@ -333,9 +333,9 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
             snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
-                download=True,
-            ))
+            delivery_type=[{
+                "download": True,
+            }])
         ```
 
         ## Import
@@ -379,7 +379,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             provider_name="AWS",
             provider_region_name="EU_WEST_2",
             provider_instance_size_name="M10",
-            provider_backup_enabled=True)
+            cloud_backup=True)
         # enable cloud backup snapshots
         test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
             project_id=my_cluster.project_id,
@@ -390,9 +390,9 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
             snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeArgs(
-                download=True,
-            ))
+            delivery_type=[{
+                "download": True,
+            }])
         ```
 
         ## Import

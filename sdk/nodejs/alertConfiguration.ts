@@ -24,8 +24,8 @@ import * as utilities from "./utilities";
  *         operator: "EQUALS",
  *         value: "SECONDARY",
  *     }],
- *     metricThreshold: {
- *         metric_name: "ASSERT_REGULAR",
+ *     metricThresholdConfig: {
+ *         metricName: "ASSERT_REGULAR",
  *         mode: "AVERAGE",
  *         operator: "LESS_THAN",
  *         threshold: 99,
@@ -72,7 +72,7 @@ import * as utilities from "./utilities";
  *         typeName: "GROUP",
  *     }],
  *     projectId: "<PROJECT-ID>",
- *     threshold: {
+ *     thresholdConfig: {
  *         operator: "LESS_THAN",
  *         threshold: 1,
  *         units: "HOURS",
@@ -135,7 +135,11 @@ export class AlertConfiguration extends pulumi.CustomResource {
      */
     public readonly eventType!: pulumi.Output<string>;
     public readonly matchers!: pulumi.Output<outputs.AlertConfigurationMatcher[] | undefined>;
-    public readonly metricThreshold!: pulumi.Output<outputs.AlertConfigurationMetricThreshold | undefined>;
+    /**
+     * @deprecated use metric_threshold_config instead
+     */
+    public readonly metricThreshold!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly metricThresholdConfig!: pulumi.Output<outputs.AlertConfigurationMetricThresholdConfig | undefined>;
     public readonly notifications!: pulumi.Output<outputs.AlertConfigurationNotification[]>;
     /**
      * The ID of the project where the alert configuration will create.
@@ -143,8 +147,11 @@ export class AlertConfiguration extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     /**
      * Threshold value outside of which an alert will be triggered.
+     *
+     * @deprecated use threshold_config instead
      */
-    public readonly threshold!: pulumi.Output<outputs.AlertConfigurationThreshold | undefined>;
+    public readonly threshold!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly thresholdConfig!: pulumi.Output<outputs.AlertConfigurationThresholdConfig | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
@@ -169,9 +176,11 @@ export class AlertConfiguration extends pulumi.CustomResource {
             inputs["eventType"] = state ? state.eventType : undefined;
             inputs["matchers"] = state ? state.matchers : undefined;
             inputs["metricThreshold"] = state ? state.metricThreshold : undefined;
+            inputs["metricThresholdConfig"] = state ? state.metricThresholdConfig : undefined;
             inputs["notifications"] = state ? state.notifications : undefined;
             inputs["projectId"] = state ? state.projectId : undefined;
             inputs["threshold"] = state ? state.threshold : undefined;
+            inputs["thresholdConfig"] = state ? state.thresholdConfig : undefined;
             inputs["updated"] = state ? state.updated : undefined;
         } else {
             const args = argsOrState as AlertConfigurationArgs | undefined;
@@ -188,9 +197,11 @@ export class AlertConfiguration extends pulumi.CustomResource {
             inputs["eventType"] = args ? args.eventType : undefined;
             inputs["matchers"] = args ? args.matchers : undefined;
             inputs["metricThreshold"] = args ? args.metricThreshold : undefined;
+            inputs["metricThresholdConfig"] = args ? args.metricThresholdConfig : undefined;
             inputs["notifications"] = args ? args.notifications : undefined;
             inputs["projectId"] = args ? args.projectId : undefined;
             inputs["threshold"] = args ? args.threshold : undefined;
+            inputs["thresholdConfig"] = args ? args.thresholdConfig : undefined;
             inputs["alertConfigurationId"] = undefined /*out*/;
             inputs["created"] = undefined /*out*/;
             inputs["updated"] = undefined /*out*/;
@@ -223,7 +234,11 @@ export interface AlertConfigurationState {
      */
     readonly eventType?: pulumi.Input<string>;
     readonly matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
-    readonly metricThreshold?: pulumi.Input<inputs.AlertConfigurationMetricThreshold>;
+    /**
+     * @deprecated use metric_threshold_config instead
+     */
+    readonly metricThreshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
     readonly notifications?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
     /**
      * The ID of the project where the alert configuration will create.
@@ -231,8 +246,11 @@ export interface AlertConfigurationState {
     readonly projectId?: pulumi.Input<string>;
     /**
      * Threshold value outside of which an alert will be triggered.
+     *
+     * @deprecated use threshold_config instead
      */
-    readonly threshold?: pulumi.Input<inputs.AlertConfigurationThreshold>;
+    readonly threshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
@@ -252,7 +270,11 @@ export interface AlertConfigurationArgs {
      */
     readonly eventType: pulumi.Input<string>;
     readonly matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
-    readonly metricThreshold?: pulumi.Input<inputs.AlertConfigurationMetricThreshold>;
+    /**
+     * @deprecated use metric_threshold_config instead
+     */
+    readonly metricThreshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
     readonly notifications: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
     /**
      * The ID of the project where the alert configuration will create.
@@ -260,6 +282,9 @@ export interface AlertConfigurationArgs {
     readonly projectId: pulumi.Input<string>;
     /**
      * Threshold value outside of which an alert will be triggered.
+     *
+     * @deprecated use threshold_config instead
      */
-    readonly threshold?: pulumi.Input<inputs.AlertConfigurationThreshold>;
+    readonly threshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    readonly thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
 }

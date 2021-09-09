@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 // Export members:
 export * from "./alertConfiguration";
 export * from "./auditing";
+export * from "./cloudBackupSchedule";
 export * from "./cloudProviderAccess";
 export * from "./cloudProviderAccessAuthorization";
 export * from "./cloudProviderAccessSetup";
@@ -16,11 +17,14 @@ export * from "./cloudProviderSnapshotRestoreJob";
 export * from "./cluster";
 export * from "./customDbRole";
 export * from "./customDnsConfigurationClusterAws";
+export * from "./dataLake";
 export * from "./databaseUser";
 export * from "./encryptionAtRest";
+export * from "./eventTrigger";
 export * from "./get509AuthenticationDatabaseUser";
 export * from "./getAlertConfiguration";
 export * from "./getAuditing";
+export * from "./getCloudBackupSchedule";
 export * from "./getCloudProviderAccess";
 export * from "./getCloudProviderAccessSetup";
 export * from "./getCloudProviderSnapshot";
@@ -33,8 +37,12 @@ export * from "./getClusters";
 export * from "./getCustomDbRole";
 export * from "./getCustomDbRoles";
 export * from "./getCustomDnsConfigurationClusterAws";
+export * from "./getDataLake";
+export * from "./getDataLakes";
 export * from "./getDatabaseUser";
 export * from "./getDatabaseUsers";
+export * from "./getEventTrigger";
+export * from "./getEventTriggers";
 export * from "./getGlobalClusterConfig";
 export * from "./getLdapConfiguration";
 export * from "./getLdapVerify";
@@ -43,14 +51,15 @@ export * from "./getNetworkContainer";
 export * from "./getNetworkContainers";
 export * from "./getNetworkPeering";
 export * from "./getNetworkPeerings";
-export * from "./getPrivateEndpoint";
-export * from "./getPrivateEndpointInterfaceLink";
+export * from "./getOnlineArchive";
+export * from "./getOnlineArchives";
 export * from "./getPrivateLinkEndpoint";
 export * from "./getPrivateLinkEndpointService";
 export * from "./getProject";
 export * from "./getProjectIpAccessList";
-export * from "./getProjectIpWhitelist";
 export * from "./getProjects";
+export * from "./getSearchIndex";
+export * from "./getSearchIndexes";
 export * from "./getTeam";
 export * from "./getTeams";
 export * from "./getThirdPartyIntegration";
@@ -61,15 +70,14 @@ export * from "./ldapVerify";
 export * from "./maintenanceWindow";
 export * from "./networkContainer";
 export * from "./networkPeering";
-export * from "./privateEndpoint";
-export * from "./privateEndpointInterfaceLink";
+export * from "./onlineArchive";
 export * from "./privateIpMode";
 export * from "./privateLinkEndpoint";
 export * from "./privateLinkEndpointService";
 export * from "./project";
 export * from "./projectIpAccessList";
-export * from "./projectIpWhitelist";
 export * from "./provider";
+export * from "./searchIndex";
 export * from "./team";
 export * from "./teams";
 export * from "./thirdPartyIntegration";
@@ -87,6 +95,7 @@ export {
 // Import resources to register:
 import { AlertConfiguration } from "./alertConfiguration";
 import { Auditing } from "./auditing";
+import { CloudBackupSchedule } from "./cloudBackupSchedule";
 import { CloudProviderAccess } from "./cloudProviderAccess";
 import { CloudProviderAccessAuthorization } from "./cloudProviderAccessAuthorization";
 import { CloudProviderAccessSetup } from "./cloudProviderAccessSetup";
@@ -96,22 +105,23 @@ import { CloudProviderSnapshotRestoreJob } from "./cloudProviderSnapshotRestoreJ
 import { Cluster } from "./cluster";
 import { CustomDbRole } from "./customDbRole";
 import { CustomDnsConfigurationClusterAws } from "./customDnsConfigurationClusterAws";
+import { DataLake } from "./dataLake";
 import { DatabaseUser } from "./databaseUser";
 import { EncryptionAtRest } from "./encryptionAtRest";
+import { EventTrigger } from "./eventTrigger";
 import { GlobalClusterConfig } from "./globalClusterConfig";
 import { LdapConfiguration } from "./ldapConfiguration";
 import { LdapVerify } from "./ldapVerify";
 import { MaintenanceWindow } from "./maintenanceWindow";
 import { NetworkContainer } from "./networkContainer";
 import { NetworkPeering } from "./networkPeering";
-import { PrivateEndpoint } from "./privateEndpoint";
-import { PrivateEndpointInterfaceLink } from "./privateEndpointInterfaceLink";
+import { OnlineArchive } from "./onlineArchive";
 import { PrivateIpMode } from "./privateIpMode";
 import { PrivateLinkEndpoint } from "./privateLinkEndpoint";
 import { PrivateLinkEndpointService } from "./privateLinkEndpointService";
 import { Project } from "./project";
 import { ProjectIpAccessList } from "./projectIpAccessList";
-import { ProjectIpWhitelist } from "./projectIpWhitelist";
+import { SearchIndex } from "./searchIndex";
 import { Team } from "./team";
 import { Teams } from "./teams";
 import { ThirdPartyIntegration } from "./thirdPartyIntegration";
@@ -125,6 +135,8 @@ const _module = {
                 return new AlertConfiguration(name, <any>undefined, { urn })
             case "mongodbatlas:index/auditing:Auditing":
                 return new Auditing(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
+                return new CloudBackupSchedule(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
                 return new CloudProviderAccess(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
@@ -143,10 +155,14 @@ const _module = {
                 return new CustomDbRole(name, <any>undefined, { urn })
             case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
                 return new CustomDnsConfigurationClusterAws(name, <any>undefined, { urn })
+            case "mongodbatlas:index/dataLake:DataLake":
+                return new DataLake(name, <any>undefined, { urn })
             case "mongodbatlas:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
             case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
                 return new EncryptionAtRest(name, <any>undefined, { urn })
+            case "mongodbatlas:index/eventTrigger:EventTrigger":
+                return new EventTrigger(name, <any>undefined, { urn })
             case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
                 return new GlobalClusterConfig(name, <any>undefined, { urn })
             case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -159,10 +175,8 @@ const _module = {
                 return new NetworkContainer(name, <any>undefined, { urn })
             case "mongodbatlas:index/networkPeering:NetworkPeering":
                 return new NetworkPeering(name, <any>undefined, { urn })
-            case "mongodbatlas:index/privateEndpoint:PrivateEndpoint":
-                return new PrivateEndpoint(name, <any>undefined, { urn })
-            case "mongodbatlas:index/privateEndpointInterfaceLink:PrivateEndpointInterfaceLink":
-                return new PrivateEndpointInterfaceLink(name, <any>undefined, { urn })
+            case "mongodbatlas:index/onlineArchive:OnlineArchive":
+                return new OnlineArchive(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateIpMode:PrivateIpMode":
                 return new PrivateIpMode(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
@@ -173,8 +187,8 @@ const _module = {
                 return new Project(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
-            case "mongodbatlas:index/projectIpWhitelist:ProjectIpWhitelist":
-                return new ProjectIpWhitelist(name, <any>undefined, { urn })
+            case "mongodbatlas:index/searchIndex:SearchIndex":
+                return new SearchIndex(name, <any>undefined, { urn })
             case "mongodbatlas:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
             case "mongodbatlas:index/teams:Teams":
@@ -190,6 +204,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/alertConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/auditing", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSchedule", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccess", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessAuthorization", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessSetup", _module)
@@ -199,22 +214,23 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderSnapsh
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDbRole", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDnsConfigurationClusterAws", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/dataLake", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/encryptionAtRest", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/eventTrigger", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/globalClusterConfig", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/maintenanceWindow", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkContainer", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpoint", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpointInterfaceLink", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/onlineArchive", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateIpMode", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpointService", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpWhitelist", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/teams", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/thirdPartyIntegration", _module)

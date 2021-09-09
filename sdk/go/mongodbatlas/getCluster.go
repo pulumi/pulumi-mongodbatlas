@@ -7,7 +7,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `Cluster` describes a Cluster. The. The data source requires your Project ID.
+// `Cluster` describes a Cluster. The data source requires your Project ID.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
@@ -46,9 +46,9 @@ type LookupClusterResult struct {
 	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
 	//
 	// Deprecated: use bi_connector_config instead
-	BiConnector GetClusterBiConnector `pulumi:"biConnector"`
+	BiConnector map[string]string `pulumi:"biConnector"`
 	// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
-	BiConnectorConfig GetClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
+	BiConnectorConfigs []GetClusterBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
 	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
@@ -65,7 +65,7 @@ type LookupClusterResult struct {
 	// - `connection_strings.private_endoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
 	// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-	ConnectionStrings GetClusterConnectionStrings `pulumi:"connectionStrings"`
+	ConnectionStrings []GetClusterConnectionString `pulumi:"connectionStrings"`
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
 	// Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
@@ -98,14 +98,15 @@ type LookupClusterResult struct {
 	ProviderAutoScalingComputeMaxInstanceSize string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// (Optional) Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+	// **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
 	ProviderBackupEnabled bool `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops int `pulumi:"providerDiskIops"`
 	// Describes Azure disk type of the server’s root volume (Azure Only).
 	ProviderDiskTypeName string `pulumi:"providerDiskTypeName"`
 	// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `providerEncryptEbsVolumeFlag` computed attribute.
-	ProviderEncryptEbsVolume bool `pulumi:"providerEncryptEbsVolume"`
+	ProviderEncryptEbsVolume     bool `pulumi:"providerEncryptEbsVolume"`
+	ProviderEncryptEbsVolumeFlag bool `pulumi:"providerEncryptEbsVolumeFlag"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size.
 	ProviderInstanceSizeName string `pulumi:"providerInstanceSizeName"`
 	// Indicates the cloud service provider on which the servers are provisioned.

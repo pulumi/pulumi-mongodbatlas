@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCluster
     {
         /// <summary>
-        /// `mongodbatlas.Cluster` describes a Cluster. The. The data source requires your Project ID.
+        /// `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// 
@@ -71,11 +71,11 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `bi_connector_config` instead.
         /// </summary>
-        public readonly Outputs.GetClusterBiConnectorResult BiConnector;
+        public readonly ImmutableDictionary<string, string> BiConnector;
         /// <summary>
         /// Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         /// </summary>
-        public readonly Outputs.GetClusterBiConnectorConfigResult BiConnectorConfig;
+        public readonly ImmutableArray<Outputs.GetClusterBiConnectorConfigResult> BiConnectorConfigs;
         /// <summary>
         /// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         /// </summary>
@@ -96,7 +96,7 @@ namespace Pulumi.Mongodbatlas
         /// - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
         /// - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
         /// </summary>
-        public readonly Outputs.GetClusterConnectionStringsResult ConnectionStrings;
+        public readonly ImmutableArray<Outputs.GetClusterConnectionStringResult> ConnectionStrings;
         /// <summary>
         /// The Network Peering Container ID.
         /// </summary>
@@ -160,7 +160,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ProviderAutoScalingComputeMinInstanceSize;
         /// <summary>
-        /// Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
+        /// **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
         /// </summary>
         public readonly bool ProviderBackupEnabled;
         /// <summary>
@@ -175,6 +175,7 @@ namespace Pulumi.Mongodbatlas
         /// **(DEPRECATED)** Indicates whether the Amazon EBS encryption is enabled. This feature encrypts the server’s root volume for both data at rest within the volume and data moving between the volume and the instance. By default this attribute is always enabled, per deprecation process showing the real value at `provider_encrypt_ebs_volume_flag` computed attribute.
         /// </summary>
         public readonly bool ProviderEncryptEbsVolume;
+        public readonly bool ProviderEncryptEbsVolumeFlag;
         /// <summary>
         /// Atlas provides different instance sizes, each with a default storage capacity and RAM size.
         /// </summary>
@@ -230,13 +231,13 @@ namespace Pulumi.Mongodbatlas
 
             bool backupEnabled,
 
-            Outputs.GetClusterBiConnectorResult biConnector,
+            ImmutableDictionary<string, string> biConnector,
 
-            Outputs.GetClusterBiConnectorConfigResult biConnectorConfig,
+            ImmutableArray<Outputs.GetClusterBiConnectorConfigResult> biConnectorConfigs,
 
             string clusterType,
 
-            Outputs.GetClusterConnectionStringsResult connectionStrings,
+            ImmutableArray<Outputs.GetClusterConnectionStringResult> connectionStrings,
 
             string containerId,
 
@@ -280,6 +281,8 @@ namespace Pulumi.Mongodbatlas
 
             bool providerEncryptEbsVolume,
 
+            bool providerEncryptEbsVolumeFlag,
+
             string providerInstanceSizeName,
 
             string providerName,
@@ -304,7 +307,7 @@ namespace Pulumi.Mongodbatlas
             BackingProviderName = backingProviderName;
             BackupEnabled = backupEnabled;
             BiConnector = biConnector;
-            BiConnectorConfig = biConnectorConfig;
+            BiConnectorConfigs = biConnectorConfigs;
             ClusterType = clusterType;
             ConnectionStrings = connectionStrings;
             ContainerId = containerId;
@@ -328,6 +331,7 @@ namespace Pulumi.Mongodbatlas
             ProviderDiskIops = providerDiskIops;
             ProviderDiskTypeName = providerDiskTypeName;
             ProviderEncryptEbsVolume = providerEncryptEbsVolume;
+            ProviderEncryptEbsVolumeFlag = providerEncryptEbsVolumeFlag;
             ProviderInstanceSizeName = providerInstanceSizeName;
             ProviderName = providerName;
             ProviderRegionName = providerRegionName;

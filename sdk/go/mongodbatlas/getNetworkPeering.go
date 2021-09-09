@@ -33,9 +33,8 @@ type LookupNetworkPeeringArgs struct {
 type LookupNetworkPeeringResult struct {
 	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
 	AccepterRegionName string `pulumi:"accepterRegionName"`
-	// Unique identifier for an Azure AD directory.
-	AtlasCidrBlock string `pulumi:"atlasCidrBlock"`
-	AtlasId        string `pulumi:"atlasId"`
+	AtlasCidrBlock     string `pulumi:"atlasCidrBlock"`
+	AtlasId            string `pulumi:"atlasId"`
 	// Account ID of the owner of the peer VPC.
 	AwsAccountId string `pulumi:"awsAccountId"`
 	// Unique identifier for an Azure AD directory.

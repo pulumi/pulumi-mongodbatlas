@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
     /// 
-    /// ## Example Usage
+    /// ## Example with AWS
     /// 
     /// ```csharp
     /// using Pulumi;

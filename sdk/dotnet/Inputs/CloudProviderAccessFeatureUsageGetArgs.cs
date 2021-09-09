@@ -13,7 +13,12 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class CloudProviderAccessFeatureUsageGetArgs : Pulumi.ResourceArgs
     {
         [Input("featureId")]
-        public Input<string>? FeatureId { get; set; }
+        private InputMap<object>? _featureId;
+        public InputMap<object> FeatureId
+        {
+            get => _featureId ?? (_featureId = new InputMap<object>());
+            set => _featureId = value;
+        }
 
         [Input("featureType")]
         public Input<string>? FeatureType { get; set; }

@@ -33,9 +33,9 @@ namespace Pulumi.Mongodbatlas
     ///             ProviderName = "AWS",
     ///             ProviderRegionName = "US_EAST_2",
     ///             ProviderInstanceSizeName = "M10",
-    ///             ProviderBackupEnabled = true,
-    ///             ProviderEncryptEbsVolume = false,
+    ///             CloudBackup = true,
     ///         });
+    ///         //enable cloud provider snapshots
     ///         var testLdapVerify = new Mongodbatlas.LdapVerify("testLdapVerify", new Mongodbatlas.LdapVerifyArgs
     ///         {
     ///             ProjectId = testProject.Id,
