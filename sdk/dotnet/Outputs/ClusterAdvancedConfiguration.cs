@@ -14,6 +14,14 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class ClusterAdvancedConfiguration
     {
         /// <summary>
+        /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        /// </summary>
+        public readonly string? DefaultReadConcern;
+        /// <summary>
+        /// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        /// </summary>
+        public readonly string? DefaultWriteConcern;
+        /// <summary>
         /// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         /// </summary>
         public readonly bool? FailIndexKeyTooLong;
@@ -44,6 +52,10 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private ClusterAdvancedConfiguration(
+            string? defaultReadConcern,
+
+            string? defaultWriteConcern,
+
             bool? failIndexKeyTooLong,
 
             bool? javascriptEnabled,
@@ -58,6 +70,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             int? sampleSizeBiConnector)
         {
+            DefaultReadConcern = defaultReadConcern;
+            DefaultWriteConcern = defaultWriteConcern;
             FailIndexKeyTooLong = failIndexKeyTooLong;
             JavascriptEnabled = javascriptEnabled;
             MinimumEnabledTlsProtocol = minimumEnabledTlsProtocol;

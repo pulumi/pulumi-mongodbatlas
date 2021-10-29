@@ -48,8 +48,7 @@ class ClusterArgs:
         """
         The set of arguments for constructing a Cluster resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-               **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
         :param pulumi.Input[bool] auto_scaling_compute_enabled: Specifies whether cluster tier auto-scaling is enabled. The default is false.
                - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
@@ -171,8 +170,7 @@ class ClusterArgs:
     @pulumi.getter(name="providerInstanceSizeName")
     def provider_instance_size_name(self) -> pulumi.Input[str]:
         """
-        Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-        **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         """
         return pulumi.get(self, "provider_instance_size_name")
 
@@ -609,8 +607,7 @@ class _ClusterState:
                * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
-        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-               **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -1122,8 +1119,7 @@ class _ClusterState:
     @pulumi.getter(name="providerInstanceSizeName")
     def provider_instance_size_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-        **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         """
         return pulumi.get(self, "provider_instance_size_name")
 
@@ -1316,8 +1312,7 @@ class Cluster(pulumi.CustomResource):
                * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
-        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-               **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -1555,8 +1550,7 @@ class Cluster(pulumi.CustomResource):
                * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         :param pulumi.Input[str] provider_disk_type_name: Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
         :param pulumi.Input[bool] provider_encrypt_ebs_volume: **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
-        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-               **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        :param pulumi.Input[str] provider_instance_size_name: Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         :param pulumi.Input[str] provider_name: Cloud service provider on which the servers are provisioned.
         :param pulumi.Input[str] provider_region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
                Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -1890,8 +1884,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="providerInstanceSizeName")
     def provider_instance_size_name(self) -> pulumi.Output[str]:
         """
-        Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-        **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         """
         return pulumi.get(self, "provider_instance_size_name")
 

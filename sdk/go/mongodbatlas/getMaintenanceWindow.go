@@ -27,6 +27,9 @@ type LookupMaintenanceWindowArgs struct {
 
 // A collection of values returned by getMaintenanceWindow.
 type LookupMaintenanceWindowResult struct {
+	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+	// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+	AutoDeferOnceEnabled bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
 	DayOfWeek int `pulumi:"dayOfWeek"`
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).

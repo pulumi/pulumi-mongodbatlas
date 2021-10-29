@@ -15,6 +15,7 @@ class MaintenanceWindowArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[str],
                  auto_defer: Optional[pulumi.Input[bool]] = None,
+                 auto_defer_once_enabled: Optional[pulumi.Input[bool]] = None,
                  day_of_week: Optional[pulumi.Input[int]] = None,
                  defer: Optional[pulumi.Input[bool]] = None,
                  hour_of_day: Optional[pulumi.Input[int]] = None,
@@ -22,15 +23,18 @@ class MaintenanceWindowArgs:
         """
         The set of arguments for constructing a MaintenanceWindow resource.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
-        :param pulumi.Input[bool] auto_defer: Automatically defer any maintenance for the given project for one week.
+        :param pulumi.Input[bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
+        :param pulumi.Input[bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
-        :param pulumi.Input[bool] defer: Defer maintenance for the given project for one week.
+        :param pulumi.Input[bool] defer: Defer the next scheduled maintenance for the given project for one week.
         :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
         :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
         """
         pulumi.set(__self__, "project_id", project_id)
         if auto_defer is not None:
             pulumi.set(__self__, "auto_defer", auto_defer)
+        if auto_defer_once_enabled is not None:
+            pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
         if day_of_week is not None:
             pulumi.set(__self__, "day_of_week", day_of_week)
         if defer is not None:
@@ -56,13 +60,25 @@ class MaintenanceWindowArgs:
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> Optional[pulumi.Input[bool]]:
         """
-        Automatically defer any maintenance for the given project for one week.
+        Defer any scheduled maintenance for the given project for one week.
         """
         return pulumi.get(self, "auto_defer")
 
     @auto_defer.setter
     def auto_defer(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "auto_defer", value)
+
+    @property
+    @pulumi.getter(name="autoDeferOnceEnabled")
+    def auto_defer_once_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        """
+        return pulumi.get(self, "auto_defer_once_enabled")
+
+    @auto_defer_once_enabled.setter
+    def auto_defer_once_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_defer_once_enabled", value)
 
     @property
     @pulumi.getter(name="dayOfWeek")
@@ -80,7 +96,7 @@ class MaintenanceWindowArgs:
     @pulumi.getter
     def defer(self) -> Optional[pulumi.Input[bool]]:
         """
-        Defer maintenance for the given project for one week.
+        Defer the next scheduled maintenance for the given project for one week.
         """
         return pulumi.get(self, "defer")
 
@@ -117,6 +133,7 @@ class MaintenanceWindowArgs:
 class _MaintenanceWindowState:
     def __init__(__self__, *,
                  auto_defer: Optional[pulumi.Input[bool]] = None,
+                 auto_defer_once_enabled: Optional[pulumi.Input[bool]] = None,
                  day_of_week: Optional[pulumi.Input[int]] = None,
                  defer: Optional[pulumi.Input[bool]] = None,
                  hour_of_day: Optional[pulumi.Input[int]] = None,
@@ -125,9 +142,10 @@ class _MaintenanceWindowState:
                  start_asap: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering MaintenanceWindow resources.
-        :param pulumi.Input[bool] auto_defer: Automatically defer any maintenance for the given project for one week.
+        :param pulumi.Input[bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
+        :param pulumi.Input[bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
-        :param pulumi.Input[bool] defer: Defer maintenance for the given project for one week.
+        :param pulumi.Input[bool] defer: Defer the next scheduled maintenance for the given project for one week.
         :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
         :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
@@ -135,6 +153,8 @@ class _MaintenanceWindowState:
         """
         if auto_defer is not None:
             pulumi.set(__self__, "auto_defer", auto_defer)
+        if auto_defer_once_enabled is not None:
+            pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
         if day_of_week is not None:
             pulumi.set(__self__, "day_of_week", day_of_week)
         if defer is not None:
@@ -152,13 +172,25 @@ class _MaintenanceWindowState:
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> Optional[pulumi.Input[bool]]:
         """
-        Automatically defer any maintenance for the given project for one week.
+        Defer any scheduled maintenance for the given project for one week.
         """
         return pulumi.get(self, "auto_defer")
 
     @auto_defer.setter
     def auto_defer(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "auto_defer", value)
+
+    @property
+    @pulumi.getter(name="autoDeferOnceEnabled")
+    def auto_defer_once_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        """
+        return pulumi.get(self, "auto_defer_once_enabled")
+
+    @auto_defer_once_enabled.setter
+    def auto_defer_once_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_defer_once_enabled", value)
 
     @property
     @pulumi.getter(name="dayOfWeek")
@@ -176,7 +208,7 @@ class _MaintenanceWindowState:
     @pulumi.getter
     def defer(self) -> Optional[pulumi.Input[bool]]:
         """
-        Defer maintenance for the given project for one week.
+        Defer the next scheduled maintenance for the given project for one week.
         """
         return pulumi.get(self, "defer")
 
@@ -239,6 +271,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_defer: Optional[pulumi.Input[bool]] = None,
+                 auto_defer_once_enabled: Optional[pulumi.Input[bool]] = None,
                  day_of_week: Optional[pulumi.Input[int]] = None,
                  defer: Optional[pulumi.Input[bool]] = None,
                  hour_of_day: Optional[pulumi.Input[int]] = None,
@@ -291,9 +324,10 @@ class MaintenanceWindow(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_defer: Automatically defer any maintenance for the given project for one week.
+        :param pulumi.Input[bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
+        :param pulumi.Input[bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
-        :param pulumi.Input[bool] defer: Defer maintenance for the given project for one week.
+        :param pulumi.Input[bool] defer: Defer the next scheduled maintenance for the given project for one week.
         :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
         :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
@@ -364,6 +398,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_defer: Optional[pulumi.Input[bool]] = None,
+                 auto_defer_once_enabled: Optional[pulumi.Input[bool]] = None,
                  day_of_week: Optional[pulumi.Input[int]] = None,
                  defer: Optional[pulumi.Input[bool]] = None,
                  hour_of_day: Optional[pulumi.Input[int]] = None,
@@ -382,6 +417,7 @@ class MaintenanceWindow(pulumi.CustomResource):
             __props__ = MaintenanceWindowArgs.__new__(MaintenanceWindowArgs)
 
             __props__.__dict__["auto_defer"] = auto_defer
+            __props__.__dict__["auto_defer_once_enabled"] = auto_defer_once_enabled
             __props__.__dict__["day_of_week"] = day_of_week
             __props__.__dict__["defer"] = defer
             __props__.__dict__["hour_of_day"] = hour_of_day
@@ -401,6 +437,7 @@ class MaintenanceWindow(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_defer: Optional[pulumi.Input[bool]] = None,
+            auto_defer_once_enabled: Optional[pulumi.Input[bool]] = None,
             day_of_week: Optional[pulumi.Input[int]] = None,
             defer: Optional[pulumi.Input[bool]] = None,
             hour_of_day: Optional[pulumi.Input[int]] = None,
@@ -414,9 +451,10 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_defer: Automatically defer any maintenance for the given project for one week.
+        :param pulumi.Input[bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
+        :param pulumi.Input[bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
-        :param pulumi.Input[bool] defer: Defer maintenance for the given project for one week.
+        :param pulumi.Input[bool] defer: Defer the next scheduled maintenance for the given project for one week.
         :param pulumi.Input[int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
         :param pulumi.Input[int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Maintenance Window.
@@ -427,6 +465,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         __props__ = _MaintenanceWindowState.__new__(_MaintenanceWindowState)
 
         __props__.__dict__["auto_defer"] = auto_defer
+        __props__.__dict__["auto_defer_once_enabled"] = auto_defer_once_enabled
         __props__.__dict__["day_of_week"] = day_of_week
         __props__.__dict__["defer"] = defer
         __props__.__dict__["hour_of_day"] = hour_of_day
@@ -439,9 +478,17 @@ class MaintenanceWindow(pulumi.CustomResource):
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> pulumi.Output[bool]:
         """
-        Automatically defer any maintenance for the given project for one week.
+        Defer any scheduled maintenance for the given project for one week.
         """
         return pulumi.get(self, "auto_defer")
+
+    @property
+    @pulumi.getter(name="autoDeferOnceEnabled")
+    def auto_defer_once_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        """
+        return pulumi.get(self, "auto_defer_once_enabled")
 
     @property
     @pulumi.getter(name="dayOfWeek")
@@ -455,7 +502,7 @@ class MaintenanceWindow(pulumi.CustomResource):
     @pulumi.getter
     def defer(self) -> pulumi.Output[bool]:
         """
-        Defer maintenance for the given project for one week.
+        Defer the next scheduled maintenance for the given project for one week.
         """
         return pulumi.get(self, "defer")
 

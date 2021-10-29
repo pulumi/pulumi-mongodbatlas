@@ -223,8 +223,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> ProviderEncryptEbsVolumeFlag { get; private set; } = null!;
 
         /// <summary>
-        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-        /// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         /// </summary>
         [Output("providerInstanceSizeName")]
         public Output<string> ProviderInstanceSizeName { get; private set; } = null!;
@@ -491,8 +490,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? ProviderEncryptEbsVolume { get; set; }
 
         /// <summary>
-        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-        /// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         /// </summary>
         [Input("providerInstanceSizeName", required: true)]
         public Input<string> ProviderInstanceSizeName { get; set; } = null!;
@@ -759,8 +757,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? ProviderEncryptEbsVolumeFlag { get; set; }
 
         /// <summary>
-        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. 
-        /// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
+        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         /// </summary>
         [Input("providerInstanceSizeName")]
         public Input<string>? ProviderInstanceSizeName { get; set; }

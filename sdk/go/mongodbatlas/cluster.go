@@ -103,7 +103,6 @@ type Cluster struct {
 	ProviderEncryptEbsVolume     pulumi.BoolOutput `pulumi:"providerEncryptEbsVolume"`
 	ProviderEncryptEbsVolumeFlag pulumi.BoolOutput `pulumi:"providerEncryptEbsVolumeFlag"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
-	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
 	ProviderInstanceSizeName pulumi.StringOutput `pulumi:"providerInstanceSizeName"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
@@ -248,7 +247,6 @@ type clusterState struct {
 	ProviderEncryptEbsVolume     *bool `pulumi:"providerEncryptEbsVolume"`
 	ProviderEncryptEbsVolumeFlag *bool `pulumi:"providerEncryptEbsVolumeFlag"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
-	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
 	ProviderInstanceSizeName *string `pulumi:"providerInstanceSizeName"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName *string `pulumi:"providerName"`
@@ -356,7 +354,6 @@ type ClusterState struct {
 	ProviderEncryptEbsVolume     pulumi.BoolPtrInput
 	ProviderEncryptEbsVolumeFlag pulumi.BoolPtrInput
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
-	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
 	ProviderInstanceSizeName pulumi.StringPtrInput
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringPtrInput
@@ -451,7 +448,6 @@ type clusterArgs struct {
 	// Deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed
 	ProviderEncryptEbsVolume *bool `pulumi:"providerEncryptEbsVolume"`
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
-	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
 	ProviderInstanceSizeName string `pulumi:"providerInstanceSizeName"`
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName string `pulumi:"providerName"`
@@ -531,7 +527,6 @@ type ClusterArgs struct {
 	// Deprecated: All EBS volumes are encrypted by default, the option to disable encryption has been removed
 	ProviderEncryptEbsVolume pulumi.BoolPtrInput
 	// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
-	// **Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)
 	ProviderInstanceSizeName pulumi.StringInput
 	// Cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringInput

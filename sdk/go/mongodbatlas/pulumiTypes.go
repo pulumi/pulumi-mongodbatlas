@@ -2660,6 +2660,10 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetProjec
 }
 
 type ClusterAdvancedConfiguration struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
 	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
@@ -2688,6 +2692,10 @@ type ClusterAdvancedConfigurationInput interface {
 }
 
 type ClusterAdvancedConfigurationArgs struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
 	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
@@ -2781,6 +2789,16 @@ func (o ClusterAdvancedConfigurationOutput) ToClusterAdvancedConfigurationPtrOut
 	}).(ClusterAdvancedConfigurationPtrOutput)
 }
 
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+func (o ClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+func (o ClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultWriteConcern }).(pulumi.StringPtrOutput)
+}
+
 // When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 func (o ClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
@@ -2832,6 +2850,26 @@ func (o ClusterAdvancedConfigurationPtrOutput) ToClusterAdvancedConfigurationPtr
 
 func (o ClusterAdvancedConfigurationPtrOutput) Elem() ClusterAdvancedConfigurationOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) ClusterAdvancedConfiguration { return *v }).(ClusterAdvancedConfigurationOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+func (o ClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultReadConcern
+	}).(pulumi.StringPtrOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+func (o ClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultWriteConcern
+	}).(pulumi.StringPtrOutput)
 }
 
 // When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
@@ -6776,6 +6814,10 @@ type GlobalClusterConfigManagedNamespace struct {
 	CustomShardKey string `pulumi:"customShardKey"`
 	// The name of the database containing the collection.
 	Db string `pulumi:"db"`
+	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	IsCustomShardKeyHashed *bool `pulumi:"isCustomShardKeyHashed"`
+	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+	IsShardKeyUnique *bool `pulumi:"isShardKeyUnique"`
 }
 
 // GlobalClusterConfigManagedNamespaceInput is an input type that accepts GlobalClusterConfigManagedNamespaceArgs and GlobalClusterConfigManagedNamespaceOutput values.
@@ -6796,6 +6838,10 @@ type GlobalClusterConfigManagedNamespaceArgs struct {
 	CustomShardKey pulumi.StringInput `pulumi:"customShardKey"`
 	// The name of the database containing the collection.
 	Db pulumi.StringInput `pulumi:"db"`
+	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	IsCustomShardKeyHashed pulumi.BoolPtrInput `pulumi:"isCustomShardKeyHashed"`
+	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+	IsShardKeyUnique pulumi.BoolPtrInput `pulumi:"isShardKeyUnique"`
 }
 
 func (GlobalClusterConfigManagedNamespaceArgs) ElementType() reflect.Type {
@@ -6862,6 +6908,16 @@ func (o GlobalClusterConfigManagedNamespaceOutput) CustomShardKey() pulumi.Strin
 // The name of the database containing the collection.
 func (o GlobalClusterConfigManagedNamespaceOutput) Db() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) string { return v.Db }).(pulumi.StringOutput)
+}
+
+// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+func (o GlobalClusterConfigManagedNamespaceOutput) IsCustomShardKeyHashed() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) *bool { return v.IsCustomShardKeyHashed }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+func (o GlobalClusterConfigManagedNamespaceOutput) IsShardKeyUnique() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) *bool { return v.IsShardKeyUnique }).(pulumi.BoolPtrOutput)
 }
 
 type GlobalClusterConfigManagedNamespaceArrayOutput struct{ *pulumi.OutputState }
@@ -17051,6 +17107,10 @@ type GetGlobalClusterConfigManagedNamespace struct {
 	CustomShardKey string `pulumi:"customShardKey"`
 	// (Required) The name of the database containing the collection.
 	Db string `pulumi:"db"`
+	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	IsCustomShardKeyHashed bool `pulumi:"isCustomShardKeyHashed"`
+	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+	IsShardKeyUnique bool `pulumi:"isShardKeyUnique"`
 }
 
 // GetGlobalClusterConfigManagedNamespaceInput is an input type that accepts GetGlobalClusterConfigManagedNamespaceArgs and GetGlobalClusterConfigManagedNamespaceOutput values.
@@ -17071,6 +17131,10 @@ type GetGlobalClusterConfigManagedNamespaceArgs struct {
 	CustomShardKey pulumi.StringInput `pulumi:"customShardKey"`
 	// (Required) The name of the database containing the collection.
 	Db pulumi.StringInput `pulumi:"db"`
+	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	IsCustomShardKeyHashed pulumi.BoolInput `pulumi:"isCustomShardKeyHashed"`
+	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+	IsShardKeyUnique pulumi.BoolInput `pulumi:"isShardKeyUnique"`
 }
 
 func (GetGlobalClusterConfigManagedNamespaceArgs) ElementType() reflect.Type {
@@ -17137,6 +17201,16 @@ func (o GetGlobalClusterConfigManagedNamespaceOutput) CustomShardKey() pulumi.St
 // (Required) The name of the database containing the collection.
 func (o GetGlobalClusterConfigManagedNamespaceOutput) Db() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalClusterConfigManagedNamespace) string { return v.Db }).(pulumi.StringOutput)
+}
+
+// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+func (o GetGlobalClusterConfigManagedNamespaceOutput) IsCustomShardKeyHashed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGlobalClusterConfigManagedNamespace) bool { return v.IsCustomShardKeyHashed }).(pulumi.BoolOutput)
+}
+
+// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+func (o GetGlobalClusterConfigManagedNamespaceOutput) IsShardKeyUnique() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGlobalClusterConfigManagedNamespace) bool { return v.IsShardKeyUnique }).(pulumi.BoolOutput)
 }
 
 type GetGlobalClusterConfigManagedNamespaceArrayOutput struct{ *pulumi.OutputState }

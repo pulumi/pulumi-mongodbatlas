@@ -30,6 +30,18 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("db", required: true)]
         public Input<string> Db { get; set; } = null!;
 
+        /// <summary>
+        /// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        /// </summary>
+        [Input("isCustomShardKeyHashed")]
+        public Input<bool>? IsCustomShardKeyHashed { get; set; }
+
+        /// <summary>
+        /// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+        /// </summary>
+        [Input("isShardKeyUnique")]
+        public Input<bool>? IsShardKeyUnique { get; set; }
+
         public GlobalClusterConfigManagedNamespaceArgs()
         {
         }

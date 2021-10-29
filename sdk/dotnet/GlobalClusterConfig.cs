@@ -79,6 +79,8 @@ namespace Pulumi.Mongodbatlas
     ///                     Db = "mydata",
     ///                     Collection = "publishers",
     ///                     CustomShardKey = "city",
+    ///                     IsCustomShardKeyHashed = false,
+    ///                     IsShardKeyUnique = false,
     ///                 },
     ///             },
     ///             CustomZoneMappings = 

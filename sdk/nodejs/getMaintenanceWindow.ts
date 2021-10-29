@@ -38,6 +38,11 @@ export interface GetMaintenanceWindowArgs {
  */
 export interface GetMaintenanceWindowResult {
     /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+     */
+    readonly autoDeferOnceEnabled: boolean;
+    /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
      */
     readonly dayOfWeek: number;

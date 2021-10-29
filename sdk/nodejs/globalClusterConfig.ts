@@ -55,6 +55,8 @@ import * as utilities from "./utilities";
  *         db: "mydata",
  *         collection: "publishers",
  *         customShardKey: "city",
+ *         isCustomShardKeyHashed: false,
+ *         isShardKeyUnique: false,
  *     }],
  *     customZoneMappings: [{
  *         location: "CA",

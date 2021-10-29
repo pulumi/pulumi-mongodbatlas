@@ -75,10 +75,16 @@ namespace Pulumi.Mongodbatlas
     public partial class MaintenanceWindow : Pulumi.CustomResource
     {
         /// <summary>
-        /// Automatically defer any maintenance for the given project for one week.
+        /// Defer any scheduled maintenance for the given project for one week.
         /// </summary>
         [Output("autoDefer")]
         public Output<bool> AutoDefer { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// </summary>
+        [Output("autoDeferOnceEnabled")]
+        public Output<bool> AutoDeferOnceEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
@@ -87,7 +93,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> DayOfWeek { get; private set; } = null!;
 
         /// <summary>
-        /// Defer maintenance for the given project for one week.
+        /// Defer the next scheduled maintenance for the given project for one week.
         /// </summary>
         [Output("defer")]
         public Output<bool> Defer { get; private set; } = null!;
@@ -163,10 +169,16 @@ namespace Pulumi.Mongodbatlas
     public sealed class MaintenanceWindowArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Automatically defer any maintenance for the given project for one week.
+        /// Defer any scheduled maintenance for the given project for one week.
         /// </summary>
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// </summary>
+        [Input("autoDeferOnceEnabled")]
+        public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
         /// <summary>
         /// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
@@ -175,7 +187,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? DayOfWeek { get; set; }
 
         /// <summary>
-        /// Defer maintenance for the given project for one week.
+        /// Defer the next scheduled maintenance for the given project for one week.
         /// </summary>
         [Input("defer")]
         public Input<bool>? Defer { get; set; }
@@ -206,10 +218,16 @@ namespace Pulumi.Mongodbatlas
     public sealed class MaintenanceWindowState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Automatically defer any maintenance for the given project for one week.
+        /// Defer any scheduled maintenance for the given project for one week.
         /// </summary>
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// </summary>
+        [Input("autoDeferOnceEnabled")]
+        public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
         /// <summary>
         /// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
@@ -218,7 +236,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? DayOfWeek { get; set; }
 
         /// <summary>
-        /// Defer maintenance for the given project for one week.
+        /// Defer the next scheduled maintenance for the given project for one week.
         /// </summary>
         [Input("defer")]
         public Input<bool>? Defer { get; set; }

@@ -20,9 +20,9 @@ class AuditingArgs:
         """
         The set of arguments for constructing a Auditing resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
-        :param pulumi.Input[bool] audit_authorization_success: JSON-formatted audit filter used by the project
-        :param pulumi.Input[str] audit_filter: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
-        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        :param pulumi.Input[bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+        :param pulumi.Input[str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         """
         pulumi.set(__self__, "project_id", project_id)
         if audit_authorization_success is not None:
@@ -48,7 +48,7 @@ class AuditingArgs:
     @pulumi.getter(name="auditAuthorizationSuccess")
     def audit_authorization_success(self) -> Optional[pulumi.Input[bool]]:
         """
-        JSON-formatted audit filter used by the project
+        Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         """
         return pulumi.get(self, "audit_authorization_success")
 
@@ -60,7 +60,7 @@ class AuditingArgs:
     @pulumi.getter(name="auditFilter")
     def audit_filter(self) -> Optional[pulumi.Input[str]]:
         """
-        Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         """
         return pulumi.get(self, "audit_filter")
 
@@ -72,7 +72,7 @@ class AuditingArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         """
         return pulumi.get(self, "enabled")
 
@@ -91,13 +91,13 @@ class _AuditingState:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Auditing resources.
-        :param pulumi.Input[bool] audit_authorization_success: JSON-formatted audit filter used by the project
-        :param pulumi.Input[str] audit_filter: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        :param pulumi.Input[bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+        :param pulumi.Input[str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         :param pulumi.Input[str] configuration_type: Denotes the configuration method for the audit filter. Possible values are: 
                * NONE - auditing not configured for the project.
                * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
                * FILTER_JSON - auditing configured via Atlas custom filter or API.
-        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
         """
         if audit_authorization_success is not None:
@@ -115,7 +115,7 @@ class _AuditingState:
     @pulumi.getter(name="auditAuthorizationSuccess")
     def audit_authorization_success(self) -> Optional[pulumi.Input[bool]]:
         """
-        JSON-formatted audit filter used by the project
+        Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         """
         return pulumi.get(self, "audit_authorization_success")
 
@@ -127,7 +127,7 @@ class _AuditingState:
     @pulumi.getter(name="auditFilter")
     def audit_filter(self) -> Optional[pulumi.Input[str]]:
         """
-        Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         """
         return pulumi.get(self, "audit_filter")
 
@@ -154,7 +154,7 @@ class _AuditingState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         """
         return pulumi.get(self, "enabled")
 
@@ -213,9 +213,9 @@ class Auditing(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] audit_authorization_success: JSON-formatted audit filter used by the project
-        :param pulumi.Input[str] audit_filter: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
-        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        :param pulumi.Input[bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+        :param pulumi.Input[str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
         """
         ...
@@ -310,13 +310,13 @@ class Auditing(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] audit_authorization_success: JSON-formatted audit filter used by the project
-        :param pulumi.Input[str] audit_filter: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        :param pulumi.Input[bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+        :param pulumi.Input[str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         :param pulumi.Input[str] configuration_type: Denotes the configuration method for the audit filter. Possible values are: 
                * NONE - auditing not configured for the project.
                * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
                * FILTER_JSON - auditing configured via Atlas custom filter or API.
-        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        :param pulumi.Input[bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         :param pulumi.Input[str] project_id: The unique ID for the project to configure auditing.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -334,7 +334,7 @@ class Auditing(pulumi.CustomResource):
     @pulumi.getter(name="auditAuthorizationSuccess")
     def audit_authorization_success(self) -> pulumi.Output[bool]:
         """
-        JSON-formatted audit filter used by the project
+        Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         """
         return pulumi.get(self, "audit_authorization_success")
 
@@ -342,7 +342,7 @@ class Auditing(pulumi.CustomResource):
     @pulumi.getter(name="auditFilter")
     def audit_filter(self) -> pulumi.Output[str]:
         """
-        Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         """
         return pulumi.get(self, "audit_filter")
 
@@ -361,7 +361,7 @@ class Auditing(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[bool]:
         """
-        Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         """
         return pulumi.get(self, "enabled")
 

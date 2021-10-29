@@ -39,6 +39,11 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetMaintenanceWindowResult
     {
         /// <summary>
+        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+        /// </summary>
+        public readonly bool AutoDeferOnceEnabled;
+        /// <summary>
         /// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
         /// </summary>
         public readonly int DayOfWeek;
@@ -62,6 +67,8 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetMaintenanceWindowResult(
+            bool autoDeferOnceEnabled,
+
             int dayOfWeek,
 
             int hourOfDay,
@@ -74,6 +81,7 @@ namespace Pulumi.Mongodbatlas
 
             bool startAsap)
         {
+            AutoDeferOnceEnabled = autoDeferOnceEnabled;
             DayOfWeek = dayOfWeek;
             HourOfDay = hourOfDay;
             Id = id;

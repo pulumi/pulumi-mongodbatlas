@@ -47,6 +47,12 @@ namespace Pulumi.Mongodbatlas
         [Output("orgId")]
         public Output<string> OrgId { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        /// </summary>
+        [Output("projectOwnerId")]
+        public Output<string?> ProjectOwnerId { get; private set; } = null!;
+
         [Output("teams")]
         public Output<ImmutableArray<Outputs.ProjectTeam>> Teams { get; private set; } = null!;
 
@@ -108,6 +114,12 @@ namespace Pulumi.Mongodbatlas
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        /// </summary>
+        [Input("projectOwnerId")]
+        public Input<string>? ProjectOwnerId { get; set; }
+
         [Input("teams")]
         private InputList<Inputs.ProjectTeamArgs>? _teams;
         public InputList<Inputs.ProjectTeamArgs> Teams
@@ -146,6 +158,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        /// </summary>
+        [Input("projectOwnerId")]
+        public Input<string>? ProjectOwnerId { get; set; }
 
         [Input("teams")]
         private InputList<Inputs.ProjectTeamGetArgs>? _teams;
