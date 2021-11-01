@@ -25,6 +25,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// (Required) The name of the database containing the collection.
         /// </summary>
         public readonly string Db;
+        /// <summary>
+        /// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        /// </summary>
+        public readonly bool IsCustomShardKeyHashed;
+        /// <summary>
+        /// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+        /// </summary>
+        public readonly bool IsShardKeyUnique;
 
         [OutputConstructor]
         private GetGlobalClusterConfigManagedNamespaceResult(
@@ -32,11 +40,17 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string customShardKey,
 
-            string db)
+            string db,
+
+            bool isCustomShardKeyHashed,
+
+            bool isShardKeyUnique)
         {
             Collection = collection;
             CustomShardKey = customShardKey;
             Db = db;
+            IsCustomShardKeyHashed = isCustomShardKeyHashed;
+            IsShardKeyUnique = isShardKeyUnique;
         }
     }
 }

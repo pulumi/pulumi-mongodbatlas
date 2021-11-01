@@ -51,16 +51,16 @@ import (
 type Auditing struct {
 	pulumi.CustomResourceState
 
-	// JSON-formatted audit filter used by the project
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess pulumi.BoolOutput `pulumi:"auditAuthorizationSuccess"`
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
 	AuditFilter pulumi.StringOutput `pulumi:"auditFilter"`
 	// Denotes the configuration method for the audit filter. Possible values are:
 	// * NONE - auditing not configured for the project.
 	// * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
 	// * FILTER_JSON - auditing configured via Atlas custom filter or API.
 	ConfigurationType pulumi.StringOutput `pulumi:"configurationType"`
-	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// The unique ID for the project to configure auditing.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -98,32 +98,32 @@ func GetAuditing(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Auditing resources.
 type auditingState struct {
-	// JSON-formatted audit filter used by the project
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess *bool `pulumi:"auditAuthorizationSuccess"`
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
 	AuditFilter *string `pulumi:"auditFilter"`
 	// Denotes the configuration method for the audit filter. Possible values are:
 	// * NONE - auditing not configured for the project.
 	// * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
 	// * FILTER_JSON - auditing configured via Atlas custom filter or API.
 	ConfigurationType *string `pulumi:"configurationType"`
-	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 	Enabled *bool `pulumi:"enabled"`
 	// The unique ID for the project to configure auditing.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 type AuditingState struct {
-	// JSON-formatted audit filter used by the project
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess pulumi.BoolPtrInput
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
 	AuditFilter pulumi.StringPtrInput
 	// Denotes the configuration method for the audit filter. Possible values are:
 	// * NONE - auditing not configured for the project.
 	// * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
 	// * FILTER_JSON - auditing configured via Atlas custom filter or API.
 	ConfigurationType pulumi.StringPtrInput
-	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 	Enabled pulumi.BoolPtrInput
 	// The unique ID for the project to configure auditing.
 	ProjectId pulumi.StringPtrInput
@@ -134,11 +134,11 @@ func (AuditingState) ElementType() reflect.Type {
 }
 
 type auditingArgs struct {
-	// JSON-formatted audit filter used by the project
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess *bool `pulumi:"auditAuthorizationSuccess"`
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
 	AuditFilter *string `pulumi:"auditFilter"`
-	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 	Enabled *bool `pulumi:"enabled"`
 	// The unique ID for the project to configure auditing.
 	ProjectId string `pulumi:"projectId"`
@@ -146,11 +146,11 @@ type auditingArgs struct {
 
 // The set of arguments for constructing a Auditing resource.
 type AuditingArgs struct {
-	// JSON-formatted audit filter used by the project
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess pulumi.BoolPtrInput
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
 	AuditFilter pulumi.StringPtrInput
-	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 	Enabled pulumi.BoolPtrInput
 	// The unique ID for the project to configure auditing.
 	ProjectId pulumi.StringInput

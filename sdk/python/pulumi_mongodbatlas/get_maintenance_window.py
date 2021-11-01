@@ -19,7 +19,10 @@ class GetMaintenanceWindowResult:
     """
     A collection of values returned by getMaintenanceWindow.
     """
-    def __init__(__self__, day_of_week=None, hour_of_day=None, id=None, number_of_deferrals=None, project_id=None, start_asap=None):
+    def __init__(__self__, auto_defer_once_enabled=None, day_of_week=None, hour_of_day=None, id=None, number_of_deferrals=None, project_id=None, start_asap=None):
+        if auto_defer_once_enabled and not isinstance(auto_defer_once_enabled, bool):
+            raise TypeError("Expected argument 'auto_defer_once_enabled' to be a bool")
+        pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
         if day_of_week and not isinstance(day_of_week, int):
             raise TypeError("Expected argument 'day_of_week' to be a int")
         pulumi.set(__self__, "day_of_week", day_of_week)
@@ -38,6 +41,15 @@ class GetMaintenanceWindowResult:
         if start_asap and not isinstance(start_asap, bool):
             raise TypeError("Expected argument 'start_asap' to be a bool")
         pulumi.set(__self__, "start_asap", start_asap)
+
+    @property
+    @pulumi.getter(name="autoDeferOnceEnabled")
+    def auto_defer_once_enabled(self) -> bool:
+        """
+        Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+        """
+        return pulumi.get(self, "auto_defer_once_enabled")
 
     @property
     @pulumi.getter(name="dayOfWeek")
@@ -91,6 +103,7 @@ class AwaitableGetMaintenanceWindowResult(GetMaintenanceWindowResult):
         if False:
             yield self
         return GetMaintenanceWindowResult(
+            auto_defer_once_enabled=self.auto_defer_once_enabled,
             day_of_week=self.day_of_week,
             hour_of_day=self.hour_of_day,
             id=self.id,
@@ -118,6 +131,7 @@ def get_maintenance_window(project_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow', __args__, opts=opts, typ=GetMaintenanceWindowResult).value
 
     return AwaitableGetMaintenanceWindowResult(
+        auto_defer_once_enabled=__ret__.auto_defer_once_enabled,
         day_of_week=__ret__.day_of_week,
         hour_of_day=__ret__.hour_of_day,
         id=__ret__.id,

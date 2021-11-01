@@ -17,15 +17,19 @@ class ProjectArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
+                 project_owner_id: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None):
         """
         The set of arguments for constructing a Project resource.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+        :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         """
         pulumi.set(__self__, "org_id", org_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_owner_id is not None:
+            pulumi.set(__self__, "project_owner_id", project_owner_id)
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
 
@@ -54,6 +58,18 @@ class ProjectArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="projectOwnerId")
+    def project_owner_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        """
+        return pulumi.get(self, "project_owner_id")
+
+    @project_owner_id.setter
+    def project_owner_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_owner_id", value)
+
+    @property
     @pulumi.getter
     def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
         return pulumi.get(self, "teams")
@@ -70,6 +86,7 @@ class _ProjectState:
                  created: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 project_owner_id: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None):
         """
         Input properties used for looking up and filtering Project resources.
@@ -77,6 +94,7 @@ class _ProjectState:
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
+        :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         """
         if cluster_count is not None:
             pulumi.set(__self__, "cluster_count", cluster_count)
@@ -86,6 +104,8 @@ class _ProjectState:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
+        if project_owner_id is not None:
+            pulumi.set(__self__, "project_owner_id", project_owner_id)
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
 
@@ -138,6 +158,18 @@ class _ProjectState:
         pulumi.set(self, "org_id", value)
 
     @property
+    @pulumi.getter(name="projectOwnerId")
+    def project_owner_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        """
+        return pulumi.get(self, "project_owner_id")
+
+    @project_owner_id.setter
+    def project_owner_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_owner_id", value)
+
+    @property
     @pulumi.getter
     def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
         return pulumi.get(self, "teams")
@@ -154,6 +186,7 @@ class Project(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 project_owner_id: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
                  __props__=None):
         """
@@ -171,6 +204,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
+        :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         """
         ...
     @overload
@@ -206,6 +240,7 @@ class Project(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
+                 project_owner_id: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
                  __props__=None):
         if opts is None:
@@ -223,6 +258,7 @@ class Project(pulumi.CustomResource):
             if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")
             __props__.__dict__["org_id"] = org_id
+            __props__.__dict__["project_owner_id"] = project_owner_id
             __props__.__dict__["teams"] = teams
             __props__.__dict__["cluster_count"] = None
             __props__.__dict__["created"] = None
@@ -240,6 +276,7 @@ class Project(pulumi.CustomResource):
             created: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
+            project_owner_id: Optional[pulumi.Input[str]] = None,
             teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
@@ -252,6 +289,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
+        :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -261,6 +299,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["created"] = created
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
+        __props__.__dict__["project_owner_id"] = project_owner_id
         __props__.__dict__["teams"] = teams
         return Project(resource_name, opts=opts, __props__=__props__)
 
@@ -295,6 +334,14 @@ class Project(pulumi.CustomResource):
         The ID of the organization you want to create the project within.
         """
         return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="projectOwnerId")
+    def project_owner_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        """
+        return pulumi.get(self, "project_owner_id")
 
     @property
     @pulumi.getter

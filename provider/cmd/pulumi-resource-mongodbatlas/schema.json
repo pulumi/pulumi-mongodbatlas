@@ -873,6 +873,24 @@
         },
         "mongodbatlas:index/ClusterAdvancedConfiguration:ClusterAdvancedConfiguration": {
             "properties": {
+                "defaultReadConcern": {
+                    "type": "string",
+                    "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultWriteConcern": {
+                    "type": "string",
+                    "description": "[Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "failIndexKeyTooLong": {
                     "type": "boolean",
                     "description": "When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.\n",
@@ -941,6 +959,8 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "defaultReadConcern",
+                        "defaultWriteConcern",
                         "failIndexKeyTooLong",
                         "javascriptEnabled",
                         "minimumEnabledTlsProtocol",
@@ -2272,6 +2292,24 @@
                             "mapCase": false
                         }
                     }
+                },
+                "isCustomShardKeyHashed": {
+                    "type": "boolean",
+                    "description": "Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "isShardKeyUnique": {
+                    "type": "boolean",
+                    "description": "Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -2279,7 +2317,18 @@
                 "collection",
                 "customShardKey",
                 "db"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "collection",
+                        "customShardKey",
+                        "db",
+                        "isCustomShardKeyHashed",
+                        "isShardKeyUnique"
+                    ]
+                }
+            }
         },
         "mongodbatlas:index/LdapConfigurationUserToDnMapping:LdapConfigurationUserToDnMapping": {
             "properties": {
@@ -6944,14 +6993,43 @@
                             "mapCase": false
                         }
                     }
+                },
+                "isCustomShardKeyHashed": {
+                    "type": "boolean",
+                    "description": "Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "isShardKeyUnique": {
+                    "type": "boolean",
+                    "description": "Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
                 "collection",
                 "customShardKey",
-                "db"
-            ]
+                "db",
+                "isCustomShardKeyHashed",
+                "isShardKeyUnique"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": [
+                        "collection",
+                        "customShardKey",
+                        "db"
+                    ]
+                }
+            }
         },
         "mongodbatlas:index/getLdapConfigurationUserToDnMapping:getLdapConfigurationUserToDnMapping": {
             "properties": {
@@ -8353,11 +8431,11 @@
             "properties": {
                 "auditAuthorizationSuccess": {
                     "type": "boolean",
-                    "description": "JSON-formatted audit filter used by the project\n"
+                    "description": "Indicates whether the auditing system captures successful authentication attempts for audit filters using the \"atype\" : \"authCheck\" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**\n"
                 },
                 "auditFilter": {
                     "type": "string",
-                    "description": "Indicates whether the auditing system captures successful authentication attempts for audit filters using the \"atype\" : \"authCheck\" auditing event. For more information, see auditAuthorizationSuccess\n"
+                    "description": "JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).\n"
                 },
                 "configurationType": {
                     "type": "string",
@@ -8365,7 +8443,7 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Denotes whether or not the project associated with the {project_id} has database auditing enabled.\n"
+                    "description": "Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -8382,15 +8460,15 @@
             "inputProperties": {
                 "auditAuthorizationSuccess": {
                     "type": "boolean",
-                    "description": "JSON-formatted audit filter used by the project\n"
+                    "description": "Indicates whether the auditing system captures successful authentication attempts for audit filters using the \"atype\" : \"authCheck\" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**\n"
                 },
                 "auditFilter": {
                     "type": "string",
-                    "description": "Indicates whether the auditing system captures successful authentication attempts for audit filters using the \"atype\" : \"authCheck\" auditing event. For more information, see auditAuthorizationSuccess\n"
+                    "description": "JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).\n"
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Denotes whether or not the project associated with the {project_id} has database auditing enabled.\n"
+                    "description": "Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -8405,11 +8483,11 @@
                 "properties": {
                     "auditAuthorizationSuccess": {
                         "type": "boolean",
-                        "description": "JSON-formatted audit filter used by the project\n"
+                        "description": "Indicates whether the auditing system captures successful authentication attempts for audit filters using the \"atype\" : \"authCheck\" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**\n"
                     },
                     "auditFilter": {
                         "type": "string",
-                        "description": "Indicates whether the auditing system captures successful authentication attempts for audit filters using the \"atype\" : \"authCheck\" auditing event. For more information, see auditAuthorizationSuccess\n"
+                        "description": "JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).\n"
                     },
                     "configurationType": {
                         "type": "string",
@@ -8417,7 +8495,7 @@
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Denotes whether or not the project associated with the {project_id} has database auditing enabled.\n"
+                        "description": "Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -9474,7 +9552,7 @@
                 },
                 "providerInstanceSizeName": {
                     "type": "string",
-                    "description": "Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. \n**Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)\n"
+                    "description": "Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.\n"
                 },
                 "providerName": {
                     "type": "string",
@@ -9659,7 +9737,7 @@
                 },
                 "providerInstanceSizeName": {
                     "type": "string",
-                    "description": "Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. \n**Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)\n"
+                    "description": "Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.\n"
                 },
                 "providerName": {
                     "type": "string",
@@ -9836,7 +9914,7 @@
                     },
                     "providerInstanceSizeName": {
                         "type": "string",
-                        "description": "Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources. \n**Note** free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.)\n"
+                        "description": "Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.\n"
                     },
                     "providerName": {
                         "type": "string",
@@ -10730,7 +10808,7 @@
             }
         },
         "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig": {
-            "description": "`mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.\n\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n## Examples Usage\n\n### Example Global cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Cluster(\"test\", {\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    diskSizeGb: 80,\n    cloudBackup: true,\n    clusterType: \"GEOSHARDED\",\n    providerName: \"AWS\",\n    providerInstanceSizeName: \"M30\",\n    replicationSpecs: [\n        {\n            zoneName: \"Zone 1\",\n            numShards: 1,\n            regionsConfigs: [{\n                regionName: \"EU_CENTRAL_1\",\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n            }],\n        },\n        {\n            zoneName: \"Zone 2\",\n            numShards: 1,\n            regionsConfigs: [{\n                regionName: \"US_EAST_2\",\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n            }],\n        },\n    ],\n});\nconst config = new mongodbatlas.GlobalClusterConfig(\"config\", {\n    projectId: test.projectId,\n    clusterName: test.name,\n    managedNamespaces: [{\n        db: \"mydata\",\n        collection: \"publishers\",\n        customShardKey: \"city\",\n    }],\n    customZoneMappings: [{\n        location: \"CA\",\n        zone: \"Zone 1\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Cluster(\"test\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    disk_size_gb=80,\n    cloud_backup=True,\n    cluster_type=\"GEOSHARDED\",\n    provider_name=\"AWS\",\n    provider_instance_size_name=\"M30\",\n    replication_specs=[\n        mongodbatlas.ClusterReplicationSpecArgs(\n            zone_name=\"Zone 1\",\n            num_shards=1,\n            regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                region_name=\"EU_CENTRAL_1\",\n                electable_nodes=3,\n                priority=7,\n                read_only_nodes=0,\n            )],\n        ),\n        mongodbatlas.ClusterReplicationSpecArgs(\n            zone_name=\"Zone 2\",\n            num_shards=1,\n            regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                region_name=\"US_EAST_2\",\n                electable_nodes=3,\n                priority=7,\n                read_only_nodes=0,\n            )],\n        ),\n    ])\nconfig = mongodbatlas.GlobalClusterConfig(\"config\",\n    project_id=test.project_id,\n    cluster_name=test.name,\n    managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(\n        db=\"mydata\",\n        collection=\"publishers\",\n        custom_shard_key=\"city\",\n    )],\n    custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(\n        location=\"CA\",\n        zone=\"Zone 1\",\n    )])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Cluster(\"test\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            DiskSizeGb = 80,\n            CloudBackup = true,\n            ClusterType = \"GEOSHARDED\",\n            ProviderName = \"AWS\",\n            ProviderInstanceSizeName = \"M30\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    ZoneName = \"Zone 1\",\n                    NumShards = 1,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            RegionName = \"EU_CENTRAL_1\",\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                        },\n                    },\n                },\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    ZoneName = \"Zone 2\",\n                    NumShards = 1,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            RegionName = \"US_EAST_2\",\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                        },\n                    },\n                },\n            },\n        });\n        var config = new Mongodbatlas.GlobalClusterConfig(\"config\", new Mongodbatlas.GlobalClusterConfigArgs\n        {\n            ProjectId = test.ProjectId,\n            ClusterName = test.Name,\n            ManagedNamespaces = \n            {\n                new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs\n                {\n                    Db = \"mydata\",\n                    Collection = \"publishers\",\n                    CustomShardKey = \"city\",\n                },\n            },\n            CustomZoneMappings = \n            {\n                new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs\n                {\n                    Location = \"CA\",\n                    Zone = \"Zone 1\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := mongodbatlas.NewCluster(ctx, \"test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:                pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(80),\n\t\t\tCloudBackup:              pulumi.Bool(true),\n\t\t\tClusterType:              pulumi.String(\"GEOSHARDED\"),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M30\"),\n\t\t\tReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tZoneName:  pulumi.String(\"Zone 1\"),\n\t\t\t\t\tNumShards: pulumi.Int(1),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"EU_CENTRAL_1\"),\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tZoneName:  pulumi.String(\"Zone 2\"),\n\t\t\t\t\tNumShards: pulumi.Int(1),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"US_EAST_2\"),\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewGlobalClusterConfig(ctx, \"config\", \u0026mongodbatlas.GlobalClusterConfigArgs{\n\t\t\tProjectId:   test.ProjectId,\n\t\t\tClusterName: test.Name,\n\t\t\tManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{\n\t\t\t\t\u0026mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{\n\t\t\t\t\tDb:             pulumi.String(\"mydata\"),\n\t\t\t\t\tCollection:     pulumi.String(\"publishers\"),\n\t\t\t\t\tCustomShardKey: pulumi.String(\"city\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{\n\t\t\t\t\u0026mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{\n\t\t\t\t\tLocation: pulumi.String(\"CA\"),\n\t\t\t\t\tZone:     pulumi.String(\"Zone 1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n### Example Global cluster config\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    clusterType: \"REPLICASET\",\n    replicationSpecs: [{\n        numShards: 1,\n        regionsConfigs: [{\n            regionName: \"US_EAST_1\",\n            electableNodes: 3,\n            priority: 7,\n            readOnlyNodes: 0,\n        }],\n    }],\n    backupEnabled: true,\n    autoScalingDiskGbEnabled: true,\n    mongoDbMajorVersion: \"4.0\",\n    providerName: \"AWS\",\n    diskSizeGb: 100,\n    providerInstanceSizeName: \"M40\",\n});\nconst config = new mongodbatlas.GlobalClusterConfig(\"config\", {\n    projectId: mongodbatlas_cluster.test.project_id,\n    clusterName: mongodbatlas_cluster.test.name,\n    managedNamespaces: [{\n        db: \"mydata\",\n        collection: \"publishers\",\n        customShardKey: \"city\",\n    }],\n    customZoneMappings: [{\n        location: \"CA\",\n        zone: \"Zone 1\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    cluster_type=\"REPLICASET\",\n    replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(\n        num_shards=1,\n        regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n            region_name=\"US_EAST_1\",\n            electable_nodes=3,\n            priority=7,\n            read_only_nodes=0,\n        )],\n    )],\n    backup_enabled=True,\n    auto_scaling_disk_gb_enabled=True,\n    mongo_db_major_version=\"4.0\",\n    provider_name=\"AWS\",\n    disk_size_gb=100,\n    provider_instance_size_name=\"M40\")\nconfig = mongodbatlas.GlobalClusterConfig(\"config\",\n    project_id=mongodbatlas_cluster[\"test\"][\"project_id\"],\n    cluster_name=mongodbatlas_cluster[\"test\"][\"name\"],\n    managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(\n        db=\"mydata\",\n        collection=\"publishers\",\n        custom_shard_key=\"city\",\n    )],\n    custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(\n        location=\"CA\",\n        zone=\"Zone 1\",\n    )])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ClusterType = \"REPLICASET\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 1,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            RegionName = \"US_EAST_1\",\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                        },\n                    },\n                },\n            },\n            BackupEnabled = true,\n            AutoScalingDiskGbEnabled = true,\n            MongoDbMajorVersion = \"4.0\",\n            ProviderName = \"AWS\",\n            DiskSizeGb = 100,\n            ProviderInstanceSizeName = \"M40\",\n        });\n        var config = new Mongodbatlas.GlobalClusterConfig(\"config\", new Mongodbatlas.GlobalClusterConfigArgs\n        {\n            ProjectId = mongodbatlas_cluster.Test.Project_id,\n            ClusterName = mongodbatlas_cluster.Test.Name,\n            ManagedNamespaces = \n            {\n                new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs\n                {\n                    Db = \"mydata\",\n                    Collection = \"publishers\",\n                    CustomShardKey = \"city\",\n                },\n            },\n            CustomZoneMappings = \n            {\n                new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs\n                {\n                    Location = \"CA\",\n                    Zone = \"Zone 1\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCluster(ctx, \"cluster_test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:   pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tClusterType: pulumi.String(\"REPLICASET\"),\n\t\t\tReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tNumShards: pulumi.Int(1),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"US_EAST_1\"),\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tBackupEnabled:            pulumi.Bool(true),\n\t\t\tAutoScalingDiskGbEnabled: pulumi.Bool(true),\n\t\t\tMongoDbMajorVersion:      pulumi.String(\"4.0\"),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(100),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M40\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewGlobalClusterConfig(ctx, \"config\", \u0026mongodbatlas.GlobalClusterConfigArgs{\n\t\t\tProjectId:   pulumi.Any(mongodbatlas_cluster.Test.Project_id),\n\t\t\tClusterName: pulumi.Any(mongodbatlas_cluster.Test.Name),\n\t\t\tManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{\n\t\t\t\t\u0026mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{\n\t\t\t\t\tDb:             pulumi.String(\"mydata\"),\n\t\t\t\t\tCollection:     pulumi.String(\"publishers\"),\n\t\t\t\t\tCustomShardKey: pulumi.String(\"city\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{\n\t\t\t\t\u0026mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{\n\t\t\t\t\tLocation: pulumi.String(\"CA\"),\n\t\t\t\t\tZone:     pulumi.String(\"Zone 1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\n## Import\n\nDatabase users can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-my-cluster\n```\n\n See detailed information for arguments and attributes[MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/) ",
+            "description": "`mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.\n\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n## Examples Usage\n\n### Example Global cluster\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Cluster(\"test\", {\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    diskSizeGb: 80,\n    cloudBackup: true,\n    clusterType: \"GEOSHARDED\",\n    providerName: \"AWS\",\n    providerInstanceSizeName: \"M30\",\n    replicationSpecs: [\n        {\n            zoneName: \"Zone 1\",\n            numShards: 1,\n            regionsConfigs: [{\n                regionName: \"EU_CENTRAL_1\",\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n            }],\n        },\n        {\n            zoneName: \"Zone 2\",\n            numShards: 1,\n            regionsConfigs: [{\n                regionName: \"US_EAST_2\",\n                electableNodes: 3,\n                priority: 7,\n                readOnlyNodes: 0,\n            }],\n        },\n    ],\n});\nconst config = new mongodbatlas.GlobalClusterConfig(\"config\", {\n    projectId: test.projectId,\n    clusterName: test.name,\n    managedNamespaces: [{\n        db: \"mydata\",\n        collection: \"publishers\",\n        customShardKey: \"city\",\n        isCustomShardKeyHashed: false,\n        isShardKeyUnique: false,\n    }],\n    customZoneMappings: [{\n        location: \"CA\",\n        zone: \"Zone 1\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Cluster(\"test\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    disk_size_gb=80,\n    cloud_backup=True,\n    cluster_type=\"GEOSHARDED\",\n    provider_name=\"AWS\",\n    provider_instance_size_name=\"M30\",\n    replication_specs=[\n        mongodbatlas.ClusterReplicationSpecArgs(\n            zone_name=\"Zone 1\",\n            num_shards=1,\n            regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                region_name=\"EU_CENTRAL_1\",\n                electable_nodes=3,\n                priority=7,\n                read_only_nodes=0,\n            )],\n        ),\n        mongodbatlas.ClusterReplicationSpecArgs(\n            zone_name=\"Zone 2\",\n            num_shards=1,\n            regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n                region_name=\"US_EAST_2\",\n                electable_nodes=3,\n                priority=7,\n                read_only_nodes=0,\n            )],\n        ),\n    ])\nconfig = mongodbatlas.GlobalClusterConfig(\"config\",\n    project_id=test.project_id,\n    cluster_name=test.name,\n    managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(\n        db=\"mydata\",\n        collection=\"publishers\",\n        custom_shard_key=\"city\",\n        is_custom_shard_key_hashed=False,\n        is_shard_key_unique=False,\n    )],\n    custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(\n        location=\"CA\",\n        zone=\"Zone 1\",\n    )])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Cluster(\"test\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            DiskSizeGb = 80,\n            CloudBackup = true,\n            ClusterType = \"GEOSHARDED\",\n            ProviderName = \"AWS\",\n            ProviderInstanceSizeName = \"M30\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    ZoneName = \"Zone 1\",\n                    NumShards = 1,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            RegionName = \"EU_CENTRAL_1\",\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                        },\n                    },\n                },\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    ZoneName = \"Zone 2\",\n                    NumShards = 1,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            RegionName = \"US_EAST_2\",\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                        },\n                    },\n                },\n            },\n        });\n        var config = new Mongodbatlas.GlobalClusterConfig(\"config\", new Mongodbatlas.GlobalClusterConfigArgs\n        {\n            ProjectId = test.ProjectId,\n            ClusterName = test.Name,\n            ManagedNamespaces = \n            {\n                new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs\n                {\n                    Db = \"mydata\",\n                    Collection = \"publishers\",\n                    CustomShardKey = \"city\",\n                    IsCustomShardKeyHashed = false,\n                    IsShardKeyUnique = false,\n                },\n            },\n            CustomZoneMappings = \n            {\n                new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs\n                {\n                    Location = \"CA\",\n                    Zone = \"Zone 1\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := mongodbatlas.NewCluster(ctx, \"test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:                pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(80),\n\t\t\tCloudBackup:              pulumi.Bool(true),\n\t\t\tClusterType:              pulumi.String(\"GEOSHARDED\"),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M30\"),\n\t\t\tReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tZoneName:  pulumi.String(\"Zone 1\"),\n\t\t\t\t\tNumShards: pulumi.Int(1),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"EU_CENTRAL_1\"),\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tZoneName:  pulumi.String(\"Zone 2\"),\n\t\t\t\t\tNumShards: pulumi.Int(1),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"US_EAST_2\"),\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewGlobalClusterConfig(ctx, \"config\", \u0026mongodbatlas.GlobalClusterConfigArgs{\n\t\t\tProjectId:   test.ProjectId,\n\t\t\tClusterName: test.Name,\n\t\t\tManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{\n\t\t\t\t\u0026mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{\n\t\t\t\t\tDb:                     pulumi.String(\"mydata\"),\n\t\t\t\t\tCollection:             pulumi.String(\"publishers\"),\n\t\t\t\t\tCustomShardKey:         pulumi.String(\"city\"),\n\t\t\t\t\tIsCustomShardKeyHashed: pulumi.Bool(false),\n\t\t\t\t\tIsShardKeyUnique:       pulumi.Bool(false),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{\n\t\t\t\t\u0026mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{\n\t\t\t\t\tLocation: pulumi.String(\"CA\"),\n\t\t\t\t\tZone:     pulumi.String(\"Zone 1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n### Example Global cluster config\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst cluster_test = new mongodbatlas.Cluster(\"cluster-test\", {\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    clusterType: \"REPLICASET\",\n    replicationSpecs: [{\n        numShards: 1,\n        regionsConfigs: [{\n            regionName: \"US_EAST_1\",\n            electableNodes: 3,\n            priority: 7,\n            readOnlyNodes: 0,\n        }],\n    }],\n    backupEnabled: true,\n    autoScalingDiskGbEnabled: true,\n    mongoDbMajorVersion: \"4.0\",\n    providerName: \"AWS\",\n    diskSizeGb: 100,\n    providerInstanceSizeName: \"M40\",\n});\nconst config = new mongodbatlas.GlobalClusterConfig(\"config\", {\n    projectId: mongodbatlas_cluster.test.project_id,\n    clusterName: mongodbatlas_cluster.test.name,\n    managedNamespaces: [{\n        db: \"mydata\",\n        collection: \"publishers\",\n        customShardKey: \"city\",\n    }],\n    customZoneMappings: [{\n        location: \"CA\",\n        zone: \"Zone 1\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ncluster_test = mongodbatlas.Cluster(\"cluster-test\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    cluster_type=\"REPLICASET\",\n    replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(\n        num_shards=1,\n        regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(\n            region_name=\"US_EAST_1\",\n            electable_nodes=3,\n            priority=7,\n            read_only_nodes=0,\n        )],\n    )],\n    backup_enabled=True,\n    auto_scaling_disk_gb_enabled=True,\n    mongo_db_major_version=\"4.0\",\n    provider_name=\"AWS\",\n    disk_size_gb=100,\n    provider_instance_size_name=\"M40\")\nconfig = mongodbatlas.GlobalClusterConfig(\"config\",\n    project_id=mongodbatlas_cluster[\"test\"][\"project_id\"],\n    cluster_name=mongodbatlas_cluster[\"test\"][\"name\"],\n    managed_namespaces=[mongodbatlas.GlobalClusterConfigManagedNamespaceArgs(\n        db=\"mydata\",\n        collection=\"publishers\",\n        custom_shard_key=\"city\",\n    )],\n    custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(\n        location=\"CA\",\n        zone=\"Zone 1\",\n    )])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var cluster_test = new Mongodbatlas.Cluster(\"cluster-test\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ClusterType = \"REPLICASET\",\n            ReplicationSpecs = \n            {\n                new Mongodbatlas.Inputs.ClusterReplicationSpecArgs\n                {\n                    NumShards = 1,\n                    RegionsConfigs = \n                    {\n                        new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs\n                        {\n                            RegionName = \"US_EAST_1\",\n                            ElectableNodes = 3,\n                            Priority = 7,\n                            ReadOnlyNodes = 0,\n                        },\n                    },\n                },\n            },\n            BackupEnabled = true,\n            AutoScalingDiskGbEnabled = true,\n            MongoDbMajorVersion = \"4.0\",\n            ProviderName = \"AWS\",\n            DiskSizeGb = 100,\n            ProviderInstanceSizeName = \"M40\",\n        });\n        var config = new Mongodbatlas.GlobalClusterConfig(\"config\", new Mongodbatlas.GlobalClusterConfigArgs\n        {\n            ProjectId = mongodbatlas_cluster.Test.Project_id,\n            ClusterName = mongodbatlas_cluster.Test.Name,\n            ManagedNamespaces = \n            {\n                new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs\n                {\n                    Db = \"mydata\",\n                    Collection = \"publishers\",\n                    CustomShardKey = \"city\",\n                },\n            },\n            CustomZoneMappings = \n            {\n                new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs\n                {\n                    Location = \"CA\",\n                    Zone = \"Zone 1\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCluster(ctx, \"cluster_test\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:   pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tClusterType: pulumi.String(\"REPLICASET\"),\n\t\t\tReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{\n\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecArgs{\n\t\t\t\t\tNumShards: pulumi.Int(1),\n\t\t\t\t\tRegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{\n\t\t\t\t\t\t\u0026mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{\n\t\t\t\t\t\t\tRegionName:     pulumi.String(\"US_EAST_1\"),\n\t\t\t\t\t\t\tElectableNodes: pulumi.Int(3),\n\t\t\t\t\t\t\tPriority:       pulumi.Int(7),\n\t\t\t\t\t\t\tReadOnlyNodes:  pulumi.Int(0),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tBackupEnabled:            pulumi.Bool(true),\n\t\t\tAutoScalingDiskGbEnabled: pulumi.Bool(true),\n\t\t\tMongoDbMajorVersion:      pulumi.String(\"4.0\"),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(100),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M40\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewGlobalClusterConfig(ctx, \"config\", \u0026mongodbatlas.GlobalClusterConfigArgs{\n\t\t\tProjectId:   pulumi.Any(mongodbatlas_cluster.Test.Project_id),\n\t\t\tClusterName: pulumi.Any(mongodbatlas_cluster.Test.Name),\n\t\t\tManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{\n\t\t\t\t\u0026mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{\n\t\t\t\t\tDb:             pulumi.String(\"mydata\"),\n\t\t\t\t\tCollection:     pulumi.String(\"publishers\"),\n\t\t\t\t\tCustomShardKey: pulumi.String(\"city\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{\n\t\t\t\t\u0026mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{\n\t\t\t\t\tLocation: pulumi.String(\"CA\"),\n\t\t\t\t\tZone:     pulumi.String(\"Zone 1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\n## Import\n\nDatabase users can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-my-cluster\n```\n\n See detailed information for arguments and attributes[MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/) ",
             "properties": {
                 "clusterName": {
                     "type": "string",
@@ -11158,7 +11236,11 @@
             "properties": {
                 "autoDefer": {
                     "type": "boolean",
-                    "description": "Automatically defer any maintenance for the given project for one week.\n"
+                    "description": "Defer any scheduled maintenance for the given project for one week.\n"
+                },
+                "autoDeferOnceEnabled": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.\n"
                 },
                 "dayOfWeek": {
                     "type": "integer",
@@ -11166,7 +11248,7 @@
                 },
                 "defer": {
                     "type": "boolean",
-                    "description": "Defer maintenance for the given project for one week.\n"
+                    "description": "Defer the next scheduled maintenance for the given project for one week.\n"
                 },
                 "hourOfDay": {
                     "type": "integer",
@@ -11187,6 +11269,7 @@
             },
             "required": [
                 "autoDefer",
+                "autoDeferOnceEnabled",
                 "dayOfWeek",
                 "defer",
                 "hourOfDay",
@@ -11197,7 +11280,11 @@
             "inputProperties": {
                 "autoDefer": {
                     "type": "boolean",
-                    "description": "Automatically defer any maintenance for the given project for one week.\n"
+                    "description": "Defer any scheduled maintenance for the given project for one week.\n"
+                },
+                "autoDeferOnceEnabled": {
+                    "type": "boolean",
+                    "description": "Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.\n"
                 },
                 "dayOfWeek": {
                     "type": "integer",
@@ -11205,7 +11292,7 @@
                 },
                 "defer": {
                     "type": "boolean",
-                    "description": "Defer maintenance for the given project for one week.\n"
+                    "description": "Defer the next scheduled maintenance for the given project for one week.\n"
                 },
                 "hourOfDay": {
                     "type": "integer",
@@ -11228,7 +11315,11 @@
                 "properties": {
                     "autoDefer": {
                         "type": "boolean",
-                        "description": "Automatically defer any maintenance for the given project for one week.\n"
+                        "description": "Defer any scheduled maintenance for the given project for one week.\n"
+                    },
+                    "autoDeferOnceEnabled": {
+                        "type": "boolean",
+                        "description": "Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.\n"
                     },
                     "dayOfWeek": {
                         "type": "integer",
@@ -11236,7 +11327,7 @@
                     },
                     "defer": {
                         "type": "boolean",
-                        "description": "Defer maintenance for the given project for one week.\n"
+                        "description": "Defer the next scheduled maintenance for the given project for one week.\n"
                     },
                     "hourOfDay": {
                         "type": "integer",
@@ -12220,6 +12311,10 @@
                     "type": "string",
                     "description": "The ID of the organization you want to create the project within.\n"
                 },
+                "projectOwnerId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).\n"
+                },
                 "teams": {
                     "type": "array",
                     "items": {
@@ -12241,6 +12336,10 @@
                 "orgId": {
                     "type": "string",
                     "description": "The ID of the organization you want to create the project within.\n"
+                },
+                "projectOwnerId": {
+                    "type": "string",
+                    "description": "Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).\n"
                 },
                 "teams": {
                     "type": "array",
@@ -12270,6 +12369,10 @@
                     "orgId": {
                         "type": "string",
                         "description": "The ID of the organization you want to create the project within.\n"
+                    },
+                    "projectOwnerId": {
+                        "type": "string",
+                        "description": "Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).\n"
                     },
                     "teams": {
                         "type": "array",
@@ -14969,6 +15072,10 @@
             "outputs": {
                 "description": "A collection of values returned by getMaintenanceWindow.\n",
                 "properties": {
+                    "autoDeferOnceEnabled": {
+                        "type": "boolean",
+                        "description": "Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.\nFor more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)\n"
+                    },
                     "dayOfWeek": {
                         "type": "integer",
                         "description": "Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.\n"
@@ -14995,6 +15102,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "autoDeferOnceEnabled",
                     "dayOfWeek",
                     "hourOfDay",
                     "numberOfDeferrals",

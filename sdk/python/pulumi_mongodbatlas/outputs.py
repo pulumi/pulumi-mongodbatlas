@@ -1436,7 +1436,11 @@ class ClusterAdvancedConfiguration(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "failIndexKeyTooLong":
+        if key == "defaultReadConcern":
+            suggest = "default_read_concern"
+        elif key == "defaultWriteConcern":
+            suggest = "default_write_concern"
+        elif key == "failIndexKeyTooLong":
             suggest = "fail_index_key_too_long"
         elif key == "javascriptEnabled":
             suggest = "javascript_enabled"
@@ -1463,6 +1467,8 @@ class ClusterAdvancedConfiguration(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 default_read_concern: Optional[str] = None,
+                 default_write_concern: Optional[str] = None,
                  fail_index_key_too_long: Optional[bool] = None,
                  javascript_enabled: Optional[bool] = None,
                  minimum_enabled_tls_protocol: Optional[str] = None,
@@ -1471,6 +1477,8 @@ class ClusterAdvancedConfiguration(dict):
                  sample_refresh_interval_bi_connector: Optional[int] = None,
                  sample_size_bi_connector: Optional[int] = None):
         """
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
         :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
@@ -1479,6 +1487,10 @@ class ClusterAdvancedConfiguration(dict):
         :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
+        if default_read_concern is not None:
+            pulumi.set(__self__, "default_read_concern", default_read_concern)
+        if default_write_concern is not None:
+            pulumi.set(__self__, "default_write_concern", default_write_concern)
         if fail_index_key_too_long is not None:
             pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
@@ -1493,6 +1505,22 @@ class ClusterAdvancedConfiguration(dict):
             pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
         if sample_size_bi_connector is not None:
             pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+
+    @property
+    @pulumi.getter(name="defaultReadConcern")
+    def default_read_concern(self) -> Optional[str]:
+        """
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        """
+        return pulumi.get(self, "default_read_concern")
+
+    @property
+    @pulumi.getter(name="defaultWriteConcern")
+    def default_write_concern(self) -> Optional[str]:
+        """
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        """
+        return pulumi.get(self, "default_write_concern")
 
     @property
     @pulumi.getter(name="failIndexKeyTooLong")
@@ -3281,6 +3309,10 @@ class GlobalClusterConfigManagedNamespace(dict):
         suggest = None
         if key == "customShardKey":
             suggest = "custom_shard_key"
+        elif key == "isCustomShardKeyHashed":
+            suggest = "is_custom_shard_key_hashed"
+        elif key == "isShardKeyUnique":
+            suggest = "is_shard_key_unique"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in GlobalClusterConfigManagedNamespace. Access the value via the '{suggest}' property getter instead.")
@@ -3296,15 +3328,23 @@ class GlobalClusterConfigManagedNamespace(dict):
     def __init__(__self__, *,
                  collection: str,
                  custom_shard_key: str,
-                 db: str):
+                 db: str,
+                 is_custom_shard_key_hashed: Optional[bool] = None,
+                 is_shard_key_unique: Optional[bool] = None):
         """
         :param str collection: The name of the collection associated with the managed namespace.
         :param str custom_shard_key: The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
         :param str db: The name of the database containing the collection.
+        :param bool is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        :param bool is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
         pulumi.set(__self__, "collection", collection)
         pulumi.set(__self__, "custom_shard_key", custom_shard_key)
         pulumi.set(__self__, "db", db)
+        if is_custom_shard_key_hashed is not None:
+            pulumi.set(__self__, "is_custom_shard_key_hashed", is_custom_shard_key_hashed)
+        if is_shard_key_unique is not None:
+            pulumi.set(__self__, "is_shard_key_unique", is_shard_key_unique)
 
     @property
     @pulumi.getter
@@ -3329,6 +3369,22 @@ class GlobalClusterConfigManagedNamespace(dict):
         The name of the database containing the collection.
         """
         return pulumi.get(self, "db")
+
+    @property
+    @pulumi.getter(name="isCustomShardKeyHashed")
+    def is_custom_shard_key_hashed(self) -> Optional[bool]:
+        """
+        Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        """
+        return pulumi.get(self, "is_custom_shard_key_hashed")
+
+    @property
+    @pulumi.getter(name="isShardKeyUnique")
+    def is_shard_key_unique(self) -> Optional[bool]:
+        """
+        Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+        """
+        return pulumi.get(self, "is_shard_key_unique")
 
 
 @pulumi.output_type
@@ -7602,15 +7658,21 @@ class GetGlobalClusterConfigManagedNamespaceResult(dict):
     def __init__(__self__, *,
                  collection: str,
                  custom_shard_key: str,
-                 db: str):
+                 db: str,
+                 is_custom_shard_key_hashed: bool,
+                 is_shard_key_unique: bool):
         """
         :param str collection: (Required) The name of the collection associated with the managed namespace.
         :param str custom_shard_key: (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
         :param str db: (Required) The name of the database containing the collection.
+        :param bool is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        :param bool is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
         pulumi.set(__self__, "collection", collection)
         pulumi.set(__self__, "custom_shard_key", custom_shard_key)
         pulumi.set(__self__, "db", db)
+        pulumi.set(__self__, "is_custom_shard_key_hashed", is_custom_shard_key_hashed)
+        pulumi.set(__self__, "is_shard_key_unique", is_shard_key_unique)
 
     @property
     @pulumi.getter
@@ -7635,6 +7697,22 @@ class GetGlobalClusterConfigManagedNamespaceResult(dict):
         (Required) The name of the database containing the collection.
         """
         return pulumi.get(self, "db")
+
+    @property
+    @pulumi.getter(name="isCustomShardKeyHashed")
+    def is_custom_shard_key_hashed(self) -> bool:
+        """
+        Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        """
+        return pulumi.get(self, "is_custom_shard_key_hashed")
+
+    @property
+    @pulumi.getter(name="isShardKeyUnique")
+    def is_shard_key_unique(self) -> bool:
+        """
+        Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+        """
+        return pulumi.get(self, "is_shard_key_unique")
 
 
 @pulumi.output_type

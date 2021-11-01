@@ -30,8 +30,10 @@ type Project struct {
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
-	OrgId pulumi.StringOutput    `pulumi:"orgId"`
-	Teams ProjectTeamArrayOutput `pulumi:"teams"`
+	OrgId pulumi.StringOutput `pulumi:"orgId"`
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	ProjectOwnerId pulumi.StringPtrOutput `pulumi:"projectOwnerId"`
+	Teams          ProjectTeamArrayOutput `pulumi:"teams"`
 }
 
 // NewProject registers a new resource with the given unique name, arguments, and options.
@@ -73,8 +75,10 @@ type projectState struct {
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
-	OrgId *string       `pulumi:"orgId"`
-	Teams []ProjectTeam `pulumi:"teams"`
+	OrgId *string `pulumi:"orgId"`
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	ProjectOwnerId *string       `pulumi:"projectOwnerId"`
+	Teams          []ProjectTeam `pulumi:"teams"`
 }
 
 type ProjectState struct {
@@ -86,7 +90,9 @@ type ProjectState struct {
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringPtrInput
-	Teams ProjectTeamArrayInput
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	ProjectOwnerId pulumi.StringPtrInput
+	Teams          ProjectTeamArrayInput
 }
 
 func (ProjectState) ElementType() reflect.Type {
@@ -97,8 +103,10 @@ type projectArgs struct {
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
-	OrgId string        `pulumi:"orgId"`
-	Teams []ProjectTeam `pulumi:"teams"`
+	OrgId string `pulumi:"orgId"`
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	ProjectOwnerId *string       `pulumi:"projectOwnerId"`
+	Teams          []ProjectTeam `pulumi:"teams"`
 }
 
 // The set of arguments for constructing a Project resource.
@@ -107,7 +115,9 @@ type ProjectArgs struct {
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringInput
-	Teams ProjectTeamArrayInput
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	ProjectOwnerId pulumi.StringPtrInput
+	Teams          ProjectTeamArrayInput
 }
 
 func (ProjectArgs) ElementType() reflect.Type {

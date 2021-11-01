@@ -71,9 +71,11 @@ import (
 // 			ClusterName: test.Name,
 // 			ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
 // 				&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
-// 					Db:             pulumi.String("mydata"),
-// 					Collection:     pulumi.String("publishers"),
-// 					CustomShardKey: pulumi.String("city"),
+// 					Db:                     pulumi.String("mydata"),
+// 					Collection:             pulumi.String("publishers"),
+// 					CustomShardKey:         pulumi.String("city"),
+// 					IsCustomShardKeyHashed: pulumi.Bool(false),
+// 					IsShardKeyUnique:       pulumi.Bool(false),
 // 				},
 // 			},
 // 			CustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{

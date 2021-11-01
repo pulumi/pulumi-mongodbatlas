@@ -79,15 +79,19 @@ export class MaintenanceWindow extends pulumi.CustomResource {
     }
 
     /**
-     * Automatically defer any maintenance for the given project for one week.
+     * Defer any scheduled maintenance for the given project for one week.
      */
     public readonly autoDefer!: pulumi.Output<boolean>;
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     */
+    public readonly autoDeferOnceEnabled!: pulumi.Output<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
      */
     public readonly dayOfWeek!: pulumi.Output<number>;
     /**
-     * Defer maintenance for the given project for one week.
+     * Defer the next scheduled maintenance for the given project for one week.
      */
     public readonly defer!: pulumi.Output<boolean>;
     /**
@@ -121,6 +125,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MaintenanceWindowState | undefined;
             inputs["autoDefer"] = state ? state.autoDefer : undefined;
+            inputs["autoDeferOnceEnabled"] = state ? state.autoDeferOnceEnabled : undefined;
             inputs["dayOfWeek"] = state ? state.dayOfWeek : undefined;
             inputs["defer"] = state ? state.defer : undefined;
             inputs["hourOfDay"] = state ? state.hourOfDay : undefined;
@@ -133,6 +138,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
                 throw new Error("Missing required property 'projectId'");
             }
             inputs["autoDefer"] = args ? args.autoDefer : undefined;
+            inputs["autoDeferOnceEnabled"] = args ? args.autoDeferOnceEnabled : undefined;
             inputs["dayOfWeek"] = args ? args.dayOfWeek : undefined;
             inputs["defer"] = args ? args.defer : undefined;
             inputs["hourOfDay"] = args ? args.hourOfDay : undefined;
@@ -152,15 +158,19 @@ export class MaintenanceWindow extends pulumi.CustomResource {
  */
 export interface MaintenanceWindowState {
     /**
-     * Automatically defer any maintenance for the given project for one week.
+     * Defer any scheduled maintenance for the given project for one week.
      */
     readonly autoDefer?: pulumi.Input<boolean>;
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     */
+    readonly autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
      */
     readonly dayOfWeek?: pulumi.Input<number>;
     /**
-     * Defer maintenance for the given project for one week.
+     * Defer the next scheduled maintenance for the given project for one week.
      */
     readonly defer?: pulumi.Input<boolean>;
     /**
@@ -186,15 +196,19 @@ export interface MaintenanceWindowState {
  */
 export interface MaintenanceWindowArgs {
     /**
-     * Automatically defer any maintenance for the given project for one week.
+     * Defer any scheduled maintenance for the given project for one week.
      */
     readonly autoDefer?: pulumi.Input<boolean>;
+    /**
+     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     */
+    readonly autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
      */
     readonly dayOfWeek?: pulumi.Input<number>;
     /**
-     * Defer maintenance for the given project for one week.
+     * Defer the next scheduled maintenance for the given project for one week.
      */
     readonly defer?: pulumi.Input<boolean>;
     /**

@@ -229,6 +229,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 db="mydata",
                 collection="publishers",
                 custom_shard_key="city",
+                is_custom_shard_key_hashed=False,
+                is_shard_key_unique=False,
             )],
             custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
                 location="CA",
@@ -346,6 +348,8 @@ class GlobalClusterConfig(pulumi.CustomResource):
                 db="mydata",
                 collection="publishers",
                 custom_shard_key="city",
+                is_custom_shard_key_hashed=False,
+                is_shard_key_unique=False,
             )],
             custom_zone_mappings=[mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs(
                 location="CA",

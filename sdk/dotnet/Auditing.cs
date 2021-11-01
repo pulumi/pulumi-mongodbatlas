@@ -48,13 +48,13 @@ namespace Pulumi.Mongodbatlas
     public partial class Auditing : Pulumi.CustomResource
     {
         /// <summary>
-        /// JSON-formatted audit filter used by the project
+        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         /// </summary>
         [Output("auditAuthorizationSuccess")]
         public Output<bool> AuditAuthorizationSuccess { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         /// </summary>
         [Output("auditFilter")]
         public Output<string> AuditFilter { get; private set; } = null!;
@@ -69,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ConfigurationType { get; private set; } = null!;
 
         /// <summary>
-        /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
@@ -127,19 +127,19 @@ namespace Pulumi.Mongodbatlas
     public sealed class AuditingArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// JSON-formatted audit filter used by the project
+        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         /// </summary>
         [Input("auditAuthorizationSuccess")]
         public Input<bool>? AuditAuthorizationSuccess { get; set; }
 
         /// <summary>
-        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         /// </summary>
         [Input("auditFilter")]
         public Input<string>? AuditFilter { get; set; }
 
         /// <summary>
-        /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -158,13 +158,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class AuditingState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// JSON-formatted audit filter used by the project
+        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         /// </summary>
         [Input("auditAuthorizationSuccess")]
         public Input<bool>? AuditAuthorizationSuccess { get; set; }
 
         /// <summary>
-        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         /// </summary>
         [Input("auditFilter")]
         public Input<string>? AuditFilter { get; set; }
@@ -179,7 +179,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ConfigurationType { get; set; }
 
         /// <summary>
-        /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.
+        /// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

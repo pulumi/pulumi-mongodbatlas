@@ -313,6 +313,14 @@ export interface CloudProviderSnapshotRestoreJobDeliveryTypeConfig {
 
 export interface ClusterAdvancedConfiguration {
     /**
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+     */
+    defaultReadConcern?: pulumi.Input<string>;
+    /**
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     */
+    defaultWriteConcern?: pulumi.Input<string>;
+    /**
      * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      */
     failIndexKeyTooLong?: pulumi.Input<boolean>;
@@ -714,6 +722,14 @@ export interface GetGlobalClusterConfigManagedNamespace {
      * (Required) The name of the database containing the collection.
      */
     db: string;
+    /**
+     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     */
+    isCustomShardKeyHashed?: boolean;
+    /**
+     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     */
+    isShardKeyUnique?: boolean;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {
@@ -740,6 +756,14 @@ export interface GlobalClusterConfigManagedNamespace {
      * The name of the database containing the collection.
      */
     db: pulumi.Input<string>;
+    /**
+     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     */
+    isCustomShardKeyHashed?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     */
+    isShardKeyUnique?: pulumi.Input<boolean>;
 }
 
 export interface LdapConfigurationUserToDnMapping {
