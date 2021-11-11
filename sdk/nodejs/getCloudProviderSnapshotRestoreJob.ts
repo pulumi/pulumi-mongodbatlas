@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -32,15 +31,15 @@ export interface GetCloudProviderSnapshotRestoreJobArgs {
     /**
      * The name of the Atlas cluster for which you want to retrieve the restore job.
      */
-    readonly clusterName: string;
+    clusterName: string;
     /**
      * The unique identifier of the restore job to retrieve.
      */
-    readonly jobId: string;
+    jobId: string;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -98,4 +97,26 @@ export interface GetCloudProviderSnapshotRestoreJobResult {
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
      */
     readonly timestamp: string;
+}
+
+export function getCloudProviderSnapshotRestoreJobOutput(args: GetCloudProviderSnapshotRestoreJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotRestoreJobResult> {
+    return pulumi.output(args).apply(a => getCloudProviderSnapshotRestoreJob(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCloudProviderSnapshotRestoreJob.
+ */
+export interface GetCloudProviderSnapshotRestoreJobOutputArgs {
+    /**
+     * The name of the Atlas cluster for which you want to retrieve the restore job.
+     */
+    clusterName: pulumi.Input<string>;
+    /**
+     * The unique identifier of the restore job to retrieve.
+     */
+    jobId: pulumi.Input<string>;
+    /**
+     * The unique identifier of the project for the Atlas cluster.
+     */
+    projectId: pulumi.Input<string>;
 }

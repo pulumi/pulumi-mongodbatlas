@@ -236,52 +236,52 @@ export class Cluster extends pulumi.CustomResource {
      */
     constructor(name: string, args: ClusterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ClusterArgs | ClusterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClusterState | undefined;
-            inputs["advancedConfiguration"] = state ? state.advancedConfiguration : undefined;
-            inputs["autoScalingComputeEnabled"] = state ? state.autoScalingComputeEnabled : undefined;
-            inputs["autoScalingComputeScaleDownEnabled"] = state ? state.autoScalingComputeScaleDownEnabled : undefined;
-            inputs["autoScalingDiskGbEnabled"] = state ? state.autoScalingDiskGbEnabled : undefined;
-            inputs["backingProviderName"] = state ? state.backingProviderName : undefined;
-            inputs["backupEnabled"] = state ? state.backupEnabled : undefined;
-            inputs["biConnector"] = state ? state.biConnector : undefined;
-            inputs["biConnectorConfig"] = state ? state.biConnectorConfig : undefined;
-            inputs["cloudBackup"] = state ? state.cloudBackup : undefined;
-            inputs["clusterId"] = state ? state.clusterId : undefined;
-            inputs["clusterType"] = state ? state.clusterType : undefined;
-            inputs["connectionStrings"] = state ? state.connectionStrings : undefined;
-            inputs["containerId"] = state ? state.containerId : undefined;
-            inputs["diskSizeGb"] = state ? state.diskSizeGb : undefined;
-            inputs["encryptionAtRestProvider"] = state ? state.encryptionAtRestProvider : undefined;
-            inputs["labels"] = state ? state.labels : undefined;
-            inputs["mongoDbMajorVersion"] = state ? state.mongoDbMajorVersion : undefined;
-            inputs["mongoDbVersion"] = state ? state.mongoDbVersion : undefined;
-            inputs["mongoUri"] = state ? state.mongoUri : undefined;
-            inputs["mongoUriUpdated"] = state ? state.mongoUriUpdated : undefined;
-            inputs["mongoUriWithOptions"] = state ? state.mongoUriWithOptions : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["numShards"] = state ? state.numShards : undefined;
-            inputs["paused"] = state ? state.paused : undefined;
-            inputs["pitEnabled"] = state ? state.pitEnabled : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["providerAutoScalingComputeMaxInstanceSize"] = state ? state.providerAutoScalingComputeMaxInstanceSize : undefined;
-            inputs["providerAutoScalingComputeMinInstanceSize"] = state ? state.providerAutoScalingComputeMinInstanceSize : undefined;
-            inputs["providerBackupEnabled"] = state ? state.providerBackupEnabled : undefined;
-            inputs["providerDiskIops"] = state ? state.providerDiskIops : undefined;
-            inputs["providerDiskTypeName"] = state ? state.providerDiskTypeName : undefined;
-            inputs["providerEncryptEbsVolume"] = state ? state.providerEncryptEbsVolume : undefined;
-            inputs["providerEncryptEbsVolumeFlag"] = state ? state.providerEncryptEbsVolumeFlag : undefined;
-            inputs["providerInstanceSizeName"] = state ? state.providerInstanceSizeName : undefined;
-            inputs["providerName"] = state ? state.providerName : undefined;
-            inputs["providerRegionName"] = state ? state.providerRegionName : undefined;
-            inputs["providerVolumeType"] = state ? state.providerVolumeType : undefined;
-            inputs["replicationFactor"] = state ? state.replicationFactor : undefined;
-            inputs["replicationSpecs"] = state ? state.replicationSpecs : undefined;
-            inputs["snapshotBackupPolicies"] = state ? state.snapshotBackupPolicies : undefined;
-            inputs["srvAddress"] = state ? state.srvAddress : undefined;
-            inputs["stateName"] = state ? state.stateName : undefined;
+            resourceInputs["advancedConfiguration"] = state ? state.advancedConfiguration : undefined;
+            resourceInputs["autoScalingComputeEnabled"] = state ? state.autoScalingComputeEnabled : undefined;
+            resourceInputs["autoScalingComputeScaleDownEnabled"] = state ? state.autoScalingComputeScaleDownEnabled : undefined;
+            resourceInputs["autoScalingDiskGbEnabled"] = state ? state.autoScalingDiskGbEnabled : undefined;
+            resourceInputs["backingProviderName"] = state ? state.backingProviderName : undefined;
+            resourceInputs["backupEnabled"] = state ? state.backupEnabled : undefined;
+            resourceInputs["biConnector"] = state ? state.biConnector : undefined;
+            resourceInputs["biConnectorConfig"] = state ? state.biConnectorConfig : undefined;
+            resourceInputs["cloudBackup"] = state ? state.cloudBackup : undefined;
+            resourceInputs["clusterId"] = state ? state.clusterId : undefined;
+            resourceInputs["clusterType"] = state ? state.clusterType : undefined;
+            resourceInputs["connectionStrings"] = state ? state.connectionStrings : undefined;
+            resourceInputs["containerId"] = state ? state.containerId : undefined;
+            resourceInputs["diskSizeGb"] = state ? state.diskSizeGb : undefined;
+            resourceInputs["encryptionAtRestProvider"] = state ? state.encryptionAtRestProvider : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
+            resourceInputs["mongoDbMajorVersion"] = state ? state.mongoDbMajorVersion : undefined;
+            resourceInputs["mongoDbVersion"] = state ? state.mongoDbVersion : undefined;
+            resourceInputs["mongoUri"] = state ? state.mongoUri : undefined;
+            resourceInputs["mongoUriUpdated"] = state ? state.mongoUriUpdated : undefined;
+            resourceInputs["mongoUriWithOptions"] = state ? state.mongoUriWithOptions : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["numShards"] = state ? state.numShards : undefined;
+            resourceInputs["paused"] = state ? state.paused : undefined;
+            resourceInputs["pitEnabled"] = state ? state.pitEnabled : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["providerAutoScalingComputeMaxInstanceSize"] = state ? state.providerAutoScalingComputeMaxInstanceSize : undefined;
+            resourceInputs["providerAutoScalingComputeMinInstanceSize"] = state ? state.providerAutoScalingComputeMinInstanceSize : undefined;
+            resourceInputs["providerBackupEnabled"] = state ? state.providerBackupEnabled : undefined;
+            resourceInputs["providerDiskIops"] = state ? state.providerDiskIops : undefined;
+            resourceInputs["providerDiskTypeName"] = state ? state.providerDiskTypeName : undefined;
+            resourceInputs["providerEncryptEbsVolume"] = state ? state.providerEncryptEbsVolume : undefined;
+            resourceInputs["providerEncryptEbsVolumeFlag"] = state ? state.providerEncryptEbsVolumeFlag : undefined;
+            resourceInputs["providerInstanceSizeName"] = state ? state.providerInstanceSizeName : undefined;
+            resourceInputs["providerName"] = state ? state.providerName : undefined;
+            resourceInputs["providerRegionName"] = state ? state.providerRegionName : undefined;
+            resourceInputs["providerVolumeType"] = state ? state.providerVolumeType : undefined;
+            resourceInputs["replicationFactor"] = state ? state.replicationFactor : undefined;
+            resourceInputs["replicationSpecs"] = state ? state.replicationSpecs : undefined;
+            resourceInputs["snapshotBackupPolicies"] = state ? state.snapshotBackupPolicies : undefined;
+            resourceInputs["srvAddress"] = state ? state.srvAddress : undefined;
+            resourceInputs["stateName"] = state ? state.stateName : undefined;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -293,53 +293,53 @@ export class Cluster extends pulumi.CustomResource {
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            inputs["advancedConfiguration"] = args ? args.advancedConfiguration : undefined;
-            inputs["autoScalingComputeEnabled"] = args ? args.autoScalingComputeEnabled : undefined;
-            inputs["autoScalingComputeScaleDownEnabled"] = args ? args.autoScalingComputeScaleDownEnabled : undefined;
-            inputs["autoScalingDiskGbEnabled"] = args ? args.autoScalingDiskGbEnabled : undefined;
-            inputs["backingProviderName"] = args ? args.backingProviderName : undefined;
-            inputs["backupEnabled"] = args ? args.backupEnabled : undefined;
-            inputs["biConnector"] = args ? args.biConnector : undefined;
-            inputs["biConnectorConfig"] = args ? args.biConnectorConfig : undefined;
-            inputs["cloudBackup"] = args ? args.cloudBackup : undefined;
-            inputs["clusterType"] = args ? args.clusterType : undefined;
-            inputs["diskSizeGb"] = args ? args.diskSizeGb : undefined;
-            inputs["encryptionAtRestProvider"] = args ? args.encryptionAtRestProvider : undefined;
-            inputs["labels"] = args ? args.labels : undefined;
-            inputs["mongoDbMajorVersion"] = args ? args.mongoDbMajorVersion : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["numShards"] = args ? args.numShards : undefined;
-            inputs["pitEnabled"] = args ? args.pitEnabled : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["providerAutoScalingComputeMaxInstanceSize"] = args ? args.providerAutoScalingComputeMaxInstanceSize : undefined;
-            inputs["providerAutoScalingComputeMinInstanceSize"] = args ? args.providerAutoScalingComputeMinInstanceSize : undefined;
-            inputs["providerBackupEnabled"] = args ? args.providerBackupEnabled : undefined;
-            inputs["providerDiskIops"] = args ? args.providerDiskIops : undefined;
-            inputs["providerDiskTypeName"] = args ? args.providerDiskTypeName : undefined;
-            inputs["providerEncryptEbsVolume"] = args ? args.providerEncryptEbsVolume : undefined;
-            inputs["providerInstanceSizeName"] = args ? args.providerInstanceSizeName : undefined;
-            inputs["providerName"] = args ? args.providerName : undefined;
-            inputs["providerRegionName"] = args ? args.providerRegionName : undefined;
-            inputs["providerVolumeType"] = args ? args.providerVolumeType : undefined;
-            inputs["replicationFactor"] = args ? args.replicationFactor : undefined;
-            inputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
-            inputs["clusterId"] = undefined /*out*/;
-            inputs["connectionStrings"] = undefined /*out*/;
-            inputs["containerId"] = undefined /*out*/;
-            inputs["mongoDbVersion"] = undefined /*out*/;
-            inputs["mongoUri"] = undefined /*out*/;
-            inputs["mongoUriUpdated"] = undefined /*out*/;
-            inputs["mongoUriWithOptions"] = undefined /*out*/;
-            inputs["paused"] = undefined /*out*/;
-            inputs["providerEncryptEbsVolumeFlag"] = undefined /*out*/;
-            inputs["snapshotBackupPolicies"] = undefined /*out*/;
-            inputs["srvAddress"] = undefined /*out*/;
-            inputs["stateName"] = undefined /*out*/;
+            resourceInputs["advancedConfiguration"] = args ? args.advancedConfiguration : undefined;
+            resourceInputs["autoScalingComputeEnabled"] = args ? args.autoScalingComputeEnabled : undefined;
+            resourceInputs["autoScalingComputeScaleDownEnabled"] = args ? args.autoScalingComputeScaleDownEnabled : undefined;
+            resourceInputs["autoScalingDiskGbEnabled"] = args ? args.autoScalingDiskGbEnabled : undefined;
+            resourceInputs["backingProviderName"] = args ? args.backingProviderName : undefined;
+            resourceInputs["backupEnabled"] = args ? args.backupEnabled : undefined;
+            resourceInputs["biConnector"] = args ? args.biConnector : undefined;
+            resourceInputs["biConnectorConfig"] = args ? args.biConnectorConfig : undefined;
+            resourceInputs["cloudBackup"] = args ? args.cloudBackup : undefined;
+            resourceInputs["clusterType"] = args ? args.clusterType : undefined;
+            resourceInputs["diskSizeGb"] = args ? args.diskSizeGb : undefined;
+            resourceInputs["encryptionAtRestProvider"] = args ? args.encryptionAtRestProvider : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
+            resourceInputs["mongoDbMajorVersion"] = args ? args.mongoDbMajorVersion : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["numShards"] = args ? args.numShards : undefined;
+            resourceInputs["pitEnabled"] = args ? args.pitEnabled : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["providerAutoScalingComputeMaxInstanceSize"] = args ? args.providerAutoScalingComputeMaxInstanceSize : undefined;
+            resourceInputs["providerAutoScalingComputeMinInstanceSize"] = args ? args.providerAutoScalingComputeMinInstanceSize : undefined;
+            resourceInputs["providerBackupEnabled"] = args ? args.providerBackupEnabled : undefined;
+            resourceInputs["providerDiskIops"] = args ? args.providerDiskIops : undefined;
+            resourceInputs["providerDiskTypeName"] = args ? args.providerDiskTypeName : undefined;
+            resourceInputs["providerEncryptEbsVolume"] = args ? args.providerEncryptEbsVolume : undefined;
+            resourceInputs["providerInstanceSizeName"] = args ? args.providerInstanceSizeName : undefined;
+            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["providerRegionName"] = args ? args.providerRegionName : undefined;
+            resourceInputs["providerVolumeType"] = args ? args.providerVolumeType : undefined;
+            resourceInputs["replicationFactor"] = args ? args.replicationFactor : undefined;
+            resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
+            resourceInputs["clusterId"] = undefined /*out*/;
+            resourceInputs["connectionStrings"] = undefined /*out*/;
+            resourceInputs["containerId"] = undefined /*out*/;
+            resourceInputs["mongoDbVersion"] = undefined /*out*/;
+            resourceInputs["mongoUri"] = undefined /*out*/;
+            resourceInputs["mongoUriUpdated"] = undefined /*out*/;
+            resourceInputs["mongoUriWithOptions"] = undefined /*out*/;
+            resourceInputs["paused"] = undefined /*out*/;
+            resourceInputs["providerEncryptEbsVolumeFlag"] = undefined /*out*/;
+            resourceInputs["snapshotBackupPolicies"] = undefined /*out*/;
+            resourceInputs["srvAddress"] = undefined /*out*/;
+            resourceInputs["stateName"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Cluster.__pulumiType, name, inputs, opts);
+        super(Cluster.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -347,62 +347,62 @@ export class Cluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Cluster resources.
  */
 export interface ClusterState {
-    readonly advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
+    advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
     /**
      * Specifies whether cluster tier auto-scaling is enabled. The default is false.
      * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
      * - Set to `false` to disable cluster tier auto-scaling.
      */
-    readonly autoScalingComputeEnabled?: pulumi.Input<boolean>;
+    autoScalingComputeEnabled?: pulumi.Input<boolean>;
     /**
      * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
-    readonly autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
+    autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
     /**
      * Specifies whether disk auto-scaling is enabled. The default is true.
      * - Set to `true` to enable disk auto-scaling.
      * - Set to `false` to disable disk auto-scaling.
      */
-    readonly autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
+    autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
-    readonly backingProviderName?: pulumi.Input<string>;
+    backingProviderName?: pulumi.Input<string>;
     /**
      * Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
      */
-    readonly backupEnabled?: pulumi.Input<boolean>;
+    backupEnabled?: pulumi.Input<boolean>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
      *
      * @deprecated use bi_connector_config instead
      */
-    readonly biConnector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    biConnector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
-    readonly biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
+    biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups.
      */
-    readonly cloudBackup?: pulumi.Input<boolean>;
+    cloudBackup?: pulumi.Input<boolean>;
     /**
      * The cluster ID.
      */
-    readonly clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string>;
     /**
      * Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      */
-    readonly clusterType?: pulumi.Input<string>;
+    clusterType?: pulumi.Input<string>;
     /**
      * Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
-    readonly connectionStrings?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionString>[]>;
+    connectionStrings?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionString>[]>;
     /**
      * The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      */
-    readonly containerId?: pulumi.Input<string>;
+    containerId?: pulumi.Input<string>;
     /**
      * Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
      * * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -410,115 +410,115 @@ export interface ClusterState {
      * * Cannot be used with clusters with local NVMe SSDs
      * * Cannot be used with Azure clusters
      */
-    readonly diskSizeGb?: pulumi.Input<number>;
+    diskSizeGb?: pulumi.Input<number>;
     /**
      * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
-    readonly encryptionAtRestProvider?: pulumi.Input<string>;
-    readonly labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[]>;
+    encryptionAtRestProvider?: pulumi.Input<string>;
+    labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[]>;
     /**
      * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `providerInstanceSizeName` is either M2 or M5.
      */
-    readonly mongoDbMajorVersion?: pulumi.Input<string>;
+    mongoDbMajorVersion?: pulumi.Input<string>;
     /**
      * Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
      */
-    readonly mongoDbVersion?: pulumi.Input<string>;
+    mongoDbVersion?: pulumi.Input<string>;
     /**
      * Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
      */
-    readonly mongoUri?: pulumi.Input<string>;
+    mongoUri?: pulumi.Input<string>;
     /**
      * Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
      */
-    readonly mongoUriUpdated?: pulumi.Input<string>;
+    mongoUriUpdated?: pulumi.Input<string>;
     /**
      * connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
      */
-    readonly mongoUriWithOptions?: pulumi.Input<string>;
+    mongoUriWithOptions?: pulumi.Input<string>;
     /**
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Number of shards to deploy in the specified zone, minimum 1.
      */
-    readonly numShards?: pulumi.Input<number>;
+    numShards?: pulumi.Input<number>;
     /**
      * Flag that indicates whether the cluster is paused or not.
      */
-    readonly paused?: pulumi.Input<boolean>;
+    paused?: pulumi.Input<boolean>;
     /**
      * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
-    readonly pitEnabled?: pulumi.Input<boolean>;
+    pitEnabled?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
      */
-    readonly providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string>;
+    providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string>;
     /**
      * Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
      */
-    readonly providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
+    providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
      *
      * @deprecated This field is deprecated,please use cloud_backup instead
      */
-    readonly providerBackupEnabled?: pulumi.Input<boolean>;
+    providerBackupEnabled?: pulumi.Input<boolean>;
     /**
      * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
      * * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
      */
-    readonly providerDiskIops?: pulumi.Input<number>;
+    providerDiskIops?: pulumi.Input<number>;
     /**
      * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
      */
-    readonly providerDiskTypeName?: pulumi.Input<string>;
+    providerDiskTypeName?: pulumi.Input<string>;
     /**
      * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
      *
      * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      */
-    readonly providerEncryptEbsVolume?: pulumi.Input<boolean>;
-    readonly providerEncryptEbsVolumeFlag?: pulumi.Input<boolean>;
+    providerEncryptEbsVolume?: pulumi.Input<boolean>;
+    providerEncryptEbsVolumeFlag?: pulumi.Input<boolean>;
     /**
      * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
      */
-    readonly providerInstanceSizeName?: pulumi.Input<string>;
+    providerInstanceSizeName?: pulumi.Input<string>;
     /**
      * Cloud service provider on which the servers are provisioned.
      */
-    readonly providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string>;
     /**
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      * Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
      */
-    readonly providerRegionName?: pulumi.Input<string>;
+    providerRegionName?: pulumi.Input<string>;
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      */
-    readonly providerVolumeType?: pulumi.Input<string>;
+    providerVolumeType?: pulumi.Input<string>;
     /**
      * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
-    readonly replicationFactor?: pulumi.Input<number>;
+    replicationFactor?: pulumi.Input<number>;
     /**
      * Configuration for cluster regions.  See Replication Spec below for more details.
      */
-    readonly replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
+    replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
     /**
      * current snapshot schedule and retention settings for the cluster.
      */
-    readonly snapshotBackupPolicies?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicy>[]>;
+    snapshotBackupPolicies?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicy>[]>;
     /**
      * Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
      */
-    readonly srvAddress?: pulumi.Input<string>;
+    srvAddress?: pulumi.Input<string>;
     /**
      * Current state of the cluster. The possible states are:
      * - IDLE
@@ -528,57 +528,57 @@ export interface ClusterState {
      * - DELETED
      * - REPAIRING
      */
-    readonly stateName?: pulumi.Input<string>;
+    stateName?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a Cluster resource.
  */
 export interface ClusterArgs {
-    readonly advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
+    advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
     /**
      * Specifies whether cluster tier auto-scaling is enabled. The default is false.
      * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
      * - Set to `false` to disable cluster tier auto-scaling.
      */
-    readonly autoScalingComputeEnabled?: pulumi.Input<boolean>;
+    autoScalingComputeEnabled?: pulumi.Input<boolean>;
     /**
      * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
-    readonly autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
+    autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
     /**
      * Specifies whether disk auto-scaling is enabled. The default is true.
      * - Set to `true` to enable disk auto-scaling.
      * - Set to `false` to disable disk auto-scaling.
      */
-    readonly autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
+    autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      */
-    readonly backingProviderName?: pulumi.Input<string>;
+    backingProviderName?: pulumi.Input<string>;
     /**
      * Clusters running MongoDB FCV 4.2 or later and any new Atlas clusters of any type do not support this parameter
      */
-    readonly backupEnabled?: pulumi.Input<boolean>;
+    backupEnabled?: pulumi.Input<boolean>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details. **DEPRECATED** Use `biConnectorConfig` instead.
      *
      * @deprecated use bi_connector_config instead
      */
-    readonly biConnector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    biConnector?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
-    readonly biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
+    biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups.
      */
-    readonly cloudBackup?: pulumi.Input<boolean>;
+    cloudBackup?: pulumi.Input<boolean>;
     /**
      * Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      */
-    readonly clusterType?: pulumi.Input<string>;
+    clusterType?: pulumi.Input<string>;
     /**
      * Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
      * * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -586,84 +586,84 @@ export interface ClusterArgs {
      * * Cannot be used with clusters with local NVMe SSDs
      * * Cannot be used with Azure clusters
      */
-    readonly diskSizeGb?: pulumi.Input<number>;
+    diskSizeGb?: pulumi.Input<number>;
     /**
      * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
-    readonly encryptionAtRestProvider?: pulumi.Input<string>;
-    readonly labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[]>;
+    encryptionAtRestProvider?: pulumi.Input<string>;
+    labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[]>;
     /**
      * Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `providerInstanceSizeName` is either M2 or M5.
      */
-    readonly mongoDbMajorVersion?: pulumi.Input<string>;
+    mongoDbMajorVersion?: pulumi.Input<string>;
     /**
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Number of shards to deploy in the specified zone, minimum 1.
      */
-    readonly numShards?: pulumi.Input<number>;
+    numShards?: pulumi.Input<number>;
     /**
      * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
-    readonly pitEnabled?: pulumi.Input<boolean>;
+    pitEnabled?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
      */
-    readonly providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string>;
+    providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string>;
     /**
      * Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
      */
-    readonly providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
+    providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloudBackup` instead.
      *
      * @deprecated This field is deprecated,please use cloud_backup instead
      */
-    readonly providerBackupEnabled?: pulumi.Input<boolean>;
+    providerBackupEnabled?: pulumi.Input<boolean>;
     /**
      * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
      * * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
      */
-    readonly providerDiskIops?: pulumi.Input<number>;
+    providerDiskIops?: pulumi.Input<number>;
     /**
      * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
      */
-    readonly providerDiskTypeName?: pulumi.Input<string>;
+    providerDiskTypeName?: pulumi.Input<string>;
     /**
      * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
      *
      * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      */
-    readonly providerEncryptEbsVolume?: pulumi.Input<boolean>;
+    providerEncryptEbsVolume?: pulumi.Input<boolean>;
     /**
      * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
      */
-    readonly providerInstanceSizeName: pulumi.Input<string>;
+    providerInstanceSizeName: pulumi.Input<string>;
     /**
      * Cloud service provider on which the servers are provisioned.
      */
-    readonly providerName: pulumi.Input<string>;
+    providerName: pulumi.Input<string>;
     /**
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      * Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
      */
-    readonly providerRegionName?: pulumi.Input<string>;
+    providerRegionName?: pulumi.Input<string>;
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      */
-    readonly providerVolumeType?: pulumi.Input<string>;
+    providerVolumeType?: pulumi.Input<string>;
     /**
      * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
-    readonly replicationFactor?: pulumi.Input<number>;
+    replicationFactor?: pulumi.Input<number>;
     /**
      * Configuration for cluster regions.  See Replication Spec below for more details.
      */
-    readonly replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
+    replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
 }

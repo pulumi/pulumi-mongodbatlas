@@ -206,7 +206,7 @@ type CloudBackupScheduleInput interface {
 }
 
 func (*CloudBackupSchedule) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudBackupSchedule)(nil))
+	return reflect.TypeOf((**CloudBackupSchedule)(nil)).Elem()
 }
 
 func (i *CloudBackupSchedule) ToCloudBackupScheduleOutput() CloudBackupScheduleOutput {
@@ -215,35 +215,6 @@ func (i *CloudBackupSchedule) ToCloudBackupScheduleOutput() CloudBackupScheduleO
 
 func (i *CloudBackupSchedule) ToCloudBackupScheduleOutputWithContext(ctx context.Context) CloudBackupScheduleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleOutput)
-}
-
-func (i *CloudBackupSchedule) ToCloudBackupSchedulePtrOutput() CloudBackupSchedulePtrOutput {
-	return i.ToCloudBackupSchedulePtrOutputWithContext(context.Background())
-}
-
-func (i *CloudBackupSchedule) ToCloudBackupSchedulePtrOutputWithContext(ctx context.Context) CloudBackupSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePtrOutput)
-}
-
-type CloudBackupSchedulePtrInput interface {
-	pulumi.Input
-
-	ToCloudBackupSchedulePtrOutput() CloudBackupSchedulePtrOutput
-	ToCloudBackupSchedulePtrOutputWithContext(ctx context.Context) CloudBackupSchedulePtrOutput
-}
-
-type cloudBackupSchedulePtrType CloudBackupScheduleArgs
-
-func (*cloudBackupSchedulePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudBackupSchedule)(nil))
-}
-
-func (i *cloudBackupSchedulePtrType) ToCloudBackupSchedulePtrOutput() CloudBackupSchedulePtrOutput {
-	return i.ToCloudBackupSchedulePtrOutputWithContext(context.Background())
-}
-
-func (i *cloudBackupSchedulePtrType) ToCloudBackupSchedulePtrOutputWithContext(ctx context.Context) CloudBackupSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePtrOutput)
 }
 
 // CloudBackupScheduleArrayInput is an input type that accepts CloudBackupScheduleArray and CloudBackupScheduleArrayOutput values.
@@ -260,7 +231,7 @@ type CloudBackupScheduleArrayInput interface {
 type CloudBackupScheduleArray []CloudBackupScheduleInput
 
 func (CloudBackupScheduleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CloudBackupSchedule)(nil))
+	return reflect.TypeOf((*[]*CloudBackupSchedule)(nil)).Elem()
 }
 
 func (i CloudBackupScheduleArray) ToCloudBackupScheduleArrayOutput() CloudBackupScheduleArrayOutput {
@@ -285,7 +256,7 @@ type CloudBackupScheduleMapInput interface {
 type CloudBackupScheduleMap map[string]CloudBackupScheduleInput
 
 func (CloudBackupScheduleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CloudBackupSchedule)(nil))
+	return reflect.TypeOf((*map[string]*CloudBackupSchedule)(nil)).Elem()
 }
 
 func (i CloudBackupScheduleMap) ToCloudBackupScheduleMapOutput() CloudBackupScheduleMapOutput {
@@ -296,12 +267,10 @@ func (i CloudBackupScheduleMap) ToCloudBackupScheduleMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleMapOutput)
 }
 
-type CloudBackupScheduleOutput struct {
-	*pulumi.OutputState
-}
+type CloudBackupScheduleOutput struct{ *pulumi.OutputState }
 
 func (CloudBackupScheduleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudBackupSchedule)(nil))
+	return reflect.TypeOf((**CloudBackupSchedule)(nil)).Elem()
 }
 
 func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutput() CloudBackupScheduleOutput {
@@ -312,36 +281,10 @@ func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutputWithContext(ctx co
 	return o
 }
 
-func (o CloudBackupScheduleOutput) ToCloudBackupSchedulePtrOutput() CloudBackupSchedulePtrOutput {
-	return o.ToCloudBackupSchedulePtrOutputWithContext(context.Background())
-}
-
-func (o CloudBackupScheduleOutput) ToCloudBackupSchedulePtrOutputWithContext(ctx context.Context) CloudBackupSchedulePtrOutput {
-	return o.ApplyT(func(v CloudBackupSchedule) *CloudBackupSchedule {
-		return &v
-	}).(CloudBackupSchedulePtrOutput)
-}
-
-type CloudBackupSchedulePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CloudBackupSchedulePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudBackupSchedule)(nil))
-}
-
-func (o CloudBackupSchedulePtrOutput) ToCloudBackupSchedulePtrOutput() CloudBackupSchedulePtrOutput {
-	return o
-}
-
-func (o CloudBackupSchedulePtrOutput) ToCloudBackupSchedulePtrOutputWithContext(ctx context.Context) CloudBackupSchedulePtrOutput {
-	return o
-}
-
 type CloudBackupScheduleArrayOutput struct{ *pulumi.OutputState }
 
 func (CloudBackupScheduleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CloudBackupSchedule)(nil))
+	return reflect.TypeOf((*[]*CloudBackupSchedule)(nil)).Elem()
 }
 
 func (o CloudBackupScheduleArrayOutput) ToCloudBackupScheduleArrayOutput() CloudBackupScheduleArrayOutput {
@@ -353,15 +296,15 @@ func (o CloudBackupScheduleArrayOutput) ToCloudBackupScheduleArrayOutputWithCont
 }
 
 func (o CloudBackupScheduleArrayOutput) Index(i pulumi.IntInput) CloudBackupScheduleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSchedule {
-		return vs[0].([]CloudBackupSchedule)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudBackupSchedule {
+		return vs[0].([]*CloudBackupSchedule)[vs[1].(int)]
 	}).(CloudBackupScheduleOutput)
 }
 
 type CloudBackupScheduleMapOutput struct{ *pulumi.OutputState }
 
 func (CloudBackupScheduleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CloudBackupSchedule)(nil))
+	return reflect.TypeOf((*map[string]*CloudBackupSchedule)(nil)).Elem()
 }
 
 func (o CloudBackupScheduleMapOutput) ToCloudBackupScheduleMapOutput() CloudBackupScheduleMapOutput {
@@ -373,14 +316,16 @@ func (o CloudBackupScheduleMapOutput) ToCloudBackupScheduleMapOutputWithContext(
 }
 
 func (o CloudBackupScheduleMapOutput) MapIndex(k pulumi.StringInput) CloudBackupScheduleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CloudBackupSchedule {
-		return vs[0].(map[string]CloudBackupSchedule)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CloudBackupSchedule {
+		return vs[0].(map[string]*CloudBackupSchedule)[vs[1].(string)]
 	}).(CloudBackupScheduleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleInput)(nil)).Elem(), &CloudBackupSchedule{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleArrayInput)(nil)).Elem(), CloudBackupScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleMapInput)(nil)).Elem(), CloudBackupScheduleMap{})
 	pulumi.RegisterOutputType(CloudBackupScheduleOutput{})
-	pulumi.RegisterOutputType(CloudBackupSchedulePtrOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleMapOutput{})
 }

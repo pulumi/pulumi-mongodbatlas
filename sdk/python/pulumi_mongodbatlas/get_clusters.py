@@ -13,6 +13,7 @@ __all__ = [
     'GetClustersResult',
     'AwaitableGetClustersResult',
     'get_clusters',
+    'get_clusters_output',
 ]
 
 @pulumi.output_type
@@ -98,7 +99,7 @@ def get_clusters(project_id: Optional[str] = None,
         auto_scaling_disk_gb_enabled=True,
         provider_name="AWS",
         provider_instance_size_name="M40")
-    test_clusters = test_cluster.project_id.apply(lambda project_id: mongodbatlas.get_clusters(project_id=project_id))
+    test_clusters = mongodbatlas.get_clusters_output(project_id=test_cluster.project_id)
     ```
 
 
@@ -116,3 +117,47 @@ def get_clusters(project_id: Optional[str] = None,
         id=__ret__.id,
         project_id=__ret__.project_id,
         results=__ret__.results)
+
+
+@_utilities.lift_output_func(get_clusters)
+def get_clusters_output(project_id: Optional[pulumi.Input[str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClustersResult]:
+    """
+    `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    > **IMPORTANT:**
+    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cluster = mongodbatlas.Cluster("testCluster",
+        project_id="<YOUR-PROJECT-ID>",
+        disk_size_gb=100,
+        cluster_type="REPLICASET",
+        replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
+            num_shards=1,
+            regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
+                region_name="US_EAST_1",
+                electable_nodes=3,
+                priority=7,
+                read_only_nodes=0,
+            )],
+        )],
+        cloud_backup=True,
+        auto_scaling_disk_gb_enabled=True,
+        provider_name="AWS",
+        provider_instance_size_name="M40")
+    test_clusters = mongodbatlas.get_clusters_output(project_id=test_cluster.project_id)
+    ```
+
+
+    :param str project_id: The unique ID for the project to get the clusters.
+    """
+    ...

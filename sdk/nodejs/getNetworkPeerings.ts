@@ -26,9 +26,9 @@ import * as utilities from "./utilities";
  *     vpcId: "vpc-abc123abc123",
  *     awsAccountId: "abc123abc123",
  * });
- * const testNetworkPeerings = testNetworkPeering.projectId.apply(projectId => mongodbatlas.getNetworkPeerings({
- *     projectId: projectId,
- * }));
+ * const testNetworkPeerings = mongodbatlas.getNetworkPeeringsOutput({
+ *     projectId: testNetworkPeering.projectId,
+ * });
  * ```
  */
 export function getNetworkPeerings(args: GetNetworkPeeringsArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringsResult> {
@@ -51,7 +51,7 @@ export interface GetNetworkPeeringsArgs {
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -67,4 +67,18 @@ export interface GetNetworkPeeringsResult {
      * A list where each represents a Network Peering Connection.
      */
     readonly results: outputs.GetNetworkPeeringsResult[];
+}
+
+export function getNetworkPeeringsOutput(args: GetNetworkPeeringsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringsResult> {
+    return pulumi.output(args).apply(a => getNetworkPeerings(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetworkPeerings.
+ */
+export interface GetNetworkPeeringsOutputArgs {
+    /**
+     * The unique ID for the project to create the database user.
+     */
+    projectId: pulumi.Input<string>;
 }

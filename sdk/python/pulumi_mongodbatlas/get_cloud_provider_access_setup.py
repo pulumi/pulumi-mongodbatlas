@@ -13,6 +13,7 @@ __all__ = [
     'GetCloudProviderAccessSetupResult',
     'AwaitableGetCloudProviderAccessSetupResult',
     'get_cloud_provider_access_setup',
+    'get_cloud_provider_access_setup_output',
 ]
 
 @pulumi.output_type
@@ -121,9 +122,9 @@ def get_cloud_provider_access_setup(project_id: Optional[str] = None,
     test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
         project_id="<PROJECT-ID>",
         provider_name="AWS")
-    single_setup = pulumi.Output.all(test_role.project_id, test_role.provider_name, test_role.role_id).apply(lambda project_id, provider_name, role_id: mongodbatlas.get_cloud_provider_access_setup(project_id=project_id,
-        provider_name=provider_name,
-        role_id=role_id))
+    single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
+        provider_name=test_role.provider_name,
+        role_id=test_role.role_id)
     ```
 
 
@@ -149,3 +150,35 @@ def get_cloud_provider_access_setup(project_id: Optional[str] = None,
         project_id=__ret__.project_id,
         provider_name=__ret__.provider_name,
         role_id=__ret__.role_id)
+
+
+@_utilities.lift_output_func(get_cloud_provider_access_setup)
+def get_cloud_provider_access_setup_output(project_id: Optional[pulumi.Input[str]] = None,
+                                           provider_name: Optional[pulumi.Input[str]] = None,
+                                           role_id: Optional[pulumi.Input[str]] = None,
+                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderAccessSetupResult]:
+    """
+    `CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS is supported.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CloudProviderAccessSetup("testRole",
+        project_id="<PROJECT-ID>",
+        provider_name="AWS")
+    single_setup = mongodbatlas.get_cloud_provider_access_setup_output(project_id=test_role.project_id,
+        provider_name=test_role.provider_name,
+        role_id=test_role.role_id)
+    ```
+
+
+    :param str project_id: The unique ID for the project to get all Cloud Provider Access
+    :param str provider_name: cloud provider name, currently only AWS is supported
+    :param str role_id: unique role id among all the aws roles provided by mongodb atlas
+    """
+    ...

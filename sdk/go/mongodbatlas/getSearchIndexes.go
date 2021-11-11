@@ -4,14 +4,46 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // `getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-func GetSearchIndexes(ctx *pulumi.Context, args *GetSearchIndexesArgs, opts ...pulumi.InvokeOption) (*GetSearchIndexesResult, error) {
-	var rv GetSearchIndexesResult
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "<COLLECTION_NAME>"
+// 		_, err := mongodbatlas.LookupSearchIndex(ctx, &GetSearchIndexArgs{
+// 			ClusterName:    "<CLUSTER_NAME>",
+// 			CollectionName: &opt0,
+// 			DatabaseName:   "<DATABASE_NAME>",
+// 			ItemsPerPage:   100,
+// 			PageNum:        1,
+// 			ProjectId:      "<PROJECT_ID>",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+func LookupSearchIndexes(ctx *pulumi.Context, args *LookupSearchIndexesArgs, opts ...pulumi.InvokeOption) (*LookupSearchIndexesResult, error) {
+	var rv LookupSearchIndexesResult
 	err := ctx.Invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -20,7 +52,7 @@ func GetSearchIndexes(ctx *pulumi.Context, args *GetSearchIndexesArgs, opts ...p
 }
 
 // A collection of arguments for invoking getSearchIndexes.
-type GetSearchIndexesArgs struct {
+type LookupSearchIndexesArgs struct {
 	// Name of the cluster containing the collection with one or more Atlas Search indexes.
 	ClusterName string `pulumi:"clusterName"`
 	// Name of the collection with one or more Atlas Search indexes.
@@ -36,7 +68,7 @@ type GetSearchIndexesArgs struct {
 }
 
 // A collection of values returned by getSearchIndexes.
-type GetSearchIndexesResult struct {
+type LookupSearchIndexesResult struct {
 	ClusterName string `pulumi:"clusterName"`
 	// (Required) Name of the collection the index is on.
 	CollectionName string `pulumi:"collectionName"`
@@ -48,7 +80,96 @@ type GetSearchIndexesResult struct {
 	PageNum      *int   `pulumi:"pageNum"`
 	ProjectId    string `pulumi:"projectId"`
 	// A list where each represents a search index.
-	Results []GetSearchIndexesResultType `pulumi:"results"`
+	Results []GetSearchIndexesResult `pulumi:"results"`
 	// Represents the total of the search indexes
 	TotalCount int `pulumi:"totalCount"`
+}
+
+func LookupSearchIndexesOutput(ctx *pulumi.Context, args LookupSearchIndexesOutputArgs, opts ...pulumi.InvokeOption) LookupSearchIndexesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSearchIndexesResult, error) {
+			args := v.(LookupSearchIndexesArgs)
+			r, err := LookupSearchIndexes(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSearchIndexesResultOutput)
+}
+
+// A collection of arguments for invoking getSearchIndexes.
+type LookupSearchIndexesOutputArgs struct {
+	// Name of the cluster containing the collection with one or more Atlas Search indexes.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// Name of the collection with one or more Atlas Search indexes.
+	CollectionName pulumi.StringInput `pulumi:"collectionName"`
+	// (Required) Name of the database the collection is in.
+	Database pulumi.StringInput `pulumi:"database"`
+	// Number of items that Atlas returns per page, up to a maximum of 500.
+	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
+	// Page number, starting with one, that Atlas returns of the total number of objects.
+	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupSearchIndexesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSearchIndexesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getSearchIndexes.
+type LookupSearchIndexesResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSearchIndexesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSearchIndexesResult)(nil)).Elem()
+}
+
+func (o LookupSearchIndexesResultOutput) ToLookupSearchIndexesResultOutput() LookupSearchIndexesResultOutput {
+	return o
+}
+
+func (o LookupSearchIndexesResultOutput) ToLookupSearchIndexesResultOutputWithContext(ctx context.Context) LookupSearchIndexesResultOutput {
+	return o
+}
+
+func (o LookupSearchIndexesResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// (Required) Name of the collection the index is on.
+func (o LookupSearchIndexesResultOutput) CollectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) string { return v.CollectionName }).(pulumi.StringOutput)
+}
+
+// (Required) Name of the database the collection is in.
+func (o LookupSearchIndexesResultOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSearchIndexesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSearchIndexesResultOutput) ItemsPerPage() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) *int { return v.ItemsPerPage }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupSearchIndexesResultOutput) PageNum() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupSearchIndexesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A list where each represents a search index.
+func (o LookupSearchIndexesResultOutput) Results() GetSearchIndexesResultArrayOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) []GetSearchIndexesResult { return v.Results }).(GetSearchIndexesResultArrayOutput)
+}
+
+// Represents the total of the search indexes
+func (o LookupSearchIndexesResultOutput) TotalCount() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSearchIndexesResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSearchIndexesResultOutput{})
 }

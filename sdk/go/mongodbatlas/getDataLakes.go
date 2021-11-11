@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.GetDataLakes(ctx, &mongodbatlas.GetDataLakesArgs{
+// 		_, err := mongodbatlas.LookupDataLakes(ctx, &GetDataLakesArgs{
 // 			ProjectId: "PROJECT ID",
 // 		}, nil)
 // 		if err != nil {
@@ -33,8 +36,8 @@ import (
 // 	})
 // }
 // ```
-func GetDataLakes(ctx *pulumi.Context, args *GetDataLakesArgs, opts ...pulumi.InvokeOption) (*GetDataLakesResult, error) {
-	var rv GetDataLakesResult
+func LookupDataLakes(ctx *pulumi.Context, args *LookupDataLakesArgs, opts ...pulumi.InvokeOption) (*LookupDataLakesResult, error) {
+	var rv LookupDataLakesResult
 	err := ctx.Invoke("mongodbatlas:index/getDataLakes:getDataLakes", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -43,16 +46,68 @@ func GetDataLakes(ctx *pulumi.Context, args *GetDataLakesArgs, opts ...pulumi.In
 }
 
 // A collection of arguments for invoking getDataLakes.
-type GetDataLakesArgs struct {
+type LookupDataLakesArgs struct {
 	// The unique ID for the project to get all data lakes.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getDataLakes.
-type GetDataLakesResult struct {
+type LookupDataLakesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Data lake.
-	Results []GetDataLakesResultType `pulumi:"results"`
+	Results []GetDataLakesResult `pulumi:"results"`
+}
+
+func LookupDataLakesOutput(ctx *pulumi.Context, args LookupDataLakesOutputArgs, opts ...pulumi.InvokeOption) LookupDataLakesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupDataLakesResult, error) {
+			args := v.(LookupDataLakesArgs)
+			r, err := LookupDataLakes(ctx, &args, opts...)
+			return *r, err
+		}).(LookupDataLakesResultOutput)
+}
+
+// A collection of arguments for invoking getDataLakes.
+type LookupDataLakesOutputArgs struct {
+	// The unique ID for the project to get all data lakes.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupDataLakesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDataLakesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getDataLakes.
+type LookupDataLakesResultOutput struct{ *pulumi.OutputState }
+
+func (LookupDataLakesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDataLakesResult)(nil)).Elem()
+}
+
+func (o LookupDataLakesResultOutput) ToLookupDataLakesResultOutput() LookupDataLakesResultOutput {
+	return o
+}
+
+func (o LookupDataLakesResultOutput) ToLookupDataLakesResultOutputWithContext(ctx context.Context) LookupDataLakesResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupDataLakesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDataLakesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupDataLakesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDataLakesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A list where each represents a Data lake.
+func (o LookupDataLakesResultOutput) Results() GetDataLakesResultArrayOutput {
+	return o.ApplyT(func(v LookupDataLakesResult) []GetDataLakesResult { return v.Results }).(GetDataLakesResultArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupDataLakesResultOutput{})
 }

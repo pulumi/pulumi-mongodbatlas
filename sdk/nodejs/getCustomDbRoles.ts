@@ -57,7 +57,7 @@ export interface GetCustomDbRolesArgs {
     /**
      * The unique ID for the project to get all custom db roles.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -73,4 +73,18 @@ export interface GetCustomDbRolesResult {
      * A list where each represents a custom db roles.
      */
     readonly results: outputs.GetCustomDbRolesResult[];
+}
+
+export function getCustomDbRolesOutput(args: GetCustomDbRolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRolesResult> {
+    return pulumi.output(args).apply(a => getCustomDbRoles(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCustomDbRoles.
+ */
+export interface GetCustomDbRolesOutputArgs {
+    /**
+     * The unique ID for the project to get all custom db roles.
+     */
+    projectId: pulumi.Input<string>;
 }

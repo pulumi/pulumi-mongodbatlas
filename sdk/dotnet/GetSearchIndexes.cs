@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -15,9 +16,75 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Mongodbatlas.GetSearchIndex.InvokeAsync(new Mongodbatlas.GetSearchIndexArgs
+        ///         {
+        ///             ClusterName = "&lt;CLUSTER_NAME&gt;",
+        ///             CollectionName = "&lt;COLLECTION_NAME&gt;",
+        ///             DatabaseName = "&lt;DATABASE_NAME&gt;",
+        ///             ItemsPerPage = 100,
+        ///             PageNum = 1,
+        ///             ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetSearchIndexesResult> InvokeAsync(GetSearchIndexesArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Mongodbatlas.GetSearchIndex.InvokeAsync(new Mongodbatlas.GetSearchIndexArgs
+        ///         {
+        ///             ClusterName = "&lt;CLUSTER_NAME&gt;",
+        ///             CollectionName = "&lt;COLLECTION_NAME&gt;",
+        ///             DatabaseName = "&lt;DATABASE_NAME&gt;",
+        ///             ItemsPerPage = 100,
+        ///             PageNum = 1,
+        ///             ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetSearchIndexesResult> Invoke(GetSearchIndexesInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesInvokeArgs(), options.WithVersion());
     }
 
 
@@ -60,6 +127,49 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetSearchIndexesArgs()
+        {
+        }
+    }
+
+    public sealed class GetSearchIndexesInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Name of the cluster containing the collection with one or more Atlas Search indexes.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        /// <summary>
+        /// Name of the collection with one or more Atlas Search indexes.
+        /// </summary>
+        [Input("collectionName", required: true)]
+        public Input<string> CollectionName { get; set; } = null!;
+
+        /// <summary>
+        /// (Required) Name of the database the collection is in.
+        /// </summary>
+        [Input("database", required: true)]
+        public Input<string> Database { get; set; } = null!;
+
+        /// <summary>
+        /// Number of items that Atlas returns per page, up to a maximum of 500.
+        /// </summary>
+        [Input("itemsPerPage")]
+        public Input<int>? ItemsPerPage { get; set; }
+
+        /// <summary>
+        /// Page number, starting with one, that Atlas returns of the total number of objects.
+        /// </summary>
+        [Input("pageNum")]
+        public Input<int>? PageNum { get; set; }
+
+        /// <summary>
+        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetSearchIndexesInvokeArgs()
         {
         }
     }

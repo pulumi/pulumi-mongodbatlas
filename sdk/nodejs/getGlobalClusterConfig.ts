@@ -29,16 +29,16 @@ export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: 
  * A collection of arguments for invoking getGlobalClusterConfig.
  */
 export interface GetGlobalClusterConfigArgs {
-    readonly clusterName: string;
+    clusterName: string;
     /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
-    readonly managedNamespaces?: inputs.GetGlobalClusterConfigManagedNamespace[];
+    managedNamespaces?: inputs.GetGlobalClusterConfigManagedNamespace[];
     /**
      * The unique ID for the project to create the database user.
      * * `clusterName - (Required) The name of the Global Cluster.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -59,4 +59,24 @@ export interface GetGlobalClusterConfigResult {
      */
     readonly managedNamespaces: outputs.GetGlobalClusterConfigManagedNamespace[];
     readonly projectId: string;
+}
+
+export function getGlobalClusterConfigOutput(args: GetGlobalClusterConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalClusterConfigResult> {
+    return pulumi.output(args).apply(a => getGlobalClusterConfig(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getGlobalClusterConfig.
+ */
+export interface GetGlobalClusterConfigOutputArgs {
+    clusterName: pulumi.Input<string>;
+    /**
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     */
+    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GetGlobalClusterConfigManagedNamespaceArgs>[]>;
+    /**
+     * The unique ID for the project to create the database user.
+     * * `clusterName - (Required) The name of the Global Cluster.
+     */
+    projectId: pulumi.Input<string>;
 }

@@ -59,7 +59,7 @@ import (
 // 			ProjectId:   testCloudProviderSnapshot.ProjectId,
 // 			ClusterName: testCloudProviderSnapshot.ClusterName,
 // 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-// 			DeliveryTypeConfig: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
+// 			DeliveryTypeConfig: &CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
 // 				Automated:         pulumi.Bool(true),
 // 				TargetClusterName: pulumi.String("MyCluster"),
 // 				TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
@@ -110,7 +110,7 @@ import (
 // 			ProjectId:   testCloudProviderSnapshot.ProjectId,
 // 			ClusterName: testCloudProviderSnapshot.ClusterName,
 // 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-// 			DeliveryTypeConfig: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
+// 			DeliveryTypeConfig: &CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
 // 				Download: pulumi.Bool(true),
 // 			},
 // 		})
@@ -310,7 +310,7 @@ type CloudProviderSnapshotRestoreJobInput interface {
 }
 
 func (*CloudProviderSnapshotRestoreJob) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotRestoreJob)(nil))
+	return reflect.TypeOf((**CloudProviderSnapshotRestoreJob)(nil)).Elem()
 }
 
 func (i *CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutput() CloudProviderSnapshotRestoreJobOutput {
@@ -319,35 +319,6 @@ func (i *CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutpu
 
 func (i *CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobOutput)
-}
-
-func (i *CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobPtrOutput() CloudProviderSnapshotRestoreJobPtrOutput {
-	return i.ToCloudProviderSnapshotRestoreJobPtrOutputWithContext(context.Background())
-}
-
-func (i *CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobPtrOutput)
-}
-
-type CloudProviderSnapshotRestoreJobPtrInput interface {
-	pulumi.Input
-
-	ToCloudProviderSnapshotRestoreJobPtrOutput() CloudProviderSnapshotRestoreJobPtrOutput
-	ToCloudProviderSnapshotRestoreJobPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobPtrOutput
-}
-
-type cloudProviderSnapshotRestoreJobPtrType CloudProviderSnapshotRestoreJobArgs
-
-func (*cloudProviderSnapshotRestoreJobPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderSnapshotRestoreJob)(nil))
-}
-
-func (i *cloudProviderSnapshotRestoreJobPtrType) ToCloudProviderSnapshotRestoreJobPtrOutput() CloudProviderSnapshotRestoreJobPtrOutput {
-	return i.ToCloudProviderSnapshotRestoreJobPtrOutputWithContext(context.Background())
-}
-
-func (i *cloudProviderSnapshotRestoreJobPtrType) ToCloudProviderSnapshotRestoreJobPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobPtrOutput)
 }
 
 // CloudProviderSnapshotRestoreJobArrayInput is an input type that accepts CloudProviderSnapshotRestoreJobArray and CloudProviderSnapshotRestoreJobArrayOutput values.
@@ -364,7 +335,7 @@ type CloudProviderSnapshotRestoreJobArrayInput interface {
 type CloudProviderSnapshotRestoreJobArray []CloudProviderSnapshotRestoreJobInput
 
 func (CloudProviderSnapshotRestoreJobArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CloudProviderSnapshotRestoreJob)(nil))
+	return reflect.TypeOf((*[]*CloudProviderSnapshotRestoreJob)(nil)).Elem()
 }
 
 func (i CloudProviderSnapshotRestoreJobArray) ToCloudProviderSnapshotRestoreJobArrayOutput() CloudProviderSnapshotRestoreJobArrayOutput {
@@ -389,7 +360,7 @@ type CloudProviderSnapshotRestoreJobMapInput interface {
 type CloudProviderSnapshotRestoreJobMap map[string]CloudProviderSnapshotRestoreJobInput
 
 func (CloudProviderSnapshotRestoreJobMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CloudProviderSnapshotRestoreJob)(nil))
+	return reflect.TypeOf((*map[string]*CloudProviderSnapshotRestoreJob)(nil)).Elem()
 }
 
 func (i CloudProviderSnapshotRestoreJobMap) ToCloudProviderSnapshotRestoreJobMapOutput() CloudProviderSnapshotRestoreJobMapOutput {
@@ -400,12 +371,10 @@ func (i CloudProviderSnapshotRestoreJobMap) ToCloudProviderSnapshotRestoreJobMap
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotRestoreJobMapOutput)
 }
 
-type CloudProviderSnapshotRestoreJobOutput struct {
-	*pulumi.OutputState
-}
+type CloudProviderSnapshotRestoreJobOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderSnapshotRestoreJobOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotRestoreJob)(nil))
+	return reflect.TypeOf((**CloudProviderSnapshotRestoreJob)(nil)).Elem()
 }
 
 func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJobOutput() CloudProviderSnapshotRestoreJobOutput {
@@ -416,36 +385,10 @@ func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJob
 	return o
 }
 
-func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJobPtrOutput() CloudProviderSnapshotRestoreJobPtrOutput {
-	return o.ToCloudProviderSnapshotRestoreJobPtrOutputWithContext(context.Background())
-}
-
-func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJobPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotRestoreJob) *CloudProviderSnapshotRestoreJob {
-		return &v
-	}).(CloudProviderSnapshotRestoreJobPtrOutput)
-}
-
-type CloudProviderSnapshotRestoreJobPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CloudProviderSnapshotRestoreJobPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderSnapshotRestoreJob)(nil))
-}
-
-func (o CloudProviderSnapshotRestoreJobPtrOutput) ToCloudProviderSnapshotRestoreJobPtrOutput() CloudProviderSnapshotRestoreJobPtrOutput {
-	return o
-}
-
-func (o CloudProviderSnapshotRestoreJobPtrOutput) ToCloudProviderSnapshotRestoreJobPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobPtrOutput {
-	return o
-}
-
 type CloudProviderSnapshotRestoreJobArrayOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderSnapshotRestoreJobArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CloudProviderSnapshotRestoreJob)(nil))
+	return reflect.TypeOf((*[]*CloudProviderSnapshotRestoreJob)(nil)).Elem()
 }
 
 func (o CloudProviderSnapshotRestoreJobArrayOutput) ToCloudProviderSnapshotRestoreJobArrayOutput() CloudProviderSnapshotRestoreJobArrayOutput {
@@ -457,15 +400,15 @@ func (o CloudProviderSnapshotRestoreJobArrayOutput) ToCloudProviderSnapshotResto
 }
 
 func (o CloudProviderSnapshotRestoreJobArrayOutput) Index(i pulumi.IntInput) CloudProviderSnapshotRestoreJobOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderSnapshotRestoreJob {
-		return vs[0].([]CloudProviderSnapshotRestoreJob)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudProviderSnapshotRestoreJob {
+		return vs[0].([]*CloudProviderSnapshotRestoreJob)[vs[1].(int)]
 	}).(CloudProviderSnapshotRestoreJobOutput)
 }
 
 type CloudProviderSnapshotRestoreJobMapOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderSnapshotRestoreJobMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CloudProviderSnapshotRestoreJob)(nil))
+	return reflect.TypeOf((*map[string]*CloudProviderSnapshotRestoreJob)(nil)).Elem()
 }
 
 func (o CloudProviderSnapshotRestoreJobMapOutput) ToCloudProviderSnapshotRestoreJobMapOutput() CloudProviderSnapshotRestoreJobMapOutput {
@@ -477,14 +420,16 @@ func (o CloudProviderSnapshotRestoreJobMapOutput) ToCloudProviderSnapshotRestore
 }
 
 func (o CloudProviderSnapshotRestoreJobMapOutput) MapIndex(k pulumi.StringInput) CloudProviderSnapshotRestoreJobOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CloudProviderSnapshotRestoreJob {
-		return vs[0].(map[string]CloudProviderSnapshotRestoreJob)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CloudProviderSnapshotRestoreJob {
+		return vs[0].(map[string]*CloudProviderSnapshotRestoreJob)[vs[1].(string)]
 	}).(CloudProviderSnapshotRestoreJobOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderSnapshotRestoreJobInput)(nil)).Elem(), &CloudProviderSnapshotRestoreJob{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderSnapshotRestoreJobArrayInput)(nil)).Elem(), CloudProviderSnapshotRestoreJobArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderSnapshotRestoreJobMapInput)(nil)).Elem(), CloudProviderSnapshotRestoreJobMap{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobOutput{})
-	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotRestoreJobMapOutput{})
 }

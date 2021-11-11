@@ -31,11 +31,11 @@ export interface GetAlertConfigurationArgs {
     /**
      * Unique identifier for the alert configuration.
      */
-    readonly alertConfigurationId: string;
+    alertConfigurationId: string;
     /**
      * The ID of the project where the alert configuration will create.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -73,4 +73,22 @@ export interface GetAlertConfigurationResult {
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
     readonly updated: string;
+}
+
+export function getAlertConfigurationOutput(args: GetAlertConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAlertConfigurationResult> {
+    return pulumi.output(args).apply(a => getAlertConfiguration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAlertConfiguration.
+ */
+export interface GetAlertConfigurationOutputArgs {
+    /**
+     * Unique identifier for the alert configuration.
+     */
+    alertConfigurationId: pulumi.Input<string>;
+    /**
+     * The ID of the project where the alert configuration will create.
+     */
+    projectId: pulumi.Input<string>;
 }

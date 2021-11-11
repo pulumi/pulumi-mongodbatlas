@@ -10,18 +10,18 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class GetCustomDbRoleInheritedRoleArgs : Pulumi.InvokeArgs
+    public sealed class GetCustomDbRoleInheritedRoleInputArgs : Pulumi.ResourceArgs
     {
         [Input("databaseName", required: true)]
-        public string DatabaseName { get; set; } = null!;
+        public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
         /// Name of the custom role.
         /// </summary>
         [Input("roleName", required: true)]
-        public string RoleName { get; set; } = null!;
+        public Input<string> RoleName { get; set; } = null!;
 
-        public GetCustomDbRoleInheritedRoleArgs()
+        public GetCustomDbRoleInheritedRoleInputArgs()
         {
         }
     }

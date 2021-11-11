@@ -212,7 +212,7 @@ type PrivateLinkEndpointInput interface {
 }
 
 func (*PrivateLinkEndpoint) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateLinkEndpoint)(nil))
+	return reflect.TypeOf((**PrivateLinkEndpoint)(nil)).Elem()
 }
 
 func (i *PrivateLinkEndpoint) ToPrivateLinkEndpointOutput() PrivateLinkEndpointOutput {
@@ -221,35 +221,6 @@ func (i *PrivateLinkEndpoint) ToPrivateLinkEndpointOutput() PrivateLinkEndpointO
 
 func (i *PrivateLinkEndpoint) ToPrivateLinkEndpointOutputWithContext(ctx context.Context) PrivateLinkEndpointOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointOutput)
-}
-
-func (i *PrivateLinkEndpoint) ToPrivateLinkEndpointPtrOutput() PrivateLinkEndpointPtrOutput {
-	return i.ToPrivateLinkEndpointPtrOutputWithContext(context.Background())
-}
-
-func (i *PrivateLinkEndpoint) ToPrivateLinkEndpointPtrOutputWithContext(ctx context.Context) PrivateLinkEndpointPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointPtrOutput)
-}
-
-type PrivateLinkEndpointPtrInput interface {
-	pulumi.Input
-
-	ToPrivateLinkEndpointPtrOutput() PrivateLinkEndpointPtrOutput
-	ToPrivateLinkEndpointPtrOutputWithContext(ctx context.Context) PrivateLinkEndpointPtrOutput
-}
-
-type privateLinkEndpointPtrType PrivateLinkEndpointArgs
-
-func (*privateLinkEndpointPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateLinkEndpoint)(nil))
-}
-
-func (i *privateLinkEndpointPtrType) ToPrivateLinkEndpointPtrOutput() PrivateLinkEndpointPtrOutput {
-	return i.ToPrivateLinkEndpointPtrOutputWithContext(context.Background())
-}
-
-func (i *privateLinkEndpointPtrType) ToPrivateLinkEndpointPtrOutputWithContext(ctx context.Context) PrivateLinkEndpointPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointPtrOutput)
 }
 
 // PrivateLinkEndpointArrayInput is an input type that accepts PrivateLinkEndpointArray and PrivateLinkEndpointArrayOutput values.
@@ -266,7 +237,7 @@ type PrivateLinkEndpointArrayInput interface {
 type PrivateLinkEndpointArray []PrivateLinkEndpointInput
 
 func (PrivateLinkEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*PrivateLinkEndpoint)(nil))
+	return reflect.TypeOf((*[]*PrivateLinkEndpoint)(nil)).Elem()
 }
 
 func (i PrivateLinkEndpointArray) ToPrivateLinkEndpointArrayOutput() PrivateLinkEndpointArrayOutput {
@@ -291,7 +262,7 @@ type PrivateLinkEndpointMapInput interface {
 type PrivateLinkEndpointMap map[string]PrivateLinkEndpointInput
 
 func (PrivateLinkEndpointMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*PrivateLinkEndpoint)(nil))
+	return reflect.TypeOf((*map[string]*PrivateLinkEndpoint)(nil)).Elem()
 }
 
 func (i PrivateLinkEndpointMap) ToPrivateLinkEndpointMapOutput() PrivateLinkEndpointMapOutput {
@@ -302,12 +273,10 @@ func (i PrivateLinkEndpointMap) ToPrivateLinkEndpointMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointMapOutput)
 }
 
-type PrivateLinkEndpointOutput struct {
-	*pulumi.OutputState
-}
+type PrivateLinkEndpointOutput struct{ *pulumi.OutputState }
 
 func (PrivateLinkEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateLinkEndpoint)(nil))
+	return reflect.TypeOf((**PrivateLinkEndpoint)(nil)).Elem()
 }
 
 func (o PrivateLinkEndpointOutput) ToPrivateLinkEndpointOutput() PrivateLinkEndpointOutput {
@@ -318,36 +287,10 @@ func (o PrivateLinkEndpointOutput) ToPrivateLinkEndpointOutputWithContext(ctx co
 	return o
 }
 
-func (o PrivateLinkEndpointOutput) ToPrivateLinkEndpointPtrOutput() PrivateLinkEndpointPtrOutput {
-	return o.ToPrivateLinkEndpointPtrOutputWithContext(context.Background())
-}
-
-func (o PrivateLinkEndpointOutput) ToPrivateLinkEndpointPtrOutputWithContext(ctx context.Context) PrivateLinkEndpointPtrOutput {
-	return o.ApplyT(func(v PrivateLinkEndpoint) *PrivateLinkEndpoint {
-		return &v
-	}).(PrivateLinkEndpointPtrOutput)
-}
-
-type PrivateLinkEndpointPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (PrivateLinkEndpointPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateLinkEndpoint)(nil))
-}
-
-func (o PrivateLinkEndpointPtrOutput) ToPrivateLinkEndpointPtrOutput() PrivateLinkEndpointPtrOutput {
-	return o
-}
-
-func (o PrivateLinkEndpointPtrOutput) ToPrivateLinkEndpointPtrOutputWithContext(ctx context.Context) PrivateLinkEndpointPtrOutput {
-	return o
-}
-
 type PrivateLinkEndpointArrayOutput struct{ *pulumi.OutputState }
 
 func (PrivateLinkEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]PrivateLinkEndpoint)(nil))
+	return reflect.TypeOf((*[]*PrivateLinkEndpoint)(nil)).Elem()
 }
 
 func (o PrivateLinkEndpointArrayOutput) ToPrivateLinkEndpointArrayOutput() PrivateLinkEndpointArrayOutput {
@@ -359,15 +302,15 @@ func (o PrivateLinkEndpointArrayOutput) ToPrivateLinkEndpointArrayOutputWithCont
 }
 
 func (o PrivateLinkEndpointArrayOutput) Index(i pulumi.IntInput) PrivateLinkEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrivateLinkEndpoint {
-		return vs[0].([]PrivateLinkEndpoint)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivateLinkEndpoint {
+		return vs[0].([]*PrivateLinkEndpoint)[vs[1].(int)]
 	}).(PrivateLinkEndpointOutput)
 }
 
 type PrivateLinkEndpointMapOutput struct{ *pulumi.OutputState }
 
 func (PrivateLinkEndpointMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]PrivateLinkEndpoint)(nil))
+	return reflect.TypeOf((*map[string]*PrivateLinkEndpoint)(nil)).Elem()
 }
 
 func (o PrivateLinkEndpointMapOutput) ToPrivateLinkEndpointMapOutput() PrivateLinkEndpointMapOutput {
@@ -379,14 +322,16 @@ func (o PrivateLinkEndpointMapOutput) ToPrivateLinkEndpointMapOutputWithContext(
 }
 
 func (o PrivateLinkEndpointMapOutput) MapIndex(k pulumi.StringInput) PrivateLinkEndpointOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) PrivateLinkEndpoint {
-		return vs[0].(map[string]PrivateLinkEndpoint)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *PrivateLinkEndpoint {
+		return vs[0].(map[string]*PrivateLinkEndpoint)[vs[1].(string)]
 	}).(PrivateLinkEndpointOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointInput)(nil)).Elem(), &PrivateLinkEndpoint{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointArrayInput)(nil)).Elem(), PrivateLinkEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointMapInput)(nil)).Elem(), PrivateLinkEndpointMap{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointOutput{})
-	pulumi.RegisterOutputType(PrivateLinkEndpointPtrOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointArrayOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointMapOutput{})
 }

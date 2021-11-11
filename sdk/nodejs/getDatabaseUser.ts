@@ -35,21 +35,21 @@ export interface GetDatabaseUserArgs {
     /**
      * The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
      */
-    readonly authDatabaseName?: string;
+    authDatabaseName?: string;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
      * @deprecated use auth_database_name instead
      */
-    readonly databaseName?: string;
+    databaseName?: string;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * Username for authenticating to MongoDB.
      */
-    readonly username: string;
+    username: string;
 }
 
 /**
@@ -90,4 +90,32 @@ export interface GetDatabaseUserResult {
      * X.509 method by which the provided username is authenticated.
      */
     readonly x509Type: string;
+}
+
+export function getDatabaseUserOutput(args: GetDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseUserResult> {
+    return pulumi.output(args).apply(a => getDatabaseUser(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDatabaseUser.
+ */
+export interface GetDatabaseUserOutputArgs {
+    /**
+     * The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
+     */
+    authDatabaseName?: pulumi.Input<string>;
+    /**
+     * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+     *
+     * @deprecated use auth_database_name instead
+     */
+    databaseName?: pulumi.Input<string>;
+    /**
+     * The unique ID for the project to create the database user.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Username for authenticating to MongoDB.
+     */
+    username: pulumi.Input<string>;
 }

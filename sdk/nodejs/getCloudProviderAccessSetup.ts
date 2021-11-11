@@ -20,11 +20,11 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  *     providerName: "AWS",
  * });
- * const singleSetup = pulumi.all([testRole.projectId, testRole.providerName, testRole.roleId]).apply(([projectId, providerName, roleId]) => mongodbatlas.getCloudProviderAccessSetup({
- *     projectId: projectId,
- *     providerName: providerName,
- *     roleId: roleId,
- * }));
+ * const singleSetup = mongodbatlas.getCloudProviderAccessSetupOutput({
+ *     projectId: testRole.projectId,
+ *     providerName: testRole.providerName,
+ *     roleId: testRole.roleId,
+ * });
  * ```
  */
 export function getCloudProviderAccessSetup(args: GetCloudProviderAccessSetupArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderAccessSetupResult> {
@@ -49,15 +49,15 @@ export interface GetCloudProviderAccessSetupArgs {
     /**
      * The unique ID for the project to get all Cloud Provider Access
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * cloud provider name, currently only AWS is supported
      */
-    readonly providerName: string;
+    providerName: string;
     /**
      * unique role id among all the aws roles provided by mongodb atlas
      */
-    readonly roleId: string;
+    roleId: string;
 }
 
 /**
@@ -80,4 +80,26 @@ export interface GetCloudProviderAccessSetupResult {
     readonly projectId: string;
     readonly providerName: string;
     readonly roleId: string;
+}
+
+export function getCloudProviderAccessSetupOutput(args: GetCloudProviderAccessSetupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderAccessSetupResult> {
+    return pulumi.output(args).apply(a => getCloudProviderAccessSetup(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCloudProviderAccessSetup.
+ */
+export interface GetCloudProviderAccessSetupOutputArgs {
+    /**
+     * The unique ID for the project to get all Cloud Provider Access
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * cloud provider name, currently only AWS is supported
+     */
+    providerName: pulumi.Input<string>;
+    /**
+     * unique role id among all the aws roles provided by mongodb atlas
+     */
+    roleId: pulumi.Input<string>;
 }

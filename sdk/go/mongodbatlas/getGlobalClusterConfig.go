@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,4 +42,71 @@ type LookupGlobalClusterConfigResult struct {
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GetGlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
 	ProjectId         string                                   `pulumi:"projectId"`
+}
+
+func LookupGlobalClusterConfigOutput(ctx *pulumi.Context, args LookupGlobalClusterConfigOutputArgs, opts ...pulumi.InvokeOption) LookupGlobalClusterConfigResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupGlobalClusterConfigResult, error) {
+			args := v.(LookupGlobalClusterConfigArgs)
+			r, err := LookupGlobalClusterConfig(ctx, &args, opts...)
+			return *r, err
+		}).(LookupGlobalClusterConfigResultOutput)
+}
+
+// A collection of arguments for invoking getGlobalClusterConfig.
+type LookupGlobalClusterConfigOutputArgs struct {
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	ManagedNamespaces GetGlobalClusterConfigManagedNamespaceArrayInput `pulumi:"managedNamespaces"`
+	// The unique ID for the project to create the database user.
+	// * `clusterName - (Required) The name of the Global Cluster.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupGlobalClusterConfigOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGlobalClusterConfigArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getGlobalClusterConfig.
+type LookupGlobalClusterConfigResultOutput struct{ *pulumi.OutputState }
+
+func (LookupGlobalClusterConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupGlobalClusterConfigResult)(nil)).Elem()
+}
+
+func (o LookupGlobalClusterConfigResultOutput) ToLookupGlobalClusterConfigResultOutput() LookupGlobalClusterConfigResultOutput {
+	return o
+}
+
+func (o LookupGlobalClusterConfigResultOutput) ToLookupGlobalClusterConfigResultOutputWithContext(ctx context.Context) LookupGlobalClusterConfigResultOutput {
+	return o
+}
+
+func (o LookupGlobalClusterConfigResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalClusterConfigResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
+func (o LookupGlobalClusterConfigResultOutput) CustomZoneMapping() pulumi.MapOutput {
+	return o.ApplyT(func(v LookupGlobalClusterConfigResult) map[string]interface{} { return v.CustomZoneMapping }).(pulumi.MapOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupGlobalClusterConfigResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalClusterConfigResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+func (o LookupGlobalClusterConfigResultOutput) ManagedNamespaces() GetGlobalClusterConfigManagedNamespaceArrayOutput {
+	return o.ApplyT(func(v LookupGlobalClusterConfigResult) []GetGlobalClusterConfigManagedNamespace {
+		return v.ManagedNamespaces
+	}).(GetGlobalClusterConfigManagedNamespaceArrayOutput)
+}
+
+func (o LookupGlobalClusterConfigResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupGlobalClusterConfigResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupGlobalClusterConfigResultOutput{})
 }

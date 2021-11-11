@@ -9,4 +9,28 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class ClusterConnectionStringPrivateEndpointArgs : Pulumi.ResourceArgs
+    {
+        [Input("connectionString")]
+        public Input<string>? ConnectionString { get; set; }
+
+        [Input("endpoints")]
+        private InputList<Inputs.ClusterConnectionStringPrivateEndpointEndpointArgs>? _endpoints;
+        public InputList<Inputs.ClusterConnectionStringPrivateEndpointEndpointArgs> Endpoints
+        {
+            get => _endpoints ?? (_endpoints = new InputList<Inputs.ClusterConnectionStringPrivateEndpointEndpointArgs>());
+            set => _endpoints = value;
+        }
+
+        [Input("srvConnectionString")]
+        public Input<string>? SrvConnectionString { get; set; }
+
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        public ClusterConnectionStringPrivateEndpointArgs()
+        {
+        }
+    }
 }

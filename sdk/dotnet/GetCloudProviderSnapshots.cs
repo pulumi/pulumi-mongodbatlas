@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetCloudProviderSnapshotsResult> InvokeAsync(GetCloudProviderSnapshotsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotsResult>("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", args ?? new GetCloudProviderSnapshotsArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetCloudProviderSnapshotsResult> Invoke(GetCloudProviderSnapshotsInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotsResult>("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", args ?? new GetCloudProviderSnapshotsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -45,6 +54,34 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetCloudProviderSnapshotsArgs()
+        {
+        }
+    }
+
+    public sealed class GetCloudProviderSnapshotsInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The name of the Atlas cluster that contains the snapshot you want to retrieve.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        /// <summary>
+        /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+        /// </summary>
+        [Input("itemsPerPage")]
+        public Input<int>? ItemsPerPage { get; set; }
+
+        /// <summary>
+        /// The page to return. Defaults to `1`.
+        /// </summary>
+        [Input("pageNum")]
+        public Input<int>? PageNum { get; set; }
+
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetCloudProviderSnapshotsInvokeArgs()
         {
         }
     }

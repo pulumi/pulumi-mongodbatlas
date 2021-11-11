@@ -8,32 +8,37 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = [
-    'base_url',
-    'private_key',
-    'public_key',
-    'realm_base_url',
-]
+import types
 
 __config__ = pulumi.Config('mongodbatlas')
 
-base_url = __config__.get('baseUrl')
-"""
-MongoDB Atlas Base URL
-"""
 
-private_key = __config__.get('privateKey')
-"""
-MongoDB Atlas Programmatic Private Key
-"""
+class _ExportableConfig(types.ModuleType):
+    @property
+    def base_url(self) -> Optional[str]:
+        """
+        MongoDB Atlas Base URL
+        """
+        return __config__.get('baseUrl')
 
-public_key = __config__.get('publicKey')
-"""
-MongoDB Atlas Programmatic Public Key
-"""
+    @property
+    def private_key(self) -> Optional[str]:
+        """
+        MongoDB Atlas Programmatic Private Key
+        """
+        return __config__.get('privateKey')
 
-realm_base_url = __config__.get('realmBaseUrl')
-"""
-MongoDB Realm Base URL
-"""
+    @property
+    def public_key(self) -> Optional[str]:
+        """
+        MongoDB Atlas Programmatic Public Key
+        """
+        return __config__.get('publicKey')
+
+    @property
+    def realm_base_url(self) -> Optional[str]:
+        """
+        MongoDB Realm Base URL
+        """
+        return __config__.get('realmBaseUrl')
 

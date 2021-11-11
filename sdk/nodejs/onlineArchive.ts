@@ -144,20 +144,20 @@ export class OnlineArchive extends pulumi.CustomResource {
      */
     constructor(name: string, args: OnlineArchiveArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: OnlineArchiveArgs | OnlineArchiveState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OnlineArchiveState | undefined;
-            inputs["archiveId"] = state ? state.archiveId : undefined;
-            inputs["clusterName"] = state ? state.clusterName : undefined;
-            inputs["collName"] = state ? state.collName : undefined;
-            inputs["criteria"] = state ? state.criteria : undefined;
-            inputs["dbName"] = state ? state.dbName : undefined;
-            inputs["partitionFields"] = state ? state.partitionFields : undefined;
-            inputs["paused"] = state ? state.paused : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["state"] = state ? state.state : undefined;
-            inputs["syncCreation"] = state ? state.syncCreation : undefined;
+            resourceInputs["archiveId"] = state ? state.archiveId : undefined;
+            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["collName"] = state ? state.collName : undefined;
+            resourceInputs["criteria"] = state ? state.criteria : undefined;
+            resourceInputs["dbName"] = state ? state.dbName : undefined;
+            resourceInputs["partitionFields"] = state ? state.partitionFields : undefined;
+            resourceInputs["paused"] = state ? state.paused : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["syncCreation"] = state ? state.syncCreation : undefined;
         } else {
             const args = argsOrState as OnlineArchiveArgs | undefined;
             if ((!args || args.clusterName === undefined) && !opts.urn) {
@@ -175,21 +175,21 @@ export class OnlineArchive extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["clusterName"] = args ? args.clusterName : undefined;
-            inputs["collName"] = args ? args.collName : undefined;
-            inputs["criteria"] = args ? args.criteria : undefined;
-            inputs["dbName"] = args ? args.dbName : undefined;
-            inputs["partitionFields"] = args ? args.partitionFields : undefined;
-            inputs["paused"] = args ? args.paused : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["syncCreation"] = args ? args.syncCreation : undefined;
-            inputs["archiveId"] = undefined /*out*/;
-            inputs["state"] = undefined /*out*/;
+            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["collName"] = args ? args.collName : undefined;
+            resourceInputs["criteria"] = args ? args.criteria : undefined;
+            resourceInputs["dbName"] = args ? args.dbName : undefined;
+            resourceInputs["partitionFields"] = args ? args.partitionFields : undefined;
+            resourceInputs["paused"] = args ? args.paused : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["syncCreation"] = args ? args.syncCreation : undefined;
+            resourceInputs["archiveId"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(OnlineArchive.__pulumiType, name, inputs, opts);
+        super(OnlineArchive.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -200,40 +200,40 @@ export interface OnlineArchiveState {
     /**
      * ID of the online archive.
      */
-    readonly archiveId?: pulumi.Input<string>;
+    archiveId?: pulumi.Input<string>;
     /**
      * Name of the cluster that contains the collection.
      */
-    readonly clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string>;
     /**
      * Name of the collection.
      */
-    readonly collName?: pulumi.Input<string>;
+    collName?: pulumi.Input<string>;
     /**
      * Criteria to use for archiving data.
      */
-    readonly criteria?: pulumi.Input<inputs.OnlineArchiveCriteria>;
+    criteria?: pulumi.Input<inputs.OnlineArchiveCriteria>;
     /**
      * Name of the database that contains the collection.
      */
-    readonly dbName?: pulumi.Input<string>;
+    dbName?: pulumi.Input<string>;
     /**
      * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
      */
-    readonly partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[]>;
+    partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[]>;
     /**
      * State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
      */
-    readonly paused?: pulumi.Input<boolean>;
+    paused?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      */
-    readonly state?: pulumi.Input<string>;
-    readonly syncCreation?: pulumi.Input<boolean>;
+    state?: pulumi.Input<string>;
+    syncCreation?: pulumi.Input<boolean>;
 }
 
 /**
@@ -243,30 +243,30 @@ export interface OnlineArchiveArgs {
     /**
      * Name of the cluster that contains the collection.
      */
-    readonly clusterName: pulumi.Input<string>;
+    clusterName: pulumi.Input<string>;
     /**
      * Name of the collection.
      */
-    readonly collName: pulumi.Input<string>;
+    collName: pulumi.Input<string>;
     /**
      * Criteria to use for archiving data.
      */
-    readonly criteria: pulumi.Input<inputs.OnlineArchiveCriteria>;
+    criteria: pulumi.Input<inputs.OnlineArchiveCriteria>;
     /**
      * Name of the database that contains the collection.
      */
-    readonly dbName: pulumi.Input<string>;
+    dbName: pulumi.Input<string>;
     /**
      * Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
      */
-    readonly partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[]>;
+    partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[]>;
     /**
      * State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
      */
-    readonly paused?: pulumi.Input<boolean>;
+    paused?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project
      */
-    readonly projectId: pulumi.Input<string>;
-    readonly syncCreation?: pulumi.Input<boolean>;
+    projectId: pulumi.Input<string>;
+    syncCreation?: pulumi.Input<boolean>;
 }

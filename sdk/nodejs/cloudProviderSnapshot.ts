@@ -141,23 +141,23 @@ export class CloudProviderSnapshot extends pulumi.CustomResource {
      */
     constructor(name: string, args: CloudProviderSnapshotArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderSnapshotArgs | CloudProviderSnapshotState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderSnapshotState | undefined;
-            inputs["clusterName"] = state ? state.clusterName : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["expiresAt"] = state ? state.expiresAt : undefined;
-            inputs["masterKeyUuid"] = state ? state.masterKeyUuid : undefined;
-            inputs["mongodVersion"] = state ? state.mongodVersion : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["retentionInDays"] = state ? state.retentionInDays : undefined;
-            inputs["snapshotId"] = state ? state.snapshotId : undefined;
-            inputs["snapshotType"] = state ? state.snapshotType : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["storageSizeBytes"] = state ? state.storageSizeBytes : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
+            resourceInputs["masterKeyUuid"] = state ? state.masterKeyUuid : undefined;
+            resourceInputs["mongodVersion"] = state ? state.mongodVersion : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["retentionInDays"] = state ? state.retentionInDays : undefined;
+            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
+            resourceInputs["snapshotType"] = state ? state.snapshotType : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["storageSizeBytes"] = state ? state.storageSizeBytes : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as CloudProviderSnapshotArgs | undefined;
             if ((!args || args.clusterName === undefined) && !opts.urn) {
@@ -172,24 +172,24 @@ export class CloudProviderSnapshot extends pulumi.CustomResource {
             if ((!args || args.retentionInDays === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'retentionInDays'");
             }
-            inputs["clusterName"] = args ? args.clusterName : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["retentionInDays"] = args ? args.retentionInDays : undefined;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["expiresAt"] = undefined /*out*/;
-            inputs["masterKeyUuid"] = undefined /*out*/;
-            inputs["mongodVersion"] = undefined /*out*/;
-            inputs["snapshotId"] = undefined /*out*/;
-            inputs["snapshotType"] = undefined /*out*/;
-            inputs["status"] = undefined /*out*/;
-            inputs["storageSizeBytes"] = undefined /*out*/;
-            inputs["type"] = undefined /*out*/;
+            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["retentionInDays"] = args ? args.retentionInDays : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["expiresAt"] = undefined /*out*/;
+            resourceInputs["masterKeyUuid"] = undefined /*out*/;
+            resourceInputs["mongodVersion"] = undefined /*out*/;
+            resourceInputs["snapshotId"] = undefined /*out*/;
+            resourceInputs["snapshotType"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["storageSizeBytes"] = undefined /*out*/;
+            resourceInputs["type"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(CloudProviderSnapshot.__pulumiType, name, inputs, opts);
+        super(CloudProviderSnapshot.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -200,55 +200,55 @@ export interface CloudProviderSnapshotState {
     /**
      * The name of the Atlas cluster that contains the snapshots you want to retrieve.
      */
-    readonly clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas took the snapshot.
      */
-    readonly createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string>;
     /**
      * Description of the on-demand snapshot.
      */
-    readonly description?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
      */
-    readonly expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string>;
     /**
      * Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
      */
-    readonly masterKeyUuid?: pulumi.Input<string>;
+    masterKeyUuid?: pulumi.Input<string>;
     /**
      * Version of the MongoDB server.
      */
-    readonly mongodVersion?: pulumi.Input<string>;
+    mongodVersion?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
      */
-    readonly retentionInDays?: pulumi.Input<number>;
+    retentionInDays?: pulumi.Input<number>;
     /**
      * Unique identifier of the snapshot.
      */
-    readonly snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string>;
     /**
      * Specified the type of snapshot. Valid values are onDemand and scheduled.
      */
-    readonly snapshotType?: pulumi.Input<string>;
+    snapshotType?: pulumi.Input<string>;
     /**
      * Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
      */
-    readonly status?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
     /**
      * Specifies the size of the snapshot in bytes.
      */
-    readonly storageSizeBytes?: pulumi.Input<number>;
+    storageSizeBytes?: pulumi.Input<number>;
     /**
      * Specifies the type of cluster: replicaSet or shardedCluster.
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -258,17 +258,17 @@ export interface CloudProviderSnapshotArgs {
     /**
      * The name of the Atlas cluster that contains the snapshots you want to retrieve.
      */
-    readonly clusterName: pulumi.Input<string>;
+    clusterName: pulumi.Input<string>;
     /**
      * Description of the on-demand snapshot.
      */
-    readonly description: pulumi.Input<string>;
+    description: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
      */
-    readonly retentionInDays: pulumi.Input<number>;
+    retentionInDays: pulumi.Input<number>;
 }

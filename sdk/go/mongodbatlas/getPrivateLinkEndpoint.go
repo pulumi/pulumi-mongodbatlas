@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -51,4 +54,99 @@ type LookupPrivateLinkEndpointResult struct {
 	ProviderName                 string `pulumi:"providerName"`
 	// Status of the AWS PrivateLink connection.
 	Status string `pulumi:"status"`
+}
+
+func LookupPrivateLinkEndpointOutput(ctx *pulumi.Context, args LookupPrivateLinkEndpointOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateLinkEndpointResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupPrivateLinkEndpointResult, error) {
+			args := v.(LookupPrivateLinkEndpointArgs)
+			r, err := LookupPrivateLinkEndpoint(ctx, &args, opts...)
+			return *r, err
+		}).(LookupPrivateLinkEndpointResultOutput)
+}
+
+// A collection of arguments for invoking getPrivateLinkEndpoint.
+type LookupPrivateLinkEndpointOutputArgs struct {
+	// Unique identifier of the private endpoint service that you want to retrieve.
+	PrivateLinkId pulumi.StringInput `pulumi:"privateLinkId"`
+	// Unique identifier for the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+}
+
+func (LookupPrivateLinkEndpointOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupPrivateLinkEndpointArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getPrivateLinkEndpoint.
+type LookupPrivateLinkEndpointResultOutput struct{ *pulumi.OutputState }
+
+func (LookupPrivateLinkEndpointResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupPrivateLinkEndpointResult)(nil)).Elem()
+}
+
+func (o LookupPrivateLinkEndpointResultOutput) ToLookupPrivateLinkEndpointResultOutput() LookupPrivateLinkEndpointResultOutput {
+	return o
+}
+
+func (o LookupPrivateLinkEndpointResultOutput) ToLookupPrivateLinkEndpointResultOutputWithContext(ctx context.Context) LookupPrivateLinkEndpointResultOutput {
+	return o
+}
+
+// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+func (o LookupPrivateLinkEndpointResultOutput) EndpointServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.EndpointServiceName }).(pulumi.StringOutput)
+}
+
+// Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+func (o LookupPrivateLinkEndpointResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupPrivateLinkEndpointResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+func (o LookupPrivateLinkEndpointResultOutput) InterfaceEndpoints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.InterfaceEndpoints }).(pulumi.StringArrayOutput)
+}
+
+// All private endpoints that you have added to this Azure Private Link Service.
+func (o LookupPrivateLinkEndpointResultOutput) PrivateEndpoints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.PrivateEndpoints }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupPrivateLinkEndpointResultOutput) PrivateLinkId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.PrivateLinkId }).(pulumi.StringOutput)
+}
+
+// Name of the Azure Private Link Service that Atlas manages.
+func (o LookupPrivateLinkEndpointResultOutput) PrivateLinkServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.PrivateLinkServiceName }).(pulumi.StringOutput)
+}
+
+// Resource ID of the Azure Private Link Service that Atlas manages.
+// Returns one of the following values:
+func (o LookupPrivateLinkEndpointResultOutput) PrivateLinkServiceResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.PrivateLinkServiceResourceId }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateLinkEndpointResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateLinkEndpointResultOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Status of the AWS PrivateLink connection.
+func (o LookupPrivateLinkEndpointResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupPrivateLinkEndpointResultOutput{})
 }

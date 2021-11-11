@@ -13,6 +13,7 @@ __all__ = [
     'GetNetworkContainersResult',
     'AwaitableGetNetworkContainersResult',
     'get_network_containers',
+    'get_network_containers_output',
 ]
 
 @pulumi.output_type
@@ -80,7 +81,7 @@ def get_network_containers(project_id: Optional[str] = None,
                            provider_name: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkContainersResult:
     """
-    `getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
+    `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
@@ -96,7 +97,7 @@ def get_network_containers(project_id: Optional[str] = None,
         atlas_cidr_block="10.8.0.0/21",
         provider_name="AWS",
         region_name="US_EAST_1")
-    test_network_containers = pulumi.Output.all(test_network_container.project_id, test_network_container.provider_name).apply(lambda project_id, provider_name: mongodbatlas.get_network_containers(project_id=project_id,
+    test_network_containers = pulumi.Output.all(test_network_container.project_id, test_network_container.provider_name).apply(lambda project_id, provider_name: mongodbatlas.get_network_containers_output(project_id=project_id,
         provider_name=provider_name))
     ```
 
@@ -118,3 +119,35 @@ def get_network_containers(project_id: Optional[str] = None,
         project_id=__ret__.project_id,
         provider_name=__ret__.provider_name,
         results=__ret__.results)
+
+
+@_utilities.lift_output_func(get_network_containers)
+def get_network_containers_output(project_id: Optional[pulumi.Input[str]] = None,
+                                  provider_name: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkContainersResult]:
+    """
+    `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+    ### Basic Example.
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_network_container = mongodbatlas.NetworkContainer("testNetworkContainer",
+        project_id="<YOUR-PROJECT-ID>",
+        atlas_cidr_block="10.8.0.0/21",
+        provider_name="AWS",
+        region_name="US_EAST_1")
+    test_network_containers = pulumi.Output.all(test_network_container.project_id, test_network_container.provider_name).apply(lambda project_id, provider_name: mongodbatlas.get_network_containers_output(project_id=project_id,
+        provider_name=provider_name))
+    ```
+
+
+    :param str project_id: The unique ID for the project to create the database user.
+    :param str provider_name: Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
+    """
+    ...

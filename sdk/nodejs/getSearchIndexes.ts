@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     itemsPerPage: 100,
  *     pageNum: 1,
  *     projectId: "<PROJECT_ID>",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getSearchIndexes(args: GetSearchIndexesArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexesResult> {
@@ -51,27 +51,27 @@ export interface GetSearchIndexesArgs {
     /**
      * Name of the cluster containing the collection with one or more Atlas Search indexes.
      */
-    readonly clusterName: string;
+    clusterName: string;
     /**
      * Name of the collection with one or more Atlas Search indexes.
      */
-    readonly collectionName: string;
+    collectionName: string;
     /**
      * (Required) Name of the database the collection is in.
      */
-    readonly database: string;
+    database: string;
     /**
      * Number of items that Atlas returns per page, up to a maximum of 500.
      */
-    readonly itemsPerPage?: number;
+    itemsPerPage?: number;
     /**
      * Page number, starting with one, that Atlas returns of the total number of objects.
      */
-    readonly pageNum?: number;
+    pageNum?: number;
     /**
      * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -102,4 +102,38 @@ export interface GetSearchIndexesResult {
      * Represents the total of the search indexes
      */
     readonly totalCount: number;
+}
+
+export function getSearchIndexesOutput(args: GetSearchIndexesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexesResult> {
+    return pulumi.output(args).apply(a => getSearchIndexes(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getSearchIndexes.
+ */
+export interface GetSearchIndexesOutputArgs {
+    /**
+     * Name of the cluster containing the collection with one or more Atlas Search indexes.
+     */
+    clusterName: pulumi.Input<string>;
+    /**
+     * Name of the collection with one or more Atlas Search indexes.
+     */
+    collectionName: pulumi.Input<string>;
+    /**
+     * (Required) Name of the database the collection is in.
+     */
+    database: pulumi.Input<string>;
+    /**
+     * Number of items that Atlas returns per page, up to a maximum of 500.
+     */
+    itemsPerPage?: pulumi.Input<number>;
+    /**
+     * Page number, starting with one, that Atlas returns of the total number of objects.
+     */
+    pageNum?: pulumi.Input<number>;
+    /**
+     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     */
+    projectId: pulumi.Input<string>;
 }

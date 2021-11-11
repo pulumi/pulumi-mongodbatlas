@@ -212,7 +212,7 @@ type LdapConfigurationInput interface {
 }
 
 func (*LdapConfiguration) ElementType() reflect.Type {
-	return reflect.TypeOf((*LdapConfiguration)(nil))
+	return reflect.TypeOf((**LdapConfiguration)(nil)).Elem()
 }
 
 func (i *LdapConfiguration) ToLdapConfigurationOutput() LdapConfigurationOutput {
@@ -221,35 +221,6 @@ func (i *LdapConfiguration) ToLdapConfigurationOutput() LdapConfigurationOutput 
 
 func (i *LdapConfiguration) ToLdapConfigurationOutputWithContext(ctx context.Context) LdapConfigurationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationOutput)
-}
-
-func (i *LdapConfiguration) ToLdapConfigurationPtrOutput() LdapConfigurationPtrOutput {
-	return i.ToLdapConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (i *LdapConfiguration) ToLdapConfigurationPtrOutputWithContext(ctx context.Context) LdapConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationPtrOutput)
-}
-
-type LdapConfigurationPtrInput interface {
-	pulumi.Input
-
-	ToLdapConfigurationPtrOutput() LdapConfigurationPtrOutput
-	ToLdapConfigurationPtrOutputWithContext(ctx context.Context) LdapConfigurationPtrOutput
-}
-
-type ldapConfigurationPtrType LdapConfigurationArgs
-
-func (*ldapConfigurationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LdapConfiguration)(nil))
-}
-
-func (i *ldapConfigurationPtrType) ToLdapConfigurationPtrOutput() LdapConfigurationPtrOutput {
-	return i.ToLdapConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (i *ldapConfigurationPtrType) ToLdapConfigurationPtrOutputWithContext(ctx context.Context) LdapConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationPtrOutput)
 }
 
 // LdapConfigurationArrayInput is an input type that accepts LdapConfigurationArray and LdapConfigurationArrayOutput values.
@@ -266,7 +237,7 @@ type LdapConfigurationArrayInput interface {
 type LdapConfigurationArray []LdapConfigurationInput
 
 func (LdapConfigurationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LdapConfiguration)(nil))
+	return reflect.TypeOf((*[]*LdapConfiguration)(nil)).Elem()
 }
 
 func (i LdapConfigurationArray) ToLdapConfigurationArrayOutput() LdapConfigurationArrayOutput {
@@ -291,7 +262,7 @@ type LdapConfigurationMapInput interface {
 type LdapConfigurationMap map[string]LdapConfigurationInput
 
 func (LdapConfigurationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LdapConfiguration)(nil))
+	return reflect.TypeOf((*map[string]*LdapConfiguration)(nil)).Elem()
 }
 
 func (i LdapConfigurationMap) ToLdapConfigurationMapOutput() LdapConfigurationMapOutput {
@@ -302,12 +273,10 @@ func (i LdapConfigurationMap) ToLdapConfigurationMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(LdapConfigurationMapOutput)
 }
 
-type LdapConfigurationOutput struct {
-	*pulumi.OutputState
-}
+type LdapConfigurationOutput struct{ *pulumi.OutputState }
 
 func (LdapConfigurationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LdapConfiguration)(nil))
+	return reflect.TypeOf((**LdapConfiguration)(nil)).Elem()
 }
 
 func (o LdapConfigurationOutput) ToLdapConfigurationOutput() LdapConfigurationOutput {
@@ -318,36 +287,10 @@ func (o LdapConfigurationOutput) ToLdapConfigurationOutputWithContext(ctx contex
 	return o
 }
 
-func (o LdapConfigurationOutput) ToLdapConfigurationPtrOutput() LdapConfigurationPtrOutput {
-	return o.ToLdapConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (o LdapConfigurationOutput) ToLdapConfigurationPtrOutputWithContext(ctx context.Context) LdapConfigurationPtrOutput {
-	return o.ApplyT(func(v LdapConfiguration) *LdapConfiguration {
-		return &v
-	}).(LdapConfigurationPtrOutput)
-}
-
-type LdapConfigurationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LdapConfigurationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LdapConfiguration)(nil))
-}
-
-func (o LdapConfigurationPtrOutput) ToLdapConfigurationPtrOutput() LdapConfigurationPtrOutput {
-	return o
-}
-
-func (o LdapConfigurationPtrOutput) ToLdapConfigurationPtrOutputWithContext(ctx context.Context) LdapConfigurationPtrOutput {
-	return o
-}
-
 type LdapConfigurationArrayOutput struct{ *pulumi.OutputState }
 
 func (LdapConfigurationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LdapConfiguration)(nil))
+	return reflect.TypeOf((*[]*LdapConfiguration)(nil)).Elem()
 }
 
 func (o LdapConfigurationArrayOutput) ToLdapConfigurationArrayOutput() LdapConfigurationArrayOutput {
@@ -359,15 +302,15 @@ func (o LdapConfigurationArrayOutput) ToLdapConfigurationArrayOutputWithContext(
 }
 
 func (o LdapConfigurationArrayOutput) Index(i pulumi.IntInput) LdapConfigurationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LdapConfiguration {
-		return vs[0].([]LdapConfiguration)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LdapConfiguration {
+		return vs[0].([]*LdapConfiguration)[vs[1].(int)]
 	}).(LdapConfigurationOutput)
 }
 
 type LdapConfigurationMapOutput struct{ *pulumi.OutputState }
 
 func (LdapConfigurationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LdapConfiguration)(nil))
+	return reflect.TypeOf((*map[string]*LdapConfiguration)(nil)).Elem()
 }
 
 func (o LdapConfigurationMapOutput) ToLdapConfigurationMapOutput() LdapConfigurationMapOutput {
@@ -379,14 +322,16 @@ func (o LdapConfigurationMapOutput) ToLdapConfigurationMapOutputWithContext(ctx 
 }
 
 func (o LdapConfigurationMapOutput) MapIndex(k pulumi.StringInput) LdapConfigurationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LdapConfiguration {
-		return vs[0].(map[string]LdapConfiguration)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LdapConfiguration {
+		return vs[0].(map[string]*LdapConfiguration)[vs[1].(string)]
 	}).(LdapConfigurationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LdapConfigurationInput)(nil)).Elem(), &LdapConfiguration{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LdapConfigurationArrayInput)(nil)).Elem(), LdapConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LdapConfigurationMapInput)(nil)).Elem(), LdapConfigurationMap{})
 	pulumi.RegisterOutputType(LdapConfigurationOutput{})
-	pulumi.RegisterOutputType(LdapConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(LdapConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(LdapConfigurationMapOutput{})
 }

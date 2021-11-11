@@ -13,6 +13,7 @@ __all__ = [
     'GetNetworkPeeringsResult',
     'AwaitableGetNetworkPeeringsResult',
     'get_network_peerings',
+    'get_network_peerings_output',
 ]
 
 @pulumi.output_type
@@ -67,7 +68,7 @@ class AwaitableGetNetworkPeeringsResult(GetNetworkPeeringsResult):
 def get_network_peerings(project_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkPeeringsResult:
     """
-    `getNetworkPeerings` describes all Network Peering Connections.
+    `get_network_peerings` describes all Network Peering Connections.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
@@ -86,7 +87,7 @@ def get_network_peerings(project_id: Optional[str] = None,
         route_table_cidr_block="192.168.0.0/24",
         vpc_id="vpc-abc123abc123",
         aws_account_id="abc123abc123")
-    test_network_peerings = test_network_peering.project_id.apply(lambda project_id: mongodbatlas.get_network_peerings(project_id=project_id))
+    test_network_peerings = mongodbatlas.get_network_peerings_output(project_id=test_network_peering.project_id)
     ```
 
 
@@ -104,3 +105,35 @@ def get_network_peerings(project_id: Optional[str] = None,
         id=__ret__.id,
         project_id=__ret__.project_id,
         results=__ret__.results)
+
+
+@_utilities.lift_output_func(get_network_peerings)
+def get_network_peerings_output(project_id: Optional[pulumi.Input[str]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkPeeringsResult]:
+    """
+    `get_network_peerings` describes all Network Peering Connections.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+    ### Basic Example (AWS).
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_network_peering = mongodbatlas.NetworkPeering("testNetworkPeering",
+        accepter_region_name="us-east-1",
+        project_id="<YOUR-PROJEC-ID>",
+        container_id="507f1f77bcf86cd799439011",
+        provider_name="AWS",
+        route_table_cidr_block="192.168.0.0/24",
+        vpc_id="vpc-abc123abc123",
+        aws_account_id="abc123abc123")
+    test_network_peerings = mongodbatlas.get_network_peerings_output(project_id=test_network_peering.project_id)
+    ```
+
+
+    :param str project_id: The unique ID for the project to create the database user.
+    """
+    ...

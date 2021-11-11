@@ -36,12 +36,12 @@ import (
 // 			ClusterType:              pulumi.String("GEOSHARDED"),
 // 			ProviderName:             pulumi.String("AWS"),
 // 			ProviderInstanceSizeName: pulumi.String("M30"),
-// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 			ReplicationSpecs: ClusterReplicationSpecArray{
+// 				&ClusterReplicationSpecArgs{
 // 					ZoneName:  pulumi.String("Zone 1"),
 // 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 					RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
+// 						&ClusterReplicationSpecRegionsConfigArgs{
 // 							RegionName:     pulumi.String("EU_CENTRAL_1"),
 // 							ElectableNodes: pulumi.Int(3),
 // 							Priority:       pulumi.Int(7),
@@ -49,11 +49,11 @@ import (
 // 						},
 // 					},
 // 				},
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 				&ClusterReplicationSpecArgs{
 // 					ZoneName:  pulumi.String("Zone 2"),
 // 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 					RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
+// 						&ClusterReplicationSpecRegionsConfigArgs{
 // 							RegionName:     pulumi.String("US_EAST_2"),
 // 							ElectableNodes: pulumi.Int(3),
 // 							Priority:       pulumi.Int(7),
@@ -69,8 +69,8 @@ import (
 // 		_, err = mongodbatlas.NewGlobalClusterConfig(ctx, "config", &mongodbatlas.GlobalClusterConfigArgs{
 // 			ProjectId:   test.ProjectId,
 // 			ClusterName: test.Name,
-// 			ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
-// 				&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
+// 			ManagedNamespaces: GlobalClusterConfigManagedNamespaceArray{
+// 				&GlobalClusterConfigManagedNamespaceArgs{
 // 					Db:                     pulumi.String("mydata"),
 // 					Collection:             pulumi.String("publishers"),
 // 					CustomShardKey:         pulumi.String("city"),
@@ -78,8 +78,8 @@ import (
 // 					IsShardKeyUnique:       pulumi.Bool(false),
 // 				},
 // 			},
-// 			CustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{
-// 				&mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{
+// 			CustomZoneMappings: GlobalClusterConfigCustomZoneMappingArray{
+// 				&GlobalClusterConfigCustomZoneMappingArgs{
 // 					Location: pulumi.String("CA"),
 // 					Zone:     pulumi.String("Zone 1"),
 // 				},
@@ -105,14 +105,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCluster(ctx, "cluster_test", &mongodbatlas.ClusterArgs{
+// 		_, err := mongodbatlas.NewCluster(ctx, "cluster-test", &mongodbatlas.ClusterArgs{
 // 			ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
 // 			ClusterType: pulumi.String("REPLICASET"),
-// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 			ReplicationSpecs: ClusterReplicationSpecArray{
+// 				&ClusterReplicationSpecArgs{
 // 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 					RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
+// 						&ClusterReplicationSpecRegionsConfigArgs{
 // 							RegionName:     pulumi.String("US_EAST_1"),
 // 							ElectableNodes: pulumi.Int(3),
 // 							Priority:       pulumi.Int(7),
@@ -134,15 +134,15 @@ import (
 // 		_, err = mongodbatlas.NewGlobalClusterConfig(ctx, "config", &mongodbatlas.GlobalClusterConfigArgs{
 // 			ProjectId:   pulumi.Any(mongodbatlas_cluster.Test.Project_id),
 // 			ClusterName: pulumi.Any(mongodbatlas_cluster.Test.Name),
-// 			ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
-// 				&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
+// 			ManagedNamespaces: GlobalClusterConfigManagedNamespaceArray{
+// 				&GlobalClusterConfigManagedNamespaceArgs{
 // 					Db:             pulumi.String("mydata"),
 // 					Collection:     pulumi.String("publishers"),
 // 					CustomShardKey: pulumi.String("city"),
 // 				},
 // 			},
-// 			CustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{
-// 				&mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{
+// 			CustomZoneMappings: GlobalClusterConfigCustomZoneMappingArray{
+// 				&GlobalClusterConfigCustomZoneMappingArgs{
 // 					Location: pulumi.String("CA"),
 // 					Zone:     pulumi.String("Zone 1"),
 // 				},
@@ -279,7 +279,7 @@ type GlobalClusterConfigInput interface {
 }
 
 func (*GlobalClusterConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*GlobalClusterConfig)(nil))
+	return reflect.TypeOf((**GlobalClusterConfig)(nil)).Elem()
 }
 
 func (i *GlobalClusterConfig) ToGlobalClusterConfigOutput() GlobalClusterConfigOutput {
@@ -288,35 +288,6 @@ func (i *GlobalClusterConfig) ToGlobalClusterConfigOutput() GlobalClusterConfigO
 
 func (i *GlobalClusterConfig) ToGlobalClusterConfigOutputWithContext(ctx context.Context) GlobalClusterConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigOutput)
-}
-
-func (i *GlobalClusterConfig) ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput {
-	return i.ToGlobalClusterConfigPtrOutputWithContext(context.Background())
-}
-
-func (i *GlobalClusterConfig) ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigPtrOutput)
-}
-
-type GlobalClusterConfigPtrInput interface {
-	pulumi.Input
-
-	ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput
-	ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput
-}
-
-type globalClusterConfigPtrType GlobalClusterConfigArgs
-
-func (*globalClusterConfigPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GlobalClusterConfig)(nil))
-}
-
-func (i *globalClusterConfigPtrType) ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput {
-	return i.ToGlobalClusterConfigPtrOutputWithContext(context.Background())
-}
-
-func (i *globalClusterConfigPtrType) ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigPtrOutput)
 }
 
 // GlobalClusterConfigArrayInput is an input type that accepts GlobalClusterConfigArray and GlobalClusterConfigArrayOutput values.
@@ -333,7 +304,7 @@ type GlobalClusterConfigArrayInput interface {
 type GlobalClusterConfigArray []GlobalClusterConfigInput
 
 func (GlobalClusterConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*GlobalClusterConfig)(nil))
+	return reflect.TypeOf((*[]*GlobalClusterConfig)(nil)).Elem()
 }
 
 func (i GlobalClusterConfigArray) ToGlobalClusterConfigArrayOutput() GlobalClusterConfigArrayOutput {
@@ -358,7 +329,7 @@ type GlobalClusterConfigMapInput interface {
 type GlobalClusterConfigMap map[string]GlobalClusterConfigInput
 
 func (GlobalClusterConfigMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*GlobalClusterConfig)(nil))
+	return reflect.TypeOf((*map[string]*GlobalClusterConfig)(nil)).Elem()
 }
 
 func (i GlobalClusterConfigMap) ToGlobalClusterConfigMapOutput() GlobalClusterConfigMapOutput {
@@ -369,12 +340,10 @@ func (i GlobalClusterConfigMap) ToGlobalClusterConfigMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GlobalClusterConfigMapOutput)
 }
 
-type GlobalClusterConfigOutput struct {
-	*pulumi.OutputState
-}
+type GlobalClusterConfigOutput struct{ *pulumi.OutputState }
 
 func (GlobalClusterConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GlobalClusterConfig)(nil))
+	return reflect.TypeOf((**GlobalClusterConfig)(nil)).Elem()
 }
 
 func (o GlobalClusterConfigOutput) ToGlobalClusterConfigOutput() GlobalClusterConfigOutput {
@@ -385,36 +354,10 @@ func (o GlobalClusterConfigOutput) ToGlobalClusterConfigOutputWithContext(ctx co
 	return o
 }
 
-func (o GlobalClusterConfigOutput) ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput {
-	return o.ToGlobalClusterConfigPtrOutputWithContext(context.Background())
-}
-
-func (o GlobalClusterConfigOutput) ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput {
-	return o.ApplyT(func(v GlobalClusterConfig) *GlobalClusterConfig {
-		return &v
-	}).(GlobalClusterConfigPtrOutput)
-}
-
-type GlobalClusterConfigPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (GlobalClusterConfigPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GlobalClusterConfig)(nil))
-}
-
-func (o GlobalClusterConfigPtrOutput) ToGlobalClusterConfigPtrOutput() GlobalClusterConfigPtrOutput {
-	return o
-}
-
-func (o GlobalClusterConfigPtrOutput) ToGlobalClusterConfigPtrOutputWithContext(ctx context.Context) GlobalClusterConfigPtrOutput {
-	return o
-}
-
 type GlobalClusterConfigArrayOutput struct{ *pulumi.OutputState }
 
 func (GlobalClusterConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GlobalClusterConfig)(nil))
+	return reflect.TypeOf((*[]*GlobalClusterConfig)(nil)).Elem()
 }
 
 func (o GlobalClusterConfigArrayOutput) ToGlobalClusterConfigArrayOutput() GlobalClusterConfigArrayOutput {
@@ -426,15 +369,15 @@ func (o GlobalClusterConfigArrayOutput) ToGlobalClusterConfigArrayOutputWithCont
 }
 
 func (o GlobalClusterConfigArrayOutput) Index(i pulumi.IntInput) GlobalClusterConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GlobalClusterConfig {
-		return vs[0].([]GlobalClusterConfig)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *GlobalClusterConfig {
+		return vs[0].([]*GlobalClusterConfig)[vs[1].(int)]
 	}).(GlobalClusterConfigOutput)
 }
 
 type GlobalClusterConfigMapOutput struct{ *pulumi.OutputState }
 
 func (GlobalClusterConfigMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]GlobalClusterConfig)(nil))
+	return reflect.TypeOf((*map[string]*GlobalClusterConfig)(nil)).Elem()
 }
 
 func (o GlobalClusterConfigMapOutput) ToGlobalClusterConfigMapOutput() GlobalClusterConfigMapOutput {
@@ -446,14 +389,16 @@ func (o GlobalClusterConfigMapOutput) ToGlobalClusterConfigMapOutputWithContext(
 }
 
 func (o GlobalClusterConfigMapOutput) MapIndex(k pulumi.StringInput) GlobalClusterConfigOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) GlobalClusterConfig {
-		return vs[0].(map[string]GlobalClusterConfig)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *GlobalClusterConfig {
+		return vs[0].(map[string]*GlobalClusterConfig)[vs[1].(string)]
 	}).(GlobalClusterConfigOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigInput)(nil)).Elem(), &GlobalClusterConfig{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigArrayInput)(nil)).Elem(), GlobalClusterConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigMapInput)(nil)).Elem(), GlobalClusterConfigMap{})
 	pulumi.RegisterOutputType(GlobalClusterConfigOutput{})
-	pulumi.RegisterOutputType(GlobalClusterConfigPtrOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigMapOutput{})
 }

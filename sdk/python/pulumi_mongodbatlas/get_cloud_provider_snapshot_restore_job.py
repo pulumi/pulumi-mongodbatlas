@@ -12,6 +12,7 @@ __all__ = [
     'GetCloudProviderSnapshotRestoreJobResult',
     'AwaitableGetCloudProviderSnapshotRestoreJobResult',
     'get_cloud_provider_snapshot_restore_job',
+    'get_cloud_provider_snapshot_restore_job_output',
 ]
 
 @pulumi.output_type
@@ -268,3 +269,21 @@ def get_cloud_provider_snapshot_restore_job(cluster_name: Optional[str] = None,
         target_cluster_name=__ret__.target_cluster_name,
         target_project_id=__ret__.target_project_id,
         timestamp=__ret__.timestamp)
+
+
+@_utilities.lift_output_func(get_cloud_provider_snapshot_restore_job)
+def get_cloud_provider_snapshot_restore_job_output(cluster_name: Optional[pulumi.Input[str]] = None,
+                                                   job_id: Optional[pulumi.Input[str]] = None,
+                                                   project_id: Optional[pulumi.Input[str]] = None,
+                                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderSnapshotRestoreJobResult]:
+    """
+    `CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+
+    :param str cluster_name: The name of the Atlas cluster for which you want to retrieve the restore job.
+    :param str job_id: The unique identifier of the restore job to retrieve.
+    :param str project_id: The unique identifier of the project for the Atlas cluster.
+    """
+    ...

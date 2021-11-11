@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -53,4 +56,107 @@ type LookupCloudProviderSnapshotResult struct {
 	StorageSizeBytes int `pulumi:"storageSizeBytes"`
 	// Specifies the type of cluster: replicaSet or shardedCluster.
 	Type string `pulumi:"type"`
+}
+
+func LookupCloudProviderSnapshotOutput(ctx *pulumi.Context, args LookupCloudProviderSnapshotOutputArgs, opts ...pulumi.InvokeOption) LookupCloudProviderSnapshotResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupCloudProviderSnapshotResult, error) {
+			args := v.(LookupCloudProviderSnapshotArgs)
+			r, err := LookupCloudProviderSnapshot(ctx, &args, opts...)
+			return *r, err
+		}).(LookupCloudProviderSnapshotResultOutput)
+}
+
+// A collection of arguments for invoking getCloudProviderSnapshot.
+type LookupCloudProviderSnapshotOutputArgs struct {
+	// The name of the Atlas cluster that contains the snapshot you want to retrieve.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	ProjectId   pulumi.StringInput `pulumi:"projectId"`
+	// The unique identifier of the snapshot you want to retrieve.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+}
+
+func (LookupCloudProviderSnapshotOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCloudProviderSnapshotArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getCloudProviderSnapshot.
+type LookupCloudProviderSnapshotResultOutput struct{ *pulumi.OutputState }
+
+func (LookupCloudProviderSnapshotResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCloudProviderSnapshotResult)(nil)).Elem()
+}
+
+func (o LookupCloudProviderSnapshotResultOutput) ToLookupCloudProviderSnapshotResultOutput() LookupCloudProviderSnapshotResultOutput {
+	return o
+}
+
+func (o LookupCloudProviderSnapshotResultOutput) ToLookupCloudProviderSnapshotResultOutputWithContext(ctx context.Context) LookupCloudProviderSnapshotResultOutput {
+	return o
+}
+
+func (o LookupCloudProviderSnapshotResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+func (o LookupCloudProviderSnapshotResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// UDescription of the snapshot. Only present for on-demand snapshots.
+func (o LookupCloudProviderSnapshotResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
+func (o LookupCloudProviderSnapshotResultOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupCloudProviderSnapshotResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
+func (o LookupCloudProviderSnapshotResultOutput) MasterKeyUuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.MasterKeyUuid }).(pulumi.StringOutput)
+}
+
+// Version of the MongoDB server.
+func (o LookupCloudProviderSnapshotResultOutput) MongodVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.MongodVersion }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudProviderSnapshotResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudProviderSnapshotResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Specified the type of snapshot. Valid values are onDemand and scheduled.
+func (o LookupCloudProviderSnapshotResultOutput) SnapshotType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.SnapshotType }).(pulumi.StringOutput)
+}
+
+// Current status of the snapshot. One of the following values: queued, inProgress, completed, failed.
+func (o LookupCloudProviderSnapshotResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Specifies the size of the snapshot in bytes.
+func (o LookupCloudProviderSnapshotResultOutput) StorageSizeBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) int { return v.StorageSizeBytes }).(pulumi.IntOutput)
+}
+
+// Specifies the type of cluster: replicaSet or shardedCluster.
+func (o LookupCloudProviderSnapshotResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupCloudProviderSnapshotResultOutput{})
 }

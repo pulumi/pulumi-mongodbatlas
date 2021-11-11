@@ -13,6 +13,7 @@ __all__ = [
     'GetCloudProviderSnapshotsResult',
     'AwaitableGetCloudProviderSnapshotsResult',
     'get_cloud_provider_snapshots',
+    'get_cloud_provider_snapshots_output',
 ]
 
 @pulumi.output_type
@@ -106,7 +107,7 @@ def get_cloud_provider_snapshots(cluster_name: Optional[str] = None,
                                  project_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderSnapshotsResult:
     """
-    `getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+    `get_cloud_provider_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -134,3 +135,22 @@ def get_cloud_provider_snapshots(cluster_name: Optional[str] = None,
         project_id=__ret__.project_id,
         results=__ret__.results,
         total_count=__ret__.total_count)
+
+
+@_utilities.lift_output_func(get_cloud_provider_snapshots)
+def get_cloud_provider_snapshots_output(cluster_name: Optional[pulumi.Input[str]] = None,
+                                        items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
+                                        page_num: Optional[pulumi.Input[Optional[int]]] = None,
+                                        project_id: Optional[pulumi.Input[str]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderSnapshotsResult]:
+    """
+    `get_cloud_provider_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+
+    :param str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
+    :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+    :param int page_num: The page to return. Defaults to `1`.
+    """
+    ...

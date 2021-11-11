@@ -13,6 +13,7 @@ __all__ = [
     'Get509AuthenticationDatabaseUserResult',
     'AwaitableGet509AuthenticationDatabaseUserResult',
     'get509_authentication_database_user',
+    'get509_authentication_database_user_output',
 ]
 
 @pulumi.output_type
@@ -115,7 +116,7 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
         project_id=user.project_id,
         username=user.username,
         months_until_expiration=2)
-    test509_authentication_database_user = pulumi.Output.all(test_x509_authentication_database_user.project_id, test_x509_authentication_database_user.username).apply(lambda project_id, username: mongodbatlas.get509_authentication_database_user(project_id=project_id,
+    test509_authentication_database_user = pulumi.Output.all(test_x509_authentication_database_user.project_id, test_x509_authentication_database_user.username).apply(lambda project_id, username: mongodbatlas.get509_authentication_database_user_output(project_id=project_id,
         username=username))
     ```
     ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -142,7 +143,7 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
     iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
     -----END CERTIFICATE-----"
     \"\"\")
-    test509_authentication_database_user = test_x509_authentication_database_user.project_id.apply(lambda project_id: mongodbatlas.get509_authentication_database_user(project_id=project_id))
+    test509_authentication_database_user = mongodbatlas.get509_authentication_database_user_output(project_id=test_x509_authentication_database_user.project_id)
     ```
 
 
@@ -164,3 +165,74 @@ def get509_authentication_database_user(project_id: Optional[str] = None,
         id=__ret__.id,
         project_id=__ret__.project_id,
         username=__ret__.username)
+
+
+@_utilities.lift_output_func(get509_authentication_database_user)
+def get509_authentication_database_user_output(project_id: Optional[pulumi.Input[str]] = None,
+                                               username: Optional[pulumi.Input[Optional[str]]] = None,
+                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Get509AuthenticationDatabaseUserResult]:
+    """
+    `X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    ## Example Usage
+
+    ### S
+    ### Example Usage: Generate an Atlas-managed X.509 certificate for a MongoDB user
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    user = mongodbatlas.DatabaseUser("user",
+        project_id="<PROJECT-ID>",
+        username="myUsername",
+        x509_type="MANAGED",
+        database_name="$external",
+        roles=[mongodbatlas.DatabaseUserRoleArgs(
+            role_name="atlasAdmin",
+            database_name="admin",
+        )],
+        labels=[mongodbatlas.DatabaseUserLabelArgs(
+            key="My Key",
+            value="My Value",
+        )])
+    test_x509_authentication_database_user = mongodbatlas.X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser",
+        project_id=user.project_id,
+        username=user.username,
+        months_until_expiration=2)
+    test509_authentication_database_user = pulumi.Output.all(test_x509_authentication_database_user.project_id, test_x509_authentication_database_user.username).apply(lambda project_id, username: mongodbatlas.get509_authentication_database_user_output(project_id=project_id,
+        username=username))
+    ```
+    ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_x509_authentication_database_user = mongodbatlas.X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser",
+        project_id="<PROJECT-ID>",
+        customer_x509_cas=\"\"\"-----BEGIN CERTIFICATE-----
+    MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+    VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+    c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+    SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+    MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+    VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+    BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+    c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+    iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+    cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+    Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+    SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+    7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+    iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+    -----END CERTIFICATE-----"
+    \"\"\")
+    test509_authentication_database_user = mongodbatlas.get509_authentication_database_user_output(project_id=test_x509_authentication_database_user.project_id)
+    ```
+
+
+    :param str project_id: Identifier for the Atlas project associated with the X.509 configuration.
+    :param str username: Username of the database user to create a certificate for.
+    """
+    ...

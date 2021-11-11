@@ -13,6 +13,7 @@ __all__ = [
     'GetSearchIndexesResult',
     'AwaitableGetSearchIndexesResult',
     'get_search_indexes',
+    'get_search_indexes_output',
 ]
 
 @pulumi.output_type
@@ -135,9 +136,23 @@ def get_search_indexes(cluster_name: Optional[str] = None,
                        project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSearchIndexesResult:
     """
-    `getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
+    `get_search_indexes` describe all search indexes. This represents search indexes that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
+        collection_name="<COLLECTION_NAME>",
+        database_name="<DATABASE_NAME>",
+        items_per_page=100,
+        page_num=1,
+        project_id="<PROJECT_ID>")
+    ```
 
 
     :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
@@ -170,3 +185,41 @@ def get_search_indexes(cluster_name: Optional[str] = None,
         project_id=__ret__.project_id,
         results=__ret__.results,
         total_count=__ret__.total_count)
+
+
+@_utilities.lift_output_func(get_search_indexes)
+def get_search_indexes_output(cluster_name: Optional[pulumi.Input[str]] = None,
+                              collection_name: Optional[pulumi.Input[str]] = None,
+                              database: Optional[pulumi.Input[str]] = None,
+                              items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
+                              page_num: Optional[pulumi.Input[Optional[int]]] = None,
+                              project_id: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchIndexesResult]:
+    """
+    `get_search_indexes` describe all search indexes. This represents search indexes that have been created.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
+        collection_name="<COLLECTION_NAME>",
+        database_name="<DATABASE_NAME>",
+        items_per_page=100,
+        page_num=1,
+        project_id="<PROJECT_ID>")
+    ```
+
+
+    :param str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
+    :param str collection_name: Name of the collection with one or more Atlas Search indexes.
+    :param str database: (Required) Name of the database the collection is in.
+    :param int items_per_page: Number of items that Atlas returns per page, up to a maximum of 500.
+    :param int page_num: Page number, starting with one, that Atlas returns of the total number of objects.
+    :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+    """
+    ...

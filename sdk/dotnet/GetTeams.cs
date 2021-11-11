@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Mongodbatlas
     {
         public static Task<GetTeamsResult> InvokeAsync(GetTeamsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithVersion());
+
+        public static Output<GetTeamsResult> Invoke(GetTeamsInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -28,6 +32,22 @@ namespace Pulumi.Mongodbatlas
         public string? TeamId { get; set; }
 
         public GetTeamsArgs()
+        {
+        }
+    }
+
+    public sealed class GetTeamsInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        [Input("orgId", required: true)]
+        public Input<string> OrgId { get; set; } = null!;
+
+        [Input("teamId")]
+        public Input<string>? TeamId { get; set; }
+
+        public GetTeamsInvokeArgs()
         {
         }
     }

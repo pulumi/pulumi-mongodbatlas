@@ -127,27 +127,27 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      */
     constructor(name: string, args: ThirdPartyIntegrationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ThirdPartyIntegrationArgs | ThirdPartyIntegrationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ThirdPartyIntegrationState | undefined;
-            inputs["accountId"] = state ? state.accountId : undefined;
-            inputs["apiKey"] = state ? state.apiKey : undefined;
-            inputs["apiToken"] = state ? state.apiToken : undefined;
-            inputs["channelName"] = state ? state.channelName : undefined;
-            inputs["flowName"] = state ? state.flowName : undefined;
-            inputs["licenseKey"] = state ? state.licenseKey : undefined;
-            inputs["orgName"] = state ? state.orgName : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["readToken"] = state ? state.readToken : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["routingKey"] = state ? state.routingKey : undefined;
-            inputs["secret"] = state ? state.secret : undefined;
-            inputs["serviceKey"] = state ? state.serviceKey : undefined;
-            inputs["teamName"] = state ? state.teamName : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["url"] = state ? state.url : undefined;
-            inputs["writeToken"] = state ? state.writeToken : undefined;
+            resourceInputs["accountId"] = state ? state.accountId : undefined;
+            resourceInputs["apiKey"] = state ? state.apiKey : undefined;
+            resourceInputs["apiToken"] = state ? state.apiToken : undefined;
+            resourceInputs["channelName"] = state ? state.channelName : undefined;
+            resourceInputs["flowName"] = state ? state.flowName : undefined;
+            resourceInputs["licenseKey"] = state ? state.licenseKey : undefined;
+            resourceInputs["orgName"] = state ? state.orgName : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["readToken"] = state ? state.readToken : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["routingKey"] = state ? state.routingKey : undefined;
+            resourceInputs["secret"] = state ? state.secret : undefined;
+            resourceInputs["serviceKey"] = state ? state.serviceKey : undefined;
+            resourceInputs["teamName"] = state ? state.teamName : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["writeToken"] = state ? state.writeToken : undefined;
         } else {
             const args = argsOrState as ThirdPartyIntegrationArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -156,28 +156,28 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["accountId"] = args ? args.accountId : undefined;
-            inputs["apiKey"] = args ? args.apiKey : undefined;
-            inputs["apiToken"] = args ? args.apiToken : undefined;
-            inputs["channelName"] = args ? args.channelName : undefined;
-            inputs["flowName"] = args ? args.flowName : undefined;
-            inputs["licenseKey"] = args ? args.licenseKey : undefined;
-            inputs["orgName"] = args ? args.orgName : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["readToken"] = args ? args.readToken : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["routingKey"] = args ? args.routingKey : undefined;
-            inputs["secret"] = args ? args.secret : undefined;
-            inputs["serviceKey"] = args ? args.serviceKey : undefined;
-            inputs["teamName"] = args ? args.teamName : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["url"] = args ? args.url : undefined;
-            inputs["writeToken"] = args ? args.writeToken : undefined;
+            resourceInputs["accountId"] = args ? args.accountId : undefined;
+            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["apiToken"] = args ? args.apiToken : undefined;
+            resourceInputs["channelName"] = args ? args.channelName : undefined;
+            resourceInputs["flowName"] = args ? args.flowName : undefined;
+            resourceInputs["licenseKey"] = args ? args.licenseKey : undefined;
+            resourceInputs["orgName"] = args ? args.orgName : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["readToken"] = args ? args.readToken : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["routingKey"] = args ? args.routingKey : undefined;
+            resourceInputs["secret"] = args ? args.secret : undefined;
+            resourceInputs["serviceKey"] = args ? args.serviceKey : undefined;
+            resourceInputs["teamName"] = args ? args.teamName : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["writeToken"] = args ? args.writeToken : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(ThirdPartyIntegration.__pulumiType, name, inputs, opts);
+        super(ThirdPartyIntegration.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -188,58 +188,58 @@ export interface ThirdPartyIntegrationState {
     /**
      * Unique identifier of your New Relic account.
      */
-    readonly accountId?: pulumi.Input<string>;
+    accountId?: pulumi.Input<string>;
     /**
      * Your API Key.
      */
-    readonly apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string>;
     /**
      * Your API Token.
      */
-    readonly apiToken?: pulumi.Input<string>;
-    readonly channelName?: pulumi.Input<string>;
+    apiToken?: pulumi.Input<string>;
+    channelName?: pulumi.Input<string>;
     /**
      * Your Flowdock Flow name.
      */
-    readonly flowName?: pulumi.Input<string>;
+    flowName?: pulumi.Input<string>;
     /**
      * Your License Key.
      */
-    readonly licenseKey?: pulumi.Input<string>;
+    licenseKey?: pulumi.Input<string>;
     /**
      * Your Flowdock organization name.
      * * `WEBHOOK`
      */
-    readonly orgName?: pulumi.Input<string>;
+    orgName?: pulumi.Input<string>;
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Your Insights Query Key.
      * * `OPS_GENIE`
      */
-    readonly readToken?: pulumi.Input<string>;
+    readToken?: pulumi.Input<string>;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
      * * `VICTOR_OPS`
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * An optional field for your Routing Key.
      * * `FLOWDOCK`
      */
-    readonly routingKey?: pulumi.Input<string>;
+    routingKey?: pulumi.Input<string>;
     /**
      * An optional field for your webhook secret.
      */
-    readonly secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string>;
     /**
      * Your Service Key.
      * * `DATADOG`
      */
-    readonly serviceKey?: pulumi.Input<string>;
-    readonly teamName?: pulumi.Input<string>;
+    serviceKey?: pulumi.Input<string>;
+    teamName?: pulumi.Input<string>;
     /**
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
@@ -250,15 +250,15 @@ export interface ThirdPartyIntegrationState {
      * * FLOWDOCK
      * * WEBHOOK
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
     /**
      * Your webhook URL.
      */
-    readonly url?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     /**
      * Your Insights Insert Key.
      */
-    readonly writeToken?: pulumi.Input<string>;
+    writeToken?: pulumi.Input<string>;
 }
 
 /**
@@ -268,58 +268,58 @@ export interface ThirdPartyIntegrationArgs {
     /**
      * Unique identifier of your New Relic account.
      */
-    readonly accountId?: pulumi.Input<string>;
+    accountId?: pulumi.Input<string>;
     /**
      * Your API Key.
      */
-    readonly apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string>;
     /**
      * Your API Token.
      */
-    readonly apiToken?: pulumi.Input<string>;
-    readonly channelName?: pulumi.Input<string>;
+    apiToken?: pulumi.Input<string>;
+    channelName?: pulumi.Input<string>;
     /**
      * Your Flowdock Flow name.
      */
-    readonly flowName?: pulumi.Input<string>;
+    flowName?: pulumi.Input<string>;
     /**
      * Your License Key.
      */
-    readonly licenseKey?: pulumi.Input<string>;
+    licenseKey?: pulumi.Input<string>;
     /**
      * Your Flowdock organization name.
      * * `WEBHOOK`
      */
-    readonly orgName?: pulumi.Input<string>;
+    orgName?: pulumi.Input<string>;
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * Your Insights Query Key.
      * * `OPS_GENIE`
      */
-    readonly readToken?: pulumi.Input<string>;
+    readToken?: pulumi.Input<string>;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
      * * `VICTOR_OPS`
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * An optional field for your Routing Key.
      * * `FLOWDOCK`
      */
-    readonly routingKey?: pulumi.Input<string>;
+    routingKey?: pulumi.Input<string>;
     /**
      * An optional field for your webhook secret.
      */
-    readonly secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string>;
     /**
      * Your Service Key.
      * * `DATADOG`
      */
-    readonly serviceKey?: pulumi.Input<string>;
-    readonly teamName?: pulumi.Input<string>;
+    serviceKey?: pulumi.Input<string>;
+    teamName?: pulumi.Input<string>;
     /**
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
@@ -330,13 +330,13 @@ export interface ThirdPartyIntegrationArgs {
      * * FLOWDOCK
      * * WEBHOOK
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
     /**
      * Your webhook URL.
      */
-    readonly url?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     /**
      * Your Insights Insert Key.
      */
-    readonly writeToken?: pulumi.Input<string>;
+    writeToken?: pulumi.Input<string>;
 }

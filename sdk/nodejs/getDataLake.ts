@@ -31,11 +31,11 @@ export interface GetDataLakeArgs {
     /**
      * Name of the data lake.
      */
-    readonly name: string;
+    name: string;
     /**
      * The unique ID for the project to create a data lake.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -97,4 +97,22 @@ export interface GetDataLakeResult {
      * * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
      */
     readonly storageStores: outputs.GetDataLakeStorageStore[];
+}
+
+export function getDataLakeOutput(args: GetDataLakeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataLakeResult> {
+    return pulumi.output(args).apply(a => getDataLake(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDataLake.
+ */
+export interface GetDataLakeOutputArgs {
+    /**
+     * Name of the data lake.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The unique ID for the project to create a data lake.
+     */
+    projectId: pulumi.Input<string>;
 }

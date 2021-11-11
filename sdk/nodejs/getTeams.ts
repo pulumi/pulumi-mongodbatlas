@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamsResult> {
@@ -24,9 +23,9 @@ export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getTeams.
  */
 export interface GetTeamsArgs {
-    readonly name?: string;
-    readonly orgId: string;
-    readonly teamId?: string;
+    name?: string;
+    orgId: string;
+    teamId?: string;
 }
 
 /**
@@ -41,4 +40,17 @@ export interface GetTeamsResult {
     readonly orgId: string;
     readonly teamId: string;
     readonly usernames: string[];
+}
+
+export function getTeamsOutput(args: GetTeamsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamsResult> {
+    return pulumi.output(args).apply(a => getTeams(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTeams.
+ */
+export interface GetTeamsOutputArgs {
+    name?: pulumi.Input<string>;
+    orgId: pulumi.Input<string>;
+    teamId?: pulumi.Input<string>;
 }

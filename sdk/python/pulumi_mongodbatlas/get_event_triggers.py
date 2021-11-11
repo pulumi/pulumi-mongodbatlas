@@ -13,6 +13,7 @@ __all__ = [
     'GetEventTriggersResult',
     'AwaitableGetEventTriggersResult',
     'get_event_triggers',
+    'get_event_triggers_output',
 ]
 
 @pulumi.output_type
@@ -77,7 +78,7 @@ def get_event_triggers(app_id: Optional[str] = None,
                        project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEventTriggersResult:
     """
-    `getEventTriggers` describe all Event Triggers.
+    `get_event_triggers` describe all Event Triggers.
 
 
     :param str app_id: The ObjectID of your application.
@@ -97,3 +98,17 @@ def get_event_triggers(app_id: Optional[str] = None,
         id=__ret__.id,
         project_id=__ret__.project_id,
         results=__ret__.results)
+
+
+@_utilities.lift_output_func(get_event_triggers)
+def get_event_triggers_output(app_id: Optional[pulumi.Input[str]] = None,
+                              project_id: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEventTriggersResult]:
+    """
+    `get_event_triggers` describe all Event Triggers.
+
+
+    :param str app_id: The ObjectID of your application.
+    :param str project_id: The unique ID for the project to get all event triggers.
+    """
+    ...

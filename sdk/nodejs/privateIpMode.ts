@@ -77,12 +77,12 @@ export class PrivateIpMode extends pulumi.CustomResource {
      */
     constructor(name: string, args: PrivateIpModeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PrivateIpModeArgs | PrivateIpModeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateIpModeState | undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as PrivateIpModeArgs | undefined;
             if ((!args || args.enabled === undefined) && !opts.urn) {
@@ -91,13 +91,13 @@ export class PrivateIpMode extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(PrivateIpMode.__pulumiType, name, inputs, opts);
+        super(PrivateIpMode.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -108,11 +108,11 @@ export interface PrivateIpModeState {
     /**
      * Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project to enable Only Private IP Mode.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
 }
 
 /**
@@ -122,9 +122,9 @@ export interface PrivateIpModeArgs {
     /**
      * Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
      */
-    readonly enabled: pulumi.Input<boolean>;
+    enabled: pulumi.Input<boolean>;
     /**
      * The unique ID for the project to enable Only Private IP Mode.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

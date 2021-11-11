@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -32,15 +31,15 @@ export interface GetPrivateLinkEndpointArgs {
     /**
      * Unique identifier of the private endpoint service that you want to retrieve.
      */
-    readonly privateLinkId: string;
+    privateLinkId: string;
     /**
      * Unique identifier for the project.
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
      */
-    readonly providerName: string;
+    providerName: string;
 }
 
 /**
@@ -83,4 +82,26 @@ export interface GetPrivateLinkEndpointResult {
      * Status of the AWS PrivateLink connection.
      */
     readonly status: string;
+}
+
+export function getPrivateLinkEndpointOutput(args: GetPrivateLinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointResult> {
+    return pulumi.output(args).apply(a => getPrivateLinkEndpoint(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getPrivateLinkEndpoint.
+ */
+export interface GetPrivateLinkEndpointOutputArgs {
+    /**
+     * Unique identifier of the private endpoint service that you want to retrieve.
+     */
+    privateLinkId: pulumi.Input<string>;
+    /**
+     * Unique identifier for the project.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+     */
+    providerName: pulumi.Input<string>;
 }

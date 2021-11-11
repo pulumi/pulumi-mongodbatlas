@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -35,11 +34,11 @@ export interface GetNetworkContainerArgs {
     /**
      * The Network Peering Container ID.
      */
-    readonly containerId: string;
+    containerId: string;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -96,4 +95,22 @@ export interface GetNetworkContainerResult {
      * Unique identifier of the project’s VPC.
      */
     readonly vpcId: string;
+}
+
+export function getNetworkContainerOutput(args: GetNetworkContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainerResult> {
+    return pulumi.output(args).apply(a => getNetworkContainer(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetworkContainer.
+ */
+export interface GetNetworkContainerOutputArgs {
+    /**
+     * The Network Peering Container ID.
+     */
+    containerId: pulumi.Input<string>;
+    /**
+     * The unique ID for the project to create the database user.
+     */
+    projectId: pulumi.Input<string>;
 }

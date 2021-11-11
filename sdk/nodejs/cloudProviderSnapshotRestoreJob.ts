@@ -185,23 +185,23 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
      */
     constructor(name: string, args: CloudProviderSnapshotRestoreJobArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderSnapshotRestoreJobArgs | CloudProviderSnapshotRestoreJobState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderSnapshotRestoreJobState | undefined;
-            inputs["cancelled"] = state ? state.cancelled : undefined;
-            inputs["clusterName"] = state ? state.clusterName : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
-            inputs["deliveryType"] = state ? state.deliveryType : undefined;
-            inputs["deliveryTypeConfig"] = state ? state.deliveryTypeConfig : undefined;
-            inputs["deliveryUrls"] = state ? state.deliveryUrls : undefined;
-            inputs["expired"] = state ? state.expired : undefined;
-            inputs["expiresAt"] = state ? state.expiresAt : undefined;
-            inputs["finishedAt"] = state ? state.finishedAt : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["snapshotId"] = state ? state.snapshotId : undefined;
-            inputs["snapshotRestoreJobId"] = state ? state.snapshotRestoreJobId : undefined;
-            inputs["timestamp"] = state ? state.timestamp : undefined;
+            resourceInputs["cancelled"] = state ? state.cancelled : undefined;
+            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["deliveryType"] = state ? state.deliveryType : undefined;
+            resourceInputs["deliveryTypeConfig"] = state ? state.deliveryTypeConfig : undefined;
+            resourceInputs["deliveryUrls"] = state ? state.deliveryUrls : undefined;
+            resourceInputs["expired"] = state ? state.expired : undefined;
+            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
+            resourceInputs["finishedAt"] = state ? state.finishedAt : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
+            resourceInputs["snapshotRestoreJobId"] = state ? state.snapshotRestoreJobId : undefined;
+            resourceInputs["timestamp"] = state ? state.timestamp : undefined;
         } else {
             const args = argsOrState as CloudProviderSnapshotRestoreJobArgs | undefined;
             if ((!args || args.clusterName === undefined) && !opts.urn) {
@@ -213,24 +213,24 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
             if ((!args || args.snapshotId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'snapshotId'");
             }
-            inputs["clusterName"] = args ? args.clusterName : undefined;
-            inputs["deliveryType"] = args ? args.deliveryType : undefined;
-            inputs["deliveryTypeConfig"] = args ? args.deliveryTypeConfig : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["snapshotId"] = args ? args.snapshotId : undefined;
-            inputs["cancelled"] = undefined /*out*/;
-            inputs["createdAt"] = undefined /*out*/;
-            inputs["deliveryUrls"] = undefined /*out*/;
-            inputs["expired"] = undefined /*out*/;
-            inputs["expiresAt"] = undefined /*out*/;
-            inputs["finishedAt"] = undefined /*out*/;
-            inputs["snapshotRestoreJobId"] = undefined /*out*/;
-            inputs["timestamp"] = undefined /*out*/;
+            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["deliveryType"] = args ? args.deliveryType : undefined;
+            resourceInputs["deliveryTypeConfig"] = args ? args.deliveryTypeConfig : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
+            resourceInputs["cancelled"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["deliveryUrls"] = undefined /*out*/;
+            resourceInputs["expired"] = undefined /*out*/;
+            resourceInputs["expiresAt"] = undefined /*out*/;
+            resourceInputs["finishedAt"] = undefined /*out*/;
+            resourceInputs["snapshotRestoreJobId"] = undefined /*out*/;
+            resourceInputs["timestamp"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(CloudProviderSnapshotRestoreJob.__pulumiType, name, inputs, opts);
+        super(CloudProviderSnapshotRestoreJob.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -241,57 +241,57 @@ export interface CloudProviderSnapshotRestoreJobState {
     /**
      * Indicates whether the restore job was canceled.
      */
-    readonly cancelled?: pulumi.Input<boolean>;
+    cancelled?: pulumi.Input<boolean>;
     /**
      * The name of the Atlas cluster whose snapshot you want to restore.
      */
-    readonly clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas created the restore job.
      */
-    readonly createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string>;
     /**
      * Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
      *
      * @deprecated use delivery_type_config instead
      */
-    readonly deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Type of restore job to create. Possible values are: automated and download.
      */
-    readonly deliveryTypeConfig?: pulumi.Input<inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig>;
+    deliveryTypeConfig?: pulumi.Input<inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig>;
     /**
      * One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
      */
-    readonly deliveryUrls?: pulumi.Input<pulumi.Input<string>[]>;
+    deliveryUrls?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Indicates whether the restore job expired.
      */
-    readonly expired?: pulumi.Input<boolean>;
+    expired?: pulumi.Input<boolean>;
     /**
      * UTC ISO 8601 formatted point in time when the restore job expires.
      */
-    readonly expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string>;
     /**
      * UTC ISO 8601 formatted point in time when the restore job completed.
      */
-    readonly finishedAt?: pulumi.Input<string>;
+    finishedAt?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Unique identifier of the snapshot to restore.
      */
-    readonly snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string>;
     /**
      * The unique identifier of the restore job.
      */
-    readonly snapshotRestoreJobId?: pulumi.Input<string>;
+    snapshotRestoreJobId?: pulumi.Input<string>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
      */
-    readonly timestamp?: pulumi.Input<string>;
+    timestamp?: pulumi.Input<string>;
 }
 
 /**
@@ -301,23 +301,23 @@ export interface CloudProviderSnapshotRestoreJobArgs {
     /**
      * The name of the Atlas cluster whose snapshot you want to restore.
      */
-    readonly clusterName: pulumi.Input<string>;
+    clusterName: pulumi.Input<string>;
     /**
      * Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
      *
      * @deprecated use delivery_type_config instead
      */
-    readonly deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Type of restore job to create. Possible values are: automated and download.
      */
-    readonly deliveryTypeConfig?: pulumi.Input<inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig>;
+    deliveryTypeConfig?: pulumi.Input<inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfig>;
     /**
      * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * Unique identifier of the snapshot to restore.
      */
-    readonly snapshotId: pulumi.Input<string>;
+    snapshotId: pulumi.Input<string>;
 }

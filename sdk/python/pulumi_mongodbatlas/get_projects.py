@@ -13,6 +13,7 @@ __all__ = [
     'GetProjectsResult',
     'AwaitableGetProjectsResult',
     'get_projects',
+    'get_projects_output',
 ]
 
 @pulumi.output_type
@@ -83,7 +84,7 @@ def get_projects(items_per_page: Optional[int] = None,
                  page_num: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectsResult:
     """
-    `getProjects` describe all Projects. This represents projects that have been created.
+    `get_projects` describe all Projects. This represents projects that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -106,3 +107,19 @@ def get_projects(items_per_page: Optional[int] = None,
         page_num=__ret__.page_num,
         results=__ret__.results,
         total_count=__ret__.total_count)
+
+
+@_utilities.lift_output_func(get_projects)
+def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = None,
+                        page_num: Optional[pulumi.Input[Optional[int]]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectsResult]:
+    """
+    `get_projects` describe all Projects. This represents projects that have been created.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+
+    :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+    :param int page_num: The page to return. Defaults to `1`.
+    """
+    ...

@@ -178,7 +178,7 @@ type CloudProviderSnapshotBackupPolicyInput interface {
 }
 
 func (*CloudProviderSnapshotBackupPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotBackupPolicy)(nil))
+	return reflect.TypeOf((**CloudProviderSnapshotBackupPolicy)(nil)).Elem()
 }
 
 func (i *CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyOutput() CloudProviderSnapshotBackupPolicyOutput {
@@ -187,35 +187,6 @@ func (i *CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyO
 
 func (i *CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotBackupPolicyOutput)
-}
-
-func (i *CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyPtrOutput() CloudProviderSnapshotBackupPolicyPtrOutput {
-	return i.ToCloudProviderSnapshotBackupPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotBackupPolicyPtrOutput)
-}
-
-type CloudProviderSnapshotBackupPolicyPtrInput interface {
-	pulumi.Input
-
-	ToCloudProviderSnapshotBackupPolicyPtrOutput() CloudProviderSnapshotBackupPolicyPtrOutput
-	ToCloudProviderSnapshotBackupPolicyPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyPtrOutput
-}
-
-type cloudProviderSnapshotBackupPolicyPtrType CloudProviderSnapshotBackupPolicyArgs
-
-func (*cloudProviderSnapshotBackupPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderSnapshotBackupPolicy)(nil))
-}
-
-func (i *cloudProviderSnapshotBackupPolicyPtrType) ToCloudProviderSnapshotBackupPolicyPtrOutput() CloudProviderSnapshotBackupPolicyPtrOutput {
-	return i.ToCloudProviderSnapshotBackupPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *cloudProviderSnapshotBackupPolicyPtrType) ToCloudProviderSnapshotBackupPolicyPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotBackupPolicyPtrOutput)
 }
 
 // CloudProviderSnapshotBackupPolicyArrayInput is an input type that accepts CloudProviderSnapshotBackupPolicyArray and CloudProviderSnapshotBackupPolicyArrayOutput values.
@@ -232,7 +203,7 @@ type CloudProviderSnapshotBackupPolicyArrayInput interface {
 type CloudProviderSnapshotBackupPolicyArray []CloudProviderSnapshotBackupPolicyInput
 
 func (CloudProviderSnapshotBackupPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CloudProviderSnapshotBackupPolicy)(nil))
+	return reflect.TypeOf((*[]*CloudProviderSnapshotBackupPolicy)(nil)).Elem()
 }
 
 func (i CloudProviderSnapshotBackupPolicyArray) ToCloudProviderSnapshotBackupPolicyArrayOutput() CloudProviderSnapshotBackupPolicyArrayOutput {
@@ -257,7 +228,7 @@ type CloudProviderSnapshotBackupPolicyMapInput interface {
 type CloudProviderSnapshotBackupPolicyMap map[string]CloudProviderSnapshotBackupPolicyInput
 
 func (CloudProviderSnapshotBackupPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CloudProviderSnapshotBackupPolicy)(nil))
+	return reflect.TypeOf((*map[string]*CloudProviderSnapshotBackupPolicy)(nil)).Elem()
 }
 
 func (i CloudProviderSnapshotBackupPolicyMap) ToCloudProviderSnapshotBackupPolicyMapOutput() CloudProviderSnapshotBackupPolicyMapOutput {
@@ -268,12 +239,10 @@ func (i CloudProviderSnapshotBackupPolicyMap) ToCloudProviderSnapshotBackupPolic
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderSnapshotBackupPolicyMapOutput)
 }
 
-type CloudProviderSnapshotBackupPolicyOutput struct {
-	*pulumi.OutputState
-}
+type CloudProviderSnapshotBackupPolicyOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderSnapshotBackupPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderSnapshotBackupPolicy)(nil))
+	return reflect.TypeOf((**CloudProviderSnapshotBackupPolicy)(nil)).Elem()
 }
 
 func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPolicyOutput() CloudProviderSnapshotBackupPolicyOutput {
@@ -284,36 +253,10 @@ func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPo
 	return o
 }
 
-func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPolicyPtrOutput() CloudProviderSnapshotBackupPolicyPtrOutput {
-	return o.ToCloudProviderSnapshotBackupPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPolicyPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyPtrOutput {
-	return o.ApplyT(func(v CloudProviderSnapshotBackupPolicy) *CloudProviderSnapshotBackupPolicy {
-		return &v
-	}).(CloudProviderSnapshotBackupPolicyPtrOutput)
-}
-
-type CloudProviderSnapshotBackupPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CloudProviderSnapshotBackupPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderSnapshotBackupPolicy)(nil))
-}
-
-func (o CloudProviderSnapshotBackupPolicyPtrOutput) ToCloudProviderSnapshotBackupPolicyPtrOutput() CloudProviderSnapshotBackupPolicyPtrOutput {
-	return o
-}
-
-func (o CloudProviderSnapshotBackupPolicyPtrOutput) ToCloudProviderSnapshotBackupPolicyPtrOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyPtrOutput {
-	return o
-}
-
 type CloudProviderSnapshotBackupPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderSnapshotBackupPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CloudProviderSnapshotBackupPolicy)(nil))
+	return reflect.TypeOf((*[]*CloudProviderSnapshotBackupPolicy)(nil)).Elem()
 }
 
 func (o CloudProviderSnapshotBackupPolicyArrayOutput) ToCloudProviderSnapshotBackupPolicyArrayOutput() CloudProviderSnapshotBackupPolicyArrayOutput {
@@ -325,15 +268,15 @@ func (o CloudProviderSnapshotBackupPolicyArrayOutput) ToCloudProviderSnapshotBac
 }
 
 func (o CloudProviderSnapshotBackupPolicyArrayOutput) Index(i pulumi.IntInput) CloudProviderSnapshotBackupPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderSnapshotBackupPolicy {
-		return vs[0].([]CloudProviderSnapshotBackupPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudProviderSnapshotBackupPolicy {
+		return vs[0].([]*CloudProviderSnapshotBackupPolicy)[vs[1].(int)]
 	}).(CloudProviderSnapshotBackupPolicyOutput)
 }
 
 type CloudProviderSnapshotBackupPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderSnapshotBackupPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CloudProviderSnapshotBackupPolicy)(nil))
+	return reflect.TypeOf((*map[string]*CloudProviderSnapshotBackupPolicy)(nil)).Elem()
 }
 
 func (o CloudProviderSnapshotBackupPolicyMapOutput) ToCloudProviderSnapshotBackupPolicyMapOutput() CloudProviderSnapshotBackupPolicyMapOutput {
@@ -345,14 +288,16 @@ func (o CloudProviderSnapshotBackupPolicyMapOutput) ToCloudProviderSnapshotBacku
 }
 
 func (o CloudProviderSnapshotBackupPolicyMapOutput) MapIndex(k pulumi.StringInput) CloudProviderSnapshotBackupPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CloudProviderSnapshotBackupPolicy {
-		return vs[0].(map[string]CloudProviderSnapshotBackupPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CloudProviderSnapshotBackupPolicy {
+		return vs[0].(map[string]*CloudProviderSnapshotBackupPolicy)[vs[1].(string)]
 	}).(CloudProviderSnapshotBackupPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderSnapshotBackupPolicyInput)(nil)).Elem(), &CloudProviderSnapshotBackupPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderSnapshotBackupPolicyArrayInput)(nil)).Elem(), CloudProviderSnapshotBackupPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderSnapshotBackupPolicyMapInput)(nil)).Elem(), CloudProviderSnapshotBackupPolicyMap{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyOutput{})
-	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderSnapshotBackupPolicyMapOutput{})
 }

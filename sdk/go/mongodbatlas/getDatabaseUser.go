@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -57,4 +60,103 @@ type LookupDatabaseUserResult struct {
 	Username string                 `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated.
 	X509Type string `pulumi:"x509Type"`
+}
+
+func LookupDatabaseUserOutput(ctx *pulumi.Context, args LookupDatabaseUserOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseUserResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupDatabaseUserResult, error) {
+			args := v.(LookupDatabaseUserArgs)
+			r, err := LookupDatabaseUser(ctx, &args, opts...)
+			return *r, err
+		}).(LookupDatabaseUserResultOutput)
+}
+
+// A collection of arguments for invoking getDatabaseUser.
+type LookupDatabaseUserOutputArgs struct {
+	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
+	AuthDatabaseName pulumi.StringPtrInput `pulumi:"authDatabaseName"`
+	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+	//
+	// Deprecated: use auth_database_name instead
+	DatabaseName pulumi.StringPtrInput `pulumi:"databaseName"`
+	// The unique ID for the project to create the database user.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Username for authenticating to MongoDB.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (LookupDatabaseUserOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseUserArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getDatabaseUser.
+type LookupDatabaseUserResultOutput struct{ *pulumi.OutputState }
+
+func (LookupDatabaseUserResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseUserResult)(nil)).Elem()
+}
+
+func (o LookupDatabaseUserResultOutput) ToLookupDatabaseUserResultOutput() LookupDatabaseUserResultOutput {
+	return o
+}
+
+func (o LookupDatabaseUserResultOutput) ToLookupDatabaseUserResultOutputWithContext(ctx context.Context) LookupDatabaseUserResultOutput {
+	return o
+}
+
+func (o LookupDatabaseUserResultOutput) AuthDatabaseName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) *string { return v.AuthDatabaseName }).(pulumi.StringPtrOutput)
+}
+
+// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
+func (o LookupDatabaseUserResultOutput) AwsIamType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.AwsIamType }).(pulumi.StringOutput)
+}
+
+// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+//
+// Deprecated: use auth_database_name instead
+func (o LookupDatabaseUserResultOutput) DatabaseName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) *string { return v.DatabaseName }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupDatabaseUserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseUserResultOutput) Labels() GetDatabaseUserLabelArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) []GetDatabaseUserLabel { return v.Labels }).(GetDatabaseUserLabelArrayOutput)
+}
+
+// Method by which the provided username is authenticated. Default is `NONE`. Other valid values are: `USER`, `GROUP`.
+func (o LookupDatabaseUserResultOutput) LdapAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.LdapAuthType }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseUserResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+func (o LookupDatabaseUserResultOutput) Roles() GetDatabaseUserRoleArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) []GetDatabaseUserRole { return v.Roles }).(GetDatabaseUserRoleArrayOutput)
+}
+
+// Array of clusters and Atlas Data Lakes that this user has access to.
+func (o LookupDatabaseUserResultOutput) Scopes() GetDatabaseUserScopeArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) []GetDatabaseUserScope { return v.Scopes }).(GetDatabaseUserScopeArrayOutput)
+}
+
+func (o LookupDatabaseUserResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// X.509 method by which the provided username is authenticated.
+func (o LookupDatabaseUserResultOutput) X509Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUserResult) string { return v.X509Type }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupDatabaseUserResultOutput{})
 }

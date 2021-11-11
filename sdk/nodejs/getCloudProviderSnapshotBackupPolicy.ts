@@ -33,11 +33,11 @@ export interface GetCloudProviderSnapshotBackupPolicyArgs {
     /**
      * The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
      */
-    readonly clusterName: string;
+    clusterName: string;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -76,4 +76,22 @@ export interface GetCloudProviderSnapshotBackupPolicyResult {
      */
     readonly restoreWindowDays: number;
     readonly updateSnapshots: boolean;
+}
+
+export function getCloudProviderSnapshotBackupPolicyOutput(args: GetCloudProviderSnapshotBackupPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotBackupPolicyResult> {
+    return pulumi.output(args).apply(a => getCloudProviderSnapshotBackupPolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCloudProviderSnapshotBackupPolicy.
+ */
+export interface GetCloudProviderSnapshotBackupPolicyOutputArgs {
+    /**
+     * The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
+     */
+    clusterName: pulumi.Input<string>;
+    /**
+     * The unique identifier of the project for the Atlas cluster.
+     */
+    projectId: pulumi.Input<string>;
 }

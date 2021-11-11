@@ -9,4 +9,25 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class DataLakeStorageDatabaseCollectionArgs : Pulumi.ResourceArgs
+    {
+        [Input("dataSources")]
+        private InputList<Inputs.DataLakeStorageDatabaseCollectionDataSourceArgs>? _dataSources;
+        public InputList<Inputs.DataLakeStorageDatabaseCollectionDataSourceArgs> DataSources
+        {
+            get => _dataSources ?? (_dataSources = new InputList<Inputs.DataLakeStorageDatabaseCollectionDataSourceArgs>());
+            set => _dataSources = value;
+        }
+
+        /// <summary>
+        /// Name of the Atlas Data Lake.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        public DataLakeStorageDatabaseCollectionArgs()
+        {
+        }
+    }
 }

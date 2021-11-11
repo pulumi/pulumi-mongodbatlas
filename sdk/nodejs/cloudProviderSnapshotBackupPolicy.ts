@@ -91,19 +91,19 @@ export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: CloudProviderSnapshotBackupPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderSnapshotBackupPolicyArgs | CloudProviderSnapshotBackupPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderSnapshotBackupPolicyState | undefined;
-            inputs["clusterId"] = state ? state.clusterId : undefined;
-            inputs["clusterName"] = state ? state.clusterName : undefined;
-            inputs["nextSnapshot"] = state ? state.nextSnapshot : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["referenceHourOfDay"] = state ? state.referenceHourOfDay : undefined;
-            inputs["referenceMinuteOfHour"] = state ? state.referenceMinuteOfHour : undefined;
-            inputs["restoreWindowDays"] = state ? state.restoreWindowDays : undefined;
-            inputs["updateSnapshots"] = state ? state.updateSnapshots : undefined;
+            resourceInputs["clusterId"] = state ? state.clusterId : undefined;
+            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["nextSnapshot"] = state ? state.nextSnapshot : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["referenceHourOfDay"] = state ? state.referenceHourOfDay : undefined;
+            resourceInputs["referenceMinuteOfHour"] = state ? state.referenceMinuteOfHour : undefined;
+            resourceInputs["restoreWindowDays"] = state ? state.restoreWindowDays : undefined;
+            resourceInputs["updateSnapshots"] = state ? state.updateSnapshots : undefined;
         } else {
             const args = argsOrState as CloudProviderSnapshotBackupPolicyArgs | undefined;
             if ((!args || args.clusterName === undefined) && !opts.urn) {
@@ -115,20 +115,20 @@ export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["clusterName"] = args ? args.clusterName : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["referenceHourOfDay"] = args ? args.referenceHourOfDay : undefined;
-            inputs["referenceMinuteOfHour"] = args ? args.referenceMinuteOfHour : undefined;
-            inputs["restoreWindowDays"] = args ? args.restoreWindowDays : undefined;
-            inputs["updateSnapshots"] = args ? args.updateSnapshots : undefined;
-            inputs["clusterId"] = undefined /*out*/;
-            inputs["nextSnapshot"] = undefined /*out*/;
+            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["referenceHourOfDay"] = args ? args.referenceHourOfDay : undefined;
+            resourceInputs["referenceMinuteOfHour"] = args ? args.referenceMinuteOfHour : undefined;
+            resourceInputs["restoreWindowDays"] = args ? args.restoreWindowDays : undefined;
+            resourceInputs["updateSnapshots"] = args ? args.updateSnapshots : undefined;
+            resourceInputs["clusterId"] = undefined /*out*/;
+            resourceInputs["nextSnapshot"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(CloudProviderSnapshotBackupPolicy.__pulumiType, name, inputs, opts);
+        super(CloudProviderSnapshotBackupPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -139,40 +139,40 @@ export interface CloudProviderSnapshotBackupPolicyState {
     /**
      * Unique identifier of the Atlas cluster.
      */
-    readonly clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string>;
     /**
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
-    readonly clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string>;
     /**
      * Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
      */
-    readonly nextSnapshot?: pulumi.Input<string>;
+    nextSnapshot?: pulumi.Input<string>;
     /**
      * Contains a document for each backup policy item in the desired updated backup policy.
      * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. providerBackupEnabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
      */
-    readonly policies?: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicy>[]>;
+    policies?: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicy>[]>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
      */
-    readonly referenceHourOfDay?: pulumi.Input<number>;
+    referenceHourOfDay?: pulumi.Input<number>;
     /**
      * UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      */
-    readonly referenceMinuteOfHour?: pulumi.Input<number>;
+    referenceMinuteOfHour?: pulumi.Input<number>;
     /**
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
-    readonly restoreWindowDays?: pulumi.Input<number>;
+    restoreWindowDays?: pulumi.Input<number>;
     /**
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      */
-    readonly updateSnapshots?: pulumi.Input<boolean>;
+    updateSnapshots?: pulumi.Input<boolean>;
 }
 
 /**
@@ -182,30 +182,30 @@ export interface CloudProviderSnapshotBackupPolicyArgs {
     /**
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
-    readonly clusterName: pulumi.Input<string>;
+    clusterName: pulumi.Input<string>;
     /**
      * Contains a document for each backup policy item in the desired updated backup policy.
      * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. providerBackupEnabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
      */
-    readonly policies: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicy>[]>;
+    policies: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicy>[]>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
      */
-    readonly referenceHourOfDay?: pulumi.Input<number>;
+    referenceHourOfDay?: pulumi.Input<number>;
     /**
      * UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      */
-    readonly referenceMinuteOfHour?: pulumi.Input<number>;
+    referenceMinuteOfHour?: pulumi.Input<number>;
     /**
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
-    readonly restoreWindowDays?: pulumi.Input<number>;
+    restoreWindowDays?: pulumi.Input<number>;
     /**
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      */
-    readonly updateSnapshots?: pulumi.Input<boolean>;
+    updateSnapshots?: pulumi.Input<boolean>;
 }

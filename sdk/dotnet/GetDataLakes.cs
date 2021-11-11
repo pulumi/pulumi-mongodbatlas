@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -42,6 +43,38 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetDataLakesResult> InvokeAsync(GetDataLakesArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.getDataLakes` describe all Data Lakes.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Mongodbatlas.GetDataLakes.InvokeAsync(new Mongodbatlas.GetDataLakesArgs
+        ///         {
+        ///             ProjectId = "PROJECT ID",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetDataLakesResult> Invoke(GetDataLakesInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesInvokeArgs(), options.WithVersion());
     }
 
 
@@ -54,6 +87,19 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetDataLakesArgs()
+        {
+        }
+    }
+
+    public sealed class GetDataLakesInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The unique ID for the project to get all data lakes.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetDataLakesInvokeArgs()
         {
         }
     }

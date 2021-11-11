@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -15,9 +16,79 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new Mongodbatlas.ThirdPartyIntegrationArgs
+        ///         {
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             Type = "FLOWDOCK",
+        ///             FlowName = "&lt;FLOW-NAME&gt;",
+        ///             ApiToken = "&lt;API-TOKEN&gt;",
+        ///             OrgName = "&lt;ORG-NAME&gt;",
+        ///         });
+        ///         var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new Mongodbatlas.GetThirdPartyIntegrationInvokeArgs
+        ///         {
+        ///             ProjectId = testFlowdock.ProjectId,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetThirdPartyIntegrationResult> InvokeAsync(GetThirdPartyIntegrationArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new Mongodbatlas.ThirdPartyIntegrationArgs
+        ///         {
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             Type = "FLOWDOCK",
+        ///             FlowName = "&lt;FLOW-NAME&gt;",
+        ///             ApiToken = "&lt;API-TOKEN&gt;",
+        ///             OrgName = "&lt;ORG-NAME&gt;",
+        ///         });
+        ///         var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new Mongodbatlas.GetThirdPartyIntegrationInvokeArgs
+        ///         {
+        ///             ProjectId = testFlowdock.ProjectId,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetThirdPartyIntegrationResult> Invoke(GetThirdPartyIntegrationInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationInvokeArgs(), options.WithVersion());
     }
 
 
@@ -43,6 +114,32 @@ namespace Pulumi.Mongodbatlas
         public string Type { get; set; } = null!;
 
         public GetThirdPartyIntegrationArgs()
+        {
+        }
+    }
+
+    public sealed class GetThirdPartyIntegrationInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The unique ID for the project to get all Third-Party service integrations
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Third-Party service integration type
+        /// * PAGER_DUTY
+        /// * DATADOG
+        /// * NEW_RELIC
+        /// * OPS_GENIE
+        /// * VICTOR_OPS
+        /// * FLOWDOCK
+        /// * WEBHOOK
+        /// </summary>
+        [Input("type", required: true)]
+        public Input<string> Type { get; set; } = null!;
+
+        public GetThirdPartyIntegrationInvokeArgs()
         {
         }
     }

@@ -184,7 +184,7 @@ type OnlineArchiveInput interface {
 }
 
 func (*OnlineArchive) ElementType() reflect.Type {
-	return reflect.TypeOf((*OnlineArchive)(nil))
+	return reflect.TypeOf((**OnlineArchive)(nil)).Elem()
 }
 
 func (i *OnlineArchive) ToOnlineArchiveOutput() OnlineArchiveOutput {
@@ -193,35 +193,6 @@ func (i *OnlineArchive) ToOnlineArchiveOutput() OnlineArchiveOutput {
 
 func (i *OnlineArchive) ToOnlineArchiveOutputWithContext(ctx context.Context) OnlineArchiveOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveOutput)
-}
-
-func (i *OnlineArchive) ToOnlineArchivePtrOutput() OnlineArchivePtrOutput {
-	return i.ToOnlineArchivePtrOutputWithContext(context.Background())
-}
-
-func (i *OnlineArchive) ToOnlineArchivePtrOutputWithContext(ctx context.Context) OnlineArchivePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchivePtrOutput)
-}
-
-type OnlineArchivePtrInput interface {
-	pulumi.Input
-
-	ToOnlineArchivePtrOutput() OnlineArchivePtrOutput
-	ToOnlineArchivePtrOutputWithContext(ctx context.Context) OnlineArchivePtrOutput
-}
-
-type onlineArchivePtrType OnlineArchiveArgs
-
-func (*onlineArchivePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**OnlineArchive)(nil))
-}
-
-func (i *onlineArchivePtrType) ToOnlineArchivePtrOutput() OnlineArchivePtrOutput {
-	return i.ToOnlineArchivePtrOutputWithContext(context.Background())
-}
-
-func (i *onlineArchivePtrType) ToOnlineArchivePtrOutputWithContext(ctx context.Context) OnlineArchivePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchivePtrOutput)
 }
 
 // OnlineArchiveArrayInput is an input type that accepts OnlineArchiveArray and OnlineArchiveArrayOutput values.
@@ -238,7 +209,7 @@ type OnlineArchiveArrayInput interface {
 type OnlineArchiveArray []OnlineArchiveInput
 
 func (OnlineArchiveArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*OnlineArchive)(nil))
+	return reflect.TypeOf((*[]*OnlineArchive)(nil)).Elem()
 }
 
 func (i OnlineArchiveArray) ToOnlineArchiveArrayOutput() OnlineArchiveArrayOutput {
@@ -263,7 +234,7 @@ type OnlineArchiveMapInput interface {
 type OnlineArchiveMap map[string]OnlineArchiveInput
 
 func (OnlineArchiveMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*OnlineArchive)(nil))
+	return reflect.TypeOf((*map[string]*OnlineArchive)(nil)).Elem()
 }
 
 func (i OnlineArchiveMap) ToOnlineArchiveMapOutput() OnlineArchiveMapOutput {
@@ -274,12 +245,10 @@ func (i OnlineArchiveMap) ToOnlineArchiveMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(OnlineArchiveMapOutput)
 }
 
-type OnlineArchiveOutput struct {
-	*pulumi.OutputState
-}
+type OnlineArchiveOutput struct{ *pulumi.OutputState }
 
 func (OnlineArchiveOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*OnlineArchive)(nil))
+	return reflect.TypeOf((**OnlineArchive)(nil)).Elem()
 }
 
 func (o OnlineArchiveOutput) ToOnlineArchiveOutput() OnlineArchiveOutput {
@@ -290,36 +259,10 @@ func (o OnlineArchiveOutput) ToOnlineArchiveOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o OnlineArchiveOutput) ToOnlineArchivePtrOutput() OnlineArchivePtrOutput {
-	return o.ToOnlineArchivePtrOutputWithContext(context.Background())
-}
-
-func (o OnlineArchiveOutput) ToOnlineArchivePtrOutputWithContext(ctx context.Context) OnlineArchivePtrOutput {
-	return o.ApplyT(func(v OnlineArchive) *OnlineArchive {
-		return &v
-	}).(OnlineArchivePtrOutput)
-}
-
-type OnlineArchivePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (OnlineArchivePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**OnlineArchive)(nil))
-}
-
-func (o OnlineArchivePtrOutput) ToOnlineArchivePtrOutput() OnlineArchivePtrOutput {
-	return o
-}
-
-func (o OnlineArchivePtrOutput) ToOnlineArchivePtrOutputWithContext(ctx context.Context) OnlineArchivePtrOutput {
-	return o
-}
-
 type OnlineArchiveArrayOutput struct{ *pulumi.OutputState }
 
 func (OnlineArchiveArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]OnlineArchive)(nil))
+	return reflect.TypeOf((*[]*OnlineArchive)(nil)).Elem()
 }
 
 func (o OnlineArchiveArrayOutput) ToOnlineArchiveArrayOutput() OnlineArchiveArrayOutput {
@@ -331,15 +274,15 @@ func (o OnlineArchiveArrayOutput) ToOnlineArchiveArrayOutputWithContext(ctx cont
 }
 
 func (o OnlineArchiveArrayOutput) Index(i pulumi.IntInput) OnlineArchiveOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OnlineArchive {
-		return vs[0].([]OnlineArchive)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *OnlineArchive {
+		return vs[0].([]*OnlineArchive)[vs[1].(int)]
 	}).(OnlineArchiveOutput)
 }
 
 type OnlineArchiveMapOutput struct{ *pulumi.OutputState }
 
 func (OnlineArchiveMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]OnlineArchive)(nil))
+	return reflect.TypeOf((*map[string]*OnlineArchive)(nil)).Elem()
 }
 
 func (o OnlineArchiveMapOutput) ToOnlineArchiveMapOutput() OnlineArchiveMapOutput {
@@ -351,14 +294,16 @@ func (o OnlineArchiveMapOutput) ToOnlineArchiveMapOutputWithContext(ctx context.
 }
 
 func (o OnlineArchiveMapOutput) MapIndex(k pulumi.StringInput) OnlineArchiveOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) OnlineArchive {
-		return vs[0].(map[string]OnlineArchive)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *OnlineArchive {
+		return vs[0].(map[string]*OnlineArchive)[vs[1].(string)]
 	}).(OnlineArchiveOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveInput)(nil)).Elem(), &OnlineArchive{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveArrayInput)(nil)).Elem(), OnlineArchiveArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveMapInput)(nil)).Elem(), OnlineArchiveMap{})
 	pulumi.RegisterOutputType(OnlineArchiveOutput{})
-	pulumi.RegisterOutputType(OnlineArchivePtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveArrayOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveMapOutput{})
 }

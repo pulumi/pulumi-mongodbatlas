@@ -107,22 +107,22 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     constructor(name: string, args: SearchIndexArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SearchIndexArgs | SearchIndexState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SearchIndexState | undefined;
-            inputs["analyzer"] = state ? state.analyzer : undefined;
-            inputs["analyzers"] = state ? state.analyzers : undefined;
-            inputs["clusterName"] = state ? state.clusterName : undefined;
-            inputs["collectionName"] = state ? state.collectionName : undefined;
-            inputs["database"] = state ? state.database : undefined;
-            inputs["indexId"] = state ? state.indexId : undefined;
-            inputs["mappingsDynamic"] = state ? state.mappingsDynamic : undefined;
-            inputs["mappingsFields"] = state ? state.mappingsFields : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["searchAnalyzer"] = state ? state.searchAnalyzer : undefined;
-            inputs["status"] = state ? state.status : undefined;
+            resourceInputs["analyzer"] = state ? state.analyzer : undefined;
+            resourceInputs["analyzers"] = state ? state.analyzers : undefined;
+            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["collectionName"] = state ? state.collectionName : undefined;
+            resourceInputs["database"] = state ? state.database : undefined;
+            resourceInputs["indexId"] = state ? state.indexId : undefined;
+            resourceInputs["mappingsDynamic"] = state ? state.mappingsDynamic : undefined;
+            resourceInputs["mappingsFields"] = state ? state.mappingsFields : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["searchAnalyzer"] = state ? state.searchAnalyzer : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as SearchIndexArgs | undefined;
             if ((!args || args.analyzer === undefined) && !opts.urn) {
@@ -140,23 +140,23 @@ export class SearchIndex extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["analyzer"] = args ? args.analyzer : undefined;
-            inputs["analyzers"] = args ? args.analyzers : undefined;
-            inputs["clusterName"] = args ? args.clusterName : undefined;
-            inputs["collectionName"] = args ? args.collectionName : undefined;
-            inputs["database"] = args ? args.database : undefined;
-            inputs["mappingsDynamic"] = args ? args.mappingsDynamic : undefined;
-            inputs["mappingsFields"] = args ? args.mappingsFields : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["searchAnalyzer"] = args ? args.searchAnalyzer : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["indexId"] = undefined /*out*/;
+            resourceInputs["analyzer"] = args ? args.analyzer : undefined;
+            resourceInputs["analyzers"] = args ? args.analyzers : undefined;
+            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["collectionName"] = args ? args.collectionName : undefined;
+            resourceInputs["database"] = args ? args.database : undefined;
+            resourceInputs["mappingsDynamic"] = args ? args.mappingsDynamic : undefined;
+            resourceInputs["mappingsFields"] = args ? args.mappingsFields : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["searchAnalyzer"] = args ? args.searchAnalyzer : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["indexId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(SearchIndex.__pulumiType, name, inputs, opts);
+        super(SearchIndex.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -167,48 +167,48 @@ export interface SearchIndexState {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    readonly analyzer?: pulumi.Input<string>;
+    analyzer?: pulumi.Input<string>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
      */
-    readonly analyzers?: pulumi.Input<string>;
+    analyzers?: pulumi.Input<string>;
     /**
      * The name of the cluster where you want to create the search index within.
      */
-    readonly clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string>;
     /**
      * Name of the collection the index is on.
      */
-    readonly collectionName?: pulumi.Input<string>;
+    collectionName?: pulumi.Input<string>;
     /**
      * Name of the database the collection is in.
      */
-    readonly database?: pulumi.Input<string>;
-    readonly indexId?: pulumi.Input<string>;
+    database?: pulumi.Input<string>;
+    indexId?: pulumi.Input<string>;
     /**
      * Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
      */
-    readonly mappingsDynamic?: pulumi.Input<boolean>;
+    mappingsDynamic?: pulumi.Input<boolean>;
     /**
      * attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
      */
-    readonly mappingsFields?: pulumi.Input<string>;
+    mappingsFields?: pulumi.Input<string>;
     /**
      * Name of the custom analyzer. Names must be unique within an index, and may **not** start with any of the following strings:
      * * `lucene`
      * * `builtin`
      * * `mongodb`
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the organization or project you want to create the search index within.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    readonly searchAnalyzer?: pulumi.Input<string>;
-    readonly status?: pulumi.Input<string>;
+    searchAnalyzer?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
 }
 
 /**
@@ -218,45 +218,45 @@ export interface SearchIndexArgs {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    readonly analyzer: pulumi.Input<string>;
+    analyzer: pulumi.Input<string>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
      */
-    readonly analyzers?: pulumi.Input<string>;
+    analyzers?: pulumi.Input<string>;
     /**
      * The name of the cluster where you want to create the search index within.
      */
-    readonly clusterName: pulumi.Input<string>;
+    clusterName: pulumi.Input<string>;
     /**
      * Name of the collection the index is on.
      */
-    readonly collectionName: pulumi.Input<string>;
+    collectionName: pulumi.Input<string>;
     /**
      * Name of the database the collection is in.
      */
-    readonly database: pulumi.Input<string>;
+    database: pulumi.Input<string>;
     /**
      * Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
      */
-    readonly mappingsDynamic?: pulumi.Input<boolean>;
+    mappingsDynamic?: pulumi.Input<boolean>;
     /**
      * attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
      */
-    readonly mappingsFields?: pulumi.Input<string>;
+    mappingsFields?: pulumi.Input<string>;
     /**
      * Name of the custom analyzer. Names must be unique within an index, and may **not** start with any of the following strings:
      * * `lucene`
      * * `builtin`
      * * `mongodb`
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the organization or project you want to create the search index within.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    readonly searchAnalyzer?: pulumi.Input<string>;
-    readonly status?: pulumi.Input<string>;
+    searchAnalyzer?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -41,7 +42,7 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             var projectId = values.Item1;
         ///             var providerName = values.Item2;
-        ///             return Mongodbatlas.GetNetworkContainers.InvokeAsync(new Mongodbatlas.GetNetworkContainersArgs
+        ///             return Mongodbatlas.GetNetworkContainers.Invoke(new Mongodbatlas.GetNetworkContainersInvokeArgs
         ///             {
         ///                 ProjectId = projectId,
         ///                 ProviderName = providerName,
@@ -56,6 +57,52 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetNetworkContainersResult> InvokeAsync(GetNetworkContainersArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// ### Basic Example.
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new Mongodbatlas.NetworkContainerArgs
+        ///         {
+        ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///             AtlasCidrBlock = "10.8.0.0/21",
+        ///             ProviderName = "AWS",
+        ///             RegionName = "US_EAST_1",
+        ///         });
+        ///         var testNetworkContainers = Output.Tuple(testNetworkContainer.ProjectId, testNetworkContainer.ProviderName).Apply(values =&gt;
+        ///         {
+        ///             var projectId = values.Item1;
+        ///             var providerName = values.Item2;
+        ///             return Mongodbatlas.GetNetworkContainers.Invoke(new Mongodbatlas.GetNetworkContainersInvokeArgs
+        ///             {
+        ///                 ProjectId = projectId,
+        ///                 ProviderName = providerName,
+        ///             });
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetNetworkContainersResult> Invoke(GetNetworkContainersInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersInvokeArgs(), options.WithVersion());
     }
 
 
@@ -74,6 +121,25 @@ namespace Pulumi.Mongodbatlas
         public string ProviderName { get; set; } = null!;
 
         public GetNetworkContainersArgs()
+        {
+        }
+    }
+
+    public sealed class GetNetworkContainersInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The unique ID for the project to create the database user.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
+        /// </summary>
+        [Input("providerName", required: true)]
+        public Input<string> ProviderName { get; set; } = null!;
+
+        public GetNetworkContainersInvokeArgs()
         {
         }
     }

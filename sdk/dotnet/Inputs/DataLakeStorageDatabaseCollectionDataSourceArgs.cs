@@ -9,4 +9,20 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class DataLakeStorageDatabaseCollectionDataSourceArgs : Pulumi.ResourceArgs
+    {
+        [Input("defaultFormat")]
+        public Input<string>? DefaultFormat { get; set; }
+
+        [Input("path")]
+        public Input<string>? Path { get; set; }
+
+        [Input("storeName")]
+        public Input<string>? StoreName { get; set; }
+
+        public DataLakeStorageDatabaseCollectionDataSourceArgs()
+        {
+        }
+    }
 }

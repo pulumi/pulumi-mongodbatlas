@@ -9,4 +9,25 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class ClusterSnapshotBackupPolicyPolicyArgs : Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// Unique identifer of the replication document for a zone in a Global Cluster.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        [Input("policyItems")]
+        private InputList<Inputs.ClusterSnapshotBackupPolicyPolicyPolicyItemArgs>? _policyItems;
+        public InputList<Inputs.ClusterSnapshotBackupPolicyPolicyPolicyItemArgs> PolicyItems
+        {
+            get => _policyItems ?? (_policyItems = new InputList<Inputs.ClusterSnapshotBackupPolicyPolicyPolicyItemArgs>());
+            set => _policyItems = value;
+        }
+
+        public ClusterSnapshotBackupPolicyPolicyArgs()
+        {
+        }
+    }
 }

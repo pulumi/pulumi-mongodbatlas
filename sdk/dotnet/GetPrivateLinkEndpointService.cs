@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetPrivateLinkEndpointServiceResult> InvokeAsync(GetPrivateLinkEndpointServiceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
+        public static Output<GetPrivateLinkEndpointServiceResult> Invoke(GetPrivateLinkEndpointServiceInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceInvokeArgs(), options.WithVersion());
     }
 
 
@@ -48,6 +57,37 @@ namespace Pulumi.Mongodbatlas
         public string ProviderName { get; set; } = null!;
 
         public GetPrivateLinkEndpointServiceArgs()
+        {
+        }
+    }
+
+    public sealed class GetPrivateLinkEndpointServiceInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Unique identifier of the `AWS` or `AZURE` resource.
+        /// </summary>
+        [Input("endpointServiceId", required: true)]
+        public Input<string> EndpointServiceId { get; set; } = null!;
+
+        /// <summary>
+        /// Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
+        /// </summary>
+        [Input("privateLinkId", required: true)]
+        public Input<string> PrivateLinkId { get; set; } = null!;
+
+        /// <summary>
+        /// Unique identifier for the project.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        /// </summary>
+        [Input("providerName", required: true)]
+        public Input<string> ProviderName { get; set; } = null!;
+
+        public GetPrivateLinkEndpointServiceInvokeArgs()
         {
         }
     }

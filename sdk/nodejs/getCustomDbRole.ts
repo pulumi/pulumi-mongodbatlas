@@ -36,10 +36,10 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const test = pulumi.all([testRole.projectId, testRole.roleName]).apply(([projectId, roleName]) => mongodbatlas.getCustomDbRole({
- *     projectId: projectId,
- *     roleName: roleName,
- * }));
+ * const test = mongodbatlas.getCustomDbRoleOutput({
+ *     projectId: testRole.projectId,
+ *     roleName: testRole.roleName,
+ * });
  * ```
  */
 export function getCustomDbRole(args: GetCustomDbRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRoleResult> {
@@ -61,15 +61,15 @@ export function getCustomDbRole(args: GetCustomDbRoleArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getCustomDbRole.
  */
 export interface GetCustomDbRoleArgs {
-    readonly inheritedRoles?: inputs.GetCustomDbRoleInheritedRole[];
+    inheritedRoles?: inputs.GetCustomDbRoleInheritedRole[];
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * Name of the custom role.
      */
-    readonly roleName: string;
+    roleName: string;
 }
 
 /**
@@ -84,4 +84,23 @@ export interface GetCustomDbRoleResult {
     readonly inheritedRoles?: outputs.GetCustomDbRoleInheritedRole[];
     readonly projectId: string;
     readonly roleName: string;
+}
+
+export function getCustomDbRoleOutput(args: GetCustomDbRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRoleResult> {
+    return pulumi.output(args).apply(a => getCustomDbRole(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCustomDbRole.
+ */
+export interface GetCustomDbRoleOutputArgs {
+    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.GetCustomDbRoleInheritedRoleArgs>[]>;
+    /**
+     * The unique ID for the project to create the database user.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Name of the custom role.
+     */
+    roleName: pulumi.Input<string>;
 }

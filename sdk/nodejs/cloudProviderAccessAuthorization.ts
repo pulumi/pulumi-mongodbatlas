@@ -48,15 +48,15 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
      */
     constructor(name: string, args: CloudProviderAccessAuthorizationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderAccessAuthorizationArgs | CloudProviderAccessAuthorizationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderAccessAuthorizationState | undefined;
-            inputs["authorizedDate"] = state ? state.authorizedDate : undefined;
-            inputs["aws"] = state ? state.aws : undefined;
-            inputs["featureUsages"] = state ? state.featureUsages : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["authorizedDate"] = state ? state.authorizedDate : undefined;
+            resourceInputs["aws"] = state ? state.aws : undefined;
+            resourceInputs["featureUsages"] = state ? state.featureUsages : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as CloudProviderAccessAuthorizationArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -65,16 +65,16 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
             if ((!args || args.roleId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
-            inputs["aws"] = args ? args.aws : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["roleId"] = args ? args.roleId : undefined;
-            inputs["authorizedDate"] = undefined /*out*/;
-            inputs["featureUsages"] = undefined /*out*/;
+            resourceInputs["aws"] = args ? args.aws : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["authorizedDate"] = undefined /*out*/;
+            resourceInputs["featureUsages"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(CloudProviderAccessAuthorization.__pulumiType, name, inputs, opts);
+        super(CloudProviderAccessAuthorization.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -82,18 +82,18 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudProviderAccessAuthorization resources.
  */
 export interface CloudProviderAccessAuthorizationState {
-    readonly authorizedDate?: pulumi.Input<string>;
-    readonly aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
-    readonly featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[]>;
-    readonly projectId?: pulumi.Input<string>;
-    readonly roleId?: pulumi.Input<string>;
+    authorizedDate?: pulumi.Input<string>;
+    aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
+    featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[]>;
+    projectId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a CloudProviderAccessAuthorization resource.
  */
 export interface CloudProviderAccessAuthorizationArgs {
-    readonly aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
-    readonly projectId: pulumi.Input<string>;
-    readonly roleId: pulumi.Input<string>;
+    aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
+    projectId: pulumi.Input<string>;
+    roleId: pulumi.Input<string>;
 }

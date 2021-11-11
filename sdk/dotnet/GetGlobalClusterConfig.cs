@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -19,6 +20,15 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetGlobalClusterConfigResult> InvokeAsync(GetGlobalClusterConfigArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetGlobalClusterConfigResult>("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args ?? new GetGlobalClusterConfigArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
+        public static Output<GetGlobalClusterConfigResult> Invoke(GetGlobalClusterConfigInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetGlobalClusterConfigResult>("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args ?? new GetGlobalClusterConfigInvokeArgs(), options.WithVersion());
     }
 
 
@@ -47,6 +57,35 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetGlobalClusterConfigArgs()
+        {
+        }
+    }
+
+    public sealed class GetGlobalClusterConfigInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        [Input("managedNamespaces")]
+        private InputList<Inputs.GetGlobalClusterConfigManagedNamespaceInputArgs>? _managedNamespaces;
+
+        /// <summary>
+        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        /// </summary>
+        public InputList<Inputs.GetGlobalClusterConfigManagedNamespaceInputArgs> ManagedNamespaces
+        {
+            get => _managedNamespaces ?? (_managedNamespaces = new InputList<Inputs.GetGlobalClusterConfigManagedNamespaceInputArgs>());
+            set => _managedNamespaces = value;
+        }
+
+        /// <summary>
+        /// The unique ID for the project to create the database user.
+        /// * `cluster_name - (Required) The name of the Global Cluster.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetGlobalClusterConfigInvokeArgs()
         {
         }
     }

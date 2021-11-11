@@ -75,32 +75,32 @@ export class Project extends pulumi.CustomResource {
      */
     constructor(name: string, args: ProjectArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ProjectArgs | ProjectState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectState | undefined;
-            inputs["clusterCount"] = state ? state.clusterCount : undefined;
-            inputs["created"] = state ? state.created : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["orgId"] = state ? state.orgId : undefined;
-            inputs["projectOwnerId"] = state ? state.projectOwnerId : undefined;
-            inputs["teams"] = state ? state.teams : undefined;
+            resourceInputs["clusterCount"] = state ? state.clusterCount : undefined;
+            resourceInputs["created"] = state ? state.created : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["projectOwnerId"] = state ? state.projectOwnerId : undefined;
+            resourceInputs["teams"] = state ? state.teams : undefined;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
             if ((!args || args.orgId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["orgId"] = args ? args.orgId : undefined;
-            inputs["projectOwnerId"] = args ? args.projectOwnerId : undefined;
-            inputs["teams"] = args ? args.teams : undefined;
-            inputs["clusterCount"] = undefined /*out*/;
-            inputs["created"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["projectOwnerId"] = args ? args.projectOwnerId : undefined;
+            resourceInputs["teams"] = args ? args.teams : undefined;
+            resourceInputs["clusterCount"] = undefined /*out*/;
+            resourceInputs["created"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Project.__pulumiType, name, inputs, opts);
+        super(Project.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -111,24 +111,24 @@ export interface ProjectState {
     /**
      * The number of Atlas clusters deployed in the project..
      */
-    readonly clusterCount?: pulumi.Input<number>;
+    clusterCount?: pulumi.Input<number>;
     /**
      * The ISO-8601-formatted timestamp of when Atlas created the project..
      */
-    readonly created?: pulumi.Input<string>;
+    created?: pulumi.Input<string>;
     /**
      * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the organization you want to create the project within.
      */
-    readonly orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
-    readonly projectOwnerId?: pulumi.Input<string>;
-    readonly teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
+    projectOwnerId?: pulumi.Input<string>;
+    teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
 }
 
 /**
@@ -138,14 +138,14 @@ export interface ProjectArgs {
     /**
      * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The ID of the organization you want to create the project within.
      */
-    readonly orgId: pulumi.Input<string>;
+    orgId: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
-    readonly projectOwnerId?: pulumi.Input<string>;
-    readonly teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
+    projectOwnerId?: pulumi.Input<string>;
+    teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
 }

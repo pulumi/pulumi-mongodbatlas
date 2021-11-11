@@ -108,18 +108,18 @@ export class DataLake extends pulumi.CustomResource {
      */
     constructor(name: string, args: DataLakeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DataLakeArgs | DataLakeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DataLakeState | undefined;
-            inputs["aws"] = state ? state.aws : undefined;
-            inputs["dataProcessRegion"] = state ? state.dataProcessRegion : undefined;
-            inputs["hostnames"] = state ? state.hostnames : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["state"] = state ? state.state : undefined;
-            inputs["storageDatabases"] = state ? state.storageDatabases : undefined;
-            inputs["storageStores"] = state ? state.storageStores : undefined;
+            resourceInputs["aws"] = state ? state.aws : undefined;
+            resourceInputs["dataProcessRegion"] = state ? state.dataProcessRegion : undefined;
+            resourceInputs["hostnames"] = state ? state.hostnames : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["storageDatabases"] = state ? state.storageDatabases : undefined;
+            resourceInputs["storageStores"] = state ? state.storageStores : undefined;
         } else {
             const args = argsOrState as DataLakeArgs | undefined;
             if ((!args || args.aws === undefined) && !opts.urn) {
@@ -128,19 +128,19 @@ export class DataLake extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["aws"] = args ? args.aws : undefined;
-            inputs["dataProcessRegion"] = args ? args.dataProcessRegion : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["hostnames"] = undefined /*out*/;
-            inputs["state"] = undefined /*out*/;
-            inputs["storageDatabases"] = undefined /*out*/;
-            inputs["storageStores"] = undefined /*out*/;
+            resourceInputs["aws"] = args ? args.aws : undefined;
+            resourceInputs["dataProcessRegion"] = args ? args.dataProcessRegion : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["hostnames"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
+            resourceInputs["storageDatabases"] = undefined /*out*/;
+            resourceInputs["storageStores"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(DataLake.__pulumiType, name, inputs, opts);
+        super(DataLake.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -153,29 +153,29 @@ export interface DataLakeState {
      * * `aws.0.role_id` - (Required) Unique identifier of the role that Data Lake can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `aws.0.test_s3_bucket`.
      * * `aws.0.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `aws.0.role_id`.
      */
-    readonly aws?: pulumi.Input<inputs.DataLakeAws>;
+    aws?: pulumi.Input<inputs.DataLakeAws>;
     /**
      * The cloud provider region to which Atlas Data Lake routes client connections for data processing. Set to `null` to direct Atlas Data Lake to route client connections to the region nearest to the client based on DNS resolution.
      * * `data_process_region.0.cloud_provider` - (Required) Name of the cloud service provider. Atlas Data Lake only supports AWS.
      * * `data_process_region.0.region` - (Required). Name of the region to which Data Lake routes client connections for data processing. Atlas Data Lake only supports the following regions:
      */
-    readonly dataProcessRegion?: pulumi.Input<inputs.DataLakeDataProcessRegion>;
+    dataProcessRegion?: pulumi.Input<inputs.DataLakeDataProcessRegion>;
     /**
      * The list of hostnames assigned to the Atlas Data Lake. Each string in the array is a hostname assigned to the Atlas Data Lake.
      */
-    readonly hostnames?: pulumi.Input<pulumi.Input<string>[]>;
+    hostnames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Name of the Atlas Data Lake.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create a data lake.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Current state of the Atlas Data Lake:
      */
-    readonly state?: pulumi.Input<string>;
+    state?: pulumi.Input<string>;
     /**
      * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Data Lake has no mapping configuration for any data store.
      * * `storage_databases.#.name` - Name of the database to which Data Lake maps the data contained in the data store.
@@ -190,7 +190,7 @@ export interface DataLakeState {
      * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      */
-    readonly storageDatabases?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageDatabase>[]>;
+    storageDatabases?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageDatabase>[]>;
     /**
      * Each object in the array represents a data store. Data Lake uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Data Lake has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
@@ -201,7 +201,7 @@ export interface DataLakeState {
      * * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
      * * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
      */
-    readonly storageStores?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageStore>[]>;
+    storageStores?: pulumi.Input<pulumi.Input<inputs.DataLakeStorageStore>[]>;
 }
 
 /**
@@ -213,19 +213,19 @@ export interface DataLakeArgs {
      * * `aws.0.role_id` - (Required) Unique identifier of the role that Data Lake can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `aws.0.test_s3_bucket`.
      * * `aws.0.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `aws.0.role_id`.
      */
-    readonly aws: pulumi.Input<inputs.DataLakeAws>;
+    aws: pulumi.Input<inputs.DataLakeAws>;
     /**
      * The cloud provider region to which Atlas Data Lake routes client connections for data processing. Set to `null` to direct Atlas Data Lake to route client connections to the region nearest to the client based on DNS resolution.
      * * `data_process_region.0.cloud_provider` - (Required) Name of the cloud service provider. Atlas Data Lake only supports AWS.
      * * `data_process_region.0.region` - (Required). Name of the region to which Data Lake routes client connections for data processing. Atlas Data Lake only supports the following regions:
      */
-    readonly dataProcessRegion?: pulumi.Input<inputs.DataLakeDataProcessRegion>;
+    dataProcessRegion?: pulumi.Input<inputs.DataLakeDataProcessRegion>;
     /**
      * Name of the Atlas Data Lake.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create a data lake.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

@@ -12,6 +12,7 @@ __all__ = [
     'GetTeamResult',
     'AwaitableGetTeamResult',
     'get_team',
+    'get_team_output',
 ]
 
 @pulumi.output_type
@@ -117,3 +118,21 @@ def get_team(name: Optional[str] = None,
         org_id=__ret__.org_id,
         team_id=__ret__.team_id,
         usernames=__ret__.usernames)
+
+
+@_utilities.lift_output_func(get_team)
+def get_team_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                    org_id: Optional[pulumi.Input[str]] = None,
+                    team_id: Optional[pulumi.Input[Optional[str]]] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTeamResult]:
+    """
+    `Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+
+    :param str name: The team name.
+    :param str org_id: The unique identifier for the organization you want to associate the team with.
+    :param str team_id: The unique identifier for the team.
+    """
+    ...

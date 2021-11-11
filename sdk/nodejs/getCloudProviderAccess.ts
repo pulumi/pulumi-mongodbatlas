@@ -20,9 +20,9 @@ import * as utilities from "./utilities";
  *     projectId: "<PROJECT-ID>",
  *     providerName: "AWS",
  * });
- * const all = testRole.projectId.apply(projectId => mongodbatlas.getCloudProviderAccess({
- *     projectId: projectId,
- * }));
+ * const all = mongodbatlas.getCloudProviderAccessOutput({
+ *     projectId: testRole.projectId,
+ * });
  * ```
  */
 export function getCloudProviderAccess(args: GetCloudProviderAccessArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderAccessResult> {
@@ -45,7 +45,7 @@ export interface GetCloudProviderAccessArgs {
     /**
      * The unique ID for the project to get all Cloud Provider Access
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -61,4 +61,18 @@ export interface GetCloudProviderAccessResult {
      */
     readonly id: string;
     readonly projectId: string;
+}
+
+export function getCloudProviderAccessOutput(args: GetCloudProviderAccessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderAccessResult> {
+    return pulumi.output(args).apply(a => getCloudProviderAccess(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCloudProviderAccess.
+ */
+export interface GetCloudProviderAccessOutputArgs {
+    /**
+     * The unique ID for the project to get all Cloud Provider Access
+     */
+    projectId: pulumi.Input<string>;
 }

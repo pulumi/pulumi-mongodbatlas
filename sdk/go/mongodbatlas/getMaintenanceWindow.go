@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -41,4 +44,77 @@ type LookupMaintenanceWindowResult struct {
 	ProjectId         string `pulumi:"projectId"`
 	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap bool `pulumi:"startAsap"`
+}
+
+func LookupMaintenanceWindowOutput(ctx *pulumi.Context, args LookupMaintenanceWindowOutputArgs, opts ...pulumi.InvokeOption) LookupMaintenanceWindowResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupMaintenanceWindowResult, error) {
+			args := v.(LookupMaintenanceWindowArgs)
+			r, err := LookupMaintenanceWindow(ctx, &args, opts...)
+			return *r, err
+		}).(LookupMaintenanceWindowResultOutput)
+}
+
+// A collection of arguments for invoking getMaintenanceWindow.
+type LookupMaintenanceWindowOutputArgs struct {
+	// The unique identifier of the project for the Maintenance Window.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupMaintenanceWindowOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupMaintenanceWindowArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getMaintenanceWindow.
+type LookupMaintenanceWindowResultOutput struct{ *pulumi.OutputState }
+
+func (LookupMaintenanceWindowResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupMaintenanceWindowResult)(nil)).Elem()
+}
+
+func (o LookupMaintenanceWindowResultOutput) ToLookupMaintenanceWindowResultOutput() LookupMaintenanceWindowResultOutput {
+	return o
+}
+
+func (o LookupMaintenanceWindowResultOutput) ToLookupMaintenanceWindowResultOutputWithContext(ctx context.Context) LookupMaintenanceWindowResultOutput {
+	return o
+}
+
+// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+func (o LookupMaintenanceWindowResultOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) bool { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
+}
+
+// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+func (o LookupMaintenanceWindowResultOutput) DayOfWeek() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.DayOfWeek }).(pulumi.IntOutput)
+}
+
+// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
+func (o LookupMaintenanceWindowResultOutput) HourOfDay() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.HourOfDay }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupMaintenanceWindowResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+func (o LookupMaintenanceWindowResultOutput) NumberOfDeferrals() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.NumberOfDeferrals }).(pulumi.IntOutput)
+}
+
+func (o LookupMaintenanceWindowResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+func (o LookupMaintenanceWindowResultOutput) StartAsap() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) bool { return v.StartAsap }).(pulumi.BoolOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupMaintenanceWindowResultOutput{})
 }

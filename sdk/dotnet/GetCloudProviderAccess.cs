@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -33,10 +34,10 @@ namespace Pulumi.Mongodbatlas
         ///             ProjectId = "&lt;PROJECT-ID&gt;",
         ///             ProviderName = "AWS",
         ///         });
-        ///         var all = testRole.ProjectId.Apply(projectId =&gt; Mongodbatlas.GetCloudProviderAccess.InvokeAsync(new Mongodbatlas.GetCloudProviderAccessArgs
+        ///         var all = Mongodbatlas.GetCloudProviderAccess.Invoke(new Mongodbatlas.GetCloudProviderAccessInvokeArgs
         ///         {
-        ///             ProjectId = projectId,
-        ///         }));
+        ///             ProjectId = testRole.ProjectId,
+        ///         });
         ///     }
         /// 
         /// }
@@ -46,6 +47,42 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetCloudProviderAccessResult> InvokeAsync(GetCloudProviderAccessArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new Mongodbatlas.CloudProviderAccessArgs
+        ///         {
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             ProviderName = "AWS",
+        ///         });
+        ///         var all = Mongodbatlas.GetCloudProviderAccess.Invoke(new Mongodbatlas.GetCloudProviderAccessInvokeArgs
+        ///         {
+        ///             ProjectId = testRole.ProjectId,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetCloudProviderAccessResult> Invoke(GetCloudProviderAccessInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessInvokeArgs(), options.WithVersion());
     }
 
 
@@ -58,6 +95,19 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetCloudProviderAccessArgs()
+        {
+        }
+    }
+
+    public sealed class GetCloudProviderAccessInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The unique ID for the project to get all Cloud Provider Access
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetCloudProviderAccessInvokeArgs()
         {
         }
     }

@@ -13,6 +13,7 @@ __all__ = [
     'GetDatabaseUserResult',
     'AwaitableGetDatabaseUserResult',
     'get_database_user',
+    'get_database_user_output',
 ]
 
 @pulumi.output_type
@@ -196,3 +197,25 @@ def get_database_user(auth_database_name: Optional[str] = None,
         scopes=__ret__.scopes,
         username=__ret__.username,
         x509_type=__ret__.x509_type)
+
+
+@_utilities.lift_output_func(get_database_user)
+def get_database_user_output(auth_database_name: Optional[pulumi.Input[Optional[str]]] = None,
+                             database_name: Optional[pulumi.Input[Optional[str]]] = None,
+                             project_id: Optional[pulumi.Input[str]] = None,
+                             username: Optional[pulumi.Input[str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseUserResult]:
+    """
+    `DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
+
+    Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+
+    :param str auth_database_name: The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
+    :param str database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+    :param str project_id: The unique ID for the project to create the database user.
+    :param str username: Username for authenticating to MongoDB.
+    """
+    ...

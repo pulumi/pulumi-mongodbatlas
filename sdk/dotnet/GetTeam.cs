@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetTeamResult> InvokeAsync(GetTeamArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
+        public static Output<GetTeamResult> Invoke(GetTeamInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithVersion());
     }
 
 
@@ -42,6 +51,31 @@ namespace Pulumi.Mongodbatlas
         public string? TeamId { get; set; }
 
         public GetTeamArgs()
+        {
+        }
+    }
+
+    public sealed class GetTeamInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The team name.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The unique identifier for the organization you want to associate the team with.
+        /// </summary>
+        [Input("orgId", required: true)]
+        public Input<string> OrgId { get; set; } = null!;
+
+        /// <summary>
+        /// The unique identifier for the team.
+        /// </summary>
+        [Input("teamId")]
+        public Input<string>? TeamId { get; set; }
+
+        public GetTeamInvokeArgs()
         {
         }
     }

@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -59,4 +62,112 @@ type LookupNetworkContainerResult struct {
 	VnetName string `pulumi:"vnetName"`
 	// Unique identifier of the project’s VPC.
 	VpcId string `pulumi:"vpcId"`
+}
+
+func LookupNetworkContainerOutput(ctx *pulumi.Context, args LookupNetworkContainerOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkContainerResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupNetworkContainerResult, error) {
+			args := v.(LookupNetworkContainerArgs)
+			r, err := LookupNetworkContainer(ctx, &args, opts...)
+			return *r, err
+		}).(LookupNetworkContainerResultOutput)
+}
+
+// A collection of arguments for invoking getNetworkContainer.
+type LookupNetworkContainerOutputArgs struct {
+	// The Network Peering Container ID.
+	ContainerId pulumi.StringInput `pulumi:"containerId"`
+	// The unique ID for the project to create the database user.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupNetworkContainerOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkContainerArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getNetworkContainer.
+type LookupNetworkContainerResultOutput struct{ *pulumi.OutputState }
+
+func (LookupNetworkContainerResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkContainerResult)(nil)).Elem()
+}
+
+func (o LookupNetworkContainerResultOutput) ToLookupNetworkContainerResultOutput() LookupNetworkContainerResultOutput {
+	return o
+}
+
+func (o LookupNetworkContainerResultOutput) ToLookupNetworkContainerResultOutputWithContext(ctx context.Context) LookupNetworkContainerResultOutput {
+	return o
+}
+
+// CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
+func (o LookupNetworkContainerResultOutput) AtlasCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.AtlasCidrBlock }).(pulumi.StringOutput)
+}
+
+// Unique identifer of the Azure subscription in which the VNet resides.
+func (o LookupNetworkContainerResultOutput) AzureSubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.AzureSubscriptionId }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkContainerResultOutput) ContainerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.ContainerId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the GCP project in which the Network Peering connection resides.
+func (o LookupNetworkContainerResultOutput) GcpProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.GcpProjectId }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupNetworkContainerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Name of the Network Peering connection in the Atlas project.
+func (o LookupNetworkContainerResultOutput) NetworkName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.NetworkName }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkContainerResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Cloud provider for this Network Peering connection. If omitted, Atlas sets this parameter to AWS.
+func (o LookupNetworkContainerResultOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Indicates whether the project has Network Peering connections deployed in the container.
+func (o LookupNetworkContainerResultOutput) Provisioned() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) bool { return v.Provisioned }).(pulumi.BoolOutput)
+}
+
+// The Atlas Azure region name for where this container will exist.
+func (o LookupNetworkContainerResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Atlas AWS region name for where this container will exist.
+func (o LookupNetworkContainerResultOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// Atlas GCP regions where the container resides.
+func (o LookupNetworkContainerResultOutput) Regions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) []string { return v.Regions }).(pulumi.StringArrayOutput)
+}
+
+// The name of the Azure VNet. This value is null until you provision an Azure VNet in the container.
+func (o LookupNetworkContainerResultOutput) VnetName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.VnetName }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the project’s VPC.
+func (o LookupNetworkContainerResultOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkContainerResult) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupNetworkContainerResultOutput{})
 }

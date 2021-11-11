@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,22 +33,22 @@ import (
 // 			Password:         pulumi.String("test-acc-password"),
 // 			ProjectId:        pulumi.String("<PROJECT-ID>"),
 // 			AuthDatabaseName: pulumi.String("admin"),
-// 			Roles: mongodbatlas.DatabaseUserRoleArray{
-// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 			Roles: DatabaseUserRoleArray{
+// 				&DatabaseUserRoleArgs{
 // 					RoleName:     pulumi.String("readWrite"),
 // 					DatabaseName: pulumi.String("admin"),
 // 				},
-// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 				&DatabaseUserRoleArgs{
 // 					RoleName:     pulumi.String("atlasAdmin"),
 // 					DatabaseName: pulumi.String("admin"),
 // 				},
 // 			},
-// 			Labels: mongodbatlas.DatabaseUserLabelArray{
-// 				&mongodbatlas.DatabaseUserLabelArgs{
+// 			Labels: DatabaseUserLabelArray{
+// 				&DatabaseUserLabelArgs{
 // 					Key:   pulumi.String("key 1"),
 // 					Value: pulumi.String("value 1"),
 // 				},
-// 				&mongodbatlas.DatabaseUserLabelArgs{
+// 				&DatabaseUserLabelArgs{
 // 					Key:   pulumi.String("key 2"),
 // 					Value: pulumi.String("value 2"),
 // 				},
@@ -54,12 +57,15 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = mongodbatlas.LookupDatabaseUsersOutput(ctx, GetDatabaseUsersOutputArgs{
+// 			ProjectId: testDatabaseUser.ProjectId,
+// 		}, nil)
 // 		return nil
 // 	})
 // }
 // ```
-func GetDatabaseUsers(ctx *pulumi.Context, args *GetDatabaseUsersArgs, opts ...pulumi.InvokeOption) (*GetDatabaseUsersResult, error) {
-	var rv GetDatabaseUsersResult
+func LookupDatabaseUsers(ctx *pulumi.Context, args *LookupDatabaseUsersArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseUsersResult, error) {
+	var rv LookupDatabaseUsersResult
 	err := ctx.Invoke("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -68,17 +74,70 @@ func GetDatabaseUsers(ctx *pulumi.Context, args *GetDatabaseUsersArgs, opts ...p
 }
 
 // A collection of arguments for invoking getDatabaseUsers.
-type GetDatabaseUsersArgs struct {
+type LookupDatabaseUsersArgs struct {
 	// The unique ID for the project to get all database users.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getDatabaseUsers.
-type GetDatabaseUsersResult struct {
+type LookupDatabaseUsersResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// ID of the Atlas project the user belongs to.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Database user.
-	Results []GetDatabaseUsersResultType `pulumi:"results"`
+	Results []GetDatabaseUsersResult `pulumi:"results"`
+}
+
+func LookupDatabaseUsersOutput(ctx *pulumi.Context, args LookupDatabaseUsersOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseUsersResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupDatabaseUsersResult, error) {
+			args := v.(LookupDatabaseUsersArgs)
+			r, err := LookupDatabaseUsers(ctx, &args, opts...)
+			return *r, err
+		}).(LookupDatabaseUsersResultOutput)
+}
+
+// A collection of arguments for invoking getDatabaseUsers.
+type LookupDatabaseUsersOutputArgs struct {
+	// The unique ID for the project to get all database users.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupDatabaseUsersOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseUsersArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getDatabaseUsers.
+type LookupDatabaseUsersResultOutput struct{ *pulumi.OutputState }
+
+func (LookupDatabaseUsersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDatabaseUsersResult)(nil)).Elem()
+}
+
+func (o LookupDatabaseUsersResultOutput) ToLookupDatabaseUsersResultOutput() LookupDatabaseUsersResultOutput {
+	return o
+}
+
+func (o LookupDatabaseUsersResultOutput) ToLookupDatabaseUsersResultOutputWithContext(ctx context.Context) LookupDatabaseUsersResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupDatabaseUsersResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUsersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// ID of the Atlas project the user belongs to.
+func (o LookupDatabaseUsersResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseUsersResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A list where each represents a Database user.
+func (o LookupDatabaseUsersResultOutput) Results() GetDatabaseUsersResultArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseUsersResult) []GetDatabaseUsersResult { return v.Results }).(GetDatabaseUsersResultArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupDatabaseUsersResultOutput{})
 }

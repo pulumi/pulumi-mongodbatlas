@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetLdapVerifyResult> InvokeAsync(GetLdapVerifyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// </summary>
+        public static Output<GetLdapVerifyResult> Invoke(GetLdapVerifyInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyInvokeArgs(), options.WithVersion());
     }
 
 
@@ -36,6 +45,25 @@ namespace Pulumi.Mongodbatlas
         public string RequestId { get; set; } = null!;
 
         public GetLdapVerifyArgs()
+        {
+        }
+    }
+
+    public sealed class GetLdapVerifyInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Unique identifier for the Atlas project associated with the verification request.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Unique identifier of a request to verify an LDAP configuration.
+        /// </summary>
+        [Input("requestId", required: true)]
+        public Input<string> RequestId { get; set; } = null!;
+
+        public GetLdapVerifyInvokeArgs()
         {
         }
     }

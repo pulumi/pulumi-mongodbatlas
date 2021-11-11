@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,4 +43,70 @@ type LookupTeamResult struct {
 	TeamId string `pulumi:"teamId"`
 	// The users who are part of the organization.
 	Usernames []string `pulumi:"usernames"`
+}
+
+func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pulumi.InvokeOption) LookupTeamResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupTeamResult, error) {
+			args := v.(LookupTeamArgs)
+			r, err := LookupTeam(ctx, &args, opts...)
+			return *r, err
+		}).(LookupTeamResultOutput)
+}
+
+// A collection of arguments for invoking getTeam.
+type LookupTeamOutputArgs struct {
+	// The team name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The unique identifier for the organization you want to associate the team with.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// The unique identifier for the team.
+	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
+}
+
+func (LookupTeamOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTeamArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getTeam.
+type LookupTeamResultOutput struct{ *pulumi.OutputState }
+
+func (LookupTeamResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupTeamResult)(nil)).Elem()
+}
+
+func (o LookupTeamResultOutput) ToLookupTeamResultOutput() LookupTeamResultOutput {
+	return o
+}
+
+func (o LookupTeamResultOutput) ToLookupTeamResultOutputWithContext(ctx context.Context) LookupTeamResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupTeamResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the team you want to create.
+func (o LookupTeamResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupTeamResultOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// The unique identifier for the team.
+func (o LookupTeamResultOutput) TeamId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTeamResult) string { return v.TeamId }).(pulumi.StringOutput)
+}
+
+// The users who are part of the organization.
+func (o LookupTeamResultOutput) Usernames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []string { return v.Usernames }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupTeamResultOutput{})
 }

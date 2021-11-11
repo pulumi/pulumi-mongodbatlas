@@ -13,6 +13,7 @@ __all__ = [
     'GetLdapConfigurationResult',
     'AwaitableGetLdapConfigurationResult',
     'get_ldap_configuration',
+    'get_ldap_configuration_output',
 ]
 
 @pulumi.output_type
@@ -193,3 +194,17 @@ def get_ldap_configuration(project_id: Optional[str] = None,
         port=__ret__.port,
         project_id=__ret__.project_id,
         user_to_dn_mappings=__ret__.user_to_dn_mappings)
+
+
+@_utilities.lift_output_func(get_ldap_configuration)
+def get_ldap_configuration_output(project_id: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLdapConfigurationResult]:
+    """
+    `LdapConfiguration` describes a LDAP Configuration.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+
+    :param str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+    """
+    ...

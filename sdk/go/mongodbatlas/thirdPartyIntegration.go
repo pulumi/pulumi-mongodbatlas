@@ -308,7 +308,7 @@ type ThirdPartyIntegrationInput interface {
 }
 
 func (*ThirdPartyIntegration) ElementType() reflect.Type {
-	return reflect.TypeOf((*ThirdPartyIntegration)(nil))
+	return reflect.TypeOf((**ThirdPartyIntegration)(nil)).Elem()
 }
 
 func (i *ThirdPartyIntegration) ToThirdPartyIntegrationOutput() ThirdPartyIntegrationOutput {
@@ -317,35 +317,6 @@ func (i *ThirdPartyIntegration) ToThirdPartyIntegrationOutput() ThirdPartyIntegr
 
 func (i *ThirdPartyIntegration) ToThirdPartyIntegrationOutputWithContext(ctx context.Context) ThirdPartyIntegrationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationOutput)
-}
-
-func (i *ThirdPartyIntegration) ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput {
-	return i.ToThirdPartyIntegrationPtrOutputWithContext(context.Background())
-}
-
-func (i *ThirdPartyIntegration) ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationPtrOutput)
-}
-
-type ThirdPartyIntegrationPtrInput interface {
-	pulumi.Input
-
-	ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput
-	ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput
-}
-
-type thirdPartyIntegrationPtrType ThirdPartyIntegrationArgs
-
-func (*thirdPartyIntegrationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ThirdPartyIntegration)(nil))
-}
-
-func (i *thirdPartyIntegrationPtrType) ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput {
-	return i.ToThirdPartyIntegrationPtrOutputWithContext(context.Background())
-}
-
-func (i *thirdPartyIntegrationPtrType) ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationPtrOutput)
 }
 
 // ThirdPartyIntegrationArrayInput is an input type that accepts ThirdPartyIntegrationArray and ThirdPartyIntegrationArrayOutput values.
@@ -362,7 +333,7 @@ type ThirdPartyIntegrationArrayInput interface {
 type ThirdPartyIntegrationArray []ThirdPartyIntegrationInput
 
 func (ThirdPartyIntegrationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ThirdPartyIntegration)(nil))
+	return reflect.TypeOf((*[]*ThirdPartyIntegration)(nil)).Elem()
 }
 
 func (i ThirdPartyIntegrationArray) ToThirdPartyIntegrationArrayOutput() ThirdPartyIntegrationArrayOutput {
@@ -387,7 +358,7 @@ type ThirdPartyIntegrationMapInput interface {
 type ThirdPartyIntegrationMap map[string]ThirdPartyIntegrationInput
 
 func (ThirdPartyIntegrationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ThirdPartyIntegration)(nil))
+	return reflect.TypeOf((*map[string]*ThirdPartyIntegration)(nil)).Elem()
 }
 
 func (i ThirdPartyIntegrationMap) ToThirdPartyIntegrationMapOutput() ThirdPartyIntegrationMapOutput {
@@ -398,12 +369,10 @@ func (i ThirdPartyIntegrationMap) ToThirdPartyIntegrationMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ThirdPartyIntegrationMapOutput)
 }
 
-type ThirdPartyIntegrationOutput struct {
-	*pulumi.OutputState
-}
+type ThirdPartyIntegrationOutput struct{ *pulumi.OutputState }
 
 func (ThirdPartyIntegrationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ThirdPartyIntegration)(nil))
+	return reflect.TypeOf((**ThirdPartyIntegration)(nil)).Elem()
 }
 
 func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutput() ThirdPartyIntegrationOutput {
@@ -414,36 +383,10 @@ func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutputWithContext(ct
 	return o
 }
 
-func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput {
-	return o.ToThirdPartyIntegrationPtrOutputWithContext(context.Background())
-}
-
-func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput {
-	return o.ApplyT(func(v ThirdPartyIntegration) *ThirdPartyIntegration {
-		return &v
-	}).(ThirdPartyIntegrationPtrOutput)
-}
-
-type ThirdPartyIntegrationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ThirdPartyIntegrationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ThirdPartyIntegration)(nil))
-}
-
-func (o ThirdPartyIntegrationPtrOutput) ToThirdPartyIntegrationPtrOutput() ThirdPartyIntegrationPtrOutput {
-	return o
-}
-
-func (o ThirdPartyIntegrationPtrOutput) ToThirdPartyIntegrationPtrOutputWithContext(ctx context.Context) ThirdPartyIntegrationPtrOutput {
-	return o
-}
-
 type ThirdPartyIntegrationArrayOutput struct{ *pulumi.OutputState }
 
 func (ThirdPartyIntegrationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ThirdPartyIntegration)(nil))
+	return reflect.TypeOf((*[]*ThirdPartyIntegration)(nil)).Elem()
 }
 
 func (o ThirdPartyIntegrationArrayOutput) ToThirdPartyIntegrationArrayOutput() ThirdPartyIntegrationArrayOutput {
@@ -455,15 +398,15 @@ func (o ThirdPartyIntegrationArrayOutput) ToThirdPartyIntegrationArrayOutputWith
 }
 
 func (o ThirdPartyIntegrationArrayOutput) Index(i pulumi.IntInput) ThirdPartyIntegrationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ThirdPartyIntegration {
-		return vs[0].([]ThirdPartyIntegration)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ThirdPartyIntegration {
+		return vs[0].([]*ThirdPartyIntegration)[vs[1].(int)]
 	}).(ThirdPartyIntegrationOutput)
 }
 
 type ThirdPartyIntegrationMapOutput struct{ *pulumi.OutputState }
 
 func (ThirdPartyIntegrationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ThirdPartyIntegration)(nil))
+	return reflect.TypeOf((*map[string]*ThirdPartyIntegration)(nil)).Elem()
 }
 
 func (o ThirdPartyIntegrationMapOutput) ToThirdPartyIntegrationMapOutput() ThirdPartyIntegrationMapOutput {
@@ -475,14 +418,16 @@ func (o ThirdPartyIntegrationMapOutput) ToThirdPartyIntegrationMapOutputWithCont
 }
 
 func (o ThirdPartyIntegrationMapOutput) MapIndex(k pulumi.StringInput) ThirdPartyIntegrationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ThirdPartyIntegration {
-		return vs[0].(map[string]ThirdPartyIntegration)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ThirdPartyIntegration {
+		return vs[0].(map[string]*ThirdPartyIntegration)[vs[1].(string)]
 	}).(ThirdPartyIntegrationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ThirdPartyIntegrationInput)(nil)).Elem(), &ThirdPartyIntegration{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ThirdPartyIntegrationArrayInput)(nil)).Elem(), ThirdPartyIntegrationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ThirdPartyIntegrationMapInput)(nil)).Elem(), ThirdPartyIntegrationMap{})
 	pulumi.RegisterOutputType(ThirdPartyIntegrationOutput{})
-	pulumi.RegisterOutputType(ThirdPartyIntegrationPtrOutput{})
 	pulumi.RegisterOutputType(ThirdPartyIntegrationArrayOutput{})
 	pulumi.RegisterOutputType(ThirdPartyIntegrationMapOutput{})
 }

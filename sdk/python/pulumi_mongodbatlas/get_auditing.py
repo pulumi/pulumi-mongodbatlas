@@ -12,6 +12,7 @@ __all__ = [
     'GetAuditingResult',
     'AwaitableGetAuditingResult',
     'get_auditing',
+    'get_auditing_output',
 ]
 
 @pulumi.output_type
@@ -124,3 +125,17 @@ def get_auditing(project_id: Optional[str] = None,
         enabled=__ret__.enabled,
         id=__ret__.id,
         project_id=__ret__.project_id)
+
+
+@_utilities.lift_output_func(get_auditing)
+def get_auditing_output(project_id: Optional[pulumi.Input[str]] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuditingResult]:
+    """
+    `Auditing` describes a Auditing.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+
+    :param str project_id: The unique ID for the project to create the database user.
+    """
+    ...

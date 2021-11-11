@@ -13,6 +13,7 @@ __all__ = [
     'GetCloudProviderSnapshotBackupPolicyResult',
     'AwaitableGetCloudProviderSnapshotBackupPolicyResult',
     'get_cloud_provider_snapshot_backup_policy',
+    'get_cloud_provider_snapshot_backup_policy_output',
 ]
 
 @pulumi.output_type
@@ -177,3 +178,21 @@ def get_cloud_provider_snapshot_backup_policy(cluster_name: Optional[str] = None
         reference_minute_of_hour=__ret__.reference_minute_of_hour,
         restore_window_days=__ret__.restore_window_days,
         update_snapshots=__ret__.update_snapshots)
+
+
+@_utilities.lift_output_func(get_cloud_provider_snapshot_backup_policy)
+def get_cloud_provider_snapshot_backup_policy_output(cluster_name: Optional[pulumi.Input[str]] = None,
+                                                     project_id: Optional[pulumi.Input[str]] = None,
+                                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderSnapshotBackupPolicyResult]:
+    """
+    **WARNING:** This data source is deprecated, use `CloudBackupSchedule`
+
+    `CloudProviderSnapshotBackupPolicy` provides a Cloud Backup Snapshot Backup Policy datasource. An Atlas Cloud Backup Snapshot Policy provides the current snapshot schedule and retention settings for the cluster.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+
+    :param str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
+    :param str project_id: The unique identifier of the project for the Atlas cluster.
+    """
+    ...

@@ -13,6 +13,7 @@ __all__ = [
     'GetLdapVerifyResult',
     'AwaitableGetLdapVerifyResult',
     'get_ldap_verify',
+    'get_ldap_verify_output',
 ]
 
 @pulumi.output_type
@@ -167,3 +168,19 @@ def get_ldap_verify(project_id: Optional[str] = None,
         request_id=__ret__.request_id,
         status=__ret__.status,
         validations=__ret__.validations)
+
+
+@_utilities.lift_output_func(get_ldap_verify)
+def get_ldap_verify_output(project_id: Optional[pulumi.Input[str]] = None,
+                           request_id: Optional[pulumi.Input[str]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLdapVerifyResult]:
+    """
+    `LdapVerify` describes a LDAP Verify.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+
+    :param str project_id: Unique identifier for the Atlas project associated with the verification request.
+    :param str request_id: Unique identifier of a request to verify an LDAP configuration.
+    """
+    ...

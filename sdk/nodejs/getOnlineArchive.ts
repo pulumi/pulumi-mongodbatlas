@@ -63,15 +63,15 @@ export interface GetOnlineArchiveArgs {
     /**
      * ID of the online archive.
      */
-    readonly archiveId: string;
+    archiveId: string;
     /**
      * Name of the cluster that contains the collection.
      */
-    readonly clusterName: string;
+    clusterName: string;
     /**
      * The unique ID for the project.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -91,4 +91,26 @@ export interface GetOnlineArchiveResult {
     readonly paused: boolean;
     readonly projectId: string;
     readonly state: string;
+}
+
+export function getOnlineArchiveOutput(args: GetOnlineArchiveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnlineArchiveResult> {
+    return pulumi.output(args).apply(a => getOnlineArchive(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getOnlineArchive.
+ */
+export interface GetOnlineArchiveOutputArgs {
+    /**
+     * ID of the online archive.
+     */
+    archiveId: pulumi.Input<string>;
+    /**
+     * Name of the cluster that contains the collection.
+     */
+    clusterName: pulumi.Input<string>;
+    /**
+     * The unique ID for the project.
+     */
+    projectId: pulumi.Input<string>;
 }

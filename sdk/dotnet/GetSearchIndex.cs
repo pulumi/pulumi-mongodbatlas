@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -44,6 +45,40 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetSearchIndexResult> InvokeAsync(GetSearchIndexArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexResult>("mongodbatlas:index/getSearchIndex:getSearchIndex", args ?? new GetSearchIndexArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.SearchIndex` describe a single search indexes. This represents a single search index that have been created.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Mongodbatlas.GetSearchIndex.InvokeAsync(new Mongodbatlas.GetSearchIndexArgs
+        ///         {
+        ///             ClusterName = "&lt;CLUSTER_NAME&gt;",
+        ///             IndexId = "&lt;INDEX_ID",
+        ///             ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetSearchIndexResult> Invoke(GetSearchIndexInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetSearchIndexResult>("mongodbatlas:index/getSearchIndex:getSearchIndex", args ?? new GetSearchIndexInvokeArgs(), options.WithVersion());
     }
 
 
@@ -119,6 +154,82 @@ namespace Pulumi.Mongodbatlas
         public string? Status { get; set; }
 
         public GetSearchIndexArgs()
+        {
+        }
+    }
+
+    public sealed class GetSearchIndexInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+        /// </summary>
+        [Input("analyzer")]
+        public Input<string>? Analyzer { get; set; }
+
+        /// <summary>
+        /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+        /// </summary>
+        [Input("analyzers")]
+        public Input<string>? Analyzers { get; set; }
+
+        /// <summary>
+        /// The name of the cluster containing the collection with one or more Atlas Search indexes.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        /// <summary>
+        /// (Required) Name of the collection the index is on.
+        /// </summary>
+        [Input("collectionName")]
+        public Input<string>? CollectionName { get; set; }
+
+        /// <summary>
+        /// (Required) Name of the database the collection is in.
+        /// </summary>
+        [Input("database")]
+        public Input<string>? Database { get; set; }
+
+        /// <summary>
+        /// The unique identifier of the Atlas Search index. Use the `mongodbatlas.getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
+        /// </summary>
+        [Input("indexId", required: true)]
+        public Input<string> IndexId { get; set; } = null!;
+
+        /// <summary>
+        /// Flag indicating whether the index uses dynamic or static mappings.
+        /// </summary>
+        [Input("mappingsDynamic")]
+        public Input<bool>? MappingsDynamic { get; set; }
+
+        /// <summary>
+        /// Object containing one or more field specifications.
+        /// </summary>
+        [Input("mappingsFields")]
+        public Input<string>? MappingsFields { get; set; }
+
+        /// <summary>
+        /// Name of the index.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+        /// </summary>
+        [Input("searchAnalyzer")]
+        public Input<string>? SearchAnalyzer { get; set; }
+
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        public GetSearchIndexInvokeArgs()
         {
         }
     }

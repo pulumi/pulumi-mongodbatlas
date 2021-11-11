@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -59,10 +60,10 @@ namespace Pulumi.Mongodbatlas
         ///             ProviderName = "AWS",
         ///             ProviderInstanceSizeName = "M40",
         ///         });
-        ///         var testClusters = testCluster.ProjectId.Apply(projectId =&gt; Mongodbatlas.GetClusters.InvokeAsync(new Mongodbatlas.GetClustersArgs
+        ///         var testClusters = Mongodbatlas.GetClusters.Invoke(new Mongodbatlas.GetClustersInvokeArgs
         ///         {
-        ///             ProjectId = projectId,
-        ///         }));
+        ///             ProjectId = testCluster.ProjectId,
+        ///         });
         ///     }
         /// 
         /// }
@@ -72,6 +73,68 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetClustersResult> InvokeAsync(GetClustersArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClustersResult>("mongodbatlas:index/getClusters:getClusters", args ?? new GetClustersArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// &gt; **IMPORTANT:**
+        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testCluster = new Mongodbatlas.Cluster("testCluster", new Mongodbatlas.ClusterArgs
+        ///         {
+        ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///             DiskSizeGb = 100,
+        ///             ClusterType = "REPLICASET",
+        ///             ReplicationSpecs = 
+        ///             {
+        ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///                 {
+        ///                     NumShards = 1,
+        ///                     RegionsConfigs = 
+        ///                     {
+        ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+        ///                         {
+        ///                             RegionName = "US_EAST_1",
+        ///                             ElectableNodes = 3,
+        ///                             Priority = 7,
+        ///                             ReadOnlyNodes = 0,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///             CloudBackup = true,
+        ///             AutoScalingDiskGbEnabled = true,
+        ///             ProviderName = "AWS",
+        ///             ProviderInstanceSizeName = "M40",
+        ///         });
+        ///         var testClusters = Mongodbatlas.GetClusters.Invoke(new Mongodbatlas.GetClustersInvokeArgs
+        ///         {
+        ///             ProjectId = testCluster.ProjectId,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetClustersResult> Invoke(GetClustersInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetClustersResult>("mongodbatlas:index/getClusters:getClusters", args ?? new GetClustersInvokeArgs(), options.WithVersion());
     }
 
 
@@ -84,6 +147,19 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetClustersArgs()
+        {
+        }
+    }
+
+    public sealed class GetClustersInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The unique ID for the project to get the clusters.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetClustersInvokeArgs()
         {
         }
     }

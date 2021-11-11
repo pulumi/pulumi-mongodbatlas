@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -36,12 +39,15 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = mongodbatlas.LookupNetworkPeeringsOutput(ctx, GetNetworkPeeringsOutputArgs{
+// 			ProjectId: testNetworkPeering.ProjectId,
+// 		}, nil)
 // 		return nil
 // 	})
 // }
 // ```
-func GetNetworkPeerings(ctx *pulumi.Context, args *GetNetworkPeeringsArgs, opts ...pulumi.InvokeOption) (*GetNetworkPeeringsResult, error) {
-	var rv GetNetworkPeeringsResult
+func LookupNetworkPeerings(ctx *pulumi.Context, args *LookupNetworkPeeringsArgs, opts ...pulumi.InvokeOption) (*LookupNetworkPeeringsResult, error) {
+	var rv LookupNetworkPeeringsResult
 	err := ctx.Invoke("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -50,16 +56,68 @@ func GetNetworkPeerings(ctx *pulumi.Context, args *GetNetworkPeeringsArgs, opts 
 }
 
 // A collection of arguments for invoking getNetworkPeerings.
-type GetNetworkPeeringsArgs struct {
+type LookupNetworkPeeringsArgs struct {
 	// The unique ID for the project to create the database user.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getNetworkPeerings.
-type GetNetworkPeeringsResult struct {
+type LookupNetworkPeeringsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Network Peering Connection.
-	Results []GetNetworkPeeringsResultType `pulumi:"results"`
+	Results []GetNetworkPeeringsResult `pulumi:"results"`
+}
+
+func LookupNetworkPeeringsOutput(ctx *pulumi.Context, args LookupNetworkPeeringsOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkPeeringsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupNetworkPeeringsResult, error) {
+			args := v.(LookupNetworkPeeringsArgs)
+			r, err := LookupNetworkPeerings(ctx, &args, opts...)
+			return *r, err
+		}).(LookupNetworkPeeringsResultOutput)
+}
+
+// A collection of arguments for invoking getNetworkPeerings.
+type LookupNetworkPeeringsOutputArgs struct {
+	// The unique ID for the project to create the database user.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupNetworkPeeringsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkPeeringsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getNetworkPeerings.
+type LookupNetworkPeeringsResultOutput struct{ *pulumi.OutputState }
+
+func (LookupNetworkPeeringsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkPeeringsResult)(nil)).Elem()
+}
+
+func (o LookupNetworkPeeringsResultOutput) ToLookupNetworkPeeringsResultOutput() LookupNetworkPeeringsResultOutput {
+	return o
+}
+
+func (o LookupNetworkPeeringsResultOutput) ToLookupNetworkPeeringsResultOutputWithContext(ctx context.Context) LookupNetworkPeeringsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupNetworkPeeringsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkPeeringsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A list where each represents a Network Peering Connection.
+func (o LookupNetworkPeeringsResultOutput) Results() GetNetworkPeeringsResultArrayOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringsResult) []GetNetworkPeeringsResult { return v.Results }).(GetNetworkPeeringsResultArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupNetworkPeeringsResultOutput{})
 }

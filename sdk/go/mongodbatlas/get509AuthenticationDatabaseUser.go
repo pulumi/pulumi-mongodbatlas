@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,14 +35,14 @@ import (
 // 			Username:     pulumi.String("myUsername"),
 // 			X509Type:     pulumi.String("MANAGED"),
 // 			DatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
-// 			Roles: mongodbatlas.DatabaseUserRoleArray{
-// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 			Roles: DatabaseUserRoleArray{
+// 				&DatabaseUserRoleArgs{
 // 					RoleName:     pulumi.String("atlasAdmin"),
 // 					DatabaseName: pulumi.String("admin"),
 // 				},
 // 			},
-// 			Labels: mongodbatlas.DatabaseUserLabelArray{
-// 				&mongodbatlas.DatabaseUserLabelArgs{
+// 			Labels: DatabaseUserLabelArray{
+// 				&DatabaseUserLabelArgs{
 // 					Key:   pulumi.String("My Key"),
 // 					Value: pulumi.String("My Value"),
 // 				},
@@ -80,6 +83,9 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = mongodbatlas.Get509AuthenticationDatabaseUserOutput(ctx, Get509AuthenticationDatabaseUserOutputArgs{
+// 			ProjectId: testX509AuthenticationDatabaseUser.ProjectId,
+// 		}, nil)
 // 		return nil
 // 	})
 // }
@@ -110,4 +116,68 @@ type Get509AuthenticationDatabaseUserResult struct {
 	Id        string  `pulumi:"id"`
 	ProjectId string  `pulumi:"projectId"`
 	Username  *string `pulumi:"username"`
+}
+
+func Get509AuthenticationDatabaseUserOutput(ctx *pulumi.Context, args Get509AuthenticationDatabaseUserOutputArgs, opts ...pulumi.InvokeOption) Get509AuthenticationDatabaseUserResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (Get509AuthenticationDatabaseUserResult, error) {
+			args := v.(Get509AuthenticationDatabaseUserArgs)
+			r, err := Get509AuthenticationDatabaseUser(ctx, &args, opts...)
+			return *r, err
+		}).(Get509AuthenticationDatabaseUserResultOutput)
+}
+
+// A collection of arguments for invoking get509AuthenticationDatabaseUser.
+type Get509AuthenticationDatabaseUserOutputArgs struct {
+	// Identifier for the Atlas project associated with the X.509 configuration.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Username of the database user to create a certificate for.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (Get509AuthenticationDatabaseUserOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Get509AuthenticationDatabaseUserArgs)(nil)).Elem()
+}
+
+// A collection of values returned by get509AuthenticationDatabaseUser.
+type Get509AuthenticationDatabaseUserResultOutput struct{ *pulumi.OutputState }
+
+func (Get509AuthenticationDatabaseUserResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Get509AuthenticationDatabaseUserResult)(nil)).Elem()
+}
+
+func (o Get509AuthenticationDatabaseUserResultOutput) ToGet509AuthenticationDatabaseUserResultOutput() Get509AuthenticationDatabaseUserResultOutput {
+	return o
+}
+
+func (o Get509AuthenticationDatabaseUserResultOutput) ToGet509AuthenticationDatabaseUserResultOutputWithContext(ctx context.Context) Get509AuthenticationDatabaseUserResultOutput {
+	return o
+}
+
+// Array of objects where each details one unexpired database user certificate.
+func (o Get509AuthenticationDatabaseUserResultOutput) Certificates() Get509AuthenticationDatabaseUserCertificateArrayOutput {
+	return o.ApplyT(func(v Get509AuthenticationDatabaseUserResult) []Get509AuthenticationDatabaseUserCertificate {
+		return v.Certificates
+	}).(Get509AuthenticationDatabaseUserCertificateArrayOutput)
+}
+
+func (o Get509AuthenticationDatabaseUserResultOutput) CustomerX509Cas() pulumi.StringOutput {
+	return o.ApplyT(func(v Get509AuthenticationDatabaseUserResult) string { return v.CustomerX509Cas }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o Get509AuthenticationDatabaseUserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v Get509AuthenticationDatabaseUserResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o Get509AuthenticationDatabaseUserResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v Get509AuthenticationDatabaseUserResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o Get509AuthenticationDatabaseUserResultOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v Get509AuthenticationDatabaseUserResult) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserResultOutput{})
 }

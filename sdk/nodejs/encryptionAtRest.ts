@@ -68,34 +68,34 @@ export class EncryptionAtRest extends pulumi.CustomResource {
      */
     constructor(name: string, args: EncryptionAtRestArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EncryptionAtRestArgs | EncryptionAtRestState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EncryptionAtRestState | undefined;
-            inputs["awsKms"] = state ? state.awsKms : undefined;
-            inputs["awsKmsConfig"] = state ? state.awsKmsConfig : undefined;
-            inputs["azureKeyVault"] = state ? state.azureKeyVault : undefined;
-            inputs["azureKeyVaultConfig"] = state ? state.azureKeyVaultConfig : undefined;
-            inputs["googleCloudKms"] = state ? state.googleCloudKms : undefined;
-            inputs["googleCloudKmsConfig"] = state ? state.googleCloudKmsConfig : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["awsKms"] = state ? state.awsKms : undefined;
+            resourceInputs["awsKmsConfig"] = state ? state.awsKmsConfig : undefined;
+            resourceInputs["azureKeyVault"] = state ? state.azureKeyVault : undefined;
+            resourceInputs["azureKeyVaultConfig"] = state ? state.azureKeyVaultConfig : undefined;
+            resourceInputs["googleCloudKms"] = state ? state.googleCloudKms : undefined;
+            resourceInputs["googleCloudKmsConfig"] = state ? state.googleCloudKmsConfig : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as EncryptionAtRestArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["awsKms"] = args ? args.awsKms : undefined;
-            inputs["awsKmsConfig"] = args ? args.awsKmsConfig : undefined;
-            inputs["azureKeyVault"] = args ? args.azureKeyVault : undefined;
-            inputs["azureKeyVaultConfig"] = args ? args.azureKeyVaultConfig : undefined;
-            inputs["googleCloudKms"] = args ? args.googleCloudKms : undefined;
-            inputs["googleCloudKmsConfig"] = args ? args.googleCloudKmsConfig : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["awsKms"] = args ? args.awsKms : undefined;
+            resourceInputs["awsKmsConfig"] = args ? args.awsKmsConfig : undefined;
+            resourceInputs["azureKeyVault"] = args ? args.azureKeyVault : undefined;
+            resourceInputs["azureKeyVaultConfig"] = args ? args.azureKeyVaultConfig : undefined;
+            resourceInputs["googleCloudKms"] = args ? args.googleCloudKms : undefined;
+            resourceInputs["googleCloudKmsConfig"] = args ? args.googleCloudKmsConfig : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(EncryptionAtRest.__pulumiType, name, inputs, opts);
+        super(EncryptionAtRest.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -108,26 +108,26 @@ export interface EncryptionAtRestState {
      *
      * @deprecated use aws_kms_config instead
      */
-    readonly awsKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
+    awsKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
     /**
      * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
      * @deprecated use azure_key_vault_config instead
      */
-    readonly azureKeyVault?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
+    azureKeyVault?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
     /**
      * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
      * @deprecated use google_cloud_kms_config instead
      */
-    readonly googleCloudKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
+    googleCloudKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
     /**
      * The unique identifier for the project.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
 }
 
 /**
@@ -139,24 +139,24 @@ export interface EncryptionAtRestArgs {
      *
      * @deprecated use aws_kms_config instead
      */
-    readonly awsKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
+    awsKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
     /**
      * Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
      * @deprecated use azure_key_vault_config instead
      */
-    readonly azureKeyVault?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
+    azureKeyVault?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
     /**
      * Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
      *
      * @deprecated use google_cloud_kms_config instead
      */
-    readonly googleCloudKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
+    googleCloudKms?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
     /**
      * The unique identifier for the project.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -23,6 +24,19 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetNetworkPeeringResult> InvokeAsync(GetNetworkPeeringArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetNetworkPeeringResult> Invoke(GetNetworkPeeringInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringInvokeArgs(), options.WithVersion());
     }
 
 
@@ -41,6 +55,25 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetNetworkPeeringArgs()
+        {
+        }
+    }
+
+    public sealed class GetNetworkPeeringInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Atlas assigned unique ID for the peering connection.
+        /// </summary>
+        [Input("peeringId", required: true)]
+        public Input<string> PeeringId { get; set; } = null!;
+
+        /// <summary>
+        /// The unique ID for the project to create the database user.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetNetworkPeeringInvokeArgs()
         {
         }
     }

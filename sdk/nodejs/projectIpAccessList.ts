@@ -134,30 +134,30 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
      */
     constructor(name: string, args: ProjectIpAccessListArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ProjectIpAccessListArgs | ProjectIpAccessListState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectIpAccessListState | undefined;
-            inputs["awsSecurityGroup"] = state ? state.awsSecurityGroup : undefined;
-            inputs["cidrBlock"] = state ? state.cidrBlock : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["ipAddress"] = state ? state.ipAddress : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["awsSecurityGroup"] = state ? state.awsSecurityGroup : undefined;
+            resourceInputs["cidrBlock"] = state ? state.cidrBlock : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as ProjectIpAccessListArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["awsSecurityGroup"] = args ? args.awsSecurityGroup : undefined;
-            inputs["cidrBlock"] = args ? args.cidrBlock : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["ipAddress"] = args ? args.ipAddress : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["awsSecurityGroup"] = args ? args.awsSecurityGroup : undefined;
+            resourceInputs["cidrBlock"] = args ? args.cidrBlock : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(ProjectIpAccessList.__pulumiType, name, inputs, opts);
+        super(ProjectIpAccessList.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -168,23 +168,23 @@ export interface ProjectIpAccessListState {
     /**
      * Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
      */
-    readonly awsSecurityGroup?: pulumi.Input<string>;
+    awsSecurityGroup?: pulumi.Input<string>;
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
      */
-    readonly cidrBlock?: pulumi.Input<string>;
+    cidrBlock?: pulumi.Input<string>;
     /**
      * Comment to add to the access list entry.
      */
-    readonly comment?: pulumi.Input<string>;
+    comment?: pulumi.Input<string>;
     /**
      * Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
      */
-    readonly ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string>;
     /**
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
 }
 
 /**
@@ -194,21 +194,21 @@ export interface ProjectIpAccessListArgs {
     /**
      * Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
      */
-    readonly awsSecurityGroup?: pulumi.Input<string>;
+    awsSecurityGroup?: pulumi.Input<string>;
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
      */
-    readonly cidrBlock?: pulumi.Input<string>;
+    cidrBlock?: pulumi.Input<string>;
     /**
      * Comment to add to the access list entry.
      */
-    readonly comment?: pulumi.Input<string>;
+    comment?: pulumi.Input<string>;
     /**
      * Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
      */
-    readonly ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string>;
     /**
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

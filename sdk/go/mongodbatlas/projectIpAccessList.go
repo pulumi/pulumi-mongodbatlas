@@ -102,7 +102,7 @@ import (
 // 			AwsSecurityGroup: pulumi.String("sg-0026348ec11780bd1"),
 // 			Comment:          pulumi.String("TestAcc for awsSecurityGroup"),
 // 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			"mongodbatlas_network_peering.test",
+// 			pulumi.Resource("mongodbatlas_network_peering.test"),
 // 		}))
 // 		if err != nil {
 // 			return err
@@ -238,7 +238,7 @@ type ProjectIpAccessListInput interface {
 }
 
 func (*ProjectIpAccessList) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectIpAccessList)(nil))
+	return reflect.TypeOf((**ProjectIpAccessList)(nil)).Elem()
 }
 
 func (i *ProjectIpAccessList) ToProjectIpAccessListOutput() ProjectIpAccessListOutput {
@@ -247,35 +247,6 @@ func (i *ProjectIpAccessList) ToProjectIpAccessListOutput() ProjectIpAccessListO
 
 func (i *ProjectIpAccessList) ToProjectIpAccessListOutputWithContext(ctx context.Context) ProjectIpAccessListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpAccessListOutput)
-}
-
-func (i *ProjectIpAccessList) ToProjectIpAccessListPtrOutput() ProjectIpAccessListPtrOutput {
-	return i.ToProjectIpAccessListPtrOutputWithContext(context.Background())
-}
-
-func (i *ProjectIpAccessList) ToProjectIpAccessListPtrOutputWithContext(ctx context.Context) ProjectIpAccessListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpAccessListPtrOutput)
-}
-
-type ProjectIpAccessListPtrInput interface {
-	pulumi.Input
-
-	ToProjectIpAccessListPtrOutput() ProjectIpAccessListPtrOutput
-	ToProjectIpAccessListPtrOutputWithContext(ctx context.Context) ProjectIpAccessListPtrOutput
-}
-
-type projectIpAccessListPtrType ProjectIpAccessListArgs
-
-func (*projectIpAccessListPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ProjectIpAccessList)(nil))
-}
-
-func (i *projectIpAccessListPtrType) ToProjectIpAccessListPtrOutput() ProjectIpAccessListPtrOutput {
-	return i.ToProjectIpAccessListPtrOutputWithContext(context.Background())
-}
-
-func (i *projectIpAccessListPtrType) ToProjectIpAccessListPtrOutputWithContext(ctx context.Context) ProjectIpAccessListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpAccessListPtrOutput)
 }
 
 // ProjectIpAccessListArrayInput is an input type that accepts ProjectIpAccessListArray and ProjectIpAccessListArrayOutput values.
@@ -292,7 +263,7 @@ type ProjectIpAccessListArrayInput interface {
 type ProjectIpAccessListArray []ProjectIpAccessListInput
 
 func (ProjectIpAccessListArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ProjectIpAccessList)(nil))
+	return reflect.TypeOf((*[]*ProjectIpAccessList)(nil)).Elem()
 }
 
 func (i ProjectIpAccessListArray) ToProjectIpAccessListArrayOutput() ProjectIpAccessListArrayOutput {
@@ -317,7 +288,7 @@ type ProjectIpAccessListMapInput interface {
 type ProjectIpAccessListMap map[string]ProjectIpAccessListInput
 
 func (ProjectIpAccessListMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ProjectIpAccessList)(nil))
+	return reflect.TypeOf((*map[string]*ProjectIpAccessList)(nil)).Elem()
 }
 
 func (i ProjectIpAccessListMap) ToProjectIpAccessListMapOutput() ProjectIpAccessListMapOutput {
@@ -328,12 +299,10 @@ func (i ProjectIpAccessListMap) ToProjectIpAccessListMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(ProjectIpAccessListMapOutput)
 }
 
-type ProjectIpAccessListOutput struct {
-	*pulumi.OutputState
-}
+type ProjectIpAccessListOutput struct{ *pulumi.OutputState }
 
 func (ProjectIpAccessListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ProjectIpAccessList)(nil))
+	return reflect.TypeOf((**ProjectIpAccessList)(nil)).Elem()
 }
 
 func (o ProjectIpAccessListOutput) ToProjectIpAccessListOutput() ProjectIpAccessListOutput {
@@ -344,36 +313,10 @@ func (o ProjectIpAccessListOutput) ToProjectIpAccessListOutputWithContext(ctx co
 	return o
 }
 
-func (o ProjectIpAccessListOutput) ToProjectIpAccessListPtrOutput() ProjectIpAccessListPtrOutput {
-	return o.ToProjectIpAccessListPtrOutputWithContext(context.Background())
-}
-
-func (o ProjectIpAccessListOutput) ToProjectIpAccessListPtrOutputWithContext(ctx context.Context) ProjectIpAccessListPtrOutput {
-	return o.ApplyT(func(v ProjectIpAccessList) *ProjectIpAccessList {
-		return &v
-	}).(ProjectIpAccessListPtrOutput)
-}
-
-type ProjectIpAccessListPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ProjectIpAccessListPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ProjectIpAccessList)(nil))
-}
-
-func (o ProjectIpAccessListPtrOutput) ToProjectIpAccessListPtrOutput() ProjectIpAccessListPtrOutput {
-	return o
-}
-
-func (o ProjectIpAccessListPtrOutput) ToProjectIpAccessListPtrOutputWithContext(ctx context.Context) ProjectIpAccessListPtrOutput {
-	return o
-}
-
 type ProjectIpAccessListArrayOutput struct{ *pulumi.OutputState }
 
 func (ProjectIpAccessListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ProjectIpAccessList)(nil))
+	return reflect.TypeOf((*[]*ProjectIpAccessList)(nil)).Elem()
 }
 
 func (o ProjectIpAccessListArrayOutput) ToProjectIpAccessListArrayOutput() ProjectIpAccessListArrayOutput {
@@ -385,15 +328,15 @@ func (o ProjectIpAccessListArrayOutput) ToProjectIpAccessListArrayOutputWithCont
 }
 
 func (o ProjectIpAccessListArrayOutput) Index(i pulumi.IntInput) ProjectIpAccessListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectIpAccessList {
-		return vs[0].([]ProjectIpAccessList)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ProjectIpAccessList {
+		return vs[0].([]*ProjectIpAccessList)[vs[1].(int)]
 	}).(ProjectIpAccessListOutput)
 }
 
 type ProjectIpAccessListMapOutput struct{ *pulumi.OutputState }
 
 func (ProjectIpAccessListMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ProjectIpAccessList)(nil))
+	return reflect.TypeOf((*map[string]*ProjectIpAccessList)(nil)).Elem()
 }
 
 func (o ProjectIpAccessListMapOutput) ToProjectIpAccessListMapOutput() ProjectIpAccessListMapOutput {
@@ -405,14 +348,16 @@ func (o ProjectIpAccessListMapOutput) ToProjectIpAccessListMapOutputWithContext(
 }
 
 func (o ProjectIpAccessListMapOutput) MapIndex(k pulumi.StringInput) ProjectIpAccessListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ProjectIpAccessList {
-		return vs[0].(map[string]ProjectIpAccessList)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ProjectIpAccessList {
+		return vs[0].(map[string]*ProjectIpAccessList)[vs[1].(string)]
 	}).(ProjectIpAccessListOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectIpAccessListInput)(nil)).Elem(), &ProjectIpAccessList{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectIpAccessListArrayInput)(nil)).Elem(), ProjectIpAccessListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectIpAccessListMapInput)(nil)).Elem(), ProjectIpAccessListMap{})
 	pulumi.RegisterOutputType(ProjectIpAccessListOutput{})
-	pulumi.RegisterOutputType(ProjectIpAccessListPtrOutput{})
 	pulumi.RegisterOutputType(ProjectIpAccessListArrayOutput{})
 	pulumi.RegisterOutputType(ProjectIpAccessListMapOutput{})
 }

@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,12 +31,12 @@ import (
 // 			Password:     pulumi.String("test-acc-password"),
 // 			ProjectId:    pulumi.String("<PROJECT-ID>"),
 // 			DatabaseName: pulumi.String("admin"),
-// 			Roles: mongodbatlas.DatabaseUserRoleArray{
-// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 			Roles: DatabaseUserRoleArray{
+// 				&DatabaseUserRoleArgs{
 // 					RoleName:     pulumi.String("readWrite"),
 // 					DatabaseName: pulumi.String("admin"),
 // 				},
-// 				&mongodbatlas.DatabaseUserRoleArgs{
+// 				&DatabaseUserRoleArgs{
 // 					RoleName:     pulumi.String("atlasAdmin"),
 // 					DatabaseName: pulumi.String("admin"),
 // 				},
@@ -42,7 +45,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = mongodbatlas.GetCustomDbRoles(ctx, &mongodbatlas.GetCustomDbRolesArgs{
+// 		_, err = mongodbatlas.LookupCustomDbRoles(ctx, &GetCustomDbRolesArgs{
 // 			ProjectId: mongodbatlas_custom_db_role.Test.Project_id,
 // 		}, nil)
 // 		if err != nil {
@@ -52,8 +55,8 @@ import (
 // 	})
 // }
 // ```
-func GetCustomDbRoles(ctx *pulumi.Context, args *GetCustomDbRolesArgs, opts ...pulumi.InvokeOption) (*GetCustomDbRolesResult, error) {
-	var rv GetCustomDbRolesResult
+func LookupCustomDbRoles(ctx *pulumi.Context, args *LookupCustomDbRolesArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRolesResult, error) {
+	var rv LookupCustomDbRolesResult
 	err := ctx.Invoke("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -62,16 +65,68 @@ func GetCustomDbRoles(ctx *pulumi.Context, args *GetCustomDbRolesArgs, opts ...p
 }
 
 // A collection of arguments for invoking getCustomDbRoles.
-type GetCustomDbRolesArgs struct {
+type LookupCustomDbRolesArgs struct {
 	// The unique ID for the project to get all custom db roles.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getCustomDbRoles.
-type GetCustomDbRolesResult struct {
+type LookupCustomDbRolesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a custom db roles.
-	Results []GetCustomDbRolesResultType `pulumi:"results"`
+	Results []GetCustomDbRolesResult `pulumi:"results"`
+}
+
+func LookupCustomDbRolesOutput(ctx *pulumi.Context, args LookupCustomDbRolesOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDbRolesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupCustomDbRolesResult, error) {
+			args := v.(LookupCustomDbRolesArgs)
+			r, err := LookupCustomDbRoles(ctx, &args, opts...)
+			return *r, err
+		}).(LookupCustomDbRolesResultOutput)
+}
+
+// A collection of arguments for invoking getCustomDbRoles.
+type LookupCustomDbRolesOutputArgs struct {
+	// The unique ID for the project to get all custom db roles.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupCustomDbRolesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCustomDbRolesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getCustomDbRoles.
+type LookupCustomDbRolesResultOutput struct{ *pulumi.OutputState }
+
+func (LookupCustomDbRolesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCustomDbRolesResult)(nil)).Elem()
+}
+
+func (o LookupCustomDbRolesResultOutput) ToLookupCustomDbRolesResultOutput() LookupCustomDbRolesResultOutput {
+	return o
+}
+
+func (o LookupCustomDbRolesResultOutput) ToLookupCustomDbRolesResultOutputWithContext(ctx context.Context) LookupCustomDbRolesResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupCustomDbRolesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDbRolesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupCustomDbRolesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDbRolesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A list where each represents a custom db roles.
+func (o LookupCustomDbRolesResultOutput) Results() GetCustomDbRolesResultArrayOutput {
+	return o.ApplyT(func(v LookupCustomDbRolesResult) []GetCustomDbRolesResult { return v.Results }).(GetCustomDbRolesResultArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupCustomDbRolesResultOutput{})
 }

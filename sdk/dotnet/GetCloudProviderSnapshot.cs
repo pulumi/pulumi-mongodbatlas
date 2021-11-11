@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetCloudProviderSnapshotResult> InvokeAsync(GetCloudProviderSnapshotArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotResult>("mongodbatlas:index/getCloudProviderSnapshot:getCloudProviderSnapshot", args ?? new GetCloudProviderSnapshotArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetCloudProviderSnapshotResult> Invoke(GetCloudProviderSnapshotInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotResult>("mongodbatlas:index/getCloudProviderSnapshot:getCloudProviderSnapshot", args ?? new GetCloudProviderSnapshotInvokeArgs(), options.WithVersion());
     }
 
 
@@ -39,6 +48,28 @@ namespace Pulumi.Mongodbatlas
         public string SnapshotId { get; set; } = null!;
 
         public GetCloudProviderSnapshotArgs()
+        {
+        }
+    }
+
+    public sealed class GetCloudProviderSnapshotInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The name of the Atlas cluster that contains the snapshot you want to retrieve.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// The unique identifier of the snapshot you want to retrieve.
+        /// </summary>
+        [Input("snapshotId", required: true)]
+        public Input<string> SnapshotId { get; set; } = null!;
+
+        public GetCloudProviderSnapshotInvokeArgs()
         {
         }
     }

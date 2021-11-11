@@ -12,6 +12,7 @@ __all__ = [
     'GetPrivateLinkEndpointResult',
     'AwaitableGetPrivateLinkEndpointResult',
     'get_private_link_endpoint',
+    'get_private_link_endpoint_output',
 ]
 
 @pulumi.output_type
@@ -190,3 +191,21 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
         project_id=__ret__.project_id,
         provider_name=__ret__.provider_name,
         status=__ret__.status)
+
+
+@_utilities.lift_output_func(get_private_link_endpoint)
+def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]] = None,
+                                     project_id: Optional[pulumi.Input[str]] = None,
+                                     provider_name: Optional[pulumi.Input[str]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateLinkEndpointResult]:
+    """
+    `PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+
+    :param str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.
+    :param str project_id: Unique identifier for the project.
+    :param str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+    """
+    ...

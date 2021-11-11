@@ -160,3 +160,35 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
+    @property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        MongoDB Atlas Base URL
+        """
+        return pulumi.get(self, "base_url")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> pulumi.Output[str]:
+        """
+        MongoDB Atlas Programmatic Private Key
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> pulumi.Output[str]:
+        """
+        MongoDB Atlas Programmatic Public Key
+        """
+        return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter(name="realmBaseUrl")
+    def realm_base_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        MongoDB Realm Base URL
+        """
+        return pulumi.get(self, "realm_base_url")
+

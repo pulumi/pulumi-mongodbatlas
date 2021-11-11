@@ -31,7 +31,7 @@ export interface GetThirdPartyIntegrationsArgs {
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -50,4 +50,18 @@ export interface GetThirdPartyIntegrationsResult {
      * A list where each represents a Third-Party service integration.
      */
     readonly results: outputs.GetThirdPartyIntegrationsResult[];
+}
+
+export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationsResult> {
+    return pulumi.output(args).apply(a => getThirdPartyIntegrations(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getThirdPartyIntegrations.
+ */
+export interface GetThirdPartyIntegrationsOutputArgs {
+    /**
+     * The unique ID for the project to get all Third-Party service integrations
+     */
+    projectId: pulumi.Input<string>;
 }

@@ -163,14 +163,14 @@ export class CustomDbRole extends pulumi.CustomResource {
      */
     constructor(name: string, args: CustomDbRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CustomDbRoleArgs | CustomDbRoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomDbRoleState | undefined;
-            inputs["actions"] = state ? state.actions : undefined;
-            inputs["inheritedRoles"] = state ? state.inheritedRoles : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["roleName"] = state ? state.roleName : undefined;
+            resourceInputs["actions"] = state ? state.actions : undefined;
+            resourceInputs["inheritedRoles"] = state ? state.inheritedRoles : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["roleName"] = state ? state.roleName : undefined;
         } else {
             const args = argsOrState as CustomDbRoleArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -179,15 +179,15 @@ export class CustomDbRole extends pulumi.CustomResource {
             if ((!args || args.roleName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            inputs["actions"] = args ? args.actions : undefined;
-            inputs["inheritedRoles"] = args ? args.inheritedRoles : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["actions"] = args ? args.actions : undefined;
+            resourceInputs["inheritedRoles"] = args ? args.inheritedRoles : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["roleName"] = args ? args.roleName : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(CustomDbRole.__pulumiType, name, inputs, opts);
+        super(CustomDbRole.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -195,30 +195,30 @@ export class CustomDbRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CustomDbRole resources.
  */
 export interface CustomDbRoleState {
-    readonly actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
-    readonly inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
+    actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
+    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Name of the inherited role. This can either be another custom role or a built-in role.
      */
-    readonly roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a CustomDbRole resource.
  */
 export interface CustomDbRoleArgs {
-    readonly actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
-    readonly inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
+    actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
+    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * Name of the inherited role. This can either be another custom role or a built-in role.
      */
-    readonly roleName: pulumi.Input<string>;
+    roleName: pulumi.Input<string>;
 }

@@ -13,6 +13,7 @@ __all__ = [
     'GetAlertConfigurationResult',
     'AwaitableGetAlertConfigurationResult',
     'get_alert_configuration',
+    'get_alert_configuration_output',
 ]
 
 @pulumi.output_type
@@ -201,3 +202,19 @@ def get_alert_configuration(alert_configuration_id: Optional[str] = None,
         threshold=__ret__.threshold,
         threshold_configs=__ret__.threshold_configs,
         updated=__ret__.updated)
+
+
+@_utilities.lift_output_func(get_alert_configuration)
+def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input[str]] = None,
+                                   project_id: Optional[pulumi.Input[str]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlertConfigurationResult]:
+    """
+    `AlertConfiguration` describes an Alert Configuration.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+
+    :param str alert_configuration_id: Unique identifier for the alert configuration.
+    :param str project_id: The ID of the project where the alert configuration will create.
+    """
+    ...
