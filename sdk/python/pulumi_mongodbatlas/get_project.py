@@ -13,6 +13,7 @@ __all__ = [
     'GetProjectResult',
     'AwaitableGetProjectResult',
     'get_project',
+    'get_project_output',
 ]
 
 @pulumi.output_type
@@ -145,3 +146,21 @@ def get_project(name: Optional[str] = None,
         org_id=__ret__.org_id,
         project_id=__ret__.project_id,
         teams=__ret__.teams)
+
+
+@_utilities.lift_output_func(get_project)
+def get_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                       project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectResult]:
+    """
+    `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    ## Example Usage
+
+
+    :param str name: The unique ID for the project.
+    :param str project_id: The unique ID for the project.
+    """
+    ...

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -62,6 +63,58 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetOnlineArchiveResult> InvokeAsync(GetOnlineArchiveArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchiveResult>("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args ?? new GetOnlineArchiveArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.OnlineArchive` describes an Online Archive
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Mongodbatlas.GetOnlineArchive.InvokeAsync(new Mongodbatlas.GetOnlineArchiveArgs
+        ///         {
+        ///             ProjectId = @var.Project_id,
+        ///             ClusterName = @var.Cluster_name,
+        ///             ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// ## Attributes reference
+        /// 
+        /// * `db_name`          -  Name of the database that contains the collection.
+        /// * `coll_name`        -  Name of the collection.
+        /// * `criteria`         -  Criteria to use for archiving data.
+        /// * `criteria.type`          - Type of criteria (DATE, CUSTOM)
+        /// * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expire_after_days` parameter.
+        /// * `criteria.date_format`   - the date format. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS
+        /// * `criteria.expire_after_days` - Number of days that specifies the age limit for the data in the live Atlas cluster.
+        /// * `criteria.query` - JSON query to use to select documents for archiving. Only for `CUSTOM` type
+        /// * `partition_fields` -  Fields to use to partition data.
+        /// * `partition_fields.field_name` - Name of the field. To specify a nested field, use the dot notation.
+        /// * `partition_fields.order` - Position of the field in the partition. Value can be: 0,1,2
+        /// By default, the date field specified in the criteria.dateField parameter is in the first position of the partition.
+        /// * `partitio_fields.field_type` - Type of the partition field
+        /// * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+        /// 
+        /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
+        /// </summary>
+        public static Output<GetOnlineArchiveResult> Invoke(GetOnlineArchiveInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetOnlineArchiveResult>("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args ?? new GetOnlineArchiveInvokeArgs(), options.WithVersion());
     }
 
 
@@ -86,6 +139,31 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetOnlineArchiveArgs()
+        {
+        }
+    }
+
+    public sealed class GetOnlineArchiveInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// ID of the online archive.
+        /// </summary>
+        [Input("archiveId", required: true)]
+        public Input<string> ArchiveId { get; set; } = null!;
+
+        /// <summary>
+        /// Name of the cluster that contains the collection.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        /// <summary>
+        /// The unique ID for the project.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetOnlineArchiveInvokeArgs()
         {
         }
     }

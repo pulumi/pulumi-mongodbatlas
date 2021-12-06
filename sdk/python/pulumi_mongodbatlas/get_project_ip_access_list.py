@@ -12,6 +12,7 @@ __all__ = [
     'GetProjectIpAccessListResult',
     'AwaitableGetProjectIpAccessListResult',
     'get_project_ip_access_list',
+    'get_project_ip_access_list_output',
 ]
 
 @pulumi.output_type
@@ -129,3 +130,28 @@ def get_project_ip_access_list(aws_security_group: Optional[str] = None,
         id=__ret__.id,
         ip_address=__ret__.ip_address,
         project_id=__ret__.project_id)
+
+
+@_utilities.lift_output_func(get_project_ip_access_list)
+def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[Optional[str]]] = None,
+                                      cidr_block: Optional[pulumi.Input[Optional[str]]] = None,
+                                      ip_address: Optional[pulumi.Input[Optional[str]]] = None,
+                                      project_id: Optional[pulumi.Input[str]] = None,
+                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetProjectIpAccessListResult]:
+    """
+    `ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    > **IMPORTANT:**
+    When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+
+    ## Example Usage
+
+
+    :param str aws_security_group: Unique identifier of the AWS security group to add to the access list.
+    :param str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
+    :param str ip_address: Single IP address to be added to the access list.
+    :param str project_id: Unique identifier for the project to which you want to add one or more access list entries.
+    """
+    ...

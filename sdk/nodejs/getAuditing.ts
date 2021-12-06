@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -30,7 +29,7 @@ export interface GetAuditingArgs {
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -58,4 +57,18 @@ export interface GetAuditingResult {
      */
     readonly id: string;
     readonly projectId: string;
+}
+
+export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuditingResult> {
+    return pulumi.output(args).apply(a => getAuditing(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAuditing.
+ */
+export interface GetAuditingOutputArgs {
+    /**
+     * The unique ID for the project to create the database user.
+     */
+    projectId: pulumi.Input<string>;
 }

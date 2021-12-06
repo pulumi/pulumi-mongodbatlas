@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  * const testProject = pulumi.output(mongodbatlas.getProject({
  *     itemsPerPage: 5,
  *     pageNum: 1,
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getProjects(args?: GetProjectsArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectsResult> {
@@ -60,11 +60,11 @@ export interface GetProjectsArgs {
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
-    readonly itemsPerPage?: number;
+    itemsPerPage?: number;
     /**
      * The page to return. Defaults to `1`.
      */
-    readonly pageNum?: number;
+    pageNum?: number;
 }
 
 /**
@@ -79,4 +79,22 @@ export interface GetProjectsResult {
     readonly pageNum?: number;
     readonly results: outputs.GetProjectsResult[];
     readonly totalCount: number;
+}
+
+export function getProjectsOutput(args?: GetProjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectsResult> {
+    return pulumi.output(args).apply(a => getProjects(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getProjects.
+ */
+export interface GetProjectsOutputArgs {
+    /**
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     */
+    itemsPerPage?: pulumi.Input<number>;
+    /**
+     * The page to return. Defaults to `1`.
+     */
+    pageNum?: pulumi.Input<number>;
 }

@@ -100,7 +100,7 @@ type CloudProviderAccessAuthorizationInput interface {
 }
 
 func (*CloudProviderAccessAuthorization) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderAccessAuthorization)(nil))
+	return reflect.TypeOf((**CloudProviderAccessAuthorization)(nil)).Elem()
 }
 
 func (i *CloudProviderAccessAuthorization) ToCloudProviderAccessAuthorizationOutput() CloudProviderAccessAuthorizationOutput {
@@ -109,35 +109,6 @@ func (i *CloudProviderAccessAuthorization) ToCloudProviderAccessAuthorizationOut
 
 func (i *CloudProviderAccessAuthorization) ToCloudProviderAccessAuthorizationOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationOutput)
-}
-
-func (i *CloudProviderAccessAuthorization) ToCloudProviderAccessAuthorizationPtrOutput() CloudProviderAccessAuthorizationPtrOutput {
-	return i.ToCloudProviderAccessAuthorizationPtrOutputWithContext(context.Background())
-}
-
-func (i *CloudProviderAccessAuthorization) ToCloudProviderAccessAuthorizationPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationPtrOutput)
-}
-
-type CloudProviderAccessAuthorizationPtrInput interface {
-	pulumi.Input
-
-	ToCloudProviderAccessAuthorizationPtrOutput() CloudProviderAccessAuthorizationPtrOutput
-	ToCloudProviderAccessAuthorizationPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationPtrOutput
-}
-
-type cloudProviderAccessAuthorizationPtrType CloudProviderAccessAuthorizationArgs
-
-func (*cloudProviderAccessAuthorizationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderAccessAuthorization)(nil))
-}
-
-func (i *cloudProviderAccessAuthorizationPtrType) ToCloudProviderAccessAuthorizationPtrOutput() CloudProviderAccessAuthorizationPtrOutput {
-	return i.ToCloudProviderAccessAuthorizationPtrOutputWithContext(context.Background())
-}
-
-func (i *cloudProviderAccessAuthorizationPtrType) ToCloudProviderAccessAuthorizationPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationPtrOutput)
 }
 
 // CloudProviderAccessAuthorizationArrayInput is an input type that accepts CloudProviderAccessAuthorizationArray and CloudProviderAccessAuthorizationArrayOutput values.
@@ -154,7 +125,7 @@ type CloudProviderAccessAuthorizationArrayInput interface {
 type CloudProviderAccessAuthorizationArray []CloudProviderAccessAuthorizationInput
 
 func (CloudProviderAccessAuthorizationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CloudProviderAccessAuthorization)(nil))
+	return reflect.TypeOf((*[]*CloudProviderAccessAuthorization)(nil)).Elem()
 }
 
 func (i CloudProviderAccessAuthorizationArray) ToCloudProviderAccessAuthorizationArrayOutput() CloudProviderAccessAuthorizationArrayOutput {
@@ -179,7 +150,7 @@ type CloudProviderAccessAuthorizationMapInput interface {
 type CloudProviderAccessAuthorizationMap map[string]CloudProviderAccessAuthorizationInput
 
 func (CloudProviderAccessAuthorizationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CloudProviderAccessAuthorization)(nil))
+	return reflect.TypeOf((*map[string]*CloudProviderAccessAuthorization)(nil)).Elem()
 }
 
 func (i CloudProviderAccessAuthorizationMap) ToCloudProviderAccessAuthorizationMapOutput() CloudProviderAccessAuthorizationMapOutput {
@@ -190,12 +161,10 @@ func (i CloudProviderAccessAuthorizationMap) ToCloudProviderAccessAuthorizationM
 	return pulumi.ToOutputWithContext(ctx, i).(CloudProviderAccessAuthorizationMapOutput)
 }
 
-type CloudProviderAccessAuthorizationOutput struct {
-	*pulumi.OutputState
-}
+type CloudProviderAccessAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderAccessAuthorizationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CloudProviderAccessAuthorization)(nil))
+	return reflect.TypeOf((**CloudProviderAccessAuthorization)(nil)).Elem()
 }
 
 func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizationOutput() CloudProviderAccessAuthorizationOutput {
@@ -206,36 +175,10 @@ func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizati
 	return o
 }
 
-func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizationPtrOutput() CloudProviderAccessAuthorizationPtrOutput {
-	return o.ToCloudProviderAccessAuthorizationPtrOutputWithContext(context.Background())
-}
-
-func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizationPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationPtrOutput {
-	return o.ApplyT(func(v CloudProviderAccessAuthorization) *CloudProviderAccessAuthorization {
-		return &v
-	}).(CloudProviderAccessAuthorizationPtrOutput)
-}
-
-type CloudProviderAccessAuthorizationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CloudProviderAccessAuthorizationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudProviderAccessAuthorization)(nil))
-}
-
-func (o CloudProviderAccessAuthorizationPtrOutput) ToCloudProviderAccessAuthorizationPtrOutput() CloudProviderAccessAuthorizationPtrOutput {
-	return o
-}
-
-func (o CloudProviderAccessAuthorizationPtrOutput) ToCloudProviderAccessAuthorizationPtrOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationPtrOutput {
-	return o
-}
-
 type CloudProviderAccessAuthorizationArrayOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderAccessAuthorizationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CloudProviderAccessAuthorization)(nil))
+	return reflect.TypeOf((*[]*CloudProviderAccessAuthorization)(nil)).Elem()
 }
 
 func (o CloudProviderAccessAuthorizationArrayOutput) ToCloudProviderAccessAuthorizationArrayOutput() CloudProviderAccessAuthorizationArrayOutput {
@@ -247,15 +190,15 @@ func (o CloudProviderAccessAuthorizationArrayOutput) ToCloudProviderAccessAuthor
 }
 
 func (o CloudProviderAccessAuthorizationArrayOutput) Index(i pulumi.IntInput) CloudProviderAccessAuthorizationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudProviderAccessAuthorization {
-		return vs[0].([]CloudProviderAccessAuthorization)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CloudProviderAccessAuthorization {
+		return vs[0].([]*CloudProviderAccessAuthorization)[vs[1].(int)]
 	}).(CloudProviderAccessAuthorizationOutput)
 }
 
 type CloudProviderAccessAuthorizationMapOutput struct{ *pulumi.OutputState }
 
 func (CloudProviderAccessAuthorizationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CloudProviderAccessAuthorization)(nil))
+	return reflect.TypeOf((*map[string]*CloudProviderAccessAuthorization)(nil)).Elem()
 }
 
 func (o CloudProviderAccessAuthorizationMapOutput) ToCloudProviderAccessAuthorizationMapOutput() CloudProviderAccessAuthorizationMapOutput {
@@ -267,14 +210,16 @@ func (o CloudProviderAccessAuthorizationMapOutput) ToCloudProviderAccessAuthoriz
 }
 
 func (o CloudProviderAccessAuthorizationMapOutput) MapIndex(k pulumi.StringInput) CloudProviderAccessAuthorizationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CloudProviderAccessAuthorization {
-		return vs[0].(map[string]CloudProviderAccessAuthorization)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CloudProviderAccessAuthorization {
+		return vs[0].(map[string]*CloudProviderAccessAuthorization)[vs[1].(string)]
 	}).(CloudProviderAccessAuthorizationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationInput)(nil)).Elem(), &CloudProviderAccessAuthorization{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationArrayInput)(nil)).Elem(), CloudProviderAccessAuthorizationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationMapInput)(nil)).Elem(), CloudProviderAccessAuthorizationMap{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationOutput{})
-	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationArrayOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationMapOutput{})
 }

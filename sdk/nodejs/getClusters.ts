@@ -38,9 +38,9 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     providerInstanceSizeName: "M40",
  * });
- * const testClusters = testCluster.projectId.apply(projectId => mongodbatlas.getClusters({
- *     projectId: projectId,
- * }));
+ * const testClusters = mongodbatlas.getClustersOutput({
+ *     projectId: testCluster.projectId,
+ * });
  * ```
  */
 export function getClusters(args: GetClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetClustersResult> {
@@ -63,7 +63,7 @@ export interface GetClustersArgs {
     /**
      * The unique ID for the project to get the clusters.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -79,4 +79,18 @@ export interface GetClustersResult {
      * A list where each represents a Cluster. See Cluster below for more details.
      */
     readonly results: outputs.GetClustersResult[];
+}
+
+export function getClustersOutput(args: GetClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClustersResult> {
+    return pulumi.output(args).apply(a => getClusters(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getClusters.
+ */
+export interface GetClustersOutputArgs {
+    /**
+     * The unique ID for the project to get the clusters.
+     */
+    projectId: pulumi.Input<string>;
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -60,15 +61,10 @@ namespace Pulumi.Mongodbatlas
         ///                 },
         ///             },
         ///         });
-        ///         var test = Output.Tuple(testRole.ProjectId, testRole.RoleName).Apply(values =&gt;
+        ///         var test = Mongodbatlas.GetCustomDbRole.Invoke(new Mongodbatlas.GetCustomDbRoleInvokeArgs
         ///         {
-        ///             var projectId = values.Item1;
-        ///             var roleName = values.Item2;
-        ///             return Mongodbatlas.GetCustomDbRole.InvokeAsync(new Mongodbatlas.GetCustomDbRoleArgs
-        ///             {
-        ///                 ProjectId = projectId,
-        ///                 RoleName = roleName,
-        ///             });
+        ///             ProjectId = testRole.ProjectId,
+        ///             RoleName = testRole.RoleName,
         ///         });
         ///     }
         /// 
@@ -79,6 +75,70 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetCustomDbRoleResult> InvokeAsync(GetCustomDbRoleArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testRole = new Mongodbatlas.CustomDbRole("testRole", new Mongodbatlas.CustomDbRoleArgs
+        ///         {
+        ///             ProjectId = "&lt;PROJECT-ID&gt;",
+        ///             RoleName = "myCustomRole",
+        ///             Actions = 
+        ///             {
+        ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+        ///                 {
+        ///                     Action = "UPDATE",
+        ///                     Resources = 
+        ///                     {
+        ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+        ///                         {
+        ///                             CollectionName = "",
+        ///                             DatabaseName = "anyDatabase",
+        ///                         },
+        ///                     },
+        ///                 },
+        ///                 new Mongodbatlas.Inputs.CustomDbRoleActionArgs
+        ///                 {
+        ///                     Action = "INSERT",
+        ///                     Resources = 
+        ///                     {
+        ///                         new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs
+        ///                         {
+        ///                             CollectionName = "",
+        ///                             DatabaseName = "anyDatabase",
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         });
+        ///         var test = Mongodbatlas.GetCustomDbRole.Invoke(new Mongodbatlas.GetCustomDbRoleInvokeArgs
+        ///         {
+        ///             ProjectId = testRole.ProjectId,
+        ///             RoleName = testRole.RoleName,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetCustomDbRoleResult> Invoke(GetCustomDbRoleInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleInvokeArgs(), options.WithVersion());
     }
 
 
@@ -105,6 +165,33 @@ namespace Pulumi.Mongodbatlas
         public string RoleName { get; set; } = null!;
 
         public GetCustomDbRoleArgs()
+        {
+        }
+    }
+
+    public sealed class GetCustomDbRoleInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("inheritedRoles")]
+        private InputList<Inputs.GetCustomDbRoleInheritedRoleInputArgs>? _inheritedRoles;
+        public InputList<Inputs.GetCustomDbRoleInheritedRoleInputArgs> InheritedRoles
+        {
+            get => _inheritedRoles ?? (_inheritedRoles = new InputList<Inputs.GetCustomDbRoleInheritedRoleInputArgs>());
+            set => _inheritedRoles = value;
+        }
+
+        /// <summary>
+        /// The unique ID for the project to create the database user.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Name of the custom role.
+        /// </summary>
+        [Input("roleName", required: true)]
+        public Input<string> RoleName { get; set; } = null!;
+
+        public GetCustomDbRoleInvokeArgs()
         {
         }
     }

@@ -46,8 +46,8 @@ import (
 // 			ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
 // 			ConfigFullDocument:       pulumi.Bool(false),
 // 			ConfigFullDocumentBefore: pulumi.Bool(false),
-// 			EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
-// 				AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
+// 			EventProcessors: &EventTriggerEventProcessorsArgs{
+// 				AwsEventbridge: &EventTriggerEventProcessorsAwsEventbridgeArgs{
 // 					ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
 // 					ConfigRegion:    pulumi.String("AWS REGIOn"),
 // 				},
@@ -90,8 +90,8 @@ import (
 // 			ConfigSchedule:  pulumi.String("*"),
 // 			ConfigServiceId: pulumi.String("1"),
 // 			Disabled:        pulumi.Bool(false),
-// 			EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
-// 				AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
+// 			EventProcessors: &EventTriggerEventProcessorsArgs{
+// 				AwsEventbridge: &EventTriggerEventProcessorsAwsEventbridgeArgs{
 // 					ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
 // 					ConfigRegion:    pulumi.String("AWS REGIOn"),
 // 				},
@@ -440,7 +440,7 @@ type EventTriggerInput interface {
 }
 
 func (*EventTrigger) ElementType() reflect.Type {
-	return reflect.TypeOf((*EventTrigger)(nil))
+	return reflect.TypeOf((**EventTrigger)(nil)).Elem()
 }
 
 func (i *EventTrigger) ToEventTriggerOutput() EventTriggerOutput {
@@ -449,35 +449,6 @@ func (i *EventTrigger) ToEventTriggerOutput() EventTriggerOutput {
 
 func (i *EventTrigger) ToEventTriggerOutputWithContext(ctx context.Context) EventTriggerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerOutput)
-}
-
-func (i *EventTrigger) ToEventTriggerPtrOutput() EventTriggerPtrOutput {
-	return i.ToEventTriggerPtrOutputWithContext(context.Background())
-}
-
-func (i *EventTrigger) ToEventTriggerPtrOutputWithContext(ctx context.Context) EventTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerPtrOutput)
-}
-
-type EventTriggerPtrInput interface {
-	pulumi.Input
-
-	ToEventTriggerPtrOutput() EventTriggerPtrOutput
-	ToEventTriggerPtrOutputWithContext(ctx context.Context) EventTriggerPtrOutput
-}
-
-type eventTriggerPtrType EventTriggerArgs
-
-func (*eventTriggerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EventTrigger)(nil))
-}
-
-func (i *eventTriggerPtrType) ToEventTriggerPtrOutput() EventTriggerPtrOutput {
-	return i.ToEventTriggerPtrOutputWithContext(context.Background())
-}
-
-func (i *eventTriggerPtrType) ToEventTriggerPtrOutputWithContext(ctx context.Context) EventTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerPtrOutput)
 }
 
 // EventTriggerArrayInput is an input type that accepts EventTriggerArray and EventTriggerArrayOutput values.
@@ -494,7 +465,7 @@ type EventTriggerArrayInput interface {
 type EventTriggerArray []EventTriggerInput
 
 func (EventTriggerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EventTrigger)(nil))
+	return reflect.TypeOf((*[]*EventTrigger)(nil)).Elem()
 }
 
 func (i EventTriggerArray) ToEventTriggerArrayOutput() EventTriggerArrayOutput {
@@ -519,7 +490,7 @@ type EventTriggerMapInput interface {
 type EventTriggerMap map[string]EventTriggerInput
 
 func (EventTriggerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EventTrigger)(nil))
+	return reflect.TypeOf((*map[string]*EventTrigger)(nil)).Elem()
 }
 
 func (i EventTriggerMap) ToEventTriggerMapOutput() EventTriggerMapOutput {
@@ -530,12 +501,10 @@ func (i EventTriggerMap) ToEventTriggerMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(EventTriggerMapOutput)
 }
 
-type EventTriggerOutput struct {
-	*pulumi.OutputState
-}
+type EventTriggerOutput struct{ *pulumi.OutputState }
 
 func (EventTriggerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EventTrigger)(nil))
+	return reflect.TypeOf((**EventTrigger)(nil)).Elem()
 }
 
 func (o EventTriggerOutput) ToEventTriggerOutput() EventTriggerOutput {
@@ -546,36 +515,10 @@ func (o EventTriggerOutput) ToEventTriggerOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o EventTriggerOutput) ToEventTriggerPtrOutput() EventTriggerPtrOutput {
-	return o.ToEventTriggerPtrOutputWithContext(context.Background())
-}
-
-func (o EventTriggerOutput) ToEventTriggerPtrOutputWithContext(ctx context.Context) EventTriggerPtrOutput {
-	return o.ApplyT(func(v EventTrigger) *EventTrigger {
-		return &v
-	}).(EventTriggerPtrOutput)
-}
-
-type EventTriggerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EventTriggerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EventTrigger)(nil))
-}
-
-func (o EventTriggerPtrOutput) ToEventTriggerPtrOutput() EventTriggerPtrOutput {
-	return o
-}
-
-func (o EventTriggerPtrOutput) ToEventTriggerPtrOutputWithContext(ctx context.Context) EventTriggerPtrOutput {
-	return o
-}
-
 type EventTriggerArrayOutput struct{ *pulumi.OutputState }
 
 func (EventTriggerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EventTrigger)(nil))
+	return reflect.TypeOf((*[]*EventTrigger)(nil)).Elem()
 }
 
 func (o EventTriggerArrayOutput) ToEventTriggerArrayOutput() EventTriggerArrayOutput {
@@ -587,15 +530,15 @@ func (o EventTriggerArrayOutput) ToEventTriggerArrayOutputWithContext(ctx contex
 }
 
 func (o EventTriggerArrayOutput) Index(i pulumi.IntInput) EventTriggerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EventTrigger {
-		return vs[0].([]EventTrigger)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EventTrigger {
+		return vs[0].([]*EventTrigger)[vs[1].(int)]
 	}).(EventTriggerOutput)
 }
 
 type EventTriggerMapOutput struct{ *pulumi.OutputState }
 
 func (EventTriggerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EventTrigger)(nil))
+	return reflect.TypeOf((*map[string]*EventTrigger)(nil)).Elem()
 }
 
 func (o EventTriggerMapOutput) ToEventTriggerMapOutput() EventTriggerMapOutput {
@@ -607,14 +550,16 @@ func (o EventTriggerMapOutput) ToEventTriggerMapOutputWithContext(ctx context.Co
 }
 
 func (o EventTriggerMapOutput) MapIndex(k pulumi.StringInput) EventTriggerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EventTrigger {
-		return vs[0].(map[string]EventTrigger)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EventTrigger {
+		return vs[0].(map[string]*EventTrigger)[vs[1].(string)]
 	}).(EventTriggerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EventTriggerInput)(nil)).Elem(), &EventTrigger{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EventTriggerArrayInput)(nil)).Elem(), EventTriggerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EventTriggerMapInput)(nil)).Elem(), EventTriggerMap{})
 	pulumi.RegisterOutputType(EventTriggerOutput{})
-	pulumi.RegisterOutputType(EventTriggerPtrOutput{})
 	pulumi.RegisterOutputType(EventTriggerArrayOutput{})
 	pulumi.RegisterOutputType(EventTriggerMapOutput{})
 }

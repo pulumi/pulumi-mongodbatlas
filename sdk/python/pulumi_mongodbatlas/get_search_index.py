@@ -12,6 +12,7 @@ __all__ = [
     'GetSearchIndexResult',
     'AwaitableGetSearchIndexResult',
     'get_search_index',
+    'get_search_index_output',
 ]
 
 @pulumi.output_type
@@ -209,7 +210,7 @@ def get_search_index(analyzer: Optional[str] = None,
     :param str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
     :param str collection_name: (Required) Name of the collection the index is on.
     :param str database: (Required) Name of the database the collection is in.
-    :param str index_id: The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
+    :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
     :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
     :param str mappings_fields: Object containing one or more field specifications.
     :param str name: Name of the index.
@@ -249,3 +250,49 @@ def get_search_index(analyzer: Optional[str] = None,
         project_id=__ret__.project_id,
         search_analyzer=__ret__.search_analyzer,
         status=__ret__.status)
+
+
+@_utilities.lift_output_func(get_search_index)
+def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = None,
+                            analyzers: Optional[pulumi.Input[Optional[str]]] = None,
+                            cluster_name: Optional[pulumi.Input[str]] = None,
+                            collection_name: Optional[pulumi.Input[Optional[str]]] = None,
+                            database: Optional[pulumi.Input[Optional[str]]] = None,
+                            index_id: Optional[pulumi.Input[str]] = None,
+                            mappings_dynamic: Optional[pulumi.Input[Optional[bool]]] = None,
+                            mappings_fields: Optional[pulumi.Input[Optional[str]]] = None,
+                            name: Optional[pulumi.Input[Optional[str]]] = None,
+                            project_id: Optional[pulumi.Input[str]] = None,
+                            search_analyzer: Optional[pulumi.Input[Optional[str]]] = None,
+                            status: Optional[pulumi.Input[Optional[str]]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSearchIndexResult]:
+    """
+    `SearchIndex` describe a single search indexes. This represents a single search index that have been created.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_search_index(cluster_name="<CLUSTER_NAME>",
+        index_id="<INDEX_ID",
+        project_id="<PROJECT_ID>")
+    ```
+
+
+    :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+    :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+    :param str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
+    :param str collection_name: (Required) Name of the collection the index is on.
+    :param str database: (Required) Name of the database the collection is in.
+    :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
+    :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
+    :param str mappings_fields: Object containing one or more field specifications.
+    :param str name: Name of the index.
+    :param str project_id: The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+    :param str search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+    """
+    ...

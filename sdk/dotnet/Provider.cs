@@ -19,6 +19,31 @@ namespace Pulumi.Mongodbatlas
     public partial class Provider : Pulumi.ProviderResource
     {
         /// <summary>
+        /// MongoDB Atlas Base URL
+        /// </summary>
+        [Output("baseUrl")]
+        public Output<string?> BaseUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// MongoDB Atlas Programmatic Private Key
+        /// </summary>
+        [Output("privateKey")]
+        public Output<string> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// MongoDB Atlas Programmatic Public Key
+        /// </summary>
+        [Output("publicKey")]
+        public Output<string> PublicKey { get; private set; } = null!;
+
+        /// <summary>
+        /// MongoDB Realm Base URL
+        /// </summary>
+        [Output("realmBaseUrl")]
+        public Output<string?> RealmBaseUrl { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>
         ///

@@ -12,6 +12,7 @@ __all__ = [
     'GetNetworkPeeringResult',
     'AwaitableGetNetworkPeeringResult',
     'get_network_peering',
+    'get_network_peering_output',
 ]
 
 @pulumi.output_type
@@ -338,3 +339,21 @@ def get_network_peering(peering_id: Optional[str] = None,
         status_name=__ret__.status_name,
         vnet_name=__ret__.vnet_name,
         vpc_id=__ret__.vpc_id)
+
+
+@_utilities.lift_output_func(get_network_peering)
+def get_network_peering_output(peering_id: Optional[pulumi.Input[str]] = None,
+                               project_id: Optional[pulumi.Input[str]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkPeeringResult]:
+    """
+    `NetworkPeering` describes a Network Peering Connection.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+
+
+    :param str peering_id: Atlas assigned unique ID for the peering connection.
+    :param str project_id: The unique ID for the project to create the database user.
+    """
+    ...

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetDataLakeResult> InvokeAsync(GetDataLakeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDataLakeResult>("mongodbatlas:index/getDataLake:getDataLake", args ?? new GetDataLakeArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.DataLake` describe a Data Lake.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
+        public static Output<GetDataLakeResult> Invoke(GetDataLakeInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDataLakeResult>("mongodbatlas:index/getDataLake:getDataLake", args ?? new GetDataLakeInvokeArgs(), options.WithVersion());
     }
 
 
@@ -36,6 +45,25 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetDataLakeArgs()
+        {
+        }
+    }
+
+    public sealed class GetDataLakeInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Name of the data lake.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// The unique ID for the project to create a data lake.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetDataLakeInvokeArgs()
         {
         }
     }

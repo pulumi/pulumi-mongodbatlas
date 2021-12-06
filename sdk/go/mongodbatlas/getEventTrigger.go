@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -70,4 +73,153 @@ type LookupEventTriggerResult struct {
 	TriggerId string `pulumi:"triggerId"`
 	// The type of the trigger.
 	Type string `pulumi:"type"`
+}
+
+func LookupEventTriggerOutput(ctx *pulumi.Context, args LookupEventTriggerOutputArgs, opts ...pulumi.InvokeOption) LookupEventTriggerResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupEventTriggerResult, error) {
+			args := v.(LookupEventTriggerArgs)
+			r, err := LookupEventTrigger(ctx, &args, opts...)
+			return *r, err
+		}).(LookupEventTriggerResultOutput)
+}
+
+// A collection of arguments for invoking getEventTrigger.
+type LookupEventTriggerOutputArgs struct {
+	// The ObjectID of your application.
+	AppId pulumi.StringInput `pulumi:"appId"`
+	// The unique ID for the project to create the trigger.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The unique ID of the trigger.
+	TriggerId pulumi.StringInput `pulumi:"triggerId"`
+}
+
+func (LookupEventTriggerOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEventTriggerArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getEventTrigger.
+type LookupEventTriggerResultOutput struct{ *pulumi.OutputState }
+
+func (LookupEventTriggerResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupEventTriggerResult)(nil)).Elem()
+}
+
+func (o LookupEventTriggerResultOutput) ToLookupEventTriggerResultOutput() LookupEventTriggerResultOutput {
+	return o
+}
+
+func (o LookupEventTriggerResultOutput) ToLookupEventTriggerResultOutputWithContext(ctx context.Context) LookupEventTriggerResultOutput {
+	return o
+}
+
+func (o LookupEventTriggerResultOutput) AppId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.AppId }).(pulumi.StringOutput)
+}
+
+// The name of the MongoDB collection that the trigger watches for change events.
+func (o LookupEventTriggerResultOutput) ConfigCollection() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigCollection }).(pulumi.StringOutput)
+}
+
+// The name of the MongoDB database that contains the watched collection.
+func (o LookupEventTriggerResultOutput) ConfigDatabase() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigDatabase }).(pulumi.StringOutput)
+}
+
+// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+func (o LookupEventTriggerResultOutput) ConfigFullDocument() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) bool { return v.ConfigFullDocument }).(pulumi.BoolOutput)
+}
+
+func (o LookupEventTriggerResultOutput) ConfigFullDocumentBefore() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) bool { return v.ConfigFullDocumentBefore }).(pulumi.BoolOutput)
+}
+
+// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+func (o LookupEventTriggerResultOutput) ConfigMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigMatch }).(pulumi.StringOutput)
+}
+
+// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+func (o LookupEventTriggerResultOutput) ConfigOperationType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigOperationType }).(pulumi.StringOutput)
+}
+
+// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+func (o LookupEventTriggerResultOutput) ConfigOperationTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) []string { return v.ConfigOperationTypes }).(pulumi.StringArrayOutput)
+}
+
+// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+func (o LookupEventTriggerResultOutput) ConfigProject() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigProject }).(pulumi.StringOutput)
+}
+
+// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+func (o LookupEventTriggerResultOutput) ConfigProviders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) []string { return v.ConfigProviders }).(pulumi.StringArrayOutput)
+}
+
+// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+func (o LookupEventTriggerResultOutput) ConfigSchedule() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigSchedule }).(pulumi.StringOutput)
+}
+
+func (o LookupEventTriggerResultOutput) ConfigScheduleType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigScheduleType }).(pulumi.StringOutput)
+}
+
+// The ID of the MongoDB Service associated with the trigger.
+func (o LookupEventTriggerResultOutput) ConfigServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigServiceId }).(pulumi.StringOutput)
+}
+
+// Status of a trigger.
+func (o LookupEventTriggerResultOutput) Disabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) bool { return v.Disabled }).(pulumi.BoolOutput)
+}
+
+// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor.
+// * `event_processors.0.aws_eventbridge.config_account_id` - AWS Account ID.
+// * `event_processors.0.aws_eventbridge.config_region` - Region of AWS Account.
+func (o LookupEventTriggerResultOutput) EventProcessors() GetEventTriggerEventProcessorArrayOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) []GetEventTriggerEventProcessor { return v.EventProcessors }).(GetEventTriggerEventProcessorArrayOutput)
+}
+
+// The ID of the function associated with the trigger.
+func (o LookupEventTriggerResultOutput) FunctionId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.FunctionId }).(pulumi.StringOutput)
+}
+
+// The name of the function associated with the trigger.
+func (o LookupEventTriggerResultOutput) FunctionName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.FunctionName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupEventTriggerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the trigger.
+func (o LookupEventTriggerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupEventTriggerResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o LookupEventTriggerResultOutput) TriggerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.TriggerId }).(pulumi.StringOutput)
+}
+
+// The type of the trigger.
+func (o LookupEventTriggerResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupEventTriggerResultOutput{})
 }

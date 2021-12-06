@@ -9,4 +9,49 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class ClusterConnectionStringArgs : Pulumi.ResourceArgs
+    {
+        [Input("awsPrivateLink")]
+        private InputMap<object>? _awsPrivateLink;
+        [Obsolete(@"This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead")]
+        public InputMap<object> AwsPrivateLink
+        {
+            get => _awsPrivateLink ?? (_awsPrivateLink = new InputMap<object>());
+            set => _awsPrivateLink = value;
+        }
+
+        [Input("awsPrivateLinkSrv")]
+        private InputMap<object>? _awsPrivateLinkSrv;
+        [Obsolete(@"This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead")]
+        public InputMap<object> AwsPrivateLinkSrv
+        {
+            get => _awsPrivateLinkSrv ?? (_awsPrivateLinkSrv = new InputMap<object>());
+            set => _awsPrivateLinkSrv = value;
+        }
+
+        [Input("private")]
+        public Input<string>? Private { get; set; }
+
+        [Input("privateEndpoints")]
+        private InputList<Inputs.ClusterConnectionStringPrivateEndpointArgs>? _privateEndpoints;
+        public InputList<Inputs.ClusterConnectionStringPrivateEndpointArgs> PrivateEndpoints
+        {
+            get => _privateEndpoints ?? (_privateEndpoints = new InputList<Inputs.ClusterConnectionStringPrivateEndpointArgs>());
+            set => _privateEndpoints = value;
+        }
+
+        [Input("privateSrv")]
+        public Input<string>? PrivateSrv { get; set; }
+
+        [Input("standard")]
+        public Input<string>? Standard { get; set; }
+
+        [Input("standardSrv")]
+        public Input<string>? StandardSrv { get; set; }
+
+        public ClusterConnectionStringArgs()
+        {
+        }
+    }
 }

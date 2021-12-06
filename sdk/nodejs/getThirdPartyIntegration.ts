@@ -2,13 +2,30 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testFlowdock = new mongodbatlas.ThirdPartyIntegration("testFlowdock", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "FLOWDOCK",
+ *     flowName: "<FLOW-NAME>",
+ *     apiToken: "<API-TOKEN>",
+ *     orgName: "<ORG-NAME>",
+ * });
+ * const test = mongodbatlas.getThirdPartyIntegrationOutput({
+ *     projectId: testFlowdock.projectId,
+ * });
+ * ```
  */
 export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationResult> {
     if (!opts) {
@@ -31,7 +48,7 @@ export interface GetThirdPartyIntegrationArgs {
     /**
      * The unique ID for the project to get all Third-Party service integrations
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * Third-Party service integration type
      * * PAGER_DUTY
@@ -42,7 +59,7 @@ export interface GetThirdPartyIntegrationArgs {
      * * FLOWDOCK
      * * WEBHOOK
      */
-    readonly type: string;
+    type: string;
 }
 
 /**
@@ -117,4 +134,29 @@ export interface GetThirdPartyIntegrationResult {
      * Your Insights Insert Key.
      */
     readonly writeToken: string;
+}
+
+export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
+    return pulumi.output(args).apply(a => getThirdPartyIntegration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getThirdPartyIntegration.
+ */
+export interface GetThirdPartyIntegrationOutputArgs {
+    /**
+     * The unique ID for the project to get all Third-Party service integrations
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Third-Party service integration type
+     * * PAGER_DUTY
+     * * DATADOG
+     * * NEW_RELIC
+     * * OPS_GENIE
+     * * VICTOR_OPS
+     * * FLOWDOCK
+     * * WEBHOOK
+     */
+    type: pulumi.Input<string>;
 }

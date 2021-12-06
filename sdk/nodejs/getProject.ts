@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  * });
  * const testProject = testMongodbatlasProject.id.apply(id => mongodbatlas.getProject({
  *     projectId: id,
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
@@ -59,11 +59,11 @@ export interface GetProjectArgs {
     /**
      * The unique ID for the project.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The unique ID for the project.
      */
-    readonly projectId?: string;
+    projectId?: string;
 }
 
 /**
@@ -97,4 +97,22 @@ export interface GetProjectResult {
     readonly orgId: string;
     readonly projectId?: string;
     readonly teams: outputs.GetProjectTeam[];
+}
+
+export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectResult> {
+    return pulumi.output(args).apply(a => getProject(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getProject.
+ */
+export interface GetProjectOutputArgs {
+    /**
+     * The unique ID for the project.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The unique ID for the project.
+     */
+    projectId?: pulumi.Input<string>;
 }

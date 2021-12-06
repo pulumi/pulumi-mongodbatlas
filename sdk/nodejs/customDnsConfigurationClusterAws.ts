@@ -81,12 +81,12 @@ export class CustomDnsConfigurationClusterAws extends pulumi.CustomResource {
      */
     constructor(name: string, args: CustomDnsConfigurationClusterAwsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CustomDnsConfigurationClusterAwsArgs | CustomDnsConfigurationClusterAwsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomDnsConfigurationClusterAwsState | undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as CustomDnsConfigurationClusterAwsArgs | undefined;
             if ((!args || args.enabled === undefined) && !opts.urn) {
@@ -95,13 +95,13 @@ export class CustomDnsConfigurationClusterAws extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(CustomDnsConfigurationClusterAws.__pulumiType, name, inputs, opts);
+        super(CustomDnsConfigurationClusterAws.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -112,11 +112,11 @@ export interface CustomDnsConfigurationClusterAwsState {
     /**
      * Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Required 	Unique identifier for the project.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
 }
 
 /**
@@ -126,9 +126,9 @@ export interface CustomDnsConfigurationClusterAwsArgs {
     /**
      * Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
      */
-    readonly enabled: pulumi.Input<boolean>;
+    enabled: pulumi.Input<boolean>;
     /**
      * Required 	Unique identifier for the project.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

@@ -9,4 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class LdapVerifyLinkArgs : Pulumi.ResourceArgs
+    {
+        [Input("href")]
+        public Input<string>? Href { get; set; }
+
+        [Input("rel")]
+        public Input<string>? Rel { get; set; }
+
+        public LdapVerifyLinkArgs()
+        {
+        }
+    }
 }

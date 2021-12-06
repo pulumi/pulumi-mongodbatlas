@@ -4,14 +4,17 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // `getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-func GetCloudProviderSnapshots(ctx *pulumi.Context, args *GetCloudProviderSnapshotsArgs, opts ...pulumi.InvokeOption) (*GetCloudProviderSnapshotsResult, error) {
-	var rv GetCloudProviderSnapshotsResult
+func LookupCloudProviderSnapshots(ctx *pulumi.Context, args *LookupCloudProviderSnapshotsArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderSnapshotsResult, error) {
+	var rv LookupCloudProviderSnapshotsResult
 	err := ctx.Invoke("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -20,7 +23,7 @@ func GetCloudProviderSnapshots(ctx *pulumi.Context, args *GetCloudProviderSnapsh
 }
 
 // A collection of arguments for invoking getCloudProviderSnapshots.
-type GetCloudProviderSnapshotsArgs struct {
+type LookupCloudProviderSnapshotsArgs struct {
 	// The name of the Atlas cluster that contains the snapshot you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -31,7 +34,7 @@ type GetCloudProviderSnapshotsArgs struct {
 }
 
 // A collection of values returned by getCloudProviderSnapshots.
-type GetCloudProviderSnapshotsResult struct {
+type LookupCloudProviderSnapshotsResult struct {
 	ClusterName string `pulumi:"clusterName"`
 	// The provider-assigned unique ID for this managed resource.
 	Id           string `pulumi:"id"`
@@ -39,6 +42,79 @@ type GetCloudProviderSnapshotsResult struct {
 	PageNum      *int   `pulumi:"pageNum"`
 	ProjectId    string `pulumi:"projectId"`
 	// Includes cloudProviderSnapshot object for each item detailed in the results array section.
-	Results    []GetCloudProviderSnapshotsResultType `pulumi:"results"`
-	TotalCount int                                   `pulumi:"totalCount"`
+	Results    []GetCloudProviderSnapshotsResult `pulumi:"results"`
+	TotalCount int                               `pulumi:"totalCount"`
+}
+
+func LookupCloudProviderSnapshotsOutput(ctx *pulumi.Context, args LookupCloudProviderSnapshotsOutputArgs, opts ...pulumi.InvokeOption) LookupCloudProviderSnapshotsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupCloudProviderSnapshotsResult, error) {
+			args := v.(LookupCloudProviderSnapshotsArgs)
+			r, err := LookupCloudProviderSnapshots(ctx, &args, opts...)
+			return *r, err
+		}).(LookupCloudProviderSnapshotsResultOutput)
+}
+
+// A collection of arguments for invoking getCloudProviderSnapshots.
+type LookupCloudProviderSnapshotsOutputArgs struct {
+	// The name of the Atlas cluster that contains the snapshot you want to retrieve.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
+	// The page to return. Defaults to `1`.
+	PageNum   pulumi.IntPtrInput `pulumi:"pageNum"`
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupCloudProviderSnapshotsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCloudProviderSnapshotsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getCloudProviderSnapshots.
+type LookupCloudProviderSnapshotsResultOutput struct{ *pulumi.OutputState }
+
+func (LookupCloudProviderSnapshotsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCloudProviderSnapshotsResult)(nil)).Elem()
+}
+
+func (o LookupCloudProviderSnapshotsResultOutput) ToLookupCloudProviderSnapshotsResultOutput() LookupCloudProviderSnapshotsResultOutput {
+	return o
+}
+
+func (o LookupCloudProviderSnapshotsResultOutput) ToLookupCloudProviderSnapshotsResultOutputWithContext(ctx context.Context) LookupCloudProviderSnapshotsResultOutput {
+	return o
+}
+
+func (o LookupCloudProviderSnapshotsResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotsResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupCloudProviderSnapshotsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudProviderSnapshotsResultOutput) ItemsPerPage() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotsResult) *int { return v.ItemsPerPage }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupCloudProviderSnapshotsResultOutput) PageNum() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotsResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
+}
+
+func (o LookupCloudProviderSnapshotsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Includes cloudProviderSnapshot object for each item detailed in the results array section.
+func (o LookupCloudProviderSnapshotsResultOutput) Results() GetCloudProviderSnapshotsResultArrayOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotsResult) []GetCloudProviderSnapshotsResult { return v.Results }).(GetCloudProviderSnapshotsResultArrayOutput)
+}
+
+func (o LookupCloudProviderSnapshotsResultOutput) TotalCount() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupCloudProviderSnapshotsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupCloudProviderSnapshotsResultOutput{})
 }

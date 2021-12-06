@@ -35,11 +35,11 @@ export interface GetClusterArgs {
     /**
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
      */
-    readonly name: string;
+    name: string;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -218,4 +218,22 @@ export interface GetClusterResult {
      * - REPAIRING
      */
     readonly stateName: string;
+}
+
+export function getClusterOutput(args: GetClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterResult> {
+    return pulumi.output(args).apply(a => getCluster(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCluster.
+ */
+export interface GetClusterOutputArgs {
+    /**
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The unique ID for the project to create the database user.
+     */
+    projectId: pulumi.Input<string>;
 }

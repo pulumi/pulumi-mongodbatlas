@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,4 +35,56 @@ type LookupCustomDnsConfigurationClusterAwsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
+}
+
+func LookupCustomDnsConfigurationClusterAwsOutput(ctx *pulumi.Context, args LookupCustomDnsConfigurationClusterAwsOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDnsConfigurationClusterAwsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupCustomDnsConfigurationClusterAwsResult, error) {
+			args := v.(LookupCustomDnsConfigurationClusterAwsArgs)
+			r, err := LookupCustomDnsConfigurationClusterAws(ctx, &args, opts...)
+			return *r, err
+		}).(LookupCustomDnsConfigurationClusterAwsResultOutput)
+}
+
+// A collection of arguments for invoking getCustomDnsConfigurationClusterAws.
+type LookupCustomDnsConfigurationClusterAwsOutputArgs struct {
+	// Unique identifier for the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupCustomDnsConfigurationClusterAwsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCustomDnsConfigurationClusterAwsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getCustomDnsConfigurationClusterAws.
+type LookupCustomDnsConfigurationClusterAwsResultOutput struct{ *pulumi.OutputState }
+
+func (LookupCustomDnsConfigurationClusterAwsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCustomDnsConfigurationClusterAwsResult)(nil)).Elem()
+}
+
+func (o LookupCustomDnsConfigurationClusterAwsResultOutput) ToLookupCustomDnsConfigurationClusterAwsResultOutput() LookupCustomDnsConfigurationClusterAwsResultOutput {
+	return o
+}
+
+func (o LookupCustomDnsConfigurationClusterAwsResultOutput) ToLookupCustomDnsConfigurationClusterAwsResultOutputWithContext(ctx context.Context) LookupCustomDnsConfigurationClusterAwsResultOutput {
+	return o
+}
+
+// Indicates whether the project's clusters deployed to AWS use custom DNS.
+func (o LookupCustomDnsConfigurationClusterAwsResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupCustomDnsConfigurationClusterAwsResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupCustomDnsConfigurationClusterAwsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDnsConfigurationClusterAwsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupCustomDnsConfigurationClusterAwsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCustomDnsConfigurationClusterAwsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupCustomDnsConfigurationClusterAwsResultOutput{})
 }

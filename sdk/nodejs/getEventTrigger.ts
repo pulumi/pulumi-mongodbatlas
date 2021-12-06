@@ -30,15 +30,15 @@ export interface GetEventTriggerArgs {
     /**
      * The ObjectID of your application.
      */
-    readonly appId: string;
+    appId: string;
     /**
      * The unique ID for the project to create the trigger.
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * The unique ID of the trigger.
      */
-    readonly triggerId: string;
+    triggerId: string;
 }
 
 /**
@@ -120,4 +120,26 @@ export interface GetEventTriggerResult {
      * The type of the trigger.
      */
     readonly type: string;
+}
+
+export function getEventTriggerOutput(args: GetEventTriggerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEventTriggerResult> {
+    return pulumi.output(args).apply(a => getEventTrigger(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getEventTrigger.
+ */
+export interface GetEventTriggerOutputArgs {
+    /**
+     * The ObjectID of your application.
+     */
+    appId: pulumi.Input<string>;
+    /**
+     * The unique ID for the project to create the trigger.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * The unique ID of the trigger.
+     */
+    triggerId: pulumi.Input<string>;
 }

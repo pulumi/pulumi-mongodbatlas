@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -16,6 +17,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetEventTriggerResult> InvokeAsync(GetEventTriggerArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.EventTrigger` describe an Event Trigger. 
+        /// </summary>
+        public static Output<GetEventTriggerResult> Invoke(GetEventTriggerInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerInvokeArgs(), options.WithVersion());
     }
 
 
@@ -40,6 +47,31 @@ namespace Pulumi.Mongodbatlas
         public string TriggerId { get; set; } = null!;
 
         public GetEventTriggerArgs()
+        {
+        }
+    }
+
+    public sealed class GetEventTriggerInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ObjectID of your application.
+        /// </summary>
+        [Input("appId", required: true)]
+        public Input<string> AppId { get; set; } = null!;
+
+        /// <summary>
+        /// The unique ID for the project to create the trigger.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// The unique ID of the trigger.
+        /// </summary>
+        [Input("triggerId", required: true)]
+        public Input<string> TriggerId { get; set; } = null!;
+
+        public GetEventTriggerInvokeArgs()
         {
         }
     }

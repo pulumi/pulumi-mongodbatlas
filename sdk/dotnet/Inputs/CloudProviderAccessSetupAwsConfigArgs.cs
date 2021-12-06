@@ -9,4 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class CloudProviderAccessSetupAwsConfigArgs : Pulumi.ResourceArgs
+    {
+        [Input("atlasAssumedRoleExternalId")]
+        public Input<string>? AtlasAssumedRoleExternalId { get; set; }
+
+        [Input("atlasAwsAccountArn")]
+        public Input<string>? AtlasAwsAccountArn { get; set; }
+
+        public CloudProviderAccessSetupAwsConfigArgs()
+        {
+        }
+    }
 }

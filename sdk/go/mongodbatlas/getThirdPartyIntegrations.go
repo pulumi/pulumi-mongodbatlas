@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -11,8 +14,8 @@ import (
 // applied across the project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-func GetThirdPartyIntegrations(ctx *pulumi.Context, args *GetThirdPartyIntegrationsArgs, opts ...pulumi.InvokeOption) (*GetThirdPartyIntegrationsResult, error) {
-	var rv GetThirdPartyIntegrationsResult
+func LookupThirdPartyIntegrations(ctx *pulumi.Context, args *LookupThirdPartyIntegrationsArgs, opts ...pulumi.InvokeOption) (*LookupThirdPartyIntegrationsResult, error) {
+	var rv LookupThirdPartyIntegrationsResult
 	err := ctx.Invoke("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -21,17 +24,70 @@ func GetThirdPartyIntegrations(ctx *pulumi.Context, args *GetThirdPartyIntegrati
 }
 
 // A collection of arguments for invoking getThirdPartyIntegrations.
-type GetThirdPartyIntegrationsArgs struct {
+type LookupThirdPartyIntegrationsArgs struct {
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getThirdPartyIntegrations.
-type GetThirdPartyIntegrationsResult struct {
+type LookupThirdPartyIntegrationsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Third-Party service integration.
-	Results []GetThirdPartyIntegrationsResultType `pulumi:"results"`
+	Results []GetThirdPartyIntegrationsResult `pulumi:"results"`
+}
+
+func LookupThirdPartyIntegrationsOutput(ctx *pulumi.Context, args LookupThirdPartyIntegrationsOutputArgs, opts ...pulumi.InvokeOption) LookupThirdPartyIntegrationsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupThirdPartyIntegrationsResult, error) {
+			args := v.(LookupThirdPartyIntegrationsArgs)
+			r, err := LookupThirdPartyIntegrations(ctx, &args, opts...)
+			return *r, err
+		}).(LookupThirdPartyIntegrationsResultOutput)
+}
+
+// A collection of arguments for invoking getThirdPartyIntegrations.
+type LookupThirdPartyIntegrationsOutputArgs struct {
+	// The unique ID for the project to get all Third-Party service integrations
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupThirdPartyIntegrationsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupThirdPartyIntegrationsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getThirdPartyIntegrations.
+type LookupThirdPartyIntegrationsResultOutput struct{ *pulumi.OutputState }
+
+func (LookupThirdPartyIntegrationsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupThirdPartyIntegrationsResult)(nil)).Elem()
+}
+
+func (o LookupThirdPartyIntegrationsResultOutput) ToLookupThirdPartyIntegrationsResultOutput() LookupThirdPartyIntegrationsResultOutput {
+	return o
+}
+
+func (o LookupThirdPartyIntegrationsResultOutput) ToLookupThirdPartyIntegrationsResultOutputWithContext(ctx context.Context) LookupThirdPartyIntegrationsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// (Required) ID of the Atlas project the Third-Party Service Integration belongs to.
+func (o LookupThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A list where each represents a Third-Party service integration.
+func (o LookupThirdPartyIntegrationsResultOutput) Results() GetThirdPartyIntegrationsResultArrayOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) []GetThirdPartyIntegrationsResult { return v.Results }).(GetThirdPartyIntegrationsResultArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupThirdPartyIntegrationsResultOutput{})
 }

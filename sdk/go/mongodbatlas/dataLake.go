@@ -226,7 +226,7 @@ type DataLakeInput interface {
 }
 
 func (*DataLake) ElementType() reflect.Type {
-	return reflect.TypeOf((*DataLake)(nil))
+	return reflect.TypeOf((**DataLake)(nil)).Elem()
 }
 
 func (i *DataLake) ToDataLakeOutput() DataLakeOutput {
@@ -235,35 +235,6 @@ func (i *DataLake) ToDataLakeOutput() DataLakeOutput {
 
 func (i *DataLake) ToDataLakeOutputWithContext(ctx context.Context) DataLakeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DataLakeOutput)
-}
-
-func (i *DataLake) ToDataLakePtrOutput() DataLakePtrOutput {
-	return i.ToDataLakePtrOutputWithContext(context.Background())
-}
-
-func (i *DataLake) ToDataLakePtrOutputWithContext(ctx context.Context) DataLakePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DataLakePtrOutput)
-}
-
-type DataLakePtrInput interface {
-	pulumi.Input
-
-	ToDataLakePtrOutput() DataLakePtrOutput
-	ToDataLakePtrOutputWithContext(ctx context.Context) DataLakePtrOutput
-}
-
-type dataLakePtrType DataLakeArgs
-
-func (*dataLakePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DataLake)(nil))
-}
-
-func (i *dataLakePtrType) ToDataLakePtrOutput() DataLakePtrOutput {
-	return i.ToDataLakePtrOutputWithContext(context.Background())
-}
-
-func (i *dataLakePtrType) ToDataLakePtrOutputWithContext(ctx context.Context) DataLakePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DataLakePtrOutput)
 }
 
 // DataLakeArrayInput is an input type that accepts DataLakeArray and DataLakeArrayOutput values.
@@ -280,7 +251,7 @@ type DataLakeArrayInput interface {
 type DataLakeArray []DataLakeInput
 
 func (DataLakeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DataLake)(nil))
+	return reflect.TypeOf((*[]*DataLake)(nil)).Elem()
 }
 
 func (i DataLakeArray) ToDataLakeArrayOutput() DataLakeArrayOutput {
@@ -305,7 +276,7 @@ type DataLakeMapInput interface {
 type DataLakeMap map[string]DataLakeInput
 
 func (DataLakeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DataLake)(nil))
+	return reflect.TypeOf((*map[string]*DataLake)(nil)).Elem()
 }
 
 func (i DataLakeMap) ToDataLakeMapOutput() DataLakeMapOutput {
@@ -316,12 +287,10 @@ func (i DataLakeMap) ToDataLakeMapOutputWithContext(ctx context.Context) DataLak
 	return pulumi.ToOutputWithContext(ctx, i).(DataLakeMapOutput)
 }
 
-type DataLakeOutput struct {
-	*pulumi.OutputState
-}
+type DataLakeOutput struct{ *pulumi.OutputState }
 
 func (DataLakeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DataLake)(nil))
+	return reflect.TypeOf((**DataLake)(nil)).Elem()
 }
 
 func (o DataLakeOutput) ToDataLakeOutput() DataLakeOutput {
@@ -332,36 +301,10 @@ func (o DataLakeOutput) ToDataLakeOutputWithContext(ctx context.Context) DataLak
 	return o
 }
 
-func (o DataLakeOutput) ToDataLakePtrOutput() DataLakePtrOutput {
-	return o.ToDataLakePtrOutputWithContext(context.Background())
-}
-
-func (o DataLakeOutput) ToDataLakePtrOutputWithContext(ctx context.Context) DataLakePtrOutput {
-	return o.ApplyT(func(v DataLake) *DataLake {
-		return &v
-	}).(DataLakePtrOutput)
-}
-
-type DataLakePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DataLakePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DataLake)(nil))
-}
-
-func (o DataLakePtrOutput) ToDataLakePtrOutput() DataLakePtrOutput {
-	return o
-}
-
-func (o DataLakePtrOutput) ToDataLakePtrOutputWithContext(ctx context.Context) DataLakePtrOutput {
-	return o
-}
-
 type DataLakeArrayOutput struct{ *pulumi.OutputState }
 
 func (DataLakeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DataLake)(nil))
+	return reflect.TypeOf((*[]*DataLake)(nil)).Elem()
 }
 
 func (o DataLakeArrayOutput) ToDataLakeArrayOutput() DataLakeArrayOutput {
@@ -373,15 +316,15 @@ func (o DataLakeArrayOutput) ToDataLakeArrayOutputWithContext(ctx context.Contex
 }
 
 func (o DataLakeArrayOutput) Index(i pulumi.IntInput) DataLakeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DataLake {
-		return vs[0].([]DataLake)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DataLake {
+		return vs[0].([]*DataLake)[vs[1].(int)]
 	}).(DataLakeOutput)
 }
 
 type DataLakeMapOutput struct{ *pulumi.OutputState }
 
 func (DataLakeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DataLake)(nil))
+	return reflect.TypeOf((*map[string]*DataLake)(nil)).Elem()
 }
 
 func (o DataLakeMapOutput) ToDataLakeMapOutput() DataLakeMapOutput {
@@ -393,14 +336,16 @@ func (o DataLakeMapOutput) ToDataLakeMapOutputWithContext(ctx context.Context) D
 }
 
 func (o DataLakeMapOutput) MapIndex(k pulumi.StringInput) DataLakeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DataLake {
-		return vs[0].(map[string]DataLake)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DataLake {
+		return vs[0].(map[string]*DataLake)[vs[1].(string)]
 	}).(DataLakeOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DataLakeInput)(nil)).Elem(), &DataLake{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DataLakeArrayInput)(nil)).Elem(), DataLakeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DataLakeMapInput)(nil)).Elem(), DataLakeMap{})
 	pulumi.RegisterOutputType(DataLakeOutput{})
-	pulumi.RegisterOutputType(DataLakePtrOutput{})
 	pulumi.RegisterOutputType(DataLakeArrayOutput{})
 	pulumi.RegisterOutputType(DataLakeMapOutput{})
 }

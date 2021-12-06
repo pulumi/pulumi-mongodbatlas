@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,6 +33,11 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, GetCloudProviderAccessSetupOutputArgs{
+// 			ProjectId:    testRole.ProjectId,
+// 			ProviderName: testRole.ProviderName,
+// 			RoleId:       testRole.RoleId,
+// 		}, nil)
 // 		return nil
 // 	})
 // }
@@ -65,4 +73,79 @@ type LookupCloudProviderAccessSetupResult struct {
 	ProjectId    string `pulumi:"projectId"`
 	ProviderName string `pulumi:"providerName"`
 	RoleId       string `pulumi:"roleId"`
+}
+
+func LookupCloudProviderAccessSetupOutput(ctx *pulumi.Context, args LookupCloudProviderAccessSetupOutputArgs, opts ...pulumi.InvokeOption) LookupCloudProviderAccessSetupResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupCloudProviderAccessSetupResult, error) {
+			args := v.(LookupCloudProviderAccessSetupArgs)
+			r, err := LookupCloudProviderAccessSetup(ctx, &args, opts...)
+			return *r, err
+		}).(LookupCloudProviderAccessSetupResultOutput)
+}
+
+// A collection of arguments for invoking getCloudProviderAccessSetup.
+type LookupCloudProviderAccessSetupOutputArgs struct {
+	// The unique ID for the project to get all Cloud Provider Access
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// cloud provider name, currently only AWS is supported
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// unique role id among all the aws roles provided by mongodb atlas
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+}
+
+func (LookupCloudProviderAccessSetupOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCloudProviderAccessSetupArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getCloudProviderAccessSetup.
+type LookupCloudProviderAccessSetupResultOutput struct{ *pulumi.OutputState }
+
+func (LookupCloudProviderAccessSetupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupCloudProviderAccessSetupResult)(nil)).Elem()
+}
+
+func (o LookupCloudProviderAccessSetupResultOutput) ToLookupCloudProviderAccessSetupResultOutput() LookupCloudProviderAccessSetupResultOutput {
+	return o
+}
+
+func (o LookupCloudProviderAccessSetupResultOutput) ToLookupCloudProviderAccessSetupResultOutputWithContext(ctx context.Context) LookupCloudProviderAccessSetupResultOutput {
+	return o
+}
+
+// aws related role information
+func (o LookupCloudProviderAccessSetupResultOutput) Aws() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) map[string]string { return v.Aws }).(pulumi.StringMapOutput)
+}
+
+func (o LookupCloudProviderAccessSetupResultOutput) AwsConfigs() GetCloudProviderAccessSetupAwsConfigArrayOutput {
+	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) []GetCloudProviderAccessSetupAwsConfig {
+		return v.AwsConfigs
+	}).(GetCloudProviderAccessSetupAwsConfigArrayOutput)
+}
+
+// Date on which this role was created.
+func (o LookupCloudProviderAccessSetupResultOutput) CreatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupCloudProviderAccessSetupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudProviderAccessSetupResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudProviderAccessSetupResultOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudProviderAccessSetupResultOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCloudProviderAccessSetupResult) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupCloudProviderAccessSetupResultOutput{})
 }

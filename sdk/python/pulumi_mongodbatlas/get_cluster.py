@@ -13,6 +13,7 @@ __all__ = [
     'GetClusterResult',
     'AwaitableGetClusterResult',
     'get_cluster',
+    'get_cluster_output',
 ]
 
 @pulumi.output_type
@@ -591,3 +592,23 @@ def get_cluster(name: Optional[str] = None,
         snapshot_backup_policies=__ret__.snapshot_backup_policies,
         srv_address=__ret__.srv_address,
         state_name=__ret__.state_name)
+
+
+@_utilities.lift_output_func(get_cluster)
+def get_cluster_output(name: Optional[pulumi.Input[str]] = None,
+                       project_id: Optional[pulumi.Input[str]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClusterResult]:
+    """
+    `Cluster` describes a Cluster. The data source requires your Project ID.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    > **IMPORTANT:**
+    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+
+
+    :param str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+    :param str project_id: The unique ID for the project to create the database user.
+    """
+    ...

@@ -13,6 +13,7 @@ __all__ = [
     'GetEventTriggerResult',
     'AwaitableGetEventTriggerResult',
     'get_event_trigger',
+    'get_event_trigger_output',
 ]
 
 @pulumi.output_type
@@ -327,3 +328,19 @@ def get_event_trigger(app_id: Optional[str] = None,
         project_id=__ret__.project_id,
         trigger_id=__ret__.trigger_id,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_event_trigger)
+def get_event_trigger_output(app_id: Optional[pulumi.Input[str]] = None,
+                             project_id: Optional[pulumi.Input[str]] = None,
+                             trigger_id: Optional[pulumi.Input[str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEventTriggerResult]:
+    """
+    `EventTrigger` describe an Event Trigger.
+
+
+    :param str app_id: The ObjectID of your application.
+    :param str project_id: The unique ID for the project to create the trigger.
+    :param str trigger_id: The unique ID of the trigger.
+    """
+    ...

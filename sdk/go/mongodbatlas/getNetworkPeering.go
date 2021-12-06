@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -72,4 +75,154 @@ type LookupNetworkPeeringResult struct {
 	VnetName string `pulumi:"vnetName"`
 	// Unique identifier of the peer VPC.
 	VpcId string `pulumi:"vpcId"`
+}
+
+func LookupNetworkPeeringOutput(ctx *pulumi.Context, args LookupNetworkPeeringOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkPeeringResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupNetworkPeeringResult, error) {
+			args := v.(LookupNetworkPeeringArgs)
+			r, err := LookupNetworkPeering(ctx, &args, opts...)
+			return *r, err
+		}).(LookupNetworkPeeringResultOutput)
+}
+
+// A collection of arguments for invoking getNetworkPeering.
+type LookupNetworkPeeringOutputArgs struct {
+	// Atlas assigned unique ID for the peering connection.
+	PeeringId pulumi.StringInput `pulumi:"peeringId"`
+	// The unique ID for the project to create the database user.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupNetworkPeeringOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkPeeringArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getNetworkPeering.
+type LookupNetworkPeeringResultOutput struct{ *pulumi.OutputState }
+
+func (LookupNetworkPeeringResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupNetworkPeeringResult)(nil)).Elem()
+}
+
+func (o LookupNetworkPeeringResultOutput) ToLookupNetworkPeeringResultOutput() LookupNetworkPeeringResultOutput {
+	return o
+}
+
+func (o LookupNetworkPeeringResultOutput) ToLookupNetworkPeeringResultOutputWithContext(ctx context.Context) LookupNetworkPeeringResultOutput {
+	return o
+}
+
+// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+func (o LookupNetworkPeeringResultOutput) AccepterRegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.AccepterRegionName }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkPeeringResultOutput) AtlasCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.AtlasCidrBlock }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkPeeringResultOutput) AtlasId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.AtlasId }).(pulumi.StringOutput)
+}
+
+// Account ID of the owner of the peer VPC.
+func (o LookupNetworkPeeringResultOutput) AwsAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.AwsAccountId }).(pulumi.StringOutput)
+}
+
+// Unique identifier for an Azure AD directory.
+func (o LookupNetworkPeeringResultOutput) AzureDirectoryId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.AzureDirectoryId }).(pulumi.StringOutput)
+}
+
+// Unique identifer of the Azure subscription in which the VNet resides.
+func (o LookupNetworkPeeringResultOutput) AzureSubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.AzureSubscriptionId }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the peering connection.
+func (o LookupNetworkPeeringResultOutput) ConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.ConnectionId }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkPeeringResultOutput) ContainerId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.ContainerId }).(pulumi.StringOutput)
+}
+
+// When `"status" : "FAILED"`, Atlas provides a description of the error.
+func (o LookupNetworkPeeringResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
+func (o LookupNetworkPeeringResultOutput) ErrorState() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.ErrorState }).(pulumi.StringOutput)
+}
+
+// Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
+func (o LookupNetworkPeeringResultOutput) ErrorStateName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.ErrorStateName }).(pulumi.StringOutput)
+}
+
+// GCP project ID of the owner of the network peer.
+func (o LookupNetworkPeeringResultOutput) GcpProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.GcpProjectId }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupNetworkPeeringResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Name of the network peer to which Atlas connects.
+func (o LookupNetworkPeeringResultOutput) NetworkName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.NetworkName }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkPeeringResultOutput) PeeringId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.PeeringId }).(pulumi.StringOutput)
+}
+
+func (o LookupNetworkPeeringResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Cloud provider for this VPC peering connection. If omitted, Atlas sets this parameter to AWS. (Possible Values `AWS`, `AZURE`, `GCP`).
+func (o LookupNetworkPeeringResultOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Name of your Azure resource group.
+func (o LookupNetworkPeeringResultOutput) ResourceGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.ResourceGroupName }).(pulumi.StringOutput)
+}
+
+// Peer VPC CIDR block or subnet.
+func (o LookupNetworkPeeringResultOutput) RouteTableCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.RouteTableCidrBlock }).(pulumi.StringOutput)
+}
+
+// Status of the Atlas network peering connection: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING`, `WAITING_FOR_USER`.
+func (o LookupNetworkPeeringResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
+func (o LookupNetworkPeeringResultOutput) StatusName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.StatusName }).(pulumi.StringOutput)
+}
+
+// Name of your Azure VNet.
+func (o LookupNetworkPeeringResultOutput) VnetName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.VnetName }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the peer VPC.
+func (o LookupNetworkPeeringResultOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupNetworkPeeringResultOutput{})
 }

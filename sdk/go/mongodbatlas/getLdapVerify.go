@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -46,4 +49,88 @@ type LookupLdapVerifyResult struct {
 	Status string `pulumi:"status"`
 	// Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details.
 	Validations []GetLdapVerifyValidation `pulumi:"validations"`
+}
+
+func LookupLdapVerifyOutput(ctx *pulumi.Context, args LookupLdapVerifyOutputArgs, opts ...pulumi.InvokeOption) LookupLdapVerifyResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupLdapVerifyResult, error) {
+			args := v.(LookupLdapVerifyArgs)
+			r, err := LookupLdapVerify(ctx, &args, opts...)
+			return *r, err
+		}).(LookupLdapVerifyResultOutput)
+}
+
+// A collection of arguments for invoking getLdapVerify.
+type LookupLdapVerifyOutputArgs struct {
+	// Unique identifier for the Atlas project associated with the verification request.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Unique identifier of a request to verify an LDAP configuration.
+	RequestId pulumi.StringInput `pulumi:"requestId"`
+}
+
+func (LookupLdapVerifyOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupLdapVerifyArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getLdapVerify.
+type LookupLdapVerifyResultOutput struct{ *pulumi.OutputState }
+
+func (LookupLdapVerifyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupLdapVerifyResult)(nil)).Elem()
+}
+
+func (o LookupLdapVerifyResultOutput) ToLookupLdapVerifyResultOutput() LookupLdapVerifyResultOutput {
+	return o
+}
+
+func (o LookupLdapVerifyResultOutput) ToLookupLdapVerifyResultOutputWithContext(ctx context.Context) LookupLdapVerifyResultOutput {
+	return o
+}
+
+// The user DN that Atlas uses to connect to the LDAP server.
+func (o LookupLdapVerifyResultOutput) BindUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) string { return v.BindUsername }).(pulumi.StringOutput)
+}
+
+// (Required) The hostname or IP address of the LDAP server.
+func (o LookupLdapVerifyResultOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupLdapVerifyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
+func (o LookupLdapVerifyResultOutput) Links() GetLdapVerifyLinkArrayOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) []GetLdapVerifyLink { return v.Links }).(GetLdapVerifyLinkArrayOutput)
+}
+
+// LDAP ConfigurationThe port to which the LDAP server listens for client connections.
+func (o LookupLdapVerifyResultOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) int { return v.Port }).(pulumi.IntOutput)
+}
+
+func (o LookupLdapVerifyResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
+func (o LookupLdapVerifyResultOutput) RequestId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) string { return v.RequestId }).(pulumi.StringOutput)
+}
+
+// The current status of the LDAP over TLS/SSL configuration.
+func (o LookupLdapVerifyResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details.
+func (o LookupLdapVerifyResultOutput) Validations() GetLdapVerifyValidationArrayOutput {
+	return o.ApplyT(func(v LookupLdapVerifyResult) []GetLdapVerifyValidation { return v.Validations }).(GetLdapVerifyValidationArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupLdapVerifyResultOutput{})
 }

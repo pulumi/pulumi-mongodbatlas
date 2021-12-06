@@ -52,16 +52,16 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
      */
     constructor(name: string, args: CloudProviderAccessSetupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderAccessSetupArgs | CloudProviderAccessSetupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderAccessSetupState | undefined;
-            inputs["aws"] = state ? state.aws : undefined;
-            inputs["awsConfigs"] = state ? state.awsConfigs : undefined;
-            inputs["createdDate"] = state ? state.createdDate : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["providerName"] = state ? state.providerName : undefined;
-            inputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["aws"] = state ? state.aws : undefined;
+            resourceInputs["awsConfigs"] = state ? state.awsConfigs : undefined;
+            resourceInputs["createdDate"] = state ? state.createdDate : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["providerName"] = state ? state.providerName : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as CloudProviderAccessSetupArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -70,17 +70,17 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["providerName"] = args ? args.providerName : undefined;
-            inputs["aws"] = undefined /*out*/;
-            inputs["awsConfigs"] = undefined /*out*/;
-            inputs["createdDate"] = undefined /*out*/;
-            inputs["roleId"] = undefined /*out*/;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["aws"] = undefined /*out*/;
+            resourceInputs["awsConfigs"] = undefined /*out*/;
+            resourceInputs["createdDate"] = undefined /*out*/;
+            resourceInputs["roleId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(CloudProviderAccessSetup.__pulumiType, name, inputs, opts);
+        super(CloudProviderAccessSetup.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -91,18 +91,18 @@ export interface CloudProviderAccessSetupState {
     /**
      * @deprecated use aws_config instead
      */
-    readonly aws?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;
-    readonly createdDate?: pulumi.Input<string>;
-    readonly projectId?: pulumi.Input<string>;
-    readonly providerName?: pulumi.Input<string>;
-    readonly roleId?: pulumi.Input<string>;
+    aws?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;
+    createdDate?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a CloudProviderAccessSetup resource.
  */
 export interface CloudProviderAccessSetupArgs {
-    readonly projectId: pulumi.Input<string>;
-    readonly providerName: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
+    providerName: pulumi.Input<string>;
 }

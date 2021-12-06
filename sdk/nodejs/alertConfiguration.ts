@@ -166,22 +166,22 @@ export class AlertConfiguration extends pulumi.CustomResource {
      */
     constructor(name: string, args: AlertConfigurationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AlertConfigurationArgs | AlertConfigurationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlertConfigurationState | undefined;
-            inputs["alertConfigurationId"] = state ? state.alertConfigurationId : undefined;
-            inputs["created"] = state ? state.created : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["eventType"] = state ? state.eventType : undefined;
-            inputs["matchers"] = state ? state.matchers : undefined;
-            inputs["metricThreshold"] = state ? state.metricThreshold : undefined;
-            inputs["metricThresholdConfig"] = state ? state.metricThresholdConfig : undefined;
-            inputs["notifications"] = state ? state.notifications : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["threshold"] = state ? state.threshold : undefined;
-            inputs["thresholdConfig"] = state ? state.thresholdConfig : undefined;
-            inputs["updated"] = state ? state.updated : undefined;
+            resourceInputs["alertConfigurationId"] = state ? state.alertConfigurationId : undefined;
+            resourceInputs["created"] = state ? state.created : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["eventType"] = state ? state.eventType : undefined;
+            resourceInputs["matchers"] = state ? state.matchers : undefined;
+            resourceInputs["metricThreshold"] = state ? state.metricThreshold : undefined;
+            resourceInputs["metricThresholdConfig"] = state ? state.metricThresholdConfig : undefined;
+            resourceInputs["notifications"] = state ? state.notifications : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["threshold"] = state ? state.threshold : undefined;
+            resourceInputs["thresholdConfig"] = state ? state.thresholdConfig : undefined;
+            resourceInputs["updated"] = state ? state.updated : undefined;
         } else {
             const args = argsOrState as AlertConfigurationArgs | undefined;
             if ((!args || args.eventType === undefined) && !opts.urn) {
@@ -193,23 +193,23 @@ export class AlertConfiguration extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["eventType"] = args ? args.eventType : undefined;
-            inputs["matchers"] = args ? args.matchers : undefined;
-            inputs["metricThreshold"] = args ? args.metricThreshold : undefined;
-            inputs["metricThresholdConfig"] = args ? args.metricThresholdConfig : undefined;
-            inputs["notifications"] = args ? args.notifications : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["threshold"] = args ? args.threshold : undefined;
-            inputs["thresholdConfig"] = args ? args.thresholdConfig : undefined;
-            inputs["alertConfigurationId"] = undefined /*out*/;
-            inputs["created"] = undefined /*out*/;
-            inputs["updated"] = undefined /*out*/;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["eventType"] = args ? args.eventType : undefined;
+            resourceInputs["matchers"] = args ? args.matchers : undefined;
+            resourceInputs["metricThreshold"] = args ? args.metricThreshold : undefined;
+            resourceInputs["metricThresholdConfig"] = args ? args.metricThresholdConfig : undefined;
+            resourceInputs["notifications"] = args ? args.notifications : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["threshold"] = args ? args.threshold : undefined;
+            resourceInputs["thresholdConfig"] = args ? args.thresholdConfig : undefined;
+            resourceInputs["alertConfigurationId"] = undefined /*out*/;
+            resourceInputs["created"] = undefined /*out*/;
+            resourceInputs["updated"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(AlertConfiguration.__pulumiType, name, inputs, opts);
+        super(AlertConfiguration.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -220,41 +220,41 @@ export interface AlertConfigurationState {
     /**
      * Unique identifier for the alert configuration.
      */
-    readonly alertConfigurationId?: pulumi.Input<string>;
+    alertConfigurationId?: pulumi.Input<string>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
      */
-    readonly created?: pulumi.Input<string>;
+    created?: pulumi.Input<string>;
     /**
      * It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The type of event that will trigger an alert.
      */
-    readonly eventType?: pulumi.Input<string>;
-    readonly matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
+    eventType?: pulumi.Input<string>;
+    matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
     /**
      * @deprecated use metric_threshold_config instead
      */
-    readonly metricThreshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
-    readonly notifications?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
+    metricThreshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
+    notifications?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
     /**
      * The ID of the project where the alert configuration will create.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Threshold value outside of which an alert will be triggered.
      *
      * @deprecated use threshold_config instead
      */
-    readonly threshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
+    threshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
-    readonly updated?: pulumi.Input<string>;
+    updated?: pulumi.Input<string>;
 }
 
 /**
@@ -264,27 +264,27 @@ export interface AlertConfigurationArgs {
     /**
      * It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The type of event that will trigger an alert.
      */
-    readonly eventType: pulumi.Input<string>;
-    readonly matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
+    eventType: pulumi.Input<string>;
+    matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
     /**
      * @deprecated use metric_threshold_config instead
      */
-    readonly metricThreshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
-    readonly notifications: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
+    metricThreshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
+    notifications: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
     /**
      * The ID of the project where the alert configuration will create.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * Threshold value outside of which an alert will be triggered.
      *
      * @deprecated use threshold_config instead
      */
-    readonly threshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    readonly thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
+    threshold?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
 }

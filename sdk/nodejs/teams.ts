@@ -46,14 +46,14 @@ export class Teams extends pulumi.CustomResource {
      */
     constructor(name: string, args: TeamsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TeamsArgs | TeamsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeamsState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["orgId"] = state ? state.orgId : undefined;
-            inputs["teamId"] = state ? state.teamId : undefined;
-            inputs["usernames"] = state ? state.usernames : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["teamId"] = state ? state.teamId : undefined;
+            resourceInputs["usernames"] = state ? state.usernames : undefined;
         } else {
             const args = argsOrState as TeamsArgs | undefined;
             if ((!args || args.orgId === undefined) && !opts.urn) {
@@ -62,15 +62,15 @@ export class Teams extends pulumi.CustomResource {
             if ((!args || args.usernames === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'usernames'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["orgId"] = args ? args.orgId : undefined;
-            inputs["usernames"] = args ? args.usernames : undefined;
-            inputs["teamId"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["usernames"] = args ? args.usernames : undefined;
+            resourceInputs["teamId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Teams.__pulumiType, name, inputs, opts);
+        super(Teams.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -78,17 +78,17 @@ export class Teams extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Teams resources.
  */
 export interface TeamsState {
-    readonly name?: pulumi.Input<string>;
-    readonly orgId?: pulumi.Input<string>;
-    readonly teamId?: pulumi.Input<string>;
-    readonly usernames?: pulumi.Input<pulumi.Input<string>[]>;
+    name?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string>;
+    usernames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
  * The set of arguments for constructing a Teams resource.
  */
 export interface TeamsArgs {
-    readonly name?: pulumi.Input<string>;
-    readonly orgId: pulumi.Input<string>;
-    readonly usernames: pulumi.Input<pulumi.Input<string>[]>;
+    name?: pulumi.Input<string>;
+    orgId: pulumi.Input<string>;
+    usernames: pulumi.Input<pulumi.Input<string>[]>;
 }

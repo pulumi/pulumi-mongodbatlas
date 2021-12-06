@@ -13,6 +13,7 @@ __all__ = [
     'GetDataLakesResult',
     'AwaitableGetDataLakesResult',
     'get_data_lakes',
+    'get_data_lakes_output',
 ]
 
 @pulumi.output_type
@@ -67,7 +68,7 @@ class AwaitableGetDataLakesResult(GetDataLakesResult):
 def get_data_lakes(project_id: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataLakesResult:
     """
-    `getDataLakes` describe all Data Lakes.
+    `get_data_lakes` describe all Data Lakes.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -95,3 +96,26 @@ def get_data_lakes(project_id: Optional[str] = None,
         id=__ret__.id,
         project_id=__ret__.project_id,
         results=__ret__.results)
+
+
+@_utilities.lift_output_func(get_data_lakes)
+def get_data_lakes_output(project_id: Optional[pulumi.Input[str]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakesResult]:
+    """
+    `get_data_lakes` describe all Data Lakes.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_data_lakes(project_id="PROJECT ID")
+    ```
+
+
+    :param str project_id: The unique ID for the project to get all data lakes.
+    """
+    ...

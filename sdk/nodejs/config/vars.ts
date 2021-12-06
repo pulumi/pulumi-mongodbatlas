@@ -4,21 +4,50 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("mongodbatlas");
+declare var exports: any;
+const __config = new pulumi.Config("mongodbatlas");
 
 /**
  * MongoDB Atlas Base URL
  */
-export let baseUrl: string | undefined = __config.get("baseUrl");
+export declare const baseUrl: string | undefined;
+Object.defineProperty(exports, "baseUrl", {
+    get() {
+        return __config.get("baseUrl");
+    },
+    enumerable: true,
+});
+
 /**
  * MongoDB Atlas Programmatic Private Key
  */
-export let privateKey: string | undefined = __config.get("privateKey");
+export declare const privateKey: string | undefined;
+Object.defineProperty(exports, "privateKey", {
+    get() {
+        return __config.get("privateKey");
+    },
+    enumerable: true,
+});
+
 /**
  * MongoDB Atlas Programmatic Public Key
  */
-export let publicKey: string | undefined = __config.get("publicKey");
+export declare const publicKey: string | undefined;
+Object.defineProperty(exports, "publicKey", {
+    get() {
+        return __config.get("publicKey");
+    },
+    enumerable: true,
+});
+
 /**
  * MongoDB Realm Base URL
  */
-export let realmBaseUrl: string | undefined = __config.get("realmBaseUrl");
+export declare const realmBaseUrl: string | undefined;
+Object.defineProperty(exports, "realmBaseUrl", {
+    get() {
+        return __config.get("realmBaseUrl");
+    },
+    enumerable: true,
+});
+

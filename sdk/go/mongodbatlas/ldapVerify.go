@@ -239,7 +239,7 @@ type LdapVerifyInput interface {
 }
 
 func (*LdapVerify) ElementType() reflect.Type {
-	return reflect.TypeOf((*LdapVerify)(nil))
+	return reflect.TypeOf((**LdapVerify)(nil)).Elem()
 }
 
 func (i *LdapVerify) ToLdapVerifyOutput() LdapVerifyOutput {
@@ -248,35 +248,6 @@ func (i *LdapVerify) ToLdapVerifyOutput() LdapVerifyOutput {
 
 func (i *LdapVerify) ToLdapVerifyOutputWithContext(ctx context.Context) LdapVerifyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyOutput)
-}
-
-func (i *LdapVerify) ToLdapVerifyPtrOutput() LdapVerifyPtrOutput {
-	return i.ToLdapVerifyPtrOutputWithContext(context.Background())
-}
-
-func (i *LdapVerify) ToLdapVerifyPtrOutputWithContext(ctx context.Context) LdapVerifyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyPtrOutput)
-}
-
-type LdapVerifyPtrInput interface {
-	pulumi.Input
-
-	ToLdapVerifyPtrOutput() LdapVerifyPtrOutput
-	ToLdapVerifyPtrOutputWithContext(ctx context.Context) LdapVerifyPtrOutput
-}
-
-type ldapVerifyPtrType LdapVerifyArgs
-
-func (*ldapVerifyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LdapVerify)(nil))
-}
-
-func (i *ldapVerifyPtrType) ToLdapVerifyPtrOutput() LdapVerifyPtrOutput {
-	return i.ToLdapVerifyPtrOutputWithContext(context.Background())
-}
-
-func (i *ldapVerifyPtrType) ToLdapVerifyPtrOutputWithContext(ctx context.Context) LdapVerifyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyPtrOutput)
 }
 
 // LdapVerifyArrayInput is an input type that accepts LdapVerifyArray and LdapVerifyArrayOutput values.
@@ -293,7 +264,7 @@ type LdapVerifyArrayInput interface {
 type LdapVerifyArray []LdapVerifyInput
 
 func (LdapVerifyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LdapVerify)(nil))
+	return reflect.TypeOf((*[]*LdapVerify)(nil)).Elem()
 }
 
 func (i LdapVerifyArray) ToLdapVerifyArrayOutput() LdapVerifyArrayOutput {
@@ -318,7 +289,7 @@ type LdapVerifyMapInput interface {
 type LdapVerifyMap map[string]LdapVerifyInput
 
 func (LdapVerifyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LdapVerify)(nil))
+	return reflect.TypeOf((*map[string]*LdapVerify)(nil)).Elem()
 }
 
 func (i LdapVerifyMap) ToLdapVerifyMapOutput() LdapVerifyMapOutput {
@@ -329,12 +300,10 @@ func (i LdapVerifyMap) ToLdapVerifyMapOutputWithContext(ctx context.Context) Lda
 	return pulumi.ToOutputWithContext(ctx, i).(LdapVerifyMapOutput)
 }
 
-type LdapVerifyOutput struct {
-	*pulumi.OutputState
-}
+type LdapVerifyOutput struct{ *pulumi.OutputState }
 
 func (LdapVerifyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LdapVerify)(nil))
+	return reflect.TypeOf((**LdapVerify)(nil)).Elem()
 }
 
 func (o LdapVerifyOutput) ToLdapVerifyOutput() LdapVerifyOutput {
@@ -345,36 +314,10 @@ func (o LdapVerifyOutput) ToLdapVerifyOutputWithContext(ctx context.Context) Lda
 	return o
 }
 
-func (o LdapVerifyOutput) ToLdapVerifyPtrOutput() LdapVerifyPtrOutput {
-	return o.ToLdapVerifyPtrOutputWithContext(context.Background())
-}
-
-func (o LdapVerifyOutput) ToLdapVerifyPtrOutputWithContext(ctx context.Context) LdapVerifyPtrOutput {
-	return o.ApplyT(func(v LdapVerify) *LdapVerify {
-		return &v
-	}).(LdapVerifyPtrOutput)
-}
-
-type LdapVerifyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LdapVerifyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LdapVerify)(nil))
-}
-
-func (o LdapVerifyPtrOutput) ToLdapVerifyPtrOutput() LdapVerifyPtrOutput {
-	return o
-}
-
-func (o LdapVerifyPtrOutput) ToLdapVerifyPtrOutputWithContext(ctx context.Context) LdapVerifyPtrOutput {
-	return o
-}
-
 type LdapVerifyArrayOutput struct{ *pulumi.OutputState }
 
 func (LdapVerifyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LdapVerify)(nil))
+	return reflect.TypeOf((*[]*LdapVerify)(nil)).Elem()
 }
 
 func (o LdapVerifyArrayOutput) ToLdapVerifyArrayOutput() LdapVerifyArrayOutput {
@@ -386,15 +329,15 @@ func (o LdapVerifyArrayOutput) ToLdapVerifyArrayOutputWithContext(ctx context.Co
 }
 
 func (o LdapVerifyArrayOutput) Index(i pulumi.IntInput) LdapVerifyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LdapVerify {
-		return vs[0].([]LdapVerify)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LdapVerify {
+		return vs[0].([]*LdapVerify)[vs[1].(int)]
 	}).(LdapVerifyOutput)
 }
 
 type LdapVerifyMapOutput struct{ *pulumi.OutputState }
 
 func (LdapVerifyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LdapVerify)(nil))
+	return reflect.TypeOf((*map[string]*LdapVerify)(nil)).Elem()
 }
 
 func (o LdapVerifyMapOutput) ToLdapVerifyMapOutput() LdapVerifyMapOutput {
@@ -406,14 +349,16 @@ func (o LdapVerifyMapOutput) ToLdapVerifyMapOutputWithContext(ctx context.Contex
 }
 
 func (o LdapVerifyMapOutput) MapIndex(k pulumi.StringInput) LdapVerifyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LdapVerify {
-		return vs[0].(map[string]LdapVerify)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LdapVerify {
+		return vs[0].(map[string]*LdapVerify)[vs[1].(string)]
 	}).(LdapVerifyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyInput)(nil)).Elem(), &LdapVerify{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyArrayInput)(nil)).Elem(), LdapVerifyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyMapInput)(nil)).Elem(), LdapVerifyMap{})
 	pulumi.RegisterOutputType(LdapVerifyOutput{})
-	pulumi.RegisterOutputType(LdapVerifyPtrOutput{})
 	pulumi.RegisterOutputType(LdapVerifyArrayOutput{})
 	pulumi.RegisterOutputType(LdapVerifyMapOutput{})
 }

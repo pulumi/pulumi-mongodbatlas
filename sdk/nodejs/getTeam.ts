@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -32,15 +31,15 @@ export interface GetTeamArgs {
     /**
      * The team name.
      */
-    readonly name?: string;
+    name?: string;
     /**
      * The unique identifier for the organization you want to associate the team with.
      */
-    readonly orgId: string;
+    orgId: string;
     /**
      * The unique identifier for the team.
      */
-    readonly teamId?: string;
+    teamId?: string;
 }
 
 /**
@@ -64,4 +63,26 @@ export interface GetTeamResult {
      * The users who are part of the organization.
      */
     readonly usernames: string[];
+}
+
+export function getTeamOutput(args: GetTeamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamResult> {
+    return pulumi.output(args).apply(a => getTeam(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getTeam.
+ */
+export interface GetTeamOutputArgs {
+    /**
+     * The team name.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The unique identifier for the organization you want to associate the team with.
+     */
+    orgId: pulumi.Input<string>;
+    /**
+     * The unique identifier for the team.
+     */
+    teamId?: pulumi.Input<string>;
 }

@@ -14,6 +14,7 @@ __all__ = [
     'GetGlobalClusterConfigResult',
     'AwaitableGetGlobalClusterConfigResult',
     'get_global_cluster_config',
+    'get_global_cluster_config_output',
 ]
 
 @pulumi.output_type
@@ -116,3 +117,21 @@ def get_global_cluster_config(cluster_name: Optional[str] = None,
         id=__ret__.id,
         managed_namespaces=__ret__.managed_namespaces,
         project_id=__ret__.project_id)
+
+
+@_utilities.lift_output_func(get_global_cluster_config)
+def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[str]] = None,
+                                     managed_namespaces: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']]]]] = None,
+                                     project_id: Optional[pulumi.Input[str]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGlobalClusterConfigResult]:
+    """
+    `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+
+    :param Sequence[pulumi.InputType['GetGlobalClusterConfigManagedNamespaceArgs']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+    :param str project_id: The unique ID for the project to create the database user.
+           * `cluster_name - (Required) The name of the Global Cluster.
+    """
+    ...

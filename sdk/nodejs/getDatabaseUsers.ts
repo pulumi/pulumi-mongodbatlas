@@ -44,9 +44,9 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const testDatabaseUsers = testDatabaseUser.projectId.apply(projectId => mongodbatlas.getDatabaseUsers({
- *     projectId: projectId,
- * }));
+ * const testDatabaseUsers = mongodbatlas.getDatabaseUsersOutput({
+ *     projectId: testDatabaseUser.projectId,
+ * });
  * ```
  */
 export function getDatabaseUsers(args: GetDatabaseUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseUsersResult> {
@@ -69,7 +69,7 @@ export interface GetDatabaseUsersArgs {
     /**
      * The unique ID for the project to get all database users.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -88,4 +88,18 @@ export interface GetDatabaseUsersResult {
      * A list where each represents a Database user.
      */
     readonly results: outputs.GetDatabaseUsersResult[];
+}
+
+export function getDatabaseUsersOutput(args: GetDatabaseUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseUsersResult> {
+    return pulumi.output(args).apply(a => getDatabaseUsers(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDatabaseUsers.
+ */
+export interface GetDatabaseUsersOutputArgs {
+    /**
+     * The unique ID for the project to get all database users.
+     */
+    projectId: pulumi.Input<string>;
 }

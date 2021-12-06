@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetPrivateLinkEndpointResult> InvokeAsync(GetPrivateLinkEndpointArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
+        public static Output<GetPrivateLinkEndpointResult> Invoke(GetPrivateLinkEndpointInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointInvokeArgs(), options.WithVersion());
     }
 
 
@@ -42,6 +51,31 @@ namespace Pulumi.Mongodbatlas
         public string ProviderName { get; set; } = null!;
 
         public GetPrivateLinkEndpointArgs()
+        {
+        }
+    }
+
+    public sealed class GetPrivateLinkEndpointInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Unique identifier of the private endpoint service that you want to retrieve.
+        /// </summary>
+        [Input("privateLinkId", required: true)]
+        public Input<string> PrivateLinkId { get; set; } = null!;
+
+        /// <summary>
+        /// Unique identifier for the project.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// </summary>
+        [Input("providerName", required: true)]
+        public Input<string> ProviderName { get; set; } = null!;
+
+        public GetPrivateLinkEndpointInvokeArgs()
         {
         }
     }

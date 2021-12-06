@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -20,6 +21,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetCloudProviderSnapshotBackupPolicyResult> InvokeAsync(GetCloudProviderSnapshotBackupPolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotBackupPolicyResult>("mongodbatlas:index/getCloudProviderSnapshotBackupPolicy:getCloudProviderSnapshotBackupPolicy", args ?? new GetCloudProviderSnapshotBackupPolicyArgs(), options.WithVersion());
+
+        /// <summary>
+        /// **WARNING:** This data source is deprecated, use `mongodbatlas.CloudBackupSchedule`
+        /// 
+        /// `mongodbatlas.CloudProviderSnapshotBackupPolicy` provides a Cloud Backup Snapshot Backup Policy datasource. An Atlas Cloud Backup Snapshot Policy provides the current snapshot schedule and retention settings for the cluster. 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetCloudProviderSnapshotBackupPolicyResult> Invoke(GetCloudProviderSnapshotBackupPolicyInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotBackupPolicyResult>("mongodbatlas:index/getCloudProviderSnapshotBackupPolicy:getCloudProviderSnapshotBackupPolicy", args ?? new GetCloudProviderSnapshotBackupPolicyInvokeArgs(), options.WithVersion());
     }
 
 
@@ -38,6 +49,25 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetCloudProviderSnapshotBackupPolicyArgs()
+        {
+        }
+    }
+
+    public sealed class GetCloudProviderSnapshotBackupPolicyInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        /// <summary>
+        /// The unique identifier of the project for the Atlas cluster.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetCloudProviderSnapshotBackupPolicyInvokeArgs()
         {
         }
     }

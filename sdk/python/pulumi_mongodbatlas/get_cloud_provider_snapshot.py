@@ -12,6 +12,7 @@ __all__ = [
     'GetCloudProviderSnapshotResult',
     'AwaitableGetCloudProviderSnapshotResult',
     'get_cloud_provider_snapshot',
+    'get_cloud_provider_snapshot_output',
 ]
 
 @pulumi.output_type
@@ -214,3 +215,20 @@ def get_cloud_provider_snapshot(cluster_name: Optional[str] = None,
         status=__ret__.status,
         storage_size_bytes=__ret__.storage_size_bytes,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_cloud_provider_snapshot)
+def get_cloud_provider_snapshot_output(cluster_name: Optional[pulumi.Input[str]] = None,
+                                       project_id: Optional[pulumi.Input[str]] = None,
+                                       snapshot_id: Optional[pulumi.Input[str]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderSnapshotResult]:
+    """
+    `CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+
+    :param str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
+    :param str snapshot_id: The unique identifier of the snapshot you want to retrieve.
+    """
+    ...

@@ -173,15 +173,15 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
      */
     constructor(name: string, args: GlobalClusterConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: GlobalClusterConfigArgs | GlobalClusterConfigState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GlobalClusterConfigState | undefined;
-            inputs["clusterName"] = state ? state.clusterName : undefined;
-            inputs["customZoneMapping"] = state ? state.customZoneMapping : undefined;
-            inputs["customZoneMappings"] = state ? state.customZoneMappings : undefined;
-            inputs["managedNamespaces"] = state ? state.managedNamespaces : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["customZoneMapping"] = state ? state.customZoneMapping : undefined;
+            resourceInputs["customZoneMappings"] = state ? state.customZoneMappings : undefined;
+            resourceInputs["managedNamespaces"] = state ? state.managedNamespaces : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as GlobalClusterConfigArgs | undefined;
             if ((!args || args.clusterName === undefined) && !opts.urn) {
@@ -190,16 +190,16 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["clusterName"] = args ? args.clusterName : undefined;
-            inputs["customZoneMappings"] = args ? args.customZoneMappings : undefined;
-            inputs["managedNamespaces"] = args ? args.managedNamespaces : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["customZoneMapping"] = undefined /*out*/;
+            resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["customZoneMappings"] = args ? args.customZoneMappings : undefined;
+            resourceInputs["managedNamespaces"] = args ? args.managedNamespaces : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["customZoneMapping"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(GlobalClusterConfig.__pulumiType, name, inputs, opts);
+        super(GlobalClusterConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -210,23 +210,23 @@ export interface GlobalClusterConfigState {
     /**
      * The name of the Global Cluster.
      */
-    readonly clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string>;
     /**
      * A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      */
-    readonly customZoneMapping?: pulumi.Input<{[key: string]: any}>;
+    customZoneMapping?: pulumi.Input<{[key: string]: any}>;
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      */
-    readonly customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[]>;
+    customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[]>;
     /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
-    readonly managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
+    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
 }
 
 /**
@@ -236,17 +236,17 @@ export interface GlobalClusterConfigArgs {
     /**
      * The name of the Global Cluster.
      */
-    readonly clusterName: pulumi.Input<string>;
+    clusterName: pulumi.Input<string>;
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      */
-    readonly customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[]>;
+    customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[]>;
     /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
-    readonly managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
+    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

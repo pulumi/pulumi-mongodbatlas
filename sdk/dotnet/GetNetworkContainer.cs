@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -25,6 +26,21 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetNetworkContainerResult> InvokeAsync(GetNetworkContainerArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
+        /// 
+        /// &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetNetworkContainerResult> Invoke(GetNetworkContainerInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerInvokeArgs(), options.WithVersion());
     }
 
 
@@ -43,6 +59,25 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetNetworkContainerArgs()
+        {
+        }
+    }
+
+    public sealed class GetNetworkContainerInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The Network Peering Container ID.
+        /// </summary>
+        [Input("containerId", required: true)]
+        public Input<string> ContainerId { get; set; } = null!;
+
+        /// <summary>
+        /// The unique ID for the project to create the database user.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetNetworkContainerInvokeArgs()
         {
         }
     }

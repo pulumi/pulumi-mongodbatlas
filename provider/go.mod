@@ -9,6 +9,6 @@ replace (
 
 require (
 	github.com/mongodb/terraform-provider-mongodbatlas v1.0.2
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.0.0
-	github.com/pulumi/pulumi/sdk/v3 v3.0.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.13.0
+	github.com/pulumi/pulumi/sdk/v3 v3.19.0
 )

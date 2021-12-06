@@ -12,6 +12,7 @@ __all__ = [
     'GetNetworkContainerResult',
     'AwaitableGetNetworkContainerResult',
     'get_network_container',
+    'get_network_container_output',
 ]
 
 @pulumi.output_type
@@ -232,3 +233,23 @@ def get_network_container(container_id: Optional[str] = None,
         regions=__ret__.regions,
         vnet_name=__ret__.vnet_name,
         vpc_id=__ret__.vpc_id)
+
+
+@_utilities.lift_output_func(get_network_container)
+def get_network_container_output(container_id: Optional[pulumi.Input[str]] = None,
+                                 project_id: Optional[pulumi.Input[str]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkContainerResult]:
+    """
+    `NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
+
+    > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+    ## Example Usage
+
+
+    :param str container_id: The Network Peering Container ID.
+    :param str project_id: The unique ID for the project to create the database user.
+    """
+    ...

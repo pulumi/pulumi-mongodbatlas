@@ -9,4 +9,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class ClusterConnectionStringPrivateEndpointEndpointArgs : Pulumi.ResourceArgs
+    {
+        [Input("endpointId")]
+        public Input<string>? EndpointId { get; set; }
+
+        /// <summary>
+        /// Cloud service provider on which the servers are provisioned.
+        /// </summary>
+        [Input("providerName")]
+        public Input<string>? ProviderName { get; set; }
+
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        public ClusterConnectionStringPrivateEndpointEndpointArgs()
+        {
+        }
+    }
 }

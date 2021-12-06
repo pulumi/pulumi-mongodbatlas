@@ -241,7 +241,7 @@ type SearchIndexInput interface {
 }
 
 func (*SearchIndex) ElementType() reflect.Type {
-	return reflect.TypeOf((*SearchIndex)(nil))
+	return reflect.TypeOf((**SearchIndex)(nil)).Elem()
 }
 
 func (i *SearchIndex) ToSearchIndexOutput() SearchIndexOutput {
@@ -250,35 +250,6 @@ func (i *SearchIndex) ToSearchIndexOutput() SearchIndexOutput {
 
 func (i *SearchIndex) ToSearchIndexOutputWithContext(ctx context.Context) SearchIndexOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SearchIndexOutput)
-}
-
-func (i *SearchIndex) ToSearchIndexPtrOutput() SearchIndexPtrOutput {
-	return i.ToSearchIndexPtrOutputWithContext(context.Background())
-}
-
-func (i *SearchIndex) ToSearchIndexPtrOutputWithContext(ctx context.Context) SearchIndexPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SearchIndexPtrOutput)
-}
-
-type SearchIndexPtrInput interface {
-	pulumi.Input
-
-	ToSearchIndexPtrOutput() SearchIndexPtrOutput
-	ToSearchIndexPtrOutputWithContext(ctx context.Context) SearchIndexPtrOutput
-}
-
-type searchIndexPtrType SearchIndexArgs
-
-func (*searchIndexPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SearchIndex)(nil))
-}
-
-func (i *searchIndexPtrType) ToSearchIndexPtrOutput() SearchIndexPtrOutput {
-	return i.ToSearchIndexPtrOutputWithContext(context.Background())
-}
-
-func (i *searchIndexPtrType) ToSearchIndexPtrOutputWithContext(ctx context.Context) SearchIndexPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SearchIndexPtrOutput)
 }
 
 // SearchIndexArrayInput is an input type that accepts SearchIndexArray and SearchIndexArrayOutput values.
@@ -295,7 +266,7 @@ type SearchIndexArrayInput interface {
 type SearchIndexArray []SearchIndexInput
 
 func (SearchIndexArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SearchIndex)(nil))
+	return reflect.TypeOf((*[]*SearchIndex)(nil)).Elem()
 }
 
 func (i SearchIndexArray) ToSearchIndexArrayOutput() SearchIndexArrayOutput {
@@ -320,7 +291,7 @@ type SearchIndexMapInput interface {
 type SearchIndexMap map[string]SearchIndexInput
 
 func (SearchIndexMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SearchIndex)(nil))
+	return reflect.TypeOf((*map[string]*SearchIndex)(nil)).Elem()
 }
 
 func (i SearchIndexMap) ToSearchIndexMapOutput() SearchIndexMapOutput {
@@ -331,12 +302,10 @@ func (i SearchIndexMap) ToSearchIndexMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SearchIndexMapOutput)
 }
 
-type SearchIndexOutput struct {
-	*pulumi.OutputState
-}
+type SearchIndexOutput struct{ *pulumi.OutputState }
 
 func (SearchIndexOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SearchIndex)(nil))
+	return reflect.TypeOf((**SearchIndex)(nil)).Elem()
 }
 
 func (o SearchIndexOutput) ToSearchIndexOutput() SearchIndexOutput {
@@ -347,36 +316,10 @@ func (o SearchIndexOutput) ToSearchIndexOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SearchIndexOutput) ToSearchIndexPtrOutput() SearchIndexPtrOutput {
-	return o.ToSearchIndexPtrOutputWithContext(context.Background())
-}
-
-func (o SearchIndexOutput) ToSearchIndexPtrOutputWithContext(ctx context.Context) SearchIndexPtrOutput {
-	return o.ApplyT(func(v SearchIndex) *SearchIndex {
-		return &v
-	}).(SearchIndexPtrOutput)
-}
-
-type SearchIndexPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SearchIndexPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SearchIndex)(nil))
-}
-
-func (o SearchIndexPtrOutput) ToSearchIndexPtrOutput() SearchIndexPtrOutput {
-	return o
-}
-
-func (o SearchIndexPtrOutput) ToSearchIndexPtrOutputWithContext(ctx context.Context) SearchIndexPtrOutput {
-	return o
-}
-
 type SearchIndexArrayOutput struct{ *pulumi.OutputState }
 
 func (SearchIndexArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SearchIndex)(nil))
+	return reflect.TypeOf((*[]*SearchIndex)(nil)).Elem()
 }
 
 func (o SearchIndexArrayOutput) ToSearchIndexArrayOutput() SearchIndexArrayOutput {
@@ -388,15 +331,15 @@ func (o SearchIndexArrayOutput) ToSearchIndexArrayOutputWithContext(ctx context.
 }
 
 func (o SearchIndexArrayOutput) Index(i pulumi.IntInput) SearchIndexOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SearchIndex {
-		return vs[0].([]SearchIndex)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SearchIndex {
+		return vs[0].([]*SearchIndex)[vs[1].(int)]
 	}).(SearchIndexOutput)
 }
 
 type SearchIndexMapOutput struct{ *pulumi.OutputState }
 
 func (SearchIndexMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SearchIndex)(nil))
+	return reflect.TypeOf((*map[string]*SearchIndex)(nil)).Elem()
 }
 
 func (o SearchIndexMapOutput) ToSearchIndexMapOutput() SearchIndexMapOutput {
@@ -408,14 +351,16 @@ func (o SearchIndexMapOutput) ToSearchIndexMapOutputWithContext(ctx context.Cont
 }
 
 func (o SearchIndexMapOutput) MapIndex(k pulumi.StringInput) SearchIndexOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SearchIndex {
-		return vs[0].(map[string]SearchIndex)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SearchIndex {
+		return vs[0].(map[string]*SearchIndex)[vs[1].(string)]
 	}).(SearchIndexOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexInput)(nil)).Elem(), &SearchIndex{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexArrayInput)(nil)).Elem(), SearchIndexArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexMapInput)(nil)).Elem(), SearchIndexMap{})
 	pulumi.RegisterOutputType(SearchIndexOutput{})
-	pulumi.RegisterOutputType(SearchIndexPtrOutput{})
 	pulumi.RegisterOutputType(SearchIndexArrayOutput{})
 	pulumi.RegisterOutputType(SearchIndexMapOutput{})
 }

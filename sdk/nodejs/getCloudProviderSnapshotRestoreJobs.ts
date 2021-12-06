@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
  *     }],
  * });
- * const testCloudProviderSnapshotRestoreJobs = pulumi.all([testCloudProviderSnapshotRestoreJob.projectId, testCloudProviderSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudProviderSnapshotRestoreJobs({
+ * const testCloudProviderSnapshotRestoreJobs = pulumi.all([testCloudProviderSnapshotRestoreJob.projectId, testCloudProviderSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudProviderSnapshotRestoreJobsOutput({
  *     projectId: projectId,
  *     clusterName: clusterName,
  *     pageNum: 1,
@@ -65,19 +65,19 @@ export interface GetCloudProviderSnapshotRestoreJobsArgs {
     /**
      * The name of the Atlas cluster for which you want to retrieve restore jobs.
      */
-    readonly clusterName: string;
+    clusterName: string;
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
-    readonly itemsPerPage?: number;
+    itemsPerPage?: number;
     /**
      * The page to return. Defaults to `1`.
      */
-    readonly pageNum?: number;
+    pageNum?: number;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -97,4 +97,30 @@ export interface GetCloudProviderSnapshotRestoreJobsResult {
      */
     readonly results: outputs.GetCloudProviderSnapshotRestoreJobsResult[];
     readonly totalCount: number;
+}
+
+export function getCloudProviderSnapshotRestoreJobsOutput(args: GetCloudProviderSnapshotRestoreJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotRestoreJobsResult> {
+    return pulumi.output(args).apply(a => getCloudProviderSnapshotRestoreJobs(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCloudProviderSnapshotRestoreJobs.
+ */
+export interface GetCloudProviderSnapshotRestoreJobsOutputArgs {
+    /**
+     * The name of the Atlas cluster for which you want to retrieve restore jobs.
+     */
+    clusterName: pulumi.Input<string>;
+    /**
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     */
+    itemsPerPage?: pulumi.Input<number>;
+    /**
+     * The page to return. Defaults to `1`.
+     */
+    pageNum?: pulumi.Input<number>;
+    /**
+     * The unique identifier of the project for the Atlas cluster.
+     */
+    projectId: pulumi.Input<string>;
 }

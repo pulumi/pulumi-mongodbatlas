@@ -30,7 +30,7 @@ export interface GetLdapConfigurationArgs {
     /**
      * Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -81,4 +81,18 @@ export interface GetLdapConfigurationResult {
      * * `user_to_dn_mapping.0.ldap_query` - An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516.
      */
     readonly userToDnMappings: outputs.GetLdapConfigurationUserToDnMapping[];
+}
+
+export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapConfigurationResult> {
+    return pulumi.output(args).apply(a => getLdapConfiguration(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getLdapConfiguration.
+ */
+export interface GetLdapConfigurationOutputArgs {
+    /**
+     * Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+     */
+    projectId: pulumi.Input<string>;
 }

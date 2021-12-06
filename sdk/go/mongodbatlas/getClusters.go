@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,11 +34,11 @@ import (
 // 			ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
 // 			DiskSizeGb:  pulumi.Float64(100),
 // 			ClusterType: pulumi.String("REPLICASET"),
-// 			ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
-// 				&mongodbatlas.ClusterReplicationSpecArgs{
+// 			ReplicationSpecs: ClusterReplicationSpecArray{
+// 				&ClusterReplicationSpecArgs{
 // 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
-// 						&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
+// 					RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
+// 						&ClusterReplicationSpecRegionsConfigArgs{
 // 							RegionName:     pulumi.String("US_EAST_1"),
 // 							ElectableNodes: pulumi.Int(3),
 // 							Priority:       pulumi.Int(7),
@@ -52,12 +55,15 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
+// 		_ = mongodbatlas.LookupClustersOutput(ctx, GetClustersOutputArgs{
+// 			ProjectId: testCluster.ProjectId,
+// 		}, nil)
 // 		return nil
 // 	})
 // }
 // ```
-func GetClusters(ctx *pulumi.Context, args *GetClustersArgs, opts ...pulumi.InvokeOption) (*GetClustersResult, error) {
-	var rv GetClustersResult
+func LookupClusters(ctx *pulumi.Context, args *LookupClustersArgs, opts ...pulumi.InvokeOption) (*LookupClustersResult, error) {
+	var rv LookupClustersResult
 	err := ctx.Invoke("mongodbatlas:index/getClusters:getClusters", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -66,16 +72,68 @@ func GetClusters(ctx *pulumi.Context, args *GetClustersArgs, opts ...pulumi.Invo
 }
 
 // A collection of arguments for invoking getClusters.
-type GetClustersArgs struct {
+type LookupClustersArgs struct {
 	// The unique ID for the project to get the clusters.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getClusters.
-type GetClustersResult struct {
+type LookupClustersResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Cluster. See Cluster below for more details.
-	Results []GetClustersResultType `pulumi:"results"`
+	Results []GetClustersResult `pulumi:"results"`
+}
+
+func LookupClustersOutput(ctx *pulumi.Context, args LookupClustersOutputArgs, opts ...pulumi.InvokeOption) LookupClustersResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupClustersResult, error) {
+			args := v.(LookupClustersArgs)
+			r, err := LookupClusters(ctx, &args, opts...)
+			return *r, err
+		}).(LookupClustersResultOutput)
+}
+
+// A collection of arguments for invoking getClusters.
+type LookupClustersOutputArgs struct {
+	// The unique ID for the project to get the clusters.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupClustersOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClustersArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getClusters.
+type LookupClustersResultOutput struct{ *pulumi.OutputState }
+
+func (LookupClustersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupClustersResult)(nil)).Elem()
+}
+
+func (o LookupClustersResultOutput) ToLookupClustersResultOutput() LookupClustersResultOutput {
+	return o
+}
+
+func (o LookupClustersResultOutput) ToLookupClustersResultOutputWithContext(ctx context.Context) LookupClustersResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupClustersResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClustersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupClustersResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClustersResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A list where each represents a Cluster. See Cluster below for more details.
+func (o LookupClustersResultOutput) Results() GetClustersResultArrayOutput {
+	return o.ApplyT(func(v LookupClustersResult) []GetClustersResult { return v.Results }).(GetClustersResultArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupClustersResultOutput{})
 }

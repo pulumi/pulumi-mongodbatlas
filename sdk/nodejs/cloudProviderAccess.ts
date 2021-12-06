@@ -88,19 +88,19 @@ export class CloudProviderAccess extends pulumi.CustomResource {
      */
     constructor(name: string, args: CloudProviderAccessArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CloudProviderAccessArgs | CloudProviderAccessState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudProviderAccessState | undefined;
-            inputs["atlasAssumedRoleExternalId"] = state ? state.atlasAssumedRoleExternalId : undefined;
-            inputs["atlasAwsAccountArn"] = state ? state.atlasAwsAccountArn : undefined;
-            inputs["authorizedDate"] = state ? state.authorizedDate : undefined;
-            inputs["createdDate"] = state ? state.createdDate : undefined;
-            inputs["featureUsages"] = state ? state.featureUsages : undefined;
-            inputs["iamAssumedRoleArn"] = state ? state.iamAssumedRoleArn : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["providerName"] = state ? state.providerName : undefined;
-            inputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["atlasAssumedRoleExternalId"] = state ? state.atlasAssumedRoleExternalId : undefined;
+            resourceInputs["atlasAwsAccountArn"] = state ? state.atlasAwsAccountArn : undefined;
+            resourceInputs["authorizedDate"] = state ? state.authorizedDate : undefined;
+            resourceInputs["createdDate"] = state ? state.createdDate : undefined;
+            resourceInputs["featureUsages"] = state ? state.featureUsages : undefined;
+            resourceInputs["iamAssumedRoleArn"] = state ? state.iamAssumedRoleArn : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["providerName"] = state ? state.providerName : undefined;
+            resourceInputs["roleId"] = state ? state.roleId : undefined;
         } else {
             const args = argsOrState as CloudProviderAccessArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -109,20 +109,20 @@ export class CloudProviderAccess extends pulumi.CustomResource {
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            inputs["iamAssumedRoleArn"] = args ? args.iamAssumedRoleArn : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["providerName"] = args ? args.providerName : undefined;
-            inputs["atlasAssumedRoleExternalId"] = undefined /*out*/;
-            inputs["atlasAwsAccountArn"] = undefined /*out*/;
-            inputs["authorizedDate"] = undefined /*out*/;
-            inputs["createdDate"] = undefined /*out*/;
-            inputs["featureUsages"] = undefined /*out*/;
-            inputs["roleId"] = undefined /*out*/;
+            resourceInputs["iamAssumedRoleArn"] = args ? args.iamAssumedRoleArn : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["atlasAssumedRoleExternalId"] = undefined /*out*/;
+            resourceInputs["atlasAwsAccountArn"] = undefined /*out*/;
+            resourceInputs["authorizedDate"] = undefined /*out*/;
+            resourceInputs["createdDate"] = undefined /*out*/;
+            resourceInputs["featureUsages"] = undefined /*out*/;
+            resourceInputs["roleId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(CloudProviderAccess.__pulumiType, name, inputs, opts);
+        super(CloudProviderAccess.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -133,39 +133,39 @@ export interface CloudProviderAccessState {
     /**
      * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
      */
-    readonly atlasAssumedRoleExternalId?: pulumi.Input<string>;
+    atlasAssumedRoleExternalId?: pulumi.Input<string>;
     /**
      * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
      */
-    readonly atlasAwsAccountArn?: pulumi.Input<string>;
+    atlasAwsAccountArn?: pulumi.Input<string>;
     /**
      * Date on which this role was authorized.
      */
-    readonly authorizedDate?: pulumi.Input<string>;
+    authorizedDate?: pulumi.Input<string>;
     /**
      * Date on which this role was created.
      */
-    readonly createdDate?: pulumi.Input<string>;
+    createdDate?: pulumi.Input<string>;
     /**
      * Atlas features this AWS IAM role is linked to.
      */
-    readonly featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessFeatureUsage>[]>;
+    featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessFeatureUsage>[]>;
     /**
      * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      */
-    readonly iamAssumedRoleArn?: pulumi.Input<string>;
+    iamAssumedRoleArn?: pulumi.Input<string>;
     /**
      * The unique ID for the project
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * The cloud provider for which to create a new role. Currently only AWS is supported.
      */
-    readonly providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string>;
     /**
      * Unique ID of this role returned by mongodb atlas api
      */
-    readonly roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string>;
 }
 
 /**
@@ -175,13 +175,13 @@ export interface CloudProviderAccessArgs {
     /**
      * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      */
-    readonly iamAssumedRoleArn?: pulumi.Input<string>;
+    iamAssumedRoleArn?: pulumi.Input<string>;
     /**
      * The unique ID for the project
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * The cloud provider for which to create a new role. Currently only AWS is supported.
      */
-    readonly providerName: pulumi.Input<string>;
+    providerName: pulumi.Input<string>;
 }

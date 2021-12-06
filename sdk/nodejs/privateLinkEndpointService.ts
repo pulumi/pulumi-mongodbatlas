@@ -40,6 +40,38 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Example with Azure
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azure from "@pulumi/azure";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
+ *     projectId: _var.project_id,
+ *     providerName: "AZURE",
+ *     region: "eastus2",
+ * });
+ * const testEndpoint = new azure.privatelink.Endpoint("testEndpoint", {
+ *     location: data.azurerm_resource_group.test.location,
+ *     resourceGroupName: _var.resource_group_name,
+ *     subnetId: azurerm_subnet.test.id,
+ *     privateServiceConnection: {
+ *         name: testPrivateLinkEndpoint.privateLinkServiceName,
+ *         privateConnectionResourceId: testPrivateLinkEndpoint.privateLinkServiceResourceId,
+ *         isManualConnection: true,
+ *         requestMessage: "Azure Private Link test",
+ *     },
+ * });
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", {
+ *     projectId: testPrivateLinkEndpoint.projectId,
+ *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ *     endpointServiceId: testEndpoint.id,
+ *     privateEndpointIpAddress: testEndpoint.privateServiceConnection.apply(privateServiceConnection => privateServiceConnection.privateIpAddress),
+ *     providerName: "AZURE",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -138,22 +170,22 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
      */
     constructor(name: string, args: PrivateLinkEndpointServiceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PrivateLinkEndpointServiceArgs | PrivateLinkEndpointServiceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateLinkEndpointServiceState | undefined;
-            inputs["awsConnectionStatus"] = state ? state.awsConnectionStatus : undefined;
-            inputs["azureStatus"] = state ? state.azureStatus : undefined;
-            inputs["deleteRequested"] = state ? state.deleteRequested : undefined;
-            inputs["endpointServiceId"] = state ? state.endpointServiceId : undefined;
-            inputs["errorMessage"] = state ? state.errorMessage : undefined;
-            inputs["interfaceEndpointId"] = state ? state.interfaceEndpointId : undefined;
-            inputs["privateEndpointConnectionName"] = state ? state.privateEndpointConnectionName : undefined;
-            inputs["privateEndpointIpAddress"] = state ? state.privateEndpointIpAddress : undefined;
-            inputs["privateEndpointResourceId"] = state ? state.privateEndpointResourceId : undefined;
-            inputs["privateLinkId"] = state ? state.privateLinkId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["providerName"] = state ? state.providerName : undefined;
+            resourceInputs["awsConnectionStatus"] = state ? state.awsConnectionStatus : undefined;
+            resourceInputs["azureStatus"] = state ? state.azureStatus : undefined;
+            resourceInputs["deleteRequested"] = state ? state.deleteRequested : undefined;
+            resourceInputs["endpointServiceId"] = state ? state.endpointServiceId : undefined;
+            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
+            resourceInputs["interfaceEndpointId"] = state ? state.interfaceEndpointId : undefined;
+            resourceInputs["privateEndpointConnectionName"] = state ? state.privateEndpointConnectionName : undefined;
+            resourceInputs["privateEndpointIpAddress"] = state ? state.privateEndpointIpAddress : undefined;
+            resourceInputs["privateEndpointResourceId"] = state ? state.privateEndpointResourceId : undefined;
+            resourceInputs["privateLinkId"] = state ? state.privateLinkId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["providerName"] = state ? state.providerName : undefined;
         } else {
             const args = argsOrState as PrivateLinkEndpointServiceArgs | undefined;
             if ((!args || args.endpointServiceId === undefined) && !opts.urn) {
@@ -168,23 +200,23 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            inputs["endpointServiceId"] = args ? args.endpointServiceId : undefined;
-            inputs["privateEndpointIpAddress"] = args ? args.privateEndpointIpAddress : undefined;
-            inputs["privateLinkId"] = args ? args.privateLinkId : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["providerName"] = args ? args.providerName : undefined;
-            inputs["awsConnectionStatus"] = undefined /*out*/;
-            inputs["azureStatus"] = undefined /*out*/;
-            inputs["deleteRequested"] = undefined /*out*/;
-            inputs["errorMessage"] = undefined /*out*/;
-            inputs["interfaceEndpointId"] = undefined /*out*/;
-            inputs["privateEndpointConnectionName"] = undefined /*out*/;
-            inputs["privateEndpointResourceId"] = undefined /*out*/;
+            resourceInputs["endpointServiceId"] = args ? args.endpointServiceId : undefined;
+            resourceInputs["privateEndpointIpAddress"] = args ? args.privateEndpointIpAddress : undefined;
+            resourceInputs["privateLinkId"] = args ? args.privateLinkId : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["awsConnectionStatus"] = undefined /*out*/;
+            resourceInputs["azureStatus"] = undefined /*out*/;
+            resourceInputs["deleteRequested"] = undefined /*out*/;
+            resourceInputs["errorMessage"] = undefined /*out*/;
+            resourceInputs["interfaceEndpointId"] = undefined /*out*/;
+            resourceInputs["privateEndpointConnectionName"] = undefined /*out*/;
+            resourceInputs["privateEndpointResourceId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(PrivateLinkEndpointService.__pulumiType, name, inputs, opts);
+        super(PrivateLinkEndpointService.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -196,52 +228,52 @@ export interface PrivateLinkEndpointServiceState {
      * Status of the interface endpoint for AWS.
      * Returns one of the following values:
      */
-    readonly awsConnectionStatus?: pulumi.Input<string>;
+    awsConnectionStatus?: pulumi.Input<string>;
     /**
      * Status of the interface endpoint for AZURE.
      * Returns one of the following values:
      */
-    readonly azureStatus?: pulumi.Input<string>;
+    azureStatus?: pulumi.Input<string>;
     /**
      * Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
      */
-    readonly deleteRequested?: pulumi.Input<boolean>;
+    deleteRequested?: pulumi.Input<boolean>;
     /**
      * Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
      */
-    readonly endpointServiceId?: pulumi.Input<string>;
+    endpointServiceId?: pulumi.Input<string>;
     /**
      * Error message pertaining to the interface endpoint. Returns null if there are no errors.
      */
-    readonly errorMessage?: pulumi.Input<string>;
+    errorMessage?: pulumi.Input<string>;
     /**
      * Unique identifier of the interface endpoint.
      */
-    readonly interfaceEndpointId?: pulumi.Input<string>;
+    interfaceEndpointId?: pulumi.Input<string>;
     /**
      * Name of the connection for this private endpoint that Atlas generates.
      */
-    readonly privateEndpointConnectionName?: pulumi.Input<string>;
+    privateEndpointConnectionName?: pulumi.Input<string>;
     /**
      * Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
      */
-    readonly privateEndpointIpAddress?: pulumi.Input<string>;
+    privateEndpointIpAddress?: pulumi.Input<string>;
     /**
      * Unique identifier of the private endpoint.
      */
-    readonly privateEndpointResourceId?: pulumi.Input<string>;
+    privateEndpointResourceId?: pulumi.Input<string>;
     /**
      * Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      */
-    readonly privateLinkId?: pulumi.Input<string>;
+    privateLinkId?: pulumi.Input<string>;
     /**
      * Unique identifier for the project.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
      */
-    readonly providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string>;
 }
 
 /**
@@ -251,21 +283,21 @@ export interface PrivateLinkEndpointServiceArgs {
     /**
      * Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
      */
-    readonly endpointServiceId: pulumi.Input<string>;
+    endpointServiceId: pulumi.Input<string>;
     /**
      * Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
      */
-    readonly privateEndpointIpAddress?: pulumi.Input<string>;
+    privateEndpointIpAddress?: pulumi.Input<string>;
     /**
      * Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      */
-    readonly privateLinkId: pulumi.Input<string>;
+    privateLinkId: pulumi.Input<string>;
     /**
      * Unique identifier for the project.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
      */
-    readonly providerName: pulumi.Input<string>;
+    providerName: pulumi.Input<string>;
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetLdapConfigurationResult> InvokeAsync(GetLdapConfigurationArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// </summary>
+        public static Output<GetLdapConfigurationResult> Invoke(GetLdapConfigurationInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetLdapConfigurationResult>("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args ?? new GetLdapConfigurationInvokeArgs(), options.WithVersion());
     }
 
 
@@ -30,6 +39,19 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetLdapConfigurationArgs()
+        {
+        }
+    }
+
+    public sealed class GetLdapConfigurationInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetLdapConfigurationInvokeArgs()
         {
         }
     }

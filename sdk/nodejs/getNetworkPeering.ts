@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -33,11 +32,11 @@ export interface GetNetworkPeeringArgs {
     /**
      * Atlas assigned unique ID for the peering connection.
      */
-    readonly peeringId: string;
+    peeringId: string;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -121,4 +120,22 @@ export interface GetNetworkPeeringResult {
      * Unique identifier of the peer VPC.
      */
     readonly vpcId: string;
+}
+
+export function getNetworkPeeringOutput(args: GetNetworkPeeringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringResult> {
+    return pulumi.output(args).apply(a => getNetworkPeering(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNetworkPeering.
+ */
+export interface GetNetworkPeeringOutputArgs {
+    /**
+     * Atlas assigned unique ID for the peering connection.
+     */
+    peeringId: pulumi.Input<string>;
+    /**
+     * The unique ID for the project to create the database user.
+     */
+    projectId: pulumi.Input<string>;
 }

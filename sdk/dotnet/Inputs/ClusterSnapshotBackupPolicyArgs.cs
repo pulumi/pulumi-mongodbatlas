@@ -9,4 +9,43 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas.Inputs
 {
+
+    public sealed class ClusterSnapshotBackupPolicyArgs : Pulumi.ResourceArgs
+    {
+        /// <summary>
+        /// The cluster ID.
+        /// </summary>
+        [Input("clusterId")]
+        public Input<string>? ClusterId { get; set; }
+
+        [Input("clusterName")]
+        public Input<string>? ClusterName { get; set; }
+
+        [Input("nextSnapshot")]
+        public Input<string>? NextSnapshot { get; set; }
+
+        [Input("policies")]
+        private InputList<Inputs.ClusterSnapshotBackupPolicyPolicyArgs>? _policies;
+        public InputList<Inputs.ClusterSnapshotBackupPolicyPolicyArgs> Policies
+        {
+            get => _policies ?? (_policies = new InputList<Inputs.ClusterSnapshotBackupPolicyPolicyArgs>());
+            set => _policies = value;
+        }
+
+        [Input("referenceHourOfDay")]
+        public Input<int>? ReferenceHourOfDay { get; set; }
+
+        [Input("referenceMinuteOfHour")]
+        public Input<int>? ReferenceMinuteOfHour { get; set; }
+
+        [Input("restoreWindowDays")]
+        public Input<int>? RestoreWindowDays { get; set; }
+
+        [Input("updateSnapshots")]
+        public Input<bool>? UpdateSnapshots { get; set; }
+
+        public ClusterSnapshotBackupPolicyArgs()
+        {
+        }
+    }
 }

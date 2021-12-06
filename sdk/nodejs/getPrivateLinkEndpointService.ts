@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -33,19 +32,19 @@ export interface GetPrivateLinkEndpointServiceArgs {
     /**
      * Unique identifier of the `AWS` or `AZURE` resource.
      */
-    readonly endpointServiceId: string;
+    endpointServiceId: string;
     /**
      * Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
      */
-    readonly privateLinkId: string;
+    privateLinkId: string;
     /**
      * Unique identifier for the project.
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
      */
-    readonly providerName: string;
+    providerName: string;
 }
 
 /**
@@ -94,4 +93,30 @@ export interface GetPrivateLinkEndpointServiceResult {
     readonly privateLinkId: string;
     readonly projectId: string;
     readonly providerName: string;
+}
+
+export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpointServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointServiceResult> {
+    return pulumi.output(args).apply(a => getPrivateLinkEndpointService(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getPrivateLinkEndpointService.
+ */
+export interface GetPrivateLinkEndpointServiceOutputArgs {
+    /**
+     * Unique identifier of the `AWS` or `AZURE` resource.
+     */
+    endpointServiceId: pulumi.Input<string>;
+    /**
+     * Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
+     */
+    privateLinkId: pulumi.Input<string>;
+    /**
+     * Unique identifier for the project.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     */
+    providerName: pulumi.Input<string>;
 }

@@ -127,21 +127,21 @@ export class LdapVerify extends pulumi.CustomResource {
      */
     constructor(name: string, args: LdapVerifyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LdapVerifyArgs | LdapVerifyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LdapVerifyState | undefined;
-            inputs["authzQueryTemplate"] = state ? state.authzQueryTemplate : undefined;
-            inputs["bindPassword"] = state ? state.bindPassword : undefined;
-            inputs["bindUsername"] = state ? state.bindUsername : undefined;
-            inputs["caCertificate"] = state ? state.caCertificate : undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["links"] = state ? state.links : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["requestId"] = state ? state.requestId : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["validations"] = state ? state.validations : undefined;
+            resourceInputs["authzQueryTemplate"] = state ? state.authzQueryTemplate : undefined;
+            resourceInputs["bindPassword"] = state ? state.bindPassword : undefined;
+            resourceInputs["bindUsername"] = state ? state.bindUsername : undefined;
+            resourceInputs["caCertificate"] = state ? state.caCertificate : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["links"] = state ? state.links : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["requestId"] = state ? state.requestId : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["validations"] = state ? state.validations : undefined;
         } else {
             const args = argsOrState as LdapVerifyArgs | undefined;
             if ((!args || args.bindPassword === undefined) && !opts.urn) {
@@ -159,22 +159,22 @@ export class LdapVerify extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["authzQueryTemplate"] = args ? args.authzQueryTemplate : undefined;
-            inputs["bindPassword"] = args ? args.bindPassword : undefined;
-            inputs["bindUsername"] = args ? args.bindUsername : undefined;
-            inputs["caCertificate"] = args ? args.caCertificate : undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["links"] = undefined /*out*/;
-            inputs["requestId"] = undefined /*out*/;
-            inputs["status"] = undefined /*out*/;
-            inputs["validations"] = undefined /*out*/;
+            resourceInputs["authzQueryTemplate"] = args ? args.authzQueryTemplate : undefined;
+            resourceInputs["bindPassword"] = args ? args.bindPassword : undefined;
+            resourceInputs["bindUsername"] = args ? args.bindUsername : undefined;
+            resourceInputs["caCertificate"] = args ? args.caCertificate : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["links"] = undefined /*out*/;
+            resourceInputs["requestId"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["validations"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(LdapVerify.__pulumiType, name, inputs, opts);
+        super(LdapVerify.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -185,47 +185,47 @@ export interface LdapVerifyState {
     /**
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      */
-    readonly authzQueryTemplate?: pulumi.Input<string>;
+    authzQueryTemplate?: pulumi.Input<string>;
     /**
      * The password used to authenticate the `bindUsername`.
      */
-    readonly bindPassword?: pulumi.Input<string>;
+    bindPassword?: pulumi.Input<string>;
     /**
      * The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
      */
-    readonly bindUsername?: pulumi.Input<string>;
+    bindUsername?: pulumi.Input<string>;
     /**
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      */
-    readonly caCertificate?: pulumi.Input<string>;
+    caCertificate?: pulumi.Input<string>;
     /**
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      */
-    readonly hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string>;
     /**
      * One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
      */
-    readonly links?: pulumi.Input<pulumi.Input<inputs.LdapVerifyLink>[]>;
+    links?: pulumi.Input<pulumi.Input<inputs.LdapVerifyLink>[]>;
     /**
      * The port to which the LDAP server listens for client connections. Default: `636`
      */
-    readonly port?: pulumi.Input<number>;
+    port?: pulumi.Input<number>;
     /**
      * The unique ID for the project to configure LDAP.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
      */
-    readonly requestId?: pulumi.Input<string>;
+    requestId?: pulumi.Input<string>;
     /**
      * The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
      */
-    readonly status?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
     /**
      * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
      */
-    readonly validations?: pulumi.Input<pulumi.Input<inputs.LdapVerifyValidation>[]>;
+    validations?: pulumi.Input<pulumi.Input<inputs.LdapVerifyValidation>[]>;
 }
 
 /**
@@ -235,29 +235,29 @@ export interface LdapVerifyArgs {
     /**
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      */
-    readonly authzQueryTemplate?: pulumi.Input<string>;
+    authzQueryTemplate?: pulumi.Input<string>;
     /**
      * The password used to authenticate the `bindUsername`.
      */
-    readonly bindPassword: pulumi.Input<string>;
+    bindPassword: pulumi.Input<string>;
     /**
      * The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
      */
-    readonly bindUsername: pulumi.Input<string>;
+    bindUsername: pulumi.Input<string>;
     /**
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      */
-    readonly caCertificate?: pulumi.Input<string>;
+    caCertificate?: pulumi.Input<string>;
     /**
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      */
-    readonly hostname: pulumi.Input<string>;
+    hostname: pulumi.Input<string>;
     /**
      * The port to which the LDAP server listens for client connections. Default: `636`
      */
-    readonly port: pulumi.Input<number>;
+    port: pulumi.Input<number>;
     /**
      * The unique ID for the project to configure LDAP.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetCloudBackupScheduleResult> InvokeAsync(GetCloudBackupScheduleArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster. 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetCloudBackupScheduleResult> Invoke(GetCloudBackupScheduleInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetCloudBackupScheduleResult>("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", args ?? new GetCloudBackupScheduleInvokeArgs(), options.WithVersion());
     }
 
 
@@ -36,6 +45,25 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetCloudBackupScheduleArgs()
+        {
+        }
+    }
+
+    public sealed class GetCloudBackupScheduleInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        /// <summary>
+        /// The unique identifier of the project for the Atlas cluster.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetCloudBackupScheduleInvokeArgs()
         {
         }
     }

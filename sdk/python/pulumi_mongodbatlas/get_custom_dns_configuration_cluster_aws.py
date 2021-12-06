@@ -12,6 +12,7 @@ __all__ = [
     'GetCustomDnsConfigurationClusterAwsResult',
     'AwaitableGetCustomDnsConfigurationClusterAwsResult',
     'get_custom_dns_configuration_cluster_aws',
+    'get_custom_dns_configuration_cluster_aws_output',
 ]
 
 @pulumi.output_type
@@ -85,3 +86,17 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[str] = None,
         enabled=__ret__.enabled,
         id=__ret__.id,
         project_id=__ret__.project_id)
+
+
+@_utilities.lift_output_func(get_custom_dns_configuration_cluster_aws)
+def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.Input[str]] = None,
+                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCustomDnsConfigurationClusterAwsResult]:
+    """
+    `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+
+
+    :param str project_id: Unique identifier for the project.
+    """
+    ...

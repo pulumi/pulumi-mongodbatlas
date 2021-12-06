@@ -140,7 +140,7 @@ type CustomDnsConfigurationClusterAwsInput interface {
 }
 
 func (*CustomDnsConfigurationClusterAws) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomDnsConfigurationClusterAws)(nil))
+	return reflect.TypeOf((**CustomDnsConfigurationClusterAws)(nil)).Elem()
 }
 
 func (i *CustomDnsConfigurationClusterAws) ToCustomDnsConfigurationClusterAwsOutput() CustomDnsConfigurationClusterAwsOutput {
@@ -149,35 +149,6 @@ func (i *CustomDnsConfigurationClusterAws) ToCustomDnsConfigurationClusterAwsOut
 
 func (i *CustomDnsConfigurationClusterAws) ToCustomDnsConfigurationClusterAwsOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDnsConfigurationClusterAwsOutput)
-}
-
-func (i *CustomDnsConfigurationClusterAws) ToCustomDnsConfigurationClusterAwsPtrOutput() CustomDnsConfigurationClusterAwsPtrOutput {
-	return i.ToCustomDnsConfigurationClusterAwsPtrOutputWithContext(context.Background())
-}
-
-func (i *CustomDnsConfigurationClusterAws) ToCustomDnsConfigurationClusterAwsPtrOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomDnsConfigurationClusterAwsPtrOutput)
-}
-
-type CustomDnsConfigurationClusterAwsPtrInput interface {
-	pulumi.Input
-
-	ToCustomDnsConfigurationClusterAwsPtrOutput() CustomDnsConfigurationClusterAwsPtrOutput
-	ToCustomDnsConfigurationClusterAwsPtrOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsPtrOutput
-}
-
-type customDnsConfigurationClusterAwsPtrType CustomDnsConfigurationClusterAwsArgs
-
-func (*customDnsConfigurationClusterAwsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CustomDnsConfigurationClusterAws)(nil))
-}
-
-func (i *customDnsConfigurationClusterAwsPtrType) ToCustomDnsConfigurationClusterAwsPtrOutput() CustomDnsConfigurationClusterAwsPtrOutput {
-	return i.ToCustomDnsConfigurationClusterAwsPtrOutputWithContext(context.Background())
-}
-
-func (i *customDnsConfigurationClusterAwsPtrType) ToCustomDnsConfigurationClusterAwsPtrOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomDnsConfigurationClusterAwsPtrOutput)
 }
 
 // CustomDnsConfigurationClusterAwsArrayInput is an input type that accepts CustomDnsConfigurationClusterAwsArray and CustomDnsConfigurationClusterAwsArrayOutput values.
@@ -194,7 +165,7 @@ type CustomDnsConfigurationClusterAwsArrayInput interface {
 type CustomDnsConfigurationClusterAwsArray []CustomDnsConfigurationClusterAwsInput
 
 func (CustomDnsConfigurationClusterAwsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CustomDnsConfigurationClusterAws)(nil))
+	return reflect.TypeOf((*[]*CustomDnsConfigurationClusterAws)(nil)).Elem()
 }
 
 func (i CustomDnsConfigurationClusterAwsArray) ToCustomDnsConfigurationClusterAwsArrayOutput() CustomDnsConfigurationClusterAwsArrayOutput {
@@ -219,7 +190,7 @@ type CustomDnsConfigurationClusterAwsMapInput interface {
 type CustomDnsConfigurationClusterAwsMap map[string]CustomDnsConfigurationClusterAwsInput
 
 func (CustomDnsConfigurationClusterAwsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CustomDnsConfigurationClusterAws)(nil))
+	return reflect.TypeOf((*map[string]*CustomDnsConfigurationClusterAws)(nil)).Elem()
 }
 
 func (i CustomDnsConfigurationClusterAwsMap) ToCustomDnsConfigurationClusterAwsMapOutput() CustomDnsConfigurationClusterAwsMapOutput {
@@ -230,12 +201,10 @@ func (i CustomDnsConfigurationClusterAwsMap) ToCustomDnsConfigurationClusterAwsM
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDnsConfigurationClusterAwsMapOutput)
 }
 
-type CustomDnsConfigurationClusterAwsOutput struct {
-	*pulumi.OutputState
-}
+type CustomDnsConfigurationClusterAwsOutput struct{ *pulumi.OutputState }
 
 func (CustomDnsConfigurationClusterAwsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomDnsConfigurationClusterAws)(nil))
+	return reflect.TypeOf((**CustomDnsConfigurationClusterAws)(nil)).Elem()
 }
 
 func (o CustomDnsConfigurationClusterAwsOutput) ToCustomDnsConfigurationClusterAwsOutput() CustomDnsConfigurationClusterAwsOutput {
@@ -246,36 +215,10 @@ func (o CustomDnsConfigurationClusterAwsOutput) ToCustomDnsConfigurationClusterA
 	return o
 }
 
-func (o CustomDnsConfigurationClusterAwsOutput) ToCustomDnsConfigurationClusterAwsPtrOutput() CustomDnsConfigurationClusterAwsPtrOutput {
-	return o.ToCustomDnsConfigurationClusterAwsPtrOutputWithContext(context.Background())
-}
-
-func (o CustomDnsConfigurationClusterAwsOutput) ToCustomDnsConfigurationClusterAwsPtrOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsPtrOutput {
-	return o.ApplyT(func(v CustomDnsConfigurationClusterAws) *CustomDnsConfigurationClusterAws {
-		return &v
-	}).(CustomDnsConfigurationClusterAwsPtrOutput)
-}
-
-type CustomDnsConfigurationClusterAwsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CustomDnsConfigurationClusterAwsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CustomDnsConfigurationClusterAws)(nil))
-}
-
-func (o CustomDnsConfigurationClusterAwsPtrOutput) ToCustomDnsConfigurationClusterAwsPtrOutput() CustomDnsConfigurationClusterAwsPtrOutput {
-	return o
-}
-
-func (o CustomDnsConfigurationClusterAwsPtrOutput) ToCustomDnsConfigurationClusterAwsPtrOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsPtrOutput {
-	return o
-}
-
 type CustomDnsConfigurationClusterAwsArrayOutput struct{ *pulumi.OutputState }
 
 func (CustomDnsConfigurationClusterAwsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CustomDnsConfigurationClusterAws)(nil))
+	return reflect.TypeOf((*[]*CustomDnsConfigurationClusterAws)(nil)).Elem()
 }
 
 func (o CustomDnsConfigurationClusterAwsArrayOutput) ToCustomDnsConfigurationClusterAwsArrayOutput() CustomDnsConfigurationClusterAwsArrayOutput {
@@ -287,15 +230,15 @@ func (o CustomDnsConfigurationClusterAwsArrayOutput) ToCustomDnsConfigurationClu
 }
 
 func (o CustomDnsConfigurationClusterAwsArrayOutput) Index(i pulumi.IntInput) CustomDnsConfigurationClusterAwsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomDnsConfigurationClusterAws {
-		return vs[0].([]CustomDnsConfigurationClusterAws)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CustomDnsConfigurationClusterAws {
+		return vs[0].([]*CustomDnsConfigurationClusterAws)[vs[1].(int)]
 	}).(CustomDnsConfigurationClusterAwsOutput)
 }
 
 type CustomDnsConfigurationClusterAwsMapOutput struct{ *pulumi.OutputState }
 
 func (CustomDnsConfigurationClusterAwsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CustomDnsConfigurationClusterAws)(nil))
+	return reflect.TypeOf((*map[string]*CustomDnsConfigurationClusterAws)(nil)).Elem()
 }
 
 func (o CustomDnsConfigurationClusterAwsMapOutput) ToCustomDnsConfigurationClusterAwsMapOutput() CustomDnsConfigurationClusterAwsMapOutput {
@@ -307,14 +250,16 @@ func (o CustomDnsConfigurationClusterAwsMapOutput) ToCustomDnsConfigurationClust
 }
 
 func (o CustomDnsConfigurationClusterAwsMapOutput) MapIndex(k pulumi.StringInput) CustomDnsConfigurationClusterAwsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CustomDnsConfigurationClusterAws {
-		return vs[0].(map[string]CustomDnsConfigurationClusterAws)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CustomDnsConfigurationClusterAws {
+		return vs[0].(map[string]*CustomDnsConfigurationClusterAws)[vs[1].(string)]
 	}).(CustomDnsConfigurationClusterAwsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDnsConfigurationClusterAwsInput)(nil)).Elem(), &CustomDnsConfigurationClusterAws{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDnsConfigurationClusterAwsArrayInput)(nil)).Elem(), CustomDnsConfigurationClusterAwsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDnsConfigurationClusterAwsMapInput)(nil)).Elem(), CustomDnsConfigurationClusterAwsMap{})
 	pulumi.RegisterOutputType(CustomDnsConfigurationClusterAwsOutput{})
-	pulumi.RegisterOutputType(CustomDnsConfigurationClusterAwsPtrOutput{})
 	pulumi.RegisterOutputType(CustomDnsConfigurationClusterAwsArrayOutput{})
 	pulumi.RegisterOutputType(CustomDnsConfigurationClusterAwsMapOutput{})
 }

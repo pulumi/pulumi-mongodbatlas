@@ -33,16 +33,16 @@ export interface GetCloudProviderSnapshotsArgs {
     /**
      * The name of the Atlas cluster that contains the snapshot you want to retrieve.
      */
-    readonly clusterName: string;
+    clusterName: string;
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
-    readonly itemsPerPage?: number;
+    itemsPerPage?: number;
     /**
      * The page to return. Defaults to `1`.
      */
-    readonly pageNum?: number;
-    readonly projectId: string;
+    pageNum?: number;
+    projectId: string;
 }
 
 /**
@@ -62,4 +62,27 @@ export interface GetCloudProviderSnapshotsResult {
      */
     readonly results: outputs.GetCloudProviderSnapshotsResult[];
     readonly totalCount: number;
+}
+
+export function getCloudProviderSnapshotsOutput(args: GetCloudProviderSnapshotsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotsResult> {
+    return pulumi.output(args).apply(a => getCloudProviderSnapshots(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCloudProviderSnapshots.
+ */
+export interface GetCloudProviderSnapshotsOutputArgs {
+    /**
+     * The name of the Atlas cluster that contains the snapshot you want to retrieve.
+     */
+    clusterName: pulumi.Input<string>;
+    /**
+     * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+     */
+    itemsPerPage?: pulumi.Input<number>;
+    /**
+     * The page to return. Defaults to `1`.
+     */
+    pageNum?: pulumi.Input<number>;
+    projectId: pulumi.Input<string>;
 }

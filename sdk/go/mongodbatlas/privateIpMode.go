@@ -136,7 +136,7 @@ type PrivateIpModeInput interface {
 }
 
 func (*PrivateIpMode) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateIpMode)(nil))
+	return reflect.TypeOf((**PrivateIpMode)(nil)).Elem()
 }
 
 func (i *PrivateIpMode) ToPrivateIpModeOutput() PrivateIpModeOutput {
@@ -145,35 +145,6 @@ func (i *PrivateIpMode) ToPrivateIpModeOutput() PrivateIpModeOutput {
 
 func (i *PrivateIpMode) ToPrivateIpModeOutputWithContext(ctx context.Context) PrivateIpModeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModeOutput)
-}
-
-func (i *PrivateIpMode) ToPrivateIpModePtrOutput() PrivateIpModePtrOutput {
-	return i.ToPrivateIpModePtrOutputWithContext(context.Background())
-}
-
-func (i *PrivateIpMode) ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModePtrOutput)
-}
-
-type PrivateIpModePtrInput interface {
-	pulumi.Input
-
-	ToPrivateIpModePtrOutput() PrivateIpModePtrOutput
-	ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput
-}
-
-type privateIpModePtrType PrivateIpModeArgs
-
-func (*privateIpModePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateIpMode)(nil))
-}
-
-func (i *privateIpModePtrType) ToPrivateIpModePtrOutput() PrivateIpModePtrOutput {
-	return i.ToPrivateIpModePtrOutputWithContext(context.Background())
-}
-
-func (i *privateIpModePtrType) ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModePtrOutput)
 }
 
 // PrivateIpModeArrayInput is an input type that accepts PrivateIpModeArray and PrivateIpModeArrayOutput values.
@@ -190,7 +161,7 @@ type PrivateIpModeArrayInput interface {
 type PrivateIpModeArray []PrivateIpModeInput
 
 func (PrivateIpModeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*PrivateIpMode)(nil))
+	return reflect.TypeOf((*[]*PrivateIpMode)(nil)).Elem()
 }
 
 func (i PrivateIpModeArray) ToPrivateIpModeArrayOutput() PrivateIpModeArrayOutput {
@@ -215,7 +186,7 @@ type PrivateIpModeMapInput interface {
 type PrivateIpModeMap map[string]PrivateIpModeInput
 
 func (PrivateIpModeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*PrivateIpMode)(nil))
+	return reflect.TypeOf((*map[string]*PrivateIpMode)(nil)).Elem()
 }
 
 func (i PrivateIpModeMap) ToPrivateIpModeMapOutput() PrivateIpModeMapOutput {
@@ -226,12 +197,10 @@ func (i PrivateIpModeMap) ToPrivateIpModeMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(PrivateIpModeMapOutput)
 }
 
-type PrivateIpModeOutput struct {
-	*pulumi.OutputState
-}
+type PrivateIpModeOutput struct{ *pulumi.OutputState }
 
 func (PrivateIpModeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*PrivateIpMode)(nil))
+	return reflect.TypeOf((**PrivateIpMode)(nil)).Elem()
 }
 
 func (o PrivateIpModeOutput) ToPrivateIpModeOutput() PrivateIpModeOutput {
@@ -242,36 +211,10 @@ func (o PrivateIpModeOutput) ToPrivateIpModeOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o PrivateIpModeOutput) ToPrivateIpModePtrOutput() PrivateIpModePtrOutput {
-	return o.ToPrivateIpModePtrOutputWithContext(context.Background())
-}
-
-func (o PrivateIpModeOutput) ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput {
-	return o.ApplyT(func(v PrivateIpMode) *PrivateIpMode {
-		return &v
-	}).(PrivateIpModePtrOutput)
-}
-
-type PrivateIpModePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (PrivateIpModePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**PrivateIpMode)(nil))
-}
-
-func (o PrivateIpModePtrOutput) ToPrivateIpModePtrOutput() PrivateIpModePtrOutput {
-	return o
-}
-
-func (o PrivateIpModePtrOutput) ToPrivateIpModePtrOutputWithContext(ctx context.Context) PrivateIpModePtrOutput {
-	return o
-}
-
 type PrivateIpModeArrayOutput struct{ *pulumi.OutputState }
 
 func (PrivateIpModeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]PrivateIpMode)(nil))
+	return reflect.TypeOf((*[]*PrivateIpMode)(nil)).Elem()
 }
 
 func (o PrivateIpModeArrayOutput) ToPrivateIpModeArrayOutput() PrivateIpModeArrayOutput {
@@ -283,15 +226,15 @@ func (o PrivateIpModeArrayOutput) ToPrivateIpModeArrayOutputWithContext(ctx cont
 }
 
 func (o PrivateIpModeArrayOutput) Index(i pulumi.IntInput) PrivateIpModeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrivateIpMode {
-		return vs[0].([]PrivateIpMode)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *PrivateIpMode {
+		return vs[0].([]*PrivateIpMode)[vs[1].(int)]
 	}).(PrivateIpModeOutput)
 }
 
 type PrivateIpModeMapOutput struct{ *pulumi.OutputState }
 
 func (PrivateIpModeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]PrivateIpMode)(nil))
+	return reflect.TypeOf((*map[string]*PrivateIpMode)(nil)).Elem()
 }
 
 func (o PrivateIpModeMapOutput) ToPrivateIpModeMapOutput() PrivateIpModeMapOutput {
@@ -303,14 +246,16 @@ func (o PrivateIpModeMapOutput) ToPrivateIpModeMapOutputWithContext(ctx context.
 }
 
 func (o PrivateIpModeMapOutput) MapIndex(k pulumi.StringInput) PrivateIpModeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) PrivateIpMode {
-		return vs[0].(map[string]PrivateIpMode)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *PrivateIpMode {
+		return vs[0].(map[string]*PrivateIpMode)[vs[1].(string)]
 	}).(PrivateIpModeOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateIpModeInput)(nil)).Elem(), &PrivateIpMode{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateIpModeArrayInput)(nil)).Elem(), PrivateIpModeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateIpModeMapInput)(nil)).Elem(), PrivateIpModeMap{})
 	pulumi.RegisterOutputType(PrivateIpModeOutput{})
-	pulumi.RegisterOutputType(PrivateIpModePtrOutput{})
 	pulumi.RegisterOutputType(PrivateIpModeArrayOutput{})
 	pulumi.RegisterOutputType(PrivateIpModeMapOutput{})
 }

@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.GetOnlineArchives(ctx, &mongodbatlas.GetOnlineArchivesArgs{
+// 		_, err := mongodbatlas.LookupOnlineArchives(ctx, &GetOnlineArchivesArgs{
 // 			ProjectId:   _var.Project_id,
 // 			ClusterName: _var.Cluster_name,
 // 		}, nil)
@@ -55,8 +58,8 @@ import (
 // * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
 //
 // See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
-func GetOnlineArchives(ctx *pulumi.Context, args *GetOnlineArchivesArgs, opts ...pulumi.InvokeOption) (*GetOnlineArchivesResult, error) {
-	var rv GetOnlineArchivesResult
+func LookupOnlineArchives(ctx *pulumi.Context, args *LookupOnlineArchivesArgs, opts ...pulumi.InvokeOption) (*LookupOnlineArchivesResult, error) {
+	var rv LookupOnlineArchivesResult
 	err := ctx.Invoke("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -65,7 +68,7 @@ func GetOnlineArchives(ctx *pulumi.Context, args *GetOnlineArchivesArgs, opts ..
 }
 
 // A collection of arguments for invoking getOnlineArchives.
-type GetOnlineArchivesArgs struct {
+type LookupOnlineArchivesArgs struct {
 	// Name of the cluster that contains the collection.
 	ClusterName string `pulumi:"clusterName"`
 	// The unique ID for the project.
@@ -73,11 +76,72 @@ type GetOnlineArchivesArgs struct {
 }
 
 // A collection of values returned by getOnlineArchives.
-type GetOnlineArchivesResult struct {
+type LookupOnlineArchivesResult struct {
 	ClusterName string `pulumi:"clusterName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string                        `pulumi:"id"`
-	ProjectId  string                        `pulumi:"projectId"`
-	Results    []GetOnlineArchivesResultType `pulumi:"results"`
-	TotalCount int                           `pulumi:"totalCount"`
+	Id         string                    `pulumi:"id"`
+	ProjectId  string                    `pulumi:"projectId"`
+	Results    []GetOnlineArchivesResult `pulumi:"results"`
+	TotalCount int                       `pulumi:"totalCount"`
+}
+
+func LookupOnlineArchivesOutput(ctx *pulumi.Context, args LookupOnlineArchivesOutputArgs, opts ...pulumi.InvokeOption) LookupOnlineArchivesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupOnlineArchivesResult, error) {
+			args := v.(LookupOnlineArchivesArgs)
+			r, err := LookupOnlineArchives(ctx, &args, opts...)
+			return *r, err
+		}).(LookupOnlineArchivesResultOutput)
+}
+
+// A collection of arguments for invoking getOnlineArchives.
+type LookupOnlineArchivesOutputArgs struct {
+	// Name of the cluster that contains the collection.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// The unique ID for the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupOnlineArchivesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOnlineArchivesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getOnlineArchives.
+type LookupOnlineArchivesResultOutput struct{ *pulumi.OutputState }
+
+func (LookupOnlineArchivesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOnlineArchivesResult)(nil)).Elem()
+}
+
+func (o LookupOnlineArchivesResultOutput) ToLookupOnlineArchivesResultOutput() LookupOnlineArchivesResultOutput {
+	return o
+}
+
+func (o LookupOnlineArchivesResultOutput) ToLookupOnlineArchivesResultOutputWithContext(ctx context.Context) LookupOnlineArchivesResultOutput {
+	return o
+}
+
+func (o LookupOnlineArchivesResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchivesResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupOnlineArchivesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchivesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupOnlineArchivesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchivesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o LookupOnlineArchivesResultOutput) Results() GetOnlineArchivesResultArrayOutput {
+	return o.ApplyT(func(v LookupOnlineArchivesResult) []GetOnlineArchivesResult { return v.Results }).(GetOnlineArchivesResultArrayOutput)
+}
+
+func (o LookupOnlineArchivesResultOutput) TotalCount() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupOnlineArchivesResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupOnlineArchivesResultOutput{})
 }

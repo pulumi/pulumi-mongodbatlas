@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -40,10 +41,10 @@ namespace Pulumi.Mongodbatlas
         ///             VpcId = "vpc-abc123abc123",
         ///             AwsAccountId = "abc123abc123",
         ///         });
-        ///         var testNetworkPeerings = testNetworkPeering.ProjectId.Apply(projectId =&gt; Mongodbatlas.GetNetworkPeerings.InvokeAsync(new Mongodbatlas.GetNetworkPeeringsArgs
+        ///         var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new Mongodbatlas.GetNetworkPeeringsInvokeArgs
         ///         {
-        ///             ProjectId = projectId,
-        ///         }));
+        ///             ProjectId = testNetworkPeering.ProjectId,
+        ///         });
         ///     }
         /// 
         /// }
@@ -53,6 +54,49 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetNetworkPeeringsResult> InvokeAsync(GetNetworkPeeringsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringsResult>("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args ?? new GetNetworkPeeringsArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// ### Basic Example (AWS).
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new Mongodbatlas.NetworkPeeringArgs
+        ///         {
+        ///             AccepterRegionName = "us-east-1",
+        ///             ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
+        ///             ContainerId = "507f1f77bcf86cd799439011",
+        ///             ProviderName = "AWS",
+        ///             RouteTableCidrBlock = "192.168.0.0/24",
+        ///             VpcId = "vpc-abc123abc123",
+        ///             AwsAccountId = "abc123abc123",
+        ///         });
+        ///         var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new Mongodbatlas.GetNetworkPeeringsInvokeArgs
+        ///         {
+        ///             ProjectId = testNetworkPeering.ProjectId,
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetNetworkPeeringsResult> Invoke(GetNetworkPeeringsInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringsResult>("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args ?? new GetNetworkPeeringsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -65,6 +109,19 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetNetworkPeeringsArgs()
+        {
+        }
+    }
+
+    public sealed class GetNetworkPeeringsInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The unique ID for the project to create the database user.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetNetworkPeeringsInvokeArgs()
         {
         }
     }

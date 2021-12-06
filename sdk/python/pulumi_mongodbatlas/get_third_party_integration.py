@@ -12,6 +12,7 @@ __all__ = [
     'GetThirdPartyIntegrationResult',
     'AwaitableGetThirdPartyIntegrationResult',
     'get_third_party_integration',
+    'get_third_party_integration_output',
 ]
 
 @pulumi.output_type
@@ -250,6 +251,21 @@ def get_third_party_integration(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_flowdock = mongodbatlas.ThirdPartyIntegration("testFlowdock",
+        project_id="<PROJECT-ID>",
+        type="FLOWDOCK",
+        flow_name="<FLOW-NAME>",
+        api_token="<API-TOKEN>",
+        org_name="<ORG-NAME>")
+    test = mongodbatlas.get_third_party_integration_output(project_id=test_flowdock.project_id)
+    ```
+
 
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
     :param str type: Third-Party service integration type
@@ -289,3 +305,41 @@ def get_third_party_integration(project_id: Optional[str] = None,
         type=__ret__.type,
         url=__ret__.url,
         write_token=__ret__.write_token)
+
+
+@_utilities.lift_output_func(get_third_party_integration)
+def get_third_party_integration_output(project_id: Optional[pulumi.Input[str]] = None,
+                                       type: Optional[pulumi.Input[str]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetThirdPartyIntegrationResult]:
+    """
+    `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_flowdock = mongodbatlas.ThirdPartyIntegration("testFlowdock",
+        project_id="<PROJECT-ID>",
+        type="FLOWDOCK",
+        flow_name="<FLOW-NAME>",
+        api_token="<API-TOKEN>",
+        org_name="<ORG-NAME>")
+    test = mongodbatlas.get_third_party_integration_output(project_id=test_flowdock.project_id)
+    ```
+
+
+    :param str project_id: The unique ID for the project to get all Third-Party service integrations
+    :param str type: Third-Party service integration type
+           * PAGER_DUTY
+           * DATADOG
+           * NEW_RELIC
+           * OPS_GENIE
+           * VICTOR_OPS
+           * FLOWDOCK
+           * WEBHOOK
+    """
+    ...

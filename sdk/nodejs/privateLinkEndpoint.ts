@@ -122,21 +122,21 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      */
     constructor(name: string, args: PrivateLinkEndpointArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: PrivateLinkEndpointArgs | PrivateLinkEndpointState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateLinkEndpointState | undefined;
-            inputs["endpointServiceName"] = state ? state.endpointServiceName : undefined;
-            inputs["errorMessage"] = state ? state.errorMessage : undefined;
-            inputs["interfaceEndpoints"] = state ? state.interfaceEndpoints : undefined;
-            inputs["privateEndpoints"] = state ? state.privateEndpoints : undefined;
-            inputs["privateLinkId"] = state ? state.privateLinkId : undefined;
-            inputs["privateLinkServiceName"] = state ? state.privateLinkServiceName : undefined;
-            inputs["privateLinkServiceResourceId"] = state ? state.privateLinkServiceResourceId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["providerName"] = state ? state.providerName : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["status"] = state ? state.status : undefined;
+            resourceInputs["endpointServiceName"] = state ? state.endpointServiceName : undefined;
+            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
+            resourceInputs["interfaceEndpoints"] = state ? state.interfaceEndpoints : undefined;
+            resourceInputs["privateEndpoints"] = state ? state.privateEndpoints : undefined;
+            resourceInputs["privateLinkId"] = state ? state.privateLinkId : undefined;
+            resourceInputs["privateLinkServiceName"] = state ? state.privateLinkServiceName : undefined;
+            resourceInputs["privateLinkServiceResourceId"] = state ? state.privateLinkServiceResourceId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["providerName"] = state ? state.providerName : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as PrivateLinkEndpointArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -148,22 +148,22 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
             if ((!args || args.region === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["providerName"] = args ? args.providerName : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["endpointServiceName"] = undefined /*out*/;
-            inputs["errorMessage"] = undefined /*out*/;
-            inputs["interfaceEndpoints"] = undefined /*out*/;
-            inputs["privateEndpoints"] = undefined /*out*/;
-            inputs["privateLinkId"] = undefined /*out*/;
-            inputs["privateLinkServiceName"] = undefined /*out*/;
-            inputs["privateLinkServiceResourceId"] = undefined /*out*/;
-            inputs["status"] = undefined /*out*/;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["endpointServiceName"] = undefined /*out*/;
+            resourceInputs["errorMessage"] = undefined /*out*/;
+            resourceInputs["interfaceEndpoints"] = undefined /*out*/;
+            resourceInputs["privateEndpoints"] = undefined /*out*/;
+            resourceInputs["privateLinkId"] = undefined /*out*/;
+            resourceInputs["privateLinkServiceName"] = undefined /*out*/;
+            resourceInputs["privateLinkServiceResourceId"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(PrivateLinkEndpoint.__pulumiType, name, inputs, opts);
+        super(PrivateLinkEndpoint.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -174,49 +174,49 @@ export interface PrivateLinkEndpointState {
     /**
      * Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
      */
-    readonly endpointServiceName?: pulumi.Input<string>;
+    endpointServiceName?: pulumi.Input<string>;
     /**
      * Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
      */
-    readonly errorMessage?: pulumi.Input<string>;
+    errorMessage?: pulumi.Input<string>;
     /**
      * Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
      */
-    readonly interfaceEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
+    interfaceEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * All private endpoints that you have added to this Azure Private Link Service.
      */
-    readonly privateEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
+    privateEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Unique identifier of the AWS PrivateLink connection.
      */
-    readonly privateLinkId?: pulumi.Input<string>;
+    privateLinkId?: pulumi.Input<string>;
     /**
      * Name of the Azure Private Link Service that Atlas manages.
      */
-    readonly privateLinkServiceName?: pulumi.Input<string>;
+    privateLinkServiceName?: pulumi.Input<string>;
     /**
      * Resource ID of the Azure Private Link Service that Atlas manages.
      */
-    readonly privateLinkServiceResourceId?: pulumi.Input<string>;
+    privateLinkServiceResourceId?: pulumi.Input<string>;
     /**
      * Required 	Unique identifier for the project.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
      */
-    readonly providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
      * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
      * AWS:
      */
-    readonly status?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
 }
 
 /**
@@ -226,14 +226,14 @@ export interface PrivateLinkEndpointArgs {
     /**
      * Required 	Unique identifier for the project.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
      */
-    readonly providerName: pulumi.Input<string>;
+    providerName: pulumi.Input<string>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
      * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
      */
-    readonly region: pulumi.Input<string>;
+    region: pulumi.Input<string>;
 }

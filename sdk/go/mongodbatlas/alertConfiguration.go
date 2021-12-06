@@ -30,22 +30,22 @@ import (
 // 		_, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
 // 			Enabled:   pulumi.Bool(true),
 // 			EventType: pulumi.String("OUTSIDE_METRIC_THRESHOLD"),
-// 			Matchers: mongodbatlas.AlertConfigurationMatcherArray{
-// 				&mongodbatlas.AlertConfigurationMatcherArgs{
+// 			Matchers: AlertConfigurationMatcherArray{
+// 				&AlertConfigurationMatcherArgs{
 // 					FieldName: pulumi.String("HOSTNAME_AND_PORT"),
 // 					Operator:  pulumi.String("EQUALS"),
 // 					Value:     pulumi.String("SECONDARY"),
 // 				},
 // 			},
-// 			MetricThresholdConfig: &mongodbatlas.AlertConfigurationMetricThresholdConfigArgs{
+// 			MetricThresholdConfig: &AlertConfigurationMetricThresholdConfigArgs{
 // 				MetricName: pulumi.String("ASSERT_REGULAR"),
 // 				Mode:       pulumi.String("AVERAGE"),
 // 				Operator:   pulumi.String("LESS_THAN"),
 // 				Threshold:  pulumi.Float64(99),
 // 				Units:      pulumi.String("RAW"),
 // 			},
-// 			Notifications: mongodbatlas.AlertConfigurationNotificationArray{
-// 				&mongodbatlas.AlertConfigurationNotificationArgs{
+// 			Notifications: AlertConfigurationNotificationArray{
+// 				&AlertConfigurationNotificationArgs{
 // 					DelayMin:     pulumi.Int(0),
 // 					EmailEnabled: pulumi.Bool(true),
 // 					IntervalMin:  pulumi.Int(5),
@@ -82,15 +82,15 @@ import (
 // 		_, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
 // 			Enabled:   pulumi.Bool(true),
 // 			EventType: pulumi.String("REPLICATION_OPLOG_WINDOW_RUNNING_OUT"),
-// 			Matchers: mongodbatlas.AlertConfigurationMatcherArray{
-// 				&mongodbatlas.AlertConfigurationMatcherArgs{
+// 			Matchers: AlertConfigurationMatcherArray{
+// 				&AlertConfigurationMatcherArgs{
 // 					FieldName: pulumi.String("HOSTNAME_AND_PORT"),
 // 					Operator:  pulumi.String("EQUALS"),
 // 					Value:     pulumi.String("SECONDARY"),
 // 				},
 // 			},
-// 			Notifications: mongodbatlas.AlertConfigurationNotificationArray{
-// 				&mongodbatlas.AlertConfigurationNotificationArgs{
+// 			Notifications: AlertConfigurationNotificationArray{
+// 				&AlertConfigurationNotificationArgs{
 // 					DelayMin:     pulumi.Int(0),
 // 					EmailEnabled: pulumi.Bool(true),
 // 					IntervalMin:  pulumi.Int(5),
@@ -103,7 +103,7 @@ import (
 // 				},
 // 			},
 // 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			ThresholdConfig: &mongodbatlas.AlertConfigurationThresholdConfigArgs{
+// 			ThresholdConfig: &AlertConfigurationThresholdConfigArgs{
 // 				Operator:  pulumi.String("LESS_THAN"),
 // 				Threshold: pulumi.Float64(1),
 // 				Units:     pulumi.String("HOURS"),
@@ -295,7 +295,7 @@ type AlertConfigurationInput interface {
 }
 
 func (*AlertConfiguration) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertConfiguration)(nil))
+	return reflect.TypeOf((**AlertConfiguration)(nil)).Elem()
 }
 
 func (i *AlertConfiguration) ToAlertConfigurationOutput() AlertConfigurationOutput {
@@ -304,35 +304,6 @@ func (i *AlertConfiguration) ToAlertConfigurationOutput() AlertConfigurationOutp
 
 func (i *AlertConfiguration) ToAlertConfigurationOutputWithContext(ctx context.Context) AlertConfigurationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationOutput)
-}
-
-func (i *AlertConfiguration) ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput {
-	return i.ToAlertConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (i *AlertConfiguration) ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationPtrOutput)
-}
-
-type AlertConfigurationPtrInput interface {
-	pulumi.Input
-
-	ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput
-	ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput
-}
-
-type alertConfigurationPtrType AlertConfigurationArgs
-
-func (*alertConfigurationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertConfiguration)(nil))
-}
-
-func (i *alertConfigurationPtrType) ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput {
-	return i.ToAlertConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (i *alertConfigurationPtrType) ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationPtrOutput)
 }
 
 // AlertConfigurationArrayInput is an input type that accepts AlertConfigurationArray and AlertConfigurationArrayOutput values.
@@ -349,7 +320,7 @@ type AlertConfigurationArrayInput interface {
 type AlertConfigurationArray []AlertConfigurationInput
 
 func (AlertConfigurationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AlertConfiguration)(nil))
+	return reflect.TypeOf((*[]*AlertConfiguration)(nil)).Elem()
 }
 
 func (i AlertConfigurationArray) ToAlertConfigurationArrayOutput() AlertConfigurationArrayOutput {
@@ -374,7 +345,7 @@ type AlertConfigurationMapInput interface {
 type AlertConfigurationMap map[string]AlertConfigurationInput
 
 func (AlertConfigurationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AlertConfiguration)(nil))
+	return reflect.TypeOf((*map[string]*AlertConfiguration)(nil)).Elem()
 }
 
 func (i AlertConfigurationMap) ToAlertConfigurationMapOutput() AlertConfigurationMapOutput {
@@ -385,12 +356,10 @@ func (i AlertConfigurationMap) ToAlertConfigurationMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AlertConfigurationMapOutput)
 }
 
-type AlertConfigurationOutput struct {
-	*pulumi.OutputState
-}
+type AlertConfigurationOutput struct{ *pulumi.OutputState }
 
 func (AlertConfigurationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertConfiguration)(nil))
+	return reflect.TypeOf((**AlertConfiguration)(nil)).Elem()
 }
 
 func (o AlertConfigurationOutput) ToAlertConfigurationOutput() AlertConfigurationOutput {
@@ -401,36 +370,10 @@ func (o AlertConfigurationOutput) ToAlertConfigurationOutputWithContext(ctx cont
 	return o
 }
 
-func (o AlertConfigurationOutput) ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput {
-	return o.ToAlertConfigurationPtrOutputWithContext(context.Background())
-}
-
-func (o AlertConfigurationOutput) ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput {
-	return o.ApplyT(func(v AlertConfiguration) *AlertConfiguration {
-		return &v
-	}).(AlertConfigurationPtrOutput)
-}
-
-type AlertConfigurationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AlertConfigurationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertConfiguration)(nil))
-}
-
-func (o AlertConfigurationPtrOutput) ToAlertConfigurationPtrOutput() AlertConfigurationPtrOutput {
-	return o
-}
-
-func (o AlertConfigurationPtrOutput) ToAlertConfigurationPtrOutputWithContext(ctx context.Context) AlertConfigurationPtrOutput {
-	return o
-}
-
 type AlertConfigurationArrayOutput struct{ *pulumi.OutputState }
 
 func (AlertConfigurationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AlertConfiguration)(nil))
+	return reflect.TypeOf((*[]*AlertConfiguration)(nil)).Elem()
 }
 
 func (o AlertConfigurationArrayOutput) ToAlertConfigurationArrayOutput() AlertConfigurationArrayOutput {
@@ -442,15 +385,15 @@ func (o AlertConfigurationArrayOutput) ToAlertConfigurationArrayOutputWithContex
 }
 
 func (o AlertConfigurationArrayOutput) Index(i pulumi.IntInput) AlertConfigurationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertConfiguration {
-		return vs[0].([]AlertConfiguration)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AlertConfiguration {
+		return vs[0].([]*AlertConfiguration)[vs[1].(int)]
 	}).(AlertConfigurationOutput)
 }
 
 type AlertConfigurationMapOutput struct{ *pulumi.OutputState }
 
 func (AlertConfigurationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AlertConfiguration)(nil))
+	return reflect.TypeOf((*map[string]*AlertConfiguration)(nil)).Elem()
 }
 
 func (o AlertConfigurationMapOutput) ToAlertConfigurationMapOutput() AlertConfigurationMapOutput {
@@ -462,14 +405,16 @@ func (o AlertConfigurationMapOutput) ToAlertConfigurationMapOutputWithContext(ct
 }
 
 func (o AlertConfigurationMapOutput) MapIndex(k pulumi.StringInput) AlertConfigurationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AlertConfiguration {
-		return vs[0].(map[string]AlertConfiguration)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AlertConfiguration {
+		return vs[0].(map[string]*AlertConfiguration)[vs[1].(string)]
 	}).(AlertConfigurationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationInput)(nil)).Elem(), &AlertConfiguration{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationArrayInput)(nil)).Elem(), AlertConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationMapInput)(nil)).Elem(), AlertConfigurationMap{})
 	pulumi.RegisterOutputType(AlertConfigurationOutput{})
-	pulumi.RegisterOutputType(AlertConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationMapOutput{})
 }

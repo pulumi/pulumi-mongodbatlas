@@ -4,12 +4,45 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		testFlowdock, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			Type:      pulumi.String("FLOWDOCK"),
+// 			FlowName:  pulumi.String("<FLOW-NAME>"),
+// 			ApiToken:  pulumi.String("<API-TOKEN>"),
+// 			OrgName:   pulumi.String("<ORG-NAME>"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, GetThirdPartyIntegrationOutputArgs{
+// 			ProjectId: testFlowdock.ProjectId,
+// 		}, nil)
+// 		return nil
+// 	})
+// }
+// ```
 func LookupThirdPartyIntegration(ctx *pulumi.Context, args *LookupThirdPartyIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupThirdPartyIntegrationResult, error) {
 	var rv LookupThirdPartyIntegrationResult
 	err := ctx.Invoke("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args, &rv, opts...)
@@ -74,4 +107,143 @@ type LookupThirdPartyIntegrationResult struct {
 	Url string `pulumi:"url"`
 	// Your Insights Insert Key.
 	WriteToken string `pulumi:"writeToken"`
+}
+
+func LookupThirdPartyIntegrationOutput(ctx *pulumi.Context, args LookupThirdPartyIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupThirdPartyIntegrationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupThirdPartyIntegrationResult, error) {
+			args := v.(LookupThirdPartyIntegrationArgs)
+			r, err := LookupThirdPartyIntegration(ctx, &args, opts...)
+			return *r, err
+		}).(LookupThirdPartyIntegrationResultOutput)
+}
+
+// A collection of arguments for invoking getThirdPartyIntegration.
+type LookupThirdPartyIntegrationOutputArgs struct {
+	// The unique ID for the project to get all Third-Party service integrations
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Third-Party service integration type
+	// * PAGER_DUTY
+	// * DATADOG
+	// * NEW_RELIC
+	// * OPS_GENIE
+	// * VICTOR_OPS
+	// * FLOWDOCK
+	// * WEBHOOK
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (LookupThirdPartyIntegrationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupThirdPartyIntegrationArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getThirdPartyIntegration.
+type LookupThirdPartyIntegrationResultOutput struct{ *pulumi.OutputState }
+
+func (LookupThirdPartyIntegrationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupThirdPartyIntegrationResult)(nil)).Elem()
+}
+
+func (o LookupThirdPartyIntegrationResultOutput) ToLookupThirdPartyIntegrationResultOutput() LookupThirdPartyIntegrationResultOutput {
+	return o
+}
+
+func (o LookupThirdPartyIntegrationResultOutput) ToLookupThirdPartyIntegrationResultOutputWithContext(ctx context.Context) LookupThirdPartyIntegrationResultOutput {
+	return o
+}
+
+// Unique identifier of your New Relic account.
+func (o LookupThirdPartyIntegrationResultOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// Your API Key.
+func (o LookupThirdPartyIntegrationResultOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// Your API Token.
+func (o LookupThirdPartyIntegrationResultOutput) ApiToken() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ApiToken }).(pulumi.StringOutput)
+}
+
+func (o LookupThirdPartyIntegrationResultOutput) ChannelName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ChannelName }).(pulumi.StringOutput)
+}
+
+// Your Flowdock Flow name.
+func (o LookupThirdPartyIntegrationResultOutput) FlowName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.FlowName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupThirdPartyIntegrationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Your License Key.
+func (o LookupThirdPartyIntegrationResultOutput) LicenseKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.LicenseKey }).(pulumi.StringOutput)
+}
+
+// Your Flowdock organization name.
+// * `WEBHOOK`
+func (o LookupThirdPartyIntegrationResultOutput) OrgName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.OrgName }).(pulumi.StringOutput)
+}
+
+func (o LookupThirdPartyIntegrationResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Your Insights Query Key.
+// * `OPS_GENIE`
+func (o LookupThirdPartyIntegrationResultOutput) ReadToken() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ReadToken }).(pulumi.StringOutput)
+}
+
+// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+// * `VICTOR_OPS`
+func (o LookupThirdPartyIntegrationResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// An optional field for your Routing Key.
+// * `FLOWDOCK`
+func (o LookupThirdPartyIntegrationResultOutput) RoutingKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.RoutingKey }).(pulumi.StringOutput)
+}
+
+// An optional field for your webhook secret.
+func (o LookupThirdPartyIntegrationResultOutput) Secret() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+// Your Service Key.
+// * `DATADOG`
+func (o LookupThirdPartyIntegrationResultOutput) ServiceKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ServiceKey }).(pulumi.StringOutput)
+}
+
+func (o LookupThirdPartyIntegrationResultOutput) TeamName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.TeamName }).(pulumi.StringOutput)
+}
+
+// Property equal to its own integration type
+func (o LookupThirdPartyIntegrationResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Your webhook URL.
+func (o LookupThirdPartyIntegrationResultOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// Your Insights Insert Key.
+func (o LookupThirdPartyIntegrationResultOutput) WriteToken() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.WriteToken }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupThirdPartyIntegrationResultOutput{})
 }

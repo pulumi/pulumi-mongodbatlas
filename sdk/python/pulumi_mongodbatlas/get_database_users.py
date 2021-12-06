@@ -13,6 +13,7 @@ __all__ = [
     'GetDatabaseUsersResult',
     'AwaitableGetDatabaseUsersResult',
     'get_database_users',
+    'get_database_users_output',
 ]
 
 @pulumi.output_type
@@ -70,7 +71,7 @@ class AwaitableGetDatabaseUsersResult(GetDatabaseUsersResult):
 def get_database_users(project_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseUsersResult:
     """
-    `getDatabaseUsers` describe all Database Users. This represents a database user which will be applied to all clusters within the project.
+    `get_database_users` describe all Database Users. This represents a database user which will be applied to all clusters within the project.
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
@@ -107,7 +108,7 @@ def get_database_users(project_id: Optional[str] = None,
                 value="value 2",
             ),
         ])
-    test_database_users = test_database_user.project_id.apply(lambda project_id: mongodbatlas.get_database_users(project_id=project_id))
+    test_database_users = mongodbatlas.get_database_users_output(project_id=test_database_user.project_id)
     ```
 
 
@@ -125,3 +126,53 @@ def get_database_users(project_id: Optional[str] = None,
         id=__ret__.id,
         project_id=__ret__.project_id,
         results=__ret__.results)
+
+
+@_utilities.lift_output_func(get_database_users)
+def get_database_users_output(project_id: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseUsersResult]:
+    """
+    `get_database_users` describe all Database Users. This represents a database user which will be applied to all clusters within the project.
+
+    Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_database_user = mongodbatlas.DatabaseUser("testDatabaseUser",
+        username="test-acc-username",
+        password="test-acc-password",
+        project_id="<PROJECT-ID>",
+        auth_database_name="admin",
+        roles=[
+            mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readWrite",
+                database_name="admin",
+            ),
+            mongodbatlas.DatabaseUserRoleArgs(
+                role_name="atlasAdmin",
+                database_name="admin",
+            ),
+        ],
+        labels=[
+            mongodbatlas.DatabaseUserLabelArgs(
+                key="key 1",
+                value="value 1",
+            ),
+            mongodbatlas.DatabaseUserLabelArgs(
+                key="key 2",
+                value="value 2",
+            ),
+        ])
+    test_database_users = mongodbatlas.get_database_users_output(project_id=test_database_user.project_id)
+    ```
+
+
+    :param str project_id: The unique ID for the project to get all database users.
+    """
+    ...

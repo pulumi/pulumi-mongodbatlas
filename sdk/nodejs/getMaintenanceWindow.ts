@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -30,7 +29,7 @@ export interface GetMaintenanceWindowArgs {
     /**
      * The unique identifier of the project for the Maintenance Window.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -63,4 +62,18 @@ export interface GetMaintenanceWindowResult {
      * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
      */
     readonly startAsap: boolean;
+}
+
+export function getMaintenanceWindowOutput(args: GetMaintenanceWindowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMaintenanceWindowResult> {
+    return pulumi.output(args).apply(a => getMaintenanceWindow(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getMaintenanceWindow.
+ */
+export interface GetMaintenanceWindowOutputArgs {
+    /**
+     * The unique identifier of the project for the Maintenance Window.
+     */
+    projectId: pulumi.Input<string>;
 }

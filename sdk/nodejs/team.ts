@@ -93,14 +93,14 @@ export class Team extends pulumi.CustomResource {
      */
     constructor(name: string, args: TeamArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TeamArgs | TeamState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeamState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["orgId"] = state ? state.orgId : undefined;
-            inputs["teamId"] = state ? state.teamId : undefined;
-            inputs["usernames"] = state ? state.usernames : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["orgId"] = state ? state.orgId : undefined;
+            resourceInputs["teamId"] = state ? state.teamId : undefined;
+            resourceInputs["usernames"] = state ? state.usernames : undefined;
         } else {
             const args = argsOrState as TeamArgs | undefined;
             if ((!args || args.orgId === undefined) && !opts.urn) {
@@ -109,15 +109,15 @@ export class Team extends pulumi.CustomResource {
             if ((!args || args.usernames === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'usernames'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["orgId"] = args ? args.orgId : undefined;
-            inputs["usernames"] = args ? args.usernames : undefined;
-            inputs["teamId"] = undefined /*out*/;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["orgId"] = args ? args.orgId : undefined;
+            resourceInputs["usernames"] = args ? args.usernames : undefined;
+            resourceInputs["teamId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Team.__pulumiType, name, inputs, opts);
+        super(Team.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -128,19 +128,19 @@ export interface TeamState {
     /**
      * The name of the team you want to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The unique identifier for the organization you want to associate the team with.
      */
-    readonly orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string>;
     /**
      * The unique identifier for the team.
      */
-    readonly teamId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string>;
     /**
      * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
      */
-    readonly usernames?: pulumi.Input<pulumi.Input<string>[]>;
+    usernames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -150,13 +150,13 @@ export interface TeamArgs {
     /**
      * The name of the team you want to create.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The unique identifier for the organization you want to associate the team with.
      */
-    readonly orgId: pulumi.Input<string>;
+    orgId: pulumi.Input<string>;
     /**
      * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
      */
-    readonly usernames: pulumi.Input<pulumi.Input<string>[]>;
+    usernames: pulumi.Input<pulumi.Input<string>[]>;
 }

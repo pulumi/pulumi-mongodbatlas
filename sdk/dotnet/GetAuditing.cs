@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetAuditingResult> InvokeAsync(GetAuditingArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.Auditing` describes a Auditing.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// </summary>
+        public static Output<GetAuditingResult> Invoke(GetAuditingInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingInvokeArgs(), options.WithVersion());
     }
 
 
@@ -30,6 +39,19 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetAuditingArgs()
+        {
+        }
+    }
+
+    public sealed class GetAuditingInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The unique ID for the project to create the database user.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetAuditingInvokeArgs()
         {
         }
     }

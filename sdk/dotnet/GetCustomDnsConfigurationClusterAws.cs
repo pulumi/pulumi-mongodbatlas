@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetCustomDnsConfigurationClusterAwsResult> InvokeAsync(GetCustomDnsConfigurationClusterAwsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// </summary>
+        public static Output<GetCustomDnsConfigurationClusterAwsResult> Invoke(GetCustomDnsConfigurationClusterAwsInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -30,6 +39,19 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetCustomDnsConfigurationClusterAwsArgs()
+        {
+        }
+    }
+
+    public sealed class GetCustomDnsConfigurationClusterAwsInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Unique identifier for the project.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetCustomDnsConfigurationClusterAwsInvokeArgs()
         {
         }
     }

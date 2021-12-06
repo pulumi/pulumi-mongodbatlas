@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetCloudProviderSnapshotRestoreJobResult> InvokeAsync(GetCloudProviderSnapshotRestoreJobArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotRestoreJobResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJob:getCloudProviderSnapshotRestoreJob", args ?? new GetCloudProviderSnapshotRestoreJobArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// </summary>
+        public static Output<GetCloudProviderSnapshotRestoreJobResult> Invoke(GetCloudProviderSnapshotRestoreJobInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotRestoreJobResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJob:getCloudProviderSnapshotRestoreJob", args ?? new GetCloudProviderSnapshotRestoreJobInvokeArgs(), options.WithVersion());
     }
 
 
@@ -42,6 +51,31 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetCloudProviderSnapshotRestoreJobArgs()
+        {
+        }
+    }
+
+    public sealed class GetCloudProviderSnapshotRestoreJobInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The name of the Atlas cluster for which you want to retrieve the restore job.
+        /// </summary>
+        [Input("clusterName", required: true)]
+        public Input<string> ClusterName { get; set; } = null!;
+
+        /// <summary>
+        /// The unique identifier of the restore job to retrieve.
+        /// </summary>
+        [Input("jobId", required: true)]
+        public Input<string> JobId { get; set; } = null!;
+
+        /// <summary>
+        /// The unique identifier of the project for the Atlas cluster.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetCloudProviderSnapshotRestoreJobInvokeArgs()
         {
         }
     }

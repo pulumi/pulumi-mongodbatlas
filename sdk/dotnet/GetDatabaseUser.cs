@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -20,6 +21,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetDatabaseUserResult> InvokeAsync(GetDatabaseUserArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseUserResult>("mongodbatlas:index/getDatabaseUser:getDatabaseUser", args ?? new GetDatabaseUserArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.DatabaseUser` describe a Database User. This represents a database user which will be applied to all clusters within the project.
+        /// 
+        /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
+        public static Output<GetDatabaseUserResult> Invoke(GetDatabaseUserInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDatabaseUserResult>("mongodbatlas:index/getDatabaseUser:getDatabaseUser", args ?? new GetDatabaseUserInvokeArgs(), options.WithVersion());
     }
 
 
@@ -50,6 +61,37 @@ namespace Pulumi.Mongodbatlas
         public string Username { get; set; } = null!;
 
         public GetDatabaseUserArgs()
+        {
+        }
+    }
+
+    public sealed class GetDatabaseUserInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
+        /// </summary>
+        [Input("authDatabaseName")]
+        public Input<string>? AuthDatabaseName { get; set; }
+
+        /// <summary>
+        /// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+        /// </summary>
+        [Input("databaseName")]
+        public Input<string>? DatabaseName { get; set; }
+
+        /// <summary>
+        /// The unique ID for the project to create the database user.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Username for authenticating to MongoDB.
+        /// </summary>
+        [Input("username", required: true)]
+        public Input<string> Username { get; set; } = null!;
+
+        public GetDatabaseUserInvokeArgs()
         {
         }
     }

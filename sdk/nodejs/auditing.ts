@@ -92,30 +92,30 @@ export class Auditing extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuditingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuditingArgs | AuditingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuditingState | undefined;
-            inputs["auditAuthorizationSuccess"] = state ? state.auditAuthorizationSuccess : undefined;
-            inputs["auditFilter"] = state ? state.auditFilter : undefined;
-            inputs["configurationType"] = state ? state.configurationType : undefined;
-            inputs["enabled"] = state ? state.enabled : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["auditAuthorizationSuccess"] = state ? state.auditAuthorizationSuccess : undefined;
+            resourceInputs["auditFilter"] = state ? state.auditFilter : undefined;
+            resourceInputs["configurationType"] = state ? state.configurationType : undefined;
+            resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as AuditingArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            inputs["auditAuthorizationSuccess"] = args ? args.auditAuthorizationSuccess : undefined;
-            inputs["auditFilter"] = args ? args.auditFilter : undefined;
-            inputs["enabled"] = args ? args.enabled : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["configurationType"] = undefined /*out*/;
+            resourceInputs["auditAuthorizationSuccess"] = args ? args.auditAuthorizationSuccess : undefined;
+            resourceInputs["auditFilter"] = args ? args.auditFilter : undefined;
+            resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["configurationType"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Auditing.__pulumiType, name, inputs, opts);
+        super(Auditing.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -126,26 +126,26 @@ export interface AuditingState {
     /**
      * Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      */
-    readonly auditAuthorizationSuccess?: pulumi.Input<boolean>;
+    auditAuthorizationSuccess?: pulumi.Input<boolean>;
     /**
      * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
      */
-    readonly auditFilter?: pulumi.Input<string>;
+    auditFilter?: pulumi.Input<string>;
     /**
      * Denotes the configuration method for the audit filter. Possible values are: 
      * * NONE - auditing not configured for the project.
      * * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
      * * FILTER_JSON - auditing configured via Atlas custom filter or API.
      */
-    readonly configurationType?: pulumi.Input<string>;
+    configurationType?: pulumi.Input<string>;
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project to configure auditing.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
 }
 
 /**
@@ -155,17 +155,17 @@ export interface AuditingArgs {
     /**
      * Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      */
-    readonly auditAuthorizationSuccess?: pulumi.Input<boolean>;
+    auditAuthorizationSuccess?: pulumi.Input<boolean>;
     /**
      * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
      */
-    readonly auditFilter?: pulumi.Input<string>;
+    auditFilter?: pulumi.Input<string>;
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
      */
-    readonly enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * The unique ID for the project to configure auditing.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
 }

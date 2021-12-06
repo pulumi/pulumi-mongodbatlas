@@ -25,6 +25,22 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * MongoDB Atlas Base URL
+     */
+    public readonly baseUrl!: pulumi.Output<string | undefined>;
+    /**
+     * MongoDB Atlas Programmatic Private Key
+     */
+    public readonly privateKey!: pulumi.Output<string>;
+    /**
+     * MongoDB Atlas Programmatic Public Key
+     */
+    public readonly publicKey!: pulumi.Output<string>;
+    /**
+     * MongoDB Realm Base URL
+     */
+    public readonly realmBaseUrl!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -34,7 +50,7 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
             if ((!args || args.privateKey === undefined) && !opts.urn) {
@@ -43,15 +59,15 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.publicKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
             }
-            inputs["baseUrl"] = args ? args.baseUrl : undefined;
-            inputs["privateKey"] = args ? args.privateKey : undefined;
-            inputs["publicKey"] = args ? args.publicKey : undefined;
-            inputs["realmBaseUrl"] = args ? args.realmBaseUrl : undefined;
+            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
+            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["realmBaseUrl"] = args ? args.realmBaseUrl : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Provider.__pulumiType, name, inputs, opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -62,17 +78,17 @@ export interface ProviderArgs {
     /**
      * MongoDB Atlas Base URL
      */
-    readonly baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string>;
     /**
      * MongoDB Atlas Programmatic Private Key
      */
-    readonly privateKey: pulumi.Input<string>;
+    privateKey: pulumi.Input<string>;
     /**
      * MongoDB Atlas Programmatic Public Key
      */
-    readonly publicKey: pulumi.Input<string>;
+    publicKey: pulumi.Input<string>;
     /**
      * MongoDB Realm Base URL
      */
-    readonly realmBaseUrl?: pulumi.Input<string>;
+    realmBaseUrl?: pulumi.Input<string>;
 }

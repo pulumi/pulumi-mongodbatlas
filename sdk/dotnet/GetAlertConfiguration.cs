@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,6 +19,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public static Task<GetAlertConfigurationResult> InvokeAsync(GetAlertConfigurationArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationArgs(), options.WithVersion());
+
+        /// <summary>
+        /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+        /// </summary>
+        public static Output<GetAlertConfigurationResult> Invoke(GetAlertConfigurationInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationInvokeArgs(), options.WithVersion());
     }
 
 
@@ -36,6 +45,25 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         public GetAlertConfigurationArgs()
+        {
+        }
+    }
+
+    public sealed class GetAlertConfigurationInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Unique identifier for the alert configuration.
+        /// </summary>
+        [Input("alertConfigurationId", required: true)]
+        public Input<string> AlertConfigurationId { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project where the alert configuration will create.
+        /// </summary>
+        [Input("projectId", required: true)]
+        public Input<string> ProjectId { get; set; } = null!;
+
+        public GetAlertConfigurationInvokeArgs()
         {
         }
     }

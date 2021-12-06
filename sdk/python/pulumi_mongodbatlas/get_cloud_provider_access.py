@@ -13,6 +13,7 @@ __all__ = [
     'GetCloudProviderAccessResult',
     'AwaitableGetCloudProviderAccessResult',
     'get_cloud_provider_access',
+    'get_cloud_provider_access_output',
 ]
 
 @pulumi.output_type
@@ -80,7 +81,7 @@ def get_cloud_provider_access(project_id: Optional[str] = None,
     test_role = mongodbatlas.CloudProviderAccess("testRole",
         project_id="<PROJECT-ID>",
         provider_name="AWS")
-    all = test_role.project_id.apply(lambda project_id: mongodbatlas.get_cloud_provider_access(project_id=project_id))
+    all = mongodbatlas.get_cloud_provider_access_output(project_id=test_role.project_id)
     ```
 
 
@@ -98,3 +99,29 @@ def get_cloud_provider_access(project_id: Optional[str] = None,
         aws_iam_roles=__ret__.aws_iam_roles,
         id=__ret__.id,
         project_id=__ret__.project_id)
+
+
+@_utilities.lift_output_func(get_cloud_provider_access)
+def get_cloud_provider_access_output(project_id: Optional[pulumi.Input[str]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderAccessResult]:
+    """
+    `CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_role = mongodbatlas.CloudProviderAccess("testRole",
+        project_id="<PROJECT-ID>",
+        provider_name="AWS")
+    all = mongodbatlas.get_cloud_provider_access_output(project_id=test_role.project_id)
+    ```
+
+
+    :param str project_id: The unique ID for the project to get all Cloud Provider Access
+    """
+    ...

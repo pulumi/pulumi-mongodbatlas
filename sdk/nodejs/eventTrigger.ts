@@ -234,31 +234,31 @@ export class EventTrigger extends pulumi.CustomResource {
      */
     constructor(name: string, args: EventTriggerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EventTriggerArgs | EventTriggerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EventTriggerState | undefined;
-            inputs["appId"] = state ? state.appId : undefined;
-            inputs["configCollection"] = state ? state.configCollection : undefined;
-            inputs["configDatabase"] = state ? state.configDatabase : undefined;
-            inputs["configFullDocument"] = state ? state.configFullDocument : undefined;
-            inputs["configFullDocumentBefore"] = state ? state.configFullDocumentBefore : undefined;
-            inputs["configMatch"] = state ? state.configMatch : undefined;
-            inputs["configOperationType"] = state ? state.configOperationType : undefined;
-            inputs["configOperationTypes"] = state ? state.configOperationTypes : undefined;
-            inputs["configProject"] = state ? state.configProject : undefined;
-            inputs["configProviders"] = state ? state.configProviders : undefined;
-            inputs["configSchedule"] = state ? state.configSchedule : undefined;
-            inputs["configScheduleType"] = state ? state.configScheduleType : undefined;
-            inputs["configServiceId"] = state ? state.configServiceId : undefined;
-            inputs["disabled"] = state ? state.disabled : undefined;
-            inputs["eventProcessors"] = state ? state.eventProcessors : undefined;
-            inputs["functionId"] = state ? state.functionId : undefined;
-            inputs["functionName"] = state ? state.functionName : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["triggerId"] = state ? state.triggerId : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["appId"] = state ? state.appId : undefined;
+            resourceInputs["configCollection"] = state ? state.configCollection : undefined;
+            resourceInputs["configDatabase"] = state ? state.configDatabase : undefined;
+            resourceInputs["configFullDocument"] = state ? state.configFullDocument : undefined;
+            resourceInputs["configFullDocumentBefore"] = state ? state.configFullDocumentBefore : undefined;
+            resourceInputs["configMatch"] = state ? state.configMatch : undefined;
+            resourceInputs["configOperationType"] = state ? state.configOperationType : undefined;
+            resourceInputs["configOperationTypes"] = state ? state.configOperationTypes : undefined;
+            resourceInputs["configProject"] = state ? state.configProject : undefined;
+            resourceInputs["configProviders"] = state ? state.configProviders : undefined;
+            resourceInputs["configSchedule"] = state ? state.configSchedule : undefined;
+            resourceInputs["configScheduleType"] = state ? state.configScheduleType : undefined;
+            resourceInputs["configServiceId"] = state ? state.configServiceId : undefined;
+            resourceInputs["disabled"] = state ? state.disabled : undefined;
+            resourceInputs["eventProcessors"] = state ? state.eventProcessors : undefined;
+            resourceInputs["functionId"] = state ? state.functionId : undefined;
+            resourceInputs["functionName"] = state ? state.functionName : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["triggerId"] = state ? state.triggerId : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as EventTriggerArgs | undefined;
             if ((!args || args.appId === undefined) && !opts.urn) {
@@ -270,32 +270,32 @@ export class EventTrigger extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["appId"] = args ? args.appId : undefined;
-            inputs["configCollection"] = args ? args.configCollection : undefined;
-            inputs["configDatabase"] = args ? args.configDatabase : undefined;
-            inputs["configFullDocument"] = args ? args.configFullDocument : undefined;
-            inputs["configFullDocumentBefore"] = args ? args.configFullDocumentBefore : undefined;
-            inputs["configMatch"] = args ? args.configMatch : undefined;
-            inputs["configOperationType"] = args ? args.configOperationType : undefined;
-            inputs["configOperationTypes"] = args ? args.configOperationTypes : undefined;
-            inputs["configProject"] = args ? args.configProject : undefined;
-            inputs["configProviders"] = args ? args.configProviders : undefined;
-            inputs["configSchedule"] = args ? args.configSchedule : undefined;
-            inputs["configServiceId"] = args ? args.configServiceId : undefined;
-            inputs["disabled"] = args ? args.disabled : undefined;
-            inputs["eventProcessors"] = args ? args.eventProcessors : undefined;
-            inputs["functionId"] = args ? args.functionId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["configScheduleType"] = undefined /*out*/;
-            inputs["functionName"] = undefined /*out*/;
-            inputs["triggerId"] = undefined /*out*/;
+            resourceInputs["appId"] = args ? args.appId : undefined;
+            resourceInputs["configCollection"] = args ? args.configCollection : undefined;
+            resourceInputs["configDatabase"] = args ? args.configDatabase : undefined;
+            resourceInputs["configFullDocument"] = args ? args.configFullDocument : undefined;
+            resourceInputs["configFullDocumentBefore"] = args ? args.configFullDocumentBefore : undefined;
+            resourceInputs["configMatch"] = args ? args.configMatch : undefined;
+            resourceInputs["configOperationType"] = args ? args.configOperationType : undefined;
+            resourceInputs["configOperationTypes"] = args ? args.configOperationTypes : undefined;
+            resourceInputs["configProject"] = args ? args.configProject : undefined;
+            resourceInputs["configProviders"] = args ? args.configProviders : undefined;
+            resourceInputs["configSchedule"] = args ? args.configSchedule : undefined;
+            resourceInputs["configServiceId"] = args ? args.configServiceId : undefined;
+            resourceInputs["disabled"] = args ? args.disabled : undefined;
+            resourceInputs["eventProcessors"] = args ? args.eventProcessors : undefined;
+            resourceInputs["functionId"] = args ? args.functionId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["configScheduleType"] = undefined /*out*/;
+            resourceInputs["functionName"] = undefined /*out*/;
+            resourceInputs["triggerId"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(EventTrigger.__pulumiType, name, inputs, opts);
+        super(EventTrigger.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -306,83 +306,83 @@ export interface EventTriggerState {
     /**
      * The ObjectID of your application.
      */
-    readonly appId?: pulumi.Input<string>;
+    appId?: pulumi.Input<string>;
     /**
      * Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      */
-    readonly configCollection?: pulumi.Input<string>;
+    configCollection?: pulumi.Input<string>;
     /**
      * Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
      */
-    readonly configDatabase?: pulumi.Input<string>;
+    configDatabase?: pulumi.Input<string>;
     /**
      * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
-    readonly configFullDocument?: pulumi.Input<boolean>;
-    readonly configFullDocumentBefore?: pulumi.Input<boolean>;
+    configFullDocument?: pulumi.Input<boolean>;
+    configFullDocumentBefore?: pulumi.Input<boolean>;
     /**
      * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      */
-    readonly configMatch?: pulumi.Input<string>;
+    configMatch?: pulumi.Input<string>;
     /**
      * Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      */
-    readonly configOperationType?: pulumi.Input<string>;
+    configOperationType?: pulumi.Input<string>;
     /**
      * Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      */
-    readonly configOperationTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    configOperationTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
-    readonly configProject?: pulumi.Input<string>;
+    configProject?: pulumi.Input<string>;
     /**
      * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
      */
-    readonly configProviders?: pulumi.Input<pulumi.Input<string>[]>;
+    configProviders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
      */
-    readonly configSchedule?: pulumi.Input<string>;
-    readonly configScheduleType?: pulumi.Input<string>;
+    configSchedule?: pulumi.Input<string>;
+    configScheduleType?: pulumi.Input<string>;
     /**
      * Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
      */
-    readonly configServiceId?: pulumi.Input<string>;
+    configServiceId?: pulumi.Input<string>;
     /**
      * Default: `false` If `true`, the trigger is disabled.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean>;
     /**
      * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      */
-    readonly eventProcessors?: pulumi.Input<inputs.EventTriggerEventProcessors>;
+    eventProcessors?: pulumi.Input<inputs.EventTriggerEventProcessors>;
     /**
      * The ID of the function associated with the trigger.
      */
-    readonly functionId?: pulumi.Input<string>;
+    functionId?: pulumi.Input<string>;
     /**
      * The name of the function associated with the trigger.
      */
-    readonly functionName?: pulumi.Input<string>;
+    functionName?: pulumi.Input<string>;
     /**
      * The name of the trigger.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the trigger.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * The unique ID of the trigger.
      */
-    readonly triggerId?: pulumi.Input<string>;
+    triggerId?: pulumi.Input<string>;
     /**
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
      */
-    readonly type?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
 }
 
 /**
@@ -392,72 +392,72 @@ export interface EventTriggerArgs {
     /**
      * The ObjectID of your application.
      */
-    readonly appId: pulumi.Input<string>;
+    appId: pulumi.Input<string>;
     /**
      * Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      */
-    readonly configCollection?: pulumi.Input<string>;
+    configCollection?: pulumi.Input<string>;
     /**
      * Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
      */
-    readonly configDatabase?: pulumi.Input<string>;
+    configDatabase?: pulumi.Input<string>;
     /**
      * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
-    readonly configFullDocument?: pulumi.Input<boolean>;
-    readonly configFullDocumentBefore?: pulumi.Input<boolean>;
+    configFullDocument?: pulumi.Input<boolean>;
+    configFullDocumentBefore?: pulumi.Input<boolean>;
     /**
      * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      */
-    readonly configMatch?: pulumi.Input<string>;
+    configMatch?: pulumi.Input<string>;
     /**
      * Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      */
-    readonly configOperationType?: pulumi.Input<string>;
+    configOperationType?: pulumi.Input<string>;
     /**
      * Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      */
-    readonly configOperationTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    configOperationTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
-    readonly configProject?: pulumi.Input<string>;
+    configProject?: pulumi.Input<string>;
     /**
      * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
      */
-    readonly configProviders?: pulumi.Input<pulumi.Input<string>[]>;
+    configProviders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
      */
-    readonly configSchedule?: pulumi.Input<string>;
+    configSchedule?: pulumi.Input<string>;
     /**
      * Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
      */
-    readonly configServiceId?: pulumi.Input<string>;
+    configServiceId?: pulumi.Input<string>;
     /**
      * Default: `false` If `true`, the trigger is disabled.
      */
-    readonly disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean>;
     /**
      * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      */
-    readonly eventProcessors?: pulumi.Input<inputs.EventTriggerEventProcessors>;
+    eventProcessors?: pulumi.Input<inputs.EventTriggerEventProcessors>;
     /**
      * The ID of the function associated with the trigger.
      */
-    readonly functionId?: pulumi.Input<string>;
+    functionId?: pulumi.Input<string>;
     /**
      * The name of the trigger.
      */
-    readonly name?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the trigger.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
      */
-    readonly type: pulumi.Input<string>;
+    type: pulumi.Input<string>;
 }

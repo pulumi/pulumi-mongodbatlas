@@ -12,6 +12,7 @@ __all__ = [
     'GetMaintenanceWindowResult',
     'AwaitableGetMaintenanceWindowResult',
     'get_maintenance_window',
+    'get_maintenance_window_output',
 ]
 
 @pulumi.output_type
@@ -138,3 +139,17 @@ def get_maintenance_window(project_id: Optional[str] = None,
         number_of_deferrals=__ret__.number_of_deferrals,
         project_id=__ret__.project_id,
         start_asap=__ret__.start_asap)
+
+
+@_utilities.lift_output_func(get_maintenance_window)
+def get_maintenance_window_output(project_id: Optional[pulumi.Input[str]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMaintenanceWindowResult]:
+    """
+    `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+
+    :param str project_id: The unique identifier of the project for the Maintenance Window.
+    """
+    ...

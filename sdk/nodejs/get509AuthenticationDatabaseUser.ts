@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     username: user.username,
  *     monthsUntilExpiration: 2,
  * });
- * const test509AuthenticationDatabaseUser = pulumi.all([testX509AuthenticationDatabaseUser.projectId, testX509AuthenticationDatabaseUser.username]).apply(([projectId, username]) => mongodbatlas.get509AuthenticationDatabaseUser({
+ * const test509AuthenticationDatabaseUser = pulumi.all([testX509AuthenticationDatabaseUser.projectId, testX509AuthenticationDatabaseUser.username]).apply(([projectId, username]) => mongodbatlas.get509AuthenticationDatabaseUserOutput({
  *     projectId: projectId,
  *     username: username,
  * }));
@@ -67,9 +67,9 @@ import * as utilities from "./utilities";
  * -----END CERTIFICATE-----"
  * `,
  * });
- * const test509AuthenticationDatabaseUser = testX509AuthenticationDatabaseUser.projectId.apply(projectId => mongodbatlas.get509AuthenticationDatabaseUser({
- *     projectId: projectId,
- * }));
+ * const test509AuthenticationDatabaseUser = mongodbatlas.get509AuthenticationDatabaseUserOutput({
+ *     projectId: testX509AuthenticationDatabaseUser.projectId,
+ * });
  * ```
  */
 export function get509AuthenticationDatabaseUser(args: Get509AuthenticationDatabaseUserArgs, opts?: pulumi.InvokeOptions): Promise<Get509AuthenticationDatabaseUserResult> {
@@ -93,11 +93,11 @@ export interface Get509AuthenticationDatabaseUserArgs {
     /**
      * Identifier for the Atlas project associated with the X.509 configuration.
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * Username of the database user to create a certificate for.
      */
-    readonly username?: string;
+    username?: string;
 }
 
 /**
@@ -115,4 +115,22 @@ export interface Get509AuthenticationDatabaseUserResult {
     readonly id: string;
     readonly projectId: string;
     readonly username?: string;
+}
+
+export function get509AuthenticationDatabaseUserOutput(args: Get509AuthenticationDatabaseUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Get509AuthenticationDatabaseUserResult> {
+    return pulumi.output(args).apply(a => get509AuthenticationDatabaseUser(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking get509AuthenticationDatabaseUser.
+ */
+export interface Get509AuthenticationDatabaseUserOutputArgs {
+    /**
+     * Identifier for the Atlas project associated with the X.509 configuration.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Username of the database user to create a certificate for.
+     */
+    username?: pulumi.Input<string>;
 }

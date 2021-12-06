@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.LookupOnlineArchive(ctx, &mongodbatlas.LookupOnlineArchiveArgs{
+// 		_, err := mongodbatlas.LookupOnlineArchive(ctx, &GetOnlineArchiveArgs{
 // 			ProjectId:   _var.Project_id,
 // 			ClusterName: _var.Cluster_name,
 // 			ArchiveId:   "5ebad3c1fe9c0ab8d37d61e1",
@@ -85,4 +88,87 @@ type LookupOnlineArchiveResult struct {
 	Paused          bool                             `pulumi:"paused"`
 	ProjectId       string                           `pulumi:"projectId"`
 	State           string                           `pulumi:"state"`
+}
+
+func LookupOnlineArchiveOutput(ctx *pulumi.Context, args LookupOnlineArchiveOutputArgs, opts ...pulumi.InvokeOption) LookupOnlineArchiveResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupOnlineArchiveResult, error) {
+			args := v.(LookupOnlineArchiveArgs)
+			r, err := LookupOnlineArchive(ctx, &args, opts...)
+			return *r, err
+		}).(LookupOnlineArchiveResultOutput)
+}
+
+// A collection of arguments for invoking getOnlineArchive.
+type LookupOnlineArchiveOutputArgs struct {
+	// ID of the online archive.
+	ArchiveId pulumi.StringInput `pulumi:"archiveId"`
+	// Name of the cluster that contains the collection.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// The unique ID for the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupOnlineArchiveOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOnlineArchiveArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getOnlineArchive.
+type LookupOnlineArchiveResultOutput struct{ *pulumi.OutputState }
+
+func (LookupOnlineArchiveResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOnlineArchiveResult)(nil)).Elem()
+}
+
+func (o LookupOnlineArchiveResultOutput) ToLookupOnlineArchiveResultOutput() LookupOnlineArchiveResultOutput {
+	return o
+}
+
+func (o LookupOnlineArchiveResultOutput) ToLookupOnlineArchiveResultOutputWithContext(ctx context.Context) LookupOnlineArchiveResultOutput {
+	return o
+}
+
+func (o LookupOnlineArchiveResultOutput) ArchiveId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.ArchiveId }).(pulumi.StringOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) CollName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.CollName }).(pulumi.StringOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) Criterias() GetOnlineArchiveCriteriaArrayOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) []GetOnlineArchiveCriteria { return v.Criterias }).(GetOnlineArchiveCriteriaArrayOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.DbName }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupOnlineArchiveResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) PartitionFields() GetOnlineArchivePartitionFieldArrayOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) []GetOnlineArchivePartitionField { return v.PartitionFields }).(GetOnlineArchivePartitionFieldArrayOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) Paused() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) bool { return v.Paused }).(pulumi.BoolOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o LookupOnlineArchiveResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOnlineArchiveResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupOnlineArchiveResultOutput{})
 }

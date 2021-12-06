@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -30,7 +29,7 @@ export interface GetCustomDnsConfigurationClusterAwsArgs {
     /**
      * Unique identifier for the project.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -46,4 +45,18 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
      */
     readonly id: string;
     readonly projectId: string;
+}
+
+export function getCustomDnsConfigurationClusterAwsOutput(args: GetCustomDnsConfigurationClusterAwsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDnsConfigurationClusterAwsResult> {
+    return pulumi.output(args).apply(a => getCustomDnsConfigurationClusterAws(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCustomDnsConfigurationClusterAws.
+ */
+export interface GetCustomDnsConfigurationClusterAwsOutputArgs {
+    /**
+     * Unique identifier for the project.
+     */
+    projectId: pulumi.Input<string>;
 }

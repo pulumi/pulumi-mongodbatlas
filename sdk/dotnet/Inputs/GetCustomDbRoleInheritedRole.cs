@@ -10,21 +10,18 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class DataLakeStorageDatabaseViewArgs : Pulumi.ResourceArgs
+    public sealed class GetCustomDbRoleInheritedRoleArgs : Pulumi.InvokeArgs
     {
+        [Input("databaseName", required: true)]
+        public string DatabaseName { get; set; } = null!;
+
         /// <summary>
-        /// Name of the Atlas Data Lake.
+        /// Name of the custom role.
         /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
+        [Input("roleName", required: true)]
+        public string RoleName { get; set; } = null!;
 
-        [Input("pipeline")]
-        public Input<string>? Pipeline { get; set; }
-
-        [Input("source")]
-        public Input<string>? Source { get; set; }
-
-        public DataLakeStorageDatabaseViewArgs()
+        public GetCustomDbRoleInheritedRoleArgs()
         {
         }
     }

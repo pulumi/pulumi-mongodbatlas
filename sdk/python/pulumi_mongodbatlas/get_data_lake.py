@@ -13,6 +13,7 @@ __all__ = [
     'GetDataLakeResult',
     'AwaitableGetDataLakeResult',
     'get_data_lake',
+    'get_data_lake_output',
 ]
 
 @pulumi.output_type
@@ -189,3 +190,19 @@ def get_data_lake(name: Optional[str] = None,
         state=__ret__.state,
         storage_databases=__ret__.storage_databases,
         storage_stores=__ret__.storage_stores)
+
+
+@_utilities.lift_output_func(get_data_lake)
+def get_data_lake_output(name: Optional[pulumi.Input[str]] = None,
+                         project_id: Optional[pulumi.Input[str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataLakeResult]:
+    """
+    `DataLake` describe a Data Lake.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+
+    :param str name: Name of the data lake.
+    :param str project_id: The unique ID for the project to create a data lake.
+    """
+    ...

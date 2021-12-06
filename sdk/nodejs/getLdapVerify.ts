@@ -31,11 +31,11 @@ export interface GetLdapVerifyArgs {
     /**
      * Unique identifier for the Atlas project associated with the verification request.
      */
-    readonly projectId: string;
+    projectId: string;
     /**
      * Unique identifier of a request to verify an LDAP configuration.
      */
-    readonly requestId: string;
+    requestId: string;
 }
 
 /**
@@ -75,4 +75,22 @@ export interface GetLdapVerifyResult {
      * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details.
      */
     readonly validations: outputs.GetLdapVerifyValidation[];
+}
+
+export function getLdapVerifyOutput(args: GetLdapVerifyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapVerifyResult> {
+    return pulumi.output(args).apply(a => getLdapVerify(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getLdapVerify.
+ */
+export interface GetLdapVerifyOutputArgs {
+    /**
+     * Unique identifier for the Atlas project associated with the verification request.
+     */
+    projectId: pulumi.Input<string>;
+    /**
+     * Unique identifier of a request to verify an LDAP configuration.
+     */
+    requestId: pulumi.Input<string>;
 }

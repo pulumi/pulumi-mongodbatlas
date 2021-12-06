@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -32,12 +31,12 @@ export interface GetCloudProviderSnapshotArgs {
     /**
      * The name of the Atlas cluster that contains the snapshot you want to retrieve.
      */
-    readonly clusterName: string;
-    readonly projectId: string;
+    clusterName: string;
+    projectId: string;
     /**
      * The unique identifier of the snapshot you want to retrieve.
      */
-    readonly snapshotId: string;
+    snapshotId: string;
 }
 
 /**
@@ -87,4 +86,23 @@ export interface GetCloudProviderSnapshotResult {
      * Specifies the type of cluster: replicaSet or shardedCluster.
      */
     readonly type: string;
+}
+
+export function getCloudProviderSnapshotOutput(args: GetCloudProviderSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotResult> {
+    return pulumi.output(args).apply(a => getCloudProviderSnapshot(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getCloudProviderSnapshot.
+ */
+export interface GetCloudProviderSnapshotOutputArgs {
+    /**
+     * The name of the Atlas cluster that contains the snapshot you want to retrieve.
+     */
+    clusterName: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
+    /**
+     * The unique identifier of the snapshot you want to retrieve.
+     */
+    snapshotId: pulumi.Input<string>;
 }

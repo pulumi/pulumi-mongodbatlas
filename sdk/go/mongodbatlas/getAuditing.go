@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,4 +41,71 @@ type LookupAuditingResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
+}
+
+func LookupAuditingOutput(ctx *pulumi.Context, args LookupAuditingOutputArgs, opts ...pulumi.InvokeOption) LookupAuditingResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupAuditingResult, error) {
+			args := v.(LookupAuditingArgs)
+			r, err := LookupAuditing(ctx, &args, opts...)
+			return *r, err
+		}).(LookupAuditingResultOutput)
+}
+
+// A collection of arguments for invoking getAuditing.
+type LookupAuditingOutputArgs struct {
+	// The unique ID for the project to create the database user.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupAuditingOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAuditingArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAuditing.
+type LookupAuditingResultOutput struct{ *pulumi.OutputState }
+
+func (LookupAuditingResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAuditingResult)(nil)).Elem()
+}
+
+func (o LookupAuditingResultOutput) ToLookupAuditingResultOutput() LookupAuditingResultOutput {
+	return o
+}
+
+func (o LookupAuditingResultOutput) ToLookupAuditingResultOutputWithContext(ctx context.Context) LookupAuditingResultOutput {
+	return o
+}
+
+// JSON-formatted audit filter used by the project
+func (o LookupAuditingResultOutput) AuditAuthorizationSuccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAuditingResult) bool { return v.AuditAuthorizationSuccess }).(pulumi.BoolOutput)
+}
+
+// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess
+func (o LookupAuditingResultOutput) AuditFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuditingResult) string { return v.AuditFilter }).(pulumi.StringOutput)
+}
+
+// Denotes the configuration method for the audit filter. Possible values are: NONE - auditing not configured for the project.m FILTER_BUILDER - auditing configured via Atlas UI filter builderm FILTER_JSON - auditing configured via Atlas custom filter or API.
+func (o LookupAuditingResultOutput) ConfigurationType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuditingResult) string { return v.ConfigurationType }).(pulumi.StringOutput)
+}
+
+// Denotes whether or not the project associated with the {GROUP-ID} has database auditing enabled.
+func (o LookupAuditingResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAuditingResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupAuditingResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuditingResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupAuditingResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuditingResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupAuditingResultOutput{})
 }

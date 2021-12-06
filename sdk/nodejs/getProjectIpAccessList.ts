@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -38,19 +37,19 @@ export interface GetProjectIpAccessListArgs {
     /**
      * Unique identifier of the AWS security group to add to the access list.
      */
-    readonly awsSecurityGroup?: string;
+    awsSecurityGroup?: string;
     /**
      * Range of IP addresses in CIDR notation to be added to the access list.
      */
-    readonly cidrBlock?: string;
+    cidrBlock?: string;
     /**
      * Single IP address to be added to the access list.
      */
-    readonly ipAddress?: string;
+    ipAddress?: string;
     /**
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -69,4 +68,30 @@ export interface GetProjectIpAccessListResult {
     readonly id: string;
     readonly ipAddress: string;
     readonly projectId: string;
+}
+
+export function getProjectIpAccessListOutput(args: GetProjectIpAccessListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectIpAccessListResult> {
+    return pulumi.output(args).apply(a => getProjectIpAccessList(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getProjectIpAccessList.
+ */
+export interface GetProjectIpAccessListOutputArgs {
+    /**
+     * Unique identifier of the AWS security group to add to the access list.
+     */
+    awsSecurityGroup?: pulumi.Input<string>;
+    /**
+     * Range of IP addresses in CIDR notation to be added to the access list.
+     */
+    cidrBlock?: pulumi.Input<string>;
+    /**
+     * Single IP address to be added to the access list.
+     */
+    ipAddress?: pulumi.Input<string>;
+    /**
+     * Unique identifier for the project to which you want to add one or more access list entries.
+     */
+    projectId: pulumi.Input<string>;
 }

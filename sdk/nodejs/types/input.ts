@@ -709,6 +709,14 @@ export interface GetCustomDbRoleInheritedRole {
     roleName?: string;
 }
 
+export interface GetCustomDbRoleInheritedRoleArgs {
+    databaseName?: pulumi.Input<string>;
+    /**
+     * Name of the custom role.
+     */
+    roleName?: pulumi.Input<string>;
+}
+
 export interface GetGlobalClusterConfigManagedNamespace {
     /**
      * (Required) The name of the collection associated with the managed namespace.
@@ -730,6 +738,29 @@ export interface GetGlobalClusterConfigManagedNamespace {
      * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
      */
     isShardKeyUnique?: boolean;
+}
+
+export interface GetGlobalClusterConfigManagedNamespaceArgs {
+    /**
+     * (Required) The name of the collection associated with the managed namespace.
+     */
+    collection: pulumi.Input<string>;
+    /**
+     * (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
+     */
+    customShardKey: pulumi.Input<string>;
+    /**
+     * (Required) The name of the database containing the collection.
+     */
+    db: pulumi.Input<string>;
+    /**
+     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     */
+    isCustomShardKeyHashed?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     */
+    isShardKeyUnique?: pulumi.Input<boolean>;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {
@@ -824,3 +855,4 @@ export interface X509AuthenticationDatabaseUserCertificate {
     notAfter?: pulumi.Input<string>;
     subject?: pulumi.Input<string>;
 }
+

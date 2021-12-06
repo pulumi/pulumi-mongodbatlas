@@ -90,21 +90,21 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     constructor(name: string, args: DatabaseUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DatabaseUserArgs | DatabaseUserState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseUserState | undefined;
-            inputs["authDatabaseName"] = state ? state.authDatabaseName : undefined;
-            inputs["awsIamType"] = state ? state.awsIamType : undefined;
-            inputs["databaseName"] = state ? state.databaseName : undefined;
-            inputs["labels"] = state ? state.labels : undefined;
-            inputs["ldapAuthType"] = state ? state.ldapAuthType : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["roles"] = state ? state.roles : undefined;
-            inputs["scopes"] = state ? state.scopes : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["x509Type"] = state ? state.x509Type : undefined;
+            resourceInputs["authDatabaseName"] = state ? state.authDatabaseName : undefined;
+            resourceInputs["awsIamType"] = state ? state.awsIamType : undefined;
+            resourceInputs["databaseName"] = state ? state.databaseName : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
+            resourceInputs["ldapAuthType"] = state ? state.ldapAuthType : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["roles"] = state ? state.roles : undefined;
+            resourceInputs["scopes"] = state ? state.scopes : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["x509Type"] = state ? state.x509Type : undefined;
         } else {
             const args = argsOrState as DatabaseUserArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -116,22 +116,22 @@ export class DatabaseUser extends pulumi.CustomResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            inputs["authDatabaseName"] = args ? args.authDatabaseName : undefined;
-            inputs["awsIamType"] = args ? args.awsIamType : undefined;
-            inputs["databaseName"] = args ? args.databaseName : undefined;
-            inputs["labels"] = args ? args.labels : undefined;
-            inputs["ldapAuthType"] = args ? args.ldapAuthType : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["roles"] = args ? args.roles : undefined;
-            inputs["scopes"] = args ? args.scopes : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["x509Type"] = args ? args.x509Type : undefined;
+            resourceInputs["authDatabaseName"] = args ? args.authDatabaseName : undefined;
+            resourceInputs["awsIamType"] = args ? args.awsIamType : undefined;
+            resourceInputs["databaseName"] = args ? args.databaseName : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
+            resourceInputs["ldapAuthType"] = args ? args.ldapAuthType : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["roles"] = args ? args.roles : undefined;
+            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["x509Type"] = args ? args.x509Type : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(DatabaseUser.__pulumiType, name, inputs, opts);
+        super(DatabaseUser.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -143,40 +143,40 @@ export interface DatabaseUserState {
      * Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Accepted values include:
      */
-    readonly authDatabaseName?: pulumi.Input<string>;
+    authDatabaseName?: pulumi.Input<string>;
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
      */
-    readonly awsIamType?: pulumi.Input<string>;
+    awsIamType?: pulumi.Input<string>;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
      * @deprecated use auth_database_name instead
      */
-    readonly databaseName?: pulumi.Input<string>;
-    readonly labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
+    databaseName?: pulumi.Input<string>;
+    labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      */
-    readonly ldapAuthType?: pulumi.Input<string>;
-    readonly password?: pulumi.Input<string>;
+    ldapAuthType?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
-    readonly roles?: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
-    readonly scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
+    roles?: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
+    scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
     /**
      * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      */
-    readonly username?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
     /**
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
      */
-    readonly x509Type?: pulumi.Input<string>;
+    x509Type?: pulumi.Input<string>;
 }
 
 /**
@@ -187,38 +187,38 @@ export interface DatabaseUserArgs {
      * Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Accepted values include:
      */
-    readonly authDatabaseName?: pulumi.Input<string>;
+    authDatabaseName?: pulumi.Input<string>;
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
      */
-    readonly awsIamType?: pulumi.Input<string>;
+    awsIamType?: pulumi.Input<string>;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      *
      * @deprecated use auth_database_name instead
      */
-    readonly databaseName?: pulumi.Input<string>;
-    readonly labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
+    databaseName?: pulumi.Input<string>;
+    labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      */
-    readonly ldapAuthType?: pulumi.Input<string>;
-    readonly password?: pulumi.Input<string>;
+    ldapAuthType?: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
-    readonly roles: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
-    readonly scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
+    roles: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
+    scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
     /**
      * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      */
-    readonly username: pulumi.Input<string>;
+    username: pulumi.Input<string>;
     /**
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
      */
-    readonly x509Type?: pulumi.Input<string>;
+    x509Type?: pulumi.Input<string>;
 }

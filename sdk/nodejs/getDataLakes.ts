@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  *
  * const test = pulumi.output(mongodbatlas.getDataLakes({
  *     projectId: "PROJECT ID",
- * }, { async: true }));
+ * }));
  * ```
  */
 export function getDataLakes(args: GetDataLakesArgs, opts?: pulumi.InvokeOptions): Promise<GetDataLakesResult> {
@@ -41,7 +41,7 @@ export interface GetDataLakesArgs {
     /**
      * The unique ID for the project to get all data lakes.
      */
-    readonly projectId: string;
+    projectId: string;
 }
 
 /**
@@ -57,4 +57,18 @@ export interface GetDataLakesResult {
      * A list where each represents a Data lake.
      */
     readonly results: outputs.GetDataLakesResult[];
+}
+
+export function getDataLakesOutput(args: GetDataLakesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataLakesResult> {
+    return pulumi.output(args).apply(a => getDataLakes(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDataLakes.
+ */
+export interface GetDataLakesOutputArgs {
+    /**
+     * The unique ID for the project to get all data lakes.
+     */
+    projectId: pulumi.Input<string>;
 }

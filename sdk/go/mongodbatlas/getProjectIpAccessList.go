@@ -4,6 +4,9 @@
 package mongodbatlas
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -46,4 +49,74 @@ type LookupProjectIpAccessListResult struct {
 	Id        string `pulumi:"id"`
 	IpAddress string `pulumi:"ipAddress"`
 	ProjectId string `pulumi:"projectId"`
+}
+
+func LookupProjectIpAccessListOutput(ctx *pulumi.Context, args LookupProjectIpAccessListOutputArgs, opts ...pulumi.InvokeOption) LookupProjectIpAccessListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupProjectIpAccessListResult, error) {
+			args := v.(LookupProjectIpAccessListArgs)
+			r, err := LookupProjectIpAccessList(ctx, &args, opts...)
+			return *r, err
+		}).(LookupProjectIpAccessListResultOutput)
+}
+
+// A collection of arguments for invoking getProjectIpAccessList.
+type LookupProjectIpAccessListOutputArgs struct {
+	// Unique identifier of the AWS security group to add to the access list.
+	AwsSecurityGroup pulumi.StringPtrInput `pulumi:"awsSecurityGroup"`
+	// Range of IP addresses in CIDR notation to be added to the access list.
+	CidrBlock pulumi.StringPtrInput `pulumi:"cidrBlock"`
+	// Single IP address to be added to the access list.
+	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+	// Unique identifier for the project to which you want to add one or more access list entries.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (LookupProjectIpAccessListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupProjectIpAccessListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getProjectIpAccessList.
+type LookupProjectIpAccessListResultOutput struct{ *pulumi.OutputState }
+
+func (LookupProjectIpAccessListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupProjectIpAccessListResult)(nil)).Elem()
+}
+
+func (o LookupProjectIpAccessListResultOutput) ToLookupProjectIpAccessListResultOutput() LookupProjectIpAccessListResultOutput {
+	return o
+}
+
+func (o LookupProjectIpAccessListResultOutput) ToLookupProjectIpAccessListResultOutputWithContext(ctx context.Context) LookupProjectIpAccessListResultOutput {
+	return o
+}
+
+func (o LookupProjectIpAccessListResultOutput) AwsSecurityGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.AwsSecurityGroup }).(pulumi.StringOutput)
+}
+
+func (o LookupProjectIpAccessListResultOutput) CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.CidrBlock }).(pulumi.StringOutput)
+}
+
+// Comment to add to the access list entry.
+func (o LookupProjectIpAccessListResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupProjectIpAccessListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupProjectIpAccessListResultOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+func (o LookupProjectIpAccessListResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupProjectIpAccessListResultOutput{})
 }

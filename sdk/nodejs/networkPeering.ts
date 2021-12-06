@@ -140,34 +140,34 @@ export class NetworkPeering extends pulumi.CustomResource {
      */
     constructor(name: string, args: NetworkPeeringArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NetworkPeeringArgs | NetworkPeeringState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NetworkPeeringState | undefined;
-            inputs["accepterRegionName"] = state ? state.accepterRegionName : undefined;
-            inputs["atlasCidrBlock"] = state ? state.atlasCidrBlock : undefined;
-            inputs["atlasGcpProjectId"] = state ? state.atlasGcpProjectId : undefined;
-            inputs["atlasId"] = state ? state.atlasId : undefined;
-            inputs["atlasVpcName"] = state ? state.atlasVpcName : undefined;
-            inputs["awsAccountId"] = state ? state.awsAccountId : undefined;
-            inputs["azureDirectoryId"] = state ? state.azureDirectoryId : undefined;
-            inputs["azureSubscriptionId"] = state ? state.azureSubscriptionId : undefined;
-            inputs["connectionId"] = state ? state.connectionId : undefined;
-            inputs["containerId"] = state ? state.containerId : undefined;
-            inputs["errorMessage"] = state ? state.errorMessage : undefined;
-            inputs["errorState"] = state ? state.errorState : undefined;
-            inputs["errorStateName"] = state ? state.errorStateName : undefined;
-            inputs["gcpProjectId"] = state ? state.gcpProjectId : undefined;
-            inputs["networkName"] = state ? state.networkName : undefined;
-            inputs["peerId"] = state ? state.peerId : undefined;
-            inputs["projectId"] = state ? state.projectId : undefined;
-            inputs["providerName"] = state ? state.providerName : undefined;
-            inputs["resourceGroupName"] = state ? state.resourceGroupName : undefined;
-            inputs["routeTableCidrBlock"] = state ? state.routeTableCidrBlock : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["statusName"] = state ? state.statusName : undefined;
-            inputs["vnetName"] = state ? state.vnetName : undefined;
-            inputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["accepterRegionName"] = state ? state.accepterRegionName : undefined;
+            resourceInputs["atlasCidrBlock"] = state ? state.atlasCidrBlock : undefined;
+            resourceInputs["atlasGcpProjectId"] = state ? state.atlasGcpProjectId : undefined;
+            resourceInputs["atlasId"] = state ? state.atlasId : undefined;
+            resourceInputs["atlasVpcName"] = state ? state.atlasVpcName : undefined;
+            resourceInputs["awsAccountId"] = state ? state.awsAccountId : undefined;
+            resourceInputs["azureDirectoryId"] = state ? state.azureDirectoryId : undefined;
+            resourceInputs["azureSubscriptionId"] = state ? state.azureSubscriptionId : undefined;
+            resourceInputs["connectionId"] = state ? state.connectionId : undefined;
+            resourceInputs["containerId"] = state ? state.containerId : undefined;
+            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
+            resourceInputs["errorState"] = state ? state.errorState : undefined;
+            resourceInputs["errorStateName"] = state ? state.errorStateName : undefined;
+            resourceInputs["gcpProjectId"] = state ? state.gcpProjectId : undefined;
+            resourceInputs["networkName"] = state ? state.networkName : undefined;
+            resourceInputs["peerId"] = state ? state.peerId : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["providerName"] = state ? state.providerName : undefined;
+            resourceInputs["resourceGroupName"] = state ? state.resourceGroupName : undefined;
+            resourceInputs["routeTableCidrBlock"] = state ? state.routeTableCidrBlock : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["statusName"] = state ? state.statusName : undefined;
+            resourceInputs["vnetName"] = state ? state.vnetName : undefined;
+            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as NetworkPeeringArgs | undefined;
             if ((!args || args.containerId === undefined) && !opts.urn) {
@@ -179,35 +179,35 @@ export class NetworkPeering extends pulumi.CustomResource {
             if ((!args || args.providerName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            inputs["accepterRegionName"] = args ? args.accepterRegionName : undefined;
-            inputs["atlasCidrBlock"] = args ? args.atlasCidrBlock : undefined;
-            inputs["atlasGcpProjectId"] = args ? args.atlasGcpProjectId : undefined;
-            inputs["atlasVpcName"] = args ? args.atlasVpcName : undefined;
-            inputs["awsAccountId"] = args ? args.awsAccountId : undefined;
-            inputs["azureDirectoryId"] = args ? args.azureDirectoryId : undefined;
-            inputs["azureSubscriptionId"] = args ? args.azureSubscriptionId : undefined;
-            inputs["containerId"] = args ? args.containerId : undefined;
-            inputs["gcpProjectId"] = args ? args.gcpProjectId : undefined;
-            inputs["networkName"] = args ? args.networkName : undefined;
-            inputs["projectId"] = args ? args.projectId : undefined;
-            inputs["providerName"] = args ? args.providerName : undefined;
-            inputs["resourceGroupName"] = args ? args.resourceGroupName : undefined;
-            inputs["routeTableCidrBlock"] = args ? args.routeTableCidrBlock : undefined;
-            inputs["vnetName"] = args ? args.vnetName : undefined;
-            inputs["vpcId"] = args ? args.vpcId : undefined;
-            inputs["atlasId"] = undefined /*out*/;
-            inputs["connectionId"] = undefined /*out*/;
-            inputs["errorMessage"] = undefined /*out*/;
-            inputs["errorState"] = undefined /*out*/;
-            inputs["errorStateName"] = undefined /*out*/;
-            inputs["peerId"] = undefined /*out*/;
-            inputs["status"] = undefined /*out*/;
-            inputs["statusName"] = undefined /*out*/;
+            resourceInputs["accepterRegionName"] = args ? args.accepterRegionName : undefined;
+            resourceInputs["atlasCidrBlock"] = args ? args.atlasCidrBlock : undefined;
+            resourceInputs["atlasGcpProjectId"] = args ? args.atlasGcpProjectId : undefined;
+            resourceInputs["atlasVpcName"] = args ? args.atlasVpcName : undefined;
+            resourceInputs["awsAccountId"] = args ? args.awsAccountId : undefined;
+            resourceInputs["azureDirectoryId"] = args ? args.azureDirectoryId : undefined;
+            resourceInputs["azureSubscriptionId"] = args ? args.azureSubscriptionId : undefined;
+            resourceInputs["containerId"] = args ? args.containerId : undefined;
+            resourceInputs["gcpProjectId"] = args ? args.gcpProjectId : undefined;
+            resourceInputs["networkName"] = args ? args.networkName : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["providerName"] = args ? args.providerName : undefined;
+            resourceInputs["resourceGroupName"] = args ? args.resourceGroupName : undefined;
+            resourceInputs["routeTableCidrBlock"] = args ? args.routeTableCidrBlock : undefined;
+            resourceInputs["vnetName"] = args ? args.vnetName : undefined;
+            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["atlasId"] = undefined /*out*/;
+            resourceInputs["connectionId"] = undefined /*out*/;
+            resourceInputs["errorMessage"] = undefined /*out*/;
+            resourceInputs["errorState"] = undefined /*out*/;
+            resourceInputs["errorStateName"] = undefined /*out*/;
+            resourceInputs["peerId"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["statusName"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(NetworkPeering.__pulumiType, name, inputs, opts);
+        super(NetworkPeering.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -218,90 +218,90 @@ export interface NetworkPeeringState {
     /**
      * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
-    readonly accepterRegionName?: pulumi.Input<string>;
-    readonly atlasCidrBlock?: pulumi.Input<string>;
+    accepterRegionName?: pulumi.Input<string>;
+    atlasCidrBlock?: pulumi.Input<string>;
     /**
      * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
      */
-    readonly atlasGcpProjectId?: pulumi.Input<string>;
-    readonly atlasId?: pulumi.Input<string>;
-    readonly atlasVpcName?: pulumi.Input<string>;
+    atlasGcpProjectId?: pulumi.Input<string>;
+    atlasId?: pulumi.Input<string>;
+    atlasVpcName?: pulumi.Input<string>;
     /**
      * AWS Account ID of the owner of the peer VPC.
      */
-    readonly awsAccountId?: pulumi.Input<string>;
+    awsAccountId?: pulumi.Input<string>;
     /**
      * Unique identifier for an Azure AD directory.
      */
-    readonly azureDirectoryId?: pulumi.Input<string>;
+    azureDirectoryId?: pulumi.Input<string>;
     /**
      * Unique identifier of the Azure subscription in which the VNet resides.
      */
-    readonly azureSubscriptionId?: pulumi.Input<string>;
+    azureSubscriptionId?: pulumi.Input<string>;
     /**
      * Unique identifier of the Atlas network peering container.
      */
-    readonly connectionId?: pulumi.Input<string>;
+    connectionId?: pulumi.Input<string>;
     /**
      * Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
      */
-    readonly containerId?: pulumi.Input<string>;
+    containerId?: pulumi.Input<string>;
     /**
      * When `"status" : "FAILED"`, Atlas provides a description of the error.
      */
-    readonly errorMessage?: pulumi.Input<string>;
+    errorMessage?: pulumi.Input<string>;
     /**
      * Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
      */
-    readonly errorState?: pulumi.Input<string>;
+    errorState?: pulumi.Input<string>;
     /**
      * Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
      */
-    readonly errorStateName?: pulumi.Input<string>;
+    errorStateName?: pulumi.Input<string>;
     /**
      * GCP project ID of the owner of the network peer.
      */
-    readonly gcpProjectId?: pulumi.Input<string>;
+    gcpProjectId?: pulumi.Input<string>;
     /**
      * Name of the network peer to which Atlas connects.
      */
-    readonly networkName?: pulumi.Input<string>;
+    networkName?: pulumi.Input<string>;
     /**
      * Unique identifier of the Atlas network peer.
      */
-    readonly peerId?: pulumi.Input<string>;
+    peerId?: pulumi.Input<string>;
     /**
      * The unique ID for the MongoDB Atlas project to create the database user.
      */
-    readonly projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string>;
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
      */
-    readonly providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string>;
     /**
      * Name of your Azure resource group.
      */
-    readonly resourceGroupName?: pulumi.Input<string>;
+    resourceGroupName?: pulumi.Input<string>;
     /**
      * AWS VPC CIDR block or subnet.
      */
-    readonly routeTableCidrBlock?: pulumi.Input<string>;
+    routeTableCidrBlock?: pulumi.Input<string>;
     /**
      * Status of the Atlas network peering connection.  Azure/GCP: `ADDING_PEER`, `AVAILABLE`, `FAILED`, `DELETING` GCP Only:  `WAITING_FOR_USER`.
      */
-    readonly status?: pulumi.Input<string>;
+    status?: pulumi.Input<string>;
     /**
      * (AWS Only) The VPC peering connection status value can be one of the following: `INITIATING`, `PENDING_ACCEPTANCE`, `FAILED`, `FINALIZING`, `AVAILABLE`, `TERMINATING`.
      */
-    readonly statusName?: pulumi.Input<string>;
+    statusName?: pulumi.Input<string>;
     /**
      * Name of your Azure VNet.
      */
-    readonly vnetName?: pulumi.Input<string>;
+    vnetName?: pulumi.Input<string>;
     /**
      * Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
      */
-    readonly vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string>;
 }
 
 /**
@@ -311,59 +311,59 @@ export interface NetworkPeeringArgs {
     /**
      * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
-    readonly accepterRegionName?: pulumi.Input<string>;
-    readonly atlasCidrBlock?: pulumi.Input<string>;
+    accepterRegionName?: pulumi.Input<string>;
+    atlasCidrBlock?: pulumi.Input<string>;
     /**
      * The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.
      */
-    readonly atlasGcpProjectId?: pulumi.Input<string>;
-    readonly atlasVpcName?: pulumi.Input<string>;
+    atlasGcpProjectId?: pulumi.Input<string>;
+    atlasVpcName?: pulumi.Input<string>;
     /**
      * AWS Account ID of the owner of the peer VPC.
      */
-    readonly awsAccountId?: pulumi.Input<string>;
+    awsAccountId?: pulumi.Input<string>;
     /**
      * Unique identifier for an Azure AD directory.
      */
-    readonly azureDirectoryId?: pulumi.Input<string>;
+    azureDirectoryId?: pulumi.Input<string>;
     /**
      * Unique identifier of the Azure subscription in which the VNet resides.
      */
-    readonly azureSubscriptionId?: pulumi.Input<string>;
+    azureSubscriptionId?: pulumi.Input<string>;
     /**
      * Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
      */
-    readonly containerId: pulumi.Input<string>;
+    containerId: pulumi.Input<string>;
     /**
      * GCP project ID of the owner of the network peer.
      */
-    readonly gcpProjectId?: pulumi.Input<string>;
+    gcpProjectId?: pulumi.Input<string>;
     /**
      * Name of the network peer to which Atlas connects.
      */
-    readonly networkName?: pulumi.Input<string>;
+    networkName?: pulumi.Input<string>;
     /**
      * The unique ID for the MongoDB Atlas project to create the database user.
      */
-    readonly projectId: pulumi.Input<string>;
+    projectId: pulumi.Input<string>;
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
      */
-    readonly providerName: pulumi.Input<string>;
+    providerName: pulumi.Input<string>;
     /**
      * Name of your Azure resource group.
      */
-    readonly resourceGroupName?: pulumi.Input<string>;
+    resourceGroupName?: pulumi.Input<string>;
     /**
      * AWS VPC CIDR block or subnet.
      */
-    readonly routeTableCidrBlock?: pulumi.Input<string>;
+    routeTableCidrBlock?: pulumi.Input<string>;
     /**
      * Name of your Azure VNet.
      */
-    readonly vnetName?: pulumi.Input<string>;
+    vnetName?: pulumi.Input<string>;
     /**
      * Unique identifier of the AWS peer VPC (Note: this is **not** the same as the Atlas AWS VPC that is returned by the networkContainer resource).
      */
-    readonly vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string>;
 }

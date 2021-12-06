@@ -30,29 +30,29 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
-// 			Actions: mongodbatlas.CustomDbRoleActionArray{
-// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 			Actions: CustomDbRoleActionArray{
+// 				&CustomDbRoleActionArgs{
 // 					Action: pulumi.String("UPDATE"),
-// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 					Resources: CustomDbRoleActionResourceArray{
+// 						&CustomDbRoleActionResourceArgs{
 // 							CollectionName: pulumi.String(""),
 // 							DatabaseName:   pulumi.String("anyDatabase"),
 // 						},
 // 					},
 // 				},
-// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 				&CustomDbRoleActionArgs{
 // 					Action: pulumi.String("INSERT"),
-// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 					Resources: CustomDbRoleActionResourceArray{
+// 						&CustomDbRoleActionResourceArgs{
 // 							CollectionName: pulumi.String(""),
 // 							DatabaseName:   pulumi.String("anyDatabase"),
 // 						},
 // 					},
 // 				},
-// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 				&CustomDbRoleActionArgs{
 // 					Action: pulumi.String("REMOVE"),
-// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 					Resources: CustomDbRoleActionResourceArray{
+// 						&CustomDbRoleActionResourceArgs{
 // 							CollectionName: pulumi.String(""),
 // 							DatabaseName:   pulumi.String("anyDatabase"),
 // 						},
@@ -84,11 +84,11 @@ import (
 // 		inheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleOne", &mongodbatlas.CustomDbRoleArgs{
 // 			ProjectId: pulumi.String("<PROJECT-ID>"),
 // 			RoleName:  pulumi.String("insertRole"),
-// 			Actions: mongodbatlas.CustomDbRoleActionArray{
-// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 			Actions: CustomDbRoleActionArray{
+// 				&CustomDbRoleActionArgs{
 // 					Action: pulumi.String("INSERT"),
-// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 					Resources: CustomDbRoleActionResourceArray{
+// 						&CustomDbRoleActionResourceArgs{
 // 							CollectionName: pulumi.String(""),
 // 							DatabaseName:   pulumi.String("anyDatabase"),
 // 						},
@@ -102,11 +102,11 @@ import (
 // 		inheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleTwo", &mongodbatlas.CustomDbRoleArgs{
 // 			ProjectId: inheritedRoleOne.ProjectId,
 // 			RoleName:  pulumi.String("statusServerRole"),
-// 			Actions: mongodbatlas.CustomDbRoleActionArray{
-// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 			Actions: CustomDbRoleActionArray{
+// 				&CustomDbRoleActionArgs{
 // 					Action: pulumi.String("SERVER_STATUS"),
-// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 					Resources: CustomDbRoleActionResourceArray{
+// 						&CustomDbRoleActionResourceArgs{
 // 							Cluster: pulumi.Bool(true),
 // 						},
 // 					},
@@ -119,32 +119,32 @@ import (
 // 		_, err = mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
 // 			ProjectId: inheritedRoleOne.ProjectId,
 // 			RoleName:  pulumi.String("myCustomRole"),
-// 			Actions: mongodbatlas.CustomDbRoleActionArray{
-// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 			Actions: CustomDbRoleActionArray{
+// 				&CustomDbRoleActionArgs{
 // 					Action: pulumi.String("UPDATE"),
-// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 					Resources: CustomDbRoleActionResourceArray{
+// 						&CustomDbRoleActionResourceArgs{
 // 							CollectionName: pulumi.String(""),
 // 							DatabaseName:   pulumi.String("anyDatabase"),
 // 						},
 // 					},
 // 				},
-// 				&mongodbatlas.CustomDbRoleActionArgs{
+// 				&CustomDbRoleActionArgs{
 // 					Action: pulumi.String("REMOVE"),
-// 					Resources: mongodbatlas.CustomDbRoleActionResourceArray{
-// 						&mongodbatlas.CustomDbRoleActionResourceArgs{
+// 					Resources: CustomDbRoleActionResourceArray{
+// 						&CustomDbRoleActionResourceArgs{
 // 							CollectionName: pulumi.String(""),
 // 							DatabaseName:   pulumi.String("anyDatabase"),
 // 						},
 // 					},
 // 				},
 // 			},
-// 			InheritedRoles: mongodbatlas.CustomDbRoleInheritedRoleArray{
-// 				&mongodbatlas.CustomDbRoleInheritedRoleArgs{
+// 			InheritedRoles: CustomDbRoleInheritedRoleArray{
+// 				&CustomDbRoleInheritedRoleArgs{
 // 					RoleName:     inheritedRoleOne.RoleName,
 // 					DatabaseName: pulumi.String("admin"),
 // 				},
-// 				&mongodbatlas.CustomDbRoleInheritedRoleArgs{
+// 				&CustomDbRoleInheritedRoleArgs{
 // 					RoleName:     inheritedRoleTwo.RoleName,
 // 					DatabaseName: pulumi.String("admin"),
 // 				},
@@ -265,7 +265,7 @@ type CustomDbRoleInput interface {
 }
 
 func (*CustomDbRole) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomDbRole)(nil))
+	return reflect.TypeOf((**CustomDbRole)(nil)).Elem()
 }
 
 func (i *CustomDbRole) ToCustomDbRoleOutput() CustomDbRoleOutput {
@@ -274,35 +274,6 @@ func (i *CustomDbRole) ToCustomDbRoleOutput() CustomDbRoleOutput {
 
 func (i *CustomDbRole) ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRoleOutput)
-}
-
-func (i *CustomDbRole) ToCustomDbRolePtrOutput() CustomDbRolePtrOutput {
-	return i.ToCustomDbRolePtrOutputWithContext(context.Background())
-}
-
-func (i *CustomDbRole) ToCustomDbRolePtrOutputWithContext(ctx context.Context) CustomDbRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRolePtrOutput)
-}
-
-type CustomDbRolePtrInput interface {
-	pulumi.Input
-
-	ToCustomDbRolePtrOutput() CustomDbRolePtrOutput
-	ToCustomDbRolePtrOutputWithContext(ctx context.Context) CustomDbRolePtrOutput
-}
-
-type customDbRolePtrType CustomDbRoleArgs
-
-func (*customDbRolePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CustomDbRole)(nil))
-}
-
-func (i *customDbRolePtrType) ToCustomDbRolePtrOutput() CustomDbRolePtrOutput {
-	return i.ToCustomDbRolePtrOutputWithContext(context.Background())
-}
-
-func (i *customDbRolePtrType) ToCustomDbRolePtrOutputWithContext(ctx context.Context) CustomDbRolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRolePtrOutput)
 }
 
 // CustomDbRoleArrayInput is an input type that accepts CustomDbRoleArray and CustomDbRoleArrayOutput values.
@@ -319,7 +290,7 @@ type CustomDbRoleArrayInput interface {
 type CustomDbRoleArray []CustomDbRoleInput
 
 func (CustomDbRoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CustomDbRole)(nil))
+	return reflect.TypeOf((*[]*CustomDbRole)(nil)).Elem()
 }
 
 func (i CustomDbRoleArray) ToCustomDbRoleArrayOutput() CustomDbRoleArrayOutput {
@@ -344,7 +315,7 @@ type CustomDbRoleMapInput interface {
 type CustomDbRoleMap map[string]CustomDbRoleInput
 
 func (CustomDbRoleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CustomDbRole)(nil))
+	return reflect.TypeOf((*map[string]*CustomDbRole)(nil)).Elem()
 }
 
 func (i CustomDbRoleMap) ToCustomDbRoleMapOutput() CustomDbRoleMapOutput {
@@ -355,12 +326,10 @@ func (i CustomDbRoleMap) ToCustomDbRoleMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(CustomDbRoleMapOutput)
 }
 
-type CustomDbRoleOutput struct {
-	*pulumi.OutputState
-}
+type CustomDbRoleOutput struct{ *pulumi.OutputState }
 
 func (CustomDbRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CustomDbRole)(nil))
+	return reflect.TypeOf((**CustomDbRole)(nil)).Elem()
 }
 
 func (o CustomDbRoleOutput) ToCustomDbRoleOutput() CustomDbRoleOutput {
@@ -371,36 +340,10 @@ func (o CustomDbRoleOutput) ToCustomDbRoleOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o CustomDbRoleOutput) ToCustomDbRolePtrOutput() CustomDbRolePtrOutput {
-	return o.ToCustomDbRolePtrOutputWithContext(context.Background())
-}
-
-func (o CustomDbRoleOutput) ToCustomDbRolePtrOutputWithContext(ctx context.Context) CustomDbRolePtrOutput {
-	return o.ApplyT(func(v CustomDbRole) *CustomDbRole {
-		return &v
-	}).(CustomDbRolePtrOutput)
-}
-
-type CustomDbRolePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CustomDbRolePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CustomDbRole)(nil))
-}
-
-func (o CustomDbRolePtrOutput) ToCustomDbRolePtrOutput() CustomDbRolePtrOutput {
-	return o
-}
-
-func (o CustomDbRolePtrOutput) ToCustomDbRolePtrOutputWithContext(ctx context.Context) CustomDbRolePtrOutput {
-	return o
-}
-
 type CustomDbRoleArrayOutput struct{ *pulumi.OutputState }
 
 func (CustomDbRoleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CustomDbRole)(nil))
+	return reflect.TypeOf((*[]*CustomDbRole)(nil)).Elem()
 }
 
 func (o CustomDbRoleArrayOutput) ToCustomDbRoleArrayOutput() CustomDbRoleArrayOutput {
@@ -412,15 +355,15 @@ func (o CustomDbRoleArrayOutput) ToCustomDbRoleArrayOutputWithContext(ctx contex
 }
 
 func (o CustomDbRoleArrayOutput) Index(i pulumi.IntInput) CustomDbRoleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomDbRole {
-		return vs[0].([]CustomDbRole)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CustomDbRole {
+		return vs[0].([]*CustomDbRole)[vs[1].(int)]
 	}).(CustomDbRoleOutput)
 }
 
 type CustomDbRoleMapOutput struct{ *pulumi.OutputState }
 
 func (CustomDbRoleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CustomDbRole)(nil))
+	return reflect.TypeOf((*map[string]*CustomDbRole)(nil)).Elem()
 }
 
 func (o CustomDbRoleMapOutput) ToCustomDbRoleMapOutput() CustomDbRoleMapOutput {
@@ -432,14 +375,16 @@ func (o CustomDbRoleMapOutput) ToCustomDbRoleMapOutputWithContext(ctx context.Co
 }
 
 func (o CustomDbRoleMapOutput) MapIndex(k pulumi.StringInput) CustomDbRoleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CustomDbRole {
-		return vs[0].(map[string]CustomDbRole)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CustomDbRole {
+		return vs[0].(map[string]*CustomDbRole)[vs[1].(string)]
 	}).(CustomDbRoleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDbRoleInput)(nil)).Elem(), &CustomDbRole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDbRoleArrayInput)(nil)).Elem(), CustomDbRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDbRoleMapInput)(nil)).Elem(), CustomDbRoleMap{})
 	pulumi.RegisterOutputType(CustomDbRoleOutput{})
-	pulumi.RegisterOutputType(CustomDbRolePtrOutput{})
 	pulumi.RegisterOutputType(CustomDbRoleArrayOutput{})
 	pulumi.RegisterOutputType(CustomDbRoleMapOutput{})
 }
