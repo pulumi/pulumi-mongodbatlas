@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Ensure Go SDK mod file is v3 to match provider version
 
 ---
 
