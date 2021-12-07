@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Ensure Go SDK mod file is v3 to match provider version
+_(none)_
 
 ---
+
+## 3.1.1 (2021-12-07)
+* Ensure Go SDK mod file is v3 to match provider version
 
 ## 3.1.0 (2021-12-06)
 * Upgrade to terraform-bridge 3.13.0
