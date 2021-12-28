@@ -18,12 +18,14 @@ class ProjectArgs:
                  org_id: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None):
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
+                 with_default_alerts_settings: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Project resource.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         pulumi.set(__self__, "org_id", org_id)
         if name is not None:
@@ -32,6 +34,8 @@ class ProjectArgs:
             pulumi.set(__self__, "project_owner_id", project_owner_id)
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
+        if with_default_alerts_settings is not None:
+            pulumi.set(__self__, "with_default_alerts_settings", with_default_alerts_settings)
 
     @property
     @pulumi.getter(name="orgId")
@@ -78,6 +82,18 @@ class ProjectArgs:
     def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]):
         pulumi.set(self, "teams", value)
 
+    @property
+    @pulumi.getter(name="withDefaultAlertsSettings")
+    def with_default_alerts_settings(self) -> Optional[pulumi.Input[bool]]:
+        """
+        It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        """
+        return pulumi.get(self, "with_default_alerts_settings")
+
+    @with_default_alerts_settings.setter
+    def with_default_alerts_settings(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "with_default_alerts_settings", value)
+
 
 @pulumi.input_type
 class _ProjectState:
@@ -87,7 +103,8 @@ class _ProjectState:
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None):
+                 teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
+                 with_default_alerts_settings: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Project resources.
         :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project..
@@ -95,6 +112,7 @@ class _ProjectState:
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         if cluster_count is not None:
             pulumi.set(__self__, "cluster_count", cluster_count)
@@ -108,6 +126,8 @@ class _ProjectState:
             pulumi.set(__self__, "project_owner_id", project_owner_id)
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
+        if with_default_alerts_settings is not None:
+            pulumi.set(__self__, "with_default_alerts_settings", with_default_alerts_settings)
 
     @property
     @pulumi.getter(name="clusterCount")
@@ -178,6 +198,18 @@ class _ProjectState:
     def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]):
         pulumi.set(self, "teams", value)
 
+    @property
+    @pulumi.getter(name="withDefaultAlertsSettings")
+    def with_default_alerts_settings(self) -> Optional[pulumi.Input[bool]]:
+        """
+        It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        """
+        return pulumi.get(self, "with_default_alerts_settings")
+
+    @with_default_alerts_settings.setter
+    def with_default_alerts_settings(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "with_default_alerts_settings", value)
+
 
 class Project(pulumi.CustomResource):
     @overload
@@ -188,6 +220,7 @@ class Project(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
+                 with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         ## Import
@@ -205,6 +238,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         ...
     @overload
@@ -242,6 +276,7 @@ class Project(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
+                 with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -260,6 +295,7 @@ class Project(pulumi.CustomResource):
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["project_owner_id"] = project_owner_id
             __props__.__dict__["teams"] = teams
+            __props__.__dict__["with_default_alerts_settings"] = with_default_alerts_settings
             __props__.__dict__["cluster_count"] = None
             __props__.__dict__["created"] = None
         super(Project, __self__).__init__(
@@ -277,7 +313,8 @@ class Project(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             project_owner_id: Optional[pulumi.Input[str]] = None,
-            teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None) -> 'Project':
+            teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
+            with_default_alerts_settings: Optional[pulumi.Input[bool]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -290,6 +327,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -301,6 +339,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["project_owner_id"] = project_owner_id
         __props__.__dict__["teams"] = teams
+        __props__.__dict__["with_default_alerts_settings"] = with_default_alerts_settings
         return Project(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -347,4 +386,12 @@ class Project(pulumi.CustomResource):
     @pulumi.getter
     def teams(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectTeam']]]:
         return pulumi.get(self, "teams")
+
+    @property
+    @pulumi.getter(name="withDefaultAlertsSettings")
+    def with_default_alerts_settings(self) -> pulumi.Output[Optional[bool]]:
+        """
+        It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        """
+        return pulumi.get(self, "with_default_alerts_settings")
 

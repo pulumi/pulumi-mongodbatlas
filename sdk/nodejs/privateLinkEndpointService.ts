@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -72,6 +73,70 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Example with GCP
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
+ *     projectId: _var.project_id,
+ *     providerName: "GCP",
+ *     region: _var.gcp_region,
+ * });
+ * // Create a Google Network
+ * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {project: _var.gcp_project});
+ * // Create a Google Sub Network
+ * const defaultSubnetwork = new gcp.compute.Subnetwork("defaultSubnetwork", {
+ *     project: defaultNetwork.project,
+ *     ipCidrRange: "10.0.0.0/16",
+ *     region: _var.gcp_region,
+ *     network: defaultNetwork.id,
+ * });
+ * // Create Google 50 Addresses
+ * const defaultAddress: gcp.compute.Address[];
+ * for (const range = {value: 0}; range.value < 50; range.value++) {
+ *     defaultAddress.push(new gcp.compute.Address(`defaultAddress-${range.value}`, {
+ *         project: defaultSubnetwork.project,
+ *         subnetwork: defaultSubnetwork.id,
+ *         addressType: "INTERNAL",
+ *         address: `10.0.42.${range.value}`,
+ *         region: _var.gcp_region,
+ *     }, {
+ *     dependsOn: [testPrivateLinkEndpoint],
+ * }));
+ * }
+ * // Create 50 Forwarding rules
+ * const defaultForwardingRule: gcp.compute.ForwardingRule[];
+ * for (const range = {value: 0}; range.value < 50; range.value++) {
+ *     defaultForwardingRule.push(new gcp.compute.ForwardingRule(`defaultForwardingRule-${range.value}`, {
+ *         project: _var.gcp_project,
+ *         region: _var.gcp_region,
+ *         target: testPrivateLinkEndpoint.serviceAttachmentNames,
+ *         ipAddress: defaultAddress[range.value].id,
+ *         network: defaultNetwork.id,
+ *         loadBalancingScheme: "",
+ *     }));
+ * }
+ * const testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", {
+ *     projectId: testPrivateLinkEndpoint.projectId,
+ *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ *     providerName: "GCP",
+ *     endpointServiceId: defaultNetwork.name,
+ *     gcpProjectId: _var.gcp_project,
+ *     dynamic: [{
+ *         forEach: testPrivateLinkEndpoint.serviceAttachmentNames,
+ *         content: [{
+ *             ipAddress: defaultAddress[endpoints.key].address,
+ *             endpointName: defaultAddress[endpoints.key].name,
+ *         }],
+ *     }],
+ * }, {
+ *     dependsOn: [defaultForwardingRule],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -125,13 +190,30 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
      */
     public /*out*/ readonly deleteRequested!: pulumi.Output<boolean>;
     /**
-     * Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+     * (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+     */
+    public /*out*/ readonly endpointGroupName!: pulumi.Output<string>;
+    /**
+     * Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
      */
     public readonly endpointServiceId!: pulumi.Output<string>;
+    /**
+     * Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+     */
+    public readonly endpoints!: pulumi.Output<outputs.PrivateLinkEndpointServiceEndpoint[]>;
     /**
      * Error message pertaining to the interface endpoint. Returns null if there are no errors.
      */
     public /*out*/ readonly errorMessage!: pulumi.Output<string>;
+    /**
+     * Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+     */
+    public readonly gcpProjectId!: pulumi.Output<string | undefined>;
+    /**
+     * Status of the interface endpoint for GCP.
+     * Returns one of the following values:
+     */
+    public /*out*/ readonly gcpStatus!: pulumi.Output<string>;
     /**
      * Unique identifier of the interface endpoint.
      */
@@ -157,7 +239,7 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
     public readonly providerName!: pulumi.Output<string>;
 
@@ -177,8 +259,12 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             resourceInputs["awsConnectionStatus"] = state ? state.awsConnectionStatus : undefined;
             resourceInputs["azureStatus"] = state ? state.azureStatus : undefined;
             resourceInputs["deleteRequested"] = state ? state.deleteRequested : undefined;
+            resourceInputs["endpointGroupName"] = state ? state.endpointGroupName : undefined;
             resourceInputs["endpointServiceId"] = state ? state.endpointServiceId : undefined;
+            resourceInputs["endpoints"] = state ? state.endpoints : undefined;
             resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
+            resourceInputs["gcpProjectId"] = state ? state.gcpProjectId : undefined;
+            resourceInputs["gcpStatus"] = state ? state.gcpStatus : undefined;
             resourceInputs["interfaceEndpointId"] = state ? state.interfaceEndpointId : undefined;
             resourceInputs["privateEndpointConnectionName"] = state ? state.privateEndpointConnectionName : undefined;
             resourceInputs["privateEndpointIpAddress"] = state ? state.privateEndpointIpAddress : undefined;
@@ -201,6 +287,8 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
                 throw new Error("Missing required property 'providerName'");
             }
             resourceInputs["endpointServiceId"] = args ? args.endpointServiceId : undefined;
+            resourceInputs["endpoints"] = args ? args.endpoints : undefined;
+            resourceInputs["gcpProjectId"] = args ? args.gcpProjectId : undefined;
             resourceInputs["privateEndpointIpAddress"] = args ? args.privateEndpointIpAddress : undefined;
             resourceInputs["privateLinkId"] = args ? args.privateLinkId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -208,7 +296,9 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             resourceInputs["awsConnectionStatus"] = undefined /*out*/;
             resourceInputs["azureStatus"] = undefined /*out*/;
             resourceInputs["deleteRequested"] = undefined /*out*/;
+            resourceInputs["endpointGroupName"] = undefined /*out*/;
             resourceInputs["errorMessage"] = undefined /*out*/;
+            resourceInputs["gcpStatus"] = undefined /*out*/;
             resourceInputs["interfaceEndpointId"] = undefined /*out*/;
             resourceInputs["privateEndpointConnectionName"] = undefined /*out*/;
             resourceInputs["privateEndpointResourceId"] = undefined /*out*/;
@@ -239,13 +329,30 @@ export interface PrivateLinkEndpointServiceState {
      */
     deleteRequested?: pulumi.Input<boolean>;
     /**
-     * Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+     * (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+     */
+    endpointGroupName?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
      */
     endpointServiceId?: pulumi.Input<string>;
+    /**
+     * Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+     */
+    endpoints?: pulumi.Input<pulumi.Input<inputs.PrivateLinkEndpointServiceEndpoint>[]>;
     /**
      * Error message pertaining to the interface endpoint. Returns null if there are no errors.
      */
     errorMessage?: pulumi.Input<string>;
+    /**
+     * Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+     */
+    gcpProjectId?: pulumi.Input<string>;
+    /**
+     * Status of the interface endpoint for GCP.
+     * Returns one of the following values:
+     */
+    gcpStatus?: pulumi.Input<string>;
     /**
      * Unique identifier of the interface endpoint.
      */
@@ -271,7 +378,7 @@ export interface PrivateLinkEndpointServiceState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
     providerName?: pulumi.Input<string>;
 }
@@ -281,9 +388,17 @@ export interface PrivateLinkEndpointServiceState {
  */
 export interface PrivateLinkEndpointServiceArgs {
     /**
-     * Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+     * Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
      */
     endpointServiceId: pulumi.Input<string>;
+    /**
+     * Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+     */
+    endpoints?: pulumi.Input<pulumi.Input<inputs.PrivateLinkEndpointServiceEndpoint>[]>;
+    /**
+     * Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+     */
+    gcpProjectId?: pulumi.Input<string>;
     /**
      * Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
      */
@@ -297,7 +412,7 @@ export interface PrivateLinkEndpointServiceArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
     providerName: pulumi.Input<string>;
 }

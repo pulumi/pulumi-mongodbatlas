@@ -183,6 +183,8 @@ def get_cloud_provider_snapshot(cluster_name: Optional[str] = None,
                                 snapshot_id: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderSnapshotResult:
     """
+    **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+
     `CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -223,6 +225,8 @@ def get_cloud_provider_snapshot_output(cluster_name: Optional[pulumi.Input[str]]
                                        snapshot_id: Optional[pulumi.Input[str]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderSnapshotResult]:
     """
+    **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+
     `CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

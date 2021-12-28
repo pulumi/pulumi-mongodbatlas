@@ -7,6 +7,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetSearchIndexResult',
@@ -20,7 +21,7 @@ class GetSearchIndexResult:
     """
     A collection of values returned by getSearchIndex.
     """
-    def __init__(__self__, analyzer=None, analyzers=None, cluster_name=None, collection_name=None, database=None, id=None, index_id=None, mappings_dynamic=None, mappings_fields=None, name=None, project_id=None, search_analyzer=None, status=None):
+    def __init__(__self__, analyzer=None, analyzers=None, cluster_name=None, collection_name=None, database=None, id=None, index_id=None, mappings_dynamic=None, mappings_fields=None, name=None, project_id=None, search_analyzer=None, status=None, synonyms=None):
         if analyzer and not isinstance(analyzer, str):
             raise TypeError("Expected argument 'analyzer' to be a str")
         pulumi.set(__self__, "analyzer", analyzer)
@@ -60,6 +61,9 @@ class GetSearchIndexResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if synonyms and not isinstance(synonyms, list):
+            raise TypeError("Expected argument 'synonyms' to be a list")
+        pulumi.set(__self__, "synonyms", synonyms)
 
     @property
     @pulumi.getter
@@ -86,7 +90,7 @@ class GetSearchIndexResult:
     @pulumi.getter(name="collectionName")
     def collection_name(self) -> Optional[str]:
         """
-        (Required) Name of the collection the index is on.
+        Name of the collection the index is on.
         """
         return pulumi.get(self, "collection_name")
 
@@ -94,7 +98,7 @@ class GetSearchIndexResult:
     @pulumi.getter
     def database(self) -> Optional[str]:
         """
-        (Required) Name of the database the collection is in.
+        Name of the database the collection is in.
         """
         return pulumi.get(self, "database")
 
@@ -153,6 +157,17 @@ class GetSearchIndexResult:
     def status(self) -> str:
         return pulumi.get(self, "status")
 
+    @property
+    @pulumi.getter
+    def synonyms(self) -> Sequence['outputs.GetSearchIndexSynonymResult']:
+        """
+        Synonyms mapping definition to use in this index.
+        * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+        * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+        * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+        """
+        return pulumi.get(self, "synonyms")
+
 
 class AwaitableGetSearchIndexResult(GetSearchIndexResult):
     # pylint: disable=using-constant-test
@@ -172,7 +187,8 @@ class AwaitableGetSearchIndexResult(GetSearchIndexResult):
             name=self.name,
             project_id=self.project_id,
             search_analyzer=self.search_analyzer,
-            status=self.status)
+            status=self.status,
+            synonyms=self.synonyms)
 
 
 def get_search_index(analyzer: Optional[str] = None,
@@ -208,8 +224,8 @@ def get_search_index(analyzer: Optional[str] = None,
     :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
     :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
     :param str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
-    :param str collection_name: (Required) Name of the collection the index is on.
-    :param str database: (Required) Name of the database the collection is in.
+    :param str collection_name: Name of the collection the index is on.
+    :param str database: Name of the database the collection is in.
     :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
     :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
     :param str mappings_fields: Object containing one or more field specifications.
@@ -249,7 +265,8 @@ def get_search_index(analyzer: Optional[str] = None,
         name=__ret__.name,
         project_id=__ret__.project_id,
         search_analyzer=__ret__.search_analyzer,
-        status=__ret__.status)
+        status=__ret__.status,
+        synonyms=__ret__.synonyms)
 
 
 @_utilities.lift_output_func(get_search_index)
@@ -286,8 +303,8 @@ def get_search_index_output(analyzer: Optional[pulumi.Input[Optional[str]]] = No
     :param str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
     :param str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
     :param str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
-    :param str collection_name: (Required) Name of the collection the index is on.
-    :param str database: (Required) Name of the database the collection is in.
+    :param str collection_name: Name of the collection the index is on.
+    :param str database: Name of the database the collection is in.
     :param str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
     :param bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
     :param str mappings_fields: Object containing one or more field specifications.

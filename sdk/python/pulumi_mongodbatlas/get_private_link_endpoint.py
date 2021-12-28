@@ -20,7 +20,10 @@ class GetPrivateLinkEndpointResult:
     """
     A collection of values returned by getPrivateLinkEndpoint.
     """
-    def __init__(__self__, endpoint_service_name=None, error_message=None, id=None, interface_endpoints=None, private_endpoints=None, private_link_id=None, private_link_service_name=None, private_link_service_resource_id=None, project_id=None, provider_name=None, status=None):
+    def __init__(__self__, endpoint_group_names=None, endpoint_service_name=None, error_message=None, id=None, interface_endpoints=None, private_endpoints=None, private_link_id=None, private_link_service_name=None, private_link_service_resource_id=None, project_id=None, provider_name=None, region_name=None, service_attachment_names=None, status=None):
+        if endpoint_group_names and not isinstance(endpoint_group_names, list):
+            raise TypeError("Expected argument 'endpoint_group_names' to be a list")
+        pulumi.set(__self__, "endpoint_group_names", endpoint_group_names)
         if endpoint_service_name and not isinstance(endpoint_service_name, str):
             raise TypeError("Expected argument 'endpoint_service_name' to be a str")
         pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
@@ -51,9 +54,23 @@ class GetPrivateLinkEndpointResult:
         if provider_name and not isinstance(provider_name, str):
             raise TypeError("Expected argument 'provider_name' to be a str")
         pulumi.set(__self__, "provider_name", provider_name)
+        if region_name and not isinstance(region_name, str):
+            raise TypeError("Expected argument 'region_name' to be a str")
+        pulumi.set(__self__, "region_name", region_name)
+        if service_attachment_names and not isinstance(service_attachment_names, list):
+            raise TypeError("Expected argument 'service_attachment_names' to be a list")
+        pulumi.set(__self__, "service_attachment_names", service_attachment_names)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="endpointGroupNames")
+    def endpoint_group_names(self) -> Sequence[str]:
+        """
+        GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        """
+        return pulumi.get(self, "endpoint_group_names")
 
     @property
     @pulumi.getter(name="endpointServiceName")
@@ -113,7 +130,6 @@ class GetPrivateLinkEndpointResult:
     def private_link_service_resource_id(self) -> str:
         """
         Resource ID of the Azure Private Link Service that Atlas manages.
-        Returns one of the following values:
         """
         return pulumi.get(self, "private_link_service_resource_id")
 
@@ -128,10 +144,27 @@ class GetPrivateLinkEndpointResult:
         return pulumi.get(self, "provider_name")
 
     @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        GCP region for the Private Service Connect endpoint service.
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="serviceAttachmentNames")
+    def service_attachment_names(self) -> Sequence[str]:
+        """
+        Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+        """
+        return pulumi.get(self, "service_attachment_names")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
         Status of the AWS PrivateLink connection.
+        Returns one of the following values:
         """
         return pulumi.get(self, "status")
 
@@ -142,6 +175,7 @@ class AwaitableGetPrivateLinkEndpointResult(GetPrivateLinkEndpointResult):
         if False:
             yield self
         return GetPrivateLinkEndpointResult(
+            endpoint_group_names=self.endpoint_group_names,
             endpoint_service_name=self.endpoint_service_name,
             error_message=self.error_message,
             id=self.id,
@@ -152,6 +186,8 @@ class AwaitableGetPrivateLinkEndpointResult(GetPrivateLinkEndpointResult):
             private_link_service_resource_id=self.private_link_service_resource_id,
             project_id=self.project_id,
             provider_name=self.provider_name,
+            region_name=self.region_name,
+            service_attachment_names=self.service_attachment_names,
             status=self.status)
 
 
@@ -167,7 +203,7 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
 
     :param str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.
     :param str project_id: Unique identifier for the project.
-    :param str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+    :param str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
     """
     __args__ = dict()
     __args__['privateLinkId'] = private_link_id
@@ -180,6 +216,7 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint', __args__, opts=opts, typ=GetPrivateLinkEndpointResult).value
 
     return AwaitableGetPrivateLinkEndpointResult(
+        endpoint_group_names=__ret__.endpoint_group_names,
         endpoint_service_name=__ret__.endpoint_service_name,
         error_message=__ret__.error_message,
         id=__ret__.id,
@@ -190,6 +227,8 @@ def get_private_link_endpoint(private_link_id: Optional[str] = None,
         private_link_service_resource_id=__ret__.private_link_service_resource_id,
         project_id=__ret__.project_id,
         provider_name=__ret__.provider_name,
+        region_name=__ret__.region_name,
+        service_attachment_names=__ret__.service_attachment_names,
         status=__ret__.status)
 
 
@@ -206,6 +245,6 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[str]
 
     :param str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.
     :param str project_id: Unique identifier for the project.
-    :param str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+    :param str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
     """
     ...

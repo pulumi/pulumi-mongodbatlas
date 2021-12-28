@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -63,11 +64,11 @@ export interface GetSearchIndexArgs {
      */
     clusterName: string;
     /**
-     * (Required) Name of the collection the index is on.
+     * Name of the collection the index is on.
      */
     collectionName?: string;
     /**
-     * (Required) Name of the database the collection is in.
+     * Name of the database the collection is in.
      */
     database?: string;
     /**
@@ -111,11 +112,11 @@ export interface GetSearchIndexResult {
     readonly analyzers?: string;
     readonly clusterName: string;
     /**
-     * (Required) Name of the collection the index is on.
+     * Name of the collection the index is on.
      */
     readonly collectionName?: string;
     /**
-     * (Required) Name of the database the collection is in.
+     * Name of the database the collection is in.
      */
     readonly database?: string;
     /**
@@ -141,6 +142,13 @@ export interface GetSearchIndexResult {
      */
     readonly searchAnalyzer?: string;
     readonly status: string;
+    /**
+     * Synonyms mapping definition to use in this index.
+     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+     * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+     * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+     */
+    readonly synonyms: outputs.GetSearchIndexSynonym[];
 }
 
 export function getSearchIndexOutput(args: GetSearchIndexOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexResult> {
@@ -164,11 +172,11 @@ export interface GetSearchIndexOutputArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * (Required) Name of the collection the index is on.
+     * Name of the collection the index is on.
      */
     collectionName?: pulumi.Input<string>;
     /**
-     * (Required) Name of the database the collection is in.
+     * Name of the database the collection is in.
      */
     database?: pulumi.Input<string>;
     /**

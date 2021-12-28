@@ -56,6 +56,12 @@ namespace Pulumi.Mongodbatlas
         [Output("teams")]
         public Output<ImmutableArray<Outputs.ProjectTeam>> Teams { get; private set; } = null!;
 
+        /// <summary>
+        /// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        /// </summary>
+        [Output("withDefaultAlertsSettings")]
+        public Output<bool?> WithDefaultAlertsSettings { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Project resource with the given unique name, arguments, and options.
@@ -128,6 +134,12 @@ namespace Pulumi.Mongodbatlas
             set => _teams = value;
         }
 
+        /// <summary>
+        /// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        /// </summary>
+        [Input("withDefaultAlertsSettings")]
+        public Input<bool>? WithDefaultAlertsSettings { get; set; }
+
         public ProjectArgs()
         {
         }
@@ -172,6 +184,12 @@ namespace Pulumi.Mongodbatlas
             get => _teams ?? (_teams = new InputList<Inputs.ProjectTeamGetArgs>());
             set => _teams = value;
         }
+
+        /// <summary>
+        /// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+        /// </summary>
+        [Input("withDefaultAlertsSettings")]
+        public Input<bool>? WithDefaultAlertsSettings { get; set; }
 
         public ProjectState()
         {

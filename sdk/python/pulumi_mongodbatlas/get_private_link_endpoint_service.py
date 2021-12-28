@@ -7,6 +7,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetPrivateLinkEndpointServiceResult',
@@ -20,7 +21,7 @@ class GetPrivateLinkEndpointServiceResult:
     """
     A collection of values returned by getPrivateLinkEndpointService.
     """
-    def __init__(__self__, aws_connection_status=None, azure_status=None, delete_requested=None, endpoint_service_id=None, error_message=None, id=None, interface_endpoint_id=None, private_endpoint_connection_name=None, private_endpoint_ip_address=None, private_endpoint_resource_id=None, private_link_id=None, project_id=None, provider_name=None):
+    def __init__(__self__, aws_connection_status=None, azure_status=None, delete_requested=None, endpoint_service_id=None, endpoints=None, error_message=None, gcp_status=None, id=None, interface_endpoint_id=None, private_endpoint_connection_name=None, private_endpoint_ip_address=None, private_endpoint_resource_id=None, private_link_id=None, project_id=None, provider_name=None):
         if aws_connection_status and not isinstance(aws_connection_status, str):
             raise TypeError("Expected argument 'aws_connection_status' to be a str")
         pulumi.set(__self__, "aws_connection_status", aws_connection_status)
@@ -33,9 +34,15 @@ class GetPrivateLinkEndpointServiceResult:
         if endpoint_service_id and not isinstance(endpoint_service_id, str):
             raise TypeError("Expected argument 'endpoint_service_id' to be a str")
         pulumi.set(__self__, "endpoint_service_id", endpoint_service_id)
+        if endpoints and not isinstance(endpoints, list):
+            raise TypeError("Expected argument 'endpoints' to be a list")
+        pulumi.set(__self__, "endpoints", endpoints)
         if error_message and not isinstance(error_message, str):
             raise TypeError("Expected argument 'error_message' to be a str")
         pulumi.set(__self__, "error_message", error_message)
+        if gcp_status and not isinstance(gcp_status, str):
+            raise TypeError("Expected argument 'gcp_status' to be a str")
+        pulumi.set(__self__, "gcp_status", gcp_status)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -93,12 +100,29 @@ class GetPrivateLinkEndpointServiceResult:
         return pulumi.get(self, "endpoint_service_id")
 
     @property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetPrivateLinkEndpointServiceEndpointResult']:
+        """
+        Collection of individual private endpoints that comprise your network endpoint group.
+        """
+        return pulumi.get(self, "endpoints")
+
+    @property
     @pulumi.getter(name="errorMessage")
     def error_message(self) -> str:
         """
         Error message pertaining to the interface endpoint. Returns null if there are no errors.
         """
         return pulumi.get(self, "error_message")
+
+    @property
+    @pulumi.getter(name="gcpStatus")
+    def gcp_status(self) -> str:
+        """
+        Status of the interface endpoint for GCP.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "gcp_status")
 
     @property
     @pulumi.getter
@@ -166,7 +190,9 @@ class AwaitableGetPrivateLinkEndpointServiceResult(GetPrivateLinkEndpointService
             azure_status=self.azure_status,
             delete_requested=self.delete_requested,
             endpoint_service_id=self.endpoint_service_id,
+            endpoints=self.endpoints,
             error_message=self.error_message,
+            gcp_status=self.gcp_status,
             id=self.id,
             interface_endpoint_id=self.interface_endpoint_id,
             private_endpoint_connection_name=self.private_endpoint_connection_name,
@@ -209,7 +235,9 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[str] = None,
         azure_status=__ret__.azure_status,
         delete_requested=__ret__.delete_requested,
         endpoint_service_id=__ret__.endpoint_service_id,
+        endpoints=__ret__.endpoints,
         error_message=__ret__.error_message,
+        gcp_status=__ret__.gcp_status,
         id=__ret__.id,
         interface_endpoint_id=__ret__.interface_endpoint_id,
         private_endpoint_connection_name=__ret__.private_endpoint_connection_name,

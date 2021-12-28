@@ -331,6 +331,8 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        **WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot_restore_job`
+
         `CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
         * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
 
@@ -426,6 +428,8 @@ class CloudProviderSnapshotRestoreJob(pulumi.CustomResource):
                  args: CloudProviderSnapshotRestoreJobArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        **WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot_restore_job`
+
         `CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
         * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
 

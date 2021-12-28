@@ -55,6 +55,12 @@ namespace Pulumi.Mongodbatlas
     public partial class PrivateLinkEndpoint : Pulumi.CustomResource
     {
         /// <summary>
+        /// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        /// </summary>
+        [Output("endpointGroupNames")]
+        public Output<ImmutableArray<string>> EndpointGroupNames { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         /// </summary>
         [Output("endpointServiceName")]
@@ -62,12 +68,14 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+        /// AWS:
         /// </summary>
         [Output("errorMessage")]
         public Output<string> ErrorMessage { get; private set; } = null!;
 
         /// <summary>
         /// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        /// AZURE:
         /// </summary>
         [Output("interfaceEndpoints")]
         public Output<ImmutableArray<string>> InterfaceEndpoints { get; private set; } = null!;
@@ -86,13 +94,11 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the Azure Private Link Service that Atlas manages.
+        /// GCP:
         /// </summary>
         [Output("privateLinkServiceName")]
         public Output<string> PrivateLinkServiceName { get; private set; } = null!;
 
-        /// <summary>
-        /// Resource ID of the Azure Private Link Service that Atlas manages.
-        /// </summary>
         [Output("privateLinkServiceResourceId")]
         public Output<string> PrivateLinkServiceResourceId { get; private set; } = null!;
 
@@ -103,17 +109,29 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
 
         /// <summary>
         /// Cloud provider region in which you want to create the private endpoint connection.
-        /// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+        /// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// GCP region for the Private Service Connect endpoint service.
+        /// </summary>
+        [Output("regionName")]
+        public Output<string> RegionName { get; private set; } = null!;
+
+        /// <summary>
+        /// Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+        /// </summary>
+        [Output("serviceAttachmentNames")]
+        public Output<ImmutableArray<string>> ServiceAttachmentNames { get; private set; } = null!;
 
         /// <summary>
         /// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
@@ -175,14 +193,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
 
         /// <summary>
         /// Cloud provider region in which you want to create the private endpoint connection.
-        /// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+        /// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -194,6 +212,18 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class PrivateLinkEndpointState : Pulumi.ResourceArgs
     {
+        [Input("endpointGroupNames")]
+        private InputList<string>? _endpointGroupNames;
+
+        /// <summary>
+        /// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        /// </summary>
+        public InputList<string> EndpointGroupNames
+        {
+            get => _endpointGroupNames ?? (_endpointGroupNames = new InputList<string>());
+            set => _endpointGroupNames = value;
+        }
+
         /// <summary>
         /// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         /// </summary>
@@ -202,6 +232,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+        /// AWS:
         /// </summary>
         [Input("errorMessage")]
         public Input<string>? ErrorMessage { get; set; }
@@ -211,6 +242,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        /// AZURE:
         /// </summary>
         public InputList<string> InterfaceEndpoints
         {
@@ -238,13 +270,11 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Name of the Azure Private Link Service that Atlas manages.
+        /// GCP:
         /// </summary>
         [Input("privateLinkServiceName")]
         public Input<string>? PrivateLinkServiceName { get; set; }
 
-        /// <summary>
-        /// Resource ID of the Azure Private Link Service that Atlas manages.
-        /// </summary>
         [Input("privateLinkServiceResourceId")]
         public Input<string>? PrivateLinkServiceResourceId { get; set; }
 
@@ -255,17 +285,35 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
 
         /// <summary>
         /// Cloud provider region in which you want to create the private endpoint connection.
-        /// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+        /// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// GCP region for the Private Service Connect endpoint service.
+        /// </summary>
+        [Input("regionName")]
+        public Input<string>? RegionName { get; set; }
+
+        [Input("serviceAttachmentNames")]
+        private InputList<string>? _serviceAttachmentNames;
+
+        /// <summary>
+        /// Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+        /// </summary>
+        public InputList<string> ServiceAttachmentNames
+        {
+            get => _serviceAttachmentNames ?? (_serviceAttachmentNames = new InputList<string>());
+            set => _serviceAttachmentNames = value;
+        }
 
         /// <summary>
         /// Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:

@@ -103,13 +103,13 @@ namespace Pulumi.Mongodbatlas
         public string ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// (Required) Name of the collection the index is on.
+        /// Name of the collection the index is on.
         /// </summary>
         [Input("collectionName")]
         public string? CollectionName { get; set; }
 
         /// <summary>
-        /// (Required) Name of the database the collection is in.
+        /// Name of the database the collection is in.
         /// </summary>
         [Input("database")]
         public string? Database { get; set; }
@@ -179,13 +179,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// (Required) Name of the collection the index is on.
+        /// Name of the collection the index is on.
         /// </summary>
         [Input("collectionName")]
         public Input<string>? CollectionName { get; set; }
 
         /// <summary>
-        /// (Required) Name of the database the collection is in.
+        /// Name of the database the collection is in.
         /// </summary>
         [Input("database")]
         public Input<string>? Database { get; set; }
@@ -248,11 +248,11 @@ namespace Pulumi.Mongodbatlas
         public readonly string? Analyzers;
         public readonly string ClusterName;
         /// <summary>
-        /// (Required) Name of the collection the index is on.
+        /// Name of the collection the index is on.
         /// </summary>
         public readonly string? CollectionName;
         /// <summary>
-        /// (Required) Name of the database the collection is in.
+        /// Name of the database the collection is in.
         /// </summary>
         public readonly string? Database;
         /// <summary>
@@ -278,6 +278,13 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string? SearchAnalyzer;
         public readonly string Status;
+        /// <summary>
+        /// Synonyms mapping definition to use in this index.
+        /// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+        /// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+        /// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSearchIndexSynonymResult> Synonyms;
 
         [OutputConstructor]
         private GetSearchIndexResult(
@@ -305,7 +312,9 @@ namespace Pulumi.Mongodbatlas
 
             string? searchAnalyzer,
 
-            string status)
+            string status,
+
+            ImmutableArray<Outputs.GetSearchIndexSynonymResult> synonyms)
         {
             Analyzer = analyzer;
             Analyzers = analyzers;
@@ -320,6 +329,7 @@ namespace Pulumi.Mongodbatlas
             ProjectId = projectId;
             SearchAnalyzer = searchAnalyzer;
             Status = status;
+            Synonyms = synonyms;
         }
     }
 }

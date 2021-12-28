@@ -34,6 +34,8 @@ type Project struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId pulumi.StringPtrOutput `pulumi:"projectOwnerId"`
 	Teams          ProjectTeamArrayOutput `pulumi:"teams"`
+	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	WithDefaultAlertsSettings pulumi.BoolPtrOutput `pulumi:"withDefaultAlertsSettings"`
 }
 
 // NewProject registers a new resource with the given unique name, arguments, and options.
@@ -79,6 +81,8 @@ type projectState struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId *string       `pulumi:"projectOwnerId"`
 	Teams          []ProjectTeam `pulumi:"teams"`
+	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	WithDefaultAlertsSettings *bool `pulumi:"withDefaultAlertsSettings"`
 }
 
 type ProjectState struct {
@@ -93,6 +97,8 @@ type ProjectState struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId pulumi.StringPtrInput
 	Teams          ProjectTeamArrayInput
+	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	WithDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
 func (ProjectState) ElementType() reflect.Type {
@@ -107,6 +113,8 @@ type projectArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId *string       `pulumi:"projectOwnerId"`
 	Teams          []ProjectTeam `pulumi:"teams"`
+	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	WithDefaultAlertsSettings *bool `pulumi:"withDefaultAlertsSettings"`
 }
 
 // The set of arguments for constructing a Project resource.
@@ -118,6 +126,8 @@ type ProjectArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId pulumi.StringPtrInput
 	Teams          ProjectTeamArrayInput
+	// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+	WithDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
 func (ProjectArgs) ElementType() reflect.Type {

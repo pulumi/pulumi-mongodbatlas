@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -67,9 +68,18 @@ export interface GetPrivateLinkEndpointServiceResult {
     readonly deleteRequested: boolean;
     readonly endpointServiceId: string;
     /**
+     * Collection of individual private endpoints that comprise your network endpoint group.
+     */
+    readonly endpoints: outputs.GetPrivateLinkEndpointServiceEndpoint[];
+    /**
      * Error message pertaining to the interface endpoint. Returns null if there are no errors.
      */
     readonly errorMessage: string;
+    /**
+     * Status of the interface endpoint for GCP.
+     * Returns one of the following values:
+     */
+    readonly gcpStatus: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

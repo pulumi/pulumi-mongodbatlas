@@ -138,16 +138,41 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> DeleteRequested { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        /// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+        /// </summary>
+        [Output("endpointGroupName")]
+        public Output<string> EndpointGroupName { get; private set; } = null!;
+
+        /// <summary>
+        /// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
         /// </summary>
         [Output("endpointServiceId")]
         public Output<string> EndpointServiceId { get; private set; } = null!;
+
+        /// <summary>
+        /// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        /// </summary>
+        [Output("endpoints")]
+        public Output<ImmutableArray<Outputs.PrivateLinkEndpointServiceEndpoint>> Endpoints { get; private set; } = null!;
 
         /// <summary>
         /// Error message pertaining to the interface endpoint. Returns null if there are no errors.
         /// </summary>
         [Output("errorMessage")]
         public Output<string> ErrorMessage { get; private set; } = null!;
+
+        /// <summary>
+        /// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+        /// </summary>
+        [Output("gcpProjectId")]
+        public Output<string?> GcpProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// Status of the interface endpoint for GCP.
+        /// Returns one of the following values:
+        /// </summary>
+        [Output("gcpStatus")]
+        public Output<string> GcpStatus { get; private set; } = null!;
 
         /// <summary>
         /// Unique identifier of the interface endpoint.
@@ -186,7 +211,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
@@ -238,10 +263,28 @@ namespace Pulumi.Mongodbatlas
     public sealed class PrivateLinkEndpointServiceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        /// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
         /// </summary>
         [Input("endpointServiceId", required: true)]
         public Input<string> EndpointServiceId { get; set; } = null!;
+
+        [Input("endpoints")]
+        private InputList<Inputs.PrivateLinkEndpointServiceEndpointArgs>? _endpoints;
+
+        /// <summary>
+        /// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        /// </summary>
+        public InputList<Inputs.PrivateLinkEndpointServiceEndpointArgs> Endpoints
+        {
+            get => _endpoints ?? (_endpoints = new InputList<Inputs.PrivateLinkEndpointServiceEndpointArgs>());
+            set => _endpoints = value;
+        }
+
+        /// <summary>
+        /// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+        /// </summary>
+        [Input("gcpProjectId")]
+        public Input<string>? GcpProjectId { get; set; }
 
         /// <summary>
         /// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
@@ -262,7 +305,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -295,16 +338,47 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? DeleteRequested { get; set; }
 
         /// <summary>
-        /// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        /// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+        /// </summary>
+        [Input("endpointGroupName")]
+        public Input<string>? EndpointGroupName { get; set; }
+
+        /// <summary>
+        /// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
         /// </summary>
         [Input("endpointServiceId")]
         public Input<string>? EndpointServiceId { get; set; }
+
+        [Input("endpoints")]
+        private InputList<Inputs.PrivateLinkEndpointServiceEndpointGetArgs>? _endpoints;
+
+        /// <summary>
+        /// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        /// </summary>
+        public InputList<Inputs.PrivateLinkEndpointServiceEndpointGetArgs> Endpoints
+        {
+            get => _endpoints ?? (_endpoints = new InputList<Inputs.PrivateLinkEndpointServiceEndpointGetArgs>());
+            set => _endpoints = value;
+        }
 
         /// <summary>
         /// Error message pertaining to the interface endpoint. Returns null if there are no errors.
         /// </summary>
         [Input("errorMessage")]
         public Input<string>? ErrorMessage { get; set; }
+
+        /// <summary>
+        /// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+        /// </summary>
+        [Input("gcpProjectId")]
+        public Input<string>? GcpProjectId { get; set; }
+
+        /// <summary>
+        /// Status of the interface endpoint for GCP.
+        /// Returns one of the following values:
+        /// </summary>
+        [Input("gcpStatus")]
+        public Input<string>? GcpStatus { get; set; }
 
         /// <summary>
         /// Unique identifier of the interface endpoint.
@@ -343,7 +417,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        /// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }

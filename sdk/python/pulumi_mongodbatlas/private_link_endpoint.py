@@ -19,9 +19,9 @@ class PrivateLinkEndpointArgs:
         """
         The set of arguments for constructing a PrivateLinkEndpoint resource.
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
-        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
-               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -43,7 +43,7 @@ class PrivateLinkEndpointArgs:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Input[str]:
         """
-        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         return pulumi.get(self, "provider_name")
 
@@ -56,7 +56,7 @@ class PrivateLinkEndpointArgs:
     def region(self) -> pulumi.Input[str]:
         """
         Cloud provider region in which you want to create the private endpoint connection.
-        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         """
         return pulumi.get(self, "region")
 
@@ -68,6 +68,7 @@ class PrivateLinkEndpointArgs:
 @pulumi.input_type
 class _PrivateLinkEndpointState:
     def __init__(__self__, *,
+                 endpoint_group_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  endpoint_service_name: Optional[pulumi.Input[str]] = None,
                  error_message: Optional[pulumi.Input[str]] = None,
                  interface_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -78,23 +79,32 @@ class _PrivateLinkEndpointState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 region_name: Optional[pulumi.Input[str]] = None,
+                 service_attachment_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PrivateLinkEndpoint resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] endpoint_group_names: GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
         :param pulumi.Input[str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         :param pulumi.Input[str] error_message: Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+               AWS:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] interface_endpoints: Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+               AZURE:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] private_endpoints: All private endpoints that you have added to this Azure Private Link Service.
         :param pulumi.Input[str] private_link_id: Unique identifier of the AWS PrivateLink connection.
         :param pulumi.Input[str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
-        :param pulumi.Input[str] private_link_service_resource_id: Resource ID of the Azure Private Link Service that Atlas manages.
+               GCP:
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
-        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
-               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+        :param pulumi.Input[str] region_name: GCP region for the Private Service Connect endpoint service.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_attachment_names: Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
         :param pulumi.Input[str] status: Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
                AWS:
         """
+        if endpoint_group_names is not None:
+            pulumi.set(__self__, "endpoint_group_names", endpoint_group_names)
         if endpoint_service_name is not None:
             pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
         if error_message is not None:
@@ -115,8 +125,24 @@ class _PrivateLinkEndpointState:
             pulumi.set(__self__, "provider_name", provider_name)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if region_name is not None:
+            pulumi.set(__self__, "region_name", region_name)
+        if service_attachment_names is not None:
+            pulumi.set(__self__, "service_attachment_names", service_attachment_names)
         if status is not None:
             pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="endpointGroupNames")
+    def endpoint_group_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        """
+        return pulumi.get(self, "endpoint_group_names")
+
+    @endpoint_group_names.setter
+    def endpoint_group_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "endpoint_group_names", value)
 
     @property
     @pulumi.getter(name="endpointServiceName")
@@ -135,6 +161,7 @@ class _PrivateLinkEndpointState:
     def error_message(self) -> Optional[pulumi.Input[str]]:
         """
         Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+        AWS:
         """
         return pulumi.get(self, "error_message")
 
@@ -147,6 +174,7 @@ class _PrivateLinkEndpointState:
     def interface_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        AZURE:
         """
         return pulumi.get(self, "interface_endpoints")
 
@@ -183,6 +211,7 @@ class _PrivateLinkEndpointState:
     def private_link_service_name(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the Azure Private Link Service that Atlas manages.
+        GCP:
         """
         return pulumi.get(self, "private_link_service_name")
 
@@ -193,9 +222,6 @@ class _PrivateLinkEndpointState:
     @property
     @pulumi.getter(name="privateLinkServiceResourceId")
     def private_link_service_resource_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Resource ID of the Azure Private Link Service that Atlas manages.
-        """
         return pulumi.get(self, "private_link_service_resource_id")
 
     @private_link_service_resource_id.setter
@@ -218,7 +244,7 @@ class _PrivateLinkEndpointState:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         return pulumi.get(self, "provider_name")
 
@@ -231,13 +257,37 @@ class _PrivateLinkEndpointState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         Cloud provider region in which you want to create the private endpoint connection.
-        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         """
         return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        GCP region for the Private Service Connect endpoint service.
+        """
+        return pulumi.get(self, "region_name")
+
+    @region_name.setter
+    def region_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region_name", value)
+
+    @property
+    @pulumi.getter(name="serviceAttachmentNames")
+    def service_attachment_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+        """
+        return pulumi.get(self, "service_attachment_names")
+
+    @service_attachment_names.setter
+    def service_attachment_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "service_attachment_names", value)
 
     @property
     @pulumi.getter
@@ -298,9 +348,9 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
-        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
-               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         """
         ...
     @overload
@@ -380,6 +430,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
+            __props__.__dict__["endpoint_group_names"] = None
             __props__.__dict__["endpoint_service_name"] = None
             __props__.__dict__["error_message"] = None
             __props__.__dict__["interface_endpoints"] = None
@@ -387,6 +438,8 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             __props__.__dict__["private_link_id"] = None
             __props__.__dict__["private_link_service_name"] = None
             __props__.__dict__["private_link_service_resource_id"] = None
+            __props__.__dict__["region_name"] = None
+            __props__.__dict__["service_attachment_names"] = None
             __props__.__dict__["status"] = None
         super(PrivateLinkEndpoint, __self__).__init__(
             'mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint',
@@ -398,6 +451,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            endpoint_group_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             endpoint_service_name: Optional[pulumi.Input[str]] = None,
             error_message: Optional[pulumi.Input[str]] = None,
             interface_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -408,6 +462,8 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             provider_name: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            region_name: Optional[pulumi.Input[str]] = None,
+            service_attachment_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             status: Optional[pulumi.Input[str]] = None) -> 'PrivateLinkEndpoint':
         """
         Get an existing PrivateLinkEndpoint resource's state with the given name, id, and optional extra
@@ -416,17 +472,22 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] endpoint_group_names: GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
         :param pulumi.Input[str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         :param pulumi.Input[str] error_message: Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+               AWS:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] interface_endpoints: Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+               AZURE:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] private_endpoints: All private endpoints that you have added to this Azure Private Link Service.
         :param pulumi.Input[str] private_link_id: Unique identifier of the AWS PrivateLink connection.
         :param pulumi.Input[str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
-        :param pulumi.Input[str] private_link_service_resource_id: Resource ID of the Azure Private Link Service that Atlas manages.
+               GCP:
         :param pulumi.Input[str] project_id: Required 	Unique identifier for the project.
-        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[str] region: Cloud provider region in which you want to create the private endpoint connection.
-               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+        :param pulumi.Input[str] region_name: GCP region for the Private Service Connect endpoint service.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_attachment_names: Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
         :param pulumi.Input[str] status: Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
                AWS:
         """
@@ -434,6 +495,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
 
         __props__ = _PrivateLinkEndpointState.__new__(_PrivateLinkEndpointState)
 
+        __props__.__dict__["endpoint_group_names"] = endpoint_group_names
         __props__.__dict__["endpoint_service_name"] = endpoint_service_name
         __props__.__dict__["error_message"] = error_message
         __props__.__dict__["interface_endpoints"] = interface_endpoints
@@ -444,8 +506,18 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["provider_name"] = provider_name
         __props__.__dict__["region"] = region
+        __props__.__dict__["region_name"] = region_name
+        __props__.__dict__["service_attachment_names"] = service_attachment_names
         __props__.__dict__["status"] = status
         return PrivateLinkEndpoint(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="endpointGroupNames")
+    def endpoint_group_names(self) -> pulumi.Output[Sequence[str]]:
+        """
+        GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        """
+        return pulumi.get(self, "endpoint_group_names")
 
     @property
     @pulumi.getter(name="endpointServiceName")
@@ -460,6 +532,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def error_message(self) -> pulumi.Output[str]:
         """
         Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+        AWS:
         """
         return pulumi.get(self, "error_message")
 
@@ -468,6 +541,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def interface_endpoints(self) -> pulumi.Output[Sequence[str]]:
         """
         Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        AZURE:
         """
         return pulumi.get(self, "interface_endpoints")
 
@@ -492,15 +566,13 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def private_link_service_name(self) -> pulumi.Output[str]:
         """
         Name of the Azure Private Link Service that Atlas manages.
+        GCP:
         """
         return pulumi.get(self, "private_link_service_name")
 
     @property
     @pulumi.getter(name="privateLinkServiceResourceId")
     def private_link_service_resource_id(self) -> pulumi.Output[str]:
-        """
-        Resource ID of the Azure Private Link Service that Atlas manages.
-        """
         return pulumi.get(self, "private_link_service_resource_id")
 
     @property
@@ -515,7 +587,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Output[str]:
         """
-        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         return pulumi.get(self, "provider_name")
 
@@ -524,9 +596,25 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         Cloud provider region in which you want to create the private endpoint connection.
-        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)
+        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> pulumi.Output[str]:
+        """
+        GCP region for the Private Service Connect endpoint service.
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="serviceAttachmentNames")
+    def service_attachment_names(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+        """
+        return pulumi.get(self, "service_attachment_names")
 
     @property
     @pulumi.getter

@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public string ProviderName { get; set; } = null!;
@@ -70,7 +70,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -84,6 +84,10 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetPrivateLinkEndpointResult
     {
+        /// <summary>
+        /// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        /// </summary>
+        public readonly ImmutableArray<string> EndpointGroupNames;
         /// <summary>
         /// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         /// </summary>
@@ -111,18 +115,28 @@ namespace Pulumi.Mongodbatlas
         public readonly string PrivateLinkServiceName;
         /// <summary>
         /// Resource ID of the Azure Private Link Service that Atlas manages.
-        /// Returns one of the following values:
         /// </summary>
         public readonly string PrivateLinkServiceResourceId;
         public readonly string ProjectId;
         public readonly string ProviderName;
         /// <summary>
+        /// GCP region for the Private Service Connect endpoint service.
+        /// </summary>
+        public readonly string RegionName;
+        /// <summary>
+        /// Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+        /// </summary>
+        public readonly ImmutableArray<string> ServiceAttachmentNames;
+        /// <summary>
         /// Status of the AWS PrivateLink connection.
+        /// Returns one of the following values:
         /// </summary>
         public readonly string Status;
 
         [OutputConstructor]
         private GetPrivateLinkEndpointResult(
+            ImmutableArray<string> endpointGroupNames,
+
             string endpointServiceName,
 
             string errorMessage,
@@ -143,8 +157,13 @@ namespace Pulumi.Mongodbatlas
 
             string providerName,
 
+            string regionName,
+
+            ImmutableArray<string> serviceAttachmentNames,
+
             string status)
         {
+            EndpointGroupNames = endpointGroupNames;
             EndpointServiceName = endpointServiceName;
             ErrorMessage = errorMessage;
             Id = id;
@@ -155,6 +174,8 @@ namespace Pulumi.Mongodbatlas
             PrivateLinkServiceResourceId = privateLinkServiceResourceId;
             ProjectId = projectId;
             ProviderName = providerName;
+            RegionName = regionName;
+            ServiceAttachmentNames = serviceAttachmentNames;
             Status = status;
         }
     }

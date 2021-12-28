@@ -2525,6 +2525,55 @@
                 }
             }
         },
+        "mongodbatlas:index/PrivateLinkEndpointServiceEndpoint:PrivateLinkEndpointServiceEndpoint": {
+            "properties": {
+                "endpointName": {
+                    "type": "string",
+                    "description": "Forwarding rule that corresponds to the endpoint you created in GCP.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ipAddress": {
+                    "type": "string",
+                    "description": "Private IP address of the endpoint you created in GCP.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serviceAttachmentName": {
+                    "type": "string",
+                    "description": "Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "serviceAttachmentName",
+                        "status"
+                    ]
+                }
+            }
+        },
         "mongodbatlas:index/ProjectTeam:ProjectTeam": {
             "properties": {
                 "roleNames": {
@@ -2553,6 +2602,43 @@
             "required": [
                 "roleNames",
                 "teamId"
+            ]
+        },
+        "mongodbatlas:index/SearchIndexSynonym:SearchIndexSynonym": {
+            "properties": {
+                "analyzer": {
+                    "type": "string",
+                    "description": "Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers\n* [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter\n* [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceCollection": {
+                    "type": "string",
+                    "description": "Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "analyzer",
+                "name",
+                "sourceCollection"
             ]
         },
         "mongodbatlas:index/X509AuthenticationDatabaseUserCertificate:X509AuthenticationDatabaseUserCertificate": {
@@ -7769,6 +7855,58 @@
                 }
             }
         },
+        "mongodbatlas:index/getPrivateLinkEndpointServiceEndpoint:getPrivateLinkEndpointServiceEndpoint": {
+            "properties": {
+                "endpointName": {
+                    "type": "string",
+                    "description": "Forwarding rule that corresponds to the endpoint you created in GCP.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ipAddress": {
+                    "type": "string",
+                    "description": "Private IP address of the network endpoint group you created in GCP.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serviceAttachmentName": {
+                    "type": "string",
+                    "description": "Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "endpointName",
+                "ipAddress",
+                "serviceAttachmentName",
+                "status"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "mongodbatlas:index/getProjectTeam:getProjectTeam": {
             "properties": {
                 "roleNames": {
@@ -7907,6 +8045,47 @@
                 }
             }
         },
+        "mongodbatlas:index/getSearchIndexSynonym:getSearchIndexSynonym": {
+            "properties": {
+                "analyzer": {
+                    "type": "string",
+                    "description": "[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the index.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceCollection": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "analyzer",
+                "name",
+                "sourceCollection"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "mongodbatlas:index/getSearchIndexesResult:getSearchIndexesResult": {
             "properties": {
                 "analyzer": {
@@ -8014,6 +8193,18 @@
                             "mapCase": false
                         }
                     }
+                },
+                "synonyms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getSearchIndexesResultSynonym:getSearchIndexesResultSynonym"
+                    },
+                    "description": "Synonyms mapping definition to use in this index.\n* `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).\n* `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.\n* `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -8026,6 +8217,47 @@
                 "name",
                 "projectId",
                 "status"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getSearchIndexesResultSynonym:getSearchIndexesResultSynonym": {
+            "properties": {
+                "analyzer": {
+                    "type": "string",
+                    "description": "[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the index.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourceCollection": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "analyzer",
+                "name",
+                "sourceCollection"
             ],
             "language": {
                 "nodejs": {
@@ -8964,7 +9196,7 @@
             }
         },
         "mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot": {
-            "description": "`mongodbatlas.CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.\nOn-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst myCluster = new mongodbatlas.Cluster(\"myCluster\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    diskSizeGb: 5,\n    providerName: \"AWS\",\n    providerRegionName: \"EU_WEST_2\",\n    providerInstanceSizeName: \"M10\",\n    cloudBackup: true,\n});\n// enable cloud backup snapshots\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    projectId: myCluster.projectId,\n    clusterName: myCluster.name,\n    description: \"myDescription\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", {\n    projectId: testCloudProviderSnapshot.projectId,\n    clusterName: testCloudProviderSnapshot.clusterName,\n    snapshotId: testCloudProviderSnapshot.snapshotId,\n    deliveryType: [{\n        download: true,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nmy_cluster = mongodbatlas.Cluster(\"myCluster\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    disk_size_gb=5,\n    provider_name=\"AWS\",\n    provider_region_name=\"EU_WEST_2\",\n    provider_instance_size_name=\"M10\",\n    cloud_backup=True)\n# enable cloud backup snapshots\ntest_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\",\n    project_id=my_cluster.project_id,\n    cluster_name=my_cluster.name,\n    description=\"myDescription\",\n    retention_in_days=1)\ntest_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\",\n    project_id=test_cloud_provider_snapshot.project_id,\n    cluster_name=test_cloud_provider_snapshot.cluster_name,\n    snapshot_id=test_cloud_provider_snapshot.snapshot_id,\n    delivery_type=[{\n        \"download\": True,\n    }])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myCluster = new Mongodbatlas.Cluster(\"myCluster\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            DiskSizeGb = 5,\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"EU_WEST_2\",\n            ProviderInstanceSizeName = \"M10\",\n            CloudBackup = true,\n        });\n        // enable cloud backup snapshots\n        var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", new Mongodbatlas.CloudProviderSnapshotArgs\n        {\n            ProjectId = myCluster.ProjectId,\n            ClusterName = myCluster.Name,\n            Description = \"myDescription\",\n            RetentionInDays = 1,\n        });\n        var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs\n        {\n            ProjectId = testCloudProviderSnapshot.ProjectId,\n            ClusterName = testCloudProviderSnapshot.ClusterName,\n            SnapshotId = testCloudProviderSnapshot.SnapshotId,\n            DeliveryType = \n            {\n                \n                {\n                    { \"download\", true },\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyCluster, err := mongodbatlas.NewCluster(ctx, \"myCluster\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:                pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(5),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderRegionName:       pulumi.String(\"EU_WEST_2\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M10\"),\n\t\t\tCloudBackup:              pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, \"testCloudProviderSnapshot\", \u0026mongodbatlas.CloudProviderSnapshotArgs{\n\t\t\tProjectId:       myCluster.ProjectId,\n\t\t\tClusterName:     myCluster.Name,\n\t\t\tDescription:     pulumi.String(\"myDescription\"),\n\t\t\tRetentionInDays: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, \"testCloudProviderSnapshotRestoreJob\", \u0026mongodbatlas.CloudProviderSnapshotRestoreJobArgs{\n\t\t\tProjectId:   testCloudProviderSnapshot.ProjectId,\n\t\t\tClusterName: testCloudProviderSnapshot.ClusterName,\n\t\t\tSnapshotId:  testCloudProviderSnapshot.SnapshotId,\n\t\t\tDeliveryType: pulumi.StringMap{\n\t\t\t\tpulumi.String{\n\t\t\t\t\tDownload: true,\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/) ",
+            "description": "**WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot`\n\n`mongodbatlas.CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.\nOn-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst myCluster = new mongodbatlas.Cluster(\"myCluster\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    diskSizeGb: 5,\n    providerName: \"AWS\",\n    providerRegionName: \"EU_WEST_2\",\n    providerInstanceSizeName: \"M10\",\n    cloudBackup: true,\n});\n// enable cloud backup snapshots\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    projectId: myCluster.projectId,\n    clusterName: myCluster.name,\n    description: \"myDescription\",\n    retentionInDays: 1,\n    timeout: \"10m\",\n});\nconst testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", {\n    projectId: testCloudProviderSnapshot.projectId,\n    clusterName: testCloudProviderSnapshot.clusterName,\n    snapshotId: testCloudProviderSnapshot.snapshotId,\n    deliveryType: [{\n        download: true,\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nmy_cluster = mongodbatlas.Cluster(\"myCluster\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    disk_size_gb=5,\n    provider_name=\"AWS\",\n    provider_region_name=\"EU_WEST_2\",\n    provider_instance_size_name=\"M10\",\n    cloud_backup=True)\n# enable cloud backup snapshots\ntest_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\",\n    project_id=my_cluster.project_id,\n    cluster_name=my_cluster.name,\n    description=\"myDescription\",\n    retention_in_days=1,\n    timeout=\"10m\")\ntest_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\",\n    project_id=test_cloud_provider_snapshot.project_id,\n    cluster_name=test_cloud_provider_snapshot.cluster_name,\n    snapshot_id=test_cloud_provider_snapshot.snapshot_id,\n    delivery_type=[{\n        \"download\": True,\n    }])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myCluster = new Mongodbatlas.Cluster(\"myCluster\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            DiskSizeGb = 5,\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"EU_WEST_2\",\n            ProviderInstanceSizeName = \"M10\",\n            CloudBackup = true,\n        });\n        // enable cloud backup snapshots\n        var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", new Mongodbatlas.CloudProviderSnapshotArgs\n        {\n            ProjectId = myCluster.ProjectId,\n            ClusterName = myCluster.Name,\n            Description = \"myDescription\",\n            RetentionInDays = 1,\n            Timeout = \"10m\",\n        });\n        var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs\n        {\n            ProjectId = testCloudProviderSnapshot.ProjectId,\n            ClusterName = testCloudProviderSnapshot.ClusterName,\n            SnapshotId = testCloudProviderSnapshot.SnapshotId,\n            DeliveryType = \n            {\n                \n                {\n                    { \"download\", true },\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyCluster, err := mongodbatlas.NewCluster(ctx, \"myCluster\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:                pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(5),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderRegionName:       pulumi.String(\"EU_WEST_2\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M10\"),\n\t\t\tCloudBackup:              pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, \"testCloudProviderSnapshot\", \u0026mongodbatlas.CloudProviderSnapshotArgs{\n\t\t\tProjectId:       myCluster.ProjectId,\n\t\t\tClusterName:     myCluster.Name,\n\t\t\tDescription:     pulumi.String(\"myDescription\"),\n\t\t\tRetentionInDays: pulumi.Int(1),\n\t\t\tTimeout:         pulumi.String(\"10m\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, \"testCloudProviderSnapshotRestoreJob\", \u0026mongodbatlas.CloudProviderSnapshotRestoreJobArgs{\n\t\t\tProjectId:   testCloudProviderSnapshot.ProjectId,\n\t\t\tClusterName: testCloudProviderSnapshot.ClusterName,\n\t\t\tSnapshotId:  testCloudProviderSnapshot.SnapshotId,\n\t\t\tDeliveryType: pulumi.StringMap{\n\t\t\t\tpulumi.String{\n\t\t\t\t\tDownload: true,\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/) ",
             "properties": {
                 "clusterName": {
                     "type": "string",
@@ -9014,6 +9246,10 @@
                     "type": "integer",
                     "description": "Specifies the size of the snapshot in bytes.\n"
                 },
+                "timeout": {
+                    "type": "string",
+                    "description": "The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`\n"
+                },
                 "type": {
                     "type": "string",
                     "description": "Specifies the type of cluster: replicaSet or shardedCluster.\n"
@@ -9050,6 +9286,10 @@
                 "retentionInDays": {
                     "type": "integer",
                     "description": "The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.\n"
+                },
+                "timeout": {
+                    "type": "string",
+                    "description": "The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`\n"
                 }
             },
             "requiredInputs": [
@@ -9108,6 +9348,10 @@
                     "storageSizeBytes": {
                         "type": "integer",
                         "description": "Specifies the size of the snapshot in bytes.\n"
+                    },
+                    "timeout": {
+                        "type": "string",
+                        "description": "The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`\n"
                     },
                     "type": {
                         "type": "string",
@@ -9256,7 +9500,7 @@
             }
         },
         "mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob": {
-            "description": "`mongodbatlas.CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types: \n* **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.\n\n* **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.\n\n* **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.\n\n\u003e **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Example automated delivery type.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst myCluster = new mongodbatlas.Cluster(\"myCluster\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    diskSizeGb: 5,\n    providerName: \"AWS\",\n    providerRegionName: \"EU_WEST_2\",\n    providerInstanceSizeName: \"M10\",\n    cloudBackup: true,\n});\n// enable cloud backup snapshots\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    projectId: myCluster.projectId,\n    clusterName: myCluster.name,\n    description: \"myDescription\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", {\n    projectId: testCloudProviderSnapshot.projectId,\n    clusterName: testCloudProviderSnapshot.clusterName,\n    snapshotId: testCloudProviderSnapshot.snapshotId,\n    deliveryTypeConfig: {\n        automated: true,\n        targetClusterName: \"MyCluster\",\n        targetProjectId: \"5cf5a45a9ccf6400e60981b6\",\n    },\n}, {\n    dependsOn: [testCloudProviderSnapshot],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nmy_cluster = mongodbatlas.Cluster(\"myCluster\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    disk_size_gb=5,\n    provider_name=\"AWS\",\n    provider_region_name=\"EU_WEST_2\",\n    provider_instance_size_name=\"M10\",\n    cloud_backup=True)\n# enable cloud backup snapshots\ntest_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\",\n    project_id=my_cluster.project_id,\n    cluster_name=my_cluster.name,\n    description=\"myDescription\",\n    retention_in_days=1)\ntest_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\",\n    project_id=test_cloud_provider_snapshot.project_id,\n    cluster_name=test_cloud_provider_snapshot.cluster_name,\n    snapshot_id=test_cloud_provider_snapshot.snapshot_id,\n    delivery_type_config=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs(\n        automated=True,\n        target_cluster_name=\"MyCluster\",\n        target_project_id=\"5cf5a45a9ccf6400e60981b6\",\n    ),\n    opts=pulumi.ResourceOptions(depends_on=[test_cloud_provider_snapshot]))\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myCluster = new Mongodbatlas.Cluster(\"myCluster\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            DiskSizeGb = 5,\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"EU_WEST_2\",\n            ProviderInstanceSizeName = \"M10\",\n            CloudBackup = true,\n        });\n        // enable cloud backup snapshots\n        var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", new Mongodbatlas.CloudProviderSnapshotArgs\n        {\n            ProjectId = myCluster.ProjectId,\n            ClusterName = myCluster.Name,\n            Description = \"myDescription\",\n            RetentionInDays = 1,\n        });\n        var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs\n        {\n            ProjectId = testCloudProviderSnapshot.ProjectId,\n            ClusterName = testCloudProviderSnapshot.ClusterName,\n            SnapshotId = testCloudProviderSnapshot.SnapshotId,\n            DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs\n            {\n                Automated = true,\n                TargetClusterName = \"MyCluster\",\n                TargetProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            },\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                testCloudProviderSnapshot,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyCluster, err := mongodbatlas.NewCluster(ctx, \"myCluster\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:                pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(5),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderRegionName:       pulumi.String(\"EU_WEST_2\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M10\"),\n\t\t\tCloudBackup:              pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, \"testCloudProviderSnapshot\", \u0026mongodbatlas.CloudProviderSnapshotArgs{\n\t\t\tProjectId:       myCluster.ProjectId,\n\t\t\tClusterName:     myCluster.Name,\n\t\t\tDescription:     pulumi.String(\"myDescription\"),\n\t\t\tRetentionInDays: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, \"testCloudProviderSnapshotRestoreJob\", \u0026mongodbatlas.CloudProviderSnapshotRestoreJobArgs{\n\t\t\tProjectId:   testCloudProviderSnapshot.ProjectId,\n\t\t\tClusterName: testCloudProviderSnapshot.ClusterName,\n\t\t\tSnapshotId:  testCloudProviderSnapshot.SnapshotId,\n\t\t\tDeliveryTypeConfig: \u0026CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{\n\t\t\t\tAutomated:         pulumi.Bool(true),\n\t\t\t\tTargetClusterName: pulumi.String(\"MyCluster\"),\n\t\t\t\tTargetProjectId:   pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\ttestCloudProviderSnapshot,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example download delivery type.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst myCluster = new mongodbatlas.Cluster(\"myCluster\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    diskSizeGb: 5,\n    providerName: \"AWS\",\n    providerRegionName: \"EU_WEST_2\",\n    providerInstanceSizeName: \"M10\",\n    cloudBackup: true,\n});\n// enable cloud backup snapshots\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    projectId: myCluster.projectId,\n    clusterName: myCluster.name,\n    description: \"myDescription\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", {\n    projectId: testCloudProviderSnapshot.projectId,\n    clusterName: testCloudProviderSnapshot.clusterName,\n    snapshotId: testCloudProviderSnapshot.snapshotId,\n    deliveryTypeConfig: {\n        download: true,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nmy_cluster = mongodbatlas.Cluster(\"myCluster\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    disk_size_gb=5,\n    provider_name=\"AWS\",\n    provider_region_name=\"EU_WEST_2\",\n    provider_instance_size_name=\"M10\",\n    cloud_backup=True)\n# enable cloud backup snapshots\ntest_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\",\n    project_id=my_cluster.project_id,\n    cluster_name=my_cluster.name,\n    description=\"myDescription\",\n    retention_in_days=1)\ntest_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\",\n    project_id=test_cloud_provider_snapshot.project_id,\n    cluster_name=test_cloud_provider_snapshot.cluster_name,\n    snapshot_id=test_cloud_provider_snapshot.snapshot_id,\n    delivery_type_config=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs(\n        download=True,\n    ))\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myCluster = new Mongodbatlas.Cluster(\"myCluster\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            DiskSizeGb = 5,\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"EU_WEST_2\",\n            ProviderInstanceSizeName = \"M10\",\n            CloudBackup = true,\n        });\n        // enable cloud backup snapshots\n        var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", new Mongodbatlas.CloudProviderSnapshotArgs\n        {\n            ProjectId = myCluster.ProjectId,\n            ClusterName = myCluster.Name,\n            Description = \"myDescription\",\n            RetentionInDays = 1,\n        });\n        var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs\n        {\n            ProjectId = testCloudProviderSnapshot.ProjectId,\n            ClusterName = testCloudProviderSnapshot.ClusterName,\n            SnapshotId = testCloudProviderSnapshot.SnapshotId,\n            DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs\n            {\n                Download = true,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyCluster, err := mongodbatlas.NewCluster(ctx, \"myCluster\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:                pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(5),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderRegionName:       pulumi.String(\"EU_WEST_2\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M10\"),\n\t\t\tCloudBackup:              pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, \"testCloudProviderSnapshot\", \u0026mongodbatlas.CloudProviderSnapshotArgs{\n\t\t\tProjectId:       myCluster.ProjectId,\n\t\t\tClusterName:     myCluster.Name,\n\t\t\tDescription:     pulumi.String(\"myDescription\"),\n\t\t\tRetentionInDays: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, \"testCloudProviderSnapshotRestoreJob\", \u0026mongodbatlas.CloudProviderSnapshotRestoreJobArgs{\n\t\t\tProjectId:   testCloudProviderSnapshot.ProjectId,\n\t\t\tClusterName: testCloudProviderSnapshot.ClusterName,\n\t\t\tSnapshotId:  testCloudProviderSnapshot.SnapshotId,\n\t\t\tDeliveryTypeConfig: \u0026CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{\n\t\t\t\tDownload: pulumi.Bool(true),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/) ",
+            "description": "**WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot_restore_job`\n\n`mongodbatlas.CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types: \n* **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.\n\n* **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.\n\n* **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.\n\n\u003e **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Example automated delivery type.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst myCluster = new mongodbatlas.Cluster(\"myCluster\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    diskSizeGb: 5,\n    providerName: \"AWS\",\n    providerRegionName: \"EU_WEST_2\",\n    providerInstanceSizeName: \"M10\",\n    cloudBackup: true,\n});\n// enable cloud backup snapshots\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    projectId: myCluster.projectId,\n    clusterName: myCluster.name,\n    description: \"myDescription\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", {\n    projectId: testCloudProviderSnapshot.projectId,\n    clusterName: testCloudProviderSnapshot.clusterName,\n    snapshotId: testCloudProviderSnapshot.snapshotId,\n    deliveryTypeConfig: {\n        automated: true,\n        targetClusterName: \"MyCluster\",\n        targetProjectId: \"5cf5a45a9ccf6400e60981b6\",\n    },\n}, {\n    dependsOn: [testCloudProviderSnapshot],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nmy_cluster = mongodbatlas.Cluster(\"myCluster\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    disk_size_gb=5,\n    provider_name=\"AWS\",\n    provider_region_name=\"EU_WEST_2\",\n    provider_instance_size_name=\"M10\",\n    cloud_backup=True)\n# enable cloud backup snapshots\ntest_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\",\n    project_id=my_cluster.project_id,\n    cluster_name=my_cluster.name,\n    description=\"myDescription\",\n    retention_in_days=1)\ntest_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\",\n    project_id=test_cloud_provider_snapshot.project_id,\n    cluster_name=test_cloud_provider_snapshot.cluster_name,\n    snapshot_id=test_cloud_provider_snapshot.snapshot_id,\n    delivery_type_config=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs(\n        automated=True,\n        target_cluster_name=\"MyCluster\",\n        target_project_id=\"5cf5a45a9ccf6400e60981b6\",\n    ),\n    opts=pulumi.ResourceOptions(depends_on=[test_cloud_provider_snapshot]))\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myCluster = new Mongodbatlas.Cluster(\"myCluster\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            DiskSizeGb = 5,\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"EU_WEST_2\",\n            ProviderInstanceSizeName = \"M10\",\n            CloudBackup = true,\n        });\n        // enable cloud backup snapshots\n        var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", new Mongodbatlas.CloudProviderSnapshotArgs\n        {\n            ProjectId = myCluster.ProjectId,\n            ClusterName = myCluster.Name,\n            Description = \"myDescription\",\n            RetentionInDays = 1,\n        });\n        var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs\n        {\n            ProjectId = testCloudProviderSnapshot.ProjectId,\n            ClusterName = testCloudProviderSnapshot.ClusterName,\n            SnapshotId = testCloudProviderSnapshot.SnapshotId,\n            DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs\n            {\n                Automated = true,\n                TargetClusterName = \"MyCluster\",\n                TargetProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            },\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                testCloudProviderSnapshot,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyCluster, err := mongodbatlas.NewCluster(ctx, \"myCluster\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:                pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(5),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderRegionName:       pulumi.String(\"EU_WEST_2\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M10\"),\n\t\t\tCloudBackup:              pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, \"testCloudProviderSnapshot\", \u0026mongodbatlas.CloudProviderSnapshotArgs{\n\t\t\tProjectId:       myCluster.ProjectId,\n\t\t\tClusterName:     myCluster.Name,\n\t\t\tDescription:     pulumi.String(\"myDescription\"),\n\t\t\tRetentionInDays: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, \"testCloudProviderSnapshotRestoreJob\", \u0026mongodbatlas.CloudProviderSnapshotRestoreJobArgs{\n\t\t\tProjectId:   testCloudProviderSnapshot.ProjectId,\n\t\t\tClusterName: testCloudProviderSnapshot.ClusterName,\n\t\t\tSnapshotId:  testCloudProviderSnapshot.SnapshotId,\n\t\t\tDeliveryTypeConfig: \u0026CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{\n\t\t\t\tAutomated:         pulumi.Bool(true),\n\t\t\t\tTargetClusterName: pulumi.String(\"MyCluster\"),\n\t\t\t\tTargetProjectId:   pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\ttestCloudProviderSnapshot,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example download delivery type.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst myCluster = new mongodbatlas.Cluster(\"myCluster\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    diskSizeGb: 5,\n    providerName: \"AWS\",\n    providerRegionName: \"EU_WEST_2\",\n    providerInstanceSizeName: \"M10\",\n    cloudBackup: true,\n});\n// enable cloud backup snapshots\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    projectId: myCluster.projectId,\n    clusterName: myCluster.name,\n    description: \"myDescription\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", {\n    projectId: testCloudProviderSnapshot.projectId,\n    clusterName: testCloudProviderSnapshot.clusterName,\n    snapshotId: testCloudProviderSnapshot.snapshotId,\n    deliveryTypeConfig: {\n        download: true,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\nmy_cluster = mongodbatlas.Cluster(\"myCluster\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    disk_size_gb=5,\n    provider_name=\"AWS\",\n    provider_region_name=\"EU_WEST_2\",\n    provider_instance_size_name=\"M10\",\n    cloud_backup=True)\n# enable cloud backup snapshots\ntest_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\",\n    project_id=my_cluster.project_id,\n    cluster_name=my_cluster.name,\n    description=\"myDescription\",\n    retention_in_days=1)\ntest_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\",\n    project_id=test_cloud_provider_snapshot.project_id,\n    cluster_name=test_cloud_provider_snapshot.cluster_name,\n    snapshot_id=test_cloud_provider_snapshot.snapshot_id,\n    delivery_type_config=mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs(\n        download=True,\n    ))\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myCluster = new Mongodbatlas.Cluster(\"myCluster\", new Mongodbatlas.ClusterArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            DiskSizeGb = 5,\n            ProviderName = \"AWS\",\n            ProviderRegionName = \"EU_WEST_2\",\n            ProviderInstanceSizeName = \"M10\",\n            CloudBackup = true,\n        });\n        // enable cloud backup snapshots\n        var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", new Mongodbatlas.CloudProviderSnapshotArgs\n        {\n            ProjectId = myCluster.ProjectId,\n            ClusterName = myCluster.Name,\n            Description = \"myDescription\",\n            RetentionInDays = 1,\n        });\n        var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs\n        {\n            ProjectId = testCloudProviderSnapshot.ProjectId,\n            ClusterName = testCloudProviderSnapshot.ClusterName,\n            SnapshotId = testCloudProviderSnapshot.SnapshotId,\n            DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs\n            {\n                Download = true,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyCluster, err := mongodbatlas.NewCluster(ctx, \"myCluster\", \u0026mongodbatlas.ClusterArgs{\n\t\t\tProjectId:                pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tDiskSizeGb:               pulumi.Float64(5),\n\t\t\tProviderName:             pulumi.String(\"AWS\"),\n\t\t\tProviderRegionName:       pulumi.String(\"EU_WEST_2\"),\n\t\t\tProviderInstanceSizeName: pulumi.String(\"M10\"),\n\t\t\tCloudBackup:              pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, \"testCloudProviderSnapshot\", \u0026mongodbatlas.CloudProviderSnapshotArgs{\n\t\t\tProjectId:       myCluster.ProjectId,\n\t\t\tClusterName:     myCluster.Name,\n\t\t\tDescription:     pulumi.String(\"myDescription\"),\n\t\t\tRetentionInDays: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, \"testCloudProviderSnapshotRestoreJob\", \u0026mongodbatlas.CloudProviderSnapshotRestoreJobArgs{\n\t\t\tProjectId:   testCloudProviderSnapshot.ProjectId,\n\t\t\tClusterName: testCloudProviderSnapshot.ClusterName,\n\t\t\tSnapshotId:  testCloudProviderSnapshot.SnapshotId,\n\t\t\tDeliveryTypeConfig: \u0026CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{\n\t\t\t\tDownload: pulumi.Bool(true),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/) ",
             "properties": {
                 "cancelled": {
                     "type": "boolean",
@@ -9505,7 +9749,7 @@
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
-                    "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.\n"
+                    "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.\n"
                 },
                 "mongoDbVersion": {
                     "type": "string",
@@ -9713,7 +9957,7 @@
                 },
                 "mongoDbMajorVersion": {
                     "type": "string",
-                    "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.\n"
+                    "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.\n"
                 },
                 "name": {
                     "type": "string",
@@ -9867,7 +10111,7 @@
                     },
                     "mongoDbMajorVersion": {
                         "type": "string",
-                        "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.\n"
+                        "description": "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.\n"
                     },
                     "mongoDbVersion": {
                         "type": "string",
@@ -9981,7 +10225,7 @@
             }
         },
         "mongodbatlas:index/customDbRole:CustomDbRole": {
-            "description": "`mongodbatlas.CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.\n\n\u003e **IMPORTANT** Custom roles cannot use actions unavailable to any cluster version in your project. Custom roles are defined at the project level, and must be compatible with each MongoDB version used by your project’s clusters. If you have a cluster in your project with MongoDB 3.4, you cannot create a custom role that uses actions introduced in MongoDB 3.6, such as useUUID.\n\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testRole = new mongodbatlas.CustomDbRole(\"test_role\", {\n    actions: [\n        {\n            action: \"UPDATE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n        {\n            action: \"INSERT\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n        {\n            action: \"REMOVE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n    ],\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    roleName: \"myCustomRole\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_role = mongodbatlas.CustomDbRole(\"testRole\",\n    actions=[\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"UPDATE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"INSERT\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"REMOVE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n    ],\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    role_name=\"myCustomRole\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testRole = new Mongodbatlas.CustomDbRole(\"testRole\", new Mongodbatlas.CustomDbRoleArgs\n        {\n            Actions = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"UPDATE\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"INSERT\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"REMOVE\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n            },\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            RoleName = \"myCustomRole\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCustomDbRole(ctx, \"testRole\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tActions: CustomDbRoleActionArray{\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"UPDATE\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"INSERT\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"REMOVE\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tRoleName:  pulumi.String(\"myCustomRole\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### With Inherited Roles\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst inheritedRoleOne = new mongodbatlas.CustomDbRole(\"inheritedRoleOne\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    roleName: \"insertRole\",\n    actions: [{\n        action: \"INSERT\",\n        resources: [{\n            collectionName: \"\",\n            databaseName: \"anyDatabase\",\n        }],\n    }],\n});\nconst inheritedRoleTwo = new mongodbatlas.CustomDbRole(\"inheritedRoleTwo\", {\n    projectId: inheritedRoleOne.projectId,\n    roleName: \"statusServerRole\",\n    actions: [{\n        action: \"SERVER_STATUS\",\n        resources: [{\n            cluster: true,\n        }],\n    }],\n});\nconst testRole = new mongodbatlas.CustomDbRole(\"testRole\", {\n    projectId: inheritedRoleOne.projectId,\n    roleName: \"myCustomRole\",\n    actions: [\n        {\n            action: \"UPDATE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n        {\n            action: \"REMOVE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n    ],\n    inheritedRoles: [\n        {\n            roleName: inheritedRoleOne.roleName,\n            databaseName: \"admin\",\n        },\n        {\n            roleName: inheritedRoleTwo.roleName,\n            databaseName: \"admin\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ninherited_role_one = mongodbatlas.CustomDbRole(\"inheritedRoleOne\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    role_name=\"insertRole\",\n    actions=[mongodbatlas.CustomDbRoleActionArgs(\n        action=\"INSERT\",\n        resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n            collection_name=\"\",\n            database_name=\"anyDatabase\",\n        )],\n    )])\ninherited_role_two = mongodbatlas.CustomDbRole(\"inheritedRoleTwo\",\n    project_id=inherited_role_one.project_id,\n    role_name=\"statusServerRole\",\n    actions=[mongodbatlas.CustomDbRoleActionArgs(\n        action=\"SERVER_STATUS\",\n        resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n            cluster=True,\n        )],\n    )])\ntest_role = mongodbatlas.CustomDbRole(\"testRole\",\n    project_id=inherited_role_one.project_id,\n    role_name=\"myCustomRole\",\n    actions=[\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"UPDATE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"REMOVE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n    ],\n    inherited_roles=[\n        mongodbatlas.CustomDbRoleInheritedRoleArgs(\n            role_name=inherited_role_one.role_name,\n            database_name=\"admin\",\n        ),\n        mongodbatlas.CustomDbRoleInheritedRoleArgs(\n            role_name=inherited_role_two.role_name,\n            database_name=\"admin\",\n        ),\n    ])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var inheritedRoleOne = new Mongodbatlas.CustomDbRole(\"inheritedRoleOne\", new Mongodbatlas.CustomDbRoleArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            RoleName = \"insertRole\",\n            Actions = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"INSERT\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n            },\n        });\n        var inheritedRoleTwo = new Mongodbatlas.CustomDbRole(\"inheritedRoleTwo\", new Mongodbatlas.CustomDbRoleArgs\n        {\n            ProjectId = inheritedRoleOne.ProjectId,\n            RoleName = \"statusServerRole\",\n            Actions = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"SERVER_STATUS\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            Cluster = true,\n                        },\n                    },\n                },\n            },\n        });\n        var testRole = new Mongodbatlas.CustomDbRole(\"testRole\", new Mongodbatlas.CustomDbRoleArgs\n        {\n            ProjectId = inheritedRoleOne.ProjectId,\n            RoleName = \"myCustomRole\",\n            Actions = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"UPDATE\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"REMOVE\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n            },\n            InheritedRoles = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs\n                {\n                    RoleName = inheritedRoleOne.RoleName,\n                    DatabaseName = \"admin\",\n                },\n                new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs\n                {\n                    RoleName = inheritedRoleTwo.RoleName,\n                    DatabaseName = \"admin\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, \"inheritedRoleOne\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tRoleName:  pulumi.String(\"insertRole\"),\n\t\t\tActions: CustomDbRoleActionArray{\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"INSERT\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tinheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, \"inheritedRoleTwo\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tProjectId: inheritedRoleOne.ProjectId,\n\t\t\tRoleName:  pulumi.String(\"statusServerRole\"),\n\t\t\tActions: CustomDbRoleActionArray{\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"SERVER_STATUS\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCluster: pulumi.Bool(true),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewCustomDbRole(ctx, \"testRole\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tProjectId: inheritedRoleOne.ProjectId,\n\t\t\tRoleName:  pulumi.String(\"myCustomRole\"),\n\t\t\tActions: CustomDbRoleActionArray{\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"UPDATE\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"REMOVE\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tInheritedRoles: CustomDbRoleInheritedRoleArray{\n\t\t\t\t\u0026CustomDbRoleInheritedRoleArgs{\n\t\t\t\t\tRoleName:     inheritedRoleOne.RoleName,\n\t\t\t\t\tDatabaseName: pulumi.String(\"admin\"),\n\t\t\t\t},\n\t\t\t\t\u0026CustomDbRoleInheritedRoleArgs{\n\t\t\t\t\tRoleName:     inheritedRoleTwo.RoleName,\n\t\t\t\t\tDatabaseName: pulumi.String(\"admin\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDatabase users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/) ",
+            "description": "`mongodbatlas.CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.\n\n\u003e **IMPORTANT**  You define custom roles at the project level for all clusters in the project. The `mongodbatlas.CustomDbRole` resource supports a subset of MongoDB privilege actions. For a complete list of [privilege actions](https://docs.mongodb.com/manual/reference/privilege-actions/) available for this resource, see [Custom Role actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions/). Custom roles must include actions that all project's clusters support, and that are compatible with each MongoDB version used by your project's clusters. For example, if your project has MongoDB 4.2 clusters, you can't create custom roles that use actions introduced in MongoDB 4.4.\n\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testRole = new mongodbatlas.CustomDbRole(\"test_role\", {\n    actions: [\n        {\n            action: \"UPDATE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n        {\n            action: \"INSERT\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n        {\n            action: \"REMOVE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n    ],\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    roleName: \"myCustomRole\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_role = mongodbatlas.CustomDbRole(\"testRole\",\n    actions=[\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"UPDATE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"INSERT\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"REMOVE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n    ],\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    role_name=\"myCustomRole\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testRole = new Mongodbatlas.CustomDbRole(\"testRole\", new Mongodbatlas.CustomDbRoleArgs\n        {\n            Actions = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"UPDATE\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"INSERT\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"REMOVE\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n            },\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            RoleName = \"myCustomRole\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewCustomDbRole(ctx, \"testRole\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tActions: CustomDbRoleActionArray{\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"UPDATE\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"INSERT\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"REMOVE\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tRoleName:  pulumi.String(\"myCustomRole\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n{{% /example %}}\n{{% example %}}\n### With Inherited Roles\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst inheritedRoleOne = new mongodbatlas.CustomDbRole(\"inheritedRoleOne\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    roleName: \"insertRole\",\n    actions: [{\n        action: \"INSERT\",\n        resources: [{\n            collectionName: \"\",\n            databaseName: \"anyDatabase\",\n        }],\n    }],\n});\nconst inheritedRoleTwo = new mongodbatlas.CustomDbRole(\"inheritedRoleTwo\", {\n    projectId: inheritedRoleOne.projectId,\n    roleName: \"statusServerRole\",\n    actions: [{\n        action: \"SERVER_STATUS\",\n        resources: [{\n            cluster: true,\n        }],\n    }],\n});\nconst testRole = new mongodbatlas.CustomDbRole(\"testRole\", {\n    projectId: inheritedRoleOne.projectId,\n    roleName: \"myCustomRole\",\n    actions: [\n        {\n            action: \"UPDATE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n        {\n            action: \"REMOVE\",\n            resources: [{\n                collectionName: \"\",\n                databaseName: \"anyDatabase\",\n            }],\n        },\n    ],\n    inheritedRoles: [\n        {\n            roleName: inheritedRoleOne.roleName,\n            databaseName: \"admin\",\n        },\n        {\n            roleName: inheritedRoleTwo.roleName,\n            databaseName: \"admin\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ninherited_role_one = mongodbatlas.CustomDbRole(\"inheritedRoleOne\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    role_name=\"insertRole\",\n    actions=[mongodbatlas.CustomDbRoleActionArgs(\n        action=\"INSERT\",\n        resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n            collection_name=\"\",\n            database_name=\"anyDatabase\",\n        )],\n    )])\ninherited_role_two = mongodbatlas.CustomDbRole(\"inheritedRoleTwo\",\n    project_id=inherited_role_one.project_id,\n    role_name=\"statusServerRole\",\n    actions=[mongodbatlas.CustomDbRoleActionArgs(\n        action=\"SERVER_STATUS\",\n        resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n            cluster=True,\n        )],\n    )])\ntest_role = mongodbatlas.CustomDbRole(\"testRole\",\n    project_id=inherited_role_one.project_id,\n    role_name=\"myCustomRole\",\n    actions=[\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"UPDATE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n        mongodbatlas.CustomDbRoleActionArgs(\n            action=\"REMOVE\",\n            resources=[mongodbatlas.CustomDbRoleActionResourceArgs(\n                collection_name=\"\",\n                database_name=\"anyDatabase\",\n            )],\n        ),\n    ],\n    inherited_roles=[\n        mongodbatlas.CustomDbRoleInheritedRoleArgs(\n            role_name=inherited_role_one.role_name,\n            database_name=\"admin\",\n        ),\n        mongodbatlas.CustomDbRoleInheritedRoleArgs(\n            role_name=inherited_role_two.role_name,\n            database_name=\"admin\",\n        ),\n    ])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var inheritedRoleOne = new Mongodbatlas.CustomDbRole(\"inheritedRoleOne\", new Mongodbatlas.CustomDbRoleArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            RoleName = \"insertRole\",\n            Actions = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"INSERT\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n            },\n        });\n        var inheritedRoleTwo = new Mongodbatlas.CustomDbRole(\"inheritedRoleTwo\", new Mongodbatlas.CustomDbRoleArgs\n        {\n            ProjectId = inheritedRoleOne.ProjectId,\n            RoleName = \"statusServerRole\",\n            Actions = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"SERVER_STATUS\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            Cluster = true,\n                        },\n                    },\n                },\n            },\n        });\n        var testRole = new Mongodbatlas.CustomDbRole(\"testRole\", new Mongodbatlas.CustomDbRoleArgs\n        {\n            ProjectId = inheritedRoleOne.ProjectId,\n            RoleName = \"myCustomRole\",\n            Actions = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"UPDATE\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n                new Mongodbatlas.Inputs.CustomDbRoleActionArgs\n                {\n                    Action = \"REMOVE\",\n                    Resources = \n                    {\n                        new Mongodbatlas.Inputs.CustomDbRoleActionResourceArgs\n                        {\n                            CollectionName = \"\",\n                            DatabaseName = \"anyDatabase\",\n                        },\n                    },\n                },\n            },\n            InheritedRoles = \n            {\n                new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs\n                {\n                    RoleName = inheritedRoleOne.RoleName,\n                    DatabaseName = \"admin\",\n                },\n                new Mongodbatlas.Inputs.CustomDbRoleInheritedRoleArgs\n                {\n                    RoleName = inheritedRoleTwo.RoleName,\n                    DatabaseName = \"admin\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tinheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, \"inheritedRoleOne\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tRoleName:  pulumi.String(\"insertRole\"),\n\t\t\tActions: CustomDbRoleActionArray{\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"INSERT\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tinheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, \"inheritedRoleTwo\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tProjectId: inheritedRoleOne.ProjectId,\n\t\t\tRoleName:  pulumi.String(\"statusServerRole\"),\n\t\t\tActions: CustomDbRoleActionArray{\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"SERVER_STATUS\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCluster: pulumi.Bool(true),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewCustomDbRole(ctx, \"testRole\", \u0026mongodbatlas.CustomDbRoleArgs{\n\t\t\tProjectId: inheritedRoleOne.ProjectId,\n\t\t\tRoleName:  pulumi.String(\"myCustomRole\"),\n\t\t\tActions: CustomDbRoleActionArray{\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"UPDATE\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026CustomDbRoleActionArgs{\n\t\t\t\t\tAction: pulumi.String(\"REMOVE\"),\n\t\t\t\t\tResources: CustomDbRoleActionResourceArray{\n\t\t\t\t\t\t\u0026CustomDbRoleActionResourceArgs{\n\t\t\t\t\t\t\tCollectionName: pulumi.String(\"\"),\n\t\t\t\t\t\t\tDatabaseName:   pulumi.String(\"anyDatabase\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tInheritedRoles: CustomDbRoleInheritedRoleArray{\n\t\t\t\t\u0026CustomDbRoleInheritedRoleArgs{\n\t\t\t\t\tRoleName:     inheritedRoleOne.RoleName,\n\t\t\t\t\tDatabaseName: pulumi.String(\"admin\"),\n\t\t\t\t},\n\t\t\t\t\u0026CustomDbRoleInheritedRoleArgs{\n\t\t\t\t\tRoleName:     inheritedRoleTwo.RoleName,\n\t\t\t\t\tDatabaseName: pulumi.String(\"admin\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nDatabase users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/) ",
             "properties": {
                 "actions": {
                     "type": "array",
@@ -12025,20 +12269,27 @@
         "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint": {
             "description": "`mongodbatlas.PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a Private Endpoint Service that can be created in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\u003e **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.  \n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.PrivateLinkEndpoint(\"test\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    providerName: \"AWS/AZURE\",\n    region: \"us-east-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.PrivateLinkEndpoint(\"test\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    provider_name=\"AWS/AZURE\",\n    region=\"us-east-1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.PrivateLinkEndpoint(\"test\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            ProviderName = \"AWS/AZURE\",\n            Region = \"us-east-1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"test\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS/AZURE\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPrivate Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//) ",
             "properties": {
+                "endpointGroupNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "GCP network endpoint groups corresponding to the Private Service Connect endpoint service.\n"
+                },
                 "endpointServiceName": {
                     "type": "string",
                     "description": "Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.\n"
                 },
                 "errorMessage": {
                     "type": "string",
-                    "description": "Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.\n"
+                    "description": "Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.\nAWS:\n"
                 },
                 "interfaceEndpoints": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.\n"
+                    "description": "Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.\nAZURE:\n"
                 },
                 "privateEndpoints": {
                     "type": "array",
@@ -12053,11 +12304,10 @@
                 },
                 "privateLinkServiceName": {
                     "type": "string",
-                    "description": "Name of the Azure Private Link Service that Atlas manages.\n"
+                    "description": "Name of the Azure Private Link Service that Atlas manages.\nGCP:\n"
                 },
                 "privateLinkServiceResourceId": {
-                    "type": "string",
-                    "description": "Resource ID of the Azure Private Link Service that Atlas manages.\n"
+                    "type": "string"
                 },
                 "projectId": {
                     "type": "string",
@@ -12065,11 +12315,22 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.\n"
+                    "description": "Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "Cloud provider region in which you want to create the private endpoint connection.\nAccepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)\n"
+                    "description": "Cloud provider region in which you want to create the private endpoint connection.\nAccepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)\n"
+                },
+                "regionName": {
+                    "type": "string",
+                    "description": "GCP region for the Private Service Connect endpoint service.\n"
+                },
+                "serviceAttachmentNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.\n"
                 },
                 "status": {
                     "type": "string",
@@ -12077,6 +12338,7 @@
                 }
             },
             "required": [
+                "endpointGroupNames",
                 "endpointServiceName",
                 "errorMessage",
                 "interfaceEndpoints",
@@ -12087,6 +12349,8 @@
                 "projectId",
                 "providerName",
                 "region",
+                "regionName",
+                "serviceAttachmentNames",
                 "status"
             ],
             "inputProperties": {
@@ -12096,11 +12360,11 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.\n"
+                    "description": "Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "Cloud provider region in which you want to create the private endpoint connection.\nAccepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)\n"
+                    "description": "Cloud provider region in which you want to create the private endpoint connection.\nAccepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)\n"
                 }
             },
             "requiredInputs": [
@@ -12111,20 +12375,27 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering PrivateLinkEndpoint resources.\n",
                 "properties": {
+                    "endpointGroupNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "GCP network endpoint groups corresponding to the Private Service Connect endpoint service.\n"
+                    },
                     "endpointServiceName": {
                         "type": "string",
                         "description": "Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.\n"
                     },
                     "errorMessage": {
                         "type": "string",
-                        "description": "Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.\n"
+                        "description": "Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.\nAWS:\n"
                     },
                     "interfaceEndpoints": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.\n"
+                        "description": "Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.\nAZURE:\n"
                     },
                     "privateEndpoints": {
                         "type": "array",
@@ -12139,11 +12410,10 @@
                     },
                     "privateLinkServiceName": {
                         "type": "string",
-                        "description": "Name of the Azure Private Link Service that Atlas manages.\n"
+                        "description": "Name of the Azure Private Link Service that Atlas manages.\nGCP:\n"
                     },
                     "privateLinkServiceResourceId": {
-                        "type": "string",
-                        "description": "Resource ID of the Azure Private Link Service that Atlas manages.\n"
+                        "type": "string"
                     },
                     "projectId": {
                         "type": "string",
@@ -12151,11 +12421,22 @@
                     },
                     "providerName": {
                         "type": "string",
-                        "description": "Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS` or `AZURE`.\n"
+                        "description": "Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.\n"
                     },
                     "region": {
                         "type": "string",
-                        "description": "Cloud provider region in which you want to create the private endpoint connection.\nAccepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws) and [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure)\n"
+                        "description": "Cloud provider region in which you want to create the private endpoint connection.\nAccepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)\n"
+                    },
+                    "regionName": {
+                        "type": "string",
+                        "description": "GCP region for the Private Service Connect endpoint service.\n"
+                    },
+                    "serviceAttachmentNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.\n"
                     },
                     "status": {
                         "type": "string",
@@ -12166,7 +12447,7 @@
             }
         },
         "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService": {
-            "description": "`mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n## Example with AWS\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfeService\", {\n    vpcId: \"vpc-7fc0a543\",\n    serviceName: testPrivateLinkEndpoint.endpointServiceName,\n    vpcEndpointType: \"Interface\",\n    subnetIds: [\"subnet-de0406d2\"],\n    securityGroupIds: [\"sg-3f238186\"],\n});\nconst testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", {\n    projectId: testPrivateLinkEndpoint.projectId,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    endpointServiceId: ptfeService.id,\n    providerName: \"AWS\",\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    vpc_id=\"vpc-7fc0a543\",\n    service_name=test_private_link_endpoint.endpoint_service_name,\n    vpc_endpoint_type=\"Interface\",\n    subnet_ids=[\"subnet-de0406d2\"],\n    security_group_ids=[\"sg-3f238186\"])\ntest_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\",\n    project_id=test_private_link_endpoint.project_id,\n    private_link_id=test_private_link_endpoint.private_link_id,\n    endpoint_service_id=ptfe_service.id,\n    provider_name=\"AWS\")\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            VpcId = \"vpc-7fc0a543\",\n            ServiceName = testPrivateLinkEndpoint.EndpointServiceName,\n            VpcEndpointType = \"Interface\",\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n        });\n        var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", new Mongodbatlas.PrivateLinkEndpointServiceArgs\n        {\n            ProjectId = testPrivateLinkEndpoint.ProjectId,\n            PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,\n            EndpointServiceId = ptfeService.Id,\n            ProviderName = \"AWS\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"testPrivateLinkEndpoint\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t\tServiceName:     testPrivateLinkEndpoint.EndpointServiceName,\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, \"testPrivateLinkEndpointService\", \u0026mongodbatlas.PrivateLinkEndpointServiceArgs{\n\t\t\tProjectId:         testPrivateLinkEndpoint.ProjectId,\n\t\t\tPrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,\n\t\t\tEndpointServiceId: ptfeService.ID(),\n\t\t\tProviderName:      pulumi.String(\"AWS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n## Example with Azure\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as azure from \"@pulumi/azure\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", {\n    projectId: _var.project_id,\n    providerName: \"AZURE\",\n    region: \"eastus2\",\n});\nconst testEndpoint = new azure.privatelink.Endpoint(\"testEndpoint\", {\n    location: data.azurerm_resource_group.test.location,\n    resourceGroupName: _var.resource_group_name,\n    subnetId: azurerm_subnet.test.id,\n    privateServiceConnection: {\n        name: testPrivateLinkEndpoint.privateLinkServiceName,\n        privateConnectionResourceId: testPrivateLinkEndpoint.privateLinkServiceResourceId,\n        isManualConnection: true,\n        requestMessage: \"Azure Private Link test\",\n    },\n});\nconst testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", {\n    projectId: testPrivateLinkEndpoint.projectId,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    endpointServiceId: testEndpoint.id,\n    privateEndpointIpAddress: testEndpoint.privateServiceConnection.apply(privateServiceConnection =\u003e privateServiceConnection.privateIpAddress),\n    providerName: \"AZURE\",\n});\n```\n```python\nimport pulumi\nimport pulumi_azure as azure\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\",\n    project_id=var[\"project_id\"],\n    provider_name=\"AZURE\",\n    region=\"eastus2\")\ntest_endpoint = azure.privatelink.Endpoint(\"testEndpoint\",\n    location=data[\"azurerm_resource_group\"][\"test\"][\"location\"],\n    resource_group_name=var[\"resource_group_name\"],\n    subnet_id=azurerm_subnet[\"test\"][\"id\"],\n    private_service_connection=azure.privatelink.EndpointPrivateServiceConnectionArgs(\n        name=test_private_link_endpoint.private_link_service_name,\n        private_connection_resource_id=test_private_link_endpoint.private_link_service_resource_id,\n        is_manual_connection=True,\n        request_message=\"Azure Private Link test\",\n    ))\ntest_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\",\n    project_id=test_private_link_endpoint.project_id,\n    private_link_id=test_private_link_endpoint.private_link_id,\n    endpoint_service_id=test_endpoint.id,\n    private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,\n    provider_name=\"AZURE\")\n```\n```csharp\nusing Pulumi;\nusing Azure = Pulumi.Azure;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = @var.Project_id,\n            ProviderName = \"AZURE\",\n            Region = \"eastus2\",\n        });\n        var testEndpoint = new Azure.PrivateLink.Endpoint(\"testEndpoint\", new Azure.PrivateLink.EndpointArgs\n        {\n            Location = data.Azurerm_resource_group.Test.Location,\n            ResourceGroupName = @var.Resource_group_name,\n            SubnetId = azurerm_subnet.Test.Id,\n            PrivateServiceConnection = new Azure.PrivateLink.Inputs.EndpointPrivateServiceConnectionArgs\n            {\n                Name = testPrivateLinkEndpoint.PrivateLinkServiceName,\n                PrivateConnectionResourceId = testPrivateLinkEndpoint.PrivateLinkServiceResourceId,\n                IsManualConnection = true,\n                RequestMessage = \"Azure Private Link test\",\n            },\n        });\n        var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", new Mongodbatlas.PrivateLinkEndpointServiceArgs\n        {\n            ProjectId = testPrivateLinkEndpoint.ProjectId,\n            PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,\n            EndpointServiceId = testEndpoint.Id,\n            PrivateEndpointIpAddress = testEndpoint.PrivateServiceConnection.Apply(privateServiceConnection =\u003e privateServiceConnection.PrivateIpAddress),\n            ProviderName = \"AZURE\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-azure/sdk/v4/go/azure/privatelink\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"testPrivateLinkEndpoint\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.Any(_var.Project_id),\n\t\t\tProviderName: pulumi.String(\"AZURE\"),\n\t\t\tRegion:       pulumi.String(\"eastus2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestEndpoint, err := privatelink.NewEndpoint(ctx, \"testEndpoint\", \u0026privatelink.EndpointArgs{\n\t\t\tLocation:          pulumi.Any(data.Azurerm_resource_group.Test.Location),\n\t\t\tResourceGroupName: pulumi.Any(_var.Resource_group_name),\n\t\t\tSubnetId:          pulumi.Any(azurerm_subnet.Test.Id),\n\t\t\tPrivateServiceConnection: \u0026privatelink.EndpointPrivateServiceConnectionArgs{\n\t\t\t\tName:                        testPrivateLinkEndpoint.PrivateLinkServiceName,\n\t\t\t\tPrivateConnectionResourceId: testPrivateLinkEndpoint.PrivateLinkServiceResourceId,\n\t\t\t\tIsManualConnection:          pulumi.Bool(true),\n\t\t\t\tRequestMessage:              pulumi.String(\"Azure Private Link test\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, \"testPrivateLinkEndpointService\", \u0026mongodbatlas.PrivateLinkEndpointServiceArgs{\n\t\t\tProjectId:         testPrivateLinkEndpoint.ProjectId,\n\t\t\tPrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,\n\t\t\tEndpointServiceId: testEndpoint.ID(),\n\t\t\tPrivateEndpointIpAddress: testEndpoint.PrivateServiceConnection.ApplyT(func(privateServiceConnection privatelink.EndpointPrivateServiceConnection) (string, error) {\n\t\t\t\treturn privateServiceConnection.PrivateIpAddress, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tProviderName: pulumi.String(\"AZURE\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\n## Import\n\nPrivate Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/) ",
+            "description": "`mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.\n\n\u003e **IMPORTANT:**You must have one of the following roles to successfully handle the resource:\n  * Organization Owner\n  * Project Owner\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\n\n## Example with AWS\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", {\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    providerName: \"AWS\",\n    region: \"us-east-1\",\n});\nconst ptfeService = new aws.ec2.VpcEndpoint(\"ptfeService\", {\n    vpcId: \"vpc-7fc0a543\",\n    serviceName: testPrivateLinkEndpoint.endpointServiceName,\n    vpcEndpointType: \"Interface\",\n    subnetIds: [\"subnet-de0406d2\"],\n    securityGroupIds: [\"sg-3f238186\"],\n});\nconst testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", {\n    projectId: testPrivateLinkEndpoint.projectId,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    endpointServiceId: ptfeService.id,\n    providerName: \"AWS\",\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\",\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    provider_name=\"AWS\",\n    region=\"us-east-1\")\nptfe_service = aws.ec2.VpcEndpoint(\"ptfeService\",\n    vpc_id=\"vpc-7fc0a543\",\n    service_name=test_private_link_endpoint.endpoint_service_name,\n    vpc_endpoint_type=\"Interface\",\n    subnet_ids=[\"subnet-de0406d2\"],\n    security_group_ids=[\"sg-3f238186\"])\ntest_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\",\n    project_id=test_private_link_endpoint.project_id,\n    private_link_id=test_private_link_endpoint.private_link_id,\n    endpoint_service_id=ptfe_service.id,\n    provider_name=\"AWS\")\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            ProviderName = \"AWS\",\n            Region = \"us-east-1\",\n        });\n        var ptfeService = new Aws.Ec2.VpcEndpoint(\"ptfeService\", new Aws.Ec2.VpcEndpointArgs\n        {\n            VpcId = \"vpc-7fc0a543\",\n            ServiceName = testPrivateLinkEndpoint.EndpointServiceName,\n            VpcEndpointType = \"Interface\",\n            SubnetIds = \n            {\n                \"subnet-de0406d2\",\n            },\n            SecurityGroupIds = \n            {\n                \"sg-3f238186\",\n            },\n        });\n        var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", new Mongodbatlas.PrivateLinkEndpointServiceArgs\n        {\n            ProjectId = testPrivateLinkEndpoint.ProjectId,\n            PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,\n            EndpointServiceId = ptfeService.Id,\n            ProviderName = \"AWS\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"testPrivateLinkEndpoint\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tProviderName: pulumi.String(\"AWS\"),\n\t\t\tRegion:       pulumi.String(\"us-east-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tptfeService, err := ec2.NewVpcEndpoint(ctx, \"ptfeService\", \u0026ec2.VpcEndpointArgs{\n\t\t\tVpcId:           pulumi.String(\"vpc-7fc0a543\"),\n\t\t\tServiceName:     testPrivateLinkEndpoint.EndpointServiceName,\n\t\t\tVpcEndpointType: pulumi.String(\"Interface\"),\n\t\t\tSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"subnet-de0406d2\"),\n\t\t\t},\n\t\t\tSecurityGroupIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"sg-3f238186\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, \"testPrivateLinkEndpointService\", \u0026mongodbatlas.PrivateLinkEndpointServiceArgs{\n\t\t\tProjectId:         testPrivateLinkEndpoint.ProjectId,\n\t\t\tPrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,\n\t\t\tEndpointServiceId: ptfeService.ID(),\n\t\t\tProviderName:      pulumi.String(\"AWS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n## Example with Azure\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as azure from \"@pulumi/azure\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", {\n    projectId: _var.project_id,\n    providerName: \"AZURE\",\n    region: \"eastus2\",\n});\nconst testEndpoint = new azure.privatelink.Endpoint(\"testEndpoint\", {\n    location: data.azurerm_resource_group.test.location,\n    resourceGroupName: _var.resource_group_name,\n    subnetId: azurerm_subnet.test.id,\n    privateServiceConnection: {\n        name: testPrivateLinkEndpoint.privateLinkServiceName,\n        privateConnectionResourceId: testPrivateLinkEndpoint.privateLinkServiceResourceId,\n        isManualConnection: true,\n        requestMessage: \"Azure Private Link test\",\n    },\n});\nconst testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", {\n    projectId: testPrivateLinkEndpoint.projectId,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    endpointServiceId: testEndpoint.id,\n    privateEndpointIpAddress: testEndpoint.privateServiceConnection.apply(privateServiceConnection =\u003e privateServiceConnection.privateIpAddress),\n    providerName: \"AZURE\",\n});\n```\n```python\nimport pulumi\nimport pulumi_azure as azure\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\",\n    project_id=var[\"project_id\"],\n    provider_name=\"AZURE\",\n    region=\"eastus2\")\ntest_endpoint = azure.privatelink.Endpoint(\"testEndpoint\",\n    location=data[\"azurerm_resource_group\"][\"test\"][\"location\"],\n    resource_group_name=var[\"resource_group_name\"],\n    subnet_id=azurerm_subnet[\"test\"][\"id\"],\n    private_service_connection=azure.privatelink.EndpointPrivateServiceConnectionArgs(\n        name=test_private_link_endpoint.private_link_service_name,\n        private_connection_resource_id=test_private_link_endpoint.private_link_service_resource_id,\n        is_manual_connection=True,\n        request_message=\"Azure Private Link test\",\n    ))\ntest_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\",\n    project_id=test_private_link_endpoint.project_id,\n    private_link_id=test_private_link_endpoint.private_link_id,\n    endpoint_service_id=test_endpoint.id,\n    private_endpoint_ip_address=test_endpoint.private_service_connection.private_ip_address,\n    provider_name=\"AZURE\")\n```\n```csharp\nusing Pulumi;\nusing Azure = Pulumi.Azure;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", new Mongodbatlas.PrivateLinkEndpointArgs\n        {\n            ProjectId = @var.Project_id,\n            ProviderName = \"AZURE\",\n            Region = \"eastus2\",\n        });\n        var testEndpoint = new Azure.PrivateLink.Endpoint(\"testEndpoint\", new Azure.PrivateLink.EndpointArgs\n        {\n            Location = data.Azurerm_resource_group.Test.Location,\n            ResourceGroupName = @var.Resource_group_name,\n            SubnetId = azurerm_subnet.Test.Id,\n            PrivateServiceConnection = new Azure.PrivateLink.Inputs.EndpointPrivateServiceConnectionArgs\n            {\n                Name = testPrivateLinkEndpoint.PrivateLinkServiceName,\n                PrivateConnectionResourceId = testPrivateLinkEndpoint.PrivateLinkServiceResourceId,\n                IsManualConnection = true,\n                RequestMessage = \"Azure Private Link test\",\n            },\n        });\n        var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", new Mongodbatlas.PrivateLinkEndpointServiceArgs\n        {\n            ProjectId = testPrivateLinkEndpoint.ProjectId,\n            PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,\n            EndpointServiceId = testEndpoint.Id,\n            PrivateEndpointIpAddress = testEndpoint.PrivateServiceConnection.Apply(privateServiceConnection =\u003e privateServiceConnection.PrivateIpAddress),\n            ProviderName = \"AZURE\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-azure/sdk/v4/go/azure/privatelink\"\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, \"testPrivateLinkEndpoint\", \u0026mongodbatlas.PrivateLinkEndpointArgs{\n\t\t\tProjectId:    pulumi.Any(_var.Project_id),\n\t\t\tProviderName: pulumi.String(\"AZURE\"),\n\t\t\tRegion:       pulumi.String(\"eastus2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestEndpoint, err := privatelink.NewEndpoint(ctx, \"testEndpoint\", \u0026privatelink.EndpointArgs{\n\t\t\tLocation:          pulumi.Any(data.Azurerm_resource_group.Test.Location),\n\t\t\tResourceGroupName: pulumi.Any(_var.Resource_group_name),\n\t\t\tSubnetId:          pulumi.Any(azurerm_subnet.Test.Id),\n\t\t\tPrivateServiceConnection: \u0026privatelink.EndpointPrivateServiceConnectionArgs{\n\t\t\t\tName:                        testPrivateLinkEndpoint.PrivateLinkServiceName,\n\t\t\t\tPrivateConnectionResourceId: testPrivateLinkEndpoint.PrivateLinkServiceResourceId,\n\t\t\t\tIsManualConnection:          pulumi.Bool(true),\n\t\t\t\tRequestMessage:              pulumi.String(\"Azure Private Link test\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, \"testPrivateLinkEndpointService\", \u0026mongodbatlas.PrivateLinkEndpointServiceArgs{\n\t\t\tProjectId:         testPrivateLinkEndpoint.ProjectId,\n\t\t\tPrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,\n\t\t\tEndpointServiceId: testEndpoint.ID(),\n\t\t\tPrivateEndpointIpAddress: testEndpoint.PrivateServiceConnection.ApplyT(func(privateServiceConnection privatelink.EndpointPrivateServiceConnection) (string, error) {\n\t\t\t\treturn privateServiceConnection.PrivateIpAddress, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tProviderName: pulumi.String(\"AZURE\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n## Example with GCP\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as gcp from \"@pulumi/gcp\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint(\"testPrivateLinkEndpoint\", {\n    projectId: _var.project_id,\n    providerName: \"GCP\",\n    region: _var.gcp_region,\n});\n// Create a Google Network\nconst defaultNetwork = new gcp.compute.Network(\"defaultNetwork\", {project: _var.gcp_project});\n// Create a Google Sub Network\nconst defaultSubnetwork = new gcp.compute.Subnetwork(\"defaultSubnetwork\", {\n    project: defaultNetwork.project,\n    ipCidrRange: \"10.0.0.0/16\",\n    region: _var.gcp_region,\n    network: defaultNetwork.id,\n});\n// Create Google 50 Addresses\nconst defaultAddress: gcp.compute.Address[];\nfor (const range = {value: 0}; range.value \u003c 50; range.value++) {\n    defaultAddress.push(new gcp.compute.Address(`defaultAddress-${range.value}`, {\n        project: defaultSubnetwork.project,\n        subnetwork: defaultSubnetwork.id,\n        addressType: \"INTERNAL\",\n        address: `10.0.42.${range.value}`,\n        region: _var.gcp_region,\n    }, {\n    dependsOn: [testPrivateLinkEndpoint],\n}));\n}\n// Create 50 Forwarding rules\nconst defaultForwardingRule: gcp.compute.ForwardingRule[];\nfor (const range = {value: 0}; range.value \u003c 50; range.value++) {\n    defaultForwardingRule.push(new gcp.compute.ForwardingRule(`defaultForwardingRule-${range.value}`, {\n        project: _var.gcp_project,\n        region: _var.gcp_region,\n        target: testPrivateLinkEndpoint.serviceAttachmentNames,\n        ipAddress: defaultAddress[range.value].id,\n        network: defaultNetwork.id,\n        loadBalancingScheme: \"\",\n    }));\n}\nconst testPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService(\"testPrivateLinkEndpointService\", {\n    projectId: testPrivateLinkEndpoint.projectId,\n    privateLinkId: testPrivateLinkEndpoint.privateLinkId,\n    providerName: \"GCP\",\n    endpointServiceId: defaultNetwork.name,\n    gcpProjectId: _var.gcp_project,\n    dynamic: [{\n        forEach: testPrivateLinkEndpoint.serviceAttachmentNames,\n        content: [{\n            ipAddress: defaultAddress[endpoints.key].address,\n            endpointName: defaultAddress[endpoints.key].name,\n        }],\n    }],\n}, {\n    dependsOn: [defaultForwardingRule],\n});\n```\n\n\n## Import\n\nPrivate Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS\n```\n\n See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/) ",
             "properties": {
                 "awsConnectionStatus": {
                     "type": "string",
@@ -12180,13 +12461,32 @@
                     "type": "boolean",
                     "description": "Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.\n"
                 },
+                "endpointGroupName": {
+                    "type": "string",
+                    "description": "(Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.\n"
+                },
                 "endpointServiceId": {
                     "type": "string",
-                    "description": "Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.\n"
+                    "description": "Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.\n"
+                },
+                "endpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/PrivateLinkEndpointServiceEndpoint:PrivateLinkEndpointServiceEndpoint"
+                    },
+                    "description": "Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.\n"
                 },
                 "errorMessage": {
                     "type": "string",
                     "description": "Error message pertaining to the interface endpoint. Returns null if there are no errors.\n"
+                },
+                "gcpProjectId": {
+                    "type": "string",
+                    "description": "Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.\n"
+                },
+                "gcpStatus": {
+                    "type": "string",
+                    "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n"
                 },
                 "interfaceEndpointId": {
                     "type": "string",
@@ -12214,15 +12514,18 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.\n"
+                    "description": "Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.\n"
                 }
             },
             "required": [
                 "awsConnectionStatus",
                 "azureStatus",
                 "deleteRequested",
+                "endpointGroupName",
                 "endpointServiceId",
+                "endpoints",
                 "errorMessage",
+                "gcpStatus",
                 "interfaceEndpointId",
                 "privateEndpointConnectionName",
                 "privateEndpointIpAddress",
@@ -12234,7 +12537,18 @@
             "inputProperties": {
                 "endpointServiceId": {
                     "type": "string",
-                    "description": "Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.\n"
+                    "description": "Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.\n"
+                },
+                "endpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/PrivateLinkEndpointServiceEndpoint:PrivateLinkEndpointServiceEndpoint"
+                    },
+                    "description": "Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.\n"
+                },
+                "gcpProjectId": {
+                    "type": "string",
+                    "description": "Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.\n"
                 },
                 "privateEndpointIpAddress": {
                     "type": "string",
@@ -12250,7 +12564,7 @@
                 },
                 "providerName": {
                     "type": "string",
-                    "description": "Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.\n"
+                    "description": "Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.\n"
                 }
             },
             "requiredInputs": [
@@ -12274,13 +12588,32 @@
                         "type": "boolean",
                         "description": "Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.\n"
                     },
+                    "endpointGroupName": {
+                        "type": "string",
+                        "description": "(Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.\n"
+                    },
                     "endpointServiceId": {
                         "type": "string",
-                        "description": "Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.\n"
+                        "description": "Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.\n"
+                    },
+                    "endpoints": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/PrivateLinkEndpointServiceEndpoint:PrivateLinkEndpointServiceEndpoint"
+                        },
+                        "description": "Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.\n"
                     },
                     "errorMessage": {
                         "type": "string",
                         "description": "Error message pertaining to the interface endpoint. Returns null if there are no errors.\n"
+                    },
+                    "gcpProjectId": {
+                        "type": "string",
+                        "description": "Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.\n"
+                    },
+                    "gcpStatus": {
+                        "type": "string",
+                        "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n"
                     },
                     "interfaceEndpointId": {
                         "type": "string",
@@ -12308,7 +12641,7 @@
                     },
                     "providerName": {
                         "type": "string",
-                        "description": "Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.\n"
+                        "description": "Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.\n"
                     }
                 },
                 "type": "object"
@@ -12342,6 +12675,10 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/ProjectTeam:ProjectTeam"
                     }
+                },
+                "withDefaultAlertsSettings": {
+                    "type": "boolean",
+                    "description": "It allows users to disable the creation of the default alert settings. By default, this flag is set to true.\n"
                 }
             },
             "required": [
@@ -12368,6 +12705,10 @@
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/ProjectTeam:ProjectTeam"
                     }
+                },
+                "withDefaultAlertsSettings": {
+                    "type": "boolean",
+                    "description": "It allows users to disable the creation of the default alert settings. By default, this flag is set to true.\n"
                 }
             },
             "requiredInputs": [
@@ -12401,6 +12742,10 @@
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/ProjectTeam:ProjectTeam"
                         }
+                    },
+                    "withDefaultAlertsSettings": {
+                        "type": "boolean",
+                        "description": "It allows users to disable the creation of the default alert settings. By default, this flag is set to true.\n"
                     }
                 },
                 "type": "object"
@@ -12490,11 +12835,11 @@
             }
         },
         "mongodbatlas:index/searchIndex:SearchIndex": {
-            "description": "`mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic \n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.SearchIndex(\"test\", {\n    analyzer: \"lucene.standard\",\n    clusterName: \"\u003cCLUSTER_NAME\u003e\",\n    collectionName: \"collection_test\",\n    database: \"database_test\",\n    mappingsDynamic: true,\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    searchAnalyzer: \"lucene.standard\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.SearchIndex(\"test\",\n    analyzer=\"lucene.standard\",\n    cluster_name=\"\u003cCLUSTER_NAME\u003e\",\n    collection_name=\"collection_test\",\n    database=\"database_test\",\n    mappings_dynamic=True,\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    search_analyzer=\"lucene.standard\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.SearchIndex(\"test\", new Mongodbatlas.SearchIndexArgs\n        {\n            Analyzer = \"lucene.standard\",\n            ClusterName = \"\u003cCLUSTER_NAME\u003e\",\n            CollectionName = \"collection_test\",\n            Database = \"database_test\",\n            MappingsDynamic = true,\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            SearchAnalyzer = \"lucene.standard\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewSearchIndex(ctx, \"test\", \u0026mongodbatlas.SearchIndexArgs{\n\t\t\tAnalyzer:        pulumi.String(\"lucene.standard\"),\n\t\t\tClusterName:     pulumi.String(\"\u003cCLUSTER_NAME\u003e\"),\n\t\t\tCollectionName:  pulumi.String(\"collection_test\"),\n\t\t\tDatabase:        pulumi.String(\"database_test\"),\n\t\t\tMappingsDynamic: pulumi.Bool(true),\n\t\t\tProjectId:       pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tSearchAnalyzer:  pulumi.String(\"lucene.standard\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "`mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Basic \n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.SearchIndex(\"test\", {\n    analyzer: \"lucene.standard\",\n    clusterName: \"\u003cCLUSTER_NAME\u003e\",\n    collectionName: \"collection_test\",\n    database: \"database_test\",\n    mappingsDynamic: true,\n    projectId: \"\u003cPROJECT_ID\u003e\",\n    searchAnalyzer: \"lucene.standard\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.SearchIndex(\"test\",\n    analyzer=\"lucene.standard\",\n    cluster_name=\"\u003cCLUSTER_NAME\u003e\",\n    collection_name=\"collection_test\",\n    database=\"database_test\",\n    mappings_dynamic=True,\n    project_id=\"\u003cPROJECT_ID\u003e\",\n    search_analyzer=\"lucene.standard\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.SearchIndex(\"test\", new Mongodbatlas.SearchIndexArgs\n        {\n            Analyzer = \"lucene.standard\",\n            ClusterName = \"\u003cCLUSTER_NAME\u003e\",\n            CollectionName = \"collection_test\",\n            Database = \"database_test\",\n            MappingsDynamic = true,\n            ProjectId = \"\u003cPROJECT_ID\u003e\",\n            SearchAnalyzer = \"lucene.standard\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewSearchIndex(ctx, \"test\", \u0026mongodbatlas.SearchIndexArgs{\n\t\t\tAnalyzer:        pulumi.String(\"lucene.standard\"),\n\t\t\tClusterName:     pulumi.String(\"\u003cCLUSTER_NAME\u003e\"),\n\t\t\tCollectionName:  pulumi.String(\"collection_test\"),\n\t\t\tDatabase:        pulumi.String(\"database_test\"),\n\t\t\tMappingsDynamic: pulumi.Bool(true),\n\t\t\tProjectId:       pulumi.String(\"\u003cPROJECT_ID\u003e\"),\n\t\t\tSearchAnalyzer:  pulumi.String(\"lucene.standard\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Advanced (with custom analyzers)\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.SearchIndex(\"test\", {\n    projectId: `%[1]s`,\n    clusterName: `%[2]s`,\n    analyzer: \"lucene.standard\",\n    collectionName: \"collection_test\",\n    database: \"database_test\",\n    mappingsDynamic: false,\n    mappingsFields: `{\n      \"address\": {\n        \"type\": \"document\",\n        \"fields\": {\n          \"city\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.simple\",\n            \"ignoreAbove\": 255\n          },\n          \"state\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.english\"\n          }\n        }\n      },\n      \"company\": {\n        \"type\": \"string\",\n        \"analyzer\": \"lucene.whitespace\",\n        \"multi\": {\n          \"mySecondaryAnalyzer\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.french\"\n          }\n        }\n      },\n      \"employees\": {\n        \"type\": \"string\",\n        \"analyzer\": \"lucene.standard\"\n      }\n}\n`,\n    searchAnalyzer: \"lucene.standard\",\n    analyzers: ` [{\n \"name\": \"index_analyzer_test_name\",\n \"char_filters\": {\n\"type\": \"mapping\",\n\"mappings\": {\"\\\\\" : \"/\"}\n   \t},\n \"tokenizer\": {\n \"type\": \"nGram\",\n \"min_gram\": 2,\n \"max_gram\": 5\n\t},\n \"token_filters\": {\n\"type\": \"length\",\n\"min\": 20,\n\"max\": 33\n   \t}\n }]\n`,\n    synonyms: [{\n        analyzer: \"lucene.simple\",\n        name: \"synonym_test\",\n        sourceCollection: \"collection_test\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.SearchIndex(\"test\",\n    project_id=\"%[1]s\",\n    cluster_name=\"%[2]s\",\n    analyzer=\"lucene.standard\",\n    collection_name=\"collection_test\",\n    database=\"database_test\",\n    mappings_dynamic=False,\n    mappings_fields=\"\"\"{\n      \"address\": {\n        \"type\": \"document\",\n        \"fields\": {\n          \"city\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.simple\",\n            \"ignoreAbove\": 255\n          },\n          \"state\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.english\"\n          }\n        }\n      },\n      \"company\": {\n        \"type\": \"string\",\n        \"analyzer\": \"lucene.whitespace\",\n        \"multi\": {\n          \"mySecondaryAnalyzer\": {\n            \"type\": \"string\",\n            \"analyzer\": \"lucene.french\"\n          }\n        }\n      },\n      \"employees\": {\n        \"type\": \"string\",\n        \"analyzer\": \"lucene.standard\"\n      }\n}\n\"\"\",\n    search_analyzer=\"lucene.standard\",\n    analyzers=\"\"\" [{\n \"name\": \"index_analyzer_test_name\",\n \"char_filters\": {\n\"type\": \"mapping\",\n\"mappings\": {\"\\\\\" : \"/\"}\n   \t},\n \"tokenizer\": {\n \"type\": \"nGram\",\n \"min_gram\": 2,\n \"max_gram\": 5\n\t},\n \"token_filters\": {\n\"type\": \"length\",\n\"min\": 20,\n\"max\": 33\n   \t}\n }]\n\"\"\",\n    synonyms=[mongodbatlas.SearchIndexSynonymArgs(\n        analyzer=\"lucene.simple\",\n        name=\"synonym_test\",\n        source_collection=\"collection_test\",\n    )])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.SearchIndex(\"test\", new Mongodbatlas.SearchIndexArgs\n        {\n            ProjectId = \"%[1]s\",\n            ClusterName = \"%[2]s\",\n            Analyzer = \"lucene.standard\",\n            CollectionName = \"collection_test\",\n            Database = \"database_test\",\n            MappingsDynamic = false,\n            MappingsFields = @\"{\n      \"\"address\"\": {\n        \"\"type\"\": \"\"document\"\",\n        \"\"fields\"\": {\n          \"\"city\"\": {\n            \"\"type\"\": \"\"string\"\",\n            \"\"analyzer\"\": \"\"lucene.simple\"\",\n            \"\"ignoreAbove\"\": 255\n          },\n          \"\"state\"\": {\n            \"\"type\"\": \"\"string\"\",\n            \"\"analyzer\"\": \"\"lucene.english\"\"\n          }\n        }\n      },\n      \"\"company\"\": {\n        \"\"type\"\": \"\"string\"\",\n        \"\"analyzer\"\": \"\"lucene.whitespace\"\",\n        \"\"multi\"\": {\n          \"\"mySecondaryAnalyzer\"\": {\n            \"\"type\"\": \"\"string\"\",\n            \"\"analyzer\"\": \"\"lucene.french\"\"\n          }\n        }\n      },\n      \"\"employees\"\": {\n        \"\"type\"\": \"\"string\"\",\n        \"\"analyzer\"\": \"\"lucene.standard\"\"\n      }\n}\n\",\n            SearchAnalyzer = \"lucene.standard\",\n            Analyzers = @\" [{\n \"\"name\"\": \"\"index_analyzer_test_name\"\",\n \"\"char_filters\"\": {\n\"\"type\"\": \"\"mapping\"\",\n\"\"mappings\"\": {\"\"\\\\\"\" : \"\"/\"\"}\n   \t},\n \"\"tokenizer\"\": {\n \"\"type\"\": \"\"nGram\"\",\n \"\"min_gram\"\": 2,\n \"\"max_gram\"\": 5\n\t},\n \"\"token_filters\"\": {\n\"\"type\"\": \"\"length\"\",\n\"\"min\"\": 20,\n\"\"max\"\": 33\n   \t}\n }]\n\",\n            Synonyms = \n            {\n                new Mongodbatlas.Inputs.SearchIndexSynonymArgs\n                {\n                    Analyzer = \"lucene.simple\",\n                    Name = \"synonym_test\",\n                    SourceCollection = \"collection_test\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewSearchIndex(ctx, \"test\", \u0026mongodbatlas.SearchIndexArgs{\n\t\t\tProjectId:       pulumi.String(fmt.Sprintf(\"%v%v\", \"%\", \"[1]s\")),\n\t\t\tClusterName:     pulumi.String(fmt.Sprintf(\"%v%v\", \"%\", \"[2]s\")),\n\t\t\tAnalyzer:        pulumi.String(\"lucene.standard\"),\n\t\t\tCollectionName:  pulumi.String(\"collection_test\"),\n\t\t\tDatabase:        pulumi.String(\"database_test\"),\n\t\t\tMappingsDynamic: pulumi.Bool(false),\n\t\t\tMappingsFields:  pulumi.String(fmt.Sprintf(\"%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v\", \"{\\n\", \"      \\\"address\\\": {\\n\", \"        \\\"type\\\": \\\"document\\\",\\n\", \"        \\\"fields\\\": {\\n\", \"          \\\"city\\\": {\\n\", \"            \\\"type\\\": \\\"string\\\",\\n\", \"            \\\"analyzer\\\": \\\"lucene.simple\\\",\\n\", \"            \\\"ignoreAbove\\\": 255\\n\", \"          },\\n\", \"          \\\"state\\\": {\\n\", \"            \\\"type\\\": \\\"string\\\",\\n\", \"            \\\"analyzer\\\": \\\"lucene.english\\\"\\n\", \"          }\\n\", \"        }\\n\", \"      },\\n\", \"      \\\"company\\\": {\\n\", \"        \\\"type\\\": \\\"string\\\",\\n\", \"        \\\"analyzer\\\": \\\"lucene.whitespace\\\",\\n\", \"        \\\"multi\\\": {\\n\", \"          \\\"mySecondaryAnalyzer\\\": {\\n\", \"            \\\"type\\\": \\\"string\\\",\\n\", \"            \\\"analyzer\\\": \\\"lucene.french\\\"\\n\", \"          }\\n\", \"        }\\n\", \"      },\\n\", \"      \\\"employees\\\": {\\n\", \"        \\\"type\\\": \\\"string\\\",\\n\", \"        \\\"analyzer\\\": \\\"lucene.standard\\\"\\n\", \"      }\\n\", \"}\\n\")),\n\t\t\tSearchAnalyzer:  pulumi.String(\"lucene.standard\"),\n\t\t\tAnalyzers: pulumi.String(fmt.Sprintf(\"%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v\", \" [{\\n\", \" \\\"name\\\": \\\"index_analyzer_test_name\\\",\\n\", \" \\\"char_filters\\\": {\\n\", \"\\\"type\\\": \\\"mapping\\\",\\n\", \"\\\"mappings\\\": {\\\"\\\\\\\\\\\" : \\\"/\\\"}\\n\", \"   \t},\\n\", \" \\\"tokenizer\\\": {\\n\", \" \\\"type\\\": \\\"nGram\\\",\\n\", \" \\\"min_gram\\\": 2,\\n\", \" \\\"max_gram\\\": 5\\n\", \"\t},\\n\", \" \\\"token_filters\\\": {\\n\", \"\\\"type\\\": \\\"length\\\",\\n\", \"\\\"min\\\": 20,\\n\", \"\\\"max\\\": 33\\n\", \"   \t}\\n\", \" }]\\n\")),\n\t\t\tSynonyms: SearchIndexSynonymArray{\n\t\t\t\t\u0026SearchIndexSynonymArgs{\n\t\t\t\t\tAnalyzer:         pulumi.String(\"lucene.simple\"),\n\t\t\t\t\tName:             pulumi.String(\"synonym_test\"),\n\t\t\t\t\tSourceCollection: pulumi.String(\"collection_test\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "analyzer": {
                     "type": "string",
-                    "description": "[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)\n"
+                    "description": "Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers\n* [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter\n* [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter\n"
                 },
                 "analyzers": {
                     "type": "string",
@@ -12525,7 +12870,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the custom analyzer. Names must be unique within an index, and may **not** start with any of the following strings:\n* `lucene`\n* `builtin`\n* `mongodb`\n"
+                    "description": "Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -12537,6 +12882,13 @@
                 },
                 "status": {
                     "type": "string"
+                },
+                "synonyms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/SearchIndexSynonym:SearchIndexSynonym"
+                    },
+                    "description": "Synonyms mapping definition to use in this index.\n"
                 }
             },
             "required": [
@@ -12552,7 +12904,7 @@
             "inputProperties": {
                 "analyzer": {
                     "type": "string",
-                    "description": "[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)\n"
+                    "description": "Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers\n* [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter\n* [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter\n"
                 },
                 "analyzers": {
                     "type": "string",
@@ -12580,7 +12932,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "Name of the custom analyzer. Names must be unique within an index, and may **not** start with any of the following strings:\n* `lucene`\n* `builtin`\n* `mongodb`\n"
+                    "description": "Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -12592,6 +12944,13 @@
                 },
                 "status": {
                     "type": "string"
+                },
+                "synonyms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/SearchIndexSynonym:SearchIndexSynonym"
+                    },
+                    "description": "Synonyms mapping definition to use in this index.\n"
                 }
             },
             "requiredInputs": [
@@ -12606,7 +12965,7 @@
                 "properties": {
                     "analyzer": {
                         "type": "string",
-                        "description": "[Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)\n"
+                        "description": "Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers\n* [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter\n* [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter\n* [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter\n* [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter\n"
                     },
                     "analyzers": {
                         "type": "string",
@@ -12637,7 +12996,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of the custom analyzer. Names must be unique within an index, and may **not** start with any of the following strings:\n* `lucene`\n* `builtin`\n* `mongodb`\n"
+                        "description": "Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -12649,6 +13008,13 @@
                     },
                     "status": {
                         "type": "string"
+                    },
+                    "synonyms": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/SearchIndexSynonym:SearchIndexSynonym"
+                        },
+                        "description": "Synonyms mapping definition to use in this index.\n"
                     }
                 },
                 "type": "object"
@@ -13533,7 +13899,7 @@
             }
         },
         "mongodbatlas:index/getCloudProviderSnapshot:getCloudProviderSnapshot": {
-            "description": "`mongodbatlas.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
+            "description": "**WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshot`\n\n`mongodbatlas.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getCloudProviderSnapshot.\n",
                 "properties": {
@@ -13707,7 +14073,7 @@
             }
         },
         "mongodbatlas:index/getCloudProviderSnapshotRestoreJob:getCloudProviderSnapshotRestoreJob": {
-            "description": "`mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
+            "description": "**WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshot_restore_job`\n\n`mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getCloudProviderSnapshotRestoreJob.\n",
                 "properties": {
@@ -13827,7 +14193,7 @@
             }
         },
         "mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs": {
-            "description": "`mongodbatlas.getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nFirst create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    clusterName: \"MyCluster\",\n    description: \"MyDescription\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    clusterName: \"MyCluster\",\n    snapshotId: testCloudProviderSnapshot.id,\n    deliveryType: [{\n        automated: true,\n        targetClusterName: \"MyCluster\",\n        targetProjectId: \"5cf5a45a9ccf6400e60981b6\",\n    }],\n});\nconst testCloudProviderSnapshotRestoreJobs = pulumi.all([testCloudProviderSnapshotRestoreJob.projectId, testCloudProviderSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) =\u003e mongodbatlas.getCloudProviderSnapshotRestoreJobsOutput({\n    projectId: projectId,\n    clusterName: clusterName,\n    pageNum: 1,\n    itemsPerPage: 5,\n}));\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    cluster_name=\"MyCluster\",\n    description=\"MyDescription\",\n    retention_in_days=1)\ntest_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    cluster_name=\"MyCluster\",\n    snapshot_id=test_cloud_provider_snapshot.id,\n    delivery_type=[{\n        \"automated\": True,\n        \"targetClusterName\": \"MyCluster\",\n        \"targetProjectId\": \"5cf5a45a9ccf6400e60981b6\",\n    }])\ntest_cloud_provider_snapshot_restore_jobs = pulumi.Output.all(test_cloud_provider_snapshot_restore_job.project_id, test_cloud_provider_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_provider_snapshot_restore_jobs_output(project_id=project_id,\n    cluster_name=cluster_name,\n    page_num=1,\n    items_per_page=5))\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", new Mongodbatlas.CloudProviderSnapshotArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            ClusterName = \"MyCluster\",\n            Description = \"MyDescription\",\n            RetentionInDays = 1,\n        });\n        var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            ClusterName = \"MyCluster\",\n            SnapshotId = testCloudProviderSnapshot.Id,\n            DeliveryType = \n            {\n                \n                {\n                    { \"automated\", true },\n                    { \"targetClusterName\", \"MyCluster\" },\n                    { \"targetProjectId\", \"5cf5a45a9ccf6400e60981b6\" },\n                },\n            },\n        });\n        var testCloudProviderSnapshotRestoreJobs = Output.Tuple(testCloudProviderSnapshotRestoreJob.ProjectId, testCloudProviderSnapshotRestoreJob.ClusterName).Apply(values =\u003e\n        {\n            var projectId = values.Item1;\n            var clusterName = values.Item2;\n            return Mongodbatlas.GetCloudProviderSnapshotRestoreJobs.Invoke(new Mongodbatlas.GetCloudProviderSnapshotRestoreJobsInvokeArgs\n            {\n                ProjectId = projectId,\n                ClusterName = clusterName,\n                PageNum = 1,\n                ItemsPerPage = 5,\n            });\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, \"testCloudProviderSnapshot\", \u0026mongodbatlas.CloudProviderSnapshotArgs{\n\t\t\tProjectId:       pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tClusterName:     pulumi.String(\"MyCluster\"),\n\t\t\tDescription:     pulumi.String(\"MyDescription\"),\n\t\t\tRetentionInDays: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudProviderSnapshotRestoreJob, err := mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, \"testCloudProviderSnapshotRestoreJob\", \u0026mongodbatlas.CloudProviderSnapshotRestoreJobArgs{\n\t\t\tProjectId:   pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tClusterName: pulumi.String(\"MyCluster\"),\n\t\t\tSnapshotId:  testCloudProviderSnapshot.ID(),\n\t\t\tDeliveryType: pulumi.StringMap{\n\t\t\t\tpulumi.String{\n\t\t\t\t\tAutomated:         true,\n\t\t\t\t\tTargetClusterName: \"MyCluster\",\n\t\t\t\t\tTargetProjectId:   \"5cf5a45a9ccf6400e60981b6\",\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "**WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshots_restore_jobs`\n\n`mongodbatlas.getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nFirst create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    clusterName: \"MyCluster\",\n    description: \"MyDescription\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshotRestoreJob = new mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", {\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    clusterName: \"MyCluster\",\n    snapshotId: testCloudProviderSnapshot.id,\n    deliveryType: [{\n        automated: true,\n        targetClusterName: \"MyCluster\",\n        targetProjectId: \"5cf5a45a9ccf6400e60981b6\",\n    }],\n});\nconst testCloudProviderSnapshotRestoreJobs = pulumi.all([testCloudProviderSnapshotRestoreJob.projectId, testCloudProviderSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) =\u003e mongodbatlas.getCloudProviderSnapshotRestoreJobsOutput({\n    projectId: projectId,\n    clusterName: clusterName,\n    pageNum: 1,\n    itemsPerPage: 5,\n}));\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    cluster_name=\"MyCluster\",\n    description=\"MyDescription\",\n    retention_in_days=1)\ntest_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    cluster_name=\"MyCluster\",\n    snapshot_id=test_cloud_provider_snapshot.id,\n    delivery_type=[{\n        \"automated\": True,\n        \"targetClusterName\": \"MyCluster\",\n        \"targetProjectId\": \"5cf5a45a9ccf6400e60981b6\",\n    }])\ntest_cloud_provider_snapshot_restore_jobs = pulumi.Output.all(test_cloud_provider_snapshot_restore_job.project_id, test_cloud_provider_snapshot_restore_job.cluster_name).apply(lambda project_id, cluster_name: mongodbatlas.get_cloud_provider_snapshot_restore_jobs_output(project_id=project_id,\n    cluster_name=cluster_name,\n    page_num=1,\n    items_per_page=5))\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", new Mongodbatlas.CloudProviderSnapshotArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            ClusterName = \"MyCluster\",\n            Description = \"MyDescription\",\n            RetentionInDays = 1,\n        });\n        var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob(\"testCloudProviderSnapshotRestoreJob\", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs\n        {\n            ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n            ClusterName = \"MyCluster\",\n            SnapshotId = testCloudProviderSnapshot.Id,\n            DeliveryType = \n            {\n                \n                {\n                    { \"automated\", true },\n                    { \"targetClusterName\", \"MyCluster\" },\n                    { \"targetProjectId\", \"5cf5a45a9ccf6400e60981b6\" },\n                },\n            },\n        });\n        var testCloudProviderSnapshotRestoreJobs = Output.Tuple(testCloudProviderSnapshotRestoreJob.ProjectId, testCloudProviderSnapshotRestoreJob.ClusterName).Apply(values =\u003e\n        {\n            var projectId = values.Item1;\n            var clusterName = values.Item2;\n            return Mongodbatlas.GetCloudProviderSnapshotRestoreJobs.Invoke(new Mongodbatlas.GetCloudProviderSnapshotRestoreJobsInvokeArgs\n            {\n                ProjectId = projectId,\n                ClusterName = clusterName,\n                PageNum = 1,\n                ItemsPerPage = 5,\n            });\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, \"testCloudProviderSnapshot\", \u0026mongodbatlas.CloudProviderSnapshotArgs{\n\t\t\tProjectId:       pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tClusterName:     pulumi.String(\"MyCluster\"),\n\t\t\tDescription:     pulumi.String(\"MyDescription\"),\n\t\t\tRetentionInDays: pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestCloudProviderSnapshotRestoreJob, err := mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, \"testCloudProviderSnapshotRestoreJob\", \u0026mongodbatlas.CloudProviderSnapshotRestoreJobArgs{\n\t\t\tProjectId:   pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tClusterName: pulumi.String(\"MyCluster\"),\n\t\t\tSnapshotId:  testCloudProviderSnapshot.ID(),\n\t\t\tDeliveryType: pulumi.StringMap{\n\t\t\t\tpulumi.String{\n\t\t\t\t\tAutomated:         true,\n\t\t\t\t\tTargetClusterName: \"MyCluster\",\n\t\t\t\t\tTargetProjectId:   \"5cf5a45a9ccf6400e60981b6\",\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getCloudProviderSnapshotRestoreJobs.\n",
                 "properties": {
@@ -13895,7 +14261,7 @@
             }
         },
         "mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots": {
-            "description": "`mongodbatlas.getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
+            "description": "**WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshots`\n\n`mongodbatlas.getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot(\"testCloudProviderSnapshot\", {\n    groupId: \"5d0f1f73cf09a29120e173cf\",\n    clusterName: \"MyClusterTest\",\n    description: \"SomeDescription\",\n    retentionInDays: 1,\n});\nconst testCloudProviderSnapshots = mongodbatlas.getCloudProviderSnapshots({\n    groupId: mongodbatlas_cloud_provider_snapshots.test.group_id,\n    clusterName: mongodbatlas_cloud_provider_snapshots.test.cluster_name,\n    pageNum: 1,\n    itemsPerPage: 5,\n});\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getCloudProviderSnapshots.\n",
                 "properties": {
@@ -15614,7 +15980,7 @@
                     },
                     "providerName": {
                         "type": "string",
-                        "description": "Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.\n"
+                        "description": "Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.\n"
                     }
                 },
                 "type": "object",
@@ -15627,6 +15993,13 @@
             "outputs": {
                 "description": "A collection of values returned by getPrivateLinkEndpoint.\n",
                 "properties": {
+                    "endpointGroupNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "GCP network endpoint groups corresponding to the Private Service Connect endpoint service.\n"
+                    },
                     "endpointServiceName": {
                         "type": "string",
                         "description": "Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.\n"
@@ -15662,7 +16035,7 @@
                     },
                     "privateLinkServiceResourceId": {
                         "type": "string",
-                        "description": "Resource ID of the Azure Private Link Service that Atlas manages.\nReturns one of the following values:\n"
+                        "description": "Resource ID of the Azure Private Link Service that Atlas manages.\n"
                     },
                     "projectId": {
                         "type": "string"
@@ -15670,13 +16043,25 @@
                     "providerName": {
                         "type": "string"
                     },
+                    "regionName": {
+                        "type": "string",
+                        "description": "GCP region for the Private Service Connect endpoint service.\n"
+                    },
+                    "serviceAttachmentNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.\n"
+                    },
                     "status": {
                         "type": "string",
-                        "description": "Status of the AWS PrivateLink connection.\n"
+                        "description": "Status of the AWS PrivateLink connection.\nReturns one of the following values:\n"
                     }
                 },
                 "type": "object",
                 "required": [
+                    "endpointGroupNames",
                     "endpointServiceName",
                     "errorMessage",
                     "interfaceEndpoints",
@@ -15686,6 +16071,8 @@
                     "privateLinkServiceResourceId",
                     "projectId",
                     "providerName",
+                    "regionName",
+                    "serviceAttachmentNames",
                     "status",
                     "id"
                 ]
@@ -15739,9 +16126,20 @@
                     "endpointServiceId": {
                         "type": "string"
                     },
+                    "endpoints": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getPrivateLinkEndpointServiceEndpoint:getPrivateLinkEndpointServiceEndpoint"
+                        },
+                        "description": "Collection of individual private endpoints that comprise your network endpoint group.\n"
+                    },
                     "errorMessage": {
                         "type": "string",
                         "description": "Error message pertaining to the interface endpoint. Returns null if there are no errors.\n"
+                    },
+                    "gcpStatus": {
+                        "type": "string",
+                        "description": "Status of the interface endpoint for GCP.\nReturns one of the following values:\n"
                     },
                     "id": {
                         "type": "string",
@@ -15779,7 +16177,9 @@
                     "azureStatus",
                     "deleteRequested",
                     "endpointServiceId",
+                    "endpoints",
                     "errorMessage",
+                    "gcpStatus",
                     "interfaceEndpointId",
                     "privateEndpointConnectionName",
                     "privateEndpointIpAddress",
@@ -15976,11 +16376,11 @@
                     },
                     "collectionName": {
                         "type": "string",
-                        "description": "(Required) Name of the collection the index is on.\n"
+                        "description": "Name of the collection the index is on.\n"
                     },
                     "database": {
                         "type": "string",
-                        "description": "(Required) Name of the database the collection is in.\n"
+                        "description": "Name of the database the collection is in.\n"
                     },
                     "indexId": {
                         "type": "string",
@@ -16033,11 +16433,11 @@
                     },
                     "collectionName": {
                         "type": "string",
-                        "description": "(Required) Name of the collection the index is on.\n"
+                        "description": "Name of the collection the index is on.\n"
                     },
                     "database": {
                         "type": "string",
-                        "description": "(Required) Name of the database the collection is in.\n"
+                        "description": "Name of the database the collection is in.\n"
                     },
                     "id": {
                         "type": "string",
@@ -16067,6 +16467,13 @@
                     },
                     "status": {
                         "type": "string"
+                    },
+                    "synonyms": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getSearchIndexSynonym:getSearchIndexSynonym"
+                        },
+                        "description": "Synonyms mapping definition to use in this index.\n* `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).\n* `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.\n* `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.\n"
                     }
                 },
                 "type": "object",
@@ -16075,6 +16482,7 @@
                     "indexId",
                     "projectId",
                     "status",
+                    "synonyms",
                     "id"
                 ]
             }
@@ -16396,7 +16804,7 @@
             }
         },
         "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": {
-            "description": "`mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`\napplied across the project. \n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n",
+            "description": "`mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`\napplied across the project. \n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testPagerDuty = new mongodbatlas.ThirdPartyIntegration(\"testPagerDuty\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    type: \"PAGER_DUTY\",\n    serviceKey: \"\u003cPAGER-DUTY-SERVICE-KEY\u003e\",\n});\nconst testFlowdock = new mongodbatlas.ThirdPartyIntegration(\"testFlowdock\", {\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    type: \"FLOWDOCK\",\n    flowName: \"\u003cFLOW-NAME\u003e\",\n    apiToken: \"\u003cAPI-TOKEN\u003e\",\n    orgName: \"\u003cORG-NAME\u003e\",\n});\nconst test = mongodbatlas.getThirdPartyIntegrationsOutput({\n    projectId: testPagerDuty.projectId,\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest_pager_duty = mongodbatlas.ThirdPartyIntegration(\"testPagerDuty\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    type=\"PAGER_DUTY\",\n    service_key=\"\u003cPAGER-DUTY-SERVICE-KEY\u003e\")\ntest_flowdock = mongodbatlas.ThirdPartyIntegration(\"testFlowdock\",\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    type=\"FLOWDOCK\",\n    flow_name=\"\u003cFLOW-NAME\u003e\",\n    api_token=\"\u003cAPI-TOKEN\u003e\",\n    org_name=\"\u003cORG-NAME\u003e\")\ntest = mongodbatlas.get_third_party_integrations_output(project_id=test_pager_duty.project_id)\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration(\"testPagerDuty\", new Mongodbatlas.ThirdPartyIntegrationArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            Type = \"PAGER_DUTY\",\n            ServiceKey = \"\u003cPAGER-DUTY-SERVICE-KEY\u003e\",\n        });\n        var testFlowdock = new Mongodbatlas.ThirdPartyIntegration(\"testFlowdock\", new Mongodbatlas.ThirdPartyIntegrationArgs\n        {\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            Type = \"FLOWDOCK\",\n            FlowName = \"\u003cFLOW-NAME\u003e\",\n            ApiToken = \"\u003cAPI-TOKEN\u003e\",\n            OrgName = \"\u003cORG-NAME\u003e\",\n        });\n        var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new Mongodbatlas.GetThirdPartyIntegrationsInvokeArgs\n        {\n            ProjectId = testPagerDuty.ProjectId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttestPagerDuty, err := mongodbatlas.NewThirdPartyIntegration(ctx, \"testPagerDuty\", \u0026mongodbatlas.ThirdPartyIntegrationArgs{\n\t\t\tProjectId:  pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tType:       pulumi.String(\"PAGER_DUTY\"),\n\t\t\tServiceKey: pulumi.String(\"\u003cPAGER-DUTY-SERVICE-KEY\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewThirdPartyIntegration(ctx, \"testFlowdock\", \u0026mongodbatlas.ThirdPartyIntegrationArgs{\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tType:      pulumi.String(\"FLOWDOCK\"),\n\t\t\tFlowName:  pulumi.String(\"\u003cFLOW-NAME\u003e\"),\n\t\t\tApiToken:  pulumi.String(\"\u003cAPI-TOKEN\u003e\"),\n\t\t\tOrgName:   pulumi.String(\"\u003cORG-NAME\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = mongodbatlas.LookupThirdPartyIntegrationsOutput(ctx, GetThirdPartyIntegrationsOutputArgs{\n\t\t\tProjectId: testPagerDuty.ProjectId,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getThirdPartyIntegrations.\n",
                 "properties": {

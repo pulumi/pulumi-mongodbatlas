@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['PrivateLinkEndpointServiceArgs', 'PrivateLinkEndpointService']
 
@@ -17,19 +19,27 @@ class PrivateLinkEndpointServiceArgs:
                  private_link_id: pulumi.Input[str],
                  project_id: pulumi.Input[str],
                  provider_name: pulumi.Input[str],
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
+                 gcp_project_id: Optional[pulumi.Input[str]] = None,
                  private_endpoint_ip_address: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PrivateLinkEndpointService resource.
-        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
         :param pulumi.Input[str] private_link_id: Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
         :param pulumi.Input[str] project_id: Unique identifier for the project.
-        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
+        :param pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
         """
         pulumi.set(__self__, "endpoint_service_id", endpoint_service_id)
         pulumi.set(__self__, "private_link_id", private_link_id)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
+        if endpoints is not None:
+            pulumi.set(__self__, "endpoints", endpoints)
+        if gcp_project_id is not None:
+            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
         if private_endpoint_ip_address is not None:
             pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
 
@@ -37,7 +47,7 @@ class PrivateLinkEndpointServiceArgs:
     @pulumi.getter(name="endpointServiceId")
     def endpoint_service_id(self) -> pulumi.Input[str]:
         """
-        Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
         """
         return pulumi.get(self, "endpoint_service_id")
 
@@ -73,13 +83,37 @@ class PrivateLinkEndpointServiceArgs:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Input[str]:
         """
-        Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
     def provider_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "provider_name", value)
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]:
+        """
+        Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        """
+        return pulumi.get(self, "endpoints")
+
+    @endpoints.setter
+    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]):
+        pulumi.set(self, "endpoints", value)
+
+    @property
+    @pulumi.getter(name="gcpProjectId")
+    def gcp_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+        """
+        return pulumi.get(self, "gcp_project_id")
+
+    @gcp_project_id.setter
+    def gcp_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gcp_project_id", value)
 
     @property
     @pulumi.getter(name="privateEndpointIpAddress")
@@ -100,8 +134,12 @@ class _PrivateLinkEndpointServiceState:
                  aws_connection_status: Optional[pulumi.Input[str]] = None,
                  azure_status: Optional[pulumi.Input[str]] = None,
                  delete_requested: Optional[pulumi.Input[bool]] = None,
+                 endpoint_group_name: Optional[pulumi.Input[str]] = None,
                  endpoint_service_id: Optional[pulumi.Input[str]] = None,
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
                  error_message: Optional[pulumi.Input[str]] = None,
+                 gcp_project_id: Optional[pulumi.Input[str]] = None,
+                 gcp_status: Optional[pulumi.Input[str]] = None,
                  interface_endpoint_id: Optional[pulumi.Input[str]] = None,
                  private_endpoint_connection_name: Optional[pulumi.Input[str]] = None,
                  private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
@@ -116,15 +154,20 @@ class _PrivateLinkEndpointServiceState:
         :param pulumi.Input[str] azure_status: Status of the interface endpoint for AZURE.
                Returns one of the following values:
         :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
-        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        :param pulumi.Input[str] endpoint_group_name: (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+        :param pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
         :param pulumi.Input[str] error_message: Error message pertaining to the interface endpoint. Returns null if there are no errors.
+        :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+        :param pulumi.Input[str] gcp_status: Status of the interface endpoint for GCP.
+               Returns one of the following values:
         :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint.
         :param pulumi.Input[str] private_endpoint_connection_name: Name of the connection for this private endpoint that Atlas generates.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
         :param pulumi.Input[str] private_endpoint_resource_id: Unique identifier of the private endpoint.
         :param pulumi.Input[str] private_link_id: Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
         :param pulumi.Input[str] project_id: Unique identifier for the project.
-        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         if aws_connection_status is not None:
             pulumi.set(__self__, "aws_connection_status", aws_connection_status)
@@ -132,10 +175,18 @@ class _PrivateLinkEndpointServiceState:
             pulumi.set(__self__, "azure_status", azure_status)
         if delete_requested is not None:
             pulumi.set(__self__, "delete_requested", delete_requested)
+        if endpoint_group_name is not None:
+            pulumi.set(__self__, "endpoint_group_name", endpoint_group_name)
         if endpoint_service_id is not None:
             pulumi.set(__self__, "endpoint_service_id", endpoint_service_id)
+        if endpoints is not None:
+            pulumi.set(__self__, "endpoints", endpoints)
         if error_message is not None:
             pulumi.set(__self__, "error_message", error_message)
+        if gcp_project_id is not None:
+            pulumi.set(__self__, "gcp_project_id", gcp_project_id)
+        if gcp_status is not None:
+            pulumi.set(__self__, "gcp_status", gcp_status)
         if interface_endpoint_id is not None:
             pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
         if private_endpoint_connection_name is not None:
@@ -190,16 +241,40 @@ class _PrivateLinkEndpointServiceState:
         pulumi.set(self, "delete_requested", value)
 
     @property
+    @pulumi.getter(name="endpointGroupName")
+    def endpoint_group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+        """
+        return pulumi.get(self, "endpoint_group_name")
+
+    @endpoint_group_name.setter
+    def endpoint_group_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_group_name", value)
+
+    @property
     @pulumi.getter(name="endpointServiceId")
     def endpoint_service_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
         """
         return pulumi.get(self, "endpoint_service_id")
 
     @endpoint_service_id.setter
     def endpoint_service_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "endpoint_service_id", value)
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]:
+        """
+        Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        """
+        return pulumi.get(self, "endpoints")
+
+    @endpoints.setter
+    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]):
+        pulumi.set(self, "endpoints", value)
 
     @property
     @pulumi.getter(name="errorMessage")
@@ -212,6 +287,31 @@ class _PrivateLinkEndpointServiceState:
     @error_message.setter
     def error_message(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "error_message", value)
+
+    @property
+    @pulumi.getter(name="gcpProjectId")
+    def gcp_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+        """
+        return pulumi.get(self, "gcp_project_id")
+
+    @gcp_project_id.setter
+    def gcp_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gcp_project_id", value)
+
+    @property
+    @pulumi.getter(name="gcpStatus")
+    def gcp_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the interface endpoint for GCP.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "gcp_status")
+
+    @gcp_status.setter
+    def gcp_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gcp_status", value)
 
     @property
     @pulumi.getter(name="interfaceEndpointId")
@@ -289,7 +389,7 @@ class _PrivateLinkEndpointServiceState:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         return pulumi.get(self, "provider_name")
 
@@ -304,6 +404,8 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  endpoint_service_id: Optional[pulumi.Input[str]] = None,
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]]] = None,
+                 gcp_project_id: Optional[pulumi.Input[str]] = None,
                  private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
                  private_link_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -383,11 +485,13 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
         :param pulumi.Input[str] private_link_id: Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
         :param pulumi.Input[str] project_id: Unique identifier for the project.
-        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         ...
     @overload
@@ -483,6 +587,8 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  endpoint_service_id: Optional[pulumi.Input[str]] = None,
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]]] = None,
+                 gcp_project_id: Optional[pulumi.Input[str]] = None,
                  private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
                  private_link_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -502,6 +608,8 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             if endpoint_service_id is None and not opts.urn:
                 raise TypeError("Missing required property 'endpoint_service_id'")
             __props__.__dict__["endpoint_service_id"] = endpoint_service_id
+            __props__.__dict__["endpoints"] = endpoints
+            __props__.__dict__["gcp_project_id"] = gcp_project_id
             __props__.__dict__["private_endpoint_ip_address"] = private_endpoint_ip_address
             if private_link_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_link_id'")
@@ -515,7 +623,9 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             __props__.__dict__["aws_connection_status"] = None
             __props__.__dict__["azure_status"] = None
             __props__.__dict__["delete_requested"] = None
+            __props__.__dict__["endpoint_group_name"] = None
             __props__.__dict__["error_message"] = None
+            __props__.__dict__["gcp_status"] = None
             __props__.__dict__["interface_endpoint_id"] = None
             __props__.__dict__["private_endpoint_connection_name"] = None
             __props__.__dict__["private_endpoint_resource_id"] = None
@@ -532,8 +642,12 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             aws_connection_status: Optional[pulumi.Input[str]] = None,
             azure_status: Optional[pulumi.Input[str]] = None,
             delete_requested: Optional[pulumi.Input[bool]] = None,
+            endpoint_group_name: Optional[pulumi.Input[str]] = None,
             endpoint_service_id: Optional[pulumi.Input[str]] = None,
+            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]]] = None,
             error_message: Optional[pulumi.Input[str]] = None,
+            gcp_project_id: Optional[pulumi.Input[str]] = None,
+            gcp_status: Optional[pulumi.Input[str]] = None,
             interface_endpoint_id: Optional[pulumi.Input[str]] = None,
             private_endpoint_connection_name: Optional[pulumi.Input[str]] = None,
             private_endpoint_ip_address: Optional[pulumi.Input[str]] = None,
@@ -553,15 +667,20 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.Input[str] azure_status: Status of the interface endpoint for AZURE.
                Returns one of the following values:
         :param pulumi.Input[bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
-        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        :param pulumi.Input[str] endpoint_group_name: (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+        :param pulumi.Input[str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateLinkEndpointServiceEndpointArgs']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
         :param pulumi.Input[str] error_message: Error message pertaining to the interface endpoint. Returns null if there are no errors.
+        :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+        :param pulumi.Input[str] gcp_status: Status of the interface endpoint for GCP.
+               Returns one of the following values:
         :param pulumi.Input[str] interface_endpoint_id: Unique identifier of the interface endpoint.
         :param pulumi.Input[str] private_endpoint_connection_name: Name of the connection for this private endpoint that Atlas generates.
         :param pulumi.Input[str] private_endpoint_ip_address: Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
         :param pulumi.Input[str] private_endpoint_resource_id: Unique identifier of the private endpoint.
         :param pulumi.Input[str] private_link_id: Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
         :param pulumi.Input[str] project_id: Unique identifier for the project.
-        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        :param pulumi.Input[str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -570,8 +689,12 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         __props__.__dict__["aws_connection_status"] = aws_connection_status
         __props__.__dict__["azure_status"] = azure_status
         __props__.__dict__["delete_requested"] = delete_requested
+        __props__.__dict__["endpoint_group_name"] = endpoint_group_name
         __props__.__dict__["endpoint_service_id"] = endpoint_service_id
+        __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["error_message"] = error_message
+        __props__.__dict__["gcp_project_id"] = gcp_project_id
+        __props__.__dict__["gcp_status"] = gcp_status
         __props__.__dict__["interface_endpoint_id"] = interface_endpoint_id
         __props__.__dict__["private_endpoint_connection_name"] = private_endpoint_connection_name
         __props__.__dict__["private_endpoint_ip_address"] = private_endpoint_ip_address
@@ -608,12 +731,28 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         return pulumi.get(self, "delete_requested")
 
     @property
+    @pulumi.getter(name="endpointGroupName")
+    def endpoint_group_name(self) -> pulumi.Output[str]:
+        """
+        (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+        """
+        return pulumi.get(self, "endpoint_group_name")
+
+    @property
     @pulumi.getter(name="endpointServiceId")
     def endpoint_service_id(self) -> pulumi.Output[str]:
         """
-        Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+        Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
         """
         return pulumi.get(self, "endpoint_service_id")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> pulumi.Output[Sequence['outputs.PrivateLinkEndpointServiceEndpoint']]:
+        """
+        Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+        """
+        return pulumi.get(self, "endpoints")
 
     @property
     @pulumi.getter(name="errorMessage")
@@ -622,6 +761,23 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         Error message pertaining to the interface endpoint. Returns null if there are no errors.
         """
         return pulumi.get(self, "error_message")
+
+    @property
+    @pulumi.getter(name="gcpProjectId")
+    def gcp_project_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+        """
+        return pulumi.get(self, "gcp_project_id")
+
+    @property
+    @pulumi.getter(name="gcpStatus")
+    def gcp_status(self) -> pulumi.Output[str]:
+        """
+        Status of the interface endpoint for GCP.
+        Returns one of the following values:
+        """
+        return pulumi.get(self, "gcp_status")
 
     @property
     @pulumi.getter(name="interfaceEndpointId")
@@ -675,7 +831,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Output[str]:
         """
-        Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+        Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         return pulumi.get(self, "provider_name")
 
