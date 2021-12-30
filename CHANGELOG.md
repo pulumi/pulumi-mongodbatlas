@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade terraform-provider-mongodbatlas to v1.1.1
+_(none)_
 
 ---
+
+## 3.1.2 (2021-12-30)
+* Upgrade terraform-provider-mongodbatlas to v1.1.1
 
 ## 3.1.1 (2021-12-07)
 * Ensure Go SDK mod file is v3 to match provider version
