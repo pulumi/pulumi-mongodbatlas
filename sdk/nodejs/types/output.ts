@@ -2196,6 +2196,25 @@ export interface GetOnlineArchivesResultPartitionField {
     order: number;
 }
 
+export interface GetPrivateLinkEndpointServiceEndpoint {
+    /**
+     * Forwarding rule that corresponds to the endpoint you created in GCP.
+     */
+    endpointName: string;
+    /**
+     * Private IP address of the network endpoint group you created in GCP.
+     */
+    ipAddress: string;
+    /**
+     * Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+     */
+    serviceAttachmentName: string;
+    /**
+     * Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     */
+    status: string;
+}
+
 export interface GetProjectTeam {
     roleNames: string[];
     teamId: string;
@@ -2233,6 +2252,18 @@ export interface GetProjectsResult {
 export interface GetProjectsResultTeam {
     roleNames: string[];
     teamId: string;
+}
+
+export interface GetSearchIndexSynonym {
+    /**
+     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     */
+    analyzer: string;
+    /**
+     * Name of the index.
+     */
+    name: string;
+    sourceCollection: string;
 }
 
 export interface GetSearchIndexesResult {
@@ -2278,6 +2309,25 @@ export interface GetSearchIndexesResult {
      */
     searchAnalyzer?: string;
     status: string;
+    /**
+     * Synonyms mapping definition to use in this index.
+     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+     * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+     * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+     */
+    synonyms?: outputs.GetSearchIndexesResultSynonym[];
+}
+
+export interface GetSearchIndexesResultSynonym {
+    /**
+     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     */
+    analyzer: string;
+    /**
+     * Name of the index.
+     */
+    name: string;
+    sourceCollection: string;
 }
 
 export interface GetThirdPartyIntegrationsResult {
@@ -2417,6 +2467,25 @@ export interface OnlineArchivePartitionField {
     order: number;
 }
 
+export interface PrivateLinkEndpointServiceEndpoint {
+    /**
+     * Forwarding rule that corresponds to the endpoint you created in GCP.
+     */
+    endpointName?: string;
+    /**
+     * Private IP address of the endpoint you created in GCP.
+     */
+    ipAddress?: string;
+    /**
+     * Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+     */
+    serviceAttachmentName: string;
+    /**
+     * Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     */
+    status: string;
+}
+
 export interface ProjectTeam {
     /**
      * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
@@ -2435,6 +2504,27 @@ export interface ProjectTeam {
     teamId: string;
 }
 
+export interface SearchIndexSynonym {
+    /**
+     * Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+     * * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+     * * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+     */
+    analyzer: string;
+    /**
+     * Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+     */
+    name: string;
+    /**
+     * Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+     */
+    sourceCollection: string;
+}
+
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt: string;
     groupId: string;
@@ -2442,4 +2532,3 @@ export interface X509AuthenticationDatabaseUserCertificate {
     notAfter: string;
     subject: string;
 }
-

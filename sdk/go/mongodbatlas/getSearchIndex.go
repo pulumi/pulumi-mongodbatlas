@@ -55,9 +55,9 @@ type LookupSearchIndexArgs struct {
 	Analyzers *string `pulumi:"analyzers"`
 	// The name of the cluster containing the collection with one or more Atlas Search indexes.
 	ClusterName string `pulumi:"clusterName"`
-	// (Required) Name of the collection the index is on.
+	// Name of the collection the index is on.
 	CollectionName *string `pulumi:"collectionName"`
-	// (Required) Name of the database the collection is in.
+	// Name of the database the collection is in.
 	Database *string `pulumi:"database"`
 	// The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
 	IndexId string `pulumi:"indexId"`
@@ -81,9 +81,9 @@ type LookupSearchIndexResult struct {
 	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
 	Analyzers   *string `pulumi:"analyzers"`
 	ClusterName string  `pulumi:"clusterName"`
-	// (Required) Name of the collection the index is on.
+	// Name of the collection the index is on.
 	CollectionName *string `pulumi:"collectionName"`
-	// (Required) Name of the database the collection is in.
+	// Name of the database the collection is in.
 	Database *string `pulumi:"database"`
 	// The provider-assigned unique ID for this managed resource.
 	Id      string `pulumi:"id"`
@@ -98,6 +98,11 @@ type LookupSearchIndexResult struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
 	Status         string  `pulumi:"status"`
+	// Synonyms mapping definition to use in this index.
+	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+	Synonyms []GetSearchIndexSynonym `pulumi:"synonyms"`
 }
 
 func LookupSearchIndexOutput(ctx *pulumi.Context, args LookupSearchIndexOutputArgs, opts ...pulumi.InvokeOption) LookupSearchIndexResultOutput {
@@ -117,9 +122,9 @@ type LookupSearchIndexOutputArgs struct {
 	Analyzers pulumi.StringPtrInput `pulumi:"analyzers"`
 	// The name of the cluster containing the collection with one or more Atlas Search indexes.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// (Required) Name of the collection the index is on.
+	// Name of the collection the index is on.
 	CollectionName pulumi.StringPtrInput `pulumi:"collectionName"`
-	// (Required) Name of the database the collection is in.
+	// Name of the database the collection is in.
 	Database pulumi.StringPtrInput `pulumi:"database"`
 	// The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
 	IndexId pulumi.StringInput `pulumi:"indexId"`
@@ -169,12 +174,12 @@ func (o LookupSearchIndexResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.ClusterName }).(pulumi.StringOutput)
 }
 
-// (Required) Name of the collection the index is on.
+// Name of the collection the index is on.
 func (o LookupSearchIndexResultOutput) CollectionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.CollectionName }).(pulumi.StringPtrOutput)
 }
 
-// (Required) Name of the database the collection is in.
+// Name of the database the collection is in.
 func (o LookupSearchIndexResultOutput) Database() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) *string { return v.Database }).(pulumi.StringPtrOutput)
 }
@@ -214,6 +219,14 @@ func (o LookupSearchIndexResultOutput) SearchAnalyzer() pulumi.StringPtrOutput {
 
 func (o LookupSearchIndexResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Synonyms mapping definition to use in this index.
+// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+func (o LookupSearchIndexResultOutput) Synonyms() GetSearchIndexSynonymArrayOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) []GetSearchIndexSynonym { return v.Synonyms }).(GetSearchIndexSynonymArrayOutput)
 }
 
 func init() {

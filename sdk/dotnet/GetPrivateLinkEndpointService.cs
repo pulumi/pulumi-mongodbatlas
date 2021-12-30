@@ -112,9 +112,18 @@ namespace Pulumi.Mongodbatlas
         public readonly bool DeleteRequested;
         public readonly string EndpointServiceId;
         /// <summary>
+        /// Collection of individual private endpoints that comprise your network endpoint group.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetPrivateLinkEndpointServiceEndpointResult> Endpoints;
+        /// <summary>
         /// Error message pertaining to the interface endpoint. Returns null if there are no errors.
         /// </summary>
         public readonly string ErrorMessage;
+        /// <summary>
+        /// Status of the interface endpoint for GCP.
+        /// Returns one of the following values:
+        /// </summary>
+        public readonly string GcpStatus;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -149,7 +158,11 @@ namespace Pulumi.Mongodbatlas
 
             string endpointServiceId,
 
+            ImmutableArray<Outputs.GetPrivateLinkEndpointServiceEndpointResult> endpoints,
+
             string errorMessage,
+
+            string gcpStatus,
 
             string id,
 
@@ -171,7 +184,9 @@ namespace Pulumi.Mongodbatlas
             AzureStatus = azureStatus;
             DeleteRequested = deleteRequested;
             EndpointServiceId = endpointServiceId;
+            Endpoints = endpoints;
             ErrorMessage = errorMessage;
+            GcpStatus = gcpStatus;
             Id = id;
             InterfaceEndpointId = interfaceEndpointId;
             PrivateEndpointConnectionName = privateEndpointConnectionName;

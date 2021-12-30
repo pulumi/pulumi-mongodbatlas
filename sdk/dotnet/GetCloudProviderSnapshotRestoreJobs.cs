@@ -13,6 +13,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderSnapshotRestoreJobs
     {
         /// <summary>
+        /// **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshots_restore_jobs`
+        /// 
         /// `mongodbatlas.getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -76,6 +78,8 @@ namespace Pulumi.Mongodbatlas
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsArgs(), options.WithVersion());
 
         /// <summary>
+        /// **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshots_restore_jobs`
+        /// 
         /// `mongodbatlas.getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

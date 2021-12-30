@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// **WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+    /// 
     /// `mongodbatlas.CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
     /// On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
     /// 
@@ -41,6 +43,7 @@ namespace Pulumi.Mongodbatlas
     ///             ClusterName = myCluster.Name,
     ///             Description = "myDescription",
     ///             RetentionInDays = 1,
+    ///             Timeout = "10m",
     ///         });
     ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
     ///         {
@@ -146,6 +149,12 @@ namespace Pulumi.Mongodbatlas
         public Output<int> StorageSizeBytes { get; private set; } = null!;
 
         /// <summary>
+        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        /// </summary>
+        [Output("timeout")]
+        public Output<string?> Timeout { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the type of cluster: replicaSet or shardedCluster.
         /// </summary>
         [Output("type")]
@@ -220,6 +229,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("retentionInDays", required: true)]
         public Input<int> RetentionInDays { get; set; } = null!;
+
+        /// <summary>
+        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        /// </summary>
+        [Input("timeout")]
+        public Input<string>? Timeout { get; set; }
 
         public CloudProviderSnapshotArgs()
         {
@@ -299,6 +314,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("storageSizeBytes")]
         public Input<int>? StorageSizeBytes { get; set; }
+
+        /// <summary>
+        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        /// </summary>
+        [Input("timeout")]
+        public Input<string>? Timeout { get; set; }
 
         /// <summary>
         /// Specifies the type of cluster: replicaSet or shardedCluster.

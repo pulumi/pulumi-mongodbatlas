@@ -28,12 +28,14 @@ type LookupPrivateLinkEndpointArgs struct {
 	PrivateLinkId string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`
-	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName string `pulumi:"providerName"`
 }
 
 // A collection of values returned by getPrivateLinkEndpoint.
 type LookupPrivateLinkEndpointResult struct {
+	// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+	EndpointGroupNames []string `pulumi:"endpointGroupNames"`
 	// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
 	EndpointServiceName string `pulumi:"endpointServiceName"`
 	// Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
@@ -48,11 +50,15 @@ type LookupPrivateLinkEndpointResult struct {
 	// Name of the Azure Private Link Service that Atlas manages.
 	PrivateLinkServiceName string `pulumi:"privateLinkServiceName"`
 	// Resource ID of the Azure Private Link Service that Atlas manages.
-	// Returns one of the following values:
 	PrivateLinkServiceResourceId string `pulumi:"privateLinkServiceResourceId"`
 	ProjectId                    string `pulumi:"projectId"`
 	ProviderName                 string `pulumi:"providerName"`
+	// GCP region for the Private Service Connect endpoint service.
+	RegionName string `pulumi:"regionName"`
+	// Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+	ServiceAttachmentNames []string `pulumi:"serviceAttachmentNames"`
 	// Status of the AWS PrivateLink connection.
+	// Returns one of the following values:
 	Status string `pulumi:"status"`
 }
 
@@ -71,7 +77,7 @@ type LookupPrivateLinkEndpointOutputArgs struct {
 	PrivateLinkId pulumi.StringInput `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 }
 
@@ -92,6 +98,11 @@ func (o LookupPrivateLinkEndpointResultOutput) ToLookupPrivateLinkEndpointResult
 
 func (o LookupPrivateLinkEndpointResultOutput) ToLookupPrivateLinkEndpointResultOutputWithContext(ctx context.Context) LookupPrivateLinkEndpointResultOutput {
 	return o
+}
+
+// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+func (o LookupPrivateLinkEndpointResultOutput) EndpointGroupNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.EndpointGroupNames }).(pulumi.StringArrayOutput)
 }
 
 // Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
@@ -129,7 +140,6 @@ func (o LookupPrivateLinkEndpointResultOutput) PrivateLinkServiceName() pulumi.S
 }
 
 // Resource ID of the Azure Private Link Service that Atlas manages.
-// Returns one of the following values:
 func (o LookupPrivateLinkEndpointResultOutput) PrivateLinkServiceResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.PrivateLinkServiceResourceId }).(pulumi.StringOutput)
 }
@@ -142,7 +152,18 @@ func (o LookupPrivateLinkEndpointResultOutput) ProviderName() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
+// GCP region for the Private Service Connect endpoint service.
+func (o LookupPrivateLinkEndpointResultOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+func (o LookupPrivateLinkEndpointResultOutput) ServiceAttachmentNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.ServiceAttachmentNames }).(pulumi.StringArrayOutput)
+}
+
 // Status of the AWS PrivateLink connection.
+// Returns one of the following values:
 func (o LookupPrivateLinkEndpointResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.Status }).(pulumi.StringOutput)
 }

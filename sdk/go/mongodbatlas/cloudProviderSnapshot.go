@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// **WARNING:** This resource is deprecated, use `mongodbatlasCloudBackupSnapshot`
+//
 // `CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
 // On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 //
@@ -44,6 +46,7 @@ import (
 // 			ClusterName:     myCluster.Name,
 // 			Description:     pulumi.String("myDescription"),
 // 			RetentionInDays: pulumi.Int(1),
+// 			Timeout:         pulumi.String("10m"),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -102,6 +105,8 @@ type CloudProviderSnapshot struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the size of the snapshot in bytes.
 	StorageSizeBytes pulumi.IntOutput `pulumi:"storageSizeBytes"`
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	Timeout pulumi.StringPtrOutput `pulumi:"timeout"`
 	// Specifies the type of cluster: replicaSet or shardedCluster.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -171,6 +176,8 @@ type cloudProviderSnapshotState struct {
 	Status *string `pulumi:"status"`
 	// Specifies the size of the snapshot in bytes.
 	StorageSizeBytes *int `pulumi:"storageSizeBytes"`
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	Timeout *string `pulumi:"timeout"`
 	// Specifies the type of cluster: replicaSet or shardedCluster.
 	Type *string `pulumi:"type"`
 }
@@ -200,6 +207,8 @@ type CloudProviderSnapshotState struct {
 	Status pulumi.StringPtrInput
 	// Specifies the size of the snapshot in bytes.
 	StorageSizeBytes pulumi.IntPtrInput
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	Timeout pulumi.StringPtrInput
 	// Specifies the type of cluster: replicaSet or shardedCluster.
 	Type pulumi.StringPtrInput
 }
@@ -217,6 +226,8 @@ type cloudProviderSnapshotArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
 	RetentionInDays int `pulumi:"retentionInDays"`
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	Timeout *string `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a CloudProviderSnapshot resource.
@@ -229,6 +240,8 @@ type CloudProviderSnapshotArgs struct {
 	ProjectId pulumi.StringInput
 	// The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
 	RetentionInDays pulumi.IntInput
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	Timeout pulumi.StringPtrInput
 }
 
 func (CloudProviderSnapshotArgs) ElementType() reflect.Type {

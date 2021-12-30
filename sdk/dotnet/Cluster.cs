@@ -123,7 +123,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.ClusterLabel>> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.
+        /// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.
         /// </summary>
         [Output("mongoDbMajorVersion")]
         public Output<string> MongoDbMajorVersion { get; private set; } = null!;
@@ -423,7 +423,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.
+        /// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.
         /// </summary>
         [Input("mongoDbMajorVersion")]
         public Input<string>? MongoDbMajorVersion { get; set; }
@@ -657,7 +657,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `3.6`, `4.0`, or `4.2`. You must set this value to `4.2` if `provider_instance_size_name` is either M2 or M5.
+        /// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.
         /// </summary>
         [Input("mongoDbMajorVersion")]
         public Input<string>? MongoDbMajorVersion { get; set; }

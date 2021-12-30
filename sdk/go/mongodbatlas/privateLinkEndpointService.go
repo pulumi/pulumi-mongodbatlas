@@ -140,10 +140,19 @@ type PrivateLinkEndpointService struct {
 	AzureStatus pulumi.StringOutput `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested pulumi.BoolOutput `pulumi:"deleteRequested"`
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+	EndpointGroupName pulumi.StringOutput `pulumi:"endpointGroupName"`
+	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
 	EndpointServiceId pulumi.StringOutput `pulumi:"endpointServiceId"`
+	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	Endpoints PrivateLinkEndpointServiceEndpointArrayOutput `pulumi:"endpoints"`
 	// Error message pertaining to the interface endpoint. Returns null if there are no errors.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
+	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	GcpProjectId pulumi.StringPtrOutput `pulumi:"gcpProjectId"`
+	// Status of the interface endpoint for GCP.
+	// Returns one of the following values:
+	GcpStatus pulumi.StringOutput `pulumi:"gcpStatus"`
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId pulumi.StringOutput `pulumi:"interfaceEndpointId"`
 	// Name of the connection for this private endpoint that Atlas generates.
@@ -156,7 +165,7 @@ type PrivateLinkEndpointService struct {
 	PrivateLinkId pulumi.StringOutput `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 }
 
@@ -209,10 +218,19 @@ type privateLinkEndpointServiceState struct {
 	AzureStatus *string `pulumi:"azureStatus"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested *bool `pulumi:"deleteRequested"`
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+	EndpointGroupName *string `pulumi:"endpointGroupName"`
+	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
 	EndpointServiceId *string `pulumi:"endpointServiceId"`
+	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	Endpoints []PrivateLinkEndpointServiceEndpoint `pulumi:"endpoints"`
 	// Error message pertaining to the interface endpoint. Returns null if there are no errors.
 	ErrorMessage *string `pulumi:"errorMessage"`
+	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	GcpProjectId *string `pulumi:"gcpProjectId"`
+	// Status of the interface endpoint for GCP.
+	// Returns one of the following values:
+	GcpStatus *string `pulumi:"gcpStatus"`
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId *string `pulumi:"interfaceEndpointId"`
 	// Name of the connection for this private endpoint that Atlas generates.
@@ -225,7 +243,7 @@ type privateLinkEndpointServiceState struct {
 	PrivateLinkId *string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId *string `pulumi:"projectId"`
-	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName *string `pulumi:"providerName"`
 }
 
@@ -238,10 +256,19 @@ type PrivateLinkEndpointServiceState struct {
 	AzureStatus pulumi.StringPtrInput
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested pulumi.BoolPtrInput
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+	EndpointGroupName pulumi.StringPtrInput
+	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
 	EndpointServiceId pulumi.StringPtrInput
+	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	Endpoints PrivateLinkEndpointServiceEndpointArrayInput
 	// Error message pertaining to the interface endpoint. Returns null if there are no errors.
 	ErrorMessage pulumi.StringPtrInput
+	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	GcpProjectId pulumi.StringPtrInput
+	// Status of the interface endpoint for GCP.
+	// Returns one of the following values:
+	GcpStatus pulumi.StringPtrInput
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId pulumi.StringPtrInput
 	// Name of the connection for this private endpoint that Atlas generates.
@@ -254,7 +281,7 @@ type PrivateLinkEndpointServiceState struct {
 	PrivateLinkId pulumi.StringPtrInput
 	// Unique identifier for the project.
 	ProjectId pulumi.StringPtrInput
-	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName pulumi.StringPtrInput
 }
 
@@ -263,29 +290,37 @@ func (PrivateLinkEndpointServiceState) ElementType() reflect.Type {
 }
 
 type privateLinkEndpointServiceArgs struct {
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
 	EndpointServiceId string `pulumi:"endpointServiceId"`
+	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	Endpoints []PrivateLinkEndpointServiceEndpoint `pulumi:"endpoints"`
+	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	GcpProjectId *string `pulumi:"gcpProjectId"`
 	// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
 	PrivateEndpointIpAddress *string `pulumi:"privateEndpointIpAddress"`
 	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
 	PrivateLinkId string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`
-	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName string `pulumi:"providerName"`
 }
 
 // The set of arguments for constructing a PrivateLinkEndpointService resource.
 type PrivateLinkEndpointServiceArgs struct {
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS` or `AZURE` resource.
+	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
 	EndpointServiceId pulumi.StringInput
+	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	Endpoints PrivateLinkEndpointServiceEndpointArrayInput
+	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	GcpProjectId pulumi.StringPtrInput
 	// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
 	PrivateEndpointIpAddress pulumi.StringPtrInput
 	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
 	PrivateLinkId pulumi.StringInput
 	// Unique identifier for the project.
 	ProjectId pulumi.StringInput
-	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE`.
+	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName pulumi.StringInput
 }
 

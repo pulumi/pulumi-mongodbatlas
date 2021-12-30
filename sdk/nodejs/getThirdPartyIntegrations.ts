@@ -10,6 +10,29 @@ import * as utilities from "./utilities";
  * applied across the project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("testPagerDuty", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "PAGER_DUTY",
+ *     serviceKey: "<PAGER-DUTY-SERVICE-KEY>",
+ * });
+ * const testFlowdock = new mongodbatlas.ThirdPartyIntegration("testFlowdock", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "FLOWDOCK",
+ *     flowName: "<FLOW-NAME>",
+ *     apiToken: "<API-TOKEN>",
+ *     orgName: "<ORG-NAME>",
+ * });
+ * const test = mongodbatlas.getThirdPartyIntegrationsOutput({
+ *     projectId: testPagerDuty.projectId,
+ * });
+ * ```
  */
 export function getThirdPartyIntegrations(args: GetThirdPartyIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationsResult> {
     if (!opts) {

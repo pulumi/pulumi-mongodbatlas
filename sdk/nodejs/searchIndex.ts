@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -21,6 +22,75 @@ import * as utilities from "./utilities";
  *     mappingsDynamic: true,
  *     projectId: "<PROJECT_ID>",
  *     searchAnalyzer: "lucene.standard",
+ * });
+ * ```
+ * ### Advanced (with custom analyzers)
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.SearchIndex("test", {
+ *     projectId: `%[1]s`,
+ *     clusterName: `%[2]s`,
+ *     analyzer: "lucene.standard",
+ *     collectionName: "collection_test",
+ *     database: "database_test",
+ *     mappingsDynamic: false,
+ *     mappingsFields: `{
+ *       "address": {
+ *         "type": "document",
+ *         "fields": {
+ *           "city": {
+ *             "type": "string",
+ *             "analyzer": "lucene.simple",
+ *             "ignoreAbove": 255
+ *           },
+ *           "state": {
+ *             "type": "string",
+ *             "analyzer": "lucene.english"
+ *           }
+ *         }
+ *       },
+ *       "company": {
+ *         "type": "string",
+ *         "analyzer": "lucene.whitespace",
+ *         "multi": {
+ *           "mySecondaryAnalyzer": {
+ *             "type": "string",
+ *             "analyzer": "lucene.french"
+ *           }
+ *         }
+ *       },
+ *       "employees": {
+ *         "type": "string",
+ *         "analyzer": "lucene.standard"
+ *       }
+ * }
+ * `,
+ *     searchAnalyzer: "lucene.standard",
+ *     analyzers: ` [{
+ *  "name": "index_analyzer_test_name",
+ *  "char_filters": {
+ * "type": "mapping",
+ * "mappings": {"\\" : "/"}
+ *    	},
+ *  "tokenizer": {
+ *  "type": "nGram",
+ *  "min_gram": 2,
+ *  "max_gram": 5
+ * 	},
+ *  "token_filters": {
+ * "type": "length",
+ * "min": 20,
+ * "max": 33
+ *    	}
+ *  }]
+ * `,
+ *     synonyms: [{
+ *         analyzer: "lucene.simple",
+ *         name: "synonym_test",
+ *         sourceCollection: "collection_test",
+ *     }],
  * });
  * ```
  */
@@ -53,7 +123,13 @@ export class SearchIndex extends pulumi.CustomResource {
     }
 
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+     * Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+     * * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+     * * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
      */
     public readonly analyzer!: pulumi.Output<string>;
     /**
@@ -82,10 +158,7 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     public readonly mappingsFields!: pulumi.Output<string | undefined>;
     /**
-     * Name of the custom analyzer. Names must be unique within an index, and may **not** start with any of the following strings:
-     * * `lucene`
-     * * `builtin`
-     * * `mongodb`
+     * Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -97,6 +170,10 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     public readonly searchAnalyzer!: pulumi.Output<string | undefined>;
     public readonly status!: pulumi.Output<string>;
+    /**
+     * Synonyms mapping definition to use in this index.
+     */
+    public readonly synonyms!: pulumi.Output<outputs.SearchIndexSynonym[] | undefined>;
 
     /**
      * Create a SearchIndex resource with the given unique name, arguments, and options.
@@ -123,6 +200,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["searchAnalyzer"] = state ? state.searchAnalyzer : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["synonyms"] = state ? state.synonyms : undefined;
         } else {
             const args = argsOrState as SearchIndexArgs | undefined;
             if ((!args || args.analyzer === undefined) && !opts.urn) {
@@ -151,6 +229,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["searchAnalyzer"] = args ? args.searchAnalyzer : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["synonyms"] = args ? args.synonyms : undefined;
             resourceInputs["indexId"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -165,7 +244,13 @@ export class SearchIndex extends pulumi.CustomResource {
  */
 export interface SearchIndexState {
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+     * Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+     * * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+     * * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
      */
     analyzer?: pulumi.Input<string>;
     /**
@@ -194,10 +279,7 @@ export interface SearchIndexState {
      */
     mappingsFields?: pulumi.Input<string>;
     /**
-     * Name of the custom analyzer. Names must be unique within an index, and may **not** start with any of the following strings:
-     * * `lucene`
-     * * `builtin`
-     * * `mongodb`
+     * Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
      */
     name?: pulumi.Input<string>;
     /**
@@ -209,6 +291,10 @@ export interface SearchIndexState {
      */
     searchAnalyzer?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
+    /**
+     * Synonyms mapping definition to use in this index.
+     */
+    synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[]>;
 }
 
 /**
@@ -216,7 +302,13 @@ export interface SearchIndexState {
  */
 export interface SearchIndexArgs {
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+     * Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+     * * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+     * * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
      */
     analyzer: pulumi.Input<string>;
     /**
@@ -244,10 +336,7 @@ export interface SearchIndexArgs {
      */
     mappingsFields?: pulumi.Input<string>;
     /**
-     * Name of the custom analyzer. Names must be unique within an index, and may **not** start with any of the following strings:
-     * * `lucene`
-     * * `builtin`
-     * * `mongodb`
+     * Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
      */
     name?: pulumi.Input<string>;
     /**
@@ -259,4 +348,8 @@ export interface SearchIndexArgs {
      */
     searchAnalyzer?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
+    /**
+     * Synonyms mapping definition to use in this index.
+     */
+    synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[]>;
 }

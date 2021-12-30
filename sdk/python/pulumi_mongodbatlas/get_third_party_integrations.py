@@ -76,6 +76,25 @@ def get_third_party_integrations(project_id: Optional[str] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_pager_duty = mongodbatlas.ThirdPartyIntegration("testPagerDuty",
+        project_id="<PROJECT-ID>",
+        type="PAGER_DUTY",
+        service_key="<PAGER-DUTY-SERVICE-KEY>")
+    test_flowdock = mongodbatlas.ThirdPartyIntegration("testFlowdock",
+        project_id="<PROJECT-ID>",
+        type="FLOWDOCK",
+        flow_name="<FLOW-NAME>",
+        api_token="<API-TOKEN>",
+        org_name="<ORG-NAME>")
+    test = mongodbatlas.get_third_party_integrations_output(project_id=test_pager_duty.project_id)
+    ```
+
 
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
     """
@@ -101,6 +120,25 @@ def get_third_party_integrations_output(project_id: Optional[pulumi.Input[str]] 
     applied across the project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_pager_duty = mongodbatlas.ThirdPartyIntegration("testPagerDuty",
+        project_id="<PROJECT-ID>",
+        type="PAGER_DUTY",
+        service_key="<PAGER-DUTY-SERVICE-KEY>")
+    test_flowdock = mongodbatlas.ThirdPartyIntegration("testFlowdock",
+        project_id="<PROJECT-ID>",
+        type="FLOWDOCK",
+        flow_name="<FLOW-NAME>",
+        api_token="<API-TOKEN>",
+        org_name="<ORG-NAME>")
+    test = mongodbatlas.get_third_party_integrations_output(project_id=test_pager_duty.project_id)
+    ```
 
 
     :param str project_id: The unique ID for the project to get all Third-Party service integrations

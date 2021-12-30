@@ -16,18 +16,22 @@ class CloudProviderSnapshotArgs:
                  cluster_name: pulumi.Input[str],
                  description: pulumi.Input[str],
                  project_id: pulumi.Input[str],
-                 retention_in_days: pulumi.Input[int]):
+                 retention_in_days: pulumi.Input[int],
+                 timeout: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CloudProviderSnapshot resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[str] description: Description of the on-demand snapshot.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "retention_in_days", retention_in_days)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
 
     @property
     @pulumi.getter(name="clusterName")
@@ -77,6 +81,18 @@ class CloudProviderSnapshotArgs:
     def retention_in_days(self, value: pulumi.Input[int]):
         pulumi.set(self, "retention_in_days", value)
 
+    @property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "timeout", value)
+
 
 @pulumi.input_type
 class _CloudProviderSnapshotState:
@@ -93,6 +109,7 @@ class _CloudProviderSnapshotState:
                  snapshot_type: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  storage_size_bytes: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CloudProviderSnapshot resources.
@@ -108,6 +125,7 @@ class _CloudProviderSnapshotState:
         :param pulumi.Input[str] snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
         :param pulumi.Input[str] status: Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
         :param pulumi.Input[int] storage_size_bytes: Specifies the size of the snapshot in bytes.
+        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         :param pulumi.Input[str] type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
         if cluster_name is not None:
@@ -134,6 +152,8 @@ class _CloudProviderSnapshotState:
             pulumi.set(__self__, "status", status)
         if storage_size_bytes is not None:
             pulumi.set(__self__, "storage_size_bytes", storage_size_bytes)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -283,6 +303,18 @@ class _CloudProviderSnapshotState:
 
     @property
     @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the type of cluster: replicaSet or shardedCluster.
@@ -303,8 +335,11 @@ class CloudProviderSnapshot(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  retention_in_days: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        **WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+
         `CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 
@@ -328,7 +363,8 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
             description="myDescription",
-            retention_in_days=1)
+            retention_in_days=1,
+            timeout="10m")
         test_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob",
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
@@ -354,6 +390,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description of the on-demand snapshot.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         """
         ...
     @overload
@@ -362,6 +399,8 @@ class CloudProviderSnapshot(pulumi.CustomResource):
                  args: CloudProviderSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        **WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+
         `CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 
@@ -385,7 +424,8 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
             description="myDescription",
-            retention_in_days=1)
+            retention_in_days=1,
+            timeout="10m")
         test_cloud_provider_snapshot_restore_job = mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob",
             project_id=test_cloud_provider_snapshot.project_id,
             cluster_name=test_cloud_provider_snapshot.cluster_name,
@@ -424,6 +464,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  retention_in_days: Optional[pulumi.Input[int]] = None,
+                 timeout: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -448,6 +489,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             if retention_in_days is None and not opts.urn:
                 raise TypeError("Missing required property 'retention_in_days'")
             __props__.__dict__["retention_in_days"] = retention_in_days
+            __props__.__dict__["timeout"] = timeout
             __props__.__dict__["created_at"] = None
             __props__.__dict__["expires_at"] = None
             __props__.__dict__["master_key_uuid"] = None
@@ -479,6 +521,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
             snapshot_type: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             storage_size_bytes: Optional[pulumi.Input[int]] = None,
+            timeout: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'CloudProviderSnapshot':
         """
         Get an existing CloudProviderSnapshot resource's state with the given name, id, and optional extra
@@ -499,6 +542,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
         :param pulumi.Input[str] status: Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
         :param pulumi.Input[int] storage_size_bytes: Specifies the size of the snapshot in bytes.
+        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         :param pulumi.Input[str] type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -517,6 +561,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         __props__.__dict__["snapshot_type"] = snapshot_type
         __props__.__dict__["status"] = status
         __props__.__dict__["storage_size_bytes"] = storage_size_bytes
+        __props__.__dict__["timeout"] = timeout
         __props__.__dict__["type"] = type
         return CloudProviderSnapshot(resource_name, opts=opts, __props__=__props__)
 
@@ -615,6 +660,14 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         Specifies the size of the snapshot in bytes.
         """
         return pulumi.get(self, "storage_size_bytes")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Output[Optional[str]]:
+        """
+        The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        """
+        return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter

@@ -60,7 +60,9 @@ __all__ = [
     'LdapVerifyValidationArgs',
     'OnlineArchiveCriteriaArgs',
     'OnlineArchivePartitionFieldArgs',
+    'PrivateLinkEndpointServiceEndpointArgs',
     'ProjectTeamArgs',
+    'SearchIndexSynonymArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
     'GetCustomDbRoleInheritedRoleArgs',
     'GetGlobalClusterConfigManagedNamespaceArgs',
@@ -3447,6 +3449,77 @@ class OnlineArchivePartitionFieldArgs:
 
 
 @pulumi.input_type
+class PrivateLinkEndpointServiceEndpointArgs:
+    def __init__(__self__, *,
+                 endpoint_name: Optional[pulumi.Input[str]] = None,
+                 ip_address: Optional[pulumi.Input[str]] = None,
+                 service_attachment_name: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] endpoint_name: Forwarding rule that corresponds to the endpoint you created in GCP.
+        :param pulumi.Input[str] ip_address: Private IP address of the endpoint you created in GCP.
+        :param pulumi.Input[str] service_attachment_name: Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+        :param pulumi.Input[str] status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+        """
+        if endpoint_name is not None:
+            pulumi.set(__self__, "endpoint_name", endpoint_name)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+        if service_attachment_name is not None:
+            pulumi.set(__self__, "service_attachment_name", service_attachment_name)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="endpointName")
+    def endpoint_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forwarding rule that corresponds to the endpoint you created in GCP.
+        """
+        return pulumi.get(self, "endpoint_name")
+
+    @endpoint_name.setter
+    def endpoint_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint_name", value)
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private IP address of the endpoint you created in GCP.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @ip_address.setter
+    def ip_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_address", value)
+
+    @property
+    @pulumi.getter(name="serviceAttachmentName")
+    def service_attachment_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+        """
+        return pulumi.get(self, "service_attachment_name")
+
+    @service_attachment_name.setter
+    def service_attachment_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_attachment_name", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+
+@pulumi.input_type
 class ProjectTeamArgs:
     def __init__(__self__, *,
                  role_names: pulumi.Input[Sequence[pulumi.Input[str]]],
@@ -3495,6 +3568,70 @@ class ProjectTeamArgs:
     @team_id.setter
     def team_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "team_id", value)
+
+
+@pulumi.input_type
+class SearchIndexSynonymArgs:
+    def __init__(__self__, *,
+                 analyzer: pulumi.Input[str],
+                 name: pulumi.Input[str],
+                 source_collection: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] analyzer: Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+               * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+               * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+               * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+               * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+               * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+               * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+        :param pulumi.Input[str] name: Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+        :param pulumi.Input[str] source_collection: Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+        """
+        pulumi.set(__self__, "analyzer", analyzer)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "source_collection", source_collection)
+
+    @property
+    @pulumi.getter
+    def analyzer(self) -> pulumi.Input[str]:
+        """
+        Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+        * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+        * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+        * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+        * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+        * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+        * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+        """
+        return pulumi.get(self, "analyzer")
+
+    @analyzer.setter
+    def analyzer(self, value: pulumi.Input[str]):
+        pulumi.set(self, "analyzer", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="sourceCollection")
+    def source_collection(self) -> pulumi.Input[str]:
+        """
+        Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+        """
+        return pulumi.get(self, "source_collection")
+
+    @source_collection.setter
+    def source_collection(self, value: pulumi.Input[str]):
+        pulumi.set(self, "source_collection", value)
 
 
 @pulumi.input_type

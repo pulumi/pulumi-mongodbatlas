@@ -717,29 +717,6 @@ export interface GetCustomDbRoleInheritedRoleArgs {
     roleName?: pulumi.Input<string>;
 }
 
-export interface GetGlobalClusterConfigManagedNamespace {
-    /**
-     * (Required) The name of the collection associated with the managed namespace.
-     */
-    collection: string;
-    /**
-     * (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
-     */
-    customShardKey: string;
-    /**
-     * (Required) The name of the database containing the collection.
-     */
-    db: string;
-    /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
-     */
-    isCustomShardKeyHashed?: boolean;
-    /**
-     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
-     */
-    isShardKeyUnique?: boolean;
-}
-
 export interface GetGlobalClusterConfigManagedNamespaceArgs {
     /**
      * (Required) The name of the collection associated with the managed namespace.
@@ -761,6 +738,29 @@ export interface GetGlobalClusterConfigManagedNamespaceArgs {
      * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
      */
     isShardKeyUnique?: pulumi.Input<boolean>;
+}
+
+export interface GetGlobalClusterConfigManagedNamespace {
+    /**
+     * (Required) The name of the collection associated with the managed namespace.
+     */
+    collection: string;
+    /**
+     * (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
+     */
+    customShardKey: string;
+    /**
+     * (Required) The name of the database containing the collection.
+     */
+    db: string;
+    /**
+     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     */
+    isCustomShardKeyHashed?: boolean;
+    /**
+     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     */
+    isShardKeyUnique?: boolean;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {
@@ -830,6 +830,25 @@ export interface OnlineArchivePartitionField {
     order: pulumi.Input<number>;
 }
 
+export interface PrivateLinkEndpointServiceEndpoint {
+    /**
+     * Forwarding rule that corresponds to the endpoint you created in GCP.
+     */
+    endpointName?: pulumi.Input<string>;
+    /**
+     * Private IP address of the endpoint you created in GCP.
+     */
+    ipAddress?: pulumi.Input<string>;
+    /**
+     * Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+     */
+    serviceAttachmentName?: pulumi.Input<string>;
+    /**
+     * Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     */
+    status?: pulumi.Input<string>;
+}
+
 export interface ProjectTeam {
     /**
      * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
@@ -848,6 +867,27 @@ export interface ProjectTeam {
     teamId: pulumi.Input<string>;
 }
 
+export interface SearchIndexSynonym {
+    /**
+     * Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+     * * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+     * * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+     * * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+     * * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+     */
+    analyzer: pulumi.Input<string>;
+    /**
+     * Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+     */
+    sourceCollection: pulumi.Input<string>;
+}
+
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt?: pulumi.Input<string>;
     groupId?: pulumi.Input<string>;
@@ -855,4 +895,3 @@ export interface X509AuthenticationDatabaseUserCertificate {
     notAfter?: pulumi.Input<string>;
     subject?: pulumi.Input<string>;
 }
-

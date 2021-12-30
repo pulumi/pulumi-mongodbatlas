@@ -7653,6 +7653,130 @@ func (o OnlineArchivePartitionFieldArrayOutput) Index(i pulumi.IntInput) OnlineA
 	}).(OnlineArchivePartitionFieldOutput)
 }
 
+type PrivateLinkEndpointServiceEndpoint struct {
+	// Forwarding rule that corresponds to the endpoint you created in GCP.
+	EndpointName *string `pulumi:"endpointName"`
+	// Private IP address of the endpoint you created in GCP.
+	IpAddress *string `pulumi:"ipAddress"`
+	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+	ServiceAttachmentName *string `pulumi:"serviceAttachmentName"`
+	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+	Status *string `pulumi:"status"`
+}
+
+// PrivateLinkEndpointServiceEndpointInput is an input type that accepts PrivateLinkEndpointServiceEndpointArgs and PrivateLinkEndpointServiceEndpointOutput values.
+// You can construct a concrete instance of `PrivateLinkEndpointServiceEndpointInput` via:
+//
+//          PrivateLinkEndpointServiceEndpointArgs{...}
+type PrivateLinkEndpointServiceEndpointInput interface {
+	pulumi.Input
+
+	ToPrivateLinkEndpointServiceEndpointOutput() PrivateLinkEndpointServiceEndpointOutput
+	ToPrivateLinkEndpointServiceEndpointOutputWithContext(context.Context) PrivateLinkEndpointServiceEndpointOutput
+}
+
+type PrivateLinkEndpointServiceEndpointArgs struct {
+	// Forwarding rule that corresponds to the endpoint you created in GCP.
+	EndpointName pulumi.StringPtrInput `pulumi:"endpointName"`
+	// Private IP address of the endpoint you created in GCP.
+	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+	ServiceAttachmentName pulumi.StringPtrInput `pulumi:"serviceAttachmentName"`
+	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (PrivateLinkEndpointServiceEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateLinkEndpointServiceEndpoint)(nil)).Elem()
+}
+
+func (i PrivateLinkEndpointServiceEndpointArgs) ToPrivateLinkEndpointServiceEndpointOutput() PrivateLinkEndpointServiceEndpointOutput {
+	return i.ToPrivateLinkEndpointServiceEndpointOutputWithContext(context.Background())
+}
+
+func (i PrivateLinkEndpointServiceEndpointArgs) ToPrivateLinkEndpointServiceEndpointOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointServiceEndpointOutput)
+}
+
+// PrivateLinkEndpointServiceEndpointArrayInput is an input type that accepts PrivateLinkEndpointServiceEndpointArray and PrivateLinkEndpointServiceEndpointArrayOutput values.
+// You can construct a concrete instance of `PrivateLinkEndpointServiceEndpointArrayInput` via:
+//
+//          PrivateLinkEndpointServiceEndpointArray{ PrivateLinkEndpointServiceEndpointArgs{...} }
+type PrivateLinkEndpointServiceEndpointArrayInput interface {
+	pulumi.Input
+
+	ToPrivateLinkEndpointServiceEndpointArrayOutput() PrivateLinkEndpointServiceEndpointArrayOutput
+	ToPrivateLinkEndpointServiceEndpointArrayOutputWithContext(context.Context) PrivateLinkEndpointServiceEndpointArrayOutput
+}
+
+type PrivateLinkEndpointServiceEndpointArray []PrivateLinkEndpointServiceEndpointInput
+
+func (PrivateLinkEndpointServiceEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateLinkEndpointServiceEndpoint)(nil)).Elem()
+}
+
+func (i PrivateLinkEndpointServiceEndpointArray) ToPrivateLinkEndpointServiceEndpointArrayOutput() PrivateLinkEndpointServiceEndpointArrayOutput {
+	return i.ToPrivateLinkEndpointServiceEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i PrivateLinkEndpointServiceEndpointArray) ToPrivateLinkEndpointServiceEndpointArrayOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateLinkEndpointServiceEndpointArrayOutput)
+}
+
+type PrivateLinkEndpointServiceEndpointOutput struct{ *pulumi.OutputState }
+
+func (PrivateLinkEndpointServiceEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateLinkEndpointServiceEndpoint)(nil)).Elem()
+}
+
+func (o PrivateLinkEndpointServiceEndpointOutput) ToPrivateLinkEndpointServiceEndpointOutput() PrivateLinkEndpointServiceEndpointOutput {
+	return o
+}
+
+func (o PrivateLinkEndpointServiceEndpointOutput) ToPrivateLinkEndpointServiceEndpointOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceEndpointOutput {
+	return o
+}
+
+// Forwarding rule that corresponds to the endpoint you created in GCP.
+func (o PrivateLinkEndpointServiceEndpointOutput) EndpointName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.EndpointName }).(pulumi.StringPtrOutput)
+}
+
+// Private IP address of the endpoint you created in GCP.
+func (o PrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
+}
+
+// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+func (o PrivateLinkEndpointServiceEndpointOutput) ServiceAttachmentName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.ServiceAttachmentName }).(pulumi.StringPtrOutput)
+}
+
+// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+func (o PrivateLinkEndpointServiceEndpointOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type PrivateLinkEndpointServiceEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (PrivateLinkEndpointServiceEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrivateLinkEndpointServiceEndpoint)(nil)).Elem()
+}
+
+func (o PrivateLinkEndpointServiceEndpointArrayOutput) ToPrivateLinkEndpointServiceEndpointArrayOutput() PrivateLinkEndpointServiceEndpointArrayOutput {
+	return o
+}
+
+func (o PrivateLinkEndpointServiceEndpointArrayOutput) ToPrivateLinkEndpointServiceEndpointArrayOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceEndpointArrayOutput {
+	return o
+}
+
+func (o PrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInput) PrivateLinkEndpointServiceEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrivateLinkEndpointServiceEndpoint {
+		return vs[0].([]PrivateLinkEndpointServiceEndpoint)[vs[1].(int)]
+	}).(PrivateLinkEndpointServiceEndpointOutput)
+}
+
 type ProjectTeam struct {
 	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
 	// The following are valid roles:
@@ -7778,6 +7902,139 @@ func (o ProjectTeamArrayOutput) Index(i pulumi.IntInput) ProjectTeamOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectTeam {
 		return vs[0].([]ProjectTeam)[vs[1].(int)]
 	}).(ProjectTeamOutput)
+}
+
+type SearchIndexSynonym struct {
+	// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+	// * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+	// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+	Analyzer string `pulumi:"analyzer"`
+	// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+	Name string `pulumi:"name"`
+	// Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+	SourceCollection string `pulumi:"sourceCollection"`
+}
+
+// SearchIndexSynonymInput is an input type that accepts SearchIndexSynonymArgs and SearchIndexSynonymOutput values.
+// You can construct a concrete instance of `SearchIndexSynonymInput` via:
+//
+//          SearchIndexSynonymArgs{...}
+type SearchIndexSynonymInput interface {
+	pulumi.Input
+
+	ToSearchIndexSynonymOutput() SearchIndexSynonymOutput
+	ToSearchIndexSynonymOutputWithContext(context.Context) SearchIndexSynonymOutput
+}
+
+type SearchIndexSynonymArgs struct {
+	// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+	// * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+	// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+	// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+	// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+	Analyzer pulumi.StringInput `pulumi:"analyzer"`
+	// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+	SourceCollection pulumi.StringInput `pulumi:"sourceCollection"`
+}
+
+func (SearchIndexSynonymArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SearchIndexSynonym)(nil)).Elem()
+}
+
+func (i SearchIndexSynonymArgs) ToSearchIndexSynonymOutput() SearchIndexSynonymOutput {
+	return i.ToSearchIndexSynonymOutputWithContext(context.Background())
+}
+
+func (i SearchIndexSynonymArgs) ToSearchIndexSynonymOutputWithContext(ctx context.Context) SearchIndexSynonymOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SearchIndexSynonymOutput)
+}
+
+// SearchIndexSynonymArrayInput is an input type that accepts SearchIndexSynonymArray and SearchIndexSynonymArrayOutput values.
+// You can construct a concrete instance of `SearchIndexSynonymArrayInput` via:
+//
+//          SearchIndexSynonymArray{ SearchIndexSynonymArgs{...} }
+type SearchIndexSynonymArrayInput interface {
+	pulumi.Input
+
+	ToSearchIndexSynonymArrayOutput() SearchIndexSynonymArrayOutput
+	ToSearchIndexSynonymArrayOutputWithContext(context.Context) SearchIndexSynonymArrayOutput
+}
+
+type SearchIndexSynonymArray []SearchIndexSynonymInput
+
+func (SearchIndexSynonymArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SearchIndexSynonym)(nil)).Elem()
+}
+
+func (i SearchIndexSynonymArray) ToSearchIndexSynonymArrayOutput() SearchIndexSynonymArrayOutput {
+	return i.ToSearchIndexSynonymArrayOutputWithContext(context.Background())
+}
+
+func (i SearchIndexSynonymArray) ToSearchIndexSynonymArrayOutputWithContext(ctx context.Context) SearchIndexSynonymArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SearchIndexSynonymArrayOutput)
+}
+
+type SearchIndexSynonymOutput struct{ *pulumi.OutputState }
+
+func (SearchIndexSynonymOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SearchIndexSynonym)(nil)).Elem()
+}
+
+func (o SearchIndexSynonymOutput) ToSearchIndexSynonymOutput() SearchIndexSynonymOutput {
+	return o
+}
+
+func (o SearchIndexSynonymOutput) ToSearchIndexSynonymOutputWithContext(ctx context.Context) SearchIndexSynonymOutput {
+	return o
+}
+
+// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+// * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+func (o SearchIndexSynonymOutput) Analyzer() pulumi.StringOutput {
+	return o.ApplyT(func(v SearchIndexSynonym) string { return v.Analyzer }).(pulumi.StringOutput)
+}
+
+// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+func (o SearchIndexSynonymOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SearchIndexSynonym) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+func (o SearchIndexSynonymOutput) SourceCollection() pulumi.StringOutput {
+	return o.ApplyT(func(v SearchIndexSynonym) string { return v.SourceCollection }).(pulumi.StringOutput)
+}
+
+type SearchIndexSynonymArrayOutput struct{ *pulumi.OutputState }
+
+func (SearchIndexSynonymArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SearchIndexSynonym)(nil)).Elem()
+}
+
+func (o SearchIndexSynonymArrayOutput) ToSearchIndexSynonymArrayOutput() SearchIndexSynonymArrayOutput {
+	return o
+}
+
+func (o SearchIndexSynonymArrayOutput) ToSearchIndexSynonymArrayOutputWithContext(ctx context.Context) SearchIndexSynonymArrayOutput {
+	return o
+}
+
+func (o SearchIndexSynonymArrayOutput) Index(i pulumi.IntInput) SearchIndexSynonymOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SearchIndexSynonym {
+		return vs[0].([]SearchIndexSynonym)[vs[1].(int)]
+	}).(SearchIndexSynonymOutput)
 }
 
 type X509AuthenticationDatabaseUserCertificate struct {
@@ -18708,6 +18965,130 @@ func (o GetOnlineArchivesResultPartitionFieldArrayOutput) Index(i pulumi.IntInpu
 	}).(GetOnlineArchivesResultPartitionFieldOutput)
 }
 
+type GetPrivateLinkEndpointServiceEndpoint struct {
+	// Forwarding rule that corresponds to the endpoint you created in GCP.
+	EndpointName string `pulumi:"endpointName"`
+	// Private IP address of the network endpoint group you created in GCP.
+	IpAddress string `pulumi:"ipAddress"`
+	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+	ServiceAttachmentName string `pulumi:"serviceAttachmentName"`
+	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+	Status string `pulumi:"status"`
+}
+
+// GetPrivateLinkEndpointServiceEndpointInput is an input type that accepts GetPrivateLinkEndpointServiceEndpointArgs and GetPrivateLinkEndpointServiceEndpointOutput values.
+// You can construct a concrete instance of `GetPrivateLinkEndpointServiceEndpointInput` via:
+//
+//          GetPrivateLinkEndpointServiceEndpointArgs{...}
+type GetPrivateLinkEndpointServiceEndpointInput interface {
+	pulumi.Input
+
+	ToGetPrivateLinkEndpointServiceEndpointOutput() GetPrivateLinkEndpointServiceEndpointOutput
+	ToGetPrivateLinkEndpointServiceEndpointOutputWithContext(context.Context) GetPrivateLinkEndpointServiceEndpointOutput
+}
+
+type GetPrivateLinkEndpointServiceEndpointArgs struct {
+	// Forwarding rule that corresponds to the endpoint you created in GCP.
+	EndpointName pulumi.StringInput `pulumi:"endpointName"`
+	// Private IP address of the network endpoint group you created in GCP.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+	ServiceAttachmentName pulumi.StringInput `pulumi:"serviceAttachmentName"`
+	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetPrivateLinkEndpointServiceEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpoint)(nil)).Elem()
+}
+
+func (i GetPrivateLinkEndpointServiceEndpointArgs) ToGetPrivateLinkEndpointServiceEndpointOutput() GetPrivateLinkEndpointServiceEndpointOutput {
+	return i.ToGetPrivateLinkEndpointServiceEndpointOutputWithContext(context.Background())
+}
+
+func (i GetPrivateLinkEndpointServiceEndpointArgs) ToGetPrivateLinkEndpointServiceEndpointOutputWithContext(ctx context.Context) GetPrivateLinkEndpointServiceEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateLinkEndpointServiceEndpointOutput)
+}
+
+// GetPrivateLinkEndpointServiceEndpointArrayInput is an input type that accepts GetPrivateLinkEndpointServiceEndpointArray and GetPrivateLinkEndpointServiceEndpointArrayOutput values.
+// You can construct a concrete instance of `GetPrivateLinkEndpointServiceEndpointArrayInput` via:
+//
+//          GetPrivateLinkEndpointServiceEndpointArray{ GetPrivateLinkEndpointServiceEndpointArgs{...} }
+type GetPrivateLinkEndpointServiceEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivateLinkEndpointServiceEndpointArrayOutput() GetPrivateLinkEndpointServiceEndpointArrayOutput
+	ToGetPrivateLinkEndpointServiceEndpointArrayOutputWithContext(context.Context) GetPrivateLinkEndpointServiceEndpointArrayOutput
+}
+
+type GetPrivateLinkEndpointServiceEndpointArray []GetPrivateLinkEndpointServiceEndpointInput
+
+func (GetPrivateLinkEndpointServiceEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateLinkEndpointServiceEndpoint)(nil)).Elem()
+}
+
+func (i GetPrivateLinkEndpointServiceEndpointArray) ToGetPrivateLinkEndpointServiceEndpointArrayOutput() GetPrivateLinkEndpointServiceEndpointArrayOutput {
+	return i.ToGetPrivateLinkEndpointServiceEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivateLinkEndpointServiceEndpointArray) ToGetPrivateLinkEndpointServiceEndpointArrayOutputWithContext(ctx context.Context) GetPrivateLinkEndpointServiceEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateLinkEndpointServiceEndpointArrayOutput)
+}
+
+type GetPrivateLinkEndpointServiceEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateLinkEndpointServiceEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpoint)(nil)).Elem()
+}
+
+func (o GetPrivateLinkEndpointServiceEndpointOutput) ToGetPrivateLinkEndpointServiceEndpointOutput() GetPrivateLinkEndpointServiceEndpointOutput {
+	return o
+}
+
+func (o GetPrivateLinkEndpointServiceEndpointOutput) ToGetPrivateLinkEndpointServiceEndpointOutputWithContext(ctx context.Context) GetPrivateLinkEndpointServiceEndpointOutput {
+	return o
+}
+
+// Forwarding rule that corresponds to the endpoint you created in GCP.
+func (o GetPrivateLinkEndpointServiceEndpointOutput) EndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.EndpointName }).(pulumi.StringOutput)
+}
+
+// Private IP address of the network endpoint group you created in GCP.
+func (o GetPrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Unique alphanumeric and special character strings that identify the service attachment associated with the endpoint.
+func (o GetPrivateLinkEndpointServiceEndpointOutput) ServiceAttachmentName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.ServiceAttachmentName }).(pulumi.StringOutput)
+}
+
+// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+func (o GetPrivateLinkEndpointServiceEndpointOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetPrivateLinkEndpointServiceEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateLinkEndpointServiceEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivateLinkEndpointServiceEndpoint)(nil)).Elem()
+}
+
+func (o GetPrivateLinkEndpointServiceEndpointArrayOutput) ToGetPrivateLinkEndpointServiceEndpointArrayOutput() GetPrivateLinkEndpointServiceEndpointArrayOutput {
+	return o
+}
+
+func (o GetPrivateLinkEndpointServiceEndpointArrayOutput) ToGetPrivateLinkEndpointServiceEndpointArrayOutputWithContext(ctx context.Context) GetPrivateLinkEndpointServiceEndpointArrayOutput {
+	return o
+}
+
+func (o GetPrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInput) GetPrivateLinkEndpointServiceEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivateLinkEndpointServiceEndpoint {
+		return vs[0].([]GetPrivateLinkEndpointServiceEndpoint)[vs[1].(int)]
+	}).(GetPrivateLinkEndpointServiceEndpointOutput)
+}
+
 type GetProjectTeam struct {
 	RoleNames []string `pulumi:"roleNames"`
 	TeamId    string   `pulumi:"teamId"`
@@ -19074,6 +19455,118 @@ func (o GetProjectsResultTeamArrayOutput) Index(i pulumi.IntInput) GetProjectsRe
 	}).(GetProjectsResultTeamOutput)
 }
 
+type GetSearchIndexSynonym struct {
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	Analyzer string `pulumi:"analyzer"`
+	// Name of the index.
+	Name             string `pulumi:"name"`
+	SourceCollection string `pulumi:"sourceCollection"`
+}
+
+// GetSearchIndexSynonymInput is an input type that accepts GetSearchIndexSynonymArgs and GetSearchIndexSynonymOutput values.
+// You can construct a concrete instance of `GetSearchIndexSynonymInput` via:
+//
+//          GetSearchIndexSynonymArgs{...}
+type GetSearchIndexSynonymInput interface {
+	pulumi.Input
+
+	ToGetSearchIndexSynonymOutput() GetSearchIndexSynonymOutput
+	ToGetSearchIndexSynonymOutputWithContext(context.Context) GetSearchIndexSynonymOutput
+}
+
+type GetSearchIndexSynonymArgs struct {
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	Analyzer pulumi.StringInput `pulumi:"analyzer"`
+	// Name of the index.
+	Name             pulumi.StringInput `pulumi:"name"`
+	SourceCollection pulumi.StringInput `pulumi:"sourceCollection"`
+}
+
+func (GetSearchIndexSynonymArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSearchIndexSynonym)(nil)).Elem()
+}
+
+func (i GetSearchIndexSynonymArgs) ToGetSearchIndexSynonymOutput() GetSearchIndexSynonymOutput {
+	return i.ToGetSearchIndexSynonymOutputWithContext(context.Background())
+}
+
+func (i GetSearchIndexSynonymArgs) ToGetSearchIndexSynonymOutputWithContext(ctx context.Context) GetSearchIndexSynonymOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSearchIndexSynonymOutput)
+}
+
+// GetSearchIndexSynonymArrayInput is an input type that accepts GetSearchIndexSynonymArray and GetSearchIndexSynonymArrayOutput values.
+// You can construct a concrete instance of `GetSearchIndexSynonymArrayInput` via:
+//
+//          GetSearchIndexSynonymArray{ GetSearchIndexSynonymArgs{...} }
+type GetSearchIndexSynonymArrayInput interface {
+	pulumi.Input
+
+	ToGetSearchIndexSynonymArrayOutput() GetSearchIndexSynonymArrayOutput
+	ToGetSearchIndexSynonymArrayOutputWithContext(context.Context) GetSearchIndexSynonymArrayOutput
+}
+
+type GetSearchIndexSynonymArray []GetSearchIndexSynonymInput
+
+func (GetSearchIndexSynonymArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSearchIndexSynonym)(nil)).Elem()
+}
+
+func (i GetSearchIndexSynonymArray) ToGetSearchIndexSynonymArrayOutput() GetSearchIndexSynonymArrayOutput {
+	return i.ToGetSearchIndexSynonymArrayOutputWithContext(context.Background())
+}
+
+func (i GetSearchIndexSynonymArray) ToGetSearchIndexSynonymArrayOutputWithContext(ctx context.Context) GetSearchIndexSynonymArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSearchIndexSynonymArrayOutput)
+}
+
+type GetSearchIndexSynonymOutput struct{ *pulumi.OutputState }
+
+func (GetSearchIndexSynonymOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSearchIndexSynonym)(nil)).Elem()
+}
+
+func (o GetSearchIndexSynonymOutput) ToGetSearchIndexSynonymOutput() GetSearchIndexSynonymOutput {
+	return o
+}
+
+func (o GetSearchIndexSynonymOutput) ToGetSearchIndexSynonymOutputWithContext(ctx context.Context) GetSearchIndexSynonymOutput {
+	return o
+}
+
+// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+func (o GetSearchIndexSynonymOutput) Analyzer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexSynonym) string { return v.Analyzer }).(pulumi.StringOutput)
+}
+
+// Name of the index.
+func (o GetSearchIndexSynonymOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexSynonym) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetSearchIndexSynonymOutput) SourceCollection() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexSynonym) string { return v.SourceCollection }).(pulumi.StringOutput)
+}
+
+type GetSearchIndexSynonymArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSearchIndexSynonymArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSearchIndexSynonym)(nil)).Elem()
+}
+
+func (o GetSearchIndexSynonymArrayOutput) ToGetSearchIndexSynonymArrayOutput() GetSearchIndexSynonymArrayOutput {
+	return o
+}
+
+func (o GetSearchIndexSynonymArrayOutput) ToGetSearchIndexSynonymArrayOutputWithContext(ctx context.Context) GetSearchIndexSynonymArrayOutput {
+	return o
+}
+
+func (o GetSearchIndexSynonymArrayOutput) Index(i pulumi.IntInput) GetSearchIndexSynonymOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSearchIndexSynonym {
+		return vs[0].([]GetSearchIndexSynonym)[vs[1].(int)]
+	}).(GetSearchIndexSynonymOutput)
+}
+
 type GetSearchIndexesResult struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 	Analyzer string `pulumi:"analyzer"`
@@ -19097,6 +19590,11 @@ type GetSearchIndexesResult struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
 	Status         string  `pulumi:"status"`
+	// Synonyms mapping definition to use in this index.
+	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+	Synonyms []GetSearchIndexesResultSynonym `pulumi:"synonyms"`
 }
 
 // GetSearchIndexesResultInput is an input type that accepts GetSearchIndexesResultArgs and GetSearchIndexesResultOutput values.
@@ -19133,6 +19631,11 @@ type GetSearchIndexesResultArgs struct {
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer pulumi.StringPtrInput `pulumi:"searchAnalyzer"`
 	Status         pulumi.StringInput    `pulumi:"status"`
+	// Synonyms mapping definition to use in this index.
+	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+	Synonyms GetSearchIndexesResultSynonymArrayInput `pulumi:"synonyms"`
 }
 
 func (GetSearchIndexesResultArgs) ElementType() reflect.Type {
@@ -19244,6 +19747,14 @@ func (o GetSearchIndexesResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Synonyms mapping definition to use in this index.
+// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
+// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+func (o GetSearchIndexesResultOutput) Synonyms() GetSearchIndexesResultSynonymArrayOutput {
+	return o.ApplyT(func(v GetSearchIndexesResult) []GetSearchIndexesResultSynonym { return v.Synonyms }).(GetSearchIndexesResultSynonymArrayOutput)
+}
+
 type GetSearchIndexesResultArrayOutput struct{ *pulumi.OutputState }
 
 func (GetSearchIndexesResultArrayOutput) ElementType() reflect.Type {
@@ -19262,6 +19773,118 @@ func (o GetSearchIndexesResultArrayOutput) Index(i pulumi.IntInput) GetSearchInd
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSearchIndexesResult {
 		return vs[0].([]GetSearchIndexesResult)[vs[1].(int)]
 	}).(GetSearchIndexesResultOutput)
+}
+
+type GetSearchIndexesResultSynonym struct {
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	Analyzer string `pulumi:"analyzer"`
+	// Name of the index.
+	Name             string `pulumi:"name"`
+	SourceCollection string `pulumi:"sourceCollection"`
+}
+
+// GetSearchIndexesResultSynonymInput is an input type that accepts GetSearchIndexesResultSynonymArgs and GetSearchIndexesResultSynonymOutput values.
+// You can construct a concrete instance of `GetSearchIndexesResultSynonymInput` via:
+//
+//          GetSearchIndexesResultSynonymArgs{...}
+type GetSearchIndexesResultSynonymInput interface {
+	pulumi.Input
+
+	ToGetSearchIndexesResultSynonymOutput() GetSearchIndexesResultSynonymOutput
+	ToGetSearchIndexesResultSynonymOutputWithContext(context.Context) GetSearchIndexesResultSynonymOutput
+}
+
+type GetSearchIndexesResultSynonymArgs struct {
+	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	Analyzer pulumi.StringInput `pulumi:"analyzer"`
+	// Name of the index.
+	Name             pulumi.StringInput `pulumi:"name"`
+	SourceCollection pulumi.StringInput `pulumi:"sourceCollection"`
+}
+
+func (GetSearchIndexesResultSynonymArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSearchIndexesResultSynonym)(nil)).Elem()
+}
+
+func (i GetSearchIndexesResultSynonymArgs) ToGetSearchIndexesResultSynonymOutput() GetSearchIndexesResultSynonymOutput {
+	return i.ToGetSearchIndexesResultSynonymOutputWithContext(context.Background())
+}
+
+func (i GetSearchIndexesResultSynonymArgs) ToGetSearchIndexesResultSynonymOutputWithContext(ctx context.Context) GetSearchIndexesResultSynonymOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSearchIndexesResultSynonymOutput)
+}
+
+// GetSearchIndexesResultSynonymArrayInput is an input type that accepts GetSearchIndexesResultSynonymArray and GetSearchIndexesResultSynonymArrayOutput values.
+// You can construct a concrete instance of `GetSearchIndexesResultSynonymArrayInput` via:
+//
+//          GetSearchIndexesResultSynonymArray{ GetSearchIndexesResultSynonymArgs{...} }
+type GetSearchIndexesResultSynonymArrayInput interface {
+	pulumi.Input
+
+	ToGetSearchIndexesResultSynonymArrayOutput() GetSearchIndexesResultSynonymArrayOutput
+	ToGetSearchIndexesResultSynonymArrayOutputWithContext(context.Context) GetSearchIndexesResultSynonymArrayOutput
+}
+
+type GetSearchIndexesResultSynonymArray []GetSearchIndexesResultSynonymInput
+
+func (GetSearchIndexesResultSynonymArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSearchIndexesResultSynonym)(nil)).Elem()
+}
+
+func (i GetSearchIndexesResultSynonymArray) ToGetSearchIndexesResultSynonymArrayOutput() GetSearchIndexesResultSynonymArrayOutput {
+	return i.ToGetSearchIndexesResultSynonymArrayOutputWithContext(context.Background())
+}
+
+func (i GetSearchIndexesResultSynonymArray) ToGetSearchIndexesResultSynonymArrayOutputWithContext(ctx context.Context) GetSearchIndexesResultSynonymArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSearchIndexesResultSynonymArrayOutput)
+}
+
+type GetSearchIndexesResultSynonymOutput struct{ *pulumi.OutputState }
+
+func (GetSearchIndexesResultSynonymOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSearchIndexesResultSynonym)(nil)).Elem()
+}
+
+func (o GetSearchIndexesResultSynonymOutput) ToGetSearchIndexesResultSynonymOutput() GetSearchIndexesResultSynonymOutput {
+	return o
+}
+
+func (o GetSearchIndexesResultSynonymOutput) ToGetSearchIndexesResultSynonymOutputWithContext(ctx context.Context) GetSearchIndexesResultSynonymOutput {
+	return o
+}
+
+// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+func (o GetSearchIndexesResultSynonymOutput) Analyzer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultSynonym) string { return v.Analyzer }).(pulumi.StringOutput)
+}
+
+// Name of the index.
+func (o GetSearchIndexesResultSynonymOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultSynonym) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetSearchIndexesResultSynonymOutput) SourceCollection() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSearchIndexesResultSynonym) string { return v.SourceCollection }).(pulumi.StringOutput)
+}
+
+type GetSearchIndexesResultSynonymArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSearchIndexesResultSynonymArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSearchIndexesResultSynonym)(nil)).Elem()
+}
+
+func (o GetSearchIndexesResultSynonymArrayOutput) ToGetSearchIndexesResultSynonymArrayOutput() GetSearchIndexesResultSynonymArrayOutput {
+	return o
+}
+
+func (o GetSearchIndexesResultSynonymArrayOutput) ToGetSearchIndexesResultSynonymArrayOutputWithContext(ctx context.Context) GetSearchIndexesResultSynonymArrayOutput {
+	return o
+}
+
+func (o GetSearchIndexesResultSynonymArrayOutput) Index(i pulumi.IntInput) GetSearchIndexesResultSynonymOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSearchIndexesResultSynonym {
+		return vs[0].([]GetSearchIndexesResultSynonym)[vs[1].(int)]
+	}).(GetSearchIndexesResultSynonymOutput)
 }
 
 type GetThirdPartyIntegrationsResult struct {
@@ -19617,8 +20240,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaPtrInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldInput)(nil)).Elem(), OnlineArchivePartitionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldArrayInput)(nil)).Elem(), OnlineArchivePartitionFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamInput)(nil)).Elem(), ProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymInput)(nil)).Elem(), SearchIndexSynonymArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymArrayInput)(nil)).Elem(), SearchIndexSynonymArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Get509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), Get509AuthenticationDatabaseUserCertificateArgs{})
@@ -19785,14 +20412,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultCriteriaArrayInput)(nil)).Elem(), GetOnlineArchivesResultCriteriaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpointInput)(nil)).Elem(), GetPrivateLinkEndpointServiceEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), GetPrivateLinkEndpointServiceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamInput)(nil)).Elem(), GetProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamArrayInput)(nil)).Elem(), GetProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultInput)(nil)).Elem(), GetProjectsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultArrayInput)(nil)).Elem(), GetProjectsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamInput)(nil)).Elem(), GetProjectsResultTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamArrayInput)(nil)).Elem(), GetProjectsResultTeamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexSynonymInput)(nil)).Elem(), GetSearchIndexSynonymArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexSynonymArrayInput)(nil)).Elem(), GetSearchIndexSynonymArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultInput)(nil)).Elem(), GetSearchIndexesResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultArrayInput)(nil)).Elem(), GetSearchIndexesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultSynonymInput)(nil)).Elem(), GetSearchIndexesResultSynonymArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultSynonymArrayInput)(nil)).Elem(), GetSearchIndexesResultSynonymArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterOutputType(AlertConfigurationMatcherOutput{})
@@ -19897,8 +20530,12 @@ func init() {
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldOutput{})
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldArrayOutput{})
+	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointOutput{})
+	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTeamOutput{})
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
+	pulumi.RegisterOutputType(SearchIndexSynonymOutput{})
+	pulumi.RegisterOutputType(SearchIndexSynonymArrayOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateArrayOutput{})
 	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserCertificateOutput{})
@@ -20065,14 +20702,20 @@ func init() {
 	pulumi.RegisterOutputType(GetOnlineArchivesResultCriteriaArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivateLinkEndpointServiceEndpointOutput{})
+	pulumi.RegisterOutputType(GetPrivateLinkEndpointServiceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamArrayOutput{})
+	pulumi.RegisterOutputType(GetSearchIndexSynonymOutput{})
+	pulumi.RegisterOutputType(GetSearchIndexSynonymArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexesResultOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetSearchIndexesResultSynonymOutput{})
+	pulumi.RegisterOutputType(GetSearchIndexesResultSynonymArrayOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultArrayOutput{})
 }

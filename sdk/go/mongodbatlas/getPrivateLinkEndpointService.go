@@ -45,8 +45,13 @@ type LookupPrivateLinkEndpointServiceResult struct {
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested   bool   `pulumi:"deleteRequested"`
 	EndpointServiceId string `pulumi:"endpointServiceId"`
+	// Collection of individual private endpoints that comprise your network endpoint group.
+	Endpoints []GetPrivateLinkEndpointServiceEndpoint `pulumi:"endpoints"`
 	// Error message pertaining to the interface endpoint. Returns null if there are no errors.
 	ErrorMessage string `pulumi:"errorMessage"`
+	// Status of the interface endpoint for GCP.
+	// Returns one of the following values:
+	GcpStatus string `pulumi:"gcpStatus"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique identifier of the interface endpoint.
@@ -123,9 +128,22 @@ func (o LookupPrivateLinkEndpointServiceResultOutput) EndpointServiceId() pulumi
 	return o.ApplyT(func(v LookupPrivateLinkEndpointServiceResult) string { return v.EndpointServiceId }).(pulumi.StringOutput)
 }
 
+// Collection of individual private endpoints that comprise your network endpoint group.
+func (o LookupPrivateLinkEndpointServiceResultOutput) Endpoints() GetPrivateLinkEndpointServiceEndpointArrayOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointServiceResult) []GetPrivateLinkEndpointServiceEndpoint {
+		return v.Endpoints
+	}).(GetPrivateLinkEndpointServiceEndpointArrayOutput)
+}
+
 // Error message pertaining to the interface endpoint. Returns null if there are no errors.
 func (o LookupPrivateLinkEndpointServiceResultOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointServiceResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// Status of the interface endpoint for GCP.
+// Returns one of the following values:
+func (o LookupPrivateLinkEndpointServiceResultOutput) GcpStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointServiceResult) string { return v.GcpStatus }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

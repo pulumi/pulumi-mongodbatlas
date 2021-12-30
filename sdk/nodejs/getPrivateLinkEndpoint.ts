@@ -37,7 +37,7 @@ export interface GetPrivateLinkEndpointArgs {
      */
     projectId: string;
     /**
-     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
     providerName: string;
 }
@@ -46,6 +46,10 @@ export interface GetPrivateLinkEndpointArgs {
  * A collection of values returned by getPrivateLinkEndpoint.
  */
 export interface GetPrivateLinkEndpointResult {
+    /**
+     * GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+     */
+    readonly endpointGroupNames: string[];
     /**
      * Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
      */
@@ -73,13 +77,21 @@ export interface GetPrivateLinkEndpointResult {
     readonly privateLinkServiceName: string;
     /**
      * Resource ID of the Azure Private Link Service that Atlas manages.
-     * Returns one of the following values:
      */
     readonly privateLinkServiceResourceId: string;
     readonly projectId: string;
     readonly providerName: string;
     /**
+     * GCP region for the Private Service Connect endpoint service.
+     */
+    readonly regionName: string;
+    /**
+     * Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+     */
+    readonly serviceAttachmentNames: string[];
+    /**
      * Status of the AWS PrivateLink connection.
+     * Returns one of the following values:
      */
     readonly status: string;
 }
@@ -101,7 +113,7 @@ export interface GetPrivateLinkEndpointOutputArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS` or `AZURE`.
+     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
     providerName: pulumi.Input<string>;
 }

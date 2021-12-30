@@ -65,6 +65,10 @@ export class Project extends pulumi.CustomResource {
      */
     public readonly projectOwnerId!: pulumi.Output<string | undefined>;
     public readonly teams!: pulumi.Output<outputs.ProjectTeam[] | undefined>;
+    /**
+     * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     */
+    public readonly withDefaultAlertsSettings!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.
@@ -85,6 +89,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["projectOwnerId"] = state ? state.projectOwnerId : undefined;
             resourceInputs["teams"] = state ? state.teams : undefined;
+            resourceInputs["withDefaultAlertsSettings"] = state ? state.withDefaultAlertsSettings : undefined;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
             if ((!args || args.orgId === undefined) && !opts.urn) {
@@ -94,6 +99,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["projectOwnerId"] = args ? args.projectOwnerId : undefined;
             resourceInputs["teams"] = args ? args.teams : undefined;
+            resourceInputs["withDefaultAlertsSettings"] = args ? args.withDefaultAlertsSettings : undefined;
             resourceInputs["clusterCount"] = undefined /*out*/;
             resourceInputs["created"] = undefined /*out*/;
         }
@@ -129,6 +135,10 @@ export interface ProjectState {
      */
     projectOwnerId?: pulumi.Input<string>;
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
+    /**
+     * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     */
+    withDefaultAlertsSettings?: pulumi.Input<boolean>;
 }
 
 /**
@@ -148,4 +158,8 @@ export interface ProjectArgs {
      */
     projectOwnerId?: pulumi.Input<string>;
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
+    /**
+     * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+     */
+    withDefaultAlertsSettings?: pulumi.Input<boolean>;
 }
