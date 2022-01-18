@@ -17,6 +17,10 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const testMongodbatlasProject = new mongodbatlas.Project("test", {
+ *     apiKeys: [{
+ *         apiKeyId: "61003b299dda8d54a9d7d10c",
+ *         roleNames: ["GROUP_READ_ONLY"],
+ *     }],
  *     orgId: "<ORG_ID>",
  *     teams: [
  *         {

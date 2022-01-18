@@ -44,6 +44,7 @@ export class Project extends pulumi.CustomResource {
         return obj['__pulumiType'] === Project.__pulumiType;
     }
 
+    public readonly apiKeys!: pulumi.Output<outputs.ProjectApiKey[]>;
     /**
      * The number of Atlas clusters deployed in the project..
      */
@@ -83,6 +84,7 @@ export class Project extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ProjectState | undefined;
+            resourceInputs["apiKeys"] = state ? state.apiKeys : undefined;
             resourceInputs["clusterCount"] = state ? state.clusterCount : undefined;
             resourceInputs["created"] = state ? state.created : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -95,6 +97,7 @@ export class Project extends pulumi.CustomResource {
             if ((!args || args.orgId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
+            resourceInputs["apiKeys"] = args ? args.apiKeys : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["projectOwnerId"] = args ? args.projectOwnerId : undefined;
@@ -114,6 +117,7 @@ export class Project extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Project resources.
  */
 export interface ProjectState {
+    apiKeys?: pulumi.Input<pulumi.Input<inputs.ProjectApiKey>[]>;
     /**
      * The number of Atlas clusters deployed in the project..
      */
@@ -145,6 +149,7 @@ export interface ProjectState {
  * The set of arguments for constructing a Project resource.
  */
 export interface ProjectArgs {
+    apiKeys?: pulumi.Input<pulumi.Input<inputs.ProjectApiKey>[]>;
     /**
      * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
      */

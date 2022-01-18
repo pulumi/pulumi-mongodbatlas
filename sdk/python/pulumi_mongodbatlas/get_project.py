@@ -21,7 +21,10 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, cluster_count=None, created=None, id=None, name=None, org_id=None, project_id=None, teams=None):
+    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, name=None, org_id=None, project_id=None, teams=None):
+        if api_keys and not isinstance(api_keys, list):
+            raise TypeError("Expected argument 'api_keys' to be a list")
+        pulumi.set(__self__, "api_keys", api_keys)
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -43,6 +46,11 @@ class GetProjectResult:
         if teams and not isinstance(teams, list):
             raise TypeError("Expected argument 'teams' to be a list")
         pulumi.set(__self__, "teams", teams)
+
+    @property
+    @pulumi.getter(name="apiKeys")
+    def api_keys(self) -> Sequence['outputs.GetProjectApiKeyResult']:
+        return pulumi.get(self, "api_keys")
 
     @property
     @pulumi.getter(name="clusterCount")
@@ -86,6 +94,15 @@ class GetProjectResult:
         * `GROUP_DATA_ACCESS_READ_WRITE`
         * `GROUP_DATA_ACCESS_READ_ONLY`
         * `GROUP_CLUSTER_MANAGER`
+        * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
+        * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
+        The following are valid roles:
+        * `GROUP_OWNER`
+        * `GROUP_READ_ONLY`
+        * `GROUP_DATA_ACCESS_ADMIN`
+        * `GROUP_DATA_ACCESS_READ_WRITE`
+        * `GROUP_DATA_ACCESS_READ_ONLY`
+        * `GROUP_CLUSTER_MANAGER`
         """
         return pulumi.get(self, "org_id")
 
@@ -106,6 +123,7 @@ class AwaitableGetProjectResult(GetProjectResult):
         if False:
             yield self
         return GetProjectResult(
+            api_keys=self.api_keys,
             cluster_count=self.cluster_count,
             created=self.created,
             id=self.id,
@@ -139,6 +157,7 @@ def get_project(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProject:getProject', __args__, opts=opts, typ=GetProjectResult).value
 
     return AwaitableGetProjectResult(
+        api_keys=__ret__.api_keys,
         cluster_count=__ret__.cluster_count,
         created=__ret__.created,
         id=__ret__.id,

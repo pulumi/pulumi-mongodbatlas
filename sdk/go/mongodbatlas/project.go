@@ -23,6 +23,7 @@ import (
 type Project struct {
 	pulumi.CustomResourceState
 
+	ApiKeys ProjectApiKeyArrayOutput `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount pulumi.IntOutput `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -70,6 +71,7 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
+	ApiKeys []ProjectApiKey `pulumi:"apiKeys"`
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount *int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -86,6 +88,7 @@ type projectState struct {
 }
 
 type ProjectState struct {
+	ApiKeys ProjectApiKeyArrayInput
 	// The number of Atlas clusters deployed in the project..
 	ClusterCount pulumi.IntPtrInput
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
@@ -106,6 +109,7 @@ func (ProjectState) ElementType() reflect.Type {
 }
 
 type projectArgs struct {
+	ApiKeys []ProjectApiKey `pulumi:"apiKeys"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -119,6 +123,7 @@ type projectArgs struct {
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
+	ApiKeys ProjectApiKeyArrayInput
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.

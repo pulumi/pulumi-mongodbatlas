@@ -11,8 +11,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 {
 
     [OutputType]
-    public sealed class ProjectTeam
+    public sealed class ProjectApiKey
     {
+        /// <summary>
+        /// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        /// </summary>
+        public readonly string ApiKeyId;
         /// <summary>
         /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
         /// The following are valid roles:
@@ -24,19 +28,15 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// * `GROUP_CLUSTER_MANAGER`
         /// </summary>
         public readonly ImmutableArray<string> RoleNames;
-        /// <summary>
-        /// The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-        /// </summary>
-        public readonly string TeamId;
 
         [OutputConstructor]
-        private ProjectTeam(
-            ImmutableArray<string> roleNames,
+        private ProjectApiKey(
+            string apiKeyId,
 
-            string teamId)
+            ImmutableArray<string> roleNames)
         {
+            ApiKeyId = apiKeyId;
             RoleNames = roleNames;
-            TeamId = teamId;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetProjectsResultResult
     {
+        public readonly ImmutableArray<Outputs.GetProjectsResultApiKeyResult> ApiKeys;
         public readonly int ClusterCount;
         public readonly string Created;
         /// <summary>
@@ -36,12 +37,23 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// * `GROUP_DATA_ACCESS_READ_WRITE`
         /// * `GROUP_DATA_ACCESS_READ_ONLY`
         /// * `GROUP_CLUSTER_MANAGER`
+        /// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+        /// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
+        /// The following are valid roles:
+        /// * `GROUP_OWNER`
+        /// * `GROUP_READ_ONLY`
+        /// * `GROUP_DATA_ACCESS_ADMIN`
+        /// * `GROUP_DATA_ACCESS_READ_WRITE`
+        /// * `GROUP_DATA_ACCESS_READ_ONLY`
+        /// * `GROUP_CLUSTER_MANAGER`
         /// </summary>
         public readonly string OrgId;
         public readonly ImmutableArray<Outputs.GetProjectsResultTeamResult> Teams;
 
         [OutputConstructor]
         private GetProjectsResultResult(
+            ImmutableArray<Outputs.GetProjectsResultApiKeyResult> apiKeys,
+
             int clusterCount,
 
             string created,
@@ -54,6 +66,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetProjectsResultTeamResult> teams)
         {
+            ApiKeys = apiKeys;
             ClusterCount = clusterCount;
             Created = created;
             Id = id;

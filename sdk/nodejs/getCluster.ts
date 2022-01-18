@@ -47,11 +47,15 @@ export interface GetClusterArgs {
  */
 export interface GetClusterResult {
     /**
-     * (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * Get the advanced configuration options. See Advanced Configuration below for more details.
+     */
+    readonly advancedConfigurations: outputs.GetClusterAdvancedConfiguration[];
+    /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
      */
     readonly autoScalingComputeEnabled: boolean;
     /**
-     * (Optional) Set to `true` to enable the cluster tier to scale down.
+     * Specifies whether cluster tier auto-down-scaling is enabled.
      */
     readonly autoScalingComputeScaleDownEnabled: boolean;
     /**
@@ -152,11 +156,11 @@ export interface GetClusterResult {
     readonly pitEnabled: boolean;
     readonly projectId: string;
     /**
-     * (Optional) Maximum instance size to which your cluster can automatically scale.
+     * Maximum instance size to which your cluster can automatically scale.
      */
     readonly providerAutoScalingComputeMaxInstanceSize: string;
     /**
-     * (Optional) Minimum instance size to which your cluster can automatically scale.
+     * Minimum instance size to which your cluster can automatically scale.
      */
     readonly providerAutoScalingComputeMinInstanceSize: string;
     /**
@@ -218,6 +222,10 @@ export interface GetClusterResult {
      * - REPAIRING
      */
     readonly stateName: string;
+    /**
+     * Release cadence that Atlas uses for this cluster.
+     */
+    readonly versionReleaseSystem: string;
 }
 
 export function getClusterOutput(args: GetClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClusterResult> {

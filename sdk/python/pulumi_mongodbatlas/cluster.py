@@ -34,6 +34,7 @@ class ClusterArgs:
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_shards: Optional[pulumi.Input[int]] = None,
+                 paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
                  provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[str]] = None,
@@ -44,7 +45,8 @@ class ClusterArgs:
                  provider_region_name: Optional[pulumi.Input[str]] = None,
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None):
+                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
+                 version_release_system: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
@@ -86,6 +88,9 @@ class ClusterArgs:
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[str] version_release_system: - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
@@ -125,6 +130,8 @@ class ClusterArgs:
             pulumi.set(__self__, "name", name)
         if num_shards is not None:
             pulumi.set(__self__, "num_shards", num_shards)
+        if paused is not None:
+            pulumi.set(__self__, "paused", paused)
         if pit_enabled is not None:
             pulumi.set(__self__, "pit_enabled", pit_enabled)
         if provider_auto_scaling_compute_max_instance_size is not None:
@@ -153,6 +160,8 @@ class ClusterArgs:
             pulumi.set(__self__, "replication_factor", replication_factor)
         if replication_specs is not None:
             pulumi.set(__self__, "replication_specs", replication_specs)
+        if version_release_system is not None:
+            pulumi.set(__self__, "version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="projectId")
@@ -386,6 +395,15 @@ class ClusterArgs:
         pulumi.set(self, "num_shards", value)
 
     @property
+    @pulumi.getter
+    def paused(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "paused")
+
+    @paused.setter
+    def paused(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "paused", value)
+
+    @property
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -519,6 +537,20 @@ class ClusterArgs:
     def replication_specs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]):
         pulumi.set(self, "replication_specs", value)
 
+    @property
+    @pulumi.getter(name="versionReleaseSystem")
+    def version_release_system(self) -> Optional[pulumi.Input[str]]:
+        """
+        - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        """
+        return pulumi.get(self, "version_release_system")
+
+    @version_release_system.setter
+    def version_release_system(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version_release_system", value)
+
 
 @pulumi.input_type
 class _ClusterState:
@@ -564,7 +596,8 @@ class _ClusterState:
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
                  snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]] = None,
                  srv_address: Optional[pulumi.Input[str]] = None,
-                 state_name: Optional[pulumi.Input[str]] = None):
+                 state_name: Optional[pulumi.Input[str]] = None,
+                 version_release_system: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
         :param pulumi.Input[bool] auto_scaling_compute_enabled: Specifies whether cluster tier auto-scaling is enabled. The default is false.
@@ -597,7 +630,6 @@ class _ClusterState:
         :param pulumi.Input[str] mongo_uri_with_options: connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
         :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
-        :param pulumi.Input[bool] paused: Flag that indicates whether the cluster is paused or not.
         :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
@@ -623,6 +655,9 @@ class _ClusterState:
                - DELETING
                - DELETED
                - REPAIRING
+        :param pulumi.Input[str] version_release_system: - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         if advanced_configuration is not None:
             pulumi.set(__self__, "advanced_configuration", advanced_configuration)
@@ -717,6 +752,8 @@ class _ClusterState:
             pulumi.set(__self__, "srv_address", srv_address)
         if state_name is not None:
             pulumi.set(__self__, "state_name", state_name)
+        if version_release_system is not None:
+            pulumi.set(__self__, "version_release_system", version_release_system)
 
     @property
     @pulumi.getter(name="advancedConfiguration")
@@ -1000,9 +1037,6 @@ class _ClusterState:
     @property
     @pulumi.getter
     def paused(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Flag that indicates whether the cluster is paused or not.
-        """
         return pulumi.get(self, "paused")
 
     @paused.setter
@@ -1230,6 +1264,20 @@ class _ClusterState:
     def state_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state_name", value)
 
+    @property
+    @pulumi.getter(name="versionReleaseSystem")
+    def version_release_system(self) -> Optional[pulumi.Input[str]]:
+        """
+        - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        """
+        return pulumi.get(self, "version_release_system")
+
+    @version_release_system.setter
+    def version_release_system(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version_release_system", value)
+
 
 class Cluster(pulumi.CustomResource):
     @overload
@@ -1252,6 +1300,7 @@ class Cluster(pulumi.CustomResource):
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_shards: Optional[pulumi.Input[int]] = None,
+                 paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
@@ -1266,6 +1315,7 @@ class Cluster(pulumi.CustomResource):
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Import
@@ -1319,6 +1369,9 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
+        :param pulumi.Input[str] version_release_system: - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         ...
     @overload
@@ -1368,6 +1421,7 @@ class Cluster(pulumi.CustomResource):
                  mongo_db_major_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  num_shards: Optional[pulumi.Input[int]] = None,
+                 paused: Optional[pulumi.Input[bool]] = None,
                  pit_enabled: Optional[pulumi.Input[bool]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[str]] = None,
@@ -1382,6 +1436,7 @@ class Cluster(pulumi.CustomResource):
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -1413,6 +1468,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["mongo_db_major_version"] = mongo_db_major_version
             __props__.__dict__["name"] = name
             __props__.__dict__["num_shards"] = num_shards
+            __props__.__dict__["paused"] = paused
             __props__.__dict__["pit_enabled"] = pit_enabled
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
@@ -1439,6 +1495,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["provider_volume_type"] = provider_volume_type
             __props__.__dict__["replication_factor"] = replication_factor
             __props__.__dict__["replication_specs"] = replication_specs
+            __props__.__dict__["version_release_system"] = version_release_system
             __props__.__dict__["cluster_id"] = None
             __props__.__dict__["connection_strings"] = None
             __props__.__dict__["container_id"] = None
@@ -1446,7 +1503,6 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["mongo_uri"] = None
             __props__.__dict__["mongo_uri_updated"] = None
             __props__.__dict__["mongo_uri_with_options"] = None
-            __props__.__dict__["paused"] = None
             __props__.__dict__["provider_encrypt_ebs_volume_flag"] = None
             __props__.__dict__["snapshot_backup_policies"] = None
             __props__.__dict__["srv_address"] = None
@@ -1502,7 +1558,8 @@ class Cluster(pulumi.CustomResource):
             replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
             snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]]] = None,
             srv_address: Optional[pulumi.Input[str]] = None,
-            state_name: Optional[pulumi.Input[str]] = None) -> 'Cluster':
+            state_name: Optional[pulumi.Input[str]] = None,
+            version_release_system: Optional[pulumi.Input[str]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1540,7 +1597,6 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] mongo_uri_with_options: connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
         :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
         :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
-        :param pulumi.Input[bool] paused: Flag that indicates whether the cluster is paused or not.
         :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
@@ -1566,6 +1622,9 @@ class Cluster(pulumi.CustomResource):
                - DELETING
                - DELETED
                - REPAIRING
+        :param pulumi.Input[str] version_release_system: - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1613,6 +1672,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["snapshot_backup_policies"] = snapshot_backup_policies
         __props__.__dict__["srv_address"] = srv_address
         __props__.__dict__["state_name"] = state_name
+        __props__.__dict__["version_release_system"] = version_release_system
         return Cluster(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1804,10 +1864,7 @@ class Cluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def paused(self) -> pulumi.Output[bool]:
-        """
-        Flag that indicates whether the cluster is paused or not.
-        """
+    def paused(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "paused")
 
     @property
@@ -1958,4 +2015,14 @@ class Cluster(pulumi.CustomResource):
         - REPAIRING
         """
         return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter(name="versionReleaseSystem")
+    def version_release_system(self) -> pulumi.Output[Optional[str]]:
+        """
+        - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        """
+        return pulumi.get(self, "version_release_system")
 

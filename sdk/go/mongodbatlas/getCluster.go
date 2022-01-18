@@ -36,9 +36,11 @@ type LookupClusterArgs struct {
 
 // A collection of values returned by getCluster.
 type LookupClusterResult struct {
-	// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+	// Get the advanced configuration options. See Advanced Configuration below for more details.
+	AdvancedConfigurations []GetClusterAdvancedConfiguration `pulumi:"advancedConfigurations"`
+	// Specifies whether cluster tier auto-scaling is enabled. The default is false.
 	AutoScalingComputeEnabled bool `pulumi:"autoScalingComputeEnabled"`
-	// (Optional) Set to `true` to enable the cluster tier to scale down.
+	// Specifies whether cluster tier auto-down-scaling is enabled.
 	AutoScalingComputeScaleDownEnabled bool `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Indicates whether disk auto-scaling is enabled.
 	AutoScalingDiskGbEnabled bool `pulumi:"autoScalingDiskGbEnabled"`
@@ -97,9 +99,9 @@ type LookupClusterResult struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
-	// (Optional) Maximum instance size to which your cluster can automatically scale.
+	// Maximum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMaxInstanceSize string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
-	// (Optional) Minimum instance size to which your cluster can automatically scale.
+	// Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// **(DEPRECATED)** Flag indicating if the cluster uses Cloud Backup Snapshots for backups.
 	ProviderBackupEnabled bool `pulumi:"providerBackupEnabled"`
@@ -134,6 +136,8 @@ type LookupClusterResult struct {
 	// - DELETED
 	// - REPAIRING
 	StateName string `pulumi:"stateName"`
+	// Release cadence that Atlas uses for this cluster.
+	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
 
 func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts ...pulumi.InvokeOption) LookupClusterResultOutput {
@@ -172,12 +176,17 @@ func (o LookupClusterResultOutput) ToLookupClusterResultOutputWithContext(ctx co
 	return o
 }
 
-// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+// Get the advanced configuration options. See Advanced Configuration below for more details.
+func (o LookupClusterResultOutput) AdvancedConfigurations() GetClusterAdvancedConfigurationArrayOutput {
+	return o.ApplyT(func(v LookupClusterResult) []GetClusterAdvancedConfiguration { return v.AdvancedConfigurations }).(GetClusterAdvancedConfigurationArrayOutput)
+}
+
+// Specifies whether cluster tier auto-scaling is enabled. The default is false.
 func (o LookupClusterResultOutput) AutoScalingComputeEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.AutoScalingComputeEnabled }).(pulumi.BoolOutput)
 }
 
-// (Optional) Set to `true` to enable the cluster tier to scale down.
+// Specifies whether cluster tier auto-down-scaling is enabled.
 func (o LookupClusterResultOutput) AutoScalingComputeScaleDownEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.AutoScalingComputeScaleDownEnabled }).(pulumi.BoolOutput)
 }
@@ -305,12 +314,12 @@ func (o LookupClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// (Optional) Maximum instance size to which your cluster can automatically scale.
+// Maximum instance size to which your cluster can automatically scale.
 func (o LookupClusterResultOutput) ProviderAutoScalingComputeMaxInstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ProviderAutoScalingComputeMaxInstanceSize }).(pulumi.StringOutput)
 }
 
-// (Optional) Minimum instance size to which your cluster can automatically scale.
+// Minimum instance size to which your cluster can automatically scale.
 func (o LookupClusterResultOutput) ProviderAutoScalingComputeMinInstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.ProviderAutoScalingComputeMinInstanceSize }).(pulumi.StringOutput)
 }
@@ -388,6 +397,11 @@ func (o LookupClusterResultOutput) SrvAddress() pulumi.StringOutput {
 // - REPAIRING
 func (o LookupClusterResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Release cadence that Atlas uses for this cluster.
+func (o LookupClusterResultOutput) VersionReleaseSystem() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.VersionReleaseSystem }).(pulumi.StringOutput)
 }
 
 func init() {

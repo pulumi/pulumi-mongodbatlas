@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string EmailAddress;
         /// <summary>
-        /// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        /// Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         public readonly bool EmailEnabled;
         /// <summary>
@@ -69,19 +69,26 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
         /// </summary>
         public readonly string OrgName;
+        /// <summary>
+        /// Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+        /// </summary>
         public readonly ImmutableArray<string> Roles;
         /// <summary>
         /// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         /// </summary>
         public readonly string ServiceKey;
         /// <summary>
-        /// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        /// Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         public readonly bool SmsEnabled;
         /// <summary>
         /// Unique identifier of a team.
         /// </summary>
         public readonly string TeamId;
+        /// <summary>
+        /// Label for the team that receives this notification.
+        /// </summary>
+        public readonly string TeamName;
         /// <summary>
         /// Type of alert notification.
         /// Accepted values are:
@@ -151,6 +158,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string teamId,
 
+            string teamName,
+
             string typeName,
 
             string username,
@@ -177,6 +186,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ServiceKey = serviceKey;
             SmsEnabled = smsEnabled;
             TeamId = teamId;
+            TeamName = teamName;
             TypeName = typeName;
             Username = username;
             VictorOpsApiKey = victorOpsApiKey;

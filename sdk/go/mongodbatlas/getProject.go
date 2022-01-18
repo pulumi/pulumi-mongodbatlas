@@ -34,8 +34,9 @@ type LookupProjectArgs struct {
 
 // A collection of values returned by getProject.
 type LookupProjectResult struct {
-	ClusterCount int    `pulumi:"clusterCount"`
-	Created      string `pulumi:"created"`
+	ApiKeys      []GetProjectApiKey `pulumi:"apiKeys"`
+	ClusterCount int                `pulumi:"clusterCount"`
+	Created      string             `pulumi:"created"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
@@ -45,6 +46,15 @@ type LookupProjectResult struct {
 	// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
 	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+	//   The following are valid roles:
+	// * `GROUP_OWNER`
+	// * `GROUP_READ_ONLY`
+	// * `GROUP_DATA_ACCESS_ADMIN`
+	// * `GROUP_DATA_ACCESS_READ_WRITE`
+	// * `GROUP_DATA_ACCESS_READ_ONLY`
+	// * `GROUP_CLUSTER_MANAGER`
+	// * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
+	// * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
 	//   The following are valid roles:
 	// * `GROUP_OWNER`
 	// * `GROUP_READ_ONLY`
@@ -93,6 +103,10 @@ func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx co
 	return o
 }
 
+func (o LookupProjectResultOutput) ApiKeys() GetProjectApiKeyArrayOutput {
+	return o.ApplyT(func(v LookupProjectResult) []GetProjectApiKey { return v.ApiKeys }).(GetProjectApiKeyArrayOutput)
+}
+
 func (o LookupProjectResultOutput) ClusterCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupProjectResult) int { return v.ClusterCount }).(pulumi.IntOutput)
 }
@@ -116,6 +130,15 @@ func (o LookupProjectResultOutput) Name() pulumi.StringPtrOutput {
 // *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
 // * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 // * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+//   The following are valid roles:
+// * `GROUP_OWNER`
+// * `GROUP_READ_ONLY`
+// * `GROUP_DATA_ACCESS_ADMIN`
+// * `GROUP_DATA_ACCESS_READ_WRITE`
+// * `GROUP_DATA_ACCESS_READ_ONLY`
+// * `GROUP_CLUSTER_MANAGER`
+// * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
+// * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
 //   The following are valid roles:
 // * `GROUP_OWNER`
 // * `GROUP_READ_ONLY`

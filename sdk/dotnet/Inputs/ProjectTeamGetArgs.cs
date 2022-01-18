@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         private InputList<string>? _roleNames;
 
         /// <summary>
-        /// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+        /// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
         /// The following are valid roles:
         /// * `GROUP_OWNER`
         /// * `GROUP_READ_ONLY`

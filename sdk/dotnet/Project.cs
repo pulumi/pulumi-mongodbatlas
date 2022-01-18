@@ -23,6 +23,9 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/project:Project")]
     public partial class Project : Pulumi.CustomResource
     {
+        [Output("apiKeys")]
+        public Output<ImmutableArray<Outputs.ProjectApiKey>> ApiKeys { get; private set; } = null!;
+
         /// <summary>
         /// The number of Atlas clusters deployed in the project..
         /// </summary>
@@ -108,6 +111,14 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ProjectArgs : Pulumi.ResourceArgs
     {
+        [Input("apiKeys")]
+        private InputList<Inputs.ProjectApiKeyArgs>? _apiKeys;
+        public InputList<Inputs.ProjectApiKeyArgs> ApiKeys
+        {
+            get => _apiKeys ?? (_apiKeys = new InputList<Inputs.ProjectApiKeyArgs>());
+            set => _apiKeys = value;
+        }
+
         /// <summary>
         /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         /// </summary>
@@ -147,6 +158,14 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ProjectState : Pulumi.ResourceArgs
     {
+        [Input("apiKeys")]
+        private InputList<Inputs.ProjectApiKeyGetArgs>? _apiKeys;
+        public InputList<Inputs.ProjectApiKeyGetArgs> ApiKeys
+        {
+            get => _apiKeys ?? (_apiKeys = new InputList<Inputs.ProjectApiKeyGetArgs>());
+            set => _apiKeys = value;
+        }
+
         /// <summary>
         /// The number of Atlas clusters deployed in the project..
         /// </summary>

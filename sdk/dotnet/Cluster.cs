@@ -164,11 +164,8 @@ namespace Pulumi.Mongodbatlas
         [Output("numShards")]
         public Output<int?> NumShards { get; private set; } = null!;
 
-        /// <summary>
-        /// Flag that indicates whether the cluster is paused or not.
-        /// </summary>
         [Output("paused")]
-        public Output<bool> Paused { get; private set; } = null!;
+        public Output<bool?> Paused { get; private set; } = null!;
 
         /// <summary>
         /// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
@@ -282,6 +279,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
+
+        /// <summary>
+        /// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        /// </summary>
+        [Output("versionReleaseSystem")]
+        public Output<string?> VersionReleaseSystem { get; private set; } = null!;
 
 
         /// <summary>
@@ -440,6 +445,9 @@ namespace Pulumi.Mongodbatlas
         [Input("numShards")]
         public Input<int>? NumShards { get; set; }
 
+        [Input("paused")]
+        public Input<bool>? Paused { get; set; }
+
         /// <summary>
         /// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         /// </summary>
@@ -531,6 +539,14 @@ namespace Pulumi.Mongodbatlas
             get => _replicationSpecs ?? (_replicationSpecs = new InputList<Inputs.ClusterReplicationSpecArgs>());
             set => _replicationSpecs = value;
         }
+
+        /// <summary>
+        /// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        /// </summary>
+        [Input("versionReleaseSystem")]
+        public Input<string>? VersionReleaseSystem { get; set; }
 
         public ClusterArgs()
         {
@@ -698,9 +714,6 @@ namespace Pulumi.Mongodbatlas
         [Input("numShards")]
         public Input<int>? NumShards { get; set; }
 
-        /// <summary>
-        /// Flag that indicates whether the cluster is paused or not.
-        /// </summary>
         [Input("paused")]
         public Input<bool>? Paused { get; set; }
 
@@ -828,6 +841,14 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
+
+        /// <summary>
+        /// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
+        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        /// </summary>
+        [Input("versionReleaseSystem")]
+        public Input<string>? VersionReleaseSystem { get; set; }
 
         public ClusterState()
         {

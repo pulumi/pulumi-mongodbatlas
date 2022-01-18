@@ -455,13 +455,13 @@ type AlertConfigurationNotification struct {
 	DelayMin *int `pulumi:"delayMin"`
 	// Email address to which alert notifications are sent. Required for the EMAIL notifications type.
 	EmailAddress *string `pulumi:"emailAddress"`
-	// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+	// Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled *bool `pulumi:"emailEnabled"`
 	// Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
 	FlowName *string `pulumi:"flowName"`
 	// The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	FlowdockApiToken *string `pulumi:"flowdockApiToken"`
-	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
 	IntervalMin *int `pulumi:"intervalMin"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber *string `pulumi:"mobileNumber"`
@@ -470,14 +470,18 @@ type AlertConfigurationNotification struct {
 	// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
 	OpsGenieRegion *string `pulumi:"opsGenieRegion"`
 	// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-	OrgName *string  `pulumi:"orgName"`
-	Roles   []string `pulumi:"roles"`
+	OrgName *string `pulumi:"orgName"`
+	// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
+	// Accepted values are:
+	Roles []string `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey *string `pulumi:"serviceKey"`
-	// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+	// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	SmsEnabled *bool `pulumi:"smsEnabled"`
 	// Unique identifier of a team.
 	TeamId *string `pulumi:"teamId"`
+	// Label for the team that receives this notification.
+	TeamName *string `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
 	// - `DATADOG`
@@ -516,13 +520,13 @@ type AlertConfigurationNotificationArgs struct {
 	DelayMin pulumi.IntPtrInput `pulumi:"delayMin"`
 	// Email address to which alert notifications are sent. Required for the EMAIL notifications type.
 	EmailAddress pulumi.StringPtrInput `pulumi:"emailAddress"`
-	// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+	// Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled pulumi.BoolPtrInput `pulumi:"emailEnabled"`
 	// Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
 	FlowName pulumi.StringPtrInput `pulumi:"flowName"`
 	// The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
 	FlowdockApiToken pulumi.StringPtrInput `pulumi:"flowdockApiToken"`
-	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
 	IntervalMin pulumi.IntPtrInput `pulumi:"intervalMin"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber pulumi.StringPtrInput `pulumi:"mobileNumber"`
@@ -531,14 +535,18 @@ type AlertConfigurationNotificationArgs struct {
 	// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
 	OpsGenieRegion pulumi.StringPtrInput `pulumi:"opsGenieRegion"`
 	// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-	OrgName pulumi.StringPtrInput   `pulumi:"orgName"`
-	Roles   pulumi.StringArrayInput `pulumi:"roles"`
+	OrgName pulumi.StringPtrInput `pulumi:"orgName"`
+	// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
+	// Accepted values are:
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey pulumi.StringPtrInput `pulumi:"serviceKey"`
-	// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+	// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	SmsEnabled pulumi.BoolPtrInput `pulumi:"smsEnabled"`
 	// Unique identifier of a team.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
+	// Label for the team that receives this notification.
+	TeamName pulumi.StringPtrInput `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
 	// - `DATADOG`
@@ -634,7 +642,7 @@ func (o AlertConfigurationNotificationOutput) EmailAddress() pulumi.StringPtrOut
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.EmailAddress }).(pulumi.StringPtrOutput)
 }
 
-// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+// Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 func (o AlertConfigurationNotificationOutput) EmailEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *bool { return v.EmailEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -649,7 +657,7 @@ func (o AlertConfigurationNotificationOutput) FlowdockApiToken() pulumi.StringPt
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.FlowdockApiToken }).(pulumi.StringPtrOutput)
 }
 
-// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
 func (o AlertConfigurationNotificationOutput) IntervalMin() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *int { return v.IntervalMin }).(pulumi.IntPtrOutput)
 }
@@ -674,6 +682,8 @@ func (o AlertConfigurationNotificationOutput) OrgName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.OrgName }).(pulumi.StringPtrOutput)
 }
 
+// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
+// Accepted values are:
 func (o AlertConfigurationNotificationOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
@@ -683,7 +693,7 @@ func (o AlertConfigurationNotificationOutput) ServiceKey() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.ServiceKey }).(pulumi.StringPtrOutput)
 }
 
-// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 func (o AlertConfigurationNotificationOutput) SmsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *bool { return v.SmsEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -691,6 +701,11 @@ func (o AlertConfigurationNotificationOutput) SmsEnabled() pulumi.BoolPtrOutput 
 // Unique identifier of a team.
 func (o AlertConfigurationNotificationOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.TeamId }).(pulumi.StringPtrOutput)
+}
+
+// Label for the team that receives this notification.
+func (o AlertConfigurationNotificationOutput) TeamName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.TeamName }).(pulumi.StringPtrOutput)
 }
 
 // Type of alert notification.
@@ -7777,8 +7792,135 @@ func (o PrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInput) 
 	}).(PrivateLinkEndpointServiceEndpointOutput)
 }
 
+type ProjectApiKey struct {
+	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+	ApiKeyId string `pulumi:"apiKeyId"`
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	// The following are valid roles:
+	// * `GROUP_OWNER`
+	// * `GROUP_READ_ONLY`
+	// * `GROUP_DATA_ACCESS_ADMIN`
+	// * `GROUP_DATA_ACCESS_READ_WRITE`
+	// * `GROUP_DATA_ACCESS_READ_ONLY`
+	// * `GROUP_CLUSTER_MANAGER`
+	RoleNames []string `pulumi:"roleNames"`
+}
+
+// ProjectApiKeyInput is an input type that accepts ProjectApiKeyArgs and ProjectApiKeyOutput values.
+// You can construct a concrete instance of `ProjectApiKeyInput` via:
+//
+//          ProjectApiKeyArgs{...}
+type ProjectApiKeyInput interface {
+	pulumi.Input
+
+	ToProjectApiKeyOutput() ProjectApiKeyOutput
+	ToProjectApiKeyOutputWithContext(context.Context) ProjectApiKeyOutput
+}
+
+type ProjectApiKeyArgs struct {
+	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	// The following are valid roles:
+	// * `GROUP_OWNER`
+	// * `GROUP_READ_ONLY`
+	// * `GROUP_DATA_ACCESS_ADMIN`
+	// * `GROUP_DATA_ACCESS_READ_WRITE`
+	// * `GROUP_DATA_ACCESS_READ_ONLY`
+	// * `GROUP_CLUSTER_MANAGER`
+	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
+}
+
+func (ProjectApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectApiKey)(nil)).Elem()
+}
+
+func (i ProjectApiKeyArgs) ToProjectApiKeyOutput() ProjectApiKeyOutput {
+	return i.ToProjectApiKeyOutputWithContext(context.Background())
+}
+
+func (i ProjectApiKeyArgs) ToProjectApiKeyOutputWithContext(ctx context.Context) ProjectApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectApiKeyOutput)
+}
+
+// ProjectApiKeyArrayInput is an input type that accepts ProjectApiKeyArray and ProjectApiKeyArrayOutput values.
+// You can construct a concrete instance of `ProjectApiKeyArrayInput` via:
+//
+//          ProjectApiKeyArray{ ProjectApiKeyArgs{...} }
+type ProjectApiKeyArrayInput interface {
+	pulumi.Input
+
+	ToProjectApiKeyArrayOutput() ProjectApiKeyArrayOutput
+	ToProjectApiKeyArrayOutputWithContext(context.Context) ProjectApiKeyArrayOutput
+}
+
+type ProjectApiKeyArray []ProjectApiKeyInput
+
+func (ProjectApiKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectApiKey)(nil)).Elem()
+}
+
+func (i ProjectApiKeyArray) ToProjectApiKeyArrayOutput() ProjectApiKeyArrayOutput {
+	return i.ToProjectApiKeyArrayOutputWithContext(context.Background())
+}
+
+func (i ProjectApiKeyArray) ToProjectApiKeyArrayOutputWithContext(ctx context.Context) ProjectApiKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectApiKeyArrayOutput)
+}
+
+type ProjectApiKeyOutput struct{ *pulumi.OutputState }
+
+func (ProjectApiKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectApiKey)(nil)).Elem()
+}
+
+func (o ProjectApiKeyOutput) ToProjectApiKeyOutput() ProjectApiKeyOutput {
+	return o
+}
+
+func (o ProjectApiKeyOutput) ToProjectApiKeyOutputWithContext(ctx context.Context) ProjectApiKeyOutput {
+	return o
+}
+
+// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+func (o ProjectApiKeyOutput) ApiKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v ProjectApiKey) string { return v.ApiKeyId }).(pulumi.StringOutput)
+}
+
+// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+// The following are valid roles:
+// * `GROUP_OWNER`
+// * `GROUP_READ_ONLY`
+// * `GROUP_DATA_ACCESS_ADMIN`
+// * `GROUP_DATA_ACCESS_READ_WRITE`
+// * `GROUP_DATA_ACCESS_READ_ONLY`
+// * `GROUP_CLUSTER_MANAGER`
+func (o ProjectApiKeyOutput) RoleNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ProjectApiKey) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
+}
+
+type ProjectApiKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (ProjectApiKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectApiKey)(nil)).Elem()
+}
+
+func (o ProjectApiKeyArrayOutput) ToProjectApiKeyArrayOutput() ProjectApiKeyArrayOutput {
+	return o
+}
+
+func (o ProjectApiKeyArrayOutput) ToProjectApiKeyArrayOutputWithContext(ctx context.Context) ProjectApiKeyArrayOutput {
+	return o
+}
+
+func (o ProjectApiKeyArrayOutput) Index(i pulumi.IntInput) ProjectApiKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectApiKey {
+		return vs[0].([]ProjectApiKey)[vs[1].(int)]
+	}).(ProjectApiKeyOutput)
+}
+
 type ProjectTeam struct {
-	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
 	// The following are valid roles:
 	// * `GROUP_OWNER`
 	// * `GROUP_READ_ONLY`
@@ -7803,7 +7945,7 @@ type ProjectTeamInput interface {
 }
 
 type ProjectTeamArgs struct {
-	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
 	// The following are valid roles:
 	// * `GROUP_OWNER`
 	// * `GROUP_READ_ONLY`
@@ -7867,7 +8009,7 @@ func (o ProjectTeamOutput) ToProjectTeamOutputWithContext(ctx context.Context) P
 	return o
 }
 
-// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
 // The following are valid roles:
 // * `GROUP_OWNER`
 // * `GROUP_READ_ONLY`
@@ -8618,7 +8760,7 @@ type GetAlertConfigurationNotification struct {
 	DelayMin int `pulumi:"delayMin"`
 	// Email address to which alert notifications are sent. Required for the EMAIL notifications type.
 	EmailAddress string `pulumi:"emailAddress"`
-	// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled bool `pulumi:"emailEnabled"`
 	// Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
 	FlowName string `pulumi:"flowName"`
@@ -8633,14 +8775,17 @@ type GetAlertConfigurationNotification struct {
 	// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
 	OpsGenieRegion string `pulumi:"opsGenieRegion"`
 	// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-	OrgName string   `pulumi:"orgName"`
-	Roles   []string `pulumi:"roles"`
+	OrgName string `pulumi:"orgName"`
+	// Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
+	Roles []string `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey string `pulumi:"serviceKey"`
-	// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+	// Flag indicating text notifications should be sent. Atlas returns this value if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	SmsEnabled bool `pulumi:"smsEnabled"`
 	// Unique identifier of a team.
 	TeamId string `pulumi:"teamId"`
+	// Label for the team that receives this notification.
+	TeamName string `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
 	// - `DATADOG`
@@ -8689,7 +8834,7 @@ type GetAlertConfigurationNotificationArgs struct {
 	DelayMin pulumi.IntInput `pulumi:"delayMin"`
 	// Email address to which alert notifications are sent. Required for the EMAIL notifications type.
 	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
-	// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+	// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 	EmailEnabled pulumi.BoolInput `pulumi:"emailEnabled"`
 	// Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
 	FlowName pulumi.StringInput `pulumi:"flowName"`
@@ -8704,14 +8849,17 @@ type GetAlertConfigurationNotificationArgs struct {
 	// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
 	OpsGenieRegion pulumi.StringInput `pulumi:"opsGenieRegion"`
 	// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
-	OrgName pulumi.StringInput      `pulumi:"orgName"`
-	Roles   pulumi.StringArrayInput `pulumi:"roles"`
+	OrgName pulumi.StringInput `pulumi:"orgName"`
+	// Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
 	// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
-	// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+	// Flag indicating text notifications should be sent. Atlas returns this value if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 	SmsEnabled pulumi.BoolInput `pulumi:"smsEnabled"`
 	// Unique identifier of a team.
 	TeamId pulumi.StringInput `pulumi:"teamId"`
+	// Label for the team that receives this notification.
+	TeamName pulumi.StringInput `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
 	// - `DATADOG`
@@ -8817,7 +8965,7 @@ func (o GetAlertConfigurationNotificationOutput) EmailAddress() pulumi.StringOut
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.EmailAddress }).(pulumi.StringOutput)
 }
 
-// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+// Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
 func (o GetAlertConfigurationNotificationOutput) EmailEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) bool { return v.EmailEnabled }).(pulumi.BoolOutput)
 }
@@ -8857,6 +9005,7 @@ func (o GetAlertConfigurationNotificationOutput) OrgName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.OrgName }).(pulumi.StringOutput)
 }
 
+// Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
 func (o GetAlertConfigurationNotificationOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
@@ -8866,7 +9015,7 @@ func (o GetAlertConfigurationNotificationOutput) ServiceKey() pulumi.StringOutpu
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.ServiceKey }).(pulumi.StringOutput)
 }
 
-// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+// Flag indicating text notifications should be sent. Atlas returns this value if `typeName` is set to `ORG`, `GROUP`, or `USER`.
 func (o GetAlertConfigurationNotificationOutput) SmsEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) bool { return v.SmsEnabled }).(pulumi.BoolOutput)
 }
@@ -8874,6 +9023,11 @@ func (o GetAlertConfigurationNotificationOutput) SmsEnabled() pulumi.BoolOutput 
 // Unique identifier of a team.
 func (o GetAlertConfigurationNotificationOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.TeamId }).(pulumi.StringOutput)
+}
+
+// Label for the team that receives this notification.
+func (o GetAlertConfigurationNotificationOutput) TeamName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.TeamName }).(pulumi.StringOutput)
 }
 
 // Type of alert notification.
@@ -10614,6 +10768,175 @@ func (o GetCloudProviderSnapshotsResultArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetCloudProviderSnapshotsResultOutput)
 }
 
+type GetClusterAdvancedConfiguration struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern string `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan bool `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb int `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+}
+
+// GetClusterAdvancedConfigurationInput is an input type that accepts GetClusterAdvancedConfigurationArgs and GetClusterAdvancedConfigurationOutput values.
+// You can construct a concrete instance of `GetClusterAdvancedConfigurationInput` via:
+//
+//          GetClusterAdvancedConfigurationArgs{...}
+type GetClusterAdvancedConfigurationInput interface {
+	pulumi.Input
+
+	ToGetClusterAdvancedConfigurationOutput() GetClusterAdvancedConfigurationOutput
+	ToGetClusterAdvancedConfigurationOutputWithContext(context.Context) GetClusterAdvancedConfigurationOutput
+}
+
+type GetClusterAdvancedConfigurationArgs struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+}
+
+func (GetClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i GetClusterAdvancedConfigurationArgs) ToGetClusterAdvancedConfigurationOutput() GetClusterAdvancedConfigurationOutput {
+	return i.ToGetClusterAdvancedConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetClusterAdvancedConfigurationArgs) ToGetClusterAdvancedConfigurationOutputWithContext(ctx context.Context) GetClusterAdvancedConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterAdvancedConfigurationOutput)
+}
+
+// GetClusterAdvancedConfigurationArrayInput is an input type that accepts GetClusterAdvancedConfigurationArray and GetClusterAdvancedConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetClusterAdvancedConfigurationArrayInput` via:
+//
+//          GetClusterAdvancedConfigurationArray{ GetClusterAdvancedConfigurationArgs{...} }
+type GetClusterAdvancedConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterAdvancedConfigurationArrayOutput() GetClusterAdvancedConfigurationArrayOutput
+	ToGetClusterAdvancedConfigurationArrayOutputWithContext(context.Context) GetClusterAdvancedConfigurationArrayOutput
+}
+
+type GetClusterAdvancedConfigurationArray []GetClusterAdvancedConfigurationInput
+
+func (GetClusterAdvancedConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i GetClusterAdvancedConfigurationArray) ToGetClusterAdvancedConfigurationArrayOutput() GetClusterAdvancedConfigurationArrayOutput {
+	return i.ToGetClusterAdvancedConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterAdvancedConfigurationArray) ToGetClusterAdvancedConfigurationArrayOutputWithContext(ctx context.Context) GetClusterAdvancedConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterAdvancedConfigurationArrayOutput)
+}
+
+type GetClusterAdvancedConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetClusterAdvancedConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o GetClusterAdvancedConfigurationOutput) ToGetClusterAdvancedConfigurationOutput() GetClusterAdvancedConfigurationOutput {
+	return o
+}
+
+func (o GetClusterAdvancedConfigurationOutput) ToGetClusterAdvancedConfigurationOutputWithContext(ctx context.Context) GetClusterAdvancedConfigurationOutput {
+	return o
+}
+
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+func (o GetClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+func (o GetClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
+}
+
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+func (o GetClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
+}
+
+// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+func (o GetClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) bool { return v.JavascriptEnabled }).(pulumi.BoolOutput)
+}
+
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+func (o GetClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
+}
+
+// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+func (o GetClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) bool { return v.NoTableScan }).(pulumi.BoolOutput)
+}
+
+// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+func (o GetClusterAdvancedConfigurationOutput) OplogSizeMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.OplogSizeMb }).(pulumi.IntOutput)
+}
+
+// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o GetClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.SampleRefreshIntervalBiConnector }).(pulumi.IntOutput)
+}
+
+// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o GetClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+type GetClusterAdvancedConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterAdvancedConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o GetClusterAdvancedConfigurationArrayOutput) ToGetClusterAdvancedConfigurationArrayOutput() GetClusterAdvancedConfigurationArrayOutput {
+	return o
+}
+
+func (o GetClusterAdvancedConfigurationArrayOutput) ToGetClusterAdvancedConfigurationArrayOutputWithContext(ctx context.Context) GetClusterAdvancedConfigurationArrayOutput {
+	return o
+}
+
+func (o GetClusterAdvancedConfigurationArrayOutput) Index(i pulumi.IntInput) GetClusterAdvancedConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterAdvancedConfiguration {
+		return vs[0].([]GetClusterAdvancedConfiguration)[vs[1].(int)]
+	}).(GetClusterAdvancedConfigurationOutput)
+}
+
 type GetClusterBiConnectorConfig struct {
 	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
@@ -11801,9 +12124,11 @@ func (o GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayOutput) Index(i pulum
 }
 
 type GetClustersResult struct {
-	// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+	// Get the advanced configuration options. See Advanced Configuration below for more details.
+	AdvancedConfigurations []GetClustersResultAdvancedConfiguration `pulumi:"advancedConfigurations"`
+	// Specifies whether cluster tier auto-scaling is enabled. The default is false.
 	AutoScalingComputeEnabled bool `pulumi:"autoScalingComputeEnabled"`
-	// (Optional) Set to `true` to enable the cluster tier to scale down.
+	// * `autoScalingComputeScaleDownEnabled` - Specifies whether cluster tier auto-down-scaling is enabled.
 	AutoScalingComputeScaleDownEnabled bool `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Indicates whether disk auto-scaling is enabled.
 	AutoScalingDiskGbEnabled bool `pulumi:"autoScalingDiskGbEnabled"`
@@ -11859,9 +12184,9 @@ type GetClustersResult struct {
 	Paused bool `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
-	// (Optional) Maximum instance size to which your cluster can automatically scale.
+	// Maximum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMaxInstanceSize string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
-	// (Optional) Minimum instance size to which your cluster can automatically scale.
+	// Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
 	ProviderBackupEnabled bool `pulumi:"providerBackupEnabled"`
@@ -11895,6 +12220,8 @@ type GetClustersResult struct {
 	// - DELETED
 	// - REPAIRING
 	StateName string `pulumi:"stateName"`
+	// Release cadence that Atlas uses for this cluster.
+	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
 
 // GetClustersResultInput is an input type that accepts GetClustersResultArgs and GetClustersResultOutput values.
@@ -11909,9 +12236,11 @@ type GetClustersResultInput interface {
 }
 
 type GetClustersResultArgs struct {
-	// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+	// Get the advanced configuration options. See Advanced Configuration below for more details.
+	AdvancedConfigurations GetClustersResultAdvancedConfigurationArrayInput `pulumi:"advancedConfigurations"`
+	// Specifies whether cluster tier auto-scaling is enabled. The default is false.
 	AutoScalingComputeEnabled pulumi.BoolInput `pulumi:"autoScalingComputeEnabled"`
-	// (Optional) Set to `true` to enable the cluster tier to scale down.
+	// * `autoScalingComputeScaleDownEnabled` - Specifies whether cluster tier auto-down-scaling is enabled.
 	AutoScalingComputeScaleDownEnabled pulumi.BoolInput `pulumi:"autoScalingComputeScaleDownEnabled"`
 	// Indicates whether disk auto-scaling is enabled.
 	AutoScalingDiskGbEnabled pulumi.BoolInput `pulumi:"autoScalingDiskGbEnabled"`
@@ -11967,9 +12296,9 @@ type GetClustersResultArgs struct {
 	Paused pulumi.BoolInput `pulumi:"paused"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
-	// (Optional) Maximum instance size to which your cluster can automatically scale.
+	// Maximum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringInput `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
-	// (Optional) Minimum instance size to which your cluster can automatically scale.
+	// Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringInput `pulumi:"providerAutoScalingComputeMinInstanceSize"`
 	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
 	ProviderBackupEnabled pulumi.BoolInput `pulumi:"providerBackupEnabled"`
@@ -12003,6 +12332,8 @@ type GetClustersResultArgs struct {
 	// - DELETED
 	// - REPAIRING
 	StateName pulumi.StringInput `pulumi:"stateName"`
+	// Release cadence that Atlas uses for this cluster.
+	VersionReleaseSystem pulumi.StringInput `pulumi:"versionReleaseSystem"`
 }
 
 func (GetClustersResultArgs) ElementType() reflect.Type {
@@ -12056,12 +12387,17 @@ func (o GetClustersResultOutput) ToGetClustersResultOutputWithContext(ctx contex
 	return o
 }
 
-// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+// Get the advanced configuration options. See Advanced Configuration below for more details.
+func (o GetClustersResultOutput) AdvancedConfigurations() GetClustersResultAdvancedConfigurationArrayOutput {
+	return o.ApplyT(func(v GetClustersResult) []GetClustersResultAdvancedConfiguration { return v.AdvancedConfigurations }).(GetClustersResultAdvancedConfigurationArrayOutput)
+}
+
+// Specifies whether cluster tier auto-scaling is enabled. The default is false.
 func (o GetClustersResultOutput) AutoScalingComputeEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.AutoScalingComputeEnabled }).(pulumi.BoolOutput)
 }
 
-// (Optional) Set to `true` to enable the cluster tier to scale down.
+// * `autoScalingComputeScaleDownEnabled` - Specifies whether cluster tier auto-down-scaling is enabled.
 func (o GetClustersResultOutput) AutoScalingComputeScaleDownEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.AutoScalingComputeScaleDownEnabled }).(pulumi.BoolOutput)
 }
@@ -12180,12 +12516,12 @@ func (o GetClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// (Optional) Maximum instance size to which your cluster can automatically scale.
+// Maximum instance size to which your cluster can automatically scale.
 func (o GetClustersResultOutput) ProviderAutoScalingComputeMaxInstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderAutoScalingComputeMaxInstanceSize }).(pulumi.StringOutput)
 }
 
-// (Optional) Minimum instance size to which your cluster can automatically scale.
+// Minimum instance size to which your cluster can automatically scale.
 func (o GetClustersResultOutput) ProviderAutoScalingComputeMinInstanceSize() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderAutoScalingComputeMinInstanceSize }).(pulumi.StringOutput)
 }
@@ -12261,6 +12597,11 @@ func (o GetClustersResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.StateName }).(pulumi.StringOutput)
 }
 
+// Release cadence that Atlas uses for this cluster.
+func (o GetClustersResultOutput) VersionReleaseSystem() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResult) string { return v.VersionReleaseSystem }).(pulumi.StringOutput)
+}
+
 type GetClustersResultArrayOutput struct{ *pulumi.OutputState }
 
 func (GetClustersResultArrayOutput) ElementType() reflect.Type {
@@ -12279,6 +12620,175 @@ func (o GetClustersResultArrayOutput) Index(i pulumi.IntInput) GetClustersResult
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResult {
 		return vs[0].([]GetClustersResult)[vs[1].(int)]
 	}).(GetClustersResultOutput)
+}
+
+type GetClustersResultAdvancedConfiguration struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern string `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan bool `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb int `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+}
+
+// GetClustersResultAdvancedConfigurationInput is an input type that accepts GetClustersResultAdvancedConfigurationArgs and GetClustersResultAdvancedConfigurationOutput values.
+// You can construct a concrete instance of `GetClustersResultAdvancedConfigurationInput` via:
+//
+//          GetClustersResultAdvancedConfigurationArgs{...}
+type GetClustersResultAdvancedConfigurationInput interface {
+	pulumi.Input
+
+	ToGetClustersResultAdvancedConfigurationOutput() GetClustersResultAdvancedConfigurationOutput
+	ToGetClustersResultAdvancedConfigurationOutputWithContext(context.Context) GetClustersResultAdvancedConfigurationOutput
+}
+
+type GetClustersResultAdvancedConfigurationArgs struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+}
+
+func (GetClustersResultAdvancedConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i GetClustersResultAdvancedConfigurationArgs) ToGetClustersResultAdvancedConfigurationOutput() GetClustersResultAdvancedConfigurationOutput {
+	return i.ToGetClustersResultAdvancedConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultAdvancedConfigurationArgs) ToGetClustersResultAdvancedConfigurationOutputWithContext(ctx context.Context) GetClustersResultAdvancedConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultAdvancedConfigurationOutput)
+}
+
+// GetClustersResultAdvancedConfigurationArrayInput is an input type that accepts GetClustersResultAdvancedConfigurationArray and GetClustersResultAdvancedConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetClustersResultAdvancedConfigurationArrayInput` via:
+//
+//          GetClustersResultAdvancedConfigurationArray{ GetClustersResultAdvancedConfigurationArgs{...} }
+type GetClustersResultAdvancedConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersResultAdvancedConfigurationArrayOutput() GetClustersResultAdvancedConfigurationArrayOutput
+	ToGetClustersResultAdvancedConfigurationArrayOutputWithContext(context.Context) GetClustersResultAdvancedConfigurationArrayOutput
+}
+
+type GetClustersResultAdvancedConfigurationArray []GetClustersResultAdvancedConfigurationInput
+
+func (GetClustersResultAdvancedConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i GetClustersResultAdvancedConfigurationArray) ToGetClustersResultAdvancedConfigurationArrayOutput() GetClustersResultAdvancedConfigurationArrayOutput {
+	return i.ToGetClustersResultAdvancedConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersResultAdvancedConfigurationArray) ToGetClustersResultAdvancedConfigurationArrayOutputWithContext(ctx context.Context) GetClustersResultAdvancedConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersResultAdvancedConfigurationArrayOutput)
+}
+
+type GetClustersResultAdvancedConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultAdvancedConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersResultAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o GetClustersResultAdvancedConfigurationOutput) ToGetClustersResultAdvancedConfigurationOutput() GetClustersResultAdvancedConfigurationOutput {
+	return o
+}
+
+func (o GetClustersResultAdvancedConfigurationOutput) ToGetClustersResultAdvancedConfigurationOutputWithContext(ctx context.Context) GetClustersResultAdvancedConfigurationOutput {
+	return o
+}
+
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+func (o GetClustersResultAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+func (o GetClustersResultAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
+}
+
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+func (o GetClustersResultAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
+}
+
+// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+func (o GetClustersResultAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) bool { return v.JavascriptEnabled }).(pulumi.BoolOutput)
+}
+
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+func (o GetClustersResultAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
+}
+
+// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+func (o GetClustersResultAdvancedConfigurationOutput) NoTableScan() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) bool { return v.NoTableScan }).(pulumi.BoolOutput)
+}
+
+// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+func (o GetClustersResultAdvancedConfigurationOutput) OplogSizeMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.OplogSizeMb }).(pulumi.IntOutput)
+}
+
+// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o GetClustersResultAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.SampleRefreshIntervalBiConnector }).(pulumi.IntOutput)
+}
+
+// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o GetClustersResultAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+type GetClustersResultAdvancedConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersResultAdvancedConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersResultAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o GetClustersResultAdvancedConfigurationArrayOutput) ToGetClustersResultAdvancedConfigurationArrayOutput() GetClustersResultAdvancedConfigurationArrayOutput {
+	return o
+}
+
+func (o GetClustersResultAdvancedConfigurationArrayOutput) ToGetClustersResultAdvancedConfigurationArrayOutputWithContext(ctx context.Context) GetClustersResultAdvancedConfigurationArrayOutput {
+	return o
+}
+
+func (o GetClustersResultAdvancedConfigurationArrayOutput) Index(i pulumi.IntInput) GetClustersResultAdvancedConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersResultAdvancedConfiguration {
+		return vs[0].([]GetClustersResultAdvancedConfiguration)[vs[1].(int)]
+	}).(GetClustersResultAdvancedConfigurationOutput)
 }
 
 type GetClustersResultBiConnectorConfig struct {
@@ -19089,6 +19599,106 @@ func (o GetPrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInpu
 	}).(GetPrivateLinkEndpointServiceEndpointOutput)
 }
 
+type GetProjectApiKey struct {
+	ApiKeyId  string   `pulumi:"apiKeyId"`
+	RoleNames []string `pulumi:"roleNames"`
+}
+
+// GetProjectApiKeyInput is an input type that accepts GetProjectApiKeyArgs and GetProjectApiKeyOutput values.
+// You can construct a concrete instance of `GetProjectApiKeyInput` via:
+//
+//          GetProjectApiKeyArgs{...}
+type GetProjectApiKeyInput interface {
+	pulumi.Input
+
+	ToGetProjectApiKeyOutput() GetProjectApiKeyOutput
+	ToGetProjectApiKeyOutputWithContext(context.Context) GetProjectApiKeyOutput
+}
+
+type GetProjectApiKeyArgs struct {
+	ApiKeyId  pulumi.StringInput      `pulumi:"apiKeyId"`
+	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
+}
+
+func (GetProjectApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectApiKey)(nil)).Elem()
+}
+
+func (i GetProjectApiKeyArgs) ToGetProjectApiKeyOutput() GetProjectApiKeyOutput {
+	return i.ToGetProjectApiKeyOutputWithContext(context.Background())
+}
+
+func (i GetProjectApiKeyArgs) ToGetProjectApiKeyOutputWithContext(ctx context.Context) GetProjectApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectApiKeyOutput)
+}
+
+// GetProjectApiKeyArrayInput is an input type that accepts GetProjectApiKeyArray and GetProjectApiKeyArrayOutput values.
+// You can construct a concrete instance of `GetProjectApiKeyArrayInput` via:
+//
+//          GetProjectApiKeyArray{ GetProjectApiKeyArgs{...} }
+type GetProjectApiKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectApiKeyArrayOutput() GetProjectApiKeyArrayOutput
+	ToGetProjectApiKeyArrayOutputWithContext(context.Context) GetProjectApiKeyArrayOutput
+}
+
+type GetProjectApiKeyArray []GetProjectApiKeyInput
+
+func (GetProjectApiKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectApiKey)(nil)).Elem()
+}
+
+func (i GetProjectApiKeyArray) ToGetProjectApiKeyArrayOutput() GetProjectApiKeyArrayOutput {
+	return i.ToGetProjectApiKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectApiKeyArray) ToGetProjectApiKeyArrayOutputWithContext(ctx context.Context) GetProjectApiKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectApiKeyArrayOutput)
+}
+
+type GetProjectApiKeyOutput struct{ *pulumi.OutputState }
+
+func (GetProjectApiKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectApiKey)(nil)).Elem()
+}
+
+func (o GetProjectApiKeyOutput) ToGetProjectApiKeyOutput() GetProjectApiKeyOutput {
+	return o
+}
+
+func (o GetProjectApiKeyOutput) ToGetProjectApiKeyOutputWithContext(ctx context.Context) GetProjectApiKeyOutput {
+	return o
+}
+
+func (o GetProjectApiKeyOutput) ApiKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectApiKey) string { return v.ApiKeyId }).(pulumi.StringOutput)
+}
+
+func (o GetProjectApiKeyOutput) RoleNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProjectApiKey) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
+}
+
+type GetProjectApiKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectApiKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectApiKey)(nil)).Elem()
+}
+
+func (o GetProjectApiKeyArrayOutput) ToGetProjectApiKeyArrayOutput() GetProjectApiKeyArrayOutput {
+	return o
+}
+
+func (o GetProjectApiKeyArrayOutput) ToGetProjectApiKeyArrayOutputWithContext(ctx context.Context) GetProjectApiKeyArrayOutput {
+	return o
+}
+
+func (o GetProjectApiKeyArrayOutput) Index(i pulumi.IntInput) GetProjectApiKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectApiKey {
+		return vs[0].([]GetProjectApiKey)[vs[1].(int)]
+	}).(GetProjectApiKeyOutput)
+}
+
 type GetProjectTeam struct {
 	RoleNames []string `pulumi:"roleNames"`
 	TeamId    string   `pulumi:"teamId"`
@@ -19190,8 +19800,9 @@ func (o GetProjectTeamArrayOutput) Index(i pulumi.IntInput) GetProjectTeamOutput
 }
 
 type GetProjectsResult struct {
-	ClusterCount int    `pulumi:"clusterCount"`
-	Created      string `pulumi:"created"`
+	ApiKeys      []GetProjectsResultApiKey `pulumi:"apiKeys"`
+	ClusterCount int                       `pulumi:"clusterCount"`
+	Created      string                    `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
@@ -19201,6 +19812,15 @@ type GetProjectsResult struct {
 	// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
 	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+	//   The following are valid roles:
+	// * `GROUP_OWNER`
+	// * `GROUP_READ_ONLY`
+	// * `GROUP_DATA_ACCESS_ADMIN`
+	// * `GROUP_DATA_ACCESS_READ_WRITE`
+	// * `GROUP_DATA_ACCESS_READ_ONLY`
+	// * `GROUP_CLUSTER_MANAGER`
+	// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+	// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
 	//   The following are valid roles:
 	// * `GROUP_OWNER`
 	// * `GROUP_READ_ONLY`
@@ -19224,8 +19844,9 @@ type GetProjectsResultInput interface {
 }
 
 type GetProjectsResultArgs struct {
-	ClusterCount pulumi.IntInput    `pulumi:"clusterCount"`
-	Created      pulumi.StringInput `pulumi:"created"`
+	ApiKeys      GetProjectsResultApiKeyArrayInput `pulumi:"apiKeys"`
+	ClusterCount pulumi.IntInput                   `pulumi:"clusterCount"`
+	Created      pulumi.StringInput                `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
@@ -19235,6 +19856,15 @@ type GetProjectsResultArgs struct {
 	// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
 	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+	//   The following are valid roles:
+	// * `GROUP_OWNER`
+	// * `GROUP_READ_ONLY`
+	// * `GROUP_DATA_ACCESS_ADMIN`
+	// * `GROUP_DATA_ACCESS_READ_WRITE`
+	// * `GROUP_DATA_ACCESS_READ_ONLY`
+	// * `GROUP_CLUSTER_MANAGER`
+	// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+	// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
 	//   The following are valid roles:
 	// * `GROUP_OWNER`
 	// * `GROUP_READ_ONLY`
@@ -19297,6 +19927,10 @@ func (o GetProjectsResultOutput) ToGetProjectsResultOutputWithContext(ctx contex
 	return o
 }
 
+func (o GetProjectsResultOutput) ApiKeys() GetProjectsResultApiKeyArrayOutput {
+	return o.ApplyT(func(v GetProjectsResult) []GetProjectsResultApiKey { return v.ApiKeys }).(GetProjectsResultApiKeyArrayOutput)
+}
+
 func (o GetProjectsResultOutput) ClusterCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProjectsResult) int { return v.ClusterCount }).(pulumi.IntOutput)
 }
@@ -19320,6 +19954,15 @@ func (o GetProjectsResultOutput) Name() pulumi.StringOutput {
 // *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
 // * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 // * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+//   The following are valid roles:
+// * `GROUP_OWNER`
+// * `GROUP_READ_ONLY`
+// * `GROUP_DATA_ACCESS_ADMIN`
+// * `GROUP_DATA_ACCESS_READ_WRITE`
+// * `GROUP_DATA_ACCESS_READ_ONLY`
+// * `GROUP_CLUSTER_MANAGER`
+// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
 //   The following are valid roles:
 // * `GROUP_OWNER`
 // * `GROUP_READ_ONLY`
@@ -19353,6 +19996,106 @@ func (o GetProjectsResultArrayOutput) Index(i pulumi.IntInput) GetProjectsResult
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectsResult {
 		return vs[0].([]GetProjectsResult)[vs[1].(int)]
 	}).(GetProjectsResultOutput)
+}
+
+type GetProjectsResultApiKey struct {
+	ApiKeyId  string   `pulumi:"apiKeyId"`
+	RoleNames []string `pulumi:"roleNames"`
+}
+
+// GetProjectsResultApiKeyInput is an input type that accepts GetProjectsResultApiKeyArgs and GetProjectsResultApiKeyOutput values.
+// You can construct a concrete instance of `GetProjectsResultApiKeyInput` via:
+//
+//          GetProjectsResultApiKeyArgs{...}
+type GetProjectsResultApiKeyInput interface {
+	pulumi.Input
+
+	ToGetProjectsResultApiKeyOutput() GetProjectsResultApiKeyOutput
+	ToGetProjectsResultApiKeyOutputWithContext(context.Context) GetProjectsResultApiKeyOutput
+}
+
+type GetProjectsResultApiKeyArgs struct {
+	ApiKeyId  pulumi.StringInput      `pulumi:"apiKeyId"`
+	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
+}
+
+func (GetProjectsResultApiKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsResultApiKey)(nil)).Elem()
+}
+
+func (i GetProjectsResultApiKeyArgs) ToGetProjectsResultApiKeyOutput() GetProjectsResultApiKeyOutput {
+	return i.ToGetProjectsResultApiKeyOutputWithContext(context.Background())
+}
+
+func (i GetProjectsResultApiKeyArgs) ToGetProjectsResultApiKeyOutputWithContext(ctx context.Context) GetProjectsResultApiKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsResultApiKeyOutput)
+}
+
+// GetProjectsResultApiKeyArrayInput is an input type that accepts GetProjectsResultApiKeyArray and GetProjectsResultApiKeyArrayOutput values.
+// You can construct a concrete instance of `GetProjectsResultApiKeyArrayInput` via:
+//
+//          GetProjectsResultApiKeyArray{ GetProjectsResultApiKeyArgs{...} }
+type GetProjectsResultApiKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectsResultApiKeyArrayOutput() GetProjectsResultApiKeyArrayOutput
+	ToGetProjectsResultApiKeyArrayOutputWithContext(context.Context) GetProjectsResultApiKeyArrayOutput
+}
+
+type GetProjectsResultApiKeyArray []GetProjectsResultApiKeyInput
+
+func (GetProjectsResultApiKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsResultApiKey)(nil)).Elem()
+}
+
+func (i GetProjectsResultApiKeyArray) ToGetProjectsResultApiKeyArrayOutput() GetProjectsResultApiKeyArrayOutput {
+	return i.ToGetProjectsResultApiKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectsResultApiKeyArray) ToGetProjectsResultApiKeyArrayOutputWithContext(ctx context.Context) GetProjectsResultApiKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectsResultApiKeyArrayOutput)
+}
+
+type GetProjectsResultApiKeyOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsResultApiKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectsResultApiKey)(nil)).Elem()
+}
+
+func (o GetProjectsResultApiKeyOutput) ToGetProjectsResultApiKeyOutput() GetProjectsResultApiKeyOutput {
+	return o
+}
+
+func (o GetProjectsResultApiKeyOutput) ToGetProjectsResultApiKeyOutputWithContext(ctx context.Context) GetProjectsResultApiKeyOutput {
+	return o
+}
+
+func (o GetProjectsResultApiKeyOutput) ApiKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsResultApiKey) string { return v.ApiKeyId }).(pulumi.StringOutput)
+}
+
+func (o GetProjectsResultApiKeyOutput) RoleNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProjectsResultApiKey) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
+}
+
+type GetProjectsResultApiKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectsResultApiKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectsResultApiKey)(nil)).Elem()
+}
+
+func (o GetProjectsResultApiKeyArrayOutput) ToGetProjectsResultApiKeyArrayOutput() GetProjectsResultApiKeyArrayOutput {
+	return o
+}
+
+func (o GetProjectsResultApiKeyArrayOutput) ToGetProjectsResultApiKeyArrayOutputWithContext(ctx context.Context) GetProjectsResultApiKeyArrayOutput {
+	return o
+}
+
+func (o GetProjectsResultApiKeyArrayOutput) Index(i pulumi.IntInput) GetProjectsResultApiKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectsResultApiKey {
+		return vs[0].([]GetProjectsResultApiKey)[vs[1].(int)]
+	}).(GetProjectsResultApiKeyOutput)
 }
 
 type GetProjectsResultTeam struct {
@@ -20242,6 +20985,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldArrayInput)(nil)).Elem(), OnlineArchivePartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyInput)(nil)).Elem(), ProjectApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyArrayInput)(nil)).Elem(), ProjectApiKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamInput)(nil)).Elem(), ProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymInput)(nil)).Elem(), SearchIndexSynonymArgs{})
@@ -20280,6 +21025,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderSnapshotRestoreJobsResultArrayInput)(nil)).Elem(), GetCloudProviderSnapshotRestoreJobsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderSnapshotsResultInput)(nil)).Elem(), GetCloudProviderSnapshotsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderSnapshotsResultArrayInput)(nil)).Elem(), GetCloudProviderSnapshotsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAdvancedConfigurationInput)(nil)).Elem(), GetClusterAdvancedConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAdvancedConfigurationArrayInput)(nil)).Elem(), GetClusterAdvancedConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterBiConnectorConfigInput)(nil)).Elem(), GetClusterBiConnectorConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterBiConnectorConfigArrayInput)(nil)).Elem(), GetClusterBiConnectorConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConnectionStringInput)(nil)).Elem(), GetClusterConnectionStringArgs{})
@@ -20302,6 +21049,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput)(nil)).Elem(), GetClusterSnapshotBackupPolicyPolicyPolicyItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultInput)(nil)).Elem(), GetClustersResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultArrayInput)(nil)).Elem(), GetClustersResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultAdvancedConfigurationInput)(nil)).Elem(), GetClustersResultAdvancedConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultAdvancedConfigurationArrayInput)(nil)).Elem(), GetClustersResultAdvancedConfigurationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultBiConnectorConfigInput)(nil)).Elem(), GetClustersResultBiConnectorConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultBiConnectorConfigArrayInput)(nil)).Elem(), GetClustersResultBiConnectorConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersResultConnectionStringInput)(nil)).Elem(), GetClustersResultConnectionStringArgs{})
@@ -20414,10 +21163,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpointInput)(nil)).Elem(), GetPrivateLinkEndpointServiceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), GetPrivateLinkEndpointServiceEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyInput)(nil)).Elem(), GetProjectApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyArrayInput)(nil)).Elem(), GetProjectApiKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamInput)(nil)).Elem(), GetProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamArrayInput)(nil)).Elem(), GetProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultInput)(nil)).Elem(), GetProjectsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultArrayInput)(nil)).Elem(), GetProjectsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultApiKeyInput)(nil)).Elem(), GetProjectsResultApiKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultApiKeyArrayInput)(nil)).Elem(), GetProjectsResultApiKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamInput)(nil)).Elem(), GetProjectsResultTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectsResultTeamArrayInput)(nil)).Elem(), GetProjectsResultTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexSynonymInput)(nil)).Elem(), GetSearchIndexSynonymArgs{})
@@ -20532,6 +21285,8 @@ func init() {
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointArrayOutput{})
+	pulumi.RegisterOutputType(ProjectApiKeyOutput{})
+	pulumi.RegisterOutputType(ProjectApiKeyArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTeamOutput{})
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(SearchIndexSynonymOutput{})
@@ -20570,6 +21325,8 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotRestoreJobsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotsResultOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderSnapshotsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterAdvancedConfigurationOutput{})
+	pulumi.RegisterOutputType(GetClusterAdvancedConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterBiConnectorConfigOutput{})
 	pulumi.RegisterOutputType(GetClusterBiConnectorConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterConnectionStringOutput{})
@@ -20592,6 +21349,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultOutput{})
 	pulumi.RegisterOutputType(GetClustersResultArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersResultAdvancedConfigurationOutput{})
+	pulumi.RegisterOutputType(GetClustersResultAdvancedConfigurationArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultBiConnectorConfigOutput{})
 	pulumi.RegisterOutputType(GetClustersResultBiConnectorConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetClustersResultConnectionStringOutput{})
@@ -20704,10 +21463,14 @@ func init() {
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivateLinkEndpointServiceEndpointOutput{})
 	pulumi.RegisterOutputType(GetPrivateLinkEndpointServiceEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectApiKeyOutput{})
+	pulumi.RegisterOutputType(GetProjectApiKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectsResultApiKeyOutput{})
+	pulumi.RegisterOutputType(GetProjectsResultApiKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectsResultTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexSynonymOutput{})

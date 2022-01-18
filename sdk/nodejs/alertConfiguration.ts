@@ -79,6 +79,51 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * ### Create an alert with two notifications using Email and SMS
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.AlertConfiguration("test", {
+ *     enabled: true,
+ *     eventType: "OUTSIDE_METRIC_THRESHOLD",
+ *     matchers: [{
+ *         fieldName: "HOSTNAME_AND_PORT",
+ *         operator: "EQUALS",
+ *         value: "SECONDARY",
+ *     }],
+ *     metricThresholdConfig: {
+ *         metricName: "ASSERT_REGULAR",
+ *         mode: "AVERAGE",
+ *         operator: "LESS_THAN",
+ *         threshold: 99,
+ *         units: "RAW",
+ *     },
+ *     notifications: [
+ *         {
+ *             delayMin: 0,
+ *             emailEnabled: true,
+ *             intervalMin: 5,
+ *             roles: [
+ *                 "GROUP_DATA_ACCESS_READ_ONLY",
+ *                 "GROUP_CLUSTER_MANAGER",
+ *                 "GROUP_DATA_ACCESS_ADMIN",
+ *             ],
+ *             smsEnabled: false,
+ *             typeName: "GROUP",
+ *         },
+ *         {
+ *             delayMin: 0,
+ *             emailEnabled: false,
+ *             intervalMin: 5,
+ *             smsEnabled: true,
+ *             typeName: "ORG",
+ *         },
+ *     ],
+ *     projectId: "PROJECT ID",
+ * });
+ * ```
  *
  * ## Import
  *

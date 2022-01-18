@@ -141,10 +141,7 @@ export class Cluster extends pulumi.CustomResource {
      * Number of shards to deploy in the specified zone, minimum 1.
      */
     public readonly numShards!: pulumi.Output<number | undefined>;
-    /**
-     * Flag that indicates whether the cluster is paused or not.
-     */
-    public /*out*/ readonly paused!: pulumi.Output<boolean>;
+    public readonly paused!: pulumi.Output<boolean | undefined>;
     /**
      * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
@@ -226,6 +223,12 @@ export class Cluster extends pulumi.CustomResource {
      * - REPAIRING
      */
     public /*out*/ readonly stateName!: pulumi.Output<string>;
+    /**
+     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     */
+    public readonly versionReleaseSystem!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Cluster resource with the given unique name, arguments, and options.
@@ -282,6 +285,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["snapshotBackupPolicies"] = state ? state.snapshotBackupPolicies : undefined;
             resourceInputs["srvAddress"] = state ? state.srvAddress : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
+            resourceInputs["versionReleaseSystem"] = state ? state.versionReleaseSystem : undefined;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -309,6 +313,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["mongoDbMajorVersion"] = args ? args.mongoDbMajorVersion : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["numShards"] = args ? args.numShards : undefined;
+            resourceInputs["paused"] = args ? args.paused : undefined;
             resourceInputs["pitEnabled"] = args ? args.pitEnabled : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["providerAutoScalingComputeMaxInstanceSize"] = args ? args.providerAutoScalingComputeMaxInstanceSize : undefined;
@@ -323,6 +328,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["providerVolumeType"] = args ? args.providerVolumeType : undefined;
             resourceInputs["replicationFactor"] = args ? args.replicationFactor : undefined;
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
+            resourceInputs["versionReleaseSystem"] = args ? args.versionReleaseSystem : undefined;
             resourceInputs["clusterId"] = undefined /*out*/;
             resourceInputs["connectionStrings"] = undefined /*out*/;
             resourceInputs["containerId"] = undefined /*out*/;
@@ -330,7 +336,6 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["mongoUri"] = undefined /*out*/;
             resourceInputs["mongoUriUpdated"] = undefined /*out*/;
             resourceInputs["mongoUriWithOptions"] = undefined /*out*/;
-            resourceInputs["paused"] = undefined /*out*/;
             resourceInputs["providerEncryptEbsVolumeFlag"] = undefined /*out*/;
             resourceInputs["snapshotBackupPolicies"] = undefined /*out*/;
             resourceInputs["srvAddress"] = undefined /*out*/;
@@ -444,9 +449,6 @@ export interface ClusterState {
      * Number of shards to deploy in the specified zone, minimum 1.
      */
     numShards?: pulumi.Input<number>;
-    /**
-     * Flag that indicates whether the cluster is paused or not.
-     */
     paused?: pulumi.Input<boolean>;
     /**
      * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
@@ -529,6 +531,12 @@ export interface ClusterState {
      * - REPAIRING
      */
     stateName?: pulumi.Input<string>;
+    /**
+     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     */
+    versionReleaseSystem?: pulumi.Input<string>;
 }
 
 /**
@@ -604,6 +612,7 @@ export interface ClusterArgs {
      * Number of shards to deploy in the specified zone, minimum 1.
      */
     numShards?: pulumi.Input<number>;
+    paused?: pulumi.Input<boolean>;
     /**
      * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
@@ -666,4 +675,10 @@ export interface ClusterArgs {
      * Configuration for cluster regions.  See Replication Spec below for more details.
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
+    /**
+     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     */
+    versionReleaseSystem?: pulumi.Input<string>;
 }

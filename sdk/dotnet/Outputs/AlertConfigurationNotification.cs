@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? EmailAddress;
         /// <summary>
-        /// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        /// Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         public readonly bool? EmailEnabled;
         /// <summary>
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? FlowdockApiToken;
         /// <summary>
-        /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+        /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         /// </summary>
         public readonly int? IntervalMin;
         /// <summary>
@@ -69,19 +69,27 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
         /// </summary>
         public readonly string? OrgName;
+        /// <summary>
+        /// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        /// Accepted values are:
+        /// </summary>
         public readonly ImmutableArray<string> Roles;
         /// <summary>
         /// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         /// </summary>
         public readonly string? ServiceKey;
         /// <summary>
-        /// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        /// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         public readonly bool? SmsEnabled;
         /// <summary>
         /// Unique identifier of a team.
         /// </summary>
         public readonly string? TeamId;
+        /// <summary>
+        /// Label for the team that receives this notification.
+        /// </summary>
+        public readonly string? TeamName;
         /// <summary>
         /// Type of alert notification.
         /// Accepted values are:
@@ -141,6 +149,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? teamId,
 
+            string? teamName,
+
             string? typeName,
 
             string? username,
@@ -167,6 +177,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ServiceKey = serviceKey;
             SmsEnabled = smsEnabled;
             TeamId = teamId;
+            TeamName = teamName;
             TypeName = typeName;
             Username = username;
             VictorOpsApiKey = victorOpsApiKey;

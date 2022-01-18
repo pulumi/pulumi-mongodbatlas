@@ -77,9 +77,8 @@ type Cluster struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Number of shards to deploy in the specified zone, minimum 1.
-	NumShards pulumi.IntPtrOutput `pulumi:"numShards"`
-	// Flag that indicates whether the cluster is paused or not.
-	Paused pulumi.BoolOutput `pulumi:"paused"`
+	NumShards pulumi.IntPtrOutput  `pulumi:"numShards"`
+	Paused    pulumi.BoolPtrOutput `pulumi:"paused"`
 	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolOutput `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the database user.
@@ -127,6 +126,10 @@ type Cluster struct {
 	// - DELETED
 	// - REPAIRING
 	StateName pulumi.StringOutput `pulumi:"stateName"`
+	// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+	VersionReleaseSystem pulumi.StringPtrOutput `pulumi:"versionReleaseSystem"`
 }
 
 // NewCluster registers a new resource with the given unique name, arguments, and options.
@@ -221,9 +224,8 @@ type clusterState struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name *string `pulumi:"name"`
 	// Number of shards to deploy in the specified zone, minimum 1.
-	NumShards *int `pulumi:"numShards"`
-	// Flag that indicates whether the cluster is paused or not.
-	Paused *bool `pulumi:"paused"`
+	NumShards *int  `pulumi:"numShards"`
+	Paused    *bool `pulumi:"paused"`
 	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled *bool `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the database user.
@@ -271,6 +273,10 @@ type clusterState struct {
 	// - DELETED
 	// - REPAIRING
 	StateName *string `pulumi:"stateName"`
+	// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+	VersionReleaseSystem *string `pulumi:"versionReleaseSystem"`
 }
 
 type ClusterState struct {
@@ -329,8 +335,7 @@ type ClusterState struct {
 	Name pulumi.StringPtrInput
 	// Number of shards to deploy in the specified zone, minimum 1.
 	NumShards pulumi.IntPtrInput
-	// Flag that indicates whether the cluster is paused or not.
-	Paused pulumi.BoolPtrInput
+	Paused    pulumi.BoolPtrInput
 	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolPtrInput
 	// The unique ID for the project to create the database user.
@@ -378,6 +383,10 @@ type ClusterState struct {
 	// - DELETED
 	// - REPAIRING
 	StateName pulumi.StringPtrInput
+	// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+	VersionReleaseSystem pulumi.StringPtrInput
 }
 
 func (ClusterState) ElementType() reflect.Type {
@@ -425,7 +434,8 @@ type clusterArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name *string `pulumi:"name"`
 	// Number of shards to deploy in the specified zone, minimum 1.
-	NumShards *int `pulumi:"numShards"`
+	NumShards *int  `pulumi:"numShards"`
+	Paused    *bool `pulumi:"paused"`
 	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled *bool `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the database user.
@@ -460,6 +470,10 @@ type clusterArgs struct {
 	ReplicationFactor *int `pulumi:"replicationFactor"`
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs []ClusterReplicationSpec `pulumi:"replicationSpecs"`
+	// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+	VersionReleaseSystem *string `pulumi:"versionReleaseSystem"`
 }
 
 // The set of arguments for constructing a Cluster resource.
@@ -505,6 +519,7 @@ type ClusterArgs struct {
 	Name pulumi.StringPtrInput
 	// Number of shards to deploy in the specified zone, minimum 1.
 	NumShards pulumi.IntPtrInput
+	Paused    pulumi.BoolPtrInput
 	// - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolPtrInput
 	// The unique ID for the project to create the database user.
@@ -539,6 +554,10 @@ type ClusterArgs struct {
 	ReplicationFactor pulumi.IntPtrInput
 	// Configuration for cluster regions.  See Replication Spec below for more details.
 	ReplicationSpecs ClusterReplicationSpecArrayInput
+	// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+	// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+	// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+	VersionReleaseSystem pulumi.StringPtrInput
 }
 
 func (ClusterArgs) ElementType() reflect.Type {

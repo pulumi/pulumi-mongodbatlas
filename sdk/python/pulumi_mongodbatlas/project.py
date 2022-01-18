@@ -16,6 +16,7 @@ __all__ = ['ProjectArgs', 'Project']
 class ProjectArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[str],
+                 api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
@@ -28,6 +29,8 @@ class ProjectArgs:
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         pulumi.set(__self__, "org_id", org_id)
+        if api_keys is not None:
+            pulumi.set(__self__, "api_keys", api_keys)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_owner_id is not None:
@@ -48,6 +51,15 @@ class ProjectArgs:
     @org_id.setter
     def org_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "org_id", value)
+
+    @property
+    @pulumi.getter(name="apiKeys")
+    def api_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]:
+        return pulumi.get(self, "api_keys")
+
+    @api_keys.setter
+    def api_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]):
+        pulumi.set(self, "api_keys", value)
 
     @property
     @pulumi.getter
@@ -98,6 +110,7 @@ class ProjectArgs:
 @pulumi.input_type
 class _ProjectState:
     def __init__(__self__, *,
+                 api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
                  cluster_count: Optional[pulumi.Input[int]] = None,
                  created: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -114,6 +127,8 @@ class _ProjectState:
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
+        if api_keys is not None:
+            pulumi.set(__self__, "api_keys", api_keys)
         if cluster_count is not None:
             pulumi.set(__self__, "cluster_count", cluster_count)
         if created is not None:
@@ -128,6 +143,15 @@ class _ProjectState:
             pulumi.set(__self__, "teams", teams)
         if with_default_alerts_settings is not None:
             pulumi.set(__self__, "with_default_alerts_settings", with_default_alerts_settings)
+
+    @property
+    @pulumi.getter(name="apiKeys")
+    def api_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]:
+        return pulumi.get(self, "api_keys")
+
+    @api_keys.setter
+    def api_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]):
+        pulumi.set(self, "api_keys", value)
 
     @property
     @pulumi.getter(name="clusterCount")
@@ -216,6 +240,7 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -272,6 +297,7 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -289,6 +315,7 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
+            __props__.__dict__["api_keys"] = api_keys
             __props__.__dict__["name"] = name
             if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")
@@ -308,6 +335,7 @@ class Project(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
             cluster_count: Optional[pulumi.Input[int]] = None,
             created: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -333,6 +361,7 @@ class Project(pulumi.CustomResource):
 
         __props__ = _ProjectState.__new__(_ProjectState)
 
+        __props__.__dict__["api_keys"] = api_keys
         __props__.__dict__["cluster_count"] = cluster_count
         __props__.__dict__["created"] = created
         __props__.__dict__["name"] = name
@@ -341,6 +370,11 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["teams"] = teams
         __props__.__dict__["with_default_alerts_settings"] = with_default_alerts_settings
         return Project(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiKeys")
+    def api_keys(self) -> pulumi.Output[Sequence['outputs.ProjectApiKey']]:
+        return pulumi.get(self, "api_keys")
 
     @property
     @pulumi.getter(name="clusterCount")

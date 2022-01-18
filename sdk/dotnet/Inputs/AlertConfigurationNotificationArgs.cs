@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? EmailAddress { get; set; }
 
         /// <summary>
-        /// Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        /// Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         [Input("emailEnabled")]
         public Input<bool>? EmailEnabled { get; set; }
@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? FlowdockApiToken { get; set; }
 
         /// <summary>
-        /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+        /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         /// </summary>
         [Input("intervalMin")]
         public Input<int>? IntervalMin { get; set; }
@@ -98,6 +98,11 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         [Input("roles")]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        /// Accepted values are:
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());
@@ -111,7 +116,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? ServiceKey { get; set; }
 
         /// <summary>
-        /// Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        /// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         /// </summary>
         [Input("smsEnabled")]
         public Input<bool>? SmsEnabled { get; set; }
@@ -121,6 +126,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
+
+        /// <summary>
+        /// Label for the team that receives this notification.
+        /// </summary>
+        [Input("teamName")]
+        public Input<string>? TeamName { get; set; }
 
         /// <summary>
         /// Type of alert notification.
