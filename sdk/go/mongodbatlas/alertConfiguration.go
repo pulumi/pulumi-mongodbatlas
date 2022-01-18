@@ -116,6 +116,65 @@ import (
 // 	})
 // }
 // ```
+// ### Create an alert with two notifications using Email and SMS
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
+// 			Enabled:   pulumi.Bool(true),
+// 			EventType: pulumi.String("OUTSIDE_METRIC_THRESHOLD"),
+// 			Matchers: AlertConfigurationMatcherArray{
+// 				&AlertConfigurationMatcherArgs{
+// 					FieldName: pulumi.String("HOSTNAME_AND_PORT"),
+// 					Operator:  pulumi.String("EQUALS"),
+// 					Value:     pulumi.String("SECONDARY"),
+// 				},
+// 			},
+// 			MetricThresholdConfig: &AlertConfigurationMetricThresholdConfigArgs{
+// 				MetricName: pulumi.String("ASSERT_REGULAR"),
+// 				Mode:       pulumi.String("AVERAGE"),
+// 				Operator:   pulumi.String("LESS_THAN"),
+// 				Threshold:  pulumi.Float64(99),
+// 				Units:      pulumi.String("RAW"),
+// 			},
+// 			Notifications: AlertConfigurationNotificationArray{
+// 				&AlertConfigurationNotificationArgs{
+// 					DelayMin:     pulumi.Int(0),
+// 					EmailEnabled: pulumi.Bool(true),
+// 					IntervalMin:  pulumi.Int(5),
+// 					Roles: pulumi.StringArray{
+// 						pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
+// 						pulumi.String("GROUP_CLUSTER_MANAGER"),
+// 						pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
+// 					},
+// 					SmsEnabled: pulumi.Bool(false),
+// 					TypeName:   pulumi.String("GROUP"),
+// 				},
+// 				&AlertConfigurationNotificationArgs{
+// 					DelayMin:     pulumi.Int(0),
+// 					EmailEnabled: pulumi.Bool(false),
+// 					IntervalMin:  pulumi.Int(5),
+// 					SmsEnabled:   pulumi.Bool(true),
+// 					TypeName:     pulumi.String("ORG"),
+// 				},
+// 			},
+// 			ProjectId: pulumi.String("PROJECT ID"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ## Import
 //

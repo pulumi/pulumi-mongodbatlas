@@ -106,7 +106,6 @@ export class NetworkContainer extends pulumi.CustomResource {
     public readonly atlasCidrBlock!: pulumi.Output<string>;
     /**
      * Unique identifier of the Azure subscription in which the VNet resides.
-     * * * `vnetName` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
     public /*out*/ readonly azureSubscriptionId!: pulumi.Output<string>;
     /**
@@ -119,7 +118,6 @@ export class NetworkContainer extends pulumi.CustomResource {
     public /*out*/ readonly gcpProjectId!: pulumi.Output<string>;
     /**
      * Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-     * **AZURE ONLY:**
      */
     public /*out*/ readonly networkName!: pulumi.Output<string>;
     /**
@@ -132,7 +130,6 @@ export class NetworkContainer extends pulumi.CustomResource {
     public readonly providerName!: pulumi.Output<string | undefined>;
     /**
      * Indicates whether the project has Network Peering connections deployed in the container.
-     * **AWS ONLY:**
      */
     public /*out*/ readonly provisioned!: pulumi.Output<boolean>;
     /**
@@ -147,10 +144,12 @@ export class NetworkContainer extends pulumi.CustomResource {
      * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
      */
     public readonly regions!: pulumi.Output<string[] | undefined>;
+    /**
+     * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+     */
     public /*out*/ readonly vnetName!: pulumi.Output<string>;
     /**
      * Unique identifier of Atlas' AWS VPC.
-     * **CGP ONLY:**
      */
     public /*out*/ readonly vpcId!: pulumi.Output<string>;
 
@@ -222,7 +221,6 @@ export interface NetworkContainerState {
     atlasCidrBlock?: pulumi.Input<string>;
     /**
      * Unique identifier of the Azure subscription in which the VNet resides.
-     * * * `vnetName` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
     azureSubscriptionId?: pulumi.Input<string>;
     /**
@@ -235,7 +233,6 @@ export interface NetworkContainerState {
     gcpProjectId?: pulumi.Input<string>;
     /**
      * Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-     * **AZURE ONLY:**
      */
     networkName?: pulumi.Input<string>;
     /**
@@ -248,7 +245,6 @@ export interface NetworkContainerState {
     providerName?: pulumi.Input<string>;
     /**
      * Indicates whether the project has Network Peering connections deployed in the container.
-     * **AWS ONLY:**
      */
     provisioned?: pulumi.Input<boolean>;
     /**
@@ -263,10 +259,12 @@ export interface NetworkContainerState {
      * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
      */
     regions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+     */
     vnetName?: pulumi.Input<string>;
     /**
      * Unique identifier of Atlas' AWS VPC.
-     * **CGP ONLY:**
      */
     vpcId?: pulumi.Input<string>;
 }

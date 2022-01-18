@@ -113,7 +113,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifier of the Azure subscription in which the VNet resides.
-        /// * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         /// </summary>
         [Output("azureSubscriptionId")]
         public Output<string> AzureSubscriptionId { get; private set; } = null!;
@@ -132,7 +131,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-        /// **AZURE ONLY:**
         /// </summary>
         [Output("networkName")]
         public Output<string> NetworkName { get; private set; } = null!;
@@ -151,7 +149,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Indicates whether the project has Network Peering connections deployed in the container.
-        /// **AWS ONLY:**
         /// </summary>
         [Output("provisioned")]
         public Output<bool> Provisioned { get; private set; } = null!;
@@ -174,12 +171,14 @@ namespace Pulumi.Mongodbatlas
         [Output("regions")]
         public Output<ImmutableArray<string>> Regions { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        /// </summary>
         [Output("vnetName")]
         public Output<string> VnetName { get; private set; } = null!;
 
         /// <summary>
         /// Unique identifier of Atlas' AWS VPC.
-        /// **CGP ONLY:**
         /// </summary>
         [Output("vpcId")]
         public Output<string> VpcId { get; private set; } = null!;
@@ -293,7 +292,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifier of the Azure subscription in which the VNet resides.
-        /// * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         /// </summary>
         [Input("azureSubscriptionId")]
         public Input<string>? AzureSubscriptionId { get; set; }
@@ -312,7 +310,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-        /// **AZURE ONLY:**
         /// </summary>
         [Input("networkName")]
         public Input<string>? NetworkName { get; set; }
@@ -331,7 +328,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Indicates whether the project has Network Peering connections deployed in the container.
-        /// **AWS ONLY:**
         /// </summary>
         [Input("provisioned")]
         public Input<bool>? Provisioned { get; set; }
@@ -360,12 +356,14 @@ namespace Pulumi.Mongodbatlas
             set => _regions = value;
         }
 
+        /// <summary>
+        /// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        /// </summary>
         [Input("vnetName")]
         public Input<string>? VnetName { get; set; }
 
         /// <summary>
         /// Unique identifier of Atlas' AWS VPC.
-        /// **CGP ONLY:**
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

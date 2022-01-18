@@ -62,6 +62,7 @@ __all__ = [
     'OnlineArchiveCriteria',
     'OnlineArchivePartitionField',
     'PrivateLinkEndpointServiceEndpoint',
+    'ProjectApiKey',
     'ProjectTeam',
     'SearchIndexSynonym',
     'X509AuthenticationDatabaseUserCertificate',
@@ -81,6 +82,7 @@ __all__ = [
     'GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetCloudProviderSnapshotRestoreJobsResultResult',
     'GetCloudProviderSnapshotsResultResult',
+    'GetClusterAdvancedConfigurationResult',
     'GetClusterBiConnectorConfigResult',
     'GetClusterConnectionStringResult',
     'GetClusterConnectionStringPrivateEndpointResult',
@@ -92,6 +94,7 @@ __all__ = [
     'GetClusterSnapshotBackupPolicyPolicyResult',
     'GetClusterSnapshotBackupPolicyPolicyPolicyItemResult',
     'GetClustersResultResult',
+    'GetClustersResultAdvancedConfigurationResult',
     'GetClustersResultBiConnectorConfigResult',
     'GetClustersResultConnectionStringResult',
     'GetClustersResultConnectionStringPrivateEndpointResult',
@@ -148,8 +151,10 @@ __all__ = [
     'GetOnlineArchivesResultCriteriaResult',
     'GetOnlineArchivesResultPartitionFieldResult',
     'GetPrivateLinkEndpointServiceEndpointResult',
+    'GetProjectApiKeyResult',
     'GetProjectTeamResult',
     'GetProjectsResultResult',
+    'GetProjectsResultApiKeyResult',
     'GetProjectsResultTeamResult',
     'GetSearchIndexSynonymResult',
     'GetSearchIndexesResultResult',
@@ -396,6 +401,8 @@ class AlertConfigurationNotification(dict):
             suggest = "sms_enabled"
         elif key == "teamId":
             suggest = "team_id"
+        elif key == "teamName":
+            suggest = "team_name"
         elif key == "typeName":
             suggest = "type_name"
         elif key == "victorOpsApiKey":
@@ -433,6 +440,7 @@ class AlertConfigurationNotification(dict):
                  service_key: Optional[str] = None,
                  sms_enabled: Optional[bool] = None,
                  team_id: Optional[str] = None,
+                 team_name: Optional[str] = None,
                  type_name: Optional[str] = None,
                  username: Optional[str] = None,
                  victor_ops_api_key: Optional[str] = None,
@@ -444,17 +452,20 @@ class AlertConfigurationNotification(dict):
         :param str datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
         :param int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-        :param bool email_enabled: Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        :param bool email_enabled: Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param str flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
         :param str flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+        :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         :param str mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param str ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         :param str org_name: Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
+        :param Sequence[str] roles: Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+               Accepted values are:
         :param str service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        :param bool sms_enabled: Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        :param bool sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param str team_id: Unique identifier of a team.
+        :param str team_name: Label for the team that receives this notification.
         :param str type_name: Type of alert notification.
                Accepted values are:
                - `DATADOG`
@@ -500,6 +511,8 @@ class AlertConfigurationNotification(dict):
             pulumi.set(__self__, "sms_enabled", sms_enabled)
         if team_id is not None:
             pulumi.set(__self__, "team_id", team_id)
+        if team_name is not None:
+            pulumi.set(__self__, "team_name", team_name)
         if type_name is not None:
             pulumi.set(__self__, "type_name", type_name)
         if username is not None:
@@ -561,7 +574,7 @@ class AlertConfigurationNotification(dict):
     @pulumi.getter(name="emailEnabled")
     def email_enabled(self) -> Optional[bool]:
         """
-        Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         """
         return pulumi.get(self, "email_enabled")
 
@@ -585,7 +598,7 @@ class AlertConfigurationNotification(dict):
     @pulumi.getter(name="intervalMin")
     def interval_min(self) -> Optional[int]:
         """
-        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         """
         return pulumi.get(self, "interval_min")
 
@@ -624,6 +637,10 @@ class AlertConfigurationNotification(dict):
     @property
     @pulumi.getter
     def roles(self) -> Optional[Sequence[str]]:
+        """
+        Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        Accepted values are:
+        """
         return pulumi.get(self, "roles")
 
     @property
@@ -638,7 +655,7 @@ class AlertConfigurationNotification(dict):
     @pulumi.getter(name="smsEnabled")
     def sms_enabled(self) -> Optional[bool]:
         """
-        Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         """
         return pulumi.get(self, "sms_enabled")
 
@@ -649,6 +666,14 @@ class AlertConfigurationNotification(dict):
         Unique identifier of a team.
         """
         return pulumi.get(self, "team_id")
+
+    @property
+    @pulumi.getter(name="teamName")
+    def team_name(self) -> Optional[str]:
+        """
+        Label for the team that receives this notification.
+        """
+        return pulumi.get(self, "team_name")
 
     @property
     @pulumi.getter(name="typeName")
@@ -3691,6 +3716,68 @@ class PrivateLinkEndpointServiceEndpoint(dict):
 
 
 @pulumi.output_type
+class ProjectApiKey(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKeyId":
+            suggest = "api_key_id"
+        elif key == "roleNames":
+            suggest = "role_names"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProjectApiKey. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProjectApiKey.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProjectApiKey.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key_id: str,
+                 role_names: Sequence[str]):
+        """
+        :param str api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+               The following are valid roles:
+               * `GROUP_OWNER`
+               * `GROUP_READ_ONLY`
+               * `GROUP_DATA_ACCESS_ADMIN`
+               * `GROUP_DATA_ACCESS_READ_WRITE`
+               * `GROUP_DATA_ACCESS_READ_ONLY`
+               * `GROUP_CLUSTER_MANAGER`
+        """
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> str:
+        """
+        The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        """
+        return pulumi.get(self, "api_key_id")
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> Sequence[str]:
+        """
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        The following are valid roles:
+        * `GROUP_OWNER`
+        * `GROUP_READ_ONLY`
+        * `GROUP_DATA_ACCESS_ADMIN`
+        * `GROUP_DATA_ACCESS_READ_WRITE`
+        * `GROUP_DATA_ACCESS_READ_ONLY`
+        * `GROUP_CLUSTER_MANAGER`
+        """
+        return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
 class ProjectTeam(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3715,7 +3802,7 @@ class ProjectTeam(dict):
                  role_names: Sequence[str],
                  team_id: str):
         """
-        :param Sequence[str] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+        :param Sequence[str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
                The following are valid roles:
                * `GROUP_OWNER`
                * `GROUP_READ_ONLY`
@@ -3732,7 +3819,7 @@ class ProjectTeam(dict):
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[str]:
         """
-        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
         The following are valid roles:
         * `GROUP_OWNER`
         * `GROUP_READ_ONLY`
@@ -4105,6 +4192,7 @@ class GetAlertConfigurationNotificationResult(dict):
                  service_key: str,
                  sms_enabled: bool,
                  team_id: str,
+                 team_name: str,
                  type_name: str,
                  username: str,
                  victor_ops_api_key: str,
@@ -4117,7 +4205,7 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
         :param int delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param str email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-        :param bool email_enabled: Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        :param bool email_enabled: Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
         :param str flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
         :param str flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param int interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
@@ -4126,8 +4214,9 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         :param str org_name: Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
         :param str service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        :param bool sms_enabled: Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        :param bool sms_enabled: Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param str team_id: Unique identifier of a team.
+        :param str team_name: Label for the team that receives this notification.
         :param str type_name: Type of alert notification.
                Accepted values are:
                - `DATADOG`
@@ -4146,6 +4235,7 @@ class GetAlertConfigurationNotificationResult(dict):
         :param str username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         :param str victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param str victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        :param Sequence[str] roles: Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
         """
         pulumi.set(__self__, "api_token", api_token)
         pulumi.set(__self__, "channel_name", channel_name)
@@ -4164,6 +4254,7 @@ class GetAlertConfigurationNotificationResult(dict):
         pulumi.set(__self__, "service_key", service_key)
         pulumi.set(__self__, "sms_enabled", sms_enabled)
         pulumi.set(__self__, "team_id", team_id)
+        pulumi.set(__self__, "team_name", team_name)
         pulumi.set(__self__, "type_name", type_name)
         pulumi.set(__self__, "username", username)
         pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
@@ -4223,7 +4314,7 @@ class GetAlertConfigurationNotificationResult(dict):
     @pulumi.getter(name="emailEnabled")
     def email_enabled(self) -> bool:
         """
-        Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.
         """
         return pulumi.get(self, "email_enabled")
 
@@ -4295,7 +4386,7 @@ class GetAlertConfigurationNotificationResult(dict):
     @pulumi.getter(name="smsEnabled")
     def sms_enabled(self) -> bool:
         """
-        Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         """
         return pulumi.get(self, "sms_enabled")
 
@@ -4306,6 +4397,14 @@ class GetAlertConfigurationNotificationResult(dict):
         Unique identifier of a team.
         """
         return pulumi.get(self, "team_id")
+
+    @property
+    @pulumi.getter(name="teamName")
+    def team_name(self) -> str:
+        """
+        Label for the team that receives this notification.
+        """
+        return pulumi.get(self, "team_name")
 
     @property
     @pulumi.getter(name="typeName")
@@ -4356,6 +4455,9 @@ class GetAlertConfigurationNotificationResult(dict):
     @property
     @pulumi.getter
     def roles(self) -> Optional[Sequence[str]]:
+        """
+        Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.
+        """
         return pulumi.get(self, "roles")
 
 
@@ -5163,6 +5265,112 @@ class GetCloudProviderSnapshotsResultResult(dict):
 
 
 @pulumi.output_type
+class GetClusterAdvancedConfigurationResult(dict):
+    def __init__(__self__, *,
+                 default_read_concern: str,
+                 default_write_concern: str,
+                 fail_index_key_too_long: bool,
+                 javascript_enabled: bool,
+                 minimum_enabled_tls_protocol: str,
+                 no_table_scan: bool,
+                 oplog_size_mb: int,
+                 sample_refresh_interval_bi_connector: int,
+                 sample_size_bi_connector: int):
+        """
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        pulumi.set(__self__, "default_read_concern", default_read_concern)
+        pulumi.set(__self__, "default_write_concern", default_write_concern)
+        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+
+    @property
+    @pulumi.getter(name="defaultReadConcern")
+    def default_read_concern(self) -> str:
+        """
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        """
+        return pulumi.get(self, "default_read_concern")
+
+    @property
+    @pulumi.getter(name="defaultWriteConcern")
+    def default_write_concern(self) -> str:
+        """
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        """
+        return pulumi.get(self, "default_write_concern")
+
+    @property
+    @pulumi.getter(name="failIndexKeyTooLong")
+    def fail_index_key_too_long(self) -> bool:
+        """
+        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        """
+        return pulumi.get(self, "fail_index_key_too_long")
+
+    @property
+    @pulumi.getter(name="javascriptEnabled")
+    def javascript_enabled(self) -> bool:
+        """
+        When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        """
+        return pulumi.get(self, "javascript_enabled")
+
+    @property
+    @pulumi.getter(name="minimumEnabledTlsProtocol")
+    def minimum_enabled_tls_protocol(self) -> str:
+        """
+        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        """
+        return pulumi.get(self, "minimum_enabled_tls_protocol")
+
+    @property
+    @pulumi.getter(name="noTableScan")
+    def no_table_scan(self) -> bool:
+        """
+        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        """
+        return pulumi.get(self, "no_table_scan")
+
+    @property
+    @pulumi.getter(name="oplogSizeMb")
+    def oplog_size_mb(self) -> int:
+        """
+        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        """
+        return pulumi.get(self, "oplog_size_mb")
+
+    @property
+    @pulumi.getter(name="sampleRefreshIntervalBiConnector")
+    def sample_refresh_interval_bi_connector(self) -> int:
+        """
+        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_refresh_interval_bi_connector")
+
+    @property
+    @pulumi.getter(name="sampleSizeBiConnector")
+    def sample_size_bi_connector(self) -> int:
+        """
+        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_size_bi_connector")
+
+
+@pulumi.output_type
 class GetClusterBiConnectorConfigResult(dict):
     def __init__(__self__, *,
                  enabled: bool,
@@ -5587,6 +5795,7 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
 @pulumi.output_type
 class GetClustersResultResult(dict):
     def __init__(__self__, *,
+                 advanced_configurations: Sequence['outputs.GetClustersResultAdvancedConfigurationResult'],
                  auto_scaling_compute_enabled: bool,
                  auto_scaling_compute_scale_down_enabled: bool,
                  auto_scaling_disk_gb_enabled: bool,
@@ -5623,10 +5832,12 @@ class GetClustersResultResult(dict):
                  replication_specs: Sequence['outputs.GetClustersResultReplicationSpecResult'],
                  snapshot_backup_policies: Sequence['outputs.GetClustersResultSnapshotBackupPolicyResult'],
                  srv_address: str,
-                 state_name: str):
+                 state_name: str,
+                 version_release_system: str):
         """
-        :param bool auto_scaling_compute_enabled: (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
-        :param bool auto_scaling_compute_scale_down_enabled: (Optional) Set to `true` to enable the cluster tier to scale down.
+        :param Sequence['GetClustersResultAdvancedConfigurationArgs'] advanced_configurations: Get the advanced configuration options. See Advanced Configuration below for more details.
+        :param bool auto_scaling_compute_enabled: Specifies whether cluster tier auto-scaling is enabled. The default is false.
+        :param bool auto_scaling_compute_scale_down_enabled: * `auto_scaling_compute_scale_down_enabled` - Specifies whether cluster tier auto-down-scaling is enabled.
         :param bool auto_scaling_disk_gb_enabled: Indicates whether disk auto-scaling is enabled.
         :param str backing_provider_name: Indicates Cloud service provider on which the server for a multi-tenant cluster is provisioned.
         :param bool backup_enabled: Legacy Option, Indicates whether Atlas continuous backups are enabled for the cluster.
@@ -5659,8 +5870,8 @@ class GetClustersResultResult(dict):
         :param int num_shards: Number of shards to deploy in the specified zone.
         :param bool paused: Flag that indicates whether the cluster is paused or not.
         :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param str provider_auto_scaling_compute_max_instance_size: (Optional) Maximum instance size to which your cluster can automatically scale.
-        :param str provider_auto_scaling_compute_min_instance_size: (Optional) Minimum instance size to which your cluster can automatically scale.
+        :param str provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale.
+        :param str provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale.
         :param bool provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloud_backup` instead.
         :param int provider_disk_iops: Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
         :param str provider_disk_type_name: Describes Azure disk type of the server’s root volume (Azure Only).
@@ -5680,7 +5891,9 @@ class GetClustersResultResult(dict):
                - DELETING
                - DELETED
                - REPAIRING
+        :param str version_release_system: Release cadence that Atlas uses for this cluster.
         """
+        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
         pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
         pulumi.set(__self__, "auto_scaling_compute_scale_down_enabled", auto_scaling_compute_scale_down_enabled)
         pulumi.set(__self__, "auto_scaling_disk_gb_enabled", auto_scaling_disk_gb_enabled)
@@ -5718,12 +5931,21 @@ class GetClustersResultResult(dict):
         pulumi.set(__self__, "snapshot_backup_policies", snapshot_backup_policies)
         pulumi.set(__self__, "srv_address", srv_address)
         pulumi.set(__self__, "state_name", state_name)
+        pulumi.set(__self__, "version_release_system", version_release_system)
+
+    @property
+    @pulumi.getter(name="advancedConfigurations")
+    def advanced_configurations(self) -> Sequence['outputs.GetClustersResultAdvancedConfigurationResult']:
+        """
+        Get the advanced configuration options. See Advanced Configuration below for more details.
+        """
+        return pulumi.get(self, "advanced_configurations")
 
     @property
     @pulumi.getter(name="autoScalingComputeEnabled")
     def auto_scaling_compute_enabled(self) -> bool:
         """
-        (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+        Specifies whether cluster tier auto-scaling is enabled. The default is false.
         """
         return pulumi.get(self, "auto_scaling_compute_enabled")
 
@@ -5731,7 +5953,7 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="autoScalingComputeScaleDownEnabled")
     def auto_scaling_compute_scale_down_enabled(self) -> bool:
         """
-        (Optional) Set to `true` to enable the cluster tier to scale down.
+        * `auto_scaling_compute_scale_down_enabled` - Specifies whether cluster tier auto-down-scaling is enabled.
         """
         return pulumi.get(self, "auto_scaling_compute_scale_down_enabled")
 
@@ -5909,7 +6131,7 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="providerAutoScalingComputeMaxInstanceSize")
     def provider_auto_scaling_compute_max_instance_size(self) -> str:
         """
-        (Optional) Maximum instance size to which your cluster can automatically scale.
+        Maximum instance size to which your cluster can automatically scale.
         """
         return pulumi.get(self, "provider_auto_scaling_compute_max_instance_size")
 
@@ -5917,7 +6139,7 @@ class GetClustersResultResult(dict):
     @pulumi.getter(name="providerAutoScalingComputeMinInstanceSize")
     def provider_auto_scaling_compute_min_instance_size(self) -> str:
         """
-        (Optional) Minimum instance size to which your cluster can automatically scale.
+        Minimum instance size to which your cluster can automatically scale.
         """
         return pulumi.get(self, "provider_auto_scaling_compute_min_instance_size")
 
@@ -6030,6 +6252,120 @@ class GetClustersResultResult(dict):
         - REPAIRING
         """
         return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter(name="versionReleaseSystem")
+    def version_release_system(self) -> str:
+        """
+        Release cadence that Atlas uses for this cluster.
+        """
+        return pulumi.get(self, "version_release_system")
+
+
+@pulumi.output_type
+class GetClustersResultAdvancedConfigurationResult(dict):
+    def __init__(__self__, *,
+                 default_read_concern: str,
+                 default_write_concern: str,
+                 fail_index_key_too_long: bool,
+                 javascript_enabled: bool,
+                 minimum_enabled_tls_protocol: str,
+                 no_table_scan: bool,
+                 oplog_size_mb: int,
+                 sample_refresh_interval_bi_connector: int,
+                 sample_size_bi_connector: int):
+        """
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        pulumi.set(__self__, "default_read_concern", default_read_concern)
+        pulumi.set(__self__, "default_write_concern", default_write_concern)
+        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+
+    @property
+    @pulumi.getter(name="defaultReadConcern")
+    def default_read_concern(self) -> str:
+        """
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        """
+        return pulumi.get(self, "default_read_concern")
+
+    @property
+    @pulumi.getter(name="defaultWriteConcern")
+    def default_write_concern(self) -> str:
+        """
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        """
+        return pulumi.get(self, "default_write_concern")
+
+    @property
+    @pulumi.getter(name="failIndexKeyTooLong")
+    def fail_index_key_too_long(self) -> bool:
+        """
+        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        """
+        return pulumi.get(self, "fail_index_key_too_long")
+
+    @property
+    @pulumi.getter(name="javascriptEnabled")
+    def javascript_enabled(self) -> bool:
+        """
+        When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        """
+        return pulumi.get(self, "javascript_enabled")
+
+    @property
+    @pulumi.getter(name="minimumEnabledTlsProtocol")
+    def minimum_enabled_tls_protocol(self) -> str:
+        """
+        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        """
+        return pulumi.get(self, "minimum_enabled_tls_protocol")
+
+    @property
+    @pulumi.getter(name="noTableScan")
+    def no_table_scan(self) -> bool:
+        """
+        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        """
+        return pulumi.get(self, "no_table_scan")
+
+    @property
+    @pulumi.getter(name="oplogSizeMb")
+    def oplog_size_mb(self) -> int:
+        """
+        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        """
+        return pulumi.get(self, "oplog_size_mb")
+
+    @property
+    @pulumi.getter(name="sampleRefreshIntervalBiConnector")
+    def sample_refresh_interval_bi_connector(self) -> int:
+        """
+        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_refresh_interval_bi_connector")
+
+    @property
+    @pulumi.getter(name="sampleSizeBiConnector")
+    def sample_size_bi_connector(self) -> int:
+        """
+        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_size_bi_connector")
 
 
 @pulumi.output_type
@@ -8555,6 +8891,25 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
 
 
 @pulumi.output_type
+class GetProjectApiKeyResult(dict):
+    def __init__(__self__, *,
+                 api_key_id: str,
+                 role_names: Sequence[str]):
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> str:
+        return pulumi.get(self, "api_key_id")
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> Sequence[str]:
+        return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
 class GetProjectTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[str],
@@ -8576,6 +8931,7 @@ class GetProjectTeamResult(dict):
 @pulumi.output_type
 class GetProjectsResultResult(dict):
     def __init__(__self__, *,
+                 api_keys: Sequence['outputs.GetProjectsResultApiKeyResult'],
                  cluster_count: int,
                  created: str,
                  id: str,
@@ -8597,13 +8953,28 @@ class GetProjectsResultResult(dict):
                * `GROUP_DATA_ACCESS_READ_WRITE`
                * `GROUP_DATA_ACCESS_READ_ONLY`
                * `GROUP_CLUSTER_MANAGER`
+               * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+               * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
+               The following are valid roles:
+               * `GROUP_OWNER`
+               * `GROUP_READ_ONLY`
+               * `GROUP_DATA_ACCESS_ADMIN`
+               * `GROUP_DATA_ACCESS_READ_WRITE`
+               * `GROUP_DATA_ACCESS_READ_ONLY`
+               * `GROUP_CLUSTER_MANAGER`
         """
+        pulumi.set(__self__, "api_keys", api_keys)
         pulumi.set(__self__, "cluster_count", cluster_count)
         pulumi.set(__self__, "created", created)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "org_id", org_id)
         pulumi.set(__self__, "teams", teams)
+
+    @property
+    @pulumi.getter(name="apiKeys")
+    def api_keys(self) -> Sequence['outputs.GetProjectsResultApiKeyResult']:
+        return pulumi.get(self, "api_keys")
 
     @property
     @pulumi.getter(name="clusterCount")
@@ -8647,6 +9018,15 @@ class GetProjectsResultResult(dict):
         * `GROUP_DATA_ACCESS_READ_WRITE`
         * `GROUP_DATA_ACCESS_READ_ONLY`
         * `GROUP_CLUSTER_MANAGER`
+        * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+        * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
+        The following are valid roles:
+        * `GROUP_OWNER`
+        * `GROUP_READ_ONLY`
+        * `GROUP_DATA_ACCESS_ADMIN`
+        * `GROUP_DATA_ACCESS_READ_WRITE`
+        * `GROUP_DATA_ACCESS_READ_ONLY`
+        * `GROUP_CLUSTER_MANAGER`
         """
         return pulumi.get(self, "org_id")
 
@@ -8654,6 +9034,25 @@ class GetProjectsResultResult(dict):
     @pulumi.getter
     def teams(self) -> Sequence['outputs.GetProjectsResultTeamResult']:
         return pulumi.get(self, "teams")
+
+
+@pulumi.output_type
+class GetProjectsResultApiKeyResult(dict):
+    def __init__(__self__, *,
+                 api_key_id: str,
+                 role_names: Sequence[str]):
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> str:
+        return pulumi.get(self, "api_key_id")
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> Sequence[str]:
+        return pulumi.get(self, "role_names")
 
 
 @pulumi.output_type

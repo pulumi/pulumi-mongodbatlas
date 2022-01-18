@@ -21,7 +21,10 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None):
+    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, version_release_system=None):
+        if advanced_configurations and not isinstance(advanced_configurations, list):
+            raise TypeError("Expected argument 'advanced_configurations' to be a list")
+        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
         if auto_scaling_compute_enabled and not isinstance(auto_scaling_compute_enabled, bool):
             raise TypeError("Expected argument 'auto_scaling_compute_enabled' to be a bool")
         pulumi.set(__self__, "auto_scaling_compute_enabled", auto_scaling_compute_enabled)
@@ -146,12 +149,23 @@ class GetClusterResult:
         if state_name and not isinstance(state_name, str):
             raise TypeError("Expected argument 'state_name' to be a str")
         pulumi.set(__self__, "state_name", state_name)
+        if version_release_system and not isinstance(version_release_system, str):
+            raise TypeError("Expected argument 'version_release_system' to be a str")
+        pulumi.set(__self__, "version_release_system", version_release_system)
+
+    @property
+    @pulumi.getter(name="advancedConfigurations")
+    def advanced_configurations(self) -> Sequence['outputs.GetClusterAdvancedConfigurationResult']:
+        """
+        Get the advanced configuration options. See Advanced Configuration below for more details.
+        """
+        return pulumi.get(self, "advanced_configurations")
 
     @property
     @pulumi.getter(name="autoScalingComputeEnabled")
     def auto_scaling_compute_enabled(self) -> bool:
         """
-        (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+        Specifies whether cluster tier auto-scaling is enabled. The default is false.
         """
         return pulumi.get(self, "auto_scaling_compute_enabled")
 
@@ -159,7 +173,7 @@ class GetClusterResult:
     @pulumi.getter(name="autoScalingComputeScaleDownEnabled")
     def auto_scaling_compute_scale_down_enabled(self) -> bool:
         """
-        (Optional) Set to `true` to enable the cluster tier to scale down.
+        Specifies whether cluster tier auto-down-scaling is enabled.
         """
         return pulumi.get(self, "auto_scaling_compute_scale_down_enabled")
 
@@ -350,7 +364,7 @@ class GetClusterResult:
     @pulumi.getter(name="providerAutoScalingComputeMaxInstanceSize")
     def provider_auto_scaling_compute_max_instance_size(self) -> str:
         """
-        (Optional) Maximum instance size to which your cluster can automatically scale.
+        Maximum instance size to which your cluster can automatically scale.
         """
         return pulumi.get(self, "provider_auto_scaling_compute_max_instance_size")
 
@@ -358,7 +372,7 @@ class GetClusterResult:
     @pulumi.getter(name="providerAutoScalingComputeMinInstanceSize")
     def provider_auto_scaling_compute_min_instance_size(self) -> str:
         """
-        (Optional) Minimum instance size to which your cluster can automatically scale.
+        Minimum instance size to which your cluster can automatically scale.
         """
         return pulumi.get(self, "provider_auto_scaling_compute_min_instance_size")
 
@@ -477,6 +491,14 @@ class GetClusterResult:
         """
         return pulumi.get(self, "state_name")
 
+    @property
+    @pulumi.getter(name="versionReleaseSystem")
+    def version_release_system(self) -> str:
+        """
+        Release cadence that Atlas uses for this cluster.
+        """
+        return pulumi.get(self, "version_release_system")
+
 
 class AwaitableGetClusterResult(GetClusterResult):
     # pylint: disable=using-constant-test
@@ -484,6 +506,7 @@ class AwaitableGetClusterResult(GetClusterResult):
         if False:
             yield self
         return GetClusterResult(
+            advanced_configurations=self.advanced_configurations,
             auto_scaling_compute_enabled=self.auto_scaling_compute_enabled,
             auto_scaling_compute_scale_down_enabled=self.auto_scaling_compute_scale_down_enabled,
             auto_scaling_disk_gb_enabled=self.auto_scaling_disk_gb_enabled,
@@ -523,7 +546,8 @@ class AwaitableGetClusterResult(GetClusterResult):
             replication_specs=self.replication_specs,
             snapshot_backup_policies=self.snapshot_backup_policies,
             srv_address=self.srv_address,
-            state_name=self.state_name)
+            state_name=self.state_name,
+            version_release_system=self.version_release_system)
 
 
 def get_cluster(name: Optional[str] = None,
@@ -552,6 +576,7 @@ def get_cluster(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCluster:getCluster', __args__, opts=opts, typ=GetClusterResult).value
 
     return AwaitableGetClusterResult(
+        advanced_configurations=__ret__.advanced_configurations,
         auto_scaling_compute_enabled=__ret__.auto_scaling_compute_enabled,
         auto_scaling_compute_scale_down_enabled=__ret__.auto_scaling_compute_scale_down_enabled,
         auto_scaling_disk_gb_enabled=__ret__.auto_scaling_disk_gb_enabled,
@@ -591,7 +616,8 @@ def get_cluster(name: Optional[str] = None,
         replication_specs=__ret__.replication_specs,
         snapshot_backup_policies=__ret__.snapshot_backup_policies,
         srv_address=__ret__.srv_address,
-        state_name=__ret__.state_name)
+        state_name=__ret__.state_name,
+        version_release_system=__ret__.version_release_system)
 
 
 @_utilities.lift_output_func(get_cluster)

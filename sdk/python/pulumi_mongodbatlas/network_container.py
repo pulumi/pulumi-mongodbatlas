@@ -141,20 +141,17 @@ class _NetworkContainerState:
                * Lower bound: 172.16.0.0 -	Upper bound:172.31.255.255 -	Prefix:	172.16/12
                * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
         :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
-               * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[str] container_id: The Network Peering Container ID.
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[str] network_name: Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-               **AZURE ONLY:**
         :param pulumi.Input[str] project_id: Unique identifier for the Atlas project for this Network Peering Container.
         :param pulumi.Input[str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[bool] provisioned: Indicates whether the project has Network Peering connections deployed in the container.
-               **AWS ONLY:**
         :param pulumi.Input[str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        :param pulumi.Input[str] vnet_name: The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[str] vpc_id: Unique identifier of Atlas' AWS VPC.
-               **CGP ONLY:**
         """
         if atlas_cidr_block is not None:
             pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
@@ -203,7 +200,6 @@ class _NetworkContainerState:
     def azure_subscription_id(self) -> Optional[pulumi.Input[str]]:
         """
         Unique identifier of the Azure subscription in which the VNet resides.
-        * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         """
         return pulumi.get(self, "azure_subscription_id")
 
@@ -240,7 +236,6 @@ class _NetworkContainerState:
     def network_name(self) -> Optional[pulumi.Input[str]]:
         """
         Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-        **AZURE ONLY:**
         """
         return pulumi.get(self, "network_name")
 
@@ -277,7 +272,6 @@ class _NetworkContainerState:
     def provisioned(self) -> Optional[pulumi.Input[bool]]:
         """
         Indicates whether the project has Network Peering connections deployed in the container.
-        **AWS ONLY:**
         """
         return pulumi.get(self, "provisioned")
 
@@ -324,6 +318,9 @@ class _NetworkContainerState:
     @property
     @pulumi.getter(name="vnetName")
     def vnet_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        """
         return pulumi.get(self, "vnet_name")
 
     @vnet_name.setter
@@ -335,7 +332,6 @@ class _NetworkContainerState:
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
         Unique identifier of Atlas' AWS VPC.
-        **CGP ONLY:**
         """
         return pulumi.get(self, "vpc_id")
 
@@ -583,20 +579,17 @@ class NetworkContainer(pulumi.CustomResource):
                * Lower bound: 172.16.0.0 -	Upper bound:172.31.255.255 -	Prefix:	172.16/12
                * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
         :param pulumi.Input[str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
-               * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[str] container_id: The Network Peering Container ID.
         :param pulumi.Input[str] gcp_project_id: Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[str] network_name: Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-               **AZURE ONLY:**
         :param pulumi.Input[str] project_id: Unique identifier for the Atlas project for this Network Peering Container.
         :param pulumi.Input[str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[bool] provisioned: Indicates whether the project has Network Peering connections deployed in the container.
-               **AWS ONLY:**
         :param pulumi.Input[str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        :param pulumi.Input[str] vnet_name: The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[str] vpc_id: Unique identifier of Atlas' AWS VPC.
-               **CGP ONLY:**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -633,7 +626,6 @@ class NetworkContainer(pulumi.CustomResource):
     def azure_subscription_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of the Azure subscription in which the VNet resides.
-        * * `vnet_name` - 	The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         """
         return pulumi.get(self, "azure_subscription_id")
 
@@ -658,7 +650,6 @@ class NetworkContainer(pulumi.CustomResource):
     def network_name(self) -> pulumi.Output[str]:
         """
         Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-        **AZURE ONLY:**
         """
         return pulumi.get(self, "network_name")
 
@@ -683,7 +674,6 @@ class NetworkContainer(pulumi.CustomResource):
     def provisioned(self) -> pulumi.Output[bool]:
         """
         Indicates whether the project has Network Peering connections deployed in the container.
-        **AWS ONLY:**
         """
         return pulumi.get(self, "provisioned")
 
@@ -714,6 +704,9 @@ class NetworkContainer(pulumi.CustomResource):
     @property
     @pulumi.getter(name="vnetName")
     def vnet_name(self) -> pulumi.Output[str]:
+        """
+        The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+        """
         return pulumi.get(self, "vnet_name")
 
     @property
@@ -721,7 +714,6 @@ class NetworkContainer(pulumi.CustomResource):
     def vpc_id(self) -> pulumi.Output[str]:
         """
         Unique identifier of Atlas' AWS VPC.
-        **CGP ONLY:**
         """
         return pulumi.get(self, "vpc_id")
 

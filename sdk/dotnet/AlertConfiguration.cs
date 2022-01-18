@@ -119,6 +119,68 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// }
     /// ```
+    /// ### Create an alert with two notifications using Email and SMS
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.AlertConfiguration("test", new Mongodbatlas.AlertConfigurationArgs
+    ///         {
+    ///             Enabled = true,
+    ///             EventType = "OUTSIDE_METRIC_THRESHOLD",
+    ///             Matchers = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs
+    ///                 {
+    ///                     FieldName = "HOSTNAME_AND_PORT",
+    ///                     Operator = "EQUALS",
+    ///                     Value = "SECONDARY",
+    ///                 },
+    ///             },
+    ///             MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs
+    ///             {
+    ///                 MetricName = "ASSERT_REGULAR",
+    ///                 Mode = "AVERAGE",
+    ///                 Operator = "LESS_THAN",
+    ///                 Threshold = 99,
+    ///                 Units = "RAW",
+    ///             },
+    ///             Notifications = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///                 {
+    ///                     DelayMin = 0,
+    ///                     EmailEnabled = true,
+    ///                     IntervalMin = 5,
+    ///                     Roles = 
+    ///                     {
+    ///                         "GROUP_DATA_ACCESS_READ_ONLY",
+    ///                         "GROUP_CLUSTER_MANAGER",
+    ///                         "GROUP_DATA_ACCESS_ADMIN",
+    ///                     },
+    ///                     SmsEnabled = false,
+    ///                     TypeName = "GROUP",
+    ///                 },
+    ///                 new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///                 {
+    ///                     DelayMin = 0,
+    ///                     EmailEnabled = false,
+    ///                     IntervalMin = 5,
+    ///                     SmsEnabled = true,
+    ///                     TypeName = "ORG",
+    ///                 },
+    ///             },
+    ///             ProjectId = "PROJECT ID",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// 
     /// ## Import
     /// 

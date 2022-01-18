@@ -96,7 +96,7 @@ export interface AlertConfigurationNotification {
      */
     emailAddress?: string;
     /**
-     * Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+     * Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
     emailEnabled?: boolean;
     /**
@@ -108,7 +108,7 @@ export interface AlertConfigurationNotification {
      */
     flowdockApiToken?: string;
     /**
-     * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+     * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      */
     intervalMin?: number;
     /**
@@ -127,19 +127,27 @@ export interface AlertConfigurationNotification {
      * Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
      */
     orgName?: string;
+    /**
+     * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
+     * Accepted values are:
+     */
     roles?: string[];
     /**
      * PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     serviceKey?: string;
     /**
-     * Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+     * Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
     smsEnabled?: boolean;
     /**
      * Unique identifier of a team.
      */
     teamId?: string;
+    /**
+     * Label for the team that receives this notification.
+     */
+    teamName: string;
     /**
      * Type of alert notification.
      * Accepted values are:
@@ -801,7 +809,7 @@ export interface GetAlertConfigurationNotification {
      */
     emailAddress: string;
     /**
-     * Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+     * Flag indicating email notifications should be sent. Atlas returns this value if `typeName` is set  to `ORG`, `GROUP`, or `USER`.
      */
     emailEnabled: boolean;
     /**
@@ -832,19 +840,26 @@ export interface GetAlertConfigurationNotification {
      * Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
      */
     orgName: string;
+    /**
+     * Atlas role in current Project or Organization. Atlas returns this value if you set `typeName` to `ORG` or `GROUP`.
+     */
     roles?: string[];
     /**
      * PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     serviceKey: string;
     /**
-     * Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+     * Flag indicating text notifications should be sent. Atlas returns this value if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
     smsEnabled: boolean;
     /**
      * Unique identifier of a team.
      */
     teamId: string;
+    /**
+     * Label for the team that receives this notification.
+     */
+    teamName: string;
     /**
      * Type of alert notification.
      * Accepted values are:
@@ -1162,6 +1177,45 @@ export interface GetCloudProviderSnapshotsResult {
     type: string;
 }
 
+export interface GetClusterAdvancedConfiguration {
+    /**
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+     */
+    defaultReadConcern: string;
+    /**
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     */
+    defaultWriteConcern: string;
+    /**
+     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+     */
+    failIndexKeyTooLong: boolean;
+    /**
+     * When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     */
+    javascriptEnabled: boolean;
+    /**
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     */
+    minimumEnabledTlsProtocol: string;
+    /**
+     * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+     */
+    noTableScan: boolean;
+    /**
+     * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+     */
+    oplogSizeMb: number;
+    /**
+     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     */
+    sampleRefreshIntervalBiConnector: number;
+    /**
+     * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     */
+    sampleSizeBiConnector: number;
+}
+
 export interface GetClusterBiConnectorConfig {
     /**
      * Indicates whether or not BI Connector for Atlas is enabled on the cluster.
@@ -1284,11 +1338,15 @@ export interface GetClusterSnapshotBackupPolicyPolicyPolicyItem {
 
 export interface GetClustersResult {
     /**
-     * (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * Get the advanced configuration options. See Advanced Configuration below for more details.
+     */
+    advancedConfigurations: outputs.GetClustersResultAdvancedConfiguration[];
+    /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
      */
     autoScalingComputeEnabled: boolean;
     /**
-     * (Optional) Set to `true` to enable the cluster tier to scale down.
+     * * `autoScalingComputeScaleDownEnabled` - Specifies whether cluster tier auto-down-scaling is enabled.
      */
     autoScalingComputeScaleDownEnabled: boolean;
     /**
@@ -1384,11 +1442,11 @@ export interface GetClustersResult {
      */
     pitEnabled: boolean;
     /**
-     * (Optional) Maximum instance size to which your cluster can automatically scale.
+     * Maximum instance size to which your cluster can automatically scale.
      */
     providerAutoScalingComputeMaxInstanceSize: string;
     /**
-     * (Optional) Minimum instance size to which your cluster can automatically scale.
+     * Minimum instance size to which your cluster can automatically scale.
      */
     providerAutoScalingComputeMinInstanceSize: string;
     /**
@@ -1449,6 +1507,49 @@ export interface GetClustersResult {
      * - REPAIRING
      */
     stateName: string;
+    /**
+     * Release cadence that Atlas uses for this cluster.
+     */
+    versionReleaseSystem: string;
+}
+
+export interface GetClustersResultAdvancedConfiguration {
+    /**
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+     */
+    defaultReadConcern: string;
+    /**
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     */
+    defaultWriteConcern: string;
+    /**
+     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+     */
+    failIndexKeyTooLong: boolean;
+    /**
+     * When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     */
+    javascriptEnabled: boolean;
+    /**
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     */
+    minimumEnabledTlsProtocol: string;
+    /**
+     * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+     */
+    noTableScan: boolean;
+    /**
+     * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+     */
+    oplogSizeMb: number;
+    /**
+     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     */
+    sampleRefreshIntervalBiConnector: number;
+    /**
+     * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     */
+    sampleSizeBiConnector: number;
 }
 
 export interface GetClustersResultBiConnectorConfig {
@@ -2215,12 +2316,18 @@ export interface GetPrivateLinkEndpointServiceEndpoint {
     status: string;
 }
 
+export interface GetProjectApiKey {
+    apiKeyId: string;
+    roleNames: string[];
+}
+
 export interface GetProjectTeam {
     roleNames: string[];
     teamId: string;
 }
 
 export interface GetProjectsResult {
+    apiKeys: outputs.GetProjectsResultApiKey[];
     clusterCount: number;
     created: string;
     /**
@@ -2244,9 +2351,23 @@ export interface GetProjectsResult {
      * * `GROUP_DATA_ACCESS_READ_WRITE`
      * * `GROUP_DATA_ACCESS_READ_ONLY`
      * * `GROUP_CLUSTER_MANAGER`
+     * * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+     * * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
+     * The following are valid roles:
+     * * `GROUP_OWNER`
+     * * `GROUP_READ_ONLY`
+     * * `GROUP_DATA_ACCESS_ADMIN`
+     * * `GROUP_DATA_ACCESS_READ_WRITE`
+     * * `GROUP_DATA_ACCESS_READ_ONLY`
+     * * `GROUP_CLUSTER_MANAGER`
      */
     orgId: string;
     teams: outputs.GetProjectsResultTeam[];
+}
+
+export interface GetProjectsResultApiKey {
+    apiKeyId: string;
+    roleNames: string[];
 }
 
 export interface GetProjectsResultTeam {
@@ -2486,9 +2607,27 @@ export interface PrivateLinkEndpointServiceEndpoint {
     status: string;
 }
 
+export interface ProjectApiKey {
+    /**
+     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     */
+    apiKeyId: string;
+    /**
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * The following are valid roles:
+     * * `GROUP_OWNER`
+     * * `GROUP_READ_ONLY`
+     * * `GROUP_DATA_ACCESS_ADMIN`
+     * * `GROUP_DATA_ACCESS_READ_WRITE`
+     * * `GROUP_DATA_ACCESS_READ_ONLY`
+     * * `GROUP_CLUSTER_MANAGER`
+     */
+    roleNames: string[];
+}
+
 export interface ProjectTeam {
     /**
-     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
      * The following are valid roles:
      * * `GROUP_OWNER`
      * * `GROUP_READ_ONLY`

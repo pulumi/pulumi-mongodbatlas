@@ -96,7 +96,7 @@ export interface AlertConfigurationNotification {
      */
     emailAddress?: pulumi.Input<string>;
     /**
-     * Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+     * Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
     emailEnabled?: pulumi.Input<boolean>;
     /**
@@ -108,7 +108,7 @@ export interface AlertConfigurationNotification {
      */
     flowdockApiToken?: pulumi.Input<string>;
     /**
-     * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+     * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      */
     intervalMin?: pulumi.Input<number>;
     /**
@@ -127,19 +127,27 @@ export interface AlertConfigurationNotification {
      * Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
      */
     orgName?: pulumi.Input<string>;
+    /**
+     * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
+     * Accepted values are:
+     */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     serviceKey?: pulumi.Input<string>;
     /**
-     * Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+     * Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
     smsEnabled?: pulumi.Input<boolean>;
     /**
      * Unique identifier of a team.
      */
     teamId?: pulumi.Input<string>;
+    /**
+     * Label for the team that receives this notification.
+     */
+    teamName?: pulumi.Input<string>;
     /**
      * Type of alert notification.
      * Accepted values are:
@@ -849,9 +857,27 @@ export interface PrivateLinkEndpointServiceEndpoint {
     status?: pulumi.Input<string>;
 }
 
+export interface ProjectApiKey {
+    /**
+     * The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+     */
+    apiKeyId: pulumi.Input<string>;
+    /**
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * The following are valid roles:
+     * * `GROUP_OWNER`
+     * * `GROUP_READ_ONLY`
+     * * `GROUP_DATA_ACCESS_ADMIN`
+     * * `GROUP_DATA_ACCESS_READ_WRITE`
+     * * `GROUP_DATA_ACCESS_READ_ONLY`
+     * * `GROUP_CLUSTER_MANAGER`
+     */
+    roleNames: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface ProjectTeam {
     /**
-     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
      * The following are valid roles:
      * * `GROUP_OWNER`
      * * `GROUP_READ_ONLY`

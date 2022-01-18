@@ -14,11 +14,15 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetClustersResultResult
     {
         /// <summary>
-        /// (Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.
+        /// Get the advanced configuration options. See Advanced Configuration below for more details.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetClustersResultAdvancedConfigurationResult> AdvancedConfigurations;
+        /// <summary>
+        /// Specifies whether cluster tier auto-scaling is enabled. The default is false.
         /// </summary>
         public readonly bool AutoScalingComputeEnabled;
         /// <summary>
-        /// (Optional) Set to `true` to enable the cluster tier to scale down.
+        /// * `auto_scaling_compute_scale_down_enabled` - Specifies whether cluster tier auto-down-scaling is enabled.
         /// </summary>
         public readonly bool AutoScalingComputeScaleDownEnabled;
         /// <summary>
@@ -112,11 +116,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool PitEnabled;
         /// <summary>
-        /// (Optional) Maximum instance size to which your cluster can automatically scale.
+        /// Maximum instance size to which your cluster can automatically scale.
         /// </summary>
         public readonly string ProviderAutoScalingComputeMaxInstanceSize;
         /// <summary>
-        /// (Optional) Minimum instance size to which your cluster can automatically scale.
+        /// Minimum instance size to which your cluster can automatically scale.
         /// </summary>
         public readonly string ProviderAutoScalingComputeMinInstanceSize;
         /// <summary>
@@ -177,9 +181,15 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// - REPAIRING
         /// </summary>
         public readonly string StateName;
+        /// <summary>
+        /// Release cadence that Atlas uses for this cluster.
+        /// </summary>
+        public readonly string VersionReleaseSystem;
 
         [OutputConstructor]
         private GetClustersResultResult(
+            ImmutableArray<Outputs.GetClustersResultAdvancedConfigurationResult> advancedConfigurations,
+
             bool autoScalingComputeEnabled,
 
             bool autoScalingComputeScaleDownEnabled,
@@ -252,8 +262,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string srvAddress,
 
-            string stateName)
+            string stateName,
+
+            string versionReleaseSystem)
         {
+            AdvancedConfigurations = advancedConfigurations;
             AutoScalingComputeEnabled = autoScalingComputeEnabled;
             AutoScalingComputeScaleDownEnabled = autoScalingComputeScaleDownEnabled;
             AutoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
@@ -291,6 +304,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             SnapshotBackupPolicies = snapshotBackupPolicies;
             SrvAddress = srvAddress;
             StateName = stateName;
+            VersionReleaseSystem = versionReleaseSystem;
         }
     }
 }

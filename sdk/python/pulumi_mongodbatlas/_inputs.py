@@ -61,6 +61,7 @@ __all__ = [
     'OnlineArchiveCriteriaArgs',
     'OnlineArchivePartitionFieldArgs',
     'PrivateLinkEndpointServiceEndpointArgs',
+    'ProjectApiKeyArgs',
     'ProjectTeamArgs',
     'SearchIndexSynonymArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
@@ -287,6 +288,7 @@ class AlertConfigurationNotificationArgs:
                  service_key: Optional[pulumi.Input[str]] = None,
                  sms_enabled: Optional[pulumi.Input[bool]] = None,
                  team_id: Optional[pulumi.Input[str]] = None,
+                 team_name: Optional[pulumi.Input[str]] = None,
                  type_name: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  victor_ops_api_key: Optional[pulumi.Input[str]] = None,
@@ -298,17 +300,20 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[str] datadog_region: Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
         :param pulumi.Input[int] delay_min: Number of minutes to wait after an alert condition is detected before sending out the first notification.
         :param pulumi.Input[str] email_address: Email address to which alert notifications are sent. Required for the EMAIL notifications type.
-        :param pulumi.Input[bool] email_enabled: Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        :param pulumi.Input[bool] email_enabled: Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param pulumi.Input[str] flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
         :param pulumi.Input[str] flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
-        :param pulumi.Input[int] interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+        :param pulumi.Input[int] interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         :param pulumi.Input[str] mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param pulumi.Input[str] ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[str] ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         :param pulumi.Input[str] org_name: Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+               Accepted values are:
         :param pulumi.Input[str] service_key: PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
-        :param pulumi.Input[bool] sms_enabled: Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        :param pulumi.Input[bool] sms_enabled: Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         :param pulumi.Input[str] team_id: Unique identifier of a team.
+        :param pulumi.Input[str] team_name: Label for the team that receives this notification.
         :param pulumi.Input[str] type_name: Type of alert notification.
                Accepted values are:
                - `DATADOG`
@@ -354,6 +359,8 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "sms_enabled", sms_enabled)
         if team_id is not None:
             pulumi.set(__self__, "team_id", team_id)
+        if team_name is not None:
+            pulumi.set(__self__, "team_name", team_name)
         if type_name is not None:
             pulumi.set(__self__, "type_name", type_name)
         if username is not None:
@@ -439,7 +446,7 @@ class AlertConfigurationNotificationArgs:
     @pulumi.getter(name="emailEnabled")
     def email_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         """
         return pulumi.get(self, "email_enabled")
 
@@ -475,7 +482,7 @@ class AlertConfigurationNotificationArgs:
     @pulumi.getter(name="intervalMin")
     def interval_min(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY
+        Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         """
         return pulumi.get(self, "interval_min")
 
@@ -534,6 +541,10 @@ class AlertConfigurationNotificationArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
+        Accepted values are:
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -556,7 +567,7 @@ class AlertConfigurationNotificationArgs:
     @pulumi.getter(name="smsEnabled")
     def sms_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.
+        Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         """
         return pulumi.get(self, "sms_enabled")
 
@@ -575,6 +586,18 @@ class AlertConfigurationNotificationArgs:
     @team_id.setter
     def team_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "team_id", value)
+
+    @property
+    @pulumi.getter(name="teamName")
+    def team_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Label for the team that receives this notification.
+        """
+        return pulumi.get(self, "team_name")
+
+    @team_name.setter
+    def team_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "team_name", value)
 
     @property
     @pulumi.getter(name="typeName")
@@ -3520,12 +3543,63 @@ class PrivateLinkEndpointServiceEndpointArgs:
 
 
 @pulumi.input_type
+class ProjectApiKeyArgs:
+    def __init__(__self__, *,
+                 api_key_id: pulumi.Input[str],
+                 role_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+               The following are valid roles:
+               * `GROUP_OWNER`
+               * `GROUP_READ_ONLY`
+               * `GROUP_DATA_ACCESS_ADMIN`
+               * `GROUP_DATA_ACCESS_READ_WRITE`
+               * `GROUP_DATA_ACCESS_READ_ONLY`
+               * `GROUP_CLUSTER_MANAGER`
+        """
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "role_names", role_names)
+
+    @property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> pulumi.Input[str]:
+        """
+        The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
+        """
+        return pulumi.get(self, "api_key_id")
+
+    @api_key_id.setter
+    def api_key_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "api_key_id", value)
+
+    @property
+    @pulumi.getter(name="roleNames")
+    def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        The following are valid roles:
+        * `GROUP_OWNER`
+        * `GROUP_READ_ONLY`
+        * `GROUP_DATA_ACCESS_ADMIN`
+        * `GROUP_DATA_ACCESS_READ_WRITE`
+        * `GROUP_DATA_ACCESS_READ_ONLY`
+        * `GROUP_CLUSTER_MANAGER`
+        """
+        return pulumi.get(self, "role_names")
+
+    @role_names.setter
+    def role_names(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "role_names", value)
+
+
+@pulumi.input_type
 class ProjectTeamArgs:
     def __init__(__self__, *,
                  role_names: pulumi.Input[Sequence[pulumi.Input[str]]],
                  team_id: pulumi.Input[str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
                The following are valid roles:
                * `GROUP_OWNER`
                * `GROUP_READ_ONLY`
@@ -3542,7 +3616,7 @@ class ProjectTeamArgs:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
+        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
         The following are valid roles:
         * `GROUP_OWNER`
         * `GROUP_READ_ONLY`

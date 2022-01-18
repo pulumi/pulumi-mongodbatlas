@@ -80,6 +80,7 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetProjectResult
     {
+        public readonly ImmutableArray<Outputs.GetProjectApiKeyResult> ApiKeys;
         public readonly int ClusterCount;
         public readonly string Created;
         /// <summary>
@@ -103,6 +104,15 @@ namespace Pulumi.Mongodbatlas
         /// * `GROUP_DATA_ACCESS_READ_WRITE`
         /// * `GROUP_DATA_ACCESS_READ_ONLY`
         /// * `GROUP_CLUSTER_MANAGER`
+        /// * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
+        /// * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
+        /// The following are valid roles:
+        /// * `GROUP_OWNER`
+        /// * `GROUP_READ_ONLY`
+        /// * `GROUP_DATA_ACCESS_ADMIN`
+        /// * `GROUP_DATA_ACCESS_READ_WRITE`
+        /// * `GROUP_DATA_ACCESS_READ_ONLY`
+        /// * `GROUP_CLUSTER_MANAGER`
         /// </summary>
         public readonly string OrgId;
         public readonly string? ProjectId;
@@ -110,6 +120,8 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetProjectResult(
+            ImmutableArray<Outputs.GetProjectApiKeyResult> apiKeys,
+
             int clusterCount,
 
             string created,
@@ -124,6 +136,7 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetProjectTeamResult> teams)
         {
+            ApiKeys = apiKeys;
             ClusterCount = clusterCount;
             Created = created;
             Id = id;

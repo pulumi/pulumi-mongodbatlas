@@ -177,7 +177,7 @@
                 },
                 "emailEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.\n",
+                    "description": "Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -204,7 +204,7 @@
                 },
                 "intervalMin": {
                     "type": "integer",
-                    "description": "Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **CONDITIONAL** PAGER_DUTY manages the interval value, please do not set it in case of PAGER_DUTY\n",
+                    "description": "Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -252,6 +252,7 @@
                     "items": {
                         "type": "string"
                     },
+                    "description": "Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.\nAccepted values are:\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -269,7 +270,7 @@
                 },
                 "smsEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.\n",
+                    "description": "Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -279,6 +280,15 @@
                 "teamId": {
                     "type": "string",
                     "description": "Unique identifier of a team.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "teamName": {
+                    "type": "string",
+                    "description": "Label for the team that receives this notification.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -322,7 +332,14 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "teamName"
+                    ]
+                }
+            }
         },
         "mongodbatlas:index/AlertConfigurationThresholdConfig:AlertConfigurationThresholdConfig": {
             "properties": {
@@ -2574,6 +2591,36 @@
                 }
             }
         },
+        "mongodbatlas:index/ProjectApiKey:ProjectApiKey": {
+            "properties": {
+                "apiKeyId": {
+                    "type": "string",
+                    "description": "The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "roleNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiKeyId",
+                "roleNames"
+            ]
+        },
         "mongodbatlas:index/ProjectTeam:ProjectTeam": {
             "properties": {
                 "roleNames": {
@@ -2581,7 +2628,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n",
+                    "description": "List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2916,7 +2963,7 @@
                 },
                 "emailEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating if email notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.\n",
+                    "description": "Flag indicating email notifications should be sent. Atlas returns this value if `type_name` is set  to `ORG`, `GROUP`, or `USER`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2991,6 +3038,7 @@
                     "items": {
                         "type": "string"
                     },
+                    "description": "Atlas role in current Project or Organization. Atlas returns this value if you set `type_name` to `ORG` or `GROUP`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3008,7 +3056,7 @@
                 },
                 "smsEnabled": {
                     "type": "boolean",
-                    "description": "Flag indicating if text message notifications should be sent. Configurable for `ORG`, `GROUP`, and `USER` notifications types.\n",
+                    "description": "Flag indicating text notifications should be sent. Atlas returns this value if `type_name` is set to `ORG`, `GROUP`, or `USER`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3018,6 +3066,15 @@
                 "teamId": {
                     "type": "string",
                     "description": "Unique identifier of a team.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "teamName": {
+                    "type": "string",
+                    "description": "Label for the team that receives this notification.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -3080,6 +3137,7 @@
                 "serviceKey",
                 "smsEnabled",
                 "teamId",
+                "teamName",
                 "typeName",
                 "username",
                 "victorOpsApiKey",
@@ -3904,6 +3962,108 @@
                 }
             }
         },
+        "mongodbatlas:index/getClusterAdvancedConfiguration:getClusterAdvancedConfiguration": {
+            "properties": {
+                "defaultReadConcern": {
+                    "type": "string",
+                    "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultWriteConcern": {
+                    "type": "string",
+                    "description": "[Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "failIndexKeyTooLong": {
+                    "type": "boolean",
+                    "description": "When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "javascriptEnabled": {
+                    "type": "boolean",
+                    "description": "When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minimumEnabledTlsProtocol": {
+                    "type": "string",
+                    "description": "Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "noTableScan": {
+                    "type": "boolean",
+                    "description": "When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "oplogSizeMb": {
+                    "type": "integer",
+                    "description": "The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sampleRefreshIntervalBiConnector": {
+                    "type": "integer",
+                    "description": "Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sampleSizeBiConnector": {
+                    "type": "integer",
+                    "description": "Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "defaultReadConcern",
+                "defaultWriteConcern",
+                "failIndexKeyTooLong",
+                "javascriptEnabled",
+                "minimumEnabledTlsProtocol",
+                "noTableScan",
+                "oplogSizeMb",
+                "sampleRefreshIntervalBiConnector",
+                "sampleSizeBiConnector"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "mongodbatlas:index/getClusterBiConnectorConfig:getClusterBiConnectorConfig": {
             "properties": {
                 "enabled": {
@@ -4441,9 +4601,21 @@
         },
         "mongodbatlas:index/getClustersResult:getClustersResult": {
             "properties": {
+                "advancedConfigurations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getClustersResultAdvancedConfiguration:getClustersResultAdvancedConfiguration"
+                    },
+                    "description": "Get the advanced configuration options. See Advanced Configuration below for more details.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "autoScalingComputeEnabled": {
                     "type": "boolean",
-                    "description": "(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.\n",
+                    "description": "Specifies whether cluster tier auto-scaling is enabled. The default is false.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4452,7 +4624,7 @@
                 },
                 "autoScalingComputeScaleDownEnabled": {
                     "type": "boolean",
-                    "description": "(Optional) Set to `true` to enable the cluster tier to scale down.\n",
+                    "description": "* `auto_scaling_compute_scale_down_enabled` - Specifies whether cluster tier auto-down-scaling is enabled.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4653,7 +4825,7 @@
                 },
                 "providerAutoScalingComputeMaxInstanceSize": {
                     "type": "string",
-                    "description": "(Optional) Maximum instance size to which your cluster can automatically scale.\n",
+                    "description": "Maximum instance size to which your cluster can automatically scale.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4662,7 +4834,7 @@
                 },
                 "providerAutoScalingComputeMinInstanceSize": {
                     "type": "string",
-                    "description": "(Optional) Minimum instance size to which your cluster can automatically scale.\n",
+                    "description": "Minimum instance size to which your cluster can automatically scale.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -4791,10 +4963,20 @@
                             "mapCase": false
                         }
                     }
+                },
+                "versionReleaseSystem": {
+                    "type": "string",
+                    "description": "Release cadence that Atlas uses for this cluster.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
+                "advancedConfigurations",
                 "autoScalingComputeEnabled",
                 "autoScalingComputeScaleDownEnabled",
                 "autoScalingDiskGbEnabled",
@@ -4831,7 +5013,110 @@
                 "replicationSpecs",
                 "snapshotBackupPolicies",
                 "srvAddress",
-                "stateName"
+                "stateName",
+                "versionReleaseSystem"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getClustersResultAdvancedConfiguration:getClustersResultAdvancedConfiguration": {
+            "properties": {
+                "defaultReadConcern": {
+                    "type": "string",
+                    "description": "[Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultWriteConcern": {
+                    "type": "string",
+                    "description": "[Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "failIndexKeyTooLong": {
+                    "type": "boolean",
+                    "description": "When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "javascriptEnabled": {
+                    "type": "boolean",
+                    "description": "When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minimumEnabledTlsProtocol": {
+                    "type": "string",
+                    "description": "Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "noTableScan": {
+                    "type": "boolean",
+                    "description": "When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "oplogSizeMb": {
+                    "type": "integer",
+                    "description": "The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sampleRefreshIntervalBiConnector": {
+                    "type": "integer",
+                    "description": "Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sampleSizeBiConnector": {
+                    "type": "integer",
+                    "description": "Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "defaultReadConcern",
+                "defaultWriteConcern",
+                "failIndexKeyTooLong",
+                "javascriptEnabled",
+                "minimumEnabledTlsProtocol",
+                "noTableScan",
+                "oplogSizeMb",
+                "sampleRefreshIntervalBiConnector",
+                "sampleSizeBiConnector"
             ],
             "language": {
                 "nodejs": {
@@ -7907,6 +8192,39 @@
                 }
             }
         },
+        "mongodbatlas:index/getProjectApiKey:getProjectApiKey": {
+            "properties": {
+                "apiKeyId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "roleNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiKeyId",
+                "roleNames"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "mongodbatlas:index/getProjectTeam:getProjectTeam": {
             "properties": {
                 "roleNames": {
@@ -7942,6 +8260,17 @@
         },
         "mongodbatlas:index/getProjectsResult:getProjectsResult": {
             "properties": {
+                "apiKeys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/getProjectsResultApiKey:getProjectsResultApiKey"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "clusterCount": {
                     "type": "integer",
                     "language": {
@@ -7978,7 +8307,7 @@
                 },
                 "orgId": {
                     "type": "string",
-                    "description": "The ID of the organization you want to create the project within.\n*`cluster_count` - The number of Atlas clusters deployed in the project.\n*`created` - The ISO-8601-formatted timestamp of when Atlas created the project.\n* `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.\n* `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n",
+                    "description": "The ID of the organization you want to create the project within.\n*`cluster_count` - The number of Atlas clusters deployed in the project.\n*`created` - The ISO-8601-formatted timestamp of when Atlas created the project.\n* `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.\n* `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n* `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.\n* `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -7999,12 +8328,46 @@
             },
             "type": "object",
             "required": [
+                "apiKeys",
                 "clusterCount",
                 "created",
                 "id",
                 "name",
                 "orgId",
                 "teams"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "mongodbatlas:index/getProjectsResultApiKey:getProjectsResultApiKey": {
+            "properties": {
+                "apiKeyId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "roleNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "apiKeyId",
+                "roleNames"
             ],
             "language": {
                 "nodejs": {
@@ -8495,7 +8858,7 @@
     },
     "resources": {
         "mongodbatlas:index/alertConfiguration:AlertConfiguration": {
-            "description": "`mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.AlertConfiguration(\"test\", {\n    enabled: true,\n    eventType: \"OUTSIDE_METRIC_THRESHOLD\",\n    matchers: [{\n        fieldName: \"HOSTNAME_AND_PORT\",\n        operator: \"EQUALS\",\n        value: \"SECONDARY\",\n    }],\n    metricThresholdConfig: {\n        metricName: \"ASSERT_REGULAR\",\n        mode: \"AVERAGE\",\n        operator: \"LESS_THAN\",\n        threshold: 99,\n        units: \"RAW\",\n    },\n    notifications: [{\n        delayMin: 0,\n        emailEnabled: true,\n        intervalMin: 5,\n        roles: [\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        smsEnabled: false,\n        typeName: \"GROUP\",\n    }],\n    projectId: \"\u003cPROJECT-ID\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.AlertConfiguration(\"test\",\n    enabled=True,\n    event_type=\"OUTSIDE_METRIC_THRESHOLD\",\n    matchers=[mongodbatlas.AlertConfigurationMatcherArgs(\n        field_name=\"HOSTNAME_AND_PORT\",\n        operator=\"EQUALS\",\n        value=\"SECONDARY\",\n    )],\n    metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(\n        metric_name=\"ASSERT_REGULAR\",\n        mode=\"AVERAGE\",\n        operator=\"LESS_THAN\",\n        threshold=99,\n        units=\"RAW\",\n    ),\n    notifications=[mongodbatlas.AlertConfigurationNotificationArgs(\n        delay_min=0,\n        email_enabled=True,\n        interval_min=5,\n        roles=[\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        sms_enabled=False,\n        type_name=\"GROUP\",\n    )],\n    project_id=\"\u003cPROJECT-ID\u003e\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.AlertConfiguration(\"test\", new Mongodbatlas.AlertConfigurationArgs\n        {\n            Enabled = true,\n            EventType = \"OUTSIDE_METRIC_THRESHOLD\",\n            Matchers = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs\n                {\n                    FieldName = \"HOSTNAME_AND_PORT\",\n                    Operator = \"EQUALS\",\n                    Value = \"SECONDARY\",\n                },\n            },\n            MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs\n            {\n                MetricName = \"ASSERT_REGULAR\",\n                Mode = \"AVERAGE\",\n                Operator = \"LESS_THAN\",\n                Threshold = 99,\n                Units = \"RAW\",\n            },\n            Notifications = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs\n                {\n                    DelayMin = 0,\n                    EmailEnabled = true,\n                    IntervalMin = 5,\n                    Roles = \n                    {\n                        \"GROUP_CHARTS_ADMIN\",\n                        \"GROUP_CLUSTER_MANAGER\",\n                    },\n                    SmsEnabled = false,\n                    TypeName = \"GROUP\",\n                },\n            },\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewAlertConfiguration(ctx, \"test\", \u0026mongodbatlas.AlertConfigurationArgs{\n\t\t\tEnabled:   pulumi.Bool(true),\n\t\t\tEventType: pulumi.String(\"OUTSIDE_METRIC_THRESHOLD\"),\n\t\t\tMatchers: AlertConfigurationMatcherArray{\n\t\t\t\t\u0026AlertConfigurationMatcherArgs{\n\t\t\t\t\tFieldName: pulumi.String(\"HOSTNAME_AND_PORT\"),\n\t\t\t\t\tOperator:  pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValue:     pulumi.String(\"SECONDARY\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMetricThresholdConfig: \u0026AlertConfigurationMetricThresholdConfigArgs{\n\t\t\t\tMetricName: pulumi.String(\"ASSERT_REGULAR\"),\n\t\t\t\tMode:       pulumi.String(\"AVERAGE\"),\n\t\t\t\tOperator:   pulumi.String(\"LESS_THAN\"),\n\t\t\t\tThreshold:  pulumi.Float64(99),\n\t\t\t\tUnits:      pulumi.String(\"RAW\"),\n\t\t\t},\n\t\t\tNotifications: AlertConfigurationNotificationArray{\n\t\t\t\t\u0026AlertConfigurationNotificationArgs{\n\t\t\t\t\tDelayMin:     pulumi.Int(0),\n\t\t\t\t\tEmailEnabled: pulumi.Bool(true),\n\t\t\t\t\tIntervalMin:  pulumi.Int(5),\n\t\t\t\t\tRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"GROUP_CHARTS_ADMIN\"),\n\t\t\t\t\t\tpulumi.String(\"GROUP_CLUSTER_MANAGER\"),\n\t\t\t\t\t},\n\t\t\t\t\tSmsEnabled: pulumi.Bool(false),\n\t\t\t\t\tTypeName:   pulumi.String(\"GROUP\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003e **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/\n\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.AlertConfiguration(\"test\", {\n    enabled: true,\n    eventType: \"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\",\n    matchers: [{\n        fieldName: \"HOSTNAME_AND_PORT\",\n        operator: \"EQUALS\",\n        value: \"SECONDARY\",\n    }],\n    notifications: [{\n        delayMin: 0,\n        emailEnabled: true,\n        intervalMin: 5,\n        roles: [\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        smsEnabled: false,\n        typeName: \"GROUP\",\n    }],\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    thresholdConfig: {\n        operator: \"LESS_THAN\",\n        threshold: 1,\n        units: \"HOURS\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.AlertConfiguration(\"test\",\n    enabled=True,\n    event_type=\"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\",\n    matchers=[mongodbatlas.AlertConfigurationMatcherArgs(\n        field_name=\"HOSTNAME_AND_PORT\",\n        operator=\"EQUALS\",\n        value=\"SECONDARY\",\n    )],\n    notifications=[mongodbatlas.AlertConfigurationNotificationArgs(\n        delay_min=0,\n        email_enabled=True,\n        interval_min=5,\n        roles=[\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        sms_enabled=False,\n        type_name=\"GROUP\",\n    )],\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(\n        operator=\"LESS_THAN\",\n        threshold=1,\n        units=\"HOURS\",\n    ))\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.AlertConfiguration(\"test\", new Mongodbatlas.AlertConfigurationArgs\n        {\n            Enabled = true,\n            EventType = \"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\",\n            Matchers = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs\n                {\n                    FieldName = \"HOSTNAME_AND_PORT\",\n                    Operator = \"EQUALS\",\n                    Value = \"SECONDARY\",\n                },\n            },\n            Notifications = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs\n                {\n                    DelayMin = 0,\n                    EmailEnabled = true,\n                    IntervalMin = 5,\n                    Roles = \n                    {\n                        \"GROUP_CHARTS_ADMIN\",\n                        \"GROUP_CLUSTER_MANAGER\",\n                    },\n                    SmsEnabled = false,\n                    TypeName = \"GROUP\",\n                },\n            },\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs\n            {\n                Operator = \"LESS_THAN\",\n                Threshold = 1,\n                Units = \"HOURS\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewAlertConfiguration(ctx, \"test\", \u0026mongodbatlas.AlertConfigurationArgs{\n\t\t\tEnabled:   pulumi.Bool(true),\n\t\t\tEventType: pulumi.String(\"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\"),\n\t\t\tMatchers: AlertConfigurationMatcherArray{\n\t\t\t\t\u0026AlertConfigurationMatcherArgs{\n\t\t\t\t\tFieldName: pulumi.String(\"HOSTNAME_AND_PORT\"),\n\t\t\t\t\tOperator:  pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValue:     pulumi.String(\"SECONDARY\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tNotifications: AlertConfigurationNotificationArray{\n\t\t\t\t\u0026AlertConfigurationNotificationArgs{\n\t\t\t\t\tDelayMin:     pulumi.Int(0),\n\t\t\t\t\tEmailEnabled: pulumi.Bool(true),\n\t\t\t\t\tIntervalMin:  pulumi.Int(5),\n\t\t\t\t\tRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"GROUP_CHARTS_ADMIN\"),\n\t\t\t\t\t\tpulumi.String(\"GROUP_CLUSTER_MANAGER\"),\n\t\t\t\t\t},\n\t\t\t\t\tSmsEnabled: pulumi.Bool(false),\n\t\t\t\t\tTypeName:   pulumi.String(\"GROUP\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tThresholdConfig: \u0026AlertConfigurationThresholdConfigArgs{\n\t\t\t\tOperator:  pulumi.String(\"LESS_THAN\"),\n\t\t\t\tThreshold: pulumi.Float64(1),\n\t\t\t\tUnits:     pulumi.String(\"HOURS\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAlert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/) ",
+            "description": "`mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.AlertConfiguration(\"test\", {\n    enabled: true,\n    eventType: \"OUTSIDE_METRIC_THRESHOLD\",\n    matchers: [{\n        fieldName: \"HOSTNAME_AND_PORT\",\n        operator: \"EQUALS\",\n        value: \"SECONDARY\",\n    }],\n    metricThresholdConfig: {\n        metricName: \"ASSERT_REGULAR\",\n        mode: \"AVERAGE\",\n        operator: \"LESS_THAN\",\n        threshold: 99,\n        units: \"RAW\",\n    },\n    notifications: [{\n        delayMin: 0,\n        emailEnabled: true,\n        intervalMin: 5,\n        roles: [\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        smsEnabled: false,\n        typeName: \"GROUP\",\n    }],\n    projectId: \"\u003cPROJECT-ID\u003e\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.AlertConfiguration(\"test\",\n    enabled=True,\n    event_type=\"OUTSIDE_METRIC_THRESHOLD\",\n    matchers=[mongodbatlas.AlertConfigurationMatcherArgs(\n        field_name=\"HOSTNAME_AND_PORT\",\n        operator=\"EQUALS\",\n        value=\"SECONDARY\",\n    )],\n    metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(\n        metric_name=\"ASSERT_REGULAR\",\n        mode=\"AVERAGE\",\n        operator=\"LESS_THAN\",\n        threshold=99,\n        units=\"RAW\",\n    ),\n    notifications=[mongodbatlas.AlertConfigurationNotificationArgs(\n        delay_min=0,\n        email_enabled=True,\n        interval_min=5,\n        roles=[\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        sms_enabled=False,\n        type_name=\"GROUP\",\n    )],\n    project_id=\"\u003cPROJECT-ID\u003e\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.AlertConfiguration(\"test\", new Mongodbatlas.AlertConfigurationArgs\n        {\n            Enabled = true,\n            EventType = \"OUTSIDE_METRIC_THRESHOLD\",\n            Matchers = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs\n                {\n                    FieldName = \"HOSTNAME_AND_PORT\",\n                    Operator = \"EQUALS\",\n                    Value = \"SECONDARY\",\n                },\n            },\n            MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs\n            {\n                MetricName = \"ASSERT_REGULAR\",\n                Mode = \"AVERAGE\",\n                Operator = \"LESS_THAN\",\n                Threshold = 99,\n                Units = \"RAW\",\n            },\n            Notifications = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs\n                {\n                    DelayMin = 0,\n                    EmailEnabled = true,\n                    IntervalMin = 5,\n                    Roles = \n                    {\n                        \"GROUP_CHARTS_ADMIN\",\n                        \"GROUP_CLUSTER_MANAGER\",\n                    },\n                    SmsEnabled = false,\n                    TypeName = \"GROUP\",\n                },\n            },\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewAlertConfiguration(ctx, \"test\", \u0026mongodbatlas.AlertConfigurationArgs{\n\t\t\tEnabled:   pulumi.Bool(true),\n\t\t\tEventType: pulumi.String(\"OUTSIDE_METRIC_THRESHOLD\"),\n\t\t\tMatchers: AlertConfigurationMatcherArray{\n\t\t\t\t\u0026AlertConfigurationMatcherArgs{\n\t\t\t\t\tFieldName: pulumi.String(\"HOSTNAME_AND_PORT\"),\n\t\t\t\t\tOperator:  pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValue:     pulumi.String(\"SECONDARY\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMetricThresholdConfig: \u0026AlertConfigurationMetricThresholdConfigArgs{\n\t\t\t\tMetricName: pulumi.String(\"ASSERT_REGULAR\"),\n\t\t\t\tMode:       pulumi.String(\"AVERAGE\"),\n\t\t\t\tOperator:   pulumi.String(\"LESS_THAN\"),\n\t\t\t\tThreshold:  pulumi.Float64(99),\n\t\t\t\tUnits:      pulumi.String(\"RAW\"),\n\t\t\t},\n\t\t\tNotifications: AlertConfigurationNotificationArray{\n\t\t\t\t\u0026AlertConfigurationNotificationArgs{\n\t\t\t\t\tDelayMin:     pulumi.Int(0),\n\t\t\t\t\tEmailEnabled: pulumi.Bool(true),\n\t\t\t\t\tIntervalMin:  pulumi.Int(5),\n\t\t\t\t\tRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"GROUP_CHARTS_ADMIN\"),\n\t\t\t\t\t\tpulumi.String(\"GROUP_CLUSTER_MANAGER\"),\n\t\t\t\t\t},\n\t\t\t\t\tSmsEnabled: pulumi.Bool(false),\n\t\t\t\t\tTypeName:   pulumi.String(\"GROUP\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\n\u003e **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/\n\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.AlertConfiguration(\"test\", {\n    enabled: true,\n    eventType: \"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\",\n    matchers: [{\n        fieldName: \"HOSTNAME_AND_PORT\",\n        operator: \"EQUALS\",\n        value: \"SECONDARY\",\n    }],\n    notifications: [{\n        delayMin: 0,\n        emailEnabled: true,\n        intervalMin: 5,\n        roles: [\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        smsEnabled: false,\n        typeName: \"GROUP\",\n    }],\n    projectId: \"\u003cPROJECT-ID\u003e\",\n    thresholdConfig: {\n        operator: \"LESS_THAN\",\n        threshold: 1,\n        units: \"HOURS\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.AlertConfiguration(\"test\",\n    enabled=True,\n    event_type=\"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\",\n    matchers=[mongodbatlas.AlertConfigurationMatcherArgs(\n        field_name=\"HOSTNAME_AND_PORT\",\n        operator=\"EQUALS\",\n        value=\"SECONDARY\",\n    )],\n    notifications=[mongodbatlas.AlertConfigurationNotificationArgs(\n        delay_min=0,\n        email_enabled=True,\n        interval_min=5,\n        roles=[\n            \"GROUP_CHARTS_ADMIN\",\n            \"GROUP_CLUSTER_MANAGER\",\n        ],\n        sms_enabled=False,\n        type_name=\"GROUP\",\n    )],\n    project_id=\"\u003cPROJECT-ID\u003e\",\n    threshold_config=mongodbatlas.AlertConfigurationThresholdConfigArgs(\n        operator=\"LESS_THAN\",\n        threshold=1,\n        units=\"HOURS\",\n    ))\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.AlertConfiguration(\"test\", new Mongodbatlas.AlertConfigurationArgs\n        {\n            Enabled = true,\n            EventType = \"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\",\n            Matchers = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs\n                {\n                    FieldName = \"HOSTNAME_AND_PORT\",\n                    Operator = \"EQUALS\",\n                    Value = \"SECONDARY\",\n                },\n            },\n            Notifications = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs\n                {\n                    DelayMin = 0,\n                    EmailEnabled = true,\n                    IntervalMin = 5,\n                    Roles = \n                    {\n                        \"GROUP_CHARTS_ADMIN\",\n                        \"GROUP_CLUSTER_MANAGER\",\n                    },\n                    SmsEnabled = false,\n                    TypeName = \"GROUP\",\n                },\n            },\n            ProjectId = \"\u003cPROJECT-ID\u003e\",\n            ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs\n            {\n                Operator = \"LESS_THAN\",\n                Threshold = 1,\n                Units = \"HOURS\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewAlertConfiguration(ctx, \"test\", \u0026mongodbatlas.AlertConfigurationArgs{\n\t\t\tEnabled:   pulumi.Bool(true),\n\t\t\tEventType: pulumi.String(\"REPLICATION_OPLOG_WINDOW_RUNNING_OUT\"),\n\t\t\tMatchers: AlertConfigurationMatcherArray{\n\t\t\t\t\u0026AlertConfigurationMatcherArgs{\n\t\t\t\t\tFieldName: pulumi.String(\"HOSTNAME_AND_PORT\"),\n\t\t\t\t\tOperator:  pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValue:     pulumi.String(\"SECONDARY\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tNotifications: AlertConfigurationNotificationArray{\n\t\t\t\t\u0026AlertConfigurationNotificationArgs{\n\t\t\t\t\tDelayMin:     pulumi.Int(0),\n\t\t\t\t\tEmailEnabled: pulumi.Bool(true),\n\t\t\t\t\tIntervalMin:  pulumi.Int(5),\n\t\t\t\t\tRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"GROUP_CHARTS_ADMIN\"),\n\t\t\t\t\t\tpulumi.String(\"GROUP_CLUSTER_MANAGER\"),\n\t\t\t\t\t},\n\t\t\t\t\tSmsEnabled: pulumi.Bool(false),\n\t\t\t\t\tTypeName:   pulumi.String(\"GROUP\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tProjectId: pulumi.String(\"\u003cPROJECT-ID\u003e\"),\n\t\t\tThresholdConfig: \u0026AlertConfigurationThresholdConfigArgs{\n\t\t\t\tOperator:  pulumi.String(\"LESS_THAN\"),\n\t\t\t\tThreshold: pulumi.Float64(1),\n\t\t\t\tUnits:     pulumi.String(\"HOURS\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Create an alert with two notifications using Email and SMS\n\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.AlertConfiguration(\"test\", {\n    enabled: true,\n    eventType: \"OUTSIDE_METRIC_THRESHOLD\",\n    matchers: [{\n        fieldName: \"HOSTNAME_AND_PORT\",\n        operator: \"EQUALS\",\n        value: \"SECONDARY\",\n    }],\n    metricThresholdConfig: {\n        metricName: \"ASSERT_REGULAR\",\n        mode: \"AVERAGE\",\n        operator: \"LESS_THAN\",\n        threshold: 99,\n        units: \"RAW\",\n    },\n    notifications: [\n        {\n            delayMin: 0,\n            emailEnabled: true,\n            intervalMin: 5,\n            roles: [\n                \"GROUP_DATA_ACCESS_READ_ONLY\",\n                \"GROUP_CLUSTER_MANAGER\",\n                \"GROUP_DATA_ACCESS_ADMIN\",\n            ],\n            smsEnabled: false,\n            typeName: \"GROUP\",\n        },\n        {\n            delayMin: 0,\n            emailEnabled: false,\n            intervalMin: 5,\n            smsEnabled: true,\n            typeName: \"ORG\",\n        },\n    ],\n    projectId: \"PROJECT ID\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.AlertConfiguration(\"test\",\n    enabled=True,\n    event_type=\"OUTSIDE_METRIC_THRESHOLD\",\n    matchers=[mongodbatlas.AlertConfigurationMatcherArgs(\n        field_name=\"HOSTNAME_AND_PORT\",\n        operator=\"EQUALS\",\n        value=\"SECONDARY\",\n    )],\n    metric_threshold_config=mongodbatlas.AlertConfigurationMetricThresholdConfigArgs(\n        metric_name=\"ASSERT_REGULAR\",\n        mode=\"AVERAGE\",\n        operator=\"LESS_THAN\",\n        threshold=99,\n        units=\"RAW\",\n    ),\n    notifications=[\n        mongodbatlas.AlertConfigurationNotificationArgs(\n            delay_min=0,\n            email_enabled=True,\n            interval_min=5,\n            roles=[\n                \"GROUP_DATA_ACCESS_READ_ONLY\",\n                \"GROUP_CLUSTER_MANAGER\",\n                \"GROUP_DATA_ACCESS_ADMIN\",\n            ],\n            sms_enabled=False,\n            type_name=\"GROUP\",\n        ),\n        mongodbatlas.AlertConfigurationNotificationArgs(\n            delay_min=0,\n            email_enabled=False,\n            interval_min=5,\n            sms_enabled=True,\n            type_name=\"ORG\",\n        ),\n    ],\n    project_id=\"PROJECT ID\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.AlertConfiguration(\"test\", new Mongodbatlas.AlertConfigurationArgs\n        {\n            Enabled = true,\n            EventType = \"OUTSIDE_METRIC_THRESHOLD\",\n            Matchers = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationMatcherArgs\n                {\n                    FieldName = \"HOSTNAME_AND_PORT\",\n                    Operator = \"EQUALS\",\n                    Value = \"SECONDARY\",\n                },\n            },\n            MetricThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationMetricThresholdConfigArgs\n            {\n                MetricName = \"ASSERT_REGULAR\",\n                Mode = \"AVERAGE\",\n                Operator = \"LESS_THAN\",\n                Threshold = 99,\n                Units = \"RAW\",\n            },\n            Notifications = \n            {\n                new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs\n                {\n                    DelayMin = 0,\n                    EmailEnabled = true,\n                    IntervalMin = 5,\n                    Roles = \n                    {\n                        \"GROUP_DATA_ACCESS_READ_ONLY\",\n                        \"GROUP_CLUSTER_MANAGER\",\n                        \"GROUP_DATA_ACCESS_ADMIN\",\n                    },\n                    SmsEnabled = false,\n                    TypeName = \"GROUP\",\n                },\n                new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs\n                {\n                    DelayMin = 0,\n                    EmailEnabled = false,\n                    IntervalMin = 5,\n                    SmsEnabled = true,\n                    TypeName = \"ORG\",\n                },\n            },\n            ProjectId = \"PROJECT ID\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewAlertConfiguration(ctx, \"test\", \u0026mongodbatlas.AlertConfigurationArgs{\n\t\t\tEnabled:   pulumi.Bool(true),\n\t\t\tEventType: pulumi.String(\"OUTSIDE_METRIC_THRESHOLD\"),\n\t\t\tMatchers: AlertConfigurationMatcherArray{\n\t\t\t\t\u0026AlertConfigurationMatcherArgs{\n\t\t\t\t\tFieldName: pulumi.String(\"HOSTNAME_AND_PORT\"),\n\t\t\t\t\tOperator:  pulumi.String(\"EQUALS\"),\n\t\t\t\t\tValue:     pulumi.String(\"SECONDARY\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMetricThresholdConfig: \u0026AlertConfigurationMetricThresholdConfigArgs{\n\t\t\t\tMetricName: pulumi.String(\"ASSERT_REGULAR\"),\n\t\t\t\tMode:       pulumi.String(\"AVERAGE\"),\n\t\t\t\tOperator:   pulumi.String(\"LESS_THAN\"),\n\t\t\t\tThreshold:  pulumi.Float64(99),\n\t\t\t\tUnits:      pulumi.String(\"RAW\"),\n\t\t\t},\n\t\t\tNotifications: AlertConfigurationNotificationArray{\n\t\t\t\t\u0026AlertConfigurationNotificationArgs{\n\t\t\t\t\tDelayMin:     pulumi.Int(0),\n\t\t\t\t\tEmailEnabled: pulumi.Bool(true),\n\t\t\t\t\tIntervalMin:  pulumi.Int(5),\n\t\t\t\t\tRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"GROUP_DATA_ACCESS_READ_ONLY\"),\n\t\t\t\t\t\tpulumi.String(\"GROUP_CLUSTER_MANAGER\"),\n\t\t\t\t\t\tpulumi.String(\"GROUP_DATA_ACCESS_ADMIN\"),\n\t\t\t\t\t},\n\t\t\t\t\tSmsEnabled: pulumi.Bool(false),\n\t\t\t\t\tTypeName:   pulumi.String(\"GROUP\"),\n\t\t\t\t},\n\t\t\t\t\u0026AlertConfigurationNotificationArgs{\n\t\t\t\t\tDelayMin:     pulumi.Int(0),\n\t\t\t\t\tEmailEnabled: pulumi.Bool(false),\n\t\t\t\t\tIntervalMin:  pulumi.Int(5),\n\t\t\t\t\tSmsEnabled:   pulumi.Bool(true),\n\t\t\t\t\tTypeName:     pulumi.String(\"ORG\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tProjectId: pulumi.String(\"PROJECT ID\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAlert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/alertConfiguration:AlertConfiguration test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/) ",
             "properties": {
                 "alertConfigurationId": {
                     "type": "string",
@@ -9776,8 +10139,7 @@
                     "description": "Number of shards to deploy in the specified zone, minimum 1.\n"
                 },
                 "paused": {
-                    "type": "boolean",
-                    "description": "Flag that indicates whether the cluster is paused or not.\n"
+                    "type": "boolean"
                 },
                 "pitEnabled": {
                     "type": "boolean",
@@ -9857,6 +10219,10 @@
                 "stateName": {
                     "type": "string",
                     "description": "Current state of the cluster. The possible states are:\n- IDLE\n- CREATING\n- UPDATING\n- DELETING\n- DELETED\n- REPAIRING\n"
+                },
+                "versionReleaseSystem": {
+                    "type": "string",
+                    "description": "- Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                 }
             },
             "required": [
@@ -9878,7 +10244,6 @@
                 "mongoUriUpdated",
                 "mongoUriWithOptions",
                 "name",
-                "paused",
                 "pitEnabled",
                 "projectId",
                 "providerAutoScalingComputeMaxInstanceSize",
@@ -9967,6 +10332,9 @@
                     "type": "integer",
                     "description": "Number of shards to deploy in the specified zone, minimum 1.\n"
                 },
+                "paused": {
+                    "type": "boolean"
+                },
                 "pitEnabled": {
                     "type": "boolean",
                     "description": "- Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.\n"
@@ -10027,6 +10395,10 @@
                         "$ref": "#/types/mongodbatlas:index/ClusterReplicationSpec:ClusterReplicationSpec"
                     },
                     "description": "Configuration for cluster regions.  See Replication Spec below for more details.\n"
+                },
+                "versionReleaseSystem": {
+                    "type": "string",
+                    "description": "- Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                 }
             },
             "requiredInputs": [
@@ -10138,8 +10510,7 @@
                         "description": "Number of shards to deploy in the specified zone, minimum 1.\n"
                     },
                     "paused": {
-                        "type": "boolean",
-                        "description": "Flag that indicates whether the cluster is paused or not.\n"
+                        "type": "boolean"
                     },
                     "pitEnabled": {
                         "type": "boolean",
@@ -10219,6 +10590,10 @@
                     "stateName": {
                         "type": "string",
                         "description": "Current state of the cluster. The possible states are:\n- IDLE\n- CREATING\n- UPDATING\n- DELETING\n- DELETED\n- REPAIRING\n"
+                    },
+                    "versionReleaseSystem": {
+                        "type": "string",
+                        "description": "- Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:\n- `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.\n- `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.\n"
                     }
                 },
                 "type": "object"
@@ -11616,7 +11991,7 @@
             }
         },
         "mongodbatlas:index/networkContainer:NetworkContainer": {
-            "description": "`mongodbatlas.NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully. \n\n Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the \"containers per cloud provider\" information that follows (in this case you can obtain the container id from the cluster resource attribute `container_id`).\n \nThe following is the maximum number of Network Peering containers per cloud provider:\n\u003cbr\u003e \u0026#8226;  GCP -  One container per project.\n\u003cbr\u003e \u0026#8226;  AWS and Azure - One container per cloud provider region.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Example with AWS\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.NetworkContainer(\"test\", {\n    atlasCidrBlock: \"10.8.0.0/21\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerName: \"AWS\",\n    regionName: \"US_EAST_1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.NetworkContainer(\"test\",\n    atlas_cidr_block=\"10.8.0.0/21\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_name=\"AWS\",\n    region_name=\"US_EAST_1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.NetworkContainer(\"test\", new Mongodbatlas.NetworkContainerArgs\n        {\n            AtlasCidrBlock = \"10.8.0.0/21\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderName = \"AWS\",\n            RegionName = \"US_EAST_1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewNetworkContainer(ctx, \"test\", \u0026mongodbatlas.NetworkContainerArgs{\n\t\t\tAtlasCidrBlock: pulumi.String(\"10.8.0.0/21\"),\n\t\t\tProjectId:      pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderName:   pulumi.String(\"AWS\"),\n\t\t\tRegionName:     pulumi.String(\"US_EAST_1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example with GCP\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.NetworkContainer(\"test\", {\n    atlasCidrBlock: \"10.8.0.0/21\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerName: \"GCP\",\n    regions: [\n        \"US_EAST_4\",\n        \"US_WEST_3\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.NetworkContainer(\"test\",\n    atlas_cidr_block=\"10.8.0.0/21\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_name=\"GCP\",\n    regions=[\n        \"US_EAST_4\",\n        \"US_WEST_3\",\n    ])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.NetworkContainer(\"test\", new Mongodbatlas.NetworkContainerArgs\n        {\n            AtlasCidrBlock = \"10.8.0.0/21\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderName = \"GCP\",\n            Regions = \n            {\n                \"US_EAST_4\",\n                \"US_WEST_3\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewNetworkContainer(ctx, \"test\", \u0026mongodbatlas.NetworkContainerArgs{\n\t\t\tAtlasCidrBlock: pulumi.String(\"10.8.0.0/21\"),\n\t\t\tProjectId:      pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderName:   pulumi.String(\"GCP\"),\n\t\t\tRegions: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"US_EAST_4\"),\n\t\t\t\tpulumi.String(\"US_WEST_3\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example with Azure\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.NetworkContainer(\"test\", {\n    atlasCidrBlock: \"10.8.0.0/21\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerName: \"AZURE\",\n    region: \"US_EAST_2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.NetworkContainer(\"test\",\n    atlas_cidr_block=\"10.8.0.0/21\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_name=\"AZURE\",\n    region=\"US_EAST_2\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.NetworkContainer(\"test\", new Mongodbatlas.NetworkContainerArgs\n        {\n            AtlasCidrBlock = \"10.8.0.0/21\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderName = \"AZURE\",\n            Region = \"US_EAST_2\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewNetworkContainer(ctx, \"test\", \u0026mongodbatlas.NetworkContainerArgs{\n\t\t\tAtlasCidrBlock: pulumi.String(\"10.8.0.0/21\"),\n\t\t\tProjectId:      pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderName:   pulumi.String(\"AZURE\"),\n\t\t\tRegion:         pulumi.String(\"US_EAST_2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using project ID and network peering container id, in the format `PROJECTID-CONTAINER-ID`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a\n```\n\n See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/) ",
+            "description": "`mongodbatlas.NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully.\n\n Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the \"containers per cloud provider\" information that follows (in this case you can obtain the container id from the cluster resource attribute `container_id`).\n\nThe following is the maximum number of Network Peering containers per cloud provider:\n\u003cbr\u003e \u0026#8226;  GCP -  One container per project.\n\u003cbr\u003e \u0026#8226;  AWS and Azure - One container per cloud provider region.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.\n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Example with AWS\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.NetworkContainer(\"test\", {\n    atlasCidrBlock: \"10.8.0.0/21\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerName: \"AWS\",\n    regionName: \"US_EAST_1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.NetworkContainer(\"test\",\n    atlas_cidr_block=\"10.8.0.0/21\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_name=\"AWS\",\n    region_name=\"US_EAST_1\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.NetworkContainer(\"test\", new Mongodbatlas.NetworkContainerArgs\n        {\n            AtlasCidrBlock = \"10.8.0.0/21\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderName = \"AWS\",\n            RegionName = \"US_EAST_1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewNetworkContainer(ctx, \"test\", \u0026mongodbatlas.NetworkContainerArgs{\n\t\t\tAtlasCidrBlock: pulumi.String(\"10.8.0.0/21\"),\n\t\t\tProjectId:      pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderName:   pulumi.String(\"AWS\"),\n\t\t\tRegionName:     pulumi.String(\"US_EAST_1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example with GCP\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.NetworkContainer(\"test\", {\n    atlasCidrBlock: \"10.8.0.0/21\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerName: \"GCP\",\n    regions: [\n        \"US_EAST_4\",\n        \"US_WEST_3\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.NetworkContainer(\"test\",\n    atlas_cidr_block=\"10.8.0.0/21\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_name=\"GCP\",\n    regions=[\n        \"US_EAST_4\",\n        \"US_WEST_3\",\n    ])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.NetworkContainer(\"test\", new Mongodbatlas.NetworkContainerArgs\n        {\n            AtlasCidrBlock = \"10.8.0.0/21\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderName = \"GCP\",\n            Regions = \n            {\n                \"US_EAST_4\",\n                \"US_WEST_3\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewNetworkContainer(ctx, \"test\", \u0026mongodbatlas.NetworkContainerArgs{\n\t\t\tAtlasCidrBlock: pulumi.String(\"10.8.0.0/21\"),\n\t\t\tProjectId:      pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderName:   pulumi.String(\"GCP\"),\n\t\t\tRegions: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"US_EAST_4\"),\n\t\t\t\tpulumi.String(\"US_WEST_3\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example with Azure\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.NetworkContainer(\"test\", {\n    atlasCidrBlock: \"10.8.0.0/21\",\n    projectId: \"\u003cYOUR-PROJECT-ID\u003e\",\n    providerName: \"AZURE\",\n    region: \"US_EAST_2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.NetworkContainer(\"test\",\n    atlas_cidr_block=\"10.8.0.0/21\",\n    project_id=\"\u003cYOUR-PROJECT-ID\u003e\",\n    provider_name=\"AZURE\",\n    region=\"US_EAST_2\")\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.NetworkContainer(\"test\", new Mongodbatlas.NetworkContainerArgs\n        {\n            AtlasCidrBlock = \"10.8.0.0/21\",\n            ProjectId = \"\u003cYOUR-PROJECT-ID\u003e\",\n            ProviderName = \"AZURE\",\n            Region = \"US_EAST_2\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewNetworkContainer(ctx, \"test\", \u0026mongodbatlas.NetworkContainerArgs{\n\t\t\tAtlasCidrBlock: pulumi.String(\"10.8.0.0/21\"),\n\t\t\tProjectId:      pulumi.String(\"\u003cYOUR-PROJECT-ID\u003e\"),\n\t\t\tProviderName:   pulumi.String(\"AZURE\"),\n\t\t\tRegion:         pulumi.String(\"US_EAST_2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nClusters can be imported using project ID and network peering container id, in the format `PROJECTID-CONTAINER-ID`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a\n```\n\n See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/) ",
             "properties": {
                 "atlasCidrBlock": {
                     "type": "string",
@@ -11624,7 +11999,7 @@
                 },
                 "azureSubscriptionId": {
                     "type": "string",
-                    "description": "Unique identifier of the Azure subscription in which the VNet resides.\n* * `vnet_name` - \tThe name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.\n"
+                    "description": "Unique identifier of the Azure subscription in which the VNet resides.\n"
                 },
                 "containerId": {
                     "type": "string",
@@ -11636,7 +12011,7 @@
                 },
                 "networkName": {
                     "type": "string",
-                    "description": "Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.\n**AZURE ONLY:**\n"
+                    "description": "Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -11648,7 +12023,7 @@
                 },
                 "provisioned": {
                     "type": "boolean",
-                    "description": "Indicates whether the project has Network Peering connections deployed in the container.\n**AWS ONLY:**\n"
+                    "description": "Indicates whether the project has Network Peering connections deployed in the container.\n"
                 },
                 "region": {
                     "type": "string",
@@ -11666,11 +12041,12 @@
                     "description": "Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).\n"
                 },
                 "vnetName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.\n"
                 },
                 "vpcId": {
                     "type": "string",
-                    "description": "Unique identifier of Atlas' AWS VPC.\n**CGP ONLY:**\n"
+                    "description": "Unique identifier of Atlas' AWS VPC.\n"
                 }
             },
             "required": [
@@ -11728,7 +12104,7 @@
                     },
                     "azureSubscriptionId": {
                         "type": "string",
-                        "description": "Unique identifier of the Azure subscription in which the VNet resides.\n* * `vnet_name` - \tThe name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.\n"
+                        "description": "Unique identifier of the Azure subscription in which the VNet resides.\n"
                     },
                     "containerId": {
                         "type": "string",
@@ -11740,7 +12116,7 @@
                     },
                     "networkName": {
                         "type": "string",
-                        "description": "Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.\n**AZURE ONLY:**\n"
+                        "description": "Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -11752,7 +12128,7 @@
                     },
                     "provisioned": {
                         "type": "boolean",
-                        "description": "Indicates whether the project has Network Peering connections deployed in the container.\n**AWS ONLY:**\n"
+                        "description": "Indicates whether the project has Network Peering connections deployed in the container.\n"
                     },
                     "region": {
                         "type": "string",
@@ -11770,11 +12146,12 @@
                         "description": "Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).\n"
                     },
                     "vnetName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.\n"
                     },
                     "vpcId": {
                         "type": "string",
-                        "description": "Unique identifier of Atlas' AWS VPC.\n**CGP ONLY:**\n"
+                        "description": "Unique identifier of Atlas' AWS VPC.\n"
                     }
                 },
                 "type": "object"
@@ -12650,6 +13027,12 @@
         "mongodbatlas:index/project:Project": {
             "description": "\n\n\n## Import\n\nProject must be imported using project ID, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a\n```\n\n For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information. ",
             "properties": {
+                "apiKeys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/ProjectApiKey:ProjectApiKey"
+                    }
+                },
                 "clusterCount": {
                     "type": "integer",
                     "description": "The number of Atlas clusters deployed in the project..\n"
@@ -12682,12 +13065,19 @@
                 }
             },
             "required": [
+                "apiKeys",
                 "clusterCount",
                 "created",
                 "name",
                 "orgId"
             ],
             "inputProperties": {
+                "apiKeys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/mongodbatlas:index/ProjectApiKey:ProjectApiKey"
+                    }
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the project you want to create. (Cannot be changed via this Provider after creation.)\n"
@@ -12717,6 +13107,12 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Project resources.\n",
                 "properties": {
+                    "apiKeys": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/ProjectApiKey:ProjectApiKey"
+                        }
+                    },
                     "clusterCount": {
                         "type": "integer",
                         "description": "The number of Atlas clusters deployed in the project..\n"
@@ -14350,13 +14746,20 @@
             "outputs": {
                 "description": "A collection of values returned by getCluster.\n",
                 "properties": {
+                    "advancedConfigurations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getClusterAdvancedConfiguration:getClusterAdvancedConfiguration"
+                        },
+                        "description": "Get the advanced configuration options. See Advanced Configuration below for more details.\n"
+                    },
                     "autoScalingComputeEnabled": {
                         "type": "boolean",
-                        "description": "(Optional) Specifies whether cluster tier auto-scaling is enabled. The default is false.\n"
+                        "description": "Specifies whether cluster tier auto-scaling is enabled. The default is false.\n"
                     },
                     "autoScalingComputeScaleDownEnabled": {
                         "type": "boolean",
-                        "description": "(Optional) Set to `true` to enable the cluster tier to scale down.\n"
+                        "description": "Specifies whether cluster tier auto-down-scaling is enabled.\n"
                     },
                     "autoScalingDiskGbEnabled": {
                         "type": "boolean",
@@ -14459,11 +14862,11 @@
                     },
                     "providerAutoScalingComputeMaxInstanceSize": {
                         "type": "string",
-                        "description": "(Optional) Maximum instance size to which your cluster can automatically scale.\n"
+                        "description": "Maximum instance size to which your cluster can automatically scale.\n"
                     },
                     "providerAutoScalingComputeMinInstanceSize": {
                         "type": "string",
-                        "description": "(Optional) Minimum instance size to which your cluster can automatically scale.\n"
+                        "description": "Minimum instance size to which your cluster can automatically scale.\n"
                     },
                     "providerBackupEnabled": {
                         "type": "boolean",
@@ -14525,10 +14928,15 @@
                     "stateName": {
                         "type": "string",
                         "description": "Indicates the current state of the cluster. The possible states are:\n- IDLE\n- CREATING\n- UPDATING\n- DELETING\n- DELETED\n- REPAIRING\n"
+                    },
+                    "versionReleaseSystem": {
+                        "type": "string",
+                        "description": "Release cadence that Atlas uses for this cluster.\n"
                     }
                 },
                 "type": "object",
                 "required": [
+                    "advancedConfigurations",
                     "autoScalingComputeEnabled",
                     "autoScalingComputeScaleDownEnabled",
                     "autoScalingDiskGbEnabled",
@@ -14568,6 +14976,7 @@
                     "snapshotBackupPolicies",
                     "srvAddress",
                     "stateName",
+                    "versionReleaseSystem",
                     "id"
                 ]
             }
@@ -16210,6 +16619,12 @@
             "outputs": {
                 "description": "A collection of values returned by getProject.\n",
                 "properties": {
+                    "apiKeys": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/mongodbatlas:index/getProjectApiKey:getProjectApiKey"
+                        }
+                    },
                     "clusterCount": {
                         "type": "integer"
                     },
@@ -16226,7 +16641,7 @@
                     },
                     "orgId": {
                         "type": "string",
-                        "description": "The ID of the organization you want to create the project within.\n*`cluster_count` - The number of Atlas clusters deployed in the project.\n*`created` - The ISO-8601-formatted timestamp of when Atlas created the project.\n* `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.\n* `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n"
+                        "description": "The ID of the organization you want to create the project within.\n*`cluster_count` - The number of Atlas clusters deployed in the project.\n*`created` - The ISO-8601-formatted timestamp of when Atlas created the project.\n* `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.\n* `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n* `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.\n* `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.\nThe following are valid roles:\n* `GROUP_OWNER`\n* `GROUP_READ_ONLY`\n* `GROUP_DATA_ACCESS_ADMIN`\n* `GROUP_DATA_ACCESS_READ_WRITE`\n* `GROUP_DATA_ACCESS_READ_ONLY`\n* `GROUP_CLUSTER_MANAGER`\n"
                     },
                     "projectId": {
                         "type": "string"
@@ -16240,6 +16655,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "apiKeys",
                     "clusterCount",
                     "created",
                     "orgId",
@@ -16311,7 +16727,7 @@
             }
         },
         "mongodbatlas:index/getProjects:getProjects": {
-            "description": "`mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasProject = new mongodbatlas.Project(\"test\", {\n    orgId: \"\u003cORG_ID\u003e\",\n    teams: [\n        {\n            roleNames: [\"GROUP_OWNER\"],\n            teamId: \"5e0fa8c99ccf641c722fe645\",\n        },\n        {\n            roleNames: [\n                \"GROUP_READ_ONLY\",\n                \"GROUP_DATA_ACCESS_READ_WRITE\",\n            ],\n            teamId: \"5e1dd7b4f2a30ba80a70cd4rw\",\n        },\n    ],\n});\nconst testProject = pulumi.output(mongodbatlas.getProject({\n    itemsPerPage: 5,\n    pageNum: 1,\n}));\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "`mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst testMongodbatlasProject = new mongodbatlas.Project(\"test\", {\n    apiKeys: [{\n        apiKeyId: \"61003b299dda8d54a9d7d10c\",\n        roleNames: [\"GROUP_READ_ONLY\"],\n    }],\n    orgId: \"\u003cORG_ID\u003e\",\n    teams: [\n        {\n            roleNames: [\"GROUP_OWNER\"],\n            teamId: \"5e0fa8c99ccf641c722fe645\",\n        },\n        {\n            roleNames: [\n                \"GROUP_READ_ONLY\",\n                \"GROUP_DATA_ACCESS_READ_WRITE\",\n            ],\n            teamId: \"5e1dd7b4f2a30ba80a70cd4rw\",\n        },\n    ],\n});\nconst testProject = pulumi.output(mongodbatlas.getProject({\n    itemsPerPage: 5,\n    pageNum: 1,\n}));\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getProjects.\n",
                 "properties": {
