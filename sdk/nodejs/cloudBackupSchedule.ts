@@ -145,9 +145,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             resourceInputs["idPolicy"] = undefined /*out*/;
             resourceInputs["nextSnapshot"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CloudBackupSchedule.__pulumiType, name, resourceInputs, opts);
     }
 }

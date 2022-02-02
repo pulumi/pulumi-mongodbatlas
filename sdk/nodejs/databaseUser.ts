@@ -128,9 +128,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["x509Type"] = args ? args.x509Type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DatabaseUser.__pulumiType, name, resourceInputs, opts);
     }
 }

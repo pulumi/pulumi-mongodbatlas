@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,7 +17,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// </summary>
         public static Task<GetCustomDnsConfigurationClusterAwsResult> InvokeAsync(GetCustomDnsConfigurationClusterAwsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
@@ -26,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// </summary>
         public static Output<GetCustomDnsConfigurationClusterAwsResult> Invoke(GetCustomDnsConfigurationClusterAwsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsInvokeArgs(), options.WithDefaults());
     }
 
 

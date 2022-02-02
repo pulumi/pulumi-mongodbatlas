@@ -34,9 +34,7 @@ export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulu
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getNetworkContainers:getNetworkContainers", {
         "projectId": args.projectId,
         "providerName": args.providerName,

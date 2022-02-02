@@ -46,9 +46,7 @@ export function getOnlineArchive(args: GetOnlineArchiveArgs, opts?: pulumi.Invok
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getOnlineArchive:getOnlineArchive", {
         "archiveId": args.archiveId,
         "clusterName": args.clusterName,

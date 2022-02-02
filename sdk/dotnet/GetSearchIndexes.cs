@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -47,7 +46,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetSearchIndexesResult> InvokeAsync(GetSearchIndexesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
@@ -84,7 +83,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetSearchIndexesResult> Invoke(GetSearchIndexesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesInvokeArgs(), options.WithDefaults());
     }
 
 

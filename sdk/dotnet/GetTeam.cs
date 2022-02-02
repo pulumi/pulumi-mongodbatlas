@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,7 +17,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// </summary>
         public static Task<GetTeamResult> InvokeAsync(GetTeamArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
@@ -26,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// </summary>
         public static Output<GetTeamResult> Invoke(GetTeamInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithDefaults());
     }
 
 

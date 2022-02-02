@@ -32,9 +32,7 @@ export function getCloudProviderAccessSetup(args: GetCloudProviderAccessSetupArg
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", {
         "projectId": args.projectId,
         "providerName": args.providerName,

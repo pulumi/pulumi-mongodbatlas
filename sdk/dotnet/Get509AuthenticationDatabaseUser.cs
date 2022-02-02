@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -118,7 +117,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<Get509AuthenticationDatabaseUserResult> InvokeAsync(Get509AuthenticationDatabaseUserArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<Get509AuthenticationDatabaseUserResult>("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args ?? new Get509AuthenticationDatabaseUserArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<Get509AuthenticationDatabaseUserResult>("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args ?? new Get509AuthenticationDatabaseUserArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describe a X509 Authentication Database User. This represents a X509 Authentication Database User.
@@ -226,7 +225,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<Get509AuthenticationDatabaseUserResult> Invoke(Get509AuthenticationDatabaseUserInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<Get509AuthenticationDatabaseUserResult>("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args ?? new Get509AuthenticationDatabaseUserInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<Get509AuthenticationDatabaseUserResult>("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", args ?? new Get509AuthenticationDatabaseUserInvokeArgs(), options.WithDefaults());
     }
 
 

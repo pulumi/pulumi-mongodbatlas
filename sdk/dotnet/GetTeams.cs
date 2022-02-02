@@ -6,17 +6,16 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
     public static class GetTeams
     {
         public static Task<GetTeamsResult> InvokeAsync(GetTeamsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithDefaults());
 
         public static Output<GetTeamsResult> Invoke(GetTeamsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
     }
 
 

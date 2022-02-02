@@ -49,9 +49,7 @@ export function getCloudProviderSnapshotRestoreJobs(args: GetCloudProviderSnapsh
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", {
         "clusterName": args.clusterName,
         "itemsPerPage": args.itemsPerPage,

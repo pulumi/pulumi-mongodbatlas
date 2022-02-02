@@ -77,9 +77,7 @@ export function get509AuthenticationDatabaseUser(args: Get509AuthenticationDatab
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", {
         "projectId": args.projectId,
         "username": args.username,

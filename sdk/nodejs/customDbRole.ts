@@ -184,9 +184,7 @@ export class CustomDbRole extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomDbRole.__pulumiType, name, resourceInputs, opts);
     }
 }

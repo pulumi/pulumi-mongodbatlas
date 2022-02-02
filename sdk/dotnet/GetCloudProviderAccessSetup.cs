@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -48,7 +47,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudProviderAccessSetupResult> InvokeAsync(GetCloudProviderAccessSetupArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.CloudProviderAccess` allows you to get a single role for a provider access role setup, currently only AWS is supported.
@@ -86,7 +85,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetCloudProviderAccessSetupResult> Invoke(GetCloudProviderAccessSetupInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessSetupResult>("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args ?? new GetCloudProviderAccessSetupInvokeArgs(), options.WithDefaults());
     }
 
 

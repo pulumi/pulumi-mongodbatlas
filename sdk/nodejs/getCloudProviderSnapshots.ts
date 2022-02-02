@@ -37,9 +37,7 @@ export function getCloudProviderSnapshots(args: GetCloudProviderSnapshotsArgs, o
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", {
         "clusterName": args.clusterName,
         "itemsPerPage": args.itemsPerPage,

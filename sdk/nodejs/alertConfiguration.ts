@@ -251,9 +251,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
             resourceInputs["created"] = undefined /*out*/;
             resourceInputs["updated"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AlertConfiguration.__pulumiType, name, resourceInputs, opts);
     }
 }

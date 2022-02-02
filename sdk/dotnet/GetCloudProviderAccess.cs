@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -46,7 +45,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudProviderAccessResult> InvokeAsync(GetCloudProviderAccessArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
@@ -82,7 +81,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetCloudProviderAccessResult> Invoke(GetCloudProviderAccessInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderAccessResult>("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", args ?? new GetCloudProviderAccessInvokeArgs(), options.WithDefaults());
     }
 
 

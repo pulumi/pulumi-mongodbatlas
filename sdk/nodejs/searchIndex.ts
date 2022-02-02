@@ -232,9 +232,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["synonyms"] = args ? args.synonyms : undefined;
             resourceInputs["indexId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SearchIndex.__pulumiType, name, resourceInputs, opts);
     }
 }

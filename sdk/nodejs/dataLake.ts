@@ -137,9 +137,7 @@ export class DataLake extends pulumi.CustomResource {
             resourceInputs["storageDatabases"] = undefined /*out*/;
             resourceInputs["storageStores"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DataLake.__pulumiType, name, resourceInputs, opts);
     }
 }

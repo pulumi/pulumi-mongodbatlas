@@ -229,9 +229,7 @@ export class CloudProviderSnapshotRestoreJob extends pulumi.CustomResource {
             resourceInputs["snapshotRestoreJobId"] = undefined /*out*/;
             resourceInputs["timestamp"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CloudProviderSnapshotRestoreJob.__pulumiType, name, resourceInputs, opts);
     }
 }

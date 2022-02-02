@@ -170,9 +170,7 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
             resourceInputs["certificates"] = undefined /*out*/;
             resourceInputs["currentCertificate"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(X509AuthenticationDatabaseUser.__pulumiType, name, resourceInputs, opts);
     }
 }

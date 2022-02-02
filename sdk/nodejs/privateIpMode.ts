@@ -94,9 +94,7 @@ export class PrivateIpMode extends pulumi.CustomResource {
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PrivateIpMode.__pulumiType, name, resourceInputs, opts);
     }
 }

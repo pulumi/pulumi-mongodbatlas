@@ -15,9 +15,7 @@ export function getLdapVerify(args: GetLdapVerifyArgs, opts?: pulumi.InvokeOptio
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getLdapVerify:getLdapVerify", {
         "projectId": args.projectId,
         "requestId": args.requestId,

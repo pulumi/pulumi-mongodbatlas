@@ -9,9 +9,7 @@ export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getTeams:getTeams", {
         "name": args.name,
         "orgId": args.orgId,

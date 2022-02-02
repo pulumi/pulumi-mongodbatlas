@@ -14,9 +14,7 @@ export function getCustomDnsConfigurationClusterAws(args: GetCustomDnsConfigurat
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", {
         "projectId": args.projectId,
     }, opts);

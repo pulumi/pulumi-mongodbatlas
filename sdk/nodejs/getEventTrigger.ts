@@ -13,9 +13,7 @@ export function getEventTrigger(args: GetEventTriggerArgs, opts?: pulumi.InvokeO
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getEventTrigger:getEventTrigger", {
         "appId": args.appId,
         "projectId": args.projectId,

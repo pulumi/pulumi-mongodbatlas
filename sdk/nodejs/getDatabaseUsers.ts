@@ -54,9 +54,7 @@ export function getDatabaseUsers(args: GetDatabaseUsersArgs, opts?: pulumi.Invok
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", {
         "projectId": args.projectId,
     }, opts);

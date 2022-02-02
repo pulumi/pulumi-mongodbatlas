@@ -201,9 +201,7 @@ export class NetworkContainer extends pulumi.CustomResource {
             resourceInputs["vnetName"] = undefined /*out*/;
             resourceInputs["vpcId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(NetworkContainer.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -174,9 +174,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["writeToken"] = args ? args.writeToken : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ThirdPartyIntegration.__pulumiType, name, resourceInputs, opts);
     }
 }

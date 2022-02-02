@@ -47,9 +47,7 @@ export function getCustomDbRole(args: GetCustomDbRoleArgs, opts?: pulumi.InvokeO
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getCustomDbRole:getCustomDbRole", {
         "inheritedRoles": args.inheritedRoles,
         "projectId": args.projectId,
