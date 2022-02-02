@@ -64,9 +64,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
             resourceInputs["realmBaseUrl"] = args ? args.realmBaseUrl : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

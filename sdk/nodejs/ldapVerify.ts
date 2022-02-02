@@ -171,9 +171,7 @@ export class LdapVerify extends pulumi.CustomResource {
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["validations"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(LdapVerify.__pulumiType, name, resourceInputs, opts);
     }
 }

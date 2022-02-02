@@ -303,9 +303,7 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             resourceInputs["privateEndpointConnectionName"] = undefined /*out*/;
             resourceInputs["privateEndpointResourceId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PrivateLinkEndpointService.__pulumiType, name, resourceInputs, opts);
     }
 }

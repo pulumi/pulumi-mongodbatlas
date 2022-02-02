@@ -292,9 +292,7 @@ export class EventTrigger extends pulumi.CustomResource {
             resourceInputs["functionName"] = undefined /*out*/;
             resourceInputs["triggerId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EventTrigger.__pulumiType, name, resourceInputs, opts);
     }
 }

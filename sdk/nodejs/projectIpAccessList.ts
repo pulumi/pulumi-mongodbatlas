@@ -154,9 +154,7 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
             resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ProjectIpAccessList.__pulumiType, name, resourceInputs, opts);
     }
 }

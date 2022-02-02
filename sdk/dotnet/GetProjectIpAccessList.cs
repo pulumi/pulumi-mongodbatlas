@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -26,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectIpAccessListResult> InvokeAsync(GetProjectIpAccessListArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectIpAccessListResult>("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", args ?? new GetProjectIpAccessListArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectIpAccessListResult>("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", args ?? new GetProjectIpAccessListArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
@@ -42,7 +41,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetProjectIpAccessListResult> Invoke(GetProjectIpAccessListInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetProjectIpAccessListResult>("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", args ?? new GetProjectIpAccessListInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetProjectIpAccessListResult>("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", args ?? new GetProjectIpAccessListInvokeArgs(), options.WithDefaults());
     }
 
 

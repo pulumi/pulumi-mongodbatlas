@@ -36,9 +36,7 @@ export function getNetworkPeerings(args: GetNetworkPeeringsArgs, opts?: pulumi.I
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", {
         "projectId": args.projectId,
     }, opts);

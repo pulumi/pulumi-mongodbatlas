@@ -71,9 +71,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
             resourceInputs["authorizedDate"] = undefined /*out*/;
             resourceInputs["featureUsages"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CloudProviderAccessAuthorization.__pulumiType, name, resourceInputs, opts);
     }
 }

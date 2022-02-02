@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -75,7 +74,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudProviderSnapshotRestoreJobsResult> InvokeAsync(GetCloudProviderSnapshotRestoreJobsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsArgs(), options.WithDefaults());
 
         /// <summary>
         /// **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshots_restore_jobs`
@@ -140,7 +139,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetCloudProviderSnapshotRestoreJobsResult> Invoke(GetCloudProviderSnapshotRestoreJobsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsInvokeArgs(), options.WithDefaults());
     }
 
 

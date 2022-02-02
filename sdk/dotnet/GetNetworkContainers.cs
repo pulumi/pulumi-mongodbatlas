@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -56,7 +55,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkContainersResult> InvokeAsync(GetNetworkContainersArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
@@ -102,7 +101,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetNetworkContainersResult> Invoke(GetNetworkContainersInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkContainersResult>("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args ?? new GetNetworkContainersInvokeArgs(), options.WithDefaults());
     }
 
 

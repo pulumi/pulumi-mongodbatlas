@@ -15,9 +15,7 @@ export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: 
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", {
         "clusterName": args.clusterName,
         "managedNamespaces": args.managedNamespaces,

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -18,7 +17,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// </summary>
         public static Task<GetPrivateLinkEndpointServiceResult> InvokeAsync(GetPrivateLinkEndpointServiceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
@@ -26,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// </summary>
         public static Output<GetPrivateLinkEndpointServiceResult> Invoke(GetPrivateLinkEndpointServiceInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointServiceResult>("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", args ?? new GetPrivateLinkEndpointServiceInvokeArgs(), options.WithDefaults());
     }
 
 

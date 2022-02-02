@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -16,13 +15,13 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getEventTriggers` describe all Event Triggers.
         /// </summary>
         public static Task<GetEventTriggersResult> InvokeAsync(GetEventTriggersArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetEventTriggersResult>("mongodbatlas:index/getEventTriggers:getEventTriggers", args ?? new GetEventTriggersArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetEventTriggersResult>("mongodbatlas:index/getEventTriggers:getEventTriggers", args ?? new GetEventTriggersArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getEventTriggers` describe all Event Triggers.
         /// </summary>
         public static Output<GetEventTriggersResult> Invoke(GetEventTriggersInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetEventTriggersResult>("mongodbatlas:index/getEventTriggers:getEventTriggers", args ?? new GetEventTriggersInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetEventTriggersResult>("mongodbatlas:index/getEventTriggers:getEventTriggers", args ?? new GetEventTriggersInvokeArgs(), options.WithDefaults());
     }
 
 

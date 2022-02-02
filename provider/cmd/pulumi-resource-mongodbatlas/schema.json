@@ -17271,6 +17271,7 @@
             }
         },
         "go": {
+            "generateExtraInputTypes": true,
             "generateResourceContainerTypes": true,
             "importBasePath": "github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
         },

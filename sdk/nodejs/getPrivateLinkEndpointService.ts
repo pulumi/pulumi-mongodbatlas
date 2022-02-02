@@ -15,9 +15,7 @@ export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServic
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", {
         "endpointServiceId": args.endpointServiceId,
         "privateLinkId": args.privateLinkId,

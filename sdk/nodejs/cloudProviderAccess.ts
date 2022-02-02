@@ -119,9 +119,7 @@ export class CloudProviderAccess extends pulumi.CustomResource {
             resourceInputs["featureUsages"] = undefined /*out*/;
             resourceInputs["roleId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CloudProviderAccess.__pulumiType, name, resourceInputs, opts);
     }
 }

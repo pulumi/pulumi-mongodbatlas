@@ -125,9 +125,7 @@ export class CloudProviderSnapshotBackupPolicy extends pulumi.CustomResource {
             resourceInputs["clusterId"] = undefined /*out*/;
             resourceInputs["nextSnapshot"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CloudProviderSnapshotBackupPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }

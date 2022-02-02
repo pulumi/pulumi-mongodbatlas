@@ -139,9 +139,7 @@ export class LdapConfiguration extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["userToDnMappings"] = args ? args.userToDnMappings : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(LdapConfiguration.__pulumiType, name, resourceInputs, opts);
     }
 }

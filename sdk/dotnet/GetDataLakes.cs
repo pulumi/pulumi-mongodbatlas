@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -42,7 +41,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDataLakesResult> InvokeAsync(GetDataLakesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getDataLakes` describe all Data Lakes.
@@ -74,7 +73,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDataLakesResult> Invoke(GetDataLakesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesInvokeArgs(), options.WithDefaults());
     }
 
 

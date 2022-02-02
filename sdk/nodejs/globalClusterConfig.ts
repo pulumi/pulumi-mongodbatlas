@@ -196,9 +196,7 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["customZoneMapping"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GlobalClusterConfig.__pulumiType, name, resourceInputs, opts);
     }
 }

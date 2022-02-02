@@ -15,9 +15,7 @@ export function getLdapConfiguration(args: GetLdapConfigurationArgs, opts?: pulu
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", {
         "projectId": args.projectId,
     }, opts);

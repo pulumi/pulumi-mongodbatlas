@@ -92,9 +92,7 @@ export class EncryptionAtRest extends pulumi.CustomResource {
             resourceInputs["googleCloudKmsConfig"] = args ? args.googleCloudKmsConfig : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EncryptionAtRest.__pulumiType, name, resourceInputs, opts);
     }
 }

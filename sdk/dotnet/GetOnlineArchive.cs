@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -62,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
         /// </summary>
         public static Task<GetOnlineArchiveResult> InvokeAsync(GetOnlineArchiveArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchiveResult>("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args ?? new GetOnlineArchiveArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchiveResult>("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args ?? new GetOnlineArchiveArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
@@ -114,7 +113,7 @@ namespace Pulumi.Mongodbatlas
         /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
         /// </summary>
         public static Output<GetOnlineArchiveResult> Invoke(GetOnlineArchiveInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOnlineArchiveResult>("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args ?? new GetOnlineArchiveInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetOnlineArchiveResult>("mongodbatlas:index/getOnlineArchive:getOnlineArchive", args ?? new GetOnlineArchiveInvokeArgs(), options.WithDefaults());
     }
 
 

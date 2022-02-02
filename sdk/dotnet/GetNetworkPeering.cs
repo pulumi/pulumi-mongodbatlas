@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Mongodbatlas
 {
@@ -23,7 +22,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkPeeringResult> InvokeAsync(GetNetworkPeeringArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
@@ -36,7 +35,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetNetworkPeeringResult> Invoke(GetNetworkPeeringInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkPeeringResult>("mongodbatlas:index/getNetworkPeering:getNetworkPeering", args ?? new GetNetworkPeeringInvokeArgs(), options.WithDefaults());
     }
 
 

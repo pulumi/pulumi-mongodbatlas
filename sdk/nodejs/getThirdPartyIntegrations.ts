@@ -39,9 +39,7 @@ export function getThirdPartyIntegrations(args: GetThirdPartyIntegrationsArgs, o
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", {
         "projectId": args.projectId,
     }, opts);

@@ -114,9 +114,7 @@ export class Team extends pulumi.CustomResource {
             resourceInputs["usernames"] = args ? args.usernames : undefined;
             resourceInputs["teamId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Team.__pulumiType, name, resourceInputs, opts);
     }
 }

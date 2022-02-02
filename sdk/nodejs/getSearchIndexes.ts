@@ -31,9 +31,7 @@ export function getSearchIndexes(args: GetSearchIndexesArgs, opts?: pulumi.Invok
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", {
         "clusterName": args.clusterName,
         "collectionName": args.collectionName,
