@@ -11,6 +11,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
+// 			ApiToken:  pulumi.String("<API-TOKEN>"),
+// 			FlowName:  pulumi.String("<FLOW-NAME>"),
+// 			OrgName:   pulumi.String("<ORG-NAME>"),
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			Type:      pulumi.String("FLOWDOCK"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Third-Party Integration Settings can be imported using project ID and the integration type, in the format `project_id`-`type`, e.g.

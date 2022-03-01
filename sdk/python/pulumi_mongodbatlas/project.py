@@ -248,6 +248,34 @@ class Project(pulumi.CustomResource):
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Project("test",
+            api_keys=[mongodbatlas.ProjectApiKeyArgs(
+                api_key_id="61003b299dda8d54a9d7d10c",
+                role_names=["GROUP_READ_ONLY"],
+            )],
+            org_id="<ORG_ID>",
+            project_owner_id="<OWNER_ACCOUNT_ID>",
+            teams=[
+                mongodbatlas.ProjectTeamArgs(
+                    role_names=["GROUP_OWNER"],
+                    team_id="5e0fa8c99ccf641c722fe645",
+                ),
+                mongodbatlas.ProjectTeamArgs(
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                ),
+            ])
+        ```
+
         ## Import
 
         Project must be imported using project ID, e.g.
@@ -272,6 +300,34 @@ class Project(pulumi.CustomResource):
                  args: ProjectArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Project("test",
+            api_keys=[mongodbatlas.ProjectApiKeyArgs(
+                api_key_id="61003b299dda8d54a9d7d10c",
+                role_names=["GROUP_READ_ONLY"],
+            )],
+            org_id="<ORG_ID>",
+            project_owner_id="<OWNER_ACCOUNT_ID>",
+            teams=[
+                mongodbatlas.ProjectTeamArgs(
+                    role_names=["GROUP_OWNER"],
+                    team_id="5e0fa8c99ccf641c722fe645",
+                ),
+                mongodbatlas.ProjectTeamArgs(
+                    role_names=[
+                        "GROUP_READ_ONLY",
+                        "GROUP_DATA_ACCESS_READ_WRITE",
+                    ],
+                    team_id="5e1dd7b4f2a30ba80a70cd4rw",
+                ),
+            ])
+        ```
+
         ## Import
 
         Project must be imported using project ID, e.g.

@@ -10,6 +10,41 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### S
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testProject = new Mongodbatlas.Project("testProject", new Mongodbatlas.ProjectArgs
+    ///         {
+    ///             OrgId = "ORGANIZATION ID",
+    ///         });
+    ///         var testCloudProviderAccess = new Mongodbatlas.CloudProviderAccess("testCloudProviderAccess", new Mongodbatlas.CloudProviderAccessArgs
+    ///         {
+    ///             ProjectId = testProject.Id,
+    ///             ProviderName = "AWS",
+    ///             IamAssumedRoleArn = "AWS ROLE ID",
+    ///         });
+    ///         var basicDs = new Mongodbatlas.DataLake("basicDs", new Mongodbatlas.DataLakeArgs
+    ///         {
+    ///             ProjectId = testProject.Id,
+    ///             Aws = new Mongodbatlas.Inputs.DataLakeAwsArgs
+    ///             {
+    ///                 RoleId = testCloudProviderAccess.RoleId,
+    ///                 TestS3Bucket = "TEST S3 BUCKET NAME",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Data Lake can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.

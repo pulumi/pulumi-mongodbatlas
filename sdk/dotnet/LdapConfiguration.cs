@@ -10,6 +10,71 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testProject = new Mongodbatlas.Project("testProject", new Mongodbatlas.ProjectArgs
+    ///         {
+    ///             OrgId = "ORG ID",
+    ///         });
+    ///         var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("testLdapConfiguration", new Mongodbatlas.LdapConfigurationArgs
+    ///         {
+    ///             ProjectId = testProject.Id,
+    ///             AuthenticationEnabled = true,
+    ///             Hostname = "HOSTNAME",
+    ///             Port = 636,
+    ///             BindUsername = "USERNAME",
+    ///             BindPassword = "PASSWORD",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### LDAP With User To DN Mapping
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testProject = new Mongodbatlas.Project("testProject", new Mongodbatlas.ProjectArgs
+    ///         {
+    ///             OrgId = "ORG ID",
+    ///         });
+    ///         var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("testLdapConfiguration", new Mongodbatlas.LdapConfigurationArgs
+    ///         {
+    ///             ProjectId = testProject.Id,
+    ///             AuthenticationEnabled = true,
+    ///             Hostname = "HOSTNAME",
+    ///             Port = 636,
+    ///             BindUsername = "USERNAME",
+    ///             BindPassword = "PASSWORD",
+    ///             CaCertificate = "CA CERTIFICATE",
+    ///             AuthzQueryTemplate = "{USER}?memberOf?base",
+    ///             UserToDnMappings = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.LdapConfigurationUserToDnMappingArgs
+    ///                 {
+    ///                     Match = "(.+)",
+    ///                     LdapQuery = "DC=example,DC=com??sub?(userPrincipalName={0})",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// LDAP Configuration must be imported using project ID, e.g.

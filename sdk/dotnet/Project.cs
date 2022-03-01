@@ -10,6 +10,57 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.Project("test", new Mongodbatlas.ProjectArgs
+    ///         {
+    ///             ApiKeys = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.ProjectApiKeyArgs
+    ///                 {
+    ///                     ApiKeyId = "61003b299dda8d54a9d7d10c",
+    ///                     RoleNames = 
+    ///                     {
+    ///                         "GROUP_READ_ONLY",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             OrgId = "&lt;ORG_ID&gt;",
+    ///             ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
+    ///             Teams = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.ProjectTeamArgs
+    ///                 {
+    ///                     RoleNames = 
+    ///                     {
+    ///                         "GROUP_OWNER",
+    ///                     },
+    ///                     TeamId = "5e0fa8c99ccf641c722fe645",
+    ///                 },
+    ///                 new Mongodbatlas.Inputs.ProjectTeamArgs
+    ///                 {
+    ///                     RoleNames = 
+    ///                     {
+    ///                         "GROUP_READ_ONLY",
+    ///                         "GROUP_DATA_ACCESS_READ_WRITE",
+    ///                     },
+    ///                     TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Project must be imported using project ID, e.g.

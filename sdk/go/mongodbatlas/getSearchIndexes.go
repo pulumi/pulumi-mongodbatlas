@@ -26,10 +26,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "<COLLECTION_NAME>"
 // 		_, err := mongodbatlas.LookupSearchIndex(ctx, &GetSearchIndexArgs{
 // 			ClusterName:    "<CLUSTER_NAME>",
-// 			CollectionName: &opt0,
+// 			CollectionName: pulumi.StringRef("<COLLECTION_NAME>"),
 // 			DatabaseName:   "<DATABASE_NAME>",
 // 			ItemsPerPage:   100,
 // 			PageNum:        1,

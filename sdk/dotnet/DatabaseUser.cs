@@ -10,6 +10,151 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// ### S
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.DatabaseUser("test", new Mongodbatlas.DatabaseUserArgs
+    ///         {
+    ///             AuthDatabaseName = "admin",
+    ///             Labels = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+    ///                 {
+    ///                     Key = "My Key",
+    ///                     Value = "My Value",
+    ///                 },
+    ///             },
+    ///             Password = "test-acc-password",
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             Roles = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///                 {
+    ///                     DatabaseName = "dbforApp",
+    ///                     RoleName = "readWrite",
+    ///                 },
+    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///                 {
+    ///                     DatabaseName = "admin",
+    ///                     RoleName = "readAnyDatabase",
+    ///                 },
+    ///             },
+    ///             Scopes = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserScopeArgs
+    ///                 {
+    ///                     Name = "My cluster name",
+    ///                     Type = "CLUSTER",
+    ///                 },
+    ///                 new Mongodbatlas.Inputs.DatabaseUserScopeArgs
+    ///                 {
+    ///                     Name = "My second cluster name",
+    ///                     Type = "CLUSTER",
+    ///                 },
+    ///             },
+    ///             Username = "test-acc-username",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.DatabaseUser("test", new Mongodbatlas.DatabaseUserArgs
+    ///         {
+    ///             AuthDatabaseName = "$external",
+    ///             Labels = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+    ///                 {
+    ///                     Key = "%s",
+    ///                     Value = "%s",
+    ///                 },
+    ///             },
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             Roles = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///                 {
+    ///                     DatabaseName = "admin",
+    ///                     RoleName = "readAnyDatabase",
+    ///                 },
+    ///             },
+    ///             Scopes = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserScopeArgs
+    ///                 {
+    ///                     Name = "My cluster name",
+    ///                     Type = "CLUSTER",
+    ///                 },
+    ///             },
+    ///             Username = "test-acc-username",
+    ///             X509Type = "MANAGED",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var test = new Mongodbatlas.DatabaseUser("test", new Mongodbatlas.DatabaseUserArgs
+    ///         {
+    ///             Username = aws_iam_role.Test.Arn,
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             AuthDatabaseName = "$external",
+    ///             AwsIamType = "ROLE",
+    ///             Roles = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+    ///                 {
+    ///                     RoleName = "readAnyDatabase",
+    ///                     DatabaseName = "admin",
+    ///                 },
+    ///             },
+    ///             Labels = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+    ///                 {
+    ///                     Key = "%s",
+    ///                     Value = "%s",
+    ///                 },
+    ///             },
+    ///             Scopes = 
+    ///             {
+    ///                 new Mongodbatlas.Inputs.DatabaseUserScopeArgs
+    ///                 {
+    ///                     Name = "My cluster name",
+    ///                     Type = "CLUSTER",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.

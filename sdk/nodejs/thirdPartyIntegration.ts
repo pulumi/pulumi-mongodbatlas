@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testFlowdock = new mongodbatlas.ThirdPartyIntegration("test_flowdock", {
+ *     apiToken: "<API-TOKEN>",
+ *     flowName: "<FLOW-NAME>",
+ *     orgName: "<ORG-NAME>",
+ *     projectId: "<PROJECT-ID>",
+ *     type: "FLOWDOCK",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Third-Party Integration Settings can be imported using project ID and the integration type, in the format `project_id`-`type`, e.g.
