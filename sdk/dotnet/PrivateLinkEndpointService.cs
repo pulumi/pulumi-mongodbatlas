@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             ProjectId = "&lt;PROJECT_ID&gt;",
     ///             ProviderName = "AWS",
-    ///             Region = "us-east-1",
+    ///             Region = "US_EAST_1",
     ///         });
     ///         var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new Aws.Ec2.VpcEndpointArgs
     ///         {

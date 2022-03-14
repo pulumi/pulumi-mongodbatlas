@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             ProjectId = "&lt;PROJECT-ID&gt;",
     ///             ProviderName = "AWS/AZURE",
-    ///             Region = "us-east-1",
+    ///             Region = "US_EAST_1",
     ///         });
     ///     }
     /// 

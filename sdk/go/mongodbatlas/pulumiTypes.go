@@ -10,6 +10,2037 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type AdvancedClusterAdvancedConfiguration struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong *bool `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled *bool `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol *string `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan *bool `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb *int `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector *int `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector *int `pulumi:"sampleSizeBiConnector"`
+}
+
+// AdvancedClusterAdvancedConfigurationInput is an input type that accepts AdvancedClusterAdvancedConfigurationArgs and AdvancedClusterAdvancedConfigurationOutput values.
+// You can construct a concrete instance of `AdvancedClusterAdvancedConfigurationInput` via:
+//
+//          AdvancedClusterAdvancedConfigurationArgs{...}
+type AdvancedClusterAdvancedConfigurationInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterAdvancedConfigurationOutput() AdvancedClusterAdvancedConfigurationOutput
+	ToAdvancedClusterAdvancedConfigurationOutputWithContext(context.Context) AdvancedClusterAdvancedConfigurationOutput
+}
+
+type AdvancedClusterAdvancedConfigurationArgs struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong pulumi.BoolPtrInput `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled pulumi.BoolPtrInput `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb pulumi.IntPtrInput `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector pulumi.IntPtrInput `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector pulumi.IntPtrInput `pulumi:"sampleSizeBiConnector"`
+}
+
+func (AdvancedClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i AdvancedClusterAdvancedConfigurationArgs) ToAdvancedClusterAdvancedConfigurationOutput() AdvancedClusterAdvancedConfigurationOutput {
+	return i.ToAdvancedClusterAdvancedConfigurationOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterAdvancedConfigurationArgs) ToAdvancedClusterAdvancedConfigurationOutputWithContext(ctx context.Context) AdvancedClusterAdvancedConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterAdvancedConfigurationOutput)
+}
+
+func (i AdvancedClusterAdvancedConfigurationArgs) ToAdvancedClusterAdvancedConfigurationPtrOutput() AdvancedClusterAdvancedConfigurationPtrOutput {
+	return i.ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterAdvancedConfigurationArgs) ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(ctx context.Context) AdvancedClusterAdvancedConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterAdvancedConfigurationOutput).ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(ctx)
+}
+
+// AdvancedClusterAdvancedConfigurationPtrInput is an input type that accepts AdvancedClusterAdvancedConfigurationArgs, AdvancedClusterAdvancedConfigurationPtr and AdvancedClusterAdvancedConfigurationPtrOutput values.
+// You can construct a concrete instance of `AdvancedClusterAdvancedConfigurationPtrInput` via:
+//
+//          AdvancedClusterAdvancedConfigurationArgs{...}
+//
+//  or:
+//
+//          nil
+type AdvancedClusterAdvancedConfigurationPtrInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterAdvancedConfigurationPtrOutput() AdvancedClusterAdvancedConfigurationPtrOutput
+	ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(context.Context) AdvancedClusterAdvancedConfigurationPtrOutput
+}
+
+type advancedClusterAdvancedConfigurationPtrType AdvancedClusterAdvancedConfigurationArgs
+
+func AdvancedClusterAdvancedConfigurationPtr(v *AdvancedClusterAdvancedConfigurationArgs) AdvancedClusterAdvancedConfigurationPtrInput {
+	return (*advancedClusterAdvancedConfigurationPtrType)(v)
+}
+
+func (*advancedClusterAdvancedConfigurationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i *advancedClusterAdvancedConfigurationPtrType) ToAdvancedClusterAdvancedConfigurationPtrOutput() AdvancedClusterAdvancedConfigurationPtrOutput {
+	return i.ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (i *advancedClusterAdvancedConfigurationPtrType) ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(ctx context.Context) AdvancedClusterAdvancedConfigurationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterAdvancedConfigurationPtrOutput)
+}
+
+type AdvancedClusterAdvancedConfigurationOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterAdvancedConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o AdvancedClusterAdvancedConfigurationOutput) ToAdvancedClusterAdvancedConfigurationOutput() AdvancedClusterAdvancedConfigurationOutput {
+	return o
+}
+
+func (o AdvancedClusterAdvancedConfigurationOutput) ToAdvancedClusterAdvancedConfigurationOutputWithContext(ctx context.Context) AdvancedClusterAdvancedConfigurationOutput {
+	return o
+}
+
+func (o AdvancedClusterAdvancedConfigurationOutput) ToAdvancedClusterAdvancedConfigurationPtrOutput() AdvancedClusterAdvancedConfigurationPtrOutput {
+	return o.ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(context.Background())
+}
+
+func (o AdvancedClusterAdvancedConfigurationOutput) ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(ctx context.Context) AdvancedClusterAdvancedConfigurationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AdvancedClusterAdvancedConfiguration) *AdvancedClusterAdvancedConfiguration {
+		return &v
+	}).(AdvancedClusterAdvancedConfigurationPtrOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+func (o AdvancedClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+func (o AdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.DefaultWriteConcern }).(pulumi.StringPtrOutput)
+}
+
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+func (o AdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.FailIndexKeyTooLong }).(pulumi.BoolPtrOutput)
+}
+
+// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+func (o AdvancedClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.JavascriptEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+func (o AdvancedClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringPtrOutput)
+}
+
+// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+func (o AdvancedClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.NoTableScan }).(pulumi.BoolPtrOutput)
+}
+
+// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+func (o AdvancedClusterAdvancedConfigurationOutput) OplogSizeMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.OplogSizeMb }).(pulumi.IntPtrOutput)
+}
+
+// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o AdvancedClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.SampleRefreshIntervalBiConnector }).(pulumi.IntPtrOutput)
+}
+
+// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o AdvancedClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *int { return v.SampleSizeBiConnector }).(pulumi.IntPtrOutput)
+}
+
+type AdvancedClusterAdvancedConfigurationPtrOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterAdvancedConfigurationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) ToAdvancedClusterAdvancedConfigurationPtrOutput() AdvancedClusterAdvancedConfigurationPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) ToAdvancedClusterAdvancedConfigurationPtrOutputWithContext(ctx context.Context) AdvancedClusterAdvancedConfigurationPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) Elem() AdvancedClusterAdvancedConfigurationOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) AdvancedClusterAdvancedConfiguration {
+		if v != nil {
+			return *v
+		}
+		var ret AdvancedClusterAdvancedConfiguration
+		return ret
+	}).(AdvancedClusterAdvancedConfigurationOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultReadConcern
+	}).(pulumi.StringPtrOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultWriteConcern
+	}).(pulumi.StringPtrOutput)
+}
+
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) FailIndexKeyTooLong() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FailIndexKeyTooLong
+	}).(pulumi.BoolPtrOutput)
+}
+
+// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) JavascriptEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.JavascriptEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) MinimumEnabledTlsProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinimumEnabledTlsProtocol
+	}).(pulumi.StringPtrOutput)
+}
+
+// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NoTableScan
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogSizeMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OplogSizeMb
+	}).(pulumi.IntPtrOutput)
+}
+
+// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) SampleRefreshIntervalBiConnector() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SampleRefreshIntervalBiConnector
+	}).(pulumi.IntPtrOutput)
+}
+
+// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o AdvancedClusterAdvancedConfigurationPtrOutput) SampleSizeBiConnector() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SampleSizeBiConnector
+	}).(pulumi.IntPtrOutput)
+}
+
+type AdvancedClusterBiConnector struct {
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// *
+	// - Set to `true` to enable BI Connector for Atlas.
+	// - Set to `false` to disable BI Connector for Atlas.
+	Enabled *bool `pulumi:"enabled"`
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference *string `pulumi:"readPreference"`
+}
+
+// AdvancedClusterBiConnectorInput is an input type that accepts AdvancedClusterBiConnectorArgs and AdvancedClusterBiConnectorOutput values.
+// You can construct a concrete instance of `AdvancedClusterBiConnectorInput` via:
+//
+//          AdvancedClusterBiConnectorArgs{...}
+type AdvancedClusterBiConnectorInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterBiConnectorOutput() AdvancedClusterBiConnectorOutput
+	ToAdvancedClusterBiConnectorOutputWithContext(context.Context) AdvancedClusterBiConnectorOutput
+}
+
+type AdvancedClusterBiConnectorArgs struct {
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	// *
+	// - Set to `true` to enable BI Connector for Atlas.
+	// - Set to `false` to disable BI Connector for Atlas.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference pulumi.StringPtrInput `pulumi:"readPreference"`
+}
+
+func (AdvancedClusterBiConnectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterBiConnector)(nil)).Elem()
+}
+
+func (i AdvancedClusterBiConnectorArgs) ToAdvancedClusterBiConnectorOutput() AdvancedClusterBiConnectorOutput {
+	return i.ToAdvancedClusterBiConnectorOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterBiConnectorArgs) ToAdvancedClusterBiConnectorOutputWithContext(ctx context.Context) AdvancedClusterBiConnectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterBiConnectorOutput)
+}
+
+func (i AdvancedClusterBiConnectorArgs) ToAdvancedClusterBiConnectorPtrOutput() AdvancedClusterBiConnectorPtrOutput {
+	return i.ToAdvancedClusterBiConnectorPtrOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterBiConnectorArgs) ToAdvancedClusterBiConnectorPtrOutputWithContext(ctx context.Context) AdvancedClusterBiConnectorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterBiConnectorOutput).ToAdvancedClusterBiConnectorPtrOutputWithContext(ctx)
+}
+
+// AdvancedClusterBiConnectorPtrInput is an input type that accepts AdvancedClusterBiConnectorArgs, AdvancedClusterBiConnectorPtr and AdvancedClusterBiConnectorPtrOutput values.
+// You can construct a concrete instance of `AdvancedClusterBiConnectorPtrInput` via:
+//
+//          AdvancedClusterBiConnectorArgs{...}
+//
+//  or:
+//
+//          nil
+type AdvancedClusterBiConnectorPtrInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterBiConnectorPtrOutput() AdvancedClusterBiConnectorPtrOutput
+	ToAdvancedClusterBiConnectorPtrOutputWithContext(context.Context) AdvancedClusterBiConnectorPtrOutput
+}
+
+type advancedClusterBiConnectorPtrType AdvancedClusterBiConnectorArgs
+
+func AdvancedClusterBiConnectorPtr(v *AdvancedClusterBiConnectorArgs) AdvancedClusterBiConnectorPtrInput {
+	return (*advancedClusterBiConnectorPtrType)(v)
+}
+
+func (*advancedClusterBiConnectorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterBiConnector)(nil)).Elem()
+}
+
+func (i *advancedClusterBiConnectorPtrType) ToAdvancedClusterBiConnectorPtrOutput() AdvancedClusterBiConnectorPtrOutput {
+	return i.ToAdvancedClusterBiConnectorPtrOutputWithContext(context.Background())
+}
+
+func (i *advancedClusterBiConnectorPtrType) ToAdvancedClusterBiConnectorPtrOutputWithContext(ctx context.Context) AdvancedClusterBiConnectorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterBiConnectorPtrOutput)
+}
+
+type AdvancedClusterBiConnectorOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterBiConnectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterBiConnector)(nil)).Elem()
+}
+
+func (o AdvancedClusterBiConnectorOutput) ToAdvancedClusterBiConnectorOutput() AdvancedClusterBiConnectorOutput {
+	return o
+}
+
+func (o AdvancedClusterBiConnectorOutput) ToAdvancedClusterBiConnectorOutputWithContext(ctx context.Context) AdvancedClusterBiConnectorOutput {
+	return o
+}
+
+func (o AdvancedClusterBiConnectorOutput) ToAdvancedClusterBiConnectorPtrOutput() AdvancedClusterBiConnectorPtrOutput {
+	return o.ToAdvancedClusterBiConnectorPtrOutputWithContext(context.Background())
+}
+
+func (o AdvancedClusterBiConnectorOutput) ToAdvancedClusterBiConnectorPtrOutputWithContext(ctx context.Context) AdvancedClusterBiConnectorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AdvancedClusterBiConnector) *AdvancedClusterBiConnector {
+		return &v
+	}).(AdvancedClusterBiConnectorPtrOutput)
+}
+
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// *
+// - Set to `true` to enable BI Connector for Atlas.
+// - Set to `false` to disable BI Connector for Atlas.
+func (o AdvancedClusterBiConnectorOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterBiConnector) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+func (o AdvancedClusterBiConnectorOutput) ReadPreference() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterBiConnector) *string { return v.ReadPreference }).(pulumi.StringPtrOutput)
+}
+
+type AdvancedClusterBiConnectorPtrOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterBiConnectorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterBiConnector)(nil)).Elem()
+}
+
+func (o AdvancedClusterBiConnectorPtrOutput) ToAdvancedClusterBiConnectorPtrOutput() AdvancedClusterBiConnectorPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterBiConnectorPtrOutput) ToAdvancedClusterBiConnectorPtrOutputWithContext(ctx context.Context) AdvancedClusterBiConnectorPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterBiConnectorPtrOutput) Elem() AdvancedClusterBiConnectorOutput {
+	return o.ApplyT(func(v *AdvancedClusterBiConnector) AdvancedClusterBiConnector {
+		if v != nil {
+			return *v
+		}
+		var ret AdvancedClusterBiConnector
+		return ret
+	}).(AdvancedClusterBiConnectorOutput)
+}
+
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+// *
+// - Set to `true` to enable BI Connector for Atlas.
+// - Set to `false` to disable BI Connector for Atlas.
+func (o AdvancedClusterBiConnectorPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterBiConnector) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+func (o AdvancedClusterBiConnectorPtrOutput) ReadPreference() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterBiConnector) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ReadPreference
+	}).(pulumi.StringPtrOutput)
+}
+
+type AdvancedClusterConnectionString struct {
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	AwsPrivateLinkSrv map[string]interface{}                           `pulumi:"awsPrivateLinkSrv"`
+	Private           *string                                          `pulumi:"private"`
+	PrivateEndpoints  []AdvancedClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        *string                                          `pulumi:"privateSrv"`
+	Standard          *string                                          `pulumi:"standard"`
+	StandardSrv       *string                                          `pulumi:"standardSrv"`
+}
+
+// AdvancedClusterConnectionStringInput is an input type that accepts AdvancedClusterConnectionStringArgs and AdvancedClusterConnectionStringOutput values.
+// You can construct a concrete instance of `AdvancedClusterConnectionStringInput` via:
+//
+//          AdvancedClusterConnectionStringArgs{...}
+type AdvancedClusterConnectionStringInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterConnectionStringOutput() AdvancedClusterConnectionStringOutput
+	ToAdvancedClusterConnectionStringOutputWithContext(context.Context) AdvancedClusterConnectionStringOutput
+}
+
+type AdvancedClusterConnectionStringArgs struct {
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	AwsPrivateLinkSrv pulumi.MapInput                                          `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringPtrInput                                    `pulumi:"private"`
+	PrivateEndpoints  AdvancedClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringPtrInput                                    `pulumi:"privateSrv"`
+	Standard          pulumi.StringPtrInput                                    `pulumi:"standard"`
+	StandardSrv       pulumi.StringPtrInput                                    `pulumi:"standardSrv"`
+}
+
+func (AdvancedClusterConnectionStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterConnectionString)(nil)).Elem()
+}
+
+func (i AdvancedClusterConnectionStringArgs) ToAdvancedClusterConnectionStringOutput() AdvancedClusterConnectionStringOutput {
+	return i.ToAdvancedClusterConnectionStringOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterConnectionStringArgs) ToAdvancedClusterConnectionStringOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterConnectionStringOutput)
+}
+
+// AdvancedClusterConnectionStringArrayInput is an input type that accepts AdvancedClusterConnectionStringArray and AdvancedClusterConnectionStringArrayOutput values.
+// You can construct a concrete instance of `AdvancedClusterConnectionStringArrayInput` via:
+//
+//          AdvancedClusterConnectionStringArray{ AdvancedClusterConnectionStringArgs{...} }
+type AdvancedClusterConnectionStringArrayInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterConnectionStringArrayOutput() AdvancedClusterConnectionStringArrayOutput
+	ToAdvancedClusterConnectionStringArrayOutputWithContext(context.Context) AdvancedClusterConnectionStringArrayOutput
+}
+
+type AdvancedClusterConnectionStringArray []AdvancedClusterConnectionStringInput
+
+func (AdvancedClusterConnectionStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterConnectionString)(nil)).Elem()
+}
+
+func (i AdvancedClusterConnectionStringArray) ToAdvancedClusterConnectionStringArrayOutput() AdvancedClusterConnectionStringArrayOutput {
+	return i.ToAdvancedClusterConnectionStringArrayOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterConnectionStringArray) ToAdvancedClusterConnectionStringArrayOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterConnectionStringArrayOutput)
+}
+
+type AdvancedClusterConnectionStringOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterConnectionStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterConnectionString)(nil)).Elem()
+}
+
+func (o AdvancedClusterConnectionStringOutput) ToAdvancedClusterConnectionStringOutput() AdvancedClusterConnectionStringOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringOutput) ToAdvancedClusterConnectionStringOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringOutput {
+	return o
+}
+
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+func (o AdvancedClusterConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+}
+
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+func (o AdvancedClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+}
+
+func (o AdvancedClusterConnectionStringOutput) Private() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.Private }).(pulumi.StringPtrOutput)
+}
+
+func (o AdvancedClusterConnectionStringOutput) PrivateEndpoints() AdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionString) []AdvancedClusterConnectionStringPrivateEndpoint {
+		return v.PrivateEndpoints
+	}).(AdvancedClusterConnectionStringPrivateEndpointArrayOutput)
+}
+
+func (o AdvancedClusterConnectionStringOutput) PrivateSrv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
+}
+
+func (o AdvancedClusterConnectionStringOutput) Standard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.Standard }).(pulumi.StringPtrOutput)
+}
+
+func (o AdvancedClusterConnectionStringOutput) StandardSrv() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionString) *string { return v.StandardSrv }).(pulumi.StringPtrOutput)
+}
+
+type AdvancedClusterConnectionStringArrayOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterConnectionStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterConnectionString)(nil)).Elem()
+}
+
+func (o AdvancedClusterConnectionStringArrayOutput) ToAdvancedClusterConnectionStringArrayOutput() AdvancedClusterConnectionStringArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringArrayOutput) ToAdvancedClusterConnectionStringArrayOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringArrayOutput) Index(i pulumi.IntInput) AdvancedClusterConnectionStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AdvancedClusterConnectionString {
+		return vs[0].([]AdvancedClusterConnectionString)[vs[1].(int)]
+	}).(AdvancedClusterConnectionStringOutput)
+}
+
+type AdvancedClusterConnectionStringPrivateEndpoint struct {
+	ConnectionString    *string                                                  `pulumi:"connectionString"`
+	Endpoints           []AdvancedClusterConnectionStringPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString *string                                                  `pulumi:"srvConnectionString"`
+	Type                *string                                                  `pulumi:"type"`
+}
+
+// AdvancedClusterConnectionStringPrivateEndpointInput is an input type that accepts AdvancedClusterConnectionStringPrivateEndpointArgs and AdvancedClusterConnectionStringPrivateEndpointOutput values.
+// You can construct a concrete instance of `AdvancedClusterConnectionStringPrivateEndpointInput` via:
+//
+//          AdvancedClusterConnectionStringPrivateEndpointArgs{...}
+type AdvancedClusterConnectionStringPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterConnectionStringPrivateEndpointOutput() AdvancedClusterConnectionStringPrivateEndpointOutput
+	ToAdvancedClusterConnectionStringPrivateEndpointOutputWithContext(context.Context) AdvancedClusterConnectionStringPrivateEndpointOutput
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringPtrInput                                            `pulumi:"connectionString"`
+	Endpoints           AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringPtrInput                                            `pulumi:"srvConnectionString"`
+	Type                pulumi.StringPtrInput                                            `pulumi:"type"`
+}
+
+func (AdvancedClusterConnectionStringPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i AdvancedClusterConnectionStringPrivateEndpointArgs) ToAdvancedClusterConnectionStringPrivateEndpointOutput() AdvancedClusterConnectionStringPrivateEndpointOutput {
+	return i.ToAdvancedClusterConnectionStringPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterConnectionStringPrivateEndpointArgs) ToAdvancedClusterConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterConnectionStringPrivateEndpointOutput)
+}
+
+// AdvancedClusterConnectionStringPrivateEndpointArrayInput is an input type that accepts AdvancedClusterConnectionStringPrivateEndpointArray and AdvancedClusterConnectionStringPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `AdvancedClusterConnectionStringPrivateEndpointArrayInput` via:
+//
+//          AdvancedClusterConnectionStringPrivateEndpointArray{ AdvancedClusterConnectionStringPrivateEndpointArgs{...} }
+type AdvancedClusterConnectionStringPrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterConnectionStringPrivateEndpointArrayOutput() AdvancedClusterConnectionStringPrivateEndpointArrayOutput
+	ToAdvancedClusterConnectionStringPrivateEndpointArrayOutputWithContext(context.Context) AdvancedClusterConnectionStringPrivateEndpointArrayOutput
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointArray []AdvancedClusterConnectionStringPrivateEndpointInput
+
+func (AdvancedClusterConnectionStringPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i AdvancedClusterConnectionStringPrivateEndpointArray) ToAdvancedClusterConnectionStringPrivateEndpointArrayOutput() AdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return i.ToAdvancedClusterConnectionStringPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterConnectionStringPrivateEndpointArray) ToAdvancedClusterConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterConnectionStringPrivateEndpointArrayOutput)
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterConnectionStringPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointOutput) ToAdvancedClusterConnectionStringPrivateEndpointOutput() AdvancedClusterConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointOutput) ToAdvancedClusterConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointOutput) ConnectionString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpoint) *string { return v.ConnectionString }).(pulumi.StringPtrOutput)
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointOutput) Endpoints() AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpoint) []AdvancedClusterConnectionStringPrivateEndpointEndpoint {
+		return v.Endpoints
+	}).(AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput)
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointOutput) SrvConnectionString() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpoint) *string { return v.SrvConnectionString }).(pulumi.StringPtrOutput)
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpoint) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterConnectionStringPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointArrayOutput) ToAdvancedClusterConnectionStringPrivateEndpointArrayOutput() AdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointArrayOutput) ToAdvancedClusterConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointArrayOutput) Index(i pulumi.IntInput) AdvancedClusterConnectionStringPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AdvancedClusterConnectionStringPrivateEndpoint {
+		return vs[0].([]AdvancedClusterConnectionStringPrivateEndpoint)[vs[1].(int)]
+	}).(AdvancedClusterConnectionStringPrivateEndpointOutput)
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
+	EndpointId *string `pulumi:"endpointId"`
+	// Cloud service provider on which the servers are provisioned.
+	// The possible values are:
+	ProviderName *string `pulumi:"providerName"`
+	Region       *string `pulumi:"region"`
+}
+
+// AdvancedClusterConnectionStringPrivateEndpointEndpointInput is an input type that accepts AdvancedClusterConnectionStringPrivateEndpointEndpointArgs and AdvancedClusterConnectionStringPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `AdvancedClusterConnectionStringPrivateEndpointEndpointInput` via:
+//
+//          AdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...}
+type AdvancedClusterConnectionStringPrivateEndpointEndpointInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterConnectionStringPrivateEndpointEndpointOutput() AdvancedClusterConnectionStringPrivateEndpointEndpointOutput
+	ToAdvancedClusterConnectionStringPrivateEndpointEndpointOutputWithContext(context.Context) AdvancedClusterConnectionStringPrivateEndpointEndpointOutput
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointEndpointArgs struct {
+	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
+	// Cloud service provider on which the servers are provisioned.
+	// The possible values are:
+	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
+	Region       pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (AdvancedClusterConnectionStringPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i AdvancedClusterConnectionStringPrivateEndpointEndpointArgs) ToAdvancedClusterConnectionStringPrivateEndpointEndpointOutput() AdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return i.ToAdvancedClusterConnectionStringPrivateEndpointEndpointOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterConnectionStringPrivateEndpointEndpointArgs) ToAdvancedClusterConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterConnectionStringPrivateEndpointEndpointOutput)
+}
+
+// AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts AdvancedClusterConnectionStringPrivateEndpointEndpointArray and AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput` via:
+//
+//          AdvancedClusterConnectionStringPrivateEndpointEndpointArray{ AdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...} }
+type AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput() AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput
+	ToAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Context) AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointEndpointArray []AdvancedClusterConnectionStringPrivateEndpointEndpointInput
+
+func (AdvancedClusterConnectionStringPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i AdvancedClusterConnectionStringPrivateEndpointEndpointArray) ToAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput() AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return i.ToAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterConnectionStringPrivateEndpointEndpointArray) ToAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput)
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ToAdvancedClusterConnectionStringPrivateEndpointEndpointOutput() AdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ToAdvancedClusterConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpointEndpoint) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
+}
+
+// Cloud service provider on which the servers are provisioned.
+// The possible values are:
+func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpointEndpoint) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointEndpointOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterConnectionStringPrivateEndpointEndpoint) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput) ToAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput() AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput) ToAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) AdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AdvancedClusterConnectionStringPrivateEndpointEndpoint {
+		return vs[0].([]AdvancedClusterConnectionStringPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(AdvancedClusterConnectionStringPrivateEndpointEndpointOutput)
+}
+
+type AdvancedClusterLabel struct {
+	// The key that you want to write.
+	Key *string `pulumi:"key"`
+	// The value that you want to write.
+	Value *string `pulumi:"value"`
+}
+
+// AdvancedClusterLabelInput is an input type that accepts AdvancedClusterLabelArgs and AdvancedClusterLabelOutput values.
+// You can construct a concrete instance of `AdvancedClusterLabelInput` via:
+//
+//          AdvancedClusterLabelArgs{...}
+type AdvancedClusterLabelInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterLabelOutput() AdvancedClusterLabelOutput
+	ToAdvancedClusterLabelOutputWithContext(context.Context) AdvancedClusterLabelOutput
+}
+
+type AdvancedClusterLabelArgs struct {
+	// The key that you want to write.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The value that you want to write.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (AdvancedClusterLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterLabel)(nil)).Elem()
+}
+
+func (i AdvancedClusterLabelArgs) ToAdvancedClusterLabelOutput() AdvancedClusterLabelOutput {
+	return i.ToAdvancedClusterLabelOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterLabelArgs) ToAdvancedClusterLabelOutputWithContext(ctx context.Context) AdvancedClusterLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterLabelOutput)
+}
+
+// AdvancedClusterLabelArrayInput is an input type that accepts AdvancedClusterLabelArray and AdvancedClusterLabelArrayOutput values.
+// You can construct a concrete instance of `AdvancedClusterLabelArrayInput` via:
+//
+//          AdvancedClusterLabelArray{ AdvancedClusterLabelArgs{...} }
+type AdvancedClusterLabelArrayInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterLabelArrayOutput() AdvancedClusterLabelArrayOutput
+	ToAdvancedClusterLabelArrayOutputWithContext(context.Context) AdvancedClusterLabelArrayOutput
+}
+
+type AdvancedClusterLabelArray []AdvancedClusterLabelInput
+
+func (AdvancedClusterLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterLabel)(nil)).Elem()
+}
+
+func (i AdvancedClusterLabelArray) ToAdvancedClusterLabelArrayOutput() AdvancedClusterLabelArrayOutput {
+	return i.ToAdvancedClusterLabelArrayOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterLabelArray) ToAdvancedClusterLabelArrayOutputWithContext(ctx context.Context) AdvancedClusterLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterLabelArrayOutput)
+}
+
+type AdvancedClusterLabelOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterLabel)(nil)).Elem()
+}
+
+func (o AdvancedClusterLabelOutput) ToAdvancedClusterLabelOutput() AdvancedClusterLabelOutput {
+	return o
+}
+
+func (o AdvancedClusterLabelOutput) ToAdvancedClusterLabelOutputWithContext(ctx context.Context) AdvancedClusterLabelOutput {
+	return o
+}
+
+// The key that you want to write.
+func (o AdvancedClusterLabelOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterLabel) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The value that you want to write.
+func (o AdvancedClusterLabelOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterLabel) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type AdvancedClusterLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterLabel)(nil)).Elem()
+}
+
+func (o AdvancedClusterLabelArrayOutput) ToAdvancedClusterLabelArrayOutput() AdvancedClusterLabelArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterLabelArrayOutput) ToAdvancedClusterLabelArrayOutputWithContext(ctx context.Context) AdvancedClusterLabelArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) AdvancedClusterLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AdvancedClusterLabel {
+		return vs[0].([]AdvancedClusterLabel)[vs[1].(int)]
+	}).(AdvancedClusterLabelOutput)
+}
+
+type AdvancedClusterReplicationSpec struct {
+	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+	ContainerId map[string]string `pulumi:"containerId"`
+	Id          *string           `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
+	NumShards *int `pulumi:"numShards"`
+	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	RegionConfigs []AdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
+	// Name for the zone in a Global Cluster.
+	ZoneName *string `pulumi:"zoneName"`
+}
+
+// AdvancedClusterReplicationSpecInput is an input type that accepts AdvancedClusterReplicationSpecArgs and AdvancedClusterReplicationSpecOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecInput` via:
+//
+//          AdvancedClusterReplicationSpecArgs{...}
+type AdvancedClusterReplicationSpecInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecOutput() AdvancedClusterReplicationSpecOutput
+	ToAdvancedClusterReplicationSpecOutputWithContext(context.Context) AdvancedClusterReplicationSpecOutput
+}
+
+type AdvancedClusterReplicationSpecArgs struct {
+	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
+	Id          pulumi.StringPtrInput `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
+	NumShards pulumi.IntPtrInput `pulumi:"numShards"`
+	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	RegionConfigs AdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
+	// Name for the zone in a Global Cluster.
+	ZoneName pulumi.StringPtrInput `pulumi:"zoneName"`
+}
+
+func (AdvancedClusterReplicationSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpec)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecArgs) ToAdvancedClusterReplicationSpecOutput() AdvancedClusterReplicationSpecOutput {
+	return i.ToAdvancedClusterReplicationSpecOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecArgs) ToAdvancedClusterReplicationSpecOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecOutput)
+}
+
+// AdvancedClusterReplicationSpecArrayInput is an input type that accepts AdvancedClusterReplicationSpecArray and AdvancedClusterReplicationSpecArrayOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecArrayInput` via:
+//
+//          AdvancedClusterReplicationSpecArray{ AdvancedClusterReplicationSpecArgs{...} }
+type AdvancedClusterReplicationSpecArrayInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecArrayOutput() AdvancedClusterReplicationSpecArrayOutput
+	ToAdvancedClusterReplicationSpecArrayOutputWithContext(context.Context) AdvancedClusterReplicationSpecArrayOutput
+}
+
+type AdvancedClusterReplicationSpecArray []AdvancedClusterReplicationSpecInput
+
+func (AdvancedClusterReplicationSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterReplicationSpec)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecArray) ToAdvancedClusterReplicationSpecArrayOutput() AdvancedClusterReplicationSpecArrayOutput {
+	return i.ToAdvancedClusterReplicationSpecArrayOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecArray) ToAdvancedClusterReplicationSpecArrayOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecArrayOutput)
+}
+
+type AdvancedClusterReplicationSpecOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpec)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecOutput) ToAdvancedClusterReplicationSpecOutput() AdvancedClusterReplicationSpecOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecOutput) ToAdvancedClusterReplicationSpecOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecOutput {
+	return o
+}
+
+// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+func (o AdvancedClusterReplicationSpecOutput) ContainerId() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
+}
+
+func (o AdvancedClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
+func (o AdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *int { return v.NumShards }).(pulumi.IntPtrOutput)
+}
+
+// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+func (o AdvancedClusterReplicationSpecOutput) RegionConfigs() AdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpec) []AdvancedClusterReplicationSpecRegionConfig {
+		return v.RegionConfigs
+	}).(AdvancedClusterReplicationSpecRegionConfigArrayOutput)
+}
+
+// Name for the zone in a Global Cluster.
+func (o AdvancedClusterReplicationSpecOutput) ZoneName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.ZoneName }).(pulumi.StringPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterReplicationSpec)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecArrayOutput) ToAdvancedClusterReplicationSpecArrayOutput() AdvancedClusterReplicationSpecArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecArrayOutput) ToAdvancedClusterReplicationSpecArrayOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) AdvancedClusterReplicationSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AdvancedClusterReplicationSpec {
+		return vs[0].([]AdvancedClusterReplicationSpec)[vs[1].(int)]
+	}).(AdvancedClusterReplicationSpecOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfig struct {
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+	AnalyticsSpecs *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+	AutoScaling *AdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
+	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+	BackingProviderName *string `pulumi:"backingProviderName"`
+	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+	ElectableSpecs *AdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
+	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
+	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+	// * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+	Priority int `pulumi:"priority"`
+	// Cloud service provider on which the servers are provisioned.
+	// The possible values are:
+	ProviderName string `pulumi:"providerName"`
+	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
+	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName string `pulumi:"regionName"`
+}
+
+// AdvancedClusterReplicationSpecRegionConfigInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigArgs and AdvancedClusterReplicationSpecRegionConfigOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigArgs{...}
+type AdvancedClusterReplicationSpecRegionConfigInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigOutput() AdvancedClusterReplicationSpecRegionConfigOutput
+	ToAdvancedClusterReplicationSpecRegionConfigOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigOutput
+}
+
+type AdvancedClusterReplicationSpecRegionConfigArgs struct {
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+	AnalyticsSpecs AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+	AutoScaling AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput `pulumi:"autoScaling"`
+	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+	BackingProviderName pulumi.StringPtrInput `pulumi:"backingProviderName"`
+	// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+	ElectableSpecs AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
+	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
+	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+	// * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// Cloud service provider on which the servers are provisioned.
+	// The possible values are:
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
+	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (AdvancedClusterReplicationSpecRegionConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigArgs) ToAdvancedClusterReplicationSpecRegionConfigOutput() AdvancedClusterReplicationSpecRegionConfigOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigArgs) ToAdvancedClusterReplicationSpecRegionConfigOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigOutput)
+}
+
+// AdvancedClusterReplicationSpecRegionConfigArrayInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigArray and AdvancedClusterReplicationSpecRegionConfigArrayOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigArrayInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigArray{ AdvancedClusterReplicationSpecRegionConfigArgs{...} }
+type AdvancedClusterReplicationSpecRegionConfigArrayInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigArrayOutput() AdvancedClusterReplicationSpecRegionConfigArrayOutput
+	ToAdvancedClusterReplicationSpecRegionConfigArrayOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigArrayOutput
+}
+
+type AdvancedClusterReplicationSpecRegionConfigArray []AdvancedClusterReplicationSpecRegionConfigInput
+
+func (AdvancedClusterReplicationSpecRegionConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigArray) ToAdvancedClusterReplicationSpecRegionConfigArrayOutput() AdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigArrayOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigArray) ToAdvancedClusterReplicationSpecRegionConfigArrayOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigArrayOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) ToAdvancedClusterReplicationSpecRegionConfigOutput() AdvancedClusterReplicationSpecRegionConfigOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) ToAdvancedClusterReplicationSpecRegionConfigOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigOutput {
+	return o
+}
+
+// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
+		return v.AnalyticsSpecs
+	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+// Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) AutoScaling() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAutoScaling {
+		return v.AutoScaling
+	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput)
+}
+
+// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) BackingProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *string { return v.BackingProviderName }).(pulumi.StringPtrOutput)
+}
+
+// Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) ElectableSpecs() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
+		return v.ElectableSpecs
+	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+// Election priority of the region. For regions with only read-only nodes, set this value to 0.
+// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+// * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// Cloud service provider on which the servers are provisioned.
+// The possible values are:
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
+		return v.ReadOnlySpecs
+	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o AdvancedClusterReplicationSpecRegionConfigOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AdvancedClusterReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigArrayOutput) ToAdvancedClusterReplicationSpecRegionConfigArrayOutput() AdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigArrayOutput) ToAdvancedClusterReplicationSpecRegionConfigArrayOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigArrayOutput) Index(i pulumi.IntInput) AdvancedClusterReplicationSpecRegionConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AdvancedClusterReplicationSpecRegionConfig {
+		return vs[0].([]AdvancedClusterReplicationSpecRegionConfig)[vs[1].(int)]
+	}).(AdvancedClusterReplicationSpecRegionConfigOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs and AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput
+	ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput).ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx)
+}
+
+// AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs, AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtr and AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
+	ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
+}
+
+type advancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
+
+func AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtr(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput {
+	return (*advancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType)(v)
+}
+
+func (*advancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
+		return &v
+	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
+		if v != nil {
+			return *v
+		}
+		var ret AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs
+		return ret
+	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
+	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+	ComputeEnabled *bool `pulumi:"computeEnabled"`
+	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+	ComputeMaxInstanceSize *string `pulumi:"computeMaxInstanceSize"`
+	// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+	ComputeMinInstanceSize *string `pulumi:"computeMinInstanceSize"`
+	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
+	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
+}
+
+// AdvancedClusterReplicationSpecRegionConfigAutoScalingInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs and AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAutoScalingInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput
+	ToAdvancedClusterReplicationSpecRegionConfigAutoScalingOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
+	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+	ComputeEnabled pulumi.BoolPtrInput `pulumi:"computeEnabled"`
+	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+	ComputeMaxInstanceSize pulumi.StringPtrInput `pulumi:"computeMaxInstanceSize"`
+	// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+	ComputeMinInstanceSize pulumi.StringPtrInput `pulumi:"computeMinInstanceSize"`
+	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
+	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
+}
+
+func (AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAutoScalingOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput)
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput).ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(ctx)
+}
+
+// AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs, AdvancedClusterReplicationSpecRegionConfigAutoScalingPtr and AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
+//
+//  or:
+//
+//          nil
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput
+	ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput
+}
+
+type advancedClusterReplicationSpecRegionConfigAutoScalingPtrType AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs
+
+func AdvancedClusterReplicationSpecRegionConfigAutoScalingPtr(v *AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput {
+	return (*advancedClusterReplicationSpecRegionConfigAutoScalingPtrType)(v)
+}
+
+func (*advancedClusterReplicationSpecRegionConfigAutoScalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigAutoScalingPtrType) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(context.Background())
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigAutoScalingPtrType) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return o.ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(context.Background())
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *AdvancedClusterReplicationSpecRegionConfigAutoScaling {
+		return &v
+	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput)
+}
+
+// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.ComputeEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeMaxInstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string { return v.ComputeMaxInstanceSize }).(pulumi.StringPtrOutput)
+}
+
+// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeMinInstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string { return v.ComputeMinInstanceSize }).(pulumi.StringPtrOutput)
+}
+
+// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeScaleDownEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.ComputeScaleDownEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.DiskGbEnabled }).(pulumi.BoolPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) Elem() AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) AdvancedClusterReplicationSpecRegionConfigAutoScaling {
+		if v != nil {
+			return *v
+		}
+		var ret AdvancedClusterReplicationSpecRegionConfigAutoScaling
+		return ret
+	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput)
+}
+
+// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ComputeEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeMaxInstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ComputeMaxInstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeMinInstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ComputeMinInstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeScaleDownEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ComputeScaleDownEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DiskGbEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs and AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
+type AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput() AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput
+	ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput
+}
+
+type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput() AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput).ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx)
+}
+
+// AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs, AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtr and AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput
+	ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput
+}
+
+type advancedClusterReplicationSpecRegionConfigElectableSpecsPtrType AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+
+func AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtr(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput {
+	return (*advancedClusterReplicationSpecRegionConfigElectableSpecsPtrType)(v)
+}
+
+func (*advancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput() AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
+		return &v
+	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem() AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
+		if v != nil {
+			return *v
+		}
+		var ret AdvancedClusterReplicationSpecRegionConfigElectableSpecs
+		return ret
+	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs and AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput
+	ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput
+}
+
+type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput).ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx)
+}
+
+// AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs, AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtr and AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput` via:
+//
+//          AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput
+	ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput
+}
+
+type advancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs
+
+func AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtr(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput {
+	return (*advancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType)(v)
+}
+
+func (*advancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
+		return &v
+	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
+		if v != nil {
+			return *v
+		}
+		var ret AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs
+		return ret
+	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
 type AlertConfigurationMatcher struct {
 	// Name of the field in the target object to match on.
 	FieldName *string `pulumi:"fieldName"`
@@ -1825,6 +3856,575 @@ func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) RetentionValue() pulumi.In
 		}
 		return &v.RetentionValue
 	}).(pulumi.IntPtrOutput)
+}
+
+type CloudBackupSnapshotExportJobComponent struct {
+	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	ExportId *string `pulumi:"exportId"`
+	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	ReplicaSetName *string `pulumi:"replicaSetName"`
+}
+
+// CloudBackupSnapshotExportJobComponentInput is an input type that accepts CloudBackupSnapshotExportJobComponentArgs and CloudBackupSnapshotExportJobComponentOutput values.
+// You can construct a concrete instance of `CloudBackupSnapshotExportJobComponentInput` via:
+//
+//          CloudBackupSnapshotExportJobComponentArgs{...}
+type CloudBackupSnapshotExportJobComponentInput interface {
+	pulumi.Input
+
+	ToCloudBackupSnapshotExportJobComponentOutput() CloudBackupSnapshotExportJobComponentOutput
+	ToCloudBackupSnapshotExportJobComponentOutputWithContext(context.Context) CloudBackupSnapshotExportJobComponentOutput
+}
+
+type CloudBackupSnapshotExportJobComponentArgs struct {
+	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	ExportId pulumi.StringPtrInput `pulumi:"exportId"`
+	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	ReplicaSetName pulumi.StringPtrInput `pulumi:"replicaSetName"`
+}
+
+func (CloudBackupSnapshotExportJobComponentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSnapshotExportJobComponent)(nil)).Elem()
+}
+
+func (i CloudBackupSnapshotExportJobComponentArgs) ToCloudBackupSnapshotExportJobComponentOutput() CloudBackupSnapshotExportJobComponentOutput {
+	return i.ToCloudBackupSnapshotExportJobComponentOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSnapshotExportJobComponentArgs) ToCloudBackupSnapshotExportJobComponentOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobComponentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportJobComponentOutput)
+}
+
+// CloudBackupSnapshotExportJobComponentArrayInput is an input type that accepts CloudBackupSnapshotExportJobComponentArray and CloudBackupSnapshotExportJobComponentArrayOutput values.
+// You can construct a concrete instance of `CloudBackupSnapshotExportJobComponentArrayInput` via:
+//
+//          CloudBackupSnapshotExportJobComponentArray{ CloudBackupSnapshotExportJobComponentArgs{...} }
+type CloudBackupSnapshotExportJobComponentArrayInput interface {
+	pulumi.Input
+
+	ToCloudBackupSnapshotExportJobComponentArrayOutput() CloudBackupSnapshotExportJobComponentArrayOutput
+	ToCloudBackupSnapshotExportJobComponentArrayOutputWithContext(context.Context) CloudBackupSnapshotExportJobComponentArrayOutput
+}
+
+type CloudBackupSnapshotExportJobComponentArray []CloudBackupSnapshotExportJobComponentInput
+
+func (CloudBackupSnapshotExportJobComponentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSnapshotExportJobComponent)(nil)).Elem()
+}
+
+func (i CloudBackupSnapshotExportJobComponentArray) ToCloudBackupSnapshotExportJobComponentArrayOutput() CloudBackupSnapshotExportJobComponentArrayOutput {
+	return i.ToCloudBackupSnapshotExportJobComponentArrayOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSnapshotExportJobComponentArray) ToCloudBackupSnapshotExportJobComponentArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobComponentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportJobComponentArrayOutput)
+}
+
+type CloudBackupSnapshotExportJobComponentOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSnapshotExportJobComponentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSnapshotExportJobComponent)(nil)).Elem()
+}
+
+func (o CloudBackupSnapshotExportJobComponentOutput) ToCloudBackupSnapshotExportJobComponentOutput() CloudBackupSnapshotExportJobComponentOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotExportJobComponentOutput) ToCloudBackupSnapshotExportJobComponentOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobComponentOutput {
+	return o
+}
+
+// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+func (o CloudBackupSnapshotExportJobComponentOutput) ExportId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotExportJobComponent) *string { return v.ExportId }).(pulumi.StringPtrOutput)
+}
+
+// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+func (o CloudBackupSnapshotExportJobComponentOutput) ReplicaSetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotExportJobComponent) *string { return v.ReplicaSetName }).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupSnapshotExportJobComponentArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSnapshotExportJobComponentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSnapshotExportJobComponent)(nil)).Elem()
+}
+
+func (o CloudBackupSnapshotExportJobComponentArrayOutput) ToCloudBackupSnapshotExportJobComponentArrayOutput() CloudBackupSnapshotExportJobComponentArrayOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotExportJobComponentArrayOutput) ToCloudBackupSnapshotExportJobComponentArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobComponentArrayOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotExportJobComponentArrayOutput) Index(i pulumi.IntInput) CloudBackupSnapshotExportJobComponentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSnapshotExportJobComponent {
+		return vs[0].([]CloudBackupSnapshotExportJobComponent)[vs[1].(int)]
+	}).(CloudBackupSnapshotExportJobComponentOutput)
+}
+
+type CloudBackupSnapshotExportJobCustomData struct {
+	// Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+	Key string `pulumi:"key"`
+	// Required if you specify `key`.
+	Value string `pulumi:"value"`
+}
+
+// CloudBackupSnapshotExportJobCustomDataInput is an input type that accepts CloudBackupSnapshotExportJobCustomDataArgs and CloudBackupSnapshotExportJobCustomDataOutput values.
+// You can construct a concrete instance of `CloudBackupSnapshotExportJobCustomDataInput` via:
+//
+//          CloudBackupSnapshotExportJobCustomDataArgs{...}
+type CloudBackupSnapshotExportJobCustomDataInput interface {
+	pulumi.Input
+
+	ToCloudBackupSnapshotExportJobCustomDataOutput() CloudBackupSnapshotExportJobCustomDataOutput
+	ToCloudBackupSnapshotExportJobCustomDataOutputWithContext(context.Context) CloudBackupSnapshotExportJobCustomDataOutput
+}
+
+type CloudBackupSnapshotExportJobCustomDataArgs struct {
+	// Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Required if you specify `key`.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CloudBackupSnapshotExportJobCustomDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSnapshotExportJobCustomData)(nil)).Elem()
+}
+
+func (i CloudBackupSnapshotExportJobCustomDataArgs) ToCloudBackupSnapshotExportJobCustomDataOutput() CloudBackupSnapshotExportJobCustomDataOutput {
+	return i.ToCloudBackupSnapshotExportJobCustomDataOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSnapshotExportJobCustomDataArgs) ToCloudBackupSnapshotExportJobCustomDataOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobCustomDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportJobCustomDataOutput)
+}
+
+// CloudBackupSnapshotExportJobCustomDataArrayInput is an input type that accepts CloudBackupSnapshotExportJobCustomDataArray and CloudBackupSnapshotExportJobCustomDataArrayOutput values.
+// You can construct a concrete instance of `CloudBackupSnapshotExportJobCustomDataArrayInput` via:
+//
+//          CloudBackupSnapshotExportJobCustomDataArray{ CloudBackupSnapshotExportJobCustomDataArgs{...} }
+type CloudBackupSnapshotExportJobCustomDataArrayInput interface {
+	pulumi.Input
+
+	ToCloudBackupSnapshotExportJobCustomDataArrayOutput() CloudBackupSnapshotExportJobCustomDataArrayOutput
+	ToCloudBackupSnapshotExportJobCustomDataArrayOutputWithContext(context.Context) CloudBackupSnapshotExportJobCustomDataArrayOutput
+}
+
+type CloudBackupSnapshotExportJobCustomDataArray []CloudBackupSnapshotExportJobCustomDataInput
+
+func (CloudBackupSnapshotExportJobCustomDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSnapshotExportJobCustomData)(nil)).Elem()
+}
+
+func (i CloudBackupSnapshotExportJobCustomDataArray) ToCloudBackupSnapshotExportJobCustomDataArrayOutput() CloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return i.ToCloudBackupSnapshotExportJobCustomDataArrayOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSnapshotExportJobCustomDataArray) ToCloudBackupSnapshotExportJobCustomDataArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotExportJobCustomDataArrayOutput)
+}
+
+type CloudBackupSnapshotExportJobCustomDataOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSnapshotExportJobCustomDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSnapshotExportJobCustomData)(nil)).Elem()
+}
+
+func (o CloudBackupSnapshotExportJobCustomDataOutput) ToCloudBackupSnapshotExportJobCustomDataOutput() CloudBackupSnapshotExportJobCustomDataOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotExportJobCustomDataOutput) ToCloudBackupSnapshotExportJobCustomDataOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobCustomDataOutput {
+	return o
+}
+
+// Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+func (o CloudBackupSnapshotExportJobCustomDataOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotExportJobCustomData) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Required if you specify `key`.
+func (o CloudBackupSnapshotExportJobCustomDataOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotExportJobCustomData) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CloudBackupSnapshotExportJobCustomDataArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSnapshotExportJobCustomDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSnapshotExportJobCustomData)(nil)).Elem()
+}
+
+func (o CloudBackupSnapshotExportJobCustomDataArrayOutput) ToCloudBackupSnapshotExportJobCustomDataArrayOutput() CloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotExportJobCustomDataArrayOutput) ToCloudBackupSnapshotExportJobCustomDataArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotExportJobCustomDataArrayOutput) Index(i pulumi.IntInput) CloudBackupSnapshotExportJobCustomDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSnapshotExportJobCustomData {
+		return vs[0].([]CloudBackupSnapshotExportJobCustomData)[vs[1].(int)]
+	}).(CloudBackupSnapshotExportJobCustomDataOutput)
+}
+
+type CloudBackupSnapshotMember struct {
+	// Cloud provider that stores this snapshot.
+	CloudProvider *string `pulumi:"cloudProvider"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id *string `pulumi:"id"`
+	// Label given to a shard or config server from which Atlas took this snapshot.
+	ReplicaSetName *string `pulumi:"replicaSetName"`
+}
+
+// CloudBackupSnapshotMemberInput is an input type that accepts CloudBackupSnapshotMemberArgs and CloudBackupSnapshotMemberOutput values.
+// You can construct a concrete instance of `CloudBackupSnapshotMemberInput` via:
+//
+//          CloudBackupSnapshotMemberArgs{...}
+type CloudBackupSnapshotMemberInput interface {
+	pulumi.Input
+
+	ToCloudBackupSnapshotMemberOutput() CloudBackupSnapshotMemberOutput
+	ToCloudBackupSnapshotMemberOutputWithContext(context.Context) CloudBackupSnapshotMemberOutput
+}
+
+type CloudBackupSnapshotMemberArgs struct {
+	// Cloud provider that stores this snapshot.
+	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Label given to a shard or config server from which Atlas took this snapshot.
+	ReplicaSetName pulumi.StringPtrInput `pulumi:"replicaSetName"`
+}
+
+func (CloudBackupSnapshotMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSnapshotMember)(nil)).Elem()
+}
+
+func (i CloudBackupSnapshotMemberArgs) ToCloudBackupSnapshotMemberOutput() CloudBackupSnapshotMemberOutput {
+	return i.ToCloudBackupSnapshotMemberOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSnapshotMemberArgs) ToCloudBackupSnapshotMemberOutputWithContext(ctx context.Context) CloudBackupSnapshotMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotMemberOutput)
+}
+
+// CloudBackupSnapshotMemberArrayInput is an input type that accepts CloudBackupSnapshotMemberArray and CloudBackupSnapshotMemberArrayOutput values.
+// You can construct a concrete instance of `CloudBackupSnapshotMemberArrayInput` via:
+//
+//          CloudBackupSnapshotMemberArray{ CloudBackupSnapshotMemberArgs{...} }
+type CloudBackupSnapshotMemberArrayInput interface {
+	pulumi.Input
+
+	ToCloudBackupSnapshotMemberArrayOutput() CloudBackupSnapshotMemberArrayOutput
+	ToCloudBackupSnapshotMemberArrayOutputWithContext(context.Context) CloudBackupSnapshotMemberArrayOutput
+}
+
+type CloudBackupSnapshotMemberArray []CloudBackupSnapshotMemberInput
+
+func (CloudBackupSnapshotMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSnapshotMember)(nil)).Elem()
+}
+
+func (i CloudBackupSnapshotMemberArray) ToCloudBackupSnapshotMemberArrayOutput() CloudBackupSnapshotMemberArrayOutput {
+	return i.ToCloudBackupSnapshotMemberArrayOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSnapshotMemberArray) ToCloudBackupSnapshotMemberArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotMemberArrayOutput)
+}
+
+type CloudBackupSnapshotMemberOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSnapshotMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSnapshotMember)(nil)).Elem()
+}
+
+func (o CloudBackupSnapshotMemberOutput) ToCloudBackupSnapshotMemberOutput() CloudBackupSnapshotMemberOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotMemberOutput) ToCloudBackupSnapshotMemberOutputWithContext(ctx context.Context) CloudBackupSnapshotMemberOutput {
+	return o
+}
+
+// Cloud provider that stores this snapshot.
+func (o CloudBackupSnapshotMemberOutput) CloudProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotMember) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier for the sharded cluster snapshot.
+func (o CloudBackupSnapshotMemberOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotMember) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Label given to a shard or config server from which Atlas took this snapshot.
+func (o CloudBackupSnapshotMemberOutput) ReplicaSetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotMember) *string { return v.ReplicaSetName }).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupSnapshotMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSnapshotMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSnapshotMember)(nil)).Elem()
+}
+
+func (o CloudBackupSnapshotMemberArrayOutput) ToCloudBackupSnapshotMemberArrayOutput() CloudBackupSnapshotMemberArrayOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotMemberArrayOutput) ToCloudBackupSnapshotMemberArrayOutputWithContext(ctx context.Context) CloudBackupSnapshotMemberArrayOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotMemberArrayOutput) Index(i pulumi.IntInput) CloudBackupSnapshotMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSnapshotMember {
+		return vs[0].([]CloudBackupSnapshotMember)[vs[1].(int)]
+	}).(CloudBackupSnapshotMemberOutput)
+}
+
+type CloudBackupSnapshotRestoreJobDeliveryTypeConfig struct {
+	Automated             *bool `pulumi:"automated"`
+	Download              *bool `pulumi:"download"`
+	OplogInc              *int  `pulumi:"oplogInc"`
+	OplogTs               *int  `pulumi:"oplogTs"`
+	PointInTime           *bool `pulumi:"pointInTime"`
+	PointInTimeUtcSeconds *int  `pulumi:"pointInTimeUtcSeconds"`
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+	TargetClusterName *string `pulumi:"targetClusterName"`
+	TargetProjectId   *string `pulumi:"targetProjectId"`
+}
+
+// CloudBackupSnapshotRestoreJobDeliveryTypeConfigInput is an input type that accepts CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs and CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput values.
+// You can construct a concrete instance of `CloudBackupSnapshotRestoreJobDeliveryTypeConfigInput` via:
+//
+//          CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{...}
+type CloudBackupSnapshotRestoreJobDeliveryTypeConfigInput interface {
+	pulumi.Input
+
+	ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput() CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput
+	ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigOutputWithContext(context.Context) CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput
+}
+
+type CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs struct {
+	Automated             pulumi.BoolPtrInput `pulumi:"automated"`
+	Download              pulumi.BoolPtrInput `pulumi:"download"`
+	OplogInc              pulumi.IntPtrInput  `pulumi:"oplogInc"`
+	OplogTs               pulumi.IntPtrInput  `pulumi:"oplogTs"`
+	PointInTime           pulumi.BoolPtrInput `pulumi:"pointInTime"`
+	PointInTimeUtcSeconds pulumi.IntPtrInput  `pulumi:"pointInTimeUtcSeconds"`
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+	TargetClusterName pulumi.StringPtrInput `pulumi:"targetClusterName"`
+	TargetProjectId   pulumi.StringPtrInput `pulumi:"targetProjectId"`
+}
+
+func (CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSnapshotRestoreJobDeliveryTypeConfig)(nil)).Elem()
+}
+
+func (i CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput() CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput {
+	return i.ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput)
+}
+
+func (i CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return i.ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput).ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx)
+}
+
+// CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput is an input type that accepts CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs, CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtr and CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput values.
+// You can construct a concrete instance of `CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput` via:
+//
+//          CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{...}
+//
+//  or:
+//
+//          nil
+type CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput interface {
+	pulumi.Input
+
+	ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput
+	ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(context.Context) CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput
+}
+
+type cloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrType CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+
+func CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtr(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs) CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput {
+	return (*cloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrType)(v)
+}
+
+func (*cloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSnapshotRestoreJobDeliveryTypeConfig)(nil)).Elem()
+}
+
+func (i *cloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrType) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return i.ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrType) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput)
+}
+
+type CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupSnapshotRestoreJobDeliveryTypeConfig)(nil)).Elem()
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput() CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return o.ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(context.Background())
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
+		return &v
+	}).(CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) Automated() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.Automated }).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) Download() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.Download }).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) OplogInc() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int { return v.OplogInc }).(pulumi.IntPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) OplogTs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int { return v.OplogTs }).(pulumi.IntPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) PointInTime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool { return v.PointInTime }).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int { return v.PointInTimeUtcSeconds }).(pulumi.IntPtrOutput)
+}
+
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) TargetClusterName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetClusterName }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) TargetProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetProjectId }).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupSnapshotRestoreJobDeliveryTypeConfig)(nil)).Elem()
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput() CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) ToCloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutputWithContext(ctx context.Context) CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return o
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Elem() CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
+		if v != nil {
+			return *v
+		}
+		var ret CloudBackupSnapshotRestoreJobDeliveryTypeConfig
+		return ret
+	}).(CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Automated() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Automated
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) Download() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Download
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) OplogInc() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OplogInc
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) OplogTs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OplogTs
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) PointInTime() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PointInTime
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) PointInTimeUtcSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PointInTimeUtcSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetClusterName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TargetClusterName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TargetProjectId
+	}).(pulumi.StringPtrOutput)
 }
 
 type CloudProviderAccessAuthorizationAws struct {
@@ -8415,6 +11015,3839 @@ func (o Get509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.I
 	}).(Get509AuthenticationDatabaseUserCertificateOutput)
 }
 
+type GetAdvancedClusterAdvancedConfiguration struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern string `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan bool `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb int `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+}
+
+// GetAdvancedClusterAdvancedConfigurationInput is an input type that accepts GetAdvancedClusterAdvancedConfigurationArgs and GetAdvancedClusterAdvancedConfigurationOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterAdvancedConfigurationInput` via:
+//
+//          GetAdvancedClusterAdvancedConfigurationArgs{...}
+type GetAdvancedClusterAdvancedConfigurationInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterAdvancedConfigurationOutput() GetAdvancedClusterAdvancedConfigurationOutput
+	ToGetAdvancedClusterAdvancedConfigurationOutputWithContext(context.Context) GetAdvancedClusterAdvancedConfigurationOutput
+}
+
+type GetAdvancedClusterAdvancedConfigurationArgs struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+}
+
+func (GetAdvancedClusterAdvancedConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterAdvancedConfigurationArgs) ToGetAdvancedClusterAdvancedConfigurationOutput() GetAdvancedClusterAdvancedConfigurationOutput {
+	return i.ToGetAdvancedClusterAdvancedConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterAdvancedConfigurationArgs) ToGetAdvancedClusterAdvancedConfigurationOutputWithContext(ctx context.Context) GetAdvancedClusterAdvancedConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterAdvancedConfigurationOutput)
+}
+
+// GetAdvancedClusterAdvancedConfigurationArrayInput is an input type that accepts GetAdvancedClusterAdvancedConfigurationArray and GetAdvancedClusterAdvancedConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterAdvancedConfigurationArrayInput` via:
+//
+//          GetAdvancedClusterAdvancedConfigurationArray{ GetAdvancedClusterAdvancedConfigurationArgs{...} }
+type GetAdvancedClusterAdvancedConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterAdvancedConfigurationArrayOutput() GetAdvancedClusterAdvancedConfigurationArrayOutput
+	ToGetAdvancedClusterAdvancedConfigurationArrayOutputWithContext(context.Context) GetAdvancedClusterAdvancedConfigurationArrayOutput
+}
+
+type GetAdvancedClusterAdvancedConfigurationArray []GetAdvancedClusterAdvancedConfigurationInput
+
+func (GetAdvancedClusterAdvancedConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterAdvancedConfigurationArray) ToGetAdvancedClusterAdvancedConfigurationArrayOutput() GetAdvancedClusterAdvancedConfigurationArrayOutput {
+	return i.ToGetAdvancedClusterAdvancedConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterAdvancedConfigurationArray) ToGetAdvancedClusterAdvancedConfigurationArrayOutputWithContext(ctx context.Context) GetAdvancedClusterAdvancedConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterAdvancedConfigurationArrayOutput)
+}
+
+type GetAdvancedClusterAdvancedConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterAdvancedConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterAdvancedConfigurationOutput) ToGetAdvancedClusterAdvancedConfigurationOutput() GetAdvancedClusterAdvancedConfigurationOutput {
+	return o
+}
+
+func (o GetAdvancedClusterAdvancedConfigurationOutput) ToGetAdvancedClusterAdvancedConfigurationOutputWithContext(ctx context.Context) GetAdvancedClusterAdvancedConfigurationOutput {
+	return o
+}
+
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
+}
+
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
+}
+
+// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) bool { return v.JavascriptEnabled }).(pulumi.BoolOutput)
+}
+
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+func (o GetAdvancedClusterAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
+}
+
+// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) bool { return v.NoTableScan }).(pulumi.BoolOutput)
+}
+
+// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) OplogSizeMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.OplogSizeMb }).(pulumi.IntOutput)
+}
+
+// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.SampleRefreshIntervalBiConnector }).(pulumi.IntOutput)
+}
+
+// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o GetAdvancedClusterAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+type GetAdvancedClusterAdvancedConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterAdvancedConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterAdvancedConfigurationArrayOutput) ToGetAdvancedClusterAdvancedConfigurationArrayOutput() GetAdvancedClusterAdvancedConfigurationArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterAdvancedConfigurationArrayOutput) ToGetAdvancedClusterAdvancedConfigurationArrayOutputWithContext(ctx context.Context) GetAdvancedClusterAdvancedConfigurationArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterAdvancedConfigurationArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterAdvancedConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterAdvancedConfiguration {
+		return vs[0].([]GetAdvancedClusterAdvancedConfiguration)[vs[1].(int)]
+	}).(GetAdvancedClusterAdvancedConfigurationOutput)
+}
+
+type GetAdvancedClusterBiConnector struct {
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	Enabled bool `pulumi:"enabled"`
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference string `pulumi:"readPreference"`
+}
+
+// GetAdvancedClusterBiConnectorInput is an input type that accepts GetAdvancedClusterBiConnectorArgs and GetAdvancedClusterBiConnectorOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterBiConnectorInput` via:
+//
+//          GetAdvancedClusterBiConnectorArgs{...}
+type GetAdvancedClusterBiConnectorInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterBiConnectorOutput() GetAdvancedClusterBiConnectorOutput
+	ToGetAdvancedClusterBiConnectorOutputWithContext(context.Context) GetAdvancedClusterBiConnectorOutput
+}
+
+type GetAdvancedClusterBiConnectorArgs struct {
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
+}
+
+func (GetAdvancedClusterBiConnectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterBiConnector)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterBiConnectorArgs) ToGetAdvancedClusterBiConnectorOutput() GetAdvancedClusterBiConnectorOutput {
+	return i.ToGetAdvancedClusterBiConnectorOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterBiConnectorArgs) ToGetAdvancedClusterBiConnectorOutputWithContext(ctx context.Context) GetAdvancedClusterBiConnectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterBiConnectorOutput)
+}
+
+// GetAdvancedClusterBiConnectorArrayInput is an input type that accepts GetAdvancedClusterBiConnectorArray and GetAdvancedClusterBiConnectorArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterBiConnectorArrayInput` via:
+//
+//          GetAdvancedClusterBiConnectorArray{ GetAdvancedClusterBiConnectorArgs{...} }
+type GetAdvancedClusterBiConnectorArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterBiConnectorArrayOutput() GetAdvancedClusterBiConnectorArrayOutput
+	ToGetAdvancedClusterBiConnectorArrayOutputWithContext(context.Context) GetAdvancedClusterBiConnectorArrayOutput
+}
+
+type GetAdvancedClusterBiConnectorArray []GetAdvancedClusterBiConnectorInput
+
+func (GetAdvancedClusterBiConnectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterBiConnector)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterBiConnectorArray) ToGetAdvancedClusterBiConnectorArrayOutput() GetAdvancedClusterBiConnectorArrayOutput {
+	return i.ToGetAdvancedClusterBiConnectorArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterBiConnectorArray) ToGetAdvancedClusterBiConnectorArrayOutputWithContext(ctx context.Context) GetAdvancedClusterBiConnectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterBiConnectorArrayOutput)
+}
+
+type GetAdvancedClusterBiConnectorOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterBiConnectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterBiConnector)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterBiConnectorOutput) ToGetAdvancedClusterBiConnectorOutput() GetAdvancedClusterBiConnectorOutput {
+	return o
+}
+
+func (o GetAdvancedClusterBiConnectorOutput) ToGetAdvancedClusterBiConnectorOutputWithContext(ctx context.Context) GetAdvancedClusterBiConnectorOutput {
+	return o
+}
+
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+func (o GetAdvancedClusterBiConnectorOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClusterBiConnector) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+func (o GetAdvancedClusterBiConnectorOutput) ReadPreference() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterBiConnector) string { return v.ReadPreference }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClusterBiConnectorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterBiConnectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterBiConnector)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterBiConnectorArrayOutput) ToGetAdvancedClusterBiConnectorArrayOutput() GetAdvancedClusterBiConnectorArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterBiConnectorArrayOutput) ToGetAdvancedClusterBiConnectorArrayOutputWithContext(ctx context.Context) GetAdvancedClusterBiConnectorArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterBiConnectorArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterBiConnectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterBiConnector {
+		return vs[0].([]GetAdvancedClusterBiConnector)[vs[1].(int)]
+	}).(GetAdvancedClusterBiConnectorOutput)
+}
+
+type GetAdvancedClusterConnectionString struct {
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	AwsPrivateLinkSrv map[string]interface{}                              `pulumi:"awsPrivateLinkSrv"`
+	Private           string                                              `pulumi:"private"`
+	PrivateEndpoints  []GetAdvancedClusterConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        string                                              `pulumi:"privateSrv"`
+	Standard          string                                              `pulumi:"standard"`
+	StandardSrv       string                                              `pulumi:"standardSrv"`
+}
+
+// GetAdvancedClusterConnectionStringInput is an input type that accepts GetAdvancedClusterConnectionStringArgs and GetAdvancedClusterConnectionStringOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterConnectionStringInput` via:
+//
+//          GetAdvancedClusterConnectionStringArgs{...}
+type GetAdvancedClusterConnectionStringInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterConnectionStringOutput() GetAdvancedClusterConnectionStringOutput
+	ToGetAdvancedClusterConnectionStringOutputWithContext(context.Context) GetAdvancedClusterConnectionStringOutput
+}
+
+type GetAdvancedClusterConnectionStringArgs struct {
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	AwsPrivateLinkSrv pulumi.MapInput                                             `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringInput                                          `pulumi:"private"`
+	PrivateEndpoints  GetAdvancedClusterConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringInput                                          `pulumi:"privateSrv"`
+	Standard          pulumi.StringInput                                          `pulumi:"standard"`
+	StandardSrv       pulumi.StringInput                                          `pulumi:"standardSrv"`
+}
+
+func (GetAdvancedClusterConnectionStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterConnectionString)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterConnectionStringArgs) ToGetAdvancedClusterConnectionStringOutput() GetAdvancedClusterConnectionStringOutput {
+	return i.ToGetAdvancedClusterConnectionStringOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterConnectionStringArgs) ToGetAdvancedClusterConnectionStringOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterConnectionStringOutput)
+}
+
+// GetAdvancedClusterConnectionStringArrayInput is an input type that accepts GetAdvancedClusterConnectionStringArray and GetAdvancedClusterConnectionStringArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterConnectionStringArrayInput` via:
+//
+//          GetAdvancedClusterConnectionStringArray{ GetAdvancedClusterConnectionStringArgs{...} }
+type GetAdvancedClusterConnectionStringArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterConnectionStringArrayOutput() GetAdvancedClusterConnectionStringArrayOutput
+	ToGetAdvancedClusterConnectionStringArrayOutputWithContext(context.Context) GetAdvancedClusterConnectionStringArrayOutput
+}
+
+type GetAdvancedClusterConnectionStringArray []GetAdvancedClusterConnectionStringInput
+
+func (GetAdvancedClusterConnectionStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterConnectionString)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterConnectionStringArray) ToGetAdvancedClusterConnectionStringArrayOutput() GetAdvancedClusterConnectionStringArrayOutput {
+	return i.ToGetAdvancedClusterConnectionStringArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterConnectionStringArray) ToGetAdvancedClusterConnectionStringArrayOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterConnectionStringArrayOutput)
+}
+
+type GetAdvancedClusterConnectionStringOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterConnectionStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterConnectionString)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterConnectionStringOutput) ToGetAdvancedClusterConnectionStringOutput() GetAdvancedClusterConnectionStringOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringOutput) ToGetAdvancedClusterConnectionStringOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringOutput {
+	return o
+}
+
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+func (o GetAdvancedClusterConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+}
+
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+func (o GetAdvancedClusterConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringOutput) Private() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.Private }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringOutput) PrivateEndpoints() GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionString) []GetAdvancedClusterConnectionStringPrivateEndpoint {
+		return v.PrivateEndpoints
+	}).(GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringOutput) Standard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.Standard }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringOutput) StandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClusterConnectionStringArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterConnectionStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterConnectionString)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterConnectionStringArrayOutput) ToGetAdvancedClusterConnectionStringArrayOutput() GetAdvancedClusterConnectionStringArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringArrayOutput) ToGetAdvancedClusterConnectionStringArrayOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterConnectionStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterConnectionString {
+		return vs[0].([]GetAdvancedClusterConnectionString)[vs[1].(int)]
+	}).(GetAdvancedClusterConnectionStringOutput)
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpoint struct {
+	ConnectionString    string                                                      `pulumi:"connectionString"`
+	Endpoints           []GetAdvancedClusterConnectionStringPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString string                                                      `pulumi:"srvConnectionString"`
+	Type                string                                                      `pulumi:"type"`
+}
+
+// GetAdvancedClusterConnectionStringPrivateEndpointInput is an input type that accepts GetAdvancedClusterConnectionStringPrivateEndpointArgs and GetAdvancedClusterConnectionStringPrivateEndpointOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterConnectionStringPrivateEndpointInput` via:
+//
+//          GetAdvancedClusterConnectionStringPrivateEndpointArgs{...}
+type GetAdvancedClusterConnectionStringPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterConnectionStringPrivateEndpointOutput() GetAdvancedClusterConnectionStringPrivateEndpointOutput
+	ToGetAdvancedClusterConnectionStringPrivateEndpointOutputWithContext(context.Context) GetAdvancedClusterConnectionStringPrivateEndpointOutput
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringInput                                                  `pulumi:"connectionString"`
+	Endpoints           GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringInput                                                  `pulumi:"srvConnectionString"`
+	Type                pulumi.StringInput                                                  `pulumi:"type"`
+}
+
+func (GetAdvancedClusterConnectionStringPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterConnectionStringPrivateEndpointArgs) ToGetAdvancedClusterConnectionStringPrivateEndpointOutput() GetAdvancedClusterConnectionStringPrivateEndpointOutput {
+	return i.ToGetAdvancedClusterConnectionStringPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterConnectionStringPrivateEndpointArgs) ToGetAdvancedClusterConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterConnectionStringPrivateEndpointOutput)
+}
+
+// GetAdvancedClusterConnectionStringPrivateEndpointArrayInput is an input type that accepts GetAdvancedClusterConnectionStringPrivateEndpointArray and GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterConnectionStringPrivateEndpointArrayInput` via:
+//
+//          GetAdvancedClusterConnectionStringPrivateEndpointArray{ GetAdvancedClusterConnectionStringPrivateEndpointArgs{...} }
+type GetAdvancedClusterConnectionStringPrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterConnectionStringPrivateEndpointArrayOutput() GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput
+	ToGetAdvancedClusterConnectionStringPrivateEndpointArrayOutputWithContext(context.Context) GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointArray []GetAdvancedClusterConnectionStringPrivateEndpointInput
+
+func (GetAdvancedClusterConnectionStringPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterConnectionStringPrivateEndpointArray) ToGetAdvancedClusterConnectionStringPrivateEndpointArrayOutput() GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return i.ToGetAdvancedClusterConnectionStringPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterConnectionStringPrivateEndpointArray) ToGetAdvancedClusterConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput)
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterConnectionStringPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointOutput) ToGetAdvancedClusterConnectionStringPrivateEndpointOutput() GetAdvancedClusterConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointOutput) ToGetAdvancedClusterConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionStringPrivateEndpoint) string { return v.ConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointOutput) Endpoints() GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionStringPrivateEndpoint) []GetAdvancedClusterConnectionStringPrivateEndpointEndpoint {
+		return v.Endpoints
+	}).(GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointOutput) SrvConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionStringPrivateEndpoint) string { return v.SrvConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionStringPrivateEndpoint) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput) ToGetAdvancedClusterConnectionStringPrivateEndpointArrayOutput() GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput) ToGetAdvancedClusterConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterConnectionStringPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterConnectionStringPrivateEndpoint {
+		return vs[0].([]GetAdvancedClusterConnectionStringPrivateEndpoint)[vs[1].(int)]
+	}).(GetAdvancedClusterConnectionStringPrivateEndpointOutput)
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
+	EndpointId string `pulumi:"endpointId"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName string `pulumi:"providerName"`
+	Region       string `pulumi:"region"`
+}
+
+// GetAdvancedClusterConnectionStringPrivateEndpointEndpointInput is an input type that accepts GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs and GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterConnectionStringPrivateEndpointEndpointInput` via:
+//
+//          GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...}
+type GetAdvancedClusterConnectionStringPrivateEndpointEndpointInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput() GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput
+	ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointOutputWithContext(context.Context) GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs struct {
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	Region       pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs) ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput() GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return i.ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs) ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput)
+}
+
+// GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray and GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput` via:
+//
+//          GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray{ GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...} }
+type GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput() GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput
+	ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Context) GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray []GetAdvancedClusterConnectionStringPrivateEndpointEndpointInput
+
+func (GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray) ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput() GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return i.ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray) ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput)
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput() GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionStringPrivateEndpointEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// Cloud service provider on which the servers are provisioned.
+func (o GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionStringPrivateEndpointEndpoint) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterConnectionStringPrivateEndpointEndpoint) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput) ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput() GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput) ToGetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterConnectionStringPrivateEndpointEndpoint {
+		return vs[0].([]GetAdvancedClusterConnectionStringPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput)
+}
+
+type GetAdvancedClusterLabel struct {
+	// The key that you want to write.
+	Key string `pulumi:"key"`
+	// The value that you want to write.
+	Value string `pulumi:"value"`
+}
+
+// GetAdvancedClusterLabelInput is an input type that accepts GetAdvancedClusterLabelArgs and GetAdvancedClusterLabelOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterLabelInput` via:
+//
+//          GetAdvancedClusterLabelArgs{...}
+type GetAdvancedClusterLabelInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterLabelOutput() GetAdvancedClusterLabelOutput
+	ToGetAdvancedClusterLabelOutputWithContext(context.Context) GetAdvancedClusterLabelOutput
+}
+
+type GetAdvancedClusterLabelArgs struct {
+	// The key that you want to write.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value that you want to write.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAdvancedClusterLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterLabel)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterLabelArgs) ToGetAdvancedClusterLabelOutput() GetAdvancedClusterLabelOutput {
+	return i.ToGetAdvancedClusterLabelOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterLabelArgs) ToGetAdvancedClusterLabelOutputWithContext(ctx context.Context) GetAdvancedClusterLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterLabelOutput)
+}
+
+// GetAdvancedClusterLabelArrayInput is an input type that accepts GetAdvancedClusterLabelArray and GetAdvancedClusterLabelArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterLabelArrayInput` via:
+//
+//          GetAdvancedClusterLabelArray{ GetAdvancedClusterLabelArgs{...} }
+type GetAdvancedClusterLabelArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterLabelArrayOutput() GetAdvancedClusterLabelArrayOutput
+	ToGetAdvancedClusterLabelArrayOutputWithContext(context.Context) GetAdvancedClusterLabelArrayOutput
+}
+
+type GetAdvancedClusterLabelArray []GetAdvancedClusterLabelInput
+
+func (GetAdvancedClusterLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterLabel)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterLabelArray) ToGetAdvancedClusterLabelArrayOutput() GetAdvancedClusterLabelArrayOutput {
+	return i.ToGetAdvancedClusterLabelArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterLabelArray) ToGetAdvancedClusterLabelArrayOutputWithContext(ctx context.Context) GetAdvancedClusterLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterLabelArrayOutput)
+}
+
+type GetAdvancedClusterLabelOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterLabel)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterLabelOutput) ToGetAdvancedClusterLabelOutput() GetAdvancedClusterLabelOutput {
+	return o
+}
+
+func (o GetAdvancedClusterLabelOutput) ToGetAdvancedClusterLabelOutputWithContext(ctx context.Context) GetAdvancedClusterLabelOutput {
+	return o
+}
+
+// The key that you want to write.
+func (o GetAdvancedClusterLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterLabel) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value that you want to write.
+func (o GetAdvancedClusterLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterLabel) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClusterLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterLabel)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterLabelArrayOutput) ToGetAdvancedClusterLabelArrayOutput() GetAdvancedClusterLabelArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterLabelArrayOutput) ToGetAdvancedClusterLabelArrayOutputWithContext(ctx context.Context) GetAdvancedClusterLabelArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterLabel {
+		return vs[0].([]GetAdvancedClusterLabel)[vs[1].(int)]
+	}).(GetAdvancedClusterLabelOutput)
+}
+
+type GetAdvancedClusterReplicationSpec struct {
+	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+	ContainerId map[string]string `pulumi:"containerId"`
+	Id          string            `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+	NumShards int `pulumi:"numShards"`
+	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	RegionConfigs []GetAdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
+	// Name for the zone in a Global Cluster.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetAdvancedClusterReplicationSpecInput is an input type that accepts GetAdvancedClusterReplicationSpecArgs and GetAdvancedClusterReplicationSpecOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecInput` via:
+//
+//          GetAdvancedClusterReplicationSpecArgs{...}
+type GetAdvancedClusterReplicationSpecInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecOutput() GetAdvancedClusterReplicationSpecOutput
+	ToGetAdvancedClusterReplicationSpecOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecOutput
+}
+
+type GetAdvancedClusterReplicationSpecArgs struct {
+	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
+	Id          pulumi.StringInput    `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+	NumShards pulumi.IntInput `pulumi:"numShards"`
+	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	RegionConfigs GetAdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
+	// Name for the zone in a Global Cluster.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetAdvancedClusterReplicationSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpec)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecArgs) ToGetAdvancedClusterReplicationSpecOutput() GetAdvancedClusterReplicationSpecOutput {
+	return i.ToGetAdvancedClusterReplicationSpecOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecArgs) ToGetAdvancedClusterReplicationSpecOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecOutput)
+}
+
+// GetAdvancedClusterReplicationSpecArrayInput is an input type that accepts GetAdvancedClusterReplicationSpecArray and GetAdvancedClusterReplicationSpecArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecArrayInput` via:
+//
+//          GetAdvancedClusterReplicationSpecArray{ GetAdvancedClusterReplicationSpecArgs{...} }
+type GetAdvancedClusterReplicationSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecArrayOutput() GetAdvancedClusterReplicationSpecArrayOutput
+	ToGetAdvancedClusterReplicationSpecArrayOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecArrayOutput
+}
+
+type GetAdvancedClusterReplicationSpecArray []GetAdvancedClusterReplicationSpecInput
+
+func (GetAdvancedClusterReplicationSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterReplicationSpec)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecArray) ToGetAdvancedClusterReplicationSpecArrayOutput() GetAdvancedClusterReplicationSpecArrayOutput {
+	return i.ToGetAdvancedClusterReplicationSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecArray) ToGetAdvancedClusterReplicationSpecArrayOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecArrayOutput)
+}
+
+type GetAdvancedClusterReplicationSpecOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpec)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecOutput) ToGetAdvancedClusterReplicationSpecOutput() GetAdvancedClusterReplicationSpecOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecOutput) ToGetAdvancedClusterReplicationSpecOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecOutput {
+	return o
+}
+
+// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+func (o GetAdvancedClusterReplicationSpecOutput) ContainerId() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
+}
+
+func (o GetAdvancedClusterReplicationSpecOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+func (o GetAdvancedClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
+}
+
+// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+func (o GetAdvancedClusterReplicationSpecOutput) RegionConfigs() GetAdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) []GetAdvancedClusterReplicationSpecRegionConfig {
+		return v.RegionConfigs
+	}).(GetAdvancedClusterReplicationSpecRegionConfigArrayOutput)
+}
+
+// Name for the zone in a Global Cluster.
+func (o GetAdvancedClusterReplicationSpecOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpec) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClusterReplicationSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterReplicationSpec)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecArrayOutput) ToGetAdvancedClusterReplicationSpecArrayOutput() GetAdvancedClusterReplicationSpecArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecArrayOutput) ToGetAdvancedClusterReplicationSpecArrayOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterReplicationSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterReplicationSpec {
+		return vs[0].([]GetAdvancedClusterReplicationSpec)[vs[1].(int)]
+	}).(GetAdvancedClusterReplicationSpecOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfig struct {
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+	AnalyticsSpecs *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+	AutoScalings []GetAdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScalings"`
+	// Cloud service provider on which you provision the host for a multi-tenant cluster.
+	BackingProviderName string `pulumi:"backingProviderName"`
+	// Hardware specifications for electable nodes in the region.
+	ElectableSpecs *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
+	// Election priority of the region.
+	Priority int `pulumi:"priority"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName string `pulumi:"providerName"`
+	// Hardware specifications for read-only nodes in the region. See below
+	ReadOnlySpecs *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
+	// Physical location of your MongoDB cluster.
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigArgs and GetAdvancedClusterReplicationSpecRegionConfigOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigArgs{...}
+type GetAdvancedClusterReplicationSpecRegionConfigInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigOutput() GetAdvancedClusterReplicationSpecRegionConfigOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigOutput
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigArgs struct {
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+	AnalyticsSpecs GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+	AutoScalings GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput `pulumi:"autoScalings"`
+	// Cloud service provider on which you provision the host for a multi-tenant cluster.
+	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
+	// Hardware specifications for electable nodes in the region.
+	ElectableSpecs GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
+	// Election priority of the region.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Hardware specifications for read-only nodes in the region. See below
+	ReadOnlySpecs GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
+	// Physical location of your MongoDB cluster.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetAdvancedClusterReplicationSpecRegionConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigArgs) ToGetAdvancedClusterReplicationSpecRegionConfigOutput() GetAdvancedClusterReplicationSpecRegionConfigOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigArgs) ToGetAdvancedClusterReplicationSpecRegionConfigOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigOutput)
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigArrayInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigArray and GetAdvancedClusterReplicationSpecRegionConfigArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigArrayInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigArray{ GetAdvancedClusterReplicationSpecRegionConfigArgs{...} }
+type GetAdvancedClusterReplicationSpecRegionConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigArrayOutput() GetAdvancedClusterReplicationSpecRegionConfigArrayOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigArrayOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigArrayOutput
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigArray []GetAdvancedClusterReplicationSpecRegionConfigInput
+
+func (GetAdvancedClusterReplicationSpecRegionConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigArray) ToGetAdvancedClusterReplicationSpecRegionConfigArrayOutput() GetAdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigArray) ToGetAdvancedClusterReplicationSpecRegionConfigArrayOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigArrayOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ToGetAdvancedClusterReplicationSpecRegionConfigOutput() GetAdvancedClusterReplicationSpecRegionConfigOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ToGetAdvancedClusterReplicationSpecRegionConfigOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigOutput {
+	return o
+}
+
+// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
+		return v.AnalyticsSpecs
+	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AutoScalings() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) []GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
+		return v.AutoScalings
+	}).(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput)
+}
+
+// Cloud service provider on which you provision the host for a multi-tenant cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) BackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) string { return v.BackingProviderName }).(pulumi.StringOutput)
+}
+
+// Hardware specifications for electable nodes in the region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ElectableSpecs() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
+		return v.ElectableSpecs
+	}).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+// Election priority of the region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// Cloud service provider on which the servers are provisioned.
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Hardware specifications for read-only nodes in the region. See below
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
+		return v.ReadOnlySpecs
+	}).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+// Physical location of your MongoDB cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigArrayOutput) ToGetAdvancedClusterReplicationSpecRegionConfigArrayOutput() GetAdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigArrayOutput) ToGetAdvancedClusterReplicationSpecRegionConfigArrayOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterReplicationSpecRegionConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterReplicationSpecRegionConfig {
+		return vs[0].([]GetAdvancedClusterReplicationSpecRegionConfig)[vs[1].(int)]
+	}).(GetAdvancedClusterReplicationSpecRegionConfigOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs and GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput).ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx)
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
+}
+
+type getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
+
+func GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtr(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput {
+	return (*getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType)(v)
+}
+
+func (*getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (i *getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *getAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
+		return &v
+	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
+		if v != nil {
+			return *v
+		}
+		var ret GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs
+		return ret
+	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
+	// Flag that indicates whether instance size auto-scaling is enabled.
+	ComputeEnabled bool `pulumi:"computeEnabled"`
+	// Maximum instance size to which your cluster can automatically scale (such as M40).
+	ComputeMaxInstanceSize string `pulumi:"computeMaxInstanceSize"`
+	// Minimum instance size to which your cluster can automatically scale (such as M10).
+	ComputeMinInstanceSize string `pulumi:"computeMinInstanceSize"`
+	// Flag that indicates whether the instance size may scale down.
+	ComputeScaleDownEnabled bool `pulumi:"computeScaleDownEnabled"`
+	// Flag that indicates whether this cluster enables disk auto-scaling.
+	DiskGbEnabled bool `pulumi:"diskGbEnabled"`
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs and GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
+	// Flag that indicates whether instance size auto-scaling is enabled.
+	ComputeEnabled pulumi.BoolInput `pulumi:"computeEnabled"`
+	// Maximum instance size to which your cluster can automatically scale (such as M40).
+	ComputeMaxInstanceSize pulumi.StringInput `pulumi:"computeMaxInstanceSize"`
+	// Minimum instance size to which your cluster can automatically scale (such as M10).
+	ComputeMinInstanceSize pulumi.StringInput `pulumi:"computeMinInstanceSize"`
+	// Flag that indicates whether the instance size may scale down.
+	ComputeScaleDownEnabled pulumi.BoolInput `pulumi:"computeScaleDownEnabled"`
+	// Flag that indicates whether this cluster enables disk auto-scaling.
+	DiskGbEnabled pulumi.BoolInput `pulumi:"diskGbEnabled"`
+}
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput)
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray and GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray{ GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...} }
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray []GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return o
+}
+
+// Flag that indicates whether instance size auto-scaling is enabled.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScaling) bool { return v.ComputeEnabled }).(pulumi.BoolOutput)
+}
+
+// Maximum instance size to which your cluster can automatically scale (such as M40).
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeMaxInstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScaling) string {
+		return v.ComputeMaxInstanceSize
+	}).(pulumi.StringOutput)
+}
+
+// Minimum instance size to which your cluster can automatically scale (such as M10).
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeMinInstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScaling) string {
+		return v.ComputeMinInstanceSize
+	}).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the instance size may scale down.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeScaleDownEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScaling) bool {
+		return v.ComputeScaleDownEnabled
+	}).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether this cluster enables disk auto-scaling.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScaling) bool { return v.DiskGbEnabled }).(pulumi.BoolOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClusterReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput) Index(i pulumi.IntInput) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
+		return vs[0].([]GetAdvancedClusterReplicationSpecRegionConfigAutoScaling)[vs[1].(int)]
+	}).(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs and GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
+type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput).ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx)
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput
+}
+
+type getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+
+func GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtr(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput {
+	return (*getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType)(v)
+}
+
+func (*getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (i *getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *getAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
+		return &v
+	}).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem() GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
+		if v != nil {
+			return *v
+		}
+		var ret GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs
+		return ret
+	}).(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs and GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput).ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx)
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput` via:
+//
+//          GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput
+}
+
+type getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs
+
+func GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtr(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput {
+	return (*getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType)(v)
+}
+
+func (*getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (i *getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *getAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrType) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
+		return &v
+	}).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) string { return v.InstanceSize }).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToGetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem() GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
+		if v != nil {
+			return *v
+		}
+		var ret GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs
+		return ret
+	}).(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClustersResult struct {
+	// Get the advanced configuration options. See Advanced Configuration below for more details.
+	AdvancedConfigurations []GetAdvancedClustersResultAdvancedConfiguration `pulumi:"advancedConfigurations"`
+	BackupEnabled          bool                                             `pulumi:"backupEnabled"`
+	// Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+	BiConnectors []GetAdvancedClustersResultBiConnector `pulumi:"biConnectors"`
+	// Type of the cluster that you want to create.
+	ClusterType string `pulumi:"clusterType"`
+	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	ConnectionStrings []GetAdvancedClustersResultConnectionString `pulumi:"connectionStrings"`
+	CreateDate        string                                      `pulumi:"createDate"`
+	// Capacity, in gigabytes, of the host's root volume.
+	DiskSizeGb float64 `pulumi:"diskSizeGb"`
+	// Possible values are AWS, GCP, AZURE or NONE.
+	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
+	// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+	Labels []GetAdvancedClustersResultLabel `pulumi:"labels"`
+	// Version of the cluster to deploy.
+	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
+	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
+	MongoDbVersion string `pulumi:"mongoDbVersion"`
+	Name           string `pulumi:"name"`
+	// Flag that indicates whether the cluster is paused or not.
+	Paused bool `pulumi:"paused"`
+	// Flag that indicates if the cluster uses Continuous Cloud Backup.
+	PitEnabled bool `pulumi:"pitEnabled"`
+	// Configuration for cluster regions and the hardware provisioned in them. See below
+	ReplicationSpecs []GetAdvancedClustersResultReplicationSpec `pulumi:"replicationSpecs"`
+	// Certificate Authority that MongoDB Atlas clusters use.
+	RootCertType string `pulumi:"rootCertType"`
+	// Current state of the cluster. The possible states are:
+	StateName string `pulumi:"stateName"`
+	// Release cadence that Atlas uses for this cluster.
+	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
+}
+
+// GetAdvancedClustersResultInput is an input type that accepts GetAdvancedClustersResultArgs and GetAdvancedClustersResultOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultInput` via:
+//
+//          GetAdvancedClustersResultArgs{...}
+type GetAdvancedClustersResultInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultOutput() GetAdvancedClustersResultOutput
+	ToGetAdvancedClustersResultOutputWithContext(context.Context) GetAdvancedClustersResultOutput
+}
+
+type GetAdvancedClustersResultArgs struct {
+	// Get the advanced configuration options. See Advanced Configuration below for more details.
+	AdvancedConfigurations GetAdvancedClustersResultAdvancedConfigurationArrayInput `pulumi:"advancedConfigurations"`
+	BackupEnabled          pulumi.BoolInput                                         `pulumi:"backupEnabled"`
+	// Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+	BiConnectors GetAdvancedClustersResultBiConnectorArrayInput `pulumi:"biConnectors"`
+	// Type of the cluster that you want to create.
+	ClusterType pulumi.StringInput `pulumi:"clusterType"`
+	// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	ConnectionStrings GetAdvancedClustersResultConnectionStringArrayInput `pulumi:"connectionStrings"`
+	CreateDate        pulumi.StringInput                                  `pulumi:"createDate"`
+	// Capacity, in gigabytes, of the host's root volume.
+	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
+	// Possible values are AWS, GCP, AZURE or NONE.
+	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
+	// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+	Labels GetAdvancedClustersResultLabelArrayInput `pulumi:"labels"`
+	// Version of the cluster to deploy.
+	MongoDbMajorVersion pulumi.StringInput `pulumi:"mongoDbMajorVersion"`
+	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
+	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
+	Name           pulumi.StringInput `pulumi:"name"`
+	// Flag that indicates whether the cluster is paused or not.
+	Paused pulumi.BoolInput `pulumi:"paused"`
+	// Flag that indicates if the cluster uses Continuous Cloud Backup.
+	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
+	// Configuration for cluster regions and the hardware provisioned in them. See below
+	ReplicationSpecs GetAdvancedClustersResultReplicationSpecArrayInput `pulumi:"replicationSpecs"`
+	// Certificate Authority that MongoDB Atlas clusters use.
+	RootCertType pulumi.StringInput `pulumi:"rootCertType"`
+	// Current state of the cluster. The possible states are:
+	StateName pulumi.StringInput `pulumi:"stateName"`
+	// Release cadence that Atlas uses for this cluster.
+	VersionReleaseSystem pulumi.StringInput `pulumi:"versionReleaseSystem"`
+}
+
+func (GetAdvancedClustersResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResult)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultArgs) ToGetAdvancedClustersResultOutput() GetAdvancedClustersResultOutput {
+	return i.ToGetAdvancedClustersResultOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultArgs) ToGetAdvancedClustersResultOutputWithContext(ctx context.Context) GetAdvancedClustersResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultOutput)
+}
+
+// GetAdvancedClustersResultArrayInput is an input type that accepts GetAdvancedClustersResultArray and GetAdvancedClustersResultArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultArrayInput` via:
+//
+//          GetAdvancedClustersResultArray{ GetAdvancedClustersResultArgs{...} }
+type GetAdvancedClustersResultArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultArrayOutput() GetAdvancedClustersResultArrayOutput
+	ToGetAdvancedClustersResultArrayOutputWithContext(context.Context) GetAdvancedClustersResultArrayOutput
+}
+
+type GetAdvancedClustersResultArray []GetAdvancedClustersResultInput
+
+func (GetAdvancedClustersResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResult)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultArray) ToGetAdvancedClustersResultArrayOutput() GetAdvancedClustersResultArrayOutput {
+	return i.ToGetAdvancedClustersResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultArray) ToGetAdvancedClustersResultArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultArrayOutput)
+}
+
+type GetAdvancedClustersResultOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResult)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultOutput) ToGetAdvancedClustersResultOutput() GetAdvancedClustersResultOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultOutput) ToGetAdvancedClustersResultOutputWithContext(ctx context.Context) GetAdvancedClustersResultOutput {
+	return o
+}
+
+// Get the advanced configuration options. See Advanced Configuration below for more details.
+func (o GetAdvancedClustersResultOutput) AdvancedConfigurations() GetAdvancedClustersResultAdvancedConfigurationArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultAdvancedConfiguration {
+		return v.AdvancedConfigurations
+	}).(GetAdvancedClustersResultAdvancedConfigurationArrayOutput)
+}
+
+func (o GetAdvancedClustersResultOutput) BackupEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.BackupEnabled }).(pulumi.BoolOutput)
+}
+
+// Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+func (o GetAdvancedClustersResultOutput) BiConnectors() GetAdvancedClustersResultBiConnectorArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultBiConnector { return v.BiConnectors }).(GetAdvancedClustersResultBiConnectorArrayOutput)
+}
+
+// Type of the cluster that you want to create.
+func (o GetAdvancedClustersResultOutput) ClusterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ClusterType }).(pulumi.StringOutput)
+}
+
+// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+func (o GetAdvancedClustersResultOutput) ConnectionStrings() GetAdvancedClustersResultConnectionStringArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultConnectionString {
+		return v.ConnectionStrings
+	}).(GetAdvancedClustersResultConnectionStringArrayOutput)
+}
+
+func (o GetAdvancedClustersResultOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// Capacity, in gigabytes, of the host's root volume.
+func (o GetAdvancedClustersResultOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAdvancedClustersResult) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
+}
+
+// Possible values are AWS, GCP, AZURE or NONE.
+func (o GetAdvancedClustersResultOutput) EncryptionAtRestProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.EncryptionAtRestProvider }).(pulumi.StringOutput)
+}
+
+// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+func (o GetAdvancedClustersResultOutput) Labels() GetAdvancedClustersResultLabelArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultLabel { return v.Labels }).(GetAdvancedClustersResultLabelArrayOutput)
+}
+
+// Version of the cluster to deploy.
+func (o GetAdvancedClustersResultOutput) MongoDbMajorVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.MongoDbMajorVersion }).(pulumi.StringOutput)
+}
+
+// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
+func (o GetAdvancedClustersResultOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClustersResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the cluster is paused or not.
+func (o GetAdvancedClustersResultOutput) Paused() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.Paused }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates if the cluster uses Continuous Cloud Backup.
+func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
+}
+
+// Configuration for cluster regions and the hardware provisioned in them. See below
+func (o GetAdvancedClustersResultOutput) ReplicationSpecs() GetAdvancedClustersResultReplicationSpecArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) []GetAdvancedClustersResultReplicationSpec {
+		return v.ReplicationSpecs
+	}).(GetAdvancedClustersResultReplicationSpecArrayOutput)
+}
+
+// Certificate Authority that MongoDB Atlas clusters use.
+func (o GetAdvancedClustersResultOutput) RootCertType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.RootCertType }).(pulumi.StringOutput)
+}
+
+// Current state of the cluster. The possible states are:
+func (o GetAdvancedClustersResultOutput) StateName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Release cadence that Atlas uses for this cluster.
+func (o GetAdvancedClustersResultOutput) VersionReleaseSystem() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.VersionReleaseSystem }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResult)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultArrayOutput) ToGetAdvancedClustersResultArrayOutput() GetAdvancedClustersResultArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultArrayOutput) ToGetAdvancedClustersResultArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResult {
+		return vs[0].([]GetAdvancedClustersResult)[vs[1].(int)]
+	}).(GetAdvancedClustersResultOutput)
+}
+
+type GetAdvancedClustersResultAdvancedConfiguration struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern string `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong bool `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan bool `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb int `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector int `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector int `pulumi:"sampleSizeBiConnector"`
+}
+
+// GetAdvancedClustersResultAdvancedConfigurationInput is an input type that accepts GetAdvancedClustersResultAdvancedConfigurationArgs and GetAdvancedClustersResultAdvancedConfigurationOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultAdvancedConfigurationInput` via:
+//
+//          GetAdvancedClustersResultAdvancedConfigurationArgs{...}
+type GetAdvancedClustersResultAdvancedConfigurationInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultAdvancedConfigurationOutput() GetAdvancedClustersResultAdvancedConfigurationOutput
+	ToGetAdvancedClustersResultAdvancedConfigurationOutputWithContext(context.Context) GetAdvancedClustersResultAdvancedConfigurationOutput
+}
+
+type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
+	// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+	FailIndexKeyTooLong pulumi.BoolInput `pulumi:"failIndexKeyTooLong"`
+	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
+	// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
+	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
+	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
+	// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleRefreshIntervalBiConnector pulumi.IntInput `pulumi:"sampleRefreshIntervalBiConnector"`
+	// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+	SampleSizeBiConnector pulumi.IntInput `pulumi:"sampleSizeBiConnector"`
+}
+
+func (GetAdvancedClustersResultAdvancedConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultAdvancedConfigurationArgs) ToGetAdvancedClustersResultAdvancedConfigurationOutput() GetAdvancedClustersResultAdvancedConfigurationOutput {
+	return i.ToGetAdvancedClustersResultAdvancedConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultAdvancedConfigurationArgs) ToGetAdvancedClustersResultAdvancedConfigurationOutputWithContext(ctx context.Context) GetAdvancedClustersResultAdvancedConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultAdvancedConfigurationOutput)
+}
+
+// GetAdvancedClustersResultAdvancedConfigurationArrayInput is an input type that accepts GetAdvancedClustersResultAdvancedConfigurationArray and GetAdvancedClustersResultAdvancedConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultAdvancedConfigurationArrayInput` via:
+//
+//          GetAdvancedClustersResultAdvancedConfigurationArray{ GetAdvancedClustersResultAdvancedConfigurationArgs{...} }
+type GetAdvancedClustersResultAdvancedConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultAdvancedConfigurationArrayOutput() GetAdvancedClustersResultAdvancedConfigurationArrayOutput
+	ToGetAdvancedClustersResultAdvancedConfigurationArrayOutputWithContext(context.Context) GetAdvancedClustersResultAdvancedConfigurationArrayOutput
+}
+
+type GetAdvancedClustersResultAdvancedConfigurationArray []GetAdvancedClustersResultAdvancedConfigurationInput
+
+func (GetAdvancedClustersResultAdvancedConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultAdvancedConfiguration)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultAdvancedConfigurationArray) ToGetAdvancedClustersResultAdvancedConfigurationArrayOutput() GetAdvancedClustersResultAdvancedConfigurationArrayOutput {
+	return i.ToGetAdvancedClustersResultAdvancedConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultAdvancedConfigurationArray) ToGetAdvancedClustersResultAdvancedConfigurationArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultAdvancedConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultAdvancedConfigurationArrayOutput)
+}
+
+type GetAdvancedClustersResultAdvancedConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultAdvancedConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ToGetAdvancedClustersResultAdvancedConfigurationOutput() GetAdvancedClustersResultAdvancedConfigurationOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ToGetAdvancedClustersResultAdvancedConfigurationOutputWithContext(ctx context.Context) GetAdvancedClustersResultAdvancedConfigurationOutput {
+	return o
+}
+
+// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
+}
+
+// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
+}
+
+// When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) FailIndexKeyTooLong() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) bool { return v.FailIndexKeyTooLong }).(pulumi.BoolOutput)
+}
+
+// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) JavascriptEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) bool { return v.JavascriptEnabled }).(pulumi.BoolOutput)
+}
+
+// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) MinimumEnabledTlsProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.MinimumEnabledTlsProtocol }).(pulumi.StringOutput)
+}
+
+// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) NoTableScan() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) bool { return v.NoTableScan }).(pulumi.BoolOutput)
+}
+
+// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) OplogSizeMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.OplogSizeMb }).(pulumi.IntOutput)
+}
+
+// Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) SampleRefreshIntervalBiConnector() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.SampleRefreshIntervalBiConnector }).(pulumi.IntOutput)
+}
+
+// Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+func (o GetAdvancedClustersResultAdvancedConfigurationOutput) SampleSizeBiConnector() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.SampleSizeBiConnector }).(pulumi.IntOutput)
+}
+
+type GetAdvancedClustersResultAdvancedConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultAdvancedConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultAdvancedConfiguration)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultAdvancedConfigurationArrayOutput) ToGetAdvancedClustersResultAdvancedConfigurationArrayOutput() GetAdvancedClustersResultAdvancedConfigurationArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultAdvancedConfigurationArrayOutput) ToGetAdvancedClustersResultAdvancedConfigurationArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultAdvancedConfigurationArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultAdvancedConfigurationArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultAdvancedConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultAdvancedConfiguration {
+		return vs[0].([]GetAdvancedClustersResultAdvancedConfiguration)[vs[1].(int)]
+	}).(GetAdvancedClustersResultAdvancedConfigurationOutput)
+}
+
+type GetAdvancedClustersResultBiConnector struct {
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	Enabled bool `pulumi:"enabled"`
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference string `pulumi:"readPreference"`
+}
+
+// GetAdvancedClustersResultBiConnectorInput is an input type that accepts GetAdvancedClustersResultBiConnectorArgs and GetAdvancedClustersResultBiConnectorOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultBiConnectorInput` via:
+//
+//          GetAdvancedClustersResultBiConnectorArgs{...}
+type GetAdvancedClustersResultBiConnectorInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultBiConnectorOutput() GetAdvancedClustersResultBiConnectorOutput
+	ToGetAdvancedClustersResultBiConnectorOutputWithContext(context.Context) GetAdvancedClustersResultBiConnectorOutput
+}
+
+type GetAdvancedClustersResultBiConnectorArgs struct {
+	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
+}
+
+func (GetAdvancedClustersResultBiConnectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultBiConnector)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultBiConnectorArgs) ToGetAdvancedClustersResultBiConnectorOutput() GetAdvancedClustersResultBiConnectorOutput {
+	return i.ToGetAdvancedClustersResultBiConnectorOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultBiConnectorArgs) ToGetAdvancedClustersResultBiConnectorOutputWithContext(ctx context.Context) GetAdvancedClustersResultBiConnectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultBiConnectorOutput)
+}
+
+// GetAdvancedClustersResultBiConnectorArrayInput is an input type that accepts GetAdvancedClustersResultBiConnectorArray and GetAdvancedClustersResultBiConnectorArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultBiConnectorArrayInput` via:
+//
+//          GetAdvancedClustersResultBiConnectorArray{ GetAdvancedClustersResultBiConnectorArgs{...} }
+type GetAdvancedClustersResultBiConnectorArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultBiConnectorArrayOutput() GetAdvancedClustersResultBiConnectorArrayOutput
+	ToGetAdvancedClustersResultBiConnectorArrayOutputWithContext(context.Context) GetAdvancedClustersResultBiConnectorArrayOutput
+}
+
+type GetAdvancedClustersResultBiConnectorArray []GetAdvancedClustersResultBiConnectorInput
+
+func (GetAdvancedClustersResultBiConnectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultBiConnector)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultBiConnectorArray) ToGetAdvancedClustersResultBiConnectorArrayOutput() GetAdvancedClustersResultBiConnectorArrayOutput {
+	return i.ToGetAdvancedClustersResultBiConnectorArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultBiConnectorArray) ToGetAdvancedClustersResultBiConnectorArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultBiConnectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultBiConnectorArrayOutput)
+}
+
+type GetAdvancedClustersResultBiConnectorOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultBiConnectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultBiConnector)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultBiConnectorOutput) ToGetAdvancedClustersResultBiConnectorOutput() GetAdvancedClustersResultBiConnectorOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultBiConnectorOutput) ToGetAdvancedClustersResultBiConnectorOutputWithContext(ctx context.Context) GetAdvancedClustersResultBiConnectorOutput {
+	return o
+}
+
+// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+func (o GetAdvancedClustersResultBiConnectorOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultBiConnector) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+func (o GetAdvancedClustersResultBiConnectorOutput) ReadPreference() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultBiConnector) string { return v.ReadPreference }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultBiConnectorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultBiConnectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultBiConnector)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultBiConnectorArrayOutput) ToGetAdvancedClustersResultBiConnectorArrayOutput() GetAdvancedClustersResultBiConnectorArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultBiConnectorArrayOutput) ToGetAdvancedClustersResultBiConnectorArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultBiConnectorArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultBiConnectorArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultBiConnectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultBiConnector {
+		return vs[0].([]GetAdvancedClustersResultBiConnector)[vs[1].(int)]
+	}).(GetAdvancedClustersResultBiConnectorOutput)
+}
+
+type GetAdvancedClustersResultConnectionString struct {
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	AwsPrivateLink map[string]interface{} `pulumi:"awsPrivateLink"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	AwsPrivateLinkSrv map[string]interface{}                                     `pulumi:"awsPrivateLinkSrv"`
+	Private           string                                                     `pulumi:"private"`
+	PrivateEndpoints  []GetAdvancedClustersResultConnectionStringPrivateEndpoint `pulumi:"privateEndpoints"`
+	PrivateSrv        string                                                     `pulumi:"privateSrv"`
+	Standard          string                                                     `pulumi:"standard"`
+	StandardSrv       string                                                     `pulumi:"standardSrv"`
+}
+
+// GetAdvancedClustersResultConnectionStringInput is an input type that accepts GetAdvancedClustersResultConnectionStringArgs and GetAdvancedClustersResultConnectionStringOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringInput` via:
+//
+//          GetAdvancedClustersResultConnectionStringArgs{...}
+type GetAdvancedClustersResultConnectionStringInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultConnectionStringOutput() GetAdvancedClustersResultConnectionStringOutput
+	ToGetAdvancedClustersResultConnectionStringOutputWithContext(context.Context) GetAdvancedClustersResultConnectionStringOutput
+}
+
+type GetAdvancedClustersResultConnectionStringArgs struct {
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+	AwsPrivateLink pulumi.MapInput `pulumi:"awsPrivateLink"`
+	// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+	AwsPrivateLinkSrv pulumi.MapInput                                                    `pulumi:"awsPrivateLinkSrv"`
+	Private           pulumi.StringInput                                                 `pulumi:"private"`
+	PrivateEndpoints  GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
+	PrivateSrv        pulumi.StringInput                                                 `pulumi:"privateSrv"`
+	Standard          pulumi.StringInput                                                 `pulumi:"standard"`
+	StandardSrv       pulumi.StringInput                                                 `pulumi:"standardSrv"`
+}
+
+func (GetAdvancedClustersResultConnectionStringArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultConnectionString)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultConnectionStringArgs) ToGetAdvancedClustersResultConnectionStringOutput() GetAdvancedClustersResultConnectionStringOutput {
+	return i.ToGetAdvancedClustersResultConnectionStringOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultConnectionStringArgs) ToGetAdvancedClustersResultConnectionStringOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultConnectionStringOutput)
+}
+
+// GetAdvancedClustersResultConnectionStringArrayInput is an input type that accepts GetAdvancedClustersResultConnectionStringArray and GetAdvancedClustersResultConnectionStringArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringArrayInput` via:
+//
+//          GetAdvancedClustersResultConnectionStringArray{ GetAdvancedClustersResultConnectionStringArgs{...} }
+type GetAdvancedClustersResultConnectionStringArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultConnectionStringArrayOutput() GetAdvancedClustersResultConnectionStringArrayOutput
+	ToGetAdvancedClustersResultConnectionStringArrayOutputWithContext(context.Context) GetAdvancedClustersResultConnectionStringArrayOutput
+}
+
+type GetAdvancedClustersResultConnectionStringArray []GetAdvancedClustersResultConnectionStringInput
+
+func (GetAdvancedClustersResultConnectionStringArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultConnectionString)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultConnectionStringArray) ToGetAdvancedClustersResultConnectionStringArrayOutput() GetAdvancedClustersResultConnectionStringArrayOutput {
+	return i.ToGetAdvancedClustersResultConnectionStringArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultConnectionStringArray) ToGetAdvancedClustersResultConnectionStringArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultConnectionStringArrayOutput)
+}
+
+type GetAdvancedClustersResultConnectionStringOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultConnectionStringOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultConnectionString)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultConnectionStringOutput) ToGetAdvancedClustersResultConnectionStringOutput() GetAdvancedClustersResultConnectionStringOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringOutput) ToGetAdvancedClustersResultConnectionStringOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringOutput {
+	return o
+}
+
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+func (o GetAdvancedClustersResultConnectionStringOutput) AwsPrivateLink() pulumi.MapOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLink }).(pulumi.MapOutput)
+}
+
+// Deprecated: This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+func (o GetAdvancedClustersResultConnectionStringOutput) AwsPrivateLinkSrv() pulumi.MapOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) map[string]interface{} { return v.AwsPrivateLinkSrv }).(pulumi.MapOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringOutput) Private() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.Private }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringOutput) PrivateEndpoints() GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) []GetAdvancedClustersResultConnectionStringPrivateEndpoint {
+		return v.PrivateEndpoints
+	}).(GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringOutput) PrivateSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.PrivateSrv }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringOutput) Standard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.Standard }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringOutput) StandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionString) string { return v.StandardSrv }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultConnectionStringArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultConnectionStringArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultConnectionString)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultConnectionStringArrayOutput) ToGetAdvancedClustersResultConnectionStringArrayOutput() GetAdvancedClustersResultConnectionStringArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringArrayOutput) ToGetAdvancedClustersResultConnectionStringArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultConnectionStringOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultConnectionString {
+		return vs[0].([]GetAdvancedClustersResultConnectionString)[vs[1].(int)]
+	}).(GetAdvancedClustersResultConnectionStringOutput)
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpoint struct {
+	ConnectionString    string                                                             `pulumi:"connectionString"`
+	Endpoints           []GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint `pulumi:"endpoints"`
+	SrvConnectionString string                                                             `pulumi:"srvConnectionString"`
+	Type                string                                                             `pulumi:"type"`
+}
+
+// GetAdvancedClustersResultConnectionStringPrivateEndpointInput is an input type that accepts GetAdvancedClustersResultConnectionStringPrivateEndpointArgs and GetAdvancedClustersResultConnectionStringPrivateEndpointOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringPrivateEndpointInput` via:
+//
+//          GetAdvancedClustersResultConnectionStringPrivateEndpointArgs{...}
+type GetAdvancedClustersResultConnectionStringPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultConnectionStringPrivateEndpointOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointOutput
+	ToGetAdvancedClustersResultConnectionStringPrivateEndpointOutputWithContext(context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointOutput
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointArgs struct {
+	ConnectionString    pulumi.StringInput                                                         `pulumi:"connectionString"`
+	Endpoints           GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput `pulumi:"endpoints"`
+	SrvConnectionString pulumi.StringInput                                                         `pulumi:"srvConnectionString"`
+	Type                pulumi.StringInput                                                         `pulumi:"type"`
+}
+
+func (GetAdvancedClustersResultConnectionStringPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultConnectionStringPrivateEndpointArgs) ToGetAdvancedClustersResultConnectionStringPrivateEndpointOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointOutput {
+	return i.ToGetAdvancedClustersResultConnectionStringPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultConnectionStringPrivateEndpointArgs) ToGetAdvancedClustersResultConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultConnectionStringPrivateEndpointOutput)
+}
+
+// GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput is an input type that accepts GetAdvancedClustersResultConnectionStringPrivateEndpointArray and GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput` via:
+//
+//          GetAdvancedClustersResultConnectionStringPrivateEndpointArray{ GetAdvancedClustersResultConnectionStringPrivateEndpointArgs{...} }
+type GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput
+	ToGetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutputWithContext(context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointArray []GetAdvancedClustersResultConnectionStringPrivateEndpointInput
+
+func (GetAdvancedClustersResultConnectionStringPrivateEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultConnectionStringPrivateEndpointArray) ToGetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput {
+	return i.ToGetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultConnectionStringPrivateEndpointArray) ToGetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput)
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultConnectionStringPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointOutput) ToGetAdvancedClustersResultConnectionStringPrivateEndpointOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointOutput) ToGetAdvancedClustersResultConnectionStringPrivateEndpointOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStringPrivateEndpoint) string { return v.ConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointOutput) Endpoints() GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStringPrivateEndpoint) []GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint {
+		return v.Endpoints
+	}).(GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointOutput) SrvConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStringPrivateEndpoint) string { return v.SrvConnectionString }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStringPrivateEndpoint) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultConnectionStringPrivateEndpoint)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput) ToGetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput) ToGetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultConnectionStringPrivateEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultConnectionStringPrivateEndpoint {
+		return vs[0].([]GetAdvancedClustersResultConnectionStringPrivateEndpoint)[vs[1].(int)]
+	}).(GetAdvancedClustersResultConnectionStringPrivateEndpointOutput)
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint struct {
+	EndpointId string `pulumi:"endpointId"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName string `pulumi:"providerName"`
+	Region       string `pulumi:"region"`
+}
+
+// GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointInput is an input type that accepts GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs and GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointInput` via:
+//
+//          GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs{...}
+type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput
+	ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutputWithContext(context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs struct {
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	Region       pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs) ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput {
+	return i.ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs) ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput)
+}
+
+// GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray and GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput` via:
+//
+//          GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray{ GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs{...} }
+type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput
+	ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray []GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointInput
+
+func (GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray) ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
+	return i.ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray) ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput)
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput) ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput) ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// Cloud service provider on which the servers are provisioned.
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput() GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) ToGetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint {
+		return vs[0].([]GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint)[vs[1].(int)]
+	}).(GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput)
+}
+
+type GetAdvancedClustersResultLabel struct {
+	// The key that you want to write.
+	Key string `pulumi:"key"`
+	// The value that you want to write.
+	Value string `pulumi:"value"`
+}
+
+// GetAdvancedClustersResultLabelInput is an input type that accepts GetAdvancedClustersResultLabelArgs and GetAdvancedClustersResultLabelOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultLabelInput` via:
+//
+//          GetAdvancedClustersResultLabelArgs{...}
+type GetAdvancedClustersResultLabelInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultLabelOutput() GetAdvancedClustersResultLabelOutput
+	ToGetAdvancedClustersResultLabelOutputWithContext(context.Context) GetAdvancedClustersResultLabelOutput
+}
+
+type GetAdvancedClustersResultLabelArgs struct {
+	// The key that you want to write.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value that you want to write.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetAdvancedClustersResultLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultLabel)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultLabelArgs) ToGetAdvancedClustersResultLabelOutput() GetAdvancedClustersResultLabelOutput {
+	return i.ToGetAdvancedClustersResultLabelOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultLabelArgs) ToGetAdvancedClustersResultLabelOutputWithContext(ctx context.Context) GetAdvancedClustersResultLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultLabelOutput)
+}
+
+// GetAdvancedClustersResultLabelArrayInput is an input type that accepts GetAdvancedClustersResultLabelArray and GetAdvancedClustersResultLabelArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultLabelArrayInput` via:
+//
+//          GetAdvancedClustersResultLabelArray{ GetAdvancedClustersResultLabelArgs{...} }
+type GetAdvancedClustersResultLabelArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultLabelArrayOutput() GetAdvancedClustersResultLabelArrayOutput
+	ToGetAdvancedClustersResultLabelArrayOutputWithContext(context.Context) GetAdvancedClustersResultLabelArrayOutput
+}
+
+type GetAdvancedClustersResultLabelArray []GetAdvancedClustersResultLabelInput
+
+func (GetAdvancedClustersResultLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultLabel)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultLabelArray) ToGetAdvancedClustersResultLabelArrayOutput() GetAdvancedClustersResultLabelArrayOutput {
+	return i.ToGetAdvancedClustersResultLabelArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultLabelArray) ToGetAdvancedClustersResultLabelArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultLabelArrayOutput)
+}
+
+type GetAdvancedClustersResultLabelOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultLabel)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultLabelOutput) ToGetAdvancedClustersResultLabelOutput() GetAdvancedClustersResultLabelOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultLabelOutput) ToGetAdvancedClustersResultLabelOutputWithContext(ctx context.Context) GetAdvancedClustersResultLabelOutput {
+	return o
+}
+
+// The key that you want to write.
+func (o GetAdvancedClustersResultLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultLabel) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The value that you want to write.
+func (o GetAdvancedClustersResultLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultLabel) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultLabel)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultLabelArrayOutput) ToGetAdvancedClustersResultLabelArrayOutput() GetAdvancedClustersResultLabelArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultLabelArrayOutput) ToGetAdvancedClustersResultLabelArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultLabelArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultLabelArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultLabel {
+		return vs[0].([]GetAdvancedClustersResultLabel)[vs[1].(int)]
+	}).(GetAdvancedClustersResultLabelOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpec struct {
+	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+	ContainerId map[string]string `pulumi:"containerId"`
+	Id          string            `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+	NumShards int `pulumi:"numShards"`
+	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	RegionConfigs []GetAdvancedClustersResultReplicationSpecRegionConfig `pulumi:"regionConfigs"`
+	// Name for the zone in a Global Cluster.
+	ZoneName string `pulumi:"zoneName"`
+}
+
+// GetAdvancedClustersResultReplicationSpecInput is an input type that accepts GetAdvancedClustersResultReplicationSpecArgs and GetAdvancedClustersResultReplicationSpecOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecArgs{...}
+type GetAdvancedClustersResultReplicationSpecInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecOutput() GetAdvancedClustersResultReplicationSpecOutput
+	ToGetAdvancedClustersResultReplicationSpecOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecArgs struct {
+	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
+	Id          pulumi.StringInput    `pulumi:"id"`
+	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+	NumShards pulumi.IntInput `pulumi:"numShards"`
+	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+	RegionConfigs GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
+	// Name for the zone in a Global Cluster.
+	ZoneName pulumi.StringInput `pulumi:"zoneName"`
+}
+
+func (GetAdvancedClustersResultReplicationSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpec)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecArgs) ToGetAdvancedClustersResultReplicationSpecOutput() GetAdvancedClustersResultReplicationSpecOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecArgs) ToGetAdvancedClustersResultReplicationSpecOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecOutput)
+}
+
+// GetAdvancedClustersResultReplicationSpecArrayInput is an input type that accepts GetAdvancedClustersResultReplicationSpecArray and GetAdvancedClustersResultReplicationSpecArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecArrayInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecArray{ GetAdvancedClustersResultReplicationSpecArgs{...} }
+type GetAdvancedClustersResultReplicationSpecArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecArrayOutput() GetAdvancedClustersResultReplicationSpecArrayOutput
+	ToGetAdvancedClustersResultReplicationSpecArrayOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecArrayOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecArray []GetAdvancedClustersResultReplicationSpecInput
+
+func (GetAdvancedClustersResultReplicationSpecArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultReplicationSpec)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecArray) ToGetAdvancedClustersResultReplicationSpecArrayOutput() GetAdvancedClustersResultReplicationSpecArrayOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecArray) ToGetAdvancedClustersResultReplicationSpecArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecArrayOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpec)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecOutput) ToGetAdvancedClustersResultReplicationSpecOutput() GetAdvancedClustersResultReplicationSpecOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecOutput) ToGetAdvancedClustersResultReplicationSpecOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecOutput {
+	return o
+}
+
+// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+func (o GetAdvancedClustersResultReplicationSpecOutput) ContainerId() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
+}
+
+func (o GetAdvancedClustersResultReplicationSpecOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED.
+func (o GetAdvancedClustersResultReplicationSpecOutput) NumShards() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
+}
+
+// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+func (o GetAdvancedClustersResultReplicationSpecOutput) RegionConfigs() GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) []GetAdvancedClustersResultReplicationSpecRegionConfig {
+		return v.RegionConfigs
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput)
+}
+
+// Name for the zone in a Global Cluster.
+func (o GetAdvancedClustersResultReplicationSpecOutput) ZoneName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpec) string { return v.ZoneName }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultReplicationSpec)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecArrayOutput) ToGetAdvancedClustersResultReplicationSpecArrayOutput() GetAdvancedClustersResultReplicationSpecArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecArrayOutput) ToGetAdvancedClustersResultReplicationSpecArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultReplicationSpecOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultReplicationSpec {
+		return vs[0].([]GetAdvancedClustersResultReplicationSpec)[vs[1].(int)]
+	}).(GetAdvancedClustersResultReplicationSpecOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfig struct {
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+	AnalyticsSpecs *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+	AutoScalings []GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling `pulumi:"autoScalings"`
+	// Cloud service provider on which you provision the host for a multi-tenant cluster.
+	BackingProviderName string `pulumi:"backingProviderName"`
+	// Hardware specifications for electable nodes in the region.
+	ElectableSpecs *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
+	// Election priority of the region.
+	Priority int `pulumi:"priority"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName string `pulumi:"providerName"`
+	// Hardware specifications for read-only nodes in the region. See below
+	ReadOnlySpecs *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
+	// Physical location of your MongoDB cluster.
+	RegionName string `pulumi:"regionName"`
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigArgs and GetAdvancedClustersResultReplicationSpecRegionConfigOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigArgs{...}
+type GetAdvancedClustersResultReplicationSpecRegionConfigInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigOutput() GetAdvancedClustersResultReplicationSpecRegionConfigOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigArgs struct {
+	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+	AnalyticsSpecs GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
+	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+	AutoScalings GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput `pulumi:"autoScalings"`
+	// Cloud service provider on which you provision the host for a multi-tenant cluster.
+	BackingProviderName pulumi.StringInput `pulumi:"backingProviderName"`
+	// Hardware specifications for electable nodes in the region.
+	ElectableSpecs GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
+	// Election priority of the region.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// Cloud service provider on which the servers are provisioned.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Hardware specifications for read-only nodes in the region. See below
+	ReadOnlySpecs GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
+	// Physical location of your MongoDB cluster.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+}
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigOutput() GetAdvancedClustersResultReplicationSpecRegionConfigOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigOutput)
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigArray and GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigArray{ GetAdvancedClustersResultReplicationSpecRegionConfigArgs{...} }
+type GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput() GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigArrayOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigArray []GetAdvancedClustersResultReplicationSpecRegionConfigInput
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigArray) ToGetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput() GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigArray) ToGetAdvancedClustersResultReplicationSpecRegionConfigArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigOutput() GetAdvancedClustersResultReplicationSpecRegionConfigOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigOutput {
+	return o
+}
+
+// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
+		return v.AnalyticsSpecs
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AutoScalings() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) []GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling {
+		return v.AutoScalings
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput)
+}
+
+// Cloud service provider on which you provision the host for a multi-tenant cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) BackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) string { return v.BackingProviderName }).(pulumi.StringOutput)
+}
+
+// Hardware specifications for electable nodes in the region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ElectableSpecs() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
+		return v.ElectableSpecs
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+// Election priority of the region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// Cloud service provider on which the servers are provisioned.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Hardware specifications for read-only nodes in the region. See below
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) ReadOnlySpecs() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
+		return v.ReadOnlySpecs
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+// Physical location of your MongoDB cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultReplicationSpecRegionConfig)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput() GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultReplicationSpecRegionConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultReplicationSpecRegionConfig {
+		return vs[0].([]GetAdvancedClustersResultReplicationSpecRegionConfig)[vs[1].(int)]
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs and GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput)
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput).ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx)
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput
+}
+
+type getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs
+
+func GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtr(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput {
+	return (*getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType)(v)
+}
+
+func (*getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (i *getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *getAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(context.Background())
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
+		return &v
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) string {
+		return v.InstanceSize
+	}).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
+		if v != nil {
+			return *v
+		}
+		var ret GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs
+		return ret
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling struct {
+	// Flag that indicates whether instance size auto-scaling is enabled.
+	ComputeEnabled bool `pulumi:"computeEnabled"`
+	// Maximum instance size to which your cluster can automatically scale (such as M40).
+	ComputeMaxInstanceSize string `pulumi:"computeMaxInstanceSize"`
+	// Minimum instance size to which your cluster can automatically scale (such as M10).
+	ComputeMinInstanceSize string `pulumi:"computeMinInstanceSize"`
+	// Flag that indicates whether the instance size may scale down.
+	ComputeScaleDownEnabled bool `pulumi:"computeScaleDownEnabled"`
+	// Flag that indicates whether this cluster enables disk auto-scaling.
+	DiskGbEnabled bool `pulumi:"diskGbEnabled"`
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs and GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{...}
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs struct {
+	// Flag that indicates whether instance size auto-scaling is enabled.
+	ComputeEnabled pulumi.BoolInput `pulumi:"computeEnabled"`
+	// Maximum instance size to which your cluster can automatically scale (such as M40).
+	ComputeMaxInstanceSize pulumi.StringInput `pulumi:"computeMaxInstanceSize"`
+	// Minimum instance size to which your cluster can automatically scale (such as M10).
+	ComputeMinInstanceSize pulumi.StringInput `pulumi:"computeMinInstanceSize"`
+	// Flag that indicates whether the instance size may scale down.
+	ComputeScaleDownEnabled pulumi.BoolInput `pulumi:"computeScaleDownEnabled"`
+	// Flag that indicates whether this cluster enables disk auto-scaling.
+	DiskGbEnabled pulumi.BoolInput `pulumi:"diskGbEnabled"`
+}
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput)
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray and GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray{ GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{...} }
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray []GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput {
+	return o
+}
+
+// Flag that indicates whether instance size auto-scaling is enabled.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) ComputeEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling) bool { return v.ComputeEnabled }).(pulumi.BoolOutput)
+}
+
+// Maximum instance size to which your cluster can automatically scale (such as M40).
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) ComputeMaxInstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling) string {
+		return v.ComputeMaxInstanceSize
+	}).(pulumi.StringOutput)
+}
+
+// Minimum instance size to which your cluster can automatically scale (such as M10).
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) ComputeMinInstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling) string {
+		return v.ComputeMinInstanceSize
+	}).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the instance size may scale down.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) ComputeScaleDownEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling) bool {
+		return v.ComputeScaleDownEnabled
+	}).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether this cluster enables disk auto-scaling.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling) bool { return v.DiskGbEnabled }).(pulumi.BoolOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput) Index(i pulumi.IntInput) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling {
+		return vs[0].([]GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling)[vs[1].(int)]
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs and GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{...}
+type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput)
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput).ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx)
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput
+}
+
+type getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs
+
+func GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtr(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput {
+	return (*getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType)(v)
+}
+
+func (*getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (i *getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *getAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(context.Background())
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
+		return &v
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) string {
+		return v.InstanceSize
+	}).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem() GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
+		if v != nil {
+			return *v
+		}
+		var ret GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs
+		return ret
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops *int `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType *string `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize string `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount *int `pulumi:"nodeCount"`
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs and GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs struct {
+	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
+	// Type of storage you want to attach to your AWS-provisioned cluster.
+	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
+	// Hardware specification for the instance sizes in this region.
+	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
+	// Number of read-only nodes for Atlas to deploy to the region.
+	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
+}
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput).ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx)
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput` via:
+//
+//          GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//
+//  or:
+//
+//          nil
+type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput
+}
+
+type getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs
+
+func GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtr(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput {
+	return (*getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType)(v)
+}
+
+func (*getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (i *getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (i *getAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrType) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(context.Background())
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
+		return &v
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) InstanceSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) string {
+		return v.InstanceSize
+	}).(pulumi.StringOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *int { return v.NodeCount }).(pulumi.IntPtrOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem() GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
+		if v != nil {
+			return *v
+		}
+		var ret GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs
+		return ret
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
+}
+
+// Target throughput (IOPS) desired for AWS storage attached to your cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DiskIops
+	}).(pulumi.IntPtrOutput)
+}
+
+// Type of storage you want to attach to your AWS-provisioned cluster.
+// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EbsVolumeType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hardware specification for the instance sizes in this region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.InstanceSize
+	}).(pulumi.StringPtrOutput)
+}
+
+// Number of read-only nodes for Atlas to deploy to the region.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) NodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NodeCount
+	}).(pulumi.IntPtrOutput)
+}
+
 type GetAlertConfigurationMatcher struct {
 	// Name of the field in the target object to match on.
 	FieldName string `pulumi:"fieldName"`
@@ -9789,6 +16222,1403 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemWeekly {
 		return vs[0].([]GetCloudBackupSchedulePolicyItemWeekly)[vs[1].(int)]
 	}).(GetCloudBackupSchedulePolicyItemWeeklyOutput)
+}
+
+type GetCloudBackupSnapshotExportBucketsResult struct {
+	// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+	BucketName string `pulumi:"bucketName"`
+	// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Unique identifier of the snapshot bucket id.
+	ExportBucketId string `pulumi:"exportBucketId"`
+	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+	IamRoleId string `pulumi:"iamRoleId"`
+}
+
+// GetCloudBackupSnapshotExportBucketsResultInput is an input type that accepts GetCloudBackupSnapshotExportBucketsResultArgs and GetCloudBackupSnapshotExportBucketsResultOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportBucketsResultInput` via:
+//
+//          GetCloudBackupSnapshotExportBucketsResultArgs{...}
+type GetCloudBackupSnapshotExportBucketsResultInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportBucketsResultOutput() GetCloudBackupSnapshotExportBucketsResultOutput
+	ToGetCloudBackupSnapshotExportBucketsResultOutputWithContext(context.Context) GetCloudBackupSnapshotExportBucketsResultOutput
+}
+
+type GetCloudBackupSnapshotExportBucketsResultArgs struct {
+	// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Unique identifier of the snapshot bucket id.
+	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
+	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+	IamRoleId pulumi.StringInput `pulumi:"iamRoleId"`
+}
+
+func (GetCloudBackupSnapshotExportBucketsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportBucketsResultArgs) ToGetCloudBackupSnapshotExportBucketsResultOutput() GetCloudBackupSnapshotExportBucketsResultOutput {
+	return i.ToGetCloudBackupSnapshotExportBucketsResultOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportBucketsResultArgs) ToGetCloudBackupSnapshotExportBucketsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportBucketsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportBucketsResultOutput)
+}
+
+// GetCloudBackupSnapshotExportBucketsResultArrayInput is an input type that accepts GetCloudBackupSnapshotExportBucketsResultArray and GetCloudBackupSnapshotExportBucketsResultArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportBucketsResultArrayInput` via:
+//
+//          GetCloudBackupSnapshotExportBucketsResultArray{ GetCloudBackupSnapshotExportBucketsResultArgs{...} }
+type GetCloudBackupSnapshotExportBucketsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportBucketsResultArrayOutput() GetCloudBackupSnapshotExportBucketsResultArrayOutput
+	ToGetCloudBackupSnapshotExportBucketsResultArrayOutputWithContext(context.Context) GetCloudBackupSnapshotExportBucketsResultArrayOutput
+}
+
+type GetCloudBackupSnapshotExportBucketsResultArray []GetCloudBackupSnapshotExportBucketsResultInput
+
+func (GetCloudBackupSnapshotExportBucketsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportBucketsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportBucketsResultArray) ToGetCloudBackupSnapshotExportBucketsResultArrayOutput() GetCloudBackupSnapshotExportBucketsResultArrayOutput {
+	return i.ToGetCloudBackupSnapshotExportBucketsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportBucketsResultArray) ToGetCloudBackupSnapshotExportBucketsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportBucketsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportBucketsResultArrayOutput)
+}
+
+type GetCloudBackupSnapshotExportBucketsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportBucketsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) ToGetCloudBackupSnapshotExportBucketsResultOutput() GetCloudBackupSnapshotExportBucketsResultOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) ToGetCloudBackupSnapshotExportBucketsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportBucketsResultOutput {
+	return o
+}
+
+// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the snapshot bucket id.
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) ExportBucketId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.ExportBucketId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+func (o GetCloudBackupSnapshotExportBucketsResultOutput) IamRoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportBucketsResult) string { return v.IamRoleId }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotExportBucketsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportBucketsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportBucketsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportBucketsResultArrayOutput) ToGetCloudBackupSnapshotExportBucketsResultArrayOutput() GetCloudBackupSnapshotExportBucketsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportBucketsResultArrayOutput) ToGetCloudBackupSnapshotExportBucketsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportBucketsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportBucketsResultArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotExportBucketsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotExportBucketsResult {
+		return vs[0].([]GetCloudBackupSnapshotExportBucketsResult)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotExportBucketsResultOutput)
+}
+
+type GetCloudBackupSnapshotExportJobComponent struct {
+	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	ExportId string `pulumi:"exportId"`
+	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	ReplicaSetName string `pulumi:"replicaSetName"`
+}
+
+// GetCloudBackupSnapshotExportJobComponentInput is an input type that accepts GetCloudBackupSnapshotExportJobComponentArgs and GetCloudBackupSnapshotExportJobComponentOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobComponentInput` via:
+//
+//          GetCloudBackupSnapshotExportJobComponentArgs{...}
+type GetCloudBackupSnapshotExportJobComponentInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobComponentOutput() GetCloudBackupSnapshotExportJobComponentOutput
+	ToGetCloudBackupSnapshotExportJobComponentOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobComponentOutput
+}
+
+type GetCloudBackupSnapshotExportJobComponentArgs struct {
+	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	ExportId pulumi.StringInput `pulumi:"exportId"`
+	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
+}
+
+func (GetCloudBackupSnapshotExportJobComponentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobComponent)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobComponentArgs) ToGetCloudBackupSnapshotExportJobComponentOutput() GetCloudBackupSnapshotExportJobComponentOutput {
+	return i.ToGetCloudBackupSnapshotExportJobComponentOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobComponentArgs) ToGetCloudBackupSnapshotExportJobComponentOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobComponentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobComponentOutput)
+}
+
+// GetCloudBackupSnapshotExportJobComponentArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobComponentArray and GetCloudBackupSnapshotExportJobComponentArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobComponentArrayInput` via:
+//
+//          GetCloudBackupSnapshotExportJobComponentArray{ GetCloudBackupSnapshotExportJobComponentArgs{...} }
+type GetCloudBackupSnapshotExportJobComponentArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobComponentArrayOutput() GetCloudBackupSnapshotExportJobComponentArrayOutput
+	ToGetCloudBackupSnapshotExportJobComponentArrayOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobComponentArrayOutput
+}
+
+type GetCloudBackupSnapshotExportJobComponentArray []GetCloudBackupSnapshotExportJobComponentInput
+
+func (GetCloudBackupSnapshotExportJobComponentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobComponent)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobComponentArray) ToGetCloudBackupSnapshotExportJobComponentArrayOutput() GetCloudBackupSnapshotExportJobComponentArrayOutput {
+	return i.ToGetCloudBackupSnapshotExportJobComponentArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobComponentArray) ToGetCloudBackupSnapshotExportJobComponentArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobComponentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobComponentArrayOutput)
+}
+
+type GetCloudBackupSnapshotExportJobComponentOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobComponentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobComponent)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobComponentOutput) ToGetCloudBackupSnapshotExportJobComponentOutput() GetCloudBackupSnapshotExportJobComponentOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobComponentOutput) ToGetCloudBackupSnapshotExportJobComponentOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobComponentOutput {
+	return o
+}
+
+// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+func (o GetCloudBackupSnapshotExportJobComponentOutput) ExportId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobComponent) string { return v.ExportId }).(pulumi.StringOutput)
+}
+
+// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+func (o GetCloudBackupSnapshotExportJobComponentOutput) ReplicaSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobComponent) string { return v.ReplicaSetName }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotExportJobComponentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobComponentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobComponent)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobComponentArrayOutput) ToGetCloudBackupSnapshotExportJobComponentArrayOutput() GetCloudBackupSnapshotExportJobComponentArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobComponentArrayOutput) ToGetCloudBackupSnapshotExportJobComponentArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobComponentArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobComponentArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotExportJobComponentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotExportJobComponent {
+		return vs[0].([]GetCloudBackupSnapshotExportJobComponent)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotExportJobComponentOutput)
+}
+
+type GetCloudBackupSnapshotExportJobCustomData struct {
+	// Custom data specified as key in the key and value pair.
+	Key string `pulumi:"key"`
+	// Value for the key specified using `key`.
+	Value string `pulumi:"value"`
+}
+
+// GetCloudBackupSnapshotExportJobCustomDataInput is an input type that accepts GetCloudBackupSnapshotExportJobCustomDataArgs and GetCloudBackupSnapshotExportJobCustomDataOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobCustomDataInput` via:
+//
+//          GetCloudBackupSnapshotExportJobCustomDataArgs{...}
+type GetCloudBackupSnapshotExportJobCustomDataInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobCustomDataOutput() GetCloudBackupSnapshotExportJobCustomDataOutput
+	ToGetCloudBackupSnapshotExportJobCustomDataOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobCustomDataOutput
+}
+
+type GetCloudBackupSnapshotExportJobCustomDataArgs struct {
+	// Custom data specified as key in the key and value pair.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value for the key specified using `key`.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCloudBackupSnapshotExportJobCustomDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobCustomData)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobCustomDataArgs) ToGetCloudBackupSnapshotExportJobCustomDataOutput() GetCloudBackupSnapshotExportJobCustomDataOutput {
+	return i.ToGetCloudBackupSnapshotExportJobCustomDataOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobCustomDataArgs) ToGetCloudBackupSnapshotExportJobCustomDataOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobCustomDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobCustomDataOutput)
+}
+
+// GetCloudBackupSnapshotExportJobCustomDataArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobCustomDataArray and GetCloudBackupSnapshotExportJobCustomDataArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobCustomDataArrayInput` via:
+//
+//          GetCloudBackupSnapshotExportJobCustomDataArray{ GetCloudBackupSnapshotExportJobCustomDataArgs{...} }
+type GetCloudBackupSnapshotExportJobCustomDataArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobCustomDataArrayOutput() GetCloudBackupSnapshotExportJobCustomDataArrayOutput
+	ToGetCloudBackupSnapshotExportJobCustomDataArrayOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobCustomDataArrayOutput
+}
+
+type GetCloudBackupSnapshotExportJobCustomDataArray []GetCloudBackupSnapshotExportJobCustomDataInput
+
+func (GetCloudBackupSnapshotExportJobCustomDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobCustomData)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobCustomDataArray) ToGetCloudBackupSnapshotExportJobCustomDataArrayOutput() GetCloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return i.ToGetCloudBackupSnapshotExportJobCustomDataArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobCustomDataArray) ToGetCloudBackupSnapshotExportJobCustomDataArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobCustomDataArrayOutput)
+}
+
+type GetCloudBackupSnapshotExportJobCustomDataOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobCustomDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobCustomData)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobCustomDataOutput) ToGetCloudBackupSnapshotExportJobCustomDataOutput() GetCloudBackupSnapshotExportJobCustomDataOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobCustomDataOutput) ToGetCloudBackupSnapshotExportJobCustomDataOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobCustomDataOutput {
+	return o
+}
+
+// Custom data specified as key in the key and value pair.
+func (o GetCloudBackupSnapshotExportJobCustomDataOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobCustomData) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value for the key specified using `key`.
+func (o GetCloudBackupSnapshotExportJobCustomDataOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobCustomData) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotExportJobCustomDataArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobCustomDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobCustomData)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobCustomDataArrayOutput) ToGetCloudBackupSnapshotExportJobCustomDataArrayOutput() GetCloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobCustomDataArrayOutput) ToGetCloudBackupSnapshotExportJobCustomDataArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobCustomDataArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotExportJobCustomDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotExportJobCustomData {
+		return vs[0].([]GetCloudBackupSnapshotExportJobCustomData)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotExportJobCustomDataOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResult struct {
+	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	Components []GetCloudBackupSnapshotExportJobsResultComponent `pulumi:"components"`
+	// Timestamp in ISO 8601 date and time format in UTC when the export job was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+	CustomDatas []GetCloudBackupSnapshotExportJobsResultCustomData `pulumi:"customDatas"`
+	// Error message, only if the export job failed.
+	ErrMsg string `pulumi:"errMsg"`
+	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
+	ExportBucketId string `pulumi:"exportBucketId"`
+	// Unique identifier of the export job.
+	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+	ExportJobId                     string `pulumi:"exportJobId"`
+	ExportStatusExportedCollections int    `pulumi:"exportStatusExportedCollections"`
+	ExportStatusTotalCollections    int    `pulumi:"exportStatusTotalCollections"`
+	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
+	FinishedAt string `pulumi:"finishedAt"`
+	Prefix     string `pulumi:"prefix"`
+	// Unique identifier of the Cloud Backup snapshot to export.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Status of the export job. Value can be one of the following:
+	State string `pulumi:"state"`
+}
+
+// GetCloudBackupSnapshotExportJobsResultInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultArgs and GetCloudBackupSnapshotExportJobsResultOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultInput` via:
+//
+//          GetCloudBackupSnapshotExportJobsResultArgs{...}
+type GetCloudBackupSnapshotExportJobsResultInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobsResultOutput() GetCloudBackupSnapshotExportJobsResultOutput
+	ToGetCloudBackupSnapshotExportJobsResultOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobsResultOutput
+}
+
+type GetCloudBackupSnapshotExportJobsResultArgs struct {
+	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	Components GetCloudBackupSnapshotExportJobsResultComponentArrayInput `pulumi:"components"`
+	// Timestamp in ISO 8601 date and time format in UTC when the export job was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+	CustomDatas GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput `pulumi:"customDatas"`
+	// Error message, only if the export job failed.
+	ErrMsg pulumi.StringInput `pulumi:"errMsg"`
+	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
+	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
+	// Unique identifier of the export job.
+	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+	ExportJobId                     pulumi.StringInput `pulumi:"exportJobId"`
+	ExportStatusExportedCollections pulumi.IntInput    `pulumi:"exportStatusExportedCollections"`
+	ExportStatusTotalCollections    pulumi.IntInput    `pulumi:"exportStatusTotalCollections"`
+	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
+	FinishedAt pulumi.StringInput `pulumi:"finishedAt"`
+	Prefix     pulumi.StringInput `pulumi:"prefix"`
+	// Unique identifier of the Cloud Backup snapshot to export.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// Status of the export job. Value can be one of the following:
+	State pulumi.StringInput `pulumi:"state"`
+}
+
+func (GetCloudBackupSnapshotExportJobsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultArgs) ToGetCloudBackupSnapshotExportJobsResultOutput() GetCloudBackupSnapshotExportJobsResultOutput {
+	return i.ToGetCloudBackupSnapshotExportJobsResultOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultArgs) ToGetCloudBackupSnapshotExportJobsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobsResultOutput)
+}
+
+// GetCloudBackupSnapshotExportJobsResultArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultArray and GetCloudBackupSnapshotExportJobsResultArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultArrayInput` via:
+//
+//          GetCloudBackupSnapshotExportJobsResultArray{ GetCloudBackupSnapshotExportJobsResultArgs{...} }
+type GetCloudBackupSnapshotExportJobsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobsResultArrayOutput() GetCloudBackupSnapshotExportJobsResultArrayOutput
+	ToGetCloudBackupSnapshotExportJobsResultArrayOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobsResultArrayOutput
+}
+
+type GetCloudBackupSnapshotExportJobsResultArray []GetCloudBackupSnapshotExportJobsResultInput
+
+func (GetCloudBackupSnapshotExportJobsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultArray) ToGetCloudBackupSnapshotExportJobsResultArrayOutput() GetCloudBackupSnapshotExportJobsResultArrayOutput {
+	return i.ToGetCloudBackupSnapshotExportJobsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultArray) ToGetCloudBackupSnapshotExportJobsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobsResultArrayOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultOutput) ToGetCloudBackupSnapshotExportJobsResultOutput() GetCloudBackupSnapshotExportJobsResultOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultOutput) ToGetCloudBackupSnapshotExportJobsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultOutput {
+	return o
+}
+
+// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+func (o GetCloudBackupSnapshotExportJobsResultOutput) Components() GetCloudBackupSnapshotExportJobsResultComponentArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) []GetCloudBackupSnapshotExportJobsResultComponent {
+		return v.Components
+	}).(GetCloudBackupSnapshotExportJobsResultComponentArrayOutput)
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when the export job was created.
+func (o GetCloudBackupSnapshotExportJobsResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+func (o GetCloudBackupSnapshotExportJobsResultOutput) CustomDatas() GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) []GetCloudBackupSnapshotExportJobsResultCustomData {
+		return v.CustomDatas
+	}).(GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput)
+}
+
+// Error message, only if the export job failed.
+func (o GetCloudBackupSnapshotExportJobsResultOutput) ErrMsg() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.ErrMsg }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
+func (o GetCloudBackupSnapshotExportJobsResultOutput) ExportBucketId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.ExportBucketId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the export job.
+// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+func (o GetCloudBackupSnapshotExportJobsResultOutput) ExportJobId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.ExportJobId }).(pulumi.StringOutput)
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultOutput) ExportStatusExportedCollections() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) int { return v.ExportStatusExportedCollections }).(pulumi.IntOutput)
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultOutput) ExportStatusTotalCollections() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) int { return v.ExportStatusTotalCollections }).(pulumi.IntOutput)
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
+func (o GetCloudBackupSnapshotExportJobsResultOutput) FinishedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.FinishedAt }).(pulumi.StringOutput)
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Cloud Backup snapshot to export.
+func (o GetCloudBackupSnapshotExportJobsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Status of the export job. Value can be one of the following:
+func (o GetCloudBackupSnapshotExportJobsResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultArrayOutput) ToGetCloudBackupSnapshotExportJobsResultArrayOutput() GetCloudBackupSnapshotExportJobsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultArrayOutput) ToGetCloudBackupSnapshotExportJobsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotExportJobsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotExportJobsResult {
+		return vs[0].([]GetCloudBackupSnapshotExportJobsResult)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotExportJobsResultOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResultComponent struct {
+	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	ExportId string `pulumi:"exportId"`
+	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	ReplicaSetName string `pulumi:"replicaSetName"`
+}
+
+// GetCloudBackupSnapshotExportJobsResultComponentInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultComponentArgs and GetCloudBackupSnapshotExportJobsResultComponentOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultComponentInput` via:
+//
+//          GetCloudBackupSnapshotExportJobsResultComponentArgs{...}
+type GetCloudBackupSnapshotExportJobsResultComponentInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobsResultComponentOutput() GetCloudBackupSnapshotExportJobsResultComponentOutput
+	ToGetCloudBackupSnapshotExportJobsResultComponentOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobsResultComponentOutput
+}
+
+type GetCloudBackupSnapshotExportJobsResultComponentArgs struct {
+	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	ExportId pulumi.StringInput `pulumi:"exportId"`
+	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
+}
+
+func (GetCloudBackupSnapshotExportJobsResultComponentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultComponent)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultComponentArgs) ToGetCloudBackupSnapshotExportJobsResultComponentOutput() GetCloudBackupSnapshotExportJobsResultComponentOutput {
+	return i.ToGetCloudBackupSnapshotExportJobsResultComponentOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultComponentArgs) ToGetCloudBackupSnapshotExportJobsResultComponentOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultComponentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobsResultComponentOutput)
+}
+
+// GetCloudBackupSnapshotExportJobsResultComponentArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultComponentArray and GetCloudBackupSnapshotExportJobsResultComponentArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultComponentArrayInput` via:
+//
+//          GetCloudBackupSnapshotExportJobsResultComponentArray{ GetCloudBackupSnapshotExportJobsResultComponentArgs{...} }
+type GetCloudBackupSnapshotExportJobsResultComponentArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobsResultComponentArrayOutput() GetCloudBackupSnapshotExportJobsResultComponentArrayOutput
+	ToGetCloudBackupSnapshotExportJobsResultComponentArrayOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobsResultComponentArrayOutput
+}
+
+type GetCloudBackupSnapshotExportJobsResultComponentArray []GetCloudBackupSnapshotExportJobsResultComponentInput
+
+func (GetCloudBackupSnapshotExportJobsResultComponentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobsResultComponent)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultComponentArray) ToGetCloudBackupSnapshotExportJobsResultComponentArrayOutput() GetCloudBackupSnapshotExportJobsResultComponentArrayOutput {
+	return i.ToGetCloudBackupSnapshotExportJobsResultComponentArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultComponentArray) ToGetCloudBackupSnapshotExportJobsResultComponentArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultComponentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobsResultComponentArrayOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResultComponentOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobsResultComponentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultComponent)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ToGetCloudBackupSnapshotExportJobsResultComponentOutput() GetCloudBackupSnapshotExportJobsResultComponentOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ToGetCloudBackupSnapshotExportJobsResultComponentOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultComponentOutput {
+	return o
+}
+
+// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ExportId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResultComponent) string { return v.ExportId }).(pulumi.StringOutput)
+}
+
+// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ReplicaSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResultComponent) string { return v.ReplicaSetName }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResultComponentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobsResultComponentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobsResultComponent)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultComponentArrayOutput) ToGetCloudBackupSnapshotExportJobsResultComponentArrayOutput() GetCloudBackupSnapshotExportJobsResultComponentArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultComponentArrayOutput) ToGetCloudBackupSnapshotExportJobsResultComponentArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultComponentArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultComponentArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotExportJobsResultComponentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotExportJobsResultComponent {
+		return vs[0].([]GetCloudBackupSnapshotExportJobsResultComponent)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotExportJobsResultComponentOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResultCustomData struct {
+	// Custom data specified as key in the key and value pair.
+	Key string `pulumi:"key"`
+	// Value for the key specified using `key`.
+	Value string `pulumi:"value"`
+}
+
+// GetCloudBackupSnapshotExportJobsResultCustomDataInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultCustomDataArgs and GetCloudBackupSnapshotExportJobsResultCustomDataOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultCustomDataInput` via:
+//
+//          GetCloudBackupSnapshotExportJobsResultCustomDataArgs{...}
+type GetCloudBackupSnapshotExportJobsResultCustomDataInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobsResultCustomDataOutput() GetCloudBackupSnapshotExportJobsResultCustomDataOutput
+	ToGetCloudBackupSnapshotExportJobsResultCustomDataOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobsResultCustomDataOutput
+}
+
+type GetCloudBackupSnapshotExportJobsResultCustomDataArgs struct {
+	// Custom data specified as key in the key and value pair.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Value for the key specified using `key`.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetCloudBackupSnapshotExportJobsResultCustomDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultCustomData)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultCustomDataArgs) ToGetCloudBackupSnapshotExportJobsResultCustomDataOutput() GetCloudBackupSnapshotExportJobsResultCustomDataOutput {
+	return i.ToGetCloudBackupSnapshotExportJobsResultCustomDataOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultCustomDataArgs) ToGetCloudBackupSnapshotExportJobsResultCustomDataOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultCustomDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobsResultCustomDataOutput)
+}
+
+// GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultCustomDataArray and GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput` via:
+//
+//          GetCloudBackupSnapshotExportJobsResultCustomDataArray{ GetCloudBackupSnapshotExportJobsResultCustomDataArgs{...} }
+type GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput() GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput
+	ToGetCloudBackupSnapshotExportJobsResultCustomDataArrayOutputWithContext(context.Context) GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput
+}
+
+type GetCloudBackupSnapshotExportJobsResultCustomDataArray []GetCloudBackupSnapshotExportJobsResultCustomDataInput
+
+func (GetCloudBackupSnapshotExportJobsResultCustomDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobsResultCustomData)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultCustomDataArray) ToGetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput() GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput {
+	return i.ToGetCloudBackupSnapshotExportJobsResultCustomDataArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotExportJobsResultCustomDataArray) ToGetCloudBackupSnapshotExportJobsResultCustomDataArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResultCustomDataOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobsResultCustomDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultCustomData)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultCustomDataOutput) ToGetCloudBackupSnapshotExportJobsResultCustomDataOutput() GetCloudBackupSnapshotExportJobsResultCustomDataOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultCustomDataOutput) ToGetCloudBackupSnapshotExportJobsResultCustomDataOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultCustomDataOutput {
+	return o
+}
+
+// Custom data specified as key in the key and value pair.
+func (o GetCloudBackupSnapshotExportJobsResultCustomDataOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResultCustomData) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Value for the key specified using `key`.
+func (o GetCloudBackupSnapshotExportJobsResultCustomDataOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResultCustomData) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotExportJobsResultCustomData)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput) ToGetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput() GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput) ToGetCloudBackupSnapshotExportJobsResultCustomDataArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotExportJobsResultCustomDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotExportJobsResultCustomData {
+		return vs[0].([]GetCloudBackupSnapshotExportJobsResultCustomData)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotExportJobsResultCustomDataOutput)
+}
+
+type GetCloudBackupSnapshotMember struct {
+	// Cloud provider that stores this snapshot.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id string `pulumi:"id"`
+	// Label given to a shard or config server from which Atlas took this snapshot.
+	ReplicaSetName string `pulumi:"replicaSetName"`
+}
+
+// GetCloudBackupSnapshotMemberInput is an input type that accepts GetCloudBackupSnapshotMemberArgs and GetCloudBackupSnapshotMemberOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotMemberInput` via:
+//
+//          GetCloudBackupSnapshotMemberArgs{...}
+type GetCloudBackupSnapshotMemberInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotMemberOutput() GetCloudBackupSnapshotMemberOutput
+	ToGetCloudBackupSnapshotMemberOutputWithContext(context.Context) GetCloudBackupSnapshotMemberOutput
+}
+
+type GetCloudBackupSnapshotMemberArgs struct {
+	// Cloud provider that stores this snapshot.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Label given to a shard or config server from which Atlas took this snapshot.
+	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
+}
+
+func (GetCloudBackupSnapshotMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotMember)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotMemberArgs) ToGetCloudBackupSnapshotMemberOutput() GetCloudBackupSnapshotMemberOutput {
+	return i.ToGetCloudBackupSnapshotMemberOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotMemberArgs) ToGetCloudBackupSnapshotMemberOutputWithContext(ctx context.Context) GetCloudBackupSnapshotMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotMemberOutput)
+}
+
+// GetCloudBackupSnapshotMemberArrayInput is an input type that accepts GetCloudBackupSnapshotMemberArray and GetCloudBackupSnapshotMemberArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotMemberArrayInput` via:
+//
+//          GetCloudBackupSnapshotMemberArray{ GetCloudBackupSnapshotMemberArgs{...} }
+type GetCloudBackupSnapshotMemberArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotMemberArrayOutput() GetCloudBackupSnapshotMemberArrayOutput
+	ToGetCloudBackupSnapshotMemberArrayOutputWithContext(context.Context) GetCloudBackupSnapshotMemberArrayOutput
+}
+
+type GetCloudBackupSnapshotMemberArray []GetCloudBackupSnapshotMemberInput
+
+func (GetCloudBackupSnapshotMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotMember)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotMemberArray) ToGetCloudBackupSnapshotMemberArrayOutput() GetCloudBackupSnapshotMemberArrayOutput {
+	return i.ToGetCloudBackupSnapshotMemberArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotMemberArray) ToGetCloudBackupSnapshotMemberArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotMemberArrayOutput)
+}
+
+type GetCloudBackupSnapshotMemberOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotMember)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotMemberOutput) ToGetCloudBackupSnapshotMemberOutput() GetCloudBackupSnapshotMemberOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotMemberOutput) ToGetCloudBackupSnapshotMemberOutputWithContext(ctx context.Context) GetCloudBackupSnapshotMemberOutput {
+	return o
+}
+
+// Cloud provider that stores this snapshot.
+func (o GetCloudBackupSnapshotMemberOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotMember) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the sharded cluster snapshot.
+func (o GetCloudBackupSnapshotMemberOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotMember) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Label given to a shard or config server from which Atlas took this snapshot.
+func (o GetCloudBackupSnapshotMemberOutput) ReplicaSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotMember) string { return v.ReplicaSetName }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotMember)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotMemberArrayOutput) ToGetCloudBackupSnapshotMemberArrayOutput() GetCloudBackupSnapshotMemberArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotMemberArrayOutput) ToGetCloudBackupSnapshotMemberArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotMemberArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotMemberArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotMember {
+		return vs[0].([]GetCloudBackupSnapshotMember)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotMemberOutput)
+}
+
+type GetCloudBackupSnapshotRestoreJobsResult struct {
+	// Indicates whether the restore job was canceled.
+	Cancelled bool `pulumi:"cancelled"`
+	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	CreatedAt string `pulumi:"createdAt"`
+	// Type of restore job to create. Possible values are: automated and download.
+	DeliveryType string `pulumi:"deliveryType"`
+	// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+	DeliveryUrls []string `pulumi:"deliveryUrls"`
+	// Indicates whether the restore job expired.
+	Expired bool `pulumi:"expired"`
+	// UTC ISO 8601 formatted point in time when the restore job expires.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// UTC ISO 8601 formatted point in time when the restore job completed.
+	FinishedAt string `pulumi:"finishedAt"`
+	// The unique identifier of the restore job.
+	Id                    string `pulumi:"id"`
+	OplogInc              int    `pulumi:"oplogInc"`
+	OplogTs               int    `pulumi:"oplogTs"`
+	PointInTimeUtcSeconds int    `pulumi:"pointInTimeUtcSeconds"`
+	// Unique identifier of the source snapshot ID of the restore job.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+	TargetClusterName string `pulumi:"targetClusterName"`
+	TargetProjectId   string `pulumi:"targetProjectId"`
+	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	Timestamp string `pulumi:"timestamp"`
+}
+
+// GetCloudBackupSnapshotRestoreJobsResultInput is an input type that accepts GetCloudBackupSnapshotRestoreJobsResultArgs and GetCloudBackupSnapshotRestoreJobsResultOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotRestoreJobsResultInput` via:
+//
+//          GetCloudBackupSnapshotRestoreJobsResultArgs{...}
+type GetCloudBackupSnapshotRestoreJobsResultInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotRestoreJobsResultOutput() GetCloudBackupSnapshotRestoreJobsResultOutput
+	ToGetCloudBackupSnapshotRestoreJobsResultOutputWithContext(context.Context) GetCloudBackupSnapshotRestoreJobsResultOutput
+}
+
+type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
+	// Indicates whether the restore job was canceled.
+	Cancelled pulumi.BoolInput `pulumi:"cancelled"`
+	// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Type of restore job to create. Possible values are: automated and download.
+	DeliveryType pulumi.StringInput `pulumi:"deliveryType"`
+	// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+	DeliveryUrls pulumi.StringArrayInput `pulumi:"deliveryUrls"`
+	// Indicates whether the restore job expired.
+	Expired pulumi.BoolInput `pulumi:"expired"`
+	// UTC ISO 8601 formatted point in time when the restore job expires.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// UTC ISO 8601 formatted point in time when the restore job completed.
+	FinishedAt pulumi.StringInput `pulumi:"finishedAt"`
+	// The unique identifier of the restore job.
+	Id                    pulumi.StringInput `pulumi:"id"`
+	OplogInc              pulumi.IntInput    `pulumi:"oplogInc"`
+	OplogTs               pulumi.IntInput    `pulumi:"oplogTs"`
+	PointInTimeUtcSeconds pulumi.IntInput    `pulumi:"pointInTimeUtcSeconds"`
+	// Unique identifier of the source snapshot ID of the restore job.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+	TargetClusterName pulumi.StringInput `pulumi:"targetClusterName"`
+	TargetProjectId   pulumi.StringInput `pulumi:"targetProjectId"`
+	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+	Timestamp pulumi.StringInput `pulumi:"timestamp"`
+}
+
+func (GetCloudBackupSnapshotRestoreJobsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotRestoreJobsResultArgs) ToGetCloudBackupSnapshotRestoreJobsResultOutput() GetCloudBackupSnapshotRestoreJobsResultOutput {
+	return i.ToGetCloudBackupSnapshotRestoreJobsResultOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotRestoreJobsResultArgs) ToGetCloudBackupSnapshotRestoreJobsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotRestoreJobsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotRestoreJobsResultOutput)
+}
+
+// GetCloudBackupSnapshotRestoreJobsResultArrayInput is an input type that accepts GetCloudBackupSnapshotRestoreJobsResultArray and GetCloudBackupSnapshotRestoreJobsResultArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotRestoreJobsResultArrayInput` via:
+//
+//          GetCloudBackupSnapshotRestoreJobsResultArray{ GetCloudBackupSnapshotRestoreJobsResultArgs{...} }
+type GetCloudBackupSnapshotRestoreJobsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotRestoreJobsResultArrayOutput() GetCloudBackupSnapshotRestoreJobsResultArrayOutput
+	ToGetCloudBackupSnapshotRestoreJobsResultArrayOutputWithContext(context.Context) GetCloudBackupSnapshotRestoreJobsResultArrayOutput
+}
+
+type GetCloudBackupSnapshotRestoreJobsResultArray []GetCloudBackupSnapshotRestoreJobsResultInput
+
+func (GetCloudBackupSnapshotRestoreJobsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotRestoreJobsResultArray) ToGetCloudBackupSnapshotRestoreJobsResultArrayOutput() GetCloudBackupSnapshotRestoreJobsResultArrayOutput {
+	return i.ToGetCloudBackupSnapshotRestoreJobsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotRestoreJobsResultArray) ToGetCloudBackupSnapshotRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotRestoreJobsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotRestoreJobsResultArrayOutput)
+}
+
+type GetCloudBackupSnapshotRestoreJobsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotRestoreJobsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) ToGetCloudBackupSnapshotRestoreJobsResultOutput() GetCloudBackupSnapshotRestoreJobsResultOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) ToGetCloudBackupSnapshotRestoreJobsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotRestoreJobsResultOutput {
+	return o
+}
+
+// Indicates whether the restore job was canceled.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Cancelled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) bool { return v.Cancelled }).(pulumi.BoolOutput)
+}
+
+// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Type of restore job to create. Possible values are: automated and download.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) DeliveryType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.DeliveryType }).(pulumi.StringOutput)
+}
+
+// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) DeliveryUrls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) []string { return v.DeliveryUrls }).(pulumi.StringArrayOutput)
+}
+
+// Indicates whether the restore job expired.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Expired() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) bool { return v.Expired }).(pulumi.BoolOutput)
+}
+
+// UTC ISO 8601 formatted point in time when the restore job expires.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when the restore job completed.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) FinishedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.FinishedAt }).(pulumi.StringOutput)
+}
+
+// The unique identifier of the restore job.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) OplogInc() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) int { return v.OplogInc }).(pulumi.IntOutput)
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) OplogTs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) int { return v.OplogTs }).(pulumi.IntOutput)
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) PointInTimeUtcSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) int { return v.PointInTimeUtcSeconds }).(pulumi.IntOutput)
+}
+
+// Unique identifier of the source snapshot ID of the restore job.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) TargetClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.TargetClusterName }).(pulumi.StringOutput)
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) TargetProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Timestamp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.Timestamp }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotRestoreJobsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotRestoreJobsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultArrayOutput) ToGetCloudBackupSnapshotRestoreJobsResultArrayOutput() GetCloudBackupSnapshotRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultArrayOutput) ToGetCloudBackupSnapshotRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotRestoreJobsResultArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotRestoreJobsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotRestoreJobsResult {
+		return vs[0].([]GetCloudBackupSnapshotRestoreJobsResult)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotRestoreJobsResultOutput)
+}
+
+type GetCloudBackupSnapshotsResult struct {
+	// Cloud provider that stores this snapshot.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+	CreatedAt string `pulumi:"createdAt"`
+	// UDescription of the snapshot. Only present for on-demand snapshots.
+	Description string `pulumi:"description"`
+	// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id string `pulumi:"id"`
+	// Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
+	MasterKeyUuid string `pulumi:"masterKeyUuid"`
+	// Block of List of snapshots and the cloud provider where the snapshots are stored. See below
+	Members []GetCloudBackupSnapshotsResultMember `pulumi:"members"`
+	// Version of the MongoDB server.
+	MongodVersion string `pulumi:"mongodVersion"`
+	// Label given to a shard or config server from which Atlas took this snapshot.
+	ReplicaSetName string `pulumi:"replicaSetName"`
+	// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster.
+	SnapshotIds []string `pulumi:"snapshotIds"`
+	// Specified the type of snapshot. Valid values are onDemand and scheduled.
+	SnapshotType string `pulumi:"snapshotType"`
+	// Current status of the snapshot. One of the following values: queued, inProgress, completed, failed.
+	Status string `pulumi:"status"`
+	// Specifies the size of the snapshot in bytes.
+	StorageSizeBytes int `pulumi:"storageSizeBytes"`
+	// Specifies the type of cluster: replicaSet or shardedCluster.
+	Type string `pulumi:"type"`
+}
+
+// GetCloudBackupSnapshotsResultInput is an input type that accepts GetCloudBackupSnapshotsResultArgs and GetCloudBackupSnapshotsResultOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotsResultInput` via:
+//
+//          GetCloudBackupSnapshotsResultArgs{...}
+type GetCloudBackupSnapshotsResultInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotsResultOutput() GetCloudBackupSnapshotsResultOutput
+	ToGetCloudBackupSnapshotsResultOutputWithContext(context.Context) GetCloudBackupSnapshotsResultOutput
+}
+
+type GetCloudBackupSnapshotsResultArgs struct {
+	// Cloud provider that stores this snapshot.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// UDescription of the snapshot. Only present for on-demand snapshots.
+	Description pulumi.StringInput `pulumi:"description"`
+	// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
+	MasterKeyUuid pulumi.StringInput `pulumi:"masterKeyUuid"`
+	// Block of List of snapshots and the cloud provider where the snapshots are stored. See below
+	Members GetCloudBackupSnapshotsResultMemberArrayInput `pulumi:"members"`
+	// Version of the MongoDB server.
+	MongodVersion pulumi.StringInput `pulumi:"mongodVersion"`
+	// Label given to a shard or config server from which Atlas took this snapshot.
+	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
+	// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster.
+	SnapshotIds pulumi.StringArrayInput `pulumi:"snapshotIds"`
+	// Specified the type of snapshot. Valid values are onDemand and scheduled.
+	SnapshotType pulumi.StringInput `pulumi:"snapshotType"`
+	// Current status of the snapshot. One of the following values: queued, inProgress, completed, failed.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Specifies the size of the snapshot in bytes.
+	StorageSizeBytes pulumi.IntInput `pulumi:"storageSizeBytes"`
+	// Specifies the type of cluster: replicaSet or shardedCluster.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetCloudBackupSnapshotsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotsResultArgs) ToGetCloudBackupSnapshotsResultOutput() GetCloudBackupSnapshotsResultOutput {
+	return i.ToGetCloudBackupSnapshotsResultOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotsResultArgs) ToGetCloudBackupSnapshotsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotsResultOutput)
+}
+
+// GetCloudBackupSnapshotsResultArrayInput is an input type that accepts GetCloudBackupSnapshotsResultArray and GetCloudBackupSnapshotsResultArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotsResultArrayInput` via:
+//
+//          GetCloudBackupSnapshotsResultArray{ GetCloudBackupSnapshotsResultArgs{...} }
+type GetCloudBackupSnapshotsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotsResultArrayOutput() GetCloudBackupSnapshotsResultArrayOutput
+	ToGetCloudBackupSnapshotsResultArrayOutputWithContext(context.Context) GetCloudBackupSnapshotsResultArrayOutput
+}
+
+type GetCloudBackupSnapshotsResultArray []GetCloudBackupSnapshotsResultInput
+
+func (GetCloudBackupSnapshotsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotsResultArray) ToGetCloudBackupSnapshotsResultArrayOutput() GetCloudBackupSnapshotsResultArrayOutput {
+	return i.ToGetCloudBackupSnapshotsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotsResultArray) ToGetCloudBackupSnapshotsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotsResultArrayOutput)
+}
+
+type GetCloudBackupSnapshotsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotsResultOutput) ToGetCloudBackupSnapshotsResultOutput() GetCloudBackupSnapshotsResultOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotsResultOutput) ToGetCloudBackupSnapshotsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotsResultOutput {
+	return o
+}
+
+// Cloud provider that stores this snapshot.
+func (o GetCloudBackupSnapshotsResultOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+func (o GetCloudBackupSnapshotsResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// UDescription of the snapshot. Only present for on-demand snapshots.
+func (o GetCloudBackupSnapshotsResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
+func (o GetCloudBackupSnapshotsResultOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the sharded cluster snapshot.
+func (o GetCloudBackupSnapshotsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
+func (o GetCloudBackupSnapshotsResultOutput) MasterKeyUuid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.MasterKeyUuid }).(pulumi.StringOutput)
+}
+
+// Block of List of snapshots and the cloud provider where the snapshots are stored. See below
+func (o GetCloudBackupSnapshotsResultOutput) Members() GetCloudBackupSnapshotsResultMemberArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) []GetCloudBackupSnapshotsResultMember { return v.Members }).(GetCloudBackupSnapshotsResultMemberArrayOutput)
+}
+
+// Version of the MongoDB server.
+func (o GetCloudBackupSnapshotsResultOutput) MongodVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.MongodVersion }).(pulumi.StringOutput)
+}
+
+// Label given to a shard or config server from which Atlas took this snapshot.
+func (o GetCloudBackupSnapshotsResultOutput) ReplicaSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.ReplicaSetName }).(pulumi.StringOutput)
+}
+
+// Unique identifiers of the snapshots created for the shards and config server for a sharded cluster.
+func (o GetCloudBackupSnapshotsResultOutput) SnapshotIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) []string { return v.SnapshotIds }).(pulumi.StringArrayOutput)
+}
+
+// Specified the type of snapshot. Valid values are onDemand and scheduled.
+func (o GetCloudBackupSnapshotsResultOutput) SnapshotType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.SnapshotType }).(pulumi.StringOutput)
+}
+
+// Current status of the snapshot. One of the following values: queued, inProgress, completed, failed.
+func (o GetCloudBackupSnapshotsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Specifies the size of the snapshot in bytes.
+func (o GetCloudBackupSnapshotsResultOutput) StorageSizeBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) int { return v.StorageSizeBytes }).(pulumi.IntOutput)
+}
+
+// Specifies the type of cluster: replicaSet or shardedCluster.
+func (o GetCloudBackupSnapshotsResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotsResultArrayOutput) ToGetCloudBackupSnapshotsResultArrayOutput() GetCloudBackupSnapshotsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotsResultArrayOutput) ToGetCloudBackupSnapshotsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotsResultArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotsResult {
+		return vs[0].([]GetCloudBackupSnapshotsResult)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotsResultOutput)
+}
+
+type GetCloudBackupSnapshotsResultMember struct {
+	// Cloud provider that stores this snapshot.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id string `pulumi:"id"`
+	// Label given to a shard or config server from which Atlas took this snapshot.
+	ReplicaSetName string `pulumi:"replicaSetName"`
+}
+
+// GetCloudBackupSnapshotsResultMemberInput is an input type that accepts GetCloudBackupSnapshotsResultMemberArgs and GetCloudBackupSnapshotsResultMemberOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotsResultMemberInput` via:
+//
+//          GetCloudBackupSnapshotsResultMemberArgs{...}
+type GetCloudBackupSnapshotsResultMemberInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotsResultMemberOutput() GetCloudBackupSnapshotsResultMemberOutput
+	ToGetCloudBackupSnapshotsResultMemberOutputWithContext(context.Context) GetCloudBackupSnapshotsResultMemberOutput
+}
+
+type GetCloudBackupSnapshotsResultMemberArgs struct {
+	// Cloud provider that stores this snapshot.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Label given to a shard or config server from which Atlas took this snapshot.
+	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
+}
+
+func (GetCloudBackupSnapshotsResultMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotsResultMember)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotsResultMemberArgs) ToGetCloudBackupSnapshotsResultMemberOutput() GetCloudBackupSnapshotsResultMemberOutput {
+	return i.ToGetCloudBackupSnapshotsResultMemberOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotsResultMemberArgs) ToGetCloudBackupSnapshotsResultMemberOutputWithContext(ctx context.Context) GetCloudBackupSnapshotsResultMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotsResultMemberOutput)
+}
+
+// GetCloudBackupSnapshotsResultMemberArrayInput is an input type that accepts GetCloudBackupSnapshotsResultMemberArray and GetCloudBackupSnapshotsResultMemberArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotsResultMemberArrayInput` via:
+//
+//          GetCloudBackupSnapshotsResultMemberArray{ GetCloudBackupSnapshotsResultMemberArgs{...} }
+type GetCloudBackupSnapshotsResultMemberArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotsResultMemberArrayOutput() GetCloudBackupSnapshotsResultMemberArrayOutput
+	ToGetCloudBackupSnapshotsResultMemberArrayOutputWithContext(context.Context) GetCloudBackupSnapshotsResultMemberArrayOutput
+}
+
+type GetCloudBackupSnapshotsResultMemberArray []GetCloudBackupSnapshotsResultMemberInput
+
+func (GetCloudBackupSnapshotsResultMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotsResultMember)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotsResultMemberArray) ToGetCloudBackupSnapshotsResultMemberArrayOutput() GetCloudBackupSnapshotsResultMemberArrayOutput {
+	return i.ToGetCloudBackupSnapshotsResultMemberArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotsResultMemberArray) ToGetCloudBackupSnapshotsResultMemberArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotsResultMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotsResultMemberArrayOutput)
+}
+
+type GetCloudBackupSnapshotsResultMemberOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotsResultMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotsResultMember)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotsResultMemberOutput) ToGetCloudBackupSnapshotsResultMemberOutput() GetCloudBackupSnapshotsResultMemberOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotsResultMemberOutput) ToGetCloudBackupSnapshotsResultMemberOutputWithContext(ctx context.Context) GetCloudBackupSnapshotsResultMemberOutput {
+	return o
+}
+
+// Cloud provider that stores this snapshot.
+func (o GetCloudBackupSnapshotsResultMemberOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResultMember) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the sharded cluster snapshot.
+func (o GetCloudBackupSnapshotsResultMemberOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResultMember) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Label given to a shard or config server from which Atlas took this snapshot.
+func (o GetCloudBackupSnapshotsResultMemberOutput) ReplicaSetName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotsResultMember) string { return v.ReplicaSetName }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotsResultMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotsResultMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotsResultMember)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotsResultMemberArrayOutput) ToGetCloudBackupSnapshotsResultMemberArrayOutput() GetCloudBackupSnapshotsResultMemberArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotsResultMemberArrayOutput) ToGetCloudBackupSnapshotsResultMemberArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotsResultMemberArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotsResultMemberArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotsResultMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotsResultMember {
+		return vs[0].([]GetCloudBackupSnapshotsResultMember)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotsResultMemberOutput)
 }
 
 type GetCloudProviderAccessAwsIamRole struct {
@@ -19599,6 +27429,230 @@ func (o GetPrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInpu
 	}).(GetPrivateLinkEndpointServiceEndpointOutput)
 }
 
+type GetPrivatelinkEndpointsServiceAdlLink struct {
+	Href string `pulumi:"href"`
+	Rel  string `pulumi:"rel"`
+}
+
+// GetPrivatelinkEndpointsServiceAdlLinkInput is an input type that accepts GetPrivatelinkEndpointsServiceAdlLinkArgs and GetPrivatelinkEndpointsServiceAdlLinkOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsServiceAdlLinkInput` via:
+//
+//          GetPrivatelinkEndpointsServiceAdlLinkArgs{...}
+type GetPrivatelinkEndpointsServiceAdlLinkInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsServiceAdlLinkOutput() GetPrivatelinkEndpointsServiceAdlLinkOutput
+	ToGetPrivatelinkEndpointsServiceAdlLinkOutputWithContext(context.Context) GetPrivatelinkEndpointsServiceAdlLinkOutput
+}
+
+type GetPrivatelinkEndpointsServiceAdlLinkArgs struct {
+	Href pulumi.StringInput `pulumi:"href"`
+	Rel  pulumi.StringInput `pulumi:"rel"`
+}
+
+func (GetPrivatelinkEndpointsServiceAdlLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlLink)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsServiceAdlLinkArgs) ToGetPrivatelinkEndpointsServiceAdlLinkOutput() GetPrivatelinkEndpointsServiceAdlLinkOutput {
+	return i.ToGetPrivatelinkEndpointsServiceAdlLinkOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsServiceAdlLinkArgs) ToGetPrivatelinkEndpointsServiceAdlLinkOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceAdlLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsServiceAdlLinkOutput)
+}
+
+// GetPrivatelinkEndpointsServiceAdlLinkArrayInput is an input type that accepts GetPrivatelinkEndpointsServiceAdlLinkArray and GetPrivatelinkEndpointsServiceAdlLinkArrayOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsServiceAdlLinkArrayInput` via:
+//
+//          GetPrivatelinkEndpointsServiceAdlLinkArray{ GetPrivatelinkEndpointsServiceAdlLinkArgs{...} }
+type GetPrivatelinkEndpointsServiceAdlLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsServiceAdlLinkArrayOutput() GetPrivatelinkEndpointsServiceAdlLinkArrayOutput
+	ToGetPrivatelinkEndpointsServiceAdlLinkArrayOutputWithContext(context.Context) GetPrivatelinkEndpointsServiceAdlLinkArrayOutput
+}
+
+type GetPrivatelinkEndpointsServiceAdlLinkArray []GetPrivatelinkEndpointsServiceAdlLinkInput
+
+func (GetPrivatelinkEndpointsServiceAdlLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsServiceAdlLink)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsServiceAdlLinkArray) ToGetPrivatelinkEndpointsServiceAdlLinkArrayOutput() GetPrivatelinkEndpointsServiceAdlLinkArrayOutput {
+	return i.ToGetPrivatelinkEndpointsServiceAdlLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsServiceAdlLinkArray) ToGetPrivatelinkEndpointsServiceAdlLinkArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceAdlLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsServiceAdlLinkArrayOutput)
+}
+
+type GetPrivatelinkEndpointsServiceAdlLinkOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsServiceAdlLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlLink)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlLinkOutput) ToGetPrivatelinkEndpointsServiceAdlLinkOutput() GetPrivatelinkEndpointsServiceAdlLinkOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlLinkOutput) ToGetPrivatelinkEndpointsServiceAdlLinkOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceAdlLinkOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlLinkOutput) Href() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceAdlLink) string { return v.Href }).(pulumi.StringOutput)
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlLinkOutput) Rel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceAdlLink) string { return v.Rel }).(pulumi.StringOutput)
+}
+
+type GetPrivatelinkEndpointsServiceAdlLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsServiceAdlLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsServiceAdlLink)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlLinkArrayOutput) ToGetPrivatelinkEndpointsServiceAdlLinkArrayOutput() GetPrivatelinkEndpointsServiceAdlLinkArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlLinkArrayOutput) ToGetPrivatelinkEndpointsServiceAdlLinkArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceAdlLinkArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlLinkArrayOutput) Index(i pulumi.IntInput) GetPrivatelinkEndpointsServiceAdlLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivatelinkEndpointsServiceAdlLink {
+		return vs[0].([]GetPrivatelinkEndpointsServiceAdlLink)[vs[1].(int)]
+	}).(GetPrivatelinkEndpointsServiceAdlLinkOutput)
+}
+
+type GetPrivatelinkEndpointsServiceAdlResult struct {
+	// Human-readable string to associate with this private endpoint.
+	Comment string `pulumi:"comment"`
+	// Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
+	EndpointId string `pulumi:"endpointId"`
+	// Human-readable label that identifies the cloud provider for this endpoint.
+	ProviderName string `pulumi:"providerName"`
+	// Human-readable label that identifies the type of resource to associate with this private endpoint.
+	Type string `pulumi:"type"`
+}
+
+// GetPrivatelinkEndpointsServiceAdlResultInput is an input type that accepts GetPrivatelinkEndpointsServiceAdlResultArgs and GetPrivatelinkEndpointsServiceAdlResultOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsServiceAdlResultInput` via:
+//
+//          GetPrivatelinkEndpointsServiceAdlResultArgs{...}
+type GetPrivatelinkEndpointsServiceAdlResultInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsServiceAdlResultOutput() GetPrivatelinkEndpointsServiceAdlResultOutput
+	ToGetPrivatelinkEndpointsServiceAdlResultOutputWithContext(context.Context) GetPrivatelinkEndpointsServiceAdlResultOutput
+}
+
+type GetPrivatelinkEndpointsServiceAdlResultArgs struct {
+	// Human-readable string to associate with this private endpoint.
+	Comment pulumi.StringInput `pulumi:"comment"`
+	// Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// Human-readable label that identifies the cloud provider for this endpoint.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// Human-readable label that identifies the type of resource to associate with this private endpoint.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetPrivatelinkEndpointsServiceAdlResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlResult)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsServiceAdlResultArgs) ToGetPrivatelinkEndpointsServiceAdlResultOutput() GetPrivatelinkEndpointsServiceAdlResultOutput {
+	return i.ToGetPrivatelinkEndpointsServiceAdlResultOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsServiceAdlResultArgs) ToGetPrivatelinkEndpointsServiceAdlResultOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceAdlResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsServiceAdlResultOutput)
+}
+
+// GetPrivatelinkEndpointsServiceAdlResultArrayInput is an input type that accepts GetPrivatelinkEndpointsServiceAdlResultArray and GetPrivatelinkEndpointsServiceAdlResultArrayOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsServiceAdlResultArrayInput` via:
+//
+//          GetPrivatelinkEndpointsServiceAdlResultArray{ GetPrivatelinkEndpointsServiceAdlResultArgs{...} }
+type GetPrivatelinkEndpointsServiceAdlResultArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsServiceAdlResultArrayOutput() GetPrivatelinkEndpointsServiceAdlResultArrayOutput
+	ToGetPrivatelinkEndpointsServiceAdlResultArrayOutputWithContext(context.Context) GetPrivatelinkEndpointsServiceAdlResultArrayOutput
+}
+
+type GetPrivatelinkEndpointsServiceAdlResultArray []GetPrivatelinkEndpointsServiceAdlResultInput
+
+func (GetPrivatelinkEndpointsServiceAdlResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsServiceAdlResult)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsServiceAdlResultArray) ToGetPrivatelinkEndpointsServiceAdlResultArrayOutput() GetPrivatelinkEndpointsServiceAdlResultArrayOutput {
+	return i.ToGetPrivatelinkEndpointsServiceAdlResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsServiceAdlResultArray) ToGetPrivatelinkEndpointsServiceAdlResultArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceAdlResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsServiceAdlResultArrayOutput)
+}
+
+type GetPrivatelinkEndpointsServiceAdlResultOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsServiceAdlResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlResult)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlResultOutput) ToGetPrivatelinkEndpointsServiceAdlResultOutput() GetPrivatelinkEndpointsServiceAdlResultOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlResultOutput) ToGetPrivatelinkEndpointsServiceAdlResultOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceAdlResultOutput {
+	return o
+}
+
+// Human-readable string to associate with this private endpoint.
+func (o GetPrivatelinkEndpointsServiceAdlResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceAdlResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
+func (o GetPrivatelinkEndpointsServiceAdlResultOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceAdlResult) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the cloud provider for this endpoint.
+func (o GetPrivatelinkEndpointsServiceAdlResultOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceAdlResult) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the type of resource to associate with this private endpoint.
+func (o GetPrivatelinkEndpointsServiceAdlResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceAdlResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetPrivatelinkEndpointsServiceAdlResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsServiceAdlResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsServiceAdlResult)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlResultArrayOutput) ToGetPrivatelinkEndpointsServiceAdlResultArrayOutput() GetPrivatelinkEndpointsServiceAdlResultArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlResultArrayOutput) ToGetPrivatelinkEndpointsServiceAdlResultArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceAdlResultArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceAdlResultArrayOutput) Index(i pulumi.IntInput) GetPrivatelinkEndpointsServiceAdlResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivatelinkEndpointsServiceAdlResult {
+		return vs[0].([]GetPrivatelinkEndpointsServiceAdlResult)[vs[1].(int)]
+	}).(GetPrivatelinkEndpointsServiceAdlResultOutput)
+}
+
 type GetProjectApiKey struct {
 	ApiKeyId  string   `pulumi:"apiKeyId"`
 	RoleNames []string `pulumi:"roleNames"`
@@ -20881,6 +28935,30 @@ func (o GetThirdPartyIntegrationsResultArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationPtrInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterBiConnectorInput)(nil)).Elem(), AdvancedClusterBiConnectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterBiConnectorPtrInput)(nil)).Elem(), AdvancedClusterBiConnectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterConnectionStringInput)(nil)).Elem(), AdvancedClusterConnectionStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterConnectionStringArrayInput)(nil)).Elem(), AdvancedClusterConnectionStringArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpointInput)(nil)).Elem(), AdvancedClusterConnectionStringPrivateEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpointArrayInput)(nil)).Elem(), AdvancedClusterConnectionStringPrivateEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpointEndpointInput)(nil)).Elem(), AdvancedClusterConnectionStringPrivateEndpointEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput)(nil)).Elem(), AdvancedClusterConnectionStringPrivateEndpointEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterLabelInput)(nil)).Elem(), AdvancedClusterLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterLabelArrayInput)(nil)).Elem(), AdvancedClusterLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecInput)(nil)).Elem(), AdvancedClusterReplicationSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecArrayInput)(nil)).Elem(), AdvancedClusterReplicationSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigArrayInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScalingInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationMatcherInput)(nil)).Elem(), AlertConfigurationMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationMatcherArrayInput)(nil)).Elem(), AlertConfigurationMatcherArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationMetricThresholdConfigInput)(nil)).Elem(), AlertConfigurationMetricThresholdConfigArgs{})
@@ -20897,6 +28975,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemMonthlyPtrInput)(nil)).Elem(), CloudBackupSchedulePolicyItemMonthlyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyPtrInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobComponentInput)(nil)).Elem(), CloudBackupSnapshotExportJobComponentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobComponentArrayInput)(nil)).Elem(), CloudBackupSnapshotExportJobComponentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobCustomDataInput)(nil)).Elem(), CloudBackupSnapshotExportJobCustomDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobCustomDataArrayInput)(nil)).Elem(), CloudBackupSnapshotExportJobCustomDataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotMemberInput)(nil)).Elem(), CloudBackupSnapshotMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotMemberArrayInput)(nil)).Elem(), CloudBackupSnapshotMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotRestoreJobDeliveryTypeConfigInput)(nil)).Elem(), CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput)(nil)).Elem(), CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationAwsInput)(nil)).Elem(), CloudProviderAccessAuthorizationAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationAwsPtrInput)(nil)).Elem(), CloudProviderAccessAuthorizationAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudProviderAccessAuthorizationFeatureUsageInput)(nil)).Elem(), CloudProviderAccessAuthorizationFeatureUsageArgs{})
@@ -20995,6 +29081,56 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Get509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), Get509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Get509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), Get509AuthenticationDatabaseUserCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterAdvancedConfigurationInput)(nil)).Elem(), GetAdvancedClusterAdvancedConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterAdvancedConfigurationArrayInput)(nil)).Elem(), GetAdvancedClusterAdvancedConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterBiConnectorInput)(nil)).Elem(), GetAdvancedClusterBiConnectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterBiConnectorArrayInput)(nil)).Elem(), GetAdvancedClusterBiConnectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterConnectionStringInput)(nil)).Elem(), GetAdvancedClusterConnectionStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterConnectionStringArrayInput)(nil)).Elem(), GetAdvancedClusterConnectionStringArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpointInput)(nil)).Elem(), GetAdvancedClusterConnectionStringPrivateEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpointArrayInput)(nil)).Elem(), GetAdvancedClusterConnectionStringPrivateEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpointEndpointInput)(nil)).Elem(), GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput)(nil)).Elem(), GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterLabelInput)(nil)).Elem(), GetAdvancedClusterLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterLabelArrayInput)(nil)).Elem(), GetAdvancedClusterLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecArrayInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigArrayInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultInput)(nil)).Elem(), GetAdvancedClustersResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultArrayInput)(nil)).Elem(), GetAdvancedClustersResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultAdvancedConfigurationInput)(nil)).Elem(), GetAdvancedClustersResultAdvancedConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultAdvancedConfigurationArrayInput)(nil)).Elem(), GetAdvancedClustersResultAdvancedConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultBiConnectorInput)(nil)).Elem(), GetAdvancedClustersResultBiConnectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultBiConnectorArrayInput)(nil)).Elem(), GetAdvancedClustersResultBiConnectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultConnectionStringInput)(nil)).Elem(), GetAdvancedClustersResultConnectionStringArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultConnectionStringArrayInput)(nil)).Elem(), GetAdvancedClustersResultConnectionStringArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpointInput)(nil)).Elem(), GetAdvancedClustersResultConnectionStringPrivateEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput)(nil)).Elem(), GetAdvancedClustersResultConnectionStringPrivateEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointInput)(nil)).Elem(), GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput)(nil)).Elem(), GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultLabelInput)(nil)).Elem(), GetAdvancedClustersResultLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultLabelArrayInput)(nil)).Elem(), GetAdvancedClustersResultLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecArrayInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationMatcherInput)(nil)).Elem(), GetAlertConfigurationMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationMatcherArrayInput)(nil)).Elem(), GetAlertConfigurationMatcherArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationMetricThresholdConfigInput)(nil)).Elem(), GetAlertConfigurationMetricThresholdConfigArgs{})
@@ -21011,6 +29147,26 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemMonthlyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeeklyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemWeeklyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeeklyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemWeeklyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResultInput)(nil)).Elem(), GetCloudBackupSnapshotExportBucketsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportBucketsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobComponentInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobComponentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobComponentArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobComponentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobCustomDataInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobCustomDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobCustomDataArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobCustomDataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultComponentInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobsResultComponentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultComponentArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobsResultComponentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultCustomDataInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobsResultCustomDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobsResultCustomDataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotMemberInput)(nil)).Elem(), GetCloudBackupSnapshotMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotMemberArrayInput)(nil)).Elem(), GetCloudBackupSnapshotMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotRestoreJobsResultInput)(nil)).Elem(), GetCloudBackupSnapshotRestoreJobsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotRestoreJobsResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotRestoreJobsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotsResultInput)(nil)).Elem(), GetCloudBackupSnapshotsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotsResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotsResultMemberInput)(nil)).Elem(), GetCloudBackupSnapshotsResultMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotsResultMemberArrayInput)(nil)).Elem(), GetCloudBackupSnapshotsResultMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessAwsIamRoleInput)(nil)).Elem(), GetCloudProviderAccessAwsIamRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessAwsIamRoleArrayInput)(nil)).Elem(), GetCloudProviderAccessAwsIamRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudProviderAccessAwsIamRoleFeatureUsageInput)(nil)).Elem(), GetCloudProviderAccessAwsIamRoleFeatureUsageArgs{})
@@ -21163,6 +29319,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpointInput)(nil)).Elem(), GetPrivateLinkEndpointServiceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), GetPrivateLinkEndpointServiceEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlLinkInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceAdlLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlLinkArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceAdlLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlResultInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceAdlResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlResultArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceAdlResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyInput)(nil)).Elem(), GetProjectApiKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyArrayInput)(nil)).Elem(), GetProjectApiKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamInput)(nil)).Elem(), GetProjectTeamArgs{})
@@ -21181,6 +29341,30 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultSynonymArrayInput)(nil)).Elem(), GetSearchIndexesResultSynonymArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
+	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationPtrOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterBiConnectorOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterBiConnectorPtrOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterConnectionStringOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterConnectionStringArrayOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterConnectionStringPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterConnectionStringPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterConnectionStringPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterLabelOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterLabelArrayOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecArrayOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigArrayOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationMatcherOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationMatcherArrayOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationMetricThresholdConfigOutput{})
@@ -21197,6 +29381,14 @@ func init() {
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemMonthlyPtrOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobComponentOutput{})
+	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobComponentArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobCustomDataOutput{})
+	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobCustomDataArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupSnapshotMemberOutput{})
+	pulumi.RegisterOutputType(CloudBackupSnapshotMemberArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput{})
+	pulumi.RegisterOutputType(CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAwsOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationAwsPtrOutput{})
 	pulumi.RegisterOutputType(CloudProviderAccessAuthorizationFeatureUsageOutput{})
@@ -21295,6 +29487,56 @@ func init() {
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateArrayOutput{})
 	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserCertificateOutput{})
 	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserCertificateArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterAdvancedConfigurationOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterAdvancedConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterBiConnectorOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterBiConnectorArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterConnectionStringOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterConnectionStringArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterConnectionStringPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterLabelOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultAdvancedConfigurationOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultAdvancedConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultBiConnectorOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultBiConnectorArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultConnectionStringOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultConnectionStringArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultConnectionStringPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultLabelOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMatcherOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMatcherArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMetricThresholdConfigOutput{})
@@ -21311,6 +29553,26 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportBucketsResultOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportBucketsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobComponentOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobComponentArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobCustomDataOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobCustomDataArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobsResultOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobsResultComponentOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobsResultComponentArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobsResultCustomDataOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotMemberOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotMemberArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotRestoreJobsResultOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotRestoreJobsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotsResultOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotsResultMemberOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotsResultMemberArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudProviderAccessAwsIamRoleFeatureUsageOutput{})
@@ -21463,6 +29725,10 @@ func init() {
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivateLinkEndpointServiceEndpointOutput{})
 	pulumi.RegisterOutputType(GetPrivateLinkEndpointServiceEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceAdlLinkOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceAdlLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceAdlResultOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceAdlResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeyOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamOutput{})

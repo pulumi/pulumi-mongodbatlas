@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudProviderSnapshot
     {
         /// <summary>
-        /// **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+        /// **WARNING:** This datasource is deprecated, use `mongodbatlas.CloudBackupSnapshot`
         /// 
         /// `mongodbatlas.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
             => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotResult>("mongodbatlas:index/getCloudProviderSnapshot:getCloudProviderSnapshot", args ?? new GetCloudProviderSnapshotArgs(), options.WithDefaults());
 
         /// <summary>
-        /// **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+        /// **WARNING:** This datasource is deprecated, use `mongodbatlas.CloudBackupSnapshot`
         /// 
         /// `mongodbatlas.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 

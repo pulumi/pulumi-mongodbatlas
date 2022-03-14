@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * **WARNING:** This datasource is deprecated, use `mongodbatlasCloudBackupSnapshot`
+ * **WARNING:** This datasource is deprecated, use `mongodbatlas.CloudBackupSnapshot`
  *
  * `mongodbatlas.CloudProviderSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *

@@ -10,6 +10,18 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AdvancedClusterAdvancedConfiguration',
+    'AdvancedClusterBiConnector',
+    'AdvancedClusterConnectionString',
+    'AdvancedClusterConnectionStringPrivateEndpoint',
+    'AdvancedClusterConnectionStringPrivateEndpointEndpoint',
+    'AdvancedClusterLabel',
+    'AdvancedClusterReplicationSpec',
+    'AdvancedClusterReplicationSpecRegionConfig',
+    'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs',
+    'AdvancedClusterReplicationSpecRegionConfigAutoScaling',
+    'AdvancedClusterReplicationSpecRegionConfigElectableSpecs',
+    'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs',
     'AlertConfigurationMatcher',
     'AlertConfigurationMetricThresholdConfig',
     'AlertConfigurationNotification',
@@ -18,6 +30,10 @@ __all__ = [
     'CloudBackupSchedulePolicyItemHourly',
     'CloudBackupSchedulePolicyItemMonthly',
     'CloudBackupSchedulePolicyItemWeekly',
+    'CloudBackupSnapshotExportJobComponent',
+    'CloudBackupSnapshotExportJobCustomData',
+    'CloudBackupSnapshotMember',
+    'CloudBackupSnapshotRestoreJobDeliveryTypeConfig',
     'CloudProviderAccessAuthorizationAws',
     'CloudProviderAccessAuthorizationFeatureUsage',
     'CloudProviderAccessFeatureUsage',
@@ -67,6 +83,31 @@ __all__ = [
     'SearchIndexSynonym',
     'X509AuthenticationDatabaseUserCertificate',
     'Get509AuthenticationDatabaseUserCertificateResult',
+    'GetAdvancedClusterAdvancedConfigurationResult',
+    'GetAdvancedClusterBiConnectorResult',
+    'GetAdvancedClusterConnectionStringResult',
+    'GetAdvancedClusterConnectionStringPrivateEndpointResult',
+    'GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult',
+    'GetAdvancedClusterLabelResult',
+    'GetAdvancedClusterReplicationSpecResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult',
+    'GetAdvancedClustersResultResult',
+    'GetAdvancedClustersResultAdvancedConfigurationResult',
+    'GetAdvancedClustersResultBiConnectorResult',
+    'GetAdvancedClustersResultConnectionStringResult',
+    'GetAdvancedClustersResultConnectionStringPrivateEndpointResult',
+    'GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult',
+    'GetAdvancedClustersResultLabelResult',
+    'GetAdvancedClustersResultReplicationSpecResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult',
     'GetAlertConfigurationMatcherResult',
     'GetAlertConfigurationMetricThresholdConfigResult',
     'GetAlertConfigurationNotificationResult',
@@ -75,6 +116,16 @@ __all__ = [
     'GetCloudBackupSchedulePolicyItemHourlyResult',
     'GetCloudBackupSchedulePolicyItemMonthlyResult',
     'GetCloudBackupSchedulePolicyItemWeeklyResult',
+    'GetCloudBackupSnapshotExportBucketsResultResult',
+    'GetCloudBackupSnapshotExportJobComponentResult',
+    'GetCloudBackupSnapshotExportJobCustomDataResult',
+    'GetCloudBackupSnapshotExportJobsResultResult',
+    'GetCloudBackupSnapshotExportJobsResultComponentResult',
+    'GetCloudBackupSnapshotExportJobsResultCustomDataResult',
+    'GetCloudBackupSnapshotMemberResult',
+    'GetCloudBackupSnapshotRestoreJobsResultResult',
+    'GetCloudBackupSnapshotsResultResult',
+    'GetCloudBackupSnapshotsResultMemberResult',
     'GetCloudProviderAccessAwsIamRoleResult',
     'GetCloudProviderAccessAwsIamRoleFeatureUsageResult',
     'GetCloudProviderAccessSetupAwsConfigResult',
@@ -151,6 +202,8 @@ __all__ = [
     'GetOnlineArchivesResultCriteriaResult',
     'GetOnlineArchivesResultPartitionFieldResult',
     'GetPrivateLinkEndpointServiceEndpointResult',
+    'GetPrivatelinkEndpointsServiceAdlLinkResult',
+    'GetPrivatelinkEndpointsServiceAdlResultResult',
     'GetProjectApiKeyResult',
     'GetProjectTeamResult',
     'GetProjectsResultResult',
@@ -161,6 +214,980 @@ __all__ = [
     'GetSearchIndexesResultSynonymResult',
     'GetThirdPartyIntegrationsResultResult',
 ]
+
+@pulumi.output_type
+class AdvancedClusterAdvancedConfiguration(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultReadConcern":
+            suggest = "default_read_concern"
+        elif key == "defaultWriteConcern":
+            suggest = "default_write_concern"
+        elif key == "failIndexKeyTooLong":
+            suggest = "fail_index_key_too_long"
+        elif key == "javascriptEnabled":
+            suggest = "javascript_enabled"
+        elif key == "minimumEnabledTlsProtocol":
+            suggest = "minimum_enabled_tls_protocol"
+        elif key == "noTableScan":
+            suggest = "no_table_scan"
+        elif key == "oplogSizeMb":
+            suggest = "oplog_size_mb"
+        elif key == "sampleRefreshIntervalBiConnector":
+            suggest = "sample_refresh_interval_bi_connector"
+        elif key == "sampleSizeBiConnector":
+            suggest = "sample_size_bi_connector"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterAdvancedConfiguration. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterAdvancedConfiguration.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterAdvancedConfiguration.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_read_concern: Optional[str] = None,
+                 default_write_concern: Optional[str] = None,
+                 fail_index_key_too_long: Optional[bool] = None,
+                 javascript_enabled: Optional[bool] = None,
+                 minimum_enabled_tls_protocol: Optional[str] = None,
+                 no_table_scan: Optional[bool] = None,
+                 oplog_size_mb: Optional[int] = None,
+                 sample_refresh_interval_bi_connector: Optional[int] = None,
+                 sample_size_bi_connector: Optional[int] = None):
+        """
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        if default_read_concern is not None:
+            pulumi.set(__self__, "default_read_concern", default_read_concern)
+        if default_write_concern is not None:
+            pulumi.set(__self__, "default_write_concern", default_write_concern)
+        if fail_index_key_too_long is not None:
+            pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        if javascript_enabled is not None:
+            pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        if minimum_enabled_tls_protocol is not None:
+            pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        if no_table_scan is not None:
+            pulumi.set(__self__, "no_table_scan", no_table_scan)
+        if oplog_size_mb is not None:
+            pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        if sample_refresh_interval_bi_connector is not None:
+            pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        if sample_size_bi_connector is not None:
+            pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+
+    @property
+    @pulumi.getter(name="defaultReadConcern")
+    def default_read_concern(self) -> Optional[str]:
+        """
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        """
+        return pulumi.get(self, "default_read_concern")
+
+    @property
+    @pulumi.getter(name="defaultWriteConcern")
+    def default_write_concern(self) -> Optional[str]:
+        """
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        """
+        return pulumi.get(self, "default_write_concern")
+
+    @property
+    @pulumi.getter(name="failIndexKeyTooLong")
+    def fail_index_key_too_long(self) -> Optional[bool]:
+        """
+        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        """
+        return pulumi.get(self, "fail_index_key_too_long")
+
+    @property
+    @pulumi.getter(name="javascriptEnabled")
+    def javascript_enabled(self) -> Optional[bool]:
+        """
+        When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        """
+        return pulumi.get(self, "javascript_enabled")
+
+    @property
+    @pulumi.getter(name="minimumEnabledTlsProtocol")
+    def minimum_enabled_tls_protocol(self) -> Optional[str]:
+        """
+        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        """
+        return pulumi.get(self, "minimum_enabled_tls_protocol")
+
+    @property
+    @pulumi.getter(name="noTableScan")
+    def no_table_scan(self) -> Optional[bool]:
+        """
+        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        """
+        return pulumi.get(self, "no_table_scan")
+
+    @property
+    @pulumi.getter(name="oplogSizeMb")
+    def oplog_size_mb(self) -> Optional[int]:
+        """
+        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        """
+        return pulumi.get(self, "oplog_size_mb")
+
+    @property
+    @pulumi.getter(name="sampleRefreshIntervalBiConnector")
+    def sample_refresh_interval_bi_connector(self) -> Optional[int]:
+        """
+        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_refresh_interval_bi_connector")
+
+    @property
+    @pulumi.getter(name="sampleSizeBiConnector")
+    def sample_size_bi_connector(self) -> Optional[int]:
+        """
+        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_size_bi_connector")
+
+
+@pulumi.output_type
+class AdvancedClusterBiConnector(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "readPreference":
+            suggest = "read_preference"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterBiConnector. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterBiConnector.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterBiConnector.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None,
+                 read_preference: Optional[str] = None):
+        """
+        :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+               *
+               - Set to `true` to enable BI Connector for Atlas.
+               - Set to `false` to disable BI Connector for Atlas.
+        :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if read_preference is not None:
+            pulumi.set(__self__, "read_preference", read_preference)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        *
+        - Set to `true` to enable BI Connector for Atlas.
+        - Set to `false` to disable BI Connector for Atlas.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> Optional[str]:
+        """
+        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        return pulumi.get(self, "read_preference")
+
+
+@pulumi.output_type
+class AdvancedClusterConnectionString(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "awsPrivateLink":
+            suggest = "aws_private_link"
+        elif key == "awsPrivateLinkSrv":
+            suggest = "aws_private_link_srv"
+        elif key == "privateEndpoints":
+            suggest = "private_endpoints"
+        elif key == "privateSrv":
+            suggest = "private_srv"
+        elif key == "standardSrv":
+            suggest = "standard_srv"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionString. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterConnectionString.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterConnectionString.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 aws_private_link: Optional[Mapping[str, Any]] = None,
+                 aws_private_link_srv: Optional[Mapping[str, Any]] = None,
+                 private: Optional[str] = None,
+                 private_endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpoint']] = None,
+                 private_srv: Optional[str] = None,
+                 standard: Optional[str] = None,
+                 standard_srv: Optional[str] = None):
+        if aws_private_link is not None:
+            pulumi.set(__self__, "aws_private_link", aws_private_link)
+        if aws_private_link_srv is not None:
+            pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
+        if private is not None:
+            pulumi.set(__self__, "private", private)
+        if private_endpoints is not None:
+            pulumi.set(__self__, "private_endpoints", private_endpoints)
+        if private_srv is not None:
+            pulumi.set(__self__, "private_srv", private_srv)
+        if standard is not None:
+            pulumi.set(__self__, "standard", standard)
+        if standard_srv is not None:
+            pulumi.set(__self__, "standard_srv", standard_srv)
+
+    @property
+    @pulumi.getter(name="awsPrivateLink")
+    def aws_private_link(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "aws_private_link")
+
+    @property
+    @pulumi.getter(name="awsPrivateLinkSrv")
+    def aws_private_link_srv(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "aws_private_link_srv")
+
+    @property
+    @pulumi.getter
+    def private(self) -> Optional[str]:
+        return pulumi.get(self, "private")
+
+    @property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpoint']]:
+        return pulumi.get(self, "private_endpoints")
+
+    @property
+    @pulumi.getter(name="privateSrv")
+    def private_srv(self) -> Optional[str]:
+        return pulumi.get(self, "private_srv")
+
+    @property
+    @pulumi.getter
+    def standard(self) -> Optional[str]:
+        return pulumi.get(self, "standard")
+
+    @property
+    @pulumi.getter(name="standardSrv")
+    def standard_srv(self) -> Optional[str]:
+        return pulumi.get(self, "standard_srv")
+
+
+@pulumi.output_type
+class AdvancedClusterConnectionStringPrivateEndpoint(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionString":
+            suggest = "connection_string"
+        elif key == "srvConnectionString":
+            suggest = "srv_connection_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionStringPrivateEndpoint. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterConnectionStringPrivateEndpoint.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterConnectionStringPrivateEndpoint.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connection_string: Optional[str] = None,
+                 endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint']] = None,
+                 srv_connection_string: Optional[str] = None,
+                 type: Optional[str] = None):
+        if connection_string is not None:
+            pulumi.set(__self__, "connection_string", connection_string)
+        if endpoints is not None:
+            pulumi.set(__self__, "endpoints", endpoints)
+        if srv_connection_string is not None:
+            pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> Optional[str]:
+        return pulumi.get(self, "connection_string")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint']]:
+        return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter(name="srvConnectionString")
+    def srv_connection_string(self) -> Optional[str]:
+        return pulumi.get(self, "srv_connection_string")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "endpointId":
+            suggest = "endpoint_id"
+        elif key == "providerName":
+            suggest = "provider_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionStringPrivateEndpointEndpoint. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterConnectionStringPrivateEndpointEndpoint.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterConnectionStringPrivateEndpointEndpoint.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 endpoint_id: Optional[str] = None,
+                 provider_name: Optional[str] = None,
+                 region: Optional[str] = None):
+        """
+        :param str provider_name: Cloud service provider on which the servers are provisioned.
+               The possible values are:
+        """
+        if endpoint_id is not None:
+            pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if provider_name is not None:
+            pulumi.set(__self__, "provider_name", provider_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> Optional[str]:
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> Optional[str]:
+        """
+        Cloud service provider on which the servers are provisioned.
+        The possible values are:
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class AdvancedClusterLabel(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key that you want to write.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        The value that you want to write.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AdvancedClusterReplicationSpec(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "regionConfigs":
+            suggest = "region_configs"
+        elif key == "containerId":
+            suggest = "container_id"
+        elif key == "numShards":
+            suggest = "num_shards"
+        elif key == "zoneName":
+            suggest = "zone_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpec. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterReplicationSpec.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterReplicationSpec.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 region_configs: Sequence['outputs.AdvancedClusterReplicationSpecRegionConfig'],
+                 container_id: Optional[Mapping[str, str]] = None,
+                 id: Optional[str] = None,
+                 num_shards: Optional[int] = None,
+                 zone_name: Optional[str] = None):
+        """
+        :param Sequence['AdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
+        :param str zone_name: Name for the zone in a Global Cluster.
+        """
+        pulumi.set(__self__, "region_configs", region_configs)
+        if container_id is not None:
+            pulumi.set(__self__, "container_id", container_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if num_shards is not None:
+            pulumi.set(__self__, "num_shards", num_shards)
+        if zone_name is not None:
+            pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter(name="regionConfigs")
+    def region_configs(self) -> Sequence['outputs.AdvancedClusterReplicationSpecRegionConfig']:
+        """
+        Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        """
+        return pulumi.get(self, "region_configs")
+
+    @property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> Optional[Mapping[str, str]]:
+        """
+        A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        """
+        return pulumi.get(self, "container_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="numShards")
+    def num_shards(self) -> Optional[int]:
+        """
+        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
+        """
+        return pulumi.get(self, "num_shards")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> Optional[str]:
+        """
+        Name for the zone in a Global Cluster.
+        """
+        return pulumi.get(self, "zone_name")
+
+
+@pulumi.output_type
+class AdvancedClusterReplicationSpecRegionConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "providerName":
+            suggest = "provider_name"
+        elif key == "regionName":
+            suggest = "region_name"
+        elif key == "analyticsSpecs":
+            suggest = "analytics_specs"
+        elif key == "autoScaling":
+            suggest = "auto_scaling"
+        elif key == "backingProviderName":
+            suggest = "backing_provider_name"
+        elif key == "electableSpecs":
+            suggest = "electable_specs"
+        elif key == "readOnlySpecs":
+            suggest = "read_only_specs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpecRegionConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterReplicationSpecRegionConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterReplicationSpecRegionConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 priority: int,
+                 provider_name: str,
+                 region_name: str,
+                 analytics_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs'] = None,
+                 auto_scaling: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling'] = None,
+                 backing_provider_name: Optional[str] = None,
+                 electable_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs'] = None,
+                 read_only_specs: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs'] = None):
+        """
+        :param int priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
+               * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+               * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+        :param str provider_name: Cloud service provider on which the servers are provisioned.
+               The possible values are:
+        :param str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+        :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+        :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+        """
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region_name", region_name)
+        if analytics_specs is not None:
+            pulumi.set(__self__, "analytics_specs", analytics_specs)
+        if auto_scaling is not None:
+            pulumi.set(__self__, "auto_scaling", auto_scaling)
+        if backing_provider_name is not None:
+            pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        if electable_specs is not None:
+            pulumi.set(__self__, "electable_specs", electable_specs)
+        if read_only_specs is not None:
+            pulumi.set(__self__, "read_only_specs", read_only_specs)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        Election priority of the region. For regions with only read-only nodes, set this value to 0.
+        * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+        * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Cloud service provider on which the servers are provisioned.
+        The possible values are:
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="analyticsSpecs")
+    def analytics_specs(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs']:
+        """
+        Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+        """
+        return pulumi.get(self, "analytics_specs")
+
+    @property
+    @pulumi.getter(name="autoScaling")
+    def auto_scaling(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling']:
+        """
+        Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` parameter must be the same for every item in the `replication_specs` array. See below
+        """
+        return pulumi.get(self, "auto_scaling")
+
+    @property
+    @pulumi.getter(name="backingProviderName")
+    def backing_provider_name(self) -> Optional[str]:
+        """
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` of a specs is `M2` or `M5`.
+        """
+        return pulumi.get(self, "backing_provider_name")
+
+    @property
+    @pulumi.getter(name="electableSpecs")
+    def electable_specs(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs']:
+        """
+        Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+        """
+        return pulumi.get(self, "electable_specs")
+
+    @property
+    @pulumi.getter(name="readOnlySpecs")
+    def read_only_specs(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs']:
+        """
+        Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+        """
+        return pulumi.get(self, "read_only_specs")
+
+
+@pulumi.output_type
+class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceSize":
+            suggest = "instance_size"
+        elif key == "diskIops":
+            suggest = "disk_iops"
+        elif key == "ebsVolumeType":
+            suggest = "ebs_volume_type"
+        elif key == "nodeCount":
+            suggest = "node_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "computeEnabled":
+            suggest = "compute_enabled"
+        elif key == "computeMaxInstanceSize":
+            suggest = "compute_max_instance_size"
+        elif key == "computeMinInstanceSize":
+            suggest = "compute_min_instance_size"
+        elif key == "computeScaleDownEnabled":
+            suggest = "compute_scale_down_enabled"
+        elif key == "diskGbEnabled":
+            suggest = "disk_gb_enabled"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpecRegionConfigAutoScaling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigAutoScaling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigAutoScaling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 compute_enabled: Optional[bool] = None,
+                 compute_max_instance_size: Optional[str] = None,
+                 compute_min_instance_size: Optional[str] = None,
+                 compute_scale_down_enabled: Optional[bool] = None,
+                 disk_gb_enabled: Optional[bool] = None):
+        """
+        :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+        :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+        :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        """
+        if compute_enabled is not None:
+            pulumi.set(__self__, "compute_enabled", compute_enabled)
+        if compute_max_instance_size is not None:
+            pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        if compute_min_instance_size is not None:
+            pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        if compute_scale_down_enabled is not None:
+            pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        if disk_gb_enabled is not None:
+            pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+
+    @property
+    @pulumi.getter(name="computeEnabled")
+    def compute_enabled(self) -> Optional[bool]:
+        """
+        Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+        """
+        return pulumi.get(self, "compute_enabled")
+
+    @property
+    @pulumi.getter(name="computeMaxInstanceSize")
+    def compute_max_instance_size(self) -> Optional[str]:
+        """
+        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+        """
+        return pulumi.get(self, "compute_max_instance_size")
+
+    @property
+    @pulumi.getter(name="computeMinInstanceSize")
+    def compute_min_instance_size(self) -> Optional[str]:
+        """
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+        """
+        return pulumi.get(self, "compute_min_instance_size")
+
+    @property
+    @pulumi.getter(name="computeScaleDownEnabled")
+    def compute_scale_down_enabled(self) -> Optional[bool]:
+        """
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        """
+        return pulumi.get(self, "compute_scale_down_enabled")
+
+    @property
+    @pulumi.getter(name="diskGbEnabled")
+    def disk_gb_enabled(self) -> Optional[bool]:
+        """
+        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+        """
+        return pulumi.get(self, "disk_gb_enabled")
+
+
+@pulumi.output_type
+class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceSize":
+            suggest = "instance_size"
+        elif key == "diskIops":
+            suggest = "disk_iops"
+        elif key == "ebsVolumeType":
+            suggest = "ebs_volume_type"
+        elif key == "nodeCount":
+            suggest = "node_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpecRegionConfigElectableSpecs. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigElectableSpecs.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigElectableSpecs.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceSize":
+            suggest = "instance_size"
+        elif key == "diskIops":
+            suggest = "disk_iops"
+        elif key == "ebsVolumeType":
+            suggest = "ebs_volume_type"
+        elif key == "nodeCount":
+            suggest = "node_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+        """
+        return pulumi.get(self, "node_count")
+
 
 @pulumi.output_type
 class AlertConfigurationMatcher(dict):
@@ -1109,6 +2136,249 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class CloudBackupSnapshotExportJobComponent(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "exportId":
+            suggest = "export_id"
+        elif key == "replicaSetName":
+            suggest = "replica_set_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupSnapshotExportJobComponent. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupSnapshotExportJobComponent.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupSnapshotExportJobComponent.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 export_id: Optional[str] = None,
+                 replica_set_name: Optional[str] = None):
+        """
+        :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        """
+        if export_id is not None:
+            pulumi.set(__self__, "export_id", export_id)
+        if replica_set_name is not None:
+            pulumi.set(__self__, "replica_set_name", replica_set_name)
+
+    @property
+    @pulumi.getter(name="exportId")
+    def export_id(self) -> Optional[str]:
+        """
+        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        """
+        return pulumi.get(self, "export_id")
+
+    @property
+    @pulumi.getter(name="replicaSetName")
+    def replica_set_name(self) -> Optional[str]:
+        """
+        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        """
+        return pulumi.get(self, "replica_set_name")
+
+
+@pulumi.output_type
+class CloudBackupSnapshotExportJobCustomData(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+        :param str value: Required if you specify `key`.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Required if you specify `key`.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class CloudBackupSnapshotMember(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cloudProvider":
+            suggest = "cloud_provider"
+        elif key == "replicaSetName":
+            suggest = "replica_set_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupSnapshotMember. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupSnapshotMember.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupSnapshotMember.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cloud_provider: Optional[str] = None,
+                 id: Optional[str] = None,
+                 replica_set_name: Optional[str] = None):
+        """
+        :param str cloud_provider: Cloud provider that stores this snapshot.
+        :param str id: Unique identifier for the sharded cluster snapshot.
+        :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
+        """
+        if cloud_provider is not None:
+            pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if replica_set_name is not None:
+            pulumi.set(__self__, "replica_set_name", replica_set_name)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> Optional[str]:
+        """
+        Cloud provider that stores this snapshot.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        Unique identifier for the sharded cluster snapshot.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="replicaSetName")
+    def replica_set_name(self) -> Optional[str]:
+        """
+        Label given to a shard or config server from which Atlas took this snapshot.
+        """
+        return pulumi.get(self, "replica_set_name")
+
+
+@pulumi.output_type
+class CloudBackupSnapshotRestoreJobDeliveryTypeConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "oplogInc":
+            suggest = "oplog_inc"
+        elif key == "oplogTs":
+            suggest = "oplog_ts"
+        elif key == "pointInTime":
+            suggest = "point_in_time"
+        elif key == "pointInTimeUtcSeconds":
+            suggest = "point_in_time_utc_seconds"
+        elif key == "targetClusterName":
+            suggest = "target_cluster_name"
+        elif key == "targetProjectId":
+            suggest = "target_project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupSnapshotRestoreJobDeliveryTypeConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupSnapshotRestoreJobDeliveryTypeConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupSnapshotRestoreJobDeliveryTypeConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 automated: Optional[bool] = None,
+                 download: Optional[bool] = None,
+                 oplog_inc: Optional[int] = None,
+                 oplog_ts: Optional[int] = None,
+                 point_in_time: Optional[bool] = None,
+                 point_in_time_utc_seconds: Optional[int] = None,
+                 target_cluster_name: Optional[str] = None,
+                 target_project_id: Optional[str] = None):
+        """
+        :param str target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+        """
+        if automated is not None:
+            pulumi.set(__self__, "automated", automated)
+        if download is not None:
+            pulumi.set(__self__, "download", download)
+        if oplog_inc is not None:
+            pulumi.set(__self__, "oplog_inc", oplog_inc)
+        if oplog_ts is not None:
+            pulumi.set(__self__, "oplog_ts", oplog_ts)
+        if point_in_time is not None:
+            pulumi.set(__self__, "point_in_time", point_in_time)
+        if point_in_time_utc_seconds is not None:
+            pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
+        if target_cluster_name is not None:
+            pulumi.set(__self__, "target_cluster_name", target_cluster_name)
+        if target_project_id is not None:
+            pulumi.set(__self__, "target_project_id", target_project_id)
+
+    @property
+    @pulumi.getter
+    def automated(self) -> Optional[bool]:
+        return pulumi.get(self, "automated")
+
+    @property
+    @pulumi.getter
+    def download(self) -> Optional[bool]:
+        return pulumi.get(self, "download")
+
+    @property
+    @pulumi.getter(name="oplogInc")
+    def oplog_inc(self) -> Optional[int]:
+        return pulumi.get(self, "oplog_inc")
+
+    @property
+    @pulumi.getter(name="oplogTs")
+    def oplog_ts(self) -> Optional[int]:
+        return pulumi.get(self, "oplog_ts")
+
+    @property
+    @pulumi.getter(name="pointInTime")
+    def point_in_time(self) -> Optional[bool]:
+        return pulumi.get(self, "point_in_time")
+
+    @property
+    @pulumi.getter(name="pointInTimeUtcSeconds")
+    def point_in_time_utc_seconds(self) -> Optional[int]:
+        return pulumi.get(self, "point_in_time_utc_seconds")
+
+    @property
+    @pulumi.getter(name="targetClusterName")
+    def target_cluster_name(self) -> Optional[str]:
+        """
+        Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+        """
+        return pulumi.get(self, "target_cluster_name")
+
+    @property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> Optional[str]:
+        return pulumi.get(self, "target_project_id")
 
 
 @pulumi.output_type
@@ -4015,6 +5285,1549 @@ class Get509AuthenticationDatabaseUserCertificateResult(dict):
 
 
 @pulumi.output_type
+class GetAdvancedClusterAdvancedConfigurationResult(dict):
+    def __init__(__self__, *,
+                 default_read_concern: str,
+                 default_write_concern: str,
+                 fail_index_key_too_long: bool,
+                 javascript_enabled: bool,
+                 minimum_enabled_tls_protocol: str,
+                 no_table_scan: bool,
+                 oplog_size_mb: int,
+                 sample_refresh_interval_bi_connector: int,
+                 sample_size_bi_connector: int):
+        """
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        pulumi.set(__self__, "default_read_concern", default_read_concern)
+        pulumi.set(__self__, "default_write_concern", default_write_concern)
+        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+
+    @property
+    @pulumi.getter(name="defaultReadConcern")
+    def default_read_concern(self) -> str:
+        """
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        """
+        return pulumi.get(self, "default_read_concern")
+
+    @property
+    @pulumi.getter(name="defaultWriteConcern")
+    def default_write_concern(self) -> str:
+        """
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        """
+        return pulumi.get(self, "default_write_concern")
+
+    @property
+    @pulumi.getter(name="failIndexKeyTooLong")
+    def fail_index_key_too_long(self) -> bool:
+        """
+        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        """
+        return pulumi.get(self, "fail_index_key_too_long")
+
+    @property
+    @pulumi.getter(name="javascriptEnabled")
+    def javascript_enabled(self) -> bool:
+        """
+        When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        """
+        return pulumi.get(self, "javascript_enabled")
+
+    @property
+    @pulumi.getter(name="minimumEnabledTlsProtocol")
+    def minimum_enabled_tls_protocol(self) -> str:
+        """
+        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        """
+        return pulumi.get(self, "minimum_enabled_tls_protocol")
+
+    @property
+    @pulumi.getter(name="noTableScan")
+    def no_table_scan(self) -> bool:
+        """
+        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        """
+        return pulumi.get(self, "no_table_scan")
+
+    @property
+    @pulumi.getter(name="oplogSizeMb")
+    def oplog_size_mb(self) -> int:
+        """
+        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        """
+        return pulumi.get(self, "oplog_size_mb")
+
+    @property
+    @pulumi.getter(name="sampleRefreshIntervalBiConnector")
+    def sample_refresh_interval_bi_connector(self) -> int:
+        """
+        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_refresh_interval_bi_connector")
+
+    @property
+    @pulumi.getter(name="sampleSizeBiConnector")
+    def sample_size_bi_connector(self) -> int:
+        """
+        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_size_bi_connector")
+
+
+@pulumi.output_type
+class GetAdvancedClusterBiConnectorResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 read_preference: str):
+        """
+        :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "read_preference", read_preference)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> str:
+        """
+        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        return pulumi.get(self, "read_preference")
+
+
+@pulumi.output_type
+class GetAdvancedClusterConnectionStringResult(dict):
+    def __init__(__self__, *,
+                 aws_private_link: Mapping[str, Any],
+                 aws_private_link_srv: Mapping[str, Any],
+                 private: str,
+                 private_endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointResult'],
+                 private_srv: str,
+                 standard: str,
+                 standard_srv: str):
+        pulumi.set(__self__, "aws_private_link", aws_private_link)
+        pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
+        pulumi.set(__self__, "private", private)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
+        pulumi.set(__self__, "private_srv", private_srv)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "standard_srv", standard_srv)
+
+    @property
+    @pulumi.getter(name="awsPrivateLink")
+    def aws_private_link(self) -> Mapping[str, Any]:
+        return pulumi.get(self, "aws_private_link")
+
+    @property
+    @pulumi.getter(name="awsPrivateLinkSrv")
+    def aws_private_link_srv(self) -> Mapping[str, Any]:
+        return pulumi.get(self, "aws_private_link_srv")
+
+    @property
+    @pulumi.getter
+    def private(self) -> str:
+        return pulumi.get(self, "private")
+
+    @property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointResult']:
+        return pulumi.get(self, "private_endpoints")
+
+    @property
+    @pulumi.getter(name="privateSrv")
+    def private_srv(self) -> str:
+        return pulumi.get(self, "private_srv")
+
+    @property
+    @pulumi.getter
+    def standard(self) -> str:
+        return pulumi.get(self, "standard")
+
+    @property
+    @pulumi.getter(name="standardSrv")
+    def standard_srv(self) -> str:
+        return pulumi.get(self, "standard_srv")
+
+
+@pulumi.output_type
+class GetAdvancedClusterConnectionStringPrivateEndpointResult(dict):
+    def __init__(__self__, *,
+                 connection_string: str,
+                 endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult'],
+                 srv_connection_string: str,
+                 type: str):
+        pulumi.set(__self__, "connection_string", connection_string)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> str:
+        return pulumi.get(self, "connection_string")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult']:
+        return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter(name="srvConnectionString")
+    def srv_connection_string(self) -> str:
+        return pulumi.get(self, "srv_connection_string")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult(dict):
+    def __init__(__self__, *,
+                 endpoint_id: str,
+                 provider_name: str,
+                 region: str):
+        """
+        :param str provider_name: Cloud service provider on which the servers are provisioned.
+        """
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetAdvancedClusterLabelResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key that you want to write.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value that you want to write.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecResult(dict):
+    def __init__(__self__, *,
+                 container_id: Mapping[str, str],
+                 id: str,
+                 num_shards: int,
+                 region_configs: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigResult'],
+                 zone_name: str):
+        """
+        :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED.
+        :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param str zone_name: Name for the zone in a Global Cluster.
+        """
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "num_shards", num_shards)
+        pulumi.set(__self__, "region_configs", region_configs)
+        pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> Mapping[str, str]:
+        """
+        A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        """
+        return pulumi.get(self, "container_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="numShards")
+    def num_shards(self) -> int:
+        """
+        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED.
+        """
+        return pulumi.get(self, "num_shards")
+
+    @property
+    @pulumi.getter(name="regionConfigs")
+    def region_configs(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigResult']:
+        """
+        Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        """
+        return pulumi.get(self, "region_configs")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        Name for the zone in a Global Cluster.
+        """
+        return pulumi.get(self, "zone_name")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
+    def __init__(__self__, *,
+                 auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult'],
+                 backing_provider_name: str,
+                 priority: int,
+                 provider_name: str,
+                 region_name: str,
+                 analytics_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult'] = None,
+                 electable_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult'] = None,
+                 read_only_specs: Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult'] = None):
+        """
+        :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scalings: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster.
+        :param int priority: Election priority of the region.
+        :param str provider_name: Cloud service provider on which the servers are provisioned.
+        :param str region_name: Physical location of your MongoDB cluster.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
+        """
+        pulumi.set(__self__, "auto_scalings", auto_scalings)
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region_name", region_name)
+        if analytics_specs is not None:
+            pulumi.set(__self__, "analytics_specs", analytics_specs)
+        if electable_specs is not None:
+            pulumi.set(__self__, "electable_specs", electable_specs)
+        if read_only_specs is not None:
+            pulumi.set(__self__, "read_only_specs", read_only_specs)
+
+    @property
+    @pulumi.getter(name="autoScalings")
+    def auto_scalings(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult']:
+        """
+        Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+        """
+        return pulumi.get(self, "auto_scalings")
+
+    @property
+    @pulumi.getter(name="backingProviderName")
+    def backing_provider_name(self) -> str:
+        """
+        Cloud service provider on which you provision the host for a multi-tenant cluster.
+        """
+        return pulumi.get(self, "backing_provider_name")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        Election priority of the region.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Physical location of your MongoDB cluster.
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="analyticsSpecs")
+    def analytics_specs(self) -> Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult']:
+        """
+        Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+        """
+        return pulumi.get(self, "analytics_specs")
+
+    @property
+    @pulumi.getter(name="electableSpecs")
+    def electable_specs(self) -> Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult']:
+        """
+        Hardware specifications for electable nodes in the region.
+        """
+        return pulumi.get(self, "electable_specs")
+
+    @property
+    @pulumi.getter(name="readOnlySpecs")
+    def read_only_specs(self) -> Optional['outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult']:
+        """
+        Hardware specifications for read-only nodes in the region. See below
+        """
+        return pulumi.get(self, "read_only_specs")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
+    def __init__(__self__, *,
+                 compute_enabled: bool,
+                 compute_max_instance_size: str,
+                 compute_min_instance_size: str,
+                 compute_scale_down_enabled: bool,
+                 disk_gb_enabled: bool):
+        """
+        :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
+        :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
+        :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
+        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
+        """
+        pulumi.set(__self__, "compute_enabled", compute_enabled)
+        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+
+    @property
+    @pulumi.getter(name="computeEnabled")
+    def compute_enabled(self) -> bool:
+        """
+        Flag that indicates whether instance size auto-scaling is enabled.
+        """
+        return pulumi.get(self, "compute_enabled")
+
+    @property
+    @pulumi.getter(name="computeMaxInstanceSize")
+    def compute_max_instance_size(self) -> str:
+        """
+        Maximum instance size to which your cluster can automatically scale (such as M40).
+        """
+        return pulumi.get(self, "compute_max_instance_size")
+
+    @property
+    @pulumi.getter(name="computeMinInstanceSize")
+    def compute_min_instance_size(self) -> str:
+        """
+        Minimum instance size to which your cluster can automatically scale (such as M10).
+        """
+        return pulumi.get(self, "compute_min_instance_size")
+
+    @property
+    @pulumi.getter(name="computeScaleDownEnabled")
+    def compute_scale_down_enabled(self) -> bool:
+        """
+        Flag that indicates whether the instance size may scale down.
+        """
+        return pulumi.get(self, "compute_scale_down_enabled")
+
+    @property
+    @pulumi.getter(name="diskGbEnabled")
+    def disk_gb_enabled(self) -> bool:
+        """
+        Flag that indicates whether this cluster enables disk auto-scaling.
+        """
+        return pulumi.get(self, "disk_gb_enabled")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultResult(dict):
+    def __init__(__self__, *,
+                 advanced_configurations: Sequence['outputs.GetAdvancedClustersResultAdvancedConfigurationResult'],
+                 backup_enabled: bool,
+                 bi_connectors: Sequence['outputs.GetAdvancedClustersResultBiConnectorResult'],
+                 cluster_type: str,
+                 connection_strings: Sequence['outputs.GetAdvancedClustersResultConnectionStringResult'],
+                 create_date: str,
+                 disk_size_gb: float,
+                 encryption_at_rest_provider: str,
+                 labels: Sequence['outputs.GetAdvancedClustersResultLabelResult'],
+                 mongo_db_major_version: str,
+                 mongo_db_version: str,
+                 name: str,
+                 paused: bool,
+                 pit_enabled: bool,
+                 replication_specs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult'],
+                 root_cert_type: str,
+                 state_name: str,
+                 version_release_system: str):
+        """
+        :param Sequence['GetAdvancedClustersResultAdvancedConfigurationArgs'] advanced_configurations: Get the advanced configuration options. See Advanced Configuration below for more details.
+        :param Sequence['GetAdvancedClustersResultBiConnectorArgs'] bi_connectors: Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+        :param str cluster_type: Type of the cluster that you want to create.
+        :param Sequence['GetAdvancedClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        :param float disk_size_gb: Capacity, in gigabytes, of the host's root volume.
+        :param str encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.
+        :param Sequence['GetAdvancedClustersResultLabelArgs'] labels: Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        :param str mongo_db_major_version: Version of the cluster to deploy.
+        :param str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
+        :param bool paused: Flag that indicates whether the cluster is paused or not.
+        :param bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
+        :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: Configuration for cluster regions and the hardware provisioned in them. See below
+        :param str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
+        :param str state_name: Current state of the cluster. The possible states are:
+        :param str version_release_system: Release cadence that Atlas uses for this cluster.
+        """
+        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
+        pulumi.set(__self__, "backup_enabled", backup_enabled)
+        pulumi.set(__self__, "bi_connectors", bi_connectors)
+        pulumi.set(__self__, "cluster_type", cluster_type)
+        pulumi.set(__self__, "connection_strings", connection_strings)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "mongo_db_major_version", mongo_db_major_version)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "paused", paused)
+        pulumi.set(__self__, "pit_enabled", pit_enabled)
+        pulumi.set(__self__, "replication_specs", replication_specs)
+        pulumi.set(__self__, "root_cert_type", root_cert_type)
+        pulumi.set(__self__, "state_name", state_name)
+        pulumi.set(__self__, "version_release_system", version_release_system)
+
+    @property
+    @pulumi.getter(name="advancedConfigurations")
+    def advanced_configurations(self) -> Sequence['outputs.GetAdvancedClustersResultAdvancedConfigurationResult']:
+        """
+        Get the advanced configuration options. See Advanced Configuration below for more details.
+        """
+        return pulumi.get(self, "advanced_configurations")
+
+    @property
+    @pulumi.getter(name="backupEnabled")
+    def backup_enabled(self) -> bool:
+        return pulumi.get(self, "backup_enabled")
+
+    @property
+    @pulumi.getter(name="biConnectors")
+    def bi_connectors(self) -> Sequence['outputs.GetAdvancedClustersResultBiConnectorResult']:
+        """
+        Configuration settings applied to BI Connector for Atlas on this cluster. See below.
+        """
+        return pulumi.get(self, "bi_connectors")
+
+    @property
+    @pulumi.getter(name="clusterType")
+    def cluster_type(self) -> str:
+        """
+        Type of the cluster that you want to create.
+        """
+        return pulumi.get(self, "cluster_type")
+
+    @property
+    @pulumi.getter(name="connectionStrings")
+    def connection_strings(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringResult']:
+        """
+        Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        """
+        return pulumi.get(self, "connection_strings")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Capacity, in gigabytes, of the host's root volume.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @property
+    @pulumi.getter(name="encryptionAtRestProvider")
+    def encryption_at_rest_provider(self) -> str:
+        """
+        Possible values are AWS, GCP, AZURE or NONE.
+        """
+        return pulumi.get(self, "encryption_at_rest_provider")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Sequence['outputs.GetAdvancedClustersResultLabelResult']:
+        """
+        Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter(name="mongoDbMajorVersion")
+    def mongo_db_major_version(self) -> str:
+        """
+        Version of the cluster to deploy.
+        """
+        return pulumi.get(self, "mongo_db_major_version")
+
+    @property
+    @pulumi.getter(name="mongoDbVersion")
+    def mongo_db_version(self) -> str:
+        """
+        Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
+        """
+        return pulumi.get(self, "mongo_db_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def paused(self) -> bool:
+        """
+        Flag that indicates whether the cluster is paused or not.
+        """
+        return pulumi.get(self, "paused")
+
+    @property
+    @pulumi.getter(name="pitEnabled")
+    def pit_enabled(self) -> bool:
+        """
+        Flag that indicates if the cluster uses Continuous Cloud Backup.
+        """
+        return pulumi.get(self, "pit_enabled")
+
+    @property
+    @pulumi.getter(name="replicationSpecs")
+    def replication_specs(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult']:
+        """
+        Configuration for cluster regions and the hardware provisioned in them. See below
+        """
+        return pulumi.get(self, "replication_specs")
+
+    @property
+    @pulumi.getter(name="rootCertType")
+    def root_cert_type(self) -> str:
+        """
+        Certificate Authority that MongoDB Atlas clusters use.
+        """
+        return pulumi.get(self, "root_cert_type")
+
+    @property
+    @pulumi.getter(name="stateName")
+    def state_name(self) -> str:
+        """
+        Current state of the cluster. The possible states are:
+        """
+        return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter(name="versionReleaseSystem")
+    def version_release_system(self) -> str:
+        """
+        Release cadence that Atlas uses for this cluster.
+        """
+        return pulumi.get(self, "version_release_system")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
+    def __init__(__self__, *,
+                 default_read_concern: str,
+                 default_write_concern: str,
+                 fail_index_key_too_long: bool,
+                 javascript_enabled: bool,
+                 minimum_enabled_tls_protocol: str,
+                 no_table_scan: bool,
+                 oplog_size_mb: int,
+                 sample_refresh_interval_bi_connector: int,
+                 sample_size_bi_connector: int):
+        """
+        :param str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        :param str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        :param bool fail_index_key_too_long: When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        :param bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        :param str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        :param bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        :param int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        pulumi.set(__self__, "default_read_concern", default_read_concern)
+        pulumi.set(__self__, "default_write_concern", default_write_concern)
+        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
+        pulumi.set(__self__, "javascript_enabled", javascript_enabled)
+        pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
+        pulumi.set(__self__, "no_table_scan", no_table_scan)
+        pulumi.set(__self__, "oplog_size_mb", oplog_size_mb)
+        pulumi.set(__self__, "sample_refresh_interval_bi_connector", sample_refresh_interval_bi_connector)
+        pulumi.set(__self__, "sample_size_bi_connector", sample_size_bi_connector)
+
+    @property
+    @pulumi.getter(name="defaultReadConcern")
+    def default_read_concern(self) -> str:
+        """
+        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+        """
+        return pulumi.get(self, "default_read_concern")
+
+    @property
+    @pulumi.getter(name="defaultWriteConcern")
+    def default_write_concern(self) -> str:
+        """
+        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+        """
+        return pulumi.get(self, "default_write_concern")
+
+    @property
+    @pulumi.getter(name="failIndexKeyTooLong")
+    def fail_index_key_too_long(self) -> bool:
+        """
+        When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        """
+        return pulumi.get(self, "fail_index_key_too_long")
+
+    @property
+    @pulumi.getter(name="javascriptEnabled")
+    def javascript_enabled(self) -> bool:
+        """
+        When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        """
+        return pulumi.get(self, "javascript_enabled")
+
+    @property
+    @pulumi.getter(name="minimumEnabledTlsProtocol")
+    def minimum_enabled_tls_protocol(self) -> str:
+        """
+        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+        """
+        return pulumi.get(self, "minimum_enabled_tls_protocol")
+
+    @property
+    @pulumi.getter(name="noTableScan")
+    def no_table_scan(self) -> bool:
+        """
+        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        """
+        return pulumi.get(self, "no_table_scan")
+
+    @property
+    @pulumi.getter(name="oplogSizeMb")
+    def oplog_size_mb(self) -> int:
+        """
+        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        """
+        return pulumi.get(self, "oplog_size_mb")
+
+    @property
+    @pulumi.getter(name="sampleRefreshIntervalBiConnector")
+    def sample_refresh_interval_bi_connector(self) -> int:
+        """
+        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_refresh_interval_bi_connector")
+
+    @property
+    @pulumi.getter(name="sampleSizeBiConnector")
+    def sample_size_bi_connector(self) -> int:
+        """
+        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        """
+        return pulumi.get(self, "sample_size_bi_connector")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultBiConnectorResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 read_preference: str):
+        """
+        :param bool enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        :param str read_preference: Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "read_preference", read_preference)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="readPreference")
+    def read_preference(self) -> str:
+        """
+        Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+        """
+        return pulumi.get(self, "read_preference")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultConnectionStringResult(dict):
+    def __init__(__self__, *,
+                 aws_private_link: Mapping[str, Any],
+                 aws_private_link_srv: Mapping[str, Any],
+                 private: str,
+                 private_endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult'],
+                 private_srv: str,
+                 standard: str,
+                 standard_srv: str):
+        pulumi.set(__self__, "aws_private_link", aws_private_link)
+        pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
+        pulumi.set(__self__, "private", private)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
+        pulumi.set(__self__, "private_srv", private_srv)
+        pulumi.set(__self__, "standard", standard)
+        pulumi.set(__self__, "standard_srv", standard_srv)
+
+    @property
+    @pulumi.getter(name="awsPrivateLink")
+    def aws_private_link(self) -> Mapping[str, Any]:
+        return pulumi.get(self, "aws_private_link")
+
+    @property
+    @pulumi.getter(name="awsPrivateLinkSrv")
+    def aws_private_link_srv(self) -> Mapping[str, Any]:
+        return pulumi.get(self, "aws_private_link_srv")
+
+    @property
+    @pulumi.getter
+    def private(self) -> str:
+        return pulumi.get(self, "private")
+
+    @property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult']:
+        return pulumi.get(self, "private_endpoints")
+
+    @property
+    @pulumi.getter(name="privateSrv")
+    def private_srv(self) -> str:
+        return pulumi.get(self, "private_srv")
+
+    @property
+    @pulumi.getter
+    def standard(self) -> str:
+        return pulumi.get(self, "standard")
+
+    @property
+    @pulumi.getter(name="standardSrv")
+    def standard_srv(self) -> str:
+        return pulumi.get(self, "standard_srv")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultConnectionStringPrivateEndpointResult(dict):
+    def __init__(__self__, *,
+                 connection_string: str,
+                 endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult'],
+                 srv_connection_string: str,
+                 type: str):
+        pulumi.set(__self__, "connection_string", connection_string)
+        pulumi.set(__self__, "endpoints", endpoints)
+        pulumi.set(__self__, "srv_connection_string", srv_connection_string)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="connectionString")
+    def connection_string(self) -> str:
+        return pulumi.get(self, "connection_string")
+
+    @property
+    @pulumi.getter
+    def endpoints(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult']:
+        return pulumi.get(self, "endpoints")
+
+    @property
+    @pulumi.getter(name="srvConnectionString")
+    def srv_connection_string(self) -> str:
+        return pulumi.get(self, "srv_connection_string")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult(dict):
+    def __init__(__self__, *,
+                 endpoint_id: str,
+                 provider_name: str,
+                 region: str):
+        """
+        :param str provider_name: Cloud service provider on which the servers are provisioned.
+        """
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultLabelResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The key that you want to write.
+        :param str value: The value that you want to write.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key that you want to write.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value that you want to write.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecResult(dict):
+    def __init__(__self__, *,
+                 container_id: Mapping[str, str],
+                 id: str,
+                 num_shards: int,
+                 region_configs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigResult'],
+                 zone_name: str):
+        """
+        :param Mapping[str, str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        :param int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED.
+        :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        :param str zone_name: Name for the zone in a Global Cluster.
+        """
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "num_shards", num_shards)
+        pulumi.set(__self__, "region_configs", region_configs)
+        pulumi.set(__self__, "zone_name", zone_name)
+
+    @property
+    @pulumi.getter(name="containerId")
+    def container_id(self) -> Mapping[str, str]:
+        """
+        A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        """
+        return pulumi.get(self, "container_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="numShards")
+    def num_shards(self) -> int:
+        """
+        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED.
+        """
+        return pulumi.get(self, "num_shards")
+
+    @property
+    @pulumi.getter(name="regionConfigs")
+    def region_configs(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigResult']:
+        """
+        Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
+        """
+        return pulumi.get(self, "region_configs")
+
+    @property
+    @pulumi.getter(name="zoneName")
+    def zone_name(self) -> str:
+        """
+        Name for the zone in a Global Cluster.
+        """
+        return pulumi.get(self, "zone_name")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
+    def __init__(__self__, *,
+                 auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult'],
+                 backing_provider_name: str,
+                 priority: int,
+                 provider_name: str,
+                 region_name: str,
+                 analytics_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult'] = None,
+                 electable_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult'] = None,
+                 read_only_specs: Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult'] = None):
+        """
+        :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs'] auto_scalings: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+        :param str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster.
+        :param int priority: Election priority of the region.
+        :param str provider_name: Cloud service provider on which the servers are provisioned.
+        :param str region_name: Physical location of your MongoDB cluster.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below
+        """
+        pulumi.set(__self__, "auto_scalings", auto_scalings)
+        pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "region_name", region_name)
+        if analytics_specs is not None:
+            pulumi.set(__self__, "analytics_specs", analytics_specs)
+        if electable_specs is not None:
+            pulumi.set(__self__, "electable_specs", electable_specs)
+        if read_only_specs is not None:
+            pulumi.set(__self__, "read_only_specs", read_only_specs)
+
+    @property
+    @pulumi.getter(name="autoScalings")
+    def auto_scalings(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult']:
+        """
+        Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below
+        """
+        return pulumi.get(self, "auto_scalings")
+
+    @property
+    @pulumi.getter(name="backingProviderName")
+    def backing_provider_name(self) -> str:
+        """
+        Cloud service provider on which you provision the host for a multi-tenant cluster.
+        """
+        return pulumi.get(self, "backing_provider_name")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        Election priority of the region.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Cloud service provider on which the servers are provisioned.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> str:
+        """
+        Physical location of your MongoDB cluster.
+        """
+        return pulumi.get(self, "region_name")
+
+    @property
+    @pulumi.getter(name="analyticsSpecs")
+    def analytics_specs(self) -> Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult']:
+        """
+        Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below
+        """
+        return pulumi.get(self, "analytics_specs")
+
+    @property
+    @pulumi.getter(name="electableSpecs")
+    def electable_specs(self) -> Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult']:
+        """
+        Hardware specifications for electable nodes in the region.
+        """
+        return pulumi.get(self, "electable_specs")
+
+    @property
+    @pulumi.getter(name="readOnlySpecs")
+    def read_only_specs(self) -> Optional['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult']:
+        """
+        Hardware specifications for read-only nodes in the region. See below
+        """
+        return pulumi.get(self, "read_only_specs")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(dict):
+    def __init__(__self__, *,
+                 compute_enabled: bool,
+                 compute_max_instance_size: str,
+                 compute_min_instance_size: str,
+                 compute_scale_down_enabled: bool,
+                 disk_gb_enabled: bool):
+        """
+        :param bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
+        :param str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
+        :param str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
+        :param bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
+        :param bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
+        """
+        pulumi.set(__self__, "compute_enabled", compute_enabled)
+        pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
+        pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
+        pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
+        pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+
+    @property
+    @pulumi.getter(name="computeEnabled")
+    def compute_enabled(self) -> bool:
+        """
+        Flag that indicates whether instance size auto-scaling is enabled.
+        """
+        return pulumi.get(self, "compute_enabled")
+
+    @property
+    @pulumi.getter(name="computeMaxInstanceSize")
+    def compute_max_instance_size(self) -> str:
+        """
+        Maximum instance size to which your cluster can automatically scale (such as M40).
+        """
+        return pulumi.get(self, "compute_max_instance_size")
+
+    @property
+    @pulumi.getter(name="computeMinInstanceSize")
+    def compute_min_instance_size(self) -> str:
+        """
+        Minimum instance size to which your cluster can automatically scale (such as M10).
+        """
+        return pulumi.get(self, "compute_min_instance_size")
+
+    @property
+    @pulumi.getter(name="computeScaleDownEnabled")
+    def compute_scale_down_enabled(self) -> bool:
+        """
+        Flag that indicates whether the instance size may scale down.
+        """
+        return pulumi.get(self, "compute_scale_down_enabled")
+
+    @property
+    @pulumi.getter(name="diskGbEnabled")
+    def disk_gb_enabled(self) -> bool:
+        """
+        Flag that indicates whether this cluster enables disk auto-scaling.
+        """
+        return pulumi.get(self, "disk_gb_enabled")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(dict):
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(dict):
+    def __init__(__self__, *,
+                 instance_size: str,
+                 disk_iops: Optional[int] = None,
+                 ebs_volume_type: Optional[str] = None,
+                 node_count: Optional[int] = None):
+        """
+        :param str instance_size: Hardware specification for the instance sizes in this region.
+        :param int disk_iops: Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        :param str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param int node_count: Number of read-only nodes for Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "instance_size", instance_size)
+        if disk_iops is not None:
+            pulumi.set(__self__, "disk_iops", disk_iops)
+        if ebs_volume_type is not None:
+            pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if node_count is not None:
+            pulumi.set(__self__, "node_count", node_count)
+
+    @property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> Optional[int]:
+        """
+        Target throughput (IOPS) desired for AWS storage attached to your cluster.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> Optional[str]:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> Optional[int]:
+        """
+        Number of read-only nodes for Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
 class GetAlertConfigurationMatcherResult(dict):
     def __init__(__self__, *,
                  field_name: str,
@@ -4787,6 +7600,699 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
         Value to associate with `retention_unit`.
         """
         return pulumi.get(self, "retention_value")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotExportBucketsResultResult(dict):
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 cloud_provider: str,
+                 export_bucket_id: str,
+                 iam_role_id: str):
+        """
+        :param str bucket_name: Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+        :param str cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        :param str export_bucket_id: Unique identifier of the snapshot bucket id.
+        :param str iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        pulumi.set(__self__, "iam_role_id", iam_role_id)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        """
+        Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter(name="exportBucketId")
+    def export_bucket_id(self) -> str:
+        """
+        Unique identifier of the snapshot bucket id.
+        """
+        return pulumi.get(self, "export_bucket_id")
+
+    @property
+    @pulumi.getter(name="iamRoleId")
+    def iam_role_id(self) -> str:
+        """
+        Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
+        """
+        return pulumi.get(self, "iam_role_id")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotExportJobComponentResult(dict):
+    def __init__(__self__, *,
+                 export_id: str,
+                 replica_set_name: str):
+        """
+        :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        """
+        pulumi.set(__self__, "export_id", export_id)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
+
+    @property
+    @pulumi.getter(name="exportId")
+    def export_id(self) -> str:
+        """
+        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        """
+        return pulumi.get(self, "export_id")
+
+    @property
+    @pulumi.getter(name="replicaSetName")
+    def replica_set_name(self) -> str:
+        """
+        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        """
+        return pulumi.get(self, "replica_set_name")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotExportJobCustomDataResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Custom data specified as key in the key and value pair.
+        :param str value: Value for the key specified using `key`.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Custom data specified as key in the key and value pair.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Value for the key specified using `key`.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotExportJobsResultResult(dict):
+    def __init__(__self__, *,
+                 components: Sequence['outputs.GetCloudBackupSnapshotExportJobsResultComponentResult'],
+                 created_at: str,
+                 custom_datas: Sequence['outputs.GetCloudBackupSnapshotExportJobsResultCustomDataResult'],
+                 err_msg: str,
+                 export_bucket_id: str,
+                 export_job_id: str,
+                 export_status_exported_collections: int,
+                 export_status_total_collections: int,
+                 finished_at: str,
+                 prefix: str,
+                 snapshot_id: str,
+                 state: str):
+        """
+        :param Sequence['GetCloudBackupSnapshotExportJobsResultComponentArgs'] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        :param str created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
+        :param Sequence['GetCloudBackupSnapshotExportJobsResultCustomDataArgs'] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+        :param str err_msg: Error message, only if the export job failed.
+        :param str export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
+        :param str export_job_id: Unique identifier of the export job.
+               * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+        :param str finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
+        :param str snapshot_id: Unique identifier of the Cloud Backup snapshot to export.
+        :param str state: Status of the export job. Value can be one of the following:
+        """
+        pulumi.set(__self__, "components", components)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "custom_datas", custom_datas)
+        pulumi.set(__self__, "err_msg", err_msg)
+        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        pulumi.set(__self__, "export_job_id", export_job_id)
+        pulumi.set(__self__, "export_status_exported_collections", export_status_exported_collections)
+        pulumi.set(__self__, "export_status_total_collections", export_status_total_collections)
+        pulumi.set(__self__, "finished_at", finished_at)
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "state", state)
+
+    @property
+    @pulumi.getter
+    def components(self) -> Sequence['outputs.GetCloudBackupSnapshotExportJobsResultComponentResult']:
+        """
+        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        """
+        return pulumi.get(self, "components")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when the export job was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="customDatas")
+    def custom_datas(self) -> Sequence['outputs.GetCloudBackupSnapshotExportJobsResultCustomDataResult']:
+        """
+        Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+        """
+        return pulumi.get(self, "custom_datas")
+
+    @property
+    @pulumi.getter(name="errMsg")
+    def err_msg(self) -> str:
+        """
+        Error message, only if the export job failed.
+        """
+        return pulumi.get(self, "err_msg")
+
+    @property
+    @pulumi.getter(name="exportBucketId")
+    def export_bucket_id(self) -> str:
+        """
+        Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
+        """
+        return pulumi.get(self, "export_bucket_id")
+
+    @property
+    @pulumi.getter(name="exportJobId")
+    def export_job_id(self) -> str:
+        """
+        Unique identifier of the export job.
+        * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+        """
+        return pulumi.get(self, "export_job_id")
+
+    @property
+    @pulumi.getter(name="exportStatusExportedCollections")
+    def export_status_exported_collections(self) -> int:
+        return pulumi.get(self, "export_status_exported_collections")
+
+    @property
+    @pulumi.getter(name="exportStatusTotalCollections")
+    def export_status_total_collections(self) -> int:
+        return pulumi.get(self, "export_status_total_collections")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> str:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when the export job completes.
+        """
+        return pulumi.get(self, "finished_at")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique identifier of the Cloud Backup snapshot to export.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        Status of the export job. Value can be one of the following:
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
+    def __init__(__self__, *,
+                 export_id: str,
+                 replica_set_name: str):
+        """
+        :param str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        :param str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        """
+        pulumi.set(__self__, "export_id", export_id)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
+
+    @property
+    @pulumi.getter(name="exportId")
+    def export_id(self) -> str:
+        """
+        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        """
+        return pulumi.get(self, "export_id")
+
+    @property
+    @pulumi.getter(name="replicaSetName")
+    def replica_set_name(self) -> str:
+        """
+        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        """
+        return pulumi.get(self, "replica_set_name")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotExportJobsResultCustomDataResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: Custom data specified as key in the key and value pair.
+        :param str value: Value for the key specified using `key`.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Custom data specified as key in the key and value pair.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        Value for the key specified using `key`.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotMemberResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 id: str,
+                 replica_set_name: str):
+        """
+        :param str cloud_provider: Cloud provider that stores this snapshot.
+        :param str id: Unique identifier for the sharded cluster snapshot.
+        :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        """
+        Cloud provider that stores this snapshot.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier for the sharded cluster snapshot.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="replicaSetName")
+    def replica_set_name(self) -> str:
+        """
+        Label given to a shard or config server from which Atlas took this snapshot.
+        """
+        return pulumi.get(self, "replica_set_name")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotRestoreJobsResultResult(dict):
+    def __init__(__self__, *,
+                 cancelled: bool,
+                 created_at: str,
+                 delivery_type: str,
+                 delivery_urls: Sequence[str],
+                 expired: bool,
+                 expires_at: str,
+                 finished_at: str,
+                 id: str,
+                 oplog_inc: int,
+                 oplog_ts: int,
+                 point_in_time_utc_seconds: int,
+                 snapshot_id: str,
+                 target_cluster_name: str,
+                 target_project_id: str,
+                 timestamp: str):
+        """
+        :param bool cancelled: Indicates whether the restore job was canceled.
+        :param str created_at: UTC ISO 8601 formatted point in time when Atlas created the restore job.
+        :param str delivery_type: Type of restore job to create. Possible values are: automated and download.
+        :param Sequence[str] delivery_urls: One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+        :param bool expired: Indicates whether the restore job expired.
+        :param str expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
+        :param str finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
+        :param str id: The unique identifier of the restore job.
+        :param str snapshot_id: Unique identifier of the source snapshot ID of the restore job.
+        :param str target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+        :param str timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        """
+        pulumi.set(__self__, "cancelled", cancelled)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "delivery_type", delivery_type)
+        pulumi.set(__self__, "delivery_urls", delivery_urls)
+        pulumi.set(__self__, "expired", expired)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "finished_at", finished_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "oplog_inc", oplog_inc)
+        pulumi.set(__self__, "oplog_ts", oplog_ts)
+        pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "target_cluster_name", target_cluster_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+        pulumi.set(__self__, "timestamp", timestamp)
+
+    @property
+    @pulumi.getter
+    def cancelled(self) -> bool:
+        """
+        Indicates whether the restore job was canceled.
+        """
+        return pulumi.get(self, "cancelled")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        UTC ISO 8601 formatted point in time when Atlas created the restore job.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deliveryType")
+    def delivery_type(self) -> str:
+        """
+        Type of restore job to create. Possible values are: automated and download.
+        """
+        return pulumi.get(self, "delivery_type")
+
+    @property
+    @pulumi.getter(name="deliveryUrls")
+    def delivery_urls(self) -> Sequence[str]:
+        """
+        One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+        """
+        return pulumi.get(self, "delivery_urls")
+
+    @property
+    @pulumi.getter
+    def expired(self) -> bool:
+        """
+        Indicates whether the restore job expired.
+        """
+        return pulumi.get(self, "expired")
+
+    @property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> str:
+        """
+        UTC ISO 8601 formatted point in time when the restore job expires.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> str:
+        """
+        UTC ISO 8601 formatted point in time when the restore job completed.
+        """
+        return pulumi.get(self, "finished_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The unique identifier of the restore job.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="oplogInc")
+    def oplog_inc(self) -> int:
+        return pulumi.get(self, "oplog_inc")
+
+    @property
+    @pulumi.getter(name="oplogTs")
+    def oplog_ts(self) -> int:
+        return pulumi.get(self, "oplog_ts")
+
+    @property
+    @pulumi.getter(name="pointInTimeUtcSeconds")
+    def point_in_time_utc_seconds(self) -> int:
+        return pulumi.get(self, "point_in_time_utc_seconds")
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> str:
+        """
+        Unique identifier of the source snapshot ID of the restore job.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter(name="targetClusterName")
+    def target_cluster_name(self) -> str:
+        """
+        Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
+        """
+        return pulumi.get(self, "target_cluster_name")
+
+    @property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> str:
+        return pulumi.get(self, "target_project_id")
+
+    @property
+    @pulumi.getter
+    def timestamp(self) -> str:
+        """
+        Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+        """
+        return pulumi.get(self, "timestamp")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotsResultResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 created_at: str,
+                 description: str,
+                 expires_at: str,
+                 id: str,
+                 master_key_uuid: str,
+                 members: Sequence['outputs.GetCloudBackupSnapshotsResultMemberResult'],
+                 mongod_version: str,
+                 replica_set_name: str,
+                 snapshot_ids: Sequence[str],
+                 snapshot_type: str,
+                 status: str,
+                 storage_size_bytes: int,
+                 type: str):
+        """
+        :param str cloud_provider: Cloud provider that stores this snapshot.
+        :param str created_at: UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+        :param str description: UDescription of the snapshot. Only present for on-demand snapshots.
+        :param str expires_at: UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
+        :param str id: Unique identifier for the sharded cluster snapshot.
+        :param str master_key_uuid: Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
+        :param Sequence['GetCloudBackupSnapshotsResultMemberArgs'] members: Block of List of snapshots and the cloud provider where the snapshots are stored. See below
+        :param str mongod_version: Version of the MongoDB server.
+        :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
+        :param Sequence[str] snapshot_ids: Unique identifiers of the snapshots created for the shards and config server for a sharded cluster.
+        :param str snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
+        :param str status: Current status of the snapshot. One of the following values: queued, inProgress, completed, failed.
+        :param int storage_size_bytes: Specifies the size of the snapshot in bytes.
+        :param str type: Specifies the type of cluster: replicaSet or shardedCluster.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "master_key_uuid", master_key_uuid)
+        pulumi.set(__self__, "members", members)
+        pulumi.set(__self__, "mongod_version", mongod_version)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
+        pulumi.set(__self__, "snapshot_ids", snapshot_ids)
+        pulumi.set(__self__, "snapshot_type", snapshot_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "storage_size_bytes", storage_size_bytes)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        """
+        Cloud provider that stores this snapshot.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        UDescription of the snapshot. Only present for on-demand snapshots.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> str:
+        """
+        UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier for the sharded cluster snapshot.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="masterKeyUuid")
+    def master_key_uuid(self) -> str:
+        """
+        Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
+        """
+        return pulumi.get(self, "master_key_uuid")
+
+    @property
+    @pulumi.getter
+    def members(self) -> Sequence['outputs.GetCloudBackupSnapshotsResultMemberResult']:
+        """
+        Block of List of snapshots and the cloud provider where the snapshots are stored. See below
+        """
+        return pulumi.get(self, "members")
+
+    @property
+    @pulumi.getter(name="mongodVersion")
+    def mongod_version(self) -> str:
+        """
+        Version of the MongoDB server.
+        """
+        return pulumi.get(self, "mongod_version")
+
+    @property
+    @pulumi.getter(name="replicaSetName")
+    def replica_set_name(self) -> str:
+        """
+        Label given to a shard or config server from which Atlas took this snapshot.
+        """
+        return pulumi.get(self, "replica_set_name")
+
+    @property
+    @pulumi.getter(name="snapshotIds")
+    def snapshot_ids(self) -> Sequence[str]:
+        """
+        Unique identifiers of the snapshots created for the shards and config server for a sharded cluster.
+        """
+        return pulumi.get(self, "snapshot_ids")
+
+    @property
+    @pulumi.getter(name="snapshotType")
+    def snapshot_type(self) -> str:
+        """
+        Specified the type of snapshot. Valid values are onDemand and scheduled.
+        """
+        return pulumi.get(self, "snapshot_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Current status of the snapshot. One of the following values: queued, inProgress, completed, failed.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="storageSizeBytes")
+    def storage_size_bytes(self) -> int:
+        """
+        Specifies the size of the snapshot in bytes.
+        """
+        return pulumi.get(self, "storage_size_bytes")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Specifies the type of cluster: replicaSet or shardedCluster.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotsResultMemberResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: str,
+                 id: str,
+                 replica_set_name: str):
+        """
+        :param str cloud_provider: Cloud provider that stores this snapshot.
+        :param str id: Unique identifier for the sharded cluster snapshot.
+        :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "replica_set_name", replica_set_name)
+
+    @property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> str:
+        """
+        Cloud provider that stores this snapshot.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique identifier for the sharded cluster snapshot.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="replicaSetName")
+    def replica_set_name(self) -> str:
+        """
+        Label given to a shard or config server from which Atlas took this snapshot.
+        """
+        return pulumi.get(self, "replica_set_name")
 
 
 @pulumi.output_type
@@ -8888,6 +12394,76 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
         Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetPrivatelinkEndpointsServiceAdlLinkResult(dict):
+    def __init__(__self__, *,
+                 href: str,
+                 rel: str):
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> str:
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def rel(self) -> str:
+        return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class GetPrivatelinkEndpointsServiceAdlResultResult(dict):
+    def __init__(__self__, *,
+                 comment: str,
+                 endpoint_id: str,
+                 provider_name: str,
+                 type: str):
+        """
+        :param str comment: Human-readable string to associate with this private endpoint.
+        :param str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
+        :param str provider_name: Human-readable label that identifies the cloud provider for this endpoint.
+        :param str type: Human-readable label that identifies the type of resource to associate with this private endpoint.
+        """
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "provider_name", provider_name)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def comment(self) -> str:
+        """
+        Human-readable string to associate with this private endpoint.
+        """
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> str:
+        """
+        Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter(name="providerName")
+    def provider_name(self) -> str:
+        """
+        Human-readable label that identifies the cloud provider for this endpoint.
+        """
+        return pulumi.get(self, "provider_name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Human-readable label that identifies the type of resource to associate with this private endpoint.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
