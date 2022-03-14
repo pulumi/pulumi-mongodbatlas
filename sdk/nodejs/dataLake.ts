@@ -6,6 +6,28 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("testProject", {orgId: "ORGANIZATION ID"});
+ * const testCloudProviderAccess = new mongodbatlas.CloudProviderAccess("testCloudProviderAccess", {
+ *     projectId: testProject.id,
+ *     providerName: "AWS",
+ *     iamAssumedRoleArn: "AWS ROLE ID",
+ * });
+ * const basicDs = new mongodbatlas.DataLake("basicDs", {
+ *     projectId: testProject.id,
+ *     aws: {
+ *         roleId: testCloudProviderAccess.roleId,
+ *         testS3Bucket: "TEST S3 BUCKET NAME",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Data Lake can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.

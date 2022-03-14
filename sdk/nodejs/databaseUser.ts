@@ -6,6 +6,93 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     authDatabaseName: "admin",
+ *     labels: [{
+ *         key: "My Key",
+ *         value: "My Value",
+ *     }],
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
+ *     roles: [
+ *         {
+ *             databaseName: "dbforApp",
+ *             roleName: "readWrite",
+ *         },
+ *         {
+ *             databaseName: "admin",
+ *             roleName: "readAnyDatabase",
+ *         },
+ *     ],
+ *     scopes: [
+ *         {
+ *             name: "My cluster name",
+ *             type: "CLUSTER",
+ *         },
+ *         {
+ *             name: "My second cluster name",
+ *             type: "CLUSTER",
+ *         },
+ *     ],
+ *     username: "test-acc-username",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     authDatabaseName: "$external",
+ *     labels: [{
+ *         key: "%s",
+ *         value: "%s",
+ *     }],
+ *     projectId: "<PROJECT-ID>",
+ *     roles: [{
+ *         databaseName: "admin",
+ *         roleName: "readAnyDatabase",
+ *     }],
+ *     scopes: [{
+ *         name: "My cluster name",
+ *         type: "CLUSTER",
+ *     }],
+ *     username: "test-acc-username",
+ *     x509Type: "MANAGED",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.DatabaseUser("test", {
+ *     username: aws_iam_role.test.arn,
+ *     projectId: "<PROJECT-ID>",
+ *     authDatabaseName: `$external`,
+ *     awsIamType: "ROLE",
+ *     roles: [{
+ *         roleName: "readAnyDatabase",
+ *         databaseName: "admin",
+ *     }],
+ *     labels: [{
+ *         key: `%s`,
+ *         value: `%s`,
+ *     }],
+ *     scopes: [{
+ *         name: "My cluster name",
+ *         type: "CLUSTER",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.

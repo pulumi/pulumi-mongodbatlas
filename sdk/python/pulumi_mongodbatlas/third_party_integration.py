@@ -624,6 +624,20 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  write_token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_flowdock = mongodbatlas.ThirdPartyIntegration("testFlowdock",
+            api_token="<API-TOKEN>",
+            flow_name="<FLOW-NAME>",
+            org_name="<ORG-NAME>",
+            project_id="<PROJECT-ID>",
+            type="FLOWDOCK")
+        ```
+
         ## Import
 
         Third-Party Integration Settings can be imported using project ID and the integration type, in the format `project_id`-`type`, e.g.
@@ -671,6 +685,20 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  args: ThirdPartyIntegrationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_flowdock = mongodbatlas.ThirdPartyIntegration("testFlowdock",
+            api_token="<API-TOKEN>",
+            flow_name="<FLOW-NAME>",
+            org_name="<ORG-NAME>",
+            project_id="<PROJECT-ID>",
+            type="FLOWDOCK")
+        ```
+
         ## Import
 
         Third-Party Integration Settings can be imported using project ID and the integration type, in the format `project_id`-`type`, e.g.

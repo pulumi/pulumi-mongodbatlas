@@ -10,6 +10,29 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new Mongodbatlas.ThirdPartyIntegrationArgs
+    ///         {
+    ///             ApiToken = "&lt;API-TOKEN&gt;",
+    ///             FlowName = "&lt;FLOW-NAME&gt;",
+    ///             OrgName = "&lt;ORG-NAME&gt;",
+    ///             ProjectId = "&lt;PROJECT-ID&gt;",
+    ///             Type = "FLOWDOCK",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Third-Party Integration Settings can be imported using project ID and the integration type, in the format `project_id`-`type`, e.g.

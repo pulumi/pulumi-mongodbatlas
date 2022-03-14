@@ -381,6 +381,90 @@ class DatabaseUser(pulumi.CustomResource):
                  x509_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="admin",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
+            password="test-acc-password",
+            project_id="<PROJECT-ID>",
+            roles=[
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="dbforApp",
+                    role_name="readWrite",
+                ),
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="admin",
+                    role_name="readAnyDatabase",
+                ),
+            ],
+            scopes=[
+                mongodbatlas.DatabaseUserScopeArgs(
+                    name="My cluster name",
+                    type="CLUSTER",
+                ),
+                mongodbatlas.DatabaseUserScopeArgs(
+                    name="My second cluster name",
+                    type="CLUSTER",
+                ),
+            ],
+            username="test-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="$external",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
+            project_id="<PROJECT-ID>",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="readAnyDatabase",
+            )],
+            scopes=[mongodbatlas.DatabaseUserScopeArgs(
+                name="My cluster name",
+                type="CLUSTER",
+            )],
+            username="test-acc-username",
+            x509_type="MANAGED")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            username=aws_iam_role["test"]["arn"],
+            project_id="<PROJECT-ID>",
+            auth_database_name="$external",
+            aws_iam_type="ROLE",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readAnyDatabase",
+                database_name="admin",
+            )],
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
+            scopes=[mongodbatlas.DatabaseUserScopeArgs(
+                name="My cluster name",
+                type="CLUSTER",
+            )])
+        ```
+
         ## Import
 
         Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.
@@ -408,6 +492,90 @@ class DatabaseUser(pulumi.CustomResource):
                  args: DatabaseUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="admin",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="My Key",
+                value="My Value",
+            )],
+            password="test-acc-password",
+            project_id="<PROJECT-ID>",
+            roles=[
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="dbforApp",
+                    role_name="readWrite",
+                ),
+                mongodbatlas.DatabaseUserRoleArgs(
+                    database_name="admin",
+                    role_name="readAnyDatabase",
+                ),
+            ],
+            scopes=[
+                mongodbatlas.DatabaseUserScopeArgs(
+                    name="My cluster name",
+                    type="CLUSTER",
+                ),
+                mongodbatlas.DatabaseUserScopeArgs(
+                    name="My second cluster name",
+                    type="CLUSTER",
+                ),
+            ],
+            username="test-acc-username")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            auth_database_name="$external",
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
+            project_id="<PROJECT-ID>",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                database_name="admin",
+                role_name="readAnyDatabase",
+            )],
+            scopes=[mongodbatlas.DatabaseUserScopeArgs(
+                name="My cluster name",
+                type="CLUSTER",
+            )],
+            username="test-acc-username",
+            x509_type="MANAGED")
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.DatabaseUser("test",
+            username=aws_iam_role["test"]["arn"],
+            project_id="<PROJECT-ID>",
+            auth_database_name="$external",
+            aws_iam_type="ROLE",
+            roles=[mongodbatlas.DatabaseUserRoleArgs(
+                role_name="readAnyDatabase",
+                database_name="admin",
+            )],
+            labels=[mongodbatlas.DatabaseUserLabelArgs(
+                key="%s",
+                value="%s",
+            )],
+            scopes=[mongodbatlas.DatabaseUserScopeArgs(
+                name="My cluster name",
+                type="CLUSTER",
+            )])
+        ```
+
         ## Import
 
         Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.

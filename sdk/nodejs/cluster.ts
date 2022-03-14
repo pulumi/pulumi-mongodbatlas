@@ -6,6 +6,196 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ * ### Example AWS cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
+ *     autoScalingDiskGbEnabled: true,
+ *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     diskSizeGb: 100,
+ *     mongoDbMajorVersion: "4.2",
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerInstanceSizeName: "M40",
+ *     // Provider Settings "block"
+ *     providerName: "AWS",
+ *     replicationSpecs: [{
+ *         numShards: 1,
+ *         regionsConfigs: [{
+ *             electableNodes: 3,
+ *             priority: 7,
+ *             readOnlyNodes: 0,
+ *             regionName: "US_EAST_1",
+ *         }],
+ *     }],
+ * });
+ * ```
+ * ### Example Azure cluster.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.Cluster("test", {
+ *     autoScalingDiskGbEnabled: true,
+ *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     mongoDbMajorVersion: "4.2",
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerDiskTypeName: "P6",
+ *     providerInstanceSizeName: "M30",
+ *     // Provider Settings "block"
+ *     providerName: "AZURE",
+ *     replicationSpecs: [{
+ *         numShards: 1,
+ *         regionsConfigs: [{
+ *             electableNodes: 3,
+ *             priority: 7,
+ *             readOnlyNodes: 0,
+ *             regionName: "US_EAST",
+ *         }],
+ *     }],
+ * });
+ * ```
+ * ### Example GCP cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.Cluster("test", {
+ *     autoScalingDiskGbEnabled: true,
+ *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     diskSizeGb: 40,
+ *     mongoDbMajorVersion: "4.2",
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerInstanceSizeName: "M30",
+ *     // Provider Settings "block"
+ *     providerName: "GCP",
+ *     replicationSpecs: [{
+ *         numShards: 1,
+ *         regionsConfigs: [{
+ *             electableNodes: 3,
+ *             priority: 7,
+ *             readOnlyNodes: 0,
+ *             regionName: "EASTERN_US",
+ *         }],
+ *     }],
+ * });
+ * ```
+ * ### Example Multi Region cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
+ *     cloudBackup: true,
+ *     clusterType: "REPLICASET",
+ *     diskSizeGb: 100,
+ *     numShards: 1,
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerInstanceSizeName: "M10",
+ *     // Provider Settings "block"
+ *     providerName: "AWS",
+ *     replicationSpecs: [{
+ *         numShards: 1,
+ *         regionsConfigs: [
+ *             {
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *                 regionName: "US_EAST_1",
+ *             },
+ *             {
+ *                 electableNodes: 2,
+ *                 priority: 6,
+ *                 readOnlyNodes: 0,
+ *                 regionName: "US_EAST_2",
+ *             },
+ *             {
+ *                 electableNodes: 2,
+ *                 priority: 5,
+ *                 readOnlyNodes: 2,
+ *                 regionName: "US_WEST_1",
+ *             },
+ *         ],
+ *     }],
+ * });
+ * ```
+ * ### Example Global cluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
+ *     cloudBackup: true,
+ *     clusterType: "GEOSHARDED",
+ *     diskSizeGb: 80,
+ *     numShards: 1,
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerInstanceSizeName: "M30",
+ *     // Provider Settings "block"
+ *     providerName: "AWS",
+ *     replicationSpecs: [
+ *         {
+ *             numShards: 2,
+ *             regionsConfigs: [{
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *                 regionName: "US_EAST_1",
+ *             }],
+ *             zoneName: "Zone 1",
+ *         },
+ *         {
+ *             numShards: 2,
+ *             regionsConfigs: [{
+ *                 electableNodes: 3,
+ *                 priority: 7,
+ *                 readOnlyNodes: 0,
+ *                 regionName: "EU_CENTRAL_1",
+ *             }],
+ *             zoneName: "Zone 2",
+ *         },
+ *     ],
+ * });
+ * ```
+ * ### Example AWS Shared Tier (M2/M5) cluster
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
+ *     backingProviderName: "AWS",
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerInstanceSizeName: "M2",
+ *     // Provider Settings "block"
+ *     providerName: "TENANT",
+ *     providerRegionName: "US_EAST_1",
+ * });
+ * ```
+ * ### Example AWS Free Tier cluster
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
+ *     backingProviderName: "AWS",
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     providerInstanceSizeName: "M0",
+ *     // Provider Settings "block"
+ *     providerName: "TENANT",
+ *     providerRegionName: "US_EAST_1",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

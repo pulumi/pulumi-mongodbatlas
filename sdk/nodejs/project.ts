@@ -6,6 +6,35 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.Project("test", {
+ *     apiKeys: [{
+ *         apiKeyId: "61003b299dda8d54a9d7d10c",
+ *         roleNames: ["GROUP_READ_ONLY"],
+ *     }],
+ *     orgId: "<ORG_ID>",
+ *     projectOwnerId: "<OWNER_ACCOUNT_ID>",
+ *     teams: [
+ *         {
+ *             roleNames: ["GROUP_OWNER"],
+ *             teamId: "5e0fa8c99ccf641c722fe645",
+ *         },
+ *         {
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Project must be imported using project ID, e.g.

@@ -11,6 +11,147 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+// ### S
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+// 			AuthDatabaseName: pulumi.String("admin"),
+// 			Labels: DatabaseUserLabelArray{
+// 				&DatabaseUserLabelArgs{
+// 					Key:   pulumi.String("My Key"),
+// 					Value: pulumi.String("My Value"),
+// 				},
+// 			},
+// 			Password:  pulumi.String("test-acc-password"),
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			Roles: DatabaseUserRoleArray{
+// 				&DatabaseUserRoleArgs{
+// 					DatabaseName: pulumi.String("dbforApp"),
+// 					RoleName:     pulumi.String("readWrite"),
+// 				},
+// 				&DatabaseUserRoleArgs{
+// 					DatabaseName: pulumi.String("admin"),
+// 					RoleName:     pulumi.String("readAnyDatabase"),
+// 				},
+// 			},
+// 			Scopes: DatabaseUserScopeArray{
+// 				&DatabaseUserScopeArgs{
+// 					Name: pulumi.String("My cluster name"),
+// 					Type: pulumi.String("CLUSTER"),
+// 				},
+// 				&DatabaseUserScopeArgs{
+// 					Name: pulumi.String("My second cluster name"),
+// 					Type: pulumi.String("CLUSTER"),
+// 				},
+// 			},
+// 			Username: pulumi.String("test-acc-username"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+// 			AuthDatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
+// 			Labels: DatabaseUserLabelArray{
+// 				&DatabaseUserLabelArgs{
+// 					Key:   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 					Value: pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 				},
+// 			},
+// 			ProjectId: pulumi.String("<PROJECT-ID>"),
+// 			Roles: DatabaseUserRoleArray{
+// 				&DatabaseUserRoleArgs{
+// 					DatabaseName: pulumi.String("admin"),
+// 					RoleName:     pulumi.String("readAnyDatabase"),
+// 				},
+// 			},
+// 			Scopes: DatabaseUserScopeArray{
+// 				&DatabaseUserScopeArgs{
+// 					Name: pulumi.String("My cluster name"),
+// 					Type: pulumi.String("CLUSTER"),
+// 				},
+// 			},
+// 			Username: pulumi.String("test-acc-username"),
+// 			X509Type: pulumi.String("MANAGED"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+// 			Username:         pulumi.Any(aws_iam_role.Test.Arn),
+// 			ProjectId:        pulumi.String("<PROJECT-ID>"),
+// 			AuthDatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
+// 			AwsIamType:       pulumi.String("ROLE"),
+// 			Roles: DatabaseUserRoleArray{
+// 				&DatabaseUserRoleArgs{
+// 					RoleName:     pulumi.String("readAnyDatabase"),
+// 					DatabaseName: pulumi.String("admin"),
+// 				},
+// 			},
+// 			Labels: DatabaseUserLabelArray{
+// 				&DatabaseUserLabelArgs{
+// 					Key:   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 					Value: pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
+// 				},
+// 			},
+// 			Scopes: DatabaseUserScopeArray{
+// 				&DatabaseUserScopeArgs{
+// 					Name: pulumi.String("My cluster name"),
+// 					Type: pulumi.String("CLUSTER"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.

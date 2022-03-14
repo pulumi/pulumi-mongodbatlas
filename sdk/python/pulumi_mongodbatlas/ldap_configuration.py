@@ -372,6 +372,43 @@ class LdapConfiguration(pulumi.CustomResource):
                  user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LdapConfigurationUserToDnMappingArgs']]]]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
+            project_id=test_project.id,
+            authentication_enabled=True,
+            hostname="HOSTNAME",
+            port=636,
+            bind_username="USERNAME",
+            bind_password="PASSWORD")
+        ```
+        ### LDAP With User To DN Mapping
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
+            project_id=test_project.id,
+            authentication_enabled=True,
+            hostname="HOSTNAME",
+            port=636,
+            bind_username="USERNAME",
+            bind_password="PASSWORD",
+            ca_certificate="CA CERTIFICATE",
+            authz_query_template="{USER}?memberOf?base",
+            user_to_dn_mappings=[mongodbatlas.LdapConfigurationUserToDnMappingArgs(
+                match="(.+)",
+                ldap_query="DC=example,DC=com??sub?(userPrincipalName={0})",
+            )])
+        ```
+
         ## Import
 
         LDAP Configuration must be imported using project ID, e.g.
@@ -405,6 +442,43 @@ class LdapConfiguration(pulumi.CustomResource):
                  args: LdapConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
+            project_id=test_project.id,
+            authentication_enabled=True,
+            hostname="HOSTNAME",
+            port=636,
+            bind_username="USERNAME",
+            bind_password="PASSWORD")
+        ```
+        ### LDAP With User To DN Mapping
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORG ID")
+        test_ldap_configuration = mongodbatlas.LdapConfiguration("testLdapConfiguration",
+            project_id=test_project.id,
+            authentication_enabled=True,
+            hostname="HOSTNAME",
+            port=636,
+            bind_username="USERNAME",
+            bind_password="PASSWORD",
+            ca_certificate="CA CERTIFICATE",
+            authz_query_template="{USER}?memberOf?base",
+            user_to_dn_mappings=[mongodbatlas.LdapConfigurationUserToDnMappingArgs(
+                match="(.+)",
+                ldap_query="DC=example,DC=com??sub?(userPrincipalName={0})",
+            )])
+        ```
+
         ## Import
 
         LDAP Configuration must be imported using project ID, e.g.

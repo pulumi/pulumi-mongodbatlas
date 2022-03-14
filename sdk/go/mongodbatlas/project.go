@@ -11,6 +11,53 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+// 			ApiKeys: ProjectApiKeyArray{
+// 				&ProjectApiKeyArgs{
+// 					ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
+// 					RoleNames: pulumi.StringArray{
+// 						pulumi.String("GROUP_READ_ONLY"),
+// 					},
+// 				},
+// 			},
+// 			OrgId:          pulumi.String("<ORG_ID>"),
+// 			ProjectOwnerId: pulumi.String("<OWNER_ACCOUNT_ID>"),
+// 			Teams: ProjectTeamArray{
+// 				&ProjectTeamArgs{
+// 					RoleNames: pulumi.StringArray{
+// 						pulumi.String("GROUP_OWNER"),
+// 					},
+// 					TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
+// 				},
+// 				&ProjectTeamArgs{
+// 					RoleNames: pulumi.StringArray{
+// 						pulumi.String("GROUP_READ_ONLY"),
+// 						pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+// 					},
+// 					TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // Project must be imported using project ID, e.g.

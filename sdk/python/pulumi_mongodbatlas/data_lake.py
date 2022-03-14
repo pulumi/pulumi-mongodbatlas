@@ -281,6 +281,26 @@ class DataLake(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORGANIZATION ID")
+        test_cloud_provider_access = mongodbatlas.CloudProviderAccess("testCloudProviderAccess",
+            project_id=test_project.id,
+            provider_name="AWS",
+            iam_assumed_role_arn="AWS ROLE ID")
+        basic_ds = mongodbatlas.DataLake("basicDs",
+            project_id=test_project.id,
+            aws=mongodbatlas.DataLakeAwsArgs(
+                role_id=test_cloud_provider_access.role_id,
+                test_s3_bucket="TEST S3 BUCKET NAME",
+            ))
+        ```
+
         ## Import
 
         Data Lake can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.
@@ -309,6 +329,26 @@ class DataLake(pulumi.CustomResource):
                  args: DataLakeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+        ### S
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_project = mongodbatlas.Project("testProject", org_id="ORGANIZATION ID")
+        test_cloud_provider_access = mongodbatlas.CloudProviderAccess("testCloudProviderAccess",
+            project_id=test_project.id,
+            provider_name="AWS",
+            iam_assumed_role_arn="AWS ROLE ID")
+        basic_ds = mongodbatlas.DataLake("basicDs",
+            project_id=test_project.id,
+            aws=mongodbatlas.DataLakeAwsArgs(
+                role_id=test_cloud_provider_access.role_id,
+                test_s3_bucket="TEST S3 BUCKET NAME",
+            ))
+        ```
+
         ## Import
 
         Data Lake can be imported using project ID, name of the data lake and name of the AWS s3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.
