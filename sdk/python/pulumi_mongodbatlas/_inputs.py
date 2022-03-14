@@ -2258,11 +2258,17 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
 class CloudProviderAccessAuthorizationAwsArgs:
     def __init__(__self__, *,
                  iam_assumed_role_arn: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
         pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
 
     @property
     @pulumi.getter(name="iamAssumedRoleArn")
     def iam_assumed_role_arn(self) -> pulumi.Input[str]:
+        """
+        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
         return pulumi.get(self, "iam_assumed_role_arn")
 
     @iam_assumed_role_arn.setter
@@ -2333,6 +2339,10 @@ class CloudProviderAccessSetupAwsConfigArgs:
     def __init__(__self__, *,
                  atlas_assumed_role_external_id: Optional[pulumi.Input[str]] = None,
                  atlas_aws_account_arn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        :param pulumi.Input[str] atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
         if atlas_assumed_role_external_id is not None:
             pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
         if atlas_aws_account_arn is not None:
@@ -2341,6 +2351,9 @@ class CloudProviderAccessSetupAwsConfigArgs:
     @property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
     def atlas_assumed_role_external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        """
         return pulumi.get(self, "atlas_assumed_role_external_id")
 
     @atlas_assumed_role_external_id.setter
@@ -2350,6 +2363,9 @@ class CloudProviderAccessSetupAwsConfigArgs:
     @property
     @pulumi.getter(name="atlasAwsAccountArn")
     def atlas_aws_account_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
         return pulumi.get(self, "atlas_aws_account_arn")
 
     @atlas_aws_account_arn.setter

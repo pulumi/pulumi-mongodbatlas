@@ -12,9 +12,15 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class CloudProviderAccessSetupAwsConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        /// </summary>
         [Input("atlasAssumedRoleExternalId")]
         public Input<string>? AtlasAssumedRoleExternalId { get; set; }
 
+        /// <summary>
+        /// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        /// </summary>
         [Input("atlasAwsAccountArn")]
         public Input<string>? AtlasAwsAccountArn { get; set; }
 

@@ -18,6 +18,9 @@ class TeamsArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Teams resource.
+        :param pulumi.Input[str] org_id: The unique identifier for the organization you want to associate the team with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        :param pulumi.Input[str] name: The name of the team you want to create.
         """
         pulumi.set(__self__, "org_id", org_id)
         pulumi.set(__self__, "usernames", usernames)
@@ -27,6 +30,9 @@ class TeamsArgs:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Input[str]:
+        """
+        The unique identifier for the organization you want to associate the team with.
+        """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
@@ -36,6 +42,9 @@ class TeamsArgs:
     @property
     @pulumi.getter
     def usernames(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        """
         return pulumi.get(self, "usernames")
 
     @usernames.setter
@@ -45,6 +54,9 @@ class TeamsArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the team you want to create.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -61,6 +73,10 @@ class _TeamsState:
                  usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Teams resources.
+        :param pulumi.Input[str] name: The name of the team you want to create.
+        :param pulumi.Input[str] org_id: The unique identifier for the organization you want to associate the team with.
+        :param pulumi.Input[str] team_id: The unique identifier for the team.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -74,6 +90,9 @@ class _TeamsState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the team you want to create.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -83,6 +102,9 @@ class _TeamsState:
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique identifier for the organization you want to associate the team with.
+        """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
@@ -92,6 +114,9 @@ class _TeamsState:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique identifier for the team.
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -101,6 +126,9 @@ class _TeamsState:
     @property
     @pulumi.getter
     def usernames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        """
         return pulumi.get(self, "usernames")
 
     @usernames.setter
@@ -118,9 +146,44 @@ class Teams(pulumi.CustomResource):
                  usernames: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a Teams resource with the given unique name, props, and options.
+        `Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
+
+        > **IMPORTANT:** MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Teams("test",
+            org_id="<ORGANIZATION-ID>",
+            usernames=[
+                "user1@email.com",
+                "user2@email.com",
+                "user3@email.com",
+            ])
+        ```
+
+        ## Import
+
+        Teams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/teams:Teams my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: The name of the team you want to create.
+        :param pulumi.Input[str] org_id: The unique identifier for the organization you want to associate the team with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         """
         ...
     @overload
@@ -129,7 +192,39 @@ class Teams(pulumi.CustomResource):
                  args: TeamsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Teams resource with the given unique name, props, and options.
+        `Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
+
+        > **IMPORTANT:** MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.Teams("test",
+            org_id="<ORGANIZATION-ID>",
+            usernames=[
+                "user1@email.com",
+                "user2@email.com",
+                "user3@email.com",
+            ])
+        ```
+
+        ## Import
+
+        Teams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/teams:Teams my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
+        ```
+
+         See detailed information for arguments and attributes[MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
+
         :param str resource_name: The name of the resource.
         :param TeamsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -189,6 +284,10 @@ class Teams(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: The name of the team you want to create.
+        :param pulumi.Input[str] org_id: The unique identifier for the organization you want to associate the team with.
+        :param pulumi.Input[str] team_id: The unique identifier for the team.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -203,20 +302,32 @@ class Teams(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the team you want to create.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Output[str]:
+        """
+        The unique identifier for the organization you want to associate the team with.
+        """
         return pulumi.get(self, "org_id")
 
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[str]:
+        """
+        The unique identifier for the team.
+        """
         return pulumi.get(self, "team_id")
 
     @property
     @pulumi.getter
     def usernames(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        """
         return pulumi.get(self, "usernames")
 

@@ -19,6 +19,8 @@ class CloudProviderAccessSetupArgs:
                  provider_name: pulumi.Input[str]):
         """
         The set of arguments for constructing a CloudProviderAccessSetup resource.
+        :param pulumi.Input[str] project_id: The unique ID for the project
+        :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -26,6 +28,9 @@ class CloudProviderAccessSetupArgs:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[str]:
+        """
+        The unique ID for the project
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -35,6 +40,9 @@ class CloudProviderAccessSetupArgs:
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Input[str]:
+        """
+        The cloud provider for which to create a new role. Currently only AWS is supported.
+        """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
@@ -53,6 +61,11 @@ class _CloudProviderAccessSetupState:
                  role_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CloudProviderAccessSetup resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] aws: aws related arn roles
+        :param pulumi.Input[str] created_date: Date on which this role was created.
+        :param pulumi.Input[str] project_id: The unique ID for the project
+        :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
+        :param pulumi.Input[str] role_id: Unique ID of this role returned by mongodb atlas api
         """
         if aws is not None:
             warnings.warn("""use aws_config instead""", DeprecationWarning)
@@ -73,6 +86,9 @@ class _CloudProviderAccessSetupState:
     @property
     @pulumi.getter
     def aws(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        aws related arn roles
+        """
         return pulumi.get(self, "aws")
 
     @aws.setter
@@ -91,6 +107,9 @@ class _CloudProviderAccessSetupState:
     @property
     @pulumi.getter(name="createdDate")
     def created_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date on which this role was created.
+        """
         return pulumi.get(self, "created_date")
 
     @created_date.setter
@@ -100,6 +119,9 @@ class _CloudProviderAccessSetupState:
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID for the project
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -109,6 +131,9 @@ class _CloudProviderAccessSetupState:
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cloud provider for which to create a new role. Currently only AWS is supported.
+        """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
@@ -118,6 +143,9 @@ class _CloudProviderAccessSetupState:
     @property
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique ID of this role returned by mongodb atlas api
+        """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
@@ -134,9 +162,18 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a CloudProviderAccessSetup resource with the given unique name, props, and options.
+        ## Import
+
+        The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] project_id: The unique ID for the project
+        :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
         """
         ...
     @overload
@@ -145,7 +182,14 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                  args: CloudProviderAccessSetupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CloudProviderAccessSetup resource with the given unique name, props, and options.
+        ## Import
+
+        The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
+
+        ```sh
+         $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+        ```
+
         :param str resource_name: The name of the resource.
         :param CloudProviderAccessSetupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -208,6 +252,11 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] aws: aws related arn roles
+        :param pulumi.Input[str] created_date: Date on which this role was created.
+        :param pulumi.Input[str] project_id: The unique ID for the project
+        :param pulumi.Input[str] provider_name: The cloud provider for which to create a new role. Currently only AWS is supported.
+        :param pulumi.Input[str] role_id: Unique ID of this role returned by mongodb atlas api
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -224,6 +273,9 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     @property
     @pulumi.getter
     def aws(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        aws related arn roles
+        """
         return pulumi.get(self, "aws")
 
     @property
@@ -234,20 +286,32 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdDate")
     def created_date(self) -> pulumi.Output[str]:
+        """
+        Date on which this role was created.
+        """
         return pulumi.get(self, "created_date")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
+        """
+        The unique ID for the project
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Output[str]:
+        """
+        The cloud provider for which to create a new role. Currently only AWS is supported.
+        """
         return pulumi.get(self, "provider_name")
 
     @property
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Output[str]:
+        """
+        Unique ID of this role returned by mongodb atlas api
+        """
         return pulumi.get(self, "role_id")
 

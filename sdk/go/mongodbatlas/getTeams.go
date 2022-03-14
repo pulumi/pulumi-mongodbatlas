@@ -10,6 +10,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 func LookupTeams(ctx *pulumi.Context, args *LookupTeamsArgs, opts ...pulumi.InvokeOption) (*LookupTeamsResult, error) {
 	var rv LookupTeamsResult
 	err := ctx.Invoke("mongodbatlas:index/getTeams:getTeams", args, &rv, opts...)
@@ -21,18 +24,24 @@ func LookupTeams(ctx *pulumi.Context, args *LookupTeamsArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getTeams.
 type LookupTeamsArgs struct {
-	Name   *string `pulumi:"name"`
-	OrgId  string  `pulumi:"orgId"`
+	// The team name.
+	Name *string `pulumi:"name"`
+	// The unique identifier for the organization you want to associate the team with.
+	OrgId string `pulumi:"orgId"`
+	// The unique identifier for the team.
 	TeamId *string `pulumi:"teamId"`
 }
 
 // A collection of values returned by getTeams.
 type LookupTeamsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id        string   `pulumi:"id"`
-	Name      string   `pulumi:"name"`
-	OrgId     string   `pulumi:"orgId"`
-	TeamId    string   `pulumi:"teamId"`
+	Id string `pulumi:"id"`
+	// The name of the team you want to create.
+	Name  string `pulumi:"name"`
+	OrgId string `pulumi:"orgId"`
+	// The unique identifier for the team.
+	TeamId string `pulumi:"teamId"`
+	// The users who are part of the organization.
 	Usernames []string `pulumi:"usernames"`
 }
 
@@ -47,8 +56,11 @@ func LookupTeamsOutput(ctx *pulumi.Context, args LookupTeamsOutputArgs, opts ...
 
 // A collection of arguments for invoking getTeams.
 type LookupTeamsOutputArgs struct {
-	Name   pulumi.StringPtrInput `pulumi:"name"`
-	OrgId  pulumi.StringInput    `pulumi:"orgId"`
+	// The team name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The unique identifier for the organization you want to associate the team with.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// The unique identifier for the team.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`
 }
 
@@ -76,6 +88,7 @@ func (o LookupTeamsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The name of the team you want to create.
 func (o LookupTeamsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamsResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -84,10 +97,12 @@ func (o LookupTeamsResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamsResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
 
+// The unique identifier for the team.
 func (o LookupTeamsResultOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamsResult) string { return v.TeamId }).(pulumi.StringOutput)
 }
 
+// The users who are part of the organization.
 func (o LookupTeamsResultOutput) Usernames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupTeamsResult) []string { return v.Usernames }).(pulumi.StringArrayOutput)
 }

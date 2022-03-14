@@ -11,9 +11,19 @@ namespace Pulumi.Mongodbatlas
 {
     public static class GetTeams
     {
+        /// <summary>
+        /// `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
         public static Task<GetTeamsResult> InvokeAsync(GetTeamsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+        /// </summary>
         public static Output<GetTeamsResult> Invoke(GetTeamsInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +31,21 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetTeamsArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The team name.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The unique identifier for the organization you want to associate the team with.
+        /// </summary>
         [Input("orgId", required: true)]
         public string OrgId { get; set; } = null!;
 
+        /// <summary>
+        /// The unique identifier for the team.
+        /// </summary>
         [Input("teamId")]
         public string? TeamId { get; set; }
 
@@ -37,12 +56,21 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetTeamsInvokeArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The team name.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The unique identifier for the organization you want to associate the team with.
+        /// </summary>
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;
 
+        /// <summary>
+        /// The unique identifier for the team.
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
@@ -59,9 +87,18 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The name of the team you want to create.
+        /// </summary>
         public readonly string Name;
         public readonly string OrgId;
+        /// <summary>
+        /// The unique identifier for the team.
+        /// </summary>
         public readonly string TeamId;
+        /// <summary>
+        /// The users who are part of the organization.
+        /// </summary>
         public readonly ImmutableArray<string> Usernames;
 
         [OutputConstructor]

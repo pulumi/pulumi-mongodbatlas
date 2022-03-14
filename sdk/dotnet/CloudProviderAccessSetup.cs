@@ -9,24 +9,48 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+    /// ```
+    /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup")]
     public partial class CloudProviderAccessSetup : Pulumi.CustomResource
     {
+        /// <summary>
+        /// aws related arn roles
+        /// </summary>
         [Output("aws")]
         public Output<ImmutableDictionary<string, string>> Aws { get; private set; } = null!;
 
         [Output("awsConfigs")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessSetupAwsConfig>> AwsConfigs { get; private set; } = null!;
 
+        /// <summary>
+        /// Date on which this role was created.
+        /// </summary>
         [Output("createdDate")]
         public Output<string> CreatedDate { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique ID for the project
+        /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// The cloud provider for which to create a new role. Currently only AWS is supported.
+        /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique ID of this role returned by mongodb atlas api
+        /// </summary>
         [Output("roleId")]
         public Output<string> RoleId { get; private set; } = null!;
 
@@ -76,9 +100,15 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class CloudProviderAccessSetupArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The unique ID for the project
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// The cloud provider for which to create a new role. Currently only AWS is supported.
+        /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
 
@@ -91,6 +121,10 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("aws")]
         private InputMap<string>? _aws;
+
+        /// <summary>
+        /// aws related arn roles
+        /// </summary>
         [Obsolete(@"use aws_config instead")]
         public InputMap<string> Aws
         {
@@ -106,15 +140,27 @@ namespace Pulumi.Mongodbatlas
             set => _awsConfigs = value;
         }
 
+        /// <summary>
+        /// Date on which this role was created.
+        /// </summary>
         [Input("createdDate")]
         public Input<string>? CreatedDate { get; set; }
 
+        /// <summary>
+        /// The unique ID for the project
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// The cloud provider for which to create a new role. Currently only AWS is supported.
+        /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
 
+        /// <summary>
+        /// Unique ID of this role returned by mongodb atlas api
+        /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 

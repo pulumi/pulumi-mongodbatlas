@@ -560,6 +560,9 @@ export interface CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
 }
 
 export interface CloudProviderAccessAuthorizationAws {
+    /**
+     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+     */
     iamAssumedRoleArn: pulumi.Input<string>;
 }
 
@@ -574,7 +577,13 @@ export interface CloudProviderAccessFeatureUsage {
 }
 
 export interface CloudProviderAccessSetupAwsConfig {
+    /**
+     * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+     */
     atlasAssumedRoleExternalId?: pulumi.Input<string>;
+    /**
+     * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+     */
     atlasAwsAccountArn?: pulumi.Input<string>;
 }
 

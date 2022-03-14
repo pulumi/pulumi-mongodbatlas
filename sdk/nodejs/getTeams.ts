@@ -4,6 +4,11 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ */
 export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamsResult> {
     if (!opts) {
         opts = {}
@@ -21,8 +26,17 @@ export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getTeams.
  */
 export interface GetTeamsArgs {
+    /**
+     * The team name.
+     */
     name?: string;
+    /**
+     * The unique identifier for the organization you want to associate the team with.
+     */
     orgId: string;
+    /**
+     * The unique identifier for the team.
+     */
     teamId?: string;
 }
 
@@ -34,9 +48,18 @@ export interface GetTeamsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The name of the team you want to create.
+     */
     readonly name: string;
     readonly orgId: string;
+    /**
+     * The unique identifier for the team.
+     */
     readonly teamId: string;
+    /**
+     * The users who are part of the organization.
+     */
     readonly usernames: string[];
 }
 
@@ -48,7 +71,16 @@ export function getTeamsOutput(args: GetTeamsOutputArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getTeams.
  */
 export interface GetTeamsOutputArgs {
+    /**
+     * The team name.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The unique identifier for the organization you want to associate the team with.
+     */
     orgId: pulumi.Input<string>;
+    /**
+     * The unique identifier for the team.
+     */
     teamId?: pulumi.Input<string>;
 }

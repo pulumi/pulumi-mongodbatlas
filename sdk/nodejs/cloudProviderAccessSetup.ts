@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+ * ```
+ */
 export class CloudProviderAccessSetup extends pulumi.CustomResource {
     /**
      * Get an existing CloudProviderAccessSetup resource's state with the given name, ID, and optional extra
@@ -34,13 +43,27 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
     }
 
     /**
+     * aws related arn roles
+     *
      * @deprecated use aws_config instead
      */
     public /*out*/ readonly aws!: pulumi.Output<{[key: string]: string}>;
     public /*out*/ readonly awsConfigs!: pulumi.Output<outputs.CloudProviderAccessSetupAwsConfig[]>;
+    /**
+     * Date on which this role was created.
+     */
     public /*out*/ readonly createdDate!: pulumi.Output<string>;
+    /**
+     * The unique ID for the project
+     */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * The cloud provider for which to create a new role. Currently only AWS is supported.
+     */
     public readonly providerName!: pulumi.Output<string>;
+    /**
+     * Unique ID of this role returned by mongodb atlas api
+     */
     public /*out*/ readonly roleId!: pulumi.Output<string>;
 
     /**
@@ -87,13 +110,27 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
  */
 export interface CloudProviderAccessSetupState {
     /**
+     * aws related arn roles
+     *
      * @deprecated use aws_config instead
      */
     aws?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;
+    /**
+     * Date on which this role was created.
+     */
     createdDate?: pulumi.Input<string>;
+    /**
+     * The unique ID for the project
+     */
     projectId?: pulumi.Input<string>;
+    /**
+     * The cloud provider for which to create a new role. Currently only AWS is supported.
+     */
     providerName?: pulumi.Input<string>;
+    /**
+     * Unique ID of this role returned by mongodb atlas api
+     */
     roleId?: pulumi.Input<string>;
 }
 
@@ -101,6 +138,12 @@ export interface CloudProviderAccessSetupState {
  * The set of arguments for constructing a CloudProviderAccessSetup resource.
  */
 export interface CloudProviderAccessSetupArgs {
+    /**
+     * The unique ID for the project
+     */
     projectId: pulumi.Input<string>;
+    /**
+     * The cloud provider for which to create a new role. Currently only AWS is supported.
+     */
     providerName: pulumi.Input<string>;
 }

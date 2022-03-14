@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+ * ```
+ */
 export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
     /**
      * Get an existing CloudProviderAccessAuthorization resource's state with the given name, ID, and optional extra
@@ -33,10 +42,25 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
         return obj['__pulumiType'] === CloudProviderAccessAuthorization.__pulumiType;
     }
 
+    /**
+     * Date on which this role was authorized.
+     */
     public /*out*/ readonly authorizedDate!: pulumi.Output<string>;
+    /**
+     * aws related arn roles
+     */
     public readonly aws!: pulumi.Output<outputs.CloudProviderAccessAuthorizationAws | undefined>;
+    /**
+     * Atlas features this AWS IAM role is linked to.
+     */
     public /*out*/ readonly featureUsages!: pulumi.Output<outputs.CloudProviderAccessAuthorizationFeatureUsage[]>;
+    /**
+     * The unique ID for the project
+     */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Unique ID of this role returned by mongodb atlas api
+     */
     public readonly roleId!: pulumi.Output<string>;
 
     /**
@@ -80,10 +104,25 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudProviderAccessAuthorization resources.
  */
 export interface CloudProviderAccessAuthorizationState {
+    /**
+     * Date on which this role was authorized.
+     */
     authorizedDate?: pulumi.Input<string>;
+    /**
+     * aws related arn roles
+     */
     aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
+    /**
+     * Atlas features this AWS IAM role is linked to.
+     */
     featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[]>;
+    /**
+     * The unique ID for the project
+     */
     projectId?: pulumi.Input<string>;
+    /**
+     * Unique ID of this role returned by mongodb atlas api
+     */
     roleId?: pulumi.Input<string>;
 }
 
@@ -91,7 +130,16 @@ export interface CloudProviderAccessAuthorizationState {
  * The set of arguments for constructing a CloudProviderAccessAuthorization resource.
  */
 export interface CloudProviderAccessAuthorizationArgs {
+    /**
+     * aws related arn roles
+     */
     aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
+    /**
+     * The unique ID for the project
+     */
     projectId: pulumi.Input<string>;
+    /**
+     * Unique ID of this role returned by mongodb atlas api
+     */
     roleId: pulumi.Input<string>;
 }

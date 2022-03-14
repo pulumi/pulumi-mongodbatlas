@@ -11,14 +11,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Import
+//
+// The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
+//
+// ```sh
+//  $ pulumi import mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+// ```
 type CloudProviderAccessAuthorization struct {
 	pulumi.CustomResourceState
 
-	AuthorizedDate pulumi.StringOutput                                     `pulumi:"authorizedDate"`
-	Aws            CloudProviderAccessAuthorizationAwsPtrOutput            `pulumi:"aws"`
-	FeatureUsages  CloudProviderAccessAuthorizationFeatureUsageArrayOutput `pulumi:"featureUsages"`
-	ProjectId      pulumi.StringOutput                                     `pulumi:"projectId"`
-	RoleId         pulumi.StringOutput                                     `pulumi:"roleId"`
+	// Date on which this role was authorized.
+	AuthorizedDate pulumi.StringOutput `pulumi:"authorizedDate"`
+	// aws related arn roles
+	Aws CloudProviderAccessAuthorizationAwsPtrOutput `pulumi:"aws"`
+	// Atlas features this AWS IAM role is linked to.
+	FeatureUsages CloudProviderAccessAuthorizationFeatureUsageArrayOutput `pulumi:"featureUsages"`
+	// The unique ID for the project
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Unique ID of this role returned by mongodb atlas api
+	RoleId pulumi.StringOutput `pulumi:"roleId"`
 }
 
 // NewCloudProviderAccessAuthorization registers a new resource with the given unique name, arguments, and options.
@@ -56,19 +68,29 @@ func GetCloudProviderAccessAuthorization(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudProviderAccessAuthorization resources.
 type cloudProviderAccessAuthorizationState struct {
-	AuthorizedDate *string                                        `pulumi:"authorizedDate"`
-	Aws            *CloudProviderAccessAuthorizationAws           `pulumi:"aws"`
-	FeatureUsages  []CloudProviderAccessAuthorizationFeatureUsage `pulumi:"featureUsages"`
-	ProjectId      *string                                        `pulumi:"projectId"`
-	RoleId         *string                                        `pulumi:"roleId"`
+	// Date on which this role was authorized.
+	AuthorizedDate *string `pulumi:"authorizedDate"`
+	// aws related arn roles
+	Aws *CloudProviderAccessAuthorizationAws `pulumi:"aws"`
+	// Atlas features this AWS IAM role is linked to.
+	FeatureUsages []CloudProviderAccessAuthorizationFeatureUsage `pulumi:"featureUsages"`
+	// The unique ID for the project
+	ProjectId *string `pulumi:"projectId"`
+	// Unique ID of this role returned by mongodb atlas api
+	RoleId *string `pulumi:"roleId"`
 }
 
 type CloudProviderAccessAuthorizationState struct {
+	// Date on which this role was authorized.
 	AuthorizedDate pulumi.StringPtrInput
-	Aws            CloudProviderAccessAuthorizationAwsPtrInput
-	FeatureUsages  CloudProviderAccessAuthorizationFeatureUsageArrayInput
-	ProjectId      pulumi.StringPtrInput
-	RoleId         pulumi.StringPtrInput
+	// aws related arn roles
+	Aws CloudProviderAccessAuthorizationAwsPtrInput
+	// Atlas features this AWS IAM role is linked to.
+	FeatureUsages CloudProviderAccessAuthorizationFeatureUsageArrayInput
+	// The unique ID for the project
+	ProjectId pulumi.StringPtrInput
+	// Unique ID of this role returned by mongodb atlas api
+	RoleId pulumi.StringPtrInput
 }
 
 func (CloudProviderAccessAuthorizationState) ElementType() reflect.Type {
@@ -76,16 +98,22 @@ func (CloudProviderAccessAuthorizationState) ElementType() reflect.Type {
 }
 
 type cloudProviderAccessAuthorizationArgs struct {
-	Aws       *CloudProviderAccessAuthorizationAws `pulumi:"aws"`
-	ProjectId string                               `pulumi:"projectId"`
-	RoleId    string                               `pulumi:"roleId"`
+	// aws related arn roles
+	Aws *CloudProviderAccessAuthorizationAws `pulumi:"aws"`
+	// The unique ID for the project
+	ProjectId string `pulumi:"projectId"`
+	// Unique ID of this role returned by mongodb atlas api
+	RoleId string `pulumi:"roleId"`
 }
 
 // The set of arguments for constructing a CloudProviderAccessAuthorization resource.
 type CloudProviderAccessAuthorizationArgs struct {
-	Aws       CloudProviderAccessAuthorizationAwsPtrInput
+	// aws related arn roles
+	Aws CloudProviderAccessAuthorizationAwsPtrInput
+	// The unique ID for the project
 	ProjectId pulumi.StringInput
-	RoleId    pulumi.StringInput
+	// Unique ID of this role returned by mongodb atlas api
+	RoleId pulumi.StringInput
 }
 
 func (CloudProviderAccessAuthorizationArgs) ElementType() reflect.Type {

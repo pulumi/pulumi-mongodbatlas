@@ -4428,6 +4428,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetProjectI
 }
 
 type CloudProviderAccessAuthorizationAws struct {
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn string `pulumi:"iamAssumedRoleArn"`
 }
 
@@ -4443,6 +4444,7 @@ type CloudProviderAccessAuthorizationAwsInput interface {
 }
 
 type CloudProviderAccessAuthorizationAwsArgs struct {
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn pulumi.StringInput `pulumi:"iamAssumedRoleArn"`
 }
 
@@ -4523,6 +4525,7 @@ func (o CloudProviderAccessAuthorizationAwsOutput) ToCloudProviderAccessAuthoriz
 	}).(CloudProviderAccessAuthorizationAwsPtrOutput)
 }
 
+// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 func (o CloudProviderAccessAuthorizationAwsOutput) IamAssumedRoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudProviderAccessAuthorizationAws) string { return v.IamAssumedRoleArn }).(pulumi.StringOutput)
 }
@@ -4551,6 +4554,7 @@ func (o CloudProviderAccessAuthorizationAwsPtrOutput) Elem() CloudProviderAccess
 	}).(CloudProviderAccessAuthorizationAwsOutput)
 }
 
+// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 func (o CloudProviderAccessAuthorizationAwsPtrOutput) IamAssumedRoleArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudProviderAccessAuthorizationAws) *string {
 		if v == nil {
@@ -4761,8 +4765,10 @@ func (o CloudProviderAccessFeatureUsageArrayOutput) Index(i pulumi.IntInput) Clo
 }
 
 type CloudProviderAccessSetupAwsConfig struct {
+	// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
 	AtlasAssumedRoleExternalId *string `pulumi:"atlasAssumedRoleExternalId"`
-	AtlasAwsAccountArn         *string `pulumi:"atlasAwsAccountArn"`
+	// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+	AtlasAwsAccountArn *string `pulumi:"atlasAwsAccountArn"`
 }
 
 // CloudProviderAccessSetupAwsConfigInput is an input type that accepts CloudProviderAccessSetupAwsConfigArgs and CloudProviderAccessSetupAwsConfigOutput values.
@@ -4777,8 +4783,10 @@ type CloudProviderAccessSetupAwsConfigInput interface {
 }
 
 type CloudProviderAccessSetupAwsConfigArgs struct {
+	// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
 	AtlasAssumedRoleExternalId pulumi.StringPtrInput `pulumi:"atlasAssumedRoleExternalId"`
-	AtlasAwsAccountArn         pulumi.StringPtrInput `pulumi:"atlasAwsAccountArn"`
+	// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+	AtlasAwsAccountArn pulumi.StringPtrInput `pulumi:"atlasAwsAccountArn"`
 }
 
 func (CloudProviderAccessSetupAwsConfigArgs) ElementType() reflect.Type {
@@ -4832,10 +4840,12 @@ func (o CloudProviderAccessSetupAwsConfigOutput) ToCloudProviderAccessSetupAwsCo
 	return o
 }
 
+// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
 func (o CloudProviderAccessSetupAwsConfigOutput) AtlasAssumedRoleExternalId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudProviderAccessSetupAwsConfig) *string { return v.AtlasAssumedRoleExternalId }).(pulumi.StringPtrOutput)
 }
 
+// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
 func (o CloudProviderAccessSetupAwsConfigOutput) AtlasAwsAccountArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudProviderAccessSetupAwsConfig) *string { return v.AtlasAwsAccountArn }).(pulumi.StringPtrOutput)
 }

@@ -1491,6 +1491,7 @@
             "properties": {
                 "iamAssumedRoleArn": {
                     "type": "string",
+                    "description": "ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1571,6 +1572,7 @@
             "properties": {
                 "atlasAssumedRoleExternalId": {
                     "type": "string",
+                    "description": "Unique external ID Atlas uses when assuming the IAM role in your AWS account.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1579,6 +1581,7 @@
                 },
                 "atlasAwsAccountArn": {
                     "type": "string",
+                    "description": "ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -13609,24 +13612,30 @@
             }
         },
         "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization": {
+            "description": "\n\n\n## Import\n\nThe Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e\n```\n\n ",
             "properties": {
                 "authorizedDate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Date on which this role was authorized.\n"
                 },
                 "aws": {
-                    "$ref": "#/types/mongodbatlas:index/CloudProviderAccessAuthorizationAws:CloudProviderAccessAuthorizationAws"
+                    "$ref": "#/types/mongodbatlas:index/CloudProviderAccessAuthorizationAws:CloudProviderAccessAuthorizationAws",
+                    "description": "aws related arn roles\n"
                 },
                 "featureUsages": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/mongodbatlas:index/CloudProviderAccessAuthorizationFeatureUsage:CloudProviderAccessAuthorizationFeatureUsage"
-                    }
+                    },
+                    "description": "Atlas features this AWS IAM role is linked to.\n"
                 },
                 "projectId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique ID for the project\n"
                 },
                 "roleId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique ID of this role returned by mongodb atlas api\n"
                 }
             },
             "required": [
@@ -13637,13 +13646,16 @@
             ],
             "inputProperties": {
                 "aws": {
-                    "$ref": "#/types/mongodbatlas:index/CloudProviderAccessAuthorizationAws:CloudProviderAccessAuthorizationAws"
+                    "$ref": "#/types/mongodbatlas:index/CloudProviderAccessAuthorizationAws:CloudProviderAccessAuthorizationAws",
+                    "description": "aws related arn roles\n"
                 },
                 "projectId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique ID for the project\n"
                 },
                 "roleId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique ID of this role returned by mongodb atlas api\n"
                 }
             },
             "requiredInputs": [
@@ -13654,34 +13666,41 @@
                 "description": "Input properties used for looking up and filtering CloudProviderAccessAuthorization resources.\n",
                 "properties": {
                     "authorizedDate": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Date on which this role was authorized.\n"
                     },
                     "aws": {
-                        "$ref": "#/types/mongodbatlas:index/CloudProviderAccessAuthorizationAws:CloudProviderAccessAuthorizationAws"
+                        "$ref": "#/types/mongodbatlas:index/CloudProviderAccessAuthorizationAws:CloudProviderAccessAuthorizationAws",
+                        "description": "aws related arn roles\n"
                     },
                     "featureUsages": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/mongodbatlas:index/CloudProviderAccessAuthorizationFeatureUsage:CloudProviderAccessAuthorizationFeatureUsage"
-                        }
+                        },
+                        "description": "Atlas features this AWS IAM role is linked to.\n"
                     },
                     "projectId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique ID for the project\n"
                     },
                     "roleId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Unique ID of this role returned by mongodb atlas api\n"
                     }
                 },
                 "type": "object"
             }
         },
         "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup": {
+            "description": "\n\n\n## Import\n\nThe Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e\n```\n\n ",
             "properties": {
                 "aws": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
+                    "description": "aws related arn roles\n",
                     "deprecationMessage": "use aws_config instead"
                 },
                 "awsConfigs": {
@@ -13691,16 +13710,20 @@
                     }
                 },
                 "createdDate": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Date on which this role was created.\n"
                 },
                 "projectId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique ID for the project\n"
                 },
                 "providerName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The cloud provider for which to create a new role. Currently only AWS is supported.\n"
                 },
                 "roleId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique ID of this role returned by mongodb atlas api\n"
                 }
             },
             "required": [
@@ -13713,10 +13736,12 @@
             ],
             "inputProperties": {
                 "projectId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique ID for the project\n"
                 },
                 "providerName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The cloud provider for which to create a new role. Currently only AWS is supported.\n"
                 }
             },
             "requiredInputs": [
@@ -13731,6 +13756,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
+                        "description": "aws related arn roles\n",
                         "deprecationMessage": "use aws_config instead"
                     },
                     "awsConfigs": {
@@ -13740,16 +13766,20 @@
                         }
                     },
                     "createdDate": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Date on which this role was created.\n"
                     },
                     "projectId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique ID for the project\n"
                     },
                     "providerName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The cloud provider for which to create a new role. Currently only AWS is supported.\n"
                     },
                     "roleId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Unique ID of this role returned by mongodb atlas api\n"
                     }
                 },
                 "type": "object"
@@ -18004,21 +18034,26 @@
             }
         },
         "mongodbatlas:index/teams:Teams": {
+            "description": "`mongodbatlas.Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.\n\n\u003e **IMPORTANT:** MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n\nMongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as mongodbatlas from \"@pulumi/mongodbatlas\";\n\nconst test = new mongodbatlas.Teams(\"test\", {\n    orgId: \"\u003cORGANIZATION-ID\u003e\",\n    usernames: [\n        \"user1@email.com\",\n        \"user2@email.com\",\n        \"user3@email.com\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_mongodbatlas as mongodbatlas\n\ntest = mongodbatlas.Teams(\"test\",\n    org_id=\"\u003cORGANIZATION-ID\u003e\",\n    usernames=[\n        \"user1@email.com\",\n        \"user2@email.com\",\n        \"user3@email.com\",\n    ])\n```\n```csharp\nusing Pulumi;\nusing Mongodbatlas = Pulumi.Mongodbatlas;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = new Mongodbatlas.Teams(\"test\", new Mongodbatlas.TeamsArgs\n        {\n            OrgId = \"\u003cORGANIZATION-ID\u003e\",\n            Usernames = \n            {\n                \"user1@email.com\",\n                \"user2@email.com\",\n                \"user3@email.com\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := mongodbatlas.NewTeams(ctx, \"test\", \u0026mongodbatlas.TeamsArgs{\n\t\t\tOrgId: pulumi.String(\"\u003cORGANIZATION-ID\u003e\"),\n\t\t\tUsernames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"user1@email.com\"),\n\t\t\t\tpulumi.String(\"user2@email.com\"),\n\t\t\t\tpulumi.String(\"user3@email.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nTeams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.\n\n```sh\n $ pulumi import mongodbatlas:index/teams:Teams my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935\n```\n\n See detailed information for arguments and attributes[MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/) ",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the team you want to create.\n"
                 },
                 "orgId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique identifier for the organization you want to associate the team with.\n"
                 },
                 "teamId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique identifier for the team.\n"
                 },
                 "usernames": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.\n"
                 }
             },
             "required": [
@@ -18029,16 +18064,19 @@
             ],
             "inputProperties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the team you want to create.\n"
                 },
                 "orgId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique identifier for the organization you want to associate the team with.\n"
                 },
                 "usernames": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.\n"
                 }
             },
             "requiredInputs": [
@@ -18049,19 +18087,23 @@
                 "description": "Input properties used for looking up and filtering Teams resources.\n",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the team you want to create.\n"
                     },
                     "orgId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the organization you want to associate the team with.\n"
                     },
                     "teamId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the team.\n"
                     },
                     "usernames": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.\n"
                     }
                 },
                 "type": "object"
@@ -22690,17 +22732,21 @@
             }
         },
         "mongodbatlas:index/getTeams:getTeams": {
+            "description": "`mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.\n\n\u003e **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getTeams.\n",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The team name.\n"
                     },
                     "orgId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the organization you want to associate the team with.\n"
                     },
                     "teamId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the team.\n"
                     }
                 },
                 "type": "object",
@@ -22716,19 +22762,22 @@
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the team you want to create.\n"
                     },
                     "orgId": {
                         "type": "string"
                     },
                     "teamId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The unique identifier for the team.\n"
                     },
                     "usernames": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "The users who are part of the organization.\n"
                     }
                 },
                 "type": "object",

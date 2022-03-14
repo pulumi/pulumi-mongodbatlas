@@ -93,17 +93,28 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"mongodbatlas_cloud_provider_access_authorization": {
 				Tok: makeResource(mainMod, "CloudProviderAccessAuthorization"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_provider_access.markdown",
+				},
 			},
 			"mongodbatlas_cloud_provider_access_setup": {
 				Tok: makeResource(mainMod, "CloudProviderAccessSetup"),
+				Docs: &tfbridge.DocInfo{
+					Source: "cloud_provider_access.markdown",
+				},
 			},
-			"mongodbatlas_network_peering":       {Tok: makeResource(mainMod, "NetworkPeering")},
-			"mongodbatlas_encryption_at_rest":    {Tok: makeResource(mainMod, "EncryptionAtRest")},
-			"mongodbatlas_private_ip_mode":       {Tok: makeResource(mainMod, "PrivateIpMode")},
-			"mongodbatlas_maintenance_window":    {Tok: makeResource(mainMod, "MaintenanceWindow")},
-			"mongodbatlas_auditing":              {Tok: makeResource(mainMod, "Auditing")},
-			"mongodbatlas_team":                  {Tok: makeResource(mainMod, "Team")},
-			"mongodbatlas_teams":                 {Tok: makeResource(mainMod, "Teams")},
+			"mongodbatlas_network_peering":    {Tok: makeResource(mainMod, "NetworkPeering")},
+			"mongodbatlas_encryption_at_rest": {Tok: makeResource(mainMod, "EncryptionAtRest")},
+			"mongodbatlas_private_ip_mode":    {Tok: makeResource(mainMod, "PrivateIpMode")},
+			"mongodbatlas_maintenance_window": {Tok: makeResource(mainMod, "MaintenanceWindow")},
+			"mongodbatlas_auditing":           {Tok: makeResource(mainMod, "Auditing")},
+			"mongodbatlas_team":               {Tok: makeResource(mainMod, "Team")},
+			"mongodbatlas_teams": {
+				Tok: makeResource(mainMod, "Teams"),
+				Docs: &tfbridge.DocInfo{
+					Source: "team.html.markdown",
+				},
+			},
 			"mongodbatlas_global_cluster_config": {Tok: makeResource(mainMod, "GlobalClusterConfig")},
 			"mongodbatlas_alert_configuration":   {Tok: makeResource(mainMod, "AlertConfiguration")},
 			"mongodbatlas_x509_authentication_database_user": {
@@ -157,7 +168,12 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_maintenance_window":    {Tok: makeDataSource(mainMod, "getMaintenanceWindow")},
 			"mongodbatlas_auditing":              {Tok: makeDataSource(mainMod, "getAuditing")},
 			"mongodbatlas_team":                  {Tok: makeDataSource(mainMod, "getTeam")},
-			"mongodbatlas_teams":                 {Tok: makeDataSource(mainMod, "getTeams")},
+			"mongodbatlas_teams": {
+				Tok: makeDataSource(mainMod, "getTeams"),
+				Docs: &tfbridge.DocInfo{
+					Source: "team.html.markdown",
+				},
+			},
 			"mongodbatlas_global_cluster_config": {Tok: makeDataSource(mainMod, "getGlobalClusterConfig")},
 			"mongodbatlas_alert_configuration":   {Tok: makeDataSource(mainMod, "getAlertConfiguration")},
 			"mongodbatlas_x509_authentication_database_user": {
@@ -176,31 +192,51 @@ func Provider() tfbridge.ProviderInfo {
 			"mongodbatlas_custom_dns_configuration_cluster_aws": {
 				Tok: makeDataSource(mainMod, "getCustomDnsConfigurationClusterAws"),
 			},
-			"mongodbatlas_ldap_configuration":                   {Tok: makeDataSource(mainMod, "getLdapConfiguration")},
-			"mongodbatlas_ldap_verify":                          {Tok: makeDataSource(mainMod, "getLdapVerify")},
-			"mongodbatlas_cloud_backup_schedule":                {Tok: makeDataSource(mainMod, "getCloudBackupSchedule")},
-			"mongodbatlas_data_lake":                            {Tok: makeDataSource(mainMod, "getDataLake")},
-			"mongodbatlas_data_lakes":                           {Tok: makeDataSource(mainMod, "getDataLakes")},
-			"mongodbatlas_event_trigger":                        {Tok: makeDataSource(mainMod, "getEventTrigger")},
-			"mongodbatlas_event_triggers":                       {Tok: makeDataSource(mainMod, "getEventTriggers")},
-			"mongodbatlas_online_archive":                       {Tok: makeDataSource(mainMod, "getOnlineArchive")},
-			"mongodbatlas_online_archives":                      {Tok: makeDataSource(mainMod, "getOnlineArchives")},
-			"mongodbatlas_search_index":                         {Tok: makeDataSource(mainMod, "getSearchIndex")},
-			"mongodbatlas_search_indexes":                       {Tok: makeDataSource(mainMod, "getSearchIndexes")},
-			"mongodbatlas_advanced_cluster":                     {Tok: makeDataSource(mainMod, "getAdvancedCluster")},
-			"mongodbatlas_advanced_clusters":                    {Tok: makeDataSource(mainMod, "getAdvancedClusters")},
-			"mongodbatlas_cloud_backup_snapshot":                {Tok: makeDataSource(mainMod, "getCloudBackupSnapshot")},
-			"mongodbatlas_cloud_backup_snapshots":               {Tok: makeDataSource(mainMod, "getCloudBackupSnapshots")},
-			"mongodbatlas_cloud_backup_snapshot_export_bucket":  {Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportBucket")},
-			"mongodbatlas_cloud_backup_snapshot_export_buckets": {Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportBuckets")},
-			"mongodbatlas_cloud_backup_snapshot_export_job":     {Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportJob")},
-			"mongodbatlas_cloud_backup_snapshot_export_jobs":    {Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportJobs")},
-			"mongodbatlas_cloud_backup_snapshot_restore_job":    {Tok: makeDataSource(mainMod, "getCloudBackupSnapshotRestoreJob")},
-			"mongodbatlas_cloud_backup_snapshot_restore_jobs":   {Tok: makeDataSource(mainMod, "getCloudBackupSnapshotRestoreJobs")},
-			"mongodbatlas_org_invitation":                       {Tok: makeDataSource(mainMod, "getOrgInvitation")},
-			"mongodbatlas_privatelink_endpoint_service_adl":     {Tok: makeDataSource(mainMod, "getPrivatelinkEndpointServiceAdl")},
-			"mongodbatlas_privatelink_endpoints_service_adl":    {Tok: makeDataSource(mainMod, "getPrivatelinkEndpointsServiceAdl")},
-			"mongodbatlas_project_invitation":                   {Tok: makeDataSource(mainMod, "getProjectInvitation")},
+			"mongodbatlas_ldap_configuration":     {Tok: makeDataSource(mainMod, "getLdapConfiguration")},
+			"mongodbatlas_ldap_verify":            {Tok: makeDataSource(mainMod, "getLdapVerify")},
+			"mongodbatlas_cloud_backup_schedule":  {Tok: makeDataSource(mainMod, "getCloudBackupSchedule")},
+			"mongodbatlas_data_lake":              {Tok: makeDataSource(mainMod, "getDataLake")},
+			"mongodbatlas_data_lakes":             {Tok: makeDataSource(mainMod, "getDataLakes")},
+			"mongodbatlas_event_trigger":          {Tok: makeDataSource(mainMod, "getEventTrigger")},
+			"mongodbatlas_event_triggers":         {Tok: makeDataSource(mainMod, "getEventTriggers")},
+			"mongodbatlas_online_archive":         {Tok: makeDataSource(mainMod, "getOnlineArchive")},
+			"mongodbatlas_online_archives":        {Tok: makeDataSource(mainMod, "getOnlineArchives")},
+			"mongodbatlas_search_index":           {Tok: makeDataSource(mainMod, "getSearchIndex")},
+			"mongodbatlas_search_indexes":         {Tok: makeDataSource(mainMod, "getSearchIndexes")},
+			"mongodbatlas_advanced_cluster":       {Tok: makeDataSource(mainMod, "getAdvancedCluster")},
+			"mongodbatlas_advanced_clusters":      {Tok: makeDataSource(mainMod, "getAdvancedClusters")},
+			"mongodbatlas_cloud_backup_snapshot":  {Tok: makeDataSource(mainMod, "getCloudBackupSnapshot")},
+			"mongodbatlas_cloud_backup_snapshots": {Tok: makeDataSource(mainMod, "getCloudBackupSnapshots")},
+			"mongodbatlas_cloud_backup_snapshot_export_bucket": {
+				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportBucket"),
+			},
+			"mongodbatlas_cloud_backup_snapshot_export_buckets": {
+				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportBuckets"),
+			},
+			"mongodbatlas_cloud_backup_snapshot_export_job": {
+				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportJob"),
+			},
+			"mongodbatlas_cloud_backup_snapshot_export_jobs": {
+				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportJobs"),
+			},
+			"mongodbatlas_cloud_backup_snapshot_restore_job": {
+				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotRestoreJob"),
+			},
+			"mongodbatlas_cloud_backup_snapshot_restore_jobs": {
+				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotRestoreJobs"),
+			},
+			"mongodbatlas_org_invitation": {
+				Tok: makeDataSource(mainMod, "getOrgInvitation"),
+			},
+			"mongodbatlas_privatelink_endpoint_service_adl": {
+				Tok: makeDataSource(mainMod, "getPrivatelinkEndpointServiceAdl"),
+			},
+			"mongodbatlas_privatelink_endpoints_service_adl": {
+				Tok: makeDataSource(mainMod, "getPrivatelinkEndpointsServiceAdl"),
+			},
+			"mongodbatlas_project_invitation": {
+				Tok: makeDataSource(mainMod, "getProjectInvitation"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
