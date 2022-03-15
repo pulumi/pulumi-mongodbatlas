@@ -72,6 +72,9 @@ class GetCloudBackupSnapshotExportBucketResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The provider-assigned unique ID for this managed resource.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -95,7 +98,6 @@ class AwaitableGetCloudBackupSnapshotExportBucketResult(GetCloudBackupSnapshotEx
 
 
 def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = None,
-                                            id: Optional[str] = None,
                                             project_id: Optional[str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotExportBucketResult:
     """
@@ -109,7 +111,6 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
     """
     __args__ = dict()
     __args__['exportBucketId'] = export_bucket_id
-    __args__['id'] = id
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -128,7 +129,6 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[str] = No
 
 @_utilities.lift_output_func(get_cloud_backup_snapshot_export_bucket)
 def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pulumi.Input[str]] = None,
-                                                   id: Optional[pulumi.Input[str]] = None,
                                                    project_id: Optional[pulumi.Input[str]] = None,
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudBackupSnapshotExportBucketResult]:
     """

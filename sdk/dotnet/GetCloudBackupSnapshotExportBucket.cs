@@ -39,9 +39,6 @@ namespace Pulumi.Mongodbatlas
         [Input("exportBucketId", required: true)]
         public string ExportBucketId { get; set; } = null!;
 
-        [Input("id", required: true)]
-        public string Id { get; set; } = null!;
-
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
         /// </summary>
@@ -60,9 +57,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("exportBucketId", required: true)]
         public Input<string> ExportBucketId { get; set; } = null!;
-
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
@@ -92,6 +86,9 @@ namespace Pulumi.Mongodbatlas
         /// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
         /// </summary>
         public readonly string IamRoleId;
+        /// <summary>
+        /// The provider-assigned unique ID for this managed resource.
+        /// </summary>
         public readonly string Id;
         public readonly string ProjectId;
 

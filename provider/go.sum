@@ -1053,8 +1053,6 @@ github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 h1:RWengNIwukTxcDr9
 github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826/go.mod h1:TaXosZuwdSHYgviHp1DAtfrULt5eUgsSMsZf+YrPgl8=
 github.com/mongodb-forks/digest v1.0.3 h1:ZUK1vyZnBiRMvET0O1SzmnBmv935CkcOTjhfR4zIQ2s=
 github.com/mongodb-forks/digest v1.0.3/go.mod h1:eHRfgovT+dvSFfltrOa27hy1oR/rcwyDdp5H1ZQxEMA=
-github.com/mongodb/terraform-provider-mongodbatlas v1.3.0 h1:yG+QnYyHhaLlO8YBMwO4jLa0UILJFriE6fgE8LA+f5s=
-github.com/mongodb/terraform-provider-mongodbatlas v1.3.0/go.mod h1:yjFlA98uqc3NOai2JSIUPhC21rZ572FSlTISPzFlMRM=
 github.com/moricho/tparallel v0.2.1/go.mod h1:fXEIZxG2vdfl0ZF8b42f5a78EhjjD5mX8qUplsoSU4k=
 github.com/morikuni/aec v1.0.0/go.mod h1:BbKIizmSmc5MMPqRYbxO4ZU0S0+P200+tUnFx7PXmsc=
 github.com/mozilla/scribe v0.0.0-20180711195314-fb71baf557c1/go.mod h1:FIczTrinKo8VaLxe6PWTPEXRXDIHz2QAwiaBaP5/4a8=
@@ -1210,6 +1208,8 @@ github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e h1:Di
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e/go.mod h1:sZ9FUzGO+yM41hsQHs/yIcj/Y993qMdBxBU5mpDmAfQ=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20210629210550-59d24255d71f h1:YWtQ7xeRQvB9h5Uwtrl9wDKRKkyLTXWBzU7x0c9VOZ4=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20210629210550-59d24255d71f/go.mod h1:grseeRo9g3yNkYW09iFlV8LG78jTa1ssBgouogQg/RU=
+github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20220314211453-da7fd9ff0c45 h1:C9B1i4ePFLTW36Bf7pmnnwRnVIFcn3YX9jMbZ/Reyx8=
+github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20220314211453-da7fd9ff0c45/go.mod h1:yjFlA98uqc3NOai2JSIUPhC21rZ572FSlTISPzFlMRM=
 github.com/quasilyte/go-consistent v0.0.0-20190521200055-c6f3937de18c/go.mod h1:5STLWrekHfjyYwxBRVRXNOSewLJ3PWfDJd1VyTS21fI=
 github.com/quasilyte/go-ruleguard v0.3.1-0.20210203134552-1b5a410e1cc8/go.mod h1:KsAh3x0e7Fkpgs+Q9pNLS5XpFSvYCEVl5gP9Pp1xp30=
 github.com/quasilyte/go-ruleguard v0.3.4/go.mod h1:57FZgMnoo6jqxkYKmVj5Fc8vOt0rVzoE/UNAmFFIPqA=

@@ -17,7 +17,6 @@ export function getCloudBackupSnapshotExportBucket(args: GetCloudBackupSnapshotE
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", {
         "exportBucketId": args.exportBucketId,
-        "id": args.id,
         "projectId": args.projectId,
     }, opts);
 }
@@ -30,7 +29,6 @@ export interface GetCloudBackupSnapshotExportBucketArgs {
      * Unique identifier of the snapshot export bucket.
      */
     exportBucketId: string;
-    id: string;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -54,6 +52,9 @@ export interface GetCloudBackupSnapshotExportBucketResult {
      * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
      */
     readonly iamRoleId: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
     readonly id: string;
     readonly projectId: string;
 }
@@ -70,7 +71,6 @@ export interface GetCloudBackupSnapshotExportBucketOutputArgs {
      * Unique identifier of the snapshot export bucket.
      */
     exportBucketId: pulumi.Input<string>;
-    id: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */

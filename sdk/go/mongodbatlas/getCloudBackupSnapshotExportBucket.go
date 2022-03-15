@@ -26,7 +26,6 @@ func LookupCloudBackupSnapshotExportBucket(ctx *pulumi.Context, args *LookupClou
 type LookupCloudBackupSnapshotExportBucketArgs struct {
 	// Unique identifier of the snapshot export bucket.
 	ExportBucketId string `pulumi:"exportBucketId"`
-	Id             string `pulumi:"id"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -40,6 +39,7 @@ type LookupCloudBackupSnapshotExportBucketResult struct {
 	ExportBucketId string `pulumi:"exportBucketId"`
 	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
 	IamRoleId string `pulumi:"iamRoleId"`
+	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 }
@@ -57,7 +57,6 @@ func LookupCloudBackupSnapshotExportBucketOutput(ctx *pulumi.Context, args Looku
 type LookupCloudBackupSnapshotExportBucketOutputArgs struct {
 	// Unique identifier of the snapshot export bucket.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
-	Id             pulumi.StringInput `pulumi:"id"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -100,6 +99,7 @@ func (o LookupCloudBackupSnapshotExportBucketResultOutput) IamRoleId() pulumi.St
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.IamRoleId }).(pulumi.StringOutput)
 }
 
+// The provider-assigned unique ID for this managed resource.
 func (o LookupCloudBackupSnapshotExportBucketResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketResult) string { return v.Id }).(pulumi.StringOutput)
 }
