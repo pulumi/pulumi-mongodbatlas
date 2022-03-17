@@ -200,9 +200,10 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotExportJobs")},
 			"mongodbatlas_cloud_backup_snapshot_restore_job": {
 				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotRestoreJob")},
-			"mongodbatlas_cloud_backup_snapshot_restore_jobs": {Tok: makeDataSource(mainMod, "getCloudBackupSnapshotRestoreJobs")},
-			"mongodbatlas_cloud_backup_snapshots":             {Tok: makeDataSource(mainMod, "getCloudBackupSnapshots")},
-			"mongodbatlas_org_invitation":                     {Tok: makeDataSource(mainMod, "getOrgInvitation")},
+			"mongodbatlas_cloud_backup_snapshot_restore_jobs": {
+				Tok: makeDataSource(mainMod, "getCloudBackupSnapshotRestoreJobs")},
+			"mongodbatlas_cloud_backup_snapshots": {Tok: makeDataSource(mainMod, "getCloudBackupSnapshots")},
+			"mongodbatlas_org_invitation":         {Tok: makeDataSource(mainMod, "getOrgInvitation")},
 			"mongodbatlas_privatelink_endpoint_service_adl": {
 				Tok: makeDataSource(mainMod, "getPrivatelinkEndpointServiceAdl")},
 			"mongodbatlas_privatelink_endpoints_service_adl": {
