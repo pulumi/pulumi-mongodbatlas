@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", {
  *     projectId: "<PROJECT_ID>",
  *     providerName: "AWS",
- *     region: "us-east-1",
+ *     region: "US_EAST_1",
  * });
  * const ptfeService = new aws.ec2.VpcEndpoint("ptfeService", {
  *     vpcId: "vpc-7fc0a543",

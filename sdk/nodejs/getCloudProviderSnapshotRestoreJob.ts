@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * **WARNING:** This datasource is deprecated, use `mongodbatlasCloudBackupSnapshotRestoreJob`
+ * **WARNING:** This datasource is deprecated, use `mongodbatlas.CloudBackupSnapshotRestoreJob`
  *
  * `mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *

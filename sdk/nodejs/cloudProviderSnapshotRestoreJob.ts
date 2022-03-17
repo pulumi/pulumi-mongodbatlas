@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * **WARNING:** This resource is deprecated, use `mongodbatlasCloudBackupSnapshotRestoreJob`
+ * **WARNING:** This resource is deprecated, use `mongodbatlas.CloudBackupSnapshotRestoreJob`
  *
  * `mongodbatlas.CloudProviderSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
  * * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.

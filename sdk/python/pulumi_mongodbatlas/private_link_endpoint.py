@@ -332,7 +332,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         test = mongodbatlas.PrivateLinkEndpoint("test",
             project_id="<PROJECT-ID>",
             provider_name="AWS/AZURE",
-            region="us-east-1")
+            region="US_EAST_1")
         ```
 
         ## Import
@@ -378,7 +378,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         test = mongodbatlas.PrivateLinkEndpoint("test",
             project_id="<PROJECT-ID>",
             provider_name="AWS/AZURE",
-            region="us-east-1")
+            region="US_EAST_1")
         ```
 
         ## Import

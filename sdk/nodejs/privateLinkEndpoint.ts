@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  * const test = new mongodbatlas.PrivateLinkEndpoint("test", {
  *     projectId: "<PROJECT-ID>",
  *     providerName: "AWS/AZURE",
- *     region: "us-east-1",
+ *     region: "US_EAST_1",
  * });
  * ```
  *

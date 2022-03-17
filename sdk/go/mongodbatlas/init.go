@@ -20,12 +20,22 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "mongodbatlas:index/advancedCluster:AdvancedCluster":
+		r = &AdvancedCluster{}
 	case "mongodbatlas:index/alertConfiguration:AlertConfiguration":
 		r = &AlertConfiguration{}
 	case "mongodbatlas:index/auditing:Auditing":
 		r = &Auditing{}
 	case "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
 		r = &CloudBackupSchedule{}
+	case "mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot":
+		r = &CloudBackupSnapshot{}
+	case "mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket":
+		r = &CloudBackupSnapshotExportBucket{}
+	case "mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob":
+		r = &CloudBackupSnapshotExportJob{}
+	case "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob":
+		r = &CloudBackupSnapshotRestoreJob{}
 	case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
 		r = &CloudProviderAccess{}
 	case "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
@@ -66,14 +76,20 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NetworkPeering{}
 	case "mongodbatlas:index/onlineArchive:OnlineArchive":
 		r = &OnlineArchive{}
+	case "mongodbatlas:index/orgInvitation:OrgInvitation":
+		r = &OrgInvitation{}
 	case "mongodbatlas:index/privateIpMode:PrivateIpMode":
 		r = &PrivateIpMode{}
 	case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
 		r = &PrivateLinkEndpoint{}
 	case "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
 		r = &PrivateLinkEndpointService{}
+	case "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl":
+		r = &PrivatelinkEndpointServiceAdl{}
 	case "mongodbatlas:index/project:Project":
 		r = &Project{}
+	case "mongodbatlas:index/projectInvitation:ProjectInvitation":
+		r = &ProjectInvitation{}
 	case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
 		r = &ProjectIpAccessList{}
 	case "mongodbatlas:index/searchIndex:SearchIndex":
@@ -119,6 +135,11 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/advancedCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/alertConfiguration",
 		&module{version},
 	)
@@ -130,6 +151,26 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/cloudBackupSchedule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/cloudBackupSnapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/cloudBackupSnapshotExportBucket",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/cloudBackupSnapshotExportJob",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/cloudBackupSnapshotRestoreJob",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -234,6 +275,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/orgInvitation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/privateIpMode",
 		&module{version},
 	)
@@ -249,7 +295,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/privatelinkEndpointServiceAdl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/project",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/projectInvitation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

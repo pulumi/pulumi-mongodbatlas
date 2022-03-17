@@ -430,7 +430,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
             project_id="<PROJECT_ID>",
             provider_name="AWS",
-            region="us-east-1")
+            region="US_EAST_1")
         ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
             vpc_id="vpc-7fc0a543",
             service_name=test_private_link_endpoint.endpoint_service_name,
@@ -518,7 +518,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         test_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint",
             project_id="<PROJECT_ID>",
             provider_name="AWS",
-            region="us-east-1")
+            region="US_EAST_1")
         ptfe_service = aws.ec2.VpcEndpoint("ptfeService",
             vpc_id="vpc-7fc0a543",
             service_name=test_private_link_endpoint.endpoint_service_name,
