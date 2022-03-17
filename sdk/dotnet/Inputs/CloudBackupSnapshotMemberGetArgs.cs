@@ -19,12 +19,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? CloudProvider { get; set; }
 
         /// <summary>
-        /// Unique identifier for the sharded cluster snapshot.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
-        /// <summary>
         /// Label given to a shard or config server from which Atlas took this snapshot.
         /// </summary>
         [Input("replicaSetName")]

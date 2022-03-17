@@ -86,7 +86,6 @@ type CloudBackupSnapshotExportJob struct {
 	ExportStatusTotalCollections    pulumi.IntOutput    `pulumi:"exportStatusTotalCollections"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	FinishedAt pulumi.StringOutput `pulumi:"finishedAt"`
-	Id         pulumi.StringOutput `pulumi:"id"`
 	Prefix     pulumi.StringOutput `pulumi:"prefix"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
 	ProjectId  pulumi.StringOutput `pulumi:"projectId"`
@@ -157,7 +156,6 @@ type cloudBackupSnapshotExportJobState struct {
 	ExportStatusTotalCollections    *int    `pulumi:"exportStatusTotalCollections"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	FinishedAt *string `pulumi:"finishedAt"`
-	Id         *string `pulumi:"id"`
 	Prefix     *string `pulumi:"prefix"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
 	ProjectId  *string `pulumi:"projectId"`
@@ -185,7 +183,6 @@ type CloudBackupSnapshotExportJobState struct {
 	ExportStatusTotalCollections    pulumi.IntPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	FinishedAt pulumi.StringPtrInput
-	Id         pulumi.StringPtrInput
 	Prefix     pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
 	ProjectId  pulumi.StringPtrInput

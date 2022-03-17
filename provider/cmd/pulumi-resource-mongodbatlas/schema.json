@@ -1072,14 +1072,6 @@
                         }
                     }
                 },
-                "id": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "retentionUnit": {
                     "type": "string",
                     "description": "Scope of the backup policy item: days, weeks, or months.\n",
@@ -1110,7 +1102,6 @@
                     "requiredOutputs": [
                         "frequencyInterval",
                         "frequencyType",
-                        "id",
                         "retentionUnit",
                         "retentionValue"
                     ]
@@ -1200,14 +1191,6 @@
                         }
                     }
                 },
-                "id": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "retentionUnit": {
                     "type": "string",
                     "description": "Scope of the backup policy item: days, weeks, or months.\n",
@@ -1238,7 +1221,6 @@
                     "requiredOutputs": [
                         "frequencyInterval",
                         "frequencyType",
-                        "id",
                         "retentionUnit",
                         "retentionValue"
                     ]
@@ -1264,14 +1246,6 @@
                         }
                     }
                 },
-                "id": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "retentionUnit": {
                     "type": "string",
                     "description": "Scope of the backup policy item: days, weeks, or months.\n",
@@ -1302,7 +1276,6 @@
                     "requiredOutputs": [
                         "frequencyInterval",
                         "frequencyType",
-                        "id",
                         "retentionUnit",
                         "retentionValue"
                     ]
@@ -1378,15 +1351,6 @@
                         }
                     }
                 },
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifier for the sharded cluster snapshot.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "replicaSetName": {
                     "type": "string",
                     "description": "Label given to a shard or config server from which Atlas took this snapshot.\n",
@@ -1402,7 +1366,6 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "cloudProvider",
-                        "id",
                         "replicaSetName"
                     ]
                 }
@@ -1589,14 +1552,6 @@
         },
         "mongodbatlas:index/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy": {
             "properties": {
-                "id": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "policyItems": {
                     "type": "array",
                     "items": {
@@ -1611,7 +1566,6 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "policyItems"
             ]
         },
@@ -1626,14 +1580,6 @@
                     }
                 },
                 "frequencyType": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "id": {
                     "type": "string",
                     "language": {
                         "python": {
@@ -1662,7 +1608,6 @@
             "required": [
                 "frequencyInterval",
                 "frequencyType",
-                "id",
                 "retentionUnit",
                 "retentionValue"
             ]
@@ -2281,15 +2226,6 @@
         },
         "mongodbatlas:index/ClusterSnapshotBackupPolicyPolicy:ClusterSnapshotBackupPolicyPolicy": {
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "policyItems": {
                     "type": "array",
                     "items": {
@@ -2306,7 +2242,6 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "id",
                         "policyItems"
                     ]
                 }
@@ -2324,15 +2259,6 @@
                 },
                 "frequencyType": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2362,7 +2288,6 @@
                     "requiredOutputs": [
                         "frequencyInterval",
                         "frequencyType",
-                        "id",
                         "retentionUnit",
                         "retentionValue"
                     ]
@@ -3555,14 +3480,6 @@
                         }
                     }
                 },
-                "id": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "notAfter": {
                     "type": "string",
                     "language": {
@@ -3586,7 +3503,6 @@
                     "requiredOutputs": [
                         "createdAt",
                         "groupId",
-                        "id",
                         "notAfter",
                         "subject"
                     ]
@@ -7702,15 +7618,6 @@
         },
         "mongodbatlas:index/getClusterSnapshotBackupPolicyPolicy:getClusterSnapshotBackupPolicyPolicy": {
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "policyItems": {
                     "type": "array",
                     "items": {
@@ -7725,7 +7632,6 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "policyItems"
             ],
             "language": {
@@ -7746,15 +7652,6 @@
                 },
                 "frequencyType": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -7782,7 +7679,6 @@
             "required": [
                 "frequencyInterval",
                 "frequencyType",
-                "id",
                 "retentionUnit",
                 "retentionValue"
             ],
@@ -8762,15 +8658,6 @@
         },
         "mongodbatlas:index/getClustersResultSnapshotBackupPolicyPolicy:getClustersResultSnapshotBackupPolicyPolicy": {
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "policyItems": {
                     "type": "array",
                     "items": {
@@ -8785,7 +8672,6 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "policyItems"
             ],
             "language": {
@@ -8806,15 +8692,6 @@
                 },
                 "frequencyType": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "id": {
-                    "type": "string",
-                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -8842,7 +8719,6 @@
             "required": [
                 "frequencyInterval",
                 "frequencyType",
-                "id",
                 "retentionUnit",
                 "retentionValue"
             ],
@@ -13064,9 +12940,6 @@
                     "type": "string",
                     "description": "Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.\n"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "projectId": {
                     "type": "string",
                     "description": "The unique identifier of the project for the Atlas cluster.\n"
@@ -13077,7 +12950,6 @@
                 "cloudProvider",
                 "exportBucketId",
                 "iamRoleId",
-                "id",
                 "projectId"
             ],
             "inputProperties": {
@@ -13122,9 +12994,6 @@
                     "iamRoleId": {
                         "type": "string",
                         "description": "Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.\n"
-                    },
-                    "id": {
-                        "type": "string"
                     },
                     "projectId": {
                         "type": "string",
@@ -13180,9 +13049,6 @@
                     "type": "string",
                     "description": "Timestamp in ISO 8601 date and time format in UTC when the export job completes.\n"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "prefix": {
                     "type": "string"
                 },
@@ -13209,7 +13075,6 @@
                 "exportStatusExportedCollections",
                 "exportStatusTotalCollections",
                 "finishedAt",
-                "id",
                 "prefix",
                 "projectId",
                 "snapshotId",
@@ -13290,9 +13155,6 @@
                     "finishedAt": {
                         "type": "string",
                         "description": "Timestamp in ISO 8601 date and time format in UTC when the export job completes.\n"
-                    },
-                    "id": {
-                        "type": "string"
                     },
                     "prefix": {
                         "type": "string"

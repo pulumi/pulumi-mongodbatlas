@@ -12,12 +12,6 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class ClusterSnapshotBackupPolicyPolicyGetArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Unique identifer of the replication document for a zone in a Global Cluster.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         [Input("policyItems")]
         private InputList<Inputs.ClusterSnapshotBackupPolicyPolicyPolicyItemGetArgs>? _policyItems;
         public InputList<Inputs.ClusterSnapshotBackupPolicyPolicyPolicyItemGetArgs> PolicyItems

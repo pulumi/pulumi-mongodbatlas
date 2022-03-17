@@ -13,19 +13,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class ClusterSnapshotBackupPolicyPolicy
     {
-        /// <summary>
-        /// Unique identifer of the replication document for a zone in a Global Cluster.
-        /// </summary>
-        public readonly string? Id;
         public readonly ImmutableArray<Outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem> PolicyItems;
 
         [OutputConstructor]
-        private ClusterSnapshotBackupPolicyPolicy(
-            string? id,
-
-            ImmutableArray<Outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem> policyItems)
+        private ClusterSnapshotBackupPolicyPolicy(ImmutableArray<Outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem> policyItems)
         {
-            Id = id;
             PolicyItems = policyItems;
         }
     }

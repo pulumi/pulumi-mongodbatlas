@@ -13,16 +13,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class CloudProviderSnapshotBackupPolicyPolicy
     {
-        public readonly string Id;
         public readonly ImmutableArray<Outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem> PolicyItems;
 
         [OutputConstructor]
-        private CloudProviderSnapshotBackupPolicyPolicy(
-            string id,
-
-            ImmutableArray<Outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem> policyItems)
+        private CloudProviderSnapshotBackupPolicyPolicy(ImmutableArray<Outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem> policyItems)
         {
-            Id = id;
             PolicyItems = policyItems;
         }
     }

@@ -104,7 +104,6 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      */
     public /*out*/ readonly finishedAt!: pulumi.Output<string>;
-    public /*out*/ readonly id!: pulumi.Output<string>;
     public /*out*/ readonly prefix!: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
@@ -139,7 +138,6 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
             resourceInputs["exportStatusExportedCollections"] = state ? state.exportStatusExportedCollections : undefined;
             resourceInputs["exportStatusTotalCollections"] = state ? state.exportStatusTotalCollections : undefined;
             resourceInputs["finishedAt"] = state ? state.finishedAt : undefined;
-            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["prefix"] = state ? state.prefix : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
@@ -173,7 +171,6 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
             resourceInputs["exportStatusExportedCollections"] = undefined /*out*/;
             resourceInputs["exportStatusTotalCollections"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
-            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["prefix"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
         }
@@ -218,7 +215,6 @@ export interface CloudBackupSnapshotExportJobState {
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      */
     finishedAt?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
     prefix?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.

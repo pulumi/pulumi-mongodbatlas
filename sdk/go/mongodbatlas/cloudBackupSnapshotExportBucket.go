@@ -61,7 +61,6 @@ type CloudBackupSnapshotExportBucket struct {
 	ExportBucketId pulumi.StringOutput `pulumi:"exportBucketId"`
 	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
 	IamRoleId pulumi.StringOutput `pulumi:"iamRoleId"`
-	Id        pulumi.StringOutput `pulumi:"id"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
@@ -115,7 +114,6 @@ type cloudBackupSnapshotExportBucketState struct {
 	ExportBucketId *string `pulumi:"exportBucketId"`
 	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
 	IamRoleId *string `pulumi:"iamRoleId"`
-	Id        *string `pulumi:"id"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId *string `pulumi:"projectId"`
 }
@@ -129,7 +127,6 @@ type CloudBackupSnapshotExportBucketState struct {
 	ExportBucketId pulumi.StringPtrInput
 	// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
 	IamRoleId pulumi.StringPtrInput
-	Id        pulumi.StringPtrInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringPtrInput
 }

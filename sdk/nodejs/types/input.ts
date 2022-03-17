@@ -445,7 +445,6 @@ export interface CloudBackupSchedulePolicyItemDaily {
      */
     frequencyInterval: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -479,7 +478,6 @@ export interface CloudBackupSchedulePolicyItemMonthly {
      */
     frequencyInterval: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -496,7 +494,6 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      */
     frequencyInterval: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -534,10 +531,6 @@ export interface CloudBackupSnapshotMember {
      * Cloud provider that stores this snapshot.
      */
     cloudProvider?: pulumi.Input<string>;
-    /**
-     * Unique identifier for the sharded cluster snapshot.
-     */
-    id?: pulumi.Input<string>;
     /**
      * Label given to a shard or config server from which Atlas took this snapshot.
      */
@@ -578,14 +571,12 @@ export interface CloudProviderAccessSetupAwsConfig {
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicy {
-    id: pulumi.Input<string>;
     policyItems: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem>[]>;
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: pulumi.Input<number>;
     frequencyType: pulumi.Input<string>;
-    id: pulumi.Input<string>;
     retentionUnit: pulumi.Input<string>;
     retentionValue: pulumi.Input<number>;
 }
@@ -763,20 +754,12 @@ export interface ClusterSnapshotBackupPolicy {
 }
 
 export interface ClusterSnapshotBackupPolicyPolicy {
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id?: pulumi.Input<string>;
     policyItems?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicyPolicyPolicyItem>[]>;
 }
 
 export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval?: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id?: pulumi.Input<string>;
     retentionUnit?: pulumi.Input<string>;
     retentionValue?: pulumi.Input<number>;
 }
@@ -1202,7 +1185,6 @@ export interface SearchIndexSynonym {
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt?: pulumi.Input<string>;
     groupId?: pulumi.Input<string>;
-    id?: pulumi.Input<number>;
     notAfter?: pulumi.Input<string>;
     subject?: pulumi.Input<string>;
 }

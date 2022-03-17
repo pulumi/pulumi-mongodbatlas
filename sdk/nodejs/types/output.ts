@@ -445,7 +445,6 @@ export interface CloudBackupSchedulePolicyItemDaily {
      */
     frequencyInterval: number;
     frequencyType: string;
-    id: string;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -479,7 +478,6 @@ export interface CloudBackupSchedulePolicyItemMonthly {
      */
     frequencyInterval: number;
     frequencyType: string;
-    id: string;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -496,7 +494,6 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      */
     frequencyInterval: number;
     frequencyType: string;
-    id: string;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -534,10 +531,6 @@ export interface CloudBackupSnapshotMember {
      * Cloud provider that stores this snapshot.
      */
     cloudProvider: string;
-    /**
-     * Unique identifier for the sharded cluster snapshot.
-     */
-    id: string;
     /**
      * Label given to a shard or config server from which Atlas took this snapshot.
      */
@@ -578,14 +571,12 @@ export interface CloudProviderAccessSetupAwsConfig {
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicy {
-    id: string;
     policyItems: outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem[];
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: number;
     frequencyType: string;
-    id: string;
     retentionUnit: string;
     retentionValue: number;
 }
@@ -763,20 +754,12 @@ export interface ClusterSnapshotBackupPolicy {
 }
 
 export interface ClusterSnapshotBackupPolicyPolicy {
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id: string;
     policyItems: outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem[];
 }
 
 export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: number;
     frequencyType: string;
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id: string;
     retentionUnit: string;
     retentionValue: number;
 }
@@ -2383,20 +2366,12 @@ export interface GetClusterSnapshotBackupPolicy {
 }
 
 export interface GetClusterSnapshotBackupPolicyPolicy {
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id: string;
     policyItems: outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItem[];
 }
 
 export interface GetClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: number;
     frequencyType: string;
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id: string;
     retentionUnit: string;
     retentionValue: number;
 }
@@ -2719,20 +2694,12 @@ export interface GetClustersResultSnapshotBackupPolicy {
 }
 
 export interface GetClustersResultSnapshotBackupPolicyPolicy {
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id: string;
     policyItems: outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItem[];
 }
 
 export interface GetClustersResultSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: number;
     frequencyType: string;
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id: string;
     retentionUnit: string;
     retentionValue: number;
 }
@@ -3756,7 +3723,6 @@ export interface SearchIndexSynonym {
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt: string;
     groupId: string;
-    id: number;
     notAfter: string;
     subject: string;
 }

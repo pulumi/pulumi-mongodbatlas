@@ -73,9 +73,6 @@ namespace Pulumi.Mongodbatlas
         [Output("iamRoleId")]
         public Output<string> IamRoleId { get; private set; } = null!;
 
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
         /// </summary>
@@ -182,9 +179,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("iamRoleId")]
         public Input<string>? IamRoleId { get; set; }
-
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.

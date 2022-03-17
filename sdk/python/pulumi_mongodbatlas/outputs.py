@@ -1843,8 +1843,7 @@ class CloudBackupSchedulePolicyItemDaily(dict):
                  frequency_interval: int,
                  retention_unit: str,
                  retention_value: int,
-                 frequency_type: Optional[str] = None,
-                 id: Optional[str] = None):
+                 frequency_type: Optional[str] = None):
         """
         :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
@@ -1855,8 +1854,6 @@ class CloudBackupSchedulePolicyItemDaily(dict):
         pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
             pulumi.set(__self__, "frequency_type", frequency_type)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -1886,11 +1883,6 @@ class CloudBackupSchedulePolicyItemDaily(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         return pulumi.get(self, "frequency_type")
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -2001,8 +1993,7 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
                  frequency_interval: int,
                  retention_unit: str,
                  retention_value: int,
-                 frequency_type: Optional[str] = None,
-                 id: Optional[str] = None):
+                 frequency_type: Optional[str] = None):
         """
         :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
@@ -2013,8 +2004,6 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
         pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
             pulumi.set(__self__, "frequency_type", frequency_type)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2044,11 +2033,6 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         return pulumi.get(self, "frequency_type")
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -2080,8 +2064,7 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
                  frequency_interval: int,
                  retention_unit: str,
                  retention_value: int,
-                 frequency_type: Optional[str] = None,
-                 id: Optional[str] = None):
+                 frequency_type: Optional[str] = None):
         """
         :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
@@ -2092,8 +2075,6 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
         pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
             pulumi.set(__self__, "frequency_type", frequency_type)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2123,11 +2104,6 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         return pulumi.get(self, "frequency_type")
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -2232,17 +2208,13 @@ class CloudBackupSnapshotMember(dict):
 
     def __init__(__self__, *,
                  cloud_provider: Optional[str] = None,
-                 id: Optional[str] = None,
                  replica_set_name: Optional[str] = None):
         """
         :param str cloud_provider: Cloud provider that stores this snapshot.
-        :param str id: Unique identifier for the sharded cluster snapshot.
         :param str replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if replica_set_name is not None:
             pulumi.set(__self__, "replica_set_name", replica_set_name)
 
@@ -2253,14 +2225,6 @@ class CloudBackupSnapshotMember(dict):
         Cloud provider that stores this snapshot.
         """
         return pulumi.get(self, "cloud_provider")
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        Unique identifier for the sharded cluster snapshot.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="replicaSetName")
@@ -2542,15 +2506,8 @@ class CloudProviderSnapshotBackupPolicyPolicy(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 id: str,
                  policy_items: Sequence['outputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem']):
-        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "policy_items", policy_items)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="policyItems")
@@ -2586,12 +2543,10 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItem(dict):
     def __init__(__self__, *,
                  frequency_interval: int,
                  frequency_type: str,
-                 id: str,
                  retention_unit: str,
                  retention_value: int):
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "retention_unit", retention_unit)
         pulumi.set(__self__, "retention_value", retention_value)
 
@@ -2604,11 +2559,6 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItem(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> str:
         return pulumi.get(self, "frequency_type")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="retentionUnit")
@@ -3452,23 +3402,9 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 id: Optional[str] = None,
                  policy_items: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']] = None):
-        """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if policy_items is not None:
             pulumi.set(__self__, "policy_items", policy_items)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="policyItems")
@@ -3504,18 +3440,12 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
     def __init__(__self__, *,
                  frequency_interval: Optional[int] = None,
                  frequency_type: Optional[str] = None,
-                 id: Optional[str] = None,
                  retention_unit: Optional[str] = None,
                  retention_value: Optional[int] = None):
-        """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        """
         if frequency_interval is not None:
             pulumi.set(__self__, "frequency_interval", frequency_interval)
         if frequency_type is not None:
             pulumi.set(__self__, "frequency_type", frequency_type)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if retention_unit is not None:
             pulumi.set(__self__, "retention_unit", retention_unit)
         if retention_value is not None:
@@ -3530,14 +3460,6 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
         return pulumi.get(self, "frequency_type")
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="retentionUnit")
@@ -5196,15 +5118,12 @@ class X509AuthenticationDatabaseUserCertificate(dict):
     def __init__(__self__, *,
                  created_at: Optional[str] = None,
                  group_id: Optional[str] = None,
-                 id: Optional[int] = None,
                  not_after: Optional[str] = None,
                  subject: Optional[str] = None):
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if not_after is not None:
             pulumi.set(__self__, "not_after", not_after)
         if subject is not None:
@@ -5219,11 +5138,6 @@ class X509AuthenticationDatabaseUserCertificate(dict):
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[str]:
         return pulumi.get(self, "group_id")
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[int]:
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="notAfter")
@@ -9222,21 +9136,8 @@ class GetClusterSnapshotBackupPolicyResult(dict):
 @pulumi.output_type
 class GetClusterSnapshotBackupPolicyPolicyResult(dict):
     def __init__(__self__, *,
-                 id: str,
                  policy_items: Sequence['outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItemResult']):
-        """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "policy_items", policy_items)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="policyItems")
@@ -9249,15 +9150,10 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     def __init__(__self__, *,
                  frequency_interval: int,
                  frequency_type: str,
-                 id: str,
                  retention_unit: str,
                  retention_value: int):
-        """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "retention_unit", retention_unit)
         pulumi.set(__self__, "retention_value", retention_value)
 
@@ -9270,14 +9166,6 @@ class GetClusterSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> str:
         return pulumi.get(self, "frequency_type")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="retentionUnit")
@@ -10220,21 +10108,8 @@ class GetClustersResultSnapshotBackupPolicyResult(dict):
 @pulumi.output_type
 class GetClustersResultSnapshotBackupPolicyPolicyResult(dict):
     def __init__(__self__, *,
-                 id: str,
                  policy_items: Sequence['outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult']):
-        """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "policy_items", policy_items)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="policyItems")
@@ -10247,15 +10122,10 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     def __init__(__self__, *,
                  frequency_interval: int,
                  frequency_type: str,
-                 id: str,
                  retention_unit: str,
                  retention_value: int):
-        """
-        :param str id: Unique identifer of the replication document for a zone in a Global Cluster.
-        """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "retention_unit", retention_unit)
         pulumi.set(__self__, "retention_value", retention_value)
 
@@ -10268,14 +10138,6 @@ class GetClustersResultSnapshotBackupPolicyPolicyPolicyItemResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> str:
         return pulumi.get(self, "frequency_type")
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        Unique identifer of the replication document for a zone in a Global Cluster.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="retentionUnit")

@@ -77,7 +77,6 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
      * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
      */
     public readonly iamRoleId!: pulumi.Output<string>;
-    public /*out*/ readonly id!: pulumi.Output<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -100,7 +99,6 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
             resourceInputs["cloudProvider"] = state ? state.cloudProvider : undefined;
             resourceInputs["exportBucketId"] = state ? state.exportBucketId : undefined;
             resourceInputs["iamRoleId"] = state ? state.iamRoleId : undefined;
-            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
         } else {
             const args = argsOrState as CloudBackupSnapshotExportBucketArgs | undefined;
@@ -121,7 +119,6 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
             resourceInputs["iamRoleId"] = args ? args.iamRoleId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["exportBucketId"] = undefined /*out*/;
-            resourceInputs["id"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CloudBackupSnapshotExportBucket.__pulumiType, name, resourceInputs, opts);
@@ -148,7 +145,6 @@ export interface CloudBackupSnapshotExportBucketState {
      * Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
      */
     iamRoleId?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */

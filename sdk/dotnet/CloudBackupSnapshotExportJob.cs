@@ -116,9 +116,6 @@ namespace Pulumi.Mongodbatlas
         [Output("finishedAt")]
         public Output<string> FinishedAt { get; private set; } = null!;
 
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
         [Output("prefix")]
         public Output<string> Prefix { get; private set; } = null!;
 
@@ -283,9 +280,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("finishedAt")]
         public Input<string>? FinishedAt { get; set; }
-
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }

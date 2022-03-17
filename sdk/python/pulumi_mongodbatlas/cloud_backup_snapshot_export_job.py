@@ -100,7 +100,6 @@ class _CloudBackupSnapshotExportJobState:
                  export_status_exported_collections: Optional[pulumi.Input[int]] = None,
                  export_status_total_collections: Optional[pulumi.Input[int]] = None,
                  finished_at: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
@@ -138,8 +137,6 @@ class _CloudBackupSnapshotExportJobState:
             pulumi.set(__self__, "export_status_total_collections", export_status_total_collections)
         if finished_at is not None:
             pulumi.set(__self__, "finished_at", finished_at)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
         if project_id is not None:
@@ -260,15 +257,6 @@ class _CloudBackupSnapshotExportJobState:
     @finished_at.setter
     def finished_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "finished_at", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -464,7 +452,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             __props__.__dict__["export_status_exported_collections"] = None
             __props__.__dict__["export_status_total_collections"] = None
             __props__.__dict__["finished_at"] = None
-            __props__.__dict__["id"] = None
             __props__.__dict__["prefix"] = None
             __props__.__dict__["state"] = None
         super(CloudBackupSnapshotExportJob, __self__).__init__(
@@ -487,7 +474,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
             export_status_exported_collections: Optional[pulumi.Input[int]] = None,
             export_status_total_collections: Optional[pulumi.Input[int]] = None,
             finished_at: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             prefix: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             snapshot_id: Optional[pulumi.Input[str]] = None,
@@ -524,7 +510,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         __props__.__dict__["export_status_exported_collections"] = export_status_exported_collections
         __props__.__dict__["export_status_total_collections"] = export_status_total_collections
         __props__.__dict__["finished_at"] = finished_at
-        __props__.__dict__["id"] = id
         __props__.__dict__["prefix"] = prefix
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["snapshot_id"] = snapshot_id
@@ -602,11 +587,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         Timestamp in ISO 8601 date and time format in UTC when the export job completes.
         """
         return pulumi.get(self, "finished_at")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

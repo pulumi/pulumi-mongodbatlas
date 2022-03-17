@@ -18,7 +18,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int FrequencyInterval;
         public readonly string? FrequencyType;
-        public readonly string? Id;
         /// <summary>
         /// Scope of the backup policy item: days, weeks, or months.
         /// </summary>
@@ -34,15 +33,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? frequencyType,
 
-            string? id,
-
             string retentionUnit,
 
             int retentionValue)
         {
             FrequencyInterval = frequencyInterval;
             FrequencyType = frequencyType;
-            Id = id;
             RetentionUnit = retentionUnit;
             RetentionValue = retentionValue;
         }

@@ -85,7 +85,6 @@ class _CloudBackupSnapshotExportBucketState:
                  cloud_provider: Optional[pulumi.Input[str]] = None,
                  export_bucket_id: Optional[pulumi.Input[str]] = None,
                  iam_role_id: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshotExportBucket resources.
@@ -103,8 +102,6 @@ class _CloudBackupSnapshotExportBucketState:
             pulumi.set(__self__, "export_bucket_id", export_bucket_id)
         if iam_role_id is not None:
             pulumi.set(__self__, "iam_role_id", iam_role_id)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
 
@@ -155,15 +152,6 @@ class _CloudBackupSnapshotExportBucketState:
     @iam_role_id.setter
     def iam_role_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam_role_id", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -301,7 +289,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["export_bucket_id"] = None
-            __props__.__dict__["id"] = None
         super(CloudBackupSnapshotExportBucket, __self__).__init__(
             'mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket',
             resource_name,
@@ -316,7 +303,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             cloud_provider: Optional[pulumi.Input[str]] = None,
             export_bucket_id: Optional[pulumi.Input[str]] = None,
             iam_role_id: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None) -> 'CloudBackupSnapshotExportBucket':
         """
         Get an existing CloudBackupSnapshotExportBucket resource's state with the given name, id, and optional extra
@@ -339,7 +325,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         __props__.__dict__["cloud_provider"] = cloud_provider
         __props__.__dict__["export_bucket_id"] = export_bucket_id
         __props__.__dict__["iam_role_id"] = iam_role_id
-        __props__.__dict__["id"] = id
         __props__.__dict__["project_id"] = project_id
         return CloudBackupSnapshotExportBucket(resource_name, opts=opts, __props__=__props__)
 
@@ -374,11 +359,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucket_name`.
         """
         return pulumi.get(self, "iam_role_id")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="projectId")
