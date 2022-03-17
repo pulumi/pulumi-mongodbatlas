@@ -5,9 +5,14 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .advanced_cluster import *
 from .alert_configuration import *
 from .auditing import *
 from .cloud_backup_schedule import *
+from .cloud_backup_snapshot import *
+from .cloud_backup_snapshot_export_bucket import *
+from .cloud_backup_snapshot_export_job import *
+from .cloud_backup_snapshot_restore_job import *
 from .cloud_provider_access import *
 from .cloud_provider_access_authorization import *
 from .cloud_provider_access_setup import *
@@ -22,9 +27,19 @@ from .database_user import *
 from .encryption_at_rest import *
 from .event_trigger import *
 from .get509_authentication_database_user import *
+from .get_advanced_cluster import *
+from .get_advanced_clusters import *
 from .get_alert_configuration import *
 from .get_auditing import *
 from .get_cloud_backup_schedule import *
+from .get_cloud_backup_snapshot import *
+from .get_cloud_backup_snapshot_export_bucket import *
+from .get_cloud_backup_snapshot_export_buckets import *
+from .get_cloud_backup_snapshot_export_job import *
+from .get_cloud_backup_snapshot_export_jobs import *
+from .get_cloud_backup_snapshot_restore_job import *
+from .get_cloud_backup_snapshot_restore_jobs import *
+from .get_cloud_backup_snapshots import *
 from .get_cloud_provider_access import *
 from .get_cloud_provider_access_setup import *
 from .get_cloud_provider_snapshot import *
@@ -53,9 +68,13 @@ from .get_network_peering import *
 from .get_network_peerings import *
 from .get_online_archive import *
 from .get_online_archives import *
+from .get_org_invitation import *
 from .get_private_link_endpoint import *
 from .get_private_link_endpoint_service import *
+from .get_privatelink_endpoint_service_adl import *
+from .get_privatelink_endpoints_service_adl import *
 from .get_project import *
+from .get_project_invitation import *
 from .get_project_ip_access_list import *
 from .get_projects import *
 from .get_search_index import *
@@ -71,10 +90,13 @@ from .maintenance_window import *
 from .network_container import *
 from .network_peering import *
 from .online_archive import *
+from .org_invitation import *
 from .private_ip_mode import *
 from .private_link_endpoint import *
 from .private_link_endpoint_service import *
+from .privatelink_endpoint_service_adl import *
 from .project import *
+from .project_invitation import *
 from .project_ip_access_list import *
 from .provider import *
 from .search_index import *
@@ -97,6 +119,14 @@ _utilities.register(
 [
  {
   "pkg": "mongodbatlas",
+  "mod": "index/advancedCluster",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/advancedCluster:AdvancedCluster": "AdvancedCluster"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/alertConfiguration",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -117,6 +147,38 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule": "CloudBackupSchedule"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/cloudBackupSnapshot",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot": "CloudBackupSnapshot"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/cloudBackupSnapshotExportBucket",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket": "CloudBackupSnapshotExportBucket"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/cloudBackupSnapshotExportJob",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob": "CloudBackupSnapshotExportJob"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/cloudBackupSnapshotRestoreJob",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob": "CloudBackupSnapshotRestoreJob"
   }
  },
  {
@@ -281,6 +343,14 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/orgInvitation",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/orgInvitation:OrgInvitation": "OrgInvitation"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/privateIpMode",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -305,10 +375,26 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/privatelinkEndpointServiceAdl",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl": "PrivatelinkEndpointServiceAdl"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/project",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/project:Project": "Project"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/projectInvitation",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/projectInvitation:ProjectInvitation": "ProjectInvitation"
   }
  },
  {

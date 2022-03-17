@@ -231,7 +231,7 @@ def get_cloud_provider_snapshot_restore_job(cluster_name: Optional[str] = None,
                                             project_id: Optional[str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderSnapshotRestoreJobResult:
     """
-    **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshot_restore_job`
+    **WARNING:** This datasource is deprecated, use `CloudBackupSnapshotRestoreJob`
 
     `CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
@@ -279,7 +279,7 @@ def get_cloud_provider_snapshot_restore_job_output(cluster_name: Optional[pulumi
                                                    project_id: Optional[pulumi.Input[str]] = None,
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCloudProviderSnapshotRestoreJobResult]:
     """
-    **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshot_restore_job`
+    **WARNING:** This datasource is deprecated, use `CloudBackupSnapshotRestoreJob`
 
     `CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 

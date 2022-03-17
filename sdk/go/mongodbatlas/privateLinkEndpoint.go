@@ -36,7 +36,7 @@ import (
 // 		_, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "test", &mongodbatlas.PrivateLinkEndpointArgs{
 // 			ProjectId:    pulumi.String("<PROJECT-ID>"),
 // 			ProviderName: pulumi.String("AWS/AZURE"),
-// 			Region:       pulumi.String("us-east-1"),
+// 			Region:       pulumi.String("US_EAST_1"),
 // 		})
 // 		if err != nil {
 // 			return err

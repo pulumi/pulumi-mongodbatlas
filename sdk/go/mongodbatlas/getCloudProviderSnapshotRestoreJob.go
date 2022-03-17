@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// **WARNING:** This datasource is deprecated, use `mongodbatlasCloudBackupSnapshotRestoreJob`
+// **WARNING:** This datasource is deprecated, use `CloudBackupSnapshotRestoreJob`
 //
 // `CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 //

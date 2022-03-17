@@ -4,6 +4,240 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
+export interface AdvancedClusterAdvancedConfiguration {
+    /**
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
+     */
+    defaultReadConcern?: pulumi.Input<string>;
+    /**
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 4.4 clusters default to [1](https://docs.mongodb.com/manual/reference/write-concern/).
+     */
+    defaultWriteConcern?: pulumi.Input<string>;
+    /**
+     * When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+     */
+    failIndexKeyTooLong?: pulumi.Input<boolean>;
+    /**
+     * When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     */
+    javascriptEnabled?: pulumi.Input<boolean>;
+    /**
+     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are:
+     */
+    minimumEnabledTlsProtocol?: pulumi.Input<string>;
+    /**
+     * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+     */
+    noTableScan?: pulumi.Input<boolean>;
+    /**
+     * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+     */
+    oplogSizeMb?: pulumi.Input<number>;
+    /**
+     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     */
+    sampleRefreshIntervalBiConnector?: pulumi.Input<number>;
+    /**
+     * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     */
+    sampleSizeBiConnector?: pulumi.Input<number>;
+}
+
+export interface AdvancedClusterBiConnector {
+    /**
+     * Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
+     * *
+     * - Set to `true` to enable BI Connector for Atlas.
+     * - Set to `false` to disable BI Connector for Atlas.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     */
+    readPreference?: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterConnectionString {
+    /**
+     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].connection_string instead
+     */
+    awsPrivateLink?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * @deprecated This field is deprecated. Use connection_strings.private_endpoint[n].srv_connection_string instead
+     */
+    awsPrivateLinkSrv?: pulumi.Input<{[key: string]: any}>;
+    private?: pulumi.Input<string>;
+    privateEndpoints?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionStringPrivateEndpoint>[]>;
+    privateSrv?: pulumi.Input<string>;
+    standard?: pulumi.Input<string>;
+    standardSrv?: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterConnectionStringPrivateEndpoint {
+    connectionString?: pulumi.Input<string>;
+    endpoints?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint>[]>;
+    srvConnectionString?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
+    endpointId?: pulumi.Input<string>;
+    /**
+     * Cloud service provider on which the servers are provisioned.
+     * The possible values are:
+     */
+    providerName?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterLabel {
+    /**
+     * The key that you want to write.
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * The value that you want to write.
+     */
+    value?: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterReplicationSpec {
+    /**
+     * A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+     */
+    containerId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
+     */
+    numShards?: pulumi.Input<number>;
+    /**
+     * Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
+     */
+    regionConfigs: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfig>[]>;
+    /**
+     * Name for the zone in a Global Cluster.
+     */
+    zoneName?: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterReplicationSpecRegionConfig {
+    /**
+     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
+     */
+    analyticsSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs>;
+    /**
+     * Configuration for the Collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` parameter must be the same for every item in the `replicationSpecs` array. See below
+     */
+    autoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling>;
+    /**
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` of a specs is `M2` or `M5`.
+     */
+    backingProviderName?: pulumi.Input<string>;
+    /**
+     * Hardware specifications for electable nodes in the region. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below
+     */
+    electableSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs>;
+    /**
+     * Election priority of the region. For regions with only read-only nodes, set this value to 0.
+     * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
+     * * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+     */
+    priority: pulumi.Input<number>;
+    /**
+     * Cloud service provider on which the servers are provisioned.
+     * The possible values are:
+     */
+    providerName: pulumi.Input<string>;
+    /**
+     * Hardware specifications for read-only nodes in the region. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below
+     */
+    readOnlySpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs>;
+    /**
+     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     */
+    regionName: pulumi.Input<string>;
+}
+
+export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
+    /**
+     * Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+     */
+    diskIops?: pulumi.Input<number>;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     */
+    ebsVolumeType?: pulumi.Input<string>;
+    /**
+     * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+     */
+    instanceSize: pulumi.Input<string>;
+    /**
+     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     */
+    nodeCount?: pulumi.Input<number>;
+}
+
+export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
+    /**
+     * Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
+     */
+    computeEnabled?: pulumi.Input<boolean>;
+    /**
+     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+     */
+    computeMaxInstanceSize?: pulumi.Input<string>;
+    /**
+     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+     */
+    computeMinInstanceSize?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+     */
+    computeScaleDownEnabled?: pulumi.Input<boolean>;
+    /**
+     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to true.
+     */
+    diskGbEnabled?: pulumi.Input<boolean>;
+}
+
+export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
+    /**
+     * Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+     */
+    diskIops?: pulumi.Input<number>;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     */
+    ebsVolumeType?: pulumi.Input<string>;
+    /**
+     * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+     */
+    instanceSize: pulumi.Input<string>;
+    /**
+     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     */
+    nodeCount?: pulumi.Input<number>;
+}
+
+export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
+    /**
+     * Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
+     */
+    diskIops?: pulumi.Input<number>;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
+     */
+    ebsVolumeType?: pulumi.Input<string>;
+    /**
+     * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size.
+     */
+    instanceSize: pulumi.Input<string>;
+    /**
+     * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary), but can enable local reads.
+     */
+    nodeCount?: pulumi.Input<number>;
+}
+
 export interface AlertConfigurationMatcher {
     /**
      * Name of the field in the target object to match on.
@@ -211,7 +445,6 @@ export interface CloudBackupSchedulePolicyItemDaily {
      */
     frequencyInterval: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -245,7 +478,6 @@ export interface CloudBackupSchedulePolicyItemMonthly {
      */
     frequencyInterval: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -262,7 +494,6 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      */
     frequencyInterval: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -271,6 +502,53 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      * Value to associate with `retentionUnit`.
      */
     retentionValue: pulumi.Input<number>;
+}
+
+export interface CloudBackupSnapshotExportJobComponent {
+    /**
+     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     */
+    exportId?: pulumi.Input<string>;
+    /**
+     * _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     */
+    replicaSetName?: pulumi.Input<string>;
+}
+
+export interface CloudBackupSnapshotExportJobCustomData {
+    /**
+     * Required if you want to include custom data using `customData` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * Required if you specify `key`.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface CloudBackupSnapshotMember {
+    /**
+     * Cloud provider that stores this snapshot.
+     */
+    cloudProvider?: pulumi.Input<string>;
+    /**
+     * Label given to a shard or config server from which Atlas took this snapshot.
+     */
+    replicaSetName?: pulumi.Input<string>;
+}
+
+export interface CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
+    automated?: pulumi.Input<boolean>;
+    download?: pulumi.Input<boolean>;
+    oplogInc?: pulumi.Input<number>;
+    oplogTs?: pulumi.Input<number>;
+    pointInTime?: pulumi.Input<boolean>;
+    pointInTimeUtcSeconds?: pulumi.Input<number>;
+    /**
+     * Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+     */
+    targetClusterName?: pulumi.Input<string>;
+    targetProjectId?: pulumi.Input<string>;
 }
 
 export interface CloudProviderAccessAuthorizationAws {
@@ -293,14 +571,12 @@ export interface CloudProviderAccessSetupAwsConfig {
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicy {
-    id: pulumi.Input<string>;
     policyItems: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem>[]>;
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: pulumi.Input<number>;
     frequencyType: pulumi.Input<string>;
-    id: pulumi.Input<string>;
     retentionUnit: pulumi.Input<string>;
     retentionValue: pulumi.Input<number>;
 }
@@ -478,20 +754,12 @@ export interface ClusterSnapshotBackupPolicy {
 }
 
 export interface ClusterSnapshotBackupPolicyPolicy {
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id?: pulumi.Input<string>;
     policyItems?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicyPolicyPolicyItem>[]>;
 }
 
 export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval?: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
-    /**
-     * Unique identifer of the replication document for a zone in a Global Cluster.
-     */
-    id?: pulumi.Input<string>;
     retentionUnit?: pulumi.Input<string>;
     retentionValue?: pulumi.Input<number>;
 }
@@ -709,14 +977,6 @@ export interface EventTriggerEventProcessorsAwsEventbridge {
     configRegion?: pulumi.Input<string>;
 }
 
-export interface GetCustomDbRoleInheritedRole {
-    databaseName?: string;
-    /**
-     * Name of the custom role.
-     */
-    roleName?: string;
-}
-
 export interface GetCustomDbRoleInheritedRoleArgs {
     databaseName?: pulumi.Input<string>;
     /**
@@ -725,27 +985,12 @@ export interface GetCustomDbRoleInheritedRoleArgs {
     roleName?: pulumi.Input<string>;
 }
 
-export interface GetGlobalClusterConfigManagedNamespaceArgs {
+export interface GetCustomDbRoleInheritedRole {
+    databaseName?: string;
     /**
-     * (Required) The name of the collection associated with the managed namespace.
+     * Name of the custom role.
      */
-    collection: pulumi.Input<string>;
-    /**
-     * (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
-     */
-    customShardKey: pulumi.Input<string>;
-    /**
-     * (Required) The name of the database containing the collection.
-     */
-    db: pulumi.Input<string>;
-    /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
-     */
-    isCustomShardKeyHashed?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
-     */
-    isShardKeyUnique?: pulumi.Input<boolean>;
+    roleName?: string;
 }
 
 export interface GetGlobalClusterConfigManagedNamespace {
@@ -769,6 +1014,29 @@ export interface GetGlobalClusterConfigManagedNamespace {
      * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
      */
     isShardKeyUnique?: boolean;
+}
+
+export interface GetGlobalClusterConfigManagedNamespaceArgs {
+    /**
+     * (Required) The name of the collection associated with the managed namespace.
+     */
+    collection: pulumi.Input<string>;
+    /**
+     * (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
+     */
+    customShardKey: pulumi.Input<string>;
+    /**
+     * (Required) The name of the database containing the collection.
+     */
+    db: pulumi.Input<string>;
+    /**
+     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     */
+    isCustomShardKeyHashed?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     */
+    isShardKeyUnique?: pulumi.Input<boolean>;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {
@@ -917,7 +1185,6 @@ export interface SearchIndexSynonym {
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt?: pulumi.Input<string>;
     groupId?: pulumi.Input<string>;
-    id?: pulumi.Input<number>;
     notAfter?: pulumi.Input<string>;
     subject?: pulumi.Input<string>;
 }

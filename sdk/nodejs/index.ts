@@ -5,9 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export * from "./advancedCluster";
 export * from "./alertConfiguration";
 export * from "./auditing";
 export * from "./cloudBackupSchedule";
+export * from "./cloudBackupSnapshot";
+export * from "./cloudBackupSnapshotExportBucket";
+export * from "./cloudBackupSnapshotExportJob";
+export * from "./cloudBackupSnapshotRestoreJob";
 export * from "./cloudProviderAccess";
 export * from "./cloudProviderAccessAuthorization";
 export * from "./cloudProviderAccessSetup";
@@ -22,9 +27,19 @@ export * from "./databaseUser";
 export * from "./encryptionAtRest";
 export * from "./eventTrigger";
 export * from "./get509AuthenticationDatabaseUser";
+export * from "./getAdvancedCluster";
+export * from "./getAdvancedClusters";
 export * from "./getAlertConfiguration";
 export * from "./getAuditing";
 export * from "./getCloudBackupSchedule";
+export * from "./getCloudBackupSnapshot";
+export * from "./getCloudBackupSnapshotExportBucket";
+export * from "./getCloudBackupSnapshotExportBuckets";
+export * from "./getCloudBackupSnapshotExportJob";
+export * from "./getCloudBackupSnapshotExportJobs";
+export * from "./getCloudBackupSnapshotRestoreJob";
+export * from "./getCloudBackupSnapshotRestoreJobs";
+export * from "./getCloudBackupSnapshots";
 export * from "./getCloudProviderAccess";
 export * from "./getCloudProviderAccessSetup";
 export * from "./getCloudProviderSnapshot";
@@ -53,9 +68,13 @@ export * from "./getNetworkPeering";
 export * from "./getNetworkPeerings";
 export * from "./getOnlineArchive";
 export * from "./getOnlineArchives";
+export * from "./getOrgInvitation";
 export * from "./getPrivateLinkEndpoint";
 export * from "./getPrivateLinkEndpointService";
+export * from "./getPrivatelinkEndpointServiceAdl";
+export * from "./getPrivatelinkEndpointsServiceAdl";
 export * from "./getProject";
+export * from "./getProjectInvitation";
 export * from "./getProjectIpAccessList";
 export * from "./getProjects";
 export * from "./getSearchIndex";
@@ -71,10 +90,13 @@ export * from "./maintenanceWindow";
 export * from "./networkContainer";
 export * from "./networkPeering";
 export * from "./onlineArchive";
+export * from "./orgInvitation";
 export * from "./privateIpMode";
 export * from "./privateLinkEndpoint";
 export * from "./privateLinkEndpointService";
+export * from "./privatelinkEndpointServiceAdl";
 export * from "./project";
+export * from "./projectInvitation";
 export * from "./projectIpAccessList";
 export * from "./provider";
 export * from "./searchIndex";
@@ -93,9 +115,14 @@ export {
 };
 
 // Import resources to register:
+import { AdvancedCluster } from "./advancedCluster";
 import { AlertConfiguration } from "./alertConfiguration";
 import { Auditing } from "./auditing";
 import { CloudBackupSchedule } from "./cloudBackupSchedule";
+import { CloudBackupSnapshot } from "./cloudBackupSnapshot";
+import { CloudBackupSnapshotExportBucket } from "./cloudBackupSnapshotExportBucket";
+import { CloudBackupSnapshotExportJob } from "./cloudBackupSnapshotExportJob";
+import { CloudBackupSnapshotRestoreJob } from "./cloudBackupSnapshotRestoreJob";
 import { CloudProviderAccess } from "./cloudProviderAccess";
 import { CloudProviderAccessAuthorization } from "./cloudProviderAccessAuthorization";
 import { CloudProviderAccessSetup } from "./cloudProviderAccessSetup";
@@ -116,10 +143,13 @@ import { MaintenanceWindow } from "./maintenanceWindow";
 import { NetworkContainer } from "./networkContainer";
 import { NetworkPeering } from "./networkPeering";
 import { OnlineArchive } from "./onlineArchive";
+import { OrgInvitation } from "./orgInvitation";
 import { PrivateIpMode } from "./privateIpMode";
 import { PrivateLinkEndpoint } from "./privateLinkEndpoint";
 import { PrivateLinkEndpointService } from "./privateLinkEndpointService";
+import { PrivatelinkEndpointServiceAdl } from "./privatelinkEndpointServiceAdl";
 import { Project } from "./project";
+import { ProjectInvitation } from "./projectInvitation";
 import { ProjectIpAccessList } from "./projectIpAccessList";
 import { SearchIndex } from "./searchIndex";
 import { Team } from "./team";
@@ -131,12 +161,22 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "mongodbatlas:index/advancedCluster:AdvancedCluster":
+                return new AdvancedCluster(name, <any>undefined, { urn })
             case "mongodbatlas:index/alertConfiguration:AlertConfiguration":
                 return new AlertConfiguration(name, <any>undefined, { urn })
             case "mongodbatlas:index/auditing:Auditing":
                 return new Auditing(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
                 return new CloudBackupSchedule(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot":
+                return new CloudBackupSnapshot(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket":
+                return new CloudBackupSnapshotExportBucket(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob":
+                return new CloudBackupSnapshotExportJob(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob":
+                return new CloudBackupSnapshotRestoreJob(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderAccess:CloudProviderAccess":
                 return new CloudProviderAccess(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization":
@@ -177,14 +217,20 @@ const _module = {
                 return new NetworkPeering(name, <any>undefined, { urn })
             case "mongodbatlas:index/onlineArchive:OnlineArchive":
                 return new OnlineArchive(name, <any>undefined, { urn })
+            case "mongodbatlas:index/orgInvitation:OrgInvitation":
+                return new OrgInvitation(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateIpMode:PrivateIpMode":
                 return new PrivateIpMode(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
                 return new PrivateLinkEndpoint(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
                 return new PrivateLinkEndpointService(name, <any>undefined, { urn })
+            case "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl":
+                return new PrivatelinkEndpointServiceAdl(name, <any>undefined, { urn })
             case "mongodbatlas:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
+            case "mongodbatlas:index/projectInvitation:ProjectInvitation":
+                return new ProjectInvitation(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchIndex:SearchIndex":
@@ -202,9 +248,14 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/advancedCluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/alertConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/auditing", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSchedule", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshot", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotExportBucket", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotExportJob", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotRestoreJob", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccess", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessAuthorization", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessSetup", _module)
@@ -225,10 +276,13 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/maintenanceWindow",
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkContainer", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/onlineArchive", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateIpMode", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpointService", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServiceAdl", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)

@@ -21,9 +21,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("frequencyType")]
         public Input<string>? FrequencyType { get; set; }
 
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         /// <summary>
         /// Scope of the backup policy item: days, weeks, or months.
         /// </summary>

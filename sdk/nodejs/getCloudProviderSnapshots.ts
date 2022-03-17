@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * **WARNING:** This datasource is deprecated, use `mongodbatlasCloudBackupSnapshots`
+ * **WARNING:** This datasource is deprecated, use `mongodbatlas.getCloudBackupSnapshots`
  *
  * `mongodbatlas.getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *

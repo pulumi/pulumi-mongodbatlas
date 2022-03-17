@@ -338,7 +338,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        **WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+        **WARNING:** This resource is deprecated, use `CloudBackupSnapshot`
 
         `CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
@@ -399,7 +399,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
                  args: CloudProviderSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        **WARNING:** This resource is deprecated, use `mongodbatlas_cloud_backup_snapshot`
+        **WARNING:** This resource is deprecated, use `CloudBackupSnapshot`
 
         `CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.

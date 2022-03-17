@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// **WARNING:** This datasource is deprecated, use `mongodbatlasCloudBackupSnapshots`
+// **WARNING:** This datasource is deprecated, use `getCloudBackupSnapshots`
 //
 // `getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 //

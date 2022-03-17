@@ -12,9 +12,6 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class CloudProviderSnapshotBackupPolicyPolicyGetArgs : Pulumi.ResourceArgs
     {
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
-
         [Input("policyItems", required: true)]
         private InputList<Inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItemGetArgs>? _policyItems;
         public InputList<Inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItemGetArgs> PolicyItems

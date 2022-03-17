@@ -15,7 +15,6 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly string? CreatedAt;
         public readonly string? GroupId;
-        public readonly int? Id;
         public readonly string? NotAfter;
         public readonly string? Subject;
 
@@ -25,15 +24,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? groupId,
 
-            int? id,
-
             string? notAfter,
 
             string? subject)
         {
             CreatedAt = createdAt;
             GroupId = groupId;
-            Id = id;
             NotAfter = notAfter;
             Subject = subject;
         }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * **WARNING:** This resource is deprecated, use `mongodbatlasCloudBackupSnapshot`
+ * **WARNING:** This resource is deprecated, use `mongodbatlas.CloudBackupSnapshot`
  *
  * `mongodbatlas.CloudProviderSnapshot` provides a resource to take a cloud backup snapshot on demand.
  * On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
