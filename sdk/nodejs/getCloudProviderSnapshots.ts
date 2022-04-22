@@ -11,26 +11,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testCloudProviderSnapshot = new mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", {
- *     groupId: "5d0f1f73cf09a29120e173cf",
- *     clusterName: "MyClusterTest",
- *     description: "SomeDescription",
- *     retentionInDays: 1,
- * });
- * const testCloudProviderSnapshots = mongodbatlas.getCloudProviderSnapshots({
- *     groupId: mongodbatlas_cloud_provider_snapshots.test.group_id,
- *     clusterName: mongodbatlas_cloud_provider_snapshots.test.cluster_name,
- *     pageNum: 1,
- *     itemsPerPage: 5,
- * });
- * ```
  */
 export function getCloudProviderSnapshots(args: GetCloudProviderSnapshotsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotsResult> {
     if (!opts) {
