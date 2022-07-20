@@ -32,7 +32,8 @@ class EventTriggerArgs:
                  disabled: Optional[pulumi.Input[bool]] = None,
                  event_processors: Optional[pulumi.Input['EventTriggerEventProcessorsArgs']] = None,
                  function_id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 unordered: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a EventTrigger resource.
         :param pulumi.Input[str] app_id: The ObjectID of your application.
@@ -54,6 +55,7 @@ class EventTriggerArgs:
                * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
         :param pulumi.Input[str] function_id: The ID of the function associated with the trigger.
         :param pulumi.Input[str] name: The name of the trigger.
+        :param pulumi.Input[bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
         pulumi.set(__self__, "app_id", app_id)
         pulumi.set(__self__, "project_id", project_id)
@@ -88,6 +90,8 @@ class EventTriggerArgs:
             pulumi.set(__self__, "function_id", function_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if unordered is not None:
+            pulumi.set(__self__, "unordered", unordered)
 
     @property
     @pulumi.getter(name="appId")
@@ -304,6 +308,18 @@ class EventTriggerArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def unordered(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+        """
+        return pulumi.get(self, "unordered")
+
+    @unordered.setter
+    def unordered(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unordered", value)
+
 
 @pulumi.input_type
 class _EventTriggerState:
@@ -328,7 +344,8 @@ class _EventTriggerState:
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  trigger_id: Optional[pulumi.Input[str]] = None,
-                 type: Optional[pulumi.Input[str]] = None):
+                 type: Optional[pulumi.Input[str]] = None,
+                 unordered: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering EventTrigger resources.
         :param pulumi.Input[str] app_id: The ObjectID of your application.
@@ -352,6 +369,7 @@ class _EventTriggerState:
         :param pulumi.Input[str] project_id: The unique ID for the project to create the trigger.
         :param pulumi.Input[str] trigger_id: The unique ID of the trigger.
         :param pulumi.Input[str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
+        :param pulumi.Input[bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
         if app_id is not None:
             pulumi.set(__self__, "app_id", app_id)
@@ -395,6 +413,8 @@ class _EventTriggerState:
             pulumi.set(__self__, "trigger_id", trigger_id)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if unordered is not None:
+            pulumi.set(__self__, "unordered", unordered)
 
     @property
     @pulumi.getter(name="appId")
@@ -644,6 +664,18 @@ class _EventTriggerState:
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
 
+    @property
+    @pulumi.getter
+    def unordered(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+        """
+        return pulumi.get(self, "unordered")
+
+    @unordered.setter
+    def unordered(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "unordered", value)
+
 
 class EventTrigger(pulumi.CustomResource):
     @overload
@@ -668,6 +700,7 @@ class EventTrigger(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 unordered: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         `EventTrigger` provides a Event Trigger resource.
@@ -738,7 +771,8 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ),
             project_id="PROJECT ID",
-            type="DATABASE")
+            type="DATABASE",
+            unordered=False)
         ```
         ### Example Usage: Authentication Trigger
         ```python
@@ -797,6 +831,7 @@ class EventTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the trigger.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the trigger.
         :param pulumi.Input[str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
+        :param pulumi.Input[bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
         ...
     @overload
@@ -873,7 +908,8 @@ class EventTrigger(pulumi.CustomResource):
                 ),
             ),
             project_id="PROJECT ID",
-            type="DATABASE")
+            type="DATABASE",
+            unordered=False)
         ```
         ### Example Usage: Authentication Trigger
         ```python
@@ -944,6 +980,7 @@ class EventTrigger(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 unordered: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -980,6 +1017,7 @@ class EventTrigger(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["unordered"] = unordered
             __props__.__dict__["config_schedule_type"] = None
             __props__.__dict__["function_name"] = None
             __props__.__dict__["trigger_id"] = None
@@ -1013,7 +1051,8 @@ class EventTrigger(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             trigger_id: Optional[pulumi.Input[str]] = None,
-            type: Optional[pulumi.Input[str]] = None) -> 'EventTrigger':
+            type: Optional[pulumi.Input[str]] = None,
+            unordered: Optional[pulumi.Input[bool]] = None) -> 'EventTrigger':
         """
         Get an existing EventTrigger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1042,6 +1081,7 @@ class EventTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The unique ID for the project to create the trigger.
         :param pulumi.Input[str] trigger_id: The unique ID of the trigger.
         :param pulumi.Input[str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
+        :param pulumi.Input[bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1068,6 +1108,7 @@ class EventTrigger(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["trigger_id"] = trigger_id
         __props__.__dict__["type"] = type
+        __props__.__dict__["unordered"] = unordered
         return EventTrigger(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1233,4 +1274,12 @@ class EventTrigger(pulumi.CustomResource):
         The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def unordered(self) -> pulumi.Output[bool]:
+        """
+        Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+        """
+        return pulumi.get(self, "unordered")
 

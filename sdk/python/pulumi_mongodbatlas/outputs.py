@@ -26,6 +26,7 @@ __all__ = [
     'AlertConfigurationMetricThresholdConfig',
     'AlertConfigurationNotification',
     'AlertConfigurationThresholdConfig',
+    'CloudBackupScheduleExport',
     'CloudBackupSchedulePolicyItemDaily',
     'CloudBackupSchedulePolicyItemHourly',
     'CloudBackupSchedulePolicyItemMonthly',
@@ -70,6 +71,7 @@ __all__ = [
     'EncryptionAtRestGoogleCloudKmsConfig',
     'EventTriggerEventProcessors',
     'EventTriggerEventProcessorsAwsEventbridge',
+    'FederatedSettingsOrgRoleMappingRoleAssignment',
     'GlobalClusterConfigCustomZoneMapping',
     'GlobalClusterConfigManagedNamespace',
     'LdapConfigurationUserToDnMapping',
@@ -81,6 +83,7 @@ __all__ = [
     'ProjectApiKey',
     'ProjectTeam',
     'SearchIndexSynonym',
+    'ServerlessInstanceLink',
     'X509AuthenticationDatabaseUserCertificate',
     'Get509AuthenticationDatabaseUserCertificateResult',
     'GetAdvancedClusterAdvancedConfigurationResult',
@@ -112,6 +115,7 @@ __all__ = [
     'GetAlertConfigurationMetricThresholdConfigResult',
     'GetAlertConfigurationNotificationResult',
     'GetAlertConfigurationThresholdConfigResult',
+    'GetCloudBackupScheduleExportResult',
     'GetCloudBackupSchedulePolicyItemDailyResult',
     'GetCloudBackupSchedulePolicyItemHourlyResult',
     'GetCloudBackupSchedulePolicyItemMonthlyResult',
@@ -190,6 +194,29 @@ __all__ = [
     'GetEventTriggersResultResult',
     'GetEventTriggersResultEventProcessorResult',
     'GetEventTriggersResultEventProcessorAwsEventbridgeResult',
+    'GetFederatedSettingsIdentityProviderAssociatedOrgResult',
+    'GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult',
+    'GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentResult',
+    'GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult',
+    'GetFederatedSettingsIdentityProviderPemFileInfoResult',
+    'GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult',
+    'GetFederatedSettingsIdentityProvidersResultResult',
+    'GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult',
+    'GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult',
+    'GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentResult',
+    'GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult',
+    'GetFederatedSettingsIdentityProvidersResultPemFileInfoResult',
+    'GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult',
+    'GetFederatedSettingsOrgConfigRoleMappingResult',
+    'GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult',
+    'GetFederatedSettingsOrgConfigUserConflictResult',
+    'GetFederatedSettingsOrgConfigsResultResult',
+    'GetFederatedSettingsOrgConfigsResultRoleMappingResult',
+    'GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult',
+    'GetFederatedSettingsOrgConfigsResultUserConflictResult',
+    'GetFederatedSettingsOrgRoleMappingRoleAssignmentResult',
+    'GetFederatedSettingsOrgRoleMappingsResultResult',
+    'GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult',
     'GetGlobalClusterConfigManagedNamespaceResult',
     'GetLdapConfigurationUserToDnMappingResult',
     'GetLdapVerifyLinkResult',
@@ -212,6 +239,9 @@ __all__ = [
     'GetSearchIndexSynonymResult',
     'GetSearchIndexesResultResult',
     'GetSearchIndexesResultSynonymResult',
+    'GetServerlessInstanceLinkResult',
+    'GetServerlessInstancesResultResult',
+    'GetServerlessInstancesResultLinkResult',
     'GetThirdPartyIntegrationsResultResult',
 ]
 
@@ -1815,6 +1845,56 @@ class AlertConfigurationThresholdConfig(dict):
 
 
 @pulumi.output_type
+class CloudBackupScheduleExport(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "exportBucketId":
+            suggest = "export_bucket_id"
+        elif key == "frequencyType":
+            suggest = "frequency_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupScheduleExport. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupScheduleExport.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupScheduleExport.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 export_bucket_id: Optional[str] = None,
+                 frequency_type: Optional[str] = None):
+        """
+        :param str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+        :param str frequency_type: Frequency associated with the export snapshot item.
+        """
+        if export_bucket_id is not None:
+            pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+
+    @property
+    @pulumi.getter(name="exportBucketId")
+    def export_bucket_id(self) -> Optional[str]:
+        """
+        Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+        """
+        return pulumi.get(self, "export_bucket_id")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[str]:
+        """
+        Frequency associated with the export snapshot item.
+        """
+        return pulumi.get(self, "frequency_type")
+
+
+@pulumi.output_type
 class CloudBackupSchedulePolicyItemDaily(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1848,6 +1928,7 @@ class CloudBackupSchedulePolicyItemDaily(dict):
         :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
         :param int retention_value: Value to associate with `retention_unit`.
+        :param str frequency_type: Frequency associated with the export snapshot item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -1882,6 +1963,9 @@ class CloudBackupSchedulePolicyItemDaily(dict):
     @property
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
+        """
+        Frequency associated with the export snapshot item.
+        """
         return pulumi.get(self, "frequency_type")
 
 
@@ -1920,6 +2004,7 @@ class CloudBackupSchedulePolicyItemHourly(dict):
         :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
         :param int retention_value: Value to associate with `retention_unit`.
+        :param str frequency_type: Frequency associated with the export snapshot item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -1956,6 +2041,9 @@ class CloudBackupSchedulePolicyItemHourly(dict):
     @property
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
+        """
+        Frequency associated with the export snapshot item.
+        """
         return pulumi.get(self, "frequency_type")
 
     @property
@@ -1998,6 +2086,7 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
         :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
         :param int retention_value: Value to associate with `retention_unit`.
+        :param str frequency_type: Frequency associated with the export snapshot item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -2032,6 +2121,9 @@ class CloudBackupSchedulePolicyItemMonthly(dict):
     @property
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
+        """
+        Frequency associated with the export snapshot item.
+        """
         return pulumi.get(self, "frequency_type")
 
 
@@ -2069,6 +2161,7 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
         :param int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param str retention_unit: Scope of the backup policy item: days, weeks, or months.
         :param int retention_value: Value to associate with `retention_unit`.
+        :param str frequency_type: Frequency associated with the export snapshot item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -2103,6 +2196,9 @@ class CloudBackupSchedulePolicyItemWeekly(dict):
     @property
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[str]:
+        """
+        Frequency associated with the export snapshot item.
+        """
         return pulumi.get(self, "frequency_type")
 
 
@@ -4486,6 +4582,68 @@ class EventTriggerEventProcessorsAwsEventbridge(dict):
 
 
 @pulumi.output_type
+class FederatedSettingsOrgRoleMappingRoleAssignment(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupId":
+            suggest = "group_id"
+        elif key == "orgId":
+            suggest = "org_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FederatedSettingsOrgRoleMappingRoleAssignment. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FederatedSettingsOrgRoleMappingRoleAssignment.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FederatedSettingsOrgRoleMappingRoleAssignment.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 group_id: Optional[str] = None,
+                 org_id: Optional[str] = None,
+                 roles: Optional[Sequence[str]] = None):
+        """
+        :param str group_id: Unique identifier of the project to which you want the role mapping to apply.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param Sequence[str] roles: Specifies the Roles that are attached to the Role Mapping.
+        """
+        if group_id is not None:
+            pulumi.set(__self__, "group_id", group_id)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> Optional[str]:
+        """
+        Unique identifier of the project to which you want the role mapping to apply.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[Sequence[str]]:
+        """
+        Specifies the Roles that are attached to the Role Mapping.
+        """
+        return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
 class GlobalClusterConfigCustomZoneMapping(dict):
     def __init__(__self__, *,
                  location: Optional[str] = None,
@@ -4932,7 +5090,6 @@ class ProjectApiKey(dict):
                * `GROUP_DATA_ACCESS_ADMIN`
                * `GROUP_DATA_ACCESS_READ_WRITE`
                * `GROUP_DATA_ACCESS_READ_ONLY`
-               * `GROUP_CLUSTER_MANAGER`
         """
         pulumi.set(__self__, "api_key_id", api_key_id)
         pulumi.set(__self__, "role_names", role_names)
@@ -4956,7 +5113,6 @@ class ProjectApiKey(dict):
         * `GROUP_DATA_ACCESS_ADMIN`
         * `GROUP_DATA_ACCESS_READ_WRITE`
         * `GROUP_DATA_ACCESS_READ_ONLY`
-        * `GROUP_CLUSTER_MANAGER`
         """
         return pulumi.get(self, "role_names")
 
@@ -4993,7 +5149,6 @@ class ProjectTeam(dict):
                * `GROUP_DATA_ACCESS_ADMIN`
                * `GROUP_DATA_ACCESS_READ_WRITE`
                * `GROUP_DATA_ACCESS_READ_ONLY`
-               * `GROUP_CLUSTER_MANAGER`
         :param str team_id: The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         """
         pulumi.set(__self__, "role_names", role_names)
@@ -5010,7 +5165,6 @@ class ProjectTeam(dict):
         * `GROUP_DATA_ACCESS_ADMIN`
         * `GROUP_DATA_ACCESS_READ_WRITE`
         * `GROUP_DATA_ACCESS_READ_ONLY`
-        * `GROUP_CLUSTER_MANAGER`
         """
         return pulumi.get(self, "role_names")
 
@@ -5090,6 +5244,27 @@ class SearchIndexSynonym(dict):
         Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         """
         return pulumi.get(self, "source_collection")
+
+
+@pulumi.output_type
+class ServerlessInstanceLink(dict):
+    def __init__(__self__, *,
+                 href: Optional[str] = None,
+                 rel: Optional[str] = None):
+        if href is not None:
+            pulumi.set(__self__, "href", href)
+        if rel is not None:
+            pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> Optional[str]:
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def rel(self) -> Optional[str]:
+        return pulumi.get(self, "rel")
 
 
 @pulumi.output_type
@@ -7258,6 +7433,35 @@ class GetAlertConfigurationThresholdConfigResult(dict):
         - `DAYS`
         """
         return pulumi.get(self, "units")
+
+
+@pulumi.output_type
+class GetCloudBackupScheduleExportResult(dict):
+    def __init__(__self__, *,
+                 export_bucket_id: str,
+                 frequency_type: str):
+        """
+        :param str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+        :param str frequency_type: Frequency associated with the backup policy item.
+        """
+        pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        pulumi.set(__self__, "frequency_type", frequency_type)
+
+    @property
+    @pulumi.getter(name="exportBucketId")
+    def export_bucket_id(self) -> str:
+        """
+        Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+        """
+        return pulumi.get(self, "export_bucket_id")
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> str:
+        """
+        Frequency associated with the backup policy item.
+        """
+        return pulumi.get(self, "frequency_type")
 
 
 @pulumi.output_type
@@ -11281,7 +11485,8 @@ class GetEventTriggersResultResult(dict):
                  function_name: str,
                  name: str,
                  trigger_id: str,
-                 type: str):
+                 type: str,
+                 unordered: bool):
         """
         :param str config_collection: The name of the MongoDB collection that the trigger watches for change events.
         :param str config_database: The name of the MongoDB database that contains the watched collection.
@@ -11301,6 +11506,7 @@ class GetEventTriggersResultResult(dict):
         :param str function_name: The name of the function associated with the trigger.
         :param str name: The name of the trigger.
         :param str type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
+        :param bool unordered: Sort order for `DATABASE` type.
         """
         pulumi.set(__self__, "config_collection", config_collection)
         pulumi.set(__self__, "config_database", config_database)
@@ -11321,6 +11527,7 @@ class GetEventTriggersResultResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "trigger_id", trigger_id)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unordered", unordered)
 
     @property
     @pulumi.getter(name="configCollection")
@@ -11467,6 +11674,14 @@ class GetEventTriggersResultResult(dict):
         """
         return pulumi.get(self, "type")
 
+    @property
+    @pulumi.getter
+    def unordered(self) -> bool:
+        """
+        Sort order for `DATABASE` type.
+        """
+        return pulumi.get(self, "unordered")
+
 
 @pulumi.output_type
 class GetEventTriggersResultEventProcessorResult(dict):
@@ -11497,6 +11712,1180 @@ class GetEventTriggersResultEventProcessorAwsEventbridgeResult(dict):
     @pulumi.getter(name="configRegion")
     def config_region(self) -> str:
         return pulumi.get(self, "config_region")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProviderAssociatedOrgResult(dict):
+    def __init__(__self__, *,
+                 domain_allow_lists: Sequence[str],
+                 domain_restriction_enabled: bool,
+                 identity_provider_id: str,
+                 org_id: str,
+                 post_auth_role_grants: Sequence[str],
+                 role_mappings: Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult'],
+                 user_conflicts: Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult']):
+        """
+        :param Sequence[str] domain_allow_lists: List that contains the approved domains from which organization users can log in.
+        :param bool domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
+        :param str identity_provider_id: Unique 20-hexadecimal digit string that identifies the IdP.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+        """
+        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
+        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
+        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
+        pulumi.set(__self__, "role_mappings", role_mappings)
+        pulumi.set(__self__, "user_conflicts", user_conflicts)
+
+    @property
+    @pulumi.getter(name="domainAllowLists")
+    def domain_allow_lists(self) -> Sequence[str]:
+        """
+        List that contains the approved domains from which organization users can log in.
+        """
+        return pulumi.get(self, "domain_allow_lists")
+
+    @property
+    @pulumi.getter(name="domainRestrictionEnabled")
+    def domain_restriction_enabled(self) -> bool:
+        """
+        Flag that indicates whether domain restriction is enabled for the connected organization.
+        """
+        return pulumi.get(self, "domain_restriction_enabled")
+
+    @property
+    @pulumi.getter(name="identityProviderId")
+    def identity_provider_id(self) -> str:
+        """
+        Unique 20-hexadecimal digit string that identifies the IdP.
+        """
+        return pulumi.get(self, "identity_provider_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="postAuthRoleGrants")
+    def post_auth_role_grants(self) -> Sequence[str]:
+        """
+        List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+        """
+        return pulumi.get(self, "post_auth_role_grants")
+
+    @property
+    @pulumi.getter(name="roleMappings")
+    def role_mappings(self) -> Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult']:
+        return pulumi.get(self, "role_mappings")
+
+    @property
+    @pulumi.getter(name="userConflicts")
+    def user_conflicts(self) -> Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult']:
+        return pulumi.get(self, "user_conflicts")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingResult(dict):
+    def __init__(__self__, *,
+                 external_group_name: str,
+                 id: str,
+                 role_assignments: Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentResult']):
+        """
+        :param str external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
+        :param Sequence['GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
+
+    @property
+    @pulumi.getter(name="externalGroupName")
+    def external_group_name(self) -> str:
+        """
+        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        """
+        return pulumi.get(self, "external_group_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies this role mapping.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="roleAssignments")
+    def role_assignments(self) -> Sequence['outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentResult']:
+        """
+        Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        return pulumi.get(self, "role_assignments")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 org_id: str,
+                 role: str):
+        """
+        :param str group_id: Unique identifier of the project to which you want the role mapping to apply.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param str role: Specifies the Role that is attached to the Role Mapping.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        """
+        Unique identifier of the project to which you want the role mapping to apply.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        Specifies the Role that is attached to the Role Mapping.
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictResult(dict):
+    def __init__(__self__, *,
+                 email_address: str,
+                 federation_settings_id: str,
+                 first_name: str,
+                 last_name: str,
+                 user_id: str):
+        """
+        :param str email_address: Email address of the the user that conflicts with selected domains.
+        :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param str first_name: First name of the the user that conflicts with selected domains.
+        :param str last_name: Last name of the the user that conflicts with selected domains.
+        :param str user_id: Name of the Atlas user that conflicts with selected domains.
+        """
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="emailAddress")
+    def email_address(self) -> str:
+        """
+        Email address of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "email_address")
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> str:
+        """
+        First name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> str:
+        """
+        Last name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "last_name")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
+        """
+        Name of the Atlas user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProviderPemFileInfoResult(dict):
+    def __init__(__self__, *,
+                 certificates: Sequence['outputs.GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult'],
+                 file_name: str):
+        """
+        :param str file_name: Filename of certificate
+        """
+        pulumi.set(__self__, "certificates", certificates)
+        pulumi.set(__self__, "file_name", file_name)
+
+    @property
+    @pulumi.getter
+    def certificates(self) -> Sequence['outputs.GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult']:
+        return pulumi.get(self, "certificates")
+
+    @property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> str:
+        """
+        Filename of certificate
+        """
+        return pulumi.get(self, "file_name")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProviderPemFileInfoCertificateResult(dict):
+    def __init__(__self__, *,
+                 not_after: str,
+                 not_before: str):
+        """
+        :param str not_after: Expiration  Date.
+        :param str not_before: Start Date.
+        """
+        pulumi.set(__self__, "not_after", not_after)
+        pulumi.set(__self__, "not_before", not_before)
+
+    @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> str:
+        """
+        Expiration  Date.
+        """
+        return pulumi.get(self, "not_after")
+
+    @property
+    @pulumi.getter(name="notBefore")
+    def not_before(self) -> str:
+        """
+        Start Date.
+        """
+        return pulumi.get(self, "not_before")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProvidersResultResult(dict):
+    def __init__(__self__, *,
+                 acs_url: str,
+                 associated_domains: Sequence[str],
+                 associated_orgs: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult'],
+                 audience_uri: str,
+                 display_name: str,
+                 issuer_uri: str,
+                 okta_idp_id: str,
+                 pem_file_infos: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoResult'],
+                 request_binding: str,
+                 response_signature_algorithm: str,
+                 sso_debug_enabled: bool,
+                 sso_url: str,
+                 status: str):
+        """
+        :param str acs_url: Assertion consumer service URL to which the IdP sends the SAML response.
+        :param Sequence[str] associated_domains: List that contains the configured domains from which users can log in for this IdP.
+        :param Sequence['GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs'] associated_orgs: List that contains the configured domains from which users can log in for this IdP.
+        :param str audience_uri: Identifier for the intended audience of the SAML Assertion.
+        :param str display_name: Human-readable label that identifies the IdP.
+        :param str issuer_uri: Identifier for the issuer of the SAML Assertion.
+        :param str request_binding: SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
+               - HTTP POST
+               - HTTP REDIRECT
+        :param str response_signature_algorithm: Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
+               - SHA-1
+               - SHA-256
+        :param bool sso_debug_enabled: Flag that indicates whether the IdP has enabled Bypass SAML Mode. Enabling this mode generates a URL that allows you bypass SAML and login to your organizations at any point. You can authenticate with this special URL only when Bypass Mode is enabled. Set this parameter to true during testing. This keeps you from getting locked out of MongoDB.
+        :param str sso_url: URL of the receiver of the SAML AuthNRequest.
+        :param str status: Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
+        """
+        pulumi.set(__self__, "acs_url", acs_url)
+        pulumi.set(__self__, "associated_domains", associated_domains)
+        pulumi.set(__self__, "associated_orgs", associated_orgs)
+        pulumi.set(__self__, "audience_uri", audience_uri)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "issuer_uri", issuer_uri)
+        pulumi.set(__self__, "okta_idp_id", okta_idp_id)
+        pulumi.set(__self__, "pem_file_infos", pem_file_infos)
+        pulumi.set(__self__, "request_binding", request_binding)
+        pulumi.set(__self__, "response_signature_algorithm", response_signature_algorithm)
+        pulumi.set(__self__, "sso_debug_enabled", sso_debug_enabled)
+        pulumi.set(__self__, "sso_url", sso_url)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="acsUrl")
+    def acs_url(self) -> str:
+        """
+        Assertion consumer service URL to which the IdP sends the SAML response.
+        """
+        return pulumi.get(self, "acs_url")
+
+    @property
+    @pulumi.getter(name="associatedDomains")
+    def associated_domains(self) -> Sequence[str]:
+        """
+        List that contains the configured domains from which users can log in for this IdP.
+        """
+        return pulumi.get(self, "associated_domains")
+
+    @property
+    @pulumi.getter(name="associatedOrgs")
+    def associated_orgs(self) -> Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult']:
+        """
+        List that contains the configured domains from which users can log in for this IdP.
+        """
+        return pulumi.get(self, "associated_orgs")
+
+    @property
+    @pulumi.getter(name="audienceUri")
+    def audience_uri(self) -> str:
+        """
+        Identifier for the intended audience of the SAML Assertion.
+        """
+        return pulumi.get(self, "audience_uri")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        Human-readable label that identifies the IdP.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="issuerUri")
+    def issuer_uri(self) -> str:
+        """
+        Identifier for the issuer of the SAML Assertion.
+        """
+        return pulumi.get(self, "issuer_uri")
+
+    @property
+    @pulumi.getter(name="oktaIdpId")
+    def okta_idp_id(self) -> str:
+        return pulumi.get(self, "okta_idp_id")
+
+    @property
+    @pulumi.getter(name="pemFileInfos")
+    def pem_file_infos(self) -> Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoResult']:
+        return pulumi.get(self, "pem_file_infos")
+
+    @property
+    @pulumi.getter(name="requestBinding")
+    def request_binding(self) -> str:
+        """
+        SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
+        - HTTP POST
+        - HTTP REDIRECT
+        """
+        return pulumi.get(self, "request_binding")
+
+    @property
+    @pulumi.getter(name="responseSignatureAlgorithm")
+    def response_signature_algorithm(self) -> str:
+        """
+        Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
+        - SHA-1
+        - SHA-256
+        """
+        return pulumi.get(self, "response_signature_algorithm")
+
+    @property
+    @pulumi.getter(name="ssoDebugEnabled")
+    def sso_debug_enabled(self) -> bool:
+        """
+        Flag that indicates whether the IdP has enabled Bypass SAML Mode. Enabling this mode generates a URL that allows you bypass SAML and login to your organizations at any point. You can authenticate with this special URL only when Bypass Mode is enabled. Set this parameter to true during testing. This keeps you from getting locked out of MongoDB.
+        """
+        return pulumi.get(self, "sso_debug_enabled")
+
+    @property
+    @pulumi.getter(name="ssoUrl")
+    def sso_url(self) -> str:
+        """
+        URL of the receiver of the SAML AuthNRequest.
+        """
+        return pulumi.get(self, "sso_url")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProvidersResultAssociatedOrgResult(dict):
+    def __init__(__self__, *,
+                 domain_allow_lists: Sequence[str],
+                 domain_restriction_enabled: bool,
+                 identity_provider_id: str,
+                 org_id: str,
+                 post_auth_role_grants: Sequence[str],
+                 role_mappings: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult'],
+                 user_conflicts: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult']):
+        """
+        :param Sequence[str] domain_allow_lists: List that contains the approved domains from which organization users can log in.
+        :param bool domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
+        :param str identity_provider_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+        """
+        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
+        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
+        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
+        pulumi.set(__self__, "role_mappings", role_mappings)
+        pulumi.set(__self__, "user_conflicts", user_conflicts)
+
+    @property
+    @pulumi.getter(name="domainAllowLists")
+    def domain_allow_lists(self) -> Sequence[str]:
+        """
+        List that contains the approved domains from which organization users can log in.
+        """
+        return pulumi.get(self, "domain_allow_lists")
+
+    @property
+    @pulumi.getter(name="domainRestrictionEnabled")
+    def domain_restriction_enabled(self) -> bool:
+        """
+        Flag that indicates whether domain restriction is enabled for the connected organization.
+        """
+        return pulumi.get(self, "domain_restriction_enabled")
+
+    @property
+    @pulumi.getter(name="identityProviderId")
+    def identity_provider_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "identity_provider_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="postAuthRoleGrants")
+    def post_auth_role_grants(self) -> Sequence[str]:
+        """
+        List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+        """
+        return pulumi.get(self, "post_auth_role_grants")
+
+    @property
+    @pulumi.getter(name="roleMappings")
+    def role_mappings(self) -> Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult']:
+        return pulumi.get(self, "role_mappings")
+
+    @property
+    @pulumi.getter(name="userConflicts")
+    def user_conflicts(self) -> Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult']:
+        return pulumi.get(self, "user_conflicts")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingResult(dict):
+    def __init__(__self__, *,
+                 external_group_name: str,
+                 id: str,
+                 role_assignments: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentResult']):
+        """
+        :param str external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
+        :param Sequence['GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
+
+    @property
+    @pulumi.getter(name="externalGroupName")
+    def external_group_name(self) -> str:
+        """
+        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        """
+        return pulumi.get(self, "external_group_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies this role mapping.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="roleAssignments")
+    def role_assignments(self) -> Sequence['outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentResult']:
+        """
+        Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        return pulumi.get(self, "role_assignments")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 org_id: str,
+                 role: str):
+        """
+        :param str group_id: Unique identifier of the project to which you want the role mapping to apply.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param str role: Specifies the Role that is attached to the Role Mapping.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        """
+        Unique identifier of the project to which you want the role mapping to apply.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        Specifies the Role that is attached to the Role Mapping.
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictResult(dict):
+    def __init__(__self__, *,
+                 email_address: str,
+                 federation_settings_id: str,
+                 first_name: str,
+                 last_name: str,
+                 user_id: str):
+        """
+        :param str email_address: Email address of the the user that conflicts with selected domains.
+        :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param str first_name: First name of the the user that conflicts with selected domains.
+        :param str last_name: Last name of the the user that conflicts with selected domains.
+        :param str user_id: Name of the Atlas user that conflicts with selected domains.
+        """
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="emailAddress")
+    def email_address(self) -> str:
+        """
+        Email address of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "email_address")
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> str:
+        """
+        First name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> str:
+        """
+        Last name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "last_name")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
+        """
+        Name of the Atlas user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProvidersResultPemFileInfoResult(dict):
+    def __init__(__self__, *,
+                 certificates: Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult'],
+                 file_name: str):
+        """
+        :param str file_name: Filename of certificate
+        """
+        pulumi.set(__self__, "certificates", certificates)
+        pulumi.set(__self__, "file_name", file_name)
+
+    @property
+    @pulumi.getter
+    def certificates(self) -> Sequence['outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult']:
+        return pulumi.get(self, "certificates")
+
+    @property
+    @pulumi.getter(name="fileName")
+    def file_name(self) -> str:
+        """
+        Filename of certificate
+        """
+        return pulumi.get(self, "file_name")
+
+
+@pulumi.output_type
+class GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateResult(dict):
+    def __init__(__self__, *,
+                 not_after: str,
+                 not_before: str):
+        """
+        :param str not_after: Expiration  Date.
+        :param str not_before: Start Date.
+        """
+        pulumi.set(__self__, "not_after", not_after)
+        pulumi.set(__self__, "not_before", not_before)
+
+    @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> str:
+        """
+        Expiration  Date.
+        """
+        return pulumi.get(self, "not_after")
+
+    @property
+    @pulumi.getter(name="notBefore")
+    def not_before(self) -> str:
+        """
+        Start Date.
+        """
+        return pulumi.get(self, "not_before")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgConfigRoleMappingResult(dict):
+    def __init__(__self__, *,
+                 external_group_name: str,
+                 id: str,
+                 role_assignments: Sequence['outputs.GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult']):
+        """
+        :param str external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
+        :param Sequence['GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
+
+    @property
+    @pulumi.getter(name="externalGroupName")
+    def external_group_name(self) -> str:
+        """
+        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        """
+        return pulumi.get(self, "external_group_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies this role mapping.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="roleAssignments")
+    def role_assignments(self) -> Sequence['outputs.GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult']:
+        """
+        Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        return pulumi.get(self, "role_assignments")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 org_id: str,
+                 role: str):
+        """
+        :param str group_id: Unique identifier of the project to which you want the role mapping to apply.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param str role: Specifies the Role that is attached to the Role Mapping.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        """
+        Unique identifier of the project to which you want the role mapping to apply.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        Specifies the Role that is attached to the Role Mapping.
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgConfigUserConflictResult(dict):
+    def __init__(__self__, *,
+                 email_address: str,
+                 federation_settings_id: str,
+                 first_name: str,
+                 last_name: str,
+                 user_id: str):
+        """
+        :param str email_address: Email address of the the user that conflicts with selected domains.
+        :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param str first_name: First name of the the user that conflicts with selected domains.
+        :param str last_name: Last name of the the user that conflicts with selected domains.
+        :param str user_id: Name of the Atlas user that conflicts with selected domains.
+        """
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="emailAddress")
+    def email_address(self) -> str:
+        """
+        Email address of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "email_address")
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> str:
+        """
+        First name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> str:
+        """
+        Last name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "last_name")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
+        """
+        Name of the Atlas user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgConfigsResultResult(dict):
+    def __init__(__self__, *,
+                 domain_allow_lists: Sequence[str],
+                 domain_restriction_enabled: bool,
+                 identity_provider_id: str,
+                 org_id: str,
+                 post_auth_role_grants: Sequence[str],
+                 role_mappings: Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingResult'],
+                 user_conflicts: Sequence['outputs.GetFederatedSettingsOrgConfigsResultUserConflictResult']):
+        """
+        :param Sequence[str] domain_allow_lists: List that contains the approved domains from which organization users can log in.
+        :param bool domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
+        :param str identity_provider_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param Sequence[str] post_auth_role_grants: List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+        """
+        pulumi.set(__self__, "domain_allow_lists", domain_allow_lists)
+        pulumi.set(__self__, "domain_restriction_enabled", domain_restriction_enabled)
+        pulumi.set(__self__, "identity_provider_id", identity_provider_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "post_auth_role_grants", post_auth_role_grants)
+        pulumi.set(__self__, "role_mappings", role_mappings)
+        pulumi.set(__self__, "user_conflicts", user_conflicts)
+
+    @property
+    @pulumi.getter(name="domainAllowLists")
+    def domain_allow_lists(self) -> Sequence[str]:
+        """
+        List that contains the approved domains from which organization users can log in.
+        """
+        return pulumi.get(self, "domain_allow_lists")
+
+    @property
+    @pulumi.getter(name="domainRestrictionEnabled")
+    def domain_restriction_enabled(self) -> bool:
+        """
+        Flag that indicates whether domain restriction is enabled for the connected organization.
+        """
+        return pulumi.get(self, "domain_restriction_enabled")
+
+    @property
+    @pulumi.getter(name="identityProviderId")
+    def identity_provider_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "identity_provider_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter(name="postAuthRoleGrants")
+    def post_auth_role_grants(self) -> Sequence[str]:
+        """
+        List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+        """
+        return pulumi.get(self, "post_auth_role_grants")
+
+    @property
+    @pulumi.getter(name="roleMappings")
+    def role_mappings(self) -> Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingResult']:
+        return pulumi.get(self, "role_mappings")
+
+    @property
+    @pulumi.getter(name="userConflicts")
+    def user_conflicts(self) -> Sequence['outputs.GetFederatedSettingsOrgConfigsResultUserConflictResult']:
+        return pulumi.get(self, "user_conflicts")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgConfigsResultRoleMappingResult(dict):
+    def __init__(__self__, *,
+                 external_group_name: str,
+                 id: str,
+                 role_assignments: Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult']):
+        """
+        :param str external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
+        :param Sequence['GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
+
+    @property
+    @pulumi.getter(name="externalGroupName")
+    def external_group_name(self) -> str:
+        """
+        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        """
+        return pulumi.get(self, "external_group_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies this role mapping.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="roleAssignments")
+    def role_assignments(self) -> Sequence['outputs.GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult']:
+        """
+        Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        return pulumi.get(self, "role_assignments")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 org_id: str,
+                 role: str):
+        """
+        :param str group_id: Unique identifier of the project to which you want the role mapping to apply.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param str role: Specifies the Role that is attached to the Role Mapping.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        """
+        Unique identifier of the project to which you want the role mapping to apply.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        Specifies the Role that is attached to the Role Mapping.
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgConfigsResultUserConflictResult(dict):
+    def __init__(__self__, *,
+                 email_address: str,
+                 federation_settings_id: str,
+                 first_name: str,
+                 last_name: str,
+                 user_id: str):
+        """
+        :param str email_address: Email address of the the user that conflicts with selected domains.
+        :param str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        :param str first_name: First name of the the user that conflicts with selected domains.
+        :param str last_name: Last name of the the user that conflicts with selected domains.
+        :param str user_id: Name of the Atlas user that conflicts with selected domains.
+        """
+        pulumi.set(__self__, "email_address", email_address)
+        pulumi.set(__self__, "federation_settings_id", federation_settings_id)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "user_id", user_id)
+
+    @property
+    @pulumi.getter(name="emailAddress")
+    def email_address(self) -> str:
+        """
+        Email address of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "email_address")
+
+    @property
+    @pulumi.getter(name="federationSettingsId")
+    def federation_settings_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+        """
+        return pulumi.get(self, "federation_settings_id")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> str:
+        """
+        First name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> str:
+        """
+        Last name of the the user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "last_name")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
+        """
+        Name of the Atlas user that conflicts with selected domains.
+        """
+        return pulumi.get(self, "user_id")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgRoleMappingRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 org_id: str,
+                 role: str):
+        """
+        :param str group_id: Unique identifier of the project to which you want the role mapping to apply.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param str role: Specifies the Role that is attached to the Role Mapping.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        """
+        Unique identifier of the project to which you want the role mapping to apply.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        Specifies the Role that is attached to the Role Mapping.
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgRoleMappingsResultResult(dict):
+    def __init__(__self__, *,
+                 external_group_name: str,
+                 id: str,
+                 role_assignments: Sequence['outputs.GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult']):
+        """
+        :param str external_group_name: Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        :param str id: Unique 24-hexadecimal digit string that identifies this role mapping.
+        :param Sequence['GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs'] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        pulumi.set(__self__, "external_group_name", external_group_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "role_assignments", role_assignments)
+
+    @property
+    @pulumi.getter(name="externalGroupName")
+    def external_group_name(self) -> str:
+        """
+        Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+        """
+        return pulumi.get(self, "external_group_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies this role mapping.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="roleAssignments")
+    def role_assignments(self) -> Sequence['outputs.GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult']:
+        """
+        Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        """
+        return pulumi.get(self, "role_assignments")
+
+
+@pulumi.output_type
+class GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 group_id: str,
+                 org_id: str,
+                 role: str):
+        """
+        :param str group_id: Unique identifier of the project to which you want the role mapping to apply.
+        :param str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param str role: Specifies the Role that is attached to the Role Mapping.
+        """
+        pulumi.set(__self__, "group_id", group_id)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> str:
+        """
+        Unique identifier of the project to which you want the role mapping to apply.
+        """
+        return pulumi.get(self, "group_id")
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        Specifies the Role that is attached to the Role Mapping.
+        """
+        return pulumi.get(self, "role")
 
 
 @pulumi.output_type
@@ -12365,11 +13754,21 @@ class GetProjectsResultResult(dict):
                  cluster_count: int,
                  created: str,
                  id: str,
+                 is_collect_database_specifics_statistics_enabled: bool,
+                 is_data_explorer_enabled: bool,
+                 is_performance_advisor_enabled: bool,
+                 is_realtime_performance_panel_enabled: bool,
+                 is_schema_advisor_enabled: bool,
                  name: str,
                  org_id: str,
                  teams: Sequence['outputs.GetProjectsResultTeamResult']):
         """
         :param str id: Autogenerated Unique ID for this data source.
+        :param bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        :param bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+        :param bool is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        :param bool is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        :param bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param str name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param str org_id: The ID of the organization you want to create the project within.
                *`cluster_count` - The number of Atlas clusters deployed in the project.
@@ -12397,6 +13796,11 @@ class GetProjectsResultResult(dict):
         pulumi.set(__self__, "cluster_count", cluster_count)
         pulumi.set(__self__, "created", created)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
+        pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
+        pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
+        pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "org_id", org_id)
         pulumi.set(__self__, "teams", teams)
@@ -12423,6 +13827,46 @@ class GetProjectsResultResult(dict):
         Autogenerated Unique ID for this data source.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
+    def is_collect_database_specifics_statistics_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        """
+        return pulumi.get(self, "is_collect_database_specifics_statistics_enabled")
+
+    @property
+    @pulumi.getter(name="isDataExplorerEnabled")
+    def is_data_explorer_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+        """
+        return pulumi.get(self, "is_data_explorer_enabled")
+
+    @property
+    @pulumi.getter(name="isPerformanceAdvisorEnabled")
+    def is_performance_advisor_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        """
+        return pulumi.get(self, "is_performance_advisor_enabled")
+
+    @property
+    @pulumi.getter(name="isRealtimePerformancePanelEnabled")
+    def is_realtime_performance_panel_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        """
+        return pulumi.get(self, "is_realtime_performance_panel_enabled")
+
+    @property
+    @pulumi.getter(name="isSchemaAdvisorEnabled")
+    def is_schema_advisor_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        """
+        return pulumi.get(self, "is_schema_advisor_enabled")
 
     @property
     @pulumi.getter
@@ -12730,6 +14174,164 @@ class GetSearchIndexesResultSynonymResult(dict):
 
 
 @pulumi.output_type
+class GetServerlessInstanceLinkResult(dict):
+    def __init__(__self__, *,
+                 href: str,
+                 rel: str):
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> str:
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def rel(self) -> str:
+        return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class GetServerlessInstancesResultResult(dict):
+    def __init__(__self__, *,
+                 connection_strings_standard_srv: str,
+                 create_date: str,
+                 id: str,
+                 links: Sequence['outputs.GetServerlessInstancesResultLinkResult'],
+                 mongo_db_version: str,
+                 name: str,
+                 project_id: str,
+                 provider_settings_backing_provider_name: str,
+                 provider_settings_provider_name: str,
+                 provider_settings_region_name: str,
+                 state_name: str):
+        """
+        :param str connection_strings_standard_srv: Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+        :param str id: Unique 24-hexadecimal digit string that identifies the serverless instance.
+        :param str mongo_db_version: Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
+        :param str name: (Required) Human-readable label that identifies your serverless instance.
+        :param str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        :param str provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
+        :param str provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
+        :param str provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+        :param str state_name: Stage of deployment of this serverless instance when the resource made its request.
+        """
+        pulumi.set(__self__, "connection_strings_standard_srv", connection_strings_standard_srv)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "links", links)
+        pulumi.set(__self__, "mongo_db_version", mongo_db_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "provider_settings_backing_provider_name", provider_settings_backing_provider_name)
+        pulumi.set(__self__, "provider_settings_provider_name", provider_settings_provider_name)
+        pulumi.set(__self__, "provider_settings_region_name", provider_settings_region_name)
+        pulumi.set(__self__, "state_name", state_name)
+
+    @property
+    @pulumi.getter(name="connectionStringsStandardSrv")
+    def connection_strings_standard_srv(self) -> str:
+        """
+        Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+        """
+        return pulumi.get(self, "connection_strings_standard_srv")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Unique 24-hexadecimal digit string that identifies the serverless instance.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def links(self) -> Sequence['outputs.GetServerlessInstancesResultLinkResult']:
+        return pulumi.get(self, "links")
+
+    @property
+    @pulumi.getter(name="mongoDbVersion")
+    def mongo_db_version(self) -> str:
+        """
+        Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
+        """
+        return pulumi.get(self, "mongo_db_version")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        (Required) Human-readable label that identifies your serverless instance.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="providerSettingsBackingProviderName")
+    def provider_settings_backing_provider_name(self) -> str:
+        """
+        Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
+        """
+        return pulumi.get(self, "provider_settings_backing_provider_name")
+
+    @property
+    @pulumi.getter(name="providerSettingsProviderName")
+    def provider_settings_provider_name(self) -> str:
+        """
+        Cloud service provider that applies to the provisioned the serverless instance.
+        """
+        return pulumi.get(self, "provider_settings_provider_name")
+
+    @property
+    @pulumi.getter(name="providerSettingsRegionName")
+    def provider_settings_region_name(self) -> str:
+        """
+        Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+        """
+        return pulumi.get(self, "provider_settings_region_name")
+
+    @property
+    @pulumi.getter(name="stateName")
+    def state_name(self) -> str:
+        """
+        Stage of deployment of this serverless instance when the resource made its request.
+        """
+        return pulumi.get(self, "state_name")
+
+
+@pulumi.output_type
+class GetServerlessInstancesResultLinkResult(dict):
+    def __init__(__self__, *,
+                 href: str,
+                 rel: str):
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> str:
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def rel(self) -> str:
+        return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
 class GetThirdPartyIntegrationsResultResult(dict):
     def __init__(__self__, *,
                  account_id: str,
@@ -12748,7 +14350,12 @@ class GetThirdPartyIntegrationsResultResult(dict):
                  team_name: str,
                  type: str,
                  url: str,
-                 write_token: str):
+                 write_token: str,
+                 enabled: Optional[bool] = None,
+                 microsoft_teams_webhook_url: Optional[str] = None,
+                 scheme: Optional[str] = None,
+                 service_discovery: Optional[str] = None,
+                 user_name: Optional[str] = None):
         """
         :param str account_id: Unique identifier of your New Relic account.
         :param str api_key: Your API Key.
@@ -12765,11 +14372,18 @@ class GetThirdPartyIntegrationsResultResult(dict):
         :param str routing_key: An optional field for your Routing Key.
                * `FLOWDOCK`
         :param str secret: An optional field for your webhook secret.
+               * `MICROSOFT_TEAMS`
         :param str service_key: Your Service Key.
                * `DATADOG`
         :param str type: (Required) Thirt-Party service integration type.
         :param str url: Your webhook URL.
         :param str write_token: Your Insights Insert Key.
+        :param bool enabled: Whether your cluster has Prometheus enabled.
+        :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+               * `PROMETHEUS`
+        :param str scheme: Your Prometheus protocol scheme configured for requests.
+        :param str service_discovery: Indicates which service discovery method is used, either file or http.
+        :param str user_name: Your Prometheus username.
         """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "api_key", api_key)
@@ -12788,6 +14402,16 @@ class GetThirdPartyIntegrationsResultResult(dict):
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "url", url)
         pulumi.set(__self__, "write_token", write_token)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if microsoft_teams_webhook_url is not None:
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
+        if scheme is not None:
+            pulumi.set(__self__, "scheme", scheme)
+        if service_discovery is not None:
+            pulumi.set(__self__, "service_discovery", service_discovery)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
 
     @property
     @pulumi.getter(name="accountId")
@@ -12883,6 +14507,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     def secret(self) -> str:
         """
         An optional field for your webhook secret.
+        * `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "secret")
 
@@ -12923,5 +14548,46 @@ class GetThirdPartyIntegrationsResultResult(dict):
         Your Insights Insert Key.
         """
         return pulumi.get(self, "write_token")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether your cluster has Prometheus enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> Optional[str]:
+        """
+        Your Microsoft Teams incoming webhook URL.
+        * `PROMETHEUS`
+        """
+        return pulumi.get(self, "microsoft_teams_webhook_url")
+
+    @property
+    @pulumi.getter
+    def scheme(self) -> Optional[str]:
+        """
+        Your Prometheus protocol scheme configured for requests.
+        """
+        return pulumi.get(self, "scheme")
+
+    @property
+    @pulumi.getter(name="serviceDiscovery")
+    def service_discovery(self) -> Optional[str]:
+        """
+        Indicates which service discovery method is used, either file or http.
+        """
+        return pulumi.get(self, "service_discovery")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[str]:
+        """
+        Your Prometheus username.
+        """
+        return pulumi.get(self, "user_name")
 
 

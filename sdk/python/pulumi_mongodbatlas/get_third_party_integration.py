@@ -20,7 +20,7 @@ class GetThirdPartyIntegrationResult:
     """
     A collection of values returned by getThirdPartyIntegration.
     """
-    def __init__(__self__, account_id=None, api_key=None, api_token=None, channel_name=None, flow_name=None, id=None, license_key=None, org_name=None, project_id=None, read_token=None, region=None, routing_key=None, secret=None, service_key=None, team_name=None, type=None, url=None, write_token=None):
+    def __init__(__self__, account_id=None, api_key=None, api_token=None, channel_name=None, enabled=None, flow_name=None, id=None, license_key=None, microsoft_teams_webhook_url=None, org_name=None, project_id=None, read_token=None, region=None, routing_key=None, scheme=None, secret=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None, write_token=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         pulumi.set(__self__, "account_id", account_id)
@@ -33,6 +33,9 @@ class GetThirdPartyIntegrationResult:
         if channel_name and not isinstance(channel_name, str):
             raise TypeError("Expected argument 'channel_name' to be a str")
         pulumi.set(__self__, "channel_name", channel_name)
+        if enabled and not isinstance(enabled, bool):
+            raise TypeError("Expected argument 'enabled' to be a bool")
+        pulumi.set(__self__, "enabled", enabled)
         if flow_name and not isinstance(flow_name, str):
             raise TypeError("Expected argument 'flow_name' to be a str")
         pulumi.set(__self__, "flow_name", flow_name)
@@ -42,6 +45,9 @@ class GetThirdPartyIntegrationResult:
         if license_key and not isinstance(license_key, str):
             raise TypeError("Expected argument 'license_key' to be a str")
         pulumi.set(__self__, "license_key", license_key)
+        if microsoft_teams_webhook_url and not isinstance(microsoft_teams_webhook_url, str):
+            raise TypeError("Expected argument 'microsoft_teams_webhook_url' to be a str")
+        pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if org_name and not isinstance(org_name, str):
             raise TypeError("Expected argument 'org_name' to be a str")
         pulumi.set(__self__, "org_name", org_name)
@@ -57,9 +63,15 @@ class GetThirdPartyIntegrationResult:
         if routing_key and not isinstance(routing_key, str):
             raise TypeError("Expected argument 'routing_key' to be a str")
         pulumi.set(__self__, "routing_key", routing_key)
+        if scheme and not isinstance(scheme, str):
+            raise TypeError("Expected argument 'scheme' to be a str")
+        pulumi.set(__self__, "scheme", scheme)
         if secret and not isinstance(secret, str):
             raise TypeError("Expected argument 'secret' to be a str")
         pulumi.set(__self__, "secret", secret)
+        if service_discovery and not isinstance(service_discovery, str):
+            raise TypeError("Expected argument 'service_discovery' to be a str")
+        pulumi.set(__self__, "service_discovery", service_discovery)
         if service_key and not isinstance(service_key, str):
             raise TypeError("Expected argument 'service_key' to be a str")
         pulumi.set(__self__, "service_key", service_key)
@@ -72,6 +84,9 @@ class GetThirdPartyIntegrationResult:
         if url and not isinstance(url, str):
             raise TypeError("Expected argument 'url' to be a str")
         pulumi.set(__self__, "url", url)
+        if user_name and not isinstance(user_name, str):
+            raise TypeError("Expected argument 'user_name' to be a str")
+        pulumi.set(__self__, "user_name", user_name)
         if write_token and not isinstance(write_token, str):
             raise TypeError("Expected argument 'write_token' to be a str")
         pulumi.set(__self__, "write_token", write_token)
@@ -106,6 +121,14 @@ class GetThirdPartyIntegrationResult:
         return pulumi.get(self, "channel_name")
 
     @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        Whether your cluster has Prometheus enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
     @pulumi.getter(name="flowName")
     def flow_name(self) -> str:
         """
@@ -128,6 +151,15 @@ class GetThirdPartyIntegrationResult:
         Your License Key.
         """
         return pulumi.get(self, "license_key")
+
+    @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> Optional[str]:
+        """
+        Your Microsoft Teams incoming webhook URL.
+        * `PROMETHEUS`
+        """
+        return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @property
     @pulumi.getter(name="orgName")
@@ -172,11 +204,28 @@ class GetThirdPartyIntegrationResult:
 
     @property
     @pulumi.getter
+    def scheme(self) -> Optional[str]:
+        """
+        Your Prometheus protocol scheme configured for requests.
+        """
+        return pulumi.get(self, "scheme")
+
+    @property
+    @pulumi.getter
     def secret(self) -> str:
         """
         An optional field for your webhook secret.
+        * `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "secret")
+
+    @property
+    @pulumi.getter(name="serviceDiscovery")
+    def service_discovery(self) -> Optional[str]:
+        """
+        Indicates which service discovery method is used, either file or http.
+        """
+        return pulumi.get(self, "service_discovery")
 
     @property
     @pulumi.getter(name="serviceKey")
@@ -209,6 +258,14 @@ class GetThirdPartyIntegrationResult:
         return pulumi.get(self, "url")
 
     @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[str]:
+        """
+        Your Prometheus username.
+        """
+        return pulumi.get(self, "user_name")
+
+    @property
     @pulumi.getter(name="writeToken")
     def write_token(self) -> str:
         """
@@ -227,24 +284,34 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
             api_key=self.api_key,
             api_token=self.api_token,
             channel_name=self.channel_name,
+            enabled=self.enabled,
             flow_name=self.flow_name,
             id=self.id,
             license_key=self.license_key,
+            microsoft_teams_webhook_url=self.microsoft_teams_webhook_url,
             org_name=self.org_name,
             project_id=self.project_id,
             read_token=self.read_token,
             region=self.region,
             routing_key=self.routing_key,
+            scheme=self.scheme,
             secret=self.secret,
+            service_discovery=self.service_discovery,
             service_key=self.service_key,
             team_name=self.team_name,
             type=self.type,
             url=self.url,
+            user_name=self.user_name,
             write_token=self.write_token)
 
 
-def get_third_party_integration(project_id: Optional[str] = None,
+def get_third_party_integration(enabled: Optional[bool] = None,
+                                microsoft_teams_webhook_url: Optional[str] = None,
+                                project_id: Optional[str] = None,
+                                scheme: Optional[str] = None,
+                                service_discovery: Optional[str] = None,
                                 type: Optional[str] = None,
+                                user_name: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetThirdPartyIntegrationResult:
     """
     `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
@@ -267,7 +334,12 @@ def get_third_party_integration(project_id: Optional[str] = None,
     ```
 
 
+    :param bool enabled: Whether your cluster has Prometheus enabled.
+    :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+           * `PROMETHEUS`
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
+    :param str scheme: Your Prometheus protocol scheme configured for requests.
+    :param str service_discovery: Indicates which service discovery method is used, either file or http.
     :param str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
@@ -276,10 +348,18 @@ def get_third_party_integration(project_id: Optional[str] = None,
            * VICTOR_OPS
            * FLOWDOCK
            * WEBHOOK
+           * MICROSOFT_TEAMS
+           * PROMETHEUS
+    :param str user_name: Your Prometheus username.
     """
     __args__ = dict()
+    __args__['enabled'] = enabled
+    __args__['microsoftTeamsWebhookUrl'] = microsoft_teams_webhook_url
     __args__['projectId'] = project_id
+    __args__['scheme'] = scheme
+    __args__['serviceDiscovery'] = service_discovery
     __args__['type'] = type
+    __args__['userName'] = user_name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -291,25 +371,35 @@ def get_third_party_integration(project_id: Optional[str] = None,
         api_key=__ret__.api_key,
         api_token=__ret__.api_token,
         channel_name=__ret__.channel_name,
+        enabled=__ret__.enabled,
         flow_name=__ret__.flow_name,
         id=__ret__.id,
         license_key=__ret__.license_key,
+        microsoft_teams_webhook_url=__ret__.microsoft_teams_webhook_url,
         org_name=__ret__.org_name,
         project_id=__ret__.project_id,
         read_token=__ret__.read_token,
         region=__ret__.region,
         routing_key=__ret__.routing_key,
+        scheme=__ret__.scheme,
         secret=__ret__.secret,
+        service_discovery=__ret__.service_discovery,
         service_key=__ret__.service_key,
         team_name=__ret__.team_name,
         type=__ret__.type,
         url=__ret__.url,
+        user_name=__ret__.user_name,
         write_token=__ret__.write_token)
 
 
 @_utilities.lift_output_func(get_third_party_integration)
-def get_third_party_integration_output(project_id: Optional[pulumi.Input[str]] = None,
+def get_third_party_integration_output(enabled: Optional[pulumi.Input[Optional[bool]]] = None,
+                                       microsoft_teams_webhook_url: Optional[pulumi.Input[Optional[str]]] = None,
+                                       project_id: Optional[pulumi.Input[str]] = None,
+                                       scheme: Optional[pulumi.Input[Optional[str]]] = None,
+                                       service_discovery: Optional[pulumi.Input[Optional[str]]] = None,
                                        type: Optional[pulumi.Input[str]] = None,
+                                       user_name: Optional[pulumi.Input[Optional[str]]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetThirdPartyIntegrationResult]:
     """
     `ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
@@ -332,7 +422,12 @@ def get_third_party_integration_output(project_id: Optional[pulumi.Input[str]] =
     ```
 
 
+    :param bool enabled: Whether your cluster has Prometheus enabled.
+    :param str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+           * `PROMETHEUS`
     :param str project_id: The unique ID for the project to get all Third-Party service integrations
+    :param str scheme: Your Prometheus protocol scheme configured for requests.
+    :param str service_discovery: Indicates which service discovery method is used, either file or http.
     :param str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
@@ -341,5 +436,8 @@ def get_third_party_integration_output(project_id: Optional[pulumi.Input[str]] =
            * VICTOR_OPS
            * FLOWDOCK
            * WEBHOOK
+           * MICROSOFT_TEAMS
+           * PROMETHEUS
+    :param str user_name: Your Prometheus username.
     """
     ...

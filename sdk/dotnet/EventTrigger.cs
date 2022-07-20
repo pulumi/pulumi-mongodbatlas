@@ -102,6 +102,7 @@ namespace Pulumi.Mongodbatlas
     ///             },
     ///             ProjectId = "PROJECT ID",
     ///             Type = "DATABASE",
+    ///             Unordered = false,
     ///         });
     ///     }
     /// 
@@ -289,6 +290,12 @@ namespace Pulumi.Mongodbatlas
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
+        /// <summary>
+        /// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+        /// </summary>
+        [Output("unordered")]
+        public Output<bool> Unordered { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a EventTrigger resource with the given unique name, arguments, and options.
@@ -454,6 +461,12 @@ namespace Pulumi.Mongodbatlas
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+        /// </summary>
+        [Input("unordered")]
+        public Input<bool>? Unordered { get; set; }
+
         public EventTriggerArgs()
         {
         }
@@ -594,6 +607,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+        /// </summary>
+        [Input("unordered")]
+        public Input<bool>? Unordered { get; set; }
 
         public EventTriggerState()
         {

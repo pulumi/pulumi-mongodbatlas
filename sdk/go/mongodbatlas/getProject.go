@@ -39,6 +39,16 @@ type LookupProjectResult struct {
 	Created      string             `pulumi:"created"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
+	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+	IsDataExplorerEnabled bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+	IsPerformanceAdvisorEnabled bool `pulumi:"isPerformanceAdvisorEnabled"`
+	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -122,6 +132,31 @@ func (o LookupProjectResultOutput) Created() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+func (o LookupProjectResultOutput) IsCollectDatabaseSpecificsStatisticsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsCollectDatabaseSpecificsStatisticsEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+func (o LookupProjectResultOutput) IsDataExplorerEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsDataExplorerEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+func (o LookupProjectResultOutput) IsPerformanceAdvisorEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsPerformanceAdvisorEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+func (o LookupProjectResultOutput) IsRealtimePerformancePanelEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsRealtimePerformancePanelEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+func (o LookupProjectResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
 }
 
 // The name of the project you want to create. (Cannot be changed via this Provider after creation.)

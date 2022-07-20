@@ -72,10 +72,15 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetCloudBackupScheduleResult
     {
         /// <summary>
+        /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// </summary>
+        public readonly bool AutoExportEnabled;
+        /// <summary>
         /// Unique identifier of the Atlas cluster.
         /// </summary>
         public readonly string ClusterId;
         public readonly string ClusterName;
+        public readonly ImmutableArray<Outputs.GetCloudBackupScheduleExportResult> Exports;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -117,12 +122,20 @@ namespace Pulumi.Mongodbatlas
         /// Specifies a restore window in days for cloud backup to maintain.
         /// </summary>
         public readonly int RestoreWindowDays;
+        /// <summary>
+        /// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        /// </summary>
+        public readonly bool UseOrgAndGroupNamesInExportPrefix;
 
         [OutputConstructor]
         private GetCloudBackupScheduleResult(
+            bool autoExportEnabled,
+
             string clusterId,
 
             string clusterName,
+
+            ImmutableArray<Outputs.GetCloudBackupScheduleExportResult> exports,
 
             string id,
 
@@ -144,10 +157,14 @@ namespace Pulumi.Mongodbatlas
 
             int referenceMinuteOfHour,
 
-            int restoreWindowDays)
+            int restoreWindowDays,
+
+            bool useOrgAndGroupNamesInExportPrefix)
         {
+            AutoExportEnabled = autoExportEnabled;
             ClusterId = clusterId;
             ClusterName = clusterName;
+            Exports = exports;
             Id = id;
             IdPolicy = idPolicy;
             NextSnapshot = nextSnapshot;
@@ -159,6 +176,7 @@ namespace Pulumi.Mongodbatlas
             ReferenceHourOfDay = referenceHourOfDay;
             ReferenceMinuteOfHour = referenceMinuteOfHour;
             RestoreWindowDays = restoreWindowDays;
+            UseOrgAndGroupNamesInExportPrefix = useOrgAndGroupNamesInExportPrefix;
         }
     }
 }

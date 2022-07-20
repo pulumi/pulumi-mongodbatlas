@@ -118,6 +118,10 @@ export interface GetEventTriggerResult {
      * The type of the trigger.
      */
     readonly type: string;
+    /**
+     * Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+     */
+    readonly unordered: boolean;
 }
 
 export function getEventTriggerOutput(args: GetEventTriggerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEventTriggerResult> {

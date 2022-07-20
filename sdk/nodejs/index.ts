@@ -26,6 +26,9 @@ export * from "./dataLake";
 export * from "./databaseUser";
 export * from "./encryptionAtRest";
 export * from "./eventTrigger";
+export * from "./federatedSettingsIdentityProvider";
+export * from "./federatedSettingsOrgConfig";
+export * from "./federatedSettingsOrgRoleMapping";
 export * from "./get509AuthenticationDatabaseUser";
 export * from "./getAdvancedCluster";
 export * from "./getAdvancedClusters";
@@ -58,6 +61,13 @@ export * from "./getDatabaseUser";
 export * from "./getDatabaseUsers";
 export * from "./getEventTrigger";
 export * from "./getEventTriggers";
+export * from "./getFederatedSettings";
+export * from "./getFederatedSettingsIdentityProvider";
+export * from "./getFederatedSettingsIdentityProviders";
+export * from "./getFederatedSettingsOrgConfig";
+export * from "./getFederatedSettingsOrgConfigs";
+export * from "./getFederatedSettingsOrgRoleMapping";
+export * from "./getFederatedSettingsOrgRoleMappings";
 export * from "./getGlobalClusterConfig";
 export * from "./getLdapConfiguration";
 export * from "./getLdapVerify";
@@ -69,6 +79,7 @@ export * from "./getNetworkPeerings";
 export * from "./getOnlineArchive";
 export * from "./getOnlineArchives";
 export * from "./getOrgInvitation";
+export * from "./getPrivateEndpointRegionalMode";
 export * from "./getPrivateLinkEndpoint";
 export * from "./getPrivateLinkEndpointService";
 export * from "./getPrivatelinkEndpointServiceAdl";
@@ -79,6 +90,8 @@ export * from "./getProjectIpAccessList";
 export * from "./getProjects";
 export * from "./getSearchIndex";
 export * from "./getSearchIndexes";
+export * from "./getServerlessInstance";
+export * from "./getServerlessInstances";
 export * from "./getTeam";
 export * from "./getTeams";
 export * from "./getThirdPartyIntegration";
@@ -91,6 +104,7 @@ export * from "./networkContainer";
 export * from "./networkPeering";
 export * from "./onlineArchive";
 export * from "./orgInvitation";
+export * from "./privateEndpointRegionalMode";
 export * from "./privateIpMode";
 export * from "./privateLinkEndpoint";
 export * from "./privateLinkEndpointService";
@@ -100,6 +114,7 @@ export * from "./projectInvitation";
 export * from "./projectIpAccessList";
 export * from "./provider";
 export * from "./searchIndex";
+export * from "./serverlessInstance";
 export * from "./team";
 export * from "./teams";
 export * from "./thirdPartyIntegration";
@@ -136,6 +151,9 @@ import { DataLake } from "./dataLake";
 import { DatabaseUser } from "./databaseUser";
 import { EncryptionAtRest } from "./encryptionAtRest";
 import { EventTrigger } from "./eventTrigger";
+import { FederatedSettingsIdentityProvider } from "./federatedSettingsIdentityProvider";
+import { FederatedSettingsOrgConfig } from "./federatedSettingsOrgConfig";
+import { FederatedSettingsOrgRoleMapping } from "./federatedSettingsOrgRoleMapping";
 import { GlobalClusterConfig } from "./globalClusterConfig";
 import { LdapConfiguration } from "./ldapConfiguration";
 import { LdapVerify } from "./ldapVerify";
@@ -144,6 +162,7 @@ import { NetworkContainer } from "./networkContainer";
 import { NetworkPeering } from "./networkPeering";
 import { OnlineArchive } from "./onlineArchive";
 import { OrgInvitation } from "./orgInvitation";
+import { PrivateEndpointRegionalMode } from "./privateEndpointRegionalMode";
 import { PrivateIpMode } from "./privateIpMode";
 import { PrivateLinkEndpoint } from "./privateLinkEndpoint";
 import { PrivateLinkEndpointService } from "./privateLinkEndpointService";
@@ -152,6 +171,7 @@ import { Project } from "./project";
 import { ProjectInvitation } from "./projectInvitation";
 import { ProjectIpAccessList } from "./projectIpAccessList";
 import { SearchIndex } from "./searchIndex";
+import { ServerlessInstance } from "./serverlessInstance";
 import { Team } from "./team";
 import { Teams } from "./teams";
 import { ThirdPartyIntegration } from "./thirdPartyIntegration";
@@ -203,6 +223,12 @@ const _module = {
                 return new EncryptionAtRest(name, <any>undefined, { urn })
             case "mongodbatlas:index/eventTrigger:EventTrigger":
                 return new EventTrigger(name, <any>undefined, { urn })
+            case "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider":
+                return new FederatedSettingsIdentityProvider(name, <any>undefined, { urn })
+            case "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig":
+                return new FederatedSettingsOrgConfig(name, <any>undefined, { urn })
+            case "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping":
+                return new FederatedSettingsOrgRoleMapping(name, <any>undefined, { urn })
             case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
                 return new GlobalClusterConfig(name, <any>undefined, { urn })
             case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -219,6 +245,8 @@ const _module = {
                 return new OnlineArchive(name, <any>undefined, { urn })
             case "mongodbatlas:index/orgInvitation:OrgInvitation":
                 return new OrgInvitation(name, <any>undefined, { urn })
+            case "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode":
+                return new PrivateEndpointRegionalMode(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateIpMode:PrivateIpMode":
                 return new PrivateIpMode(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
@@ -235,6 +263,8 @@ const _module = {
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
             case "mongodbatlas:index/searchIndex:SearchIndex":
                 return new SearchIndex(name, <any>undefined, { urn })
+            case "mongodbatlas:index/serverlessInstance:ServerlessInstance":
+                return new ServerlessInstance(name, <any>undefined, { urn })
             case "mongodbatlas:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
             case "mongodbatlas:index/teams:Teams":
@@ -269,6 +299,9 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/dataLake", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/encryptionAtRest", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/eventTrigger", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsIdentityProvider", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsOrgConfig", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/federatedSettingsOrgRoleMapping", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/globalClusterConfig", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)
@@ -277,6 +310,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkContainer", 
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/onlineArchive", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgInvitation", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpointRegionalMode", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateIpMode", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpointService", _module)
@@ -285,6 +319,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/serverlessInstance", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/teams", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/thirdPartyIntegration", _module)

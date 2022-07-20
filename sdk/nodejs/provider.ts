@@ -32,11 +32,11 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * MongoDB Atlas Programmatic Private Key
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    public readonly privateKey!: pulumi.Output<string | undefined>;
     /**
      * MongoDB Atlas Programmatic Public Key
      */
-    public readonly publicKey!: pulumi.Output<string>;
+    public readonly publicKey!: pulumi.Output<string | undefined>;
     /**
      * MongoDB Realm Base URL
      */
@@ -49,16 +49,10 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.privateKey === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'privateKey'");
-            }
-            if ((!args || args.publicKey === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'publicKey'");
-            }
             resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
             resourceInputs["privateKey"] = args ? args.privateKey : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
@@ -80,11 +74,11 @@ export interface ProviderArgs {
     /**
      * MongoDB Atlas Programmatic Private Key
      */
-    privateKey: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
     /**
      * MongoDB Atlas Programmatic Public Key
      */
-    publicKey: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string>;
     /**
      * MongoDB Realm Base URL
      */

@@ -217,21 +217,6 @@ class ProjectInvitation(pulumi.CustomResource):
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        `ProjectInvitation` invites a user to join an Atlas project.
-
-        Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
-
-        The [MongoDB Documentation](https://docs.atlas.mongodb.com/reference/user-roles/#project-roles) describes the roles a user can have, which map to:
-
-        * GROUP_OWNER
-        * GROUP_CLUSTER_MANAGER
-        * GROUP_READ_ONLY
-        * GROUP_DATA_ACCESS_ADMIN
-        * GROUP_DATA_ACCESS_READ_WRITE
-        * GROUP_DATA_ACCESS_READ_ONLY
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-
         ## Example Usage
         ### S
 
@@ -260,7 +245,7 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ## Import
 
-        Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen
+        ~> **IMPORTANT:** A project invitation can **not** be imported once it has been accepted. Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen
 
         ```sh
          $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
@@ -285,21 +270,6 @@ class ProjectInvitation(pulumi.CustomResource):
                  args: ProjectInvitationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `ProjectInvitation` invites a user to join an Atlas project.
-
-        Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
-
-        The [MongoDB Documentation](https://docs.atlas.mongodb.com/reference/user-roles/#project-roles) describes the roles a user can have, which map to:
-
-        * GROUP_OWNER
-        * GROUP_CLUSTER_MANAGER
-        * GROUP_READ_ONLY
-        * GROUP_DATA_ACCESS_ADMIN
-        * GROUP_DATA_ACCESS_READ_WRITE
-        * GROUP_DATA_ACCESS_READ_ONLY
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-
         ## Example Usage
         ### S
 
@@ -328,7 +298,7 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ## Import
 
-        Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen
+        ~> **IMPORTANT:** A project invitation can **not** be imported once it has been accepted. Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen
 
         ```sh
          $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com

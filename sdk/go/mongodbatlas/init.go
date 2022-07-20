@@ -62,6 +62,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EncryptionAtRest{}
 	case "mongodbatlas:index/eventTrigger:EventTrigger":
 		r = &EventTrigger{}
+	case "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider":
+		r = &FederatedSettingsIdentityProvider{}
+	case "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig":
+		r = &FederatedSettingsOrgConfig{}
+	case "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping":
+		r = &FederatedSettingsOrgRoleMapping{}
 	case "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig":
 		r = &GlobalClusterConfig{}
 	case "mongodbatlas:index/ldapConfiguration:LdapConfiguration":
@@ -78,6 +84,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OnlineArchive{}
 	case "mongodbatlas:index/orgInvitation:OrgInvitation":
 		r = &OrgInvitation{}
+	case "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode":
+		r = &PrivateEndpointRegionalMode{}
 	case "mongodbatlas:index/privateIpMode:PrivateIpMode":
 		r = &PrivateIpMode{}
 	case "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint":
@@ -94,6 +102,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProjectIpAccessList{}
 	case "mongodbatlas:index/searchIndex:SearchIndex":
 		r = &SearchIndex{}
+	case "mongodbatlas:index/serverlessInstance:ServerlessInstance":
+		r = &ServerlessInstance{}
 	case "mongodbatlas:index/team:Team":
 		r = &Team{}
 	case "mongodbatlas:index/teams:Teams":
@@ -237,6 +247,21 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/federatedSettingsIdentityProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/federatedSettingsOrgConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/federatedSettingsOrgRoleMapping",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/globalClusterConfig",
 		&module{version},
 	)
@@ -277,6 +302,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/privateEndpointRegionalMode",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/privateIpMode",
 		&module{version},
 	)
@@ -313,6 +343,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/searchIndex",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/serverlessInstance",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

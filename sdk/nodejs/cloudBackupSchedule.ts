@@ -45,6 +45,10 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
     }
 
     /**
+     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     */
+    public readonly autoExportEnabled!: pulumi.Output<boolean>;
+    /**
      * Unique identifier of the Atlas cluster.
      */
     public /*out*/ readonly clusterId!: pulumi.Output<string>;
@@ -52,6 +56,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     public readonly clusterName!: pulumi.Output<string>;
+    public readonly export!: pulumi.Output<outputs.CloudBackupScheduleExport>;
     /**
      * Unique identifier of the backup policy.
      */
@@ -71,11 +76,11 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
     /**
      * Monthly policy item
      */
-    public readonly policyItemMonthly!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemMonthly | undefined>;
+    public readonly policyItemMonthlies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemMonthly[] | undefined>;
     /**
      * Weekly policy item
      */
-    public readonly policyItemWeekly!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemWeekly | undefined>;
+    public readonly policyItemWeeklies!: pulumi.Output<outputs.CloudBackupSchedulePolicyItemWeekly[] | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -96,6 +101,10 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      */
     public readonly updateSnapshots!: pulumi.Output<boolean>;
+    /**
+     * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+     */
+    public readonly useOrgAndGroupNamesInExportPrefix!: pulumi.Output<boolean>;
 
     /**
      * Create a CloudBackupSchedule resource with the given unique name, arguments, and options.
@@ -110,19 +119,22 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudBackupScheduleState | undefined;
+            resourceInputs["autoExportEnabled"] = state ? state.autoExportEnabled : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["clusterName"] = state ? state.clusterName : undefined;
+            resourceInputs["export"] = state ? state.export : undefined;
             resourceInputs["idPolicy"] = state ? state.idPolicy : undefined;
             resourceInputs["nextSnapshot"] = state ? state.nextSnapshot : undefined;
             resourceInputs["policyItemDaily"] = state ? state.policyItemDaily : undefined;
             resourceInputs["policyItemHourly"] = state ? state.policyItemHourly : undefined;
-            resourceInputs["policyItemMonthly"] = state ? state.policyItemMonthly : undefined;
-            resourceInputs["policyItemWeekly"] = state ? state.policyItemWeekly : undefined;
+            resourceInputs["policyItemMonthlies"] = state ? state.policyItemMonthlies : undefined;
+            resourceInputs["policyItemWeeklies"] = state ? state.policyItemWeeklies : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["referenceHourOfDay"] = state ? state.referenceHourOfDay : undefined;
             resourceInputs["referenceMinuteOfHour"] = state ? state.referenceMinuteOfHour : undefined;
             resourceInputs["restoreWindowDays"] = state ? state.restoreWindowDays : undefined;
             resourceInputs["updateSnapshots"] = state ? state.updateSnapshots : undefined;
+            resourceInputs["useOrgAndGroupNamesInExportPrefix"] = state ? state.useOrgAndGroupNamesInExportPrefix : undefined;
         } else {
             const args = argsOrState as CloudBackupScheduleArgs | undefined;
             if ((!args || args.clusterName === undefined) && !opts.urn) {
@@ -131,16 +143,19 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
+            resourceInputs["autoExportEnabled"] = args ? args.autoExportEnabled : undefined;
             resourceInputs["clusterName"] = args ? args.clusterName : undefined;
+            resourceInputs["export"] = args ? args.export : undefined;
             resourceInputs["policyItemDaily"] = args ? args.policyItemDaily : undefined;
             resourceInputs["policyItemHourly"] = args ? args.policyItemHourly : undefined;
-            resourceInputs["policyItemMonthly"] = args ? args.policyItemMonthly : undefined;
-            resourceInputs["policyItemWeekly"] = args ? args.policyItemWeekly : undefined;
+            resourceInputs["policyItemMonthlies"] = args ? args.policyItemMonthlies : undefined;
+            resourceInputs["policyItemWeeklies"] = args ? args.policyItemWeeklies : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["referenceHourOfDay"] = args ? args.referenceHourOfDay : undefined;
             resourceInputs["referenceMinuteOfHour"] = args ? args.referenceMinuteOfHour : undefined;
             resourceInputs["restoreWindowDays"] = args ? args.restoreWindowDays : undefined;
             resourceInputs["updateSnapshots"] = args ? args.updateSnapshots : undefined;
+            resourceInputs["useOrgAndGroupNamesInExportPrefix"] = args ? args.useOrgAndGroupNamesInExportPrefix : undefined;
             resourceInputs["clusterId"] = undefined /*out*/;
             resourceInputs["idPolicy"] = undefined /*out*/;
             resourceInputs["nextSnapshot"] = undefined /*out*/;
@@ -155,6 +170,10 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
  */
 export interface CloudBackupScheduleState {
     /**
+     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     */
+    autoExportEnabled?: pulumi.Input<boolean>;
+    /**
      * Unique identifier of the Atlas cluster.
      */
     clusterId?: pulumi.Input<string>;
@@ -162,6 +181,7 @@ export interface CloudBackupScheduleState {
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     clusterName?: pulumi.Input<string>;
+    export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
     /**
      * Unique identifier of the backup policy.
      */
@@ -181,11 +201,11 @@ export interface CloudBackupScheduleState {
     /**
      * Monthly policy item
      */
-    policyItemMonthly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>;
+    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>[]>;
     /**
      * Weekly policy item
      */
-    policyItemWeekly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>;
+    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[]>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -206,6 +226,10 @@ export interface CloudBackupScheduleState {
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      */
     updateSnapshots?: pulumi.Input<boolean>;
+    /**
+     * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+     */
+    useOrgAndGroupNamesInExportPrefix?: pulumi.Input<boolean>;
 }
 
 /**
@@ -213,9 +237,14 @@ export interface CloudBackupScheduleState {
  */
 export interface CloudBackupScheduleArgs {
     /**
+     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     */
+    autoExportEnabled?: pulumi.Input<boolean>;
+    /**
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
     clusterName: pulumi.Input<string>;
+    export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
     /**
      * Daily policy item
      */
@@ -227,11 +256,11 @@ export interface CloudBackupScheduleArgs {
     /**
      * Monthly policy item
      */
-    policyItemMonthly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>;
+    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>[]>;
     /**
      * Weekly policy item
      */
-    policyItemWeekly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>;
+    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[]>;
     /**
      * The unique identifier of the project for the Atlas cluster.
      */
@@ -252,4 +281,8 @@ export interface CloudBackupScheduleArgs {
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      */
     updateSnapshots?: pulumi.Input<boolean>;
+    /**
+     * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+     */
+    useOrgAndGroupNamesInExportPrefix?: pulumi.Input<boolean>;
 }

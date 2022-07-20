@@ -32,9 +32,12 @@ type LookupCloudBackupScheduleArgs struct {
 
 // A collection of values returned by getCloudBackupSchedule.
 type LookupCloudBackupScheduleResult struct {
+	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+	AutoExportEnabled bool `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
-	ClusterId   string `pulumi:"clusterId"`
-	ClusterName string `pulumi:"clusterName"`
+	ClusterId   string                         `pulumi:"clusterId"`
+	ClusterName string                         `pulumi:"clusterName"`
+	Exports     []GetCloudBackupScheduleExport `pulumi:"exports"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique identifier of the backup policy.
@@ -56,6 +59,8 @@ type LookupCloudBackupScheduleResult struct {
 	ReferenceMinuteOfHour int `pulumi:"referenceMinuteOfHour"`
 	// Specifies a restore window in days for cloud backup to maintain.
 	RestoreWindowDays int `pulumi:"restoreWindowDays"`
+	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+	UseOrgAndGroupNamesInExportPrefix bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 }
 
 func LookupCloudBackupScheduleOutput(ctx *pulumi.Context, args LookupCloudBackupScheduleOutputArgs, opts ...pulumi.InvokeOption) LookupCloudBackupScheduleResultOutput {
@@ -98,6 +103,11 @@ func (o LookupCloudBackupScheduleResultOutput) ToLookupCloudBackupScheduleResult
 	return o
 }
 
+// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+func (o LookupCloudBackupScheduleResultOutput) AutoExportEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.AutoExportEnabled }).(pulumi.BoolOutput)
+}
+
 // Unique identifier of the Atlas cluster.
 func (o LookupCloudBackupScheduleResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) string { return v.ClusterId }).(pulumi.StringOutput)
@@ -105,6 +115,10 @@ func (o LookupCloudBackupScheduleResultOutput) ClusterId() pulumi.StringOutput {
 
 func (o LookupCloudBackupScheduleResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+func (o LookupCloudBackupScheduleResultOutput) Exports() GetCloudBackupScheduleExportArrayOutput {
+	return o.ApplyT(func(v LookupCloudBackupScheduleResult) []GetCloudBackupScheduleExport { return v.Exports }).(GetCloudBackupScheduleExportArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -167,6 +181,11 @@ func (o LookupCloudBackupScheduleResultOutput) ReferenceMinuteOfHour() pulumi.In
 // Specifies a restore window in days for cloud backup to maintain.
 func (o LookupCloudBackupScheduleResultOutput) RestoreWindowDays() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) int { return v.RestoreWindowDays }).(pulumi.IntOutput)
+}
+
+// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+func (o LookupCloudBackupScheduleResultOutput) UseOrgAndGroupNamesInExportPrefix() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.UseOrgAndGroupNamesInExportPrefix }).(pulumi.BoolOutput)
 }
 
 func init() {

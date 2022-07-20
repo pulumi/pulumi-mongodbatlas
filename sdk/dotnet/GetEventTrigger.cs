@@ -154,6 +154,10 @@ namespace Pulumi.Mongodbatlas
         /// The type of the trigger.
         /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+        /// </summary>
+        public readonly bool Unordered;
 
         [OutputConstructor]
         private GetEventTriggerResult(
@@ -199,7 +203,9 @@ namespace Pulumi.Mongodbatlas
 
             string triggerId,
 
-            string type)
+            string type,
+
+            bool unordered)
         {
             AppId = appId;
             ConfigCollection = configCollection;
@@ -223,6 +229,7 @@ namespace Pulumi.Mongodbatlas
             ProjectId = projectId;
             TriggerId = triggerId;
             Type = type;
+            Unordered = unordered;
         }
     }
 }

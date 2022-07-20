@@ -17,6 +17,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Desired frequency of the new backup policy item specified by `frequency_type`.
         /// </summary>
         public readonly int FrequencyInterval;
+        /// <summary>
+        /// Frequency associated with the export snapshot item.
+        /// </summary>
         public readonly string? FrequencyType;
         public readonly string? Id;
         /// <summary>

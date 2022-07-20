@@ -87,16 +87,16 @@ namespace Pulumi.Mongodbatlas
     ///             SearchAnalyzer = "lucene.standard",
     ///             Analyzers = @" [{
     ///  ""name"": ""index_analyzer_test_name"",
-    ///  ""char_filters"": {
+    ///  ""charFilters"": {
     /// ""type"": ""mapping"",
     /// ""mappings"": {""\\"" : ""/""}
     ///    	},
     ///  ""tokenizer"": {
     ///  ""type"": ""nGram"",
-    ///  ""min_gram"": 2,
-    ///  ""max_gram"": 5
+    ///  ""minGram"": 2,
+    ///  ""maxGram"": 5
     /// 	},
-    ///  ""token_filters"": {
+    ///  ""tokenFilters"": {
     /// ""type"": ""length"",
     /// ""min"": 20,
     /// ""max"": 33

@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,9 +20,9 @@ type Provider struct {
 	// MongoDB Atlas Base URL
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
 	// MongoDB Atlas Programmatic Private Key
-	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
 	// MongoDB Atlas Programmatic Public Key
-	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	PublicKey pulumi.StringPtrOutput `pulumi:"publicKey"`
 	// MongoDB Realm Base URL
 	RealmBaseUrl pulumi.StringPtrOutput `pulumi:"realmBaseUrl"`
 }
@@ -32,15 +31,9 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ProviderArgs{}
 	}
 
-	if args.PrivateKey == nil {
-		return nil, errors.New("invalid value for required argument 'PrivateKey'")
-	}
-	if args.PublicKey == nil {
-		return nil, errors.New("invalid value for required argument 'PublicKey'")
-	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:mongodbatlas", name, args, &resource, opts...)
 	if err != nil {
@@ -53,9 +46,9 @@ type providerArgs struct {
 	// MongoDB Atlas Base URL
 	BaseUrl *string `pulumi:"baseUrl"`
 	// MongoDB Atlas Programmatic Private Key
-	PrivateKey string `pulumi:"privateKey"`
+	PrivateKey *string `pulumi:"privateKey"`
 	// MongoDB Atlas Programmatic Public Key
-	PublicKey string `pulumi:"publicKey"`
+	PublicKey *string `pulumi:"publicKey"`
 	// MongoDB Realm Base URL
 	RealmBaseUrl *string `pulumi:"realmBaseUrl"`
 }
@@ -65,9 +58,9 @@ type ProviderArgs struct {
 	// MongoDB Atlas Base URL
 	BaseUrl pulumi.StringPtrInput
 	// MongoDB Atlas Programmatic Private Key
-	PrivateKey pulumi.StringInput
+	PrivateKey pulumi.StringPtrInput
 	// MongoDB Atlas Programmatic Public Key
-	PublicKey pulumi.StringInput
+	PublicKey pulumi.StringPtrInput
 	// MongoDB Realm Base URL
 	RealmBaseUrl pulumi.StringPtrInput
 }

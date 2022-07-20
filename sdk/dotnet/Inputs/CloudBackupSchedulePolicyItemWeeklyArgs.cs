@@ -18,6 +18,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("frequencyInterval", required: true)]
         public Input<int> FrequencyInterval { get; set; } = null!;
 
+        /// <summary>
+        /// Frequency associated with the export snapshot item.
+        /// </summary>
         [Input("frequencyType")]
         public Input<string>? FrequencyType { get; set; }
 

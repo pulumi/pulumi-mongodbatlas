@@ -68,6 +68,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> ChannelName { get; private set; } = null!;
 
         /// <summary>
+        /// Whether your cluster has Prometheus enabled.
+        /// </summary>
+        [Output("enabled")]
+        public Output<bool?> Enabled { get; private set; } = null!;
+
+        /// <summary>
         /// Your Flowdock Flow name.
         /// </summary>
         [Output("flowName")]
@@ -80,11 +86,24 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> LicenseKey { get; private set; } = null!;
 
         /// <summary>
+        /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
+        /// </summary>
+        [Output("microsoftTeamsWebhookUrl")]
+        public Output<string?> MicrosoftTeamsWebhookUrl { get; private set; } = null!;
+
+        /// <summary>
         /// Your Flowdock organization name.
         /// * `WEBHOOK`
         /// </summary>
         [Output("orgName")]
         public Output<string?> OrgName { get; private set; } = null!;
+
+        /// <summary>
+        /// Your Prometheus password.
+        /// </summary>
+        [Output("password")]
+        public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -114,10 +133,23 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> RoutingKey { get; private set; } = null!;
 
         /// <summary>
+        /// Your Prometheus protocol scheme configured for requests.
+        /// </summary>
+        [Output("scheme")]
+        public Output<string?> Scheme { get; private set; } = null!;
+
+        /// <summary>
         /// An optional field for your webhook secret.
+        /// * `MICROSOFT_TEAMS`
         /// </summary>
         [Output("secret")]
         public Output<string?> Secret { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates which service discovery method is used, either file or http.
+        /// </summary>
+        [Output("serviceDiscovery")]
+        public Output<string?> ServiceDiscovery { get; private set; } = null!;
 
         /// <summary>
         /// Your Service Key.
@@ -147,6 +179,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("url")]
         public Output<string?> Url { get; private set; } = null!;
+
+        /// <summary>
+        /// Your Prometheus username.
+        /// </summary>
+        [Output("userName")]
+        public Output<string?> UserName { get; private set; } = null!;
 
         /// <summary>
         /// Your Insights Insert Key.
@@ -222,6 +260,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ChannelName { get; set; }
 
         /// <summary>
+        /// Whether your cluster has Prometheus enabled.
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
         /// Your Flowdock Flow name.
         /// </summary>
         [Input("flowName")]
@@ -234,11 +278,24 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? LicenseKey { get; set; }
 
         /// <summary>
+        /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
+        /// </summary>
+        [Input("microsoftTeamsWebhookUrl")]
+        public Input<string>? MicrosoftTeamsWebhookUrl { get; set; }
+
+        /// <summary>
         /// Your Flowdock organization name.
         /// * `WEBHOOK`
         /// </summary>
         [Input("orgName")]
         public Input<string>? OrgName { get; set; }
+
+        /// <summary>
+        /// Your Prometheus password.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
 
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -268,10 +325,23 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? RoutingKey { get; set; }
 
         /// <summary>
+        /// Your Prometheus protocol scheme configured for requests.
+        /// </summary>
+        [Input("scheme")]
+        public Input<string>? Scheme { get; set; }
+
+        /// <summary>
         /// An optional field for your webhook secret.
+        /// * `MICROSOFT_TEAMS`
         /// </summary>
         [Input("secret")]
         public Input<string>? Secret { get; set; }
+
+        /// <summary>
+        /// Indicates which service discovery method is used, either file or http.
+        /// </summary>
+        [Input("serviceDiscovery")]
+        public Input<string>? ServiceDiscovery { get; set; }
 
         /// <summary>
         /// Your Service Key.
@@ -301,6 +371,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
+
+        /// <summary>
+        /// Your Prometheus username.
+        /// </summary>
+        [Input("userName")]
+        public Input<string>? UserName { get; set; }
 
         /// <summary>
         /// Your Insights Insert Key.
@@ -337,6 +413,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ChannelName { get; set; }
 
         /// <summary>
+        /// Whether your cluster has Prometheus enabled.
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
         /// Your Flowdock Flow name.
         /// </summary>
         [Input("flowName")]
@@ -349,11 +431,24 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? LicenseKey { get; set; }
 
         /// <summary>
+        /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
+        /// </summary>
+        [Input("microsoftTeamsWebhookUrl")]
+        public Input<string>? MicrosoftTeamsWebhookUrl { get; set; }
+
+        /// <summary>
         /// Your Flowdock organization name.
         /// * `WEBHOOK`
         /// </summary>
         [Input("orgName")]
         public Input<string>? OrgName { get; set; }
+
+        /// <summary>
+        /// Your Prometheus password.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
 
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -383,10 +478,23 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? RoutingKey { get; set; }
 
         /// <summary>
+        /// Your Prometheus protocol scheme configured for requests.
+        /// </summary>
+        [Input("scheme")]
+        public Input<string>? Scheme { get; set; }
+
+        /// <summary>
         /// An optional field for your webhook secret.
+        /// * `MICROSOFT_TEAMS`
         /// </summary>
         [Input("secret")]
         public Input<string>? Secret { get; set; }
+
+        /// <summary>
+        /// Indicates which service discovery method is used, either file or http.
+        /// </summary>
+        [Input("serviceDiscovery")]
+        public Input<string>? ServiceDiscovery { get; set; }
 
         /// <summary>
         /// Your Service Key.
@@ -416,6 +524,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
+
+        /// <summary>
+        /// Your Prometheus username.
+        /// </summary>
+        [Input("userName")]
+        public Input<string>? UserName { get; set; }
 
         /// <summary>
         /// Your Insights Insert Key.

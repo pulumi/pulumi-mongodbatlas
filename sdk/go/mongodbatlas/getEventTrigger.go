@@ -73,6 +73,8 @@ type LookupEventTriggerResult struct {
 	TriggerId string `pulumi:"triggerId"`
 	// The type of the trigger.
 	Type string `pulumi:"type"`
+	// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+	Unordered bool `pulumi:"unordered"`
 }
 
 func LookupEventTriggerOutput(ctx *pulumi.Context, args LookupEventTriggerOutputArgs, opts ...pulumi.InvokeOption) LookupEventTriggerResultOutput {
@@ -222,6 +224,11 @@ func (o LookupEventTriggerResultOutput) TriggerId() pulumi.StringOutput {
 // The type of the trigger.
 func (o LookupEventTriggerResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+func (o LookupEventTriggerResultOutput) Unordered() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupEventTriggerResult) bool { return v.Unordered }).(pulumi.BoolOutput)
 }
 
 func init() {

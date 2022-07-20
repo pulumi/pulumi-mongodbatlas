@@ -13,47 +13,25 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 private_key: pulumi.Input[str],
-                 public_key: pulumi.Input[str],
                  base_url: Optional[pulumi.Input[str]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 public_key: Optional[pulumi.Input[str]] = None,
                  realm_base_url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+        :param pulumi.Input[str] base_url: MongoDB Atlas Base URL
         :param pulumi.Input[str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[str] public_key: MongoDB Atlas Programmatic Public Key
-        :param pulumi.Input[str] base_url: MongoDB Atlas Base URL
         :param pulumi.Input[str] realm_base_url: MongoDB Realm Base URL
         """
-        pulumi.set(__self__, "private_key", private_key)
-        pulumi.set(__self__, "public_key", public_key)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
         if realm_base_url is not None:
             pulumi.set(__self__, "realm_base_url", realm_base_url)
-
-    @property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Input[str]:
-        """
-        MongoDB Atlas Programmatic Private Key
-        """
-        return pulumi.get(self, "private_key")
-
-    @private_key.setter
-    def private_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "private_key", value)
-
-    @property
-    @pulumi.getter(name="publicKey")
-    def public_key(self) -> pulumi.Input[str]:
-        """
-        MongoDB Atlas Programmatic Public Key
-        """
-        return pulumi.get(self, "public_key")
-
-    @public_key.setter
-    def public_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "public_key", value)
 
     @property
     @pulumi.getter(name="baseUrl")
@@ -66,6 +44,30 @@ class ProviderArgs:
     @base_url.setter
     def base_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "base_url", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        MongoDB Atlas Programmatic Private Key
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        MongoDB Atlas Programmatic Public Key
+        """
+        return pulumi.get(self, "public_key")
+
+    @public_key.setter
+    def public_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_key", value)
 
     @property
     @pulumi.getter(name="realmBaseUrl")
@@ -107,7 +109,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the mongodbatlas package. By default, resources use package-wide configuration
@@ -147,11 +149,7 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
             __props__.__dict__["base_url"] = base_url
-            if private_key is None and not opts.urn:
-                raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = private_key
-            if public_key is None and not opts.urn:
-                raise TypeError("Missing required property 'public_key'")
             __props__.__dict__["public_key"] = public_key
             __props__.__dict__["realm_base_url"] = realm_base_url
         super(Provider, __self__).__init__(
@@ -170,7 +168,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Output[str]:
+    def private_key(self) -> pulumi.Output[Optional[str]]:
         """
         MongoDB Atlas Programmatic Private Key
         """
@@ -178,7 +176,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> pulumi.Output[str]:
+    def public_key(self) -> pulumi.Output[Optional[str]]:
         """
         MongoDB Atlas Programmatic Public Key
         """

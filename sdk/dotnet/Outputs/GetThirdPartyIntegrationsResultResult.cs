@@ -27,6 +27,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ApiToken;
         public readonly string ChannelName;
         /// <summary>
+        /// Whether your cluster has Prometheus enabled.
+        /// </summary>
+        public readonly bool? Enabled;
+        /// <summary>
         /// Your Flowdock Flow name.
         /// </summary>
         public readonly string FlowName;
@@ -34,6 +38,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Your License Key.
         /// </summary>
         public readonly string LicenseKey;
+        /// <summary>
+        /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
+        /// </summary>
+        public readonly string? MicrosoftTeamsWebhookUrl;
         /// <summary>
         /// Your Flowdock organization name.
         /// * `WEBHOOK`
@@ -59,9 +68,18 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
+        /// Your Prometheus protocol scheme configured for requests.
+        /// </summary>
+        public readonly string? Scheme;
+        /// <summary>
         /// An optional field for your webhook secret.
+        /// * `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string Secret;
+        /// <summary>
+        /// Indicates which service discovery method is used, either file or http.
+        /// </summary>
+        public readonly string? ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
         /// * `DATADOG`
@@ -77,6 +95,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Url;
         /// <summary>
+        /// Your Prometheus username.
+        /// </summary>
+        public readonly string? UserName;
+        /// <summary>
         /// Your Insights Insert Key.
         /// </summary>
         public readonly string WriteToken;
@@ -91,9 +113,13 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string channelName,
 
+            bool? enabled,
+
             string flowName,
 
             string licenseKey,
+
+            string? microsoftTeamsWebhookUrl,
 
             string orgName,
 
@@ -105,7 +131,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string routingKey,
 
+            string? scheme,
+
             string secret,
+
+            string? serviceDiscovery,
 
             string serviceKey,
 
@@ -115,24 +145,31 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string url,
 
+            string? userName,
+
             string writeToken)
         {
             AccountId = accountId;
             ApiKey = apiKey;
             ApiToken = apiToken;
             ChannelName = channelName;
+            Enabled = enabled;
             FlowName = flowName;
             LicenseKey = licenseKey;
+            MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             OrgName = orgName;
             ProjectId = projectId;
             ReadToken = readToken;
             Region = region;
             RoutingKey = routingKey;
+            Scheme = scheme;
             Secret = secret;
+            ServiceDiscovery = serviceDiscovery;
             ServiceKey = serviceKey;
             TeamName = teamName;
             Type = type;
             Url = url;
+            UserName = userName;
             WriteToken = writeToken;
         }
     }

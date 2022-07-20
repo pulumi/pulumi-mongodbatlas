@@ -94,10 +94,35 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetThirdPartyIntegrationArgs : Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Whether your cluster has Prometheus enabled.
+        /// </summary>
+        [Input("enabled")]
+        public bool? Enabled { get; set; }
+
+        /// <summary>
+        /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
+        /// </summary>
+        [Input("microsoftTeamsWebhookUrl")]
+        public string? MicrosoftTeamsWebhookUrl { get; set; }
+
+        /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Your Prometheus protocol scheme configured for requests.
+        /// </summary>
+        [Input("scheme")]
+        public string? Scheme { get; set; }
+
+        /// <summary>
+        /// Indicates which service discovery method is used, either file or http.
+        /// </summary>
+        [Input("serviceDiscovery")]
+        public string? ServiceDiscovery { get; set; }
 
         /// <summary>
         /// Third-Party service integration type
@@ -108,9 +133,17 @@ namespace Pulumi.Mongodbatlas
         /// * VICTOR_OPS
         /// * FLOWDOCK
         /// * WEBHOOK
+        /// * MICROSOFT_TEAMS
+        /// * PROMETHEUS
         /// </summary>
         [Input("type", required: true)]
         public string Type { get; set; } = null!;
+
+        /// <summary>
+        /// Your Prometheus username.
+        /// </summary>
+        [Input("userName")]
+        public string? UserName { get; set; }
 
         public GetThirdPartyIntegrationArgs()
         {
@@ -120,10 +153,35 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetThirdPartyIntegrationInvokeArgs : Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Whether your cluster has Prometheus enabled.
+        /// </summary>
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
+        /// </summary>
+        [Input("microsoftTeamsWebhookUrl")]
+        public Input<string>? MicrosoftTeamsWebhookUrl { get; set; }
+
+        /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Your Prometheus protocol scheme configured for requests.
+        /// </summary>
+        [Input("scheme")]
+        public Input<string>? Scheme { get; set; }
+
+        /// <summary>
+        /// Indicates which service discovery method is used, either file or http.
+        /// </summary>
+        [Input("serviceDiscovery")]
+        public Input<string>? ServiceDiscovery { get; set; }
 
         /// <summary>
         /// Third-Party service integration type
@@ -134,9 +192,17 @@ namespace Pulumi.Mongodbatlas
         /// * VICTOR_OPS
         /// * FLOWDOCK
         /// * WEBHOOK
+        /// * MICROSOFT_TEAMS
+        /// * PROMETHEUS
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
+
+        /// <summary>
+        /// Your Prometheus username.
+        /// </summary>
+        [Input("userName")]
+        public Input<string>? UserName { get; set; }
 
         public GetThirdPartyIntegrationInvokeArgs()
         {
@@ -161,6 +227,10 @@ namespace Pulumi.Mongodbatlas
         public readonly string ApiToken;
         public readonly string ChannelName;
         /// <summary>
+        /// Whether your cluster has Prometheus enabled.
+        /// </summary>
+        public readonly bool? Enabled;
+        /// <summary>
         /// Your Flowdock Flow name.
         /// </summary>
         public readonly string FlowName;
@@ -172,6 +242,11 @@ namespace Pulumi.Mongodbatlas
         /// Your License Key.
         /// </summary>
         public readonly string LicenseKey;
+        /// <summary>
+        /// Your Microsoft Teams incoming webhook URL.
+        /// * `PROMETHEUS`
+        /// </summary>
+        public readonly string? MicrosoftTeamsWebhookUrl;
         /// <summary>
         /// Your Flowdock organization name.
         /// * `WEBHOOK`
@@ -194,9 +269,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
+        /// Your Prometheus protocol scheme configured for requests.
+        /// </summary>
+        public readonly string? Scheme;
+        /// <summary>
         /// An optional field for your webhook secret.
+        /// * `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string Secret;
+        /// <summary>
+        /// Indicates which service discovery method is used, either file or http.
+        /// </summary>
+        public readonly string? ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
         /// * `DATADOG`
@@ -212,6 +296,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Url;
         /// <summary>
+        /// Your Prometheus username.
+        /// </summary>
+        public readonly string? UserName;
+        /// <summary>
         /// Your Insights Insert Key.
         /// </summary>
         public readonly string WriteToken;
@@ -226,11 +314,15 @@ namespace Pulumi.Mongodbatlas
 
             string channelName,
 
+            bool? enabled,
+
             string flowName,
 
             string id,
 
             string licenseKey,
+
+            string? microsoftTeamsWebhookUrl,
 
             string orgName,
 
@@ -242,7 +334,11 @@ namespace Pulumi.Mongodbatlas
 
             string routingKey,
 
+            string? scheme,
+
             string secret,
+
+            string? serviceDiscovery,
 
             string serviceKey,
 
@@ -252,25 +348,32 @@ namespace Pulumi.Mongodbatlas
 
             string url,
 
+            string? userName,
+
             string writeToken)
         {
             AccountId = accountId;
             ApiKey = apiKey;
             ApiToken = apiToken;
             ChannelName = channelName;
+            Enabled = enabled;
             FlowName = flowName;
             Id = id;
             LicenseKey = licenseKey;
+            MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             OrgName = orgName;
             ProjectId = projectId;
             ReadToken = readToken;
             Region = region;
             RoutingKey = routingKey;
+            Scheme = scheme;
             Secret = secret;
+            ServiceDiscovery = serviceDiscovery;
             ServiceKey = serviceKey;
             TeamName = teamName;
             Type = type;
             Url = url;
+            UserName = userName;
             WriteToken = writeToken;
         }
     }

@@ -3032,10 +3032,167 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Units() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+type CloudBackupScheduleExport struct {
+	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+	ExportBucketId *string `pulumi:"exportBucketId"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType *string `pulumi:"frequencyType"`
+}
+
+// CloudBackupScheduleExportInput is an input type that accepts CloudBackupScheduleExportArgs and CloudBackupScheduleExportOutput values.
+// You can construct a concrete instance of `CloudBackupScheduleExportInput` via:
+//
+//          CloudBackupScheduleExportArgs{...}
+type CloudBackupScheduleExportInput interface {
+	pulumi.Input
+
+	ToCloudBackupScheduleExportOutput() CloudBackupScheduleExportOutput
+	ToCloudBackupScheduleExportOutputWithContext(context.Context) CloudBackupScheduleExportOutput
+}
+
+type CloudBackupScheduleExportArgs struct {
+	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+	ExportBucketId pulumi.StringPtrInput `pulumi:"exportBucketId"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+}
+
+func (CloudBackupScheduleExportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupScheduleExport)(nil)).Elem()
+}
+
+func (i CloudBackupScheduleExportArgs) ToCloudBackupScheduleExportOutput() CloudBackupScheduleExportOutput {
+	return i.ToCloudBackupScheduleExportOutputWithContext(context.Background())
+}
+
+func (i CloudBackupScheduleExportArgs) ToCloudBackupScheduleExportOutputWithContext(ctx context.Context) CloudBackupScheduleExportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleExportOutput)
+}
+
+func (i CloudBackupScheduleExportArgs) ToCloudBackupScheduleExportPtrOutput() CloudBackupScheduleExportPtrOutput {
+	return i.ToCloudBackupScheduleExportPtrOutputWithContext(context.Background())
+}
+
+func (i CloudBackupScheduleExportArgs) ToCloudBackupScheduleExportPtrOutputWithContext(ctx context.Context) CloudBackupScheduleExportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleExportOutput).ToCloudBackupScheduleExportPtrOutputWithContext(ctx)
+}
+
+// CloudBackupScheduleExportPtrInput is an input type that accepts CloudBackupScheduleExportArgs, CloudBackupScheduleExportPtr and CloudBackupScheduleExportPtrOutput values.
+// You can construct a concrete instance of `CloudBackupScheduleExportPtrInput` via:
+//
+//          CloudBackupScheduleExportArgs{...}
+//
+//  or:
+//
+//          nil
+type CloudBackupScheduleExportPtrInput interface {
+	pulumi.Input
+
+	ToCloudBackupScheduleExportPtrOutput() CloudBackupScheduleExportPtrOutput
+	ToCloudBackupScheduleExportPtrOutputWithContext(context.Context) CloudBackupScheduleExportPtrOutput
+}
+
+type cloudBackupScheduleExportPtrType CloudBackupScheduleExportArgs
+
+func CloudBackupScheduleExportPtr(v *CloudBackupScheduleExportArgs) CloudBackupScheduleExportPtrInput {
+	return (*cloudBackupScheduleExportPtrType)(v)
+}
+
+func (*cloudBackupScheduleExportPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupScheduleExport)(nil)).Elem()
+}
+
+func (i *cloudBackupScheduleExportPtrType) ToCloudBackupScheduleExportPtrOutput() CloudBackupScheduleExportPtrOutput {
+	return i.ToCloudBackupScheduleExportPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudBackupScheduleExportPtrType) ToCloudBackupScheduleExportPtrOutputWithContext(ctx context.Context) CloudBackupScheduleExportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleExportPtrOutput)
+}
+
+type CloudBackupScheduleExportOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupScheduleExportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupScheduleExport)(nil)).Elem()
+}
+
+func (o CloudBackupScheduleExportOutput) ToCloudBackupScheduleExportOutput() CloudBackupScheduleExportOutput {
+	return o
+}
+
+func (o CloudBackupScheduleExportOutput) ToCloudBackupScheduleExportOutputWithContext(ctx context.Context) CloudBackupScheduleExportOutput {
+	return o
+}
+
+func (o CloudBackupScheduleExportOutput) ToCloudBackupScheduleExportPtrOutput() CloudBackupScheduleExportPtrOutput {
+	return o.ToCloudBackupScheduleExportPtrOutputWithContext(context.Background())
+}
+
+func (o CloudBackupScheduleExportOutput) ToCloudBackupScheduleExportPtrOutputWithContext(ctx context.Context) CloudBackupScheduleExportPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CloudBackupScheduleExport) *CloudBackupScheduleExport {
+		return &v
+	}).(CloudBackupScheduleExportPtrOutput)
+}
+
+// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+func (o CloudBackupScheduleExportOutput) ExportBucketId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupScheduleExport) *string { return v.ExportBucketId }).(pulumi.StringPtrOutput)
+}
+
+// Frequency associated with the export snapshot item.
+func (o CloudBackupScheduleExportOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupScheduleExport) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupScheduleExportPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupScheduleExportPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupScheduleExport)(nil)).Elem()
+}
+
+func (o CloudBackupScheduleExportPtrOutput) ToCloudBackupScheduleExportPtrOutput() CloudBackupScheduleExportPtrOutput {
+	return o
+}
+
+func (o CloudBackupScheduleExportPtrOutput) ToCloudBackupScheduleExportPtrOutputWithContext(ctx context.Context) CloudBackupScheduleExportPtrOutput {
+	return o
+}
+
+func (o CloudBackupScheduleExportPtrOutput) Elem() CloudBackupScheduleExportOutput {
+	return o.ApplyT(func(v *CloudBackupScheduleExport) CloudBackupScheduleExport {
+		if v != nil {
+			return *v
+		}
+		var ret CloudBackupScheduleExport
+		return ret
+	}).(CloudBackupScheduleExportOutput)
+}
+
+// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+func (o CloudBackupScheduleExportPtrOutput) ExportBucketId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupScheduleExport) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExportBucketId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Frequency associated with the export snapshot item.
+func (o CloudBackupScheduleExportPtrOutput) FrequencyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupScheduleExport) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
 type CloudBackupSchedulePolicyItemDaily struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType`.
-	FrequencyInterval int     `pulumi:"frequencyInterval"`
-	FrequencyType     *string `pulumi:"frequencyType"`
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType *string `pulumi:"frequencyType"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3055,8 +3212,9 @@ type CloudBackupSchedulePolicyItemDailyInput interface {
 
 type CloudBackupSchedulePolicyItemDailyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType`.
-	FrequencyInterval pulumi.IntInput       `pulumi:"frequencyInterval"`
-	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3145,6 +3303,7 @@ func (o CloudBackupSchedulePolicyItemDailyOutput) FrequencyInterval() pulumi.Int
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
+// Frequency associated with the export snapshot item.
 func (o CloudBackupSchedulePolicyItemDailyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3193,6 +3352,7 @@ func (o CloudBackupSchedulePolicyItemDailyPtrOutput) FrequencyInterval() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
+// Frequency associated with the export snapshot item.
 func (o CloudBackupSchedulePolicyItemDailyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *string {
 		if v == nil {
@@ -3224,9 +3384,10 @@ func (o CloudBackupSchedulePolicyItemDailyPtrOutput) RetentionValue() pulumi.Int
 
 type CloudBackupSchedulePolicyItemHourly struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType`.
-	FrequencyInterval int     `pulumi:"frequencyInterval"`
-	FrequencyType     *string `pulumi:"frequencyType"`
-	Id                *string `pulumi:"id"`
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType *string `pulumi:"frequencyType"`
+	Id            *string `pulumi:"id"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3246,9 +3407,10 @@ type CloudBackupSchedulePolicyItemHourlyInput interface {
 
 type CloudBackupSchedulePolicyItemHourlyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType`.
-	FrequencyInterval pulumi.IntInput       `pulumi:"frequencyInterval"`
-	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
-	Id                pulumi.StringPtrInput `pulumi:"id"`
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	Id            pulumi.StringPtrInput `pulumi:"id"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3337,6 +3499,7 @@ func (o CloudBackupSchedulePolicyItemHourlyOutput) FrequencyInterval() pulumi.In
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
+// Frequency associated with the export snapshot item.
 func (o CloudBackupSchedulePolicyItemHourlyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemHourly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3389,6 +3552,7 @@ func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) FrequencyInterval() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
+// Frequency associated with the export snapshot item.
 func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemHourly) *string {
 		if v == nil {
@@ -3429,8 +3593,9 @@ func (o CloudBackupSchedulePolicyItemHourlyPtrOutput) RetentionValue() pulumi.In
 
 type CloudBackupSchedulePolicyItemMonthly struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType`.
-	FrequencyInterval int     `pulumi:"frequencyInterval"`
-	FrequencyType     *string `pulumi:"frequencyType"`
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType *string `pulumi:"frequencyType"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3450,8 +3615,9 @@ type CloudBackupSchedulePolicyItemMonthlyInput interface {
 
 type CloudBackupSchedulePolicyItemMonthlyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType`.
-	FrequencyInterval pulumi.IntInput       `pulumi:"frequencyInterval"`
-	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3470,45 +3636,29 @@ func (i CloudBackupSchedulePolicyItemMonthlyArgs) ToCloudBackupSchedulePolicyIte
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemMonthlyOutput)
 }
 
-func (i CloudBackupSchedulePolicyItemMonthlyArgs) ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput {
-	return i.ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(context.Background())
-}
-
-func (i CloudBackupSchedulePolicyItemMonthlyArgs) ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemMonthlyOutput).ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx)
-}
-
-// CloudBackupSchedulePolicyItemMonthlyPtrInput is an input type that accepts CloudBackupSchedulePolicyItemMonthlyArgs, CloudBackupSchedulePolicyItemMonthlyPtr and CloudBackupSchedulePolicyItemMonthlyPtrOutput values.
-// You can construct a concrete instance of `CloudBackupSchedulePolicyItemMonthlyPtrInput` via:
+// CloudBackupSchedulePolicyItemMonthlyArrayInput is an input type that accepts CloudBackupSchedulePolicyItemMonthlyArray and CloudBackupSchedulePolicyItemMonthlyArrayOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemMonthlyArrayInput` via:
 //
-//          CloudBackupSchedulePolicyItemMonthlyArgs{...}
-//
-//  or:
-//
-//          nil
-type CloudBackupSchedulePolicyItemMonthlyPtrInput interface {
+//          CloudBackupSchedulePolicyItemMonthlyArray{ CloudBackupSchedulePolicyItemMonthlyArgs{...} }
+type CloudBackupSchedulePolicyItemMonthlyArrayInput interface {
 	pulumi.Input
 
-	ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput
-	ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput
+	ToCloudBackupSchedulePolicyItemMonthlyArrayOutput() CloudBackupSchedulePolicyItemMonthlyArrayOutput
+	ToCloudBackupSchedulePolicyItemMonthlyArrayOutputWithContext(context.Context) CloudBackupSchedulePolicyItemMonthlyArrayOutput
 }
 
-type cloudBackupSchedulePolicyItemMonthlyPtrType CloudBackupSchedulePolicyItemMonthlyArgs
+type CloudBackupSchedulePolicyItemMonthlyArray []CloudBackupSchedulePolicyItemMonthlyInput
 
-func CloudBackupSchedulePolicyItemMonthlyPtr(v *CloudBackupSchedulePolicyItemMonthlyArgs) CloudBackupSchedulePolicyItemMonthlyPtrInput {
-	return (*cloudBackupSchedulePolicyItemMonthlyPtrType)(v)
+func (CloudBackupSchedulePolicyItemMonthlyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
 }
 
-func (*cloudBackupSchedulePolicyItemMonthlyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+func (i CloudBackupSchedulePolicyItemMonthlyArray) ToCloudBackupSchedulePolicyItemMonthlyArrayOutput() CloudBackupSchedulePolicyItemMonthlyArrayOutput {
+	return i.ToCloudBackupSchedulePolicyItemMonthlyArrayOutputWithContext(context.Background())
 }
 
-func (i *cloudBackupSchedulePolicyItemMonthlyPtrType) ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput {
-	return i.ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(context.Background())
-}
-
-func (i *cloudBackupSchedulePolicyItemMonthlyPtrType) ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemMonthlyPtrOutput)
+func (i CloudBackupSchedulePolicyItemMonthlyArray) ToCloudBackupSchedulePolicyItemMonthlyArrayOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemMonthlyArrayOutput)
 }
 
 type CloudBackupSchedulePolicyItemMonthlyOutput struct{ *pulumi.OutputState }
@@ -3525,21 +3675,12 @@ func (o CloudBackupSchedulePolicyItemMonthlyOutput) ToCloudBackupSchedulePolicyI
 	return o
 }
 
-func (o CloudBackupSchedulePolicyItemMonthlyOutput) ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput {
-	return o.ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(context.Background())
-}
-
-func (o CloudBackupSchedulePolicyItemMonthlyOutput) ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v CloudBackupSchedulePolicyItemMonthly) *CloudBackupSchedulePolicyItemMonthly {
-		return &v
-	}).(CloudBackupSchedulePolicyItemMonthlyPtrOutput)
-}
-
 // Desired frequency of the new backup policy item specified by `frequencyType`.
 func (o CloudBackupSchedulePolicyItemMonthlyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
+// Frequency associated with the export snapshot item.
 func (o CloudBackupSchedulePolicyItemMonthlyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3554,73 +3695,31 @@ func (o CloudBackupSchedulePolicyItemMonthlyOutput) RetentionValue() pulumi.IntO
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
 
-type CloudBackupSchedulePolicyItemMonthlyPtrOutput struct{ *pulumi.OutputState }
+type CloudBackupSchedulePolicyItemMonthlyArrayOutput struct{ *pulumi.OutputState }
 
-func (CloudBackupSchedulePolicyItemMonthlyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
+func (CloudBackupSchedulePolicyItemMonthlyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSchedulePolicyItemMonthly)(nil)).Elem()
 }
 
-func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) ToCloudBackupSchedulePolicyItemMonthlyPtrOutput() CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+func (o CloudBackupSchedulePolicyItemMonthlyArrayOutput) ToCloudBackupSchedulePolicyItemMonthlyArrayOutput() CloudBackupSchedulePolicyItemMonthlyArrayOutput {
 	return o
 }
 
-func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) ToCloudBackupSchedulePolicyItemMonthlyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyPtrOutput {
+func (o CloudBackupSchedulePolicyItemMonthlyArrayOutput) ToCloudBackupSchedulePolicyItemMonthlyArrayOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemMonthlyArrayOutput {
 	return o
 }
 
-func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) Elem() CloudBackupSchedulePolicyItemMonthlyOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) CloudBackupSchedulePolicyItemMonthly {
-		if v != nil {
-			return *v
-		}
-		var ret CloudBackupSchedulePolicyItemMonthly
-		return ret
+func (o CloudBackupSchedulePolicyItemMonthlyArrayOutput) Index(i pulumi.IntInput) CloudBackupSchedulePolicyItemMonthlyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSchedulePolicyItemMonthly {
+		return vs[0].([]CloudBackupSchedulePolicyItemMonthly)[vs[1].(int)]
 	}).(CloudBackupSchedulePolicyItemMonthlyOutput)
-}
-
-// Desired frequency of the new backup policy item specified by `frequencyType`.
-func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.FrequencyInterval
-	}).(pulumi.IntPtrOutput)
-}
-
-func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *string {
-		if v == nil {
-			return nil
-		}
-		return v.FrequencyType
-	}).(pulumi.StringPtrOutput)
-}
-
-// Scope of the backup policy item: days, weeks, or months.
-func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.RetentionUnit
-	}).(pulumi.StringPtrOutput)
-}
-
-// Value to associate with `retentionUnit`.
-func (o CloudBackupSchedulePolicyItemMonthlyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemMonthly) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.RetentionValue
-	}).(pulumi.IntPtrOutput)
 }
 
 type CloudBackupSchedulePolicyItemWeekly struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType`.
-	FrequencyInterval int     `pulumi:"frequencyInterval"`
-	FrequencyType     *string `pulumi:"frequencyType"`
+	FrequencyInterval int `pulumi:"frequencyInterval"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType *string `pulumi:"frequencyType"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3640,8 +3739,9 @@ type CloudBackupSchedulePolicyItemWeeklyInput interface {
 
 type CloudBackupSchedulePolicyItemWeeklyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType`.
-	FrequencyInterval pulumi.IntInput       `pulumi:"frequencyInterval"`
-	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
+	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
+	// Frequency associated with the export snapshot item.
+	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3660,45 +3760,29 @@ func (i CloudBackupSchedulePolicyItemWeeklyArgs) ToCloudBackupSchedulePolicyItem
 	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemWeeklyOutput)
 }
 
-func (i CloudBackupSchedulePolicyItemWeeklyArgs) ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput {
-	return i.ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(context.Background())
-}
-
-func (i CloudBackupSchedulePolicyItemWeeklyArgs) ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemWeeklyOutput).ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx)
-}
-
-// CloudBackupSchedulePolicyItemWeeklyPtrInput is an input type that accepts CloudBackupSchedulePolicyItemWeeklyArgs, CloudBackupSchedulePolicyItemWeeklyPtr and CloudBackupSchedulePolicyItemWeeklyPtrOutput values.
-// You can construct a concrete instance of `CloudBackupSchedulePolicyItemWeeklyPtrInput` via:
+// CloudBackupSchedulePolicyItemWeeklyArrayInput is an input type that accepts CloudBackupSchedulePolicyItemWeeklyArray and CloudBackupSchedulePolicyItemWeeklyArrayOutput values.
+// You can construct a concrete instance of `CloudBackupSchedulePolicyItemWeeklyArrayInput` via:
 //
-//          CloudBackupSchedulePolicyItemWeeklyArgs{...}
-//
-//  or:
-//
-//          nil
-type CloudBackupSchedulePolicyItemWeeklyPtrInput interface {
+//          CloudBackupSchedulePolicyItemWeeklyArray{ CloudBackupSchedulePolicyItemWeeklyArgs{...} }
+type CloudBackupSchedulePolicyItemWeeklyArrayInput interface {
 	pulumi.Input
 
-	ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput
-	ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput
+	ToCloudBackupSchedulePolicyItemWeeklyArrayOutput() CloudBackupSchedulePolicyItemWeeklyArrayOutput
+	ToCloudBackupSchedulePolicyItemWeeklyArrayOutputWithContext(context.Context) CloudBackupSchedulePolicyItemWeeklyArrayOutput
 }
 
-type cloudBackupSchedulePolicyItemWeeklyPtrType CloudBackupSchedulePolicyItemWeeklyArgs
+type CloudBackupSchedulePolicyItemWeeklyArray []CloudBackupSchedulePolicyItemWeeklyInput
 
-func CloudBackupSchedulePolicyItemWeeklyPtr(v *CloudBackupSchedulePolicyItemWeeklyArgs) CloudBackupSchedulePolicyItemWeeklyPtrInput {
-	return (*cloudBackupSchedulePolicyItemWeeklyPtrType)(v)
+func (CloudBackupSchedulePolicyItemWeeklyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
 }
 
-func (*cloudBackupSchedulePolicyItemWeeklyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+func (i CloudBackupSchedulePolicyItemWeeklyArray) ToCloudBackupSchedulePolicyItemWeeklyArrayOutput() CloudBackupSchedulePolicyItemWeeklyArrayOutput {
+	return i.ToCloudBackupSchedulePolicyItemWeeklyArrayOutputWithContext(context.Background())
 }
 
-func (i *cloudBackupSchedulePolicyItemWeeklyPtrType) ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput {
-	return i.ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(context.Background())
-}
-
-func (i *cloudBackupSchedulePolicyItemWeeklyPtrType) ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemWeeklyPtrOutput)
+func (i CloudBackupSchedulePolicyItemWeeklyArray) ToCloudBackupSchedulePolicyItemWeeklyArrayOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupSchedulePolicyItemWeeklyArrayOutput)
 }
 
 type CloudBackupSchedulePolicyItemWeeklyOutput struct{ *pulumi.OutputState }
@@ -3715,21 +3799,12 @@ func (o CloudBackupSchedulePolicyItemWeeklyOutput) ToCloudBackupSchedulePolicyIt
 	return o
 }
 
-func (o CloudBackupSchedulePolicyItemWeeklyOutput) ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput {
-	return o.ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(context.Background())
-}
-
-func (o CloudBackupSchedulePolicyItemWeeklyOutput) ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v CloudBackupSchedulePolicyItemWeekly) *CloudBackupSchedulePolicyItemWeekly {
-		return &v
-	}).(CloudBackupSchedulePolicyItemWeeklyPtrOutput)
-}
-
 // Desired frequency of the new backup policy item specified by `frequencyType`.
 func (o CloudBackupSchedulePolicyItemWeeklyOutput) FrequencyInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
+// Frequency associated with the export snapshot item.
 func (o CloudBackupSchedulePolicyItemWeeklyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
@@ -3744,67 +3819,24 @@ func (o CloudBackupSchedulePolicyItemWeeklyOutput) RetentionValue() pulumi.IntOu
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
 
-type CloudBackupSchedulePolicyItemWeeklyPtrOutput struct{ *pulumi.OutputState }
+type CloudBackupSchedulePolicyItemWeeklyArrayOutput struct{ *pulumi.OutputState }
 
-func (CloudBackupSchedulePolicyItemWeeklyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
+func (CloudBackupSchedulePolicyItemWeeklyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupSchedulePolicyItemWeekly)(nil)).Elem()
 }
 
-func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) ToCloudBackupSchedulePolicyItemWeeklyPtrOutput() CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+func (o CloudBackupSchedulePolicyItemWeeklyArrayOutput) ToCloudBackupSchedulePolicyItemWeeklyArrayOutput() CloudBackupSchedulePolicyItemWeeklyArrayOutput {
 	return o
 }
 
-func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) ToCloudBackupSchedulePolicyItemWeeklyPtrOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyPtrOutput {
+func (o CloudBackupSchedulePolicyItemWeeklyArrayOutput) ToCloudBackupSchedulePolicyItemWeeklyArrayOutputWithContext(ctx context.Context) CloudBackupSchedulePolicyItemWeeklyArrayOutput {
 	return o
 }
 
-func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) Elem() CloudBackupSchedulePolicyItemWeeklyOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) CloudBackupSchedulePolicyItemWeekly {
-		if v != nil {
-			return *v
-		}
-		var ret CloudBackupSchedulePolicyItemWeekly
-		return ret
+func (o CloudBackupSchedulePolicyItemWeeklyArrayOutput) Index(i pulumi.IntInput) CloudBackupSchedulePolicyItemWeeklyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupSchedulePolicyItemWeekly {
+		return vs[0].([]CloudBackupSchedulePolicyItemWeekly)[vs[1].(int)]
 	}).(CloudBackupSchedulePolicyItemWeeklyOutput)
-}
-
-// Desired frequency of the new backup policy item specified by `frequencyType`.
-func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) FrequencyInterval() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.FrequencyInterval
-	}).(pulumi.IntPtrOutput)
-}
-
-func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) FrequencyType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *string {
-		if v == nil {
-			return nil
-		}
-		return v.FrequencyType
-	}).(pulumi.StringPtrOutput)
-}
-
-// Scope of the backup policy item: days, weeks, or months.
-func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) RetentionUnit() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.RetentionUnit
-	}).(pulumi.StringPtrOutput)
-}
-
-// Value to associate with `retentionUnit`.
-func (o CloudBackupSchedulePolicyItemWeeklyPtrOutput) RetentionValue() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemWeekly) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.RetentionValue
-	}).(pulumi.IntPtrOutput)
 }
 
 type CloudBackupSnapshotExportJobComponent struct {
@@ -9331,6 +9363,121 @@ func (o EventTriggerEventProcessorsAwsEventbridgePtrOutput) ConfigRegion() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+type FederatedSettingsOrgRoleMappingRoleAssignment struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId *string `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId *string `pulumi:"orgId"`
+	// Specifies the Roles that are attached to the Role Mapping.
+	Roles []string `pulumi:"roles"`
+}
+
+// FederatedSettingsOrgRoleMappingRoleAssignmentInput is an input type that accepts FederatedSettingsOrgRoleMappingRoleAssignmentArgs and FederatedSettingsOrgRoleMappingRoleAssignmentOutput values.
+// You can construct a concrete instance of `FederatedSettingsOrgRoleMappingRoleAssignmentInput` via:
+//
+//          FederatedSettingsOrgRoleMappingRoleAssignmentArgs{...}
+type FederatedSettingsOrgRoleMappingRoleAssignmentInput interface {
+	pulumi.Input
+
+	ToFederatedSettingsOrgRoleMappingRoleAssignmentOutput() FederatedSettingsOrgRoleMappingRoleAssignmentOutput
+	ToFederatedSettingsOrgRoleMappingRoleAssignmentOutputWithContext(context.Context) FederatedSettingsOrgRoleMappingRoleAssignmentOutput
+}
+
+type FederatedSettingsOrgRoleMappingRoleAssignmentArgs struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId pulumi.StringPtrInput `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
+	// Specifies the Roles that are attached to the Role Mapping.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+}
+
+func (FederatedSettingsOrgRoleMappingRoleAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i FederatedSettingsOrgRoleMappingRoleAssignmentArgs) ToFederatedSettingsOrgRoleMappingRoleAssignmentOutput() FederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return i.ToFederatedSettingsOrgRoleMappingRoleAssignmentOutputWithContext(context.Background())
+}
+
+func (i FederatedSettingsOrgRoleMappingRoleAssignmentArgs) ToFederatedSettingsOrgRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) FederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgRoleMappingRoleAssignmentOutput)
+}
+
+// FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput is an input type that accepts FederatedSettingsOrgRoleMappingRoleAssignmentArray and FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput values.
+// You can construct a concrete instance of `FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput` via:
+//
+//          FederatedSettingsOrgRoleMappingRoleAssignmentArray{ FederatedSettingsOrgRoleMappingRoleAssignmentArgs{...} }
+type FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput() FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput
+	ToFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutputWithContext(context.Context) FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput
+}
+
+type FederatedSettingsOrgRoleMappingRoleAssignmentArray []FederatedSettingsOrgRoleMappingRoleAssignmentInput
+
+func (FederatedSettingsOrgRoleMappingRoleAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedSettingsOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i FederatedSettingsOrgRoleMappingRoleAssignmentArray) ToFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput() FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return i.ToFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i FederatedSettingsOrgRoleMappingRoleAssignmentArray) ToFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput)
+}
+
+type FederatedSettingsOrgRoleMappingRoleAssignmentOutput struct{ *pulumi.OutputState }
+
+func (FederatedSettingsOrgRoleMappingRoleAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o FederatedSettingsOrgRoleMappingRoleAssignmentOutput) ToFederatedSettingsOrgRoleMappingRoleAssignmentOutput() FederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+func (o FederatedSettingsOrgRoleMappingRoleAssignmentOutput) ToFederatedSettingsOrgRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) FederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+// Unique identifier of the project to which you want the role mapping to apply.
+func (o FederatedSettingsOrgRoleMappingRoleAssignmentOutput) GroupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedSettingsOrgRoleMappingRoleAssignment) *string { return v.GroupId }).(pulumi.StringPtrOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o FederatedSettingsOrgRoleMappingRoleAssignmentOutput) OrgId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedSettingsOrgRoleMappingRoleAssignment) *string { return v.OrgId }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the Roles that are attached to the Role Mapping.
+func (o FederatedSettingsOrgRoleMappingRoleAssignmentOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v FederatedSettingsOrgRoleMappingRoleAssignment) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+type FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedSettingsOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) ToFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput() FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) ToFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) Index(i pulumi.IntInput) FederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederatedSettingsOrgRoleMappingRoleAssignment {
+		return vs[0].([]FederatedSettingsOrgRoleMappingRoleAssignment)[vs[1].(int)]
+	}).(FederatedSettingsOrgRoleMappingRoleAssignmentOutput)
+}
+
 type GlobalClusterConfigCustomZoneMapping struct {
 	// The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
 	Location *string `pulumi:"location"`
@@ -10312,7 +10459,6 @@ type ProjectApiKey struct {
 	// * `GROUP_DATA_ACCESS_ADMIN`
 	// * `GROUP_DATA_ACCESS_READ_WRITE`
 	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -10337,7 +10483,6 @@ type ProjectApiKeyArgs struct {
 	// * `GROUP_DATA_ACCESS_ADMIN`
 	// * `GROUP_DATA_ACCESS_READ_WRITE`
 	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 }
 
@@ -10404,7 +10549,6 @@ func (o ProjectApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 // * `GROUP_DATA_ACCESS_ADMIN`
 // * `GROUP_DATA_ACCESS_READ_WRITE`
 // * `GROUP_DATA_ACCESS_READ_ONLY`
-// * `GROUP_CLUSTER_MANAGER`
 func (o ProjectApiKeyOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProjectApiKey) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -10437,7 +10581,6 @@ type ProjectTeam struct {
 	// * `GROUP_DATA_ACCESS_ADMIN`
 	// * `GROUP_DATA_ACCESS_READ_WRITE`
 	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
 	RoleNames []string `pulumi:"roleNames"`
 	// The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	TeamId string `pulumi:"teamId"`
@@ -10462,7 +10605,6 @@ type ProjectTeamArgs struct {
 	// * `GROUP_DATA_ACCESS_ADMIN`
 	// * `GROUP_DATA_ACCESS_READ_WRITE`
 	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 	// The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	TeamId pulumi.StringInput `pulumi:"teamId"`
@@ -10526,7 +10668,6 @@ func (o ProjectTeamOutput) ToProjectTeamOutputWithContext(ctx context.Context) P
 // * `GROUP_DATA_ACCESS_ADMIN`
 // * `GROUP_DATA_ACCESS_READ_WRITE`
 // * `GROUP_DATA_ACCESS_READ_ONLY`
-// * `GROUP_CLUSTER_MANAGER`
 func (o ProjectTeamOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProjectTeam) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -10687,6 +10828,106 @@ func (o SearchIndexSynonymArrayOutput) Index(i pulumi.IntInput) SearchIndexSynon
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SearchIndexSynonym {
 		return vs[0].([]SearchIndexSynonym)[vs[1].(int)]
 	}).(SearchIndexSynonymOutput)
+}
+
+type ServerlessInstanceLink struct {
+	Href *string `pulumi:"href"`
+	Rel  *string `pulumi:"rel"`
+}
+
+// ServerlessInstanceLinkInput is an input type that accepts ServerlessInstanceLinkArgs and ServerlessInstanceLinkOutput values.
+// You can construct a concrete instance of `ServerlessInstanceLinkInput` via:
+//
+//          ServerlessInstanceLinkArgs{...}
+type ServerlessInstanceLinkInput interface {
+	pulumi.Input
+
+	ToServerlessInstanceLinkOutput() ServerlessInstanceLinkOutput
+	ToServerlessInstanceLinkOutputWithContext(context.Context) ServerlessInstanceLinkOutput
+}
+
+type ServerlessInstanceLinkArgs struct {
+	Href pulumi.StringPtrInput `pulumi:"href"`
+	Rel  pulumi.StringPtrInput `pulumi:"rel"`
+}
+
+func (ServerlessInstanceLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerlessInstanceLink)(nil)).Elem()
+}
+
+func (i ServerlessInstanceLinkArgs) ToServerlessInstanceLinkOutput() ServerlessInstanceLinkOutput {
+	return i.ToServerlessInstanceLinkOutputWithContext(context.Background())
+}
+
+func (i ServerlessInstanceLinkArgs) ToServerlessInstanceLinkOutputWithContext(ctx context.Context) ServerlessInstanceLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerlessInstanceLinkOutput)
+}
+
+// ServerlessInstanceLinkArrayInput is an input type that accepts ServerlessInstanceLinkArray and ServerlessInstanceLinkArrayOutput values.
+// You can construct a concrete instance of `ServerlessInstanceLinkArrayInput` via:
+//
+//          ServerlessInstanceLinkArray{ ServerlessInstanceLinkArgs{...} }
+type ServerlessInstanceLinkArrayInput interface {
+	pulumi.Input
+
+	ToServerlessInstanceLinkArrayOutput() ServerlessInstanceLinkArrayOutput
+	ToServerlessInstanceLinkArrayOutputWithContext(context.Context) ServerlessInstanceLinkArrayOutput
+}
+
+type ServerlessInstanceLinkArray []ServerlessInstanceLinkInput
+
+func (ServerlessInstanceLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerlessInstanceLink)(nil)).Elem()
+}
+
+func (i ServerlessInstanceLinkArray) ToServerlessInstanceLinkArrayOutput() ServerlessInstanceLinkArrayOutput {
+	return i.ToServerlessInstanceLinkArrayOutputWithContext(context.Background())
+}
+
+func (i ServerlessInstanceLinkArray) ToServerlessInstanceLinkArrayOutputWithContext(ctx context.Context) ServerlessInstanceLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerlessInstanceLinkArrayOutput)
+}
+
+type ServerlessInstanceLinkOutput struct{ *pulumi.OutputState }
+
+func (ServerlessInstanceLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerlessInstanceLink)(nil)).Elem()
+}
+
+func (o ServerlessInstanceLinkOutput) ToServerlessInstanceLinkOutput() ServerlessInstanceLinkOutput {
+	return o
+}
+
+func (o ServerlessInstanceLinkOutput) ToServerlessInstanceLinkOutputWithContext(ctx context.Context) ServerlessInstanceLinkOutput {
+	return o
+}
+
+func (o ServerlessInstanceLinkOutput) Href() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerlessInstanceLink) *string { return v.Href }).(pulumi.StringPtrOutput)
+}
+
+func (o ServerlessInstanceLinkOutput) Rel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerlessInstanceLink) *string { return v.Rel }).(pulumi.StringPtrOutput)
+}
+
+type ServerlessInstanceLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerlessInstanceLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerlessInstanceLink)(nil)).Elem()
+}
+
+func (o ServerlessInstanceLinkArrayOutput) ToServerlessInstanceLinkArrayOutput() ServerlessInstanceLinkArrayOutput {
+	return o
+}
+
+func (o ServerlessInstanceLinkArrayOutput) ToServerlessInstanceLinkArrayOutputWithContext(ctx context.Context) ServerlessInstanceLinkArrayOutput {
+	return o
+}
+
+func (o ServerlessInstanceLinkArrayOutput) Index(i pulumi.IntInput) ServerlessInstanceLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerlessInstanceLink {
+		return vs[0].([]ServerlessInstanceLink)[vs[1].(int)]
+	}).(ServerlessInstanceLinkOutput)
 }
 
 type X509AuthenticationDatabaseUserCertificate struct {
@@ -15594,6 +15835,112 @@ func (o GetAlertConfigurationThresholdConfigArrayOutput) Index(i pulumi.IntInput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlertConfigurationThresholdConfig {
 		return vs[0].([]GetAlertConfigurationThresholdConfig)[vs[1].(int)]
 	}).(GetAlertConfigurationThresholdConfigOutput)
+}
+
+type GetCloudBackupScheduleExport struct {
+	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+	ExportBucketId string `pulumi:"exportBucketId"`
+	// Frequency associated with the backup policy item.
+	FrequencyType string `pulumi:"frequencyType"`
+}
+
+// GetCloudBackupScheduleExportInput is an input type that accepts GetCloudBackupScheduleExportArgs and GetCloudBackupScheduleExportOutput values.
+// You can construct a concrete instance of `GetCloudBackupScheduleExportInput` via:
+//
+//          GetCloudBackupScheduleExportArgs{...}
+type GetCloudBackupScheduleExportInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupScheduleExportOutput() GetCloudBackupScheduleExportOutput
+	ToGetCloudBackupScheduleExportOutputWithContext(context.Context) GetCloudBackupScheduleExportOutput
+}
+
+type GetCloudBackupScheduleExportArgs struct {
+	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
+	// Frequency associated with the backup policy item.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+}
+
+func (GetCloudBackupScheduleExportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupScheduleExport)(nil)).Elem()
+}
+
+func (i GetCloudBackupScheduleExportArgs) ToGetCloudBackupScheduleExportOutput() GetCloudBackupScheduleExportOutput {
+	return i.ToGetCloudBackupScheduleExportOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupScheduleExportArgs) ToGetCloudBackupScheduleExportOutputWithContext(ctx context.Context) GetCloudBackupScheduleExportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupScheduleExportOutput)
+}
+
+// GetCloudBackupScheduleExportArrayInput is an input type that accepts GetCloudBackupScheduleExportArray and GetCloudBackupScheduleExportArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupScheduleExportArrayInput` via:
+//
+//          GetCloudBackupScheduleExportArray{ GetCloudBackupScheduleExportArgs{...} }
+type GetCloudBackupScheduleExportArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupScheduleExportArrayOutput() GetCloudBackupScheduleExportArrayOutput
+	ToGetCloudBackupScheduleExportArrayOutputWithContext(context.Context) GetCloudBackupScheduleExportArrayOutput
+}
+
+type GetCloudBackupScheduleExportArray []GetCloudBackupScheduleExportInput
+
+func (GetCloudBackupScheduleExportArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupScheduleExport)(nil)).Elem()
+}
+
+func (i GetCloudBackupScheduleExportArray) ToGetCloudBackupScheduleExportArrayOutput() GetCloudBackupScheduleExportArrayOutput {
+	return i.ToGetCloudBackupScheduleExportArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupScheduleExportArray) ToGetCloudBackupScheduleExportArrayOutputWithContext(ctx context.Context) GetCloudBackupScheduleExportArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupScheduleExportArrayOutput)
+}
+
+type GetCloudBackupScheduleExportOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupScheduleExportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupScheduleExport)(nil)).Elem()
+}
+
+func (o GetCloudBackupScheduleExportOutput) ToGetCloudBackupScheduleExportOutput() GetCloudBackupScheduleExportOutput {
+	return o
+}
+
+func (o GetCloudBackupScheduleExportOutput) ToGetCloudBackupScheduleExportOutputWithContext(ctx context.Context) GetCloudBackupScheduleExportOutput {
+	return o
+}
+
+// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+func (o GetCloudBackupScheduleExportOutput) ExportBucketId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleExport) string { return v.ExportBucketId }).(pulumi.StringOutput)
+}
+
+// Frequency associated with the backup policy item.
+func (o GetCloudBackupScheduleExportOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleExport) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupScheduleExportArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupScheduleExportArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupScheduleExport)(nil)).Elem()
+}
+
+func (o GetCloudBackupScheduleExportArrayOutput) ToGetCloudBackupScheduleExportArrayOutput() GetCloudBackupScheduleExportArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupScheduleExportArrayOutput) ToGetCloudBackupScheduleExportArrayOutputWithContext(ctx context.Context) GetCloudBackupScheduleExportArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupScheduleExportArrayOutput) Index(i pulumi.IntInput) GetCloudBackupScheduleExportOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupScheduleExport {
+		return vs[0].([]GetCloudBackupScheduleExport)[vs[1].(int)]
+	}).(GetCloudBackupScheduleExportOutput)
 }
 
 type GetCloudBackupSchedulePolicyItemDaily struct {
@@ -25263,6 +25610,8 @@ type GetEventTriggersResult struct {
 	TriggerId string `pulumi:"triggerId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
 	Type string `pulumi:"type"`
+	// Sort order for `DATABASE` type.
+	Unordered bool `pulumi:"unordered"`
 }
 
 // GetEventTriggersResultInput is an input type that accepts GetEventTriggersResultArgs and GetEventTriggersResultOutput values.
@@ -25314,6 +25663,8 @@ type GetEventTriggersResultArgs struct {
 	TriggerId pulumi.StringInput `pulumi:"triggerId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
 	Type pulumi.StringInput `pulumi:"type"`
+	// Sort order for `DATABASE` type.
+	Unordered pulumi.BoolInput `pulumi:"unordered"`
 }
 
 func (GetEventTriggersResultArgs) ElementType() reflect.Type {
@@ -25459,6 +25810,11 @@ func (o GetEventTriggersResultOutput) TriggerId() pulumi.StringOutput {
 // The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
 func (o GetEventTriggersResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Sort order for `DATABASE` type.
+func (o GetEventTriggersResultOutput) Unordered() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetEventTriggersResult) bool { return v.Unordered }).(pulumi.BoolOutput)
 }
 
 type GetEventTriggersResultArrayOutput struct{ *pulumi.OutputState }
@@ -25675,6 +26031,2923 @@ func (o GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput) Index(i p
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetEventTriggersResultEventProcessorAwsEventbridge {
 		return vs[0].([]GetEventTriggersResultEventProcessorAwsEventbridge)[vs[1].(int)]
 	}).(GetEventTriggersResultEventProcessorAwsEventbridgeOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrg struct {
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists []string `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled bool `pulumi:"domainRestrictionEnabled"`
+	// Unique 20-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId string `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	PostAuthRoleGrants []string                                                        `pulumi:"postAuthRoleGrants"`
+	RoleMappings       []GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping  `pulumi:"roleMappings"`
+	UserConflicts      []GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict `pulumi:"userConflicts"`
+}
+
+// GetFederatedSettingsIdentityProviderAssociatedOrgInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgArgs and GetFederatedSettingsIdentityProviderAssociatedOrgOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgInput` via:
+//
+//          GetFederatedSettingsIdentityProviderAssociatedOrgArgs{...}
+type GetFederatedSettingsIdentityProviderAssociatedOrgInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgOutput() GetFederatedSettingsIdentityProviderAssociatedOrgOutput
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgOutput
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgArgs struct {
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists pulumi.StringArrayInput `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled pulumi.BoolInput `pulumi:"domainRestrictionEnabled"`
+	// Unique 20-hexadecimal digit string that identifies the IdP.
+	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	PostAuthRoleGrants pulumi.StringArrayInput                                                 `pulumi:"postAuthRoleGrants"`
+	RoleMappings       GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayInput  `pulumi:"roleMappings"`
+	UserConflicts      GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayInput `pulumi:"userConflicts"`
+}
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrg)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgArgs) ToGetFederatedSettingsIdentityProviderAssociatedOrgOutput() GetFederatedSettingsIdentityProviderAssociatedOrgOutput {
+	return i.ToGetFederatedSettingsIdentityProviderAssociatedOrgOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgArgs) ToGetFederatedSettingsIdentityProviderAssociatedOrgOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderAssociatedOrgOutput)
+}
+
+// GetFederatedSettingsIdentityProviderAssociatedOrgArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgArray and GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProviderAssociatedOrgArray{ GetFederatedSettingsIdentityProviderAssociatedOrgArgs{...} }
+type GetFederatedSettingsIdentityProviderAssociatedOrgArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgArray []GetFederatedSettingsIdentityProviderAssociatedOrgInput
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderAssociatedOrg)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgArray) ToGetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProviderAssociatedOrgArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgArray) ToGetFederatedSettingsIdentityProviderAssociatedOrgArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrg)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgOutput() GetFederatedSettingsIdentityProviderAssociatedOrgOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgOutput {
+	return o
+}
+
+// List that contains the approved domains from which organization users can log in.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) DomainAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) []string { return v.DomainAllowLists }).(pulumi.StringArrayOutput)
+}
+
+// Flag that indicates whether domain restriction is enabled for the connected organization.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) DomainRestrictionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) bool { return v.DomainRestrictionEnabled }).(pulumi.BoolOutput)
+}
+
+// Unique 20-hexadecimal digit string that identifies the IdP.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) IdentityProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) string { return v.IdentityProviderId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) PostAuthRoleGrants() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) []string { return v.PostAuthRoleGrants }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) RoleMappings() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) []GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping {
+		return v.RoleMappings
+	}).(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput)
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgOutput) UserConflicts() GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrg) []GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict {
+		return v.UserConflicts
+	}).(GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderAssociatedOrg)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProviderAssociatedOrgOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProviderAssociatedOrg {
+		return vs[0].([]GetFederatedSettingsIdentityProviderAssociatedOrg)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProviderAssociatedOrgOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName string `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id string `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments []GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment `pulumi:"roleAssignments"`
+}
+
+// GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs and GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingInput` via:
+//
+//          GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs{...}
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName pulumi.StringInput `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayInput `pulumi:"roleAssignments"`
+}
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput {
+	return i.ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput)
+}
+
+// GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray and GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray{ GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs{...} }
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray []GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingInput
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput {
+	return o
+}
+
+// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput) ExternalGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping) string {
+		return v.ExternalGroupName
+	}).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies this role mapping.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput) RoleAssignments() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping) []GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment {
+		return v.RoleAssignments
+	}).(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping {
+		return vs[0].([]GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId string `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role string `pulumi:"role"`
+}
+
+// GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs and GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentInput` via:
+//
+//          GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs{...}
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return i.ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput)
+}
+
+// GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray and GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs{...} }
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray []GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentInput
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+// Unique identifier of the project to which you want the role mapping to apply.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment) string {
+		return v.GroupId
+	}).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment) string {
+		return v.OrgId
+	}).(pulumi.StringOutput)
+}
+
+// Specifies the Role that is attached to the Role Mapping.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment) string {
+		return v.Role
+	}).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment {
+		return vs[0].([]GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress string `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId string `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName string `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName string `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId string `pulumi:"userId"`
+}
+
+// GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs and GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictInput` via:
+//
+//          GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs{...}
+type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput() GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName pulumi.StringInput `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName pulumi.StringInput `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId pulumi.StringInput `pulumi:"userId"`
+}
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs) ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput() GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput {
+	return i.ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs) ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput)
+}
+
+// GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray and GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray{ GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs{...} }
+type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput
+	ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray []GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictInput
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray) ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray) ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput() GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput {
+	return o
+}
+
+// Email address of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput) EmailAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict) string { return v.EmailAddress }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput) FederationSettingsId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict) string {
+		return v.FederationSettingsId
+	}).(pulumi.StringOutput)
+}
+
+// First name of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput) FirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict) string { return v.FirstName }).(pulumi.StringOutput)
+}
+
+// Last name of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput) LastName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict) string { return v.LastName }).(pulumi.StringOutput)
+}
+
+// Name of the Atlas user that conflicts with selected domains.
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput() GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput) ToGetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict {
+		return vs[0].([]GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput)
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfo struct {
+	Certificates []GetFederatedSettingsIdentityProviderPemFileInfoCertificate `pulumi:"certificates"`
+	// Filename of certificate
+	FileName string `pulumi:"fileName"`
+}
+
+// GetFederatedSettingsIdentityProviderPemFileInfoInput is an input type that accepts GetFederatedSettingsIdentityProviderPemFileInfoArgs and GetFederatedSettingsIdentityProviderPemFileInfoOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderPemFileInfoInput` via:
+//
+//          GetFederatedSettingsIdentityProviderPemFileInfoArgs{...}
+type GetFederatedSettingsIdentityProviderPemFileInfoInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderPemFileInfoOutput() GetFederatedSettingsIdentityProviderPemFileInfoOutput
+	ToGetFederatedSettingsIdentityProviderPemFileInfoOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderPemFileInfoOutput
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoArgs struct {
+	Certificates GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayInput `pulumi:"certificates"`
+	// Filename of certificate
+	FileName pulumi.StringInput `pulumi:"fileName"`
+}
+
+func (GetFederatedSettingsIdentityProviderPemFileInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderPemFileInfo)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderPemFileInfoArgs) ToGetFederatedSettingsIdentityProviderPemFileInfoOutput() GetFederatedSettingsIdentityProviderPemFileInfoOutput {
+	return i.ToGetFederatedSettingsIdentityProviderPemFileInfoOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderPemFileInfoArgs) ToGetFederatedSettingsIdentityProviderPemFileInfoOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderPemFileInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderPemFileInfoOutput)
+}
+
+// GetFederatedSettingsIdentityProviderPemFileInfoArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderPemFileInfoArray and GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderPemFileInfoArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProviderPemFileInfoArray{ GetFederatedSettingsIdentityProviderPemFileInfoArgs{...} }
+type GetFederatedSettingsIdentityProviderPemFileInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderPemFileInfoArrayOutput() GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput
+	ToGetFederatedSettingsIdentityProviderPemFileInfoArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoArray []GetFederatedSettingsIdentityProviderPemFileInfoInput
+
+func (GetFederatedSettingsIdentityProviderPemFileInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderPemFileInfo)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderPemFileInfoArray) ToGetFederatedSettingsIdentityProviderPemFileInfoArrayOutput() GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProviderPemFileInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderPemFileInfoArray) ToGetFederatedSettingsIdentityProviderPemFileInfoArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderPemFileInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderPemFileInfo)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoOutput) ToGetFederatedSettingsIdentityProviderPemFileInfoOutput() GetFederatedSettingsIdentityProviderPemFileInfoOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoOutput) ToGetFederatedSettingsIdentityProviderPemFileInfoOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderPemFileInfoOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoOutput) Certificates() GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderPemFileInfo) []GetFederatedSettingsIdentityProviderPemFileInfoCertificate {
+		return v.Certificates
+	}).(GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput)
+}
+
+// Filename of certificate
+func (o GetFederatedSettingsIdentityProviderPemFileInfoOutput) FileName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderPemFileInfo) string { return v.FileName }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderPemFileInfo)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput) ToGetFederatedSettingsIdentityProviderPemFileInfoArrayOutput() GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput) ToGetFederatedSettingsIdentityProviderPemFileInfoArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProviderPemFileInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProviderPemFileInfo {
+		return vs[0].([]GetFederatedSettingsIdentityProviderPemFileInfo)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProviderPemFileInfoOutput)
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoCertificate struct {
+	// Expiration  Date.
+	NotAfter string `pulumi:"notAfter"`
+	// Start Date.
+	NotBefore string `pulumi:"notBefore"`
+}
+
+// GetFederatedSettingsIdentityProviderPemFileInfoCertificateInput is an input type that accepts GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs and GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderPemFileInfoCertificateInput` via:
+//
+//          GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs{...}
+type GetFederatedSettingsIdentityProviderPemFileInfoCertificateInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput() GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput
+	ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs struct {
+	// Expiration  Date.
+	NotAfter pulumi.StringInput `pulumi:"notAfter"`
+	// Start Date.
+	NotBefore pulumi.StringInput `pulumi:"notBefore"`
+}
+
+func (GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderPemFileInfoCertificate)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs) ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput() GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput {
+	return i.ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs) ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput)
+}
+
+// GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray and GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray{ GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs{...} }
+type GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput() GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput
+	ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray []GetFederatedSettingsIdentityProviderPemFileInfoCertificateInput
+
+func (GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderPemFileInfoCertificate)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray) ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput() GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray) ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProviderPemFileInfoCertificate)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput) ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput() GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput) ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput {
+	return o
+}
+
+// Expiration  Date.
+func (o GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput) NotAfter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderPemFileInfoCertificate) string { return v.NotAfter }).(pulumi.StringOutput)
+}
+
+// Start Date.
+func (o GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput) NotBefore() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProviderPemFileInfoCertificate) string { return v.NotBefore }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProviderPemFileInfoCertificate)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput) ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput() GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput) ToGetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProviderPemFileInfoCertificate {
+		return vs[0].([]GetFederatedSettingsIdentityProviderPemFileInfoCertificate)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResult struct {
+	// Assertion consumer service URL to which the IdP sends the SAML response.
+	AcsUrl string `pulumi:"acsUrl"`
+	// List that contains the configured domains from which users can log in for this IdP.
+	AssociatedDomains []string `pulumi:"associatedDomains"`
+	// List that contains the configured domains from which users can log in for this IdP.
+	AssociatedOrgs []GetFederatedSettingsIdentityProvidersResultAssociatedOrg `pulumi:"associatedOrgs"`
+	// Identifier for the intended audience of the SAML Assertion.
+	AudienceUri string `pulumi:"audienceUri"`
+	// Human-readable label that identifies the IdP.
+	DisplayName string `pulumi:"displayName"`
+	// Identifier for the issuer of the SAML Assertion.
+	IssuerUri    string                                                   `pulumi:"issuerUri"`
+	OktaIdpId    string                                                   `pulumi:"oktaIdpId"`
+	PemFileInfos []GetFederatedSettingsIdentityProvidersResultPemFileInfo `pulumi:"pemFileInfos"`
+	// SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
+	// - HTTP POST
+	// - HTTP REDIRECT
+	RequestBinding string `pulumi:"requestBinding"`
+	// Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
+	// - SHA-1
+	// - SHA-256
+	ResponseSignatureAlgorithm string `pulumi:"responseSignatureAlgorithm"`
+	// Flag that indicates whether the IdP has enabled Bypass SAML Mode. Enabling this mode generates a URL that allows you bypass SAML and login to your organizations at any point. You can authenticate with this special URL only when Bypass Mode is enabled. Set this parameter to true during testing. This keeps you from getting locked out of MongoDB.
+	SsoDebugEnabled bool `pulumi:"ssoDebugEnabled"`
+	// URL of the receiver of the SAML AuthNRequest.
+	SsoUrl string `pulumi:"ssoUrl"`
+	// Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
+	Status string `pulumi:"status"`
+}
+
+// GetFederatedSettingsIdentityProvidersResultInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultArgs and GetFederatedSettingsIdentityProvidersResultOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultArgs{...}
+type GetFederatedSettingsIdentityProvidersResultInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultOutput() GetFederatedSettingsIdentityProvidersResultOutput
+	ToGetFederatedSettingsIdentityProvidersResultOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultArgs struct {
+	// Assertion consumer service URL to which the IdP sends the SAML response.
+	AcsUrl pulumi.StringInput `pulumi:"acsUrl"`
+	// List that contains the configured domains from which users can log in for this IdP.
+	AssociatedDomains pulumi.StringArrayInput `pulumi:"associatedDomains"`
+	// List that contains the configured domains from which users can log in for this IdP.
+	AssociatedOrgs GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput `pulumi:"associatedOrgs"`
+	// Identifier for the intended audience of the SAML Assertion.
+	AudienceUri pulumi.StringInput `pulumi:"audienceUri"`
+	// Human-readable label that identifies the IdP.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// Identifier for the issuer of the SAML Assertion.
+	IssuerUri    pulumi.StringInput                                               `pulumi:"issuerUri"`
+	OktaIdpId    pulumi.StringInput                                               `pulumi:"oktaIdpId"`
+	PemFileInfos GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayInput `pulumi:"pemFileInfos"`
+	// SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
+	// - HTTP POST
+	// - HTTP REDIRECT
+	RequestBinding pulumi.StringInput `pulumi:"requestBinding"`
+	// Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
+	// - SHA-1
+	// - SHA-256
+	ResponseSignatureAlgorithm pulumi.StringInput `pulumi:"responseSignatureAlgorithm"`
+	// Flag that indicates whether the IdP has enabled Bypass SAML Mode. Enabling this mode generates a URL that allows you bypass SAML and login to your organizations at any point. You can authenticate with this special URL only when Bypass Mode is enabled. Set this parameter to true during testing. This keeps you from getting locked out of MongoDB.
+	SsoDebugEnabled pulumi.BoolInput `pulumi:"ssoDebugEnabled"`
+	// URL of the receiver of the SAML AuthNRequest.
+	SsoUrl pulumi.StringInput `pulumi:"ssoUrl"`
+	// Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetFederatedSettingsIdentityProvidersResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResult)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultArgs) ToGetFederatedSettingsIdentityProvidersResultOutput() GetFederatedSettingsIdentityProvidersResultOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultArgs) ToGetFederatedSettingsIdentityProvidersResultOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultOutput)
+}
+
+// GetFederatedSettingsIdentityProvidersResultArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultArray and GetFederatedSettingsIdentityProvidersResultArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultArray{ GetFederatedSettingsIdentityProvidersResultArgs{...} }
+type GetFederatedSettingsIdentityProvidersResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultArrayOutput() GetFederatedSettingsIdentityProvidersResultArrayOutput
+	ToGetFederatedSettingsIdentityProvidersResultArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultArrayOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultArray []GetFederatedSettingsIdentityProvidersResultInput
+
+func (GetFederatedSettingsIdentityProvidersResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResult)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultArray) ToGetFederatedSettingsIdentityProvidersResultArrayOutput() GetFederatedSettingsIdentityProvidersResultArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultArray) ToGetFederatedSettingsIdentityProvidersResultArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResult)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultOutput) ToGetFederatedSettingsIdentityProvidersResultOutput() GetFederatedSettingsIdentityProvidersResultOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultOutput) ToGetFederatedSettingsIdentityProvidersResultOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultOutput {
+	return o
+}
+
+// Assertion consumer service URL to which the IdP sends the SAML response.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) AcsUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.AcsUrl }).(pulumi.StringOutput)
+}
+
+// List that contains the configured domains from which users can log in for this IdP.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) AssociatedDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) []string { return v.AssociatedDomains }).(pulumi.StringArrayOutput)
+}
+
+// List that contains the configured domains from which users can log in for this IdP.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) AssociatedOrgs() GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) []GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
+		return v.AssociatedOrgs
+	}).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput)
+}
+
+// Identifier for the intended audience of the SAML Assertion.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) AudienceUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.AudienceUri }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the IdP.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// Identifier for the issuer of the SAML Assertion.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) IssuerUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.IssuerUri }).(pulumi.StringOutput)
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultOutput) OktaIdpId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.OktaIdpId }).(pulumi.StringOutput)
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultOutput) PemFileInfos() GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) []GetFederatedSettingsIdentityProvidersResultPemFileInfo {
+		return v.PemFileInfos
+	}).(GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput)
+}
+
+// SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
+// - HTTP POST
+// - HTTP REDIRECT
+func (o GetFederatedSettingsIdentityProvidersResultOutput) RequestBinding() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.RequestBinding }).(pulumi.StringOutput)
+}
+
+// Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
+// - SHA-1
+// - SHA-256
+func (o GetFederatedSettingsIdentityProvidersResultOutput) ResponseSignatureAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.ResponseSignatureAlgorithm }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the IdP has enabled Bypass SAML Mode. Enabling this mode generates a URL that allows you bypass SAML and login to your organizations at any point. You can authenticate with this special URL only when Bypass Mode is enabled. Set this parameter to true during testing. This keeps you from getting locked out of MongoDB.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) SsoDebugEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) bool { return v.SsoDebugEnabled }).(pulumi.BoolOutput)
+}
+
+// URL of the receiver of the SAML AuthNRequest.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) SsoUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.SsoUrl }).(pulumi.StringOutput)
+}
+
+// Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
+func (o GetFederatedSettingsIdentityProvidersResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResult)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultArrayOutput) ToGetFederatedSettingsIdentityProvidersResultArrayOutput() GetFederatedSettingsIdentityProvidersResultArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultArrayOutput) ToGetFederatedSettingsIdentityProvidersResultArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProvidersResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProvidersResult {
+		return vs[0].([]GetFederatedSettingsIdentityProvidersResult)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProvidersResultOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrg struct {
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists []string `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled bool `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId string `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	PostAuthRoleGrants []string                                                               `pulumi:"postAuthRoleGrants"`
+	RoleMappings       []GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping  `pulumi:"roleMappings"`
+	UserConflicts      []GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict `pulumi:"userConflicts"`
+}
+
+// GetFederatedSettingsIdentityProvidersResultAssociatedOrgInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs and GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs{...}
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs struct {
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists pulumi.StringArrayInput `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled pulumi.BoolInput `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	PostAuthRoleGrants pulumi.StringArrayInput                                                        `pulumi:"postAuthRoleGrants"`
+	RoleMappings       GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayInput  `pulumi:"roleMappings"`
+	UserConflicts      GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayInput `pulumi:"userConflicts"`
+}
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrg)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput)
+}
+
+// GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray and GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs{...} }
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray []GetFederatedSettingsIdentityProvidersResultAssociatedOrgInput
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultAssociatedOrg)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrg)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput {
+	return o
+}
+
+// List that contains the approved domains from which organization users can log in.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) DomainAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrg) []string { return v.DomainAllowLists }).(pulumi.StringArrayOutput)
+}
+
+// Flag that indicates whether domain restriction is enabled for the connected organization.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) DomainRestrictionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrg) bool {
+		return v.DomainRestrictionEnabled
+	}).(pulumi.BoolOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) IdentityProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrg) string { return v.IdentityProviderId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrg) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) PostAuthRoleGrants() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrg) []string { return v.PostAuthRoleGrants }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) RoleMappings() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrg) []GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping {
+		return v.RoleMappings
+	}).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput)
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput) UserConflicts() GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrg) []GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict {
+		return v.UserConflicts
+	}).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultAssociatedOrg)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
+		return vs[0].([]GetFederatedSettingsIdentityProvidersResultAssociatedOrg)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName string `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id string `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments []GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment `pulumi:"roleAssignments"`
+}
+
+// GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs and GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs{...}
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName pulumi.StringInput `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayInput `pulumi:"roleAssignments"`
+}
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput)
+}
+
+// GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray and GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs{...} }
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray []GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingInput
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput {
+	return o
+}
+
+// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput) ExternalGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping) string {
+		return v.ExternalGroupName
+	}).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies this role mapping.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput) RoleAssignments() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping) []GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment {
+		return v.RoleAssignments
+	}).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping {
+		return vs[0].([]GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId string `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role string `pulumi:"role"`
+}
+
+// GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs and GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs{...}
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput)
+}
+
+// GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray and GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs{...} }
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray []GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentInput
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+// Unique identifier of the project to which you want the role mapping to apply.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment) string {
+		return v.GroupId
+	}).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment) string {
+		return v.OrgId
+	}).(pulumi.StringOutput)
+}
+
+// Specifies the Role that is attached to the Role Mapping.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment) string {
+		return v.Role
+	}).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment {
+		return vs[0].([]GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress string `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId string `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName string `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName string `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId string `pulumi:"userId"`
+}
+
+// GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs and GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs{...}
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName pulumi.StringInput `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName pulumi.StringInput `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId pulumi.StringInput `pulumi:"userId"`
+}
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput)
+}
+
+// GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray and GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs{...} }
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput
+	ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray []GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictInput
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput {
+	return o
+}
+
+// Email address of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput) EmailAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict) string {
+		return v.EmailAddress
+	}).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput) FederationSettingsId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict) string {
+		return v.FederationSettingsId
+	}).(pulumi.StringOutput)
+}
+
+// First name of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput) FirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict) string {
+		return v.FirstName
+	}).(pulumi.StringOutput)
+}
+
+// Last name of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput) LastName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict) string { return v.LastName }).(pulumi.StringOutput)
+}
+
+// Name of the Atlas user that conflicts with selected domains.
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput() GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput) ToGetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict {
+		return vs[0].([]GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfo struct {
+	Certificates []GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate `pulumi:"certificates"`
+	// Filename of certificate
+	FileName string `pulumi:"fileName"`
+}
+
+// GetFederatedSettingsIdentityProvidersResultPemFileInfoInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs and GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultPemFileInfoInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs{...}
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultPemFileInfoOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput
+	ToGetFederatedSettingsIdentityProvidersResultPemFileInfoOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs struct {
+	Certificates GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayInput `pulumi:"certificates"`
+	// Filename of certificate
+	FileName pulumi.StringInput `pulumi:"fileName"`
+}
+
+func (GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultPemFileInfo)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultPemFileInfoOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput)
+}
+
+// GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultPemFileInfoArray and GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultPemFileInfoArray{ GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs{...} }
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput
+	ToGetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoArray []GetFederatedSettingsIdentityProvidersResultPemFileInfoInput
+
+func (GetFederatedSettingsIdentityProvidersResultPemFileInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultPemFileInfo)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoArray) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoArray) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultPemFileInfo)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput) Certificates() GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultPemFileInfo) []GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate {
+		return v.Certificates
+	}).(GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput)
+}
+
+// Filename of certificate
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput) FileName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultPemFileInfo) string { return v.FileName }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultPemFileInfo)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProvidersResultPemFileInfo {
+		return vs[0].([]GetFederatedSettingsIdentityProvidersResultPemFileInfo)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate struct {
+	// Expiration  Date.
+	NotAfter string `pulumi:"notAfter"`
+	// Start Date.
+	NotBefore string `pulumi:"notBefore"`
+}
+
+// GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs and GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs{...}
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput
+	ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs struct {
+	// Expiration  Date.
+	NotAfter pulumi.StringInput `pulumi:"notAfter"`
+	// Start Date.
+	NotBefore pulumi.StringInput `pulumi:"notBefore"`
+}
+
+func (GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput)
+}
+
+// GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray and GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayInput` via:
+//
+//          GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray{ GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs{...} }
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput
+	ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutputWithContext(context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray []GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateInput
+
+func (GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput {
+	return i.ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput {
+	return o
+}
+
+// Expiration  Date.
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput) NotAfter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate) string { return v.NotAfter }).(pulumi.StringOutput)
+}
+
+// Start Date.
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput) NotBefore() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate) string { return v.NotBefore }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput() GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput) ToGetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutputWithContext(ctx context.Context) GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate {
+		return vs[0].([]GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate)[vs[1].(int)]
+	}).(GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput)
+}
+
+type GetFederatedSettingsOrgConfigRoleMapping struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName string `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id string `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments []GetFederatedSettingsOrgConfigRoleMappingRoleAssignment `pulumi:"roleAssignments"`
+}
+
+// GetFederatedSettingsOrgConfigRoleMappingInput is an input type that accepts GetFederatedSettingsOrgConfigRoleMappingArgs and GetFederatedSettingsOrgConfigRoleMappingOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigRoleMappingInput` via:
+//
+//          GetFederatedSettingsOrgConfigRoleMappingArgs{...}
+type GetFederatedSettingsOrgConfigRoleMappingInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigRoleMappingOutput() GetFederatedSettingsOrgConfigRoleMappingOutput
+	ToGetFederatedSettingsOrgConfigRoleMappingOutputWithContext(context.Context) GetFederatedSettingsOrgConfigRoleMappingOutput
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingArgs struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName pulumi.StringInput `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayInput `pulumi:"roleAssignments"`
+}
+
+func (GetFederatedSettingsOrgConfigRoleMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigRoleMapping)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigRoleMappingArgs) ToGetFederatedSettingsOrgConfigRoleMappingOutput() GetFederatedSettingsOrgConfigRoleMappingOutput {
+	return i.ToGetFederatedSettingsOrgConfigRoleMappingOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigRoleMappingArgs) ToGetFederatedSettingsOrgConfigRoleMappingOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigRoleMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigRoleMappingOutput)
+}
+
+// GetFederatedSettingsOrgConfigRoleMappingArrayInput is an input type that accepts GetFederatedSettingsOrgConfigRoleMappingArray and GetFederatedSettingsOrgConfigRoleMappingArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigRoleMappingArrayInput` via:
+//
+//          GetFederatedSettingsOrgConfigRoleMappingArray{ GetFederatedSettingsOrgConfigRoleMappingArgs{...} }
+type GetFederatedSettingsOrgConfigRoleMappingArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigRoleMappingArrayOutput() GetFederatedSettingsOrgConfigRoleMappingArrayOutput
+	ToGetFederatedSettingsOrgConfigRoleMappingArrayOutputWithContext(context.Context) GetFederatedSettingsOrgConfigRoleMappingArrayOutput
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingArray []GetFederatedSettingsOrgConfigRoleMappingInput
+
+func (GetFederatedSettingsOrgConfigRoleMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigRoleMapping)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigRoleMappingArray) ToGetFederatedSettingsOrgConfigRoleMappingArrayOutput() GetFederatedSettingsOrgConfigRoleMappingArrayOutput {
+	return i.ToGetFederatedSettingsOrgConfigRoleMappingArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigRoleMappingArray) ToGetFederatedSettingsOrgConfigRoleMappingArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigRoleMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigRoleMappingArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigRoleMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigRoleMapping)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingOutput) ToGetFederatedSettingsOrgConfigRoleMappingOutput() GetFederatedSettingsOrgConfigRoleMappingOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingOutput) ToGetFederatedSettingsOrgConfigRoleMappingOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigRoleMappingOutput {
+	return o
+}
+
+// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+func (o GetFederatedSettingsOrgConfigRoleMappingOutput) ExternalGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigRoleMapping) string { return v.ExternalGroupName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies this role mapping.
+func (o GetFederatedSettingsOrgConfigRoleMappingOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigRoleMapping) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+func (o GetFederatedSettingsOrgConfigRoleMappingOutput) RoleAssignments() GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigRoleMapping) []GetFederatedSettingsOrgConfigRoleMappingRoleAssignment {
+		return v.RoleAssignments
+	}).(GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigRoleMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigRoleMapping)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingArrayOutput) ToGetFederatedSettingsOrgConfigRoleMappingArrayOutput() GetFederatedSettingsOrgConfigRoleMappingArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingArrayOutput) ToGetFederatedSettingsOrgConfigRoleMappingArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigRoleMappingArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgConfigRoleMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgConfigRoleMapping {
+		return vs[0].([]GetFederatedSettingsOrgConfigRoleMapping)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgConfigRoleMappingOutput)
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingRoleAssignment struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId string `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role string `pulumi:"role"`
+}
+
+// GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs and GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentInput` via:
+//
+//          GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs{...}
+type GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput
+	ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutputWithContext(context.Context) GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput {
+	return i.ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput)
+}
+
+// GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray and GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayInput` via:
+//
+//          GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs{...} }
+type GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput
+	ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutputWithContext(context.Context) GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray []GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentInput
+
+func (GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray) ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput {
+	return i.ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray) ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+// Unique identifier of the project to which you want the role mapping to apply.
+func (o GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigRoleMappingRoleAssignment) string { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigRoleMappingRoleAssignment) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// Specifies the Role that is attached to the Role Mapping.
+func (o GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigRoleMappingRoleAssignment) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgConfigRoleMappingRoleAssignment {
+		return vs[0].([]GetFederatedSettingsOrgConfigRoleMappingRoleAssignment)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput)
+}
+
+type GetFederatedSettingsOrgConfigUserConflict struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress string `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId string `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName string `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName string `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId string `pulumi:"userId"`
+}
+
+// GetFederatedSettingsOrgConfigUserConflictInput is an input type that accepts GetFederatedSettingsOrgConfigUserConflictArgs and GetFederatedSettingsOrgConfigUserConflictOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigUserConflictInput` via:
+//
+//          GetFederatedSettingsOrgConfigUserConflictArgs{...}
+type GetFederatedSettingsOrgConfigUserConflictInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigUserConflictOutput() GetFederatedSettingsOrgConfigUserConflictOutput
+	ToGetFederatedSettingsOrgConfigUserConflictOutputWithContext(context.Context) GetFederatedSettingsOrgConfigUserConflictOutput
+}
+
+type GetFederatedSettingsOrgConfigUserConflictArgs struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName pulumi.StringInput `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName pulumi.StringInput `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId pulumi.StringInput `pulumi:"userId"`
+}
+
+func (GetFederatedSettingsOrgConfigUserConflictArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigUserConflict)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigUserConflictArgs) ToGetFederatedSettingsOrgConfigUserConflictOutput() GetFederatedSettingsOrgConfigUserConflictOutput {
+	return i.ToGetFederatedSettingsOrgConfigUserConflictOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigUserConflictArgs) ToGetFederatedSettingsOrgConfigUserConflictOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigUserConflictOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigUserConflictOutput)
+}
+
+// GetFederatedSettingsOrgConfigUserConflictArrayInput is an input type that accepts GetFederatedSettingsOrgConfigUserConflictArray and GetFederatedSettingsOrgConfigUserConflictArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigUserConflictArrayInput` via:
+//
+//          GetFederatedSettingsOrgConfigUserConflictArray{ GetFederatedSettingsOrgConfigUserConflictArgs{...} }
+type GetFederatedSettingsOrgConfigUserConflictArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigUserConflictArrayOutput() GetFederatedSettingsOrgConfigUserConflictArrayOutput
+	ToGetFederatedSettingsOrgConfigUserConflictArrayOutputWithContext(context.Context) GetFederatedSettingsOrgConfigUserConflictArrayOutput
+}
+
+type GetFederatedSettingsOrgConfigUserConflictArray []GetFederatedSettingsOrgConfigUserConflictInput
+
+func (GetFederatedSettingsOrgConfigUserConflictArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigUserConflict)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigUserConflictArray) ToGetFederatedSettingsOrgConfigUserConflictArrayOutput() GetFederatedSettingsOrgConfigUserConflictArrayOutput {
+	return i.ToGetFederatedSettingsOrgConfigUserConflictArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigUserConflictArray) ToGetFederatedSettingsOrgConfigUserConflictArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigUserConflictArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigUserConflictArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigUserConflictOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigUserConflictOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigUserConflict)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigUserConflictOutput) ToGetFederatedSettingsOrgConfigUserConflictOutput() GetFederatedSettingsOrgConfigUserConflictOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigUserConflictOutput) ToGetFederatedSettingsOrgConfigUserConflictOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigUserConflictOutput {
+	return o
+}
+
+// Email address of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsOrgConfigUserConflictOutput) EmailAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigUserConflict) string { return v.EmailAddress }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o GetFederatedSettingsOrgConfigUserConflictOutput) FederationSettingsId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigUserConflict) string { return v.FederationSettingsId }).(pulumi.StringOutput)
+}
+
+// First name of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsOrgConfigUserConflictOutput) FirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigUserConflict) string { return v.FirstName }).(pulumi.StringOutput)
+}
+
+// Last name of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsOrgConfigUserConflictOutput) LastName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigUserConflict) string { return v.LastName }).(pulumi.StringOutput)
+}
+
+// Name of the Atlas user that conflicts with selected domains.
+func (o GetFederatedSettingsOrgConfigUserConflictOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigUserConflict) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsOrgConfigUserConflictArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigUserConflictArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigUserConflict)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigUserConflictArrayOutput) ToGetFederatedSettingsOrgConfigUserConflictArrayOutput() GetFederatedSettingsOrgConfigUserConflictArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigUserConflictArrayOutput) ToGetFederatedSettingsOrgConfigUserConflictArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigUserConflictArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigUserConflictArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgConfigUserConflictOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgConfigUserConflict {
+		return vs[0].([]GetFederatedSettingsOrgConfigUserConflict)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgConfigUserConflictOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResult struct {
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists []string `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled bool `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId string `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	PostAuthRoleGrants []string                                           `pulumi:"postAuthRoleGrants"`
+	RoleMappings       []GetFederatedSettingsOrgConfigsResultRoleMapping  `pulumi:"roleMappings"`
+	UserConflicts      []GetFederatedSettingsOrgConfigsResultUserConflict `pulumi:"userConflicts"`
+}
+
+// GetFederatedSettingsOrgConfigsResultInput is an input type that accepts GetFederatedSettingsOrgConfigsResultArgs and GetFederatedSettingsOrgConfigsResultOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultInput` via:
+//
+//          GetFederatedSettingsOrgConfigsResultArgs{...}
+type GetFederatedSettingsOrgConfigsResultInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigsResultOutput() GetFederatedSettingsOrgConfigsResultOutput
+	ToGetFederatedSettingsOrgConfigsResultOutputWithContext(context.Context) GetFederatedSettingsOrgConfigsResultOutput
+}
+
+type GetFederatedSettingsOrgConfigsResultArgs struct {
+	// List that contains the approved domains from which organization users can log in.
+	DomainAllowLists pulumi.StringArrayInput `pulumi:"domainAllowLists"`
+	// Flag that indicates whether domain restriction is enabled for the connected organization.
+	DomainRestrictionEnabled pulumi.BoolInput `pulumi:"domainRestrictionEnabled"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	PostAuthRoleGrants pulumi.StringArrayInput                                    `pulumi:"postAuthRoleGrants"`
+	RoleMappings       GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput  `pulumi:"roleMappings"`
+	UserConflicts      GetFederatedSettingsOrgConfigsResultUserConflictArrayInput `pulumi:"userConflicts"`
+}
+
+func (GetFederatedSettingsOrgConfigsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigsResult)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigsResultArgs) ToGetFederatedSettingsOrgConfigsResultOutput() GetFederatedSettingsOrgConfigsResultOutput {
+	return i.ToGetFederatedSettingsOrgConfigsResultOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigsResultArgs) ToGetFederatedSettingsOrgConfigsResultOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigsResultOutput)
+}
+
+// GetFederatedSettingsOrgConfigsResultArrayInput is an input type that accepts GetFederatedSettingsOrgConfigsResultArray and GetFederatedSettingsOrgConfigsResultArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultArrayInput` via:
+//
+//          GetFederatedSettingsOrgConfigsResultArray{ GetFederatedSettingsOrgConfigsResultArgs{...} }
+type GetFederatedSettingsOrgConfigsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigsResultArrayOutput() GetFederatedSettingsOrgConfigsResultArrayOutput
+	ToGetFederatedSettingsOrgConfigsResultArrayOutputWithContext(context.Context) GetFederatedSettingsOrgConfigsResultArrayOutput
+}
+
+type GetFederatedSettingsOrgConfigsResultArray []GetFederatedSettingsOrgConfigsResultInput
+
+func (GetFederatedSettingsOrgConfigsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigsResult)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigsResultArray) ToGetFederatedSettingsOrgConfigsResultArrayOutput() GetFederatedSettingsOrgConfigsResultArrayOutput {
+	return i.ToGetFederatedSettingsOrgConfigsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigsResultArray) ToGetFederatedSettingsOrgConfigsResultArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigsResultArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigsResult)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigsResultOutput) ToGetFederatedSettingsOrgConfigsResultOutput() GetFederatedSettingsOrgConfigsResultOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultOutput) ToGetFederatedSettingsOrgConfigsResultOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultOutput {
+	return o
+}
+
+// List that contains the approved domains from which organization users can log in.
+func (o GetFederatedSettingsOrgConfigsResultOutput) DomainAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []string { return v.DomainAllowLists }).(pulumi.StringArrayOutput)
+}
+
+// Flag that indicates whether domain restriction is enabled for the connected organization.
+func (o GetFederatedSettingsOrgConfigsResultOutput) DomainRestrictionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) bool { return v.DomainRestrictionEnabled }).(pulumi.BoolOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o GetFederatedSettingsOrgConfigsResultOutput) IdentityProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) string { return v.IdentityProviderId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsOrgConfigsResultOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+func (o GetFederatedSettingsOrgConfigsResultOutput) PostAuthRoleGrants() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []string { return v.PostAuthRoleGrants }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFederatedSettingsOrgConfigsResultOutput) RoleMappings() GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []GetFederatedSettingsOrgConfigsResultRoleMapping {
+		return v.RoleMappings
+	}).(GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput)
+}
+
+func (o GetFederatedSettingsOrgConfigsResultOutput) UserConflicts() GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []GetFederatedSettingsOrgConfigsResultUserConflict {
+		return v.UserConflicts
+	}).(GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigsResult)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigsResultArrayOutput) ToGetFederatedSettingsOrgConfigsResultArrayOutput() GetFederatedSettingsOrgConfigsResultArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultArrayOutput) ToGetFederatedSettingsOrgConfigsResultArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgConfigsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgConfigsResult {
+		return vs[0].([]GetFederatedSettingsOrgConfigsResult)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgConfigsResultOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMapping struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName string `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id string `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments []GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment `pulumi:"roleAssignments"`
+}
+
+// GetFederatedSettingsOrgConfigsResultRoleMappingInput is an input type that accepts GetFederatedSettingsOrgConfigsResultRoleMappingArgs and GetFederatedSettingsOrgConfigsResultRoleMappingOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultRoleMappingInput` via:
+//
+//          GetFederatedSettingsOrgConfigsResultRoleMappingArgs{...}
+type GetFederatedSettingsOrgConfigsResultRoleMappingInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigsResultRoleMappingOutput() GetFederatedSettingsOrgConfigsResultRoleMappingOutput
+	ToGetFederatedSettingsOrgConfigsResultRoleMappingOutputWithContext(context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingOutput
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingArgs struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName pulumi.StringInput `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayInput `pulumi:"roleAssignments"`
+}
+
+func (GetFederatedSettingsOrgConfigsResultRoleMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultRoleMapping)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigsResultRoleMappingArgs) ToGetFederatedSettingsOrgConfigsResultRoleMappingOutput() GetFederatedSettingsOrgConfigsResultRoleMappingOutput {
+	return i.ToGetFederatedSettingsOrgConfigsResultRoleMappingOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigsResultRoleMappingArgs) ToGetFederatedSettingsOrgConfigsResultRoleMappingOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigsResultRoleMappingOutput)
+}
+
+// GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput is an input type that accepts GetFederatedSettingsOrgConfigsResultRoleMappingArray and GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput` via:
+//
+//          GetFederatedSettingsOrgConfigsResultRoleMappingArray{ GetFederatedSettingsOrgConfigsResultRoleMappingArgs{...} }
+type GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput() GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput
+	ToGetFederatedSettingsOrgConfigsResultRoleMappingArrayOutputWithContext(context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingArray []GetFederatedSettingsOrgConfigsResultRoleMappingInput
+
+func (GetFederatedSettingsOrgConfigsResultRoleMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigsResultRoleMapping)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigsResultRoleMappingArray) ToGetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput() GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput {
+	return i.ToGetFederatedSettingsOrgConfigsResultRoleMappingArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigsResultRoleMappingArray) ToGetFederatedSettingsOrgConfigsResultRoleMappingArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigsResultRoleMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultRoleMapping)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingOutput) ToGetFederatedSettingsOrgConfigsResultRoleMappingOutput() GetFederatedSettingsOrgConfigsResultRoleMappingOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingOutput) ToGetFederatedSettingsOrgConfigsResultRoleMappingOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingOutput {
+	return o
+}
+
+// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingOutput) ExternalGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultRoleMapping) string { return v.ExternalGroupName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies this role mapping.
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultRoleMapping) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingOutput) RoleAssignments() GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultRoleMapping) []GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment {
+		return v.RoleAssignments
+	}).(GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigsResultRoleMapping)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput) ToGetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput() GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput) ToGetFederatedSettingsOrgConfigsResultRoleMappingArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgConfigsResultRoleMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgConfigsResultRoleMapping {
+		return vs[0].([]GetFederatedSettingsOrgConfigsResultRoleMapping)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgConfigsResultRoleMappingOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId string `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role string `pulumi:"role"`
+}
+
+// GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs and GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentInput` via:
+//
+//          GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs{...}
+type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput
+	ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutputWithContext(context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput {
+	return i.ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput)
+}
+
+// GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray and GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayInput` via:
+//
+//          GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs{...} }
+type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput
+	ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutputWithContext(context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray []GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentInput
+
+func (GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray) ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput {
+	return i.ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray) ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+// Unique identifier of the project to which you want the role mapping to apply.
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment) string { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// Specifies the Role that is attached to the Role Mapping.
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment {
+		return vs[0].([]GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultUserConflict struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress string `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId string `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName string `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName string `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId string `pulumi:"userId"`
+}
+
+// GetFederatedSettingsOrgConfigsResultUserConflictInput is an input type that accepts GetFederatedSettingsOrgConfigsResultUserConflictArgs and GetFederatedSettingsOrgConfigsResultUserConflictOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultUserConflictInput` via:
+//
+//          GetFederatedSettingsOrgConfigsResultUserConflictArgs{...}
+type GetFederatedSettingsOrgConfigsResultUserConflictInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigsResultUserConflictOutput() GetFederatedSettingsOrgConfigsResultUserConflictOutput
+	ToGetFederatedSettingsOrgConfigsResultUserConflictOutputWithContext(context.Context) GetFederatedSettingsOrgConfigsResultUserConflictOutput
+}
+
+type GetFederatedSettingsOrgConfigsResultUserConflictArgs struct {
+	// Email address of the the user that conflicts with selected domains.
+	EmailAddress pulumi.StringInput `pulumi:"emailAddress"`
+	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+	FederationSettingsId pulumi.StringInput `pulumi:"federationSettingsId"`
+	// First name of the the user that conflicts with selected domains.
+	FirstName pulumi.StringInput `pulumi:"firstName"`
+	// Last name of the the user that conflicts with selected domains.
+	LastName pulumi.StringInput `pulumi:"lastName"`
+	// Name of the Atlas user that conflicts with selected domains.
+	UserId pulumi.StringInput `pulumi:"userId"`
+}
+
+func (GetFederatedSettingsOrgConfigsResultUserConflictArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultUserConflict)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigsResultUserConflictArgs) ToGetFederatedSettingsOrgConfigsResultUserConflictOutput() GetFederatedSettingsOrgConfigsResultUserConflictOutput {
+	return i.ToGetFederatedSettingsOrgConfigsResultUserConflictOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigsResultUserConflictArgs) ToGetFederatedSettingsOrgConfigsResultUserConflictOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultUserConflictOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigsResultUserConflictOutput)
+}
+
+// GetFederatedSettingsOrgConfigsResultUserConflictArrayInput is an input type that accepts GetFederatedSettingsOrgConfigsResultUserConflictArray and GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultUserConflictArrayInput` via:
+//
+//          GetFederatedSettingsOrgConfigsResultUserConflictArray{ GetFederatedSettingsOrgConfigsResultUserConflictArgs{...} }
+type GetFederatedSettingsOrgConfigsResultUserConflictArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgConfigsResultUserConflictArrayOutput() GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput
+	ToGetFederatedSettingsOrgConfigsResultUserConflictArrayOutputWithContext(context.Context) GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput
+}
+
+type GetFederatedSettingsOrgConfigsResultUserConflictArray []GetFederatedSettingsOrgConfigsResultUserConflictInput
+
+func (GetFederatedSettingsOrgConfigsResultUserConflictArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigsResultUserConflict)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgConfigsResultUserConflictArray) ToGetFederatedSettingsOrgConfigsResultUserConflictArrayOutput() GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput {
+	return i.ToGetFederatedSettingsOrgConfigsResultUserConflictArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgConfigsResultUserConflictArray) ToGetFederatedSettingsOrgConfigsResultUserConflictArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultUserConflictOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigsResultUserConflictOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultUserConflict)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigsResultUserConflictOutput) ToGetFederatedSettingsOrgConfigsResultUserConflictOutput() GetFederatedSettingsOrgConfigsResultUserConflictOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultUserConflictOutput) ToGetFederatedSettingsOrgConfigsResultUserConflictOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultUserConflictOutput {
+	return o
+}
+
+// Email address of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsOrgConfigsResultUserConflictOutput) EmailAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultUserConflict) string { return v.EmailAddress }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o GetFederatedSettingsOrgConfigsResultUserConflictOutput) FederationSettingsId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultUserConflict) string { return v.FederationSettingsId }).(pulumi.StringOutput)
+}
+
+// First name of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsOrgConfigsResultUserConflictOutput) FirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultUserConflict) string { return v.FirstName }).(pulumi.StringOutput)
+}
+
+// Last name of the the user that conflicts with selected domains.
+func (o GetFederatedSettingsOrgConfigsResultUserConflictOutput) LastName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultUserConflict) string { return v.LastName }).(pulumi.StringOutput)
+}
+
+// Name of the Atlas user that conflicts with selected domains.
+func (o GetFederatedSettingsOrgConfigsResultUserConflictOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResultUserConflict) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgConfigsResultUserConflict)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput) ToGetFederatedSettingsOrgConfigsResultUserConflictArrayOutput() GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput) ToGetFederatedSettingsOrgConfigsResultUserConflictArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgConfigsResultUserConflictOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgConfigsResultUserConflict {
+		return vs[0].([]GetFederatedSettingsOrgConfigsResultUserConflict)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgConfigsResultUserConflictOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingRoleAssignment struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId string `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role string `pulumi:"role"`
+}
+
+// GetFederatedSettingsOrgRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs and GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingRoleAssignmentInput` via:
+//
+//          GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs{...}
+type GetFederatedSettingsOrgRoleMappingRoleAssignmentInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput
+	ToGetFederatedSettingsOrgRoleMappingRoleAssignmentOutputWithContext(context.Context) GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput
+}
+
+type GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return i.ToGetFederatedSettingsOrgRoleMappingRoleAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs) ToGetFederatedSettingsOrgRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput)
+}
+
+// GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsOrgRoleMappingRoleAssignmentArray and GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayInput` via:
+//
+//          GetFederatedSettingsOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs{...} }
+type GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput
+	ToGetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutputWithContext(context.Context) GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput
+}
+
+type GetFederatedSettingsOrgRoleMappingRoleAssignmentArray []GetFederatedSettingsOrgRoleMappingRoleAssignmentInput
+
+func (GetFederatedSettingsOrgRoleMappingRoleAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgRoleMappingRoleAssignmentArray) ToGetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return i.ToGetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgRoleMappingRoleAssignmentArray) ToGetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsOrgRoleMappingRoleAssignmentOutput() GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput) ToGetFederatedSettingsOrgRoleMappingRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return o
+}
+
+// Unique identifier of the project to which you want the role mapping to apply.
+func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingRoleAssignment) string { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingRoleAssignment) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// Specifies the Role that is attached to the Role Mapping.
+func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingRoleAssignment) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgRoleMappingRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput() GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) ToGetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgRoleMappingRoleAssignment {
+		return vs[0].([]GetFederatedSettingsOrgRoleMappingRoleAssignment)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingsResult struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName string `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id string `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments []GetFederatedSettingsOrgRoleMappingsResultRoleAssignment `pulumi:"roleAssignments"`
+}
+
+// GetFederatedSettingsOrgRoleMappingsResultInput is an input type that accepts GetFederatedSettingsOrgRoleMappingsResultArgs and GetFederatedSettingsOrgRoleMappingsResultOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingsResultInput` via:
+//
+//          GetFederatedSettingsOrgRoleMappingsResultArgs{...}
+type GetFederatedSettingsOrgRoleMappingsResultInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgRoleMappingsResultOutput() GetFederatedSettingsOrgRoleMappingsResultOutput
+	ToGetFederatedSettingsOrgRoleMappingsResultOutputWithContext(context.Context) GetFederatedSettingsOrgRoleMappingsResultOutput
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultArgs struct {
+	// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+	ExternalGroupName pulumi.StringInput `pulumi:"externalGroupName"`
+	// Unique 24-hexadecimal digit string that identifies this role mapping.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+	RoleAssignments GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput `pulumi:"roleAssignments"`
+}
+
+func (GetFederatedSettingsOrgRoleMappingsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResult)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgRoleMappingsResultArgs) ToGetFederatedSettingsOrgRoleMappingsResultOutput() GetFederatedSettingsOrgRoleMappingsResultOutput {
+	return i.ToGetFederatedSettingsOrgRoleMappingsResultOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgRoleMappingsResultArgs) ToGetFederatedSettingsOrgRoleMappingsResultOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgRoleMappingsResultOutput)
+}
+
+// GetFederatedSettingsOrgRoleMappingsResultArrayInput is an input type that accepts GetFederatedSettingsOrgRoleMappingsResultArray and GetFederatedSettingsOrgRoleMappingsResultArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingsResultArrayInput` via:
+//
+//          GetFederatedSettingsOrgRoleMappingsResultArray{ GetFederatedSettingsOrgRoleMappingsResultArgs{...} }
+type GetFederatedSettingsOrgRoleMappingsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgRoleMappingsResultArrayOutput() GetFederatedSettingsOrgRoleMappingsResultArrayOutput
+	ToGetFederatedSettingsOrgRoleMappingsResultArrayOutputWithContext(context.Context) GetFederatedSettingsOrgRoleMappingsResultArrayOutput
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultArray []GetFederatedSettingsOrgRoleMappingsResultInput
+
+func (GetFederatedSettingsOrgRoleMappingsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgRoleMappingsResult)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgRoleMappingsResultArray) ToGetFederatedSettingsOrgRoleMappingsResultArrayOutput() GetFederatedSettingsOrgRoleMappingsResultArrayOutput {
+	return i.ToGetFederatedSettingsOrgRoleMappingsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgRoleMappingsResultArray) ToGetFederatedSettingsOrgRoleMappingsResultArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgRoleMappingsResultArrayOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgRoleMappingsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResult)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultOutput) ToGetFederatedSettingsOrgRoleMappingsResultOutput() GetFederatedSettingsOrgRoleMappingsResultOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultOutput) ToGetFederatedSettingsOrgRoleMappingsResultOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingsResultOutput {
+	return o
+}
+
+// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+func (o GetFederatedSettingsOrgRoleMappingsResultOutput) ExternalGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingsResult) string { return v.ExternalGroupName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies this role mapping.
+func (o GetFederatedSettingsOrgRoleMappingsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+func (o GetFederatedSettingsOrgRoleMappingsResultOutput) RoleAssignments() GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingsResult) []GetFederatedSettingsOrgRoleMappingsResultRoleAssignment {
+		return v.RoleAssignments
+	}).(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgRoleMappingsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgRoleMappingsResult)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultArrayOutput) ToGetFederatedSettingsOrgRoleMappingsResultArrayOutput() GetFederatedSettingsOrgRoleMappingsResultArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultArrayOutput) ToGetFederatedSettingsOrgRoleMappingsResultArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingsResultArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgRoleMappingsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgRoleMappingsResult {
+		return vs[0].([]GetFederatedSettingsOrgRoleMappingsResult)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgRoleMappingsResultOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultRoleAssignment struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId string `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role string `pulumi:"role"`
+}
+
+// GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput is an input type that accepts GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs and GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput` via:
+//
+//          GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{...}
+type GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput() GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput
+	ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutputWithContext(context.Context) GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs struct {
+	// Unique identifier of the project to which you want the role mapping to apply.
+	GroupId pulumi.StringInput `pulumi:"groupId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// Specifies the Role that is attached to the Role Mapping.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs) ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput() GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput {
+	return i.ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs) ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput)
+}
+
+// GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray and GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput values.
+// You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput` via:
+//
+//          GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray{ GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{...} }
+type GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput() GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput
+	ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutputWithContext(context.Context) GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray []GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput
+
+func (GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgRoleMappingsResultRoleAssignment)(nil)).Elem()
+}
+
+func (i GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray) ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput() GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput {
+	return i.ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray) ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput) ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput() GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput) ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput {
+	return o
+}
+
+// Unique identifier of the project to which you want the role mapping to apply.
+func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput) GroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingsResultRoleAssignment) string { return v.GroupId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingsResultRoleAssignment) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// Specifies the Role that is attached to the Role Mapping.
+func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedSettingsOrgRoleMappingsResultRoleAssignment) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedSettingsOrgRoleMappingsResultRoleAssignment)(nil)).Elem()
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput) ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput() GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput) ToGetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutputWithContext(ctx context.Context) GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput {
+	return o
+}
+
+func (o GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput) Index(i pulumi.IntInput) GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedSettingsOrgRoleMappingsResultRoleAssignment {
+		return vs[0].([]GetFederatedSettingsOrgRoleMappingsResultRoleAssignment)[vs[1].(int)]
+	}).(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput)
 }
 
 type GetGlobalClusterConfigManagedNamespace struct {
@@ -27727,6 +31000,16 @@ type GetProjectsResult struct {
 	Created      string                    `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
+	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
+	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+	IsDataExplorerEnabled bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+	IsPerformanceAdvisorEnabled bool `pulumi:"isPerformanceAdvisorEnabled"`
+	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -27771,6 +31054,16 @@ type GetProjectsResultArgs struct {
 	Created      pulumi.StringInput                `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolInput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
+	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+	IsDataExplorerEnabled pulumi.BoolInput `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+	IsPerformanceAdvisorEnabled pulumi.BoolInput `pulumi:"isPerformanceAdvisorEnabled"`
+	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+	IsRealtimePerformancePanelEnabled pulumi.BoolInput `pulumi:"isRealtimePerformancePanelEnabled"`
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -27864,6 +31157,31 @@ func (o GetProjectsResultOutput) Created() pulumi.StringOutput {
 // Autogenerated Unique ID for this data source.
 func (o GetProjectsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+func (o GetProjectsResultOutput) IsCollectDatabaseSpecificsStatisticsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsCollectDatabaseSpecificsStatisticsEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+func (o GetProjectsResultOutput) IsDataExplorerEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsDataExplorerEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+func (o GetProjectsResultOutput) IsPerformanceAdvisorEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsPerformanceAdvisorEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+func (o GetProjectsResultOutput) IsRealtimePerformancePanelEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsRealtimePerformancePanelEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
 }
 
 // The name of the project you want to create. (Cannot be changed via this Provider after creation.)
@@ -28552,6 +31870,387 @@ func (o GetSearchIndexesResultSynonymArrayOutput) Index(i pulumi.IntInput) GetSe
 	}).(GetSearchIndexesResultSynonymOutput)
 }
 
+type GetServerlessInstanceLink struct {
+	Href string `pulumi:"href"`
+	Rel  string `pulumi:"rel"`
+}
+
+// GetServerlessInstanceLinkInput is an input type that accepts GetServerlessInstanceLinkArgs and GetServerlessInstanceLinkOutput values.
+// You can construct a concrete instance of `GetServerlessInstanceLinkInput` via:
+//
+//          GetServerlessInstanceLinkArgs{...}
+type GetServerlessInstanceLinkInput interface {
+	pulumi.Input
+
+	ToGetServerlessInstanceLinkOutput() GetServerlessInstanceLinkOutput
+	ToGetServerlessInstanceLinkOutputWithContext(context.Context) GetServerlessInstanceLinkOutput
+}
+
+type GetServerlessInstanceLinkArgs struct {
+	Href pulumi.StringInput `pulumi:"href"`
+	Rel  pulumi.StringInput `pulumi:"rel"`
+}
+
+func (GetServerlessInstanceLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerlessInstanceLink)(nil)).Elem()
+}
+
+func (i GetServerlessInstanceLinkArgs) ToGetServerlessInstanceLinkOutput() GetServerlessInstanceLinkOutput {
+	return i.ToGetServerlessInstanceLinkOutputWithContext(context.Background())
+}
+
+func (i GetServerlessInstanceLinkArgs) ToGetServerlessInstanceLinkOutputWithContext(ctx context.Context) GetServerlessInstanceLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessInstanceLinkOutput)
+}
+
+// GetServerlessInstanceLinkArrayInput is an input type that accepts GetServerlessInstanceLinkArray and GetServerlessInstanceLinkArrayOutput values.
+// You can construct a concrete instance of `GetServerlessInstanceLinkArrayInput` via:
+//
+//          GetServerlessInstanceLinkArray{ GetServerlessInstanceLinkArgs{...} }
+type GetServerlessInstanceLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetServerlessInstanceLinkArrayOutput() GetServerlessInstanceLinkArrayOutput
+	ToGetServerlessInstanceLinkArrayOutputWithContext(context.Context) GetServerlessInstanceLinkArrayOutput
+}
+
+type GetServerlessInstanceLinkArray []GetServerlessInstanceLinkInput
+
+func (GetServerlessInstanceLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerlessInstanceLink)(nil)).Elem()
+}
+
+func (i GetServerlessInstanceLinkArray) ToGetServerlessInstanceLinkArrayOutput() GetServerlessInstanceLinkArrayOutput {
+	return i.ToGetServerlessInstanceLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerlessInstanceLinkArray) ToGetServerlessInstanceLinkArrayOutputWithContext(ctx context.Context) GetServerlessInstanceLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessInstanceLinkArrayOutput)
+}
+
+type GetServerlessInstanceLinkOutput struct{ *pulumi.OutputState }
+
+func (GetServerlessInstanceLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerlessInstanceLink)(nil)).Elem()
+}
+
+func (o GetServerlessInstanceLinkOutput) ToGetServerlessInstanceLinkOutput() GetServerlessInstanceLinkOutput {
+	return o
+}
+
+func (o GetServerlessInstanceLinkOutput) ToGetServerlessInstanceLinkOutputWithContext(ctx context.Context) GetServerlessInstanceLinkOutput {
+	return o
+}
+
+func (o GetServerlessInstanceLinkOutput) Href() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstanceLink) string { return v.Href }).(pulumi.StringOutput)
+}
+
+func (o GetServerlessInstanceLinkOutput) Rel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstanceLink) string { return v.Rel }).(pulumi.StringOutput)
+}
+
+type GetServerlessInstanceLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerlessInstanceLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerlessInstanceLink)(nil)).Elem()
+}
+
+func (o GetServerlessInstanceLinkArrayOutput) ToGetServerlessInstanceLinkArrayOutput() GetServerlessInstanceLinkArrayOutput {
+	return o
+}
+
+func (o GetServerlessInstanceLinkArrayOutput) ToGetServerlessInstanceLinkArrayOutputWithContext(ctx context.Context) GetServerlessInstanceLinkArrayOutput {
+	return o
+}
+
+func (o GetServerlessInstanceLinkArrayOutput) Index(i pulumi.IntInput) GetServerlessInstanceLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerlessInstanceLink {
+		return vs[0].([]GetServerlessInstanceLink)[vs[1].(int)]
+	}).(GetServerlessInstanceLinkOutput)
+}
+
+type GetServerlessInstancesResult struct {
+	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+	ConnectionStringsStandardSrv string `pulumi:"connectionStringsStandardSrv"`
+	CreateDate                   string `pulumi:"createDate"`
+	// Unique 24-hexadecimal digit string that identifies the serverless instance.
+	Id    string                             `pulumi:"id"`
+	Links []GetServerlessInstancesResultLink `pulumi:"links"`
+	// Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
+	MongoDbVersion string `pulumi:"mongoDbVersion"`
+	// (Required) Human-readable label that identifies your serverless instance.
+	Name string `pulumi:"name"`
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	ProjectId string `pulumi:"projectId"`
+	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
+	ProviderSettingsBackingProviderName string `pulumi:"providerSettingsBackingProviderName"`
+	// Cloud service provider that applies to the provisioned the serverless instance.
+	ProviderSettingsProviderName string `pulumi:"providerSettingsProviderName"`
+	// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+	ProviderSettingsRegionName string `pulumi:"providerSettingsRegionName"`
+	// Stage of deployment of this serverless instance when the resource made its request.
+	StateName string `pulumi:"stateName"`
+}
+
+// GetServerlessInstancesResultInput is an input type that accepts GetServerlessInstancesResultArgs and GetServerlessInstancesResultOutput values.
+// You can construct a concrete instance of `GetServerlessInstancesResultInput` via:
+//
+//          GetServerlessInstancesResultArgs{...}
+type GetServerlessInstancesResultInput interface {
+	pulumi.Input
+
+	ToGetServerlessInstancesResultOutput() GetServerlessInstancesResultOutput
+	ToGetServerlessInstancesResultOutputWithContext(context.Context) GetServerlessInstancesResultOutput
+}
+
+type GetServerlessInstancesResultArgs struct {
+	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+	ConnectionStringsStandardSrv pulumi.StringInput `pulumi:"connectionStringsStandardSrv"`
+	CreateDate                   pulumi.StringInput `pulumi:"createDate"`
+	// Unique 24-hexadecimal digit string that identifies the serverless instance.
+	Id    pulumi.StringInput                         `pulumi:"id"`
+	Links GetServerlessInstancesResultLinkArrayInput `pulumi:"links"`
+	// Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
+	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
+	// (Required) Human-readable label that identifies your serverless instance.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
+	ProviderSettingsBackingProviderName pulumi.StringInput `pulumi:"providerSettingsBackingProviderName"`
+	// Cloud service provider that applies to the provisioned the serverless instance.
+	ProviderSettingsProviderName pulumi.StringInput `pulumi:"providerSettingsProviderName"`
+	// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+	ProviderSettingsRegionName pulumi.StringInput `pulumi:"providerSettingsRegionName"`
+	// Stage of deployment of this serverless instance when the resource made its request.
+	StateName pulumi.StringInput `pulumi:"stateName"`
+}
+
+func (GetServerlessInstancesResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerlessInstancesResult)(nil)).Elem()
+}
+
+func (i GetServerlessInstancesResultArgs) ToGetServerlessInstancesResultOutput() GetServerlessInstancesResultOutput {
+	return i.ToGetServerlessInstancesResultOutputWithContext(context.Background())
+}
+
+func (i GetServerlessInstancesResultArgs) ToGetServerlessInstancesResultOutputWithContext(ctx context.Context) GetServerlessInstancesResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessInstancesResultOutput)
+}
+
+// GetServerlessInstancesResultArrayInput is an input type that accepts GetServerlessInstancesResultArray and GetServerlessInstancesResultArrayOutput values.
+// You can construct a concrete instance of `GetServerlessInstancesResultArrayInput` via:
+//
+//          GetServerlessInstancesResultArray{ GetServerlessInstancesResultArgs{...} }
+type GetServerlessInstancesResultArrayInput interface {
+	pulumi.Input
+
+	ToGetServerlessInstancesResultArrayOutput() GetServerlessInstancesResultArrayOutput
+	ToGetServerlessInstancesResultArrayOutputWithContext(context.Context) GetServerlessInstancesResultArrayOutput
+}
+
+type GetServerlessInstancesResultArray []GetServerlessInstancesResultInput
+
+func (GetServerlessInstancesResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerlessInstancesResult)(nil)).Elem()
+}
+
+func (i GetServerlessInstancesResultArray) ToGetServerlessInstancesResultArrayOutput() GetServerlessInstancesResultArrayOutput {
+	return i.ToGetServerlessInstancesResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerlessInstancesResultArray) ToGetServerlessInstancesResultArrayOutputWithContext(ctx context.Context) GetServerlessInstancesResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessInstancesResultArrayOutput)
+}
+
+type GetServerlessInstancesResultOutput struct{ *pulumi.OutputState }
+
+func (GetServerlessInstancesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerlessInstancesResult)(nil)).Elem()
+}
+
+func (o GetServerlessInstancesResultOutput) ToGetServerlessInstancesResultOutput() GetServerlessInstancesResultOutput {
+	return o
+}
+
+func (o GetServerlessInstancesResultOutput) ToGetServerlessInstancesResultOutputWithContext(ctx context.Context) GetServerlessInstancesResultOutput {
+	return o
+}
+
+// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+func (o GetServerlessInstancesResultOutput) ConnectionStringsStandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.ConnectionStringsStandardSrv }).(pulumi.StringOutput)
+}
+
+func (o GetServerlessInstancesResultOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the serverless instance.
+func (o GetServerlessInstancesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetServerlessInstancesResultOutput) Links() GetServerlessInstancesResultLinkArrayOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) []GetServerlessInstancesResultLink { return v.Links }).(GetServerlessInstancesResultLinkArrayOutput)
+}
+
+// Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
+func (o GetServerlessInstancesResultOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+// (Required) Human-readable label that identifies your serverless instance.
+func (o GetServerlessInstancesResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+func (o GetServerlessInstancesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
+func (o GetServerlessInstancesResultOutput) ProviderSettingsBackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.ProviderSettingsBackingProviderName }).(pulumi.StringOutput)
+}
+
+// Cloud service provider that applies to the provisioned the serverless instance.
+func (o GetServerlessInstancesResultOutput) ProviderSettingsProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.ProviderSettingsProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+func (o GetServerlessInstancesResultOutput) ProviderSettingsRegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.ProviderSettingsRegionName }).(pulumi.StringOutput)
+}
+
+// Stage of deployment of this serverless instance when the resource made its request.
+func (o GetServerlessInstancesResultOutput) StateName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+type GetServerlessInstancesResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerlessInstancesResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerlessInstancesResult)(nil)).Elem()
+}
+
+func (o GetServerlessInstancesResultArrayOutput) ToGetServerlessInstancesResultArrayOutput() GetServerlessInstancesResultArrayOutput {
+	return o
+}
+
+func (o GetServerlessInstancesResultArrayOutput) ToGetServerlessInstancesResultArrayOutputWithContext(ctx context.Context) GetServerlessInstancesResultArrayOutput {
+	return o
+}
+
+func (o GetServerlessInstancesResultArrayOutput) Index(i pulumi.IntInput) GetServerlessInstancesResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerlessInstancesResult {
+		return vs[0].([]GetServerlessInstancesResult)[vs[1].(int)]
+	}).(GetServerlessInstancesResultOutput)
+}
+
+type GetServerlessInstancesResultLink struct {
+	Href string `pulumi:"href"`
+	Rel  string `pulumi:"rel"`
+}
+
+// GetServerlessInstancesResultLinkInput is an input type that accepts GetServerlessInstancesResultLinkArgs and GetServerlessInstancesResultLinkOutput values.
+// You can construct a concrete instance of `GetServerlessInstancesResultLinkInput` via:
+//
+//          GetServerlessInstancesResultLinkArgs{...}
+type GetServerlessInstancesResultLinkInput interface {
+	pulumi.Input
+
+	ToGetServerlessInstancesResultLinkOutput() GetServerlessInstancesResultLinkOutput
+	ToGetServerlessInstancesResultLinkOutputWithContext(context.Context) GetServerlessInstancesResultLinkOutput
+}
+
+type GetServerlessInstancesResultLinkArgs struct {
+	Href pulumi.StringInput `pulumi:"href"`
+	Rel  pulumi.StringInput `pulumi:"rel"`
+}
+
+func (GetServerlessInstancesResultLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerlessInstancesResultLink)(nil)).Elem()
+}
+
+func (i GetServerlessInstancesResultLinkArgs) ToGetServerlessInstancesResultLinkOutput() GetServerlessInstancesResultLinkOutput {
+	return i.ToGetServerlessInstancesResultLinkOutputWithContext(context.Background())
+}
+
+func (i GetServerlessInstancesResultLinkArgs) ToGetServerlessInstancesResultLinkOutputWithContext(ctx context.Context) GetServerlessInstancesResultLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessInstancesResultLinkOutput)
+}
+
+// GetServerlessInstancesResultLinkArrayInput is an input type that accepts GetServerlessInstancesResultLinkArray and GetServerlessInstancesResultLinkArrayOutput values.
+// You can construct a concrete instance of `GetServerlessInstancesResultLinkArrayInput` via:
+//
+//          GetServerlessInstancesResultLinkArray{ GetServerlessInstancesResultLinkArgs{...} }
+type GetServerlessInstancesResultLinkArrayInput interface {
+	pulumi.Input
+
+	ToGetServerlessInstancesResultLinkArrayOutput() GetServerlessInstancesResultLinkArrayOutput
+	ToGetServerlessInstancesResultLinkArrayOutputWithContext(context.Context) GetServerlessInstancesResultLinkArrayOutput
+}
+
+type GetServerlessInstancesResultLinkArray []GetServerlessInstancesResultLinkInput
+
+func (GetServerlessInstancesResultLinkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerlessInstancesResultLink)(nil)).Elem()
+}
+
+func (i GetServerlessInstancesResultLinkArray) ToGetServerlessInstancesResultLinkArrayOutput() GetServerlessInstancesResultLinkArrayOutput {
+	return i.ToGetServerlessInstancesResultLinkArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerlessInstancesResultLinkArray) ToGetServerlessInstancesResultLinkArrayOutputWithContext(ctx context.Context) GetServerlessInstancesResultLinkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessInstancesResultLinkArrayOutput)
+}
+
+type GetServerlessInstancesResultLinkOutput struct{ *pulumi.OutputState }
+
+func (GetServerlessInstancesResultLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerlessInstancesResultLink)(nil)).Elem()
+}
+
+func (o GetServerlessInstancesResultLinkOutput) ToGetServerlessInstancesResultLinkOutput() GetServerlessInstancesResultLinkOutput {
+	return o
+}
+
+func (o GetServerlessInstancesResultLinkOutput) ToGetServerlessInstancesResultLinkOutputWithContext(ctx context.Context) GetServerlessInstancesResultLinkOutput {
+	return o
+}
+
+func (o GetServerlessInstancesResultLinkOutput) Href() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResultLink) string { return v.Href }).(pulumi.StringOutput)
+}
+
+func (o GetServerlessInstancesResultLinkOutput) Rel() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResultLink) string { return v.Rel }).(pulumi.StringOutput)
+}
+
+type GetServerlessInstancesResultLinkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerlessInstancesResultLinkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerlessInstancesResultLink)(nil)).Elem()
+}
+
+func (o GetServerlessInstancesResultLinkArrayOutput) ToGetServerlessInstancesResultLinkArrayOutput() GetServerlessInstancesResultLinkArrayOutput {
+	return o
+}
+
+func (o GetServerlessInstancesResultLinkArrayOutput) ToGetServerlessInstancesResultLinkArrayOutputWithContext(ctx context.Context) GetServerlessInstancesResultLinkArrayOutput {
+	return o
+}
+
+func (o GetServerlessInstancesResultLinkArrayOutput) Index(i pulumi.IntInput) GetServerlessInstancesResultLinkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerlessInstancesResultLink {
+		return vs[0].([]GetServerlessInstancesResultLink)[vs[1].(int)]
+	}).(GetServerlessInstancesResultLinkOutput)
+}
+
 type GetThirdPartyIntegrationsResult struct {
 	// Unique identifier of your New Relic account.
 	AccountId string `pulumi:"accountId"`
@@ -28560,10 +32259,15 @@ type GetThirdPartyIntegrationsResult struct {
 	// Your API Token.
 	ApiToken    string `pulumi:"apiToken"`
 	ChannelName string `pulumi:"channelName"`
+	// Whether your cluster has Prometheus enabled.
+	Enabled *bool `pulumi:"enabled"`
 	// Your Flowdock Flow name.
 	FlowName string `pulumi:"flowName"`
 	// Your License Key.
 	LicenseKey string `pulumi:"licenseKey"`
+	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
+	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Flowdock organization name.
 	// * `WEBHOOK`
 	OrgName string `pulumi:"orgName"`
@@ -28578,8 +32282,13 @@ type GetThirdPartyIntegrationsResult struct {
 	// An optional field for your Routing Key.
 	// * `FLOWDOCK`
 	RoutingKey string `pulumi:"routingKey"`
+	// Your Prometheus protocol scheme configured for requests.
+	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
+	// Indicates which service discovery method is used, either file or http.
+	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
@@ -28588,6 +32297,8 @@ type GetThirdPartyIntegrationsResult struct {
 	Type string `pulumi:"type"`
 	// Your webhook URL.
 	Url string `pulumi:"url"`
+	// Your Prometheus username.
+	UserName *string `pulumi:"userName"`
 	// Your Insights Insert Key.
 	WriteToken string `pulumi:"writeToken"`
 }
@@ -28611,10 +32322,15 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Your API Token.
 	ApiToken    pulumi.StringInput `pulumi:"apiToken"`
 	ChannelName pulumi.StringInput `pulumi:"channelName"`
+	// Whether your cluster has Prometheus enabled.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Your Flowdock Flow name.
 	FlowName pulumi.StringInput `pulumi:"flowName"`
 	// Your License Key.
 	LicenseKey pulumi.StringInput `pulumi:"licenseKey"`
+	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
+	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Flowdock organization name.
 	// * `WEBHOOK`
 	OrgName pulumi.StringInput `pulumi:"orgName"`
@@ -28629,8 +32345,13 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// An optional field for your Routing Key.
 	// * `FLOWDOCK`
 	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
+	// Your Prometheus protocol scheme configured for requests.
+	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringInput `pulumi:"secret"`
+	// Indicates which service discovery method is used, either file or http.
+	ServiceDiscovery pulumi.StringPtrInput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
@@ -28639,6 +32360,8 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	Type pulumi.StringInput `pulumi:"type"`
 	// Your webhook URL.
 	Url pulumi.StringInput `pulumi:"url"`
+	// Your Prometheus username.
+	UserName pulumi.StringPtrInput `pulumi:"userName"`
 	// Your Insights Insert Key.
 	WriteToken pulumi.StringInput `pulumi:"writeToken"`
 }
@@ -28713,6 +32436,11 @@ func (o GetThirdPartyIntegrationsResultOutput) ChannelName() pulumi.StringOutput
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ChannelName }).(pulumi.StringOutput)
 }
 
+// Whether your cluster has Prometheus enabled.
+func (o GetThirdPartyIntegrationsResultOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
 // Your Flowdock Flow name.
 func (o GetThirdPartyIntegrationsResultOutput) FlowName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.FlowName }).(pulumi.StringOutput)
@@ -28721,6 +32449,12 @@ func (o GetThirdPartyIntegrationsResultOutput) FlowName() pulumi.StringOutput {
 // Your License Key.
 func (o GetThirdPartyIntegrationsResultOutput) LicenseKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.LicenseKey }).(pulumi.StringOutput)
+}
+
+// Your Microsoft Teams incoming webhook URL.
+// * `PROMETHEUS`
+func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
 }
 
 // Your Flowdock organization name.
@@ -28752,9 +32486,20 @@ func (o GetThirdPartyIntegrationsResultOutput) RoutingKey() pulumi.StringOutput 
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.RoutingKey }).(pulumi.StringOutput)
 }
 
+// Your Prometheus protocol scheme configured for requests.
+func (o GetThirdPartyIntegrationsResultOutput) Scheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.Scheme }).(pulumi.StringPtrOutput)
+}
+
 // An optional field for your webhook secret.
+// * `MICROSOFT_TEAMS`
 func (o GetThirdPartyIntegrationsResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+// Indicates which service discovery method is used, either file or http.
+func (o GetThirdPartyIntegrationsResultOutput) ServiceDiscovery() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.ServiceDiscovery }).(pulumi.StringPtrOutput)
 }
 
 // Your Service Key.
@@ -28775,6 +32520,11 @@ func (o GetThirdPartyIntegrationsResultOutput) Type() pulumi.StringOutput {
 // Your webhook URL.
 func (o GetThirdPartyIntegrationsResultOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// Your Prometheus username.
+func (o GetThirdPartyIntegrationsResultOutput) UserName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.UserName }).(pulumi.StringPtrOutput)
 }
 
 // Your Insights Insert Key.
@@ -28835,14 +32585,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationNotificationArrayInput)(nil)).Elem(), AlertConfigurationNotificationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationThresholdConfigInput)(nil)).Elem(), AlertConfigurationThresholdConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertConfigurationThresholdConfigPtrInput)(nil)).Elem(), AlertConfigurationThresholdConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleExportInput)(nil)).Elem(), CloudBackupScheduleExportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleExportPtrInput)(nil)).Elem(), CloudBackupScheduleExportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemDailyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemDailyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemDailyPtrInput)(nil)).Elem(), CloudBackupSchedulePolicyItemDailyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemHourlyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemHourlyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemHourlyPtrInput)(nil)).Elem(), CloudBackupSchedulePolicyItemHourlyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemMonthlyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemMonthlyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemMonthlyPtrInput)(nil)).Elem(), CloudBackupSchedulePolicyItemMonthlyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemMonthlyArrayInput)(nil)).Elem(), CloudBackupSchedulePolicyItemMonthlyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyPtrInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemWeeklyArrayInput)(nil)).Elem(), CloudBackupSchedulePolicyItemWeeklyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobComponentInput)(nil)).Elem(), CloudBackupSnapshotExportJobComponentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobComponentArrayInput)(nil)).Elem(), CloudBackupSnapshotExportJobComponentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSnapshotExportJobCustomDataInput)(nil)).Elem(), CloudBackupSnapshotExportJobCustomDataArgs{})
@@ -28923,6 +32675,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*EventTriggerEventProcessorsPtrInput)(nil)).Elem(), EventTriggerEventProcessorsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventTriggerEventProcessorsAwsEventbridgeInput)(nil)).Elem(), EventTriggerEventProcessorsAwsEventbridgeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EventTriggerEventProcessorsAwsEventbridgePtrInput)(nil)).Elem(), EventTriggerEventProcessorsAwsEventbridgeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), FederatedSettingsOrgRoleMappingRoleAssignmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigCustomZoneMappingInput)(nil)).Elem(), GlobalClusterConfigCustomZoneMappingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigCustomZoneMappingArrayInput)(nil)).Elem(), GlobalClusterConfigCustomZoneMappingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GlobalClusterConfigManagedNamespaceInput)(nil)).Elem(), GlobalClusterConfigManagedNamespaceArgs{})
@@ -28945,6 +32699,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymInput)(nil)).Elem(), SearchIndexSynonymArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymArrayInput)(nil)).Elem(), SearchIndexSynonymArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceLinkInput)(nil)).Elem(), ServerlessInstanceLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceLinkArrayInput)(nil)).Elem(), ServerlessInstanceLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Get509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), Get509AuthenticationDatabaseUserCertificateArgs{})
@@ -29007,6 +32763,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationNotificationArrayInput)(nil)).Elem(), GetAlertConfigurationNotificationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationThresholdConfigInput)(nil)).Elem(), GetAlertConfigurationThresholdConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationThresholdConfigArrayInput)(nil)).Elem(), GetAlertConfigurationThresholdConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleExportInput)(nil)).Elem(), GetCloudBackupScheduleExportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleExportArrayInput)(nil)).Elem(), GetCloudBackupScheduleExportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemDailyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemDailyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemDailyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemDailyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemHourlyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemHourlyArgs{})
@@ -29163,6 +32921,52 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEventTriggersResultEventProcessorArrayInput)(nil)).Elem(), GetEventTriggersResultEventProcessorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEventTriggersResultEventProcessorAwsEventbridgeInput)(nil)).Elem(), GetEventTriggersResultEventProcessorAwsEventbridgeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetEventTriggersResultEventProcessorAwsEventbridgeArrayInput)(nil)).Elem(), GetEventTriggersResultEventProcessorAwsEventbridgeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderPemFileInfoInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderPemFileInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderPemFileInfoArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderPemFileInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderPemFileInfoCertificateInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultPemFileInfoInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultPemFileInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayInput)(nil)).Elem(), GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigRoleMappingInput)(nil)).Elem(), GetFederatedSettingsOrgConfigRoleMappingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigRoleMappingArrayInput)(nil)).Elem(), GetFederatedSettingsOrgConfigRoleMappingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentInput)(nil)).Elem(), GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigUserConflictInput)(nil)).Elem(), GetFederatedSettingsOrgConfigUserConflictArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigUserConflictArrayInput)(nil)).Elem(), GetFederatedSettingsOrgConfigUserConflictArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultInput)(nil)).Elem(), GetFederatedSettingsOrgConfigsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultArrayInput)(nil)).Elem(), GetFederatedSettingsOrgConfigsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultRoleMappingInput)(nil)).Elem(), GetFederatedSettingsOrgConfigsResultRoleMappingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput)(nil)).Elem(), GetFederatedSettingsOrgConfigsResultRoleMappingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentInput)(nil)).Elem(), GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultUserConflictInput)(nil)).Elem(), GetFederatedSettingsOrgConfigsResultUserConflictArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgConfigsResultUserConflictArrayInput)(nil)).Elem(), GetFederatedSettingsOrgConfigsResultUserConflictArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingRoleAssignmentInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingRoleAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultArrayInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput)(nil)).Elem(), GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalClusterConfigManagedNamespaceInput)(nil)).Elem(), GetGlobalClusterConfigManagedNamespaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGlobalClusterConfigManagedNamespaceArrayInput)(nil)).Elem(), GetGlobalClusterConfigManagedNamespaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapConfigurationUserToDnMappingInput)(nil)).Elem(), GetLdapConfigurationUserToDnMappingArgs{})
@@ -29207,6 +33011,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultArrayInput)(nil)).Elem(), GetSearchIndexesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultSynonymInput)(nil)).Elem(), GetSearchIndexesResultSynonymArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSearchIndexesResultSynonymArrayInput)(nil)).Elem(), GetSearchIndexesResultSynonymArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstanceLinkInput)(nil)).Elem(), GetServerlessInstanceLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstanceLinkArrayInput)(nil)).Elem(), GetServerlessInstanceLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultInput)(nil)).Elem(), GetServerlessInstancesResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultArrayInput)(nil)).Elem(), GetServerlessInstancesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultLinkInput)(nil)).Elem(), GetServerlessInstancesResultLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultLinkArrayInput)(nil)).Elem(), GetServerlessInstancesResultLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationOutput{})
@@ -29241,14 +33051,16 @@ func init() {
 	pulumi.RegisterOutputType(AlertConfigurationNotificationArrayOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationThresholdConfigOutput{})
 	pulumi.RegisterOutputType(AlertConfigurationThresholdConfigPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupScheduleExportOutput{})
+	pulumi.RegisterOutputType(CloudBackupScheduleExportPtrOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemDailyOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemDailyPtrOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemHourlyOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemHourlyPtrOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemMonthlyOutput{})
-	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemMonthlyPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemMonthlyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyOutput{})
-	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemWeeklyArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobComponentOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobComponentArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupSnapshotExportJobCustomDataOutput{})
@@ -29329,6 +33141,8 @@ func init() {
 	pulumi.RegisterOutputType(EventTriggerEventProcessorsPtrOutput{})
 	pulumi.RegisterOutputType(EventTriggerEventProcessorsAwsEventbridgeOutput{})
 	pulumi.RegisterOutputType(EventTriggerEventProcessorsAwsEventbridgePtrOutput{})
+	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentOutput{})
+	pulumi.RegisterOutputType(FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigCustomZoneMappingArrayOutput{})
 	pulumi.RegisterOutputType(GlobalClusterConfigManagedNamespaceOutput{})
@@ -29351,6 +33165,8 @@ func init() {
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(SearchIndexSynonymOutput{})
 	pulumi.RegisterOutputType(SearchIndexSynonymArrayOutput{})
+	pulumi.RegisterOutputType(ServerlessInstanceLinkOutput{})
+	pulumi.RegisterOutputType(ServerlessInstanceLinkArrayOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateArrayOutput{})
 	pulumi.RegisterOutputType(Get509AuthenticationDatabaseUserCertificateOutput{})
@@ -29413,6 +33229,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAlertConfigurationNotificationArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationThresholdConfigOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationThresholdConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupScheduleExportOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupScheduleExportArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemDailyOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemDailyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemHourlyOutput{})
@@ -29569,6 +33387,52 @@ func init() {
 	pulumi.RegisterOutputType(GetEventTriggersResultEventProcessorArrayOutput{})
 	pulumi.RegisterOutputType(GetEventTriggersResultEventProcessorAwsEventbridgeOutput{})
 	pulumi.RegisterOutputType(GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderPemFileInfoOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigRoleMappingOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigRoleMappingArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigUserConflictOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigUserConflictArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigsResultOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigsResultRoleMappingOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigsResultUserConflictOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput{})
+	pulumi.RegisterOutputType(GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceOutput{})
 	pulumi.RegisterOutputType(GetGlobalClusterConfigManagedNamespaceArrayOutput{})
 	pulumi.RegisterOutputType(GetLdapConfigurationUserToDnMappingOutput{})
@@ -29613,6 +33477,12 @@ func init() {
 	pulumi.RegisterOutputType(GetSearchIndexesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexesResultSynonymOutput{})
 	pulumi.RegisterOutputType(GetSearchIndexesResultSynonymArrayOutput{})
+	pulumi.RegisterOutputType(GetServerlessInstanceLinkOutput{})
+	pulumi.RegisterOutputType(GetServerlessInstanceLinkArrayOutput{})
+	pulumi.RegisterOutputType(GetServerlessInstancesResultOutput{})
+	pulumi.RegisterOutputType(GetServerlessInstancesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetServerlessInstancesResultLinkOutput{})
+	pulumi.RegisterOutputType(GetServerlessInstancesResultLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultOutput{})
 	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultArrayOutput{})
 }
