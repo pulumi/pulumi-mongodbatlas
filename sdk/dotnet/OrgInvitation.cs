@@ -10,18 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas.OrgInvitation` invites a user to join an Atlas organization.
-    /// 
-    /// Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
-    /// 
-    /// The [MongoDB Documentation](https://docs.atlas.mongodb.com/reference/user-roles/#organization-roles) describes the roles a user can have, which map to:
-    /// 
-    /// * ORG_OWNER
-    /// * ORG_GROUP_CREATOR
-    /// * ORG_BILLING_ADMIN
-    /// * ORG_READ_ONLY
-    /// * ORG_MEMBER
-    /// 
     /// ## Example Usage
     /// ### S
     /// 
@@ -99,7 +87,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen
+    /// ~&gt; **IMPORTANT:** An organization invitation can **not** be imported once it has been accepted. Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen
     /// 
     /// ```sh
     ///  $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com

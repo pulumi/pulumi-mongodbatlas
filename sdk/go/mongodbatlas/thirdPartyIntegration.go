@@ -57,13 +57,20 @@ type ThirdPartyIntegration struct {
 	// Your API Token.
 	ApiToken    pulumi.StringPtrOutput `pulumi:"apiToken"`
 	ChannelName pulumi.StringPtrOutput `pulumi:"channelName"`
+	// Whether your cluster has Prometheus enabled.
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// Your Flowdock Flow name.
 	FlowName pulumi.StringPtrOutput `pulumi:"flowName"`
 	// Your License Key.
 	LicenseKey pulumi.StringPtrOutput `pulumi:"licenseKey"`
+	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
+	MicrosoftTeamsWebhookUrl pulumi.StringPtrOutput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Flowdock organization name.
 	// * `WEBHOOK`
 	OrgName pulumi.StringPtrOutput `pulumi:"orgName"`
+	// Your Prometheus password.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Your Insights Query Key.
@@ -75,8 +82,13 @@ type ThirdPartyIntegration struct {
 	// An optional field for your Routing Key.
 	// * `FLOWDOCK`
 	RoutingKey pulumi.StringPtrOutput `pulumi:"routingKey"`
+	// Your Prometheus protocol scheme configured for requests.
+	Scheme pulumi.StringPtrOutput `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringPtrOutput `pulumi:"secret"`
+	// Indicates which service discovery method is used, either file or http.
+	ServiceDiscovery pulumi.StringPtrOutput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey pulumi.StringPtrOutput `pulumi:"serviceKey"`
@@ -92,6 +104,8 @@ type ThirdPartyIntegration struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Your webhook URL.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
+	// Your Prometheus username.
+	UserName pulumi.StringPtrOutput `pulumi:"userName"`
 	// Your Insights Insert Key.
 	WriteToken pulumi.StringPtrOutput `pulumi:"writeToken"`
 }
@@ -138,13 +152,20 @@ type thirdPartyIntegrationState struct {
 	// Your API Token.
 	ApiToken    *string `pulumi:"apiToken"`
 	ChannelName *string `pulumi:"channelName"`
+	// Whether your cluster has Prometheus enabled.
+	Enabled *bool `pulumi:"enabled"`
 	// Your Flowdock Flow name.
 	FlowName *string `pulumi:"flowName"`
 	// Your License Key.
 	LicenseKey *string `pulumi:"licenseKey"`
+	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
+	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Flowdock organization name.
 	// * `WEBHOOK`
 	OrgName *string `pulumi:"orgName"`
+	// Your Prometheus password.
+	Password *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId *string `pulumi:"projectId"`
 	// Your Insights Query Key.
@@ -156,8 +177,13 @@ type thirdPartyIntegrationState struct {
 	// An optional field for your Routing Key.
 	// * `FLOWDOCK`
 	RoutingKey *string `pulumi:"routingKey"`
+	// Your Prometheus protocol scheme configured for requests.
+	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret *string `pulumi:"secret"`
+	// Indicates which service discovery method is used, either file or http.
+	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey *string `pulumi:"serviceKey"`
@@ -173,6 +199,8 @@ type thirdPartyIntegrationState struct {
 	Type *string `pulumi:"type"`
 	// Your webhook URL.
 	Url *string `pulumi:"url"`
+	// Your Prometheus username.
+	UserName *string `pulumi:"userName"`
 	// Your Insights Insert Key.
 	WriteToken *string `pulumi:"writeToken"`
 }
@@ -185,13 +213,20 @@ type ThirdPartyIntegrationState struct {
 	// Your API Token.
 	ApiToken    pulumi.StringPtrInput
 	ChannelName pulumi.StringPtrInput
+	// Whether your cluster has Prometheus enabled.
+	Enabled pulumi.BoolPtrInput
 	// Your Flowdock Flow name.
 	FlowName pulumi.StringPtrInput
 	// Your License Key.
 	LicenseKey pulumi.StringPtrInput
+	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
+	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
 	// Your Flowdock organization name.
 	// * `WEBHOOK`
 	OrgName pulumi.StringPtrInput
+	// Your Prometheus password.
+	Password pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringPtrInput
 	// Your Insights Query Key.
@@ -203,8 +238,13 @@ type ThirdPartyIntegrationState struct {
 	// An optional field for your Routing Key.
 	// * `FLOWDOCK`
 	RoutingKey pulumi.StringPtrInput
+	// Your Prometheus protocol scheme configured for requests.
+	Scheme pulumi.StringPtrInput
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringPtrInput
+	// Indicates which service discovery method is used, either file or http.
+	ServiceDiscovery pulumi.StringPtrInput
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey pulumi.StringPtrInput
@@ -220,6 +260,8 @@ type ThirdPartyIntegrationState struct {
 	Type pulumi.StringPtrInput
 	// Your webhook URL.
 	Url pulumi.StringPtrInput
+	// Your Prometheus username.
+	UserName pulumi.StringPtrInput
 	// Your Insights Insert Key.
 	WriteToken pulumi.StringPtrInput
 }
@@ -236,13 +278,20 @@ type thirdPartyIntegrationArgs struct {
 	// Your API Token.
 	ApiToken    *string `pulumi:"apiToken"`
 	ChannelName *string `pulumi:"channelName"`
+	// Whether your cluster has Prometheus enabled.
+	Enabled *bool `pulumi:"enabled"`
 	// Your Flowdock Flow name.
 	FlowName *string `pulumi:"flowName"`
 	// Your License Key.
 	LicenseKey *string `pulumi:"licenseKey"`
+	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
+	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Flowdock organization name.
 	// * `WEBHOOK`
 	OrgName *string `pulumi:"orgName"`
+	// Your Prometheus password.
+	Password *string `pulumi:"password"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
 	// Your Insights Query Key.
@@ -254,8 +303,13 @@ type thirdPartyIntegrationArgs struct {
 	// An optional field for your Routing Key.
 	// * `FLOWDOCK`
 	RoutingKey *string `pulumi:"routingKey"`
+	// Your Prometheus protocol scheme configured for requests.
+	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret *string `pulumi:"secret"`
+	// Indicates which service discovery method is used, either file or http.
+	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey *string `pulumi:"serviceKey"`
@@ -271,6 +325,8 @@ type thirdPartyIntegrationArgs struct {
 	Type string `pulumi:"type"`
 	// Your webhook URL.
 	Url *string `pulumi:"url"`
+	// Your Prometheus username.
+	UserName *string `pulumi:"userName"`
 	// Your Insights Insert Key.
 	WriteToken *string `pulumi:"writeToken"`
 }
@@ -284,13 +340,20 @@ type ThirdPartyIntegrationArgs struct {
 	// Your API Token.
 	ApiToken    pulumi.StringPtrInput
 	ChannelName pulumi.StringPtrInput
+	// Whether your cluster has Prometheus enabled.
+	Enabled pulumi.BoolPtrInput
 	// Your Flowdock Flow name.
 	FlowName pulumi.StringPtrInput
 	// Your License Key.
 	LicenseKey pulumi.StringPtrInput
+	// Your Microsoft Teams incoming webhook URL.
+	// * `PROMETHEUS`
+	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
 	// Your Flowdock organization name.
 	// * `WEBHOOK`
 	OrgName pulumi.StringPtrInput
+	// Your Prometheus password.
+	Password pulumi.StringPtrInput
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput
 	// Your Insights Query Key.
@@ -302,8 +365,13 @@ type ThirdPartyIntegrationArgs struct {
 	// An optional field for your Routing Key.
 	// * `FLOWDOCK`
 	RoutingKey pulumi.StringPtrInput
+	// Your Prometheus protocol scheme configured for requests.
+	Scheme pulumi.StringPtrInput
 	// An optional field for your webhook secret.
+	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringPtrInput
+	// Indicates which service discovery method is used, either file or http.
+	ServiceDiscovery pulumi.StringPtrInput
 	// Your Service Key.
 	// * `DATADOG`
 	ServiceKey pulumi.StringPtrInput
@@ -319,6 +387,8 @@ type ThirdPartyIntegrationArgs struct {
 	Type pulumi.StringInput
 	// Your webhook URL.
 	Url pulumi.StringPtrInput
+	// Your Prometheus username.
+	UserName pulumi.StringPtrInput
 	// Your Insights Insert Key.
 	WriteToken pulumi.StringPtrInput
 }

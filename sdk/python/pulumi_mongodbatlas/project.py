@@ -17,6 +17,11 @@ class ProjectArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[str],
                  api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
+                 is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
@@ -24,6 +29,11 @@ class ProjectArgs:
         """
         The set of arguments for constructing a Project resource.
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
+        :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
@@ -31,6 +41,16 @@ class ProjectArgs:
         pulumi.set(__self__, "org_id", org_id)
         if api_keys is not None:
             pulumi.set(__self__, "api_keys", api_keys)
+        if is_collect_database_specifics_statistics_enabled is not None:
+            pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
+        if is_data_explorer_enabled is not None:
+            pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_performance_advisor_enabled is not None:
+            pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
+        if is_realtime_performance_panel_enabled is not None:
+            pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
+        if is_schema_advisor_enabled is not None:
+            pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_owner_id is not None:
@@ -60,6 +80,66 @@ class ProjectArgs:
     @api_keys.setter
     def api_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]]):
         pulumi.set(self, "api_keys", value)
+
+    @property
+    @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
+    def is_collect_database_specifics_statistics_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        """
+        return pulumi.get(self, "is_collect_database_specifics_statistics_enabled")
+
+    @is_collect_database_specifics_statistics_enabled.setter
+    def is_collect_database_specifics_statistics_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_collect_database_specifics_statistics_enabled", value)
+
+    @property
+    @pulumi.getter(name="isDataExplorerEnabled")
+    def is_data_explorer_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        """
+        return pulumi.get(self, "is_data_explorer_enabled")
+
+    @is_data_explorer_enabled.setter
+    def is_data_explorer_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_data_explorer_enabled", value)
+
+    @property
+    @pulumi.getter(name="isPerformanceAdvisorEnabled")
+    def is_performance_advisor_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        """
+        return pulumi.get(self, "is_performance_advisor_enabled")
+
+    @is_performance_advisor_enabled.setter
+    def is_performance_advisor_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_performance_advisor_enabled", value)
+
+    @property
+    @pulumi.getter(name="isRealtimePerformancePanelEnabled")
+    def is_realtime_performance_panel_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        """
+        return pulumi.get(self, "is_realtime_performance_panel_enabled")
+
+    @is_realtime_performance_panel_enabled.setter
+    def is_realtime_performance_panel_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_realtime_performance_panel_enabled", value)
+
+    @property
+    @pulumi.getter(name="isSchemaAdvisorEnabled")
+    def is_schema_advisor_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        """
+        return pulumi.get(self, "is_schema_advisor_enabled")
+
+    @is_schema_advisor_enabled.setter
+    def is_schema_advisor_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_schema_advisor_enabled", value)
 
     @property
     @pulumi.getter
@@ -113,6 +193,11 @@ class _ProjectState:
                  api_keys: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyArgs']]]] = None,
                  cluster_count: Optional[pulumi.Input[int]] = None,
                  created: Optional[pulumi.Input[str]] = None,
+                 is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -122,6 +207,11 @@ class _ProjectState:
         Input properties used for looking up and filtering Project resources.
         :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project..
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
+        :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
@@ -133,6 +223,16 @@ class _ProjectState:
             pulumi.set(__self__, "cluster_count", cluster_count)
         if created is not None:
             pulumi.set(__self__, "created", created)
+        if is_collect_database_specifics_statistics_enabled is not None:
+            pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
+        if is_data_explorer_enabled is not None:
+            pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_performance_advisor_enabled is not None:
+            pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
+        if is_realtime_performance_panel_enabled is not None:
+            pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
+        if is_schema_advisor_enabled is not None:
+            pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if org_id is not None:
@@ -176,6 +276,66 @@ class _ProjectState:
     @created.setter
     def created(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created", value)
+
+    @property
+    @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
+    def is_collect_database_specifics_statistics_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        """
+        return pulumi.get(self, "is_collect_database_specifics_statistics_enabled")
+
+    @is_collect_database_specifics_statistics_enabled.setter
+    def is_collect_database_specifics_statistics_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_collect_database_specifics_statistics_enabled", value)
+
+    @property
+    @pulumi.getter(name="isDataExplorerEnabled")
+    def is_data_explorer_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        """
+        return pulumi.get(self, "is_data_explorer_enabled")
+
+    @is_data_explorer_enabled.setter
+    def is_data_explorer_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_data_explorer_enabled", value)
+
+    @property
+    @pulumi.getter(name="isPerformanceAdvisorEnabled")
+    def is_performance_advisor_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        """
+        return pulumi.get(self, "is_performance_advisor_enabled")
+
+    @is_performance_advisor_enabled.setter
+    def is_performance_advisor_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_performance_advisor_enabled", value)
+
+    @property
+    @pulumi.getter(name="isRealtimePerformancePanelEnabled")
+    def is_realtime_performance_panel_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        """
+        return pulumi.get(self, "is_realtime_performance_panel_enabled")
+
+    @is_realtime_performance_panel_enabled.setter
+    def is_realtime_performance_panel_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_realtime_performance_panel_enabled", value)
+
+    @property
+    @pulumi.getter(name="isSchemaAdvisorEnabled")
+    def is_schema_advisor_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        """
+        return pulumi.get(self, "is_schema_advisor_enabled")
+
+    @is_schema_advisor_enabled.setter
+    def is_schema_advisor_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_schema_advisor_enabled", value)
 
     @property
     @pulumi.getter
@@ -241,6 +401,11 @@ class Project(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
+                 is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -259,6 +424,11 @@ class Project(pulumi.CustomResource):
                 api_key_id="61003b299dda8d54a9d7d10c",
                 role_names=["GROUP_READ_ONLY"],
             )],
+            is_collect_database_specifics_statistics_enabled=True,
+            is_data_explorer_enabled=True,
+            is_performance_advisor_enabled=True,
+            is_realtime_performance_panel_enabled=True,
+            is_schema_advisor_enabled=True,
             org_id="<ORG_ID>",
             project_owner_id="<OWNER_ACCOUNT_ID>",
             teams=[
@@ -288,6 +458,11 @@ class Project(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
@@ -311,6 +486,11 @@ class Project(pulumi.CustomResource):
                 api_key_id="61003b299dda8d54a9d7d10c",
                 role_names=["GROUP_READ_ONLY"],
             )],
+            is_collect_database_specifics_statistics_enabled=True,
+            is_data_explorer_enabled=True,
+            is_performance_advisor_enabled=True,
+            is_realtime_performance_panel_enabled=True,
+            is_schema_advisor_enabled=True,
             org_id="<ORG_ID>",
             project_owner_id="<OWNER_ACCOUNT_ID>",
             teams=[
@@ -354,6 +534,11 @@ class Project(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
+                 is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
+                 is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -372,6 +557,11 @@ class Project(pulumi.CustomResource):
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
             __props__.__dict__["api_keys"] = api_keys
+            __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
+            __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
+            __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
+            __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
+            __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
             __props__.__dict__["name"] = name
             if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")
@@ -394,6 +584,11 @@ class Project(pulumi.CustomResource):
             api_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectApiKeyArgs']]]]] = None,
             cluster_count: Optional[pulumi.Input[int]] = None,
             created: Optional[pulumi.Input[str]] = None,
+            is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[bool]] = None,
+            is_data_explorer_enabled: Optional[pulumi.Input[bool]] = None,
+            is_performance_advisor_enabled: Optional[pulumi.Input[bool]] = None,
+            is_realtime_performance_panel_enabled: Optional[pulumi.Input[bool]] = None,
+            is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             project_owner_id: Optional[pulumi.Input[str]] = None,
@@ -408,6 +603,11 @@ class Project(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] cluster_count: The number of Atlas clusters deployed in the project..
         :param pulumi.Input[str] created: The ISO-8601-formatted timestamp of when Atlas created the project..
+        :param pulumi.Input[bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        :param pulumi.Input[bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        :param pulumi.Input[bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        :param pulumi.Input[bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
@@ -420,6 +620,11 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["api_keys"] = api_keys
         __props__.__dict__["cluster_count"] = cluster_count
         __props__.__dict__["created"] = created
+        __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
+        __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
+        __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
+        __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
+        __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["project_owner_id"] = project_owner_id
@@ -447,6 +652,46 @@ class Project(pulumi.CustomResource):
         The ISO-8601-formatted timestamp of when Atlas created the project..
         """
         return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
+    def is_collect_database_specifics_statistics_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        """
+        return pulumi.get(self, "is_collect_database_specifics_statistics_enabled")
+
+    @property
+    @pulumi.getter(name="isDataExplorerEnabled")
+    def is_data_explorer_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        """
+        return pulumi.get(self, "is_data_explorer_enabled")
+
+    @property
+    @pulumi.getter(name="isPerformanceAdvisorEnabled")
+    def is_performance_advisor_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        """
+        return pulumi.get(self, "is_performance_advisor_enabled")
+
+    @property
+    @pulumi.getter(name="isRealtimePerformancePanelEnabled")
+    def is_realtime_performance_panel_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        """
+        return pulumi.get(self, "is_realtime_performance_panel_enabled")
+
+    @property
+    @pulumi.getter(name="isSchemaAdvisorEnabled")
+    def is_schema_advisor_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        """
+        return pulumi.get(self, "is_schema_advisor_enabled")
 
     @property
     @pulumi.getter

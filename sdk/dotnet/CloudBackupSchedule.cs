@@ -24,6 +24,12 @@ namespace Pulumi.Mongodbatlas
     public partial class CloudBackupSchedule : Pulumi.CustomResource
     {
         /// <summary>
+        /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// </summary>
+        [Output("autoExportEnabled")]
+        public Output<bool> AutoExportEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Unique identifier of the Atlas cluster.
         /// </summary>
         [Output("clusterId")]
@@ -34,6 +40,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
+
+        [Output("export")]
+        public Output<Outputs.CloudBackupScheduleExport> Export { get; private set; } = null!;
 
         /// <summary>
         /// Unique identifier of the backup policy.
@@ -62,14 +71,14 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Monthly policy item
         /// </summary>
-        [Output("policyItemMonthly")]
-        public Output<Outputs.CloudBackupSchedulePolicyItemMonthly?> PolicyItemMonthly { get; private set; } = null!;
+        [Output("policyItemMonthlies")]
+        public Output<ImmutableArray<Outputs.CloudBackupSchedulePolicyItemMonthly>> PolicyItemMonthlies { get; private set; } = null!;
 
         /// <summary>
         /// Weekly policy item
         /// </summary>
-        [Output("policyItemWeekly")]
-        public Output<Outputs.CloudBackupSchedulePolicyItemWeekly?> PolicyItemWeekly { get; private set; } = null!;
+        [Output("policyItemWeeklies")]
+        public Output<ImmutableArray<Outputs.CloudBackupSchedulePolicyItemWeekly>> PolicyItemWeeklies { get; private set; } = null!;
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
@@ -100,6 +109,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("updateSnapshots")]
         public Output<bool> UpdateSnapshots { get; private set; } = null!;
+
+        /// <summary>
+        /// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        /// </summary>
+        [Output("useOrgAndGroupNamesInExportPrefix")]
+        public Output<bool> UseOrgAndGroupNamesInExportPrefix { get; private set; } = null!;
 
 
         /// <summary>
@@ -148,10 +163,19 @@ namespace Pulumi.Mongodbatlas
     public sealed class CloudBackupScheduleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// </summary>
+        [Input("autoExportEnabled")]
+        public Input<bool>? AutoExportEnabled { get; set; }
+
+        /// <summary>
         /// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         /// </summary>
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
+
+        [Input("export")]
+        public Input<Inputs.CloudBackupScheduleExportArgs>? Export { get; set; }
 
         /// <summary>
         /// Daily policy item
@@ -165,17 +189,29 @@ namespace Pulumi.Mongodbatlas
         [Input("policyItemHourly")]
         public Input<Inputs.CloudBackupSchedulePolicyItemHourlyArgs>? PolicyItemHourly { get; set; }
 
+        [Input("policyItemMonthlies")]
+        private InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyArgs>? _policyItemMonthlies;
+
         /// <summary>
         /// Monthly policy item
         /// </summary>
-        [Input("policyItemMonthly")]
-        public Input<Inputs.CloudBackupSchedulePolicyItemMonthlyArgs>? PolicyItemMonthly { get; set; }
+        public InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyArgs> PolicyItemMonthlies
+        {
+            get => _policyItemMonthlies ?? (_policyItemMonthlies = new InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyArgs>());
+            set => _policyItemMonthlies = value;
+        }
+
+        [Input("policyItemWeeklies")]
+        private InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyArgs>? _policyItemWeeklies;
 
         /// <summary>
         /// Weekly policy item
         /// </summary>
-        [Input("policyItemWeekly")]
-        public Input<Inputs.CloudBackupSchedulePolicyItemWeeklyArgs>? PolicyItemWeekly { get; set; }
+        public InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyArgs> PolicyItemWeeklies
+        {
+            get => _policyItemWeeklies ?? (_policyItemWeeklies = new InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyArgs>());
+            set => _policyItemWeeklies = value;
+        }
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
@@ -207,6 +243,12 @@ namespace Pulumi.Mongodbatlas
         [Input("updateSnapshots")]
         public Input<bool>? UpdateSnapshots { get; set; }
 
+        /// <summary>
+        /// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        /// </summary>
+        [Input("useOrgAndGroupNamesInExportPrefix")]
+        public Input<bool>? UseOrgAndGroupNamesInExportPrefix { get; set; }
+
         public CloudBackupScheduleArgs()
         {
         }
@@ -214,6 +256,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class CloudBackupScheduleState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        /// </summary>
+        [Input("autoExportEnabled")]
+        public Input<bool>? AutoExportEnabled { get; set; }
+
         /// <summary>
         /// Unique identifier of the Atlas cluster.
         /// </summary>
@@ -225,6 +273,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
+
+        [Input("export")]
+        public Input<Inputs.CloudBackupScheduleExportGetArgs>? Export { get; set; }
 
         /// <summary>
         /// Unique identifier of the backup policy.
@@ -250,17 +301,29 @@ namespace Pulumi.Mongodbatlas
         [Input("policyItemHourly")]
         public Input<Inputs.CloudBackupSchedulePolicyItemHourlyGetArgs>? PolicyItemHourly { get; set; }
 
+        [Input("policyItemMonthlies")]
+        private InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyGetArgs>? _policyItemMonthlies;
+
         /// <summary>
         /// Monthly policy item
         /// </summary>
-        [Input("policyItemMonthly")]
-        public Input<Inputs.CloudBackupSchedulePolicyItemMonthlyGetArgs>? PolicyItemMonthly { get; set; }
+        public InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyGetArgs> PolicyItemMonthlies
+        {
+            get => _policyItemMonthlies ?? (_policyItemMonthlies = new InputList<Inputs.CloudBackupSchedulePolicyItemMonthlyGetArgs>());
+            set => _policyItemMonthlies = value;
+        }
+
+        [Input("policyItemWeeklies")]
+        private InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyGetArgs>? _policyItemWeeklies;
 
         /// <summary>
         /// Weekly policy item
         /// </summary>
-        [Input("policyItemWeekly")]
-        public Input<Inputs.CloudBackupSchedulePolicyItemWeeklyGetArgs>? PolicyItemWeekly { get; set; }
+        public InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyGetArgs> PolicyItemWeeklies
+        {
+            get => _policyItemWeeklies ?? (_policyItemWeeklies = new InputList<Inputs.CloudBackupSchedulePolicyItemWeeklyGetArgs>());
+            set => _policyItemWeeklies = value;
+        }
 
         /// <summary>
         /// The unique identifier of the project for the Atlas cluster.
@@ -291,6 +354,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("updateSnapshots")]
         public Input<bool>? UpdateSnapshots { get; set; }
+
+        /// <summary>
+        /// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        /// </summary>
+        [Input("useOrgAndGroupNamesInExportPrefix")]
+        public Input<bool>? UseOrgAndGroupNamesInExportPrefix { get; set; }
 
         public CloudBackupScheduleState()
         {

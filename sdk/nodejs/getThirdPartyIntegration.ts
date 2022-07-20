@@ -34,8 +34,13 @@ export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opt
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", {
+        "enabled": args.enabled,
+        "microsoftTeamsWebhookUrl": args.microsoftTeamsWebhookUrl,
         "projectId": args.projectId,
+        "scheme": args.scheme,
+        "serviceDiscovery": args.serviceDiscovery,
         "type": args.type,
+        "userName": args.userName,
     }, opts);
 }
 
@@ -44,9 +49,26 @@ export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opt
  */
 export interface GetThirdPartyIntegrationArgs {
     /**
+     * Whether your cluster has Prometheus enabled.
+     */
+    enabled?: boolean;
+    /**
+     * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
+     */
+    microsoftTeamsWebhookUrl?: string;
+    /**
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: string;
+    /**
+     * Your Prometheus protocol scheme configured for requests.
+     */
+    scheme?: string;
+    /**
+     * Indicates which service discovery method is used, either file or http.
+     */
+    serviceDiscovery?: string;
     /**
      * Third-Party service integration type
      * * PAGER_DUTY
@@ -56,8 +78,14 @@ export interface GetThirdPartyIntegrationArgs {
      * * VICTOR_OPS
      * * FLOWDOCK
      * * WEBHOOK
+     * * MICROSOFT_TEAMS
+     * * PROMETHEUS
      */
     type: string;
+    /**
+     * Your Prometheus username.
+     */
+    userName?: string;
 }
 
 /**
@@ -78,6 +106,10 @@ export interface GetThirdPartyIntegrationResult {
     readonly apiToken: string;
     readonly channelName: string;
     /**
+     * Whether your cluster has Prometheus enabled.
+     */
+    readonly enabled?: boolean;
+    /**
      * Your Flowdock Flow name.
      */
     readonly flowName: string;
@@ -89,6 +121,11 @@ export interface GetThirdPartyIntegrationResult {
      * Your License Key.
      */
     readonly licenseKey: string;
+    /**
+     * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
+     */
+    readonly microsoftTeamsWebhookUrl?: string;
     /**
      * Your Flowdock organization name.
      * * `WEBHOOK`
@@ -111,9 +148,18 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly routingKey: string;
     /**
+     * Your Prometheus protocol scheme configured for requests.
+     */
+    readonly scheme?: string;
+    /**
      * An optional field for your webhook secret.
+     * * `MICROSOFT_TEAMS`
      */
     readonly secret: string;
+    /**
+     * Indicates which service discovery method is used, either file or http.
+     */
+    readonly serviceDiscovery?: string;
     /**
      * Your Service Key.
      * * `DATADOG`
@@ -129,6 +175,10 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly url: string;
     /**
+     * Your Prometheus username.
+     */
+    readonly userName?: string;
+    /**
      * Your Insights Insert Key.
      */
     readonly writeToken: string;
@@ -143,9 +193,26 @@ export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOut
  */
 export interface GetThirdPartyIntegrationOutputArgs {
     /**
+     * Whether your cluster has Prometheus enabled.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
+     */
+    microsoftTeamsWebhookUrl?: pulumi.Input<string>;
+    /**
      * The unique ID for the project to get all Third-Party service integrations
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Your Prometheus protocol scheme configured for requests.
+     */
+    scheme?: pulumi.Input<string>;
+    /**
+     * Indicates which service discovery method is used, either file or http.
+     */
+    serviceDiscovery?: pulumi.Input<string>;
     /**
      * Third-Party service integration type
      * * PAGER_DUTY
@@ -155,6 +222,12 @@ export interface GetThirdPartyIntegrationOutputArgs {
      * * VICTOR_OPS
      * * FLOWDOCK
      * * WEBHOOK
+     * * MICROSOFT_TEAMS
+     * * PROMETHEUS
      */
     type: pulumi.Input<string>;
+    /**
+     * Your Prometheus username.
+     */
+    userName?: pulumi.Input<string>;
 }

@@ -21,7 +21,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// * `GROUP_DATA_ACCESS_ADMIN`
         /// * `GROUP_DATA_ACCESS_READ_WRITE`
         /// * `GROUP_DATA_ACCESS_READ_ONLY`
-        /// * `GROUP_CLUSTER_MANAGER`
         /// </summary>
         public readonly ImmutableArray<string> RoleNames;
         /// <summary>

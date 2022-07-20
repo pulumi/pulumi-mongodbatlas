@@ -41,10 +41,15 @@ export interface GetCloudBackupScheduleArgs {
  */
 export interface GetCloudBackupScheduleResult {
     /**
+     * Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+     */
+    readonly autoExportEnabled: boolean;
+    /**
      * Unique identifier of the Atlas cluster.
      */
     readonly clusterId: string;
     readonly clusterName: string;
+    readonly exports: outputs.GetCloudBackupScheduleExport[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -86,6 +91,10 @@ export interface GetCloudBackupScheduleResult {
      * Specifies a restore window in days for cloud backup to maintain.
      */
     readonly restoreWindowDays: number;
+    /**
+     * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+     */
+    readonly useOrgAndGroupNamesInExportPrefix: boolean;
 }
 
 export function getCloudBackupScheduleOutput(args: GetCloudBackupScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupScheduleResult> {

@@ -21,7 +21,7 @@ class GetEventTriggerResult:
     """
     A collection of values returned by getEventTrigger.
     """
-    def __init__(__self__, app_id=None, config_collection=None, config_database=None, config_full_document=None, config_full_document_before=None, config_match=None, config_operation_type=None, config_operation_types=None, config_project=None, config_providers=None, config_schedule=None, config_schedule_type=None, config_service_id=None, disabled=None, event_processors=None, function_id=None, function_name=None, id=None, name=None, project_id=None, trigger_id=None, type=None):
+    def __init__(__self__, app_id=None, config_collection=None, config_database=None, config_full_document=None, config_full_document_before=None, config_match=None, config_operation_type=None, config_operation_types=None, config_project=None, config_providers=None, config_schedule=None, config_schedule_type=None, config_service_id=None, disabled=None, event_processors=None, function_id=None, function_name=None, id=None, name=None, project_id=None, trigger_id=None, type=None, unordered=None):
         if app_id and not isinstance(app_id, str):
             raise TypeError("Expected argument 'app_id' to be a str")
         pulumi.set(__self__, "app_id", app_id)
@@ -88,6 +88,9 @@ class GetEventTriggerResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
+        if unordered and not isinstance(unordered, bool):
+            raise TypeError("Expected argument 'unordered' to be a bool")
+        pulumi.set(__self__, "unordered", unordered)
 
     @property
     @pulumi.getter(name="appId")
@@ -252,6 +255,14 @@ class GetEventTriggerResult:
         """
         return pulumi.get(self, "type")
 
+    @property
+    @pulumi.getter
+    def unordered(self) -> bool:
+        """
+        Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+        """
+        return pulumi.get(self, "unordered")
+
 
 class AwaitableGetEventTriggerResult(GetEventTriggerResult):
     # pylint: disable=using-constant-test
@@ -280,7 +291,8 @@ class AwaitableGetEventTriggerResult(GetEventTriggerResult):
             name=self.name,
             project_id=self.project_id,
             trigger_id=self.trigger_id,
-            type=self.type)
+            type=self.type,
+            unordered=self.unordered)
 
 
 def get_event_trigger(app_id: Optional[str] = None,
@@ -327,7 +339,8 @@ def get_event_trigger(app_id: Optional[str] = None,
         name=__ret__.name,
         project_id=__ret__.project_id,
         trigger_id=__ret__.trigger_id,
-        type=__ret__.type)
+        type=__ret__.type,
+        unordered=__ret__.unordered)
 
 
 @_utilities.lift_output_func(get_event_trigger)

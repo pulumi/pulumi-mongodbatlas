@@ -25,6 +25,7 @@ __all__ = [
     'AlertConfigurationMetricThresholdConfigArgs',
     'AlertConfigurationNotificationArgs',
     'AlertConfigurationThresholdConfigArgs',
+    'CloudBackupScheduleExportArgs',
     'CloudBackupSchedulePolicyItemDailyArgs',
     'CloudBackupSchedulePolicyItemHourlyArgs',
     'CloudBackupSchedulePolicyItemMonthlyArgs',
@@ -69,6 +70,7 @@ __all__ = [
     'EncryptionAtRestGoogleCloudKmsConfigArgs',
     'EventTriggerEventProcessorsArgs',
     'EventTriggerEventProcessorsAwsEventbridgeArgs',
+    'FederatedSettingsOrgRoleMappingRoleAssignmentArgs',
     'GlobalClusterConfigCustomZoneMappingArgs',
     'GlobalClusterConfigManagedNamespaceArgs',
     'LdapConfigurationUserToDnMappingArgs',
@@ -80,9 +82,11 @@ __all__ = [
     'ProjectApiKeyArgs',
     'ProjectTeamArgs',
     'SearchIndexSynonymArgs',
+    'ServerlessInstanceLinkArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
     'GetCustomDbRoleInheritedRoleArgs',
     'GetGlobalClusterConfigManagedNamespaceArgs',
+    'GetServerlessInstanceLinkArgs',
 ]
 
 @pulumi.input_type
@@ -1701,6 +1705,45 @@ class AlertConfigurationThresholdConfigArgs:
 
 
 @pulumi.input_type
+class CloudBackupScheduleExportArgs:
+    def __init__(__self__, *,
+                 export_bucket_id: Optional[pulumi.Input[str]] = None,
+                 frequency_type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the export snapshot item.
+        """
+        if export_bucket_id is not None:
+            pulumi.set(__self__, "export_bucket_id", export_bucket_id)
+        if frequency_type is not None:
+            pulumi.set(__self__, "frequency_type", frequency_type)
+
+    @property
+    @pulumi.getter(name="exportBucketId")
+    def export_bucket_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
+        """
+        return pulumi.get(self, "export_bucket_id")
+
+    @export_bucket_id.setter
+    def export_bucket_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "export_bucket_id", value)
+
+    @property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the export snapshot item.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frequency_type", value)
+
+
+@pulumi.input_type
 class CloudBackupSchedulePolicyItemDailyArgs:
     def __init__(__self__, *,
                  frequency_interval: pulumi.Input[int],
@@ -1711,6 +1754,7 @@ class CloudBackupSchedulePolicyItemDailyArgs:
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the export snapshot item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -1757,6 +1801,9 @@ class CloudBackupSchedulePolicyItemDailyArgs:
     @property
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the export snapshot item.
+        """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
@@ -1776,6 +1823,7 @@ class CloudBackupSchedulePolicyItemHourlyArgs:
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the export snapshot item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -1824,6 +1872,9 @@ class CloudBackupSchedulePolicyItemHourlyArgs:
     @property
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the export snapshot item.
+        """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
@@ -1851,6 +1902,7 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the export snapshot item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -1897,6 +1949,9 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
     @property
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the export snapshot item.
+        """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
@@ -1915,6 +1970,7 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
         :param pulumi.Input[int] retention_value: Value to associate with `retention_unit`.
+        :param pulumi.Input[str] frequency_type: Frequency associated with the export snapshot item.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "retention_unit", retention_unit)
@@ -1961,6 +2017,9 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
     @property
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Frequency associated with the export snapshot item.
+        """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
@@ -4222,6 +4281,61 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
 
 
 @pulumi.input_type
+class FederatedSettingsOrgRoleMappingRoleAssignmentArgs:
+    def __init__(__self__, *,
+                 group_id: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] group_id: Unique identifier of the project to which you want the role mapping to apply.
+        :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Specifies the Roles that are attached to the Role Mapping.
+        """
+        if group_id is not None:
+            pulumi.set(__self__, "group_id", group_id)
+        if org_id is not None:
+            pulumi.set(__self__, "org_id", org_id)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+
+    @property
+    @pulumi.getter(name="groupId")
+    def group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier of the project to which you want the role mapping to apply.
+        """
+        return pulumi.get(self, "group_id")
+
+    @group_id.setter
+    def group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_id", value)
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @org_id.setter
+    def org_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "org_id", value)
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the Roles that are attached to the Role Mapping.
+        """
+        return pulumi.get(self, "roles")
+
+    @roles.setter
+    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "roles", value)
+
+
+@pulumi.input_type
 class GlobalClusterConfigCustomZoneMappingArgs:
     def __init__(__self__, *,
                  location: Optional[pulumi.Input[str]] = None,
@@ -4637,7 +4751,6 @@ class ProjectApiKeyArgs:
                * `GROUP_DATA_ACCESS_ADMIN`
                * `GROUP_DATA_ACCESS_READ_WRITE`
                * `GROUP_DATA_ACCESS_READ_ONLY`
-               * `GROUP_CLUSTER_MANAGER`
         """
         pulumi.set(__self__, "api_key_id", api_key_id)
         pulumi.set(__self__, "role_names", role_names)
@@ -4665,7 +4778,6 @@ class ProjectApiKeyArgs:
         * `GROUP_DATA_ACCESS_ADMIN`
         * `GROUP_DATA_ACCESS_READ_WRITE`
         * `GROUP_DATA_ACCESS_READ_ONLY`
-        * `GROUP_CLUSTER_MANAGER`
         """
         return pulumi.get(self, "role_names")
 
@@ -4687,7 +4799,6 @@ class ProjectTeamArgs:
                * `GROUP_DATA_ACCESS_ADMIN`
                * `GROUP_DATA_ACCESS_READ_WRITE`
                * `GROUP_DATA_ACCESS_READ_ONLY`
-               * `GROUP_CLUSTER_MANAGER`
         :param pulumi.Input[str] team_id: The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         """
         pulumi.set(__self__, "role_names", role_names)
@@ -4704,7 +4815,6 @@ class ProjectTeamArgs:
         * `GROUP_DATA_ACCESS_ADMIN`
         * `GROUP_DATA_ACCESS_READ_WRITE`
         * `GROUP_DATA_ACCESS_READ_ONLY`
-        * `GROUP_CLUSTER_MANAGER`
         """
         return pulumi.get(self, "role_names")
 
@@ -4787,6 +4897,35 @@ class SearchIndexSynonymArgs:
     @source_collection.setter
     def source_collection(self, value: pulumi.Input[str]):
         pulumi.set(self, "source_collection", value)
+
+
+@pulumi.input_type
+class ServerlessInstanceLinkArgs:
+    def __init__(__self__, *,
+                 href: Optional[pulumi.Input[str]] = None,
+                 rel: Optional[pulumi.Input[str]] = None):
+        if href is not None:
+            pulumi.set(__self__, "href", href)
+        if rel is not None:
+            pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "href")
+
+    @href.setter
+    def href(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "href", value)
+
+    @property
+    @pulumi.getter
+    def rel(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "rel")
+
+    @rel.setter
+    def rel(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rel", value)
 
 
 @pulumi.input_type
@@ -4955,5 +5094,32 @@ class GetGlobalClusterConfigManagedNamespaceArgs:
     @is_shard_key_unique.setter
     def is_shard_key_unique(self, value: bool):
         pulumi.set(self, "is_shard_key_unique", value)
+
+
+@pulumi.input_type
+class GetServerlessInstanceLinkArgs:
+    def __init__(__self__, *,
+                 href: str,
+                 rel: str):
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "rel", rel)
+
+    @property
+    @pulumi.getter
+    def href(self) -> str:
+        return pulumi.get(self, "href")
+
+    @href.setter
+    def href(self, value: str):
+        pulumi.set(self, "href", value)
+
+    @property
+    @pulumi.getter
+    def rel(self) -> str:
+        return pulumi.get(self, "rel")
+
+    @rel.setter
+    def rel(self, value: str):
+        pulumi.set(self, "rel", value)
 
 

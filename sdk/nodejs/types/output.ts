@@ -439,11 +439,25 @@ export interface AlertConfigurationThresholdConfig {
     units?: string;
 }
 
+export interface CloudBackupScheduleExport {
+    /**
+     * Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
+     */
+    exportBucketId: string;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
+    frequencyType: string;
+}
+
 export interface CloudBackupSchedulePolicyItemDaily {
     /**
      * Desired frequency of the new backup policy item specified by `frequencyType`.
      */
     frequencyInterval: number;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
     frequencyType: string;
     /**
      * Scope of the backup policy item: days, weeks, or months.
@@ -460,6 +474,9 @@ export interface CloudBackupSchedulePolicyItemHourly {
      * Desired frequency of the new backup policy item specified by `frequencyType`.
      */
     frequencyInterval: number;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
     frequencyType: string;
     id: string;
     /**
@@ -477,6 +494,9 @@ export interface CloudBackupSchedulePolicyItemMonthly {
      * Desired frequency of the new backup policy item specified by `frequencyType`.
      */
     frequencyInterval: number;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
     frequencyType: string;
     /**
      * Scope of the backup policy item: days, weeks, or months.
@@ -493,6 +513,9 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      * Desired frequency of the new backup policy item specified by `frequencyType`.
      */
     frequencyInterval: number;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
     frequencyType: string;
     /**
      * Scope of the backup policy item: days, weeks, or months.
@@ -975,6 +998,21 @@ export interface EventTriggerEventProcessors {
 export interface EventTriggerEventProcessorsAwsEventbridge {
     configAccountId?: string;
     configRegion?: string;
+}
+
+export interface FederatedSettingsOrgRoleMappingRoleAssignment {
+    /**
+     * Unique identifier of the project to which you want the role mapping to apply.
+     */
+    groupId?: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId?: string;
+    /**
+     * Specifies the Roles that are attached to the Role Mapping.
+     */
+    roles?: string[];
 }
 
 export interface Get509AuthenticationDatabaseUserCertificate {
@@ -1727,6 +1765,17 @@ export interface GetAlertConfigurationThresholdConfig {
      * - `DAYS`
      */
     units: string;
+}
+
+export interface GetCloudBackupScheduleExport {
+    /**
+     * Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
+     */
+    exportBucketId: string;
+    /**
+     * Frequency associated with the backup policy item.
+     */
+    frequencyType: string;
 }
 
 export interface GetCloudBackupSchedulePolicyItemDaily {
@@ -3102,6 +3151,10 @@ export interface GetEventTriggersResult {
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
      */
     type: string;
+    /**
+     * Sort order for `DATABASE` type.
+     */
+    unordered: boolean;
 }
 
 export interface GetEventTriggersResultEventProcessor {
@@ -3111,6 +3164,429 @@ export interface GetEventTriggersResultEventProcessor {
 export interface GetEventTriggersResultEventProcessorAwsEventbridge {
     configAccountId: string;
     configRegion: string;
+}
+
+export interface GetFederatedSettingsIdentityProviderAssociatedOrg {
+    /**
+     * List that contains the approved domains from which organization users can log in.
+     */
+    domainAllowLists: string[];
+    /**
+     * Flag that indicates whether domain restriction is enabled for the connected organization.
+     */
+    domainRestrictionEnabled: boolean;
+    /**
+     * Unique 20-hexadecimal digit string that identifies the IdP.
+     */
+    identityProviderId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     */
+    postAuthRoleGrants: string[];
+    roleMappings: outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping[];
+    userConflicts: outputs.GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict[];
+}
+
+export interface GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping {
+    /**
+     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     */
+    externalGroupName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    id: string;
+    /**
+     * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+     */
+    roleAssignments: outputs.GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment[];
+}
+
+export interface GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment {
+    /**
+     * Unique identifier of the project to which you want the role mapping to apply.
+     */
+    groupId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * Specifies the Role that is attached to the Role Mapping.
+     */
+    role: string;
+}
+
+export interface GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict {
+    /**
+     * Email address of the the user that conflicts with selected domains.
+     */
+    emailAddress: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     */
+    federationSettingsId: string;
+    /**
+     * First name of the the user that conflicts with selected domains.
+     */
+    firstName: string;
+    /**
+     * Last name of the the user that conflicts with selected domains.
+     */
+    lastName: string;
+    /**
+     * Name of the Atlas user that conflicts with selected domains.
+     */
+    userId: string;
+}
+
+export interface GetFederatedSettingsIdentityProviderPemFileInfo {
+    certificates: outputs.GetFederatedSettingsIdentityProviderPemFileInfoCertificate[];
+    /**
+     * Filename of certificate
+     */
+    fileName: string;
+}
+
+export interface GetFederatedSettingsIdentityProviderPemFileInfoCertificate {
+    /**
+     * Expiration  Date.
+     */
+    notAfter: string;
+    /**
+     * Start Date.
+     */
+    notBefore: string;
+}
+
+export interface GetFederatedSettingsIdentityProvidersResult {
+    /**
+     * Assertion consumer service URL to which the IdP sends the SAML response.
+     */
+    acsUrl: string;
+    /**
+     * List that contains the configured domains from which users can log in for this IdP.
+     */
+    associatedDomains: string[];
+    /**
+     * List that contains the configured domains from which users can log in for this IdP.
+     */
+    associatedOrgs: outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrg[];
+    /**
+     * Identifier for the intended audience of the SAML Assertion.
+     */
+    audienceUri: string;
+    /**
+     * Human-readable label that identifies the IdP.
+     */
+    displayName: string;
+    /**
+     * Identifier for the issuer of the SAML Assertion.
+     */
+    issuerUri: string;
+    oktaIdpId: string;
+    pemFileInfos: outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfo[];
+    /**
+     * SAML Authentication Request Protocol binding used to send the AuthNRequest. Atlas supports the following binding values:
+     * - HTTP POST
+     * - HTTP REDIRECT
+     */
+    requestBinding: string;
+    /**
+     * Algorithm used to encrypt the IdP signature. Atlas supports the following signature algorithm values:
+     * - SHA-1
+     * - SHA-256
+     */
+    responseSignatureAlgorithm: string;
+    /**
+     * Flag that indicates whether the IdP has enabled Bypass SAML Mode. Enabling this mode generates a URL that allows you bypass SAML and login to your organizations at any point. You can authenticate with this special URL only when Bypass Mode is enabled. Set this parameter to true during testing. This keeps you from getting locked out of MongoDB.
+     */
+    ssoDebugEnabled: boolean;
+    /**
+     * URL of the receiver of the SAML AuthNRequest.
+     */
+    ssoUrl: string;
+    /**
+     * Label that indicates whether the identity provider is active. The IdP is Inactive until you map at least one domain to the IdP.
+     */
+    status: string;
+}
+
+export interface GetFederatedSettingsIdentityProvidersResultAssociatedOrg {
+    /**
+     * List that contains the approved domains from which organization users can log in.
+     */
+    domainAllowLists: string[];
+    /**
+     * Flag that indicates whether domain restriction is enabled for the connected organization.
+     */
+    domainRestrictionEnabled: boolean;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     */
+    identityProviderId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     */
+    postAuthRoleGrants: string[];
+    roleMappings: outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping[];
+    userConflicts: outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict[];
+}
+
+export interface GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping {
+    /**
+     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     */
+    externalGroupName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    id: string;
+    /**
+     * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+     */
+    roleAssignments: outputs.GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment[];
+}
+
+export interface GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignment {
+    /**
+     * Unique identifier of the project to which you want the role mapping to apply.
+     */
+    groupId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * Specifies the Role that is attached to the Role Mapping.
+     */
+    role: string;
+}
+
+export interface GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict {
+    /**
+     * Email address of the the user that conflicts with selected domains.
+     */
+    emailAddress: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     */
+    federationSettingsId: string;
+    /**
+     * First name of the the user that conflicts with selected domains.
+     */
+    firstName: string;
+    /**
+     * Last name of the the user that conflicts with selected domains.
+     */
+    lastName: string;
+    /**
+     * Name of the Atlas user that conflicts with selected domains.
+     */
+    userId: string;
+}
+
+export interface GetFederatedSettingsIdentityProvidersResultPemFileInfo {
+    certificates: outputs.GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate[];
+    /**
+     * Filename of certificate
+     */
+    fileName: string;
+}
+
+export interface GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate {
+    /**
+     * Expiration  Date.
+     */
+    notAfter: string;
+    /**
+     * Start Date.
+     */
+    notBefore: string;
+}
+
+export interface GetFederatedSettingsOrgConfigRoleMapping {
+    /**
+     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     */
+    externalGroupName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    id: string;
+    /**
+     * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+     */
+    roleAssignments: outputs.GetFederatedSettingsOrgConfigRoleMappingRoleAssignment[];
+}
+
+export interface GetFederatedSettingsOrgConfigRoleMappingRoleAssignment {
+    /**
+     * Unique identifier of the project to which you want the role mapping to apply.
+     */
+    groupId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * Specifies the Role that is attached to the Role Mapping.
+     */
+    role: string;
+}
+
+export interface GetFederatedSettingsOrgConfigUserConflict {
+    /**
+     * Email address of the the user that conflicts with selected domains.
+     */
+    emailAddress: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     */
+    federationSettingsId: string;
+    /**
+     * First name of the the user that conflicts with selected domains.
+     */
+    firstName: string;
+    /**
+     * Last name of the the user that conflicts with selected domains.
+     */
+    lastName: string;
+    /**
+     * Name of the Atlas user that conflicts with selected domains.
+     */
+    userId: string;
+}
+
+export interface GetFederatedSettingsOrgConfigsResult {
+    /**
+     * List that contains the approved domains from which organization users can log in.
+     */
+    domainAllowLists: string[];
+    /**
+     * Flag that indicates whether domain restriction is enabled for the connected organization.
+     */
+    domainRestrictionEnabled: boolean;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     */
+    identityProviderId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     */
+    postAuthRoleGrants: string[];
+    roleMappings: outputs.GetFederatedSettingsOrgConfigsResultRoleMapping[];
+    userConflicts: outputs.GetFederatedSettingsOrgConfigsResultUserConflict[];
+}
+
+export interface GetFederatedSettingsOrgConfigsResultRoleMapping {
+    /**
+     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     */
+    externalGroupName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    id: string;
+    /**
+     * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+     */
+    roleAssignments: outputs.GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment[];
+}
+
+export interface GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment {
+    /**
+     * Unique identifier of the project to which you want the role mapping to apply.
+     */
+    groupId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * Specifies the Role that is attached to the Role Mapping.
+     */
+    role: string;
+}
+
+export interface GetFederatedSettingsOrgConfigsResultUserConflict {
+    /**
+     * Email address of the the user that conflicts with selected domains.
+     */
+    emailAddress: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+     */
+    federationSettingsId: string;
+    /**
+     * First name of the the user that conflicts with selected domains.
+     */
+    firstName: string;
+    /**
+     * Last name of the the user that conflicts with selected domains.
+     */
+    lastName: string;
+    /**
+     * Name of the Atlas user that conflicts with selected domains.
+     */
+    userId: string;
+}
+
+export interface GetFederatedSettingsOrgRoleMappingRoleAssignment {
+    /**
+     * Unique identifier of the project to which you want the role mapping to apply.
+     */
+    groupId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * Specifies the Role that is attached to the Role Mapping.
+     */
+    role: string;
+}
+
+export interface GetFederatedSettingsOrgRoleMappingsResult {
+    /**
+     * Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+     */
+    externalGroupName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies this role mapping.
+     */
+    id: string;
+    /**
+     * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+     */
+    roleAssignments: outputs.GetFederatedSettingsOrgRoleMappingsResultRoleAssignment[];
+}
+
+export interface GetFederatedSettingsOrgRoleMappingsResultRoleAssignment {
+    /**
+     * Unique identifier of the project to which you want the role mapping to apply.
+     */
+    groupId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * Specifies the Role that is attached to the Role Mapping.
+     */
+    role: string;
 }
 
 export interface GetGlobalClusterConfigManagedNamespace {
@@ -3391,6 +3867,26 @@ export interface GetProjectsResult {
      */
     id: string;
     /**
+     * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+     */
+    isCollectDatabaseSpecificsStatisticsEnabled: boolean;
+    /**
+     * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+     */
+    isDataExplorerEnabled: boolean;
+    /**
+     * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+     */
+    isPerformanceAdvisorEnabled: boolean;
+    /**
+     * Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+     */
+    isRealtimePerformancePanelEnabled: boolean;
+    /**
+     * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+     */
+    isSchemaAdvisorEnabled: boolean;
+    /**
      * The name of the project you want to create. (Cannot be changed via this Provider after creation.)
      */
     name: string;
@@ -3507,6 +4003,57 @@ export interface GetSearchIndexesResultSynonym {
     sourceCollection: string;
 }
 
+export interface GetServerlessInstanceLink {
+    href: string;
+    rel: string;
+}
+
+export interface GetServerlessInstancesResult {
+    /**
+     * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+     */
+    connectionStringsStandardSrv: string;
+    createDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the serverless instance.
+     */
+    id: string;
+    links: outputs.GetServerlessInstancesResultLink[];
+    /**
+     * Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
+     */
+    mongoDbVersion: string;
+    /**
+     * (Required) Human-readable label that identifies your serverless instance.
+     */
+    name: string;
+    /**
+     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     */
+    projectId: string;
+    /**
+     * Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
+     */
+    providerSettingsBackingProviderName: string;
+    /**
+     * Cloud service provider that applies to the provisioned the serverless instance.
+     */
+    providerSettingsProviderName: string;
+    /**
+     * Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+     */
+    providerSettingsRegionName: string;
+    /**
+     * Stage of deployment of this serverless instance when the resource made its request.
+     */
+    stateName: string;
+}
+
+export interface GetServerlessInstancesResultLink {
+    href: string;
+    rel: string;
+}
+
 export interface GetThirdPartyIntegrationsResult {
     /**
      * Unique identifier of your New Relic account.
@@ -3522,6 +4069,10 @@ export interface GetThirdPartyIntegrationsResult {
     apiToken: string;
     channelName: string;
     /**
+     * Whether your cluster has Prometheus enabled.
+     */
+    enabled?: boolean;
+    /**
      * Your Flowdock Flow name.
      */
     flowName: string;
@@ -3529,6 +4080,11 @@ export interface GetThirdPartyIntegrationsResult {
      * Your License Key.
      */
     licenseKey: string;
+    /**
+     * Your Microsoft Teams incoming webhook URL.
+     * * `PROMETHEUS`
+     */
+    microsoftTeamsWebhookUrl?: string;
     /**
      * Your Flowdock organization name.
      * * `WEBHOOK`
@@ -3554,9 +4110,18 @@ export interface GetThirdPartyIntegrationsResult {
      */
     routingKey: string;
     /**
+     * Your Prometheus protocol scheme configured for requests.
+     */
+    scheme?: string;
+    /**
      * An optional field for your webhook secret.
+     * * `MICROSOFT_TEAMS`
      */
     secret: string;
+    /**
+     * Indicates which service discovery method is used, either file or http.
+     */
+    serviceDiscovery?: string;
     /**
      * Your Service Key.
      * * `DATADOG`
@@ -3571,6 +4136,10 @@ export interface GetThirdPartyIntegrationsResult {
      * Your webhook URL.
      */
     url: string;
+    /**
+     * Your Prometheus username.
+     */
+    userName?: string;
     /**
      * Your Insights Insert Key.
      */
@@ -3676,7 +4245,6 @@ export interface ProjectApiKey {
      * * `GROUP_DATA_ACCESS_ADMIN`
      * * `GROUP_DATA_ACCESS_READ_WRITE`
      * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
      */
     roleNames: string[];
 }
@@ -3690,7 +4258,6 @@ export interface ProjectTeam {
      * * `GROUP_DATA_ACCESS_ADMIN`
      * * `GROUP_DATA_ACCESS_READ_WRITE`
      * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
      */
     roleNames: string[];
     /**
@@ -3718,6 +4285,11 @@ export interface SearchIndexSynonym {
      * Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
      */
     sourceCollection: string;
+}
+
+export interface ServerlessInstanceLink {
+    href: string;
+    rel: string;
 }
 
 export interface X509AuthenticationDatabaseUserCertificate {

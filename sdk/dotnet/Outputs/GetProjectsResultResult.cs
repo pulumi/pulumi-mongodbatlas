@@ -21,6 +21,26 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        /// </summary>
+        public readonly bool IsCollectDatabaseSpecificsStatisticsEnabled;
+        /// <summary>
+        /// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+        /// </summary>
+        public readonly bool IsDataExplorerEnabled;
+        /// <summary>
+        /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        /// </summary>
+        public readonly bool IsPerformanceAdvisorEnabled;
+        /// <summary>
+        /// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        /// </summary>
+        public readonly bool IsRealtimePerformancePanelEnabled;
+        /// <summary>
+        /// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        /// </summary>
+        public readonly bool IsSchemaAdvisorEnabled;
+        /// <summary>
         /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         /// </summary>
         public readonly string Name;
@@ -60,6 +80,16 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string id,
 
+            bool isCollectDatabaseSpecificsStatisticsEnabled,
+
+            bool isDataExplorerEnabled,
+
+            bool isPerformanceAdvisorEnabled,
+
+            bool isRealtimePerformancePanelEnabled,
+
+            bool isSchemaAdvisorEnabled,
+
             string name,
 
             string orgId,
@@ -70,6 +100,11 @@ namespace Pulumi.Mongodbatlas.Outputs
             ClusterCount = clusterCount;
             Created = created;
             Id = id;
+            IsCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
+            IsDataExplorerEnabled = isDataExplorerEnabled;
+            IsPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
+            IsRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
+            IsSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
             Name = name;
             OrgId = orgId;
             Teams = teams;

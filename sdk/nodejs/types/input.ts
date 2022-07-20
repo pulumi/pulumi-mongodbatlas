@@ -439,11 +439,25 @@ export interface AlertConfigurationThresholdConfig {
     units?: pulumi.Input<string>;
 }
 
+export interface CloudBackupScheduleExport {
+    /**
+     * Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
+     */
+    exportBucketId?: pulumi.Input<string>;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
+    frequencyType?: pulumi.Input<string>;
+}
+
 export interface CloudBackupSchedulePolicyItemDaily {
     /**
      * Desired frequency of the new backup policy item specified by `frequencyType`.
      */
     frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
     frequencyType?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
@@ -460,6 +474,9 @@ export interface CloudBackupSchedulePolicyItemHourly {
      * Desired frequency of the new backup policy item specified by `frequencyType`.
      */
     frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
     frequencyType?: pulumi.Input<string>;
     id?: pulumi.Input<string>;
     /**
@@ -477,6 +494,9 @@ export interface CloudBackupSchedulePolicyItemMonthly {
      * Desired frequency of the new backup policy item specified by `frequencyType`.
      */
     frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
     frequencyType?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
@@ -493,6 +513,9 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      * Desired frequency of the new backup policy item specified by `frequencyType`.
      */
     frequencyInterval: pulumi.Input<number>;
+    /**
+     * Frequency associated with the export snapshot item.
+     */
     frequencyType?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
@@ -977,12 +1000,19 @@ export interface EventTriggerEventProcessorsAwsEventbridge {
     configRegion?: pulumi.Input<string>;
 }
 
-export interface GetCustomDbRoleInheritedRoleArgs {
-    databaseName?: pulumi.Input<string>;
+export interface FederatedSettingsOrgRoleMappingRoleAssignment {
     /**
-     * Name of the custom role.
+     * Unique identifier of the project to which you want the role mapping to apply.
      */
-    roleName?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId?: pulumi.Input<string>;
+    /**
+     * Specifies the Roles that are attached to the Role Mapping.
+     */
+    roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetCustomDbRoleInheritedRole {
@@ -991,6 +1021,37 @@ export interface GetCustomDbRoleInheritedRole {
      * Name of the custom role.
      */
     roleName?: string;
+}
+
+export interface GetCustomDbRoleInheritedRoleArgs {
+    databaseName?: pulumi.Input<string>;
+    /**
+     * Name of the custom role.
+     */
+    roleName?: pulumi.Input<string>;
+}
+
+export interface GetGlobalClusterConfigManagedNamespaceArgs {
+    /**
+     * (Required) The name of the collection associated with the managed namespace.
+     */
+    collection: pulumi.Input<string>;
+    /**
+     * (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
+     */
+    customShardKey: pulumi.Input<string>;
+    /**
+     * (Required) The name of the database containing the collection.
+     */
+    db: pulumi.Input<string>;
+    /**
+     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     */
+    isCustomShardKeyHashed?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     */
+    isShardKeyUnique?: pulumi.Input<boolean>;
 }
 
 export interface GetGlobalClusterConfigManagedNamespace {
@@ -1016,27 +1077,14 @@ export interface GetGlobalClusterConfigManagedNamespace {
     isShardKeyUnique?: boolean;
 }
 
-export interface GetGlobalClusterConfigManagedNamespaceArgs {
-    /**
-     * (Required) The name of the collection associated with the managed namespace.
-     */
-    collection: pulumi.Input<string>;
-    /**
-     * (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
-     */
-    customShardKey: pulumi.Input<string>;
-    /**
-     * (Required) The name of the database containing the collection.
-     */
-    db: pulumi.Input<string>;
-    /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
-     */
-    isCustomShardKeyHashed?: pulumi.Input<boolean>;
-    /**
-     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
-     */
-    isShardKeyUnique?: pulumi.Input<boolean>;
+export interface GetServerlessInstanceLink {
+    href?: string;
+    rel?: string;
+}
+
+export interface GetServerlessInstanceLinkArgs {
+    href?: pulumi.Input<string>;
+    rel?: pulumi.Input<string>;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {
@@ -1138,7 +1186,6 @@ export interface ProjectApiKey {
      * * `GROUP_DATA_ACCESS_ADMIN`
      * * `GROUP_DATA_ACCESS_READ_WRITE`
      * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -1152,7 +1199,6 @@ export interface ProjectTeam {
      * * `GROUP_DATA_ACCESS_ADMIN`
      * * `GROUP_DATA_ACCESS_READ_WRITE`
      * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -1182,9 +1228,15 @@ export interface SearchIndexSynonym {
     sourceCollection: pulumi.Input<string>;
 }
 
+export interface ServerlessInstanceLink {
+    href?: pulumi.Input<string>;
+    rel?: pulumi.Input<string>;
+}
+
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt?: pulumi.Input<string>;
     groupId?: pulumi.Input<string>;
     notAfter?: pulumi.Input<string>;
     subject?: pulumi.Input<string>;
 }
+

@@ -29,7 +29,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// * `GROUP_DATA_ACCESS_ADMIN`
         /// * `GROUP_DATA_ACCESS_READ_WRITE`
         /// * `GROUP_DATA_ACCESS_READ_ONLY`
-        /// * `GROUP_CLUSTER_MANAGER`
         /// </summary>
         public InputList<string> RoleNames
         {

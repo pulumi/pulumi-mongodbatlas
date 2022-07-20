@@ -23,10 +23,13 @@ import (
 type CloudBackupSchedule struct {
 	pulumi.CustomResourceState
 
+	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+	AutoExportEnabled pulumi.BoolOutput `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
+	ClusterName pulumi.StringOutput             `pulumi:"clusterName"`
+	Export      CloudBackupScheduleExportOutput `pulumi:"export"`
 	// Unique identifier of the backup policy.
 	IdPolicy pulumi.StringOutput `pulumi:"idPolicy"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
@@ -36,9 +39,9 @@ type CloudBackupSchedule struct {
 	// Hourly policy item
 	PolicyItemHourly CloudBackupSchedulePolicyItemHourlyPtrOutput `pulumi:"policyItemHourly"`
 	// Monthly policy item
-	PolicyItemMonthly CloudBackupSchedulePolicyItemMonthlyPtrOutput `pulumi:"policyItemMonthly"`
+	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayOutput `pulumi:"policyItemMonthlies"`
 	// Weekly policy item
-	PolicyItemWeekly CloudBackupSchedulePolicyItemWeeklyPtrOutput `pulumi:"policyItemWeekly"`
+	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayOutput `pulumi:"policyItemWeeklies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -49,6 +52,8 @@ type CloudBackupSchedule struct {
 	RestoreWindowDays pulumi.IntOutput `pulumi:"restoreWindowDays"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	UpdateSnapshots pulumi.BoolOutput `pulumi:"updateSnapshots"`
+	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+	UseOrgAndGroupNamesInExportPrefix pulumi.BoolOutput `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 }
 
 // NewCloudBackupSchedule registers a new resource with the given unique name, arguments, and options.
@@ -86,10 +91,13 @@ func GetCloudBackupSchedule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudBackupSchedule resources.
 type cloudBackupScheduleState struct {
+	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId *string `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName *string `pulumi:"clusterName"`
+	ClusterName *string                    `pulumi:"clusterName"`
+	Export      *CloudBackupScheduleExport `pulumi:"export"`
 	// Unique identifier of the backup policy.
 	IdPolicy *string `pulumi:"idPolicy"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
@@ -99,9 +107,9 @@ type cloudBackupScheduleState struct {
 	// Hourly policy item
 	PolicyItemHourly *CloudBackupSchedulePolicyItemHourly `pulumi:"policyItemHourly"`
 	// Monthly policy item
-	PolicyItemMonthly *CloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthly"`
+	PolicyItemMonthlies []CloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	// Weekly policy item
-	PolicyItemWeekly *CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeekly"`
+	PolicyItemWeeklies []CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId *string `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -112,13 +120,18 @@ type cloudBackupScheduleState struct {
 	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	UpdateSnapshots *bool `pulumi:"updateSnapshots"`
+	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+	UseOrgAndGroupNamesInExportPrefix *bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 }
 
 type CloudBackupScheduleState struct {
+	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+	AutoExportEnabled pulumi.BoolPtrInput
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringPtrInput
+	Export      CloudBackupScheduleExportPtrInput
 	// Unique identifier of the backup policy.
 	IdPolicy pulumi.StringPtrInput
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
@@ -128,9 +141,9 @@ type CloudBackupScheduleState struct {
 	// Hourly policy item
 	PolicyItemHourly CloudBackupSchedulePolicyItemHourlyPtrInput
 	// Monthly policy item
-	PolicyItemMonthly CloudBackupSchedulePolicyItemMonthlyPtrInput
+	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayInput
 	// Weekly policy item
-	PolicyItemWeekly CloudBackupSchedulePolicyItemWeeklyPtrInput
+	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringPtrInput
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -141,6 +154,8 @@ type CloudBackupScheduleState struct {
 	RestoreWindowDays pulumi.IntPtrInput
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	UpdateSnapshots pulumi.BoolPtrInput
+	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+	UseOrgAndGroupNamesInExportPrefix pulumi.BoolPtrInput
 }
 
 func (CloudBackupScheduleState) ElementType() reflect.Type {
@@ -148,16 +163,19 @@ func (CloudBackupScheduleState) ElementType() reflect.Type {
 }
 
 type cloudBackupScheduleArgs struct {
+	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName string `pulumi:"clusterName"`
+	ClusterName string                     `pulumi:"clusterName"`
+	Export      *CloudBackupScheduleExport `pulumi:"export"`
 	// Daily policy item
 	PolicyItemDaily *CloudBackupSchedulePolicyItemDaily `pulumi:"policyItemDaily"`
 	// Hourly policy item
 	PolicyItemHourly *CloudBackupSchedulePolicyItemHourly `pulumi:"policyItemHourly"`
 	// Monthly policy item
-	PolicyItemMonthly *CloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthly"`
+	PolicyItemMonthlies []CloudBackupSchedulePolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	// Weekly policy item
-	PolicyItemWeekly *CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeekly"`
+	PolicyItemWeeklies []CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -168,20 +186,25 @@ type cloudBackupScheduleArgs struct {
 	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	UpdateSnapshots *bool `pulumi:"updateSnapshots"`
+	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+	UseOrgAndGroupNamesInExportPrefix *bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 }
 
 // The set of arguments for constructing a CloudBackupSchedule resource.
 type CloudBackupScheduleArgs struct {
+	// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+	AutoExportEnabled pulumi.BoolPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringInput
+	Export      CloudBackupScheduleExportPtrInput
 	// Daily policy item
 	PolicyItemDaily CloudBackupSchedulePolicyItemDailyPtrInput
 	// Hourly policy item
 	PolicyItemHourly CloudBackupSchedulePolicyItemHourlyPtrInput
 	// Monthly policy item
-	PolicyItemMonthly CloudBackupSchedulePolicyItemMonthlyPtrInput
+	PolicyItemMonthlies CloudBackupSchedulePolicyItemMonthlyArrayInput
 	// Weekly policy item
-	PolicyItemWeekly CloudBackupSchedulePolicyItemWeeklyPtrInput
+	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -192,6 +215,8 @@ type CloudBackupScheduleArgs struct {
 	RestoreWindowDays pulumi.IntPtrInput
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	UpdateSnapshots pulumi.BoolPtrInput
+	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+	UseOrgAndGroupNamesInExportPrefix pulumi.BoolPtrInput
 }
 
 func (CloudBackupScheduleArgs) ElementType() reflect.Type {

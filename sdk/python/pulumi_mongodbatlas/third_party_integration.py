@@ -19,16 +19,22 @@ class ThirdPartyIntegrationArgs:
                  api_key: Optional[pulumi.Input[str]] = None,
                  api_token: Optional[pulumi.Input[str]] = None,
                  channel_name: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
                  flow_name: Optional[pulumi.Input[str]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
+                 microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  org_name: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  read_token: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None,
+                 scheme: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
+                 service_discovery: Optional[pulumi.Input[str]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
                  team_name: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
+                 user_name: Optional[pulumi.Input[str]] = None,
                  write_token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ThirdPartyIntegration resource.
@@ -44,20 +50,28 @@ class ThirdPartyIntegrationArgs:
         :param pulumi.Input[str] account_id: Unique identifier of your New Relic account.
         :param pulumi.Input[str] api_key: Your API Key.
         :param pulumi.Input[str] api_token: Your API Token.
+        :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
         :param pulumi.Input[str] flow_name: Your Flowdock Flow name.
         :param pulumi.Input[str] license_key: Your License Key.
+        :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+               * `PROMETHEUS`
         :param pulumi.Input[str] org_name: Your Flowdock organization name.
                * `WEBHOOK`
+        :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] read_token: Your Insights Query Key.
                * `OPS_GENIE`
         :param pulumi.Input[str] region: Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
                * `VICTOR_OPS`
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
                * `FLOWDOCK`
+        :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
+               * `MICROSOFT_TEAMS`
+        :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
         :param pulumi.Input[str] service_key: Your Service Key.
                * `DATADOG`
         :param pulumi.Input[str] url: Your webhook URL.
+        :param pulumi.Input[str] user_name: Your Prometheus username.
         :param pulumi.Input[str] write_token: Your Insights Insert Key.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -70,26 +84,38 @@ class ThirdPartyIntegrationArgs:
             pulumi.set(__self__, "api_token", api_token)
         if channel_name is not None:
             pulumi.set(__self__, "channel_name", channel_name)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
         if flow_name is not None:
             pulumi.set(__self__, "flow_name", flow_name)
         if license_key is not None:
             pulumi.set(__self__, "license_key", license_key)
+        if microsoft_teams_webhook_url is not None:
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if org_name is not None:
             pulumi.set(__self__, "org_name", org_name)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if read_token is not None:
             pulumi.set(__self__, "read_token", read_token)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if routing_key is not None:
             pulumi.set(__self__, "routing_key", routing_key)
+        if scheme is not None:
+            pulumi.set(__self__, "scheme", scheme)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
+        if service_discovery is not None:
+            pulumi.set(__self__, "service_discovery", service_discovery)
         if service_key is not None:
             pulumi.set(__self__, "service_key", service_key)
         if team_name is not None:
             pulumi.set(__self__, "team_name", team_name)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
         if write_token is not None:
             pulumi.set(__self__, "write_token", write_token)
 
@@ -170,6 +196,18 @@ class ThirdPartyIntegrationArgs:
         pulumi.set(self, "channel_name", value)
 
     @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether your cluster has Prometheus enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
     @pulumi.getter(name="flowName")
     def flow_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -194,6 +232,19 @@ class ThirdPartyIntegrationArgs:
         pulumi.set(self, "license_key", value)
 
     @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your Microsoft Teams incoming webhook URL.
+        * `PROMETHEUS`
+        """
+        return pulumi.get(self, "microsoft_teams_webhook_url")
+
+    @microsoft_teams_webhook_url.setter
+    def microsoft_teams_webhook_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "microsoft_teams_webhook_url", value)
+
+    @property
     @pulumi.getter(name="orgName")
     def org_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -205,6 +256,18 @@ class ThirdPartyIntegrationArgs:
     @org_name.setter
     def org_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_name", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your Prometheus password.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter(name="readToken")
@@ -247,15 +310,40 @@ class ThirdPartyIntegrationArgs:
 
     @property
     @pulumi.getter
+    def scheme(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your Prometheus protocol scheme configured for requests.
+        """
+        return pulumi.get(self, "scheme")
+
+    @scheme.setter
+    def scheme(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scheme", value)
+
+    @property
+    @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[str]]:
         """
         An optional field for your webhook secret.
+        * `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
     def secret(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secret", value)
+
+    @property
+    @pulumi.getter(name="serviceDiscovery")
+    def service_discovery(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates which service discovery method is used, either file or http.
+        """
+        return pulumi.get(self, "service_discovery")
+
+    @service_discovery.setter
+    def service_discovery(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_discovery", value)
 
     @property
     @pulumi.getter(name="serviceKey")
@@ -292,6 +380,18 @@ class ThirdPartyIntegrationArgs:
         pulumi.set(self, "url", value)
 
     @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your Prometheus username.
+        """
+        return pulumi.get(self, "user_name")
+
+    @user_name.setter
+    def user_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_name", value)
+
+    @property
     @pulumi.getter(name="writeToken")
     def write_token(self) -> Optional[pulumi.Input[str]]:
         """
@@ -311,28 +411,38 @@ class _ThirdPartyIntegrationState:
                  api_key: Optional[pulumi.Input[str]] = None,
                  api_token: Optional[pulumi.Input[str]] = None,
                  channel_name: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
                  flow_name: Optional[pulumi.Input[str]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
+                 microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  org_name: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  read_token: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None,
+                 scheme: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
+                 service_discovery: Optional[pulumi.Input[str]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
                  team_name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
+                 user_name: Optional[pulumi.Input[str]] = None,
                  write_token: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ThirdPartyIntegration resources.
         :param pulumi.Input[str] account_id: Unique identifier of your New Relic account.
         :param pulumi.Input[str] api_key: Your API Key.
         :param pulumi.Input[str] api_token: Your API Token.
+        :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
         :param pulumi.Input[str] flow_name: Your Flowdock Flow name.
         :param pulumi.Input[str] license_key: Your License Key.
+        :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+               * `PROMETHEUS`
         :param pulumi.Input[str] org_name: Your Flowdock organization name.
                * `WEBHOOK`
+        :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
         :param pulumi.Input[str] read_token: Your Insights Query Key.
                * `OPS_GENIE`
@@ -340,7 +450,10 @@ class _ThirdPartyIntegrationState:
                * `VICTOR_OPS`
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
                * `FLOWDOCK`
+        :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
+               * `MICROSOFT_TEAMS`
+        :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
         :param pulumi.Input[str] service_key: Your Service Key.
                * `DATADOG`
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
@@ -352,6 +465,7 @@ class _ThirdPartyIntegrationState:
                * FLOWDOCK
                * WEBHOOK
         :param pulumi.Input[str] url: Your webhook URL.
+        :param pulumi.Input[str] user_name: Your Prometheus username.
         :param pulumi.Input[str] write_token: Your Insights Insert Key.
         """
         if account_id is not None:
@@ -362,12 +476,18 @@ class _ThirdPartyIntegrationState:
             pulumi.set(__self__, "api_token", api_token)
         if channel_name is not None:
             pulumi.set(__self__, "channel_name", channel_name)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
         if flow_name is not None:
             pulumi.set(__self__, "flow_name", flow_name)
         if license_key is not None:
             pulumi.set(__self__, "license_key", license_key)
+        if microsoft_teams_webhook_url is not None:
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if org_name is not None:
             pulumi.set(__self__, "org_name", org_name)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if read_token is not None:
@@ -376,8 +496,12 @@ class _ThirdPartyIntegrationState:
             pulumi.set(__self__, "region", region)
         if routing_key is not None:
             pulumi.set(__self__, "routing_key", routing_key)
+        if scheme is not None:
+            pulumi.set(__self__, "scheme", scheme)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
+        if service_discovery is not None:
+            pulumi.set(__self__, "service_discovery", service_discovery)
         if service_key is not None:
             pulumi.set(__self__, "service_key", service_key)
         if team_name is not None:
@@ -386,6 +510,8 @@ class _ThirdPartyIntegrationState:
             pulumi.set(__self__, "type", type)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if user_name is not None:
+            pulumi.set(__self__, "user_name", user_name)
         if write_token is not None:
             pulumi.set(__self__, "write_token", write_token)
 
@@ -435,6 +561,18 @@ class _ThirdPartyIntegrationState:
         pulumi.set(self, "channel_name", value)
 
     @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether your cluster has Prometheus enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
     @pulumi.getter(name="flowName")
     def flow_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -459,6 +597,19 @@ class _ThirdPartyIntegrationState:
         pulumi.set(self, "license_key", value)
 
     @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your Microsoft Teams incoming webhook URL.
+        * `PROMETHEUS`
+        """
+        return pulumi.get(self, "microsoft_teams_webhook_url")
+
+    @microsoft_teams_webhook_url.setter
+    def microsoft_teams_webhook_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "microsoft_teams_webhook_url", value)
+
+    @property
     @pulumi.getter(name="orgName")
     def org_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -470,6 +621,18 @@ class _ThirdPartyIntegrationState:
     @org_name.setter
     def org_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "org_name", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your Prometheus password.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -524,15 +687,40 @@ class _ThirdPartyIntegrationState:
 
     @property
     @pulumi.getter
+    def scheme(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your Prometheus protocol scheme configured for requests.
+        """
+        return pulumi.get(self, "scheme")
+
+    @scheme.setter
+    def scheme(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scheme", value)
+
+    @property
+    @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[str]]:
         """
         An optional field for your webhook secret.
+        * `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
     def secret(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secret", value)
+
+    @property
+    @pulumi.getter(name="serviceDiscovery")
+    def service_discovery(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates which service discovery method is used, either file or http.
+        """
+        return pulumi.get(self, "service_discovery")
+
+    @service_discovery.setter
+    def service_discovery(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_discovery", value)
 
     @property
     @pulumi.getter(name="serviceKey")
@@ -588,6 +776,18 @@ class _ThirdPartyIntegrationState:
         pulumi.set(self, "url", value)
 
     @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Your Prometheus username.
+        """
+        return pulumi.get(self, "user_name")
+
+    @user_name.setter
+    def user_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_name", value)
+
+    @property
     @pulumi.getter(name="writeToken")
     def write_token(self) -> Optional[pulumi.Input[str]]:
         """
@@ -609,18 +809,24 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  api_key: Optional[pulumi.Input[str]] = None,
                  api_token: Optional[pulumi.Input[str]] = None,
                  channel_name: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
                  flow_name: Optional[pulumi.Input[str]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
+                 microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  org_name: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  read_token: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None,
+                 scheme: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
+                 service_discovery: Optional[pulumi.Input[str]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
                  team_name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
+                 user_name: Optional[pulumi.Input[str]] = None,
                  write_token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -653,10 +859,14 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] account_id: Unique identifier of your New Relic account.
         :param pulumi.Input[str] api_key: Your API Key.
         :param pulumi.Input[str] api_token: Your API Token.
+        :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
         :param pulumi.Input[str] flow_name: Your Flowdock Flow name.
         :param pulumi.Input[str] license_key: Your License Key.
+        :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+               * `PROMETHEUS`
         :param pulumi.Input[str] org_name: Your Flowdock organization name.
                * `WEBHOOK`
+        :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
         :param pulumi.Input[str] read_token: Your Insights Query Key.
                * `OPS_GENIE`
@@ -664,7 +874,10 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * `VICTOR_OPS`
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
                * `FLOWDOCK`
+        :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
+               * `MICROSOFT_TEAMS`
+        :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
         :param pulumi.Input[str] service_key: Your Service Key.
                * `DATADOG`
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
@@ -676,6 +889,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * FLOWDOCK
                * WEBHOOK
         :param pulumi.Input[str] url: Your webhook URL.
+        :param pulumi.Input[str] user_name: Your Prometheus username.
         :param pulumi.Input[str] write_token: Your Insights Insert Key.
         """
         ...
@@ -728,18 +942,24 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  api_key: Optional[pulumi.Input[str]] = None,
                  api_token: Optional[pulumi.Input[str]] = None,
                  channel_name: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
                  flow_name: Optional[pulumi.Input[str]] = None,
                  license_key: Optional[pulumi.Input[str]] = None,
+                 microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  org_name: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  read_token: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  routing_key: Optional[pulumi.Input[str]] = None,
+                 scheme: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
+                 service_discovery: Optional[pulumi.Input[str]] = None,
                  service_key: Optional[pulumi.Input[str]] = None,
                  team_name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
+                 user_name: Optional[pulumi.Input[str]] = None,
                  write_token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -757,22 +977,28 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             __props__.__dict__["api_key"] = api_key
             __props__.__dict__["api_token"] = api_token
             __props__.__dict__["channel_name"] = channel_name
+            __props__.__dict__["enabled"] = enabled
             __props__.__dict__["flow_name"] = flow_name
             __props__.__dict__["license_key"] = license_key
+            __props__.__dict__["microsoft_teams_webhook_url"] = microsoft_teams_webhook_url
             __props__.__dict__["org_name"] = org_name
+            __props__.__dict__["password"] = password
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["read_token"] = read_token
             __props__.__dict__["region"] = region
             __props__.__dict__["routing_key"] = routing_key
+            __props__.__dict__["scheme"] = scheme
             __props__.__dict__["secret"] = secret
+            __props__.__dict__["service_discovery"] = service_discovery
             __props__.__dict__["service_key"] = service_key
             __props__.__dict__["team_name"] = team_name
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["url"] = url
+            __props__.__dict__["user_name"] = user_name
             __props__.__dict__["write_token"] = write_token
         super(ThirdPartyIntegration, __self__).__init__(
             'mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration',
@@ -788,18 +1014,24 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             api_key: Optional[pulumi.Input[str]] = None,
             api_token: Optional[pulumi.Input[str]] = None,
             channel_name: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
             flow_name: Optional[pulumi.Input[str]] = None,
             license_key: Optional[pulumi.Input[str]] = None,
+            microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
             org_name: Optional[pulumi.Input[str]] = None,
+            password: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             read_token: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             routing_key: Optional[pulumi.Input[str]] = None,
+            scheme: Optional[pulumi.Input[str]] = None,
             secret: Optional[pulumi.Input[str]] = None,
+            service_discovery: Optional[pulumi.Input[str]] = None,
             service_key: Optional[pulumi.Input[str]] = None,
             team_name: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None,
+            user_name: Optional[pulumi.Input[str]] = None,
             write_token: Optional[pulumi.Input[str]] = None) -> 'ThirdPartyIntegration':
         """
         Get an existing ThirdPartyIntegration resource's state with the given name, id, and optional extra
@@ -811,10 +1043,14 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] account_id: Unique identifier of your New Relic account.
         :param pulumi.Input[str] api_key: Your API Key.
         :param pulumi.Input[str] api_token: Your API Token.
+        :param pulumi.Input[bool] enabled: Whether your cluster has Prometheus enabled.
         :param pulumi.Input[str] flow_name: Your Flowdock Flow name.
         :param pulumi.Input[str] license_key: Your License Key.
+        :param pulumi.Input[str] microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
+               * `PROMETHEUS`
         :param pulumi.Input[str] org_name: Your Flowdock organization name.
                * `WEBHOOK`
+        :param pulumi.Input[str] password: Your Prometheus password.
         :param pulumi.Input[str] project_id: The unique ID for the project to get all Third-Party service integrations
         :param pulumi.Input[str] read_token: Your Insights Query Key.
                * `OPS_GENIE`
@@ -822,7 +1058,10 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * `VICTOR_OPS`
         :param pulumi.Input[str] routing_key: An optional field for your Routing Key.
                * `FLOWDOCK`
+        :param pulumi.Input[str] scheme: Your Prometheus protocol scheme configured for requests.
         :param pulumi.Input[str] secret: An optional field for your webhook secret.
+               * `MICROSOFT_TEAMS`
+        :param pulumi.Input[str] service_discovery: Indicates which service discovery method is used, either file or http.
         :param pulumi.Input[str] service_key: Your Service Key.
                * `DATADOG`
         :param pulumi.Input[str] type: Third-Party Integration Settings type 
@@ -834,6 +1073,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * FLOWDOCK
                * WEBHOOK
         :param pulumi.Input[str] url: Your webhook URL.
+        :param pulumi.Input[str] user_name: Your Prometheus username.
         :param pulumi.Input[str] write_token: Your Insights Insert Key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -844,18 +1084,24 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         __props__.__dict__["api_key"] = api_key
         __props__.__dict__["api_token"] = api_token
         __props__.__dict__["channel_name"] = channel_name
+        __props__.__dict__["enabled"] = enabled
         __props__.__dict__["flow_name"] = flow_name
         __props__.__dict__["license_key"] = license_key
+        __props__.__dict__["microsoft_teams_webhook_url"] = microsoft_teams_webhook_url
         __props__.__dict__["org_name"] = org_name
+        __props__.__dict__["password"] = password
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["read_token"] = read_token
         __props__.__dict__["region"] = region
         __props__.__dict__["routing_key"] = routing_key
+        __props__.__dict__["scheme"] = scheme
         __props__.__dict__["secret"] = secret
+        __props__.__dict__["service_discovery"] = service_discovery
         __props__.__dict__["service_key"] = service_key
         __props__.__dict__["team_name"] = team_name
         __props__.__dict__["type"] = type
         __props__.__dict__["url"] = url
+        __props__.__dict__["user_name"] = user_name
         __props__.__dict__["write_token"] = write_token
         return ThirdPartyIntegration(resource_name, opts=opts, __props__=__props__)
 
@@ -889,6 +1135,14 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         return pulumi.get(self, "channel_name")
 
     @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether your cluster has Prometheus enabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
     @pulumi.getter(name="flowName")
     def flow_name(self) -> pulumi.Output[Optional[str]]:
         """
@@ -905,6 +1159,15 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         return pulumi.get(self, "license_key")
 
     @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        Your Microsoft Teams incoming webhook URL.
+        * `PROMETHEUS`
+        """
+        return pulumi.get(self, "microsoft_teams_webhook_url")
+
+    @property
     @pulumi.getter(name="orgName")
     def org_name(self) -> pulumi.Output[Optional[str]]:
         """
@@ -912,6 +1175,14 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         * `WEBHOOK`
         """
         return pulumi.get(self, "org_name")
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Your Prometheus password.
+        """
+        return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="projectId")
@@ -950,11 +1221,28 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def scheme(self) -> pulumi.Output[Optional[str]]:
+        """
+        Your Prometheus protocol scheme configured for requests.
+        """
+        return pulumi.get(self, "scheme")
+
+    @property
+    @pulumi.getter
     def secret(self) -> pulumi.Output[Optional[str]]:
         """
         An optional field for your webhook secret.
+        * `MICROSOFT_TEAMS`
         """
         return pulumi.get(self, "secret")
+
+    @property
+    @pulumi.getter(name="serviceDiscovery")
+    def service_discovery(self) -> pulumi.Output[Optional[str]]:
+        """
+        Indicates which service discovery method is used, either file or http.
+        """
+        return pulumi.get(self, "service_discovery")
 
     @property
     @pulumi.getter(name="serviceKey")
@@ -992,6 +1280,14 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         Your webhook URL.
         """
         return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Your Prometheus username.
+        """
+        return pulumi.get(self, "user_name")
 
     @property
     @pulumi.getter(name="writeToken")

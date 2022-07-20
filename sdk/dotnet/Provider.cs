@@ -28,13 +28,13 @@ namespace Pulumi.Mongodbatlas
         /// MongoDB Atlas Programmatic Private Key
         /// </summary>
         [Output("privateKey")]
-        public Output<string> PrivateKey { get; private set; } = null!;
+        public Output<string?> PrivateKey { get; private set; } = null!;
 
         /// <summary>
         /// MongoDB Atlas Programmatic Public Key
         /// </summary>
         [Output("publicKey")]
-        public Output<string> PublicKey { get; private set; } = null!;
+        public Output<string?> PublicKey { get; private set; } = null!;
 
         /// <summary>
         /// MongoDB Realm Base URL
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("mongodbatlas", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -79,14 +79,14 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// MongoDB Atlas Programmatic Private Key
         /// </summary>
-        [Input("privateKey", required: true)]
-        public Input<string> PrivateKey { get; set; } = null!;
+        [Input("privateKey")]
+        public Input<string>? PrivateKey { get; set; }
 
         /// <summary>
         /// MongoDB Atlas Programmatic Public Key
         /// </summary>
-        [Input("publicKey", required: true)]
-        public Input<string> PublicKey { get; set; } = null!;
+        [Input("publicKey")]
+        public Input<string>? PublicKey { get; set; }
 
         /// <summary>
         /// MongoDB Realm Base URL

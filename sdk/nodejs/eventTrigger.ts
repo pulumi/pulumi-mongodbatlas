@@ -76,6 +76,7 @@ import * as utilities from "./utilities";
  *     },
  *     projectId: "PROJECT ID",
  *     type: "DATABASE",
+ *     unordered: false,
  * });
  * ```
  * ### Example Usage: Authentication Trigger
@@ -224,6 +225,10 @@ export class EventTrigger extends pulumi.CustomResource {
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
      */
     public readonly type!: pulumi.Output<string>;
+    /**
+     * Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+     */
+    public readonly unordered!: pulumi.Output<boolean>;
 
     /**
      * Create a EventTrigger resource with the given unique name, arguments, and options.
@@ -259,6 +264,7 @@ export class EventTrigger extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["triggerId"] = state ? state.triggerId : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["unordered"] = state ? state.unordered : undefined;
         } else {
             const args = argsOrState as EventTriggerArgs | undefined;
             if ((!args || args.appId === undefined) && !opts.urn) {
@@ -288,6 +294,7 @@ export class EventTrigger extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["unordered"] = args ? args.unordered : undefined;
             resourceInputs["configScheduleType"] = undefined /*out*/;
             resourceInputs["functionName"] = undefined /*out*/;
             resourceInputs["triggerId"] = undefined /*out*/;
@@ -381,6 +388,10 @@ export interface EventTriggerState {
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
      */
     type?: pulumi.Input<string>;
+    /**
+     * Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+     */
+    unordered?: pulumi.Input<boolean>;
 }
 
 /**
@@ -458,4 +469,8 @@ export interface EventTriggerArgs {
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
      */
     type: pulumi.Input<string>;
+    /**
+     * Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+     */
+    unordered?: pulumi.Input<boolean>;
 }

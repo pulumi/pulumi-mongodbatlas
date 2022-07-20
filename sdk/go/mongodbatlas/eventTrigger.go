@@ -98,6 +98,7 @@ import (
 // 			},
 // 			ProjectId: pulumi.String("PROJECT ID"),
 // 			Type:      pulumi.String("DATABASE"),
+// 			Unordered: pulumi.Bool(false),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -214,6 +215,8 @@ type EventTrigger struct {
 	TriggerId pulumi.StringOutput `pulumi:"triggerId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
 	Type pulumi.StringOutput `pulumi:"type"`
+	// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+	Unordered pulumi.BoolOutput `pulumi:"unordered"`
 }
 
 // NewEventTrigger registers a new resource with the given unique name, arguments, and options.
@@ -296,6 +299,8 @@ type eventTriggerState struct {
 	TriggerId *string `pulumi:"triggerId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
 	Type *string `pulumi:"type"`
+	// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+	Unordered *bool `pulumi:"unordered"`
 }
 
 type EventTriggerState struct {
@@ -341,6 +346,8 @@ type EventTriggerState struct {
 	TriggerId pulumi.StringPtrInput
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
 	Type pulumi.StringPtrInput
+	// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+	Unordered pulumi.BoolPtrInput
 }
 
 func (EventTriggerState) ElementType() reflect.Type {
@@ -385,6 +392,8 @@ type eventTriggerArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
 	Type string `pulumi:"type"`
+	// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+	Unordered *bool `pulumi:"unordered"`
 }
 
 // The set of arguments for constructing a EventTrigger resource.
@@ -426,6 +435,8 @@ type EventTriggerArgs struct {
 	ProjectId pulumi.StringInput
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
 	Type pulumi.StringInput
+	// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+	Unordered pulumi.BoolPtrInput
 }
 
 func (EventTriggerArgs) ElementType() reflect.Type {

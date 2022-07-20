@@ -21,7 +21,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, name=None, org_id=None, project_id=None, teams=None):
+    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, name=None, org_id=None, project_id=None, teams=None):
         if api_keys and not isinstance(api_keys, list):
             raise TypeError("Expected argument 'api_keys' to be a list")
         pulumi.set(__self__, "api_keys", api_keys)
@@ -34,6 +34,21 @@ class GetProjectResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if is_collect_database_specifics_statistics_enabled and not isinstance(is_collect_database_specifics_statistics_enabled, bool):
+            raise TypeError("Expected argument 'is_collect_database_specifics_statistics_enabled' to be a bool")
+        pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
+        if is_data_explorer_enabled and not isinstance(is_data_explorer_enabled, bool):
+            raise TypeError("Expected argument 'is_data_explorer_enabled' to be a bool")
+        pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_performance_advisor_enabled and not isinstance(is_performance_advisor_enabled, bool):
+            raise TypeError("Expected argument 'is_performance_advisor_enabled' to be a bool")
+        pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
+        if is_realtime_performance_panel_enabled and not isinstance(is_realtime_performance_panel_enabled, bool):
+            raise TypeError("Expected argument 'is_realtime_performance_panel_enabled' to be a bool")
+        pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
+        if is_schema_advisor_enabled and not isinstance(is_schema_advisor_enabled, bool):
+            raise TypeError("Expected argument 'is_schema_advisor_enabled' to be a bool")
+        pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -69,6 +84,46 @@ class GetProjectResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
+    def is_collect_database_specifics_statistics_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        """
+        return pulumi.get(self, "is_collect_database_specifics_statistics_enabled")
+
+    @property
+    @pulumi.getter(name="isDataExplorerEnabled")
+    def is_data_explorer_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+        """
+        return pulumi.get(self, "is_data_explorer_enabled")
+
+    @property
+    @pulumi.getter(name="isPerformanceAdvisorEnabled")
+    def is_performance_advisor_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        """
+        return pulumi.get(self, "is_performance_advisor_enabled")
+
+    @property
+    @pulumi.getter(name="isRealtimePerformancePanelEnabled")
+    def is_realtime_performance_panel_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        """
+        return pulumi.get(self, "is_realtime_performance_panel_enabled")
+
+    @property
+    @pulumi.getter(name="isSchemaAdvisorEnabled")
+    def is_schema_advisor_enabled(self) -> bool:
+        """
+        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        """
+        return pulumi.get(self, "is_schema_advisor_enabled")
 
     @property
     @pulumi.getter
@@ -127,6 +182,11 @@ class AwaitableGetProjectResult(GetProjectResult):
             cluster_count=self.cluster_count,
             created=self.created,
             id=self.id,
+            is_collect_database_specifics_statistics_enabled=self.is_collect_database_specifics_statistics_enabled,
+            is_data_explorer_enabled=self.is_data_explorer_enabled,
+            is_performance_advisor_enabled=self.is_performance_advisor_enabled,
+            is_realtime_performance_panel_enabled=self.is_realtime_performance_panel_enabled,
+            is_schema_advisor_enabled=self.is_schema_advisor_enabled,
             name=self.name,
             org_id=self.org_id,
             project_id=self.project_id,
@@ -161,6 +221,11 @@ def get_project(name: Optional[str] = None,
         cluster_count=__ret__.cluster_count,
         created=__ret__.created,
         id=__ret__.id,
+        is_collect_database_specifics_statistics_enabled=__ret__.is_collect_database_specifics_statistics_enabled,
+        is_data_explorer_enabled=__ret__.is_data_explorer_enabled,
+        is_performance_advisor_enabled=__ret__.is_performance_advisor_enabled,
+        is_realtime_performance_panel_enabled=__ret__.is_realtime_performance_panel_enabled,
+        is_schema_advisor_enabled=__ret__.is_schema_advisor_enabled,
         name=__ret__.name,
         org_id=__ret__.org_id,
         project_id=__ret__.project_id,

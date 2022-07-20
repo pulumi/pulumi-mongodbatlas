@@ -21,13 +21,19 @@ class GetCloudBackupScheduleResult:
     """
     A collection of values returned by getCloudBackupSchedule.
     """
-    def __init__(__self__, cluster_id=None, cluster_name=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None):
+    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
+        if auto_export_enabled and not isinstance(auto_export_enabled, bool):
+            raise TypeError("Expected argument 'auto_export_enabled' to be a bool")
+        pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
+        if exports and not isinstance(exports, list):
+            raise TypeError("Expected argument 'exports' to be a list")
+        pulumi.set(__self__, "exports", exports)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -61,6 +67,17 @@ class GetCloudBackupScheduleResult:
         if restore_window_days and not isinstance(restore_window_days, int):
             raise TypeError("Expected argument 'restore_window_days' to be a int")
         pulumi.set(__self__, "restore_window_days", restore_window_days)
+        if use_org_and_group_names_in_export_prefix and not isinstance(use_org_and_group_names_in_export_prefix, bool):
+            raise TypeError("Expected argument 'use_org_and_group_names_in_export_prefix' to be a bool")
+        pulumi.set(__self__, "use_org_and_group_names_in_export_prefix", use_org_and_group_names_in_export_prefix)
+
+    @property
+    @pulumi.getter(name="autoExportEnabled")
+    def auto_export_enabled(self) -> bool:
+        """
+        Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+        """
+        return pulumi.get(self, "auto_export_enabled")
 
     @property
     @pulumi.getter(name="clusterId")
@@ -74,6 +91,11 @@ class GetCloudBackupScheduleResult:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> str:
         return pulumi.get(self, "cluster_name")
+
+    @property
+    @pulumi.getter
+    def exports(self) -> Sequence['outputs.GetCloudBackupScheduleExportResult']:
+        return pulumi.get(self, "exports")
 
     @property
     @pulumi.getter
@@ -160,6 +182,14 @@ class GetCloudBackupScheduleResult:
         """
         return pulumi.get(self, "restore_window_days")
 
+    @property
+    @pulumi.getter(name="useOrgAndGroupNamesInExportPrefix")
+    def use_org_and_group_names_in_export_prefix(self) -> bool:
+        """
+        Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+        """
+        return pulumi.get(self, "use_org_and_group_names_in_export_prefix")
+
 
 class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
     # pylint: disable=using-constant-test
@@ -167,8 +197,10 @@ class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
         if False:
             yield self
         return GetCloudBackupScheduleResult(
+            auto_export_enabled=self.auto_export_enabled,
             cluster_id=self.cluster_id,
             cluster_name=self.cluster_name,
+            exports=self.exports,
             id=self.id,
             id_policy=self.id_policy,
             next_snapshot=self.next_snapshot,
@@ -179,7 +211,8 @@ class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
             project_id=self.project_id,
             reference_hour_of_day=self.reference_hour_of_day,
             reference_minute_of_hour=self.reference_minute_of_hour,
-            restore_window_days=self.restore_window_days)
+            restore_window_days=self.restore_window_days,
+            use_org_and_group_names_in_export_prefix=self.use_org_and_group_names_in_export_prefix)
 
 
 def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
@@ -204,8 +237,10 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule', __args__, opts=opts, typ=GetCloudBackupScheduleResult).value
 
     return AwaitableGetCloudBackupScheduleResult(
+        auto_export_enabled=__ret__.auto_export_enabled,
         cluster_id=__ret__.cluster_id,
         cluster_name=__ret__.cluster_name,
+        exports=__ret__.exports,
         id=__ret__.id,
         id_policy=__ret__.id_policy,
         next_snapshot=__ret__.next_snapshot,
@@ -216,7 +251,8 @@ def get_cloud_backup_schedule(cluster_name: Optional[str] = None,
         project_id=__ret__.project_id,
         reference_hour_of_day=__ret__.reference_hour_of_day,
         reference_minute_of_hour=__ret__.reference_minute_of_hour,
-        restore_window_days=__ret__.restore_window_days)
+        restore_window_days=__ret__.restore_window_days,
+        use_org_and_group_names_in_export_prefix=__ret__.use_org_and_group_names_in_export_prefix)
 
 
 @_utilities.lift_output_func(get_cloud_backup_schedule)

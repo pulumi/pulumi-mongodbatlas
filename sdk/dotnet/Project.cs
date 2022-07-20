@@ -33,6 +33,11 @@ namespace Pulumi.Mongodbatlas
     ///                     },
     ///                 },
     ///             },
+    ///             IsCollectDatabaseSpecificsStatisticsEnabled = true,
+    ///             IsDataExplorerEnabled = true,
+    ///             IsPerformanceAdvisorEnabled = true,
+    ///             IsRealtimePerformancePanelEnabled = true,
+    ///             IsSchemaAdvisorEnabled = true,
     ///             OrgId = "&lt;ORG_ID&gt;",
     ///             ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
     ///             Teams = 
@@ -88,6 +93,36 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("created")]
         public Output<string> Created { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        /// </summary>
+        [Output("isCollectDatabaseSpecificsStatisticsEnabled")]
+        public Output<bool> IsCollectDatabaseSpecificsStatisticsEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        /// </summary>
+        [Output("isDataExplorerEnabled")]
+        public Output<bool> IsDataExplorerEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        /// </summary>
+        [Output("isPerformanceAdvisorEnabled")]
+        public Output<bool> IsPerformanceAdvisorEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        /// </summary>
+        [Output("isRealtimePerformancePanelEnabled")]
+        public Output<bool> IsRealtimePerformancePanelEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        /// </summary>
+        [Output("isSchemaAdvisorEnabled")]
+        public Output<bool> IsSchemaAdvisorEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
@@ -171,6 +206,36 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
+        /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        /// </summary>
+        [Input("isCollectDatabaseSpecificsStatisticsEnabled")]
+        public Input<bool>? IsCollectDatabaseSpecificsStatisticsEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        /// </summary>
+        [Input("isDataExplorerEnabled")]
+        public Input<bool>? IsDataExplorerEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        /// </summary>
+        [Input("isPerformanceAdvisorEnabled")]
+        public Input<bool>? IsPerformanceAdvisorEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        /// </summary>
+        [Input("isRealtimePerformancePanelEnabled")]
+        public Input<bool>? IsRealtimePerformancePanelEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        /// </summary>
+        [Input("isSchemaAdvisorEnabled")]
+        public Input<bool>? IsSchemaAdvisorEnabled { get; set; }
+
+        /// <summary>
         /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         /// </summary>
         [Input("name")]
@@ -228,6 +293,36 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("created")]
         public Input<string>? Created { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+        /// </summary>
+        [Input("isCollectDatabaseSpecificsStatisticsEnabled")]
+        public Input<bool>? IsCollectDatabaseSpecificsStatisticsEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+        /// </summary>
+        [Input("isDataExplorerEnabled")]
+        public Input<bool>? IsDataExplorerEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+        /// </summary>
+        [Input("isPerformanceAdvisorEnabled")]
+        public Input<bool>? IsPerformanceAdvisorEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+        /// </summary>
+        [Input("isRealtimePerformancePanelEnabled")]
+        public Input<bool>? IsRealtimePerformancePanelEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        /// </summary>
+        [Input("isSchemaAdvisorEnabled")]
+        public Input<bool>? IsSchemaAdvisorEnabled { get; set; }
 
         /// <summary>
         /// The name of the project you want to create. (Cannot be changed via this Provider after creation.)

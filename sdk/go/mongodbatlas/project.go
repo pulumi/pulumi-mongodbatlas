@@ -32,8 +32,13 @@ import (
 // 					},
 // 				},
 // 			},
-// 			OrgId:          pulumi.String("<ORG_ID>"),
-// 			ProjectOwnerId: pulumi.String("<OWNER_ACCOUNT_ID>"),
+// 			IsCollectDatabaseSpecificsStatisticsEnabled: pulumi.Bool(true),
+// 			IsDataExplorerEnabled:                       pulumi.Bool(true),
+// 			IsPerformanceAdvisorEnabled:                 pulumi.Bool(true),
+// 			IsRealtimePerformancePanelEnabled:           pulumi.Bool(true),
+// 			IsSchemaAdvisorEnabled:                      pulumi.Bool(true),
+// 			OrgId:                                       pulumi.String("<ORG_ID>"),
+// 			ProjectOwnerId:                              pulumi.String("<OWNER_ACCOUNT_ID>"),
 // 			Teams: ProjectTeamArray{
 // 				&ProjectTeamArgs{
 // 					RoleNames: pulumi.StringArray{
@@ -75,6 +80,16 @@ type Project struct {
 	ClusterCount pulumi.IntOutput `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
 	Created pulumi.StringOutput `pulumi:"created"`
+	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolOutput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
+	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+	IsDataExplorerEnabled pulumi.BoolOutput `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+	IsPerformanceAdvisorEnabled pulumi.BoolOutput `pulumi:"isPerformanceAdvisorEnabled"`
+	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+	IsRealtimePerformancePanelEnabled pulumi.BoolOutput `pulumi:"isRealtimePerformancePanelEnabled"`
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsSchemaAdvisorEnabled pulumi.BoolOutput `pulumi:"isSchemaAdvisorEnabled"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -123,6 +138,16 @@ type projectState struct {
 	ClusterCount *int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
 	Created *string `pulumi:"created"`
+	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+	IsCollectDatabaseSpecificsStatisticsEnabled *bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
+	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+	IsDataExplorerEnabled *bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+	IsPerformanceAdvisorEnabled *bool `pulumi:"isPerformanceAdvisorEnabled"`
+	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+	IsRealtimePerformancePanelEnabled *bool `pulumi:"isRealtimePerformancePanelEnabled"`
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsSchemaAdvisorEnabled *bool `pulumi:"isSchemaAdvisorEnabled"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -140,6 +165,16 @@ type ProjectState struct {
 	ClusterCount pulumi.IntPtrInput
 	// The ISO-8601-formatted timestamp of when Atlas created the project..
 	Created pulumi.StringPtrInput
+	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+	IsDataExplorerEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+	IsPerformanceAdvisorEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+	IsRealtimePerformancePanelEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsSchemaAdvisorEnabled pulumi.BoolPtrInput
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
@@ -157,6 +192,16 @@ func (ProjectState) ElementType() reflect.Type {
 
 type projectArgs struct {
 	ApiKeys []ProjectApiKey `pulumi:"apiKeys"`
+	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+	IsCollectDatabaseSpecificsStatisticsEnabled *bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
+	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+	IsDataExplorerEnabled *bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+	IsPerformanceAdvisorEnabled *bool `pulumi:"isPerformanceAdvisorEnabled"`
+	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+	IsRealtimePerformancePanelEnabled *bool `pulumi:"isRealtimePerformancePanelEnabled"`
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsSchemaAdvisorEnabled *bool `pulumi:"isSchemaAdvisorEnabled"`
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
@@ -171,6 +216,16 @@ type projectArgs struct {
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
 	ApiKeys ProjectApiKeyArrayInput
+	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+	IsDataExplorerEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+	IsPerformanceAdvisorEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+	IsRealtimePerformancePanelEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsSchemaAdvisorEnabled pulumi.BoolPtrInput
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.

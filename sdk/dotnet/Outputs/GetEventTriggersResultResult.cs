@@ -82,6 +82,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
         /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Sort order for `DATABASE` type.
+        /// </summary>
+        public readonly bool Unordered;
 
         [OutputConstructor]
         private GetEventTriggersResultResult(
@@ -121,7 +125,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string triggerId,
 
-            string type)
+            string type,
+
+            bool unordered)
         {
             ConfigCollection = configCollection;
             ConfigDatabase = configDatabase;
@@ -142,6 +148,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Name = name;
             TriggerId = triggerId;
             Type = type;
+            Unordered = unordered;
         }
     }
 }

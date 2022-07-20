@@ -26,6 +26,9 @@ from .data_lake import *
 from .database_user import *
 from .encryption_at_rest import *
 from .event_trigger import *
+from .federated_settings_identity_provider import *
+from .federated_settings_org_config import *
+from .federated_settings_org_role_mapping import *
 from .get509_authentication_database_user import *
 from .get_advanced_cluster import *
 from .get_advanced_clusters import *
@@ -58,6 +61,13 @@ from .get_database_user import *
 from .get_database_users import *
 from .get_event_trigger import *
 from .get_event_triggers import *
+from .get_federated_settings import *
+from .get_federated_settings_identity_provider import *
+from .get_federated_settings_identity_providers import *
+from .get_federated_settings_org_config import *
+from .get_federated_settings_org_configs import *
+from .get_federated_settings_org_role_mapping import *
+from .get_federated_settings_org_role_mappings import *
 from .get_global_cluster_config import *
 from .get_ldap_configuration import *
 from .get_ldap_verify import *
@@ -69,6 +79,7 @@ from .get_network_peerings import *
 from .get_online_archive import *
 from .get_online_archives import *
 from .get_org_invitation import *
+from .get_private_endpoint_regional_mode import *
 from .get_private_link_endpoint import *
 from .get_private_link_endpoint_service import *
 from .get_privatelink_endpoint_service_adl import *
@@ -79,6 +90,8 @@ from .get_project_ip_access_list import *
 from .get_projects import *
 from .get_search_index import *
 from .get_search_indexes import *
+from .get_serverless_instance import *
+from .get_serverless_instances import *
 from .get_team import *
 from .get_teams import *
 from .get_third_party_integration import *
@@ -91,6 +104,7 @@ from .network_container import *
 from .network_peering import *
 from .online_archive import *
 from .org_invitation import *
+from .private_endpoint_regional_mode import *
 from .private_ip_mode import *
 from .private_link_endpoint import *
 from .private_link_endpoint_service import *
@@ -100,6 +114,7 @@ from .project_invitation import *
 from .project_ip_access_list import *
 from .provider import *
 from .search_index import *
+from .serverless_instance import *
 from .team import *
 from .teams import *
 from .third_party_integration import *
@@ -287,6 +302,30 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/federatedSettingsIdentityProvider",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider": "FederatedSettingsIdentityProvider"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/federatedSettingsOrgConfig",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig": "FederatedSettingsOrgConfig"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/federatedSettingsOrgRoleMapping",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping": "FederatedSettingsOrgRoleMapping"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/globalClusterConfig",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -351,6 +390,14 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/privateEndpointRegionalMode",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode": "PrivateEndpointRegionalMode"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/privateIpMode",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -411,6 +458,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/searchIndex:SearchIndex": "SearchIndex"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/serverlessInstance",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/serverlessInstance:ServerlessInstance": "ServerlessInstance"
   }
  },
  {
