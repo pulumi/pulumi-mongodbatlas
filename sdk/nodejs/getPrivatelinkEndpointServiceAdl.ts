@@ -10,23 +10,6 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
- * ### Basic
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const adlTest = new mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", {
- *     projectId: "<PROJECT_ID>",
- *     endpointId: "<ENDPOINT_ID>",
- *     comment: "Comment for PrivateLink endpoint ADL",
- *     type: "DATA_LAKE",
- *     providerName: "AWS",
- * });
- * const test = mongodbatlas.getPrivatelinkEndpointServiceAdlOutput({
- *     projectId: adlTest.projectId,
- *     privateLinkId: adlTest.endpointId,
- * });
- * ```
  */
 export function getPrivatelinkEndpointServiceAdl(args: GetPrivatelinkEndpointServiceAdlArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointServiceAdlResult> {
     if (!opts) {

@@ -22,22 +22,20 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Mongodbatlas.GetOnlineArchive.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Mongodbatlas.GetOnlineArchive.InvokeAsync(new Mongodbatlas.GetOnlineArchiveArgs
-        ///         {
-        ///             ProjectId = @var.Project_id,
-        ///             ClusterName = @var.Cluster_name,
-        ///             ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
-        ///         }));
-        ///     }
+        ///         ProjectId = @var.Project_id,
+        ///         ClusterName = @var.Cluster_name,
+        ///         ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -74,22 +72,20 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Mongodbatlas.GetOnlineArchive.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Mongodbatlas.GetOnlineArchive.InvokeAsync(new Mongodbatlas.GetOnlineArchiveArgs
-        ///         {
-        ///             ProjectId = @var.Project_id,
-        ///             ClusterName = @var.Cluster_name,
-        ///             ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
-        ///         }));
-        ///     }
+        ///         ProjectId = @var.Project_id,
+        ///         ClusterName = @var.Cluster_name,
+        ///         ArchiveId = "5ebad3c1fe9c0ab8d37d61e1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -117,7 +113,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetOnlineArchiveArgs : Pulumi.InvokeArgs
+    public sealed class GetOnlineArchiveArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ID of the online archive.
@@ -140,9 +136,10 @@ namespace Pulumi.Mongodbatlas
         public GetOnlineArchiveArgs()
         {
         }
+        public static new GetOnlineArchiveArgs Empty => new GetOnlineArchiveArgs();
     }
 
-    public sealed class GetOnlineArchiveInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetOnlineArchiveInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ID of the online archive.
@@ -165,6 +162,7 @@ namespace Pulumi.Mongodbatlas
         public GetOnlineArchiveInvokeArgs()
         {
         }
+        public static new GetOnlineArchiveInvokeArgs Empty => new GetOnlineArchiveInvokeArgs();
     }
 
 

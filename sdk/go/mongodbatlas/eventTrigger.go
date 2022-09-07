@@ -21,146 +21,158 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-// 			ProjectId:  pulumi.String("PROJECT ID"),
-// 			AppId:      pulumi.String("APPLICATION ID"),
-// 			Type:       pulumi.String("DATABASE"),
-// 			FunctionId: pulumi.String("FUNCTION ID"),
-// 			Disabled:   pulumi.Bool(false),
-// 			ConfigOperationTypes: pulumi.StringArray{
-// 				pulumi.String("INSERT"),
-// 				pulumi.String("UPDATE"),
-// 			},
-// 			ConfigDatabase:           pulumi.String("DATABASE NAME"),
-// 			ConfigCollection:         pulumi.String("COLLECTION NAME"),
-// 			ConfigServiceId:          pulumi.String("SERVICE ID"),
-// 			ConfigMatch:              pulumi.String(fmt.Sprintf("%v%v%v%v%v", "{\n", "  \"updateDescription.updatedFields\": {\n", "    \"status\": \"blocked\"\n", "  }\n", "}\n")),
-// 			ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
-// 			ConfigFullDocument:       pulumi.Bool(false),
-// 			ConfigFullDocumentBefore: pulumi.Bool(false),
-// 			EventProcessors: &EventTriggerEventProcessorsArgs{
-// 				AwsEventbridge: &EventTriggerEventProcessorsAwsEventbridgeArgs{
-// 					ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
-// 					ConfigRegion:    pulumi.String("AWS REGIOn"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				ProjectId:  pulumi.String("PROJECT ID"),
+//				AppId:      pulumi.String("APPLICATION ID"),
+//				Type:       pulumi.String("DATABASE"),
+//				FunctionId: pulumi.String("FUNCTION ID"),
+//				Disabled:   pulumi.Bool(false),
+//				ConfigOperationTypes: pulumi.StringArray{
+//					pulumi.String("INSERT"),
+//					pulumi.String("UPDATE"),
+//				},
+//				ConfigDatabase:           pulumi.String("DATABASE NAME"),
+//				ConfigCollection:         pulumi.String("COLLECTION NAME"),
+//				ConfigServiceId:          pulumi.String("SERVICE ID"),
+//				ConfigMatch:              pulumi.String(fmt.Sprintf("{\n  \"updateDescription.updatedFields\": {\n    \"status\": \"blocked\"\n  }\n}\n")),
+//				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigFullDocument:       pulumi.Bool(false),
+//				ConfigFullDocumentBefore: pulumi.Bool(false),
+//				EventProcessors: &EventTriggerEventProcessorsArgs{
+//					AwsEventbridge: &EventTriggerEventProcessorsAwsEventbridgeArgs{
+//						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
+//						ConfigRegion:    pulumi.String("AWS REGIOn"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example Usage: Database Trigger with EventBridge
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-// 			AppId:                    pulumi.String("APPLICATION ID"),
-// 			ConfigCollection:         pulumi.String("COLLECTION NAME"),
-// 			ConfigDatabase:           pulumi.String("DATABASE NAME"),
-// 			ConfigFullDocument:       pulumi.Bool(false),
-// 			ConfigFullDocumentBefore: pulumi.Bool(false),
-// 			ConfigMatch:              pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
-// 			ConfigOperationType:      pulumi.String("LOGIN"),
-// 			ConfigOperationTypes: pulumi.StringArray{
-// 				pulumi.String("INSERT"),
-// 				pulumi.String("UPDATE"),
-// 			},
-// 			ConfigProject: pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
-// 			ConfigProviders: pulumi.StringArray{
-// 				pulumi.String("anon-user"),
-// 			},
-// 			ConfigSchedule:  pulumi.String("*"),
-// 			ConfigServiceId: pulumi.String("1"),
-// 			Disabled:        pulumi.Bool(false),
-// 			EventProcessors: &EventTriggerEventProcessorsArgs{
-// 				AwsEventbridge: &EventTriggerEventProcessorsAwsEventbridgeArgs{
-// 					ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
-// 					ConfigRegion:    pulumi.String("AWS REGIOn"),
-// 				},
-// 			},
-// 			ProjectId: pulumi.String("PROJECT ID"),
-// 			Type:      pulumi.String("DATABASE"),
-// 			Unordered: pulumi.Bool(false),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				AppId:                    pulumi.String("APPLICATION ID"),
+//				ConfigCollection:         pulumi.String("COLLECTION NAME"),
+//				ConfigDatabase:           pulumi.String("DATABASE NAME"),
+//				ConfigFullDocument:       pulumi.Bool(false),
+//				ConfigFullDocumentBefore: pulumi.Bool(false),
+//				ConfigMatch:              pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigOperationType:      pulumi.String("LOGIN"),
+//				ConfigOperationTypes: pulumi.StringArray{
+//					pulumi.String("INSERT"),
+//					pulumi.String("UPDATE"),
+//				},
+//				ConfigProject: pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigProviders: pulumi.StringArray{
+//					pulumi.String("anon-user"),
+//				},
+//				ConfigSchedule:  pulumi.String("*"),
+//				ConfigServiceId: pulumi.String("1"),
+//				Disabled:        pulumi.Bool(false),
+//				EventProcessors: &EventTriggerEventProcessorsArgs{
+//					AwsEventbridge: &EventTriggerEventProcessorsAwsEventbridgeArgs{
+//						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
+//						ConfigRegion:    pulumi.String("AWS REGIOn"),
+//					},
+//				},
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Type:      pulumi.String("DATABASE"),
+//				Unordered: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example Usage: Authentication Trigger
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-// 			AppId:               pulumi.String("APPLICATION ID"),
-// 			ConfigOperationType: pulumi.String("LOGIN"),
-// 			ConfigProviders: pulumi.StringArray{
-// 				pulumi.String("anon-user"),
-// 			},
-// 			Disabled:   pulumi.Bool(false),
-// 			FunctionId: pulumi.String("1"),
-// 			ProjectId:  pulumi.String("PROJECT ID"),
-// 			Type:       pulumi.String("AUTHENTICATION"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				AppId:               pulumi.String("APPLICATION ID"),
+//				ConfigOperationType: pulumi.String("LOGIN"),
+//				ConfigProviders: pulumi.StringArray{
+//					pulumi.String("anon-user"),
+//				},
+//				Disabled:   pulumi.Bool(false),
+//				FunctionId: pulumi.String("1"),
+//				ProjectId:  pulumi.String("PROJECT ID"),
+//				Type:       pulumi.String("AUTHENTICATION"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example Usage: Scheduled Trigger
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-// 			AppId:          pulumi.String("APPLICATION ID"),
-// 			ConfigSchedule: pulumi.String("*"),
-// 			Disabled:       pulumi.Bool(false),
-// 			FunctionId:     pulumi.String("1"),
-// 			ProjectId:      pulumi.String("PROJECT ID"),
-// 			Type:           pulumi.String("SCHEDULED"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				AppId:          pulumi.String("APPLICATION ID"),
+//				ConfigSchedule: pulumi.String("*"),
+//				Disabled:       pulumi.Bool(false),
+//				FunctionId:     pulumi.String("1"),
+//				ProjectId:      pulumi.String("PROJECT ID"),
+//				Type:           pulumi.String("SCHEDULED"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -168,7 +180,9 @@ import (
 // Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
+//
+//	$ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
+//
 // ```
 type EventTrigger struct {
 	pulumi.CustomResourceState
@@ -465,7 +479,7 @@ func (i *EventTrigger) ToEventTriggerOutputWithContext(ctx context.Context) Even
 // EventTriggerArrayInput is an input type that accepts EventTriggerArray and EventTriggerArrayOutput values.
 // You can construct a concrete instance of `EventTriggerArrayInput` via:
 //
-//          EventTriggerArray{ EventTriggerArgs{...} }
+//	EventTriggerArray{ EventTriggerArgs{...} }
 type EventTriggerArrayInput interface {
 	pulumi.Input
 
@@ -490,7 +504,7 @@ func (i EventTriggerArray) ToEventTriggerArrayOutputWithContext(ctx context.Cont
 // EventTriggerMapInput is an input type that accepts EventTriggerMap and EventTriggerMapOutput values.
 // You can construct a concrete instance of `EventTriggerMapInput` via:
 //
-//          EventTriggerMap{ "key": EventTriggerArgs{...} }
+//	EventTriggerMap{ "key": EventTriggerArgs{...} }
 type EventTriggerMapInput interface {
 	pulumi.Input
 
@@ -524,6 +538,116 @@ func (o EventTriggerOutput) ToEventTriggerOutput() EventTriggerOutput {
 
 func (o EventTriggerOutput) ToEventTriggerOutputWithContext(ctx context.Context) EventTriggerOutput {
 	return o
+}
+
+// The ObjectID of your application.
+func (o EventTriggerOutput) AppId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.AppId }).(pulumi.StringOutput)
+}
+
+// Required for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
+func (o EventTriggerOutput) ConfigCollection() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigCollection }).(pulumi.StringOutput)
+}
+
+// Required for `DATABASE` type. The name of the MongoDB database that contains the watched collection.
+func (o EventTriggerOutput) ConfigDatabase() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigDatabase }).(pulumi.StringOutput)
+}
+
+// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+func (o EventTriggerOutput) ConfigFullDocument() pulumi.BoolOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.BoolOutput { return v.ConfigFullDocument }).(pulumi.BoolOutput)
+}
+
+func (o EventTriggerOutput) ConfigFullDocumentBefore() pulumi.BoolOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.BoolOutput { return v.ConfigFullDocumentBefore }).(pulumi.BoolOutput)
+}
+
+// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+func (o EventTriggerOutput) ConfigMatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigMatch }).(pulumi.StringOutput)
+}
+
+// Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+func (o EventTriggerOutput) ConfigOperationType() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigOperationType }).(pulumi.StringOutput)
+}
+
+// Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+func (o EventTriggerOutput) ConfigOperationTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringArrayOutput { return v.ConfigOperationTypes }).(pulumi.StringArrayOutput)
+}
+
+// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+func (o EventTriggerOutput) ConfigProject() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigProject }).(pulumi.StringOutput)
+}
+
+// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+func (o EventTriggerOutput) ConfigProviders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringArrayOutput { return v.ConfigProviders }).(pulumi.StringArrayOutput)
+}
+
+// Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+func (o EventTriggerOutput) ConfigSchedule() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigSchedule }).(pulumi.StringOutput)
+}
+
+func (o EventTriggerOutput) ConfigScheduleType() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigScheduleType }).(pulumi.StringOutput)
+}
+
+// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
+func (o EventTriggerOutput) ConfigServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigServiceId }).(pulumi.StringOutput)
+}
+
+// Default: `false` If `true`, the trigger is disabled.
+func (o EventTriggerOutput) Disabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.BoolOutput { return v.Disabled }).(pulumi.BoolOutput)
+}
+
+// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
+// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
+func (o EventTriggerOutput) EventProcessors() EventTriggerEventProcessorsPtrOutput {
+	return o.ApplyT(func(v *EventTrigger) EventTriggerEventProcessorsPtrOutput { return v.EventProcessors }).(EventTriggerEventProcessorsPtrOutput)
+}
+
+// The ID of the function associated with the trigger.
+func (o EventTriggerOutput) FunctionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringPtrOutput { return v.FunctionId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the function associated with the trigger.
+func (o EventTriggerOutput) FunctionName() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.FunctionName }).(pulumi.StringOutput)
+}
+
+// The name of the trigger.
+func (o EventTriggerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The unique ID for the project to create the trigger.
+func (o EventTriggerOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The unique ID of the trigger.
+func (o EventTriggerOutput) TriggerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.TriggerId }).(pulumi.StringOutput)
+}
+
+// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
+func (o EventTriggerOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
+func (o EventTriggerOutput) Unordered() pulumi.BoolOutput {
+	return o.ApplyT(func(v *EventTrigger) pulumi.BoolOutput { return v.Unordered }).(pulumi.BoolOutput)
 }
 
 type EventTriggerArrayOutput struct{ *pulumi.OutputState }

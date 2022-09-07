@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class ClusterSnapshotBackupPolicyPolicyArgs : Pulumi.ResourceArgs
+    public sealed class ClusterSnapshotBackupPolicyPolicyArgs : global::Pulumi.ResourceArgs
     {
         [Input("policyItems")]
         private InputList<Inputs.ClusterSnapshotBackupPolicyPolicyPolicyItemArgs>? _policyItems;
@@ -23,5 +23,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public ClusterSnapshotBackupPolicyPolicyArgs()
         {
         }
+        public static new ClusterSnapshotBackupPolicyPolicyArgs Empty => new ClusterSnapshotBackupPolicyPolicyArgs();
     }
 }

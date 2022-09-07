@@ -20,46 +20,49 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testRole, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			RoleName:  pulumi.String("myCustomRole"),
-// 			Actions: CustomDbRoleActionArray{
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("UPDATE"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							CollectionName: pulumi.String(""),
-// 							DatabaseName:   pulumi.String("anyDatabase"),
-// 						},
-// 					},
-// 				},
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("INSERT"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							CollectionName: pulumi.String(""),
-// 							DatabaseName:   pulumi.String("anyDatabase"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupCustomDbRoleOutput(ctx, GetCustomDbRoleOutputArgs{
-// 			ProjectId: testRole.ProjectId,
-// 			RoleName:  testRole.RoleName,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRole, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				RoleName:  pulumi.String("myCustomRole"),
+//				Actions: CustomDbRoleActionArray{
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("UPDATE"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								CollectionName: pulumi.String(""),
+//								DatabaseName:   pulumi.String("anyDatabase"),
+//							},
+//						},
+//					},
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("INSERT"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								CollectionName: pulumi.String(""),
+//								DatabaseName:   pulumi.String("anyDatabase"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCustomDbRoleOutput(ctx, GetCustomDbRoleOutputArgs{
+//				ProjectId: testRole.ProjectId,
+//				RoleName:  testRole.RoleName,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupCustomDbRole(ctx *pulumi.Context, args *LookupCustomDbRoleArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRoleResult, error) {
 	var rv LookupCustomDbRoleResult

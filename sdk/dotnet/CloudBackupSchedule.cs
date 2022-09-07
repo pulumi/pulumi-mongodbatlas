@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule")]
-    public partial class CloudBackupSchedule : Pulumi.CustomResource
+    public partial class CloudBackupSchedule : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
@@ -160,7 +160,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudBackupScheduleArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupScheduleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
@@ -252,9 +252,10 @@ namespace Pulumi.Mongodbatlas
         public CloudBackupScheduleArgs()
         {
         }
+        public static new CloudBackupScheduleArgs Empty => new CloudBackupScheduleArgs();
     }
 
-    public sealed class CloudBackupScheduleState : Pulumi.ResourceArgs
+    public sealed class CloudBackupScheduleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
@@ -364,5 +365,6 @@ namespace Pulumi.Mongodbatlas
         public CloudBackupScheduleState()
         {
         }
+        public static new CloudBackupScheduleState Empty => new CloudBackupScheduleState();
     }
 }

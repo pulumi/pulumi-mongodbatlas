@@ -111,7 +111,7 @@ func (i *Teams) ToTeamsOutputWithContext(ctx context.Context) TeamsOutput {
 // TeamsArrayInput is an input type that accepts TeamsArray and TeamsArrayOutput values.
 // You can construct a concrete instance of `TeamsArrayInput` via:
 //
-//          TeamsArray{ TeamsArgs{...} }
+//	TeamsArray{ TeamsArgs{...} }
 type TeamsArrayInput interface {
 	pulumi.Input
 
@@ -136,7 +136,7 @@ func (i TeamsArray) ToTeamsArrayOutputWithContext(ctx context.Context) TeamsArra
 // TeamsMapInput is an input type that accepts TeamsMap and TeamsMapOutput values.
 // You can construct a concrete instance of `TeamsMapInput` via:
 //
-//          TeamsMap{ "key": TeamsArgs{...} }
+//	TeamsMap{ "key": TeamsArgs{...} }
 type TeamsMapInput interface {
 	pulumi.Input
 
@@ -170,6 +170,22 @@ func (o TeamsOutput) ToTeamsOutput() TeamsOutput {
 
 func (o TeamsOutput) ToTeamsOutputWithContext(ctx context.Context) TeamsOutput {
 	return o
+}
+
+func (o TeamsOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Teams) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o TeamsOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Teams) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
+}
+
+func (o TeamsOutput) TeamId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Teams) pulumi.StringOutput { return v.TeamId }).(pulumi.StringOutput)
+}
+
+func (o TeamsOutput) Usernames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Teams) pulumi.StringArrayOutput { return v.Usernames }).(pulumi.StringArrayOutput)
 }
 
 type TeamsArrayOutput struct{ *pulumi.OutputState }

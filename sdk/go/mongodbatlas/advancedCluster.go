@@ -11,14 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters. The resource requires your Project ID.
-//
-// More information on considerations for using advanced clusters please see [Considerations](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/#considerations)
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
-// > **NOTE:** A network container is created for a advanced cluster to reside in if one does not yet exist in the project.  To  use this automatically created container with another resource, such as peering, the `containerId` is exported after creation.
-//
 // ## Example Usage
 // ### Example single provider and single region
 //
@@ -26,41 +18,44 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
-// 			ClusterType: pulumi.String("REPLICASET"),
-// 			ProjectId:   pulumi.String("PROJECT ID"),
-// 			ReplicationSpecs: AdvancedClusterReplicationSpecArray{
-// 				&AdvancedClusterReplicationSpecArgs{
-// 					RegionConfigs: AdvancedClusterReplicationSpecRegionConfigArray{
-// 						&AdvancedClusterReplicationSpecRegionConfigArgs{
-// 							AnalyticsSpecs: &AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{
-// 								InstanceSize: pulumi.String("M10"),
-// 								NodeCount:    pulumi.Int(1),
-// 							},
-// 							ElectableSpecs: &AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
-// 								InstanceSize: pulumi.String("M10"),
-// 								NodeCount:    pulumi.Int(3),
-// 							},
-// 							Priority:     pulumi.Int(1),
-// 							ProviderName: pulumi.String("AWS"),
-// 							RegionName:   pulumi.String("US_EAST_1"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				ReplicationSpecs: AdvancedClusterReplicationSpecArray{
+//					&AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: AdvancedClusterReplicationSpecRegionConfigArray{
+//							&AdvancedClusterReplicationSpecRegionConfigArgs{
+//								AnalyticsSpecs: &AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(1),
+//								},
+//								ElectableSpecs: &AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								Priority:     pulumi.Int(1),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example Tenant Cluster
 //
@@ -68,37 +63,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
-// 			ClusterType: pulumi.String("REPLICASET"),
-// 			ProjectId:   pulumi.String("PROJECT ID"),
-// 			ReplicationSpecs: AdvancedClusterReplicationSpecArray{
-// 				&AdvancedClusterReplicationSpecArgs{
-// 					RegionConfigs: AdvancedClusterReplicationSpecRegionConfigArray{
-// 						&AdvancedClusterReplicationSpecRegionConfigArgs{
-// 							BackingProviderName: pulumi.String("AWS"),
-// 							ElectableSpecs: &AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
-// 								InstanceSize: pulumi.String("M5"),
-// 							},
-// 							Priority:     pulumi.Int(1),
-// 							ProviderName: pulumi.String("TENANT"),
-// 							RegionName:   pulumi.String("US_EAST_1"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				ReplicationSpecs: AdvancedClusterReplicationSpecArray{
+//					&AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: AdvancedClusterReplicationSpecRegionConfigArray{
+//							&AdvancedClusterReplicationSpecRegionConfigArgs{
+//								BackingProviderName: pulumi.String("AWS"),
+//								ElectableSpecs: &AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M5"),
+//								},
+//								Priority:     pulumi.Int(1),
+//								ProviderName: pulumi.String("TENANT"),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example Multicloud.
 //
@@ -106,50 +104,53 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
-// 			ClusterType: pulumi.String("REPLICASET"),
-// 			ProjectId:   pulumi.String("PROJECT ID"),
-// 			ReplicationSpecs: AdvancedClusterReplicationSpecArray{
-// 				&AdvancedClusterReplicationSpecArgs{
-// 					RegionConfigs: AdvancedClusterReplicationSpecRegionConfigArray{
-// 						&AdvancedClusterReplicationSpecRegionConfigArgs{
-// 							AnalyticsSpecs: &AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{
-// 								InstanceSize: pulumi.String("M10"),
-// 								NodeCount:    pulumi.Int(1),
-// 							},
-// 							ElectableSpecs: &AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
-// 								InstanceSize: pulumi.String("M10"),
-// 								NodeCount:    pulumi.Int(3),
-// 							},
-// 							Priority:     pulumi.Int(1),
-// 							ProviderName: pulumi.String("AWS"),
-// 							RegionName:   pulumi.String("US_EAST_1"),
-// 						},
-// 						&AdvancedClusterReplicationSpecRegionConfigArgs{
-// 							ElectableSpecs: &AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
-// 								InstanceSize: pulumi.String("M10"),
-// 								NodeCount:    pulumi.Int(2),
-// 							},
-// 							Priority:     pulumi.Int(6),
-// 							ProviderName: pulumi.String("GCP"),
-// 							RegionName:   pulumi.String("NORTH_AMERICA_NORTHEAST_1"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				ReplicationSpecs: AdvancedClusterReplicationSpecArray{
+//					&AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: AdvancedClusterReplicationSpecRegionConfigArray{
+//							&AdvancedClusterReplicationSpecRegionConfigArgs{
+//								AnalyticsSpecs: &AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(1),
+//								},
+//								ElectableSpecs: &AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								Priority:     pulumi.Int(1),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//							&AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(2),
+//								},
+//								Priority:     pulumi.Int(6),
+//								ProviderName: pulumi.String("GCP"),
+//								RegionName:   pulumi.String("NORTH_AMERICA_NORTHEAST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -157,10 +158,12 @@ import (
 // Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
+//
+//	$ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
+//
 // ```
 //
-//  See detailed information for arguments and attributes[MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
+//	See detailed information for arguments and attributes[MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 type AdvancedCluster struct {
 	pulumi.CustomResourceState
 
@@ -451,7 +454,7 @@ func (i *AdvancedCluster) ToAdvancedClusterOutputWithContext(ctx context.Context
 // AdvancedClusterArrayInput is an input type that accepts AdvancedClusterArray and AdvancedClusterArrayOutput values.
 // You can construct a concrete instance of `AdvancedClusterArrayInput` via:
 //
-//          AdvancedClusterArray{ AdvancedClusterArgs{...} }
+//	AdvancedClusterArray{ AdvancedClusterArgs{...} }
 type AdvancedClusterArrayInput interface {
 	pulumi.Input
 
@@ -476,7 +479,7 @@ func (i AdvancedClusterArray) ToAdvancedClusterArrayOutputWithContext(ctx contex
 // AdvancedClusterMapInput is an input type that accepts AdvancedClusterMap and AdvancedClusterMapOutput values.
 // You can construct a concrete instance of `AdvancedClusterMapInput` via:
 //
-//          AdvancedClusterMap{ "key": AdvancedClusterArgs{...} }
+//	AdvancedClusterMap{ "key": AdvancedClusterArgs{...} }
 type AdvancedClusterMapInput interface {
 	pulumi.Input
 
@@ -510,6 +513,113 @@ func (o AdvancedClusterOutput) ToAdvancedClusterOutput() AdvancedClusterOutput {
 
 func (o AdvancedClusterOutput) ToAdvancedClusterOutputWithContext(ctx context.Context) AdvancedClusterOutput {
 	return o
+}
+
+func (o AdvancedClusterOutput) AdvancedConfiguration() AdvancedClusterAdvancedConfigurationOutput {
+	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterAdvancedConfigurationOutput { return v.AdvancedConfiguration }).(AdvancedClusterAdvancedConfigurationOutput)
+}
+
+// Flag that indicates whether the cluster can perform backups.
+// If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
+func (o AdvancedClusterOutput) BackupEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolOutput { return v.BackupEnabled }).(pulumi.BoolOutput)
+}
+
+// Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
+func (o AdvancedClusterOutput) BiConnector() AdvancedClusterBiConnectorOutput {
+	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterBiConnectorOutput { return v.BiConnector }).(AdvancedClusterBiConnectorOutput)
+}
+
+// The cluster ID.
+func (o AdvancedClusterOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// Type of the cluster that you want to create.
+// Accepted values include:
+func (o AdvancedClusterOutput) ClusterType() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.ClusterType }).(pulumi.StringOutput)
+}
+
+// Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+func (o AdvancedClusterOutput) ConnectionStrings() AdvancedClusterConnectionStringArrayOutput {
+	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterConnectionStringArrayOutput { return v.ConnectionStrings }).(AdvancedClusterConnectionStringArrayOutput)
+}
+
+func (o AdvancedClusterOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095)Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved.
+func (o AdvancedClusterOutput) DiskSizeGb() pulumi.Float64Output {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.Float64Output { return v.DiskSizeGb }).(pulumi.Float64Output)
+}
+
+// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+func (o AdvancedClusterOutput) EncryptionAtRestProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.EncryptionAtRestProvider }).(pulumi.StringOutput)
+}
+
+// Configuration for the collection of key-value pairs that tag and categorize the cluster. See below.
+func (o AdvancedClusterOutput) Labels() AdvancedClusterLabelArrayOutput {
+	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterLabelArrayOutput { return v.Labels }).(AdvancedClusterLabelArrayOutput)
+}
+
+// Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.0`, `4.2`, `4.4`, or `5.0`. If omitted, Atlas deploys a cluster that runs MongoDB 4.4. If `replication_specs#.region_configs#.<type>Specs.instance_size`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 4.4. Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+func (o AdvancedClusterOutput) MongoDbMajorVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.MongoDbMajorVersion }).(pulumi.StringOutput)
+}
+
+// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
+func (o AdvancedClusterOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+func (o AdvancedClusterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o AdvancedClusterOutput) Paused() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolPtrOutput { return v.Paused }).(pulumi.BoolPtrOutput)
+}
+
+// - Flag that indicates if the cluster uses Continuous Cloud Backup.
+func (o AdvancedClusterOutput) PitEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolOutput { return v.PitEnabled }).(pulumi.BoolOutput)
+}
+
+// Unique ID for the project to create the database user.
+func (o AdvancedClusterOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Configuration for cluster regions and the hardware provisioned in them. See below
+func (o AdvancedClusterOutput) ReplicationSpecs() AdvancedClusterReplicationSpecArrayOutput {
+	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterReplicationSpecArrayOutput { return v.ReplicationSpecs }).(AdvancedClusterReplicationSpecArrayOutput)
+}
+
+// - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+func (o AdvancedClusterOutput) RootCertType() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.RootCertType }).(pulumi.StringOutput)
+}
+
+// Current state of the cluster. The possible states are:
+// - IDLE
+// - CREATING
+// - UPDATING
+// - DELETING
+// - DELETED
+// - REPAIRING
+func (o AdvancedClusterOutput) StateName() pulumi.StringOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.StateName }).(pulumi.StringOutput)
+}
+
+// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
+// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
+// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+func (o AdvancedClusterOutput) VersionReleaseSystem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringPtrOutput { return v.VersionReleaseSystem }).(pulumi.StringPtrOutput)
 }
 
 type AdvancedClusterArrayOutput struct{ *pulumi.OutputState }

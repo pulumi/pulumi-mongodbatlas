@@ -129,7 +129,7 @@ func (i *FederatedSettingsOrgConfig) ToFederatedSettingsOrgConfigOutputWithConte
 // FederatedSettingsOrgConfigArrayInput is an input type that accepts FederatedSettingsOrgConfigArray and FederatedSettingsOrgConfigArrayOutput values.
 // You can construct a concrete instance of `FederatedSettingsOrgConfigArrayInput` via:
 //
-//          FederatedSettingsOrgConfigArray{ FederatedSettingsOrgConfigArgs{...} }
+//	FederatedSettingsOrgConfigArray{ FederatedSettingsOrgConfigArgs{...} }
 type FederatedSettingsOrgConfigArrayInput interface {
 	pulumi.Input
 
@@ -154,7 +154,7 @@ func (i FederatedSettingsOrgConfigArray) ToFederatedSettingsOrgConfigArrayOutput
 // FederatedSettingsOrgConfigMapInput is an input type that accepts FederatedSettingsOrgConfigMap and FederatedSettingsOrgConfigMapOutput values.
 // You can construct a concrete instance of `FederatedSettingsOrgConfigMapInput` via:
 //
-//          FederatedSettingsOrgConfigMap{ "key": FederatedSettingsOrgConfigArgs{...} }
+//	FederatedSettingsOrgConfigMap{ "key": FederatedSettingsOrgConfigArgs{...} }
 type FederatedSettingsOrgConfigMapInput interface {
 	pulumi.Input
 
@@ -188,6 +188,30 @@ func (o FederatedSettingsOrgConfigOutput) ToFederatedSettingsOrgConfigOutput() F
 
 func (o FederatedSettingsOrgConfigOutput) ToFederatedSettingsOrgConfigOutputWithContext(ctx context.Context) FederatedSettingsOrgConfigOutput {
 	return o
+}
+
+func (o FederatedSettingsOrgConfigOutput) DomainAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringArrayOutput { return v.DomainAllowLists }).(pulumi.StringArrayOutput)
+}
+
+func (o FederatedSettingsOrgConfigOutput) DomainRestrictionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.BoolOutput { return v.DomainRestrictionEnabled }).(pulumi.BoolOutput)
+}
+
+func (o FederatedSettingsOrgConfigOutput) FederationSettingsId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringOutput { return v.FederationSettingsId }).(pulumi.StringOutput)
+}
+
+func (o FederatedSettingsOrgConfigOutput) IdentityProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringOutput { return v.IdentityProviderId }).(pulumi.StringOutput)
+}
+
+func (o FederatedSettingsOrgConfigOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
+}
+
+func (o FederatedSettingsOrgConfigOutput) PostAuthRoleGrants() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgConfig) pulumi.StringArrayOutput { return v.PostAuthRoleGrants }).(pulumi.StringArrayOutput)
 }
 
 type FederatedSettingsOrgConfigArrayOutput struct{ *pulumi.OutputState }

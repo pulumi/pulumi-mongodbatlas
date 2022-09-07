@@ -17,50 +17,6 @@ import (
 // > **IMPORTANT:**
 // <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
 // <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleCluster, err := mongodbatlas.NewCluster(ctx, "exampleCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ClusterType: pulumi.String("REPLICASET"),
-// 			ReplicationSpecs: ClusterReplicationSpecArray{
-// 				&ClusterReplicationSpecArgs{
-// 					RegionConfigs: []map[string]interface{}{
-// 						map[string]interface{}{
-// 							"electableSpecs": []map[string]interface{}{
-// 								map[string]interface{}{
-// 									"instanceSize": "M5",
-// 								},
-// 							},
-// 							"providerName":        "TENANT",
-// 							"backingProviderName": "AWS",
-// 							"regionName":          "US_EAST_1",
-// 							"priority":            7,
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupClustersOutput(ctx, GetClustersOutputArgs{
-// 			ProjectId: exampleCluster.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
-// ```
 func LookupAdvancedClusters(ctx *pulumi.Context, args *LookupAdvancedClustersArgs, opts ...pulumi.InvokeOption) (*LookupAdvancedClustersResult, error) {
 	var rv LookupAdvancedClustersResult
 	err := ctx.Invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args, &rv, opts...)

@@ -43,7 +43,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetNetworkContainerArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkContainerArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The Network Peering Container ID.
@@ -60,9 +60,10 @@ namespace Pulumi.Mongodbatlas
         public GetNetworkContainerArgs()
         {
         }
+        public static new GetNetworkContainerArgs Empty => new GetNetworkContainerArgs();
     }
 
-    public sealed class GetNetworkContainerInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkContainerInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The Network Peering Container ID.
@@ -79,6 +80,7 @@ namespace Pulumi.Mongodbatlas
         public GetNetworkContainerInvokeArgs()
         {
         }
+        public static new GetNetworkContainerInvokeArgs Empty => new GetNetworkContainerInvokeArgs();
     }
 
 

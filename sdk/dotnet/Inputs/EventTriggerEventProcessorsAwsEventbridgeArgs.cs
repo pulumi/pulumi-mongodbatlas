@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class EventTriggerEventProcessorsAwsEventbridgeArgs : Pulumi.ResourceArgs
+    public sealed class EventTriggerEventProcessorsAwsEventbridgeArgs : global::Pulumi.ResourceArgs
     {
         [Input("configAccountId")]
         public Input<string>? ConfigAccountId { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public EventTriggerEventProcessorsAwsEventbridgeArgs()
         {
         }
+        public static new EventTriggerEventProcessorsAwsEventbridgeArgs Empty => new EventTriggerEventProcessorsAwsEventbridgeArgs();
     }
 }

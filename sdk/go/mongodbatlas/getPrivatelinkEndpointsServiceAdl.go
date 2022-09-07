@@ -20,28 +20,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		adlTest, err := mongodbatlas.NewPrivatelinkEndpointServiceAdl(ctx, "adlTest", &mongodbatlas.PrivatelinkEndpointServiceAdlArgs{
-// 			ProjectId:    pulumi.String("<PROJECT_ID>"),
-// 			EndpointId:   pulumi.String("<ENDPOINT_ID>"),
-// 			Comment:      pulumi.String("Comment for PrivateLink endpoint ADL"),
-// 			Type:         pulumi.String("DATA_LAKE"),
-// 			ProviderName: pulumi.String("AWS"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupPrivatelinkEndpointsServiceAdlOutput(ctx, GetPrivatelinkEndpointsServiceAdlOutputArgs{
-// 			ProjectId: adlTest.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			adlTest, err := mongodbatlas.NewPrivatelinkEndpointServiceAdl(ctx, "adlTest", &mongodbatlas.PrivatelinkEndpointServiceAdlArgs{
+//				ProjectId:    pulumi.String("<PROJECT_ID>"),
+//				EndpointId:   pulumi.String("<ENDPOINT_ID>"),
+//				Comment:      pulumi.String("Comment for PrivateLink endpoint ADL"),
+//				Type:         pulumi.String("DATA_LAKE"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupPrivatelinkEndpointsServiceAdlOutput(ctx, GetPrivatelinkEndpointsServiceAdlOutputArgs{
+//				ProjectId: adlTest.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupPrivatelinkEndpointsServiceAdl(ctx *pulumi.Context, args *LookupPrivatelinkEndpointsServiceAdlArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointsServiceAdlResult, error) {
 	var rv LookupPrivatelinkEndpointsServiceAdlResult

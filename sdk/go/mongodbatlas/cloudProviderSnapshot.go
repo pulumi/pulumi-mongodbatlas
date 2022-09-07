@@ -18,66 +18,17 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			DiskSizeGb:               pulumi.Float64(5),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
-// 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			CloudBackup:              pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
-// 			ProjectId:       myCluster.ProjectId,
-// 			ClusterName:     myCluster.Name,
-// 			Description:     pulumi.String("myDescription"),
-// 			RetentionInDays: pulumi.Int(1),
-// 			Timeout:         pulumi.String("10m"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
-// 			ProjectId:   testCloudProviderSnapshot.ProjectId,
-// 			ClusterName: testCloudProviderSnapshot.ClusterName,
-// 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-// 			DeliveryType: pulumi.StringMap{
-// 				pulumi.String{
-// 					Download: true,
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5
+//
+//	$ pulumi import mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
 type CloudProviderSnapshot struct {
 	pulumi.CustomResourceState
 
@@ -270,7 +221,7 @@ func (i *CloudProviderSnapshot) ToCloudProviderSnapshotOutputWithContext(ctx con
 // CloudProviderSnapshotArrayInput is an input type that accepts CloudProviderSnapshotArray and CloudProviderSnapshotArrayOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotArrayInput` via:
 //
-//          CloudProviderSnapshotArray{ CloudProviderSnapshotArgs{...} }
+//	CloudProviderSnapshotArray{ CloudProviderSnapshotArgs{...} }
 type CloudProviderSnapshotArrayInput interface {
 	pulumi.Input
 
@@ -295,7 +246,7 @@ func (i CloudProviderSnapshotArray) ToCloudProviderSnapshotArrayOutputWithContex
 // CloudProviderSnapshotMapInput is an input type that accepts CloudProviderSnapshotMap and CloudProviderSnapshotMapOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotMapInput` via:
 //
-//          CloudProviderSnapshotMap{ "key": CloudProviderSnapshotArgs{...} }
+//	CloudProviderSnapshotMap{ "key": CloudProviderSnapshotArgs{...} }
 type CloudProviderSnapshotMapInput interface {
 	pulumi.Input
 
@@ -329,6 +280,76 @@ func (o CloudProviderSnapshotOutput) ToCloudProviderSnapshotOutput() CloudProvid
 
 func (o CloudProviderSnapshotOutput) ToCloudProviderSnapshotOutputWithContext(ctx context.Context) CloudProviderSnapshotOutput {
 	return o
+}
+
+// The name of the Atlas cluster that contains the snapshots you want to retrieve.
+func (o CloudProviderSnapshotOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+func (o CloudProviderSnapshotOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Description of the on-demand snapshot.
+func (o CloudProviderSnapshotOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
+func (o CloudProviderSnapshotOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
+func (o CloudProviderSnapshotOutput) MasterKeyUuid() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.MasterKeyUuid }).(pulumi.StringOutput)
+}
+
+// Version of the MongoDB server.
+func (o CloudProviderSnapshotOutput) MongodVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.MongodVersion }).(pulumi.StringOutput)
+}
+
+// The unique identifier of the project for the Atlas cluster.
+func (o CloudProviderSnapshotOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+func (o CloudProviderSnapshotOutput) RetentionInDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.IntOutput { return v.RetentionInDays }).(pulumi.IntOutput)
+}
+
+// Unique identifier of the snapshot.
+func (o CloudProviderSnapshotOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Specified the type of snapshot. Valid values are onDemand and scheduled.
+func (o CloudProviderSnapshotOutput) SnapshotType() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.SnapshotType }).(pulumi.StringOutput)
+}
+
+// Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
+func (o CloudProviderSnapshotOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Specifies the size of the snapshot in bytes.
+func (o CloudProviderSnapshotOutput) StorageSizeBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.IntOutput { return v.StorageSizeBytes }).(pulumi.IntOutput)
+}
+
+// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+func (o CloudProviderSnapshotOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringPtrOutput { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the type of cluster: replicaSet or shardedCluster.
+func (o CloudProviderSnapshotOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type CloudProviderSnapshotArrayOutput struct{ *pulumi.OutputState }

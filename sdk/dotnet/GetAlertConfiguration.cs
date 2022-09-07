@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetAlertConfigurationArgs : Pulumi.InvokeArgs
+    public sealed class GetAlertConfigurationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier for the alert configuration.
@@ -46,9 +46,10 @@ namespace Pulumi.Mongodbatlas
         public GetAlertConfigurationArgs()
         {
         }
+        public static new GetAlertConfigurationArgs Empty => new GetAlertConfigurationArgs();
     }
 
-    public sealed class GetAlertConfigurationInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAlertConfigurationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier for the alert configuration.
@@ -65,6 +66,7 @@ namespace Pulumi.Mongodbatlas
         public GetAlertConfigurationInvokeArgs()
         {
         }
+        public static new GetAlertConfigurationInvokeArgs Empty => new GetAlertConfigurationInvokeArgs();
     }
 
 

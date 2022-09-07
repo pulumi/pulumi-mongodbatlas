@@ -62,7 +62,8 @@ type LookupCloudProviderSnapshotRestoreJobResult struct {
 	SnapshotId string `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 	TargetClusterName string `pulumi:"targetClusterName"`
-	TargetProjectId   string `pulumi:"targetProjectId"`
+	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	TargetProjectId string `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
 	Timestamp string `pulumi:"timestamp"`
 }
@@ -183,6 +184,7 @@ func (o LookupCloudProviderSnapshotRestoreJobResultOutput) TargetClusterName() p
 	return o.ApplyT(func(v LookupCloudProviderSnapshotRestoreJobResult) string { return v.TargetClusterName }).(pulumi.StringOutput)
 }
 
+// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 func (o LookupCloudProviderSnapshotRestoreJobResultOutput) TargetProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudProviderSnapshotRestoreJobResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
 }

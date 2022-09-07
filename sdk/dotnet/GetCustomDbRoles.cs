@@ -21,40 +21,39 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
         ///     {
-        ///         var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new Mongodbatlas.DatabaseUserArgs
+        ///         Username = "test-acc-username",
+        ///         Password = "test-acc-password",
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         DatabaseName = "admin",
+        ///         Roles = new[]
         ///         {
-        ///             Username = "test-acc-username",
-        ///             Password = "test-acc-password",
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             DatabaseName = "admin",
-        ///             Roles = 
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///                 {
-        ///                     RoleName = "readWrite",
-        ///                     DatabaseName = "admin",
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///                 {
-        ///                     RoleName = "atlasAdmin",
-        ///                     DatabaseName = "admin",
-        ///                 },
+        ///                 RoleName = "readWrite",
+        ///                 DatabaseName = "admin",
         ///             },
-        ///         });
-        ///         var testCustomDbRoles = Output.Create(Mongodbatlas.GetCustomDbRoles.InvokeAsync(new Mongodbatlas.GetCustomDbRolesArgs
-        ///         {
-        ///             ProjectId = mongodbatlas_custom_db_role.Test.Project_id,
-        ///         }));
-        ///     }
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var testCustomDbRoles = Mongodbatlas.GetCustomDbRoles.Invoke(new()
+        ///     {
+        ///         ProjectId = mongodbatlas_custom_db_role.Test.Project_id,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -72,40 +71,39 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
         ///     {
-        ///         var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new Mongodbatlas.DatabaseUserArgs
+        ///         Username = "test-acc-username",
+        ///         Password = "test-acc-password",
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         DatabaseName = "admin",
+        ///         Roles = new[]
         ///         {
-        ///             Username = "test-acc-username",
-        ///             Password = "test-acc-password",
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             DatabaseName = "admin",
-        ///             Roles = 
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///                 {
-        ///                     RoleName = "readWrite",
-        ///                     DatabaseName = "admin",
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///                 {
-        ///                     RoleName = "atlasAdmin",
-        ///                     DatabaseName = "admin",
-        ///                 },
+        ///                 RoleName = "readWrite",
+        ///                 DatabaseName = "admin",
         ///             },
-        ///         });
-        ///         var testCustomDbRoles = Output.Create(Mongodbatlas.GetCustomDbRoles.InvokeAsync(new Mongodbatlas.GetCustomDbRolesArgs
-        ///         {
-        ///             ProjectId = mongodbatlas_custom_db_role.Test.Project_id,
-        ///         }));
-        ///     }
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
+        ///             {
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
+        ///             },
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var testCustomDbRoles = Mongodbatlas.GetCustomDbRoles.Invoke(new()
+        ///     {
+        ///         ProjectId = mongodbatlas_custom_db_role.Test.Project_id,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -115,7 +113,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCustomDbRolesArgs : Pulumi.InvokeArgs
+    public sealed class GetCustomDbRolesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all custom db roles.
@@ -126,9 +124,10 @@ namespace Pulumi.Mongodbatlas
         public GetCustomDbRolesArgs()
         {
         }
+        public static new GetCustomDbRolesArgs Empty => new GetCustomDbRolesArgs();
     }
 
-    public sealed class GetCustomDbRolesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCustomDbRolesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all custom db roles.
@@ -139,6 +138,7 @@ namespace Pulumi.Mongodbatlas
         public GetCustomDbRolesInvokeArgs()
         {
         }
+        public static new GetCustomDbRolesInvokeArgs Empty => new GetCustomDbRolesInvokeArgs();
     }
 
 

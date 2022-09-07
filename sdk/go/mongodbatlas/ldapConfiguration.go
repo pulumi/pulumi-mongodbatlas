@@ -17,32 +17,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
-// 			OrgId: pulumi.String("ORG ID"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewLdapConfiguration(ctx, "testLdapConfiguration", &mongodbatlas.LdapConfigurationArgs{
-// 			ProjectId:             testProject.ID(),
-// 			AuthenticationEnabled: pulumi.Bool(true),
-// 			Hostname:              pulumi.String("HOSTNAME"),
-// 			Port:                  pulumi.Int(636),
-// 			BindUsername:          pulumi.String("USERNAME"),
-// 			BindPassword:          pulumi.String("PASSWORD"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				OrgId: pulumi.String("ORG ID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewLdapConfiguration(ctx, "testLdapConfiguration", &mongodbatlas.LdapConfigurationArgs{
+//				ProjectId:             testProject.ID(),
+//				AuthenticationEnabled: pulumi.Bool(true),
+//				Hostname:              pulumi.String("HOSTNAME"),
+//				Port:                  pulumi.Int(636),
+//				BindUsername:          pulumi.String("USERNAME"),
+//				BindPassword:          pulumi.String("PASSWORD"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### LDAP With User To DN Mapping
 //
@@ -50,40 +53,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
-// 			OrgId: pulumi.String("ORG ID"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewLdapConfiguration(ctx, "testLdapConfiguration", &mongodbatlas.LdapConfigurationArgs{
-// 			ProjectId:             testProject.ID(),
-// 			AuthenticationEnabled: pulumi.Bool(true),
-// 			Hostname:              pulumi.String("HOSTNAME"),
-// 			Port:                  pulumi.Int(636),
-// 			BindUsername:          pulumi.String("USERNAME"),
-// 			BindPassword:          pulumi.String("PASSWORD"),
-// 			CaCertificate:         pulumi.String("CA CERTIFICATE"),
-// 			AuthzQueryTemplate:    pulumi.String("{USER}?memberOf?base"),
-// 			UserToDnMappings: LdapConfigurationUserToDnMappingArray{
-// 				&LdapConfigurationUserToDnMappingArgs{
-// 					Match:     pulumi.String("(.+)"),
-// 					LdapQuery: pulumi.String("DC=example,DC=com??sub?(userPrincipalName={0})"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				OrgId: pulumi.String("ORG ID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewLdapConfiguration(ctx, "testLdapConfiguration", &mongodbatlas.LdapConfigurationArgs{
+//				ProjectId:             testProject.ID(),
+//				AuthenticationEnabled: pulumi.Bool(true),
+//				Hostname:              pulumi.String("HOSTNAME"),
+//				Port:                  pulumi.Int(636),
+//				BindUsername:          pulumi.String("USERNAME"),
+//				BindPassword:          pulumi.String("PASSWORD"),
+//				CaCertificate:         pulumi.String("CA CERTIFICATE"),
+//				AuthzQueryTemplate:    pulumi.String("{USER}?memberOf?base"),
+//				UserToDnMappings: LdapConfigurationUserToDnMappingArray{
+//					&LdapConfigurationUserToDnMappingArgs{
+//						Match:     pulumi.String("(.+)"),
+//						LdapQuery: pulumi.String("DC=example,DC=com??sub?(userPrincipalName={0})"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -91,10 +97,12 @@ import (
 // LDAP Configuration must be imported using project ID, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/ldapConfiguration:LdapConfiguration test 5d09d6a59ccf6445652a444a
+//
+//	$ pulumi import mongodbatlas:index/ldapConfiguration:LdapConfiguration test 5d09d6a59ccf6445652a444a
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save)
 type LdapConfiguration struct {
 	pulumi.CustomResourceState
 
@@ -301,7 +309,7 @@ func (i *LdapConfiguration) ToLdapConfigurationOutputWithContext(ctx context.Con
 // LdapConfigurationArrayInput is an input type that accepts LdapConfigurationArray and LdapConfigurationArrayOutput values.
 // You can construct a concrete instance of `LdapConfigurationArrayInput` via:
 //
-//          LdapConfigurationArray{ LdapConfigurationArgs{...} }
+//	LdapConfigurationArray{ LdapConfigurationArgs{...} }
 type LdapConfigurationArrayInput interface {
 	pulumi.Input
 
@@ -326,7 +334,7 @@ func (i LdapConfigurationArray) ToLdapConfigurationArrayOutputWithContext(ctx co
 // LdapConfigurationMapInput is an input type that accepts LdapConfigurationMap and LdapConfigurationMapOutput values.
 // You can construct a concrete instance of `LdapConfigurationMapInput` via:
 //
-//          LdapConfigurationMap{ "key": LdapConfigurationArgs{...} }
+//	LdapConfigurationMap{ "key": LdapConfigurationArgs{...} }
 type LdapConfigurationMapInput interface {
 	pulumi.Input
 
@@ -360,6 +368,59 @@ func (o LdapConfigurationOutput) ToLdapConfigurationOutput() LdapConfigurationOu
 
 func (o LdapConfigurationOutput) ToLdapConfigurationOutputWithContext(ctx context.Context) LdapConfigurationOutput {
 	return o
+}
+
+// Specifies whether user authentication with LDAP is enabled.
+func (o LdapConfigurationOutput) AuthenticationEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.BoolOutput { return v.AuthenticationEnabled }).(pulumi.BoolOutput)
+}
+
+// Specifies whether user authorization with LDAP is enabled. You cannot enable user authorization with LDAP without first enabling user authentication with LDAP.
+func (o LdapConfigurationOutput) AuthorizationEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.BoolOutput { return v.AuthorizationEnabled }).(pulumi.BoolOutput)
+}
+
+// An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
+func (o LdapConfigurationOutput) AuthzQueryTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.StringOutput { return v.AuthzQueryTemplate }).(pulumi.StringOutput)
+}
+
+// The password used to authenticate the `bindUsername`.
+func (o LdapConfigurationOutput) BindPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.StringOutput { return v.BindPassword }).(pulumi.StringOutput)
+}
+
+// The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
+func (o LdapConfigurationOutput) BindUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.StringOutput { return v.BindUsername }).(pulumi.StringOutput)
+}
+
+// CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
+func (o LdapConfigurationOutput) CaCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.StringOutput { return v.CaCertificate }).(pulumi.StringOutput)
+}
+
+// The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
+func (o LdapConfigurationOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// The port to which the LDAP server listens for client connections. Default: `636`
+func (o LdapConfigurationOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.IntPtrOutput { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The unique ID for the project to configure LDAP.
+func (o LdapConfigurationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldapQuery` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
+// * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
+// * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+// * `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
+func (o LdapConfigurationOutput) UserToDnMappings() LdapConfigurationUserToDnMappingArrayOutput {
+	return o.ApplyT(func(v *LdapConfiguration) LdapConfigurationUserToDnMappingArrayOutput { return v.UserToDnMappings }).(LdapConfigurationUserToDnMappingArrayOutput)
 }
 
 type LdapConfigurationArrayOutput struct{ *pulumi.OutputState }

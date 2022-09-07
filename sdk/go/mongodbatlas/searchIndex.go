@@ -19,65 +19,126 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
-// 			Analyzer:        pulumi.String("lucene.standard"),
-// 			ClusterName:     pulumi.String("<CLUSTER_NAME>"),
-// 			CollectionName:  pulumi.String("collection_test"),
-// 			Database:        pulumi.String("database_test"),
-// 			MappingsDynamic: pulumi.Bool(true),
-// 			ProjectId:       pulumi.String("<PROJECT_ID>"),
-// 			SearchAnalyzer:  pulumi.String("lucene.standard"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
+//				Analyzer:        pulumi.String("lucene.standard"),
+//				ClusterName:     pulumi.String("<CLUSTER_NAME>"),
+//				CollectionName:  pulumi.String("collection_test"),
+//				Database:        pulumi.String("database_test"),
+//				MappingsDynamic: pulumi.Bool(true),
+//				ProjectId:       pulumi.String("<PROJECT_ID>"),
+//				SearchAnalyzer:  pulumi.String("lucene.standard"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Advanced (with custom analyzers)
 // ```go
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
-// 			ProjectId:       pulumi.String(fmt.Sprintf("%v%v", "%", "[1]s")),
-// 			ClusterName:     pulumi.String(fmt.Sprintf("%v%v", "%", "[2]s")),
-// 			Analyzer:        pulumi.String("lucene.standard"),
-// 			CollectionName:  pulumi.String("collection_test"),
-// 			Database:        pulumi.String("database_test"),
-// 			MappingsDynamic: pulumi.Bool(false),
-// 			MappingsFields:  pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "{\n", "      \"address\": {\n", "        \"type\": \"document\",\n", "        \"fields\": {\n", "          \"city\": {\n", "            \"type\": \"string\",\n", "            \"analyzer\": \"lucene.simple\",\n", "            \"ignoreAbove\": 255\n", "          },\n", "          \"state\": {\n", "            \"type\": \"string\",\n", "            \"analyzer\": \"lucene.english\"\n", "          }\n", "        }\n", "      },\n", "      \"company\": {\n", "        \"type\": \"string\",\n", "        \"analyzer\": \"lucene.whitespace\",\n", "        \"multi\": {\n", "          \"mySecondaryAnalyzer\": {\n", "            \"type\": \"string\",\n", "            \"analyzer\": \"lucene.french\"\n", "          }\n", "        }\n", "      },\n", "      \"employees\": {\n", "        \"type\": \"string\",\n", "        \"analyzer\": \"lucene.standard\"\n", "      }\n", "}\n")),
-// 			SearchAnalyzer:  pulumi.String("lucene.standard"),
-// 			Analyzers: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", " [{\n", " \"name\": \"index_analyzer_test_name\",\n", " \"charFilters\": {\n", "\"type\": \"mapping\",\n", "\"mappings\": {\"\\\\\" : \"/\"}\n", "   	},\n", " \"tokenizer\": {\n", " \"type\": \"nGram\",\n", " \"minGram\": 2,\n", " \"maxGram\": 5\n", "	},\n", " \"tokenFilters\": {\n", "\"type\": \"length\",\n", "\"min\": 20,\n", "\"max\": 33\n", "   	}\n", " }]\n")),
-// 			Synonyms: SearchIndexSynonymArray{
-// 				&SearchIndexSynonymArgs{
-// 					Analyzer:         pulumi.String("lucene.simple"),
-// 					Name:             pulumi.String("synonym_test"),
-// 					SourceCollection: pulumi.String("collection_test"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewSearchIndex(ctx, "test", &mongodbatlas.SearchIndexArgs{
+//				ProjectId:       pulumi.String(fmt.Sprintf("%v[1]s", "%")),
+//				ClusterName:     pulumi.String(fmt.Sprintf("%v[2]s", "%")),
+//				Analyzer:        pulumi.String("lucene.standard"),
+//				CollectionName:  pulumi.String("collection_test"),
+//				Database:        pulumi.String("database_test"),
+//				MappingsDynamic: pulumi.Bool(false),
+//				MappingsFields: pulumi.String(fmt.Sprintf(`{
+//	      "address": {
+//	        "type": "document",
+//	        "fields": {
+//	          "city": {
+//	            "type": "string",
+//	            "analyzer": "lucene.simple",
+//	            "ignoreAbove": 255
+//	          },
+//	          "state": {
+//	            "type": "string",
+//	            "analyzer": "lucene.english"
+//	          }
+//	        }
+//	      },
+//	      "company": {
+//	        "type": "string",
+//	        "analyzer": "lucene.whitespace",
+//	        "multi": {
+//	          "mySecondaryAnalyzer": {
+//	            "type": "string",
+//	            "analyzer": "lucene.french"
+//	          }
+//	        }
+//	      },
+//	      "employees": {
+//	        "type": "string",
+//	        "analyzer": "lucene.standard"
+//	      }
+//	}
+//
+// `)),
+//
+//				SearchAnalyzer: pulumi.String("lucene.standard"),
+//				Analyzers: pulumi.String(fmt.Sprintf(` [{
+//	 "name": "index_analyzer_test_name",
+//	 "charFilters": {
+//
+// "type": "mapping",
+// "mappings": {"\\" : "/"}
+//
+//	   	},
+//	 "tokenizer": {
+//	 "type": "nGram",
+//	 "minGram": 2,
+//	 "maxGram": 5
+//		},
+//	 "tokenFilters": {
+//
+// "type": "length",
+// "min": 20,
+// "max": 33
+//
+//	  	}
+//	}]
+//
+// `)),
+//
+//				Synonyms: SearchIndexSynonymArray{
+//					&SearchIndexSynonymArgs{
+//						Analyzer:         pulumi.String("lucene.simple"),
+//						Name:             pulumi.String("synonym_test"),
+//						SourceCollection: pulumi.String("collection_test"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type SearchIndex struct {
 	pulumi.CustomResourceState
@@ -318,7 +379,7 @@ func (i *SearchIndex) ToSearchIndexOutputWithContext(ctx context.Context) Search
 // SearchIndexArrayInput is an input type that accepts SearchIndexArray and SearchIndexArrayOutput values.
 // You can construct a concrete instance of `SearchIndexArrayInput` via:
 //
-//          SearchIndexArray{ SearchIndexArgs{...} }
+//	SearchIndexArray{ SearchIndexArgs{...} }
 type SearchIndexArrayInput interface {
 	pulumi.Input
 
@@ -343,7 +404,7 @@ func (i SearchIndexArray) ToSearchIndexArrayOutputWithContext(ctx context.Contex
 // SearchIndexMapInput is an input type that accepts SearchIndexMap and SearchIndexMapOutput values.
 // You can construct a concrete instance of `SearchIndexMapInput` via:
 //
-//          SearchIndexMap{ "key": SearchIndexArgs{...} }
+//	SearchIndexMap{ "key": SearchIndexArgs{...} }
 type SearchIndexMapInput interface {
 	pulumi.Input
 
@@ -377,6 +438,75 @@ func (o SearchIndexOutput) ToSearchIndexOutput() SearchIndexOutput {
 
 func (o SearchIndexOutput) ToSearchIndexOutputWithContext(ctx context.Context) SearchIndexOutput {
 	return o
+}
+
+// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
+// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tokenizer-ref) Tokenizer
+// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tokenizer-ref) Tokenizers
+// * [daitchMokotoffSoundex](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-daitchmokotoffsoundex-tf-ref) token filter
+// * [nGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-ngram-tf-ref) token filter
+// * [edgeGram](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-edgegram-tf-ref) token filter
+// * [shingle](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-shingle-tf-ref) token filter
+func (o SearchIndexOutput) Analyzer() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.Analyzer }).(pulumi.StringOutput)
+}
+
+// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+func (o SearchIndexOutput) Analyzers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.Analyzers }).(pulumi.StringPtrOutput)
+}
+
+// The name of the cluster where you want to create the search index within.
+func (o SearchIndexOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Name of the collection the index is on.
+func (o SearchIndexOutput) CollectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.CollectionName }).(pulumi.StringOutput)
+}
+
+// Name of the database the collection is in.
+func (o SearchIndexOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.Database }).(pulumi.StringOutput)
+}
+
+func (o SearchIndexOutput) IndexId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.IndexId }).(pulumi.StringOutput)
+}
+
+// Indicates whether the index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+func (o SearchIndexOutput) MappingsDynamic() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.BoolPtrOutput { return v.MappingsDynamic }).(pulumi.BoolPtrOutput)
+}
+
+// attribute is required when `mappingsDynamic` is true. This field needs to be a JSON string in order to be decoded correctly.
+func (o SearchIndexOutput) MappingsFields() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.MappingsFields }).(pulumi.StringPtrOutput)
+}
+
+// Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref). Name must be unique in this index definition and it can't be an empty string.
+func (o SearchIndexOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the organization or project you want to create the search index within.
+func (o SearchIndexOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+func (o SearchIndexOutput) SearchAnalyzer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.SearchAnalyzer }).(pulumi.StringPtrOutput)
+}
+
+func (o SearchIndexOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Synonyms mapping definition to use in this index.
+func (o SearchIndexOutput) Synonyms() SearchIndexSynonymArrayOutput {
+	return o.ApplyT(func(v *SearchIndex) SearchIndexSynonymArrayOutput { return v.Synonyms }).(SearchIndexSynonymArrayOutput)
 }
 
 type SearchIndexArrayOutput struct{ *pulumi.OutputState }

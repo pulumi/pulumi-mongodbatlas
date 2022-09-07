@@ -15,45 +15,42 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// ### Basic
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.SearchIndex("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.SearchIndex("test", new Mongodbatlas.SearchIndexArgs
-    ///         {
-    ///             Analyzer = "lucene.standard",
-    ///             ClusterName = "&lt;CLUSTER_NAME&gt;",
-    ///             CollectionName = "collection_test",
-    ///             Database = "database_test",
-    ///             MappingsDynamic = true,
-    ///             ProjectId = "&lt;PROJECT_ID&gt;",
-    ///             SearchAnalyzer = "lucene.standard",
-    ///         });
-    ///     }
+    ///         Analyzer = "lucene.standard",
+    ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
+    ///         CollectionName = "collection_test",
+    ///         Database = "database_test",
+    ///         MappingsDynamic = true,
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         SearchAnalyzer = "lucene.standard",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Advanced (with custom analyzers)
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.SearchIndex("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.SearchIndex("test", new Mongodbatlas.SearchIndexArgs
-    ///         {
-    ///             ProjectId = "%[1]s",
-    ///             ClusterName = "%[2]s",
-    ///             Analyzer = "lucene.standard",
-    ///             CollectionName = "collection_test",
-    ///             Database = "database_test",
-    ///             MappingsDynamic = false,
-    ///             MappingsFields = @"{
+    ///         ProjectId = "%[1]s",
+    ///         ClusterName = "%[2]s",
+    ///         Analyzer = "lucene.standard",
+    ///         CollectionName = "collection_test",
+    ///         Database = "database_test",
+    ///         MappingsDynamic = false,
+    ///         MappingsFields = @"{
     ///       ""address"": {
     ///         ""type"": ""document"",
     ///         ""fields"": {
@@ -84,8 +81,8 @@ namespace Pulumi.Mongodbatlas
     ///       }
     /// }
     /// ",
-    ///             SearchAnalyzer = "lucene.standard",
-    ///             Analyzers = @" [{
+    ///         SearchAnalyzer = "lucene.standard",
+    ///         Analyzers = @" [{
     ///  ""name"": ""index_analyzer_test_name"",
     ///  ""charFilters"": {
     /// ""type"": ""mapping"",
@@ -103,23 +100,22 @@ namespace Pulumi.Mongodbatlas
     ///    	}
     ///  }]
     /// ",
-    ///             Synonyms = 
+    ///         Synonyms = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.SearchIndexSynonymArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.SearchIndexSynonymArgs
-    ///                 {
-    ///                     Analyzer = "lucene.simple",
-    ///                     Name = "synonym_test",
-    ///                     SourceCollection = "collection_test",
-    ///                 },
+    ///                 Analyzer = "lucene.simple",
+    ///                 Name = "synonym_test",
+    ///                 SourceCollection = "collection_test",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/searchIndex:SearchIndex")]
-    public partial class SearchIndex : Pulumi.CustomResource
+    public partial class SearchIndex : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
@@ -243,7 +239,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class SearchIndexArgs : Pulumi.ResourceArgs
+    public sealed class SearchIndexArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
@@ -329,9 +325,10 @@ namespace Pulumi.Mongodbatlas
         public SearchIndexArgs()
         {
         }
+        public static new SearchIndexArgs Empty => new SearchIndexArgs();
     }
 
-    public sealed class SearchIndexState : Pulumi.ResourceArgs
+    public sealed class SearchIndexState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
@@ -420,5 +417,6 @@ namespace Pulumi.Mongodbatlas
         public SearchIndexState()
         {
         }
+        public static new SearchIndexState Empty => new SearchIndexState();
     }
 }

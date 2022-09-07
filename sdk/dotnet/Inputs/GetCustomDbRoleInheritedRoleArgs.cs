@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class GetCustomDbRoleInheritedRoleInputArgs : Pulumi.ResourceArgs
+    public sealed class GetCustomDbRoleInheritedRoleInputArgs : global::Pulumi.ResourceArgs
     {
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;
@@ -24,5 +24,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public GetCustomDbRoleInheritedRoleInputArgs()
         {
         }
+        public static new GetCustomDbRoleInheritedRoleInputArgs Empty => new GetCustomDbRoleInheritedRoleInputArgs();
     }
 }

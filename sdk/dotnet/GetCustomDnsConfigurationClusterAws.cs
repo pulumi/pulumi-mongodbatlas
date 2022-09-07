@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCustomDnsConfigurationClusterAwsArgs : Pulumi.InvokeArgs
+    public sealed class GetCustomDnsConfigurationClusterAwsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier for the project.
@@ -40,9 +40,10 @@ namespace Pulumi.Mongodbatlas
         public GetCustomDnsConfigurationClusterAwsArgs()
         {
         }
+        public static new GetCustomDnsConfigurationClusterAwsArgs Empty => new GetCustomDnsConfigurationClusterAwsArgs();
     }
 
-    public sealed class GetCustomDnsConfigurationClusterAwsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCustomDnsConfigurationClusterAwsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier for the project.
@@ -53,6 +54,7 @@ namespace Pulumi.Mongodbatlas
         public GetCustomDnsConfigurationClusterAwsInvokeArgs()
         {
         }
+        public static new GetCustomDnsConfigurationClusterAwsInvokeArgs Empty => new GetCustomDnsConfigurationClusterAwsInvokeArgs();
     }
 
 

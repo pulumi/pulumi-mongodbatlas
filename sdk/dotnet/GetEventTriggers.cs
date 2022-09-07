@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetEventTriggersArgs : Pulumi.InvokeArgs
+    public sealed class GetEventTriggersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ObjectID of your application.
@@ -42,9 +42,10 @@ namespace Pulumi.Mongodbatlas
         public GetEventTriggersArgs()
         {
         }
+        public static new GetEventTriggersArgs Empty => new GetEventTriggersArgs();
     }
 
-    public sealed class GetEventTriggersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetEventTriggersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ObjectID of your application.
@@ -61,6 +62,7 @@ namespace Pulumi.Mongodbatlas
         public GetEventTriggersInvokeArgs()
         {
         }
+        public static new GetEventTriggersInvokeArgs Empty => new GetEventTriggersInvokeArgs();
     }
 
 

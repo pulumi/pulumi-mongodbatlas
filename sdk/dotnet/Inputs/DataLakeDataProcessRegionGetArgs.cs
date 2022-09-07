@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class DataLakeDataProcessRegionGetArgs : Pulumi.ResourceArgs
+    public sealed class DataLakeDataProcessRegionGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("cloudProvider", required: true)]
         public Input<string> CloudProvider { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public DataLakeDataProcessRegionGetArgs()
         {
         }
+        public static new DataLakeDataProcessRegionGetArgs Empty => new DataLakeDataProcessRegionGetArgs();
     }
 }

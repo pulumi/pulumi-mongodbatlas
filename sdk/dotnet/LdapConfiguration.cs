@@ -13,66 +13,64 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testProject = new Mongodbatlas.Project("testProject", new()
     ///     {
-    ///         var testProject = new Mongodbatlas.Project("testProject", new Mongodbatlas.ProjectArgs
-    ///         {
-    ///             OrgId = "ORG ID",
-    ///         });
-    ///         var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("testLdapConfiguration", new Mongodbatlas.LdapConfigurationArgs
-    ///         {
-    ///             ProjectId = testProject.Id,
-    ///             AuthenticationEnabled = true,
-    ///             Hostname = "HOSTNAME",
-    ///             Port = 636,
-    ///             BindUsername = "USERNAME",
-    ///             BindPassword = "PASSWORD",
-    ///         });
-    ///     }
+    ///         OrgId = "ORG ID",
+    ///     });
     /// 
-    /// }
+    ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("testLdapConfiguration", new()
+    ///     {
+    ///         ProjectId = testProject.Id,
+    ///         AuthenticationEnabled = true,
+    ///         Hostname = "HOSTNAME",
+    ///         Port = 636,
+    ///         BindUsername = "USERNAME",
+    ///         BindPassword = "PASSWORD",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### LDAP With User To DN Mapping
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testProject = new Mongodbatlas.Project("testProject", new()
     ///     {
-    ///         var testProject = new Mongodbatlas.Project("testProject", new Mongodbatlas.ProjectArgs
-    ///         {
-    ///             OrgId = "ORG ID",
-    ///         });
-    ///         var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("testLdapConfiguration", new Mongodbatlas.LdapConfigurationArgs
-    ///         {
-    ///             ProjectId = testProject.Id,
-    ///             AuthenticationEnabled = true,
-    ///             Hostname = "HOSTNAME",
-    ///             Port = 636,
-    ///             BindUsername = "USERNAME",
-    ///             BindPassword = "PASSWORD",
-    ///             CaCertificate = "CA CERTIFICATE",
-    ///             AuthzQueryTemplate = "{USER}?memberOf?base",
-    ///             UserToDnMappings = 
-    ///             {
-    ///                 new Mongodbatlas.Inputs.LdapConfigurationUserToDnMappingArgs
-    ///                 {
-    ///                     Match = "(.+)",
-    ///                     LdapQuery = "DC=example,DC=com??sub?(userPrincipalName={0})",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         OrgId = "ORG ID",
+    ///     });
     /// 
-    /// }
+    ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("testLdapConfiguration", new()
+    ///     {
+    ///         ProjectId = testProject.Id,
+    ///         AuthenticationEnabled = true,
+    ///         Hostname = "HOSTNAME",
+    ///         Port = 636,
+    ///         BindUsername = "USERNAME",
+    ///         BindPassword = "PASSWORD",
+    ///         CaCertificate = "CA CERTIFICATE",
+    ///         AuthzQueryTemplate = "{USER}?memberOf?base",
+    ///         UserToDnMappings = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.LdapConfigurationUserToDnMappingArgs
+    ///             {
+    ///                 Match = "(.+)",
+    ///                 LdapQuery = "DC=example,DC=com??sub?(userPrincipalName={0})",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -86,7 +84,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/ldapConfiguration:LdapConfiguration")]
-    public partial class LdapConfiguration : Pulumi.CustomResource
+    public partial class LdapConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Specifies whether user authentication with LDAP is enabled.
@@ -195,7 +193,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class LdapConfigurationArgs : Pulumi.ResourceArgs
+    public sealed class LdapConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies whether user authentication with LDAP is enabled.
@@ -269,9 +267,10 @@ namespace Pulumi.Mongodbatlas
         public LdapConfigurationArgs()
         {
         }
+        public static new LdapConfigurationArgs Empty => new LdapConfigurationArgs();
     }
 
-    public sealed class LdapConfigurationState : Pulumi.ResourceArgs
+    public sealed class LdapConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies whether user authentication with LDAP is enabled.
@@ -345,5 +344,6 @@ namespace Pulumi.Mongodbatlas
         public LdapConfigurationState()
         {
         }
+        public static new LdapConfigurationState Empty => new LdapConfigurationState();
     }
 }

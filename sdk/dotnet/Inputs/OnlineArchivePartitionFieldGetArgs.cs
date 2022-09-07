@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class OnlineArchivePartitionFieldGetArgs : Pulumi.ResourceArgs
+    public sealed class OnlineArchivePartitionFieldGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("fieldName", required: true)]
         public Input<string> FieldName { get; set; } = null!;
@@ -24,5 +24,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public OnlineArchivePartitionFieldGetArgs()
         {
         }
+        public static new OnlineArchivePartitionFieldGetArgs Empty => new OnlineArchivePartitionFieldGetArgs();
     }
 }

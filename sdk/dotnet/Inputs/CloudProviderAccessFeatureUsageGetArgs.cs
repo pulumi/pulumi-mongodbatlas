@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudProviderAccessFeatureUsageGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessFeatureUsageGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("featureId")]
         private InputMap<object>? _featureId;
@@ -26,5 +26,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudProviderAccessFeatureUsageGetArgs()
         {
         }
+        public static new CloudProviderAccessFeatureUsageGetArgs Empty => new CloudProviderAccessFeatureUsageGetArgs();
     }
 }

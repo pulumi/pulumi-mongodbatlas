@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
         ///     Describe an Advanced Cluster.
         /// --
         /// 
-        /// # mongodbatlas.AdvancedCluster
+        /// # Data Source: mongodbatlas.AdvancedCluster
         /// 
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
         /// 
@@ -44,7 +44,7 @@ namespace Pulumi.Mongodbatlas
         ///     Describe an Advanced Cluster.
         /// --
         /// 
-        /// # mongodbatlas.AdvancedCluster
+        /// # Data Source: mongodbatlas.AdvancedCluster
         /// 
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
         /// 
@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetAdvancedClusterArgs : Pulumi.InvokeArgs
+    public sealed class GetAdvancedClusterArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
@@ -82,9 +82,10 @@ namespace Pulumi.Mongodbatlas
         public GetAdvancedClusterArgs()
         {
         }
+        public static new GetAdvancedClusterArgs Empty => new GetAdvancedClusterArgs();
     }
 
-    public sealed class GetAdvancedClusterInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAdvancedClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
@@ -107,6 +108,7 @@ namespace Pulumi.Mongodbatlas
         public GetAdvancedClusterInvokeArgs()
         {
         }
+        public static new GetAdvancedClusterInvokeArgs Empty => new GetAdvancedClusterInvokeArgs();
     }
 
 

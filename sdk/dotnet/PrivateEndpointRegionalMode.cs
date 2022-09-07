@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
     ///  See detailed information for arguments and attributes**Private Endpoints** [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode")]
-    public partial class PrivateEndpointRegionalMode : Pulumi.CustomResource
+    public partial class PrivateEndpointRegionalMode : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class PrivateEndpointRegionalModeArgs : Pulumi.ResourceArgs
+    public sealed class PrivateEndpointRegionalModeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
@@ -102,9 +102,10 @@ namespace Pulumi.Mongodbatlas
         public PrivateEndpointRegionalModeArgs()
         {
         }
+        public static new PrivateEndpointRegionalModeArgs Empty => new PrivateEndpointRegionalModeArgs();
     }
 
-    public sealed class PrivateEndpointRegionalModeState : Pulumi.ResourceArgs
+    public sealed class PrivateEndpointRegionalModeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
@@ -124,5 +125,6 @@ namespace Pulumi.Mongodbatlas
         public PrivateEndpointRegionalModeState()
         {
         }
+        public static new PrivateEndpointRegionalModeState Empty => new PrivateEndpointRegionalModeState();
     }
 }

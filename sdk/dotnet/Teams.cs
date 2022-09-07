@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     [MongodbatlasResourceType("mongodbatlas:index/teams:Teams")]
-    public partial class Teams : Pulumi.CustomResource
+    public partial class Teams : global::Pulumi.CustomResource
     {
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -68,7 +68,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class TeamsArgs : Pulumi.ResourceArgs
+    public sealed class TeamsArgs : global::Pulumi.ResourceArgs
     {
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -87,9 +87,10 @@ namespace Pulumi.Mongodbatlas
         public TeamsArgs()
         {
         }
+        public static new TeamsArgs Empty => new TeamsArgs();
     }
 
-    public sealed class TeamsState : Pulumi.ResourceArgs
+    public sealed class TeamsState : global::Pulumi.ResourceArgs
     {
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -111,5 +112,6 @@ namespace Pulumi.Mongodbatlas
         public TeamsState()
         {
         }
+        public static new TeamsState Empty => new TeamsState();
     }
 }

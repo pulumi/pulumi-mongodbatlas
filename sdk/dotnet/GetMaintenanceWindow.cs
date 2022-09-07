@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetMaintenanceWindowArgs : Pulumi.InvokeArgs
+    public sealed class GetMaintenanceWindowArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique identifier of the project for the Maintenance Window.
@@ -40,9 +40,10 @@ namespace Pulumi.Mongodbatlas
         public GetMaintenanceWindowArgs()
         {
         }
+        public static new GetMaintenanceWindowArgs Empty => new GetMaintenanceWindowArgs();
     }
 
-    public sealed class GetMaintenanceWindowInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetMaintenanceWindowInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique identifier of the project for the Maintenance Window.
@@ -53,6 +54,7 @@ namespace Pulumi.Mongodbatlas
         public GetMaintenanceWindowInvokeArgs()
         {
         }
+        public static new GetMaintenanceWindowInvokeArgs Empty => new GetMaintenanceWindowInvokeArgs();
     }
 
 

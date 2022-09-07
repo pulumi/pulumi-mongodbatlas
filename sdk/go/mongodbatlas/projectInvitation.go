@@ -18,51 +18,57 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Roles: pulumi.StringArray{
-// 				pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
-// 			},
-// 			Username: pulumi.String("test-acc-username"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//				},
+//				Username: pulumi.String("test-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Roles: pulumi.StringArray{
-// 				pulumi.String("GROUP_READ_ONLY"),
-// 				pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
-// 			},
-// 			Username: pulumi.String("test-acc-username"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProjectInvitation(ctx, "test", &mongodbatlas.ProjectInvitationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("GROUP_READ_ONLY"),
+//					pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
+//				},
+//				Username: pulumi.String("test-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -70,7 +76,9 @@ import (
 // ~> **IMPORTANT:** A project invitation can **not** be imported once it has been accepted. Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+//
+//	$ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+//
 // ```
 type ProjectInvitation struct {
 	pulumi.CustomResourceState
@@ -241,7 +249,7 @@ func (i *ProjectInvitation) ToProjectInvitationOutputWithContext(ctx context.Con
 // ProjectInvitationArrayInput is an input type that accepts ProjectInvitationArray and ProjectInvitationArrayOutput values.
 // You can construct a concrete instance of `ProjectInvitationArrayInput` via:
 //
-//          ProjectInvitationArray{ ProjectInvitationArgs{...} }
+//	ProjectInvitationArray{ ProjectInvitationArgs{...} }
 type ProjectInvitationArrayInput interface {
 	pulumi.Input
 
@@ -266,7 +274,7 @@ func (i ProjectInvitationArray) ToProjectInvitationArrayOutputWithContext(ctx co
 // ProjectInvitationMapInput is an input type that accepts ProjectInvitationMap and ProjectInvitationMapOutput values.
 // You can construct a concrete instance of `ProjectInvitationMapInput` via:
 //
-//          ProjectInvitationMap{ "key": ProjectInvitationArgs{...} }
+//	ProjectInvitationMap{ "key": ProjectInvitationArgs{...} }
 type ProjectInvitationMapInput interface {
 	pulumi.Input
 
@@ -300,6 +308,47 @@ func (o ProjectInvitationOutput) ToProjectInvitationOutput() ProjectInvitationOu
 
 func (o ProjectInvitationOutput) ToProjectInvitationOutputWithContext(ctx context.Context) ProjectInvitationOutput {
 	return o
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
+func (o ProjectInvitationOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
+func (o ProjectInvitationOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
+func (o ProjectInvitationOutput) InvitationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.InvitationId }).(pulumi.StringOutput)
+}
+
+// Atlas user who invited `username` to the project.
+func (o ProjectInvitationOutput) InviterUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.InviterUsername }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+func (o ProjectInvitationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
+// * GROUP_OWNER
+// * GROUP_CLUSTER_MANAGER
+// * GROUP_READ_ONLY
+// * GROUP_DATA_ACCESS_ADMIN
+// * GROUP_DATA_ACCESS_READ_WRITE
+// * GROUP_DATA_ACCESS_READ_ONLY
+func (o ProjectInvitationOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringArrayOutput { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+// Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
+func (o ProjectInvitationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
 type ProjectInvitationArrayOutput struct{ *pulumi.OutputState }

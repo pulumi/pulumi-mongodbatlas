@@ -22,22 +22,20 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Mongodbatlas.GetSearchIndex.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Mongodbatlas.GetSearchIndex.InvokeAsync(new Mongodbatlas.GetSearchIndexArgs
-        ///         {
-        ///             ClusterName = "&lt;CLUSTER_NAME&gt;",
-        ///             IndexId = "&lt;INDEX_ID",
-        ///             ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         }));
-        ///     }
+        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
+        ///         IndexId = "&lt;INDEX_ID",
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -56,22 +54,20 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Mongodbatlas.GetSearchIndex.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Mongodbatlas.GetSearchIndex.InvokeAsync(new Mongodbatlas.GetSearchIndexArgs
-        ///         {
-        ///             ClusterName = "&lt;CLUSTER_NAME&gt;",
-        ///             IndexId = "&lt;INDEX_ID",
-        ///             ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         }));
-        ///     }
+        ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
+        ///         IndexId = "&lt;INDEX_ID",
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -81,7 +77,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetSearchIndexArgs : Pulumi.InvokeArgs
+    public sealed class GetSearchIndexArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
@@ -155,9 +151,10 @@ namespace Pulumi.Mongodbatlas
         public GetSearchIndexArgs()
         {
         }
+        public static new GetSearchIndexArgs Empty => new GetSearchIndexArgs();
     }
 
-    public sealed class GetSearchIndexInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetSearchIndexInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
@@ -231,6 +228,7 @@ namespace Pulumi.Mongodbatlas
         public GetSearchIndexInvokeArgs()
         {
         }
+        public static new GetSearchIndexInvokeArgs Empty => new GetSearchIndexInvokeArgs();
     }
 
 

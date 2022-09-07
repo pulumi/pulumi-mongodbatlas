@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class ClusterConnectionStringPrivateEndpointGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterConnectionStringPrivateEndpointGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("connectionString")]
         public Input<string>? ConnectionString { get; set; }
@@ -32,5 +32,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public ClusterConnectionStringPrivateEndpointGetArgs()
         {
         }
+        public static new ClusterConnectionStringPrivateEndpointGetArgs Empty => new ClusterConnectionStringPrivateEndpointGetArgs();
     }
 }

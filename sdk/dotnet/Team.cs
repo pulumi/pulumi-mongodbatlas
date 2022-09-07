@@ -21,26 +21,24 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.Teams("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.Teams("test", new Mongodbatlas.TeamsArgs
+    ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
+    ///         Usernames = new[]
     ///         {
-    ///             OrgId = "&lt;ORGANIZATION-ID&gt;",
-    ///             Usernames = 
-    ///             {
-    ///                 "user1@email.com",
-    ///                 "user2@email.com",
-    ///                 "user3@email.com",
-    ///             },
-    ///         });
-    ///     }
+    ///             "user1@email.com",
+    ///             "user2@email.com",
+    ///             "user3@email.com",
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -54,7 +52,7 @@ namespace Pulumi.Mongodbatlas
     ///  See detailed information for arguments and attributes[MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/team:Team")]
-    public partial class Team : Pulumi.CustomResource
+    public partial class Team : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the team you want to create.
@@ -124,7 +122,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class TeamArgs : Pulumi.ResourceArgs
+    public sealed class TeamArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the team you want to create.
@@ -153,9 +151,10 @@ namespace Pulumi.Mongodbatlas
         public TeamArgs()
         {
         }
+        public static new TeamArgs Empty => new TeamArgs();
     }
 
-    public sealed class TeamState : Pulumi.ResourceArgs
+    public sealed class TeamState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the team you want to create.
@@ -190,5 +189,6 @@ namespace Pulumi.Mongodbatlas
         public TeamState()
         {
         }
+        public static new TeamState Empty => new TeamState();
     }
 }

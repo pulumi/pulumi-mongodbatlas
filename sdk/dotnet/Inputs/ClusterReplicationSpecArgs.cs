@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class ClusterReplicationSpecArgs : Pulumi.ResourceArgs
+    public sealed class ClusterReplicationSpecArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifer of the replication document for a zone in a Global Cluster.
@@ -45,5 +45,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public ClusterReplicationSpecArgs()
         {
         }
+        public static new ClusterReplicationSpecArgs Empty => new ClusterReplicationSpecArgs();
     }
 }

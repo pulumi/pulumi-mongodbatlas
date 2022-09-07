@@ -13,24 +13,22 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
     ///     {
-    ///         var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new Mongodbatlas.ThirdPartyIntegrationArgs
-    ///         {
-    ///             ApiToken = "&lt;API-TOKEN&gt;",
-    ///             FlowName = "&lt;FLOW-NAME&gt;",
-    ///             OrgName = "&lt;ORG-NAME&gt;",
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             Type = "FLOWDOCK",
-    ///         });
-    ///     }
+    ///         ApiToken = "&lt;API-TOKEN&gt;",
+    ///         FlowName = "&lt;FLOW-NAME&gt;",
+    ///         OrgName = "&lt;ORG-NAME&gt;",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Type = "FLOWDOCK",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +42,7 @@ namespace Pulumi.Mongodbatlas
     ///  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-create/) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration")]
-    public partial class ThirdPartyIntegration : Pulumi.CustomResource
+    public partial class ThirdPartyIntegration : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Unique identifier of your New Relic account.
@@ -236,7 +234,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class ThirdPartyIntegrationArgs : Pulumi.ResourceArgs
+    public sealed class ThirdPartyIntegrationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifier of your New Relic account.
@@ -387,9 +385,10 @@ namespace Pulumi.Mongodbatlas
         public ThirdPartyIntegrationArgs()
         {
         }
+        public static new ThirdPartyIntegrationArgs Empty => new ThirdPartyIntegrationArgs();
     }
 
-    public sealed class ThirdPartyIntegrationState : Pulumi.ResourceArgs
+    public sealed class ThirdPartyIntegrationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifier of your New Relic account.
@@ -540,5 +539,6 @@ namespace Pulumi.Mongodbatlas
         public ThirdPartyIntegrationState()
         {
         }
+        public static new ThirdPartyIntegrationState Empty => new ThirdPartyIntegrationState();
     }
 }

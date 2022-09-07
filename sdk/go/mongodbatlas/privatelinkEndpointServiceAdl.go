@@ -19,25 +19,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewPrivatelinkEndpointServiceAdl(ctx, "adlTest", &mongodbatlas.PrivatelinkEndpointServiceAdlArgs{
-// 			Comment:      pulumi.String("comments for private link endpoint adl"),
-// 			EndpointId:   pulumi.String("<ENDPOINT_ID>"),
-// 			ProjectId:    pulumi.String("<PROJECT_ID>"),
-// 			ProviderName: pulumi.String("AWS"),
-// 			Type:         pulumi.String("DATA_LAKE"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewPrivatelinkEndpointServiceAdl(ctx, "adlTest", &mongodbatlas.PrivatelinkEndpointServiceAdlArgs{
+//				Comment:      pulumi.String("comments for private link endpoint adl"),
+//				EndpointId:   pulumi.String("<ENDPOINT_ID>"),
+//				ProjectId:    pulumi.String("<PROJECT_ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//				Type:         pulumi.String("DATA_LAKE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -45,10 +48,12 @@ import (
 // ADL privatelink endpoint can be imported using project ID and endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl test 1112222b3bf99403840e8934--vpce-jjg5e24qp93513h03
+//
+//	$ pulumi import mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl test 1112222b3bf99403840e8934--vpce-jjg5e24qp93513h03
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API - DataLake](https://docs.mongodb.com/datalake/reference/api/datalakes-api/)
+//	For more information see[MongoDB Atlas API - DataLake](https://docs.mongodb.com/datalake/reference/api/datalakes-api/)
 //
 // and [MongoDB Atlas API - Online Archive](https://docs.atlas.mongodb.com/reference/api/online-archive/) Documentation.
 type PrivatelinkEndpointServiceAdl struct {
@@ -189,7 +194,7 @@ func (i *PrivatelinkEndpointServiceAdl) ToPrivatelinkEndpointServiceAdlOutputWit
 // PrivatelinkEndpointServiceAdlArrayInput is an input type that accepts PrivatelinkEndpointServiceAdlArray and PrivatelinkEndpointServiceAdlArrayOutput values.
 // You can construct a concrete instance of `PrivatelinkEndpointServiceAdlArrayInput` via:
 //
-//          PrivatelinkEndpointServiceAdlArray{ PrivatelinkEndpointServiceAdlArgs{...} }
+//	PrivatelinkEndpointServiceAdlArray{ PrivatelinkEndpointServiceAdlArgs{...} }
 type PrivatelinkEndpointServiceAdlArrayInput interface {
 	pulumi.Input
 
@@ -214,7 +219,7 @@ func (i PrivatelinkEndpointServiceAdlArray) ToPrivatelinkEndpointServiceAdlArray
 // PrivatelinkEndpointServiceAdlMapInput is an input type that accepts PrivatelinkEndpointServiceAdlMap and PrivatelinkEndpointServiceAdlMapOutput values.
 // You can construct a concrete instance of `PrivatelinkEndpointServiceAdlMapInput` via:
 //
-//          PrivatelinkEndpointServiceAdlMap{ "key": PrivatelinkEndpointServiceAdlArgs{...} }
+//	PrivatelinkEndpointServiceAdlMap{ "key": PrivatelinkEndpointServiceAdlArgs{...} }
 type PrivatelinkEndpointServiceAdlMapInput interface {
 	pulumi.Input
 
@@ -248,6 +253,31 @@ func (o PrivatelinkEndpointServiceAdlOutput) ToPrivatelinkEndpointServiceAdlOutp
 
 func (o PrivatelinkEndpointServiceAdlOutput) ToPrivatelinkEndpointServiceAdlOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceAdlOutput {
 	return o
+}
+
+// Human-readable string to associate with this private endpoint.
+func (o PrivatelinkEndpointServiceAdlOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceAdl) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+// Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
+func (o PrivatelinkEndpointServiceAdlOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceAdl) pulumi.StringOutput { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// Unique 24-digit hexadecimal string that identifies the project.
+func (o PrivatelinkEndpointServiceAdlOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceAdl) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the cloud provider for this endpoint. Atlas supports AWS only. If empty, defaults to AWS.
+func (o PrivatelinkEndpointServiceAdlOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceAdl) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the type of resource to associate with this private endpoint. Atlas supports `DATA_LAKE` only. If empty, defaults to `DATA_LAKE`.
+func (o PrivatelinkEndpointServiceAdlOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceAdl) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type PrivatelinkEndpointServiceAdlArrayOutput struct{ *pulumi.OutputState }

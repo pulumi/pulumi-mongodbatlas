@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class FederatedSettingsOrgRoleMappingRoleAssignmentGetArgs : Pulumi.ResourceArgs
+    public sealed class FederatedSettingsOrgRoleMappingRoleAssignmentGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifier of the project to which you want the role mapping to apply.
@@ -39,5 +39,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public FederatedSettingsOrgRoleMappingRoleAssignmentGetArgs()
         {
         }
+        public static new FederatedSettingsOrgRoleMappingRoleAssignmentGetArgs Empty => new FederatedSettingsOrgRoleMappingRoleAssignmentGetArgs();
     }
 }

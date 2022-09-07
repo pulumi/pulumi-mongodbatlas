@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudProviderAccessSetupAwsConfigArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessSetupAwsConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("atlasAssumedRoleExternalId")]
         public Input<string>? AtlasAssumedRoleExternalId { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudProviderAccessSetupAwsConfigArgs()
         {
         }
+        public static new CloudProviderAccessSetupAwsConfigArgs Empty => new CloudProviderAccessSetupAwsConfigArgs();
     }
 }

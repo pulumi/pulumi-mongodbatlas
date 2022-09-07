@@ -17,144 +17,136 @@ namespace Pulumi.Mongodbatlas
     /// ### S
     /// ### Example Usage: Database Trigger with Function
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.EventTrigger("test", new Mongodbatlas.EventTriggerArgs
+    ///         ProjectId = "PROJECT ID",
+    ///         AppId = "APPLICATION ID",
+    ///         Type = "DATABASE",
+    ///         FunctionId = "FUNCTION ID",
+    ///         Disabled = false,
+    ///         ConfigOperationTypes = new[]
     ///         {
-    ///             ProjectId = "PROJECT ID",
-    ///             AppId = "APPLICATION ID",
-    ///             Type = "DATABASE",
-    ///             FunctionId = "FUNCTION ID",
-    ///             Disabled = false,
-    ///             ConfigOperationTypes = 
-    ///             {
-    ///                 "INSERT",
-    ///                 "UPDATE",
-    ///             },
-    ///             ConfigDatabase = "DATABASE NAME",
-    ///             ConfigCollection = "COLLECTION NAME",
-    ///             ConfigServiceId = "SERVICE ID",
-    ///             ConfigMatch = @"{
+    ///             "INSERT",
+    ///             "UPDATE",
+    ///         },
+    ///         ConfigDatabase = "DATABASE NAME",
+    ///         ConfigCollection = "COLLECTION NAME",
+    ///         ConfigServiceId = "SERVICE ID",
+    ///         ConfigMatch = @"{
     ///   ""updateDescription.updatedFields"": {
     ///     ""status"": ""blocked""
     ///   }
     /// }
     /// ",
-    ///             ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
-    ///             ConfigFullDocument = false,
-    ///             ConfigFullDocumentBefore = false,
-    ///             EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
+    ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigFullDocument = false,
+    ///         ConfigFullDocumentBefore = false,
+    ///         EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
+    ///         {
+    ///             AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
     ///             {
-    ///                 AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
-    ///                 {
-    ///                     ConfigAccountId = "AWS ACCOUNT ID",
-    ///                     ConfigRegion = "AWS REGIOn",
-    ///                 },
+    ///                 ConfigAccountId = "AWS ACCOUNT ID",
+    ///                 ConfigRegion = "AWS REGIOn",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Example Usage: Database Trigger with EventBridge
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.EventTrigger("test", new Mongodbatlas.EventTriggerArgs
+    ///         AppId = "APPLICATION ID",
+    ///         ConfigCollection = "COLLECTION NAME",
+    ///         ConfigDatabase = "DATABASE NAME",
+    ///         ConfigFullDocument = false,
+    ///         ConfigFullDocumentBefore = false,
+    ///         ConfigMatch = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigOperationType = "LOGIN",
+    ///         ConfigOperationTypes = new[]
     ///         {
-    ///             AppId = "APPLICATION ID",
-    ///             ConfigCollection = "COLLECTION NAME",
-    ///             ConfigDatabase = "DATABASE NAME",
-    ///             ConfigFullDocument = false,
-    ///             ConfigFullDocumentBefore = false,
-    ///             ConfigMatch = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
-    ///             ConfigOperationType = "LOGIN",
-    ///             ConfigOperationTypes = 
+    ///             "INSERT",
+    ///             "UPDATE",
+    ///         },
+    ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigProviders = new[]
+    ///         {
+    ///             "anon-user",
+    ///         },
+    ///         ConfigSchedule = "*",
+    ///         ConfigServiceId = "1",
+    ///         Disabled = false,
+    ///         EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
+    ///         {
+    ///             AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
     ///             {
-    ///                 "INSERT",
-    ///                 "UPDATE",
+    ///                 ConfigAccountId = "AWS ACCOUNT ID",
+    ///                 ConfigRegion = "AWS REGIOn",
     ///             },
-    ///             ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
-    ///             ConfigProviders = 
-    ///             {
-    ///                 "anon-user",
-    ///             },
-    ///             ConfigSchedule = "*",
-    ///             ConfigServiceId = "1",
-    ///             Disabled = false,
-    ///             EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
-    ///             {
-    ///                 AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
-    ///                 {
-    ///                     ConfigAccountId = "AWS ACCOUNT ID",
-    ///                     ConfigRegion = "AWS REGIOn",
-    ///                 },
-    ///             },
-    ///             ProjectId = "PROJECT ID",
-    ///             Type = "DATABASE",
-    ///             Unordered = false,
-    ///         });
-    ///     }
+    ///         },
+    ///         ProjectId = "PROJECT ID",
+    ///         Type = "DATABASE",
+    ///         Unordered = false,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Example Usage: Authentication Trigger
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.EventTrigger("test", new Mongodbatlas.EventTriggerArgs
+    ///         AppId = "APPLICATION ID",
+    ///         ConfigOperationType = "LOGIN",
+    ///         ConfigProviders = new[]
     ///         {
-    ///             AppId = "APPLICATION ID",
-    ///             ConfigOperationType = "LOGIN",
-    ///             ConfigProviders = 
-    ///             {
-    ///                 "anon-user",
-    ///             },
-    ///             Disabled = false,
-    ///             FunctionId = "1",
-    ///             ProjectId = "PROJECT ID",
-    ///             Type = "AUTHENTICATION",
-    ///         });
-    ///     }
+    ///             "anon-user",
+    ///         },
+    ///         Disabled = false,
+    ///         FunctionId = "1",
+    ///         ProjectId = "PROJECT ID",
+    ///         Type = "AUTHENTICATION",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Example Usage: Scheduled Trigger
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.EventTrigger("test", new Mongodbatlas.EventTriggerArgs
-    ///         {
-    ///             AppId = "APPLICATION ID",
-    ///             ConfigSchedule = "*",
-    ///             Disabled = false,
-    ///             FunctionId = "1",
-    ///             ProjectId = "PROJECT ID",
-    ///             Type = "SCHEDULED",
-    ///         });
-    ///     }
+    ///         AppId = "APPLICATION ID",
+    ///         ConfigSchedule = "*",
+    ///         Disabled = false,
+    ///         FunctionId = "1",
+    ///         ProjectId = "PROJECT ID",
+    ///         Type = "SCHEDULED",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -166,7 +158,7 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/eventTrigger:EventTrigger")]
-    public partial class EventTrigger : Pulumi.CustomResource
+    public partial class EventTrigger : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ObjectID of your application.
@@ -340,7 +332,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class EventTriggerArgs : Pulumi.ResourceArgs
+    public sealed class EventTriggerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ObjectID of your application.
@@ -470,9 +462,10 @@ namespace Pulumi.Mongodbatlas
         public EventTriggerArgs()
         {
         }
+        public static new EventTriggerArgs Empty => new EventTriggerArgs();
     }
 
-    public sealed class EventTriggerState : Pulumi.ResourceArgs
+    public sealed class EventTriggerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ObjectID of your application.
@@ -617,5 +610,6 @@ namespace Pulumi.Mongodbatlas
         public EventTriggerState()
         {
         }
+        public static new EventTriggerState Empty => new EventTriggerState();
     }
 }

@@ -17,21 +17,19 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var myPrivateIpMode = new Mongodbatlas.PrivateIpMode("myPrivateIpMode", new()
     ///     {
-    ///         var myPrivateIpMode = new Mongodbatlas.PrivateIpMode("myPrivateIpMode", new Mongodbatlas.PrivateIpModeArgs
-    ///         {
-    ///             Enabled = false,
-    ///             ProjectId = "&lt;YOUR PROJECT ID&gt;",
-    ///         });
-    ///     }
+    ///         Enabled = false,
+    ///         ProjectId = "&lt;YOUR PROJECT ID&gt;",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +43,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/privateIpMode:PrivateIpMode")]
-    public partial class PrivateIpMode : Pulumi.CustomResource
+    public partial class PrivateIpMode : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
@@ -103,7 +101,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class PrivateIpModeArgs : Pulumi.ResourceArgs
+    public sealed class PrivateIpModeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
@@ -120,9 +118,10 @@ namespace Pulumi.Mongodbatlas
         public PrivateIpModeArgs()
         {
         }
+        public static new PrivateIpModeArgs Empty => new PrivateIpModeArgs();
     }
 
-    public sealed class PrivateIpModeState : Pulumi.ResourceArgs
+    public sealed class PrivateIpModeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
@@ -139,5 +138,6 @@ namespace Pulumi.Mongodbatlas
         public PrivateIpModeState()
         {
         }
+        public static new PrivateIpModeState Empty => new PrivateIpModeState();
     }
 }

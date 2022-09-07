@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCloudBackupSnapshotExportBucketArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudBackupSnapshotExportBucketArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier of the snapshot export bucket.
@@ -51,9 +51,10 @@ namespace Pulumi.Mongodbatlas
         public GetCloudBackupSnapshotExportBucketArgs()
         {
         }
+        public static new GetCloudBackupSnapshotExportBucketArgs Empty => new GetCloudBackupSnapshotExportBucketArgs();
     }
 
-    public sealed class GetCloudBackupSnapshotExportBucketInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudBackupSnapshotExportBucketInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier of the snapshot export bucket.
@@ -73,6 +74,7 @@ namespace Pulumi.Mongodbatlas
         public GetCloudBackupSnapshotExportBucketInvokeArgs()
         {
         }
+        public static new GetCloudBackupSnapshotExportBucketInvokeArgs Empty => new GetCloudBackupSnapshotExportBucketInvokeArgs();
     }
 
 

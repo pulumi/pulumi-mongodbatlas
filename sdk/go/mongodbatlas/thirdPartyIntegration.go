@@ -17,25 +17,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
-// 			ApiToken:  pulumi.String("<API-TOKEN>"),
-// 			FlowName:  pulumi.String("<FLOW-NAME>"),
-// 			OrgName:   pulumi.String("<ORG-NAME>"),
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Type:      pulumi.String("FLOWDOCK"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
+//				ApiToken:  pulumi.String("<API-TOKEN>"),
+//				FlowName:  pulumi.String("<FLOW-NAME>"),
+//				OrgName:   pulumi.String("<ORG-NAME>"),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Type:      pulumi.String("FLOWDOCK"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,10 +46,12 @@ import (
 // Third-Party Integration Settings can be imported using project ID and the integration type, in the format `project_id`-`type`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration my_user 1112222b3bf99403840e8934-OPS_GENIE
+//
+//	$ pulumi import mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration my_user 1112222b3bf99403840e8934-OPS_GENIE
+//
 // ```
 //
-//  See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-create/) Documentation for more information.
+//	See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/third-party-integration-settings-create/) Documentation for more information.
 type ThirdPartyIntegration struct {
 	pulumi.CustomResourceState
 
@@ -419,7 +424,7 @@ func (i *ThirdPartyIntegration) ToThirdPartyIntegrationOutputWithContext(ctx con
 // ThirdPartyIntegrationArrayInput is an input type that accepts ThirdPartyIntegrationArray and ThirdPartyIntegrationArrayOutput values.
 // You can construct a concrete instance of `ThirdPartyIntegrationArrayInput` via:
 //
-//          ThirdPartyIntegrationArray{ ThirdPartyIntegrationArgs{...} }
+//	ThirdPartyIntegrationArray{ ThirdPartyIntegrationArgs{...} }
 type ThirdPartyIntegrationArrayInput interface {
 	pulumi.Input
 
@@ -444,7 +449,7 @@ func (i ThirdPartyIntegrationArray) ToThirdPartyIntegrationArrayOutputWithContex
 // ThirdPartyIntegrationMapInput is an input type that accepts ThirdPartyIntegrationMap and ThirdPartyIntegrationMapOutput values.
 // You can construct a concrete instance of `ThirdPartyIntegrationMapInput` via:
 //
-//          ThirdPartyIntegrationMap{ "key": ThirdPartyIntegrationArgs{...} }
+//	ThirdPartyIntegrationMap{ "key": ThirdPartyIntegrationArgs{...} }
 type ThirdPartyIntegrationMapInput interface {
 	pulumi.Input
 
@@ -478,6 +483,133 @@ func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutput() ThirdPartyI
 
 func (o ThirdPartyIntegrationOutput) ToThirdPartyIntegrationOutputWithContext(ctx context.Context) ThirdPartyIntegrationOutput {
 	return o
+}
+
+// Unique identifier of your New Relic account.
+func (o ThirdPartyIntegrationOutput) AccountId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.AccountId }).(pulumi.StringPtrOutput)
+}
+
+// Your API Key.
+func (o ThirdPartyIntegrationOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
+}
+
+// Your API Token.
+func (o ThirdPartyIntegrationOutput) ApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ApiToken }).(pulumi.StringPtrOutput)
+}
+
+func (o ThirdPartyIntegrationOutput) ChannelName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ChannelName }).(pulumi.StringPtrOutput)
+}
+
+// Whether your cluster has Prometheus enabled.
+func (o ThirdPartyIntegrationOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Your Flowdock Flow name.
+func (o ThirdPartyIntegrationOutput) FlowName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.FlowName }).(pulumi.StringPtrOutput)
+}
+
+// Your License Key.
+func (o ThirdPartyIntegrationOutput) LicenseKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.LicenseKey }).(pulumi.StringPtrOutput)
+}
+
+// Your Microsoft Teams incoming webhook URL.
+// * `PROMETHEUS`
+func (o ThirdPartyIntegrationOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
+}
+
+// Your Flowdock organization name.
+// * `WEBHOOK`
+func (o ThirdPartyIntegrationOutput) OrgName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.OrgName }).(pulumi.StringPtrOutput)
+}
+
+// Your Prometheus password.
+func (o ThirdPartyIntegrationOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The unique ID for the project to get all Third-Party service integrations
+func (o ThirdPartyIntegrationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Your Insights Query Key.
+// * `OPS_GENIE`
+func (o ThirdPartyIntegrationOutput) ReadToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ReadToken }).(pulumi.StringPtrOutput)
+}
+
+// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
+// * `VICTOR_OPS`
+func (o ThirdPartyIntegrationOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// An optional field for your Routing Key.
+// * `FLOWDOCK`
+func (o ThirdPartyIntegrationOutput) RoutingKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.RoutingKey }).(pulumi.StringPtrOutput)
+}
+
+// Your Prometheus protocol scheme configured for requests.
+func (o ThirdPartyIntegrationOutput) Scheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Scheme }).(pulumi.StringPtrOutput)
+}
+
+// An optional field for your webhook secret.
+// * `MICROSOFT_TEAMS`
+func (o ThirdPartyIntegrationOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Secret }).(pulumi.StringPtrOutput)
+}
+
+// Indicates which service discovery method is used, either file or http.
+func (o ThirdPartyIntegrationOutput) ServiceDiscovery() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ServiceDiscovery }).(pulumi.StringPtrOutput)
+}
+
+// Your Service Key.
+// * `DATADOG`
+func (o ThirdPartyIntegrationOutput) ServiceKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.ServiceKey }).(pulumi.StringPtrOutput)
+}
+
+func (o ThirdPartyIntegrationOutput) TeamName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.TeamName }).(pulumi.StringPtrOutput)
+}
+
+// Third-Party Integration Settings type
+// * PAGER_DUTY
+// * DATADOG
+// * NEW_RELIC
+// * OPS_GENIE
+// * VICTOR_OPS
+// * FLOWDOCK
+// * WEBHOOK
+func (o ThirdPartyIntegrationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// Your webhook URL.
+func (o ThirdPartyIntegrationOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// Your Prometheus username.
+func (o ThirdPartyIntegrationOutput) UserName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
+}
+
+// Your Insights Insert Key.
+func (o ThirdPartyIntegrationOutput) WriteToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringPtrOutput { return v.WriteToken }).(pulumi.StringPtrOutput)
 }
 
 type ThirdPartyIntegrationArrayOutput struct{ *pulumi.OutputState }

@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetPrivateEndpointRegionalModeArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivateEndpointRegionalModeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Flag that indicates whether the regionalized private endpoitn setting is enabled for the project.
@@ -46,9 +46,10 @@ namespace Pulumi.Mongodbatlas
         public GetPrivateEndpointRegionalModeArgs()
         {
         }
+        public static new GetPrivateEndpointRegionalModeArgs Empty => new GetPrivateEndpointRegionalModeArgs();
     }
 
-    public sealed class GetPrivateEndpointRegionalModeInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivateEndpointRegionalModeInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Flag that indicates whether the regionalized private endpoitn setting is enabled for the project.
@@ -65,6 +66,7 @@ namespace Pulumi.Mongodbatlas
         public GetPrivateEndpointRegionalModeInvokeArgs()
         {
         }
+        public static new GetPrivateEndpointRegionalModeInvokeArgs Empty => new GetPrivateEndpointRegionalModeInvokeArgs();
     }
 
 

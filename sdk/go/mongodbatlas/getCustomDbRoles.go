@@ -20,40 +20,43 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "testDatabaseUser", &mongodbatlas.DatabaseUserArgs{
-// 			Username:     pulumi.String("test-acc-username"),
-// 			Password:     pulumi.String("test-acc-password"),
-// 			ProjectId:    pulumi.String("<PROJECT-ID>"),
-// 			DatabaseName: pulumi.String("admin"),
-// 			Roles: DatabaseUserRoleArray{
-// 				&DatabaseUserRoleArgs{
-// 					RoleName:     pulumi.String("readWrite"),
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 				&DatabaseUserRoleArgs{
-// 					RoleName:     pulumi.String("atlasAdmin"),
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.LookupCustomDbRoles(ctx, &GetCustomDbRolesArgs{
-// 			ProjectId: mongodbatlas_custom_db_role.Test.Project_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "testDatabaseUser", &mongodbatlas.DatabaseUserArgs{
+//				Username:     pulumi.String("test-acc-username"),
+//				Password:     pulumi.String("test-acc-password"),
+//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				DatabaseName: pulumi.String("admin"),
+//				Roles: DatabaseUserRoleArray{
+//					&DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readWrite"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//					&DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("atlasAdmin"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.LookupCustomDbRoles(ctx, &GetCustomDbRolesArgs{
+//				ProjectId: mongodbatlas_custom_db_role.Test.Project_id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupCustomDbRoles(ctx *pulumi.Context, args *LookupCustomDbRolesArgs, opts ...pulumi.InvokeOption) (*LookupCustomDbRolesResult, error) {
 	var rv LookupCustomDbRolesResult

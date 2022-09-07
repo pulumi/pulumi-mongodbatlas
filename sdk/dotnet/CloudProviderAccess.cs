@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccess:CloudProviderAccess")]
-    public partial class CloudProviderAccess : Pulumi.CustomResource
+    public partial class CloudProviderAccess : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
@@ -119,7 +119,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudProviderAccessArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
@@ -142,9 +142,10 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderAccessArgs()
         {
         }
+        public static new CloudProviderAccessArgs Empty => new CloudProviderAccessArgs();
     }
 
-    public sealed class CloudProviderAccessState : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
@@ -209,5 +210,6 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderAccessState()
         {
         }
+        public static new CloudProviderAccessState Empty => new CloudProviderAccessState();
     }
 }

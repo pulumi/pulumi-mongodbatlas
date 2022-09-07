@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization")]
-    public partial class CloudProviderAccessAuthorization : Pulumi.CustomResource
+    public partial class CloudProviderAccessAuthorization : global::Pulumi.CustomResource
     {
         [Output("authorizedDate")]
         public Output<string> AuthorizedDate { get; private set; } = null!;
@@ -71,7 +71,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudProviderAccessAuthorizationArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessAuthorizationArgs : global::Pulumi.ResourceArgs
     {
         [Input("aws")]
         public Input<Inputs.CloudProviderAccessAuthorizationAwsArgs>? Aws { get; set; }
@@ -85,9 +85,10 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderAccessAuthorizationArgs()
         {
         }
+        public static new CloudProviderAccessAuthorizationArgs Empty => new CloudProviderAccessAuthorizationArgs();
     }
 
-    public sealed class CloudProviderAccessAuthorizationState : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessAuthorizationState : global::Pulumi.ResourceArgs
     {
         [Input("authorizedDate")]
         public Input<string>? AuthorizedDate { get; set; }
@@ -112,5 +113,6 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderAccessAuthorizationState()
         {
         }
+        public static new CloudProviderAccessAuthorizationState Empty => new CloudProviderAccessAuthorizationState();
     }
 }

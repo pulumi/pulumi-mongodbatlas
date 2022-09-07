@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetProjectsArgs : Pulumi.InvokeArgs
+    public sealed class GetProjectsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -46,9 +46,10 @@ namespace Pulumi.Mongodbatlas
         public GetProjectsArgs()
         {
         }
+        public static new GetProjectsArgs Empty => new GetProjectsArgs();
     }
 
-    public sealed class GetProjectsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetProjectsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -65,6 +66,7 @@ namespace Pulumi.Mongodbatlas
         public GetProjectsInvokeArgs()
         {
         }
+        public static new GetProjectsInvokeArgs Empty => new GetProjectsInvokeArgs();
     }
 
 

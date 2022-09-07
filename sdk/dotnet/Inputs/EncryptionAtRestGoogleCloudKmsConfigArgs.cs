@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class EncryptionAtRestGoogleCloudKmsConfigArgs : Pulumi.ResourceArgs
+    public sealed class EncryptionAtRestGoogleCloudKmsConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
@@ -33,5 +33,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public EncryptionAtRestGoogleCloudKmsConfigArgs()
         {
         }
+        public static new EncryptionAtRestGoogleCloudKmsConfigArgs Empty => new EncryptionAtRestGoogleCloudKmsConfigArgs();
     }
 }

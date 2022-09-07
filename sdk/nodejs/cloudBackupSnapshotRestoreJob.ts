@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job can be one of three types:
+ * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job must define one of three delivery types:
  * * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
  *
  * * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
@@ -136,7 +136,15 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      */
     public readonly deliveryType!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+     * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
+     * * `delivery_type_config.download` - Set to `true` to use the download configuration.
+     * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+     * * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
+     * * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
+     * * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+     * * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
+     * * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
      */
     public readonly deliveryTypeConfig!: pulumi.Output<outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig | undefined>;
     /**
@@ -249,7 +257,15 @@ export interface CloudBackupSnapshotRestoreJobState {
      */
     deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+     * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
+     * * `delivery_type_config.download` - Set to `true` to use the download configuration.
+     * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+     * * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
+     * * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
+     * * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+     * * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
+     * * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
      */
     deliveryTypeConfig?: pulumi.Input<inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig>;
     /**
@@ -299,7 +315,15 @@ export interface CloudBackupSnapshotRestoreJobArgs {
      */
     deliveryType?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in ``true``.
+     * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+     * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
+     * * `delivery_type_config.download` - Set to `true` to use the download configuration.
+     * * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+     * * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
+     * * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
+     * * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
+     * * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
+     * * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
      */
     deliveryTypeConfig?: pulumi.Input<inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig>;
     /**

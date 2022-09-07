@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCloudProviderSnapshotRestoreJobArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudProviderSnapshotRestoreJobArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Atlas cluster for which you want to retrieve the restore job.
@@ -56,9 +56,10 @@ namespace Pulumi.Mongodbatlas
         public GetCloudProviderSnapshotRestoreJobArgs()
         {
         }
+        public static new GetCloudProviderSnapshotRestoreJobArgs Empty => new GetCloudProviderSnapshotRestoreJobArgs();
     }
 
-    public sealed class GetCloudProviderSnapshotRestoreJobInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudProviderSnapshotRestoreJobInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Atlas cluster for which you want to retrieve the restore job.
@@ -81,6 +82,7 @@ namespace Pulumi.Mongodbatlas
         public GetCloudProviderSnapshotRestoreJobInvokeArgs()
         {
         }
+        public static new GetCloudProviderSnapshotRestoreJobInvokeArgs Empty => new GetCloudProviderSnapshotRestoreJobInvokeArgs();
     }
 
 
@@ -133,6 +135,9 @@ namespace Pulumi.Mongodbatlas
         /// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         /// </summary>
         public readonly string TargetClusterName;
+        /// <summary>
+        /// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+        /// </summary>
         public readonly string TargetProjectId;
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.

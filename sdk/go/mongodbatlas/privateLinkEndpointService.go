@@ -14,8 +14,8 @@ import (
 // `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one interface endpoint to a private endpoint connection in an Atlas project.
 //
 // > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
-//   * Organization Owner
-//   * Project Owner
+//   - Organization Owner
+//   - Project Owner
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
@@ -25,99 +25,50 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "testPrivateLinkEndpoint", &mongodbatlas.PrivateLinkEndpointArgs{
-// 			ProjectId:    pulumi.String("<PROJECT_ID>"),
-// 			ProviderName: pulumi.String("AWS"),
-// 			Region:       pulumi.String("US_EAST_1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ptfeService, err := ec2.NewVpcEndpoint(ctx, "ptfeService", &ec2.VpcEndpointArgs{
-// 			VpcId:           pulumi.String("vpc-7fc0a543"),
-// 			ServiceName:     testPrivateLinkEndpoint.EndpointServiceName,
-// 			VpcEndpointType: pulumi.String("Interface"),
-// 			SubnetIds: pulumi.StringArray{
-// 				pulumi.String("subnet-de0406d2"),
-// 			},
-// 			SecurityGroupIds: pulumi.StringArray{
-// 				pulumi.String("sg-3f238186"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "testPrivateLinkEndpointService", &mongodbatlas.PrivateLinkEndpointServiceArgs{
-// 			ProjectId:         testPrivateLinkEndpoint.ProjectId,
-// 			PrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,
-// 			EndpointServiceId: ptfeService.ID(),
-// 			ProviderName:      pulumi.String("AWS"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "testPrivateLinkEndpoint", &mongodbatlas.PrivateLinkEndpointArgs{
+//				ProjectId:    pulumi.String("<PROJECT_ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//				Region:       pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ptfeService, err := ec2.NewVpcEndpoint(ctx, "ptfeService", &ec2.VpcEndpointArgs{
+//				VpcId:           pulumi.String("vpc-7fc0a543"),
+//				ServiceName:     testPrivateLinkEndpoint.EndpointServiceName,
+//				VpcEndpointType: pulumi.String("Interface"),
+//				SubnetIds: pulumi.StringArray{
+//					pulumi.String("subnet-de0406d2"),
+//				},
+//				SecurityGroupIds: pulumi.StringArray{
+//					pulumi.String("sg-3f238186"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "testPrivateLinkEndpointService", &mongodbatlas.PrivateLinkEndpointServiceArgs{
+//				ProjectId:         testPrivateLinkEndpoint.ProjectId,
+//				PrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,
+//				EndpointServiceId: ptfeService.ID(),
+//				ProviderName:      pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
 //
-// ## Example with Azure
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-azure/sdk/v4/go/azure/privatelink"
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "testPrivateLinkEndpoint", &mongodbatlas.PrivateLinkEndpointArgs{
-// 			ProjectId:    pulumi.Any(_var.Project_id),
-// 			ProviderName: pulumi.String("AZURE"),
-// 			Region:       pulumi.String("eastus2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testEndpoint, err := privatelink.NewEndpoint(ctx, "testEndpoint", &privatelink.EndpointArgs{
-// 			Location:          pulumi.Any(data.Azurerm_resource_group.Test.Location),
-// 			ResourceGroupName: pulumi.Any(_var.Resource_group_name),
-// 			SubnetId:          pulumi.Any(azurerm_subnet.Test.Id),
-// 			PrivateServiceConnection: &privatelink.EndpointPrivateServiceConnectionArgs{
-// 				Name:                        testPrivateLinkEndpoint.PrivateLinkServiceName,
-// 				PrivateConnectionResourceId: testPrivateLinkEndpoint.PrivateLinkServiceResourceId,
-// 				IsManualConnection:          pulumi.Bool(true),
-// 				RequestMessage:              pulumi.String("Azure Private Link test"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "testPrivateLinkEndpointService", &mongodbatlas.PrivateLinkEndpointServiceArgs{
-// 			ProjectId:         testPrivateLinkEndpoint.ProjectId,
-// 			PrivateLinkId:     testPrivateLinkEndpoint.PrivateLinkId,
-// 			EndpointServiceId: testEndpoint.ID(),
-// 			PrivateEndpointIpAddress: testEndpoint.PrivateServiceConnection.ApplyT(func(privateServiceConnection privatelink.EndpointPrivateServiceConnection) (string, error) {
-// 				return privateServiceConnection.PrivateIpAddress, nil
-// 			}).(pulumi.StringOutput),
-// 			ProviderName: pulumi.String("AZURE"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
 // ```
 //
 // ## Import
@@ -125,10 +76,12 @@ import (
 // Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
+//
+//	$ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
+//
 // ```
 //
-//  See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
+//	See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
 type PrivateLinkEndpointService struct {
 	pulumi.CustomResourceState
 
@@ -350,7 +303,7 @@ func (i *PrivateLinkEndpointService) ToPrivateLinkEndpointServiceOutputWithConte
 // PrivateLinkEndpointServiceArrayInput is an input type that accepts PrivateLinkEndpointServiceArray and PrivateLinkEndpointServiceArrayOutput values.
 // You can construct a concrete instance of `PrivateLinkEndpointServiceArrayInput` via:
 //
-//          PrivateLinkEndpointServiceArray{ PrivateLinkEndpointServiceArgs{...} }
+//	PrivateLinkEndpointServiceArray{ PrivateLinkEndpointServiceArgs{...} }
 type PrivateLinkEndpointServiceArrayInput interface {
 	pulumi.Input
 
@@ -375,7 +328,7 @@ func (i PrivateLinkEndpointServiceArray) ToPrivateLinkEndpointServiceArrayOutput
 // PrivateLinkEndpointServiceMapInput is an input type that accepts PrivateLinkEndpointServiceMap and PrivateLinkEndpointServiceMapOutput values.
 // You can construct a concrete instance of `PrivateLinkEndpointServiceMapInput` via:
 //
-//          PrivateLinkEndpointServiceMap{ "key": PrivateLinkEndpointServiceArgs{...} }
+//	PrivateLinkEndpointServiceMap{ "key": PrivateLinkEndpointServiceArgs{...} }
 type PrivateLinkEndpointServiceMapInput interface {
 	pulumi.Input
 
@@ -409,6 +362,89 @@ func (o PrivateLinkEndpointServiceOutput) ToPrivateLinkEndpointServiceOutput() P
 
 func (o PrivateLinkEndpointServiceOutput) ToPrivateLinkEndpointServiceOutputWithContext(ctx context.Context) PrivateLinkEndpointServiceOutput {
 	return o
+}
+
+// Status of the interface endpoint for AWS.
+// Returns one of the following values:
+func (o PrivateLinkEndpointServiceOutput) AwsConnectionStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.AwsConnectionStatus }).(pulumi.StringOutput)
+}
+
+// Status of the interface endpoint for AZURE.
+// Returns one of the following values:
+func (o PrivateLinkEndpointServiceOutput) AzureStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.AzureStatus }).(pulumi.StringOutput)
+}
+
+// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
+func (o PrivateLinkEndpointServiceOutput) DeleteRequested() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.BoolOutput { return v.DeleteRequested }).(pulumi.BoolOutput)
+}
+
+// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+func (o PrivateLinkEndpointServiceOutput) EndpointGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.EndpointGroupName }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+func (o PrivateLinkEndpointServiceOutput) EndpointServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.EndpointServiceId }).(pulumi.StringOutput)
+}
+
+// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+func (o PrivateLinkEndpointServiceOutput) Endpoints() PrivateLinkEndpointServiceEndpointArrayOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) PrivateLinkEndpointServiceEndpointArrayOutput { return v.Endpoints }).(PrivateLinkEndpointServiceEndpointArrayOutput)
+}
+
+// Error message pertaining to the interface endpoint. Returns null if there are no errors.
+func (o PrivateLinkEndpointServiceOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+func (o PrivateLinkEndpointServiceOutput) GcpProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringPtrOutput { return v.GcpProjectId }).(pulumi.StringPtrOutput)
+}
+
+// Status of the interface endpoint for GCP.
+// Returns one of the following values:
+func (o PrivateLinkEndpointServiceOutput) GcpStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.GcpStatus }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the interface endpoint.
+func (o PrivateLinkEndpointServiceOutput) InterfaceEndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.InterfaceEndpointId }).(pulumi.StringOutput)
+}
+
+// Name of the connection for this private endpoint that Atlas generates.
+func (o PrivateLinkEndpointServiceOutput) PrivateEndpointConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.PrivateEndpointConnectionName }).(pulumi.StringOutput)
+}
+
+// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+func (o PrivateLinkEndpointServiceOutput) PrivateEndpointIpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.PrivateEndpointIpAddress }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the private endpoint.
+func (o PrivateLinkEndpointServiceOutput) PrivateEndpointResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.PrivateEndpointResourceId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+func (o PrivateLinkEndpointServiceOutput) PrivateLinkId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.PrivateLinkId }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the project.
+func (o PrivateLinkEndpointServiceOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
+func (o PrivateLinkEndpointServiceOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }
 
 type PrivateLinkEndpointServiceArrayOutput struct{ *pulumi.OutputState }

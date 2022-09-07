@@ -22,20 +22,18 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Mongodbatlas.GetDataLakes.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Mongodbatlas.GetDataLakes.InvokeAsync(new Mongodbatlas.GetDataLakesArgs
-        ///         {
-        ///             ProjectId = "PROJECT ID",
-        ///         }));
-        ///     }
+        ///         ProjectId = "PROJECT ID",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -54,20 +52,18 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Mongodbatlas.GetDataLakes.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Mongodbatlas.GetDataLakes.InvokeAsync(new Mongodbatlas.GetDataLakesArgs
-        ///         {
-        ///             ProjectId = "PROJECT ID",
-        ///         }));
-        ///     }
+        ///         ProjectId = "PROJECT ID",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -77,7 +73,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetDataLakesArgs : Pulumi.InvokeArgs
+    public sealed class GetDataLakesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all data lakes.
@@ -88,9 +84,10 @@ namespace Pulumi.Mongodbatlas
         public GetDataLakesArgs()
         {
         }
+        public static new GetDataLakesArgs Empty => new GetDataLakesArgs();
     }
 
-    public sealed class GetDataLakesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDataLakesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all data lakes.
@@ -101,6 +98,7 @@ namespace Pulumi.Mongodbatlas
         public GetDataLakesInvokeArgs()
         {
         }
+        public static new GetDataLakesInvokeArgs Empty => new GetDataLakesInvokeArgs();
     }
 
 

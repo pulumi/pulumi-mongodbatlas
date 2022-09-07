@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class ClusterLabelGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterLabelGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The key that you want to write.
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public ClusterLabelGetArgs()
         {
         }
+        public static new ClusterLabelGetArgs Empty => new ClusterLabelGetArgs();
     }
 }

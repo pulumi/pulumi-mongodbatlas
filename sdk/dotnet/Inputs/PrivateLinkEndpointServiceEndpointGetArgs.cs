@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class PrivateLinkEndpointServiceEndpointGetArgs : Pulumi.ResourceArgs
+    public sealed class PrivateLinkEndpointServiceEndpointGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Forwarding rule that corresponds to the endpoint you created in GCP.
@@ -39,5 +39,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public PrivateLinkEndpointServiceEndpointGetArgs()
         {
         }
+        public static new PrivateLinkEndpointServiceEndpointGetArgs Empty => new PrivateLinkEndpointServiceEndpointGetArgs();
     }
 }

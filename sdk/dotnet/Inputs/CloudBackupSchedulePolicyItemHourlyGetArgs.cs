@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudBackupSchedulePolicyItemHourlyGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupSchedulePolicyItemHourlyGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Desired frequency of the new backup policy item specified by `frequency_type`.
@@ -42,5 +42,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudBackupSchedulePolicyItemHourlyGetArgs()
         {
         }
+        public static new CloudBackupSchedulePolicyItemHourlyGetArgs Empty => new CloudBackupSchedulePolicyItemHourlyGetArgs();
     }
 }

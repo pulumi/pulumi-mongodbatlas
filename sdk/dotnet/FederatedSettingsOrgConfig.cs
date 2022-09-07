@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     [MongodbatlasResourceType("mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig")]
-    public partial class FederatedSettingsOrgConfig : Pulumi.CustomResource
+    public partial class FederatedSettingsOrgConfig : global::Pulumi.CustomResource
     {
         [Output("domainAllowLists")]
         public Output<ImmutableArray<string>> DomainAllowLists { get; private set; } = null!;
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class FederatedSettingsOrgConfigArgs : Pulumi.ResourceArgs
+    public sealed class FederatedSettingsOrgConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("domainAllowLists")]
         private InputList<string>? _domainAllowLists;
@@ -107,9 +107,10 @@ namespace Pulumi.Mongodbatlas
         public FederatedSettingsOrgConfigArgs()
         {
         }
+        public static new FederatedSettingsOrgConfigArgs Empty => new FederatedSettingsOrgConfigArgs();
     }
 
-    public sealed class FederatedSettingsOrgConfigState : Pulumi.ResourceArgs
+    public sealed class FederatedSettingsOrgConfigState : global::Pulumi.ResourceArgs
     {
         [Input("domainAllowLists")]
         private InputList<string>? _domainAllowLists;
@@ -142,5 +143,6 @@ namespace Pulumi.Mongodbatlas
         public FederatedSettingsOrgConfigState()
         {
         }
+        public static new FederatedSettingsOrgConfigState Empty => new FederatedSettingsOrgConfigState();
     }
 }

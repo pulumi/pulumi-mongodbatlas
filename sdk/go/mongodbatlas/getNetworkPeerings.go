@@ -21,30 +21,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
-// 			AccepterRegionName:  pulumi.String("us-east-1"),
-// 			ProjectId:           pulumi.String("<YOUR-PROJEC-ID>"),
-// 			ContainerId:         pulumi.String("507f1f77bcf86cd799439011"),
-// 			ProviderName:        pulumi.String("AWS"),
-// 			RouteTableCidrBlock: pulumi.String("192.168.0.0/24"),
-// 			VpcId:               pulumi.String("vpc-abc123abc123"),
-// 			AwsAccountId:        pulumi.String("abc123abc123"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupNetworkPeeringsOutput(ctx, GetNetworkPeeringsOutputArgs{
-// 			ProjectId: testNetworkPeering.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "testNetworkPeering", &mongodbatlas.NetworkPeeringArgs{
+//				AccepterRegionName:  pulumi.String("us-east-1"),
+//				ProjectId:           pulumi.String("<YOUR-PROJEC-ID>"),
+//				ContainerId:         pulumi.String("507f1f77bcf86cd799439011"),
+//				ProviderName:        pulumi.String("AWS"),
+//				RouteTableCidrBlock: pulumi.String("192.168.0.0/24"),
+//				VpcId:               pulumi.String("vpc-abc123abc123"),
+//				AwsAccountId:        pulumi.String("abc123abc123"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupNetworkPeeringsOutput(ctx, GetNetworkPeeringsOutputArgs{
+//				ProjectId: testNetworkPeering.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupNetworkPeerings(ctx *pulumi.Context, args *LookupNetworkPeeringsArgs, opts ...pulumi.InvokeOption) (*LookupNetworkPeeringsResult, error) {
 	var rv LookupNetworkPeeringsResult

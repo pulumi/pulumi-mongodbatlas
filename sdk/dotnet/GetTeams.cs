@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetTeamsArgs : Pulumi.InvokeArgs
+    public sealed class GetTeamsArgs : global::Pulumi.InvokeArgs
     {
         [Input("name")]
         public string? Name { get; set; }
@@ -33,9 +33,10 @@ namespace Pulumi.Mongodbatlas
         public GetTeamsArgs()
         {
         }
+        public static new GetTeamsArgs Empty => new GetTeamsArgs();
     }
 
-    public sealed class GetTeamsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetTeamsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -49,6 +50,7 @@ namespace Pulumi.Mongodbatlas
         public GetTeamsInvokeArgs()
         {
         }
+        public static new GetTeamsInvokeArgs Empty => new GetTeamsInvokeArgs();
     }
 
 

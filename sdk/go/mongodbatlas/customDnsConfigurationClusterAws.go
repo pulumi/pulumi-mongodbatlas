@@ -14,8 +14,8 @@ import (
 // `CustomDnsConfigurationClusterAws` provides a Custom DNS Configuration for Atlas Clusters on AWS resource. This represents a Custom DNS Configuration for Atlas Clusters on AWS that can be updated in an Atlas project.
 //
 // > **IMPORTANT:**You must have one of the following roles to successfully handle the resource:
-//   * Organization Owner
-//   * Project Owner
+//   - Organization Owner
+//   - Project Owner
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
@@ -25,22 +25,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCustomDnsConfigurationClusterAws(ctx, "test", &mongodbatlas.CustomDnsConfigurationClusterAwsArgs{
-// 			Enabled:   pulumi.Bool(true),
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCustomDnsConfigurationClusterAws(ctx, "test", &mongodbatlas.CustomDnsConfigurationClusterAwsArgs{
+//				Enabled:   pulumi.Bool(true),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -48,10 +51,12 @@ import (
 // Custom DNS Configuration for Atlas Clusters on AWS must be imported using auditing ID, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws test 1112222b3bf99403840e8934
+//
+//	$ pulumi import mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws test 1112222b3bf99403840e8934
+//
 // ```
 //
-//  See detailed information for arguments and attributes[MongoDB API Custom DNS Configuration for Atlas Clusters on AWS](https://docs.atlas.mongodb.com/reference/api/aws-custom-dns)
+//	See detailed information for arguments and attributes[MongoDB API Custom DNS Configuration for Atlas Clusters on AWS](https://docs.atlas.mongodb.com/reference/api/aws-custom-dns)
 type CustomDnsConfigurationClusterAws struct {
 	pulumi.CustomResourceState
 
@@ -154,7 +159,7 @@ func (i *CustomDnsConfigurationClusterAws) ToCustomDnsConfigurationClusterAwsOut
 // CustomDnsConfigurationClusterAwsArrayInput is an input type that accepts CustomDnsConfigurationClusterAwsArray and CustomDnsConfigurationClusterAwsArrayOutput values.
 // You can construct a concrete instance of `CustomDnsConfigurationClusterAwsArrayInput` via:
 //
-//          CustomDnsConfigurationClusterAwsArray{ CustomDnsConfigurationClusterAwsArgs{...} }
+//	CustomDnsConfigurationClusterAwsArray{ CustomDnsConfigurationClusterAwsArgs{...} }
 type CustomDnsConfigurationClusterAwsArrayInput interface {
 	pulumi.Input
 
@@ -179,7 +184,7 @@ func (i CustomDnsConfigurationClusterAwsArray) ToCustomDnsConfigurationClusterAw
 // CustomDnsConfigurationClusterAwsMapInput is an input type that accepts CustomDnsConfigurationClusterAwsMap and CustomDnsConfigurationClusterAwsMapOutput values.
 // You can construct a concrete instance of `CustomDnsConfigurationClusterAwsMapInput` via:
 //
-//          CustomDnsConfigurationClusterAwsMap{ "key": CustomDnsConfigurationClusterAwsArgs{...} }
+//	CustomDnsConfigurationClusterAwsMap{ "key": CustomDnsConfigurationClusterAwsArgs{...} }
 type CustomDnsConfigurationClusterAwsMapInput interface {
 	pulumi.Input
 
@@ -213,6 +218,16 @@ func (o CustomDnsConfigurationClusterAwsOutput) ToCustomDnsConfigurationClusterA
 
 func (o CustomDnsConfigurationClusterAwsOutput) ToCustomDnsConfigurationClusterAwsOutputWithContext(ctx context.Context) CustomDnsConfigurationClusterAwsOutput {
 	return o
+}
+
+// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
+func (o CustomDnsConfigurationClusterAwsOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CustomDnsConfigurationClusterAws) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Required 	Unique identifier for the project.
+func (o CustomDnsConfigurationClusterAwsOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomDnsConfigurationClusterAws) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 type CustomDnsConfigurationClusterAwsArrayOutput struct{ *pulumi.OutputState }

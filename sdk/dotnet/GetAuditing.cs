@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetAuditingArgs : Pulumi.InvokeArgs
+    public sealed class GetAuditingArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to create the database user.
@@ -40,9 +40,10 @@ namespace Pulumi.Mongodbatlas
         public GetAuditingArgs()
         {
         }
+        public static new GetAuditingArgs Empty => new GetAuditingArgs();
     }
 
-    public sealed class GetAuditingInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAuditingInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to create the database user.
@@ -53,6 +54,7 @@ namespace Pulumi.Mongodbatlas
         public GetAuditingInvokeArgs()
         {
         }
+        public static new GetAuditingInvokeArgs Empty => new GetAuditingInvokeArgs();
     }
 
 

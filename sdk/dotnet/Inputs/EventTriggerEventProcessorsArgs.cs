@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class EventTriggerEventProcessorsArgs : Pulumi.ResourceArgs
+    public sealed class EventTriggerEventProcessorsArgs : global::Pulumi.ResourceArgs
     {
         [Input("awsEventbridge")]
         public Input<Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs>? AwsEventbridge { get; set; }
@@ -18,5 +18,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public EventTriggerEventProcessorsArgs()
         {
         }
+        public static new EventTriggerEventProcessorsArgs Empty => new EventTriggerEventProcessorsArgs();
     }
 }

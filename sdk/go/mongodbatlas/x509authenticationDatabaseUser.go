@@ -28,70 +28,94 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		user, err := mongodbatlas.NewDatabaseUser(ctx, "user", &mongodbatlas.DatabaseUserArgs{
-// 			ProjectId:    pulumi.String("<PROJECT-ID>"),
-// 			Username:     pulumi.String("myUsername"),
-// 			X509Type:     pulumi.String("MANAGED"),
-// 			DatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
-// 			Roles: DatabaseUserRoleArray{
-// 				&DatabaseUserRoleArgs{
-// 					RoleName:     pulumi.String("atlasAdmin"),
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 			},
-// 			Labels: DatabaseUserLabelArray{
-// 				&DatabaseUserLabelArgs{
-// 					Key:   pulumi.String("My Key"),
-// 					Value: pulumi.String("My Value"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "test", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
-// 			ProjectId:             user.ProjectId,
-// 			Username:              user.Username,
-// 			MonthsUntilExpiration: pulumi.Int(2),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			user, err := mongodbatlas.NewDatabaseUser(ctx, "user", &mongodbatlas.DatabaseUserArgs{
+//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				Username:     pulumi.String("myUsername"),
+//				X509Type:     pulumi.String("MANAGED"),
+//				DatabaseName: pulumi.String(fmt.Sprintf("$external")),
+//				Roles: DatabaseUserRoleArray{
+//					&DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("atlasAdmin"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//				Labels: DatabaseUserLabelArray{
+//					&DatabaseUserLabelArgs{
+//						Key:   pulumi.String("My Key"),
+//						Value: pulumi.String("My Value"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "test", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
+//				ProjectId:             user.ProjectId,
+//				Username:              user.Username,
+//				MonthsUntilExpiration: pulumi.Int(2),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
 // ```go
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "test", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
-// 			CustomerX509Cas: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "  -----BEGIN CERTIFICATE-----\n", "  MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC\n", "  VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl\n", "  c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG\n", "  SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy\n", "  MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF\n", "  VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV\n", "  BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp\n", "  c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n", "  iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr\n", "  cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O\n", "  Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG\n", "  SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA\n", "  7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A\n", "  iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz\n", "  -----END CERTIFICATE-----\"\n", "\n")),
-// 			ProjectId:       pulumi.String("<PROJECT-ID>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "test", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
+//				CustomerX509Cas: pulumi.String(fmt.Sprintf(`  -----BEGIN CERTIFICATE-----
+//	  MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+//	  VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+//	  c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+//	  SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+//	  MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+//	  VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+//	  BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+//	  c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+//	  iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+//	  cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+//	  Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+//	  SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+//	  7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+//	  iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+//	  -----END CERTIFICATE-----"
+//
+// `)),
+//
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -99,16 +123,20 @@ import (
 // X.509 Certificates for a User can be imported using project ID and username, in the format `project_id-username`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
+//
+//	$ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
+//
+//	$ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
 type X509AuthenticationDatabaseUser struct {
 	pulumi.CustomResourceState
 
@@ -240,7 +268,7 @@ func (i *X509AuthenticationDatabaseUser) ToX509AuthenticationDatabaseUserOutputW
 // X509AuthenticationDatabaseUserArrayInput is an input type that accepts X509AuthenticationDatabaseUserArray and X509AuthenticationDatabaseUserArrayOutput values.
 // You can construct a concrete instance of `X509AuthenticationDatabaseUserArrayInput` via:
 //
-//          X509AuthenticationDatabaseUserArray{ X509AuthenticationDatabaseUserArgs{...} }
+//	X509AuthenticationDatabaseUserArray{ X509AuthenticationDatabaseUserArgs{...} }
 type X509AuthenticationDatabaseUserArrayInput interface {
 	pulumi.Input
 
@@ -265,7 +293,7 @@ func (i X509AuthenticationDatabaseUserArray) ToX509AuthenticationDatabaseUserArr
 // X509AuthenticationDatabaseUserMapInput is an input type that accepts X509AuthenticationDatabaseUserMap and X509AuthenticationDatabaseUserMapOutput values.
 // You can construct a concrete instance of `X509AuthenticationDatabaseUserMapInput` via:
 //
-//          X509AuthenticationDatabaseUserMap{ "key": X509AuthenticationDatabaseUserArgs{...} }
+//	X509AuthenticationDatabaseUserMap{ "key": X509AuthenticationDatabaseUserArgs{...} }
 type X509AuthenticationDatabaseUserMapInput interface {
 	pulumi.Input
 
@@ -299,6 +327,38 @@ func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserOu
 
 func (o X509AuthenticationDatabaseUserOutput) ToX509AuthenticationDatabaseUserOutputWithContext(ctx context.Context) X509AuthenticationDatabaseUserOutput {
 	return o
+}
+
+// Array of objects where each details one unexpired database user certificate.
+func (o X509AuthenticationDatabaseUserOutput) Certificates() X509AuthenticationDatabaseUserCertificateArrayOutput {
+	return o.ApplyT(func(v *X509AuthenticationDatabaseUser) X509AuthenticationDatabaseUserCertificateArrayOutput {
+		return v.Certificates
+	}).(X509AuthenticationDatabaseUserCertificateArrayOutput)
+}
+
+// Contains the last X.509 certificate and private key created for a database user.
+func (o X509AuthenticationDatabaseUserOutput) CurrentCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *X509AuthenticationDatabaseUser) pulumi.StringOutput { return v.CurrentCertificate }).(pulumi.StringOutput)
+}
+
+// PEM string containing one or more customer CAs for database user authentication.
+func (o X509AuthenticationDatabaseUserOutput) CustomerX509Cas() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *X509AuthenticationDatabaseUser) pulumi.StringPtrOutput { return v.CustomerX509Cas }).(pulumi.StringPtrOutput)
+}
+
+// A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
+func (o X509AuthenticationDatabaseUserOutput) MonthsUntilExpiration() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *X509AuthenticationDatabaseUser) pulumi.IntPtrOutput { return v.MonthsUntilExpiration }).(pulumi.IntPtrOutput)
+}
+
+// Identifier for the Atlas project associated with the X.509 configuration.
+func (o X509AuthenticationDatabaseUserOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *X509AuthenticationDatabaseUser) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Username of the database user to create a certificate for.
+func (o X509AuthenticationDatabaseUserOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *X509AuthenticationDatabaseUser) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 type X509AuthenticationDatabaseUserArrayOutput struct{ *pulumi.OutputState }

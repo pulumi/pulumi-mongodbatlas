@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AlertConfigurationMatcherGetArgs : Pulumi.ResourceArgs
+    public sealed class AlertConfigurationMatcherGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the field in the target object to match on.
@@ -41,5 +41,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AlertConfigurationMatcherGetArgs()
         {
         }
+        public static new AlertConfigurationMatcherGetArgs Empty => new AlertConfigurationMatcherGetArgs();
     }
 }

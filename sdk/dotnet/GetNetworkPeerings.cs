@@ -23,30 +23,29 @@ namespace Pulumi.Mongodbatlas
         /// ### Basic Example (AWS).
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
         ///     {
-        ///         var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new Mongodbatlas.NetworkPeeringArgs
-        ///         {
-        ///             AccepterRegionName = "us-east-1",
-        ///             ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
-        ///             ContainerId = "507f1f77bcf86cd799439011",
-        ///             ProviderName = "AWS",
-        ///             RouteTableCidrBlock = "192.168.0.0/24",
-        ///             VpcId = "vpc-abc123abc123",
-        ///             AwsAccountId = "abc123abc123",
-        ///         });
-        ///         var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new Mongodbatlas.GetNetworkPeeringsInvokeArgs
-        ///         {
-        ///             ProjectId = testNetworkPeering.ProjectId,
-        ///         });
-        ///     }
+        ///         AccepterRegionName = "us-east-1",
+        ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
+        ///         ContainerId = "507f1f77bcf86cd799439011",
+        ///         ProviderName = "AWS",
+        ///         RouteTableCidrBlock = "192.168.0.0/24",
+        ///         VpcId = "vpc-abc123abc123",
+        ///         AwsAccountId = "abc123abc123",
+        ///     });
         /// 
-        /// }
+        ///     var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkPeering.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -66,30 +65,29 @@ namespace Pulumi.Mongodbatlas
         /// ### Basic Example (AWS).
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
         ///     {
-        ///         var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new Mongodbatlas.NetworkPeeringArgs
-        ///         {
-        ///             AccepterRegionName = "us-east-1",
-        ///             ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
-        ///             ContainerId = "507f1f77bcf86cd799439011",
-        ///             ProviderName = "AWS",
-        ///             RouteTableCidrBlock = "192.168.0.0/24",
-        ///             VpcId = "vpc-abc123abc123",
-        ///             AwsAccountId = "abc123abc123",
-        ///         });
-        ///         var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new Mongodbatlas.GetNetworkPeeringsInvokeArgs
-        ///         {
-        ///             ProjectId = testNetworkPeering.ProjectId,
-        ///         });
-        ///     }
+        ///         AccepterRegionName = "us-east-1",
+        ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
+        ///         ContainerId = "507f1f77bcf86cd799439011",
+        ///         ProviderName = "AWS",
+        ///         RouteTableCidrBlock = "192.168.0.0/24",
+        ///         VpcId = "vpc-abc123abc123",
+        ///         AwsAccountId = "abc123abc123",
+        ///     });
         /// 
-        /// }
+        ///     var testNetworkPeerings = Mongodbatlas.GetNetworkPeerings.Invoke(new()
+        ///     {
+        ///         ProjectId = testNetworkPeering.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -99,7 +97,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetNetworkPeeringsArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkPeeringsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to create the database user.
@@ -110,9 +108,10 @@ namespace Pulumi.Mongodbatlas
         public GetNetworkPeeringsArgs()
         {
         }
+        public static new GetNetworkPeeringsArgs Empty => new GetNetworkPeeringsArgs();
     }
 
-    public sealed class GetNetworkPeeringsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkPeeringsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to create the database user.
@@ -123,6 +122,7 @@ namespace Pulumi.Mongodbatlas
         public GetNetworkPeeringsInvokeArgs()
         {
         }
+        public static new GetNetworkPeeringsInvokeArgs Empty => new GetNetworkPeeringsInvokeArgs();
     }
 
 

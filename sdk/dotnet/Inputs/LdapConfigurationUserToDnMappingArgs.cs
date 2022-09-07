@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class LdapConfigurationUserToDnMappingArgs : Pulumi.ResourceArgs
+    public sealed class LdapConfigurationUserToDnMappingArgs : global::Pulumi.ResourceArgs
     {
         [Input("ldapQuery")]
         public Input<string>? LdapQuery { get; set; }
@@ -24,5 +24,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public LdapConfigurationUserToDnMappingArgs()
         {
         }
+        public static new LdapConfigurationUserToDnMappingArgs Empty => new LdapConfigurationUserToDnMappingArgs();
     }
 }

@@ -21,24 +21,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
-// 			ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
-// 			AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
-// 			ProviderName:   pulumi.String("AWS"),
-// 			RegionName:     pulumi.String("US_EAST_1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "testNetworkContainer", &mongodbatlas.NetworkContainerArgs{
+//				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
+//				ProviderName:   pulumi.String("AWS"),
+//				RegionName:     pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupNetworkContainers(ctx *pulumi.Context, args *LookupNetworkContainersArgs, opts ...pulumi.InvokeOption) (*LookupNetworkContainersResult, error) {
 	var rv LookupNetworkContainersResult

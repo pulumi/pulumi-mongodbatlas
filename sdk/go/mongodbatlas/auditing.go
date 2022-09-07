@@ -19,24 +19,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewAuditing(ctx, "test", &mongodbatlas.AuditingArgs{
-// 			AuditAuthorizationSuccess: pulumi.Bool(false),
-// 			AuditFilter:               pulumi.String("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}"),
-// 			Enabled:                   pulumi.Bool(true),
-// 			ProjectId:                 pulumi.String("<project-id>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAuditing(ctx, "test", &mongodbatlas.AuditingArgs{
+//				AuditAuthorizationSuccess: pulumi.Bool(false),
+//				AuditFilter:               pulumi.String("{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}"),
+//				Enabled:                   pulumi.Bool(true),
+//				ProjectId:                 pulumi.String("<project-id>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,10 +47,12 @@ import (
 // Auditing must be imported using auditing ID, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
+//
+//	$ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
 type Auditing struct {
 	pulumi.CustomResourceState
 
@@ -182,7 +187,7 @@ func (i *Auditing) ToAuditingOutputWithContext(ctx context.Context) AuditingOutp
 // AuditingArrayInput is an input type that accepts AuditingArray and AuditingArrayOutput values.
 // You can construct a concrete instance of `AuditingArrayInput` via:
 //
-//          AuditingArray{ AuditingArgs{...} }
+//	AuditingArray{ AuditingArgs{...} }
 type AuditingArrayInput interface {
 	pulumi.Input
 
@@ -207,7 +212,7 @@ func (i AuditingArray) ToAuditingArrayOutputWithContext(ctx context.Context) Aud
 // AuditingMapInput is an input type that accepts AuditingMap and AuditingMapOutput values.
 // You can construct a concrete instance of `AuditingMapInput` via:
 //
-//          AuditingMap{ "key": AuditingArgs{...} }
+//	AuditingMap{ "key": AuditingArgs{...} }
 type AuditingMapInput interface {
 	pulumi.Input
 
@@ -241,6 +246,34 @@ func (o AuditingOutput) ToAuditingOutput() AuditingOutput {
 
 func (o AuditingOutput) ToAuditingOutputWithContext(ctx context.Context) AuditingOutput {
 	return o
+}
+
+// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+func (o AuditingOutput) AuditAuthorizationSuccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Auditing) pulumi.BoolOutput { return v.AuditAuthorizationSuccess }).(pulumi.BoolOutput)
+}
+
+// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+func (o AuditingOutput) AuditFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *Auditing) pulumi.StringOutput { return v.AuditFilter }).(pulumi.StringOutput)
+}
+
+// Denotes the configuration method for the audit filter. Possible values are:
+// * NONE - auditing not configured for the project.
+// * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
+// * FILTER_JSON - auditing configured via Atlas custom filter or API.
+func (o AuditingOutput) ConfigurationType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Auditing) pulumi.StringOutput { return v.ConfigurationType }).(pulumi.StringOutput)
+}
+
+// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
+func (o AuditingOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Auditing) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The unique ID for the project to configure auditing.
+func (o AuditingOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Auditing) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 type AuditingArrayOutput struct{ *pulumi.OutputState }

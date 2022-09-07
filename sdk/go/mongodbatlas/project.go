@@ -17,50 +17,53 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
-// 			ApiKeys: ProjectApiKeyArray{
-// 				&ProjectApiKeyArgs{
-// 					ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
-// 					RoleNames: pulumi.StringArray{
-// 						pulumi.String("GROUP_READ_ONLY"),
-// 					},
-// 				},
-// 			},
-// 			IsCollectDatabaseSpecificsStatisticsEnabled: pulumi.Bool(true),
-// 			IsDataExplorerEnabled:                       pulumi.Bool(true),
-// 			IsPerformanceAdvisorEnabled:                 pulumi.Bool(true),
-// 			IsRealtimePerformancePanelEnabled:           pulumi.Bool(true),
-// 			IsSchemaAdvisorEnabled:                      pulumi.Bool(true),
-// 			OrgId:                                       pulumi.String("<ORG_ID>"),
-// 			ProjectOwnerId:                              pulumi.String("<OWNER_ACCOUNT_ID>"),
-// 			Teams: ProjectTeamArray{
-// 				&ProjectTeamArgs{
-// 					RoleNames: pulumi.StringArray{
-// 						pulumi.String("GROUP_OWNER"),
-// 					},
-// 					TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
-// 				},
-// 				&ProjectTeamArgs{
-// 					RoleNames: pulumi.StringArray{
-// 						pulumi.String("GROUP_READ_ONLY"),
-// 						pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
-// 					},
-// 					TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
+//				ApiKeys: ProjectApiKeyArray{
+//					&ProjectApiKeyArgs{
+//						ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//						},
+//					},
+//				},
+//				IsCollectDatabaseSpecificsStatisticsEnabled: pulumi.Bool(true),
+//				IsDataExplorerEnabled:                       pulumi.Bool(true),
+//				IsPerformanceAdvisorEnabled:                 pulumi.Bool(true),
+//				IsRealtimePerformancePanelEnabled:           pulumi.Bool(true),
+//				IsSchemaAdvisorEnabled:                      pulumi.Bool(true),
+//				OrgId:                                       pulumi.String("<ORG_ID>"),
+//				ProjectOwnerId:                              pulumi.String("<OWNER_ACCOUNT_ID>"),
+//				Teams: ProjectTeamArray{
+//					&ProjectTeamArgs{
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//						},
+//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
+//					},
+//					&ProjectTeamArgs{
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//						},
+//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -68,10 +71,12 @@ import (
 // Project must be imported using project ID, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
+//
+//	$ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
 type Project struct {
 	pulumi.CustomResourceState
 
@@ -263,7 +268,7 @@ func (i *Project) ToProjectOutputWithContext(ctx context.Context) ProjectOutput 
 // ProjectArrayInput is an input type that accepts ProjectArray and ProjectArrayOutput values.
 // You can construct a concrete instance of `ProjectArrayInput` via:
 //
-//          ProjectArray{ ProjectArgs{...} }
+//	ProjectArray{ ProjectArgs{...} }
 type ProjectArrayInput interface {
 	pulumi.Input
 
@@ -288,7 +293,7 @@ func (i ProjectArray) ToProjectArrayOutputWithContext(ctx context.Context) Proje
 // ProjectMapInput is an input type that accepts ProjectMap and ProjectMapOutput values.
 // You can construct a concrete instance of `ProjectMapInput` via:
 //
-//          ProjectMap{ "key": ProjectArgs{...} }
+//	ProjectMap{ "key": ProjectArgs{...} }
 type ProjectMapInput interface {
 	pulumi.Input
 
@@ -322,6 +327,69 @@ func (o ProjectOutput) ToProjectOutput() ProjectOutput {
 
 func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOutput {
 	return o
+}
+
+func (o ProjectOutput) ApiKeys() ProjectApiKeyArrayOutput {
+	return o.ApplyT(func(v *Project) ProjectApiKeyArrayOutput { return v.ApiKeys }).(ProjectApiKeyArrayOutput)
+}
+
+// The number of Atlas clusters deployed in the project..
+func (o ProjectOutput) ClusterCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *Project) pulumi.IntOutput { return v.ClusterCount }).(pulumi.IntOutput)
+}
+
+// The ISO-8601-formatted timestamp of when Atlas created the project..
+func (o ProjectOutput) Created() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Created }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
+func (o ProjectOutput) IsCollectDatabaseSpecificsStatisticsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsCollectDatabaseSpecificsStatisticsEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh).
+func (o ProjectOutput) IsDataExplorerEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsDataExplorerEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
+func (o ProjectOutput) IsPerformanceAdvisorEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsPerformanceAdvisorEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
+func (o ProjectOutput) IsRealtimePerformancePanelEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsRealtimePerformancePanelEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+func (o ProjectOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
+}
+
+// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
+func (o ProjectOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the organization you want to create the project within.
+func (o ProjectOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+func (o ProjectOutput) ProjectOwnerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringPtrOutput { return v.ProjectOwnerId }).(pulumi.StringPtrOutput)
+}
+
+func (o ProjectOutput) Teams() ProjectTeamArrayOutput {
+	return o.ApplyT(func(v *Project) ProjectTeamArrayOutput { return v.Teams }).(ProjectTeamArrayOutput)
+}
+
+// It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
+func (o ProjectOutput) WithDefaultAlertsSettings() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolPtrOutput { return v.WithDefaultAlertsSettings }).(pulumi.BoolPtrOutput)
 }
 
 type ProjectArrayOutput struct{ *pulumi.OutputState }

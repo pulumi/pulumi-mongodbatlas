@@ -21,28 +21,27 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
         ///     {
-        ///         var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new Mongodbatlas.ThirdPartyIntegrationArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             Type = "FLOWDOCK",
-        ///             FlowName = "&lt;FLOW-NAME&gt;",
-        ///             ApiToken = "&lt;API-TOKEN&gt;",
-        ///             OrgName = "&lt;ORG-NAME&gt;",
-        ///         });
-        ///         var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new Mongodbatlas.GetThirdPartyIntegrationInvokeArgs
-        ///         {
-        ///             ProjectId = testFlowdock.ProjectId,
-        ///         });
-        ///     }
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "FLOWDOCK",
+        ///         FlowName = "&lt;FLOW-NAME&gt;",
+        ///         ApiToken = "&lt;API-TOKEN&gt;",
+        ///         OrgName = "&lt;ORG-NAME&gt;",
+        ///     });
         /// 
-        /// }
+        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+        ///     {
+        ///         ProjectId = testFlowdock.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -60,28 +59,27 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
         ///     {
-        ///         var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new Mongodbatlas.ThirdPartyIntegrationArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             Type = "FLOWDOCK",
-        ///             FlowName = "&lt;FLOW-NAME&gt;",
-        ///             ApiToken = "&lt;API-TOKEN&gt;",
-        ///             OrgName = "&lt;ORG-NAME&gt;",
-        ///         });
-        ///         var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new Mongodbatlas.GetThirdPartyIntegrationInvokeArgs
-        ///         {
-        ///             ProjectId = testFlowdock.ProjectId,
-        ///         });
-        ///     }
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "FLOWDOCK",
+        ///         FlowName = "&lt;FLOW-NAME&gt;",
+        ///         ApiToken = "&lt;API-TOKEN&gt;",
+        ///         OrgName = "&lt;ORG-NAME&gt;",
+        ///     });
         /// 
-        /// }
+        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+        ///     {
+        ///         ProjectId = testFlowdock.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -91,7 +89,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetThirdPartyIntegrationArgs : Pulumi.InvokeArgs
+    public sealed class GetThirdPartyIntegrationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Whether your cluster has Prometheus enabled.
@@ -148,9 +146,10 @@ namespace Pulumi.Mongodbatlas
         public GetThirdPartyIntegrationArgs()
         {
         }
+        public static new GetThirdPartyIntegrationArgs Empty => new GetThirdPartyIntegrationArgs();
     }
 
-    public sealed class GetThirdPartyIntegrationInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetThirdPartyIntegrationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Whether your cluster has Prometheus enabled.
@@ -207,6 +206,7 @@ namespace Pulumi.Mongodbatlas
         public GetThirdPartyIntegrationInvokeArgs()
         {
         }
+        public static new GetThirdPartyIntegrationInvokeArgs Empty => new GetThirdPartyIntegrationInvokeArgs();
     }
 
 

@@ -24,21 +24,19 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// ### Basic
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testTwo = Mongodbatlas.GetServerlessInstance.Invoke(new()
         ///     {
-        ///         var testTwo = Output.Create(Mongodbatlas.GetServerlessInstance.InvokeAsync(new Mongodbatlas.GetServerlessInstanceArgs
-        ///         {
-        ///             Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
-        ///             ProjectId = "&lt;PROJECT_ID &gt;",
-        ///         }));
-        ///     }
+        ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
+        ///         ProjectId = "&lt;PROJECT_ID &gt;",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -59,21 +57,19 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// ### Basic
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testTwo = Mongodbatlas.GetServerlessInstance.Invoke(new()
         ///     {
-        ///         var testTwo = Output.Create(Mongodbatlas.GetServerlessInstance.InvokeAsync(new Mongodbatlas.GetServerlessInstanceArgs
-        ///         {
-        ///             Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
-        ///             ProjectId = "&lt;PROJECT_ID &gt;",
-        ///         }));
-        ///     }
+        ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
+        ///         ProjectId = "&lt;PROJECT_ID &gt;",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -83,7 +79,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetServerlessInstanceArgs : Pulumi.InvokeArgs
+    public sealed class GetServerlessInstanceArgs : global::Pulumi.InvokeArgs
     {
         [Input("links")]
         private List<Inputs.GetServerlessInstanceLinkArgs>? _links;
@@ -114,9 +110,10 @@ namespace Pulumi.Mongodbatlas
         public GetServerlessInstanceArgs()
         {
         }
+        public static new GetServerlessInstanceArgs Empty => new GetServerlessInstanceArgs();
     }
 
-    public sealed class GetServerlessInstanceInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetServerlessInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("links")]
         private InputList<Inputs.GetServerlessInstanceLinkInputArgs>? _links;
@@ -147,6 +144,7 @@ namespace Pulumi.Mongodbatlas
         public GetServerlessInstanceInvokeArgs()
         {
         }
+        public static new GetServerlessInstanceInvokeArgs Empty => new GetServerlessInstanceInvokeArgs();
     }
 
 

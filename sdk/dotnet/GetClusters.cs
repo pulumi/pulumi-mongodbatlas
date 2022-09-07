@@ -25,47 +25,46 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
         ///     {
-        ///         var testCluster = new Mongodbatlas.Cluster("testCluster", new Mongodbatlas.ClusterArgs
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         DiskSizeGb = 100,
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
         ///         {
-        ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-        ///             DiskSizeGb = 100,
-        ///             ClusterType = "REPLICASET",
-        ///             ReplicationSpecs = 
+        ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///                 NumShards = 1,
+        ///                 RegionsConfigs = new[]
         ///                 {
-        ///                     NumShards = 1,
-        ///                     RegionsConfigs = 
+        ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
         ///                     {
-        ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-        ///                         {
-        ///                             RegionName = "US_EAST_1",
-        ///                             ElectableNodes = 3,
-        ///                             Priority = 7,
-        ///                             ReadOnlyNodes = 0,
-        ///                         },
+        ///                         RegionName = "US_EAST_1",
+        ///                         ElectableNodes = 3,
+        ///                         Priority = 7,
+        ///                         ReadOnlyNodes = 0,
         ///                     },
         ///                 },
         ///             },
-        ///             CloudBackup = true,
-        ///             AutoScalingDiskGbEnabled = true,
-        ///             ProviderName = "AWS",
-        ///             ProviderInstanceSizeName = "M40",
-        ///         });
-        ///         var testClusters = Mongodbatlas.GetClusters.Invoke(new Mongodbatlas.GetClustersInvokeArgs
-        ///         {
-        ///             ProjectId = testCluster.ProjectId,
-        ///         });
-        ///     }
+        ///         },
+        ///         CloudBackup = true,
+        ///         AutoScalingDiskGbEnabled = true,
+        ///         ProviderName = "AWS",
+        ///         ProviderInstanceSizeName = "M40",
+        ///     });
         /// 
-        /// }
+        ///     var testClusters = Mongodbatlas.GetClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = testCluster.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -87,47 +86,46 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testCluster = new Mongodbatlas.Cluster("testCluster", new()
         ///     {
-        ///         var testCluster = new Mongodbatlas.Cluster("testCluster", new Mongodbatlas.ClusterArgs
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         DiskSizeGb = 100,
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
         ///         {
-        ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-        ///             DiskSizeGb = 100,
-        ///             ClusterType = "REPLICASET",
-        ///             ReplicationSpecs = 
+        ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+        ///                 NumShards = 1,
+        ///                 RegionsConfigs = new[]
         ///                 {
-        ///                     NumShards = 1,
-        ///                     RegionsConfigs = 
+        ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
         ///                     {
-        ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-        ///                         {
-        ///                             RegionName = "US_EAST_1",
-        ///                             ElectableNodes = 3,
-        ///                             Priority = 7,
-        ///                             ReadOnlyNodes = 0,
-        ///                         },
+        ///                         RegionName = "US_EAST_1",
+        ///                         ElectableNodes = 3,
+        ///                         Priority = 7,
+        ///                         ReadOnlyNodes = 0,
         ///                     },
         ///                 },
         ///             },
-        ///             CloudBackup = true,
-        ///             AutoScalingDiskGbEnabled = true,
-        ///             ProviderName = "AWS",
-        ///             ProviderInstanceSizeName = "M40",
-        ///         });
-        ///         var testClusters = Mongodbatlas.GetClusters.Invoke(new Mongodbatlas.GetClustersInvokeArgs
-        ///         {
-        ///             ProjectId = testCluster.ProjectId,
-        ///         });
-        ///     }
+        ///         },
+        ///         CloudBackup = true,
+        ///         AutoScalingDiskGbEnabled = true,
+        ///         ProviderName = "AWS",
+        ///         ProviderInstanceSizeName = "M40",
+        ///     });
         /// 
-        /// }
+        ///     var testClusters = Mongodbatlas.GetClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = testCluster.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -137,7 +135,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetClustersArgs : Pulumi.InvokeArgs
+    public sealed class GetClustersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get the clusters.
@@ -148,9 +146,10 @@ namespace Pulumi.Mongodbatlas
         public GetClustersArgs()
         {
         }
+        public static new GetClustersArgs Empty => new GetClustersArgs();
     }
 
-    public sealed class GetClustersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetClustersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get the clusters.
@@ -161,6 +160,7 @@ namespace Pulumi.Mongodbatlas
         public GetClustersInvokeArgs()
         {
         }
+        public static new GetClustersInvokeArgs Empty => new GetClustersInvokeArgs();
     }
 
 

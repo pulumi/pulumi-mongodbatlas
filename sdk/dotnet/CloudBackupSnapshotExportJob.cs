@@ -17,38 +17,37 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
     ///     {
-    ///         var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new Mongodbatlas.CloudBackupSnapshotExportBucketArgs
-    ///         {
-    ///             ProjectId = "{PROJECT_ID}",
-    ///             IamRoleId = "{IAM_ROLE_ID}",
-    ///             BucketName = "example_bucket",
-    ///             CloudProvider = "AWS",
-    ///         });
-    ///         var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", new Mongodbatlas.CloudBackupSnapshotExportJobArgs
-    ///         {
-    ///             ProjectId = "{PROJECT_ID}",
-    ///             ClusterName = "{CLUSTER_NAME}",
-    ///             SnapshotId = "{SNAPSHOT_ID}",
-    ///             ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
-    ///             CustomDatas = 
-    ///             {
-    ///                 new Mongodbatlas.Inputs.CloudBackupSnapshotExportJobCustomDataArgs
-    ///                 {
-    ///                     Key = "exported by",
-    ///                     Value = "myName",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         ProjectId = "{PROJECT_ID}",
+    ///         IamRoleId = "{IAM_ROLE_ID}",
+    ///         BucketName = "example_bucket",
+    ///         CloudProvider = "AWS",
+    ///     });
     /// 
-    /// }
+    ///     var testCloudBackupSnapshotExportJob = new Mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", new()
+    ///     {
+    ///         ProjectId = "{PROJECT_ID}",
+    ///         ClusterName = "{CLUSTER_NAME}",
+    ///         SnapshotId = "{SNAPSHOT_ID}",
+    ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
+    ///         CustomDatas = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupSnapshotExportJobCustomDataArgs
+    ///             {
+    ///                 Key = "exported by",
+    ///                 Value = "myName",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -62,7 +61,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-job/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob")]
-    public partial class CloudBackupSnapshotExportJob : Pulumi.CustomResource
+    public partial class CloudBackupSnapshotExportJob : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Name of the Atlas cluster whose snapshot you want to export.
@@ -178,7 +177,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudBackupSnapshotExportJobArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupSnapshotExportJobArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the Atlas cluster whose snapshot you want to export.
@@ -213,9 +212,10 @@ namespace Pulumi.Mongodbatlas
         public CloudBackupSnapshotExportJobArgs()
         {
         }
+        public static new CloudBackupSnapshotExportJobArgs Empty => new CloudBackupSnapshotExportJobArgs();
     }
 
-    public sealed class CloudBackupSnapshotExportJobState : Pulumi.ResourceArgs
+    public sealed class CloudBackupSnapshotExportJobState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the Atlas cluster whose snapshot you want to export.
@@ -302,5 +302,6 @@ namespace Pulumi.Mongodbatlas
         public CloudBackupSnapshotExportJobState()
         {
         }
+        public static new CloudBackupSnapshotExportJobState Empty => new CloudBackupSnapshotExportJobState();
     }
 }

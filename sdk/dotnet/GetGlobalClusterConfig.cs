@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetGlobalClusterConfigArgs : Pulumi.InvokeArgs
+    public sealed class GetGlobalClusterConfigArgs : global::Pulumi.InvokeArgs
     {
         [Input("clusterName", required: true)]
         public string ClusterName { get; set; } = null!;
@@ -58,9 +58,10 @@ namespace Pulumi.Mongodbatlas
         public GetGlobalClusterConfigArgs()
         {
         }
+        public static new GetGlobalClusterConfigArgs Empty => new GetGlobalClusterConfigArgs();
     }
 
-    public sealed class GetGlobalClusterConfigInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetGlobalClusterConfigInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
@@ -87,6 +88,7 @@ namespace Pulumi.Mongodbatlas
         public GetGlobalClusterConfigInvokeArgs()
         {
         }
+        public static new GetGlobalClusterConfigInvokeArgs Empty => new GetGlobalClusterConfigInvokeArgs();
     }
 
 

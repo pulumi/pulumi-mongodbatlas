@@ -22,47 +22,50 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testDatabaseUser, err := mongodbatlas.NewDatabaseUser(ctx, "testDatabaseUser", &mongodbatlas.DatabaseUserArgs{
-// 			Username:         pulumi.String("test-acc-username"),
-// 			Password:         pulumi.String("test-acc-password"),
-// 			ProjectId:        pulumi.String("<PROJECT-ID>"),
-// 			AuthDatabaseName: pulumi.String("admin"),
-// 			Roles: DatabaseUserRoleArray{
-// 				&DatabaseUserRoleArgs{
-// 					RoleName:     pulumi.String("readWrite"),
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 				&DatabaseUserRoleArgs{
-// 					RoleName:     pulumi.String("atlasAdmin"),
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 			},
-// 			Labels: DatabaseUserLabelArray{
-// 				&DatabaseUserLabelArgs{
-// 					Key:   pulumi.String("key 1"),
-// 					Value: pulumi.String("value 1"),
-// 				},
-// 				&DatabaseUserLabelArgs{
-// 					Key:   pulumi.String("key 2"),
-// 					Value: pulumi.String("value 2"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupDatabaseUsersOutput(ctx, GetDatabaseUsersOutputArgs{
-// 			ProjectId: testDatabaseUser.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testDatabaseUser, err := mongodbatlas.NewDatabaseUser(ctx, "testDatabaseUser", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.String("test-acc-username"),
+//				Password:         pulumi.String("test-acc-password"),
+//				ProjectId:        pulumi.String("<PROJECT-ID>"),
+//				AuthDatabaseName: pulumi.String("admin"),
+//				Roles: DatabaseUserRoleArray{
+//					&DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readWrite"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//					&DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("atlasAdmin"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//				Labels: DatabaseUserLabelArray{
+//					&DatabaseUserLabelArgs{
+//						Key:   pulumi.String("key 1"),
+//						Value: pulumi.String("value 1"),
+//					},
+//					&DatabaseUserLabelArgs{
+//						Key:   pulumi.String("key 2"),
+//						Value: pulumi.String("value 2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupDatabaseUsersOutput(ctx, GetDatabaseUsersOutputArgs{
+//				ProjectId: testDatabaseUser.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupDatabaseUsers(ctx *pulumi.Context, args *LookupDatabaseUsersArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseUsersResult, error) {
 	var rv LookupDatabaseUsersResult

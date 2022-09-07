@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class DatabaseUserScopeGetArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseUserScopeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the cluster or Atlas Data Lake that the user has access to.
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public DatabaseUserScopeGetArgs()
         {
         }
+        public static new DatabaseUserScopeGetArgs Empty => new DatabaseUserScopeGetArgs();
     }
 }

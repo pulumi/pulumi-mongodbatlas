@@ -22,27 +22,26 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
         ///     {
-        ///         var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new Mongodbatlas.CloudBackupSnapshotExportBucketArgs
-        ///         {
-        ///             BucketName = "example-bucket",
-        ///             CloudProvider = "AWS",
-        ///             IamRoleId = "{IAM_ROLE_ID}",
-        ///             ProjectId = "{PROJECT_ID}",
-        ///         });
-        ///         var testCloudBackupSnapshotExportBuckets = Output.Create(Mongodbatlas.GetCloudBackupSnapshotExportBuckets.InvokeAsync(new Mongodbatlas.GetCloudBackupSnapshotExportBucketsArgs
-        ///         {
-        ///             ProjectId = "{PROJECT_ID}",
-        ///         }));
-        ///     }
+        ///         BucketName = "example-bucket",
+        ///         CloudProvider = "AWS",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
+        ///         ProjectId = "{PROJECT_ID}",
+        ///     });
         /// 
-        /// }
+        ///     var testCloudBackupSnapshotExportBuckets = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -61,27 +60,26 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new()
         ///     {
-        ///         var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", new Mongodbatlas.CloudBackupSnapshotExportBucketArgs
-        ///         {
-        ///             BucketName = "example-bucket",
-        ///             CloudProvider = "AWS",
-        ///             IamRoleId = "{IAM_ROLE_ID}",
-        ///             ProjectId = "{PROJECT_ID}",
-        ///         });
-        ///         var testCloudBackupSnapshotExportBuckets = Output.Create(Mongodbatlas.GetCloudBackupSnapshotExportBuckets.InvokeAsync(new Mongodbatlas.GetCloudBackupSnapshotExportBucketsArgs
-        ///         {
-        ///             ProjectId = "{PROJECT_ID}",
-        ///         }));
-        ///     }
+        ///         BucketName = "example-bucket",
+        ///         CloudProvider = "AWS",
+        ///         IamRoleId = "{IAM_ROLE_ID}",
+        ///         ProjectId = "{PROJECT_ID}",
+        ///     });
         /// 
-        /// }
+        ///     var testCloudBackupSnapshotExportBuckets = Mongodbatlas.GetCloudBackupSnapshotExportBuckets.Invoke(new()
+        ///     {
+        ///         ProjectId = "{PROJECT_ID}",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -91,7 +89,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCloudBackupSnapshotExportBucketsArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudBackupSnapshotExportBucketsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -114,9 +112,10 @@ namespace Pulumi.Mongodbatlas
         public GetCloudBackupSnapshotExportBucketsArgs()
         {
         }
+        public static new GetCloudBackupSnapshotExportBucketsArgs Empty => new GetCloudBackupSnapshotExportBucketsArgs();
     }
 
-    public sealed class GetCloudBackupSnapshotExportBucketsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudBackupSnapshotExportBucketsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -139,6 +138,7 @@ namespace Pulumi.Mongodbatlas
         public GetCloudBackupSnapshotExportBucketsInvokeArgs()
         {
         }
+        public static new GetCloudBackupSnapshotExportBucketsInvokeArgs Empty => new GetCloudBackupSnapshotExportBucketsInvokeArgs();
     }
 
 

@@ -18,21 +18,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.GetFederatedSettings(ctx, &GetFederatedSettingsArgs{
-// 			OrgId: "627a9683e7f7f7ff7fe306f14",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.GetFederatedSettings(ctx, &GetFederatedSettingsArgs{
+//				OrgId: "627a9683e7f7f7ff7fe306f14",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetFederatedSettings(ctx *pulumi.Context, args *GetFederatedSettingsArgs, opts ...pulumi.InvokeOption) (*GetFederatedSettingsResult, error) {
 	var rv GetFederatedSettingsResult

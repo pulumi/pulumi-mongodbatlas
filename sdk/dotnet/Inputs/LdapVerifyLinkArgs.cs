@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class LdapVerifyLinkArgs : Pulumi.ResourceArgs
+    public sealed class LdapVerifyLinkArgs : global::Pulumi.ResourceArgs
     {
         [Input("href")]
         public Input<string>? Href { get; set; }
@@ -21,5 +21,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public LdapVerifyLinkArgs()
         {
         }
+        public static new LdapVerifyLinkArgs Empty => new LdapVerifyLinkArgs();
     }
 }

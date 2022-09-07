@@ -20,30 +20,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "testCloudBackupSnapshotExportBucket", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
-// 			BucketName:    pulumi.String("example-bucket"),
-// 			CloudProvider: pulumi.String("AWS"),
-// 			IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
-// 			ProjectId:     pulumi.String("{PROJECT_ID}"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.LookupCloudBackupSnapshotExportBuckets(ctx, &GetCloudBackupSnapshotExportBucketsArgs{
-// 			ProjectId: "{PROJECT_ID}",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "testCloudBackupSnapshotExportBucket", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				BucketName:    pulumi.String("example-bucket"),
+//				CloudProvider: pulumi.String("AWS"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.LookupCloudBackupSnapshotExportBuckets(ctx, &GetCloudBackupSnapshotExportBucketsArgs{
+//				ProjectId: "{PROJECT_ID}",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupCloudBackupSnapshotExportBuckets(ctx *pulumi.Context, args *LookupCloudBackupSnapshotExportBucketsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotExportBucketsResult, error) {
 	var rv LookupCloudBackupSnapshotExportBucketsResult

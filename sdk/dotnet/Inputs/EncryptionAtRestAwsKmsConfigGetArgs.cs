@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class EncryptionAtRestAwsKmsConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class EncryptionAtRestAwsKmsConfigGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }
@@ -45,5 +45,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public EncryptionAtRestAwsKmsConfigGetArgs()
         {
         }
+        public static new EncryptionAtRestAwsKmsConfigGetArgs Empty => new EncryptionAtRestAwsKmsConfigGetArgs();
     }
 }

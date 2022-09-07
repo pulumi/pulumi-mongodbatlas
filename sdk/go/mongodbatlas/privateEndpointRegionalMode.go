@@ -16,10 +16,12 @@ import (
 // Private Endpoint Regional Mode can be imported using project id in format `{project_id}`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode test 1112222b3bf99403840e8934
+//
+//	$ pulumi import mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode test 1112222b3bf99403840e8934
+//
 // ```
 //
-//  See detailed information for arguments and attributes**Private Endpoints** [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+//	See detailed information for arguments and attributes**Private Endpoints** [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
 type PrivateEndpointRegionalMode struct {
 	pulumi.CustomResourceState
 
@@ -134,7 +136,7 @@ func (i *PrivateEndpointRegionalMode) ToPrivateEndpointRegionalModeOutputWithCon
 // PrivateEndpointRegionalModeArrayInput is an input type that accepts PrivateEndpointRegionalModeArray and PrivateEndpointRegionalModeArrayOutput values.
 // You can construct a concrete instance of `PrivateEndpointRegionalModeArrayInput` via:
 //
-//          PrivateEndpointRegionalModeArray{ PrivateEndpointRegionalModeArgs{...} }
+//	PrivateEndpointRegionalModeArray{ PrivateEndpointRegionalModeArgs{...} }
 type PrivateEndpointRegionalModeArrayInput interface {
 	pulumi.Input
 
@@ -159,7 +161,7 @@ func (i PrivateEndpointRegionalModeArray) ToPrivateEndpointRegionalModeArrayOutp
 // PrivateEndpointRegionalModeMapInput is an input type that accepts PrivateEndpointRegionalModeMap and PrivateEndpointRegionalModeMapOutput values.
 // You can construct a concrete instance of `PrivateEndpointRegionalModeMapInput` via:
 //
-//          PrivateEndpointRegionalModeMap{ "key": PrivateEndpointRegionalModeArgs{...} }
+//	PrivateEndpointRegionalModeMap{ "key": PrivateEndpointRegionalModeArgs{...} }
 type PrivateEndpointRegionalModeMapInput interface {
 	pulumi.Input
 
@@ -193,6 +195,19 @@ func (o PrivateEndpointRegionalModeOutput) ToPrivateEndpointRegionalModeOutput()
 
 func (o PrivateEndpointRegionalModeOutput) ToPrivateEndpointRegionalModeOutputWithContext(ctx context.Context) PrivateEndpointRegionalModeOutput {
 	return o
+}
+
+// Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
+//   - More than one private endpoint in more than one region, or
+//   - More than one private endpoint in one region and one private endpoint in one or more regions.
+//     You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
+func (o PrivateEndpointRegionalModeOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *PrivateEndpointRegionalMode) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Unique identifier for the project.
+func (o PrivateEndpointRegionalModeOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateEndpointRegionalMode) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 type PrivateEndpointRegionalModeArrayOutput struct{ *pulumi.OutputState }

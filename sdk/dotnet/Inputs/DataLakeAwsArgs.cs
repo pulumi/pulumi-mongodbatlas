@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class DataLakeAwsArgs : Pulumi.ResourceArgs
+    public sealed class DataLakeAwsArgs : global::Pulumi.ResourceArgs
     {
         [Input("externalId")]
         public Input<string>? ExternalId { get; set; }
@@ -30,5 +30,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public DataLakeAwsArgs()
         {
         }
+        public static new DataLakeAwsArgs Empty => new DataLakeAwsArgs();
     }
 }

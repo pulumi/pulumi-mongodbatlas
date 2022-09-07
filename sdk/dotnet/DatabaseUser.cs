@@ -14,145 +14,139 @@ namespace Pulumi.Mongodbatlas
     /// ### S
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.DatabaseUser("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.DatabaseUser("test", new Mongodbatlas.DatabaseUserArgs
+    ///         AuthDatabaseName = "admin",
+    ///         Labels = new[]
     ///         {
-    ///             AuthDatabaseName = "admin",
-    ///             Labels = 
+    ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-    ///                 {
-    ///                     Key = "My Key",
-    ///                     Value = "My Value",
-    ///                 },
+    ///                 Key = "My Key",
+    ///                 Value = "My Value",
     ///             },
-    ///             Password = "test-acc-password",
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             Roles = 
+    ///         },
+    ///         Password = "test-acc-password",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Roles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-    ///                 {
-    ///                     DatabaseName = "dbforApp",
-    ///                     RoleName = "readWrite",
-    ///                 },
-    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-    ///                 {
-    ///                     DatabaseName = "admin",
-    ///                     RoleName = "readAnyDatabase",
-    ///                 },
+    ///                 DatabaseName = "dbforApp",
+    ///                 RoleName = "readWrite",
     ///             },
-    ///             Scopes = 
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserScopeArgs
-    ///                 {
-    ///                     Name = "My cluster name",
-    ///                     Type = "CLUSTER",
-    ///                 },
-    ///                 new Mongodbatlas.Inputs.DatabaseUserScopeArgs
-    ///                 {
-    ///                     Name = "My second cluster name",
-    ///                     Type = "CLUSTER",
-    ///                 },
+    ///                 DatabaseName = "admin",
+    ///                 RoleName = "readAnyDatabase",
     ///             },
-    ///             Username = "test-acc-username",
-    ///         });
-    ///     }
+    ///         },
+    ///         Scopes = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserScopeArgs
+    ///             {
+    ///                 Name = "My cluster name",
+    ///                 Type = "CLUSTER",
+    ///             },
+    ///             new Mongodbatlas.Inputs.DatabaseUserScopeArgs
+    ///             {
+    ///                 Name = "My second cluster name",
+    ///                 Type = "CLUSTER",
+    ///             },
+    ///         },
+    ///         Username = "test-acc-username",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.DatabaseUser("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.DatabaseUser("test", new Mongodbatlas.DatabaseUserArgs
+    ///         AuthDatabaseName = "$external",
+    ///         Labels = new[]
     ///         {
-    ///             AuthDatabaseName = "$external",
-    ///             Labels = 
+    ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-    ///                 {
-    ///                     Key = "%s",
-    ///                     Value = "%s",
-    ///                 },
+    ///                 Key = "%s",
+    ///                 Value = "%s",
     ///             },
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             Roles = 
+    ///         },
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Roles = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-    ///                 {
-    ///                     DatabaseName = "admin",
-    ///                     RoleName = "readAnyDatabase",
-    ///                 },
+    ///                 DatabaseName = "admin",
+    ///                 RoleName = "readAnyDatabase",
     ///             },
-    ///             Scopes = 
+    ///         },
+    ///         Scopes = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserScopeArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserScopeArgs
-    ///                 {
-    ///                     Name = "My cluster name",
-    ///                     Type = "CLUSTER",
-    ///                 },
+    ///                 Name = "My cluster name",
+    ///                 Type = "CLUSTER",
     ///             },
-    ///             Username = "test-acc-username",
-    ///             X509Type = "MANAGED",
-    ///         });
-    ///     }
+    ///         },
+    ///         Username = "test-acc-username",
+    ///         X509Type = "MANAGED",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.DatabaseUser("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.DatabaseUser("test", new Mongodbatlas.DatabaseUserArgs
+    ///         Username = aws_iam_role.Test.Arn,
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         AuthDatabaseName = "$external",
+    ///         AwsIamType = "ROLE",
+    ///         Roles = new[]
     ///         {
-    ///             Username = aws_iam_role.Test.Arn,
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             AuthDatabaseName = "$external",
-    ///             AwsIamType = "ROLE",
-    ///             Roles = 
+    ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-    ///                 {
-    ///                     RoleName = "readAnyDatabase",
-    ///                     DatabaseName = "admin",
-    ///                 },
+    ///                 RoleName = "readAnyDatabase",
+    ///                 DatabaseName = "admin",
     ///             },
-    ///             Labels = 
+    ///         },
+    ///         Labels = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-    ///                 {
-    ///                     Key = "%s",
-    ///                     Value = "%s",
-    ///                 },
+    ///                 Key = "%s",
+    ///                 Value = "%s",
     ///             },
-    ///             Scopes = 
+    ///         },
+    ///         Scopes = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.DatabaseUserScopeArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.DatabaseUserScopeArgs
-    ///                 {
-    ///                     Name = "My cluster name",
-    ///                     Type = "CLUSTER",
-    ///                 },
+    ///                 Name = "My cluster name",
+    ///                 Type = "CLUSTER",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -164,7 +158,7 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/databaseUser:DatabaseUser")]
-    public partial class DatabaseUser : Pulumi.CustomResource
+    public partial class DatabaseUser : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
@@ -268,7 +262,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class DatabaseUserArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
@@ -347,9 +341,10 @@ namespace Pulumi.Mongodbatlas
         public DatabaseUserArgs()
         {
         }
+        public static new DatabaseUserArgs Empty => new DatabaseUserArgs();
     }
 
-    public sealed class DatabaseUserState : Pulumi.ResourceArgs
+    public sealed class DatabaseUserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
@@ -428,5 +423,6 @@ namespace Pulumi.Mongodbatlas
         public DatabaseUserState()
         {
         }
+        public static new DatabaseUserState Empty => new DatabaseUserState();
     }
 }

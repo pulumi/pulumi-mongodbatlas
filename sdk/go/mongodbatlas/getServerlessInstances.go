@@ -23,21 +23,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.LookupServerlessInstances(ctx, &GetServerlessInstancesArgs{
-// 			ProjectId: "<PROJECT_ID",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupServerlessInstances(ctx, &GetServerlessInstancesArgs{
+//				ProjectId: "<PROJECT_ID",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupServerlessInstances(ctx *pulumi.Context, args *LookupServerlessInstancesArgs, opts ...pulumi.InvokeOption) (*LookupServerlessInstancesResult, error) {
 	var rv LookupServerlessInstancesResult

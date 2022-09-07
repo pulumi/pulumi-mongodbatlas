@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudBackupSnapshotMemberGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupSnapshotMemberGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Cloud provider that stores this snapshot.
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudBackupSnapshotMemberGetArgs()
         {
         }
+        public static new CloudBackupSnapshotMemberGetArgs Empty => new CloudBackupSnapshotMemberGetArgs();
     }
 }

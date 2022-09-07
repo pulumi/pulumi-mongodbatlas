@@ -19,57 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var exampleCluster = new Mongodbatlas.Cluster("exampleCluster", new Mongodbatlas.ClusterArgs
-        ///         {
-        ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-        ///             ClusterType = "REPLICASET",
-        ///             ReplicationSpecs = 
-        ///             {
-        ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
-        ///                 {
-        ///                     RegionConfigs = 
-        ///                     {
-        ///                         
-        ///                         {
-        ///                             { "electableSpecs", 
-        ///                             {
-        ///                                 
-        ///                                 {
-        ///                                     { "instanceSize", "M5" },
-        ///                                 },
-        ///                             } },
-        ///                             { "providerName", "TENANT" },
-        ///                             { "backingProviderName", "AWS" },
-        ///                             { "regionName", "US_EAST_1" },
-        ///                             { "priority", 7 },
-        ///                         },
-        ///                     },
-        ///                 },
-        ///             },
-        ///         });
-        ///         var exampleClusters = Mongodbatlas.GetClusters.Invoke(new Mongodbatlas.GetClustersInvokeArgs
-        ///         {
-        ///             ProjectId = exampleCluster.ProjectId,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetAdvancedClustersResult> InvokeAsync(GetAdvancedClustersArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersArgs(), options.WithDefaults());
@@ -82,64 +31,13 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var exampleCluster = new Mongodbatlas.Cluster("exampleCluster", new Mongodbatlas.ClusterArgs
-        ///         {
-        ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-        ///             ClusterType = "REPLICASET",
-        ///             ReplicationSpecs = 
-        ///             {
-        ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
-        ///                 {
-        ///                     RegionConfigs = 
-        ///                     {
-        ///                         
-        ///                         {
-        ///                             { "electableSpecs", 
-        ///                             {
-        ///                                 
-        ///                                 {
-        ///                                     { "instanceSize", "M5" },
-        ///                                 },
-        ///                             } },
-        ///                             { "providerName", "TENANT" },
-        ///                             { "backingProviderName", "AWS" },
-        ///                             { "regionName", "US_EAST_1" },
-        ///                             { "priority", 7 },
-        ///                         },
-        ///                     },
-        ///                 },
-        ///             },
-        ///         });
-        ///         var exampleClusters = Mongodbatlas.GetClusters.Invoke(new Mongodbatlas.GetClustersInvokeArgs
-        ///         {
-        ///             ProjectId = exampleCluster.ProjectId,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetAdvancedClustersResult> Invoke(GetAdvancedClustersInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAdvancedClustersArgs : Pulumi.InvokeArgs
+    public sealed class GetAdvancedClustersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get the clusters.
@@ -150,9 +48,10 @@ namespace Pulumi.Mongodbatlas
         public GetAdvancedClustersArgs()
         {
         }
+        public static new GetAdvancedClustersArgs Empty => new GetAdvancedClustersArgs();
     }
 
-    public sealed class GetAdvancedClustersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAdvancedClustersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get the clusters.
@@ -163,6 +62,7 @@ namespace Pulumi.Mongodbatlas
         public GetAdvancedClustersInvokeArgs()
         {
         }
+        public static new GetAdvancedClustersInvokeArgs Empty => new GetAdvancedClustersInvokeArgs();
     }
 
 

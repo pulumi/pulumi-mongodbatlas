@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class LdapVerifyValidationGetArgs : Pulumi.ResourceArgs
+    public sealed class LdapVerifyValidationGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
@@ -24,5 +24,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public LdapVerifyValidationGetArgs()
         {
         }
+        public static new LdapVerifyValidationGetArgs Empty => new LdapVerifyValidationGetArgs();
     }
 }

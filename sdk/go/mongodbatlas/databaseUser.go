@@ -18,138 +18,147 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
-// 			AuthDatabaseName: pulumi.String("admin"),
-// 			Labels: DatabaseUserLabelArray{
-// 				&DatabaseUserLabelArgs{
-// 					Key:   pulumi.String("My Key"),
-// 					Value: pulumi.String("My Value"),
-// 				},
-// 			},
-// 			Password:  pulumi.String("test-acc-password"),
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Roles: DatabaseUserRoleArray{
-// 				&DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("dbforApp"),
-// 					RoleName:     pulumi.String("readWrite"),
-// 				},
-// 				&DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
-// 					RoleName:     pulumi.String("readAnyDatabase"),
-// 				},
-// 			},
-// 			Scopes: DatabaseUserScopeArray{
-// 				&DatabaseUserScopeArgs{
-// 					Name: pulumi.String("My cluster name"),
-// 					Type: pulumi.String("CLUSTER"),
-// 				},
-// 				&DatabaseUserScopeArgs{
-// 					Name: pulumi.String("My second cluster name"),
-// 					Type: pulumi.String("CLUSTER"),
-// 				},
-// 			},
-// 			Username: pulumi.String("test-acc-username"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				AuthDatabaseName: pulumi.String("admin"),
+//				Labels: DatabaseUserLabelArray{
+//					&DatabaseUserLabelArgs{
+//						Key:   pulumi.String("My Key"),
+//						Value: pulumi.String("My Value"),
+//					},
+//				},
+//				Password:  pulumi.String("test-acc-password"),
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: DatabaseUserRoleArray{
+//					&DatabaseUserRoleArgs{
+//						DatabaseName: pulumi.String("dbforApp"),
+//						RoleName:     pulumi.String("readWrite"),
+//					},
+//					&DatabaseUserRoleArgs{
+//						DatabaseName: pulumi.String("admin"),
+//						RoleName:     pulumi.String("readAnyDatabase"),
+//					},
+//				},
+//				Scopes: DatabaseUserScopeArray{
+//					&DatabaseUserScopeArgs{
+//						Name: pulumi.String("My cluster name"),
+//						Type: pulumi.String("CLUSTER"),
+//					},
+//					&DatabaseUserScopeArgs{
+//						Name: pulumi.String("My second cluster name"),
+//						Type: pulumi.String("CLUSTER"),
+//					},
+//				},
+//				Username: pulumi.String("test-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
-// 			AuthDatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
-// 			Labels: DatabaseUserLabelArray{
-// 				&DatabaseUserLabelArgs{
-// 					Key:   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
-// 					Value: pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
-// 				},
-// 			},
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Roles: DatabaseUserRoleArray{
-// 				&DatabaseUserRoleArgs{
-// 					DatabaseName: pulumi.String("admin"),
-// 					RoleName:     pulumi.String("readAnyDatabase"),
-// 				},
-// 			},
-// 			Scopes: DatabaseUserScopeArray{
-// 				&DatabaseUserScopeArgs{
-// 					Name: pulumi.String("My cluster name"),
-// 					Type: pulumi.String("CLUSTER"),
-// 				},
-// 			},
-// 			Username: pulumi.String("test-acc-username"),
-// 			X509Type: pulumi.String("MANAGED"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				AuthDatabaseName: pulumi.String(fmt.Sprintf("$external")),
+//				Labels: DatabaseUserLabelArray{
+//					&DatabaseUserLabelArgs{
+//						Key:   pulumi.String(fmt.Sprintf("%vs", "%")),
+//						Value: pulumi.String(fmt.Sprintf("%vs", "%")),
+//					},
+//				},
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Roles: DatabaseUserRoleArray{
+//					&DatabaseUserRoleArgs{
+//						DatabaseName: pulumi.String("admin"),
+//						RoleName:     pulumi.String("readAnyDatabase"),
+//					},
+//				},
+//				Scopes: DatabaseUserScopeArray{
+//					&DatabaseUserScopeArgs{
+//						Name: pulumi.String("My cluster name"),
+//						Type: pulumi.String("CLUSTER"),
+//					},
+//				},
+//				Username: pulumi.String("test-acc-username"),
+//				X509Type: pulumi.String("MANAGED"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
-// 			Username:         pulumi.Any(aws_iam_role.Test.Arn),
-// 			ProjectId:        pulumi.String("<PROJECT-ID>"),
-// 			AuthDatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
-// 			AwsIamType:       pulumi.String("ROLE"),
-// 			Roles: DatabaseUserRoleArray{
-// 				&DatabaseUserRoleArgs{
-// 					RoleName:     pulumi.String("readAnyDatabase"),
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 			},
-// 			Labels: DatabaseUserLabelArray{
-// 				&DatabaseUserLabelArgs{
-// 					Key:   pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
-// 					Value: pulumi.String(fmt.Sprintf("%v%v", "%", "s")),
-// 				},
-// 			},
-// 			Scopes: DatabaseUserScopeArray{
-// 				&DatabaseUserScopeArgs{
-// 					Name: pulumi.String("My cluster name"),
-// 					Type: pulumi.String("CLUSTER"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
+//				Username:         pulumi.Any(aws_iam_role.Test.Arn),
+//				ProjectId:        pulumi.String("<PROJECT-ID>"),
+//				AuthDatabaseName: pulumi.String(fmt.Sprintf("$external")),
+//				AwsIamType:       pulumi.String("ROLE"),
+//				Roles: DatabaseUserRoleArray{
+//					&DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("readAnyDatabase"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//				Labels: DatabaseUserLabelArray{
+//					&DatabaseUserLabelArgs{
+//						Key:   pulumi.String(fmt.Sprintf("%vs", "%")),
+//						Value: pulumi.String(fmt.Sprintf("%vs", "%")),
+//					},
+//				},
+//				Scopes: DatabaseUserScopeArray{
+//					&DatabaseUserScopeArgs{
+//						Name: pulumi.String("My cluster name"),
+//						Type: pulumi.String("CLUSTER"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -157,7 +166,9 @@ import (
 // Database users can be imported using project ID and username, in the format `project_id`-`username`-`auth_database_name`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
+//
+//	$ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin
+//
 // ```
 type DatabaseUser struct {
 	pulumi.CustomResourceState
@@ -354,7 +365,7 @@ func (i *DatabaseUser) ToDatabaseUserOutputWithContext(ctx context.Context) Data
 // DatabaseUserArrayInput is an input type that accepts DatabaseUserArray and DatabaseUserArrayOutput values.
 // You can construct a concrete instance of `DatabaseUserArrayInput` via:
 //
-//          DatabaseUserArray{ DatabaseUserArgs{...} }
+//	DatabaseUserArray{ DatabaseUserArgs{...} }
 type DatabaseUserArrayInput interface {
 	pulumi.Input
 
@@ -379,7 +390,7 @@ func (i DatabaseUserArray) ToDatabaseUserArrayOutputWithContext(ctx context.Cont
 // DatabaseUserMapInput is an input type that accepts DatabaseUserMap and DatabaseUserMapOutput values.
 // You can construct a concrete instance of `DatabaseUserMapInput` via:
 //
-//          DatabaseUserMap{ "key": DatabaseUserArgs{...} }
+//	DatabaseUserMap{ "key": DatabaseUserArgs{...} }
 type DatabaseUserMapInput interface {
 	pulumi.Input
 
@@ -413,6 +424,61 @@ func (o DatabaseUserOutput) ToDatabaseUserOutput() DatabaseUserOutput {
 
 func (o DatabaseUserOutput) ToDatabaseUserOutputWithContext(ctx context.Context) DatabaseUserOutput {
 	return o
+}
+
+// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
+// Accepted values include:
+func (o DatabaseUserOutput) AuthDatabaseName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.AuthDatabaseName }).(pulumi.StringPtrOutput)
+}
+
+// If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+func (o DatabaseUserOutput) AwsIamType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.AwsIamType }).(pulumi.StringPtrOutput)
+}
+
+// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
+//
+// Deprecated: use auth_database_name instead
+func (o DatabaseUserOutput) DatabaseName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.DatabaseName }).(pulumi.StringPtrOutput)
+}
+
+func (o DatabaseUserOutput) Labels() DatabaseUserLabelArrayOutput {
+	return o.ApplyT(func(v *DatabaseUser) DatabaseUserLabelArrayOutput { return v.Labels }).(DatabaseUserLabelArrayOutput)
+}
+
+// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
+func (o DatabaseUserOutput) LdapAuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.LdapAuthType }).(pulumi.StringPtrOutput)
+}
+
+func (o DatabaseUserOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The unique ID for the project to create the database user.
+func (o DatabaseUserOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+func (o DatabaseUserOutput) Roles() DatabaseUserRoleArrayOutput {
+	return o.ApplyT(func(v *DatabaseUser) DatabaseUserRoleArrayOutput { return v.Roles }).(DatabaseUserRoleArrayOutput)
+}
+
+func (o DatabaseUserOutput) Scopes() DatabaseUserScopeArrayOutput {
+	return o.ApplyT(func(v *DatabaseUser) DatabaseUserScopeArrayOutput { return v.Scopes }).(DatabaseUserScopeArrayOutput)
+}
+
+// Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
+func (o DatabaseUserOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+// X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
+func (o DatabaseUserOutput) X509Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.X509Type }).(pulumi.StringPtrOutput)
 }
 
 type DatabaseUserArrayOutput struct{ *pulumi.OutputState }

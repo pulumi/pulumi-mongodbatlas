@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class ProjectTeamArgs : Pulumi.ResourceArgs
+    public sealed class ProjectTeamArgs : global::Pulumi.ResourceArgs
     {
         [Input("roleNames", required: true)]
         private InputList<string>? _roleNames;
@@ -39,5 +39,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public ProjectTeamArgs()
         {
         }
+        public static new ProjectTeamArgs Empty => new ProjectTeamArgs();
     }
 }

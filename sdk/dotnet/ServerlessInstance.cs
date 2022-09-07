@@ -18,23 +18,21 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// ### Basic
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.ServerlessInstance("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.ServerlessInstance("test", new Mongodbatlas.ServerlessInstanceArgs
-    ///         {
-    ///             ProjectId = "&lt;PROJECT_ID&gt;",
-    ///             ProviderSettingsBackingProviderName = "AWS",
-    ///             ProviderSettingsProviderName = "SERVERLESS",
-    ///             ProviderSettingsRegionName = "US_EAST_1",
-    ///         });
-    ///     }
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ProviderSettingsBackingProviderName = "AWS",
+    ///         ProviderSettingsProviderName = "SERVERLESS",
+    ///         ProviderSettingsRegionName = "US_EAST_1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -48,7 +46,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/serverlessInstance:ServerlessInstance")]
-    public partial class ServerlessInstance : Pulumi.CustomResource
+    public partial class ServerlessInstance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -151,7 +149,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class ServerlessInstanceArgs : Pulumi.ResourceArgs
+    public sealed class ServerlessInstanceArgs : global::Pulumi.ResourceArgs
     {
         [Input("links")]
         private InputList<Inputs.ServerlessInstanceLinkArgs>? _links;
@@ -200,9 +198,10 @@ namespace Pulumi.Mongodbatlas
         public ServerlessInstanceArgs()
         {
         }
+        public static new ServerlessInstanceArgs Empty => new ServerlessInstanceArgs();
     }
 
-    public sealed class ServerlessInstanceState : Pulumi.ResourceArgs
+    public sealed class ServerlessInstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -269,5 +268,6 @@ namespace Pulumi.Mongodbatlas
         public ServerlessInstanceState()
         {
         }
+        public static new ServerlessInstanceState Empty => new ServerlessInstanceState();
     }
 }

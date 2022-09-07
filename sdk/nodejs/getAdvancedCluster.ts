@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *     Describe an Advanced Cluster.
  * ---
  *
- * # mongodbatlas.AdvancedCluster
+ * # Data Source: mongodbatlas.AdvancedCluster
  *
  * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
  *

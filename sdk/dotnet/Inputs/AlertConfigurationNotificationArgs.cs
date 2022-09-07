@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AlertConfigurationNotificationArgs : Pulumi.ResourceArgs
+    public sealed class AlertConfigurationNotificationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
@@ -164,5 +164,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AlertConfigurationNotificationArgs()
         {
         }
+        public static new AlertConfigurationNotificationArgs Empty => new AlertConfigurationNotificationArgs();
     }
 }

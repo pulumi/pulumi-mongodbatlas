@@ -18,80 +18,89 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewOrgInvitation(ctx, "test0", &mongodbatlas.OrgInvitationArgs{
-// 			OrgId: pulumi.String("<ORG-ID>"),
-// 			Roles: pulumi.StringArray{
-// 				pulumi.String("ORG_OWNER"),
-// 			},
-// 			Username: pulumi.String("test0-acc-username"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewOrgInvitation(ctx, "test0", &mongodbatlas.OrgInvitationArgs{
+//				OrgId: pulumi.String("<ORG-ID>"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("ORG_OWNER"),
+//				},
+//				Username: pulumi.String("test0-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewOrgInvitation(ctx, "test0", &mongodbatlas.OrgInvitationArgs{
-// 			OrgId: pulumi.String("<ORG-ID>"),
-// 			Roles: pulumi.StringArray{
-// 				pulumi.String("ORG_MEMBER"),
-// 				pulumi.String("ORG_BILLING_ADMIN"),
-// 			},
-// 			Username: pulumi.String("test0-acc-username"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewOrgInvitation(ctx, "test0", &mongodbatlas.OrgInvitationArgs{
+//				OrgId: pulumi.String("<ORG-ID>"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("ORG_MEMBER"),
+//					pulumi.String("ORG_BILLING_ADMIN"),
+//				},
+//				Username: pulumi.String("test0-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewOrgInvitation(ctx, "test1", &mongodbatlas.OrgInvitationArgs{
-// 			OrgId: pulumi.String("<ORG-ID>"),
-// 			Roles: pulumi.StringArray{
-// 				pulumi.String("ORG_MEMBER"),
-// 			},
-// 			TeamsIds: pulumi.StringArray{
-// 				pulumi.String("<TEAM-0-ID>"),
-// 				pulumi.String("<TEAM-1-ID>"),
-// 			},
-// 			Username: pulumi.String("test1-acc-username"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewOrgInvitation(ctx, "test1", &mongodbatlas.OrgInvitationArgs{
+//				OrgId: pulumi.String("<ORG-ID>"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("ORG_MEMBER"),
+//				},
+//				TeamsIds: pulumi.StringArray{
+//					pulumi.String("<TEAM-0-ID>"),
+//					pulumi.String("<TEAM-1-ID>"),
+//				},
+//				Username: pulumi.String("test1-acc-username"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -99,7 +108,9 @@ import (
 // ~> **IMPORTANT:** An organization invitation can **not** be imported once it has been accepted. Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+//
+//	$ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
+//
 // ```
 type OrgInvitation struct {
 	pulumi.CustomResourceState
@@ -275,7 +286,7 @@ func (i *OrgInvitation) ToOrgInvitationOutputWithContext(ctx context.Context) Or
 // OrgInvitationArrayInput is an input type that accepts OrgInvitationArray and OrgInvitationArrayOutput values.
 // You can construct a concrete instance of `OrgInvitationArrayInput` via:
 //
-//          OrgInvitationArray{ OrgInvitationArgs{...} }
+//	OrgInvitationArray{ OrgInvitationArgs{...} }
 type OrgInvitationArrayInput interface {
 	pulumi.Input
 
@@ -300,7 +311,7 @@ func (i OrgInvitationArray) ToOrgInvitationArrayOutputWithContext(ctx context.Co
 // OrgInvitationMapInput is an input type that accepts OrgInvitationMap and OrgInvitationMapOutput values.
 // You can construct a concrete instance of `OrgInvitationMapInput` via:
 //
-//          OrgInvitationMap{ "key": OrgInvitationArgs{...} }
+//	OrgInvitationMap{ "key": OrgInvitationArgs{...} }
 type OrgInvitationMapInput interface {
 	pulumi.Input
 
@@ -334,6 +345,51 @@ func (o OrgInvitationOutput) ToOrgInvitationOutput() OrgInvitationOutput {
 
 func (o OrgInvitationOutput) ToOrgInvitationOutputWithContext(ctx context.Context) OrgInvitationOutput {
 	return o
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
+func (o OrgInvitationOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *OrgInvitation) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
+func (o OrgInvitationOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *OrgInvitation) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
+func (o OrgInvitationOutput) InvitationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *OrgInvitation) pulumi.StringOutput { return v.InvitationId }).(pulumi.StringOutput)
+}
+
+// Atlas user who invited `username` to the organization.
+func (o OrgInvitationOutput) InviterUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *OrgInvitation) pulumi.StringOutput { return v.InviterUsername }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
+func (o OrgInvitationOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *OrgInvitation) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
+// * ORG_OWNER
+// * ORG_GROUP_CREATOR
+// * ORG_BILLING_ADMIN
+// * ORG_READ_ONLY
+// * ORG_MEMBER
+func (o OrgInvitationOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OrgInvitation) pulumi.StringArrayOutput { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+// An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
+func (o OrgInvitationOutput) TeamsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OrgInvitation) pulumi.StringArrayOutput { return v.TeamsIds }).(pulumi.StringArrayOutput)
+}
+
+// Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
+func (o OrgInvitationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *OrgInvitation) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
 type OrgInvitationArrayOutput struct{ *pulumi.OutputState }

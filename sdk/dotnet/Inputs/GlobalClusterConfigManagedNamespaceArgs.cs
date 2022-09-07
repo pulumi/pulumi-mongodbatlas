@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class GlobalClusterConfigManagedNamespaceArgs : Pulumi.ResourceArgs
+    public sealed class GlobalClusterConfigManagedNamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the collection associated with the managed namespace.
@@ -45,5 +45,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public GlobalClusterConfigManagedNamespaceArgs()
         {
         }
+        public static new GlobalClusterConfigManagedNamespaceArgs Empty => new GlobalClusterConfigManagedNamespaceArgs();
     }
 }

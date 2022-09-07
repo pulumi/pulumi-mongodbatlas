@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCloudProviderSnapshotsArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudProviderSnapshotsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Atlas cluster that contains the snapshot you want to retrieve.
@@ -59,9 +59,10 @@ namespace Pulumi.Mongodbatlas
         public GetCloudProviderSnapshotsArgs()
         {
         }
+        public static new GetCloudProviderSnapshotsArgs Empty => new GetCloudProviderSnapshotsArgs();
     }
 
-    public sealed class GetCloudProviderSnapshotsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudProviderSnapshotsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Atlas cluster that contains the snapshot you want to retrieve.
@@ -87,6 +88,7 @@ namespace Pulumi.Mongodbatlas
         public GetCloudProviderSnapshotsInvokeArgs()
         {
         }
+        public static new GetCloudProviderSnapshotsInvokeArgs Empty => new GetCloudProviderSnapshotsInvokeArgs();
     }
 
 

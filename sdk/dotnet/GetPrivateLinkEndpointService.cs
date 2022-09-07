@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetPrivateLinkEndpointServiceArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivateLinkEndpointServiceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier of the `AWS` or `AZURE` resource.
@@ -58,9 +58,10 @@ namespace Pulumi.Mongodbatlas
         public GetPrivateLinkEndpointServiceArgs()
         {
         }
+        public static new GetPrivateLinkEndpointServiceArgs Empty => new GetPrivateLinkEndpointServiceArgs();
     }
 
-    public sealed class GetPrivateLinkEndpointServiceInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivateLinkEndpointServiceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier of the `AWS` or `AZURE` resource.
@@ -89,6 +90,7 @@ namespace Pulumi.Mongodbatlas
         public GetPrivateLinkEndpointServiceInvokeArgs()
         {
         }
+        public static new GetPrivateLinkEndpointServiceInvokeArgs Empty => new GetPrivateLinkEndpointServiceInvokeArgs();
     }
 
 

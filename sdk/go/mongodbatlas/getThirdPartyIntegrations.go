@@ -21,36 +21,39 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testPagerDuty, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testPagerDuty", &mongodbatlas.ThirdPartyIntegrationArgs{
-// 			ProjectId:  pulumi.String("<PROJECT-ID>"),
-// 			Type:       pulumi.String("PAGER_DUTY"),
-// 			ServiceKey: pulumi.String("<PAGER-DUTY-SERVICE-KEY>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Type:      pulumi.String("FLOWDOCK"),
-// 			FlowName:  pulumi.String("<FLOW-NAME>"),
-// 			ApiToken:  pulumi.String("<API-TOKEN>"),
-// 			OrgName:   pulumi.String("<ORG-NAME>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupThirdPartyIntegrationsOutput(ctx, GetThirdPartyIntegrationsOutputArgs{
-// 			ProjectId: testPagerDuty.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testPagerDuty, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testPagerDuty", &mongodbatlas.ThirdPartyIntegrationArgs{
+//				ProjectId:  pulumi.String("<PROJECT-ID>"),
+//				Type:       pulumi.String("PAGER_DUTY"),
+//				ServiceKey: pulumi.String("<PAGER-DUTY-SERVICE-KEY>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Type:      pulumi.String("FLOWDOCK"),
+//				FlowName:  pulumi.String("<FLOW-NAME>"),
+//				ApiToken:  pulumi.String("<API-TOKEN>"),
+//				OrgName:   pulumi.String("<ORG-NAME>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupThirdPartyIntegrationsOutput(ctx, GetThirdPartyIntegrationsOutputArgs{
+//				ProjectId: testPagerDuty.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupThirdPartyIntegrations(ctx *pulumi.Context, args *LookupThirdPartyIntegrationsArgs, opts ...pulumi.InvokeOption) (*LookupThirdPartyIntegrationsResult, error) {
 	var rv LookupThirdPartyIntegrationsResult

@@ -24,69 +24,63 @@ namespace Pulumi.Mongodbatlas
     /// ### Example with AWS
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.NetworkContainer("test", new Mongodbatlas.NetworkContainerArgs
-    ///         {
-    ///             AtlasCidrBlock = "10.8.0.0/21",
-    ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///             ProviderName = "AWS",
-    ///             RegionName = "US_EAST_1",
-    ///         });
-    ///     }
+    ///         AtlasCidrBlock = "10.8.0.0/21",
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderName = "AWS",
+    ///         RegionName = "US_EAST_1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Example with GCP
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.NetworkContainer("test", new Mongodbatlas.NetworkContainerArgs
+    ///         AtlasCidrBlock = "10.8.0.0/21",
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderName = "GCP",
+    ///         Regions = new[]
     ///         {
-    ///             AtlasCidrBlock = "10.8.0.0/21",
-    ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///             ProviderName = "GCP",
-    ///             Regions = 
-    ///             {
-    ///                 "US_EAST_4",
-    ///                 "US_WEST_3",
-    ///             },
-    ///         });
-    ///     }
+    ///             "US_EAST_4",
+    ///             "US_WEST_3",
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Example with Azure
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.NetworkContainer("test", new Mongodbatlas.NetworkContainerArgs
-    ///         {
-    ///             AtlasCidrBlock = "10.8.0.0/21",
-    ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///             ProviderName = "AZURE",
-    ///             Region = "US_EAST_2",
-    ///         });
-    ///     }
+    ///         AtlasCidrBlock = "10.8.0.0/21",
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ProviderName = "AZURE",
+    ///         Region = "US_EAST_2",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -100,7 +94,7 @@ namespace Pulumi.Mongodbatlas
     ///  See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/networkContainer:NetworkContainer")]
-    public partial class NetworkContainer : Pulumi.CustomResource
+    public partial class NetworkContainer : global::Pulumi.CustomResource
     {
         /// <summary>
         /// CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
@@ -227,7 +221,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class NetworkContainerArgs : Pulumi.ResourceArgs
+    public sealed class NetworkContainerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
@@ -277,9 +271,10 @@ namespace Pulumi.Mongodbatlas
         public NetworkContainerArgs()
         {
         }
+        public static new NetworkContainerArgs Empty => new NetworkContainerArgs();
     }
 
-    public sealed class NetworkContainerState : Pulumi.ResourceArgs
+    public sealed class NetworkContainerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
@@ -371,5 +366,6 @@ namespace Pulumi.Mongodbatlas
         public NetworkContainerState()
         {
         }
+        public static new NetworkContainerState Empty => new NetworkContainerState();
     }
 }

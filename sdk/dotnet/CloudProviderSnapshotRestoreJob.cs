@@ -27,92 +27,92 @@ namespace Pulumi.Mongodbatlas
     /// ### Example automated delivery type.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var myCluster = new Mongodbatlas.Cluster("myCluster", new()
     ///     {
-    ///         var myCluster = new Mongodbatlas.Cluster("myCluster", new Mongodbatlas.ClusterArgs
-    ///         {
-    ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///             DiskSizeGb = 5,
-    ///             ProviderName = "AWS",
-    ///             ProviderRegionName = "EU_WEST_2",
-    ///             ProviderInstanceSizeName = "M10",
-    ///             CloudBackup = true,
-    ///         });
-    ///         // enable cloud backup snapshots
-    ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
-    ///         {
-    ///             ProjectId = myCluster.ProjectId,
-    ///             ClusterName = myCluster.Name,
-    ///             Description = "myDescription",
-    ///             RetentionInDays = 1,
-    ///         });
-    ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
-    ///         {
-    ///             ProjectId = testCloudProviderSnapshot.ProjectId,
-    ///             ClusterName = testCloudProviderSnapshot.ClusterName,
-    ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
-    ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs
-    ///             {
-    ///                 Automated = true,
-    ///                 TargetClusterName = "MyCluster",
-    ///                 TargetProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///             },
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 testCloudProviderSnapshot,
-    ///             },
-    ///         });
-    ///     }
+    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         DiskSizeGb = 5,
+    ///         ProviderName = "AWS",
+    ///         ProviderRegionName = "EU_WEST_2",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         CloudBackup = true,
+    ///     });
     /// 
-    /// }
+    ///     // enable cloud backup snapshots
+    ///     var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         Description = "myDescription",
+    ///         RetentionInDays = 1,
+    ///     });
+    /// 
+    ///     var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new()
+    ///     {
+    ///         ProjectId = testCloudProviderSnapshot.ProjectId,
+    ///         ClusterName = testCloudProviderSnapshot.ClusterName,
+    ///         SnapshotId = testCloudProviderSnapshot.SnapshotId,
+    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs
+    ///         {
+    ///             Automated = true,
+    ///             TargetClusterName = "MyCluster",
+    ///             TargetProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             testCloudProviderSnapshot,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// ### Example download delivery type.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var myCluster = new Mongodbatlas.Cluster("myCluster", new()
     ///     {
-    ///         var myCluster = new Mongodbatlas.Cluster("myCluster", new Mongodbatlas.ClusterArgs
-    ///         {
-    ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///             DiskSizeGb = 5,
-    ///             ProviderName = "AWS",
-    ///             ProviderRegionName = "EU_WEST_2",
-    ///             ProviderInstanceSizeName = "M10",
-    ///             CloudBackup = true,
-    ///         });
-    ///         // enable cloud backup snapshots
-    ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
-    ///         {
-    ///             ProjectId = myCluster.ProjectId,
-    ///             ClusterName = myCluster.Name,
-    ///             Description = "myDescription",
-    ///             RetentionInDays = 1,
-    ///         });
-    ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
-    ///         {
-    ///             ProjectId = testCloudProviderSnapshot.ProjectId,
-    ///             ClusterName = testCloudProviderSnapshot.ClusterName,
-    ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
-    ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs
-    ///             {
-    ///                 Download = true,
-    ///             },
-    ///         });
-    ///     }
+    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+    ///         DiskSizeGb = 5,
+    ///         ProviderName = "AWS",
+    ///         ProviderRegionName = "EU_WEST_2",
+    ///         ProviderInstanceSizeName = "M10",
+    ///         CloudBackup = true,
+    ///     });
     /// 
-    /// }
+    ///     // enable cloud backup snapshots
+    ///     var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         Description = "myDescription",
+    ///         RetentionInDays = 1,
+    ///     });
+    /// 
+    ///     var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new()
+    ///     {
+    ///         ProjectId = testCloudProviderSnapshot.ProjectId,
+    ///         ClusterName = testCloudProviderSnapshot.ClusterName,
+    ///         SnapshotId = testCloudProviderSnapshot.SnapshotId,
+    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs
+    ///         {
+    ///             Download = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -126,7 +126,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob")]
-    public partial class CloudProviderSnapshotRestoreJob : Pulumi.CustomResource
+    public partial class CloudProviderSnapshotRestoreJob : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates whether the restore job was canceled.
@@ -250,7 +250,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudProviderSnapshotRestoreJobArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderSnapshotRestoreJobArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Atlas cluster whose snapshot you want to restore.
@@ -292,9 +292,10 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderSnapshotRestoreJobArgs()
         {
         }
+        public static new CloudProviderSnapshotRestoreJobArgs Empty => new CloudProviderSnapshotRestoreJobArgs();
     }
 
-    public sealed class CloudProviderSnapshotRestoreJobState : Pulumi.ResourceArgs
+    public sealed class CloudProviderSnapshotRestoreJobState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether the restore job was canceled.
@@ -390,5 +391,6 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderSnapshotRestoreJobState()
         {
         }
+        public static new CloudProviderSnapshotRestoreJobState Empty => new CloudProviderSnapshotRestoreJobState();
     }
 }

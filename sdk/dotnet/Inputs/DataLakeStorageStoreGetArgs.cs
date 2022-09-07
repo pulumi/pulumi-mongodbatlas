@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class DataLakeStorageStoreGetArgs : Pulumi.ResourceArgs
+    public sealed class DataLakeStorageStoreGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("additionalStorageClasses")]
         private InputList<string>? _additionalStorageClasses;
@@ -47,5 +47,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public DataLakeStorageStoreGetArgs()
         {
         }
+        public static new DataLakeStorageStoreGetArgs Empty => new DataLakeStorageStoreGetArgs();
     }
 }

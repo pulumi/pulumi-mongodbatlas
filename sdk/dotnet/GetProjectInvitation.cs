@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetProjectInvitationArgs : Pulumi.InvokeArgs
+    public sealed class GetProjectInvitationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
@@ -60,9 +60,10 @@ namespace Pulumi.Mongodbatlas
         public GetProjectInvitationArgs()
         {
         }
+        public static new GetProjectInvitationArgs Empty => new GetProjectInvitationArgs();
     }
 
-    public sealed class GetProjectInvitationInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetProjectInvitationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
@@ -85,6 +86,7 @@ namespace Pulumi.Mongodbatlas
         public GetProjectInvitationInvokeArgs()
         {
         }
+        public static new GetProjectInvitationInvokeArgs Empty => new GetProjectInvitationInvokeArgs();
     }
 
 

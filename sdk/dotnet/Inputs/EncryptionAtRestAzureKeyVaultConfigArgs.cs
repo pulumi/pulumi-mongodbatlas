@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class EncryptionAtRestAzureKeyVaultConfigArgs : Pulumi.ResourceArgs
+    public sealed class EncryptionAtRestAzureKeyVaultConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Azure environment where the Azure account credentials reside. Valid values are the following: AZURE, AZURE_CHINA, AZURE_GERMANY
@@ -69,5 +69,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public EncryptionAtRestAzureKeyVaultConfigArgs()
         {
         }
+        public static new EncryptionAtRestAzureKeyVaultConfigArgs Empty => new EncryptionAtRestAzureKeyVaultConfigArgs();
     }
 }

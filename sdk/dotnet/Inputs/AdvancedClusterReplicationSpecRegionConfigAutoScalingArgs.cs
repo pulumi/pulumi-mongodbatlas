@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs : Pulumi.ResourceArgs
+    public sealed class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false.
@@ -45,5 +45,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs()
         {
         }
+        public static new AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs Empty => new AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs();
     }
 }

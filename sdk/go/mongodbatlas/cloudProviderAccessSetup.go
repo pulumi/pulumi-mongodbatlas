@@ -118,7 +118,7 @@ func (i *CloudProviderAccessSetup) ToCloudProviderAccessSetupOutputWithContext(c
 // CloudProviderAccessSetupArrayInput is an input type that accepts CloudProviderAccessSetupArray and CloudProviderAccessSetupArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessSetupArrayInput` via:
 //
-//          CloudProviderAccessSetupArray{ CloudProviderAccessSetupArgs{...} }
+//	CloudProviderAccessSetupArray{ CloudProviderAccessSetupArgs{...} }
 type CloudProviderAccessSetupArrayInput interface {
 	pulumi.Input
 
@@ -143,7 +143,7 @@ func (i CloudProviderAccessSetupArray) ToCloudProviderAccessSetupArrayOutputWith
 // CloudProviderAccessSetupMapInput is an input type that accepts CloudProviderAccessSetupMap and CloudProviderAccessSetupMapOutput values.
 // You can construct a concrete instance of `CloudProviderAccessSetupMapInput` via:
 //
-//          CloudProviderAccessSetupMap{ "key": CloudProviderAccessSetupArgs{...} }
+//	CloudProviderAccessSetupMap{ "key": CloudProviderAccessSetupArgs{...} }
 type CloudProviderAccessSetupMapInput interface {
 	pulumi.Input
 
@@ -177,6 +177,31 @@ func (o CloudProviderAccessSetupOutput) ToCloudProviderAccessSetupOutput() Cloud
 
 func (o CloudProviderAccessSetupOutput) ToCloudProviderAccessSetupOutputWithContext(ctx context.Context) CloudProviderAccessSetupOutput {
 	return o
+}
+
+// Deprecated: use aws_config instead
+func (o CloudProviderAccessSetupOutput) Aws() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringMapOutput { return v.Aws }).(pulumi.StringMapOutput)
+}
+
+func (o CloudProviderAccessSetupOutput) AwsConfigs() CloudProviderAccessSetupAwsConfigArrayOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) CloudProviderAccessSetupAwsConfigArrayOutput { return v.AwsConfigs }).(CloudProviderAccessSetupAwsConfigArrayOutput)
+}
+
+func (o CloudProviderAccessSetupOutput) CreatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessSetupOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessSetupOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessSetupOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
 }
 
 type CloudProviderAccessSetupArrayOutput struct{ *pulumi.OutputState }

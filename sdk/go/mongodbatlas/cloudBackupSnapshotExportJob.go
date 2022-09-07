@@ -21,39 +21,42 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "testCloudBackupSnapshotExportBucket", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
-// 			ProjectId:     pulumi.String("{PROJECT_ID}"),
-// 			IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
-// 			BucketName:    pulumi.String("example_bucket"),
-// 			CloudProvider: pulumi.String("AWS"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "testCloudBackupSnapshotExportJob", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
-// 			ProjectId:      pulumi.String("{PROJECT_ID}"),
-// 			ClusterName:    pulumi.String("{CLUSTER_NAME}"),
-// 			SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
-// 			ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
-// 			CustomDatas: CloudBackupSnapshotExportJobCustomDataArray{
-// 				&CloudBackupSnapshotExportJobCustomDataArgs{
-// 					Key:   pulumi.String("exported by"),
-// 					Value: pulumi.String("myName"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshotExportBucket, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "testCloudBackupSnapshotExportBucket", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
+//				BucketName:    pulumi.String("example_bucket"),
+//				CloudProvider: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSnapshotExportJob(ctx, "testCloudBackupSnapshotExportJob", &mongodbatlas.CloudBackupSnapshotExportJobArgs{
+//				ProjectId:      pulumi.String("{PROJECT_ID}"),
+//				ClusterName:    pulumi.String("{CLUSTER_NAME}"),
+//				SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
+//				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
+//				CustomDatas: CloudBackupSnapshotExportJobCustomDataArray{
+//					&CloudBackupSnapshotExportJobCustomDataArgs{
+//						Key:   pulumi.String("exported by"),
+//						Value: pulumi.String("myName"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -61,10 +64,12 @@ import (
 // Cloud Backup Snapshot Export Backup entries can be imported using project project_id, cluster_name and export_job_id (Unique identifier of the snapshot export job), in the format `PROJECTID-CLUSTERNAME-EXPORTJOBID`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5-5d116d82014b764445b2f9b5
+//
+//	$ pulumi import mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5-5d116d82014b764445b2f9b5
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-job/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-job/)
 type CloudBackupSnapshotExportJob struct {
 	pulumi.CustomResourceState
 
@@ -244,7 +249,7 @@ func (i *CloudBackupSnapshotExportJob) ToCloudBackupSnapshotExportJobOutputWithC
 // CloudBackupSnapshotExportJobArrayInput is an input type that accepts CloudBackupSnapshotExportJobArray and CloudBackupSnapshotExportJobArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportJobArrayInput` via:
 //
-//          CloudBackupSnapshotExportJobArray{ CloudBackupSnapshotExportJobArgs{...} }
+//	CloudBackupSnapshotExportJobArray{ CloudBackupSnapshotExportJobArgs{...} }
 type CloudBackupSnapshotExportJobArrayInput interface {
 	pulumi.Input
 
@@ -269,7 +274,7 @@ func (i CloudBackupSnapshotExportJobArray) ToCloudBackupSnapshotExportJobArrayOu
 // CloudBackupSnapshotExportJobMapInput is an input type that accepts CloudBackupSnapshotExportJobMap and CloudBackupSnapshotExportJobMapOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportJobMapInput` via:
 //
-//          CloudBackupSnapshotExportJobMap{ "key": CloudBackupSnapshotExportJobArgs{...} }
+//	CloudBackupSnapshotExportJobMap{ "key": CloudBackupSnapshotExportJobArgs{...} }
 type CloudBackupSnapshotExportJobMapInput interface {
 	pulumi.Input
 
@@ -303,6 +308,76 @@ func (o CloudBackupSnapshotExportJobOutput) ToCloudBackupSnapshotExportJobOutput
 
 func (o CloudBackupSnapshotExportJobOutput) ToCloudBackupSnapshotExportJobOutputWithContext(ctx context.Context) CloudBackupSnapshotExportJobOutput {
 	return o
+}
+
+// Name of the Atlas cluster whose snapshot you want to export.
+func (o CloudBackupSnapshotExportJobOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+func (o CloudBackupSnapshotExportJobOutput) Components() CloudBackupSnapshotExportJobComponentArrayOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) CloudBackupSnapshotExportJobComponentArrayOutput {
+		return v.Components
+	}).(CloudBackupSnapshotExportJobComponentArrayOutput)
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when the export job was created.
+func (o CloudBackupSnapshotExportJobOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
+func (o CloudBackupSnapshotExportJobOutput) CustomDatas() CloudBackupSnapshotExportJobCustomDataArrayOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) CloudBackupSnapshotExportJobCustomDataArrayOutput {
+		return v.CustomDatas
+	}).(CloudBackupSnapshotExportJobCustomDataArrayOutput)
+}
+
+// Error message, only if the export job failed.
+func (o CloudBackupSnapshotExportJobOutput) ErrMsg() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ErrMsg }).(pulumi.StringOutput)
+}
+
+func (o CloudBackupSnapshotExportJobOutput) ExportBucketId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ExportBucketId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the export job.
+// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+func (o CloudBackupSnapshotExportJobOutput) ExportJobId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ExportJobId }).(pulumi.StringOutput)
+}
+
+func (o CloudBackupSnapshotExportJobOutput) ExportStatusExportedCollections() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.IntOutput { return v.ExportStatusExportedCollections }).(pulumi.IntOutput)
+}
+
+func (o CloudBackupSnapshotExportJobOutput) ExportStatusTotalCollections() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.IntOutput { return v.ExportStatusTotalCollections }).(pulumi.IntOutput)
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
+func (o CloudBackupSnapshotExportJobOutput) FinishedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.FinishedAt }).(pulumi.StringOutput)
+}
+
+func (o CloudBackupSnapshotExportJobOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.Prefix }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+func (o CloudBackupSnapshotExportJobOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o CloudBackupSnapshotExportJobOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Status of the export job. Value can be one of the following:
+func (o CloudBackupSnapshotExportJobOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 type CloudBackupSnapshotExportJobArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class ClusterReplicationSpecRegionsConfigArgs : Pulumi.ResourceArgs
+    public sealed class ClusterReplicationSpecRegionsConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
@@ -51,5 +51,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public ClusterReplicationSpecRegionsConfigArgs()
         {
         }
+        public static new ClusterReplicationSpecRegionsConfigArgs Empty => new ClusterReplicationSpecRegionsConfigArgs();
     }
 }

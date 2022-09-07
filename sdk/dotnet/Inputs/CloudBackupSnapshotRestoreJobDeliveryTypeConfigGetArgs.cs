@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudBackupSnapshotRestoreJobDeliveryTypeConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupSnapshotRestoreJobDeliveryTypeConfigGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("automated")]
         public Input<bool>? Automated { get; set; }
@@ -31,16 +31,20 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<int>? PointInTimeUtcSeconds { get; set; }
 
         /// <summary>
-        /// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+        /// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         /// </summary>
         [Input("targetClusterName")]
         public Input<string>? TargetClusterName { get; set; }
 
+        /// <summary>
+        /// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+        /// </summary>
         [Input("targetProjectId")]
         public Input<string>? TargetProjectId { get; set; }
 
         public CloudBackupSnapshotRestoreJobDeliveryTypeConfigGetArgs()
         {
         }
+        public static new CloudBackupSnapshotRestoreJobDeliveryTypeConfigGetArgs Empty => new CloudBackupSnapshotRestoreJobDeliveryTypeConfigGetArgs();
     }
 }

@@ -13,7 +13,7 @@ import (
 
 // `NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully.
 //
-//  Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the "containers per cloud provider" information that follows (in this case you can obtain the container id from the cluster resource attribute `containerId`).
+//	Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the "containers per cloud provider" information that follows (in this case you can obtain the container id from the cluster resource attribute `containerId`).
 //
 // The following is the maximum number of Network Peering containers per cloud provider:
 // <br> &#8226;  GCP -  One container per project.
@@ -28,24 +28,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
-// 			AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
-// 			ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderName:   pulumi.String("AWS"),
-// 			RegionName:     pulumi.String("US_EAST_1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
+//				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
+//				ProviderName:   pulumi.String("AWS"),
+//				RegionName:     pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example with GCP
 //
@@ -53,27 +56,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
-// 			AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
-// 			ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderName:   pulumi.String("GCP"),
-// 			Regions: pulumi.StringArray{
-// 				pulumi.String("US_EAST_4"),
-// 				pulumi.String("US_WEST_3"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
+//				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
+//				ProviderName:   pulumi.String("GCP"),
+//				Regions: pulumi.StringArray{
+//					pulumi.String("US_EAST_4"),
+//					pulumi.String("US_WEST_3"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example with Azure
 //
@@ -81,24 +87,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
-// 			AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
-// 			ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
-// 			ProviderName:   pulumi.String("AZURE"),
-// 			Region:         pulumi.String("US_EAST_2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
+//				AtlasCidrBlock: pulumi.String("10.8.0.0/21"),
+//				ProjectId:      pulumi.String("<YOUR-PROJECT-ID>"),
+//				ProviderName:   pulumi.String("AZURE"),
+//				Region:         pulumi.String("US_EAST_2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -106,10 +115,12 @@ import (
 // Clusters can be imported using project ID and network peering container id, in the format `PROJECTID-CONTAINER-ID`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
+//
+//	$ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
+//
 // ```
 //
-//  See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+//	See detailed information for arguments and attributes[MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
 type NetworkContainer struct {
 	pulumi.CustomResourceState
 
@@ -309,7 +320,7 @@ func (i *NetworkContainer) ToNetworkContainerOutputWithContext(ctx context.Conte
 // NetworkContainerArrayInput is an input type that accepts NetworkContainerArray and NetworkContainerArrayOutput values.
 // You can construct a concrete instance of `NetworkContainerArrayInput` via:
 //
-//          NetworkContainerArray{ NetworkContainerArgs{...} }
+//	NetworkContainerArray{ NetworkContainerArgs{...} }
 type NetworkContainerArrayInput interface {
 	pulumi.Input
 
@@ -334,7 +345,7 @@ func (i NetworkContainerArray) ToNetworkContainerArrayOutputWithContext(ctx cont
 // NetworkContainerMapInput is an input type that accepts NetworkContainerMap and NetworkContainerMapOutput values.
 // You can construct a concrete instance of `NetworkContainerMapInput` via:
 //
-//          NetworkContainerMap{ "key": NetworkContainerArgs{...} }
+//	NetworkContainerMap{ "key": NetworkContainerArgs{...} }
 type NetworkContainerMapInput interface {
 	pulumi.Input
 
@@ -368,6 +379,74 @@ func (o NetworkContainerOutput) ToNetworkContainerOutput() NetworkContainerOutpu
 
 func (o NetworkContainerOutput) ToNetworkContainerOutputWithContext(ctx context.Context) NetworkContainerOutput {
 	return o
+}
+
+// CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
+// * Lower bound: 10.0.0.0 -	Upper bound: 10.255.255.255 -	Prefix: 10/8
+// * Lower bound: 172.16.0.0 -	Upper bound:172.31.255.255 -	Prefix:	172.16/12
+// * Lower bound: 192.168.0.0 -	Upper bound:192.168.255.255 -	Prefix:	192.168/16
+func (o NetworkContainerOutput) AtlasCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.AtlasCidrBlock }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Azure subscription in which the VNet resides.
+func (o NetworkContainerOutput) AzureSubscriptionId() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.AzureSubscriptionId }).(pulumi.StringOutput)
+}
+
+// The Network Peering Container ID.
+func (o NetworkContainerOutput) ContainerId() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.ContainerId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+func (o NetworkContainerOutput) GcpProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.GcpProjectId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+func (o NetworkContainerOutput) NetworkName() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.NetworkName }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the Atlas project for this Network Peering Container.
+func (o NetworkContainerOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
+func (o NetworkContainerOutput) ProviderName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringPtrOutput { return v.ProviderName }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether the project has Network Peering connections deployed in the container.
+func (o NetworkContainerOutput) Provisioned() pulumi.BoolOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.BoolOutput { return v.Provisioned }).(pulumi.BoolOutput)
+}
+
+// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+func (o NetworkContainerOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+func (o NetworkContainerOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+func (o NetworkContainerOutput) Regions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringArrayOutput { return v.Regions }).(pulumi.StringArrayOutput)
+}
+
+// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
+func (o NetworkContainerOutput) VnetName() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.VnetName }).(pulumi.StringOutput)
+}
+
+// Unique identifier of Atlas' AWS VPC.
+func (o NetworkContainerOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.VpcId }).(pulumi.StringOutput)
 }
 
 type NetworkContainerArrayOutput struct{ *pulumi.OutputState }

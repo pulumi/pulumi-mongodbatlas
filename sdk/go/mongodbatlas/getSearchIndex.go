@@ -20,23 +20,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.LookupSearchIndex(ctx, &GetSearchIndexArgs{
-// 			ClusterName: "<CLUSTER_NAME>",
-// 			IndexId:     "<INDEX_ID",
-// 			ProjectId:   "<PROJECT_ID>",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupSearchIndex(ctx, &GetSearchIndexArgs{
+//				ClusterName: "<CLUSTER_NAME>",
+//				IndexId:     "<INDEX_ID",
+//				ProjectId:   "<PROJECT_ID>",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupSearchIndex(ctx *pulumi.Context, args *LookupSearchIndexArgs, opts ...pulumi.InvokeOption) (*LookupSearchIndexResult, error) {
 	var rv LookupSearchIndexResult

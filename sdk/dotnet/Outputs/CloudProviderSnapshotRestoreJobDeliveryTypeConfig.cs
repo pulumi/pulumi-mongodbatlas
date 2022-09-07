@@ -23,6 +23,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
         /// </summary>
         public readonly string? TargetClusterName;
+        /// <summary>
+        /// Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
+        /// </summary>
         public readonly string? TargetProjectId;
 
         [OutputConstructor]
