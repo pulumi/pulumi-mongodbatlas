@@ -21,22 +21,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewPrivateIpMode(ctx, "myPrivateIpMode", &mongodbatlas.PrivateIpModeArgs{
-// 			Enabled:   pulumi.Bool(false),
-// 			ProjectId: pulumi.String("<YOUR PROJECT ID>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewPrivateIpMode(ctx, "myPrivateIpMode", &mongodbatlas.PrivateIpModeArgs{
+//				Enabled:   pulumi.Bool(false),
+//				ProjectId: pulumi.String("<YOUR PROJECT ID>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,10 +47,12 @@ import (
 // Project must be imported using project ID, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/privateIpMode:PrivateIpMode my_private_ip_mode 5d09d6a59ccf6445652a444a
+//
+//	$ pulumi import mongodbatlas:index/privateIpMode:PrivateIpMode my_private_ip_mode 5d09d6a59ccf6445652a444a
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)
 type PrivateIpMode struct {
 	pulumi.CustomResourceState
 
@@ -150,7 +155,7 @@ func (i *PrivateIpMode) ToPrivateIpModeOutputWithContext(ctx context.Context) Pr
 // PrivateIpModeArrayInput is an input type that accepts PrivateIpModeArray and PrivateIpModeArrayOutput values.
 // You can construct a concrete instance of `PrivateIpModeArrayInput` via:
 //
-//          PrivateIpModeArray{ PrivateIpModeArgs{...} }
+//	PrivateIpModeArray{ PrivateIpModeArgs{...} }
 type PrivateIpModeArrayInput interface {
 	pulumi.Input
 
@@ -175,7 +180,7 @@ func (i PrivateIpModeArray) ToPrivateIpModeArrayOutputWithContext(ctx context.Co
 // PrivateIpModeMapInput is an input type that accepts PrivateIpModeMap and PrivateIpModeMapOutput values.
 // You can construct a concrete instance of `PrivateIpModeMapInput` via:
 //
-//          PrivateIpModeMap{ "key": PrivateIpModeArgs{...} }
+//	PrivateIpModeMap{ "key": PrivateIpModeArgs{...} }
 type PrivateIpModeMapInput interface {
 	pulumi.Input
 
@@ -209,6 +214,16 @@ func (o PrivateIpModeOutput) ToPrivateIpModeOutput() PrivateIpModeOutput {
 
 func (o PrivateIpModeOutput) ToPrivateIpModeOutputWithContext(ctx context.Context) PrivateIpModeOutput {
 	return o
+}
+
+// Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project
+func (o PrivateIpModeOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PrivateIpMode) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The unique ID for the project to enable Only Private IP Mode.
+func (o PrivateIpModeOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateIpMode) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 type PrivateIpModeArrayOutput struct{ *pulumi.OutputState }

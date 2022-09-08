@@ -15,24 +15,22 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// ### Basic
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var adlTest = new Mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", new()
     ///     {
-    ///         var adlTest = new Mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", new Mongodbatlas.PrivatelinkEndpointServiceAdlArgs
-    ///         {
-    ///             Comment = "comments for private link endpoint adl",
-    ///             EndpointId = "&lt;ENDPOINT_ID&gt;",
-    ///             ProjectId = "&lt;PROJECT_ID&gt;",
-    ///             ProviderName = "AWS",
-    ///             Type = "DATA_LAKE",
-    ///         });
-    ///     }
+    ///         Comment = "comments for private link endpoint adl",
+    ///         EndpointId = "&lt;ENDPOINT_ID&gt;",
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ProviderName = "AWS",
+    ///         Type = "DATA_LAKE",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -48,7 +46,7 @@ namespace Pulumi.Mongodbatlas
     /// and [MongoDB Atlas API - Online Archive](https://docs.atlas.mongodb.com/reference/api/online-archive/) Documentation.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl")]
-    public partial class PrivatelinkEndpointServiceAdl : Pulumi.CustomResource
+    public partial class PrivatelinkEndpointServiceAdl : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Human-readable string to associate with this private endpoint.
@@ -124,7 +122,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class PrivatelinkEndpointServiceAdlArgs : Pulumi.ResourceArgs
+    public sealed class PrivatelinkEndpointServiceAdlArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Human-readable string to associate with this private endpoint.
@@ -159,9 +157,10 @@ namespace Pulumi.Mongodbatlas
         public PrivatelinkEndpointServiceAdlArgs()
         {
         }
+        public static new PrivatelinkEndpointServiceAdlArgs Empty => new PrivatelinkEndpointServiceAdlArgs();
     }
 
-    public sealed class PrivatelinkEndpointServiceAdlState : Pulumi.ResourceArgs
+    public sealed class PrivatelinkEndpointServiceAdlState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Human-readable string to associate with this private endpoint.
@@ -196,5 +195,6 @@ namespace Pulumi.Mongodbatlas
         public PrivatelinkEndpointServiceAdlState()
         {
         }
+        public static new PrivatelinkEndpointServiceAdlState Empty => new PrivatelinkEndpointServiceAdlState();
     }
 }

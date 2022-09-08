@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class DatabaseUserRoleArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseUserRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
@@ -33,5 +33,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public DatabaseUserRoleArgs()
         {
         }
+        public static new DatabaseUserRoleArgs Empty => new DatabaseUserRoleArgs();
     }
 }

@@ -16,30 +16,28 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **IMPORTANT** You **MUST** import this resource before you can manage it with this provider.
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
     ///     {
-    ///         var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new Mongodbatlas.FederatedSettingsIdentityProviderArgs
+    ///         AssociatedDomains = new[]
     ///         {
-    ///             AssociatedDomains = 
-    ///             {
-    ///                 "yourdomain.com",
-    ///             },
-    ///             FederationSettingsId = "627a9687f7f7f7f774de306f14",
-    ///             IssuerUri = "http://www.okta.com/exk17q7f7f7f7fp50h8",
-    ///             RequestBinding = "HTTP-POST",
-    ///             ResponseSignatureAlgorithm = "SHA-256",
-    ///             SsoDebugEnabled = true,
-    ///             SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
-    ///             Status = "ACTIVE",
-    ///         });
-    ///     }
+    ///             "yourdomain.com",
+    ///         },
+    ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+    ///         IssuerUri = "http://www.okta.com/exk17q7f7f7f7fp50h8",
+    ///         RequestBinding = "HTTP-POST",
+    ///         ResponseSignatureAlgorithm = "SHA-256",
+    ///         SsoDebugEnabled = true,
+    ///         SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml",
+    ///         Status = "ACTIVE",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +51,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider")]
-    public partial class FederatedSettingsIdentityProvider : Pulumi.CustomResource
+    public partial class FederatedSettingsIdentityProvider : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List that contains the domains associated with the identity provider.
@@ -79,6 +77,9 @@ namespace Pulumi.Mongodbatlas
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique 20-hexadecimal digit string that identifies the IdP.
+        /// </summary>
         [Output("oktaIdpId")]
         public Output<string> OktaIdpId { get; private set; } = null!;
 
@@ -158,7 +159,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class FederatedSettingsIdentityProviderArgs : Pulumi.ResourceArgs
+    public sealed class FederatedSettingsIdentityProviderArgs : global::Pulumi.ResourceArgs
     {
         [Input("associatedDomains")]
         private InputList<string>? _associatedDomains;
@@ -225,9 +226,10 @@ namespace Pulumi.Mongodbatlas
         public FederatedSettingsIdentityProviderArgs()
         {
         }
+        public static new FederatedSettingsIdentityProviderArgs Empty => new FederatedSettingsIdentityProviderArgs();
     }
 
-    public sealed class FederatedSettingsIdentityProviderState : Pulumi.ResourceArgs
+    public sealed class FederatedSettingsIdentityProviderState : global::Pulumi.ResourceArgs
     {
         [Input("associatedDomains")]
         private InputList<string>? _associatedDomains;
@@ -259,6 +261,9 @@ namespace Pulumi.Mongodbatlas
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Unique 20-hexadecimal digit string that identifies the IdP.
+        /// </summary>
         [Input("oktaIdpId")]
         public Input<string>? OktaIdpId { get; set; }
 
@@ -297,5 +302,6 @@ namespace Pulumi.Mongodbatlas
         public FederatedSettingsIdentityProviderState()
         {
         }
+        public static new FederatedSettingsIdentityProviderState Empty => new FederatedSettingsIdentityProviderState();
     }
 }

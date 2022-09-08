@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AdvancedClusterReplicationSpecRegionConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class AdvancedClusterReplicationSpecRegionConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below
@@ -66,5 +66,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AdvancedClusterReplicationSpecRegionConfigGetArgs()
         {
         }
+        public static new AdvancedClusterReplicationSpecRegionConfigGetArgs Empty => new AdvancedClusterReplicationSpecRegionConfigGetArgs();
     }
 }

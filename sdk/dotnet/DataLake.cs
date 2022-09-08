@@ -14,35 +14,35 @@ namespace Pulumi.Mongodbatlas
     /// ### S
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testProject = new Mongodbatlas.Project("testProject", new()
     ///     {
-    ///         var testProject = new Mongodbatlas.Project("testProject", new Mongodbatlas.ProjectArgs
-    ///         {
-    ///             OrgId = "ORGANIZATION ID",
-    ///         });
-    ///         var testCloudProviderAccess = new Mongodbatlas.CloudProviderAccess("testCloudProviderAccess", new Mongodbatlas.CloudProviderAccessArgs
-    ///         {
-    ///             ProjectId = testProject.Id,
-    ///             ProviderName = "AWS",
-    ///             IamAssumedRoleArn = "AWS ROLE ID",
-    ///         });
-    ///         var basicDs = new Mongodbatlas.DataLake("basicDs", new Mongodbatlas.DataLakeArgs
-    ///         {
-    ///             ProjectId = testProject.Id,
-    ///             Aws = new Mongodbatlas.Inputs.DataLakeAwsArgs
-    ///             {
-    ///                 RoleId = testCloudProviderAccess.RoleId,
-    ///                 TestS3Bucket = "TEST S3 BUCKET NAME",
-    ///             },
-    ///         });
-    ///     }
+    ///         OrgId = "ORGANIZATION ID",
+    ///     });
     /// 
-    /// }
+    ///     var testCloudProviderAccess = new Mongodbatlas.CloudProviderAccess("testCloudProviderAccess", new()
+    ///     {
+    ///         ProjectId = testProject.Id,
+    ///         ProviderName = "AWS",
+    ///         IamAssumedRoleArn = "AWS ROLE ID",
+    ///     });
+    /// 
+    ///     var basicDs = new Mongodbatlas.DataLake("basicDs", new()
+    ///     {
+    ///         ProjectId = testProject.Id,
+    ///         Aws = new Mongodbatlas.Inputs.DataLakeAwsArgs
+    ///         {
+    ///             RoleId = testCloudProviderAccess.RoleId,
+    ///             TestS3Bucket = "TEST S3 BUCKET NAME",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
     ///  See [MongoDB Atlas API](https://docs.mongodb.com/datalake/reference/api/dataLakes-create-one-tenant) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/dataLake:DataLake")]
-    public partial class DataLake : Pulumi.CustomResource
+    public partial class DataLake : global::Pulumi.CustomResource
     {
         /// <summary>
         /// AWS provider of the cloud service where Data Lake can access the S3 Bucket.
@@ -172,7 +172,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class DataLakeArgs : Pulumi.ResourceArgs
+    public sealed class DataLakeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS provider of the cloud service where Data Lake can access the S3 Bucket.
@@ -205,9 +205,10 @@ namespace Pulumi.Mongodbatlas
         public DataLakeArgs()
         {
         }
+        public static new DataLakeArgs Empty => new DataLakeArgs();
     }
 
-    public sealed class DataLakeState : Pulumi.ResourceArgs
+    public sealed class DataLakeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// AWS provider of the cloud service where Data Lake can access the S3 Bucket.
@@ -300,5 +301,6 @@ namespace Pulumi.Mongodbatlas
         public DataLakeState()
         {
         }
+        public static new DataLakeState Empty => new DataLakeState();
     }
 }

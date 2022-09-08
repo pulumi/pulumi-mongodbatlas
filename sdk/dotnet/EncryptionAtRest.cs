@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     [MongodbatlasResourceType("mongodbatlas:index/encryptionAtRest:EncryptionAtRest")]
-    public partial class EncryptionAtRest : Pulumi.CustomResource
+    public partial class EncryptionAtRest : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
@@ -89,7 +89,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class EncryptionAtRestArgs : Pulumi.ResourceArgs
+    public sealed class EncryptionAtRestArgs : global::Pulumi.ResourceArgs
     {
         [Input("awsKms")]
         private InputMap<string>? _awsKms;
@@ -148,9 +148,10 @@ namespace Pulumi.Mongodbatlas
         public EncryptionAtRestArgs()
         {
         }
+        public static new EncryptionAtRestArgs Empty => new EncryptionAtRestArgs();
     }
 
-    public sealed class EncryptionAtRestState : Pulumi.ResourceArgs
+    public sealed class EncryptionAtRestState : global::Pulumi.ResourceArgs
     {
         [Input("awsKms")]
         private InputMap<string>? _awsKms;
@@ -209,5 +210,6 @@ namespace Pulumi.Mongodbatlas
         public EncryptionAtRestState()
         {
         }
+        public static new EncryptionAtRestState Empty => new EncryptionAtRestState();
     }
 }

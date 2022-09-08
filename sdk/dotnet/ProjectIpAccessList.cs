@@ -20,83 +20,79 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// ### Using CIDR Block
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.ProjectIpAccessList("test", new Mongodbatlas.ProjectIpAccessListArgs
-    ///         {
-    ///             CidrBlock = "1.2.3.4/32",
-    ///             Comment = "cidr block for tf acc testing",
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         });
-    ///     }
+    ///         CidrBlock = "1.2.3.4/32",
+    ///         Comment = "cidr block for tf acc testing",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Using IP Address
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.ProjectIpAccessList("test", new Mongodbatlas.ProjectIpAccessListArgs
-    ///         {
-    ///             Comment = "ip address for tf acc testing",
-    ///             IpAddress = "2.3.4.5",
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         });
-    ///     }
+    ///         Comment = "ip address for tf acc testing",
+    ///         IpAddress = "2.3.4.5",
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// ### Using an AWS Security Group
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new()
     ///     {
-    ///         var testNetworkContainer = new Mongodbatlas.NetworkContainer("testNetworkContainer", new Mongodbatlas.NetworkContainerArgs
-    ///         {
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             AtlasCidrBlock = "192.168.208.0/21",
-    ///             ProviderName = "AWS",
-    ///             RegionName = "US_EAST_1",
-    ///         });
-    ///         var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new Mongodbatlas.NetworkPeeringArgs
-    ///         {
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             ContainerId = testNetworkContainer.ContainerId,
-    ///             AccepterRegionName = "us-east-1",
-    ///             ProviderName = "AWS",
-    ///             RouteTableCidrBlock = "172.31.0.0/16",
-    ///             VpcId = "vpc-0d93d6f69f1578bd8",
-    ///             AwsAccountId = "232589400519",
-    ///         });
-    ///         var testProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("testProjectIpAccessList", new Mongodbatlas.ProjectIpAccessListArgs
-    ///         {
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             AwsSecurityGroup = "sg-0026348ec11780bd1",
-    ///             Comment = "TestAcc for awsSecurityGroup",
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 "mongodbatlas_network_peering.test",
-    ///             },
-    ///         });
-    ///     }
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         AtlasCidrBlock = "192.168.208.0/21",
+    ///         ProviderName = "AWS",
+    ///         RegionName = "US_EAST_1",
+    ///     });
     /// 
-    /// }
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("testNetworkPeering", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ContainerId = testNetworkContainer.ContainerId,
+    ///         AccepterRegionName = "us-east-1",
+    ///         ProviderName = "AWS",
+    ///         RouteTableCidrBlock = "172.31.0.0/16",
+    ///         VpcId = "vpc-0d93d6f69f1578bd8",
+    ///         AwsAccountId = "232589400519",
+    ///     });
+    /// 
+    ///     var testProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("testProjectIpAccessList", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         AwsSecurityGroup = "sg-0026348ec11780bd1",
+    ///         Comment = "TestAcc for awsSecurityGroup",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             "mongodbatlas_network_peering.test",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
@@ -112,7 +108,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList")]
-    public partial class ProjectIpAccessList : Pulumi.CustomResource
+    public partial class ProjectIpAccessList : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
@@ -188,7 +184,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class ProjectIpAccessListArgs : Pulumi.ResourceArgs
+    public sealed class ProjectIpAccessListArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
@@ -223,9 +219,10 @@ namespace Pulumi.Mongodbatlas
         public ProjectIpAccessListArgs()
         {
         }
+        public static new ProjectIpAccessListArgs Empty => new ProjectIpAccessListArgs();
     }
 
-    public sealed class ProjectIpAccessListState : Pulumi.ResourceArgs
+    public sealed class ProjectIpAccessListState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
@@ -260,5 +257,6 @@ namespace Pulumi.Mongodbatlas
         public ProjectIpAccessListState()
         {
         }
+        public static new ProjectIpAccessListState Empty => new ProjectIpAccessListState();
     }
 }

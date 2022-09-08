@@ -11,37 +11,6 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const myCluster = new mongodbatlas.Cluster("myCluster", {
- *     projectId: "5cf5a45a9ccf6400e60981b6",
- *     diskSizeGb: 5,
- *     providerName: "AWS",
- *     providerRegionName: "EU_WEST_2",
- *     providerInstanceSizeName: "M10",
- *     cloudBackup: true,
- * });
- * // enable cloud backup snapshots
- * const testCloudBackupSnapshot = new mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", {
- *     projectId: myCluster.projectId,
- *     clusterName: myCluster.name,
- *     description: "myDescription",
- *     retentionInDays: 1,
- * });
- * const testCloudBackupSnapshotRestoreJob = new mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", {
- *     projectId: testCloudBackupSnapshot.projectId,
- *     clusterName: testCloudBackupSnapshot.clusterName,
- *     snapshotId: testCloudBackupSnapshot.snapshotId,
- *     deliveryType: [{
- *         download: true,
- *     }],
- * });
- * ```
- *
  * ## Import
  *
  * Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.

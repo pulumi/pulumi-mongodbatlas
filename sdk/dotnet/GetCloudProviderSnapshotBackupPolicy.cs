@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCloudProviderSnapshotBackupPolicyArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudProviderSnapshotBackupPolicyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
@@ -50,9 +50,10 @@ namespace Pulumi.Mongodbatlas
         public GetCloudProviderSnapshotBackupPolicyArgs()
         {
         }
+        public static new GetCloudProviderSnapshotBackupPolicyArgs Empty => new GetCloudProviderSnapshotBackupPolicyArgs();
     }
 
-    public sealed class GetCloudProviderSnapshotBackupPolicyInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudProviderSnapshotBackupPolicyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
@@ -69,6 +70,7 @@ namespace Pulumi.Mongodbatlas
         public GetCloudProviderSnapshotBackupPolicyInvokeArgs()
         {
         }
+        public static new GetCloudProviderSnapshotBackupPolicyInvokeArgs Empty => new GetCloudProviderSnapshotBackupPolicyInvokeArgs();
     }
 
 

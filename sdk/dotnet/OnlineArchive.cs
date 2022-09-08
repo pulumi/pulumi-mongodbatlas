@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/onlineArchive:OnlineArchive")]
-    public partial class OnlineArchive : Pulumi.CustomResource
+    public partial class OnlineArchive : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ID of the online archive.
@@ -124,7 +124,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class OnlineArchiveArgs : Pulumi.ResourceArgs
+    public sealed class OnlineArchiveArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the cluster that contains the collection.
@@ -180,9 +180,10 @@ namespace Pulumi.Mongodbatlas
         public OnlineArchiveArgs()
         {
         }
+        public static new OnlineArchiveArgs Empty => new OnlineArchiveArgs();
     }
 
-    public sealed class OnlineArchiveState : Pulumi.ResourceArgs
+    public sealed class OnlineArchiveState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID of the online archive.
@@ -250,5 +251,6 @@ namespace Pulumi.Mongodbatlas
         public OnlineArchiveState()
         {
         }
+        public static new OnlineArchiveState Empty => new OnlineArchiveState();
     }
 }

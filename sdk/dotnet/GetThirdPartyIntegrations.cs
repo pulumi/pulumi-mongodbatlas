@@ -22,34 +22,34 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("testPagerDuty", new()
         ///     {
-        ///         var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("testPagerDuty", new Mongodbatlas.ThirdPartyIntegrationArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             Type = "PAGER_DUTY",
-        ///             ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
-        ///         });
-        ///         var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new Mongodbatlas.ThirdPartyIntegrationArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             Type = "FLOWDOCK",
-        ///             FlowName = "&lt;FLOW-NAME&gt;",
-        ///             ApiToken = "&lt;API-TOKEN&gt;",
-        ///             OrgName = "&lt;ORG-NAME&gt;",
-        ///         });
-        ///         var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new Mongodbatlas.GetThirdPartyIntegrationsInvokeArgs
-        ///         {
-        ///             ProjectId = testPagerDuty.ProjectId,
-        ///         });
-        ///     }
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "PAGER_DUTY",
+        ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
+        ///     });
         /// 
-        /// }
+        ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "FLOWDOCK",
+        ///         FlowName = "&lt;FLOW-NAME&gt;",
+        ///         ApiToken = "&lt;API-TOKEN&gt;",
+        ///         OrgName = "&lt;ORG-NAME&gt;",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new()
+        ///     {
+        ///         ProjectId = testPagerDuty.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -68,34 +68,34 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("testPagerDuty", new()
         ///     {
-        ///         var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("testPagerDuty", new Mongodbatlas.ThirdPartyIntegrationArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             Type = "PAGER_DUTY",
-        ///             ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
-        ///         });
-        ///         var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new Mongodbatlas.ThirdPartyIntegrationArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             Type = "FLOWDOCK",
-        ///             FlowName = "&lt;FLOW-NAME&gt;",
-        ///             ApiToken = "&lt;API-TOKEN&gt;",
-        ///             OrgName = "&lt;ORG-NAME&gt;",
-        ///         });
-        ///         var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new Mongodbatlas.GetThirdPartyIntegrationsInvokeArgs
-        ///         {
-        ///             ProjectId = testPagerDuty.ProjectId,
-        ///         });
-        ///     }
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "PAGER_DUTY",
+        ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
+        ///     });
         /// 
-        /// }
+        ///     var testFlowdock = new Mongodbatlas.ThirdPartyIntegration("testFlowdock", new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         Type = "FLOWDOCK",
+        ///         FlowName = "&lt;FLOW-NAME&gt;",
+        ///         ApiToken = "&lt;API-TOKEN&gt;",
+        ///         OrgName = "&lt;ORG-NAME&gt;",
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new()
+        ///     {
+        ///         ProjectId = testPagerDuty.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -105,7 +105,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetThirdPartyIntegrationsArgs : Pulumi.InvokeArgs
+    public sealed class GetThirdPartyIntegrationsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -116,9 +116,10 @@ namespace Pulumi.Mongodbatlas
         public GetThirdPartyIntegrationsArgs()
         {
         }
+        public static new GetThirdPartyIntegrationsArgs Empty => new GetThirdPartyIntegrationsArgs();
     }
 
-    public sealed class GetThirdPartyIntegrationsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetThirdPartyIntegrationsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -129,6 +130,7 @@ namespace Pulumi.Mongodbatlas
         public GetThirdPartyIntegrationsInvokeArgs()
         {
         }
+        public static new GetThirdPartyIntegrationsInvokeArgs Empty => new GetThirdPartyIntegrationsInvokeArgs();
     }
 
 

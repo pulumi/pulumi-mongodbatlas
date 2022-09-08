@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CustomDbRoleActionArgs : Pulumi.ResourceArgs
+    public sealed class CustomDbRoleActionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
@@ -34,5 +34,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CustomDbRoleActionArgs()
         {
         }
+        public static new CustomDbRoleActionArgs Empty => new CustomDbRoleActionArgs();
     }
 }

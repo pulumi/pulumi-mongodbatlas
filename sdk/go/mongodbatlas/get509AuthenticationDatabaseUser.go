@@ -22,73 +22,97 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		user, err := mongodbatlas.NewDatabaseUser(ctx, "user", &mongodbatlas.DatabaseUserArgs{
-// 			ProjectId:    pulumi.String("<PROJECT-ID>"),
-// 			Username:     pulumi.String("myUsername"),
-// 			X509Type:     pulumi.String("MANAGED"),
-// 			DatabaseName: pulumi.String(fmt.Sprintf("%v%v", "$", "external")),
-// 			Roles: DatabaseUserRoleArray{
-// 				&DatabaseUserRoleArgs{
-// 					RoleName:     pulumi.String("atlasAdmin"),
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 			},
-// 			Labels: DatabaseUserLabelArray{
-// 				&DatabaseUserLabelArgs{
-// 					Key:   pulumi.String("My Key"),
-// 					Value: pulumi.String("My Value"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testX509AuthenticationDatabaseUser, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "testX509AuthenticationDatabaseUser", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
-// 			ProjectId:             user.ProjectId,
-// 			Username:              user.Username,
-// 			MonthsUntilExpiration: pulumi.Int(2),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			user, err := mongodbatlas.NewDatabaseUser(ctx, "user", &mongodbatlas.DatabaseUserArgs{
+//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				Username:     pulumi.String("myUsername"),
+//				X509Type:     pulumi.String("MANAGED"),
+//				DatabaseName: pulumi.String(fmt.Sprintf("$external")),
+//				Roles: DatabaseUserRoleArray{
+//					&DatabaseUserRoleArgs{
+//						RoleName:     pulumi.String("atlasAdmin"),
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//				Labels: DatabaseUserLabelArray{
+//					&DatabaseUserLabelArgs{
+//						Key:   pulumi.String("My Key"),
+//						Value: pulumi.String("My Value"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testX509AuthenticationDatabaseUser, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "testX509AuthenticationDatabaseUser", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
+//				ProjectId:             user.ProjectId,
+//				Username:              user.Username,
+//				MonthsUntilExpiration: pulumi.Int(2),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
 // ```go
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testX509AuthenticationDatabaseUser, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "testX509AuthenticationDatabaseUser", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
-// 			ProjectId:       pulumi.String("<PROJECT-ID>"),
-// 			CustomerX509Cas: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "-----BEGIN CERTIFICATE-----\n", "MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC\n", "VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl\n", "c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG\n", "SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy\n", "MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF\n", "VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV\n", "BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp\n", "c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB\n", "iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr\n", "cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O\n", "Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG\n", "SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA\n", "7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A\n", "iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz\n", "-----END CERTIFICATE-----\"\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.Get509AuthenticationDatabaseUserOutput(ctx, Get509AuthenticationDatabaseUserOutputArgs{
-// 			ProjectId: testX509AuthenticationDatabaseUser.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testX509AuthenticationDatabaseUser, err := mongodbatlas.NewX509AuthenticationDatabaseUser(ctx, "testX509AuthenticationDatabaseUser", &mongodbatlas.X509AuthenticationDatabaseUserArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				CustomerX509Cas: pulumi.String(fmt.Sprintf(`-----BEGIN CERTIFICATE-----
+//
+// MIICmTCCAgICCQDZnHzklxsT9TANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMC
+// VVMxDjAMBgNVBAgMBVRleGFzMQ8wDQYDVQQHDAZBdXN0aW4xETAPBgNVBAoMCHRl
+// c3QuY29tMQ0wCwYDVQQLDARUZXN0MREwDwYDVQQDDAh0ZXN0LmNvbTErMCkGCSqG
+// SIb3DQEJARYcbWVsaXNzYS5wbHVua2V0dEBtb25nb2RiLmNvbTAeFw0yMDAyMDQy
+// MDQ2MDFaFw0yMTAyMDMyMDQ2MDFaMIGQMQswCQYDVQQGEwJVUzEOMAwGA1UECAwF
+// VGV4YXMxDzANBgNVBAcMBkF1c3RpbjERMA8GA1UECgwIdGVzdC5jb20xDTALBgNV
+// BAsMBFRlc3QxETAPBgNVBAMMCHRlc3QuY29tMSswKQYJKoZIhvcNAQkBFhxtZWxp
+// c3NhLnBsdW5rZXR0QG1vbmdvZGIuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+// iQKBgQCf1LRqr1zftzdYx2Aj9G76tb0noMPtj6faGLlPji1+m6Rn7RWD9L0ntWAr
+// cURxvypa9jZ9MXFzDtLevvd3tHEmfrUT3ukNDX6+Jtc4kWm+Dh2A70Pd+deKZ2/O
+// Fh8audEKAESGXnTbeJCeQa1XKlIkjqQHBNwES5h1b9vJtFoLJwIDAQABMA0GCSqG
+// SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
+// 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
+// iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
+// -----END CERTIFICATE-----"
+// `)),
+//
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.Get509AuthenticationDatabaseUserOutput(ctx, Get509AuthenticationDatabaseUserOutputArgs{
+//				ProjectId: testX509AuthenticationDatabaseUser.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func Get509AuthenticationDatabaseUser(ctx *pulumi.Context, args *Get509AuthenticationDatabaseUserArgs, opts ...pulumi.InvokeOption) (*Get509AuthenticationDatabaseUserResult, error) {
 	var rv Get509AuthenticationDatabaseUserResult

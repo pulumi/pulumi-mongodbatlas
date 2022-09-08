@@ -22,37 +22,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "testCloudBackupSnapshot", &mongodbatlas.CloudBackupSnapshotArgs{
-// 			ProjectId:       pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			ClusterName:     pulumi.String("MyCluster"),
-// 			Description:     pulumi.String("MyDescription"),
-// 			RetentionInDays: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testCloudBackupSnapshotRestoreJob, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "testCloudBackupSnapshotRestoreJob", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
-// 			ProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			ClusterName: pulumi.String("MyCluster"),
-// 			SnapshotId:  testCloudBackupSnapshot.ID(),
-// 			DeliveryTypeConfig: &CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
-// 				Automated:         pulumi.Bool(true),
-// 				TargetClusterName: pulumi.String("MyCluster"),
-// 				TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshot, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "testCloudBackupSnapshot", &mongodbatlas.CloudBackupSnapshotArgs{
+//				ProjectId:       pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				ClusterName:     pulumi.String("MyCluster"),
+//				Description:     pulumi.String("MyDescription"),
+//				RetentionInDays: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCloudBackupSnapshotRestoreJob, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "testCloudBackupSnapshotRestoreJob", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
+//				ProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				ClusterName: pulumi.String("MyCluster"),
+//				SnapshotId:  testCloudBackupSnapshot.ID(),
+//				DeliveryTypeConfig: &CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+//					Automated:         pulumi.Bool(true),
+//					TargetClusterName: pulumi.String("MyCluster"),
+//					TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupCloudBackupSnapshotRestoreJobs(ctx *pulumi.Context, args *LookupCloudBackupSnapshotRestoreJobsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotRestoreJobsResult, error) {
 	var rv LookupCloudBackupSnapshotRestoreJobsResult

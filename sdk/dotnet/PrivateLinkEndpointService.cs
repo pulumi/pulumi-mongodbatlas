@@ -21,87 +21,44 @@ namespace Pulumi.Mongodbatlas
     /// ## Example with AWS
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", new()
     ///     {
-    ///         var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", new Mongodbatlas.PrivateLinkEndpointArgs
-    ///         {
-    ///             ProjectId = "&lt;PROJECT_ID&gt;",
-    ///             ProviderName = "AWS",
-    ///             Region = "US_EAST_1",
-    ///         });
-    ///         var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new Aws.Ec2.VpcEndpointArgs
-    ///         {
-    ///             VpcId = "vpc-7fc0a543",
-    ///             ServiceName = testPrivateLinkEndpoint.EndpointServiceName,
-    ///             VpcEndpointType = "Interface",
-    ///             SubnetIds = 
-    ///             {
-    ///                 "subnet-de0406d2",
-    ///             },
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 "sg-3f238186",
-    ///             },
-    ///         });
-    ///         var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", new Mongodbatlas.PrivateLinkEndpointServiceArgs
-    ///         {
-    ///             ProjectId = testPrivateLinkEndpoint.ProjectId,
-    ///             PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
-    ///             EndpointServiceId = ptfeService.Id,
-    ///             ProviderName = "AWS",
-    ///         });
-    ///     }
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ProviderName = "AWS",
+    ///         Region = "US_EAST_1",
+    ///     });
     /// 
-    /// }
-    /// ```
-    /// 
-    /// ## Example with Azure
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Azure = Pulumi.Azure;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
+    ///     var ptfeService = new Aws.Ec2.VpcEndpoint("ptfeService", new()
     ///     {
-    ///         var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("testPrivateLinkEndpoint", new Mongodbatlas.PrivateLinkEndpointArgs
+    ///         VpcId = "vpc-7fc0a543",
+    ///         ServiceName = testPrivateLinkEndpoint.EndpointServiceName,
+    ///         VpcEndpointType = "Interface",
+    ///         SubnetIds = new[]
     ///         {
-    ///             ProjectId = @var.Project_id,
-    ///             ProviderName = "AZURE",
-    ///             Region = "eastus2",
-    ///         });
-    ///         var testEndpoint = new Azure.PrivateLink.Endpoint("testEndpoint", new Azure.PrivateLink.EndpointArgs
+    ///             "subnet-de0406d2",
+    ///         },
+    ///         SecurityGroupIds = new[]
     ///         {
-    ///             Location = data.Azurerm_resource_group.Test.Location,
-    ///             ResourceGroupName = @var.Resource_group_name,
-    ///             SubnetId = azurerm_subnet.Test.Id,
-    ///             PrivateServiceConnection = new Azure.PrivateLink.Inputs.EndpointPrivateServiceConnectionArgs
-    ///             {
-    ///                 Name = testPrivateLinkEndpoint.PrivateLinkServiceName,
-    ///                 PrivateConnectionResourceId = testPrivateLinkEndpoint.PrivateLinkServiceResourceId,
-    ///                 IsManualConnection = true,
-    ///                 RequestMessage = "Azure Private Link test",
-    ///             },
-    ///         });
-    ///         var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", new Mongodbatlas.PrivateLinkEndpointServiceArgs
-    ///         {
-    ///             ProjectId = testPrivateLinkEndpoint.ProjectId,
-    ///             PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
-    ///             EndpointServiceId = testEndpoint.Id,
-    ///             PrivateEndpointIpAddress = testEndpoint.PrivateServiceConnection.Apply(privateServiceConnection =&gt; privateServiceConnection.PrivateIpAddress),
-    ///             ProviderName = "AZURE",
-    ///         });
-    ///     }
+    ///             "sg-3f238186",
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var testPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("testPrivateLinkEndpointService", new()
+    ///     {
+    ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
+    ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+    ///         EndpointServiceId = ptfeService.Id,
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -115,7 +72,7 @@ namespace Pulumi.Mongodbatlas
     ///  See detailed information for arguments and attributes[MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService")]
-    public partial class PrivateLinkEndpointService : Pulumi.CustomResource
+    public partial class PrivateLinkEndpointService : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Status of the interface endpoint for AWS.
@@ -260,7 +217,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class PrivateLinkEndpointServiceArgs : Pulumi.ResourceArgs
+    public sealed class PrivateLinkEndpointServiceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
@@ -313,9 +270,10 @@ namespace Pulumi.Mongodbatlas
         public PrivateLinkEndpointServiceArgs()
         {
         }
+        public static new PrivateLinkEndpointServiceArgs Empty => new PrivateLinkEndpointServiceArgs();
     }
 
-    public sealed class PrivateLinkEndpointServiceState : Pulumi.ResourceArgs
+    public sealed class PrivateLinkEndpointServiceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Status of the interface endpoint for AWS.
@@ -425,5 +383,6 @@ namespace Pulumi.Mongodbatlas
         public PrivateLinkEndpointServiceState()
         {
         }
+        public static new PrivateLinkEndpointServiceState Empty => new PrivateLinkEndpointServiceState();
     }
 }

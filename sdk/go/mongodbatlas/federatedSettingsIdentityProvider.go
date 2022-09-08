@@ -20,30 +20,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
-// 			AssociatedDomains: pulumi.StringArray{
-// 				pulumi.String("yourdomain.com"),
-// 			},
-// 			FederationSettingsId:       pulumi.String("627a9687f7f7f7f774de306f14"),
-// 			IssuerUri:                  pulumi.String("http://www.okta.com/exk17q7f7f7f7fp50h8"),
-// 			RequestBinding:             pulumi.String("HTTP-POST"),
-// 			ResponseSignatureAlgorithm: pulumi.String("SHA-256"),
-// 			SsoDebugEnabled:            pulumi.Bool(true),
-// 			SsoUrl:                     pulumi.String("https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml"),
-// 			Status:                     pulumi.String("ACTIVE"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identityProvider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//				AssociatedDomains: pulumi.StringArray{
+//					pulumi.String("yourdomain.com"),
+//				},
+//				FederationSettingsId:       pulumi.String("627a9687f7f7f7f774de306f14"),
+//				IssuerUri:                  pulumi.String("http://www.okta.com/exk17q7f7f7f7fp50h8"),
+//				RequestBinding:             pulumi.String("HTTP-POST"),
+//				ResponseSignatureAlgorithm: pulumi.String("SHA-256"),
+//				SsoDebugEnabled:            pulumi.Bool(true),
+//				SsoUrl:                     pulumi.String("https://mysso.oktapreview.com/app/mysso_terraformtestsso/exk17q7f7f7f7f50h8/sso/saml"),
+//				Status:                     pulumi.String("ACTIVE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -51,10 +54,12 @@ import (
 // Identity Provider **must** be imported before using federation_settings_id-idp_id, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
+//
+//	$ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk1297
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+//	For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 type FederatedSettingsIdentityProvider struct {
 	pulumi.CustomResourceState
 
@@ -65,7 +70,8 @@ type FederatedSettingsIdentityProvider struct {
 	// Unique string that identifies the issuer of the SAML
 	IssuerUri pulumi.StringOutput `pulumi:"issuerUri"`
 	// Human-readable label that identifies the identity provider.
-	Name      pulumi.StringOutput `pulumi:"name"`
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Unique 20-hexadecimal digit string that identifies the IdP.
 	OktaIdpId pulumi.StringOutput `pulumi:"oktaIdpId"`
 	// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
 	// - HTTP POST
@@ -138,7 +144,8 @@ type federatedSettingsIdentityProviderState struct {
 	// Unique string that identifies the issuer of the SAML
 	IssuerUri *string `pulumi:"issuerUri"`
 	// Human-readable label that identifies the identity provider.
-	Name      *string `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// Unique 20-hexadecimal digit string that identifies the IdP.
 	OktaIdpId *string `pulumi:"oktaIdpId"`
 	// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
 	// - HTTP POST
@@ -162,7 +169,8 @@ type FederatedSettingsIdentityProviderState struct {
 	// Unique string that identifies the issuer of the SAML
 	IssuerUri pulumi.StringPtrInput
 	// Human-readable label that identifies the identity provider.
-	Name      pulumi.StringPtrInput
+	Name pulumi.StringPtrInput
+	// Unique 20-hexadecimal digit string that identifies the IdP.
 	OktaIdpId pulumi.StringPtrInput
 	// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
 	// - HTTP POST
@@ -255,7 +263,7 @@ func (i *FederatedSettingsIdentityProvider) ToFederatedSettingsIdentityProviderO
 // FederatedSettingsIdentityProviderArrayInput is an input type that accepts FederatedSettingsIdentityProviderArray and FederatedSettingsIdentityProviderArrayOutput values.
 // You can construct a concrete instance of `FederatedSettingsIdentityProviderArrayInput` via:
 //
-//          FederatedSettingsIdentityProviderArray{ FederatedSettingsIdentityProviderArgs{...} }
+//	FederatedSettingsIdentityProviderArray{ FederatedSettingsIdentityProviderArgs{...} }
 type FederatedSettingsIdentityProviderArrayInput interface {
 	pulumi.Input
 
@@ -280,7 +288,7 @@ func (i FederatedSettingsIdentityProviderArray) ToFederatedSettingsIdentityProvi
 // FederatedSettingsIdentityProviderMapInput is an input type that accepts FederatedSettingsIdentityProviderMap and FederatedSettingsIdentityProviderMapOutput values.
 // You can construct a concrete instance of `FederatedSettingsIdentityProviderMapInput` via:
 //
-//          FederatedSettingsIdentityProviderMap{ "key": FederatedSettingsIdentityProviderArgs{...} }
+//	FederatedSettingsIdentityProviderMap{ "key": FederatedSettingsIdentityProviderArgs{...} }
 type FederatedSettingsIdentityProviderMapInput interface {
 	pulumi.Input
 
@@ -314,6 +322,58 @@ func (o FederatedSettingsIdentityProviderOutput) ToFederatedSettingsIdentityProv
 
 func (o FederatedSettingsIdentityProviderOutput) ToFederatedSettingsIdentityProviderOutputWithContext(ctx context.Context) FederatedSettingsIdentityProviderOutput {
 	return o
+}
+
+// List that contains the domains associated with the identity provider.
+func (o FederatedSettingsIdentityProviderOutput) AssociatedDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringArrayOutput { return v.AssociatedDomains }).(pulumi.StringArrayOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o FederatedSettingsIdentityProviderOutput) FederationSettingsId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.FederationSettingsId }).(pulumi.StringOutput)
+}
+
+// Unique string that identifies the issuer of the SAML
+func (o FederatedSettingsIdentityProviderOutput) IssuerUri() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.IssuerUri }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the identity provider.
+func (o FederatedSettingsIdentityProviderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 20-hexadecimal digit string that identifies the IdP.
+func (o FederatedSettingsIdentityProviderOutput) OktaIdpId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.OktaIdpId }).(pulumi.StringOutput)
+}
+
+// SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
+// - HTTP POST
+// - HTTP REDIRECT
+func (o FederatedSettingsIdentityProviderOutput) RequestBinding() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.RequestBinding }).(pulumi.StringOutput)
+}
+
+// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include SHA-1 and SHA-256.
+func (o FederatedSettingsIdentityProviderOutput) ResponseSignatureAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.ResponseSignatureAlgorithm }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the identity provider has SSO debug enabled.
+func (o FederatedSettingsIdentityProviderOutput) SsoDebugEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.BoolOutput { return v.SsoDebugEnabled }).(pulumi.BoolOutput)
+}
+
+// Unique string that identifies the intended audience of the SAML assertion.
+func (o FederatedSettingsIdentityProviderOutput) SsoUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.SsoUrl }).(pulumi.StringOutput)
+}
+
+// String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
+func (o FederatedSettingsIdentityProviderOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsIdentityProvider) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 type FederatedSettingsIdentityProviderArrayOutput struct{ *pulumi.OutputState }

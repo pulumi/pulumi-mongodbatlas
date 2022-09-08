@@ -175,7 +175,7 @@ func (i *EncryptionAtRest) ToEncryptionAtRestOutputWithContext(ctx context.Conte
 // EncryptionAtRestArrayInput is an input type that accepts EncryptionAtRestArray and EncryptionAtRestArrayOutput values.
 // You can construct a concrete instance of `EncryptionAtRestArrayInput` via:
 //
-//          EncryptionAtRestArray{ EncryptionAtRestArgs{...} }
+//	EncryptionAtRestArray{ EncryptionAtRestArgs{...} }
 type EncryptionAtRestArrayInput interface {
 	pulumi.Input
 
@@ -200,7 +200,7 @@ func (i EncryptionAtRestArray) ToEncryptionAtRestArrayOutputWithContext(ctx cont
 // EncryptionAtRestMapInput is an input type that accepts EncryptionAtRestMap and EncryptionAtRestMapOutput values.
 // You can construct a concrete instance of `EncryptionAtRestMapInput` via:
 //
-//          EncryptionAtRestMap{ "key": EncryptionAtRestArgs{...} }
+//	EncryptionAtRestMap{ "key": EncryptionAtRestArgs{...} }
 type EncryptionAtRestMapInput interface {
 	pulumi.Input
 
@@ -234,6 +234,44 @@ func (o EncryptionAtRestOutput) ToEncryptionAtRestOutput() EncryptionAtRestOutpu
 
 func (o EncryptionAtRestOutput) ToEncryptionAtRestOutputWithContext(ctx context.Context) EncryptionAtRestOutput {
 	return o
+}
+
+// Specifies AWS KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+//
+// Deprecated: use aws_kms_config instead
+func (o EncryptionAtRestOutput) AwsKms() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringMapOutput { return v.AwsKms }).(pulumi.StringMapOutput)
+}
+
+func (o EncryptionAtRestOutput) AwsKmsConfig() EncryptionAtRestAwsKmsConfigPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestAwsKmsConfigPtrOutput { return v.AwsKmsConfig }).(EncryptionAtRestAwsKmsConfigPtrOutput)
+}
+
+// Specifies Azure Key Vault configuration details and whether Encryption at Rest is enabled for an Atlas project.
+//
+// Deprecated: use azure_key_vault_config instead
+func (o EncryptionAtRestOutput) AzureKeyVault() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringMapOutput { return v.AzureKeyVault }).(pulumi.StringMapOutput)
+}
+
+func (o EncryptionAtRestOutput) AzureKeyVaultConfig() EncryptionAtRestAzureKeyVaultConfigPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestAzureKeyVaultConfigPtrOutput { return v.AzureKeyVaultConfig }).(EncryptionAtRestAzureKeyVaultConfigPtrOutput)
+}
+
+// Specifies GCP KMS configuration details and whether Encryption at Rest is enabled for an Atlas project.
+//
+// Deprecated: use google_cloud_kms_config instead
+func (o EncryptionAtRestOutput) GoogleCloudKms() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringMapOutput { return v.GoogleCloudKms }).(pulumi.StringMapOutput)
+}
+
+func (o EncryptionAtRestOutput) GoogleCloudKmsConfig() EncryptionAtRestGoogleCloudKmsConfigPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestGoogleCloudKmsConfigPtrOutput { return v.GoogleCloudKmsConfig }).(EncryptionAtRestGoogleCloudKmsConfigPtrOutput)
+}
+
+// The unique identifier for the project.
+func (o EncryptionAtRestOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 type EncryptionAtRestArrayOutput struct{ *pulumi.OutputState }

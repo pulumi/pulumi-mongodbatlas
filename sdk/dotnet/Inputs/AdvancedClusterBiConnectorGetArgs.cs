@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AdvancedClusterBiConnectorGetArgs : Pulumi.ResourceArgs
+    public sealed class AdvancedClusterBiConnectorGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Specifies whether or not BI Connector for Atlas is enabled on the cluster.l
@@ -30,5 +30,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AdvancedClusterBiConnectorGetArgs()
         {
         }
+        public static new AdvancedClusterBiConnectorGetArgs Empty => new AdvancedClusterBiConnectorGetArgs();
     }
 }

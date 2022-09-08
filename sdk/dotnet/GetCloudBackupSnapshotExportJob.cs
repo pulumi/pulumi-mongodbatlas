@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCloudBackupSnapshotExportJobArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudBackupSnapshotExportJobArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the Atlas cluster whose export job you want to retrieve.
@@ -57,9 +57,10 @@ namespace Pulumi.Mongodbatlas
         public GetCloudBackupSnapshotExportJobArgs()
         {
         }
+        public static new GetCloudBackupSnapshotExportJobArgs Empty => new GetCloudBackupSnapshotExportJobArgs();
     }
 
-    public sealed class GetCloudBackupSnapshotExportJobInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudBackupSnapshotExportJobInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the Atlas cluster whose export job you want to retrieve.
@@ -85,6 +86,7 @@ namespace Pulumi.Mongodbatlas
         public GetCloudBackupSnapshotExportJobInvokeArgs()
         {
         }
+        public static new GetCloudBackupSnapshotExportJobInvokeArgs Empty => new GetCloudBackupSnapshotExportJobInvokeArgs();
     }
 
 

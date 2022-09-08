@@ -92,6 +92,9 @@ export interface GetCloudProviderSnapshotRestoreJobResult {
      * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
      */
     readonly targetClusterName: string;
+    /**
+     * Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     */
     readonly targetProjectId: string;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudProviderSnapshotBackupPolicyPolicyArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderSnapshotBackupPolicyPolicyArgs : global::Pulumi.ResourceArgs
     {
         [Input("policyItems", required: true)]
         private InputList<Inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs>? _policyItems;
@@ -23,5 +23,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudProviderSnapshotBackupPolicyPolicyArgs()
         {
         }
+        public static new CloudProviderSnapshotBackupPolicyPolicyArgs Empty => new CloudProviderSnapshotBackupPolicyPolicyArgs();
     }
 }

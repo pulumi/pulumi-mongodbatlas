@@ -19,52 +19,55 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewFederatedSettingsOrgRoleMapping(ctx, "orgGroupRoleMappingImport", &mongodbatlas.FederatedSettingsOrgRoleMappingArgs{
-// 			ExternalGroupName:    pulumi.String("myGrouptest"),
-// 			FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
-// 			OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
-// 			RoleAssignments: FederatedSettingsOrgRoleMappingRoleAssignmentArray{
-// 				&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
-// 					OrgId: pulumi.String("627a9683e7f7f7ff7fe306f14"),
-// 					Roles: pulumi.StringArray{
-// 						pulumi.String("ORG_MEMBER"),
-// 						pulumi.String("ORG_GROUP_CREATOR"),
-// 						pulumi.String("ORG_BILLING_ADMIN"),
-// 					},
-// 				},
-// 				&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
-// 					GroupId: pulumi.String("628aa20d7f7f7f7f7098b81b8"),
-// 					Roles: pulumi.StringArray{
-// 						pulumi.String("GROUP_OWNER"),
-// 						pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
-// 						pulumi.String("GROUP_SEARCH_INDEX_EDITOR"),
-// 						pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
-// 					},
-// 				},
-// 				&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
-// 					GroupId: pulumi.String("628aa20d7f7f7f7f7078b81b8"),
-// 					Roles: pulumi.StringArray{
-// 						pulumi.String("GROUP_OWNER"),
-// 						pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
-// 						pulumi.String("GROUP_SEARCH_INDEX_EDITOR"),
-// 						pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
-// 						pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewFederatedSettingsOrgRoleMapping(ctx, "orgGroupRoleMappingImport", &mongodbatlas.FederatedSettingsOrgRoleMappingArgs{
+//				ExternalGroupName:    pulumi.String("myGrouptest"),
+//				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f14"),
+//				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
+//				RoleAssignments: FederatedSettingsOrgRoleMappingRoleAssignmentArray{
+//					&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//						OrgId: pulumi.String("627a9683e7f7f7ff7fe306f14"),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("ORG_MEMBER"),
+//							pulumi.String("ORG_GROUP_CREATOR"),
+//							pulumi.String("ORG_BILLING_ADMIN"),
+//						},
+//					},
+//					&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//						GroupId: pulumi.String("628aa20d7f7f7f7f7098b81b8"),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//							pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
+//							pulumi.String("GROUP_SEARCH_INDEX_EDITOR"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
+//						},
+//					},
+//					&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//						GroupId: pulumi.String("628aa20d7f7f7f7f7078b81b8"),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//							pulumi.String("GROUP_DATA_ACCESS_ADMIN"),
+//							pulumi.String("GROUP_SEARCH_INDEX_EDITOR"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -72,10 +75,12 @@ import (
 // FederatedSettingsOrgRoleMapping can be imported using federation_settings_id-org_id-role_mapping_id, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping org_group_role_mapping_import 6287a663c7f7f7f71c441c6c-627a96837f7f7f7e306f14-628ae97f7f7468ea3727
+//
+//	$ pulumi import mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping org_group_role_mapping_import 6287a663c7f7f7f71c441c6c-627a96837f7f7f7e306f14-628ae97f7f7468ea3727
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+//	For more information see[MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 type FederatedSettingsOrgRoleMapping struct {
 	pulumi.CustomResourceState
 
@@ -204,7 +209,7 @@ func (i *FederatedSettingsOrgRoleMapping) ToFederatedSettingsOrgRoleMappingOutpu
 // FederatedSettingsOrgRoleMappingArrayInput is an input type that accepts FederatedSettingsOrgRoleMappingArray and FederatedSettingsOrgRoleMappingArrayOutput values.
 // You can construct a concrete instance of `FederatedSettingsOrgRoleMappingArrayInput` via:
 //
-//          FederatedSettingsOrgRoleMappingArray{ FederatedSettingsOrgRoleMappingArgs{...} }
+//	FederatedSettingsOrgRoleMappingArray{ FederatedSettingsOrgRoleMappingArgs{...} }
 type FederatedSettingsOrgRoleMappingArrayInput interface {
 	pulumi.Input
 
@@ -229,7 +234,7 @@ func (i FederatedSettingsOrgRoleMappingArray) ToFederatedSettingsOrgRoleMappingA
 // FederatedSettingsOrgRoleMappingMapInput is an input type that accepts FederatedSettingsOrgRoleMappingMap and FederatedSettingsOrgRoleMappingMapOutput values.
 // You can construct a concrete instance of `FederatedSettingsOrgRoleMappingMapInput` via:
 //
-//          FederatedSettingsOrgRoleMappingMap{ "key": FederatedSettingsOrgRoleMappingArgs{...} }
+//	FederatedSettingsOrgRoleMappingMap{ "key": FederatedSettingsOrgRoleMappingArgs{...} }
 type FederatedSettingsOrgRoleMappingMapInput interface {
 	pulumi.Input
 
@@ -263,6 +268,28 @@ func (o FederatedSettingsOrgRoleMappingOutput) ToFederatedSettingsOrgRoleMapping
 
 func (o FederatedSettingsOrgRoleMappingOutput) ToFederatedSettingsOrgRoleMappingOutputWithContext(ctx context.Context) FederatedSettingsOrgRoleMappingOutput {
 	return o
+}
+
+// Unique human-readable label that identifies the identity provider group to which this role mapping applies.
+func (o FederatedSettingsOrgRoleMappingOutput) ExternalGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgRoleMapping) pulumi.StringOutput { return v.ExternalGroupName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
+func (o FederatedSettingsOrgRoleMappingOutput) FederationSettingsId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgRoleMapping) pulumi.StringOutput { return v.FederationSettingsId }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o FederatedSettingsOrgRoleMappingOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgRoleMapping) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+func (o FederatedSettingsOrgRoleMappingOutput) RoleAssignments() FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+	return o.ApplyT(func(v *FederatedSettingsOrgRoleMapping) FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput {
+		return v.RoleAssignments
+	}).(FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput)
 }
 
 type FederatedSettingsOrgRoleMappingArrayOutput struct{ *pulumi.OutputState }

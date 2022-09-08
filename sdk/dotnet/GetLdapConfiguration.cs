@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetLdapConfigurationArgs : Pulumi.InvokeArgs
+    public sealed class GetLdapConfigurationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
@@ -40,9 +40,10 @@ namespace Pulumi.Mongodbatlas
         public GetLdapConfigurationArgs()
         {
         }
+        public static new GetLdapConfigurationArgs Empty => new GetLdapConfigurationArgs();
     }
 
-    public sealed class GetLdapConfigurationInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetLdapConfigurationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
@@ -53,6 +54,7 @@ namespace Pulumi.Mongodbatlas
         public GetLdapConfigurationInvokeArgs()
         {
         }
+        public static new GetLdapConfigurationInvokeArgs Empty => new GetLdapConfigurationInvokeArgs();
     }
 
 

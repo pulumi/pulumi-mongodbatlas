@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs : Pulumi.ResourceArgs
+    public sealed class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Target throughput (IOPS) desired for AWS storage attached to your cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster.
@@ -39,5 +39,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs()
         {
         }
+        public static new AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs Empty => new AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs();
     }
 }

@@ -21,24 +21,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
-// 			BucketName:    pulumi.String("example-bucket"),
-// 			CloudProvider: pulumi.String("AWS"),
-// 			IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
-// 			ProjectId:     pulumi.String("{PROJECT_ID}"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCloudBackupSnapshotExportBucket(ctx, "test", &mongodbatlas.CloudBackupSnapshotExportBucketArgs{
+//				BucketName:    pulumi.String("example-bucket"),
+//				CloudProvider: pulumi.String("AWS"),
+//				IamRoleId:     pulumi.String("{IAM_ROLE_ID}"),
+//				ProjectId:     pulumi.String("{PROJECT_ID}"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -46,10 +49,12 @@ import (
 // Cloud Backup Snapshot Export Backup entries can be imported using project project_id, and bucket_id (Unique identifier of the snapshot export bucket), in the format `PROJECTID-BUCKETID`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
+//
+//	$ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
 type CloudBackupSnapshotExportBucket struct {
 	pulumi.CustomResourceState
 
@@ -184,7 +189,7 @@ func (i *CloudBackupSnapshotExportBucket) ToCloudBackupSnapshotExportBucketOutpu
 // CloudBackupSnapshotExportBucketArrayInput is an input type that accepts CloudBackupSnapshotExportBucketArray and CloudBackupSnapshotExportBucketArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportBucketArrayInput` via:
 //
-//          CloudBackupSnapshotExportBucketArray{ CloudBackupSnapshotExportBucketArgs{...} }
+//	CloudBackupSnapshotExportBucketArray{ CloudBackupSnapshotExportBucketArgs{...} }
 type CloudBackupSnapshotExportBucketArrayInput interface {
 	pulumi.Input
 
@@ -209,7 +214,7 @@ func (i CloudBackupSnapshotExportBucketArray) ToCloudBackupSnapshotExportBucketA
 // CloudBackupSnapshotExportBucketMapInput is an input type that accepts CloudBackupSnapshotExportBucketMap and CloudBackupSnapshotExportBucketMapOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportBucketMapInput` via:
 //
-//          CloudBackupSnapshotExportBucketMap{ "key": CloudBackupSnapshotExportBucketArgs{...} }
+//	CloudBackupSnapshotExportBucketMap{ "key": CloudBackupSnapshotExportBucketArgs{...} }
 type CloudBackupSnapshotExportBucketMapInput interface {
 	pulumi.Input
 
@@ -243,6 +248,31 @@ func (o CloudBackupSnapshotExportBucketOutput) ToCloudBackupSnapshotExportBucket
 
 func (o CloudBackupSnapshotExportBucketOutput) ToCloudBackupSnapshotExportBucketOutputWithContext(ctx context.Context) CloudBackupSnapshotExportBucketOutput {
 	return o
+}
+
+// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iamRoleId`.
+func (o CloudBackupSnapshotExportBucketOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringOutput { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// Name of the provider of the cloud service where Atlas can access the S3 bucket. Atlas only supports `AWS`.
+func (o CloudBackupSnapshotExportBucketOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringOutput { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the snapshot export bucket.
+func (o CloudBackupSnapshotExportBucketOutput) ExportBucketId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringOutput { return v.ExportBucketId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the role that Atlas can use to access the bucket. You must also specify the `bucketName`.
+func (o CloudBackupSnapshotExportBucketOutput) IamRoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringOutput { return v.IamRoleId }).(pulumi.StringOutput)
+}
+
+// The unique identifier of the project for the Atlas cluster.
+func (o CloudBackupSnapshotExportBucketOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 type CloudBackupSnapshotExportBucketArrayOutput struct{ *pulumi.OutputState }

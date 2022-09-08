@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AdvancedClusterReplicationSpecGetArgs : Pulumi.ResourceArgs
+    public sealed class AdvancedClusterReplicationSpecGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("containerId")]
         private InputMap<string>? _containerId;
@@ -51,5 +51,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AdvancedClusterReplicationSpecGetArgs()
         {
         }
+        public static new AdvancedClusterReplicationSpecGetArgs Empty => new AdvancedClusterReplicationSpecGetArgs();
     }
 }

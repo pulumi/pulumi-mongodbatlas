@@ -198,7 +198,7 @@ func (i *OnlineArchive) ToOnlineArchiveOutputWithContext(ctx context.Context) On
 // OnlineArchiveArrayInput is an input type that accepts OnlineArchiveArray and OnlineArchiveArrayOutput values.
 // You can construct a concrete instance of `OnlineArchiveArrayInput` via:
 //
-//          OnlineArchiveArray{ OnlineArchiveArgs{...} }
+//	OnlineArchiveArray{ OnlineArchiveArgs{...} }
 type OnlineArchiveArrayInput interface {
 	pulumi.Input
 
@@ -223,7 +223,7 @@ func (i OnlineArchiveArray) ToOnlineArchiveArrayOutputWithContext(ctx context.Co
 // OnlineArchiveMapInput is an input type that accepts OnlineArchiveMap and OnlineArchiveMapOutput values.
 // You can construct a concrete instance of `OnlineArchiveMapInput` via:
 //
-//          OnlineArchiveMap{ "key": OnlineArchiveArgs{...} }
+//	OnlineArchiveMap{ "key": OnlineArchiveArgs{...} }
 type OnlineArchiveMapInput interface {
 	pulumi.Input
 
@@ -257,6 +257,55 @@ func (o OnlineArchiveOutput) ToOnlineArchiveOutput() OnlineArchiveOutput {
 
 func (o OnlineArchiveOutput) ToOnlineArchiveOutputWithContext(ctx context.Context) OnlineArchiveOutput {
 	return o
+}
+
+// ID of the online archive.
+func (o OnlineArchiveOutput) ArchiveId() pulumi.StringOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.ArchiveId }).(pulumi.StringOutput)
+}
+
+// Name of the cluster that contains the collection.
+func (o OnlineArchiveOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Name of the collection.
+func (o OnlineArchiveOutput) CollName() pulumi.StringOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.CollName }).(pulumi.StringOutput)
+}
+
+// Criteria to use for archiving data.
+func (o OnlineArchiveOutput) Criteria() OnlineArchiveCriteriaOutput {
+	return o.ApplyT(func(v *OnlineArchive) OnlineArchiveCriteriaOutput { return v.Criteria }).(OnlineArchiveCriteriaOutput)
+}
+
+// Name of the database that contains the collection.
+func (o OnlineArchiveOutput) DbName() pulumi.StringOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.DbName }).(pulumi.StringOutput)
+}
+
+// Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Note that queries that don’t contain the specified fields will require a full collection scan of all archived documents, which will take longer and increase your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived.
+func (o OnlineArchiveOutput) PartitionFields() OnlineArchivePartitionFieldArrayOutput {
+	return o.ApplyT(func(v *OnlineArchive) OnlineArchivePartitionFieldArrayOutput { return v.PartitionFields }).(OnlineArchivePartitionFieldArrayOutput)
+}
+
+// State of the online archive. This is required for pausing an active or resume a paused online archive. The resume request will fail if the collection has another active online archive.
+func (o OnlineArchiveOutput) Paused() pulumi.BoolOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.BoolOutput { return v.Paused }).(pulumi.BoolOutput)
+}
+
+// The unique ID for the project
+func (o OnlineArchiveOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+func (o OnlineArchiveOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
+}
+
+func (o OnlineArchiveOutput) SyncCreation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *OnlineArchive) pulumi.BoolPtrOutput { return v.SyncCreation }).(pulumi.BoolPtrOutput)
 }
 
 type OnlineArchiveArrayOutput struct{ *pulumi.OutputState }

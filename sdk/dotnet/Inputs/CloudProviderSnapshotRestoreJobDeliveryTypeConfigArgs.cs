@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("automated")]
         public Input<bool>? Automated { get; set; }
@@ -36,11 +36,15 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("targetClusterName")]
         public Input<string>? TargetClusterName { get; set; }
 
+        /// <summary>
+        /// Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
+        /// </summary>
         [Input("targetProjectId")]
         public Input<string>? TargetProjectId { get; set; }
 
         public CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs()
         {
         }
+        public static new CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs Empty => new CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs();
     }
 }

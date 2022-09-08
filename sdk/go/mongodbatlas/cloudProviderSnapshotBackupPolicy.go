@@ -16,10 +16,12 @@ import (
 // Cloud Backup Snapshot Policy entries can be imported using project project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy test 5d0f1f73cf09a29120e173cf-MyClusterTest
+//
+//	$ pulumi import mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy test 5d0f1f73cf09a29120e173cf-MyClusterTest
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
 type CloudProviderSnapshotBackupPolicy struct {
 	pulumi.CustomResourceState
 
@@ -192,7 +194,7 @@ func (i *CloudProviderSnapshotBackupPolicy) ToCloudProviderSnapshotBackupPolicyO
 // CloudProviderSnapshotBackupPolicyArrayInput is an input type that accepts CloudProviderSnapshotBackupPolicyArray and CloudProviderSnapshotBackupPolicyArrayOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotBackupPolicyArrayInput` via:
 //
-//          CloudProviderSnapshotBackupPolicyArray{ CloudProviderSnapshotBackupPolicyArgs{...} }
+//	CloudProviderSnapshotBackupPolicyArray{ CloudProviderSnapshotBackupPolicyArgs{...} }
 type CloudProviderSnapshotBackupPolicyArrayInput interface {
 	pulumi.Input
 
@@ -217,7 +219,7 @@ func (i CloudProviderSnapshotBackupPolicyArray) ToCloudProviderSnapshotBackupPol
 // CloudProviderSnapshotBackupPolicyMapInput is an input type that accepts CloudProviderSnapshotBackupPolicyMap and CloudProviderSnapshotBackupPolicyMapOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotBackupPolicyMapInput` via:
 //
-//          CloudProviderSnapshotBackupPolicyMap{ "key": CloudProviderSnapshotBackupPolicyArgs{...} }
+//	CloudProviderSnapshotBackupPolicyMap{ "key": CloudProviderSnapshotBackupPolicyArgs{...} }
 type CloudProviderSnapshotBackupPolicyMapInput interface {
 	pulumi.Input
 
@@ -251,6 +253,54 @@ func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPo
 
 func (o CloudProviderSnapshotBackupPolicyOutput) ToCloudProviderSnapshotBackupPolicyOutputWithContext(ctx context.Context) CloudProviderSnapshotBackupPolicyOutput {
 	return o
+}
+
+// Unique identifier of the Atlas cluster.
+func (o CloudProviderSnapshotBackupPolicyOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
+func (o CloudProviderSnapshotBackupPolicyOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
+func (o CloudProviderSnapshotBackupPolicyOutput) NextSnapshot() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.StringOutput { return v.NextSnapshot }).(pulumi.StringOutput)
+}
+
+// Contains a document for each backup policy item in the desired updated backup policy.
+// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
+func (o CloudProviderSnapshotBackupPolicyOutput) Policies() CloudProviderSnapshotBackupPolicyPolicyArrayOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) CloudProviderSnapshotBackupPolicyPolicyArrayOutput {
+		return v.Policies
+	}).(CloudProviderSnapshotBackupPolicyPolicyArrayOutput)
+}
+
+// The unique identifier of the project for the Atlas cluster.
+func (o CloudProviderSnapshotBackupPolicyOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
+func (o CloudProviderSnapshotBackupPolicyOutput) ReferenceHourOfDay() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.IntOutput { return v.ReferenceHourOfDay }).(pulumi.IntOutput)
+}
+
+// UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+func (o CloudProviderSnapshotBackupPolicyOutput) ReferenceMinuteOfHour() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.IntOutput { return v.ReferenceMinuteOfHour }).(pulumi.IntOutput)
+}
+
+// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+func (o CloudProviderSnapshotBackupPolicyOutput) RestoreWindowDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.IntOutput { return v.RestoreWindowDays }).(pulumi.IntOutput)
+}
+
+// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+func (o CloudProviderSnapshotBackupPolicyOutput) UpdateSnapshots() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.BoolOutput { return v.UpdateSnapshots }).(pulumi.BoolOutput)
 }
 
 type CloudProviderSnapshotBackupPolicyArrayOutput struct{ *pulumi.OutputState }

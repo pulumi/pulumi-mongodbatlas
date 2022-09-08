@@ -14,75 +14,69 @@ namespace Pulumi.Mongodbatlas
     /// ### S
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
     ///     {
-    ///         var test0 = new Mongodbatlas.OrgInvitation("test0", new Mongodbatlas.OrgInvitationArgs
+    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         Roles = new[]
     ///         {
-    ///             OrgId = "&lt;ORG-ID&gt;",
-    ///             Roles = 
-    ///             {
-    ///                 "ORG_OWNER",
-    ///             },
-    ///             Username = "test0-acc-username",
-    ///         });
-    ///     }
+    ///             "ORG_OWNER",
+    ///         },
+    ///         Username = "test0-acc-username",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
     ///     {
-    ///         var test0 = new Mongodbatlas.OrgInvitation("test0", new Mongodbatlas.OrgInvitationArgs
+    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         Roles = new[]
     ///         {
-    ///             OrgId = "&lt;ORG-ID&gt;",
-    ///             Roles = 
-    ///             {
-    ///                 "ORG_MEMBER",
-    ///                 "ORG_BILLING_ADMIN",
-    ///             },
-    ///             Username = "test0-acc-username",
-    ///         });
-    ///     }
+    ///             "ORG_MEMBER",
+    ///             "ORG_BILLING_ADMIN",
+    ///         },
+    ///         Username = "test0-acc-username",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test1 = new Mongodbatlas.OrgInvitation("test1", new()
     ///     {
-    ///         var test1 = new Mongodbatlas.OrgInvitation("test1", new Mongodbatlas.OrgInvitationArgs
+    ///         OrgId = "&lt;ORG-ID&gt;",
+    ///         Roles = new[]
     ///         {
-    ///             OrgId = "&lt;ORG-ID&gt;",
-    ///             Roles = 
-    ///             {
-    ///                 "ORG_MEMBER",
-    ///             },
-    ///             TeamsIds = 
-    ///             {
-    ///                 "&lt;TEAM-0-ID&gt;",
-    ///                 "&lt;TEAM-1-ID&gt;",
-    ///             },
-    ///             Username = "test1-acc-username",
-    ///         });
-    ///     }
+    ///             "ORG_MEMBER",
+    ///         },
+    ///         TeamsIds = new[]
+    ///         {
+    ///             "&lt;TEAM-0-ID&gt;",
+    ///             "&lt;TEAM-1-ID&gt;",
+    ///         },
+    ///         Username = "test1-acc-username",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -94,7 +88,7 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/orgInvitation:OrgInvitation")]
-    public partial class OrgInvitation : Pulumi.CustomResource
+    public partial class OrgInvitation : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
@@ -193,7 +187,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class OrgInvitationArgs : Pulumi.ResourceArgs
+    public sealed class OrgInvitationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
@@ -239,9 +233,10 @@ namespace Pulumi.Mongodbatlas
         public OrgInvitationArgs()
         {
         }
+        public static new OrgInvitationArgs Empty => new OrgInvitationArgs();
     }
 
-    public sealed class OrgInvitationState : Pulumi.ResourceArgs
+    public sealed class OrgInvitationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
@@ -311,5 +306,6 @@ namespace Pulumi.Mongodbatlas
         public OrgInvitationState()
         {
         }
+        public static new OrgInvitationState Empty => new OrgInvitationState();
     }
 }

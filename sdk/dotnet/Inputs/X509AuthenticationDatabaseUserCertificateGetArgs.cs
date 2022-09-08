@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class X509AuthenticationDatabaseUserCertificateGetArgs : Pulumi.ResourceArgs
+    public sealed class X509AuthenticationDatabaseUserCertificateGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public X509AuthenticationDatabaseUserCertificateGetArgs()
         {
         }
+        public static new X509AuthenticationDatabaseUserCertificateGetArgs Empty => new X509AuthenticationDatabaseUserCertificateGetArgs();
     }
 }

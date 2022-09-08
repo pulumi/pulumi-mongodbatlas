@@ -14,48 +14,44 @@ namespace Pulumi.Mongodbatlas
     /// ### S
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.ProjectInvitation("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.ProjectInvitation("test", new Mongodbatlas.ProjectInvitationArgs
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Roles = new[]
     ///         {
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             Roles = 
-    ///             {
-    ///                 "GROUP_DATA_ACCESS_READ_WRITE",
-    ///             },
-    ///             Username = "test-acc-username",
-    ///         });
-    ///     }
+    ///             "GROUP_DATA_ACCESS_READ_WRITE",
+    ///         },
+    ///         Username = "test-acc-username",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.ProjectInvitation("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.ProjectInvitation("test", new Mongodbatlas.ProjectInvitationArgs
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Roles = new[]
     ///         {
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             Roles = 
-    ///             {
-    ///                 "GROUP_READ_ONLY",
-    ///                 "GROUP_DATA_ACCESS_READ_ONLY",
-    ///             },
-    ///             Username = "test-acc-username",
-    ///         });
-    ///     }
+    ///             "GROUP_READ_ONLY",
+    ///             "GROUP_DATA_ACCESS_READ_ONLY",
+    ///         },
+    ///         Username = "test-acc-username",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -67,7 +63,7 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/projectInvitation:ProjectInvitation")]
-    public partial class ProjectInvitation : Pulumi.CustomResource
+    public partial class ProjectInvitation : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
@@ -161,7 +157,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class ProjectInvitationArgs : Pulumi.ResourceArgs
+    public sealed class ProjectInvitationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
@@ -196,9 +192,10 @@ namespace Pulumi.Mongodbatlas
         public ProjectInvitationArgs()
         {
         }
+        public static new ProjectInvitationArgs Empty => new ProjectInvitationArgs();
     }
 
-    public sealed class ProjectInvitationState : Pulumi.ResourceArgs
+    public sealed class ProjectInvitationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
@@ -257,5 +254,6 @@ namespace Pulumi.Mongodbatlas
         public ProjectInvitationState()
         {
         }
+        public static new ProjectInvitationState Empty => new ProjectInvitationState();
     }
 }

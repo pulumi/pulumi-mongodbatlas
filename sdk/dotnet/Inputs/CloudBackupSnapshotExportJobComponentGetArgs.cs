@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudBackupSnapshotExportJobComponentGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupSnapshotExportJobComponentGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudBackupSnapshotExportJobComponentGetArgs()
         {
         }
+        public static new CloudBackupSnapshotExportJobComponentGetArgs Empty => new CloudBackupSnapshotExportJobComponentGetArgs();
     }
 }

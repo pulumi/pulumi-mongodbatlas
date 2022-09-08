@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetFederatedSettingsOrgRoleMappingsArgs : Pulumi.InvokeArgs
+    public sealed class GetFederatedSettingsOrgRoleMappingsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -54,9 +54,10 @@ namespace Pulumi.Mongodbatlas
         public GetFederatedSettingsOrgRoleMappingsArgs()
         {
         }
+        public static new GetFederatedSettingsOrgRoleMappingsArgs Empty => new GetFederatedSettingsOrgRoleMappingsArgs();
     }
 
-    public sealed class GetFederatedSettingsOrgRoleMappingsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetFederatedSettingsOrgRoleMappingsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -85,6 +86,7 @@ namespace Pulumi.Mongodbatlas
         public GetFederatedSettingsOrgRoleMappingsInvokeArgs()
         {
         }
+        public static new GetFederatedSettingsOrgRoleMappingsInvokeArgs Empty => new GetFederatedSettingsOrgRoleMappingsInvokeArgs();
     }
 
 

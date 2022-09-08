@@ -23,22 +23,20 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.PrivateLinkEndpoint("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.PrivateLinkEndpoint("test", new Mongodbatlas.PrivateLinkEndpointArgs
-    ///         {
-    ///             ProjectId = "&lt;PROJECT-ID&gt;",
-    ///             ProviderName = "AWS/AZURE",
-    ///             Region = "US_EAST_1",
-    ///         });
-    ///     }
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProviderName = "AWS/AZURE",
+    ///         Region = "US_EAST_1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +50,7 @@ namespace Pulumi.Mongodbatlas
     ///  See detailed information for arguments and attributes[MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one//)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint")]
-    public partial class PrivateLinkEndpoint : Pulumi.CustomResource
+    public partial class PrivateLinkEndpoint : global::Pulumi.CustomResource
     {
         /// <summary>
         /// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
@@ -184,7 +182,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class PrivateLinkEndpointArgs : Pulumi.ResourceArgs
+    public sealed class PrivateLinkEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Required 	Unique identifier for the project.
@@ -208,9 +206,10 @@ namespace Pulumi.Mongodbatlas
         public PrivateLinkEndpointArgs()
         {
         }
+        public static new PrivateLinkEndpointArgs Empty => new PrivateLinkEndpointArgs();
     }
 
-    public sealed class PrivateLinkEndpointState : Pulumi.ResourceArgs
+    public sealed class PrivateLinkEndpointState : global::Pulumi.ResourceArgs
     {
         [Input("endpointGroupNames")]
         private InputList<string>? _endpointGroupNames;
@@ -325,5 +324,6 @@ namespace Pulumi.Mongodbatlas
         public PrivateLinkEndpointState()
         {
         }
+        public static new PrivateLinkEndpointState Empty => new PrivateLinkEndpointState();
     }
 }

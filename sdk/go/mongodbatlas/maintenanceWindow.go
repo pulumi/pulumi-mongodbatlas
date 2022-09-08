@@ -29,45 +29,51 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
-// 			DayOfWeek: pulumi.Int(3),
-// 			HourOfDay: pulumi.Int(4),
-// 			ProjectId: pulumi.String("<your-project-id>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
+//				DayOfWeek: pulumi.Int(3),
+//				HourOfDay: pulumi.Int(4),
+//				ProjectId: pulumi.String("<your-project-id>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
-// 			Defer:     pulumi.Bool(true),
-// 			ProjectId: pulumi.String("<your-project-id>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
+//				Defer:     pulumi.Bool(true),
+//				ProjectId: pulumi.String("<your-project-id>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -75,10 +81,12 @@ import (
 // Maintenance Window entries can be imported using project project_id, in the format `PROJECTID`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
+//
+//	$ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
 type MaintenanceWindow struct {
 	pulumi.CustomResourceState
 
@@ -234,7 +242,7 @@ func (i *MaintenanceWindow) ToMaintenanceWindowOutputWithContext(ctx context.Con
 // MaintenanceWindowArrayInput is an input type that accepts MaintenanceWindowArray and MaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `MaintenanceWindowArrayInput` via:
 //
-//          MaintenanceWindowArray{ MaintenanceWindowArgs{...} }
+//	MaintenanceWindowArray{ MaintenanceWindowArgs{...} }
 type MaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -259,7 +267,7 @@ func (i MaintenanceWindowArray) ToMaintenanceWindowArrayOutputWithContext(ctx co
 // MaintenanceWindowMapInput is an input type that accepts MaintenanceWindowMap and MaintenanceWindowMapOutput values.
 // You can construct a concrete instance of `MaintenanceWindowMapInput` via:
 //
-//          MaintenanceWindowMap{ "key": MaintenanceWindowArgs{...} }
+//	MaintenanceWindowMap{ "key": MaintenanceWindowArgs{...} }
 type MaintenanceWindowMapInput interface {
 	pulumi.Input
 
@@ -293,6 +301,46 @@ func (o MaintenanceWindowOutput) ToMaintenanceWindowOutput() MaintenanceWindowOu
 
 func (o MaintenanceWindowOutput) ToMaintenanceWindowOutputWithContext(ctx context.Context) MaintenanceWindowOutput {
 	return o
+}
+
+// Defer any scheduled maintenance for the given project for one week.
+func (o MaintenanceWindowOutput) AutoDefer() pulumi.BoolOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDefer }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+func (o MaintenanceWindowOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
+}
+
+// Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.
+func (o MaintenanceWindowOutput) DayOfWeek() pulumi.IntOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.DayOfWeek }).(pulumi.IntOutput)
+}
+
+// Defer the next scheduled maintenance for the given project for one week.
+func (o MaintenanceWindowOutput) Defer() pulumi.BoolOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.Defer }).(pulumi.BoolOutput)
+}
+
+// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).
+func (o MaintenanceWindowOutput) HourOfDay() pulumi.IntOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.HourOfDay }).(pulumi.IntOutput)
+}
+
+// Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.
+func (o MaintenanceWindowOutput) NumberOfDeferrals() pulumi.IntOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.NumberOfDeferrals }).(pulumi.IntOutput)
+}
+
+// The unique identifier of the project for the Maintenance Window.
+func (o MaintenanceWindowOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+func (o MaintenanceWindowOutput) StartAsap() pulumi.BoolOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.StartAsap }).(pulumi.BoolOutput)
 }
 
 type MaintenanceWindowArrayOutput struct{ *pulumi.OutputState }

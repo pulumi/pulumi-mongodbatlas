@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudProviderAccessAuthorizationAwsArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessAuthorizationAwsArgs : global::Pulumi.ResourceArgs
     {
         [Input("iamAssumedRoleArn", required: true)]
         public Input<string> IamAssumedRoleArn { get; set; } = null!;
@@ -18,5 +18,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudProviderAccessAuthorizationAwsArgs()
         {
         }
+        public static new CloudProviderAccessAuthorizationAwsArgs Empty => new CloudProviderAccessAuthorizationAwsArgs();
     }
 }

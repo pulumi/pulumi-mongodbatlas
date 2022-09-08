@@ -20,31 +20,30 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
         ///     {
-        ///         var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new Mongodbatlas.FederatedSettingsOrgConfigArgs
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DomainRestrictionEnabled = false,
+        ///         DomainAllowLists = new[]
         ///         {
-        ///             FederationSettingsId = "627a9687f7f7f7f774de306f14",
-        ///             OrgId = "627a9683ea7ff7f74de306f14",
-        ///             DomainRestrictionEnabled = false,
-        ///             DomainAllowLists = 
-        ///             {
-        ///                 "mydomain.com",
-        ///             },
-        ///         });
-        ///         var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new Mongodbatlas.GetFederatedSettingsOrgConfigInvokeArgs
-        ///         {
-        ///             FederationSettingsId = orgConnections.Id,
-        ///             OrgId = "627a9683ea7ff7f74de306f14",
-        ///         });
-        ///     }
+        ///             "mydomain.com",
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgConnections.Id,
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -61,31 +60,30 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new()
         ///     {
-        ///         var orgConnections = new Mongodbatlas.FederatedSettingsOrgConfig("orgConnections", new Mongodbatlas.FederatedSettingsOrgConfigArgs
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///         DomainRestrictionEnabled = false,
+        ///         DomainAllowLists = new[]
         ///         {
-        ///             FederationSettingsId = "627a9687f7f7f7f774de306f14",
-        ///             OrgId = "627a9683ea7ff7f74de306f14",
-        ///             DomainRestrictionEnabled = false,
-        ///             DomainAllowLists = 
-        ///             {
-        ///                 "mydomain.com",
-        ///             },
-        ///         });
-        ///         var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new Mongodbatlas.GetFederatedSettingsOrgConfigInvokeArgs
-        ///         {
-        ///             FederationSettingsId = orgConnections.Id,
-        ///             OrgId = "627a9683ea7ff7f74de306f14",
-        ///         });
-        ///     }
+        ///             "mydomain.com",
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var orgConfigsDs = Mongodbatlas.GetFederatedSettingsOrgConfig.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgConnections.Id,
+        ///         OrgId = "627a9683ea7ff7f74de306f14",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -95,7 +93,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetFederatedSettingsOrgConfigArgs : Pulumi.InvokeArgs
+    public sealed class GetFederatedSettingsOrgConfigArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -112,9 +110,10 @@ namespace Pulumi.Mongodbatlas
         public GetFederatedSettingsOrgConfigArgs()
         {
         }
+        public static new GetFederatedSettingsOrgConfigArgs Empty => new GetFederatedSettingsOrgConfigArgs();
     }
 
-    public sealed class GetFederatedSettingsOrgConfigInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetFederatedSettingsOrgConfigInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -131,6 +130,7 @@ namespace Pulumi.Mongodbatlas
         public GetFederatedSettingsOrgConfigInvokeArgs()
         {
         }
+        public static new GetFederatedSettingsOrgConfigInvokeArgs Empty => new GetFederatedSettingsOrgConfigInvokeArgs();
     }
 
 

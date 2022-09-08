@@ -17,52 +17,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var myCluster = new Mongodbatlas.Cluster("myCluster", new Mongodbatlas.ClusterArgs
-    ///         {
-    ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///             DiskSizeGb = 5,
-    ///             ProviderName = "AWS",
-    ///             ProviderRegionName = "EU_WEST_2",
-    ///             ProviderInstanceSizeName = "M10",
-    ///             CloudBackup = true,
-    ///         });
-    ///         // enable cloud backup snapshots
-    ///         var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new Mongodbatlas.CloudProviderSnapshotArgs
-    ///         {
-    ///             ProjectId = myCluster.ProjectId,
-    ///             ClusterName = myCluster.Name,
-    ///             Description = "myDescription",
-    ///             RetentionInDays = 1,
-    ///             Timeout = "10m",
-    ///         });
-    ///         var testCloudProviderSnapshotRestoreJob = new Mongodbatlas.CloudProviderSnapshotRestoreJob("testCloudProviderSnapshotRestoreJob", new Mongodbatlas.CloudProviderSnapshotRestoreJobArgs
-    ///         {
-    ///             ProjectId = testCloudProviderSnapshot.ProjectId,
-    ///             ClusterName = testCloudProviderSnapshot.ClusterName,
-    ///             SnapshotId = testCloudProviderSnapshot.SnapshotId,
-    ///             DeliveryType = 
-    ///             {
-    ///                 
-    ///                 {
-    ///                     { "download", true },
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
@@ -74,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderSnapshot:CloudProviderSnapshot")]
-    public partial class CloudProviderSnapshot : Pulumi.CustomResource
+    public partial class CloudProviderSnapshot : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the Atlas cluster that contains the snapshots you want to retrieve.
@@ -204,7 +158,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudProviderSnapshotArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderSnapshotArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Atlas cluster that contains the snapshots you want to retrieve.
@@ -239,9 +193,10 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderSnapshotArgs()
         {
         }
+        public static new CloudProviderSnapshotArgs Empty => new CloudProviderSnapshotArgs();
     }
 
-    public sealed class CloudProviderSnapshotState : Pulumi.ResourceArgs
+    public sealed class CloudProviderSnapshotState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Atlas cluster that contains the snapshots you want to retrieve.
@@ -330,5 +285,6 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderSnapshotState()
         {
         }
+        public static new CloudProviderSnapshotState Empty => new CloudProviderSnapshotState();
     }
 }

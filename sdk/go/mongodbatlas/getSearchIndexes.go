@@ -13,34 +13,6 @@ import (
 // `getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.LookupSearchIndex(ctx, &GetSearchIndexArgs{
-// 			ClusterName:    "<CLUSTER_NAME>",
-// 			CollectionName: pulumi.StringRef("<COLLECTION_NAME>"),
-// 			DatabaseName:   "<DATABASE_NAME>",
-// 			ItemsPerPage:   100,
-// 			PageNum:        1,
-// 			ProjectId:      "<PROJECT_ID>",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupSearchIndexes(ctx *pulumi.Context, args *LookupSearchIndexesArgs, opts ...pulumi.InvokeOption) (*LookupSearchIndexesResult, error) {
 	var rv LookupSearchIndexesResult
 	err := ctx.Invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args, &rv, opts...)

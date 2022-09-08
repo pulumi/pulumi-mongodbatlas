@@ -15,35 +15,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var test = Output.Create(Mongodbatlas.GetSearchIndex.InvokeAsync(new Mongodbatlas.GetSearchIndexArgs
-        ///         {
-        ///             ClusterName = "&lt;CLUSTER_NAME&gt;",
-        ///             CollectionName = "&lt;COLLECTION_NAME&gt;",
-        ///             DatabaseName = "&lt;DATABASE_NAME&gt;",
-        ///             ItemsPerPage = 100,
-        ///             PageNum = 1,
-        ///             ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetSearchIndexesResult> InvokeAsync(GetSearchIndexesArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesArgs(), options.WithDefaults());
@@ -52,42 +23,13 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var test = Output.Create(Mongodbatlas.GetSearchIndex.InvokeAsync(new Mongodbatlas.GetSearchIndexArgs
-        ///         {
-        ///             ClusterName = "&lt;CLUSTER_NAME&gt;",
-        ///             CollectionName = "&lt;COLLECTION_NAME&gt;",
-        ///             DatabaseName = "&lt;DATABASE_NAME&gt;",
-        ///             ItemsPerPage = 100,
-        ///             PageNum = 1,
-        ///             ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetSearchIndexesResult> Invoke(GetSearchIndexesInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetSearchIndexesResult>("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args ?? new GetSearchIndexesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetSearchIndexesArgs : Pulumi.InvokeArgs
+    public sealed class GetSearchIndexesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the cluster containing the collection with one or more Atlas Search indexes.
@@ -128,9 +70,10 @@ namespace Pulumi.Mongodbatlas
         public GetSearchIndexesArgs()
         {
         }
+        public static new GetSearchIndexesArgs Empty => new GetSearchIndexesArgs();
     }
 
-    public sealed class GetSearchIndexesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetSearchIndexesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the cluster containing the collection with one or more Atlas Search indexes.
@@ -171,6 +114,7 @@ namespace Pulumi.Mongodbatlas
         public GetSearchIndexesInvokeArgs()
         {
         }
+        public static new GetSearchIndexesInvokeArgs Empty => new GetSearchIndexesInvokeArgs();
     }
 
 

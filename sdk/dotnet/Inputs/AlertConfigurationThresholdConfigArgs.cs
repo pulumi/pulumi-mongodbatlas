@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AlertConfigurationThresholdConfigArgs : Pulumi.ResourceArgs
+    public sealed class AlertConfigurationThresholdConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Operator to apply when checking the current metric value against the threshold value.
@@ -53,5 +53,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AlertConfigurationThresholdConfigArgs()
         {
         }
+        public static new AlertConfigurationThresholdConfigArgs Empty => new AlertConfigurationThresholdConfigArgs();
     }
 }

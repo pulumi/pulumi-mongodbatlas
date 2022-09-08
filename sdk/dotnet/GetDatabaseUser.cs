@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetDatabaseUserArgs : Pulumi.InvokeArgs
+    public sealed class GetDatabaseUserArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
@@ -62,9 +62,10 @@ namespace Pulumi.Mongodbatlas
         public GetDatabaseUserArgs()
         {
         }
+        public static new GetDatabaseUserArgs Empty => new GetDatabaseUserArgs();
     }
 
-    public sealed class GetDatabaseUserInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDatabaseUserInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
@@ -93,6 +94,7 @@ namespace Pulumi.Mongodbatlas
         public GetDatabaseUserInvokeArgs()
         {
         }
+        public static new GetDatabaseUserInvokeArgs Empty => new GetDatabaseUserInvokeArgs();
     }
 
 

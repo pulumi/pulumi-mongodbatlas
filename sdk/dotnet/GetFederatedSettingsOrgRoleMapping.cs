@@ -20,64 +20,63 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new()
         ///     {
-        ///         var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new Mongodbatlas.FederatedSettingsOrgRoleMappingArgs
+        ///         FederationSettingsId = data.Mongodbatlas_federated_settings.Federated_settings.Id,
+        ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///         ExternalGroupName = "myGrouptest",
+        ///         RoleAssignments = new[]
         ///         {
-        ///             FederationSettingsId = data.Mongodbatlas_federated_settings.Federated_settings.Id,
-        ///             OrgId = "627a9683e7f7f7ff7fe306f14",
-        ///             ExternalGroupName = "myGrouptest",
-        ///             RoleAssignments = 
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///                 OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///                 Roles = new[]
         ///                 {
-        ///                     OrgId = "627a9683e7f7f7ff7fe306f14",
-        ///                     Roles = 
-        ///                     {
-        ///                         "ORG_MEMBER",
-        ///                         "ORG_GROUP_CREATOR",
-        ///                         "ORG_BILLING_ADMIN",
-        ///                     },
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
-        ///                 {
-        ///                     GroupId = "628aa20db7f7f7f98b81b8",
-        ///                     Roles = 
-        ///                     {
-        ///                         "GROUP_OWNER",
-        ///                         "GROUP_DATA_ACCESS_ADMIN",
-        ///                         "GROUP_SEARCH_INDEX_EDITOR",
-        ///                         "GROUP_DATA_ACCESS_READ_ONLY",
-        ///                     },
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
-        ///                 {
-        ///                     GroupId = "62b477f7f7f7f5e741489c",
-        ///                     Roles = 
-        ///                     {
-        ///                         "GROUP_OWNER",
-        ///                         "GROUP_DATA_ACCESS_ADMIN",
-        ///                         "GROUP_SEARCH_INDEX_EDITOR",
-        ///                         "GROUP_DATA_ACCESS_READ_ONLY",
-        ///                         "GROUP_DATA_ACCESS_READ_WRITE",
-        ///                     },
+        ///                     "ORG_MEMBER",
+        ///                     "ORG_GROUP_CREATOR",
+        ///                     "ORG_BILLING_ADMIN",
         ///                 },
         ///             },
-        ///         });
-        ///         var roleMapping = Mongodbatlas.GetFederatedSettingsOrgRoleMapping.Invoke(new Mongodbatlas.GetFederatedSettingsOrgRoleMappingInvokeArgs
-        ///         {
-        ///             FederationSettingsId = orgGroupRoleMappingImport.Id,
-        ///             OrgId = "627a9683e7f7f7ff7fe306f14",
-        ///             RoleMappingId = "627a9673e7f7f7ff7fe306f14",
-        ///         });
-        ///     }
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///             {
+        ///                 GroupId = "628aa20db7f7f7f98b81b8",
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                     "GROUP_DATA_ACCESS_ADMIN",
+        ///                     "GROUP_SEARCH_INDEX_EDITOR",
+        ///                     "GROUP_DATA_ACCESS_READ_ONLY",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///             {
+        ///                 GroupId = "62b477f7f7f7f5e741489c",
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                     "GROUP_DATA_ACCESS_ADMIN",
+        ///                     "GROUP_SEARCH_INDEX_EDITOR",
+        ///                     "GROUP_DATA_ACCESS_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var roleMapping = Mongodbatlas.GetFederatedSettingsOrgRoleMapping.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgGroupRoleMappingImport.Id,
+        ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///         RoleMappingId = "627a9673e7f7f7ff7fe306f14",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -94,64 +93,63 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new()
         ///     {
-        ///         var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", new Mongodbatlas.FederatedSettingsOrgRoleMappingArgs
+        ///         FederationSettingsId = data.Mongodbatlas_federated_settings.Federated_settings.Id,
+        ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///         ExternalGroupName = "myGrouptest",
+        ///         RoleAssignments = new[]
         ///         {
-        ///             FederationSettingsId = data.Mongodbatlas_federated_settings.Federated_settings.Id,
-        ///             OrgId = "627a9683e7f7f7ff7fe306f14",
-        ///             ExternalGroupName = "myGrouptest",
-        ///             RoleAssignments = 
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///                 OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///                 Roles = new[]
         ///                 {
-        ///                     OrgId = "627a9683e7f7f7ff7fe306f14",
-        ///                     Roles = 
-        ///                     {
-        ///                         "ORG_MEMBER",
-        ///                         "ORG_GROUP_CREATOR",
-        ///                         "ORG_BILLING_ADMIN",
-        ///                     },
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
-        ///                 {
-        ///                     GroupId = "628aa20db7f7f7f98b81b8",
-        ///                     Roles = 
-        ///                     {
-        ///                         "GROUP_OWNER",
-        ///                         "GROUP_DATA_ACCESS_ADMIN",
-        ///                         "GROUP_SEARCH_INDEX_EDITOR",
-        ///                         "GROUP_DATA_ACCESS_READ_ONLY",
-        ///                     },
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
-        ///                 {
-        ///                     GroupId = "62b477f7f7f7f5e741489c",
-        ///                     Roles = 
-        ///                     {
-        ///                         "GROUP_OWNER",
-        ///                         "GROUP_DATA_ACCESS_ADMIN",
-        ///                         "GROUP_SEARCH_INDEX_EDITOR",
-        ///                         "GROUP_DATA_ACCESS_READ_ONLY",
-        ///                         "GROUP_DATA_ACCESS_READ_WRITE",
-        ///                     },
+        ///                     "ORG_MEMBER",
+        ///                     "ORG_GROUP_CREATOR",
+        ///                     "ORG_BILLING_ADMIN",
         ///                 },
         ///             },
-        ///         });
-        ///         var roleMapping = Mongodbatlas.GetFederatedSettingsOrgRoleMapping.Invoke(new Mongodbatlas.GetFederatedSettingsOrgRoleMappingInvokeArgs
-        ///         {
-        ///             FederationSettingsId = orgGroupRoleMappingImport.Id,
-        ///             OrgId = "627a9683e7f7f7ff7fe306f14",
-        ///             RoleMappingId = "627a9673e7f7f7ff7fe306f14",
-        ///         });
-        ///     }
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///             {
+        ///                 GroupId = "628aa20db7f7f7f98b81b8",
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                     "GROUP_DATA_ACCESS_ADMIN",
+        ///                     "GROUP_SEARCH_INDEX_EDITOR",
+        ///                     "GROUP_DATA_ACCESS_READ_ONLY",
+        ///                 },
+        ///             },
+        ///             new Mongodbatlas.Inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs
+        ///             {
+        ///                 GroupId = "62b477f7f7f7f5e741489c",
+        ///                 Roles = new[]
+        ///                 {
+        ///                     "GROUP_OWNER",
+        ///                     "GROUP_DATA_ACCESS_ADMIN",
+        ///                     "GROUP_SEARCH_INDEX_EDITOR",
+        ///                     "GROUP_DATA_ACCESS_READ_ONLY",
+        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var roleMapping = Mongodbatlas.GetFederatedSettingsOrgRoleMapping.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = orgGroupRoleMappingImport.Id,
+        ///         OrgId = "627a9683e7f7f7ff7fe306f14",
+        ///         RoleMappingId = "627a9673e7f7f7ff7fe306f14",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -161,7 +159,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetFederatedSettingsOrgRoleMappingArgs : Pulumi.InvokeArgs
+    public sealed class GetFederatedSettingsOrgRoleMappingArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -181,9 +179,10 @@ namespace Pulumi.Mongodbatlas
         public GetFederatedSettingsOrgRoleMappingArgs()
         {
         }
+        public static new GetFederatedSettingsOrgRoleMappingArgs Empty => new GetFederatedSettingsOrgRoleMappingArgs();
     }
 
-    public sealed class GetFederatedSettingsOrgRoleMappingInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetFederatedSettingsOrgRoleMappingInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -203,6 +202,7 @@ namespace Pulumi.Mongodbatlas
         public GetFederatedSettingsOrgRoleMappingInvokeArgs()
         {
         }
+        public static new GetFederatedSettingsOrgRoleMappingInvokeArgs Empty => new GetFederatedSettingsOrgRoleMappingInvokeArgs();
     }
 
 

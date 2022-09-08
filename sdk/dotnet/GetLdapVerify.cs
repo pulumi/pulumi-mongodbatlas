@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetLdapVerifyArgs : Pulumi.InvokeArgs
+    public sealed class GetLdapVerifyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier for the Atlas project associated with the verification request.
@@ -46,9 +46,10 @@ namespace Pulumi.Mongodbatlas
         public GetLdapVerifyArgs()
         {
         }
+        public static new GetLdapVerifyArgs Empty => new GetLdapVerifyArgs();
     }
 
-    public sealed class GetLdapVerifyInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetLdapVerifyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier for the Atlas project associated with the verification request.
@@ -65,6 +66,7 @@ namespace Pulumi.Mongodbatlas
         public GetLdapVerifyInvokeArgs()
         {
         }
+        public static new GetLdapVerifyInvokeArgs Empty => new GetLdapVerifyInvokeArgs();
     }
 
 

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudBackupSnapshotExportJobCustomDataArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupSnapshotExportJobCustomDataArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Required if you want to include custom data using `custom_data` in the metadata file uploaded to the bucket. Key to include in the metadata file that Atlas uploads to the bucket when the export job finishes.
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudBackupSnapshotExportJobCustomDataArgs()
         {
         }
+        public static new CloudBackupSnapshotExportJobCustomDataArgs Empty => new CloudBackupSnapshotExportJobCustomDataArgs();
     }
 }

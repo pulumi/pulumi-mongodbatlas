@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class ClusterSnapshotBackupPolicyGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterSnapshotBackupPolicyGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cluster ID.
@@ -47,5 +47,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public ClusterSnapshotBackupPolicyGetArgs()
         {
         }
+        public static new ClusterSnapshotBackupPolicyGetArgs Empty => new ClusterSnapshotBackupPolicyGetArgs();
     }
 }

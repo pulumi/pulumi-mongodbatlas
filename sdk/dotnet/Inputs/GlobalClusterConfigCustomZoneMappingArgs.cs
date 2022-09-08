@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class GlobalClusterConfigCustomZoneMappingArgs : Pulumi.ResourceArgs
+    public sealed class GlobalClusterConfigCustomZoneMappingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public GlobalClusterConfigCustomZoneMappingArgs()
         {
         }
+        public static new GlobalClusterConfigCustomZoneMappingArgs Empty => new GlobalClusterConfigCustomZoneMappingArgs();
     }
 }

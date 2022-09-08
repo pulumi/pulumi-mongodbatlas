@@ -56,6 +56,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         /// </summary>
         public readonly string TargetClusterName;
+        /// <summary>
+        /// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+        /// </summary>
         public readonly string TargetProjectId;
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.

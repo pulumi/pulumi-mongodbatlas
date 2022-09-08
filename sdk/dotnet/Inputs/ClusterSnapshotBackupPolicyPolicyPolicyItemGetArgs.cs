@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class ClusterSnapshotBackupPolicyPolicyPolicyItemGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterSnapshotBackupPolicyPolicyPolicyItemGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("frequencyInterval")]
         public Input<int>? FrequencyInterval { get; set; }
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public ClusterSnapshotBackupPolicyPolicyPolicyItemGetArgs()
         {
         }
+        public static new ClusterSnapshotBackupPolicyPolicyPolicyItemGetArgs Empty => new ClusterSnapshotBackupPolicyPolicyPolicyItemGetArgs();
     }
 }

@@ -15,35 +15,6 @@ import (
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
 // ## Example Usage
-// ### Basic
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		adlTest, err := mongodbatlas.NewPrivatelinkEndpointServiceAdl(ctx, "adlTest", &mongodbatlas.PrivatelinkEndpointServiceAdlArgs{
-// 			ProjectId:    pulumi.String("<PROJECT_ID>"),
-// 			EndpointId:   pulumi.String("<ENDPOINT_ID>"),
-// 			Comment:      pulumi.String("Comment for PrivateLink endpoint ADL"),
-// 			Type:         pulumi.String("DATA_LAKE"),
-// 			ProviderName: pulumi.String("AWS"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupPrivatelinkEndpointServiceAdlOutput(ctx, GetPrivatelinkEndpointServiceAdlOutputArgs{
-// 			ProjectId:     adlTest.ProjectId,
-// 			PrivateLinkId: adlTest.EndpointId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
-// ```
 func LookupPrivatelinkEndpointServiceAdl(ctx *pulumi.Context, args *LookupPrivatelinkEndpointServiceAdlArgs, opts ...pulumi.InvokeOption) (*LookupPrivatelinkEndpointServiceAdlResult, error) {
 	var rv LookupPrivatelinkEndpointServiceAdlResult
 	err := ctx.Invoke("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", args, &rv, opts...)

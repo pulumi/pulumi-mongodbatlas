@@ -39,7 +39,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetNetworkPeeringArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkPeeringArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Atlas assigned unique ID for the peering connection.
@@ -56,9 +56,10 @@ namespace Pulumi.Mongodbatlas
         public GetNetworkPeeringArgs()
         {
         }
+        public static new GetNetworkPeeringArgs Empty => new GetNetworkPeeringArgs();
     }
 
-    public sealed class GetNetworkPeeringInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkPeeringInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Atlas assigned unique ID for the peering connection.
@@ -75,6 +76,7 @@ namespace Pulumi.Mongodbatlas
         public GetNetworkPeeringInvokeArgs()
         {
         }
+        public static new GetNetworkPeeringInvokeArgs Empty => new GetNetworkPeeringInvokeArgs();
     }
 
 

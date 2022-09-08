@@ -20,35 +20,34 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
         ///     {
-        ///         var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new Mongodbatlas.FederatedSettingsIdentityProviderArgs
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         AssociatedDomains = new[]
         ///         {
-        ///             FederationSettingsId = "627a9687f7f7f7f774de306f14",
-        ///             AssociatedDomains = 
-        ///             {
-        ///                 "yourdomain.com",
-        ///             },
-        ///             SsoDebugEnabled = true,
-        ///             Status = "ACTIVE",
-        ///             SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
-        ///             IssuerUri = "http://www.okta.com/exk17f7f7f7f7p50h8",
-        ///             RequestBinding = "HTTP-POST",
-        ///             ResponseSignatureAlgorithm = "SHA-256",
-        ///         });
-        ///         var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new Mongodbatlas.GetFederatedSettingsIdentityProviderInvokeArgs
-        ///         {
-        ///             FederationSettingsId = identityProvider.Id,
-        ///             IdentityProviderId = "0oad47f7fXnk1297",
-        ///         });
-        ///     }
+        ///             "yourdomain.com",
+        ///         },
+        ///         SsoDebugEnabled = true,
+        ///         Status = "ACTIVE",
+        ///         SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
+        ///         IssuerUri = "http://www.okta.com/exk17f7f7f7f7p50h8",
+        ///         RequestBinding = "HTTP-POST",
+        ///         ResponseSignatureAlgorithm = "SHA-256",
+        ///     });
         /// 
-        /// }
+        ///     var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = identityProvider.Id,
+        ///         IdentityProviderId = "0oad47f7fXnk1297",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -65,35 +64,34 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new()
         ///     {
-        ///         var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", new Mongodbatlas.FederatedSettingsIdentityProviderArgs
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
+        ///         AssociatedDomains = new[]
         ///         {
-        ///             FederationSettingsId = "627a9687f7f7f7f774de306f14",
-        ///             AssociatedDomains = 
-        ///             {
-        ///                 "yourdomain.com",
-        ///             },
-        ///             SsoDebugEnabled = true,
-        ///             Status = "ACTIVE",
-        ///             SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
-        ///             IssuerUri = "http://www.okta.com/exk17f7f7f7f7p50h8",
-        ///             RequestBinding = "HTTP-POST",
-        ///             ResponseSignatureAlgorithm = "SHA-256",
-        ///         });
-        ///         var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new Mongodbatlas.GetFederatedSettingsIdentityProviderInvokeArgs
-        ///         {
-        ///             FederationSettingsId = identityProvider.Id,
-        ///             IdentityProviderId = "0oad47f7fXnk1297",
-        ///         });
-        ///     }
+        ///             "yourdomain.com",
+        ///         },
+        ///         SsoDebugEnabled = true,
+        ///         Status = "ACTIVE",
+        ///         SsoUrl = "https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
+        ///         IssuerUri = "http://www.okta.com/exk17f7f7f7f7p50h8",
+        ///         RequestBinding = "HTTP-POST",
+        ///         ResponseSignatureAlgorithm = "SHA-256",
+        ///     });
         /// 
-        /// }
+        ///     var identityProviderDs = Mongodbatlas.GetFederatedSettingsIdentityProvider.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = identityProvider.Id,
+        ///         IdentityProviderId = "0oad47f7fXnk1297",
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -103,7 +101,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetFederatedSettingsIdentityProviderArgs : Pulumi.InvokeArgs
+    public sealed class GetFederatedSettingsIdentityProviderArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -120,9 +118,10 @@ namespace Pulumi.Mongodbatlas
         public GetFederatedSettingsIdentityProviderArgs()
         {
         }
+        public static new GetFederatedSettingsIdentityProviderArgs Empty => new GetFederatedSettingsIdentityProviderArgs();
     }
 
-    public sealed class GetFederatedSettingsIdentityProviderInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetFederatedSettingsIdentityProviderInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -139,6 +138,7 @@ namespace Pulumi.Mongodbatlas
         public GetFederatedSettingsIdentityProviderInvokeArgs()
         {
         }
+        public static new GetFederatedSettingsIdentityProviderInvokeArgs Empty => new GetFederatedSettingsIdentityProviderInvokeArgs();
     }
 
 

@@ -22,24 +22,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
-// 			ProjectId:                           pulumi.String("<PROJECT_ID>"),
-// 			ProviderSettingsBackingProviderName: pulumi.String("AWS"),
-// 			ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
-// 			ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewServerlessInstance(ctx, "test", &mongodbatlas.ServerlessInstanceArgs{
+//				ProjectId:                           pulumi.String("<PROJECT_ID>"),
+//				ProviderSettingsBackingProviderName: pulumi.String("AWS"),
+//				ProviderSettingsProviderName:        pulumi.String("SERVERLESS"),
+//				ProviderSettingsRegionName:          pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -47,10 +50,12 @@ import (
 // Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/serverlessInstance:ServerlessInstance my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
+//
+//	$ pulumi import mongodbatlas:index/serverlessInstance:ServerlessInstance my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
+//	For more information see[MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
 type ServerlessInstance struct {
 	pulumi.CustomResourceState
 
@@ -222,7 +227,7 @@ func (i *ServerlessInstance) ToServerlessInstanceOutputWithContext(ctx context.C
 // ServerlessInstanceArrayInput is an input type that accepts ServerlessInstanceArray and ServerlessInstanceArrayOutput values.
 // You can construct a concrete instance of `ServerlessInstanceArrayInput` via:
 //
-//          ServerlessInstanceArray{ ServerlessInstanceArgs{...} }
+//	ServerlessInstanceArray{ ServerlessInstanceArgs{...} }
 type ServerlessInstanceArrayInput interface {
 	pulumi.Input
 
@@ -247,7 +252,7 @@ func (i ServerlessInstanceArray) ToServerlessInstanceArrayOutputWithContext(ctx 
 // ServerlessInstanceMapInput is an input type that accepts ServerlessInstanceMap and ServerlessInstanceMapOutput values.
 // You can construct a concrete instance of `ServerlessInstanceMapInput` via:
 //
-//          ServerlessInstanceMap{ "key": ServerlessInstanceArgs{...} }
+//	ServerlessInstanceMap{ "key": ServerlessInstanceArgs{...} }
 type ServerlessInstanceMapInput interface {
 	pulumi.Input
 
@@ -281,6 +286,55 @@ func (o ServerlessInstanceOutput) ToServerlessInstanceOutput() ServerlessInstanc
 
 func (o ServerlessInstanceOutput) ToServerlessInstanceOutputWithContext(ctx context.Context) ServerlessInstanceOutput {
 	return o
+}
+
+// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+func (o ServerlessInstanceOutput) ConnectionStringsStandardSrv() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ConnectionStringsStandardSrv }).(pulumi.StringOutput)
+}
+
+// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
+func (o ServerlessInstanceOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+func (o ServerlessInstanceOutput) Links() ServerlessInstanceLinkArrayOutput {
+	return o.ApplyT(func(v *ServerlessInstance) ServerlessInstanceLinkArrayOutput { return v.Links }).(ServerlessInstanceLinkArrayOutput)
+}
+
+// Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
+func (o ServerlessInstanceOutput) MongoDbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.MongoDbVersion }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the serverless instance.
+func (o ServerlessInstanceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The ID of the organization or project you want to create the serverless instance within.
+func (o ServerlessInstanceOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
+func (o ServerlessInstanceOutput) ProviderSettingsBackingProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ProviderSettingsBackingProviderName }).(pulumi.StringOutput)
+}
+
+// Cloud service provider that applies to the provisioned the serverless instance.
+func (o ServerlessInstanceOutput) ProviderSettingsProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ProviderSettingsProviderName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+func (o ServerlessInstanceOutput) ProviderSettingsRegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ProviderSettingsRegionName }).(pulumi.StringOutput)
+}
+
+// Stage of deployment of this serverless instance when the resource made its request.
+func (o ServerlessInstanceOutput) StateName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.StateName }).(pulumi.StringOutput)
 }
 
 type ServerlessInstanceArrayOutput struct{ *pulumi.OutputState }

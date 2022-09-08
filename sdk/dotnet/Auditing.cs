@@ -15,23 +15,21 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.Auditing("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.Auditing("test", new Mongodbatlas.AuditingArgs
-    ///         {
-    ///             AuditAuthorizationSuccess = false,
-    ///             AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
-    ///             Enabled = true,
-    ///             ProjectId = "&lt;project-id&gt;",
-    ///         });
-    ///     }
+    ///         AuditAuthorizationSuccess = false,
+    ///         AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
+    ///         Enabled = true,
+    ///         ProjectId = "&lt;project-id&gt;",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +43,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/auditing:Auditing")]
-    public partial class Auditing : Pulumi.CustomResource
+    public partial class Auditing : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
@@ -124,7 +122,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class AuditingArgs : Pulumi.ResourceArgs
+    public sealed class AuditingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
@@ -153,9 +151,10 @@ namespace Pulumi.Mongodbatlas
         public AuditingArgs()
         {
         }
+        public static new AuditingArgs Empty => new AuditingArgs();
     }
 
-    public sealed class AuditingState : Pulumi.ResourceArgs
+    public sealed class AuditingState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
@@ -193,5 +192,6 @@ namespace Pulumi.Mongodbatlas
         public AuditingState()
         {
         }
+        public static new AuditingState Empty => new AuditingState();
     }
 }

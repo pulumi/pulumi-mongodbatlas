@@ -80,6 +80,9 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
      * Human-readable label that identifies the identity provider.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Unique 20-hexadecimal digit string that identifies the IdP.
+     */
     public /*out*/ readonly oktaIdpId!: pulumi.Output<string>;
     /**
      * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
@@ -186,6 +189,9 @@ export interface FederatedSettingsIdentityProviderState {
      * Human-readable label that identifies the identity provider.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Unique 20-hexadecimal digit string that identifies the IdP.
+     */
     oktaIdpId?: pulumi.Input<string>;
     /**
      * SAML Authentication Request Protocol HTTP method binding (POST or REDIRECT) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:

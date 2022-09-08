@@ -20,28 +20,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testFlowdock, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			Type:      pulumi.String("FLOWDOCK"),
-// 			FlowName:  pulumi.String("<FLOW-NAME>"),
-// 			ApiToken:  pulumi.String("<API-TOKEN>"),
-// 			OrgName:   pulumi.String("<ORG-NAME>"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, GetThirdPartyIntegrationOutputArgs{
-// 			ProjectId: testFlowdock.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testFlowdock, err := mongodbatlas.NewThirdPartyIntegration(ctx, "testFlowdock", &mongodbatlas.ThirdPartyIntegrationArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				Type:      pulumi.String("FLOWDOCK"),
+//				FlowName:  pulumi.String("<FLOW-NAME>"),
+//				ApiToken:  pulumi.String("<API-TOKEN>"),
+//				OrgName:   pulumi.String("<ORG-NAME>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, GetThirdPartyIntegrationOutputArgs{
+//				ProjectId: testFlowdock.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupThirdPartyIntegration(ctx *pulumi.Context, args *LookupThirdPartyIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupThirdPartyIntegrationResult, error) {
 	var rv LookupThirdPartyIntegrationResult

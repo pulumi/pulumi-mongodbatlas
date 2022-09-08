@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class OnlineArchiveCriteriaArgs : Pulumi.ResourceArgs
+    public sealed class OnlineArchiveCriteriaArgs : global::Pulumi.ResourceArgs
     {
         [Input("dateField")]
         public Input<string>? DateField { get; set; }
@@ -30,5 +30,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public OnlineArchiveCriteriaArgs()
         {
         }
+        public static new OnlineArchiveCriteriaArgs Empty => new OnlineArchiveCriteriaArgs();
     }
 }

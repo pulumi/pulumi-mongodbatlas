@@ -31,50 +31,53 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			DiskSizeGb:               pulumi.Float64(5),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
-// 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			CloudBackup:              pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
-// 			ProjectId:       myCluster.ProjectId,
-// 			ClusterName:     myCluster.Name,
-// 			Description:     pulumi.String("myDescription"),
-// 			RetentionInDays: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
-// 			ProjectId:   testCloudProviderSnapshot.ProjectId,
-// 			ClusterName: testCloudProviderSnapshot.ClusterName,
-// 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-// 			DeliveryTypeConfig: &CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
-// 				Automated:         pulumi.Bool(true),
-// 				TargetClusterName: pulumi.String("MyCluster"),
-// 				TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			},
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			testCloudProviderSnapshot,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				DiskSizeGb:               pulumi.Float64(5),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
+//				ProjectId:       myCluster.ProjectId,
+//				ClusterName:     myCluster.Name,
+//				Description:     pulumi.String("myDescription"),
+//				RetentionInDays: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
+//				ProjectId:   testCloudProviderSnapshot.ProjectId,
+//				ClusterName: testCloudProviderSnapshot.ClusterName,
+//				SnapshotId:  testCloudProviderSnapshot.SnapshotId,
+//				DeliveryTypeConfig: &CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
+//					Automated:         pulumi.Bool(true),
+//					TargetClusterName: pulumi.String("MyCluster"),
+//					TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				testCloudProviderSnapshot,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### Example download delivery type.
 //
@@ -82,46 +85,49 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
-// 			DiskSizeGb:               pulumi.Float64(5),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderRegionName:       pulumi.String("EU_WEST_2"),
-// 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			CloudBackup:              pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
-// 			ProjectId:       myCluster.ProjectId,
-// 			ClusterName:     myCluster.Name,
-// 			Description:     pulumi.String("myDescription"),
-// 			RetentionInDays: pulumi.Int(1),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
-// 			ProjectId:   testCloudProviderSnapshot.ProjectId,
-// 			ClusterName: testCloudProviderSnapshot.ClusterName,
-// 			SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-// 			DeliveryTypeConfig: &CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
-// 				Download: pulumi.Bool(true),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewCluster(ctx, "myCluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:                pulumi.String("5cf5a45a9ccf6400e60981b6"),
+//				DiskSizeGb:               pulumi.Float64(5),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("EU_WEST_2"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCloudProviderSnapshot, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "testCloudProviderSnapshot", &mongodbatlas.CloudProviderSnapshotArgs{
+//				ProjectId:       myCluster.ProjectId,
+//				ClusterName:     myCluster.Name,
+//				Description:     pulumi.String("myDescription"),
+//				RetentionInDays: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudProviderSnapshotRestoreJob(ctx, "testCloudProviderSnapshotRestoreJob", &mongodbatlas.CloudProviderSnapshotRestoreJobArgs{
+//				ProjectId:   testCloudProviderSnapshot.ProjectId,
+//				ClusterName: testCloudProviderSnapshot.ClusterName,
+//				SnapshotId:  testCloudProviderSnapshot.SnapshotId,
+//				DeliveryTypeConfig: &CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
+//					Download: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -129,10 +135,12 @@ import (
 // Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
+//
+//	$ pulumi import mongodbatlas:index/cloudProviderSnapshotRestoreJob:CloudProviderSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
 type CloudProviderSnapshotRestoreJob struct {
 	pulumi.CustomResourceState
 
@@ -326,7 +334,7 @@ func (i *CloudProviderSnapshotRestoreJob) ToCloudProviderSnapshotRestoreJobOutpu
 // CloudProviderSnapshotRestoreJobArrayInput is an input type that accepts CloudProviderSnapshotRestoreJobArray and CloudProviderSnapshotRestoreJobArrayOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotRestoreJobArrayInput` via:
 //
-//          CloudProviderSnapshotRestoreJobArray{ CloudProviderSnapshotRestoreJobArgs{...} }
+//	CloudProviderSnapshotRestoreJobArray{ CloudProviderSnapshotRestoreJobArgs{...} }
 type CloudProviderSnapshotRestoreJobArrayInput interface {
 	pulumi.Input
 
@@ -351,7 +359,7 @@ func (i CloudProviderSnapshotRestoreJobArray) ToCloudProviderSnapshotRestoreJobA
 // CloudProviderSnapshotRestoreJobMapInput is an input type that accepts CloudProviderSnapshotRestoreJobMap and CloudProviderSnapshotRestoreJobMapOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotRestoreJobMapInput` via:
 //
-//          CloudProviderSnapshotRestoreJobMap{ "key": CloudProviderSnapshotRestoreJobArgs{...} }
+//	CloudProviderSnapshotRestoreJobMap{ "key": CloudProviderSnapshotRestoreJobArgs{...} }
 type CloudProviderSnapshotRestoreJobMapInput interface {
 	pulumi.Input
 
@@ -385,6 +393,75 @@ func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJob
 
 func (o CloudProviderSnapshotRestoreJobOutput) ToCloudProviderSnapshotRestoreJobOutputWithContext(ctx context.Context) CloudProviderSnapshotRestoreJobOutput {
 	return o
+}
+
+// Indicates whether the restore job was canceled.
+func (o CloudProviderSnapshotRestoreJobOutput) Cancelled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.BoolOutput { return v.Cancelled }).(pulumi.BoolOutput)
+}
+
+// The name of the Atlas cluster whose snapshot you want to restore.
+func (o CloudProviderSnapshotRestoreJobOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when Atlas created the restore job.
+func (o CloudProviderSnapshotRestoreJobOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Type of restore job to create. Possible values are: **download** or **automated**, only one must be set it in “true“.
+//
+// Deprecated: use delivery_type_config instead
+func (o CloudProviderSnapshotRestoreJobOutput) DeliveryType() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringMapOutput { return v.DeliveryType }).(pulumi.StringMapOutput)
+}
+
+// Type of restore job to create. Possible values are: automated and download.
+func (o CloudProviderSnapshotRestoreJobOutput) DeliveryTypeConfig() CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput {
+		return v.DeliveryTypeConfig
+	}).(CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput)
+}
+
+// One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
+func (o CloudProviderSnapshotRestoreJobOutput) DeliveryUrls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringArrayOutput { return v.DeliveryUrls }).(pulumi.StringArrayOutput)
+}
+
+// Indicates whether the restore job expired.
+func (o CloudProviderSnapshotRestoreJobOutput) Expired() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.BoolOutput { return v.Expired }).(pulumi.BoolOutput)
+}
+
+// UTC ISO 8601 formatted point in time when the restore job expires.
+func (o CloudProviderSnapshotRestoreJobOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// UTC ISO 8601 formatted point in time when the restore job completed.
+func (o CloudProviderSnapshotRestoreJobOutput) FinishedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringOutput { return v.FinishedAt }).(pulumi.StringOutput)
+}
+
+// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+func (o CloudProviderSnapshotRestoreJobOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the snapshot to restore.
+func (o CloudProviderSnapshotRestoreJobOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringOutput { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// The unique identifier of the restore job.
+func (o CloudProviderSnapshotRestoreJobOutput) SnapshotRestoreJobId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringOutput { return v.SnapshotRestoreJobId }).(pulumi.StringOutput)
+}
+
+// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
+func (o CloudProviderSnapshotRestoreJobOutput) Timestamp() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJob) pulumi.StringOutput { return v.Timestamp }).(pulumi.StringOutput)
 }
 
 type CloudProviderSnapshotRestoreJobArrayOutput struct{ *pulumi.OutputState }

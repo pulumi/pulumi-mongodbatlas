@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CloudBackupScheduleExportArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupScheduleExportArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CloudBackupScheduleExportArgs()
         {
         }
+        public static new CloudBackupScheduleExportArgs Empty => new CloudBackupScheduleExportArgs();
     }
 }

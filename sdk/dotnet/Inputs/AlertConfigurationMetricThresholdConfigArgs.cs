@@ -10,10 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AlertConfigurationMetricThresholdConfigArgs : Pulumi.ResourceArgs
+    public sealed class AlertConfigurationMetricThresholdConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+        /// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
         /// </summary>
         [Input("metricName")]
         public Input<string>? MetricName { get; set; }
@@ -65,5 +65,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AlertConfigurationMetricThresholdConfigArgs()
         {
         }
+        public static new AlertConfigurationMetricThresholdConfigArgs Empty => new AlertConfigurationMetricThresholdConfigArgs();
     }
 }

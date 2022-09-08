@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetDataLakeArgs : Pulumi.InvokeArgs
+    public sealed class GetDataLakeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the data lake.
@@ -46,9 +46,10 @@ namespace Pulumi.Mongodbatlas
         public GetDataLakeArgs()
         {
         }
+        public static new GetDataLakeArgs Empty => new GetDataLakeArgs();
     }
 
-    public sealed class GetDataLakeInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDataLakeInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the data lake.
@@ -65,6 +66,7 @@ namespace Pulumi.Mongodbatlas
         public GetDataLakeInvokeArgs()
         {
         }
+        public static new GetDataLakeInvokeArgs Empty => new GetDataLakeInvokeArgs();
     }
 
 

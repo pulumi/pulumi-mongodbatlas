@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetPrivateLinkEndpointArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivateLinkEndpointArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier of the private endpoint service that you want to retrieve.
@@ -52,9 +52,10 @@ namespace Pulumi.Mongodbatlas
         public GetPrivateLinkEndpointArgs()
         {
         }
+        public static new GetPrivateLinkEndpointArgs Empty => new GetPrivateLinkEndpointArgs();
     }
 
-    public sealed class GetPrivateLinkEndpointInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivateLinkEndpointInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier of the private endpoint service that you want to retrieve.
@@ -77,6 +78,7 @@ namespace Pulumi.Mongodbatlas
         public GetPrivateLinkEndpointInvokeArgs()
         {
         }
+        public static new GetPrivateLinkEndpointInvokeArgs Empty => new GetPrivateLinkEndpointInvokeArgs();
     }
 
 

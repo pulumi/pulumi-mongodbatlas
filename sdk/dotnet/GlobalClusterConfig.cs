@@ -19,161 +19,159 @@ namespace Pulumi.Mongodbatlas
     /// ### Example Global cluster
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.Cluster("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.Cluster("test", new Mongodbatlas.ClusterArgs
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         DiskSizeGb = 80,
+    ///         CloudBackup = true,
+    ///         ClusterType = "GEOSHARDED",
+    ///         ProviderName = "AWS",
+    ///         ProviderInstanceSizeName = "M30",
+    ///         ReplicationSpecs = new[]
     ///         {
-    ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///             DiskSizeGb = 80,
-    ///             CloudBackup = true,
-    ///             ClusterType = "GEOSHARDED",
-    ///             ProviderName = "AWS",
-    ///             ProviderInstanceSizeName = "M30",
-    ///             ReplicationSpecs = 
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///                 ZoneName = "Zone 1",
+    ///                 NumShards = 1,
+    ///                 RegionsConfigs = new[]
     ///                 {
-    ///                     ZoneName = "Zone 1",
-    ///                     NumShards = 1,
-    ///                     RegionsConfigs = 
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
     ///                     {
-    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-    ///                         {
-    ///                             RegionName = "EU_CENTRAL_1",
-    ///                             ElectableNodes = 3,
-    ///                             Priority = 7,
-    ///                             ReadOnlyNodes = 0,
-    ///                         },
-    ///                     },
-    ///                 },
-    ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
-    ///                 {
-    ///                     ZoneName = "Zone 2",
-    ///                     NumShards = 1,
-    ///                     RegionsConfigs = 
-    ///                     {
-    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-    ///                         {
-    ///                             RegionName = "US_EAST_2",
-    ///                             ElectableNodes = 3,
-    ///                             Priority = 7,
-    ///                             ReadOnlyNodes = 0,
-    ///                         },
+    ///                         RegionName = "EU_CENTRAL_1",
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
     ///                     },
     ///                 },
     ///             },
-    ///         });
-    ///         var config = new Mongodbatlas.GlobalClusterConfig("config", new Mongodbatlas.GlobalClusterConfigArgs
-    ///         {
-    ///             ProjectId = test.ProjectId,
-    ///             ClusterName = test.Name,
-    ///             ManagedNamespaces = 
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs
+    ///                 ZoneName = "Zone 2",
+    ///                 NumShards = 1,
+    ///                 RegionsConfigs = new[]
     ///                 {
-    ///                     Db = "mydata",
-    ///                     Collection = "publishers",
-    ///                     CustomShardKey = "city",
-    ///                     IsCustomShardKeyHashed = false,
-    ///                     IsShardKeyUnique = false,
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
+    ///                     {
+    ///                         RegionName = "US_EAST_2",
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
+    ///                     },
     ///                 },
     ///             },
-    ///             CustomZoneMappings = 
-    ///             {
-    ///                 new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs
-    ///                 {
-    ///                     Location = "CA",
-    ///                     Zone = "Zone 1",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var config = new Mongodbatlas.GlobalClusterConfig("config", new()
+    ///     {
+    ///         ProjectId = test.ProjectId,
+    ///         ClusterName = test.Name,
+    ///         ManagedNamespaces = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs
+    ///             {
+    ///                 Db = "mydata",
+    ///                 Collection = "publishers",
+    ///                 CustomShardKey = "city",
+    ///                 IsCustomShardKeyHashed = false,
+    ///                 IsShardKeyUnique = false,
+    ///             },
+    ///         },
+    ///         CustomZoneMappings = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs
+    ///             {
+    ///                 Location = "CA",
+    ///                 Zone = "Zone 1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ### Example Global cluster config
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
     ///     {
-    ///         var cluster_test = new Mongodbatlas.Cluster("cluster-test", new Mongodbatlas.ClusterArgs
+    ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+    ///         ClusterType = "REPLICASET",
+    ///         ReplicationSpecs = new[]
     ///         {
-    ///             ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
-    ///             ClusterType = "REPLICASET",
-    ///             ReplicationSpecs = 
+    ///             new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
     ///             {
-    ///                 new Mongodbatlas.Inputs.ClusterReplicationSpecArgs
+    ///                 NumShards = 1,
+    ///                 RegionsConfigs = new[]
     ///                 {
-    ///                     NumShards = 1,
-    ///                     RegionsConfigs = 
+    ///                     new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
     ///                     {
-    ///                         new Mongodbatlas.Inputs.ClusterReplicationSpecRegionsConfigArgs
-    ///                         {
-    ///                             RegionName = "US_EAST_1",
-    ///                             ElectableNodes = 3,
-    ///                             Priority = 7,
-    ///                             ReadOnlyNodes = 0,
-    ///                         },
+    ///                         RegionName = "US_EAST_1",
+    ///                         ElectableNodes = 3,
+    ///                         Priority = 7,
+    ///                         ReadOnlyNodes = 0,
     ///                     },
     ///                 },
     ///             },
-    ///             BackupEnabled = true,
-    ///             AutoScalingDiskGbEnabled = true,
-    ///             MongoDbMajorVersion = "4.0",
-    ///             ProviderName = "AWS",
-    ///             DiskSizeGb = 100,
-    ///             ProviderInstanceSizeName = "M40",
-    ///         });
-    ///         var config = new Mongodbatlas.GlobalClusterConfig("config", new Mongodbatlas.GlobalClusterConfigArgs
-    ///         {
-    ///             ProjectId = mongodbatlas_cluster.Test.Project_id,
-    ///             ClusterName = mongodbatlas_cluster.Test.Name,
-    ///             ManagedNamespaces = 
-    ///             {
-    ///                 new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs
-    ///                 {
-    ///                     Db = "mydata",
-    ///                     Collection = "publishers",
-    ///                     CustomShardKey = "city",
-    ///                 },
-    ///             },
-    ///             CustomZoneMappings = 
-    ///             {
-    ///                 new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs
-    ///                 {
-    ///                     Location = "CA",
-    ///                     Zone = "Zone 1",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///         BackupEnabled = true,
+    ///         AutoScalingDiskGbEnabled = true,
+    ///         MongoDbMajorVersion = "4.0",
+    ///         ProviderName = "AWS",
+    ///         DiskSizeGb = 100,
+    ///         ProviderInstanceSizeName = "M40",
+    ///     });
     /// 
-    /// }
+    ///     var config = new Mongodbatlas.GlobalClusterConfig("config", new()
+    ///     {
+    ///         ProjectId = mongodbatlas_cluster.Test.Project_id,
+    ///         ClusterName = mongodbatlas_cluster.Test.Name,
+    ///         ManagedNamespaces = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.GlobalClusterConfigManagedNamespaceArgs
+    ///             {
+    ///                 Db = "mydata",
+    ///                 Collection = "publishers",
+    ///                 CustomShardKey = "city",
+    ///             },
+    ///         },
+    ///         CustomZoneMappings = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.GlobalClusterConfigCustomZoneMappingArgs
+    ///             {
+    ///                 Location = "CA",
+    ///                 Zone = "Zone 1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
     /// 
-    /// Database users can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.
+    /// Global Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTER_NAME`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-my-cluster
+    ///  $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-Cluster0
     /// ```
     /// 
     ///  See detailed information for arguments and attributes[MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig")]
-    public partial class GlobalClusterConfig : Pulumi.CustomResource
+    public partial class GlobalClusterConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the Global Cluster.
@@ -249,7 +247,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class GlobalClusterConfigArgs : Pulumi.ResourceArgs
+    public sealed class GlobalClusterConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Global Cluster.
@@ -290,9 +288,10 @@ namespace Pulumi.Mongodbatlas
         public GlobalClusterConfigArgs()
         {
         }
+        public static new GlobalClusterConfigArgs Empty => new GlobalClusterConfigArgs();
     }
 
-    public sealed class GlobalClusterConfigState : Pulumi.ResourceArgs
+    public sealed class GlobalClusterConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Global Cluster.
@@ -345,5 +344,6 @@ namespace Pulumi.Mongodbatlas
         public GlobalClusterConfigState()
         {
         }
+        public static new GlobalClusterConfigState Empty => new GlobalClusterConfigState();
     }
 }

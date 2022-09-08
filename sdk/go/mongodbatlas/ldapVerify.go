@@ -19,44 +19,47 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
-// 			OrgId: pulumi.String("ORG ID"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:                testProject.ID(),
-// 			DiskSizeGb:               pulumi.Float64(5),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderRegionName:       pulumi.String("US_EAST_2"),
-// 			ProviderInstanceSizeName: pulumi.String("M10"),
-// 			CloudBackup:              pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewLdapVerify(ctx, "testLdapVerify", &mongodbatlas.LdapVerifyArgs{
-// 			ProjectId:    testProject.ID(),
-// 			Hostname:     pulumi.String("HOSTNAME"),
-// 			Port:         pulumi.Int(636),
-// 			BindUsername: pulumi.String("USERNAME"),
-// 			BindPassword: pulumi.String("PASSWORD"),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			testCluster,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testProject, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				OrgId: pulumi.String("ORG ID"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:                testProject.ID(),
+//				DiskSizeGb:               pulumi.Float64(5),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderRegionName:       pulumi.String("US_EAST_2"),
+//				ProviderInstanceSizeName: pulumi.String("M10"),
+//				CloudBackup:              pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewLdapVerify(ctx, "testLdapVerify", &mongodbatlas.LdapVerifyArgs{
+//				ProjectId:    testProject.ID(),
+//				Hostname:     pulumi.String("HOSTNAME"),
+//				Port:         pulumi.Int(636),
+//				BindUsername: pulumi.String("USERNAME"),
+//				BindPassword: pulumi.String("PASSWORD"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				testCluster,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -64,10 +67,12 @@ import (
 // LDAP Configuration must be imported using project ID and request ID, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
+//
+//	$ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
 type LdapVerify struct {
 	pulumi.CustomResourceState
 
@@ -253,7 +258,7 @@ func (i *LdapVerify) ToLdapVerifyOutputWithContext(ctx context.Context) LdapVeri
 // LdapVerifyArrayInput is an input type that accepts LdapVerifyArray and LdapVerifyArrayOutput values.
 // You can construct a concrete instance of `LdapVerifyArrayInput` via:
 //
-//          LdapVerifyArray{ LdapVerifyArgs{...} }
+//	LdapVerifyArray{ LdapVerifyArgs{...} }
 type LdapVerifyArrayInput interface {
 	pulumi.Input
 
@@ -278,7 +283,7 @@ func (i LdapVerifyArray) ToLdapVerifyArrayOutputWithContext(ctx context.Context)
 // LdapVerifyMapInput is an input type that accepts LdapVerifyMap and LdapVerifyMapOutput values.
 // You can construct a concrete instance of `LdapVerifyMapInput` via:
 //
-//          LdapVerifyMap{ "key": LdapVerifyArgs{...} }
+//	LdapVerifyMap{ "key": LdapVerifyArgs{...} }
 type LdapVerifyMapInput interface {
 	pulumi.Input
 
@@ -312,6 +317,61 @@ func (o LdapVerifyOutput) ToLdapVerifyOutput() LdapVerifyOutput {
 
 func (o LdapVerifyOutput) ToLdapVerifyOutputWithContext(ctx context.Context) LdapVerifyOutput {
 	return o
+}
+
+// An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
+func (o LdapVerifyOutput) AuthzQueryTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.AuthzQueryTemplate }).(pulumi.StringOutput)
+}
+
+// The password used to authenticate the `bindUsername`.
+func (o LdapVerifyOutput) BindPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.BindPassword }).(pulumi.StringOutput)
+}
+
+// The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
+func (o LdapVerifyOutput) BindUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.BindUsername }).(pulumi.StringOutput)
+}
+
+// CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
+func (o LdapVerifyOutput) CaCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.CaCertificate }).(pulumi.StringOutput)
+}
+
+// The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
+func (o LdapVerifyOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
+func (o LdapVerifyOutput) Links() LdapVerifyLinkArrayOutput {
+	return o.ApplyT(func(v *LdapVerify) LdapVerifyLinkArrayOutput { return v.Links }).(LdapVerifyLinkArrayOutput)
+}
+
+// The port to which the LDAP server listens for client connections. Default: `636`
+func (o LdapVerifyOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+// The unique ID for the project to configure LDAP.
+func (o LdapVerifyOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
+func (o LdapVerifyOutput) RequestId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.RequestId }).(pulumi.StringOutput)
+}
+
+// The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
+func (o LdapVerifyOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+func (o LdapVerifyOutput) Validations() LdapVerifyValidationArrayOutput {
+	return o.ApplyT(func(v *LdapVerify) LdapVerifyValidationArrayOutput { return v.Validations }).(LdapVerifyValidationArrayOutput)
 }
 
 type LdapVerifyArrayOutput struct{ *pulumi.OutputState }

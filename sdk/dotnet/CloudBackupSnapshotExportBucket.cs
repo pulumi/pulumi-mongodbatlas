@@ -17,23 +17,21 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new Mongodbatlas.CloudBackupSnapshotExportBucketArgs
-    ///         {
-    ///             BucketName = "example-bucket",
-    ///             CloudProvider = "AWS",
-    ///             IamRoleId = "{IAM_ROLE_ID}",
-    ///             ProjectId = "{PROJECT_ID}",
-    ///         });
-    ///     }
+    ///         BucketName = "example-bucket",
+    ///         CloudProvider = "AWS",
+    ///         IamRoleId = "{IAM_ROLE_ID}",
+    ///         ProjectId = "{PROJECT_ID}",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +45,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket")]
-    public partial class CloudBackupSnapshotExportBucket : Pulumi.CustomResource
+    public partial class CloudBackupSnapshotExportBucket : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
@@ -123,7 +121,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudBackupSnapshotExportBucketArgs : Pulumi.ResourceArgs
+    public sealed class CloudBackupSnapshotExportBucketArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
@@ -152,9 +150,10 @@ namespace Pulumi.Mongodbatlas
         public CloudBackupSnapshotExportBucketArgs()
         {
         }
+        public static new CloudBackupSnapshotExportBucketArgs Empty => new CloudBackupSnapshotExportBucketArgs();
     }
 
-    public sealed class CloudBackupSnapshotExportBucketState : Pulumi.ResourceArgs
+    public sealed class CloudBackupSnapshotExportBucketState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the bucket that the provided role ID is authorized to access. You must also specify the `iam_role_id`.
@@ -189,5 +188,6 @@ namespace Pulumi.Mongodbatlas
         public CloudBackupSnapshotExportBucketState()
         {
         }
+        public static new CloudBackupSnapshotExportBucketState Empty => new CloudBackupSnapshotExportBucketState();
     }
 }

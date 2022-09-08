@@ -23,53 +23,52 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
         ///     {
-        ///         var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new Mongodbatlas.DatabaseUserArgs
+        ///         Username = "test-acc-username",
+        ///         Password = "test-acc-password",
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         AuthDatabaseName = "admin",
+        ///         Roles = new[]
         ///         {
-        ///             Username = "test-acc-username",
-        ///             Password = "test-acc-password",
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             AuthDatabaseName = "admin",
-        ///             Roles = 
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///                 {
-        ///                     RoleName = "readWrite",
-        ///                     DatabaseName = "admin",
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///                 {
-        ///                     RoleName = "atlasAdmin",
-        ///                     DatabaseName = "admin",
-        ///                 },
+        ///                 RoleName = "readWrite",
+        ///                 DatabaseName = "admin",
         ///             },
-        ///             Labels = 
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-        ///                 {
-        ///                     Key = "key 1",
-        ///                     Value = "value 1",
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-        ///                 {
-        ///                     Key = "key 2",
-        ///                     Value = "value 2",
-        ///                 },
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
         ///             },
-        ///         });
-        ///         var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new Mongodbatlas.GetDatabaseUsersInvokeArgs
+        ///         },
+        ///         Labels = new[]
         ///         {
-        ///             ProjectId = testDatabaseUser.ProjectId,
-        ///         });
-        ///     }
+        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///             {
+        ///                 Key = "key 1",
+        ///                 Value = "value 1",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///             {
+        ///                 Key = "key 2",
+        ///                 Value = "value 2",
+        ///             },
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     {
+        ///         ProjectId = testDatabaseUser.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -89,53 +88,52 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new()
         ///     {
-        ///         var testDatabaseUser = new Mongodbatlas.DatabaseUser("testDatabaseUser", new Mongodbatlas.DatabaseUserArgs
+        ///         Username = "test-acc-username",
+        ///         Password = "test-acc-password",
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         AuthDatabaseName = "admin",
+        ///         Roles = new[]
         ///         {
-        ///             Username = "test-acc-username",
-        ///             Password = "test-acc-password",
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             AuthDatabaseName = "admin",
-        ///             Roles = 
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///                 {
-        ///                     RoleName = "readWrite",
-        ///                     DatabaseName = "admin",
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.DatabaseUserRoleArgs
-        ///                 {
-        ///                     RoleName = "atlasAdmin",
-        ///                     DatabaseName = "admin",
-        ///                 },
+        ///                 RoleName = "readWrite",
+        ///                 DatabaseName = "admin",
         ///             },
-        ///             Labels = 
+        ///             new Mongodbatlas.Inputs.DatabaseUserRoleArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-        ///                 {
-        ///                     Key = "key 1",
-        ///                     Value = "value 1",
-        ///                 },
-        ///                 new Mongodbatlas.Inputs.DatabaseUserLabelArgs
-        ///                 {
-        ///                     Key = "key 2",
-        ///                     Value = "value 2",
-        ///                 },
+        ///                 RoleName = "atlasAdmin",
+        ///                 DatabaseName = "admin",
         ///             },
-        ///         });
-        ///         var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new Mongodbatlas.GetDatabaseUsersInvokeArgs
+        ///         },
+        ///         Labels = new[]
         ///         {
-        ///             ProjectId = testDatabaseUser.ProjectId,
-        ///         });
-        ///     }
+        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///             {
+        ///                 Key = "key 1",
+        ///                 Value = "value 1",
+        ///             },
+        ///             new Mongodbatlas.Inputs.DatabaseUserLabelArgs
+        ///             {
+        ///                 Key = "key 2",
+        ///                 Value = "value 2",
+        ///             },
+        ///         },
+        ///     });
         /// 
-        /// }
+        ///     var testDatabaseUsers = Mongodbatlas.GetDatabaseUsers.Invoke(new()
+        ///     {
+        ///         ProjectId = testDatabaseUser.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -145,7 +143,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetDatabaseUsersArgs : Pulumi.InvokeArgs
+    public sealed class GetDatabaseUsersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all database users.
@@ -156,9 +154,10 @@ namespace Pulumi.Mongodbatlas
         public GetDatabaseUsersArgs()
         {
         }
+        public static new GetDatabaseUsersArgs Empty => new GetDatabaseUsersArgs();
     }
 
-    public sealed class GetDatabaseUsersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDatabaseUsersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all database users.
@@ -169,6 +168,7 @@ namespace Pulumi.Mongodbatlas
         public GetDatabaseUsersInvokeArgs()
         {
         }
+        public static new GetDatabaseUsersInvokeArgs Empty => new GetDatabaseUsersInvokeArgs();
     }
 
 

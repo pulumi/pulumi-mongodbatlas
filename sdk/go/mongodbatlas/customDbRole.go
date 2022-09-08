@@ -23,51 +23,54 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
-// 			Actions: CustomDbRoleActionArray{
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("UPDATE"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							CollectionName: pulumi.String(""),
-// 							DatabaseName:   pulumi.String("anyDatabase"),
-// 						},
-// 					},
-// 				},
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("INSERT"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							CollectionName: pulumi.String(""),
-// 							DatabaseName:   pulumi.String("anyDatabase"),
-// 						},
-// 					},
-// 				},
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("REMOVE"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							CollectionName: pulumi.String(""),
-// 							DatabaseName:   pulumi.String("anyDatabase"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			RoleName:  pulumi.String("myCustomRole"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+//				Actions: CustomDbRoleActionArray{
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("UPDATE"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								CollectionName: pulumi.String(""),
+//								DatabaseName:   pulumi.String("anyDatabase"),
+//							},
+//						},
+//					},
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("INSERT"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								CollectionName: pulumi.String(""),
+//								DatabaseName:   pulumi.String("anyDatabase"),
+//							},
+//						},
+//					},
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("REMOVE"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								CollectionName: pulumi.String(""),
+//								DatabaseName:   pulumi.String("anyDatabase"),
+//							},
+//						},
+//					},
+//				},
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				RoleName:  pulumi.String("myCustomRole"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ### With Inherited Roles
 //
@@ -75,87 +78,90 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		inheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleOne", &mongodbatlas.CustomDbRoleArgs{
-// 			ProjectId: pulumi.String("<PROJECT-ID>"),
-// 			RoleName:  pulumi.String("insertRole"),
-// 			Actions: CustomDbRoleActionArray{
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("INSERT"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							CollectionName: pulumi.String(""),
-// 							DatabaseName:   pulumi.String("anyDatabase"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		inheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleTwo", &mongodbatlas.CustomDbRoleArgs{
-// 			ProjectId: inheritedRoleOne.ProjectId,
-// 			RoleName:  pulumi.String("statusServerRole"),
-// 			Actions: CustomDbRoleActionArray{
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("SERVER_STATUS"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							Cluster: pulumi.Bool(true),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
-// 			ProjectId: inheritedRoleOne.ProjectId,
-// 			RoleName:  pulumi.String("myCustomRole"),
-// 			Actions: CustomDbRoleActionArray{
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("UPDATE"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							CollectionName: pulumi.String(""),
-// 							DatabaseName:   pulumi.String("anyDatabase"),
-// 						},
-// 					},
-// 				},
-// 				&CustomDbRoleActionArgs{
-// 					Action: pulumi.String("REMOVE"),
-// 					Resources: CustomDbRoleActionResourceArray{
-// 						&CustomDbRoleActionResourceArgs{
-// 							CollectionName: pulumi.String(""),
-// 							DatabaseName:   pulumi.String("anyDatabase"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 			InheritedRoles: CustomDbRoleInheritedRoleArray{
-// 				&CustomDbRoleInheritedRoleArgs{
-// 					RoleName:     inheritedRoleOne.RoleName,
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 				&CustomDbRoleInheritedRoleArgs{
-// 					RoleName:     inheritedRoleTwo.RoleName,
-// 					DatabaseName: pulumi.String("admin"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			inheritedRoleOne, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleOne", &mongodbatlas.CustomDbRoleArgs{
+//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//				RoleName:  pulumi.String("insertRole"),
+//				Actions: CustomDbRoleActionArray{
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("INSERT"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								CollectionName: pulumi.String(""),
+//								DatabaseName:   pulumi.String("anyDatabase"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			inheritedRoleTwo, err := mongodbatlas.NewCustomDbRole(ctx, "inheritedRoleTwo", &mongodbatlas.CustomDbRoleArgs{
+//				ProjectId: inheritedRoleOne.ProjectId,
+//				RoleName:  pulumi.String("statusServerRole"),
+//				Actions: CustomDbRoleActionArray{
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("SERVER_STATUS"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								Cluster: pulumi.Bool(true),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
+//				ProjectId: inheritedRoleOne.ProjectId,
+//				RoleName:  pulumi.String("myCustomRole"),
+//				Actions: CustomDbRoleActionArray{
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("UPDATE"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								CollectionName: pulumi.String(""),
+//								DatabaseName:   pulumi.String("anyDatabase"),
+//							},
+//						},
+//					},
+//					&CustomDbRoleActionArgs{
+//						Action: pulumi.String("REMOVE"),
+//						Resources: CustomDbRoleActionResourceArray{
+//							&CustomDbRoleActionResourceArgs{
+//								CollectionName: pulumi.String(""),
+//								DatabaseName:   pulumi.String("anyDatabase"),
+//							},
+//						},
+//					},
+//				},
+//				InheritedRoles: CustomDbRoleInheritedRoleArray{
+//					&CustomDbRoleInheritedRoleArgs{
+//						RoleName:     inheritedRoleOne.RoleName,
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//					&CustomDbRoleInheritedRoleArgs{
+//						RoleName:     inheritedRoleTwo.RoleName,
+//						DatabaseName: pulumi.String("admin"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -163,10 +169,12 @@ import (
 // Database users can be imported using project ID and username, in the format `PROJECTID-ROLENAME`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
+//
+//	$ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
 type CustomDbRole struct {
 	pulumi.CustomResourceState
 
@@ -279,7 +287,7 @@ func (i *CustomDbRole) ToCustomDbRoleOutputWithContext(ctx context.Context) Cust
 // CustomDbRoleArrayInput is an input type that accepts CustomDbRoleArray and CustomDbRoleArrayOutput values.
 // You can construct a concrete instance of `CustomDbRoleArrayInput` via:
 //
-//          CustomDbRoleArray{ CustomDbRoleArgs{...} }
+//	CustomDbRoleArray{ CustomDbRoleArgs{...} }
 type CustomDbRoleArrayInput interface {
 	pulumi.Input
 
@@ -304,7 +312,7 @@ func (i CustomDbRoleArray) ToCustomDbRoleArrayOutputWithContext(ctx context.Cont
 // CustomDbRoleMapInput is an input type that accepts CustomDbRoleMap and CustomDbRoleMapOutput values.
 // You can construct a concrete instance of `CustomDbRoleMapInput` via:
 //
-//          CustomDbRoleMap{ "key": CustomDbRoleArgs{...} }
+//	CustomDbRoleMap{ "key": CustomDbRoleArgs{...} }
 type CustomDbRoleMapInput interface {
 	pulumi.Input
 
@@ -338,6 +346,24 @@ func (o CustomDbRoleOutput) ToCustomDbRoleOutput() CustomDbRoleOutput {
 
 func (o CustomDbRoleOutput) ToCustomDbRoleOutputWithContext(ctx context.Context) CustomDbRoleOutput {
 	return o
+}
+
+func (o CustomDbRoleOutput) Actions() CustomDbRoleActionArrayOutput {
+	return o.ApplyT(func(v *CustomDbRole) CustomDbRoleActionArrayOutput { return v.Actions }).(CustomDbRoleActionArrayOutput)
+}
+
+func (o CustomDbRoleOutput) InheritedRoles() CustomDbRoleInheritedRoleArrayOutput {
+	return o.ApplyT(func(v *CustomDbRole) CustomDbRoleInheritedRoleArrayOutput { return v.InheritedRoles }).(CustomDbRoleInheritedRoleArrayOutput)
+}
+
+// The unique ID for the project to create the database user.
+func (o CustomDbRoleOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomDbRole) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Name of the inherited role. This can either be another custom role or a built-in role.
+func (o CustomDbRoleOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomDbRole) pulumi.StringOutput { return v.RoleName }).(pulumi.StringOutput)
 }
 
 type CustomDbRoleArrayOutput struct{ *pulumi.OutputState }

@@ -114,7 +114,7 @@ func (i *CloudProviderAccessAuthorization) ToCloudProviderAccessAuthorizationOut
 // CloudProviderAccessAuthorizationArrayInput is an input type that accepts CloudProviderAccessAuthorizationArray and CloudProviderAccessAuthorizationArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessAuthorizationArrayInput` via:
 //
-//          CloudProviderAccessAuthorizationArray{ CloudProviderAccessAuthorizationArgs{...} }
+//	CloudProviderAccessAuthorizationArray{ CloudProviderAccessAuthorizationArgs{...} }
 type CloudProviderAccessAuthorizationArrayInput interface {
 	pulumi.Input
 
@@ -139,7 +139,7 @@ func (i CloudProviderAccessAuthorizationArray) ToCloudProviderAccessAuthorizatio
 // CloudProviderAccessAuthorizationMapInput is an input type that accepts CloudProviderAccessAuthorizationMap and CloudProviderAccessAuthorizationMapOutput values.
 // You can construct a concrete instance of `CloudProviderAccessAuthorizationMapInput` via:
 //
-//          CloudProviderAccessAuthorizationMap{ "key": CloudProviderAccessAuthorizationArgs{...} }
+//	CloudProviderAccessAuthorizationMap{ "key": CloudProviderAccessAuthorizationArgs{...} }
 type CloudProviderAccessAuthorizationMapInput interface {
 	pulumi.Input
 
@@ -173,6 +173,28 @@ func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizati
 
 func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizationOutputWithContext(ctx context.Context) CloudProviderAccessAuthorizationOutput {
 	return o
+}
+
+func (o CloudProviderAccessAuthorizationOutput) AuthorizedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorization) pulumi.StringOutput { return v.AuthorizedDate }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessAuthorizationOutput) Aws() CloudProviderAccessAuthorizationAwsPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorization) CloudProviderAccessAuthorizationAwsPtrOutput { return v.Aws }).(CloudProviderAccessAuthorizationAwsPtrOutput)
+}
+
+func (o CloudProviderAccessAuthorizationOutput) FeatureUsages() CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorization) CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
+		return v.FeatureUsages
+	}).(CloudProviderAccessAuthorizationFeatureUsageArrayOutput)
+}
+
+func (o CloudProviderAccessAuthorizationOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorization) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderAccessAuthorizationOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccessAuthorization) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
 }
 
 type CloudProviderAccessAuthorizationArrayOutput struct{ *pulumi.OutputState }

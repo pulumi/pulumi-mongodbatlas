@@ -23,47 +23,42 @@ namespace Pulumi.Mongodbatlas
         /// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new()
         ///     {
-        ///         var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new Mongodbatlas.CloudBackupSnapshotArgs
-        ///         {
-        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
-        ///             ClusterName = "MyCluster",
-        ///             Description = "MyDescription",
-        ///             RetentionInDays = 1,
-        ///         });
-        ///         var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new Mongodbatlas.CloudBackupSnapshotRestoreJobArgs
-        ///         {
-        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
-        ///             ClusterName = "MyCluster",
-        ///             SnapshotId = testCloudBackupSnapshot.Id,
-        ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
-        ///             {
-        ///                 Automated = true,
-        ///                 TargetClusterName = "MyCluster",
-        ///                 TargetProjectId = "5cf5a45a9ccf6400e60981b6",
-        ///             },
-        ///         });
-        ///         var testCloudBackupSnapshotRestoreJobs = Output.Tuple(testCloudBackupSnapshotRestoreJob.ProjectId, testCloudBackupSnapshotRestoreJob.ClusterName).Apply(values =&gt;
-        ///         {
-        ///             var projectId = values.Item1;
-        ///             var clusterName = values.Item2;
-        ///             return Mongodbatlas.GetCloudBackupSnapshotRestoreJobs.Invoke(new Mongodbatlas.GetCloudBackupSnapshotRestoreJobsInvokeArgs
-        ///             {
-        ///                 ProjectId = projectId,
-        ///                 ClusterName = clusterName,
-        ///                 PageNum = 1,
-        ///                 ItemsPerPage = 5,
-        ///             });
-        ///         });
-        ///     }
+        ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+        ///         ClusterName = "MyCluster",
+        ///         Description = "MyDescription",
+        ///         RetentionInDays = 1,
+        ///     });
         /// 
-        /// }
+        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new()
+        ///     {
+        ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+        ///         ClusterName = "MyCluster",
+        ///         SnapshotId = testCloudBackupSnapshot.Id,
+        ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+        ///         {
+        ///             Automated = true,
+        ///             TargetClusterName = "MyCluster",
+        ///             TargetProjectId = "5cf5a45a9ccf6400e60981b6",
+        ///         },
+        ///     });
+        /// 
+        ///     var testCloudBackupSnapshotRestoreJobs = Mongodbatlas.GetCloudBackupSnapshotRestoreJobs.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSnapshotRestoreJob.ProjectId,
+        ///         ClusterName = testCloudBackupSnapshotRestoreJob.ClusterName,
+        ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -83,47 +78,42 @@ namespace Pulumi.Mongodbatlas
         /// First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new()
         ///     {
-        ///         var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("testCloudBackupSnapshot", new Mongodbatlas.CloudBackupSnapshotArgs
-        ///         {
-        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
-        ///             ClusterName = "MyCluster",
-        ///             Description = "MyDescription",
-        ///             RetentionInDays = 1,
-        ///         });
-        ///         var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new Mongodbatlas.CloudBackupSnapshotRestoreJobArgs
-        ///         {
-        ///             ProjectId = "5cf5a45a9ccf6400e60981b6",
-        ///             ClusterName = "MyCluster",
-        ///             SnapshotId = testCloudBackupSnapshot.Id,
-        ///             DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
-        ///             {
-        ///                 Automated = true,
-        ///                 TargetClusterName = "MyCluster",
-        ///                 TargetProjectId = "5cf5a45a9ccf6400e60981b6",
-        ///             },
-        ///         });
-        ///         var testCloudBackupSnapshotRestoreJobs = Output.Tuple(testCloudBackupSnapshotRestoreJob.ProjectId, testCloudBackupSnapshotRestoreJob.ClusterName).Apply(values =&gt;
-        ///         {
-        ///             var projectId = values.Item1;
-        ///             var clusterName = values.Item2;
-        ///             return Mongodbatlas.GetCloudBackupSnapshotRestoreJobs.Invoke(new Mongodbatlas.GetCloudBackupSnapshotRestoreJobsInvokeArgs
-        ///             {
-        ///                 ProjectId = projectId,
-        ///                 ClusterName = clusterName,
-        ///                 PageNum = 1,
-        ///                 ItemsPerPage = 5,
-        ///             });
-        ///         });
-        ///     }
+        ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+        ///         ClusterName = "MyCluster",
+        ///         Description = "MyDescription",
+        ///         RetentionInDays = 1,
+        ///     });
         /// 
-        /// }
+        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new()
+        ///     {
+        ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
+        ///         ClusterName = "MyCluster",
+        ///         SnapshotId = testCloudBackupSnapshot.Id,
+        ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
+        ///         {
+        ///             Automated = true,
+        ///             TargetClusterName = "MyCluster",
+        ///             TargetProjectId = "5cf5a45a9ccf6400e60981b6",
+        ///         },
+        ///     });
+        /// 
+        ///     var testCloudBackupSnapshotRestoreJobs = Mongodbatlas.GetCloudBackupSnapshotRestoreJobs.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSnapshotRestoreJob.ProjectId,
+        ///         ClusterName = testCloudBackupSnapshotRestoreJob.ClusterName,
+        ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -133,7 +123,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCloudBackupSnapshotRestoreJobsArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudBackupSnapshotRestoreJobsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Atlas cluster for which you want to retrieve restore jobs.
@@ -162,9 +152,10 @@ namespace Pulumi.Mongodbatlas
         public GetCloudBackupSnapshotRestoreJobsArgs()
         {
         }
+        public static new GetCloudBackupSnapshotRestoreJobsArgs Empty => new GetCloudBackupSnapshotRestoreJobsArgs();
     }
 
-    public sealed class GetCloudBackupSnapshotRestoreJobsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudBackupSnapshotRestoreJobsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Atlas cluster for which you want to retrieve restore jobs.
@@ -193,6 +184,7 @@ namespace Pulumi.Mongodbatlas
         public GetCloudBackupSnapshotRestoreJobsInvokeArgs()
         {
         }
+        public static new GetCloudBackupSnapshotRestoreJobsInvokeArgs Empty => new GetCloudBackupSnapshotRestoreJobsInvokeArgs();
     }
 
 

@@ -263,7 +263,7 @@ export interface AlertConfigurationMatcher {
 
 export interface AlertConfigurationMetricThresholdConfig {
     /**
-     * Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      */
     metricName?: string;
     /**
@@ -568,9 +568,12 @@ export interface CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
     pointInTime?: boolean;
     pointInTimeUtcSeconds?: number;
     /**
-     * Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+     * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
      */
     targetClusterName?: string;
+    /**
+     * Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     */
     targetProjectId?: string;
 }
 
@@ -615,6 +618,9 @@ export interface CloudProviderSnapshotRestoreJobDeliveryTypeConfig {
      * Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
      */
     targetClusterName?: string;
+    /**
+     * Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
+     */
     targetProjectId?: string;
 }
 
@@ -1582,7 +1588,7 @@ export interface GetAlertConfigurationMatcher {
 
 export interface GetAlertConfigurationMetricThresholdConfig {
     /**
-     * Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      */
     metricName: string;
     /**
@@ -2035,6 +2041,9 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
      * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
      */
     targetClusterName: string;
+    /**
+     * Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     */
     targetProjectId: string;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
@@ -2224,6 +2233,9 @@ export interface GetCloudProviderSnapshotRestoreJobsResult {
      * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
      */
     targetClusterName: string;
+    /**
+     * Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+     */
     targetProjectId: string;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
@@ -4298,3 +4310,4 @@ export interface X509AuthenticationDatabaseUserCertificate {
     notAfter: string;
     subject: string;
 }
+

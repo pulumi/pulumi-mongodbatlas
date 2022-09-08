@@ -21,25 +21,24 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
         ///     {
-        ///         var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new Mongodbatlas.CloudProviderAccessArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             ProviderName = "AWS",
-        ///         });
-        ///         var all = Mongodbatlas.GetCloudProviderAccess.Invoke(new Mongodbatlas.GetCloudProviderAccessInvokeArgs
-        ///         {
-        ///             ProjectId = testRole.ProjectId,
-        ///         });
-        ///     }
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProviderName = "AWS",
+        ///     });
         /// 
-        /// }
+        ///     var all = Mongodbatlas.GetCloudProviderAccess.Invoke(new()
+        ///     {
+        ///         ProjectId = testRole.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -57,25 +56,24 @@ namespace Pulumi.Mongodbatlas
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new()
         ///     {
-        ///         var testRole = new Mongodbatlas.CloudProviderAccess("testRole", new Mongodbatlas.CloudProviderAccessArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT-ID&gt;",
-        ///             ProviderName = "AWS",
-        ///         });
-        ///         var all = Mongodbatlas.GetCloudProviderAccess.Invoke(new Mongodbatlas.GetCloudProviderAccessInvokeArgs
-        ///         {
-        ///             ProjectId = testRole.ProjectId,
-        ///         });
-        ///     }
+        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProviderName = "AWS",
+        ///     });
         /// 
-        /// }
+        ///     var all = Mongodbatlas.GetCloudProviderAccess.Invoke(new()
+        ///     {
+        ///         ProjectId = testRole.ProjectId,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -85,7 +83,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetCloudProviderAccessArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudProviderAccessArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all Cloud Provider Access
@@ -96,9 +94,10 @@ namespace Pulumi.Mongodbatlas
         public GetCloudProviderAccessArgs()
         {
         }
+        public static new GetCloudProviderAccessArgs Empty => new GetCloudProviderAccessArgs();
     }
 
-    public sealed class GetCloudProviderAccessInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetCloudProviderAccessInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The unique ID for the project to get all Cloud Provider Access
@@ -109,6 +108,7 @@ namespace Pulumi.Mongodbatlas
         public GetCloudProviderAccessInvokeArgs()
         {
         }
+        public static new GetCloudProviderAccessInvokeArgs Empty => new GetCloudProviderAccessInvokeArgs();
     }
 
 

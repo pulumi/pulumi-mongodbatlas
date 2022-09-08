@@ -34,7 +34,7 @@ type AdvancedClusterAdvancedConfiguration struct {
 // AdvancedClusterAdvancedConfigurationInput is an input type that accepts AdvancedClusterAdvancedConfigurationArgs and AdvancedClusterAdvancedConfigurationOutput values.
 // You can construct a concrete instance of `AdvancedClusterAdvancedConfigurationInput` via:
 //
-//          AdvancedClusterAdvancedConfigurationArgs{...}
+//	AdvancedClusterAdvancedConfigurationArgs{...}
 type AdvancedClusterAdvancedConfigurationInput interface {
 	pulumi.Input
 
@@ -86,11 +86,11 @@ func (i AdvancedClusterAdvancedConfigurationArgs) ToAdvancedClusterAdvancedConfi
 // AdvancedClusterAdvancedConfigurationPtrInput is an input type that accepts AdvancedClusterAdvancedConfigurationArgs, AdvancedClusterAdvancedConfigurationPtr and AdvancedClusterAdvancedConfigurationPtrOutput values.
 // You can construct a concrete instance of `AdvancedClusterAdvancedConfigurationPtrInput` via:
 //
-//          AdvancedClusterAdvancedConfigurationArgs{...}
+//	        AdvancedClusterAdvancedConfigurationArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AdvancedClusterAdvancedConfigurationPtrInput interface {
 	pulumi.Input
 
@@ -312,7 +312,7 @@ type AdvancedClusterBiConnector struct {
 // AdvancedClusterBiConnectorInput is an input type that accepts AdvancedClusterBiConnectorArgs and AdvancedClusterBiConnectorOutput values.
 // You can construct a concrete instance of `AdvancedClusterBiConnectorInput` via:
 //
-//          AdvancedClusterBiConnectorArgs{...}
+//	AdvancedClusterBiConnectorArgs{...}
 type AdvancedClusterBiConnectorInput interface {
 	pulumi.Input
 
@@ -353,11 +353,11 @@ func (i AdvancedClusterBiConnectorArgs) ToAdvancedClusterBiConnectorPtrOutputWit
 // AdvancedClusterBiConnectorPtrInput is an input type that accepts AdvancedClusterBiConnectorArgs, AdvancedClusterBiConnectorPtr and AdvancedClusterBiConnectorPtrOutput values.
 // You can construct a concrete instance of `AdvancedClusterBiConnectorPtrInput` via:
 //
-//          AdvancedClusterBiConnectorArgs{...}
+//	        AdvancedClusterBiConnectorArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AdvancedClusterBiConnectorPtrInput interface {
 	pulumi.Input
 
@@ -482,7 +482,7 @@ type AdvancedClusterConnectionString struct {
 // AdvancedClusterConnectionStringInput is an input type that accepts AdvancedClusterConnectionStringArgs and AdvancedClusterConnectionStringOutput values.
 // You can construct a concrete instance of `AdvancedClusterConnectionStringInput` via:
 //
-//          AdvancedClusterConnectionStringArgs{...}
+//	AdvancedClusterConnectionStringArgs{...}
 type AdvancedClusterConnectionStringInput interface {
 	pulumi.Input
 
@@ -517,7 +517,7 @@ func (i AdvancedClusterConnectionStringArgs) ToAdvancedClusterConnectionStringOu
 // AdvancedClusterConnectionStringArrayInput is an input type that accepts AdvancedClusterConnectionStringArray and AdvancedClusterConnectionStringArrayOutput values.
 // You can construct a concrete instance of `AdvancedClusterConnectionStringArrayInput` via:
 //
-//          AdvancedClusterConnectionStringArray{ AdvancedClusterConnectionStringArgs{...} }
+//	AdvancedClusterConnectionStringArray{ AdvancedClusterConnectionStringArgs{...} }
 type AdvancedClusterConnectionStringArrayInput interface {
 	pulumi.Input
 
@@ -615,7 +615,7 @@ type AdvancedClusterConnectionStringPrivateEndpoint struct {
 // AdvancedClusterConnectionStringPrivateEndpointInput is an input type that accepts AdvancedClusterConnectionStringPrivateEndpointArgs and AdvancedClusterConnectionStringPrivateEndpointOutput values.
 // You can construct a concrete instance of `AdvancedClusterConnectionStringPrivateEndpointInput` via:
 //
-//          AdvancedClusterConnectionStringPrivateEndpointArgs{...}
+//	AdvancedClusterConnectionStringPrivateEndpointArgs{...}
 type AdvancedClusterConnectionStringPrivateEndpointInput interface {
 	pulumi.Input
 
@@ -645,7 +645,7 @@ func (i AdvancedClusterConnectionStringPrivateEndpointArgs) ToAdvancedClusterCon
 // AdvancedClusterConnectionStringPrivateEndpointArrayInput is an input type that accepts AdvancedClusterConnectionStringPrivateEndpointArray and AdvancedClusterConnectionStringPrivateEndpointArrayOutput values.
 // You can construct a concrete instance of `AdvancedClusterConnectionStringPrivateEndpointArrayInput` via:
 //
-//          AdvancedClusterConnectionStringPrivateEndpointArray{ AdvancedClusterConnectionStringPrivateEndpointArgs{...} }
+//	AdvancedClusterConnectionStringPrivateEndpointArray{ AdvancedClusterConnectionStringPrivateEndpointArgs{...} }
 type AdvancedClusterConnectionStringPrivateEndpointArrayInput interface {
 	pulumi.Input
 
@@ -730,7 +730,7 @@ type AdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
 // AdvancedClusterConnectionStringPrivateEndpointEndpointInput is an input type that accepts AdvancedClusterConnectionStringPrivateEndpointEndpointArgs and AdvancedClusterConnectionStringPrivateEndpointEndpointOutput values.
 // You can construct a concrete instance of `AdvancedClusterConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          AdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...}
+//	AdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...}
 type AdvancedClusterConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
@@ -761,7 +761,7 @@ func (i AdvancedClusterConnectionStringPrivateEndpointEndpointArgs) ToAdvancedCl
 // AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts AdvancedClusterConnectionStringPrivateEndpointEndpointArray and AdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput values.
 // You can construct a concrete instance of `AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          AdvancedClusterConnectionStringPrivateEndpointEndpointArray{ AdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...} }
+//	AdvancedClusterConnectionStringPrivateEndpointEndpointArray{ AdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...} }
 type AdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
@@ -841,7 +841,7 @@ type AdvancedClusterLabel struct {
 // AdvancedClusterLabelInput is an input type that accepts AdvancedClusterLabelArgs and AdvancedClusterLabelOutput values.
 // You can construct a concrete instance of `AdvancedClusterLabelInput` via:
 //
-//          AdvancedClusterLabelArgs{...}
+//	AdvancedClusterLabelArgs{...}
 type AdvancedClusterLabelInput interface {
 	pulumi.Input
 
@@ -871,7 +871,7 @@ func (i AdvancedClusterLabelArgs) ToAdvancedClusterLabelOutputWithContext(ctx co
 // AdvancedClusterLabelArrayInput is an input type that accepts AdvancedClusterLabelArray and AdvancedClusterLabelArrayOutput values.
 // You can construct a concrete instance of `AdvancedClusterLabelArrayInput` via:
 //
-//          AdvancedClusterLabelArray{ AdvancedClusterLabelArgs{...} }
+//	AdvancedClusterLabelArray{ AdvancedClusterLabelArgs{...} }
 type AdvancedClusterLabelArrayInput interface {
 	pulumi.Input
 
@@ -951,7 +951,7 @@ type AdvancedClusterReplicationSpec struct {
 // AdvancedClusterReplicationSpecInput is an input type that accepts AdvancedClusterReplicationSpecArgs and AdvancedClusterReplicationSpecOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecInput` via:
 //
-//          AdvancedClusterReplicationSpecArgs{...}
+//	AdvancedClusterReplicationSpecArgs{...}
 type AdvancedClusterReplicationSpecInput interface {
 	pulumi.Input
 
@@ -985,7 +985,7 @@ func (i AdvancedClusterReplicationSpecArgs) ToAdvancedClusterReplicationSpecOutp
 // AdvancedClusterReplicationSpecArrayInput is an input type that accepts AdvancedClusterReplicationSpecArray and AdvancedClusterReplicationSpecArrayOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecArrayInput` via:
 //
-//          AdvancedClusterReplicationSpecArray{ AdvancedClusterReplicationSpecArgs{...} }
+//	AdvancedClusterReplicationSpecArray{ AdvancedClusterReplicationSpecArgs{...} }
 type AdvancedClusterReplicationSpecArrayInput interface {
 	pulumi.Input
 
@@ -1088,7 +1088,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 // AdvancedClusterReplicationSpecRegionConfigInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigArgs and AdvancedClusterReplicationSpecRegionConfigOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigArgs{...}
+//	AdvancedClusterReplicationSpecRegionConfigArgs{...}
 type AdvancedClusterReplicationSpecRegionConfigInput interface {
 	pulumi.Input
 
@@ -1133,7 +1133,7 @@ func (i AdvancedClusterReplicationSpecRegionConfigArgs) ToAdvancedClusterReplica
 // AdvancedClusterReplicationSpecRegionConfigArrayInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigArray and AdvancedClusterReplicationSpecRegionConfigArrayOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigArrayInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigArray{ AdvancedClusterReplicationSpecRegionConfigArgs{...} }
+//	AdvancedClusterReplicationSpecRegionConfigArray{ AdvancedClusterReplicationSpecRegionConfigArgs{...} }
 type AdvancedClusterReplicationSpecRegionConfigArrayInput interface {
 	pulumi.Input
 
@@ -1254,7 +1254,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 // AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs and AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//	AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface {
 	pulumi.Input
 
@@ -1296,11 +1296,11 @@ func (i AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToAdvanced
 // AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs, AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtr and AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//	        AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput interface {
 	pulumi.Input
 
@@ -1450,7 +1450,7 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 // AdvancedClusterReplicationSpecRegionConfigAutoScalingInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs and AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAutoScalingInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
+//	AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
 type AdvancedClusterReplicationSpecRegionConfigAutoScalingInput interface {
 	pulumi.Input
 
@@ -1494,11 +1494,11 @@ func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ToAdvancedClu
 // AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs, AdvancedClusterReplicationSpecRegionConfigAutoScalingPtr and AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
+//	        AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput interface {
 	pulumi.Input
 
@@ -1661,7 +1661,7 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 // AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs and AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
+//	AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface {
 	pulumi.Input
 
@@ -1703,11 +1703,11 @@ func (i AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToAdvanced
 // AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs, AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtr and AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
+//	        AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput interface {
 	pulumi.Input
 
@@ -1855,7 +1855,7 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 // AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs and AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//	AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 	pulumi.Input
 
@@ -1897,11 +1897,11 @@ func (i AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToAdvancedC
 // AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs, AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtr and AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput values.
 // You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput` via:
 //
-//          AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//	        AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput interface {
 	pulumi.Input
 
@@ -2055,7 +2055,7 @@ type AlertConfigurationMatcher struct {
 // AlertConfigurationMatcherInput is an input type that accepts AlertConfigurationMatcherArgs and AlertConfigurationMatcherOutput values.
 // You can construct a concrete instance of `AlertConfigurationMatcherInput` via:
 //
-//          AlertConfigurationMatcherArgs{...}
+//	AlertConfigurationMatcherArgs{...}
 type AlertConfigurationMatcherInput interface {
 	pulumi.Input
 
@@ -2095,7 +2095,7 @@ func (i AlertConfigurationMatcherArgs) ToAlertConfigurationMatcherOutputWithCont
 // AlertConfigurationMatcherArrayInput is an input type that accepts AlertConfigurationMatcherArray and AlertConfigurationMatcherArrayOutput values.
 // You can construct a concrete instance of `AlertConfigurationMatcherArrayInput` via:
 //
-//          AlertConfigurationMatcherArray{ AlertConfigurationMatcherArgs{...} }
+//	AlertConfigurationMatcherArray{ AlertConfigurationMatcherArgs{...} }
 type AlertConfigurationMatcherArrayInput interface {
 	pulumi.Input
 
@@ -2175,7 +2175,7 @@ func (o AlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) AlertConf
 }
 
 type AlertConfigurationMetricThresholdConfig struct {
-	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName *string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode *string `pulumi:"mode"`
@@ -2210,7 +2210,7 @@ type AlertConfigurationMetricThresholdConfig struct {
 // AlertConfigurationMetricThresholdConfigInput is an input type that accepts AlertConfigurationMetricThresholdConfigArgs and AlertConfigurationMetricThresholdConfigOutput values.
 // You can construct a concrete instance of `AlertConfigurationMetricThresholdConfigInput` via:
 //
-//          AlertConfigurationMetricThresholdConfigArgs{...}
+//	AlertConfigurationMetricThresholdConfigArgs{...}
 type AlertConfigurationMetricThresholdConfigInput interface {
 	pulumi.Input
 
@@ -2219,7 +2219,7 @@ type AlertConfigurationMetricThresholdConfigInput interface {
 }
 
 type AlertConfigurationMetricThresholdConfigArgs struct {
-	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName pulumi.StringPtrInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
@@ -2274,11 +2274,11 @@ func (i AlertConfigurationMetricThresholdConfigArgs) ToAlertConfigurationMetricT
 // AlertConfigurationMetricThresholdConfigPtrInput is an input type that accepts AlertConfigurationMetricThresholdConfigArgs, AlertConfigurationMetricThresholdConfigPtr and AlertConfigurationMetricThresholdConfigPtrOutput values.
 // You can construct a concrete instance of `AlertConfigurationMetricThresholdConfigPtrInput` via:
 //
-//          AlertConfigurationMetricThresholdConfigArgs{...}
+//	        AlertConfigurationMetricThresholdConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AlertConfigurationMetricThresholdConfigPtrInput interface {
 	pulumi.Input
 
@@ -2328,7 +2328,7 @@ func (o AlertConfigurationMetricThresholdConfigOutput) ToAlertConfigurationMetri
 	}).(AlertConfigurationMetricThresholdConfigPtrOutput)
 }
 
-// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o AlertConfigurationMetricThresholdConfigOutput) MetricName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.MetricName }).(pulumi.StringPtrOutput)
 }
@@ -2397,7 +2397,7 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Elem() AlertConfigurat
 	}).(AlertConfigurationMetricThresholdConfigOutput)
 }
 
-// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) MetricName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
@@ -2524,7 +2524,7 @@ type AlertConfigurationNotification struct {
 // AlertConfigurationNotificationInput is an input type that accepts AlertConfigurationNotificationArgs and AlertConfigurationNotificationOutput values.
 // You can construct a concrete instance of `AlertConfigurationNotificationInput` via:
 //
-//          AlertConfigurationNotificationArgs{...}
+//	AlertConfigurationNotificationArgs{...}
 type AlertConfigurationNotificationInput interface {
 	pulumi.Input
 
@@ -2601,7 +2601,7 @@ func (i AlertConfigurationNotificationArgs) ToAlertConfigurationNotificationOutp
 // AlertConfigurationNotificationArrayInput is an input type that accepts AlertConfigurationNotificationArray and AlertConfigurationNotificationArrayOutput values.
 // You can construct a concrete instance of `AlertConfigurationNotificationArrayInput` via:
 //
-//          AlertConfigurationNotificationArray{ AlertConfigurationNotificationArgs{...} }
+//	AlertConfigurationNotificationArray{ AlertConfigurationNotificationArgs{...} }
 type AlertConfigurationNotificationArrayInput interface {
 	pulumi.Input
 
@@ -2809,7 +2809,7 @@ type AlertConfigurationThresholdConfig struct {
 // AlertConfigurationThresholdConfigInput is an input type that accepts AlertConfigurationThresholdConfigArgs and AlertConfigurationThresholdConfigOutput values.
 // You can construct a concrete instance of `AlertConfigurationThresholdConfigInput` via:
 //
-//          AlertConfigurationThresholdConfigArgs{...}
+//	AlertConfigurationThresholdConfigArgs{...}
 type AlertConfigurationThresholdConfigInput interface {
 	pulumi.Input
 
@@ -2869,11 +2869,11 @@ func (i AlertConfigurationThresholdConfigArgs) ToAlertConfigurationThresholdConf
 // AlertConfigurationThresholdConfigPtrInput is an input type that accepts AlertConfigurationThresholdConfigArgs, AlertConfigurationThresholdConfigPtr and AlertConfigurationThresholdConfigPtrOutput values.
 // You can construct a concrete instance of `AlertConfigurationThresholdConfigPtrInput` via:
 //
-//          AlertConfigurationThresholdConfigArgs{...}
+//	        AlertConfigurationThresholdConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type AlertConfigurationThresholdConfigPtrInput interface {
 	pulumi.Input
 
@@ -3042,7 +3042,7 @@ type CloudBackupScheduleExport struct {
 // CloudBackupScheduleExportInput is an input type that accepts CloudBackupScheduleExportArgs and CloudBackupScheduleExportOutput values.
 // You can construct a concrete instance of `CloudBackupScheduleExportInput` via:
 //
-//          CloudBackupScheduleExportArgs{...}
+//	CloudBackupScheduleExportArgs{...}
 type CloudBackupScheduleExportInput interface {
 	pulumi.Input
 
@@ -3080,11 +3080,11 @@ func (i CloudBackupScheduleExportArgs) ToCloudBackupScheduleExportPtrOutputWithC
 // CloudBackupScheduleExportPtrInput is an input type that accepts CloudBackupScheduleExportArgs, CloudBackupScheduleExportPtr and CloudBackupScheduleExportPtrOutput values.
 // You can construct a concrete instance of `CloudBackupScheduleExportPtrInput` via:
 //
-//          CloudBackupScheduleExportArgs{...}
+//	        CloudBackupScheduleExportArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type CloudBackupScheduleExportPtrInput interface {
 	pulumi.Input
 
@@ -3202,7 +3202,7 @@ type CloudBackupSchedulePolicyItemDaily struct {
 // CloudBackupSchedulePolicyItemDailyInput is an input type that accepts CloudBackupSchedulePolicyItemDailyArgs and CloudBackupSchedulePolicyItemDailyOutput values.
 // You can construct a concrete instance of `CloudBackupSchedulePolicyItemDailyInput` via:
 //
-//          CloudBackupSchedulePolicyItemDailyArgs{...}
+//	CloudBackupSchedulePolicyItemDailyArgs{...}
 type CloudBackupSchedulePolicyItemDailyInput interface {
 	pulumi.Input
 
@@ -3244,11 +3244,11 @@ func (i CloudBackupSchedulePolicyItemDailyArgs) ToCloudBackupSchedulePolicyItemD
 // CloudBackupSchedulePolicyItemDailyPtrInput is an input type that accepts CloudBackupSchedulePolicyItemDailyArgs, CloudBackupSchedulePolicyItemDailyPtr and CloudBackupSchedulePolicyItemDailyPtrOutput values.
 // You can construct a concrete instance of `CloudBackupSchedulePolicyItemDailyPtrInput` via:
 //
-//          CloudBackupSchedulePolicyItemDailyArgs{...}
+//	        CloudBackupSchedulePolicyItemDailyArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type CloudBackupSchedulePolicyItemDailyPtrInput interface {
 	pulumi.Input
 
@@ -3397,7 +3397,7 @@ type CloudBackupSchedulePolicyItemHourly struct {
 // CloudBackupSchedulePolicyItemHourlyInput is an input type that accepts CloudBackupSchedulePolicyItemHourlyArgs and CloudBackupSchedulePolicyItemHourlyOutput values.
 // You can construct a concrete instance of `CloudBackupSchedulePolicyItemHourlyInput` via:
 //
-//          CloudBackupSchedulePolicyItemHourlyArgs{...}
+//	CloudBackupSchedulePolicyItemHourlyArgs{...}
 type CloudBackupSchedulePolicyItemHourlyInput interface {
 	pulumi.Input
 
@@ -3440,11 +3440,11 @@ func (i CloudBackupSchedulePolicyItemHourlyArgs) ToCloudBackupSchedulePolicyItem
 // CloudBackupSchedulePolicyItemHourlyPtrInput is an input type that accepts CloudBackupSchedulePolicyItemHourlyArgs, CloudBackupSchedulePolicyItemHourlyPtr and CloudBackupSchedulePolicyItemHourlyPtrOutput values.
 // You can construct a concrete instance of `CloudBackupSchedulePolicyItemHourlyPtrInput` via:
 //
-//          CloudBackupSchedulePolicyItemHourlyArgs{...}
+//	        CloudBackupSchedulePolicyItemHourlyArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type CloudBackupSchedulePolicyItemHourlyPtrInput interface {
 	pulumi.Input
 
@@ -3605,7 +3605,7 @@ type CloudBackupSchedulePolicyItemMonthly struct {
 // CloudBackupSchedulePolicyItemMonthlyInput is an input type that accepts CloudBackupSchedulePolicyItemMonthlyArgs and CloudBackupSchedulePolicyItemMonthlyOutput values.
 // You can construct a concrete instance of `CloudBackupSchedulePolicyItemMonthlyInput` via:
 //
-//          CloudBackupSchedulePolicyItemMonthlyArgs{...}
+//	CloudBackupSchedulePolicyItemMonthlyArgs{...}
 type CloudBackupSchedulePolicyItemMonthlyInput interface {
 	pulumi.Input
 
@@ -3639,7 +3639,7 @@ func (i CloudBackupSchedulePolicyItemMonthlyArgs) ToCloudBackupSchedulePolicyIte
 // CloudBackupSchedulePolicyItemMonthlyArrayInput is an input type that accepts CloudBackupSchedulePolicyItemMonthlyArray and CloudBackupSchedulePolicyItemMonthlyArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSchedulePolicyItemMonthlyArrayInput` via:
 //
-//          CloudBackupSchedulePolicyItemMonthlyArray{ CloudBackupSchedulePolicyItemMonthlyArgs{...} }
+//	CloudBackupSchedulePolicyItemMonthlyArray{ CloudBackupSchedulePolicyItemMonthlyArgs{...} }
 type CloudBackupSchedulePolicyItemMonthlyArrayInput interface {
 	pulumi.Input
 
@@ -3729,7 +3729,7 @@ type CloudBackupSchedulePolicyItemWeekly struct {
 // CloudBackupSchedulePolicyItemWeeklyInput is an input type that accepts CloudBackupSchedulePolicyItemWeeklyArgs and CloudBackupSchedulePolicyItemWeeklyOutput values.
 // You can construct a concrete instance of `CloudBackupSchedulePolicyItemWeeklyInput` via:
 //
-//          CloudBackupSchedulePolicyItemWeeklyArgs{...}
+//	CloudBackupSchedulePolicyItemWeeklyArgs{...}
 type CloudBackupSchedulePolicyItemWeeklyInput interface {
 	pulumi.Input
 
@@ -3763,7 +3763,7 @@ func (i CloudBackupSchedulePolicyItemWeeklyArgs) ToCloudBackupSchedulePolicyItem
 // CloudBackupSchedulePolicyItemWeeklyArrayInput is an input type that accepts CloudBackupSchedulePolicyItemWeeklyArray and CloudBackupSchedulePolicyItemWeeklyArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSchedulePolicyItemWeeklyArrayInput` via:
 //
-//          CloudBackupSchedulePolicyItemWeeklyArray{ CloudBackupSchedulePolicyItemWeeklyArgs{...} }
+//	CloudBackupSchedulePolicyItemWeeklyArray{ CloudBackupSchedulePolicyItemWeeklyArgs{...} }
 type CloudBackupSchedulePolicyItemWeeklyArrayInput interface {
 	pulumi.Input
 
@@ -3849,7 +3849,7 @@ type CloudBackupSnapshotExportJobComponent struct {
 // CloudBackupSnapshotExportJobComponentInput is an input type that accepts CloudBackupSnapshotExportJobComponentArgs and CloudBackupSnapshotExportJobComponentOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportJobComponentInput` via:
 //
-//          CloudBackupSnapshotExportJobComponentArgs{...}
+//	CloudBackupSnapshotExportJobComponentArgs{...}
 type CloudBackupSnapshotExportJobComponentInput interface {
 	pulumi.Input
 
@@ -3879,7 +3879,7 @@ func (i CloudBackupSnapshotExportJobComponentArgs) ToCloudBackupSnapshotExportJo
 // CloudBackupSnapshotExportJobComponentArrayInput is an input type that accepts CloudBackupSnapshotExportJobComponentArray and CloudBackupSnapshotExportJobComponentArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportJobComponentArrayInput` via:
 //
-//          CloudBackupSnapshotExportJobComponentArray{ CloudBackupSnapshotExportJobComponentArgs{...} }
+//	CloudBackupSnapshotExportJobComponentArray{ CloudBackupSnapshotExportJobComponentArgs{...} }
 type CloudBackupSnapshotExportJobComponentArrayInput interface {
 	pulumi.Input
 
@@ -3955,7 +3955,7 @@ type CloudBackupSnapshotExportJobCustomData struct {
 // CloudBackupSnapshotExportJobCustomDataInput is an input type that accepts CloudBackupSnapshotExportJobCustomDataArgs and CloudBackupSnapshotExportJobCustomDataOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportJobCustomDataInput` via:
 //
-//          CloudBackupSnapshotExportJobCustomDataArgs{...}
+//	CloudBackupSnapshotExportJobCustomDataArgs{...}
 type CloudBackupSnapshotExportJobCustomDataInput interface {
 	pulumi.Input
 
@@ -3985,7 +3985,7 @@ func (i CloudBackupSnapshotExportJobCustomDataArgs) ToCloudBackupSnapshotExportJ
 // CloudBackupSnapshotExportJobCustomDataArrayInput is an input type that accepts CloudBackupSnapshotExportJobCustomDataArray and CloudBackupSnapshotExportJobCustomDataArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotExportJobCustomDataArrayInput` via:
 //
-//          CloudBackupSnapshotExportJobCustomDataArray{ CloudBackupSnapshotExportJobCustomDataArgs{...} }
+//	CloudBackupSnapshotExportJobCustomDataArray{ CloudBackupSnapshotExportJobCustomDataArgs{...} }
 type CloudBackupSnapshotExportJobCustomDataArrayInput interface {
 	pulumi.Input
 
@@ -4061,7 +4061,7 @@ type CloudBackupSnapshotMember struct {
 // CloudBackupSnapshotMemberInput is an input type that accepts CloudBackupSnapshotMemberArgs and CloudBackupSnapshotMemberOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotMemberInput` via:
 //
-//          CloudBackupSnapshotMemberArgs{...}
+//	CloudBackupSnapshotMemberArgs{...}
 type CloudBackupSnapshotMemberInput interface {
 	pulumi.Input
 
@@ -4091,7 +4091,7 @@ func (i CloudBackupSnapshotMemberArgs) ToCloudBackupSnapshotMemberOutputWithCont
 // CloudBackupSnapshotMemberArrayInput is an input type that accepts CloudBackupSnapshotMemberArray and CloudBackupSnapshotMemberArrayOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotMemberArrayInput` via:
 //
-//          CloudBackupSnapshotMemberArray{ CloudBackupSnapshotMemberArgs{...} }
+//	CloudBackupSnapshotMemberArray{ CloudBackupSnapshotMemberArgs{...} }
 type CloudBackupSnapshotMemberArrayInput interface {
 	pulumi.Input
 
@@ -4164,15 +4164,16 @@ type CloudBackupSnapshotRestoreJobDeliveryTypeConfig struct {
 	OplogTs               *int  `pulumi:"oplogTs"`
 	PointInTime           *bool `pulumi:"pointInTime"`
 	PointInTimeUtcSeconds *int  `pulumi:"pointInTimeUtcSeconds"`
-	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 	TargetClusterName *string `pulumi:"targetClusterName"`
-	TargetProjectId   *string `pulumi:"targetProjectId"`
+	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	TargetProjectId *string `pulumi:"targetProjectId"`
 }
 
 // CloudBackupSnapshotRestoreJobDeliveryTypeConfigInput is an input type that accepts CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs and CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotRestoreJobDeliveryTypeConfigInput` via:
 //
-//          CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{...}
+//	CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{...}
 type CloudBackupSnapshotRestoreJobDeliveryTypeConfigInput interface {
 	pulumi.Input
 
@@ -4187,9 +4188,10 @@ type CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs struct {
 	OplogTs               pulumi.IntPtrInput  `pulumi:"oplogTs"`
 	PointInTime           pulumi.BoolPtrInput `pulumi:"pointInTime"`
 	PointInTimeUtcSeconds pulumi.IntPtrInput  `pulumi:"pointInTimeUtcSeconds"`
-	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 	TargetClusterName pulumi.StringPtrInput `pulumi:"targetClusterName"`
-	TargetProjectId   pulumi.StringPtrInput `pulumi:"targetProjectId"`
+	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	TargetProjectId pulumi.StringPtrInput `pulumi:"targetProjectId"`
 }
 
 func (CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs) ElementType() reflect.Type {
@@ -4215,11 +4217,11 @@ func (i CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudBackupSnapsh
 // CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput is an input type that accepts CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs, CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtr and CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput values.
 // You can construct a concrete instance of `CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput` via:
 //
-//          CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{...}
+//	        CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput interface {
 	pulumi.Input
 
@@ -4293,11 +4295,12 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) PointInTimeUtcSec
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *int { return v.PointInTimeUtcSeconds }).(pulumi.IntPtrOutput)
 }
 
-// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) TargetClusterName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetClusterName }).(pulumi.StringPtrOutput)
 }
 
+// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigOutput) TargetProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetProjectId }).(pulumi.StringPtrOutput)
 }
@@ -4380,7 +4383,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) PointInTimeUtc
 	}).(pulumi.IntPtrOutput)
 }
 
-// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
+// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetClusterName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string {
 		if v == nil {
@@ -4390,6 +4393,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetClusterN
 	}).(pulumi.StringPtrOutput)
 }
 
+// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJobDeliveryTypeConfig) *string {
 		if v == nil {
@@ -4406,7 +4410,7 @@ type CloudProviderAccessAuthorizationAws struct {
 // CloudProviderAccessAuthorizationAwsInput is an input type that accepts CloudProviderAccessAuthorizationAwsArgs and CloudProviderAccessAuthorizationAwsOutput values.
 // You can construct a concrete instance of `CloudProviderAccessAuthorizationAwsInput` via:
 //
-//          CloudProviderAccessAuthorizationAwsArgs{...}
+//	CloudProviderAccessAuthorizationAwsArgs{...}
 type CloudProviderAccessAuthorizationAwsInput interface {
 	pulumi.Input
 
@@ -4441,11 +4445,11 @@ func (i CloudProviderAccessAuthorizationAwsArgs) ToCloudProviderAccessAuthorizat
 // CloudProviderAccessAuthorizationAwsPtrInput is an input type that accepts CloudProviderAccessAuthorizationAwsArgs, CloudProviderAccessAuthorizationAwsPtr and CloudProviderAccessAuthorizationAwsPtrOutput values.
 // You can construct a concrete instance of `CloudProviderAccessAuthorizationAwsPtrInput` via:
 //
-//          CloudProviderAccessAuthorizationAwsArgs{...}
+//	        CloudProviderAccessAuthorizationAwsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type CloudProviderAccessAuthorizationAwsPtrInput interface {
 	pulumi.Input
 
@@ -4540,7 +4544,7 @@ type CloudProviderAccessAuthorizationFeatureUsage struct {
 // CloudProviderAccessAuthorizationFeatureUsageInput is an input type that accepts CloudProviderAccessAuthorizationFeatureUsageArgs and CloudProviderAccessAuthorizationFeatureUsageOutput values.
 // You can construct a concrete instance of `CloudProviderAccessAuthorizationFeatureUsageInput` via:
 //
-//          CloudProviderAccessAuthorizationFeatureUsageArgs{...}
+//	CloudProviderAccessAuthorizationFeatureUsageArgs{...}
 type CloudProviderAccessAuthorizationFeatureUsageInput interface {
 	pulumi.Input
 
@@ -4568,7 +4572,7 @@ func (i CloudProviderAccessAuthorizationFeatureUsageArgs) ToCloudProviderAccessA
 // CloudProviderAccessAuthorizationFeatureUsageArrayInput is an input type that accepts CloudProviderAccessAuthorizationFeatureUsageArray and CloudProviderAccessAuthorizationFeatureUsageArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessAuthorizationFeatureUsageArrayInput` via:
 //
-//          CloudProviderAccessAuthorizationFeatureUsageArray{ CloudProviderAccessAuthorizationFeatureUsageArgs{...} }
+//	CloudProviderAccessAuthorizationFeatureUsageArray{ CloudProviderAccessAuthorizationFeatureUsageArgs{...} }
 type CloudProviderAccessAuthorizationFeatureUsageArrayInput interface {
 	pulumi.Input
 
@@ -4640,7 +4644,7 @@ type CloudProviderAccessFeatureUsage struct {
 // CloudProviderAccessFeatureUsageInput is an input type that accepts CloudProviderAccessFeatureUsageArgs and CloudProviderAccessFeatureUsageOutput values.
 // You can construct a concrete instance of `CloudProviderAccessFeatureUsageInput` via:
 //
-//          CloudProviderAccessFeatureUsageArgs{...}
+//	CloudProviderAccessFeatureUsageArgs{...}
 type CloudProviderAccessFeatureUsageInput interface {
 	pulumi.Input
 
@@ -4668,7 +4672,7 @@ func (i CloudProviderAccessFeatureUsageArgs) ToCloudProviderAccessFeatureUsageOu
 // CloudProviderAccessFeatureUsageArrayInput is an input type that accepts CloudProviderAccessFeatureUsageArray and CloudProviderAccessFeatureUsageArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessFeatureUsageArrayInput` via:
 //
-//          CloudProviderAccessFeatureUsageArray{ CloudProviderAccessFeatureUsageArgs{...} }
+//	CloudProviderAccessFeatureUsageArray{ CloudProviderAccessFeatureUsageArgs{...} }
 type CloudProviderAccessFeatureUsageArrayInput interface {
 	pulumi.Input
 
@@ -4740,7 +4744,7 @@ type CloudProviderAccessSetupAwsConfig struct {
 // CloudProviderAccessSetupAwsConfigInput is an input type that accepts CloudProviderAccessSetupAwsConfigArgs and CloudProviderAccessSetupAwsConfigOutput values.
 // You can construct a concrete instance of `CloudProviderAccessSetupAwsConfigInput` via:
 //
-//          CloudProviderAccessSetupAwsConfigArgs{...}
+//	CloudProviderAccessSetupAwsConfigArgs{...}
 type CloudProviderAccessSetupAwsConfigInput interface {
 	pulumi.Input
 
@@ -4768,7 +4772,7 @@ func (i CloudProviderAccessSetupAwsConfigArgs) ToCloudProviderAccessSetupAwsConf
 // CloudProviderAccessSetupAwsConfigArrayInput is an input type that accepts CloudProviderAccessSetupAwsConfigArray and CloudProviderAccessSetupAwsConfigArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessSetupAwsConfigArrayInput` via:
 //
-//          CloudProviderAccessSetupAwsConfigArray{ CloudProviderAccessSetupAwsConfigArgs{...} }
+//	CloudProviderAccessSetupAwsConfigArray{ CloudProviderAccessSetupAwsConfigArgs{...} }
 type CloudProviderAccessSetupAwsConfigArrayInput interface {
 	pulumi.Input
 
@@ -4839,7 +4843,7 @@ type CloudProviderSnapshotBackupPolicyPolicy struct {
 // CloudProviderSnapshotBackupPolicyPolicyInput is an input type that accepts CloudProviderSnapshotBackupPolicyPolicyArgs and CloudProviderSnapshotBackupPolicyPolicyOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotBackupPolicyPolicyInput` via:
 //
-//          CloudProviderSnapshotBackupPolicyPolicyArgs{...}
+//	CloudProviderSnapshotBackupPolicyPolicyArgs{...}
 type CloudProviderSnapshotBackupPolicyPolicyInput interface {
 	pulumi.Input
 
@@ -4866,7 +4870,7 @@ func (i CloudProviderSnapshotBackupPolicyPolicyArgs) ToCloudProviderSnapshotBack
 // CloudProviderSnapshotBackupPolicyPolicyArrayInput is an input type that accepts CloudProviderSnapshotBackupPolicyPolicyArray and CloudProviderSnapshotBackupPolicyPolicyArrayOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotBackupPolicyPolicyArrayInput` via:
 //
-//          CloudProviderSnapshotBackupPolicyPolicyArray{ CloudProviderSnapshotBackupPolicyPolicyArgs{...} }
+//	CloudProviderSnapshotBackupPolicyPolicyArray{ CloudProviderSnapshotBackupPolicyPolicyArgs{...} }
 type CloudProviderSnapshotBackupPolicyPolicyArrayInput interface {
 	pulumi.Input
 
@@ -4938,7 +4942,7 @@ type CloudProviderSnapshotBackupPolicyPolicyPolicyItem struct {
 // CloudProviderSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs and CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotBackupPolicyPolicyPolicyItemInput` via:
 //
-//          CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{...}
+//	CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{...}
 type CloudProviderSnapshotBackupPolicyPolicyPolicyItemInput interface {
 	pulumi.Input
 
@@ -4968,7 +4972,7 @@ func (i CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs) ToCloudProviderSn
 // CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayInput is an input type that accepts CloudProviderSnapshotBackupPolicyPolicyPolicyItemArray and CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayInput` via:
 //
-//          CloudProviderSnapshotBackupPolicyPolicyPolicyItemArray{ CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
+//	CloudProviderSnapshotBackupPolicyPolicyPolicyItemArray{ CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
 type CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayInput interface {
 	pulumi.Input
 
@@ -5049,13 +5053,14 @@ type CloudProviderSnapshotRestoreJobDeliveryTypeConfig struct {
 	PointInTimeUtcSeconds *int  `pulumi:"pointInTimeUtcSeconds"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
 	TargetClusterName *string `pulumi:"targetClusterName"`
-	TargetProjectId   *string `pulumi:"targetProjectId"`
+	// Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
+	TargetProjectId *string `pulumi:"targetProjectId"`
 }
 
 // CloudProviderSnapshotRestoreJobDeliveryTypeConfigInput is an input type that accepts CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs and CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotRestoreJobDeliveryTypeConfigInput` via:
 //
-//          CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{...}
+//	CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{...}
 type CloudProviderSnapshotRestoreJobDeliveryTypeConfigInput interface {
 	pulumi.Input
 
@@ -5072,7 +5077,8 @@ type CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs struct {
 	PointInTimeUtcSeconds pulumi.IntPtrInput  `pulumi:"pointInTimeUtcSeconds"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only required if deliveryType is automated.
 	TargetClusterName pulumi.StringPtrInput `pulumi:"targetClusterName"`
-	TargetProjectId   pulumi.StringPtrInput `pulumi:"targetProjectId"`
+	// Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
+	TargetProjectId pulumi.StringPtrInput `pulumi:"targetProjectId"`
 }
 
 func (CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs) ElementType() reflect.Type {
@@ -5098,11 +5104,11 @@ func (i CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs) ToCloudProviderSn
 // CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput is an input type that accepts CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs, CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtr and CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput values.
 // You can construct a concrete instance of `CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput` via:
 //
-//          CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{...}
+//	        CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrInput interface {
 	pulumi.Input
 
@@ -5181,6 +5187,7 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) TargetClusterNa
 	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetClusterName }).(pulumi.StringPtrOutput)
 }
 
+// Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
 func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigOutput) TargetProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *string { return v.TargetProjectId }).(pulumi.StringPtrOutput)
 }
@@ -5273,6 +5280,7 @@ func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetCluste
 	}).(pulumi.StringPtrOutput)
 }
 
+// Unique ID of the target Atlas project for the specified targetClusterName. Only required if deliveryType is automated.
 func (o CloudProviderSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudProviderSnapshotRestoreJobDeliveryTypeConfig) *string {
 		if v == nil {
@@ -5306,7 +5314,7 @@ type ClusterAdvancedConfiguration struct {
 // ClusterAdvancedConfigurationInput is an input type that accepts ClusterAdvancedConfigurationArgs and ClusterAdvancedConfigurationOutput values.
 // You can construct a concrete instance of `ClusterAdvancedConfigurationInput` via:
 //
-//          ClusterAdvancedConfigurationArgs{...}
+//	ClusterAdvancedConfigurationArgs{...}
 type ClusterAdvancedConfigurationInput interface {
 	pulumi.Input
 
@@ -5358,11 +5366,11 @@ func (i ClusterAdvancedConfigurationArgs) ToClusterAdvancedConfigurationPtrOutpu
 // ClusterAdvancedConfigurationPtrInput is an input type that accepts ClusterAdvancedConfigurationArgs, ClusterAdvancedConfigurationPtr and ClusterAdvancedConfigurationPtrOutput values.
 // You can construct a concrete instance of `ClusterAdvancedConfigurationPtrInput` via:
 //
-//          ClusterAdvancedConfigurationArgs{...}
+//	        ClusterAdvancedConfigurationArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterAdvancedConfigurationPtrInput interface {
 	pulumi.Input
 
@@ -5584,7 +5592,7 @@ type ClusterBiConnectorConfig struct {
 // ClusterBiConnectorConfigInput is an input type that accepts ClusterBiConnectorConfigArgs and ClusterBiConnectorConfigOutput values.
 // You can construct a concrete instance of `ClusterBiConnectorConfigInput` via:
 //
-//          ClusterBiConnectorConfigArgs{...}
+//	ClusterBiConnectorConfigArgs{...}
 type ClusterBiConnectorConfigInput interface {
 	pulumi.Input
 
@@ -5625,11 +5633,11 @@ func (i ClusterBiConnectorConfigArgs) ToClusterBiConnectorConfigPtrOutputWithCon
 // ClusterBiConnectorConfigPtrInput is an input type that accepts ClusterBiConnectorConfigArgs, ClusterBiConnectorConfigPtr and ClusterBiConnectorConfigPtrOutput values.
 // You can construct a concrete instance of `ClusterBiConnectorConfigPtrInput` via:
 //
-//          ClusterBiConnectorConfigArgs{...}
+//	        ClusterBiConnectorConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterBiConnectorConfigPtrInput interface {
 	pulumi.Input
 
@@ -5754,7 +5762,7 @@ type ClusterConnectionString struct {
 // ClusterConnectionStringInput is an input type that accepts ClusterConnectionStringArgs and ClusterConnectionStringOutput values.
 // You can construct a concrete instance of `ClusterConnectionStringInput` via:
 //
-//          ClusterConnectionStringArgs{...}
+//	ClusterConnectionStringArgs{...}
 type ClusterConnectionStringInput interface {
 	pulumi.Input
 
@@ -5789,7 +5797,7 @@ func (i ClusterConnectionStringArgs) ToClusterConnectionStringOutputWithContext(
 // ClusterConnectionStringArrayInput is an input type that accepts ClusterConnectionStringArray and ClusterConnectionStringArrayOutput values.
 // You can construct a concrete instance of `ClusterConnectionStringArrayInput` via:
 //
-//          ClusterConnectionStringArray{ ClusterConnectionStringArgs{...} }
+//	ClusterConnectionStringArray{ ClusterConnectionStringArgs{...} }
 type ClusterConnectionStringArrayInput interface {
 	pulumi.Input
 
@@ -5885,7 +5893,7 @@ type ClusterConnectionStringPrivateEndpoint struct {
 // ClusterConnectionStringPrivateEndpointInput is an input type that accepts ClusterConnectionStringPrivateEndpointArgs and ClusterConnectionStringPrivateEndpointOutput values.
 // You can construct a concrete instance of `ClusterConnectionStringPrivateEndpointInput` via:
 //
-//          ClusterConnectionStringPrivateEndpointArgs{...}
+//	ClusterConnectionStringPrivateEndpointArgs{...}
 type ClusterConnectionStringPrivateEndpointInput interface {
 	pulumi.Input
 
@@ -5915,7 +5923,7 @@ func (i ClusterConnectionStringPrivateEndpointArgs) ToClusterConnectionStringPri
 // ClusterConnectionStringPrivateEndpointArrayInput is an input type that accepts ClusterConnectionStringPrivateEndpointArray and ClusterConnectionStringPrivateEndpointArrayOutput values.
 // You can construct a concrete instance of `ClusterConnectionStringPrivateEndpointArrayInput` via:
 //
-//          ClusterConnectionStringPrivateEndpointArray{ ClusterConnectionStringPrivateEndpointArgs{...} }
+//	ClusterConnectionStringPrivateEndpointArray{ ClusterConnectionStringPrivateEndpointArgs{...} }
 type ClusterConnectionStringPrivateEndpointArrayInput interface {
 	pulumi.Input
 
@@ -5999,7 +6007,7 @@ type ClusterConnectionStringPrivateEndpointEndpoint struct {
 // ClusterConnectionStringPrivateEndpointEndpointInput is an input type that accepts ClusterConnectionStringPrivateEndpointEndpointArgs and ClusterConnectionStringPrivateEndpointEndpointOutput values.
 // You can construct a concrete instance of `ClusterConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          ClusterConnectionStringPrivateEndpointEndpointArgs{...}
+//	ClusterConnectionStringPrivateEndpointEndpointArgs{...}
 type ClusterConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
@@ -6029,7 +6037,7 @@ func (i ClusterConnectionStringPrivateEndpointEndpointArgs) ToClusterConnectionS
 // ClusterConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts ClusterConnectionStringPrivateEndpointEndpointArray and ClusterConnectionStringPrivateEndpointEndpointArrayOutput values.
 // You can construct a concrete instance of `ClusterConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          ClusterConnectionStringPrivateEndpointEndpointArray{ ClusterConnectionStringPrivateEndpointEndpointArgs{...} }
+//	ClusterConnectionStringPrivateEndpointEndpointArray{ ClusterConnectionStringPrivateEndpointEndpointArgs{...} }
 type ClusterConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
@@ -6108,7 +6116,7 @@ type ClusterLabel struct {
 // ClusterLabelInput is an input type that accepts ClusterLabelArgs and ClusterLabelOutput values.
 // You can construct a concrete instance of `ClusterLabelInput` via:
 //
-//          ClusterLabelArgs{...}
+//	ClusterLabelArgs{...}
 type ClusterLabelInput interface {
 	pulumi.Input
 
@@ -6138,7 +6146,7 @@ func (i ClusterLabelArgs) ToClusterLabelOutputWithContext(ctx context.Context) C
 // ClusterLabelArrayInput is an input type that accepts ClusterLabelArray and ClusterLabelArrayOutput values.
 // You can construct a concrete instance of `ClusterLabelArrayInput` via:
 //
-//          ClusterLabelArray{ ClusterLabelArgs{...} }
+//	ClusterLabelArray{ ClusterLabelArgs{...} }
 type ClusterLabelArrayInput interface {
 	pulumi.Input
 
@@ -6218,7 +6226,7 @@ type ClusterReplicationSpec struct {
 // ClusterReplicationSpecInput is an input type that accepts ClusterReplicationSpecArgs and ClusterReplicationSpecOutput values.
 // You can construct a concrete instance of `ClusterReplicationSpecInput` via:
 //
-//          ClusterReplicationSpecArgs{...}
+//	ClusterReplicationSpecArgs{...}
 type ClusterReplicationSpecInput interface {
 	pulumi.Input
 
@@ -6252,7 +6260,7 @@ func (i ClusterReplicationSpecArgs) ToClusterReplicationSpecOutputWithContext(ct
 // ClusterReplicationSpecArrayInput is an input type that accepts ClusterReplicationSpecArray and ClusterReplicationSpecArrayOutput values.
 // You can construct a concrete instance of `ClusterReplicationSpecArrayInput` via:
 //
-//          ClusterReplicationSpecArray{ ClusterReplicationSpecArgs{...} }
+//	ClusterReplicationSpecArray{ ClusterReplicationSpecArgs{...} }
 type ClusterReplicationSpecArrayInput interface {
 	pulumi.Input
 
@@ -6350,7 +6358,7 @@ type ClusterReplicationSpecRegionsConfig struct {
 // ClusterReplicationSpecRegionsConfigInput is an input type that accepts ClusterReplicationSpecRegionsConfigArgs and ClusterReplicationSpecRegionsConfigOutput values.
 // You can construct a concrete instance of `ClusterReplicationSpecRegionsConfigInput` via:
 //
-//          ClusterReplicationSpecRegionsConfigArgs{...}
+//	ClusterReplicationSpecRegionsConfigArgs{...}
 type ClusterReplicationSpecRegionsConfigInput interface {
 	pulumi.Input
 
@@ -6392,7 +6400,7 @@ func (i ClusterReplicationSpecRegionsConfigArgs) ToClusterReplicationSpecRegions
 // ClusterReplicationSpecRegionsConfigArrayInput is an input type that accepts ClusterReplicationSpecRegionsConfigArray and ClusterReplicationSpecRegionsConfigArrayOutput values.
 // You can construct a concrete instance of `ClusterReplicationSpecRegionsConfigArrayInput` via:
 //
-//          ClusterReplicationSpecRegionsConfigArray{ ClusterReplicationSpecRegionsConfigArgs{...} }
+//	ClusterReplicationSpecRegionsConfigArray{ ClusterReplicationSpecRegionsConfigArgs{...} }
 type ClusterReplicationSpecRegionsConfigArrayInput interface {
 	pulumi.Input
 
@@ -6494,7 +6502,7 @@ type ClusterSnapshotBackupPolicy struct {
 // ClusterSnapshotBackupPolicyInput is an input type that accepts ClusterSnapshotBackupPolicyArgs and ClusterSnapshotBackupPolicyOutput values.
 // You can construct a concrete instance of `ClusterSnapshotBackupPolicyInput` via:
 //
-//          ClusterSnapshotBackupPolicyArgs{...}
+//	ClusterSnapshotBackupPolicyArgs{...}
 type ClusterSnapshotBackupPolicyInput interface {
 	pulumi.Input
 
@@ -6529,7 +6537,7 @@ func (i ClusterSnapshotBackupPolicyArgs) ToClusterSnapshotBackupPolicyOutputWith
 // ClusterSnapshotBackupPolicyArrayInput is an input type that accepts ClusterSnapshotBackupPolicyArray and ClusterSnapshotBackupPolicyArrayOutput values.
 // You can construct a concrete instance of `ClusterSnapshotBackupPolicyArrayInput` via:
 //
-//          ClusterSnapshotBackupPolicyArray{ ClusterSnapshotBackupPolicyArgs{...} }
+//	ClusterSnapshotBackupPolicyArray{ ClusterSnapshotBackupPolicyArgs{...} }
 type ClusterSnapshotBackupPolicyArrayInput interface {
 	pulumi.Input
 
@@ -6625,7 +6633,7 @@ type ClusterSnapshotBackupPolicyPolicy struct {
 // ClusterSnapshotBackupPolicyPolicyInput is an input type that accepts ClusterSnapshotBackupPolicyPolicyArgs and ClusterSnapshotBackupPolicyPolicyOutput values.
 // You can construct a concrete instance of `ClusterSnapshotBackupPolicyPolicyInput` via:
 //
-//          ClusterSnapshotBackupPolicyPolicyArgs{...}
+//	ClusterSnapshotBackupPolicyPolicyArgs{...}
 type ClusterSnapshotBackupPolicyPolicyInput interface {
 	pulumi.Input
 
@@ -6652,7 +6660,7 @@ func (i ClusterSnapshotBackupPolicyPolicyArgs) ToClusterSnapshotBackupPolicyPoli
 // ClusterSnapshotBackupPolicyPolicyArrayInput is an input type that accepts ClusterSnapshotBackupPolicyPolicyArray and ClusterSnapshotBackupPolicyPolicyArrayOutput values.
 // You can construct a concrete instance of `ClusterSnapshotBackupPolicyPolicyArrayInput` via:
 //
-//          ClusterSnapshotBackupPolicyPolicyArray{ ClusterSnapshotBackupPolicyPolicyArgs{...} }
+//	ClusterSnapshotBackupPolicyPolicyArray{ ClusterSnapshotBackupPolicyPolicyArgs{...} }
 type ClusterSnapshotBackupPolicyPolicyArrayInput interface {
 	pulumi.Input
 
@@ -6724,7 +6732,7 @@ type ClusterSnapshotBackupPolicyPolicyPolicyItem struct {
 // ClusterSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts ClusterSnapshotBackupPolicyPolicyPolicyItemArgs and ClusterSnapshotBackupPolicyPolicyPolicyItemOutput values.
 // You can construct a concrete instance of `ClusterSnapshotBackupPolicyPolicyPolicyItemInput` via:
 //
-//          ClusterSnapshotBackupPolicyPolicyPolicyItemArgs{...}
+//	ClusterSnapshotBackupPolicyPolicyPolicyItemArgs{...}
 type ClusterSnapshotBackupPolicyPolicyPolicyItemInput interface {
 	pulumi.Input
 
@@ -6754,7 +6762,7 @@ func (i ClusterSnapshotBackupPolicyPolicyPolicyItemArgs) ToClusterSnapshotBackup
 // ClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput is an input type that accepts ClusterSnapshotBackupPolicyPolicyPolicyItemArray and ClusterSnapshotBackupPolicyPolicyPolicyItemArrayOutput values.
 // You can construct a concrete instance of `ClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput` via:
 //
-//          ClusterSnapshotBackupPolicyPolicyPolicyItemArray{ ClusterSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
+//	ClusterSnapshotBackupPolicyPolicyPolicyItemArray{ ClusterSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
 type ClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput interface {
 	pulumi.Input
 
@@ -6837,7 +6845,7 @@ type CustomDbRoleAction struct {
 // CustomDbRoleActionInput is an input type that accepts CustomDbRoleActionArgs and CustomDbRoleActionOutput values.
 // You can construct a concrete instance of `CustomDbRoleActionInput` via:
 //
-//          CustomDbRoleActionArgs{...}
+//	CustomDbRoleActionArgs{...}
 type CustomDbRoleActionInput interface {
 	pulumi.Input
 
@@ -6868,7 +6876,7 @@ func (i CustomDbRoleActionArgs) ToCustomDbRoleActionOutputWithContext(ctx contex
 // CustomDbRoleActionArrayInput is an input type that accepts CustomDbRoleActionArray and CustomDbRoleActionArrayOutput values.
 // You can construct a concrete instance of `CustomDbRoleActionArrayInput` via:
 //
-//          CustomDbRoleActionArray{ CustomDbRoleActionArgs{...} }
+//	CustomDbRoleActionArray{ CustomDbRoleActionArgs{...} }
 type CustomDbRoleActionArrayInput interface {
 	pulumi.Input
 
@@ -6945,7 +6953,7 @@ type CustomDbRoleActionResource struct {
 // CustomDbRoleActionResourceInput is an input type that accepts CustomDbRoleActionResourceArgs and CustomDbRoleActionResourceOutput values.
 // You can construct a concrete instance of `CustomDbRoleActionResourceInput` via:
 //
-//          CustomDbRoleActionResourceArgs{...}
+//	CustomDbRoleActionResourceArgs{...}
 type CustomDbRoleActionResourceInput interface {
 	pulumi.Input
 
@@ -6975,7 +6983,7 @@ func (i CustomDbRoleActionResourceArgs) ToCustomDbRoleActionResourceOutputWithCo
 // CustomDbRoleActionResourceArrayInput is an input type that accepts CustomDbRoleActionResourceArray and CustomDbRoleActionResourceArrayOutput values.
 // You can construct a concrete instance of `CustomDbRoleActionResourceArrayInput` via:
 //
-//          CustomDbRoleActionResourceArray{ CustomDbRoleActionResourceArgs{...} }
+//	CustomDbRoleActionResourceArray{ CustomDbRoleActionResourceArgs{...} }
 type CustomDbRoleActionResourceArrayInput interface {
 	pulumi.Input
 
@@ -7054,7 +7062,7 @@ type CustomDbRoleInheritedRole struct {
 // CustomDbRoleInheritedRoleInput is an input type that accepts CustomDbRoleInheritedRoleArgs and CustomDbRoleInheritedRoleOutput values.
 // You can construct a concrete instance of `CustomDbRoleInheritedRoleInput` via:
 //
-//          CustomDbRoleInheritedRoleArgs{...}
+//	CustomDbRoleInheritedRoleArgs{...}
 type CustomDbRoleInheritedRoleInput interface {
 	pulumi.Input
 
@@ -7084,7 +7092,7 @@ func (i CustomDbRoleInheritedRoleArgs) ToCustomDbRoleInheritedRoleOutputWithCont
 // CustomDbRoleInheritedRoleArrayInput is an input type that accepts CustomDbRoleInheritedRoleArray and CustomDbRoleInheritedRoleArrayOutput values.
 // You can construct a concrete instance of `CustomDbRoleInheritedRoleArrayInput` via:
 //
-//          CustomDbRoleInheritedRoleArray{ CustomDbRoleInheritedRoleArgs{...} }
+//	CustomDbRoleInheritedRoleArray{ CustomDbRoleInheritedRoleArgs{...} }
 type CustomDbRoleInheritedRoleArrayInput interface {
 	pulumi.Input
 
@@ -7161,7 +7169,7 @@ type DataLakeAws struct {
 // DataLakeAwsInput is an input type that accepts DataLakeAwsArgs and DataLakeAwsOutput values.
 // You can construct a concrete instance of `DataLakeAwsInput` via:
 //
-//          DataLakeAwsArgs{...}
+//	DataLakeAwsArgs{...}
 type DataLakeAwsInput interface {
 	pulumi.Input
 
@@ -7200,11 +7208,11 @@ func (i DataLakeAwsArgs) ToDataLakeAwsPtrOutputWithContext(ctx context.Context) 
 // DataLakeAwsPtrInput is an input type that accepts DataLakeAwsArgs, DataLakeAwsPtr and DataLakeAwsPtrOutput values.
 // You can construct a concrete instance of `DataLakeAwsPtrInput` via:
 //
-//          DataLakeAwsArgs{...}
+//	        DataLakeAwsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DataLakeAwsPtrInput interface {
 	pulumi.Input
 
@@ -7351,7 +7359,7 @@ type DataLakeDataProcessRegion struct {
 // DataLakeDataProcessRegionInput is an input type that accepts DataLakeDataProcessRegionArgs and DataLakeDataProcessRegionOutput values.
 // You can construct a concrete instance of `DataLakeDataProcessRegionInput` via:
 //
-//          DataLakeDataProcessRegionArgs{...}
+//	DataLakeDataProcessRegionArgs{...}
 type DataLakeDataProcessRegionInput interface {
 	pulumi.Input
 
@@ -7387,11 +7395,11 @@ func (i DataLakeDataProcessRegionArgs) ToDataLakeDataProcessRegionPtrOutputWithC
 // DataLakeDataProcessRegionPtrInput is an input type that accepts DataLakeDataProcessRegionArgs, DataLakeDataProcessRegionPtr and DataLakeDataProcessRegionPtrOutput values.
 // You can construct a concrete instance of `DataLakeDataProcessRegionPtrInput` via:
 //
-//          DataLakeDataProcessRegionArgs{...}
+//	        DataLakeDataProcessRegionArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type DataLakeDataProcessRegionPtrInput interface {
 	pulumi.Input
 
@@ -7502,7 +7510,7 @@ type DataLakeStorageDatabase struct {
 // DataLakeStorageDatabaseInput is an input type that accepts DataLakeStorageDatabaseArgs and DataLakeStorageDatabaseOutput values.
 // You can construct a concrete instance of `DataLakeStorageDatabaseInput` via:
 //
-//          DataLakeStorageDatabaseArgs{...}
+//	DataLakeStorageDatabaseArgs{...}
 type DataLakeStorageDatabaseInput interface {
 	pulumi.Input
 
@@ -7533,7 +7541,7 @@ func (i DataLakeStorageDatabaseArgs) ToDataLakeStorageDatabaseOutputWithContext(
 // DataLakeStorageDatabaseArrayInput is an input type that accepts DataLakeStorageDatabaseArray and DataLakeStorageDatabaseArrayOutput values.
 // You can construct a concrete instance of `DataLakeStorageDatabaseArrayInput` via:
 //
-//          DataLakeStorageDatabaseArray{ DataLakeStorageDatabaseArgs{...} }
+//	DataLakeStorageDatabaseArray{ DataLakeStorageDatabaseArgs{...} }
 type DataLakeStorageDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -7615,7 +7623,7 @@ type DataLakeStorageDatabaseCollection struct {
 // DataLakeStorageDatabaseCollectionInput is an input type that accepts DataLakeStorageDatabaseCollectionArgs and DataLakeStorageDatabaseCollectionOutput values.
 // You can construct a concrete instance of `DataLakeStorageDatabaseCollectionInput` via:
 //
-//          DataLakeStorageDatabaseCollectionArgs{...}
+//	DataLakeStorageDatabaseCollectionArgs{...}
 type DataLakeStorageDatabaseCollectionInput interface {
 	pulumi.Input
 
@@ -7644,7 +7652,7 @@ func (i DataLakeStorageDatabaseCollectionArgs) ToDataLakeStorageDatabaseCollecti
 // DataLakeStorageDatabaseCollectionArrayInput is an input type that accepts DataLakeStorageDatabaseCollectionArray and DataLakeStorageDatabaseCollectionArrayOutput values.
 // You can construct a concrete instance of `DataLakeStorageDatabaseCollectionArrayInput` via:
 //
-//          DataLakeStorageDatabaseCollectionArray{ DataLakeStorageDatabaseCollectionArgs{...} }
+//	DataLakeStorageDatabaseCollectionArray{ DataLakeStorageDatabaseCollectionArgs{...} }
 type DataLakeStorageDatabaseCollectionArrayInput interface {
 	pulumi.Input
 
@@ -7720,7 +7728,7 @@ type DataLakeStorageDatabaseCollectionDataSource struct {
 // DataLakeStorageDatabaseCollectionDataSourceInput is an input type that accepts DataLakeStorageDatabaseCollectionDataSourceArgs and DataLakeStorageDatabaseCollectionDataSourceOutput values.
 // You can construct a concrete instance of `DataLakeStorageDatabaseCollectionDataSourceInput` via:
 //
-//          DataLakeStorageDatabaseCollectionDataSourceArgs{...}
+//	DataLakeStorageDatabaseCollectionDataSourceArgs{...}
 type DataLakeStorageDatabaseCollectionDataSourceInput interface {
 	pulumi.Input
 
@@ -7749,7 +7757,7 @@ func (i DataLakeStorageDatabaseCollectionDataSourceArgs) ToDataLakeStorageDataba
 // DataLakeStorageDatabaseCollectionDataSourceArrayInput is an input type that accepts DataLakeStorageDatabaseCollectionDataSourceArray and DataLakeStorageDatabaseCollectionDataSourceArrayOutput values.
 // You can construct a concrete instance of `DataLakeStorageDatabaseCollectionDataSourceArrayInput` via:
 //
-//          DataLakeStorageDatabaseCollectionDataSourceArray{ DataLakeStorageDatabaseCollectionDataSourceArgs{...} }
+//	DataLakeStorageDatabaseCollectionDataSourceArray{ DataLakeStorageDatabaseCollectionDataSourceArgs{...} }
 type DataLakeStorageDatabaseCollectionDataSourceArrayInput interface {
 	pulumi.Input
 
@@ -7827,7 +7835,7 @@ type DataLakeStorageDatabaseView struct {
 // DataLakeStorageDatabaseViewInput is an input type that accepts DataLakeStorageDatabaseViewArgs and DataLakeStorageDatabaseViewOutput values.
 // You can construct a concrete instance of `DataLakeStorageDatabaseViewInput` via:
 //
-//          DataLakeStorageDatabaseViewArgs{...}
+//	DataLakeStorageDatabaseViewArgs{...}
 type DataLakeStorageDatabaseViewInput interface {
 	pulumi.Input
 
@@ -7857,7 +7865,7 @@ func (i DataLakeStorageDatabaseViewArgs) ToDataLakeStorageDatabaseViewOutputWith
 // DataLakeStorageDatabaseViewArrayInput is an input type that accepts DataLakeStorageDatabaseViewArray and DataLakeStorageDatabaseViewArrayOutput values.
 // You can construct a concrete instance of `DataLakeStorageDatabaseViewArrayInput` via:
 //
-//          DataLakeStorageDatabaseViewArray{ DataLakeStorageDatabaseViewArgs{...} }
+//	DataLakeStorageDatabaseViewArray{ DataLakeStorageDatabaseViewArgs{...} }
 type DataLakeStorageDatabaseViewArrayInput interface {
 	pulumi.Input
 
@@ -7941,7 +7949,7 @@ type DataLakeStorageStore struct {
 // DataLakeStorageStoreInput is an input type that accepts DataLakeStorageStoreArgs and DataLakeStorageStoreOutput values.
 // You can construct a concrete instance of `DataLakeStorageStoreInput` via:
 //
-//          DataLakeStorageStoreArgs{...}
+//	DataLakeStorageStoreArgs{...}
 type DataLakeStorageStoreInput interface {
 	pulumi.Input
 
@@ -7976,7 +7984,7 @@ func (i DataLakeStorageStoreArgs) ToDataLakeStorageStoreOutputWithContext(ctx co
 // DataLakeStorageStoreArrayInput is an input type that accepts DataLakeStorageStoreArray and DataLakeStorageStoreArrayOutput values.
 // You can construct a concrete instance of `DataLakeStorageStoreArrayInput` via:
 //
-//          DataLakeStorageStoreArray{ DataLakeStorageStoreArgs{...} }
+//	DataLakeStorageStoreArray{ DataLakeStorageStoreArgs{...} }
 type DataLakeStorageStoreArrayInput interface {
 	pulumi.Input
 
@@ -8075,7 +8083,7 @@ type DatabaseUserLabel struct {
 // DatabaseUserLabelInput is an input type that accepts DatabaseUserLabelArgs and DatabaseUserLabelOutput values.
 // You can construct a concrete instance of `DatabaseUserLabelInput` via:
 //
-//          DatabaseUserLabelArgs{...}
+//	DatabaseUserLabelArgs{...}
 type DatabaseUserLabelInput interface {
 	pulumi.Input
 
@@ -8105,7 +8113,7 @@ func (i DatabaseUserLabelArgs) ToDatabaseUserLabelOutputWithContext(ctx context.
 // DatabaseUserLabelArrayInput is an input type that accepts DatabaseUserLabelArray and DatabaseUserLabelArrayOutput values.
 // You can construct a concrete instance of `DatabaseUserLabelArrayInput` via:
 //
-//          DatabaseUserLabelArray{ DatabaseUserLabelArgs{...} }
+//	DatabaseUserLabelArray{ DatabaseUserLabelArgs{...} }
 type DatabaseUserLabelArrayInput interface {
 	pulumi.Input
 
@@ -8183,7 +8191,7 @@ type DatabaseUserRole struct {
 // DatabaseUserRoleInput is an input type that accepts DatabaseUserRoleArgs and DatabaseUserRoleOutput values.
 // You can construct a concrete instance of `DatabaseUserRoleInput` via:
 //
-//          DatabaseUserRoleArgs{...}
+//	DatabaseUserRoleArgs{...}
 type DatabaseUserRoleInput interface {
 	pulumi.Input
 
@@ -8215,7 +8223,7 @@ func (i DatabaseUserRoleArgs) ToDatabaseUserRoleOutputWithContext(ctx context.Co
 // DatabaseUserRoleArrayInput is an input type that accepts DatabaseUserRoleArray and DatabaseUserRoleArrayOutput values.
 // You can construct a concrete instance of `DatabaseUserRoleArrayInput` via:
 //
-//          DatabaseUserRoleArray{ DatabaseUserRoleArgs{...} }
+//	DatabaseUserRoleArray{ DatabaseUserRoleArgs{...} }
 type DatabaseUserRoleArrayInput interface {
 	pulumi.Input
 
@@ -8296,7 +8304,7 @@ type DatabaseUserScope struct {
 // DatabaseUserScopeInput is an input type that accepts DatabaseUserScopeArgs and DatabaseUserScopeOutput values.
 // You can construct a concrete instance of `DatabaseUserScopeInput` via:
 //
-//          DatabaseUserScopeArgs{...}
+//	DatabaseUserScopeArgs{...}
 type DatabaseUserScopeInput interface {
 	pulumi.Input
 
@@ -8326,7 +8334,7 @@ func (i DatabaseUserScopeArgs) ToDatabaseUserScopeOutputWithContext(ctx context.
 // DatabaseUserScopeArrayInput is an input type that accepts DatabaseUserScopeArray and DatabaseUserScopeArrayOutput values.
 // You can construct a concrete instance of `DatabaseUserScopeArrayInput` via:
 //
-//          DatabaseUserScopeArray{ DatabaseUserScopeArgs{...} }
+//	DatabaseUserScopeArray{ DatabaseUserScopeArgs{...} }
 type DatabaseUserScopeArrayInput interface {
 	pulumi.Input
 
@@ -8408,7 +8416,7 @@ type EncryptionAtRestAwsKmsConfig struct {
 // EncryptionAtRestAwsKmsConfigInput is an input type that accepts EncryptionAtRestAwsKmsConfigArgs and EncryptionAtRestAwsKmsConfigOutput values.
 // You can construct a concrete instance of `EncryptionAtRestAwsKmsConfigInput` via:
 //
-//          EncryptionAtRestAwsKmsConfigArgs{...}
+//	EncryptionAtRestAwsKmsConfigArgs{...}
 type EncryptionAtRestAwsKmsConfigInput interface {
 	pulumi.Input
 
@@ -8452,11 +8460,11 @@ func (i EncryptionAtRestAwsKmsConfigArgs) ToEncryptionAtRestAwsKmsConfigPtrOutpu
 // EncryptionAtRestAwsKmsConfigPtrInput is an input type that accepts EncryptionAtRestAwsKmsConfigArgs, EncryptionAtRestAwsKmsConfigPtr and EncryptionAtRestAwsKmsConfigPtrOutput values.
 // You can construct a concrete instance of `EncryptionAtRestAwsKmsConfigPtrInput` via:
 //
-//          EncryptionAtRestAwsKmsConfigArgs{...}
+//	        EncryptionAtRestAwsKmsConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type EncryptionAtRestAwsKmsConfigPtrInput interface {
 	pulumi.Input
 
@@ -8640,7 +8648,7 @@ type EncryptionAtRestAzureKeyVaultConfig struct {
 // EncryptionAtRestAzureKeyVaultConfigInput is an input type that accepts EncryptionAtRestAzureKeyVaultConfigArgs and EncryptionAtRestAzureKeyVaultConfigOutput values.
 // You can construct a concrete instance of `EncryptionAtRestAzureKeyVaultConfigInput` via:
 //
-//          EncryptionAtRestAzureKeyVaultConfigArgs{...}
+//	EncryptionAtRestAzureKeyVaultConfigArgs{...}
 type EncryptionAtRestAzureKeyVaultConfigInput interface {
 	pulumi.Input
 
@@ -8692,11 +8700,11 @@ func (i EncryptionAtRestAzureKeyVaultConfigArgs) ToEncryptionAtRestAzureKeyVault
 // EncryptionAtRestAzureKeyVaultConfigPtrInput is an input type that accepts EncryptionAtRestAzureKeyVaultConfigArgs, EncryptionAtRestAzureKeyVaultConfigPtr and EncryptionAtRestAzureKeyVaultConfigPtrOutput values.
 // You can construct a concrete instance of `EncryptionAtRestAzureKeyVaultConfigPtrInput` via:
 //
-//          EncryptionAtRestAzureKeyVaultConfigArgs{...}
+//	        EncryptionAtRestAzureKeyVaultConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type EncryptionAtRestAzureKeyVaultConfigPtrInput interface {
 	pulumi.Input
 
@@ -8917,7 +8925,7 @@ type EncryptionAtRestGoogleCloudKmsConfig struct {
 // EncryptionAtRestGoogleCloudKmsConfigInput is an input type that accepts EncryptionAtRestGoogleCloudKmsConfigArgs and EncryptionAtRestGoogleCloudKmsConfigOutput values.
 // You can construct a concrete instance of `EncryptionAtRestGoogleCloudKmsConfigInput` via:
 //
-//          EncryptionAtRestGoogleCloudKmsConfigArgs{...}
+//	EncryptionAtRestGoogleCloudKmsConfigArgs{...}
 type EncryptionAtRestGoogleCloudKmsConfigInput interface {
 	pulumi.Input
 
@@ -8957,11 +8965,11 @@ func (i EncryptionAtRestGoogleCloudKmsConfigArgs) ToEncryptionAtRestGoogleCloudK
 // EncryptionAtRestGoogleCloudKmsConfigPtrInput is an input type that accepts EncryptionAtRestGoogleCloudKmsConfigArgs, EncryptionAtRestGoogleCloudKmsConfigPtr and EncryptionAtRestGoogleCloudKmsConfigPtrOutput values.
 // You can construct a concrete instance of `EncryptionAtRestGoogleCloudKmsConfigPtrInput` via:
 //
-//          EncryptionAtRestGoogleCloudKmsConfigArgs{...}
+//	        EncryptionAtRestGoogleCloudKmsConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type EncryptionAtRestGoogleCloudKmsConfigPtrInput interface {
 	pulumi.Input
 
@@ -9087,7 +9095,7 @@ type EventTriggerEventProcessors struct {
 // EventTriggerEventProcessorsInput is an input type that accepts EventTriggerEventProcessorsArgs and EventTriggerEventProcessorsOutput values.
 // You can construct a concrete instance of `EventTriggerEventProcessorsInput` via:
 //
-//          EventTriggerEventProcessorsArgs{...}
+//	EventTriggerEventProcessorsArgs{...}
 type EventTriggerEventProcessorsInput interface {
 	pulumi.Input
 
@@ -9122,11 +9130,11 @@ func (i EventTriggerEventProcessorsArgs) ToEventTriggerEventProcessorsPtrOutputW
 // EventTriggerEventProcessorsPtrInput is an input type that accepts EventTriggerEventProcessorsArgs, EventTriggerEventProcessorsPtr and EventTriggerEventProcessorsPtrOutput values.
 // You can construct a concrete instance of `EventTriggerEventProcessorsPtrInput` via:
 //
-//          EventTriggerEventProcessorsArgs{...}
+//	        EventTriggerEventProcessorsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type EventTriggerEventProcessorsPtrInput interface {
 	pulumi.Input
 
@@ -9223,7 +9231,7 @@ type EventTriggerEventProcessorsAwsEventbridge struct {
 // EventTriggerEventProcessorsAwsEventbridgeInput is an input type that accepts EventTriggerEventProcessorsAwsEventbridgeArgs and EventTriggerEventProcessorsAwsEventbridgeOutput values.
 // You can construct a concrete instance of `EventTriggerEventProcessorsAwsEventbridgeInput` via:
 //
-//          EventTriggerEventProcessorsAwsEventbridgeArgs{...}
+//	EventTriggerEventProcessorsAwsEventbridgeArgs{...}
 type EventTriggerEventProcessorsAwsEventbridgeInput interface {
 	pulumi.Input
 
@@ -9259,11 +9267,11 @@ func (i EventTriggerEventProcessorsAwsEventbridgeArgs) ToEventTriggerEventProces
 // EventTriggerEventProcessorsAwsEventbridgePtrInput is an input type that accepts EventTriggerEventProcessorsAwsEventbridgeArgs, EventTriggerEventProcessorsAwsEventbridgePtr and EventTriggerEventProcessorsAwsEventbridgePtrOutput values.
 // You can construct a concrete instance of `EventTriggerEventProcessorsAwsEventbridgePtrInput` via:
 //
-//          EventTriggerEventProcessorsAwsEventbridgeArgs{...}
+//	        EventTriggerEventProcessorsAwsEventbridgeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type EventTriggerEventProcessorsAwsEventbridgePtrInput interface {
 	pulumi.Input
 
@@ -9375,7 +9383,7 @@ type FederatedSettingsOrgRoleMappingRoleAssignment struct {
 // FederatedSettingsOrgRoleMappingRoleAssignmentInput is an input type that accepts FederatedSettingsOrgRoleMappingRoleAssignmentArgs and FederatedSettingsOrgRoleMappingRoleAssignmentOutput values.
 // You can construct a concrete instance of `FederatedSettingsOrgRoleMappingRoleAssignmentInput` via:
 //
-//          FederatedSettingsOrgRoleMappingRoleAssignmentArgs{...}
+//	FederatedSettingsOrgRoleMappingRoleAssignmentArgs{...}
 type FederatedSettingsOrgRoleMappingRoleAssignmentInput interface {
 	pulumi.Input
 
@@ -9407,7 +9415,7 @@ func (i FederatedSettingsOrgRoleMappingRoleAssignmentArgs) ToFederatedSettingsOr
 // FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput is an input type that accepts FederatedSettingsOrgRoleMappingRoleAssignmentArray and FederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput values.
 // You can construct a concrete instance of `FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput` via:
 //
-//          FederatedSettingsOrgRoleMappingRoleAssignmentArray{ FederatedSettingsOrgRoleMappingRoleAssignmentArgs{...} }
+//	FederatedSettingsOrgRoleMappingRoleAssignmentArray{ FederatedSettingsOrgRoleMappingRoleAssignmentArgs{...} }
 type FederatedSettingsOrgRoleMappingRoleAssignmentArrayInput interface {
 	pulumi.Input
 
@@ -9488,7 +9496,7 @@ type GlobalClusterConfigCustomZoneMapping struct {
 // GlobalClusterConfigCustomZoneMappingInput is an input type that accepts GlobalClusterConfigCustomZoneMappingArgs and GlobalClusterConfigCustomZoneMappingOutput values.
 // You can construct a concrete instance of `GlobalClusterConfigCustomZoneMappingInput` via:
 //
-//          GlobalClusterConfigCustomZoneMappingArgs{...}
+//	GlobalClusterConfigCustomZoneMappingArgs{...}
 type GlobalClusterConfigCustomZoneMappingInput interface {
 	pulumi.Input
 
@@ -9518,7 +9526,7 @@ func (i GlobalClusterConfigCustomZoneMappingArgs) ToGlobalClusterConfigCustomZon
 // GlobalClusterConfigCustomZoneMappingArrayInput is an input type that accepts GlobalClusterConfigCustomZoneMappingArray and GlobalClusterConfigCustomZoneMappingArrayOutput values.
 // You can construct a concrete instance of `GlobalClusterConfigCustomZoneMappingArrayInput` via:
 //
-//          GlobalClusterConfigCustomZoneMappingArray{ GlobalClusterConfigCustomZoneMappingArgs{...} }
+//	GlobalClusterConfigCustomZoneMappingArray{ GlobalClusterConfigCustomZoneMappingArgs{...} }
 type GlobalClusterConfigCustomZoneMappingArrayInput interface {
 	pulumi.Input
 
@@ -9600,7 +9608,7 @@ type GlobalClusterConfigManagedNamespace struct {
 // GlobalClusterConfigManagedNamespaceInput is an input type that accepts GlobalClusterConfigManagedNamespaceArgs and GlobalClusterConfigManagedNamespaceOutput values.
 // You can construct a concrete instance of `GlobalClusterConfigManagedNamespaceInput` via:
 //
-//          GlobalClusterConfigManagedNamespaceArgs{...}
+//	GlobalClusterConfigManagedNamespaceArgs{...}
 type GlobalClusterConfigManagedNamespaceInput interface {
 	pulumi.Input
 
@@ -9636,7 +9644,7 @@ func (i GlobalClusterConfigManagedNamespaceArgs) ToGlobalClusterConfigManagedNam
 // GlobalClusterConfigManagedNamespaceArrayInput is an input type that accepts GlobalClusterConfigManagedNamespaceArray and GlobalClusterConfigManagedNamespaceArrayOutput values.
 // You can construct a concrete instance of `GlobalClusterConfigManagedNamespaceArrayInput` via:
 //
-//          GlobalClusterConfigManagedNamespaceArray{ GlobalClusterConfigManagedNamespaceArgs{...} }
+//	GlobalClusterConfigManagedNamespaceArray{ GlobalClusterConfigManagedNamespaceArgs{...} }
 type GlobalClusterConfigManagedNamespaceArrayInput interface {
 	pulumi.Input
 
@@ -9726,7 +9734,7 @@ type LdapConfigurationUserToDnMapping struct {
 // LdapConfigurationUserToDnMappingInput is an input type that accepts LdapConfigurationUserToDnMappingArgs and LdapConfigurationUserToDnMappingOutput values.
 // You can construct a concrete instance of `LdapConfigurationUserToDnMappingInput` via:
 //
-//          LdapConfigurationUserToDnMappingArgs{...}
+//	LdapConfigurationUserToDnMappingArgs{...}
 type LdapConfigurationUserToDnMappingInput interface {
 	pulumi.Input
 
@@ -9755,7 +9763,7 @@ func (i LdapConfigurationUserToDnMappingArgs) ToLdapConfigurationUserToDnMapping
 // LdapConfigurationUserToDnMappingArrayInput is an input type that accepts LdapConfigurationUserToDnMappingArray and LdapConfigurationUserToDnMappingArrayOutput values.
 // You can construct a concrete instance of `LdapConfigurationUserToDnMappingArrayInput` via:
 //
-//          LdapConfigurationUserToDnMappingArray{ LdapConfigurationUserToDnMappingArgs{...} }
+//	LdapConfigurationUserToDnMappingArray{ LdapConfigurationUserToDnMappingArgs{...} }
 type LdapConfigurationUserToDnMappingArrayInput interface {
 	pulumi.Input
 
@@ -9831,7 +9839,7 @@ type LdapVerifyLink struct {
 // LdapVerifyLinkInput is an input type that accepts LdapVerifyLinkArgs and LdapVerifyLinkOutput values.
 // You can construct a concrete instance of `LdapVerifyLinkInput` via:
 //
-//          LdapVerifyLinkArgs{...}
+//	LdapVerifyLinkArgs{...}
 type LdapVerifyLinkInput interface {
 	pulumi.Input
 
@@ -9859,7 +9867,7 @@ func (i LdapVerifyLinkArgs) ToLdapVerifyLinkOutputWithContext(ctx context.Contex
 // LdapVerifyLinkArrayInput is an input type that accepts LdapVerifyLinkArray and LdapVerifyLinkArrayOutput values.
 // You can construct a concrete instance of `LdapVerifyLinkArrayInput` via:
 //
-//          LdapVerifyLinkArray{ LdapVerifyLinkArgs{...} }
+//	LdapVerifyLinkArray{ LdapVerifyLinkArgs{...} }
 type LdapVerifyLinkArrayInput interface {
 	pulumi.Input
 
@@ -9932,7 +9940,7 @@ type LdapVerifyValidation struct {
 // LdapVerifyValidationInput is an input type that accepts LdapVerifyValidationArgs and LdapVerifyValidationOutput values.
 // You can construct a concrete instance of `LdapVerifyValidationInput` via:
 //
-//          LdapVerifyValidationArgs{...}
+//	LdapVerifyValidationArgs{...}
 type LdapVerifyValidationInput interface {
 	pulumi.Input
 
@@ -9961,7 +9969,7 @@ func (i LdapVerifyValidationArgs) ToLdapVerifyValidationOutputWithContext(ctx co
 // LdapVerifyValidationArrayInput is an input type that accepts LdapVerifyValidationArray and LdapVerifyValidationArrayOutput values.
 // You can construct a concrete instance of `LdapVerifyValidationArrayInput` via:
 //
-//          LdapVerifyValidationArray{ LdapVerifyValidationArgs{...} }
+//	LdapVerifyValidationArray{ LdapVerifyValidationArgs{...} }
 type LdapVerifyValidationArrayInput interface {
 	pulumi.Input
 
@@ -10037,7 +10045,7 @@ type OnlineArchiveCriteria struct {
 // OnlineArchiveCriteriaInput is an input type that accepts OnlineArchiveCriteriaArgs and OnlineArchiveCriteriaOutput values.
 // You can construct a concrete instance of `OnlineArchiveCriteriaInput` via:
 //
-//          OnlineArchiveCriteriaArgs{...}
+//	OnlineArchiveCriteriaArgs{...}
 type OnlineArchiveCriteriaInput interface {
 	pulumi.Input
 
@@ -10076,11 +10084,11 @@ func (i OnlineArchiveCriteriaArgs) ToOnlineArchiveCriteriaPtrOutputWithContext(c
 // OnlineArchiveCriteriaPtrInput is an input type that accepts OnlineArchiveCriteriaArgs, OnlineArchiveCriteriaPtr and OnlineArchiveCriteriaPtrOutput values.
 // You can construct a concrete instance of `OnlineArchiveCriteriaPtrInput` via:
 //
-//          OnlineArchiveCriteriaArgs{...}
+//	        OnlineArchiveCriteriaArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type OnlineArchiveCriteriaPtrInput interface {
 	pulumi.Input
 
@@ -10228,7 +10236,7 @@ type OnlineArchivePartitionField struct {
 // OnlineArchivePartitionFieldInput is an input type that accepts OnlineArchivePartitionFieldArgs and OnlineArchivePartitionFieldOutput values.
 // You can construct a concrete instance of `OnlineArchivePartitionFieldInput` via:
 //
-//          OnlineArchivePartitionFieldArgs{...}
+//	OnlineArchivePartitionFieldArgs{...}
 type OnlineArchivePartitionFieldInput interface {
 	pulumi.Input
 
@@ -10257,7 +10265,7 @@ func (i OnlineArchivePartitionFieldArgs) ToOnlineArchivePartitionFieldOutputWith
 // OnlineArchivePartitionFieldArrayInput is an input type that accepts OnlineArchivePartitionFieldArray and OnlineArchivePartitionFieldArrayOutput values.
 // You can construct a concrete instance of `OnlineArchivePartitionFieldArrayInput` via:
 //
-//          OnlineArchivePartitionFieldArray{ OnlineArchivePartitionFieldArgs{...} }
+//	OnlineArchivePartitionFieldArray{ OnlineArchivePartitionFieldArgs{...} }
 type OnlineArchivePartitionFieldArrayInput interface {
 	pulumi.Input
 
@@ -10339,7 +10347,7 @@ type PrivateLinkEndpointServiceEndpoint struct {
 // PrivateLinkEndpointServiceEndpointInput is an input type that accepts PrivateLinkEndpointServiceEndpointArgs and PrivateLinkEndpointServiceEndpointOutput values.
 // You can construct a concrete instance of `PrivateLinkEndpointServiceEndpointInput` via:
 //
-//          PrivateLinkEndpointServiceEndpointArgs{...}
+//	PrivateLinkEndpointServiceEndpointArgs{...}
 type PrivateLinkEndpointServiceEndpointInput interface {
 	pulumi.Input
 
@@ -10373,7 +10381,7 @@ func (i PrivateLinkEndpointServiceEndpointArgs) ToPrivateLinkEndpointServiceEndp
 // PrivateLinkEndpointServiceEndpointArrayInput is an input type that accepts PrivateLinkEndpointServiceEndpointArray and PrivateLinkEndpointServiceEndpointArrayOutput values.
 // You can construct a concrete instance of `PrivateLinkEndpointServiceEndpointArrayInput` via:
 //
-//          PrivateLinkEndpointServiceEndpointArray{ PrivateLinkEndpointServiceEndpointArgs{...} }
+//	PrivateLinkEndpointServiceEndpointArray{ PrivateLinkEndpointServiceEndpointArgs{...} }
 type PrivateLinkEndpointServiceEndpointArrayInput interface {
 	pulumi.Input
 
@@ -10465,7 +10473,7 @@ type ProjectApiKey struct {
 // ProjectApiKeyInput is an input type that accepts ProjectApiKeyArgs and ProjectApiKeyOutput values.
 // You can construct a concrete instance of `ProjectApiKeyInput` via:
 //
-//          ProjectApiKeyArgs{...}
+//	ProjectApiKeyArgs{...}
 type ProjectApiKeyInput interface {
 	pulumi.Input
 
@@ -10501,7 +10509,7 @@ func (i ProjectApiKeyArgs) ToProjectApiKeyOutputWithContext(ctx context.Context)
 // ProjectApiKeyArrayInput is an input type that accepts ProjectApiKeyArray and ProjectApiKeyArrayOutput values.
 // You can construct a concrete instance of `ProjectApiKeyArrayInput` via:
 //
-//          ProjectApiKeyArray{ ProjectApiKeyArgs{...} }
+//	ProjectApiKeyArray{ ProjectApiKeyArgs{...} }
 type ProjectApiKeyArrayInput interface {
 	pulumi.Input
 
@@ -10589,7 +10597,7 @@ type ProjectTeam struct {
 // ProjectTeamInput is an input type that accepts ProjectTeamArgs and ProjectTeamOutput values.
 // You can construct a concrete instance of `ProjectTeamInput` via:
 //
-//          ProjectTeamArgs{...}
+//	ProjectTeamArgs{...}
 type ProjectTeamInput interface {
 	pulumi.Input
 
@@ -10625,7 +10633,7 @@ func (i ProjectTeamArgs) ToProjectTeamOutputWithContext(ctx context.Context) Pro
 // ProjectTeamArrayInput is an input type that accepts ProjectTeamArray and ProjectTeamArrayOutput values.
 // You can construct a concrete instance of `ProjectTeamArrayInput` via:
 //
-//          ProjectTeamArray{ ProjectTeamArgs{...} }
+//	ProjectTeamArray{ ProjectTeamArgs{...} }
 type ProjectTeamArrayInput interface {
 	pulumi.Input
 
@@ -10715,7 +10723,7 @@ type SearchIndexSynonym struct {
 // SearchIndexSynonymInput is an input type that accepts SearchIndexSynonymArgs and SearchIndexSynonymOutput values.
 // You can construct a concrete instance of `SearchIndexSynonymInput` via:
 //
-//          SearchIndexSynonymArgs{...}
+//	SearchIndexSynonymArgs{...}
 type SearchIndexSynonymInput interface {
 	pulumi.Input
 
@@ -10753,7 +10761,7 @@ func (i SearchIndexSynonymArgs) ToSearchIndexSynonymOutputWithContext(ctx contex
 // SearchIndexSynonymArrayInput is an input type that accepts SearchIndexSynonymArray and SearchIndexSynonymArrayOutput values.
 // You can construct a concrete instance of `SearchIndexSynonymArrayInput` via:
 //
-//          SearchIndexSynonymArray{ SearchIndexSynonymArgs{...} }
+//	SearchIndexSynonymArray{ SearchIndexSynonymArgs{...} }
 type SearchIndexSynonymArrayInput interface {
 	pulumi.Input
 
@@ -10838,7 +10846,7 @@ type ServerlessInstanceLink struct {
 // ServerlessInstanceLinkInput is an input type that accepts ServerlessInstanceLinkArgs and ServerlessInstanceLinkOutput values.
 // You can construct a concrete instance of `ServerlessInstanceLinkInput` via:
 //
-//          ServerlessInstanceLinkArgs{...}
+//	ServerlessInstanceLinkArgs{...}
 type ServerlessInstanceLinkInput interface {
 	pulumi.Input
 
@@ -10866,7 +10874,7 @@ func (i ServerlessInstanceLinkArgs) ToServerlessInstanceLinkOutputWithContext(ct
 // ServerlessInstanceLinkArrayInput is an input type that accepts ServerlessInstanceLinkArray and ServerlessInstanceLinkArrayOutput values.
 // You can construct a concrete instance of `ServerlessInstanceLinkArrayInput` via:
 //
-//          ServerlessInstanceLinkArray{ ServerlessInstanceLinkArgs{...} }
+//	ServerlessInstanceLinkArray{ ServerlessInstanceLinkArgs{...} }
 type ServerlessInstanceLinkArrayInput interface {
 	pulumi.Input
 
@@ -10940,7 +10948,7 @@ type X509AuthenticationDatabaseUserCertificate struct {
 // X509AuthenticationDatabaseUserCertificateInput is an input type that accepts X509AuthenticationDatabaseUserCertificateArgs and X509AuthenticationDatabaseUserCertificateOutput values.
 // You can construct a concrete instance of `X509AuthenticationDatabaseUserCertificateInput` via:
 //
-//          X509AuthenticationDatabaseUserCertificateArgs{...}
+//	X509AuthenticationDatabaseUserCertificateArgs{...}
 type X509AuthenticationDatabaseUserCertificateInput interface {
 	pulumi.Input
 
@@ -10970,7 +10978,7 @@ func (i X509AuthenticationDatabaseUserCertificateArgs) ToX509AuthenticationDatab
 // X509AuthenticationDatabaseUserCertificateArrayInput is an input type that accepts X509AuthenticationDatabaseUserCertificateArray and X509AuthenticationDatabaseUserCertificateArrayOutput values.
 // You can construct a concrete instance of `X509AuthenticationDatabaseUserCertificateArrayInput` via:
 //
-//          X509AuthenticationDatabaseUserCertificateArray{ X509AuthenticationDatabaseUserCertificateArgs{...} }
+//	X509AuthenticationDatabaseUserCertificateArray{ X509AuthenticationDatabaseUserCertificateArgs{...} }
 type X509AuthenticationDatabaseUserCertificateArrayInput interface {
 	pulumi.Input
 
@@ -11053,7 +11061,7 @@ type Get509AuthenticationDatabaseUserCertificate struct {
 // Get509AuthenticationDatabaseUserCertificateInput is an input type that accepts Get509AuthenticationDatabaseUserCertificateArgs and Get509AuthenticationDatabaseUserCertificateOutput values.
 // You can construct a concrete instance of `Get509AuthenticationDatabaseUserCertificateInput` via:
 //
-//          Get509AuthenticationDatabaseUserCertificateArgs{...}
+//	Get509AuthenticationDatabaseUserCertificateArgs{...}
 type Get509AuthenticationDatabaseUserCertificateInput interface {
 	pulumi.Input
 
@@ -11084,7 +11092,7 @@ func (i Get509AuthenticationDatabaseUserCertificateArgs) ToGet509AuthenticationD
 // Get509AuthenticationDatabaseUserCertificateArrayInput is an input type that accepts Get509AuthenticationDatabaseUserCertificateArray and Get509AuthenticationDatabaseUserCertificateArrayOutput values.
 // You can construct a concrete instance of `Get509AuthenticationDatabaseUserCertificateArrayInput` via:
 //
-//          Get509AuthenticationDatabaseUserCertificateArray{ Get509AuthenticationDatabaseUserCertificateArgs{...} }
+//	Get509AuthenticationDatabaseUserCertificateArray{ Get509AuthenticationDatabaseUserCertificateArgs{...} }
 type Get509AuthenticationDatabaseUserCertificateArrayInput interface {
 	pulumi.Input
 
@@ -11184,7 +11192,7 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 // GetAdvancedClusterAdvancedConfigurationInput is an input type that accepts GetAdvancedClusterAdvancedConfigurationArgs and GetAdvancedClusterAdvancedConfigurationOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterAdvancedConfigurationInput` via:
 //
-//          GetAdvancedClusterAdvancedConfigurationArgs{...}
+//	GetAdvancedClusterAdvancedConfigurationArgs{...}
 type GetAdvancedClusterAdvancedConfigurationInput interface {
 	pulumi.Input
 
@@ -11228,7 +11236,7 @@ func (i GetAdvancedClusterAdvancedConfigurationArgs) ToGetAdvancedClusterAdvance
 // GetAdvancedClusterAdvancedConfigurationArrayInput is an input type that accepts GetAdvancedClusterAdvancedConfigurationArray and GetAdvancedClusterAdvancedConfigurationArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterAdvancedConfigurationArrayInput` via:
 //
-//          GetAdvancedClusterAdvancedConfigurationArray{ GetAdvancedClusterAdvancedConfigurationArgs{...} }
+//	GetAdvancedClusterAdvancedConfigurationArray{ GetAdvancedClusterAdvancedConfigurationArgs{...} }
 type GetAdvancedClusterAdvancedConfigurationArrayInput interface {
 	pulumi.Input
 
@@ -11339,7 +11347,7 @@ type GetAdvancedClusterBiConnector struct {
 // GetAdvancedClusterBiConnectorInput is an input type that accepts GetAdvancedClusterBiConnectorArgs and GetAdvancedClusterBiConnectorOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterBiConnectorInput` via:
 //
-//          GetAdvancedClusterBiConnectorArgs{...}
+//	GetAdvancedClusterBiConnectorArgs{...}
 type GetAdvancedClusterBiConnectorInput interface {
 	pulumi.Input
 
@@ -11369,7 +11377,7 @@ func (i GetAdvancedClusterBiConnectorArgs) ToGetAdvancedClusterBiConnectorOutput
 // GetAdvancedClusterBiConnectorArrayInput is an input type that accepts GetAdvancedClusterBiConnectorArray and GetAdvancedClusterBiConnectorArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterBiConnectorArrayInput` via:
 //
-//          GetAdvancedClusterBiConnectorArray{ GetAdvancedClusterBiConnectorArgs{...} }
+//	GetAdvancedClusterBiConnectorArray{ GetAdvancedClusterBiConnectorArgs{...} }
 type GetAdvancedClusterBiConnectorArrayInput interface {
 	pulumi.Input
 
@@ -11450,7 +11458,7 @@ type GetAdvancedClusterConnectionString struct {
 // GetAdvancedClusterConnectionStringInput is an input type that accepts GetAdvancedClusterConnectionStringArgs and GetAdvancedClusterConnectionStringOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterConnectionStringInput` via:
 //
-//          GetAdvancedClusterConnectionStringArgs{...}
+//	GetAdvancedClusterConnectionStringArgs{...}
 type GetAdvancedClusterConnectionStringInput interface {
 	pulumi.Input
 
@@ -11485,7 +11493,7 @@ func (i GetAdvancedClusterConnectionStringArgs) ToGetAdvancedClusterConnectionSt
 // GetAdvancedClusterConnectionStringArrayInput is an input type that accepts GetAdvancedClusterConnectionStringArray and GetAdvancedClusterConnectionStringArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterConnectionStringArrayInput` via:
 //
-//          GetAdvancedClusterConnectionStringArray{ GetAdvancedClusterConnectionStringArgs{...} }
+//	GetAdvancedClusterConnectionStringArray{ GetAdvancedClusterConnectionStringArgs{...} }
 type GetAdvancedClusterConnectionStringArrayInput interface {
 	pulumi.Input
 
@@ -11583,7 +11591,7 @@ type GetAdvancedClusterConnectionStringPrivateEndpoint struct {
 // GetAdvancedClusterConnectionStringPrivateEndpointInput is an input type that accepts GetAdvancedClusterConnectionStringPrivateEndpointArgs and GetAdvancedClusterConnectionStringPrivateEndpointOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterConnectionStringPrivateEndpointInput` via:
 //
-//          GetAdvancedClusterConnectionStringPrivateEndpointArgs{...}
+//	GetAdvancedClusterConnectionStringPrivateEndpointArgs{...}
 type GetAdvancedClusterConnectionStringPrivateEndpointInput interface {
 	pulumi.Input
 
@@ -11613,7 +11621,7 @@ func (i GetAdvancedClusterConnectionStringPrivateEndpointArgs) ToGetAdvancedClus
 // GetAdvancedClusterConnectionStringPrivateEndpointArrayInput is an input type that accepts GetAdvancedClusterConnectionStringPrivateEndpointArray and GetAdvancedClusterConnectionStringPrivateEndpointArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterConnectionStringPrivateEndpointArrayInput` via:
 //
-//          GetAdvancedClusterConnectionStringPrivateEndpointArray{ GetAdvancedClusterConnectionStringPrivateEndpointArgs{...} }
+//	GetAdvancedClusterConnectionStringPrivateEndpointArray{ GetAdvancedClusterConnectionStringPrivateEndpointArgs{...} }
 type GetAdvancedClusterConnectionStringPrivateEndpointArrayInput interface {
 	pulumi.Input
 
@@ -11697,7 +11705,7 @@ type GetAdvancedClusterConnectionStringPrivateEndpointEndpoint struct {
 // GetAdvancedClusterConnectionStringPrivateEndpointEndpointInput is an input type that accepts GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs and GetAdvancedClusterConnectionStringPrivateEndpointEndpointOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...}
+//	GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...}
 type GetAdvancedClusterConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
@@ -11727,7 +11735,7 @@ func (i GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs) ToGetAdva
 // GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray and GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray{ GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...} }
+//	GetAdvancedClusterConnectionStringPrivateEndpointEndpointArray{ GetAdvancedClusterConnectionStringPrivateEndpointEndpointArgs{...} }
 type GetAdvancedClusterConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
@@ -11806,7 +11814,7 @@ type GetAdvancedClusterLabel struct {
 // GetAdvancedClusterLabelInput is an input type that accepts GetAdvancedClusterLabelArgs and GetAdvancedClusterLabelOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterLabelInput` via:
 //
-//          GetAdvancedClusterLabelArgs{...}
+//	GetAdvancedClusterLabelArgs{...}
 type GetAdvancedClusterLabelInput interface {
 	pulumi.Input
 
@@ -11836,7 +11844,7 @@ func (i GetAdvancedClusterLabelArgs) ToGetAdvancedClusterLabelOutputWithContext(
 // GetAdvancedClusterLabelArrayInput is an input type that accepts GetAdvancedClusterLabelArray and GetAdvancedClusterLabelArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterLabelArrayInput` via:
 //
-//          GetAdvancedClusterLabelArray{ GetAdvancedClusterLabelArgs{...} }
+//	GetAdvancedClusterLabelArray{ GetAdvancedClusterLabelArgs{...} }
 type GetAdvancedClusterLabelArrayInput interface {
 	pulumi.Input
 
@@ -11917,7 +11925,7 @@ type GetAdvancedClusterReplicationSpec struct {
 // GetAdvancedClusterReplicationSpecInput is an input type that accepts GetAdvancedClusterReplicationSpecArgs and GetAdvancedClusterReplicationSpecOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecInput` via:
 //
-//          GetAdvancedClusterReplicationSpecArgs{...}
+//	GetAdvancedClusterReplicationSpecArgs{...}
 type GetAdvancedClusterReplicationSpecInput interface {
 	pulumi.Input
 
@@ -11952,7 +11960,7 @@ func (i GetAdvancedClusterReplicationSpecArgs) ToGetAdvancedClusterReplicationSp
 // GetAdvancedClusterReplicationSpecArrayInput is an input type that accepts GetAdvancedClusterReplicationSpecArray and GetAdvancedClusterReplicationSpecArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecArrayInput` via:
 //
-//          GetAdvancedClusterReplicationSpecArray{ GetAdvancedClusterReplicationSpecArgs{...} }
+//	GetAdvancedClusterReplicationSpecArray{ GetAdvancedClusterReplicationSpecArgs{...} }
 type GetAdvancedClusterReplicationSpecArrayInput interface {
 	pulumi.Input
 
@@ -12056,7 +12064,7 @@ type GetAdvancedClusterReplicationSpecRegionConfig struct {
 // GetAdvancedClusterReplicationSpecRegionConfigInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigArgs and GetAdvancedClusterReplicationSpecRegionConfigOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigArgs{...}
+//	GetAdvancedClusterReplicationSpecRegionConfigArgs{...}
 type GetAdvancedClusterReplicationSpecRegionConfigInput interface {
 	pulumi.Input
 
@@ -12098,7 +12106,7 @@ func (i GetAdvancedClusterReplicationSpecRegionConfigArgs) ToGetAdvancedClusterR
 // GetAdvancedClusterReplicationSpecRegionConfigArrayInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigArray and GetAdvancedClusterReplicationSpecRegionConfigArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigArrayInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigArray{ GetAdvancedClusterReplicationSpecRegionConfigArgs{...} }
+//	GetAdvancedClusterReplicationSpecRegionConfigArray{ GetAdvancedClusterReplicationSpecRegionConfigArgs{...} }
 type GetAdvancedClusterReplicationSpecRegionConfigArrayInput interface {
 	pulumi.Input
 
@@ -12218,7 +12226,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 // GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs and GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//	GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface {
 	pulumi.Input
 
@@ -12262,11 +12270,11 @@ func (i GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs) ToGetAd
 // GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//	        GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput interface {
 	pulumi.Input
 
@@ -12420,7 +12428,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 // GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs and GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
+//	GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...}
 type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput interface {
 	pulumi.Input
 
@@ -12456,7 +12464,7 @@ func (i GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ToGetAdvan
 // GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray and GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray{ GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...} }
+//	GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArray{ GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{...} }
 type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArrayInput interface {
 	pulumi.Input
 
@@ -12559,7 +12567,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 // GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs and GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
+//	GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface {
 	pulumi.Input
 
@@ -12603,11 +12611,11 @@ func (i GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs) ToGetAd
 // GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
+//	        GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput interface {
 	pulumi.Input
 
@@ -12761,7 +12769,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 // GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs and GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//	GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 	pulumi.Input
 
@@ -12805,11 +12813,11 @@ func (i GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs) ToGetAdv
 // GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs, GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtr and GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput values.
 // You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput` via:
 //
-//          GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//	        GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput interface {
 	pulumi.Input
 
@@ -12986,7 +12994,7 @@ type GetAdvancedClustersResult struct {
 // GetAdvancedClustersResultInput is an input type that accepts GetAdvancedClustersResultArgs and GetAdvancedClustersResultOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultInput` via:
 //
-//          GetAdvancedClustersResultArgs{...}
+//	GetAdvancedClustersResultArgs{...}
 type GetAdvancedClustersResultInput interface {
 	pulumi.Input
 
@@ -13045,7 +13053,7 @@ func (i GetAdvancedClustersResultArgs) ToGetAdvancedClustersResultOutputWithCont
 // GetAdvancedClustersResultArrayInput is an input type that accepts GetAdvancedClustersResultArray and GetAdvancedClustersResultArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultArrayInput` via:
 //
-//          GetAdvancedClustersResultArray{ GetAdvancedClustersResultArgs{...} }
+//	GetAdvancedClustersResultArray{ GetAdvancedClustersResultArgs{...} }
 type GetAdvancedClustersResultArrayInput interface {
 	pulumi.Input
 
@@ -13218,7 +13226,7 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 // GetAdvancedClustersResultAdvancedConfigurationInput is an input type that accepts GetAdvancedClustersResultAdvancedConfigurationArgs and GetAdvancedClustersResultAdvancedConfigurationOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultAdvancedConfigurationInput` via:
 //
-//          GetAdvancedClustersResultAdvancedConfigurationArgs{...}
+//	GetAdvancedClustersResultAdvancedConfigurationArgs{...}
 type GetAdvancedClustersResultAdvancedConfigurationInput interface {
 	pulumi.Input
 
@@ -13262,7 +13270,7 @@ func (i GetAdvancedClustersResultAdvancedConfigurationArgs) ToGetAdvancedCluster
 // GetAdvancedClustersResultAdvancedConfigurationArrayInput is an input type that accepts GetAdvancedClustersResultAdvancedConfigurationArray and GetAdvancedClustersResultAdvancedConfigurationArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultAdvancedConfigurationArrayInput` via:
 //
-//          GetAdvancedClustersResultAdvancedConfigurationArray{ GetAdvancedClustersResultAdvancedConfigurationArgs{...} }
+//	GetAdvancedClustersResultAdvancedConfigurationArray{ GetAdvancedClustersResultAdvancedConfigurationArgs{...} }
 type GetAdvancedClustersResultAdvancedConfigurationArrayInput interface {
 	pulumi.Input
 
@@ -13373,7 +13381,7 @@ type GetAdvancedClustersResultBiConnector struct {
 // GetAdvancedClustersResultBiConnectorInput is an input type that accepts GetAdvancedClustersResultBiConnectorArgs and GetAdvancedClustersResultBiConnectorOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultBiConnectorInput` via:
 //
-//          GetAdvancedClustersResultBiConnectorArgs{...}
+//	GetAdvancedClustersResultBiConnectorArgs{...}
 type GetAdvancedClustersResultBiConnectorInput interface {
 	pulumi.Input
 
@@ -13403,7 +13411,7 @@ func (i GetAdvancedClustersResultBiConnectorArgs) ToGetAdvancedClustersResultBiC
 // GetAdvancedClustersResultBiConnectorArrayInput is an input type that accepts GetAdvancedClustersResultBiConnectorArray and GetAdvancedClustersResultBiConnectorArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultBiConnectorArrayInput` via:
 //
-//          GetAdvancedClustersResultBiConnectorArray{ GetAdvancedClustersResultBiConnectorArgs{...} }
+//	GetAdvancedClustersResultBiConnectorArray{ GetAdvancedClustersResultBiConnectorArgs{...} }
 type GetAdvancedClustersResultBiConnectorArrayInput interface {
 	pulumi.Input
 
@@ -13484,7 +13492,7 @@ type GetAdvancedClustersResultConnectionString struct {
 // GetAdvancedClustersResultConnectionStringInput is an input type that accepts GetAdvancedClustersResultConnectionStringArgs and GetAdvancedClustersResultConnectionStringOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringInput` via:
 //
-//          GetAdvancedClustersResultConnectionStringArgs{...}
+//	GetAdvancedClustersResultConnectionStringArgs{...}
 type GetAdvancedClustersResultConnectionStringInput interface {
 	pulumi.Input
 
@@ -13519,7 +13527,7 @@ func (i GetAdvancedClustersResultConnectionStringArgs) ToGetAdvancedClustersResu
 // GetAdvancedClustersResultConnectionStringArrayInput is an input type that accepts GetAdvancedClustersResultConnectionStringArray and GetAdvancedClustersResultConnectionStringArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringArrayInput` via:
 //
-//          GetAdvancedClustersResultConnectionStringArray{ GetAdvancedClustersResultConnectionStringArgs{...} }
+//	GetAdvancedClustersResultConnectionStringArray{ GetAdvancedClustersResultConnectionStringArgs{...} }
 type GetAdvancedClustersResultConnectionStringArrayInput interface {
 	pulumi.Input
 
@@ -13617,7 +13625,7 @@ type GetAdvancedClustersResultConnectionStringPrivateEndpoint struct {
 // GetAdvancedClustersResultConnectionStringPrivateEndpointInput is an input type that accepts GetAdvancedClustersResultConnectionStringPrivateEndpointArgs and GetAdvancedClustersResultConnectionStringPrivateEndpointOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringPrivateEndpointInput` via:
 //
-//          GetAdvancedClustersResultConnectionStringPrivateEndpointArgs{...}
+//	GetAdvancedClustersResultConnectionStringPrivateEndpointArgs{...}
 type GetAdvancedClustersResultConnectionStringPrivateEndpointInput interface {
 	pulumi.Input
 
@@ -13647,7 +13655,7 @@ func (i GetAdvancedClustersResultConnectionStringPrivateEndpointArgs) ToGetAdvan
 // GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput is an input type that accepts GetAdvancedClustersResultConnectionStringPrivateEndpointArray and GetAdvancedClustersResultConnectionStringPrivateEndpointArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput` via:
 //
-//          GetAdvancedClustersResultConnectionStringPrivateEndpointArray{ GetAdvancedClustersResultConnectionStringPrivateEndpointArgs{...} }
+//	GetAdvancedClustersResultConnectionStringPrivateEndpointArray{ GetAdvancedClustersResultConnectionStringPrivateEndpointArgs{...} }
 type GetAdvancedClustersResultConnectionStringPrivateEndpointArrayInput interface {
 	pulumi.Input
 
@@ -13731,7 +13739,7 @@ type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint struct {
 // GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointInput is an input type that accepts GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs and GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs{...}
+//	GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs{...}
 type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
@@ -13761,7 +13769,7 @@ func (i GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs) To
 // GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray and GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray{ GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs{...} }
+//	GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArray{ GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArgs{...} }
 type GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
@@ -13840,7 +13848,7 @@ type GetAdvancedClustersResultLabel struct {
 // GetAdvancedClustersResultLabelInput is an input type that accepts GetAdvancedClustersResultLabelArgs and GetAdvancedClustersResultLabelOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultLabelInput` via:
 //
-//          GetAdvancedClustersResultLabelArgs{...}
+//	GetAdvancedClustersResultLabelArgs{...}
 type GetAdvancedClustersResultLabelInput interface {
 	pulumi.Input
 
@@ -13870,7 +13878,7 @@ func (i GetAdvancedClustersResultLabelArgs) ToGetAdvancedClustersResultLabelOutp
 // GetAdvancedClustersResultLabelArrayInput is an input type that accepts GetAdvancedClustersResultLabelArray and GetAdvancedClustersResultLabelArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultLabelArrayInput` via:
 //
-//          GetAdvancedClustersResultLabelArray{ GetAdvancedClustersResultLabelArgs{...} }
+//	GetAdvancedClustersResultLabelArray{ GetAdvancedClustersResultLabelArgs{...} }
 type GetAdvancedClustersResultLabelArrayInput interface {
 	pulumi.Input
 
@@ -13951,7 +13959,7 @@ type GetAdvancedClustersResultReplicationSpec struct {
 // GetAdvancedClustersResultReplicationSpecInput is an input type that accepts GetAdvancedClustersResultReplicationSpecArgs and GetAdvancedClustersResultReplicationSpecOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecArgs{...}
+//	GetAdvancedClustersResultReplicationSpecArgs{...}
 type GetAdvancedClustersResultReplicationSpecInput interface {
 	pulumi.Input
 
@@ -13986,7 +13994,7 @@ func (i GetAdvancedClustersResultReplicationSpecArgs) ToGetAdvancedClustersResul
 // GetAdvancedClustersResultReplicationSpecArrayInput is an input type that accepts GetAdvancedClustersResultReplicationSpecArray and GetAdvancedClustersResultReplicationSpecArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecArrayInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecArray{ GetAdvancedClustersResultReplicationSpecArgs{...} }
+//	GetAdvancedClustersResultReplicationSpecArray{ GetAdvancedClustersResultReplicationSpecArgs{...} }
 type GetAdvancedClustersResultReplicationSpecArrayInput interface {
 	pulumi.Input
 
@@ -14090,7 +14098,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfig struct {
 // GetAdvancedClustersResultReplicationSpecRegionConfigInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigArgs and GetAdvancedClustersResultReplicationSpecRegionConfigOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigArgs{...}
+//	GetAdvancedClustersResultReplicationSpecRegionConfigArgs{...}
 type GetAdvancedClustersResultReplicationSpecRegionConfigInput interface {
 	pulumi.Input
 
@@ -14132,7 +14140,7 @@ func (i GetAdvancedClustersResultReplicationSpecRegionConfigArgs) ToGetAdvancedC
 // GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigArray and GetAdvancedClustersResultReplicationSpecRegionConfigArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigArray{ GetAdvancedClustersResultReplicationSpecRegionConfigArgs{...} }
+//	GetAdvancedClustersResultReplicationSpecRegionConfigArray{ GetAdvancedClustersResultReplicationSpecRegionConfigArgs{...} }
 type GetAdvancedClustersResultReplicationSpecRegionConfigArrayInput interface {
 	pulumi.Input
 
@@ -14252,7 +14260,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
 // GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs and GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//	GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput interface {
 	pulumi.Input
 
@@ -14296,11 +14304,11 @@ func (i GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs) 
 // GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
+//	        GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrInput interface {
 	pulumi.Input
 
@@ -14458,7 +14466,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling struct {
 // GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs and GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{...}
+//	GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{...}
 type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput interface {
 	pulumi.Input
 
@@ -14494,7 +14502,7 @@ func (i GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs) ToG
 // GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray and GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray{ GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{...} }
+//	GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArray{ GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{...} }
 type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArrayInput interface {
 	pulumi.Input
 
@@ -14597,7 +14605,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
 // GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs and GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{...}
+//	GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{...}
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput interface {
 	pulumi.Input
 
@@ -14641,11 +14649,11 @@ func (i GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs) 
 // GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{...}
+//	        GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrInput interface {
 	pulumi.Input
 
@@ -14803,7 +14811,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
 // GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs and GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//	GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{...}
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput interface {
 	pulumi.Input
 
@@ -14847,11 +14855,11 @@ func (i GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs) T
 // GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs, GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtr and GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput values.
 // You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput` via:
 //
-//          GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{...}
+//	        GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrInput interface {
 	pulumi.Input
 
@@ -15013,7 +15021,7 @@ type GetAlertConfigurationMatcher struct {
 // GetAlertConfigurationMatcherInput is an input type that accepts GetAlertConfigurationMatcherArgs and GetAlertConfigurationMatcherOutput values.
 // You can construct a concrete instance of `GetAlertConfigurationMatcherInput` via:
 //
-//          GetAlertConfigurationMatcherArgs{...}
+//	GetAlertConfigurationMatcherArgs{...}
 type GetAlertConfigurationMatcherInput interface {
 	pulumi.Input
 
@@ -15053,7 +15061,7 @@ func (i GetAlertConfigurationMatcherArgs) ToGetAlertConfigurationMatcherOutputWi
 // GetAlertConfigurationMatcherArrayInput is an input type that accepts GetAlertConfigurationMatcherArray and GetAlertConfigurationMatcherArrayOutput values.
 // You can construct a concrete instance of `GetAlertConfigurationMatcherArrayInput` via:
 //
-//          GetAlertConfigurationMatcherArray{ GetAlertConfigurationMatcherArgs{...} }
+//	GetAlertConfigurationMatcherArray{ GetAlertConfigurationMatcherArgs{...} }
 type GetAlertConfigurationMatcherArrayInput interface {
 	pulumi.Input
 
@@ -15133,7 +15141,7 @@ func (o GetAlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) GetAle
 }
 
 type GetAlertConfigurationMetricThresholdConfig struct {
-	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode string `pulumi:"mode"`
@@ -15168,7 +15176,7 @@ type GetAlertConfigurationMetricThresholdConfig struct {
 // GetAlertConfigurationMetricThresholdConfigInput is an input type that accepts GetAlertConfigurationMetricThresholdConfigArgs and GetAlertConfigurationMetricThresholdConfigOutput values.
 // You can construct a concrete instance of `GetAlertConfigurationMetricThresholdConfigInput` via:
 //
-//          GetAlertConfigurationMetricThresholdConfigArgs{...}
+//	GetAlertConfigurationMetricThresholdConfigArgs{...}
 type GetAlertConfigurationMetricThresholdConfigInput interface {
 	pulumi.Input
 
@@ -15177,7 +15185,7 @@ type GetAlertConfigurationMetricThresholdConfigInput interface {
 }
 
 type GetAlertConfigurationMetricThresholdConfigArgs struct {
-	// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName pulumi.StringInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode pulumi.StringInput `pulumi:"mode"`
@@ -15224,7 +15232,7 @@ func (i GetAlertConfigurationMetricThresholdConfigArgs) ToGetAlertConfigurationM
 // GetAlertConfigurationMetricThresholdConfigArrayInput is an input type that accepts GetAlertConfigurationMetricThresholdConfigArray and GetAlertConfigurationMetricThresholdConfigArrayOutput values.
 // You can construct a concrete instance of `GetAlertConfigurationMetricThresholdConfigArrayInput` via:
 //
-//          GetAlertConfigurationMetricThresholdConfigArray{ GetAlertConfigurationMetricThresholdConfigArgs{...} }
+//	GetAlertConfigurationMetricThresholdConfigArray{ GetAlertConfigurationMetricThresholdConfigArgs{...} }
 type GetAlertConfigurationMetricThresholdConfigArrayInput interface {
 	pulumi.Input
 
@@ -15260,7 +15268,7 @@ func (o GetAlertConfigurationMetricThresholdConfigOutput) ToGetAlertConfiguratio
 	return o
 }
 
-// Name of the metric to check. The full list of current options is available [here](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types)
+// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o GetAlertConfigurationMetricThresholdConfigOutput) MetricName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.MetricName }).(pulumi.StringOutput)
 }
@@ -15391,7 +15399,7 @@ type GetAlertConfigurationNotification struct {
 // GetAlertConfigurationNotificationInput is an input type that accepts GetAlertConfigurationNotificationArgs and GetAlertConfigurationNotificationOutput values.
 // You can construct a concrete instance of `GetAlertConfigurationNotificationInput` via:
 //
-//          GetAlertConfigurationNotificationArgs{...}
+//	GetAlertConfigurationNotificationArgs{...}
 type GetAlertConfigurationNotificationInput interface {
 	pulumi.Input
 
@@ -15477,7 +15485,7 @@ func (i GetAlertConfigurationNotificationArgs) ToGetAlertConfigurationNotificati
 // GetAlertConfigurationNotificationArrayInput is an input type that accepts GetAlertConfigurationNotificationArray and GetAlertConfigurationNotificationArrayOutput values.
 // You can construct a concrete instance of `GetAlertConfigurationNotificationArrayInput` via:
 //
-//          GetAlertConfigurationNotificationArray{ GetAlertConfigurationNotificationArgs{...} }
+//	GetAlertConfigurationNotificationArray{ GetAlertConfigurationNotificationArgs{...} }
 type GetAlertConfigurationNotificationArrayInput interface {
 	pulumi.Input
 
@@ -15694,7 +15702,7 @@ type GetAlertConfigurationThresholdConfig struct {
 // GetAlertConfigurationThresholdConfigInput is an input type that accepts GetAlertConfigurationThresholdConfigArgs and GetAlertConfigurationThresholdConfigOutput values.
 // You can construct a concrete instance of `GetAlertConfigurationThresholdConfigInput` via:
 //
-//          GetAlertConfigurationThresholdConfigArgs{...}
+//	GetAlertConfigurationThresholdConfigArgs{...}
 type GetAlertConfigurationThresholdConfigInput interface {
 	pulumi.Input
 
@@ -15746,7 +15754,7 @@ func (i GetAlertConfigurationThresholdConfigArgs) ToGetAlertConfigurationThresho
 // GetAlertConfigurationThresholdConfigArrayInput is an input type that accepts GetAlertConfigurationThresholdConfigArray and GetAlertConfigurationThresholdConfigArrayOutput values.
 // You can construct a concrete instance of `GetAlertConfigurationThresholdConfigArrayInput` via:
 //
-//          GetAlertConfigurationThresholdConfigArray{ GetAlertConfigurationThresholdConfigArgs{...} }
+//	GetAlertConfigurationThresholdConfigArray{ GetAlertConfigurationThresholdConfigArgs{...} }
 type GetAlertConfigurationThresholdConfigArrayInput interface {
 	pulumi.Input
 
@@ -15847,7 +15855,7 @@ type GetCloudBackupScheduleExport struct {
 // GetCloudBackupScheduleExportInput is an input type that accepts GetCloudBackupScheduleExportArgs and GetCloudBackupScheduleExportOutput values.
 // You can construct a concrete instance of `GetCloudBackupScheduleExportInput` via:
 //
-//          GetCloudBackupScheduleExportArgs{...}
+//	GetCloudBackupScheduleExportArgs{...}
 type GetCloudBackupScheduleExportInput interface {
 	pulumi.Input
 
@@ -15877,7 +15885,7 @@ func (i GetCloudBackupScheduleExportArgs) ToGetCloudBackupScheduleExportOutputWi
 // GetCloudBackupScheduleExportArrayInput is an input type that accepts GetCloudBackupScheduleExportArray and GetCloudBackupScheduleExportArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupScheduleExportArrayInput` via:
 //
-//          GetCloudBackupScheduleExportArray{ GetCloudBackupScheduleExportArgs{...} }
+//	GetCloudBackupScheduleExportArray{ GetCloudBackupScheduleExportArgs{...} }
 type GetCloudBackupScheduleExportArrayInput interface {
 	pulumi.Input
 
@@ -15959,7 +15967,7 @@ type GetCloudBackupSchedulePolicyItemDaily struct {
 // GetCloudBackupSchedulePolicyItemDailyInput is an input type that accepts GetCloudBackupSchedulePolicyItemDailyArgs and GetCloudBackupSchedulePolicyItemDailyOutput values.
 // You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemDailyInput` via:
 //
-//          GetCloudBackupSchedulePolicyItemDailyArgs{...}
+//	GetCloudBackupSchedulePolicyItemDailyArgs{...}
 type GetCloudBackupSchedulePolicyItemDailyInput interface {
 	pulumi.Input
 
@@ -15995,7 +16003,7 @@ func (i GetCloudBackupSchedulePolicyItemDailyArgs) ToGetCloudBackupSchedulePolic
 // GetCloudBackupSchedulePolicyItemDailyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemDailyArray and GetCloudBackupSchedulePolicyItemDailyArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemDailyArrayInput` via:
 //
-//          GetCloudBackupSchedulePolicyItemDailyArray{ GetCloudBackupSchedulePolicyItemDailyArgs{...} }
+//	GetCloudBackupSchedulePolicyItemDailyArray{ GetCloudBackupSchedulePolicyItemDailyArgs{...} }
 type GetCloudBackupSchedulePolicyItemDailyArrayInput interface {
 	pulumi.Input
 
@@ -16092,7 +16100,7 @@ type GetCloudBackupSchedulePolicyItemHourly struct {
 // GetCloudBackupSchedulePolicyItemHourlyInput is an input type that accepts GetCloudBackupSchedulePolicyItemHourlyArgs and GetCloudBackupSchedulePolicyItemHourlyOutput values.
 // You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemHourlyInput` via:
 //
-//          GetCloudBackupSchedulePolicyItemHourlyArgs{...}
+//	GetCloudBackupSchedulePolicyItemHourlyArgs{...}
 type GetCloudBackupSchedulePolicyItemHourlyInput interface {
 	pulumi.Input
 
@@ -16128,7 +16136,7 @@ func (i GetCloudBackupSchedulePolicyItemHourlyArgs) ToGetCloudBackupSchedulePoli
 // GetCloudBackupSchedulePolicyItemHourlyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemHourlyArray and GetCloudBackupSchedulePolicyItemHourlyArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemHourlyArrayInput` via:
 //
-//          GetCloudBackupSchedulePolicyItemHourlyArray{ GetCloudBackupSchedulePolicyItemHourlyArgs{...} }
+//	GetCloudBackupSchedulePolicyItemHourlyArray{ GetCloudBackupSchedulePolicyItemHourlyArgs{...} }
 type GetCloudBackupSchedulePolicyItemHourlyArrayInput interface {
 	pulumi.Input
 
@@ -16225,7 +16233,7 @@ type GetCloudBackupSchedulePolicyItemMonthly struct {
 // GetCloudBackupSchedulePolicyItemMonthlyInput is an input type that accepts GetCloudBackupSchedulePolicyItemMonthlyArgs and GetCloudBackupSchedulePolicyItemMonthlyOutput values.
 // You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemMonthlyInput` via:
 //
-//          GetCloudBackupSchedulePolicyItemMonthlyArgs{...}
+//	GetCloudBackupSchedulePolicyItemMonthlyArgs{...}
 type GetCloudBackupSchedulePolicyItemMonthlyInput interface {
 	pulumi.Input
 
@@ -16261,7 +16269,7 @@ func (i GetCloudBackupSchedulePolicyItemMonthlyArgs) ToGetCloudBackupSchedulePol
 // GetCloudBackupSchedulePolicyItemMonthlyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemMonthlyArray and GetCloudBackupSchedulePolicyItemMonthlyArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemMonthlyArrayInput` via:
 //
-//          GetCloudBackupSchedulePolicyItemMonthlyArray{ GetCloudBackupSchedulePolicyItemMonthlyArgs{...} }
+//	GetCloudBackupSchedulePolicyItemMonthlyArray{ GetCloudBackupSchedulePolicyItemMonthlyArgs{...} }
 type GetCloudBackupSchedulePolicyItemMonthlyArrayInput interface {
 	pulumi.Input
 
@@ -16358,7 +16366,7 @@ type GetCloudBackupSchedulePolicyItemWeekly struct {
 // GetCloudBackupSchedulePolicyItemWeeklyInput is an input type that accepts GetCloudBackupSchedulePolicyItemWeeklyArgs and GetCloudBackupSchedulePolicyItemWeeklyOutput values.
 // You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemWeeklyInput` via:
 //
-//          GetCloudBackupSchedulePolicyItemWeeklyArgs{...}
+//	GetCloudBackupSchedulePolicyItemWeeklyArgs{...}
 type GetCloudBackupSchedulePolicyItemWeeklyInput interface {
 	pulumi.Input
 
@@ -16394,7 +16402,7 @@ func (i GetCloudBackupSchedulePolicyItemWeeklyArgs) ToGetCloudBackupSchedulePoli
 // GetCloudBackupSchedulePolicyItemWeeklyArrayInput is an input type that accepts GetCloudBackupSchedulePolicyItemWeeklyArray and GetCloudBackupSchedulePolicyItemWeeklyArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSchedulePolicyItemWeeklyArrayInput` via:
 //
-//          GetCloudBackupSchedulePolicyItemWeeklyArray{ GetCloudBackupSchedulePolicyItemWeeklyArgs{...} }
+//	GetCloudBackupSchedulePolicyItemWeeklyArray{ GetCloudBackupSchedulePolicyItemWeeklyArgs{...} }
 type GetCloudBackupSchedulePolicyItemWeeklyArrayInput interface {
 	pulumi.Input
 
@@ -16489,7 +16497,7 @@ type GetCloudBackupSnapshotExportBucketsResult struct {
 // GetCloudBackupSnapshotExportBucketsResultInput is an input type that accepts GetCloudBackupSnapshotExportBucketsResultArgs and GetCloudBackupSnapshotExportBucketsResultOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportBucketsResultInput` via:
 //
-//          GetCloudBackupSnapshotExportBucketsResultArgs{...}
+//	GetCloudBackupSnapshotExportBucketsResultArgs{...}
 type GetCloudBackupSnapshotExportBucketsResultInput interface {
 	pulumi.Input
 
@@ -16523,7 +16531,7 @@ func (i GetCloudBackupSnapshotExportBucketsResultArgs) ToGetCloudBackupSnapshotE
 // GetCloudBackupSnapshotExportBucketsResultArrayInput is an input type that accepts GetCloudBackupSnapshotExportBucketsResultArray and GetCloudBackupSnapshotExportBucketsResultArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportBucketsResultArrayInput` via:
 //
-//          GetCloudBackupSnapshotExportBucketsResultArray{ GetCloudBackupSnapshotExportBucketsResultArgs{...} }
+//	GetCloudBackupSnapshotExportBucketsResultArray{ GetCloudBackupSnapshotExportBucketsResultArgs{...} }
 type GetCloudBackupSnapshotExportBucketsResultArrayInput interface {
 	pulumi.Input
 
@@ -16609,7 +16617,7 @@ type GetCloudBackupSnapshotExportJobComponent struct {
 // GetCloudBackupSnapshotExportJobComponentInput is an input type that accepts GetCloudBackupSnapshotExportJobComponentArgs and GetCloudBackupSnapshotExportJobComponentOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobComponentInput` via:
 //
-//          GetCloudBackupSnapshotExportJobComponentArgs{...}
+//	GetCloudBackupSnapshotExportJobComponentArgs{...}
 type GetCloudBackupSnapshotExportJobComponentInput interface {
 	pulumi.Input
 
@@ -16639,7 +16647,7 @@ func (i GetCloudBackupSnapshotExportJobComponentArgs) ToGetCloudBackupSnapshotEx
 // GetCloudBackupSnapshotExportJobComponentArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobComponentArray and GetCloudBackupSnapshotExportJobComponentArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobComponentArrayInput` via:
 //
-//          GetCloudBackupSnapshotExportJobComponentArray{ GetCloudBackupSnapshotExportJobComponentArgs{...} }
+//	GetCloudBackupSnapshotExportJobComponentArray{ GetCloudBackupSnapshotExportJobComponentArgs{...} }
 type GetCloudBackupSnapshotExportJobComponentArrayInput interface {
 	pulumi.Input
 
@@ -16715,7 +16723,7 @@ type GetCloudBackupSnapshotExportJobCustomData struct {
 // GetCloudBackupSnapshotExportJobCustomDataInput is an input type that accepts GetCloudBackupSnapshotExportJobCustomDataArgs and GetCloudBackupSnapshotExportJobCustomDataOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobCustomDataInput` via:
 //
-//          GetCloudBackupSnapshotExportJobCustomDataArgs{...}
+//	GetCloudBackupSnapshotExportJobCustomDataArgs{...}
 type GetCloudBackupSnapshotExportJobCustomDataInput interface {
 	pulumi.Input
 
@@ -16745,7 +16753,7 @@ func (i GetCloudBackupSnapshotExportJobCustomDataArgs) ToGetCloudBackupSnapshotE
 // GetCloudBackupSnapshotExportJobCustomDataArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobCustomDataArray and GetCloudBackupSnapshotExportJobCustomDataArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobCustomDataArrayInput` via:
 //
-//          GetCloudBackupSnapshotExportJobCustomDataArray{ GetCloudBackupSnapshotExportJobCustomDataArgs{...} }
+//	GetCloudBackupSnapshotExportJobCustomDataArray{ GetCloudBackupSnapshotExportJobCustomDataArgs{...} }
 type GetCloudBackupSnapshotExportJobCustomDataArrayInput interface {
 	pulumi.Input
 
@@ -16839,7 +16847,7 @@ type GetCloudBackupSnapshotExportJobsResult struct {
 // GetCloudBackupSnapshotExportJobsResultInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultArgs and GetCloudBackupSnapshotExportJobsResultOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultInput` via:
 //
-//          GetCloudBackupSnapshotExportJobsResultArgs{...}
+//	GetCloudBackupSnapshotExportJobsResultArgs{...}
 type GetCloudBackupSnapshotExportJobsResultInput interface {
 	pulumi.Input
 
@@ -16887,7 +16895,7 @@ func (i GetCloudBackupSnapshotExportJobsResultArgs) ToGetCloudBackupSnapshotExpo
 // GetCloudBackupSnapshotExportJobsResultArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultArray and GetCloudBackupSnapshotExportJobsResultArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultArrayInput` via:
 //
-//          GetCloudBackupSnapshotExportJobsResultArray{ GetCloudBackupSnapshotExportJobsResultArgs{...} }
+//	GetCloudBackupSnapshotExportJobsResultArray{ GetCloudBackupSnapshotExportJobsResultArgs{...} }
 type GetCloudBackupSnapshotExportJobsResultArrayInput interface {
 	pulumi.Input
 
@@ -17015,7 +17023,7 @@ type GetCloudBackupSnapshotExportJobsResultComponent struct {
 // GetCloudBackupSnapshotExportJobsResultComponentInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultComponentArgs and GetCloudBackupSnapshotExportJobsResultComponentOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultComponentInput` via:
 //
-//          GetCloudBackupSnapshotExportJobsResultComponentArgs{...}
+//	GetCloudBackupSnapshotExportJobsResultComponentArgs{...}
 type GetCloudBackupSnapshotExportJobsResultComponentInput interface {
 	pulumi.Input
 
@@ -17045,7 +17053,7 @@ func (i GetCloudBackupSnapshotExportJobsResultComponentArgs) ToGetCloudBackupSna
 // GetCloudBackupSnapshotExportJobsResultComponentArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultComponentArray and GetCloudBackupSnapshotExportJobsResultComponentArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultComponentArrayInput` via:
 //
-//          GetCloudBackupSnapshotExportJobsResultComponentArray{ GetCloudBackupSnapshotExportJobsResultComponentArgs{...} }
+//	GetCloudBackupSnapshotExportJobsResultComponentArray{ GetCloudBackupSnapshotExportJobsResultComponentArgs{...} }
 type GetCloudBackupSnapshotExportJobsResultComponentArrayInput interface {
 	pulumi.Input
 
@@ -17121,7 +17129,7 @@ type GetCloudBackupSnapshotExportJobsResultCustomData struct {
 // GetCloudBackupSnapshotExportJobsResultCustomDataInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultCustomDataArgs and GetCloudBackupSnapshotExportJobsResultCustomDataOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultCustomDataInput` via:
 //
-//          GetCloudBackupSnapshotExportJobsResultCustomDataArgs{...}
+//	GetCloudBackupSnapshotExportJobsResultCustomDataArgs{...}
 type GetCloudBackupSnapshotExportJobsResultCustomDataInput interface {
 	pulumi.Input
 
@@ -17151,7 +17159,7 @@ func (i GetCloudBackupSnapshotExportJobsResultCustomDataArgs) ToGetCloudBackupSn
 // GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput is an input type that accepts GetCloudBackupSnapshotExportJobsResultCustomDataArray and GetCloudBackupSnapshotExportJobsResultCustomDataArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput` via:
 //
-//          GetCloudBackupSnapshotExportJobsResultCustomDataArray{ GetCloudBackupSnapshotExportJobsResultCustomDataArgs{...} }
+//	GetCloudBackupSnapshotExportJobsResultCustomDataArray{ GetCloudBackupSnapshotExportJobsResultCustomDataArgs{...} }
 type GetCloudBackupSnapshotExportJobsResultCustomDataArrayInput interface {
 	pulumi.Input
 
@@ -17229,7 +17237,7 @@ type GetCloudBackupSnapshotMember struct {
 // GetCloudBackupSnapshotMemberInput is an input type that accepts GetCloudBackupSnapshotMemberArgs and GetCloudBackupSnapshotMemberOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotMemberInput` via:
 //
-//          GetCloudBackupSnapshotMemberArgs{...}
+//	GetCloudBackupSnapshotMemberArgs{...}
 type GetCloudBackupSnapshotMemberInput interface {
 	pulumi.Input
 
@@ -17261,7 +17269,7 @@ func (i GetCloudBackupSnapshotMemberArgs) ToGetCloudBackupSnapshotMemberOutputWi
 // GetCloudBackupSnapshotMemberArrayInput is an input type that accepts GetCloudBackupSnapshotMemberArray and GetCloudBackupSnapshotMemberArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotMemberArrayInput` via:
 //
-//          GetCloudBackupSnapshotMemberArray{ GetCloudBackupSnapshotMemberArgs{...} }
+//	GetCloudBackupSnapshotMemberArray{ GetCloudBackupSnapshotMemberArgs{...} }
 type GetCloudBackupSnapshotMemberArrayInput interface {
 	pulumi.Input
 
@@ -17356,7 +17364,8 @@ type GetCloudBackupSnapshotRestoreJobsResult struct {
 	SnapshotId string `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 	TargetClusterName string `pulumi:"targetClusterName"`
-	TargetProjectId   string `pulumi:"targetProjectId"`
+	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	TargetProjectId string `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
 	Timestamp string `pulumi:"timestamp"`
 }
@@ -17364,7 +17373,7 @@ type GetCloudBackupSnapshotRestoreJobsResult struct {
 // GetCloudBackupSnapshotRestoreJobsResultInput is an input type that accepts GetCloudBackupSnapshotRestoreJobsResultArgs and GetCloudBackupSnapshotRestoreJobsResultOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotRestoreJobsResultInput` via:
 //
-//          GetCloudBackupSnapshotRestoreJobsResultArgs{...}
+//	GetCloudBackupSnapshotRestoreJobsResultArgs{...}
 type GetCloudBackupSnapshotRestoreJobsResultInput interface {
 	pulumi.Input
 
@@ -17396,7 +17405,8 @@ type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 	TargetClusterName pulumi.StringInput `pulumi:"targetClusterName"`
-	TargetProjectId   pulumi.StringInput `pulumi:"targetProjectId"`
+	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	TargetProjectId pulumi.StringInput `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
 	Timestamp pulumi.StringInput `pulumi:"timestamp"`
 }
@@ -17416,7 +17426,7 @@ func (i GetCloudBackupSnapshotRestoreJobsResultArgs) ToGetCloudBackupSnapshotRes
 // GetCloudBackupSnapshotRestoreJobsResultArrayInput is an input type that accepts GetCloudBackupSnapshotRestoreJobsResultArray and GetCloudBackupSnapshotRestoreJobsResultArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotRestoreJobsResultArrayInput` via:
 //
-//          GetCloudBackupSnapshotRestoreJobsResultArray{ GetCloudBackupSnapshotRestoreJobsResultArgs{...} }
+//	GetCloudBackupSnapshotRestoreJobsResultArray{ GetCloudBackupSnapshotRestoreJobsResultArgs{...} }
 type GetCloudBackupSnapshotRestoreJobsResultArrayInput interface {
 	pulumi.Input
 
@@ -17514,6 +17524,7 @@ func (o GetCloudBackupSnapshotRestoreJobsResultOutput) TargetClusterName() pulum
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.TargetClusterName }).(pulumi.StringOutput)
 }
 
+// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) TargetProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
 }
@@ -17577,7 +17588,7 @@ type GetCloudBackupSnapshotsResult struct {
 // GetCloudBackupSnapshotsResultInput is an input type that accepts GetCloudBackupSnapshotsResultArgs and GetCloudBackupSnapshotsResultOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotsResultInput` via:
 //
-//          GetCloudBackupSnapshotsResultArgs{...}
+//	GetCloudBackupSnapshotsResultArgs{...}
 type GetCloudBackupSnapshotsResultInput interface {
 	pulumi.Input
 
@@ -17631,7 +17642,7 @@ func (i GetCloudBackupSnapshotsResultArgs) ToGetCloudBackupSnapshotsResultOutput
 // GetCloudBackupSnapshotsResultArrayInput is an input type that accepts GetCloudBackupSnapshotsResultArray and GetCloudBackupSnapshotsResultArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotsResultArrayInput` via:
 //
-//          GetCloudBackupSnapshotsResultArray{ GetCloudBackupSnapshotsResultArgs{...} }
+//	GetCloudBackupSnapshotsResultArray{ GetCloudBackupSnapshotsResultArgs{...} }
 type GetCloudBackupSnapshotsResultArrayInput interface {
 	pulumi.Input
 
@@ -17769,7 +17780,7 @@ type GetCloudBackupSnapshotsResultMember struct {
 // GetCloudBackupSnapshotsResultMemberInput is an input type that accepts GetCloudBackupSnapshotsResultMemberArgs and GetCloudBackupSnapshotsResultMemberOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotsResultMemberInput` via:
 //
-//          GetCloudBackupSnapshotsResultMemberArgs{...}
+//	GetCloudBackupSnapshotsResultMemberArgs{...}
 type GetCloudBackupSnapshotsResultMemberInput interface {
 	pulumi.Input
 
@@ -17801,7 +17812,7 @@ func (i GetCloudBackupSnapshotsResultMemberArgs) ToGetCloudBackupSnapshotsResult
 // GetCloudBackupSnapshotsResultMemberArrayInput is an input type that accepts GetCloudBackupSnapshotsResultMemberArray and GetCloudBackupSnapshotsResultMemberArrayOutput values.
 // You can construct a concrete instance of `GetCloudBackupSnapshotsResultMemberArrayInput` via:
 //
-//          GetCloudBackupSnapshotsResultMemberArray{ GetCloudBackupSnapshotsResultMemberArgs{...} }
+//	GetCloudBackupSnapshotsResultMemberArray{ GetCloudBackupSnapshotsResultMemberArgs{...} }
 type GetCloudBackupSnapshotsResultMemberArrayInput interface {
 	pulumi.Input
 
@@ -17894,7 +17905,7 @@ type GetCloudProviderAccessAwsIamRole struct {
 // GetCloudProviderAccessAwsIamRoleInput is an input type that accepts GetCloudProviderAccessAwsIamRoleArgs and GetCloudProviderAccessAwsIamRoleOutput values.
 // You can construct a concrete instance of `GetCloudProviderAccessAwsIamRoleInput` via:
 //
-//          GetCloudProviderAccessAwsIamRoleArgs{...}
+//	GetCloudProviderAccessAwsIamRoleArgs{...}
 type GetCloudProviderAccessAwsIamRoleInput interface {
 	pulumi.Input
 
@@ -17936,7 +17947,7 @@ func (i GetCloudProviderAccessAwsIamRoleArgs) ToGetCloudProviderAccessAwsIamRole
 // GetCloudProviderAccessAwsIamRoleArrayInput is an input type that accepts GetCloudProviderAccessAwsIamRoleArray and GetCloudProviderAccessAwsIamRoleArrayOutput values.
 // You can construct a concrete instance of `GetCloudProviderAccessAwsIamRoleArrayInput` via:
 //
-//          GetCloudProviderAccessAwsIamRoleArray{ GetCloudProviderAccessAwsIamRoleArgs{...} }
+//	GetCloudProviderAccessAwsIamRoleArray{ GetCloudProviderAccessAwsIamRoleArgs{...} }
 type GetCloudProviderAccessAwsIamRoleArrayInput interface {
 	pulumi.Input
 
@@ -18042,7 +18053,7 @@ type GetCloudProviderAccessAwsIamRoleFeatureUsage struct {
 // GetCloudProviderAccessAwsIamRoleFeatureUsageInput is an input type that accepts GetCloudProviderAccessAwsIamRoleFeatureUsageArgs and GetCloudProviderAccessAwsIamRoleFeatureUsageOutput values.
 // You can construct a concrete instance of `GetCloudProviderAccessAwsIamRoleFeatureUsageInput` via:
 //
-//          GetCloudProviderAccessAwsIamRoleFeatureUsageArgs{...}
+//	GetCloudProviderAccessAwsIamRoleFeatureUsageArgs{...}
 type GetCloudProviderAccessAwsIamRoleFeatureUsageInput interface {
 	pulumi.Input
 
@@ -18070,7 +18081,7 @@ func (i GetCloudProviderAccessAwsIamRoleFeatureUsageArgs) ToGetCloudProviderAcce
 // GetCloudProviderAccessAwsIamRoleFeatureUsageArrayInput is an input type that accepts GetCloudProviderAccessAwsIamRoleFeatureUsageArray and GetCloudProviderAccessAwsIamRoleFeatureUsageArrayOutput values.
 // You can construct a concrete instance of `GetCloudProviderAccessAwsIamRoleFeatureUsageArrayInput` via:
 //
-//          GetCloudProviderAccessAwsIamRoleFeatureUsageArray{ GetCloudProviderAccessAwsIamRoleFeatureUsageArgs{...} }
+//	GetCloudProviderAccessAwsIamRoleFeatureUsageArray{ GetCloudProviderAccessAwsIamRoleFeatureUsageArgs{...} }
 type GetCloudProviderAccessAwsIamRoleFeatureUsageArrayInput interface {
 	pulumi.Input
 
@@ -18144,7 +18155,7 @@ type GetCloudProviderAccessSetupAwsConfig struct {
 // GetCloudProviderAccessSetupAwsConfigInput is an input type that accepts GetCloudProviderAccessSetupAwsConfigArgs and GetCloudProviderAccessSetupAwsConfigOutput values.
 // You can construct a concrete instance of `GetCloudProviderAccessSetupAwsConfigInput` via:
 //
-//          GetCloudProviderAccessSetupAwsConfigArgs{...}
+//	GetCloudProviderAccessSetupAwsConfigArgs{...}
 type GetCloudProviderAccessSetupAwsConfigInput interface {
 	pulumi.Input
 
@@ -18174,7 +18185,7 @@ func (i GetCloudProviderAccessSetupAwsConfigArgs) ToGetCloudProviderAccessSetupA
 // GetCloudProviderAccessSetupAwsConfigArrayInput is an input type that accepts GetCloudProviderAccessSetupAwsConfigArray and GetCloudProviderAccessSetupAwsConfigArrayOutput values.
 // You can construct a concrete instance of `GetCloudProviderAccessSetupAwsConfigArrayInput` via:
 //
-//          GetCloudProviderAccessSetupAwsConfigArray{ GetCloudProviderAccessSetupAwsConfigArgs{...} }
+//	GetCloudProviderAccessSetupAwsConfigArray{ GetCloudProviderAccessSetupAwsConfigArgs{...} }
 type GetCloudProviderAccessSetupAwsConfigArrayInput interface {
 	pulumi.Input
 
@@ -18248,7 +18259,7 @@ type GetCloudProviderSnapshotBackupPolicyPolicy struct {
 // GetCloudProviderSnapshotBackupPolicyPolicyInput is an input type that accepts GetCloudProviderSnapshotBackupPolicyPolicyArgs and GetCloudProviderSnapshotBackupPolicyPolicyOutput values.
 // You can construct a concrete instance of `GetCloudProviderSnapshotBackupPolicyPolicyInput` via:
 //
-//          GetCloudProviderSnapshotBackupPolicyPolicyArgs{...}
+//	GetCloudProviderSnapshotBackupPolicyPolicyArgs{...}
 type GetCloudProviderSnapshotBackupPolicyPolicyInput interface {
 	pulumi.Input
 
@@ -18276,7 +18287,7 @@ func (i GetCloudProviderSnapshotBackupPolicyPolicyArgs) ToGetCloudProviderSnapsh
 // GetCloudProviderSnapshotBackupPolicyPolicyArrayInput is an input type that accepts GetCloudProviderSnapshotBackupPolicyPolicyArray and GetCloudProviderSnapshotBackupPolicyPolicyArrayOutput values.
 // You can construct a concrete instance of `GetCloudProviderSnapshotBackupPolicyPolicyArrayInput` via:
 //
-//          GetCloudProviderSnapshotBackupPolicyPolicyArray{ GetCloudProviderSnapshotBackupPolicyPolicyArgs{...} }
+//	GetCloudProviderSnapshotBackupPolicyPolicyArray{ GetCloudProviderSnapshotBackupPolicyPolicyArgs{...} }
 type GetCloudProviderSnapshotBackupPolicyPolicyArrayInput interface {
 	pulumi.Input
 
@@ -18353,7 +18364,7 @@ type GetCloudProviderSnapshotBackupPolicyPolicyPolicyItem struct {
 // GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs and GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput values.
 // You can construct a concrete instance of `GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemInput` via:
 //
-//          GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{...}
+//	GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{...}
 type GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemInput interface {
 	pulumi.Input
 
@@ -18384,7 +18395,7 @@ func (i GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs) ToGetCloudProv
 // GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayInput is an input type that accepts GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArray and GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayOutput values.
 // You can construct a concrete instance of `GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayInput` via:
 //
-//          GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArray{ GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
+//	GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArray{ GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
 type GetCloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayInput interface {
 	pulumi.Input
 
@@ -18484,7 +18495,8 @@ type GetCloudProviderSnapshotRestoreJobsResult struct {
 	SnapshotId string `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 	TargetClusterName string `pulumi:"targetClusterName"`
-	TargetProjectId   string `pulumi:"targetProjectId"`
+	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	TargetProjectId string `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
 	Timestamp string `pulumi:"timestamp"`
 }
@@ -18492,7 +18504,7 @@ type GetCloudProviderSnapshotRestoreJobsResult struct {
 // GetCloudProviderSnapshotRestoreJobsResultInput is an input type that accepts GetCloudProviderSnapshotRestoreJobsResultArgs and GetCloudProviderSnapshotRestoreJobsResultOutput values.
 // You can construct a concrete instance of `GetCloudProviderSnapshotRestoreJobsResultInput` via:
 //
-//          GetCloudProviderSnapshotRestoreJobsResultArgs{...}
+//	GetCloudProviderSnapshotRestoreJobsResultArgs{...}
 type GetCloudProviderSnapshotRestoreJobsResultInput interface {
 	pulumi.Input
 
@@ -18524,7 +18536,8 @@ type GetCloudProviderSnapshotRestoreJobsResultArgs struct {
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
 	TargetClusterName pulumi.StringInput `pulumi:"targetClusterName"`
-	TargetProjectId   pulumi.StringInput `pulumi:"targetProjectId"`
+	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
+	TargetProjectId pulumi.StringInput `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
 	Timestamp pulumi.StringInput `pulumi:"timestamp"`
 }
@@ -18544,7 +18557,7 @@ func (i GetCloudProviderSnapshotRestoreJobsResultArgs) ToGetCloudProviderSnapsho
 // GetCloudProviderSnapshotRestoreJobsResultArrayInput is an input type that accepts GetCloudProviderSnapshotRestoreJobsResultArray and GetCloudProviderSnapshotRestoreJobsResultArrayOutput values.
 // You can construct a concrete instance of `GetCloudProviderSnapshotRestoreJobsResultArrayInput` via:
 //
-//          GetCloudProviderSnapshotRestoreJobsResultArray{ GetCloudProviderSnapshotRestoreJobsResultArgs{...} }
+//	GetCloudProviderSnapshotRestoreJobsResultArray{ GetCloudProviderSnapshotRestoreJobsResultArgs{...} }
 type GetCloudProviderSnapshotRestoreJobsResultArrayInput interface {
 	pulumi.Input
 
@@ -18642,6 +18655,7 @@ func (o GetCloudProviderSnapshotRestoreJobsResultOutput) TargetClusterName() pul
 	return o.ApplyT(func(v GetCloudProviderSnapshotRestoreJobsResult) string { return v.TargetClusterName }).(pulumi.StringOutput)
 }
 
+// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 func (o GetCloudProviderSnapshotRestoreJobsResultOutput) TargetProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudProviderSnapshotRestoreJobsResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
 }
@@ -18697,7 +18711,7 @@ type GetCloudProviderSnapshotsResult struct {
 // GetCloudProviderSnapshotsResultInput is an input type that accepts GetCloudProviderSnapshotsResultArgs and GetCloudProviderSnapshotsResultOutput values.
 // You can construct a concrete instance of `GetCloudProviderSnapshotsResultInput` via:
 //
-//          GetCloudProviderSnapshotsResultArgs{...}
+//	GetCloudProviderSnapshotsResultArgs{...}
 type GetCloudProviderSnapshotsResultInput interface {
 	pulumi.Input
 
@@ -18743,7 +18757,7 @@ func (i GetCloudProviderSnapshotsResultArgs) ToGetCloudProviderSnapshotsResultOu
 // GetCloudProviderSnapshotsResultArrayInput is an input type that accepts GetCloudProviderSnapshotsResultArray and GetCloudProviderSnapshotsResultArrayOutput values.
 // You can construct a concrete instance of `GetCloudProviderSnapshotsResultArrayInput` via:
 //
-//          GetCloudProviderSnapshotsResultArray{ GetCloudProviderSnapshotsResultArgs{...} }
+//	GetCloudProviderSnapshotsResultArray{ GetCloudProviderSnapshotsResultArgs{...} }
 type GetCloudProviderSnapshotsResultArrayInput interface {
 	pulumi.Input
 
@@ -18873,7 +18887,7 @@ type GetClusterAdvancedConfiguration struct {
 // GetClusterAdvancedConfigurationInput is an input type that accepts GetClusterAdvancedConfigurationArgs and GetClusterAdvancedConfigurationOutput values.
 // You can construct a concrete instance of `GetClusterAdvancedConfigurationInput` via:
 //
-//          GetClusterAdvancedConfigurationArgs{...}
+//	GetClusterAdvancedConfigurationArgs{...}
 type GetClusterAdvancedConfigurationInput interface {
 	pulumi.Input
 
@@ -18917,7 +18931,7 @@ func (i GetClusterAdvancedConfigurationArgs) ToGetClusterAdvancedConfigurationOu
 // GetClusterAdvancedConfigurationArrayInput is an input type that accepts GetClusterAdvancedConfigurationArray and GetClusterAdvancedConfigurationArrayOutput values.
 // You can construct a concrete instance of `GetClusterAdvancedConfigurationArrayInput` via:
 //
-//          GetClusterAdvancedConfigurationArray{ GetClusterAdvancedConfigurationArgs{...} }
+//	GetClusterAdvancedConfigurationArray{ GetClusterAdvancedConfigurationArgs{...} }
 type GetClusterAdvancedConfigurationArrayInput interface {
 	pulumi.Input
 
@@ -19028,7 +19042,7 @@ type GetClusterBiConnectorConfig struct {
 // GetClusterBiConnectorConfigInput is an input type that accepts GetClusterBiConnectorConfigArgs and GetClusterBiConnectorConfigOutput values.
 // You can construct a concrete instance of `GetClusterBiConnectorConfigInput` via:
 //
-//          GetClusterBiConnectorConfigArgs{...}
+//	GetClusterBiConnectorConfigArgs{...}
 type GetClusterBiConnectorConfigInput interface {
 	pulumi.Input
 
@@ -19058,7 +19072,7 @@ func (i GetClusterBiConnectorConfigArgs) ToGetClusterBiConnectorConfigOutputWith
 // GetClusterBiConnectorConfigArrayInput is an input type that accepts GetClusterBiConnectorConfigArray and GetClusterBiConnectorConfigArrayOutput values.
 // You can construct a concrete instance of `GetClusterBiConnectorConfigArrayInput` via:
 //
-//          GetClusterBiConnectorConfigArray{ GetClusterBiConnectorConfigArgs{...} }
+//	GetClusterBiConnectorConfigArray{ GetClusterBiConnectorConfigArgs{...} }
 type GetClusterBiConnectorConfigArrayInput interface {
 	pulumi.Input
 
@@ -19137,7 +19151,7 @@ type GetClusterConnectionString struct {
 // GetClusterConnectionStringInput is an input type that accepts GetClusterConnectionStringArgs and GetClusterConnectionStringOutput values.
 // You can construct a concrete instance of `GetClusterConnectionStringInput` via:
 //
-//          GetClusterConnectionStringArgs{...}
+//	GetClusterConnectionStringArgs{...}
 type GetClusterConnectionStringInput interface {
 	pulumi.Input
 
@@ -19170,7 +19184,7 @@ func (i GetClusterConnectionStringArgs) ToGetClusterConnectionStringOutputWithCo
 // GetClusterConnectionStringArrayInput is an input type that accepts GetClusterConnectionStringArray and GetClusterConnectionStringArrayOutput values.
 // You can construct a concrete instance of `GetClusterConnectionStringArrayInput` via:
 //
-//          GetClusterConnectionStringArray{ GetClusterConnectionStringArgs{...} }
+//	GetClusterConnectionStringArray{ GetClusterConnectionStringArgs{...} }
 type GetClusterConnectionStringArrayInput interface {
 	pulumi.Input
 
@@ -19266,7 +19280,7 @@ type GetClusterConnectionStringPrivateEndpoint struct {
 // GetClusterConnectionStringPrivateEndpointInput is an input type that accepts GetClusterConnectionStringPrivateEndpointArgs and GetClusterConnectionStringPrivateEndpointOutput values.
 // You can construct a concrete instance of `GetClusterConnectionStringPrivateEndpointInput` via:
 //
-//          GetClusterConnectionStringPrivateEndpointArgs{...}
+//	GetClusterConnectionStringPrivateEndpointArgs{...}
 type GetClusterConnectionStringPrivateEndpointInput interface {
 	pulumi.Input
 
@@ -19296,7 +19310,7 @@ func (i GetClusterConnectionStringPrivateEndpointArgs) ToGetClusterConnectionStr
 // GetClusterConnectionStringPrivateEndpointArrayInput is an input type that accepts GetClusterConnectionStringPrivateEndpointArray and GetClusterConnectionStringPrivateEndpointArrayOutput values.
 // You can construct a concrete instance of `GetClusterConnectionStringPrivateEndpointArrayInput` via:
 //
-//          GetClusterConnectionStringPrivateEndpointArray{ GetClusterConnectionStringPrivateEndpointArgs{...} }
+//	GetClusterConnectionStringPrivateEndpointArray{ GetClusterConnectionStringPrivateEndpointArgs{...} }
 type GetClusterConnectionStringPrivateEndpointArrayInput interface {
 	pulumi.Input
 
@@ -19380,7 +19394,7 @@ type GetClusterConnectionStringPrivateEndpointEndpoint struct {
 // GetClusterConnectionStringPrivateEndpointEndpointInput is an input type that accepts GetClusterConnectionStringPrivateEndpointEndpointArgs and GetClusterConnectionStringPrivateEndpointEndpointOutput values.
 // You can construct a concrete instance of `GetClusterConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          GetClusterConnectionStringPrivateEndpointEndpointArgs{...}
+//	GetClusterConnectionStringPrivateEndpointEndpointArgs{...}
 type GetClusterConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
@@ -19410,7 +19424,7 @@ func (i GetClusterConnectionStringPrivateEndpointEndpointArgs) ToGetClusterConne
 // GetClusterConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts GetClusterConnectionStringPrivateEndpointEndpointArray and GetClusterConnectionStringPrivateEndpointEndpointArrayOutput values.
 // You can construct a concrete instance of `GetClusterConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          GetClusterConnectionStringPrivateEndpointEndpointArray{ GetClusterConnectionStringPrivateEndpointEndpointArgs{...} }
+//	GetClusterConnectionStringPrivateEndpointEndpointArray{ GetClusterConnectionStringPrivateEndpointEndpointArgs{...} }
 type GetClusterConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
@@ -19489,7 +19503,7 @@ type GetClusterLabel struct {
 // GetClusterLabelInput is an input type that accepts GetClusterLabelArgs and GetClusterLabelOutput values.
 // You can construct a concrete instance of `GetClusterLabelInput` via:
 //
-//          GetClusterLabelArgs{...}
+//	GetClusterLabelArgs{...}
 type GetClusterLabelInput interface {
 	pulumi.Input
 
@@ -19519,7 +19533,7 @@ func (i GetClusterLabelArgs) ToGetClusterLabelOutputWithContext(ctx context.Cont
 // GetClusterLabelArrayInput is an input type that accepts GetClusterLabelArray and GetClusterLabelArrayOutput values.
 // You can construct a concrete instance of `GetClusterLabelArrayInput` via:
 //
-//          GetClusterLabelArray{ GetClusterLabelArgs{...} }
+//	GetClusterLabelArray{ GetClusterLabelArgs{...} }
 type GetClusterLabelArrayInput interface {
 	pulumi.Input
 
@@ -19599,7 +19613,7 @@ type GetClusterReplicationSpec struct {
 // GetClusterReplicationSpecInput is an input type that accepts GetClusterReplicationSpecArgs and GetClusterReplicationSpecOutput values.
 // You can construct a concrete instance of `GetClusterReplicationSpecInput` via:
 //
-//          GetClusterReplicationSpecArgs{...}
+//	GetClusterReplicationSpecArgs{...}
 type GetClusterReplicationSpecInput interface {
 	pulumi.Input
 
@@ -19633,7 +19647,7 @@ func (i GetClusterReplicationSpecArgs) ToGetClusterReplicationSpecOutputWithCont
 // GetClusterReplicationSpecArrayInput is an input type that accepts GetClusterReplicationSpecArray and GetClusterReplicationSpecArrayOutput values.
 // You can construct a concrete instance of `GetClusterReplicationSpecArrayInput` via:
 //
-//          GetClusterReplicationSpecArray{ GetClusterReplicationSpecArgs{...} }
+//	GetClusterReplicationSpecArray{ GetClusterReplicationSpecArgs{...} }
 type GetClusterReplicationSpecArrayInput interface {
 	pulumi.Input
 
@@ -19725,7 +19739,7 @@ type GetClusterReplicationSpecRegionsConfig struct {
 // GetClusterReplicationSpecRegionsConfigInput is an input type that accepts GetClusterReplicationSpecRegionsConfigArgs and GetClusterReplicationSpecRegionsConfigOutput values.
 // You can construct a concrete instance of `GetClusterReplicationSpecRegionsConfigInput` via:
 //
-//          GetClusterReplicationSpecRegionsConfigArgs{...}
+//	GetClusterReplicationSpecRegionsConfigArgs{...}
 type GetClusterReplicationSpecRegionsConfigInput interface {
 	pulumi.Input
 
@@ -19761,7 +19775,7 @@ func (i GetClusterReplicationSpecRegionsConfigArgs) ToGetClusterReplicationSpecR
 // GetClusterReplicationSpecRegionsConfigArrayInput is an input type that accepts GetClusterReplicationSpecRegionsConfigArray and GetClusterReplicationSpecRegionsConfigArrayOutput values.
 // You can construct a concrete instance of `GetClusterReplicationSpecRegionsConfigArrayInput` via:
 //
-//          GetClusterReplicationSpecRegionsConfigArray{ GetClusterReplicationSpecRegionsConfigArgs{...} }
+//	GetClusterReplicationSpecRegionsConfigArray{ GetClusterReplicationSpecRegionsConfigArgs{...} }
 type GetClusterReplicationSpecRegionsConfigArrayInput interface {
 	pulumi.Input
 
@@ -19856,7 +19870,7 @@ type GetClusterSnapshotBackupPolicy struct {
 // GetClusterSnapshotBackupPolicyInput is an input type that accepts GetClusterSnapshotBackupPolicyArgs and GetClusterSnapshotBackupPolicyOutput values.
 // You can construct a concrete instance of `GetClusterSnapshotBackupPolicyInput` via:
 //
-//          GetClusterSnapshotBackupPolicyArgs{...}
+//	GetClusterSnapshotBackupPolicyArgs{...}
 type GetClusterSnapshotBackupPolicyInput interface {
 	pulumi.Input
 
@@ -19890,7 +19904,7 @@ func (i GetClusterSnapshotBackupPolicyArgs) ToGetClusterSnapshotBackupPolicyOutp
 // GetClusterSnapshotBackupPolicyArrayInput is an input type that accepts GetClusterSnapshotBackupPolicyArray and GetClusterSnapshotBackupPolicyArrayOutput values.
 // You can construct a concrete instance of `GetClusterSnapshotBackupPolicyArrayInput` via:
 //
-//          GetClusterSnapshotBackupPolicyArray{ GetClusterSnapshotBackupPolicyArgs{...} }
+//	GetClusterSnapshotBackupPolicyArray{ GetClusterSnapshotBackupPolicyArgs{...} }
 type GetClusterSnapshotBackupPolicyArrayInput interface {
 	pulumi.Input
 
@@ -19985,7 +19999,7 @@ type GetClusterSnapshotBackupPolicyPolicy struct {
 // GetClusterSnapshotBackupPolicyPolicyInput is an input type that accepts GetClusterSnapshotBackupPolicyPolicyArgs and GetClusterSnapshotBackupPolicyPolicyOutput values.
 // You can construct a concrete instance of `GetClusterSnapshotBackupPolicyPolicyInput` via:
 //
-//          GetClusterSnapshotBackupPolicyPolicyArgs{...}
+//	GetClusterSnapshotBackupPolicyPolicyArgs{...}
 type GetClusterSnapshotBackupPolicyPolicyInput interface {
 	pulumi.Input
 
@@ -20012,7 +20026,7 @@ func (i GetClusterSnapshotBackupPolicyPolicyArgs) ToGetClusterSnapshotBackupPoli
 // GetClusterSnapshotBackupPolicyPolicyArrayInput is an input type that accepts GetClusterSnapshotBackupPolicyPolicyArray and GetClusterSnapshotBackupPolicyPolicyArrayOutput values.
 // You can construct a concrete instance of `GetClusterSnapshotBackupPolicyPolicyArrayInput` via:
 //
-//          GetClusterSnapshotBackupPolicyPolicyArray{ GetClusterSnapshotBackupPolicyPolicyArgs{...} }
+//	GetClusterSnapshotBackupPolicyPolicyArray{ GetClusterSnapshotBackupPolicyPolicyArgs{...} }
 type GetClusterSnapshotBackupPolicyPolicyArrayInput interface {
 	pulumi.Input
 
@@ -20084,7 +20098,7 @@ type GetClusterSnapshotBackupPolicyPolicyPolicyItem struct {
 // GetClusterSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs and GetClusterSnapshotBackupPolicyPolicyPolicyItemOutput values.
 // You can construct a concrete instance of `GetClusterSnapshotBackupPolicyPolicyPolicyItemInput` via:
 //
-//          GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs{...}
+//	GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs{...}
 type GetClusterSnapshotBackupPolicyPolicyPolicyItemInput interface {
 	pulumi.Input
 
@@ -20114,7 +20128,7 @@ func (i GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs) ToGetClusterSnapshot
 // GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput is an input type that accepts GetClusterSnapshotBackupPolicyPolicyPolicyItemArray and GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayOutput values.
 // You can construct a concrete instance of `GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput` via:
 //
-//          GetClusterSnapshotBackupPolicyPolicyPolicyItemArray{ GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
+//	GetClusterSnapshotBackupPolicyPolicyPolicyItemArray{ GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
 type GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput interface {
 	pulumi.Input
 
@@ -20290,7 +20304,7 @@ type GetClustersResult struct {
 // GetClustersResultInput is an input type that accepts GetClustersResultArgs and GetClustersResultOutput values.
 // You can construct a concrete instance of `GetClustersResultInput` via:
 //
-//          GetClustersResultArgs{...}
+//	GetClustersResultArgs{...}
 type GetClustersResultInput interface {
 	pulumi.Input
 
@@ -20414,7 +20428,7 @@ func (i GetClustersResultArgs) ToGetClustersResultOutputWithContext(ctx context.
 // GetClustersResultArrayInput is an input type that accepts GetClustersResultArray and GetClustersResultArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultArrayInput` via:
 //
-//          GetClustersResultArray{ GetClustersResultArgs{...} }
+//	GetClustersResultArray{ GetClustersResultArgs{...} }
 type GetClustersResultArrayInput interface {
 	pulumi.Input
 
@@ -20709,7 +20723,7 @@ type GetClustersResultAdvancedConfiguration struct {
 // GetClustersResultAdvancedConfigurationInput is an input type that accepts GetClustersResultAdvancedConfigurationArgs and GetClustersResultAdvancedConfigurationOutput values.
 // You can construct a concrete instance of `GetClustersResultAdvancedConfigurationInput` via:
 //
-//          GetClustersResultAdvancedConfigurationArgs{...}
+//	GetClustersResultAdvancedConfigurationArgs{...}
 type GetClustersResultAdvancedConfigurationInput interface {
 	pulumi.Input
 
@@ -20753,7 +20767,7 @@ func (i GetClustersResultAdvancedConfigurationArgs) ToGetClustersResultAdvancedC
 // GetClustersResultAdvancedConfigurationArrayInput is an input type that accepts GetClustersResultAdvancedConfigurationArray and GetClustersResultAdvancedConfigurationArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultAdvancedConfigurationArrayInput` via:
 //
-//          GetClustersResultAdvancedConfigurationArray{ GetClustersResultAdvancedConfigurationArgs{...} }
+//	GetClustersResultAdvancedConfigurationArray{ GetClustersResultAdvancedConfigurationArgs{...} }
 type GetClustersResultAdvancedConfigurationArrayInput interface {
 	pulumi.Input
 
@@ -20864,7 +20878,7 @@ type GetClustersResultBiConnectorConfig struct {
 // GetClustersResultBiConnectorConfigInput is an input type that accepts GetClustersResultBiConnectorConfigArgs and GetClustersResultBiConnectorConfigOutput values.
 // You can construct a concrete instance of `GetClustersResultBiConnectorConfigInput` via:
 //
-//          GetClustersResultBiConnectorConfigArgs{...}
+//	GetClustersResultBiConnectorConfigArgs{...}
 type GetClustersResultBiConnectorConfigInput interface {
 	pulumi.Input
 
@@ -20894,7 +20908,7 @@ func (i GetClustersResultBiConnectorConfigArgs) ToGetClustersResultBiConnectorCo
 // GetClustersResultBiConnectorConfigArrayInput is an input type that accepts GetClustersResultBiConnectorConfigArray and GetClustersResultBiConnectorConfigArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultBiConnectorConfigArrayInput` via:
 //
-//          GetClustersResultBiConnectorConfigArray{ GetClustersResultBiConnectorConfigArgs{...} }
+//	GetClustersResultBiConnectorConfigArray{ GetClustersResultBiConnectorConfigArgs{...} }
 type GetClustersResultBiConnectorConfigArrayInput interface {
 	pulumi.Input
 
@@ -20973,7 +20987,7 @@ type GetClustersResultConnectionString struct {
 // GetClustersResultConnectionStringInput is an input type that accepts GetClustersResultConnectionStringArgs and GetClustersResultConnectionStringOutput values.
 // You can construct a concrete instance of `GetClustersResultConnectionStringInput` via:
 //
-//          GetClustersResultConnectionStringArgs{...}
+//	GetClustersResultConnectionStringArgs{...}
 type GetClustersResultConnectionStringInput interface {
 	pulumi.Input
 
@@ -21006,7 +21020,7 @@ func (i GetClustersResultConnectionStringArgs) ToGetClustersResultConnectionStri
 // GetClustersResultConnectionStringArrayInput is an input type that accepts GetClustersResultConnectionStringArray and GetClustersResultConnectionStringArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultConnectionStringArrayInput` via:
 //
-//          GetClustersResultConnectionStringArray{ GetClustersResultConnectionStringArgs{...} }
+//	GetClustersResultConnectionStringArray{ GetClustersResultConnectionStringArgs{...} }
 type GetClustersResultConnectionStringArrayInput interface {
 	pulumi.Input
 
@@ -21102,7 +21116,7 @@ type GetClustersResultConnectionStringPrivateEndpoint struct {
 // GetClustersResultConnectionStringPrivateEndpointInput is an input type that accepts GetClustersResultConnectionStringPrivateEndpointArgs and GetClustersResultConnectionStringPrivateEndpointOutput values.
 // You can construct a concrete instance of `GetClustersResultConnectionStringPrivateEndpointInput` via:
 //
-//          GetClustersResultConnectionStringPrivateEndpointArgs{...}
+//	GetClustersResultConnectionStringPrivateEndpointArgs{...}
 type GetClustersResultConnectionStringPrivateEndpointInput interface {
 	pulumi.Input
 
@@ -21132,7 +21146,7 @@ func (i GetClustersResultConnectionStringPrivateEndpointArgs) ToGetClustersResul
 // GetClustersResultConnectionStringPrivateEndpointArrayInput is an input type that accepts GetClustersResultConnectionStringPrivateEndpointArray and GetClustersResultConnectionStringPrivateEndpointArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultConnectionStringPrivateEndpointArrayInput` via:
 //
-//          GetClustersResultConnectionStringPrivateEndpointArray{ GetClustersResultConnectionStringPrivateEndpointArgs{...} }
+//	GetClustersResultConnectionStringPrivateEndpointArray{ GetClustersResultConnectionStringPrivateEndpointArgs{...} }
 type GetClustersResultConnectionStringPrivateEndpointArrayInput interface {
 	pulumi.Input
 
@@ -21216,7 +21230,7 @@ type GetClustersResultConnectionStringPrivateEndpointEndpoint struct {
 // GetClustersResultConnectionStringPrivateEndpointEndpointInput is an input type that accepts GetClustersResultConnectionStringPrivateEndpointEndpointArgs and GetClustersResultConnectionStringPrivateEndpointEndpointOutput values.
 // You can construct a concrete instance of `GetClustersResultConnectionStringPrivateEndpointEndpointInput` via:
 //
-//          GetClustersResultConnectionStringPrivateEndpointEndpointArgs{...}
+//	GetClustersResultConnectionStringPrivateEndpointEndpointArgs{...}
 type GetClustersResultConnectionStringPrivateEndpointEndpointInput interface {
 	pulumi.Input
 
@@ -21246,7 +21260,7 @@ func (i GetClustersResultConnectionStringPrivateEndpointEndpointArgs) ToGetClust
 // GetClustersResultConnectionStringPrivateEndpointEndpointArrayInput is an input type that accepts GetClustersResultConnectionStringPrivateEndpointEndpointArray and GetClustersResultConnectionStringPrivateEndpointEndpointArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultConnectionStringPrivateEndpointEndpointArrayInput` via:
 //
-//          GetClustersResultConnectionStringPrivateEndpointEndpointArray{ GetClustersResultConnectionStringPrivateEndpointEndpointArgs{...} }
+//	GetClustersResultConnectionStringPrivateEndpointEndpointArray{ GetClustersResultConnectionStringPrivateEndpointEndpointArgs{...} }
 type GetClustersResultConnectionStringPrivateEndpointEndpointArrayInput interface {
 	pulumi.Input
 
@@ -21325,7 +21339,7 @@ type GetClustersResultLabel struct {
 // GetClustersResultLabelInput is an input type that accepts GetClustersResultLabelArgs and GetClustersResultLabelOutput values.
 // You can construct a concrete instance of `GetClustersResultLabelInput` via:
 //
-//          GetClustersResultLabelArgs{...}
+//	GetClustersResultLabelArgs{...}
 type GetClustersResultLabelInput interface {
 	pulumi.Input
 
@@ -21355,7 +21369,7 @@ func (i GetClustersResultLabelArgs) ToGetClustersResultLabelOutputWithContext(ct
 // GetClustersResultLabelArrayInput is an input type that accepts GetClustersResultLabelArray and GetClustersResultLabelArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultLabelArrayInput` via:
 //
-//          GetClustersResultLabelArray{ GetClustersResultLabelArgs{...} }
+//	GetClustersResultLabelArray{ GetClustersResultLabelArgs{...} }
 type GetClustersResultLabelArrayInput interface {
 	pulumi.Input
 
@@ -21435,7 +21449,7 @@ type GetClustersResultReplicationSpec struct {
 // GetClustersResultReplicationSpecInput is an input type that accepts GetClustersResultReplicationSpecArgs and GetClustersResultReplicationSpecOutput values.
 // You can construct a concrete instance of `GetClustersResultReplicationSpecInput` via:
 //
-//          GetClustersResultReplicationSpecArgs{...}
+//	GetClustersResultReplicationSpecArgs{...}
 type GetClustersResultReplicationSpecInput interface {
 	pulumi.Input
 
@@ -21469,7 +21483,7 @@ func (i GetClustersResultReplicationSpecArgs) ToGetClustersResultReplicationSpec
 // GetClustersResultReplicationSpecArrayInput is an input type that accepts GetClustersResultReplicationSpecArray and GetClustersResultReplicationSpecArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultReplicationSpecArrayInput` via:
 //
-//          GetClustersResultReplicationSpecArray{ GetClustersResultReplicationSpecArgs{...} }
+//	GetClustersResultReplicationSpecArray{ GetClustersResultReplicationSpecArgs{...} }
 type GetClustersResultReplicationSpecArrayInput interface {
 	pulumi.Input
 
@@ -21563,7 +21577,7 @@ type GetClustersResultReplicationSpecRegionsConfig struct {
 // GetClustersResultReplicationSpecRegionsConfigInput is an input type that accepts GetClustersResultReplicationSpecRegionsConfigArgs and GetClustersResultReplicationSpecRegionsConfigOutput values.
 // You can construct a concrete instance of `GetClustersResultReplicationSpecRegionsConfigInput` via:
 //
-//          GetClustersResultReplicationSpecRegionsConfigArgs{...}
+//	GetClustersResultReplicationSpecRegionsConfigArgs{...}
 type GetClustersResultReplicationSpecRegionsConfigInput interface {
 	pulumi.Input
 
@@ -21599,7 +21613,7 @@ func (i GetClustersResultReplicationSpecRegionsConfigArgs) ToGetClustersResultRe
 // GetClustersResultReplicationSpecRegionsConfigArrayInput is an input type that accepts GetClustersResultReplicationSpecRegionsConfigArray and GetClustersResultReplicationSpecRegionsConfigArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultReplicationSpecRegionsConfigArrayInput` via:
 //
-//          GetClustersResultReplicationSpecRegionsConfigArray{ GetClustersResultReplicationSpecRegionsConfigArgs{...} }
+//	GetClustersResultReplicationSpecRegionsConfigArray{ GetClustersResultReplicationSpecRegionsConfigArgs{...} }
 type GetClustersResultReplicationSpecRegionsConfigArrayInput interface {
 	pulumi.Input
 
@@ -21694,7 +21708,7 @@ type GetClustersResultSnapshotBackupPolicy struct {
 // GetClustersResultSnapshotBackupPolicyInput is an input type that accepts GetClustersResultSnapshotBackupPolicyArgs and GetClustersResultSnapshotBackupPolicyOutput values.
 // You can construct a concrete instance of `GetClustersResultSnapshotBackupPolicyInput` via:
 //
-//          GetClustersResultSnapshotBackupPolicyArgs{...}
+//	GetClustersResultSnapshotBackupPolicyArgs{...}
 type GetClustersResultSnapshotBackupPolicyInput interface {
 	pulumi.Input
 
@@ -21728,7 +21742,7 @@ func (i GetClustersResultSnapshotBackupPolicyArgs) ToGetClustersResultSnapshotBa
 // GetClustersResultSnapshotBackupPolicyArrayInput is an input type that accepts GetClustersResultSnapshotBackupPolicyArray and GetClustersResultSnapshotBackupPolicyArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultSnapshotBackupPolicyArrayInput` via:
 //
-//          GetClustersResultSnapshotBackupPolicyArray{ GetClustersResultSnapshotBackupPolicyArgs{...} }
+//	GetClustersResultSnapshotBackupPolicyArray{ GetClustersResultSnapshotBackupPolicyArgs{...} }
 type GetClustersResultSnapshotBackupPolicyArrayInput interface {
 	pulumi.Input
 
@@ -21825,7 +21839,7 @@ type GetClustersResultSnapshotBackupPolicyPolicy struct {
 // GetClustersResultSnapshotBackupPolicyPolicyInput is an input type that accepts GetClustersResultSnapshotBackupPolicyPolicyArgs and GetClustersResultSnapshotBackupPolicyPolicyOutput values.
 // You can construct a concrete instance of `GetClustersResultSnapshotBackupPolicyPolicyInput` via:
 //
-//          GetClustersResultSnapshotBackupPolicyPolicyArgs{...}
+//	GetClustersResultSnapshotBackupPolicyPolicyArgs{...}
 type GetClustersResultSnapshotBackupPolicyPolicyInput interface {
 	pulumi.Input
 
@@ -21852,7 +21866,7 @@ func (i GetClustersResultSnapshotBackupPolicyPolicyArgs) ToGetClustersResultSnap
 // GetClustersResultSnapshotBackupPolicyPolicyArrayInput is an input type that accepts GetClustersResultSnapshotBackupPolicyPolicyArray and GetClustersResultSnapshotBackupPolicyPolicyArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultSnapshotBackupPolicyPolicyArrayInput` via:
 //
-//          GetClustersResultSnapshotBackupPolicyPolicyArray{ GetClustersResultSnapshotBackupPolicyPolicyArgs{...} }
+//	GetClustersResultSnapshotBackupPolicyPolicyArray{ GetClustersResultSnapshotBackupPolicyPolicyArgs{...} }
 type GetClustersResultSnapshotBackupPolicyPolicyArrayInput interface {
 	pulumi.Input
 
@@ -21924,7 +21938,7 @@ type GetClustersResultSnapshotBackupPolicyPolicyPolicyItem struct {
 // GetClustersResultSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs and GetClustersResultSnapshotBackupPolicyPolicyPolicyItemOutput values.
 // You can construct a concrete instance of `GetClustersResultSnapshotBackupPolicyPolicyPolicyItemInput` via:
 //
-//          GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs{...}
+//	GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs{...}
 type GetClustersResultSnapshotBackupPolicyPolicyPolicyItemInput interface {
 	pulumi.Input
 
@@ -21954,7 +21968,7 @@ func (i GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs) ToGetClusters
 // GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayInput is an input type that accepts GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArray and GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayOutput values.
 // You can construct a concrete instance of `GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayInput` via:
 //
-//          GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArray{ GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
+//	GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArray{ GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs{...} }
 type GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayInput interface {
 	pulumi.Input
 
@@ -22036,7 +22050,7 @@ type GetCustomDbRoleAction struct {
 // GetCustomDbRoleActionInput is an input type that accepts GetCustomDbRoleActionArgs and GetCustomDbRoleActionOutput values.
 // You can construct a concrete instance of `GetCustomDbRoleActionInput` via:
 //
-//          GetCustomDbRoleActionArgs{...}
+//	GetCustomDbRoleActionArgs{...}
 type GetCustomDbRoleActionInput interface {
 	pulumi.Input
 
@@ -22066,7 +22080,7 @@ func (i GetCustomDbRoleActionArgs) ToGetCustomDbRoleActionOutputWithContext(ctx 
 // GetCustomDbRoleActionArrayInput is an input type that accepts GetCustomDbRoleActionArray and GetCustomDbRoleActionArrayOutput values.
 // You can construct a concrete instance of `GetCustomDbRoleActionArrayInput` via:
 //
-//          GetCustomDbRoleActionArray{ GetCustomDbRoleActionArgs{...} }
+//	GetCustomDbRoleActionArray{ GetCustomDbRoleActionArgs{...} }
 type GetCustomDbRoleActionArrayInput interface {
 	pulumi.Input
 
@@ -22141,7 +22155,7 @@ type GetCustomDbRoleActionResource struct {
 // GetCustomDbRoleActionResourceInput is an input type that accepts GetCustomDbRoleActionResourceArgs and GetCustomDbRoleActionResourceOutput values.
 // You can construct a concrete instance of `GetCustomDbRoleActionResourceInput` via:
 //
-//          GetCustomDbRoleActionResourceArgs{...}
+//	GetCustomDbRoleActionResourceArgs{...}
 type GetCustomDbRoleActionResourceInput interface {
 	pulumi.Input
 
@@ -22170,7 +22184,7 @@ func (i GetCustomDbRoleActionResourceArgs) ToGetCustomDbRoleActionResourceOutput
 // GetCustomDbRoleActionResourceArrayInput is an input type that accepts GetCustomDbRoleActionResourceArray and GetCustomDbRoleActionResourceArrayOutput values.
 // You can construct a concrete instance of `GetCustomDbRoleActionResourceArrayInput` via:
 //
-//          GetCustomDbRoleActionResourceArray{ GetCustomDbRoleActionResourceArgs{...} }
+//	GetCustomDbRoleActionResourceArray{ GetCustomDbRoleActionResourceArgs{...} }
 type GetCustomDbRoleActionResourceArrayInput interface {
 	pulumi.Input
 
@@ -22247,7 +22261,7 @@ type GetCustomDbRoleInheritedRole struct {
 // GetCustomDbRoleInheritedRoleInput is an input type that accepts GetCustomDbRoleInheritedRoleArgs and GetCustomDbRoleInheritedRoleOutput values.
 // You can construct a concrete instance of `GetCustomDbRoleInheritedRoleInput` via:
 //
-//          GetCustomDbRoleInheritedRoleArgs{...}
+//	GetCustomDbRoleInheritedRoleArgs{...}
 type GetCustomDbRoleInheritedRoleInput interface {
 	pulumi.Input
 
@@ -22276,7 +22290,7 @@ func (i GetCustomDbRoleInheritedRoleArgs) ToGetCustomDbRoleInheritedRoleOutputWi
 // GetCustomDbRoleInheritedRoleArrayInput is an input type that accepts GetCustomDbRoleInheritedRoleArray and GetCustomDbRoleInheritedRoleArrayOutput values.
 // You can construct a concrete instance of `GetCustomDbRoleInheritedRoleArrayInput` via:
 //
-//          GetCustomDbRoleInheritedRoleArray{ GetCustomDbRoleInheritedRoleArgs{...} }
+//	GetCustomDbRoleInheritedRoleArray{ GetCustomDbRoleInheritedRoleArgs{...} }
 type GetCustomDbRoleInheritedRoleArrayInput interface {
 	pulumi.Input
 
@@ -22350,7 +22364,7 @@ type GetCustomDbRolesResult struct {
 // GetCustomDbRolesResultInput is an input type that accepts GetCustomDbRolesResultArgs and GetCustomDbRolesResultOutput values.
 // You can construct a concrete instance of `GetCustomDbRolesResultInput` via:
 //
-//          GetCustomDbRolesResultArgs{...}
+//	GetCustomDbRolesResultArgs{...}
 type GetCustomDbRolesResultInput interface {
 	pulumi.Input
 
@@ -22379,7 +22393,7 @@ func (i GetCustomDbRolesResultArgs) ToGetCustomDbRolesResultOutputWithContext(ct
 // GetCustomDbRolesResultArrayInput is an input type that accepts GetCustomDbRolesResultArray and GetCustomDbRolesResultArrayOutput values.
 // You can construct a concrete instance of `GetCustomDbRolesResultArrayInput` via:
 //
-//          GetCustomDbRolesResultArray{ GetCustomDbRolesResultArgs{...} }
+//	GetCustomDbRolesResultArray{ GetCustomDbRolesResultArgs{...} }
 type GetCustomDbRolesResultArrayInput interface {
 	pulumi.Input
 
@@ -22457,7 +22471,7 @@ type GetCustomDbRolesResultAction struct {
 // GetCustomDbRolesResultActionInput is an input type that accepts GetCustomDbRolesResultActionArgs and GetCustomDbRolesResultActionOutput values.
 // You can construct a concrete instance of `GetCustomDbRolesResultActionInput` via:
 //
-//          GetCustomDbRolesResultActionArgs{...}
+//	GetCustomDbRolesResultActionArgs{...}
 type GetCustomDbRolesResultActionInput interface {
 	pulumi.Input
 
@@ -22487,7 +22501,7 @@ func (i GetCustomDbRolesResultActionArgs) ToGetCustomDbRolesResultActionOutputWi
 // GetCustomDbRolesResultActionArrayInput is an input type that accepts GetCustomDbRolesResultActionArray and GetCustomDbRolesResultActionArrayOutput values.
 // You can construct a concrete instance of `GetCustomDbRolesResultActionArrayInput` via:
 //
-//          GetCustomDbRolesResultActionArray{ GetCustomDbRolesResultActionArgs{...} }
+//	GetCustomDbRolesResultActionArray{ GetCustomDbRolesResultActionArgs{...} }
 type GetCustomDbRolesResultActionArrayInput interface {
 	pulumi.Input
 
@@ -22562,7 +22576,7 @@ type GetCustomDbRolesResultActionResource struct {
 // GetCustomDbRolesResultActionResourceInput is an input type that accepts GetCustomDbRolesResultActionResourceArgs and GetCustomDbRolesResultActionResourceOutput values.
 // You can construct a concrete instance of `GetCustomDbRolesResultActionResourceInput` via:
 //
-//          GetCustomDbRolesResultActionResourceArgs{...}
+//	GetCustomDbRolesResultActionResourceArgs{...}
 type GetCustomDbRolesResultActionResourceInput interface {
 	pulumi.Input
 
@@ -22591,7 +22605,7 @@ func (i GetCustomDbRolesResultActionResourceArgs) ToGetCustomDbRolesResultAction
 // GetCustomDbRolesResultActionResourceArrayInput is an input type that accepts GetCustomDbRolesResultActionResourceArray and GetCustomDbRolesResultActionResourceArrayOutput values.
 // You can construct a concrete instance of `GetCustomDbRolesResultActionResourceArrayInput` via:
 //
-//          GetCustomDbRolesResultActionResourceArray{ GetCustomDbRolesResultActionResourceArgs{...} }
+//	GetCustomDbRolesResultActionResourceArray{ GetCustomDbRolesResultActionResourceArgs{...} }
 type GetCustomDbRolesResultActionResourceArrayInput interface {
 	pulumi.Input
 
@@ -22667,7 +22681,7 @@ type GetCustomDbRolesResultInheritedRole struct {
 // GetCustomDbRolesResultInheritedRoleInput is an input type that accepts GetCustomDbRolesResultInheritedRoleArgs and GetCustomDbRolesResultInheritedRoleOutput values.
 // You can construct a concrete instance of `GetCustomDbRolesResultInheritedRoleInput` via:
 //
-//          GetCustomDbRolesResultInheritedRoleArgs{...}
+//	GetCustomDbRolesResultInheritedRoleArgs{...}
 type GetCustomDbRolesResultInheritedRoleInput interface {
 	pulumi.Input
 
@@ -22695,7 +22709,7 @@ func (i GetCustomDbRolesResultInheritedRoleArgs) ToGetCustomDbRolesResultInherit
 // GetCustomDbRolesResultInheritedRoleArrayInput is an input type that accepts GetCustomDbRolesResultInheritedRoleArray and GetCustomDbRolesResultInheritedRoleArrayOutput values.
 // You can construct a concrete instance of `GetCustomDbRolesResultInheritedRoleArrayInput` via:
 //
-//          GetCustomDbRolesResultInheritedRoleArray{ GetCustomDbRolesResultInheritedRoleArgs{...} }
+//	GetCustomDbRolesResultInheritedRoleArray{ GetCustomDbRolesResultInheritedRoleArgs{...} }
 type GetCustomDbRolesResultInheritedRoleArrayInput interface {
 	pulumi.Input
 
@@ -22770,7 +22784,7 @@ type GetDataLakeAw struct {
 // GetDataLakeAwInput is an input type that accepts GetDataLakeAwArgs and GetDataLakeAwOutput values.
 // You can construct a concrete instance of `GetDataLakeAwInput` via:
 //
-//          GetDataLakeAwArgs{...}
+//	GetDataLakeAwArgs{...}
 type GetDataLakeAwInput interface {
 	pulumi.Input
 
@@ -22801,7 +22815,7 @@ func (i GetDataLakeAwArgs) ToGetDataLakeAwOutputWithContext(ctx context.Context)
 // GetDataLakeAwArrayInput is an input type that accepts GetDataLakeAwArray and GetDataLakeAwArrayOutput values.
 // You can construct a concrete instance of `GetDataLakeAwArrayInput` via:
 //
-//          GetDataLakeAwArray{ GetDataLakeAwArgs{...} }
+//	GetDataLakeAwArray{ GetDataLakeAwArgs{...} }
 type GetDataLakeAwArrayInput interface {
 	pulumi.Input
 
@@ -22885,7 +22899,7 @@ type GetDataLakeDataProcessRegion struct {
 // GetDataLakeDataProcessRegionInput is an input type that accepts GetDataLakeDataProcessRegionArgs and GetDataLakeDataProcessRegionOutput values.
 // You can construct a concrete instance of `GetDataLakeDataProcessRegionInput` via:
 //
-//          GetDataLakeDataProcessRegionArgs{...}
+//	GetDataLakeDataProcessRegionArgs{...}
 type GetDataLakeDataProcessRegionInput interface {
 	pulumi.Input
 
@@ -22913,7 +22927,7 @@ func (i GetDataLakeDataProcessRegionArgs) ToGetDataLakeDataProcessRegionOutputWi
 // GetDataLakeDataProcessRegionArrayInput is an input type that accepts GetDataLakeDataProcessRegionArray and GetDataLakeDataProcessRegionArrayOutput values.
 // You can construct a concrete instance of `GetDataLakeDataProcessRegionArrayInput` via:
 //
-//          GetDataLakeDataProcessRegionArray{ GetDataLakeDataProcessRegionArgs{...} }
+//	GetDataLakeDataProcessRegionArray{ GetDataLakeDataProcessRegionArgs{...} }
 type GetDataLakeDataProcessRegionArrayInput interface {
 	pulumi.Input
 
@@ -22988,7 +23002,7 @@ type GetDataLakeStorageDatabase struct {
 // GetDataLakeStorageDatabaseInput is an input type that accepts GetDataLakeStorageDatabaseArgs and GetDataLakeStorageDatabaseOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageDatabaseInput` via:
 //
-//          GetDataLakeStorageDatabaseArgs{...}
+//	GetDataLakeStorageDatabaseArgs{...}
 type GetDataLakeStorageDatabaseInput interface {
 	pulumi.Input
 
@@ -23019,7 +23033,7 @@ func (i GetDataLakeStorageDatabaseArgs) ToGetDataLakeStorageDatabaseOutputWithCo
 // GetDataLakeStorageDatabaseArrayInput is an input type that accepts GetDataLakeStorageDatabaseArray and GetDataLakeStorageDatabaseArrayOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageDatabaseArrayInput` via:
 //
-//          GetDataLakeStorageDatabaseArray{ GetDataLakeStorageDatabaseArgs{...} }
+//	GetDataLakeStorageDatabaseArray{ GetDataLakeStorageDatabaseArgs{...} }
 type GetDataLakeStorageDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -23101,7 +23115,7 @@ type GetDataLakeStorageDatabaseCollection struct {
 // GetDataLakeStorageDatabaseCollectionInput is an input type that accepts GetDataLakeStorageDatabaseCollectionArgs and GetDataLakeStorageDatabaseCollectionOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageDatabaseCollectionInput` via:
 //
-//          GetDataLakeStorageDatabaseCollectionArgs{...}
+//	GetDataLakeStorageDatabaseCollectionArgs{...}
 type GetDataLakeStorageDatabaseCollectionInput interface {
 	pulumi.Input
 
@@ -23130,7 +23144,7 @@ func (i GetDataLakeStorageDatabaseCollectionArgs) ToGetDataLakeStorageDatabaseCo
 // GetDataLakeStorageDatabaseCollectionArrayInput is an input type that accepts GetDataLakeStorageDatabaseCollectionArray and GetDataLakeStorageDatabaseCollectionArrayOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageDatabaseCollectionArrayInput` via:
 //
-//          GetDataLakeStorageDatabaseCollectionArray{ GetDataLakeStorageDatabaseCollectionArgs{...} }
+//	GetDataLakeStorageDatabaseCollectionArray{ GetDataLakeStorageDatabaseCollectionArgs{...} }
 type GetDataLakeStorageDatabaseCollectionArrayInput interface {
 	pulumi.Input
 
@@ -23206,7 +23220,7 @@ type GetDataLakeStorageDatabaseCollectionDataSource struct {
 // GetDataLakeStorageDatabaseCollectionDataSourceInput is an input type that accepts GetDataLakeStorageDatabaseCollectionDataSourceArgs and GetDataLakeStorageDatabaseCollectionDataSourceOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageDatabaseCollectionDataSourceInput` via:
 //
-//          GetDataLakeStorageDatabaseCollectionDataSourceArgs{...}
+//	GetDataLakeStorageDatabaseCollectionDataSourceArgs{...}
 type GetDataLakeStorageDatabaseCollectionDataSourceInput interface {
 	pulumi.Input
 
@@ -23235,7 +23249,7 @@ func (i GetDataLakeStorageDatabaseCollectionDataSourceArgs) ToGetDataLakeStorage
 // GetDataLakeStorageDatabaseCollectionDataSourceArrayInput is an input type that accepts GetDataLakeStorageDatabaseCollectionDataSourceArray and GetDataLakeStorageDatabaseCollectionDataSourceArrayOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageDatabaseCollectionDataSourceArrayInput` via:
 //
-//          GetDataLakeStorageDatabaseCollectionDataSourceArray{ GetDataLakeStorageDatabaseCollectionDataSourceArgs{...} }
+//	GetDataLakeStorageDatabaseCollectionDataSourceArray{ GetDataLakeStorageDatabaseCollectionDataSourceArgs{...} }
 type GetDataLakeStorageDatabaseCollectionDataSourceArrayInput interface {
 	pulumi.Input
 
@@ -23313,7 +23327,7 @@ type GetDataLakeStorageDatabaseView struct {
 // GetDataLakeStorageDatabaseViewInput is an input type that accepts GetDataLakeStorageDatabaseViewArgs and GetDataLakeStorageDatabaseViewOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageDatabaseViewInput` via:
 //
-//          GetDataLakeStorageDatabaseViewArgs{...}
+//	GetDataLakeStorageDatabaseViewArgs{...}
 type GetDataLakeStorageDatabaseViewInput interface {
 	pulumi.Input
 
@@ -23343,7 +23357,7 @@ func (i GetDataLakeStorageDatabaseViewArgs) ToGetDataLakeStorageDatabaseViewOutp
 // GetDataLakeStorageDatabaseViewArrayInput is an input type that accepts GetDataLakeStorageDatabaseViewArray and GetDataLakeStorageDatabaseViewArrayOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageDatabaseViewArrayInput` via:
 //
-//          GetDataLakeStorageDatabaseViewArray{ GetDataLakeStorageDatabaseViewArgs{...} }
+//	GetDataLakeStorageDatabaseViewArray{ GetDataLakeStorageDatabaseViewArgs{...} }
 type GetDataLakeStorageDatabaseViewArrayInput interface {
 	pulumi.Input
 
@@ -23427,7 +23441,7 @@ type GetDataLakeStorageStore struct {
 // GetDataLakeStorageStoreInput is an input type that accepts GetDataLakeStorageStoreArgs and GetDataLakeStorageStoreOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageStoreInput` via:
 //
-//          GetDataLakeStorageStoreArgs{...}
+//	GetDataLakeStorageStoreArgs{...}
 type GetDataLakeStorageStoreInput interface {
 	pulumi.Input
 
@@ -23462,7 +23476,7 @@ func (i GetDataLakeStorageStoreArgs) ToGetDataLakeStorageStoreOutputWithContext(
 // GetDataLakeStorageStoreArrayInput is an input type that accepts GetDataLakeStorageStoreArray and GetDataLakeStorageStoreArrayOutput values.
 // You can construct a concrete instance of `GetDataLakeStorageStoreArrayInput` via:
 //
-//          GetDataLakeStorageStoreArray{ GetDataLakeStorageStoreArgs{...} }
+//	GetDataLakeStorageStoreArray{ GetDataLakeStorageStoreArgs{...} }
 type GetDataLakeStorageStoreArrayInput interface {
 	pulumi.Input
 
@@ -23591,7 +23605,7 @@ type GetDataLakesResult struct {
 // GetDataLakesResultInput is an input type that accepts GetDataLakesResultArgs and GetDataLakesResultOutput values.
 // You can construct a concrete instance of `GetDataLakesResultInput` via:
 //
-//          GetDataLakesResultArgs{...}
+//	GetDataLakesResultArgs{...}
 type GetDataLakesResultInput interface {
 	pulumi.Input
 
@@ -23651,7 +23665,7 @@ func (i GetDataLakesResultArgs) ToGetDataLakesResultOutputWithContext(ctx contex
 // GetDataLakesResultArrayInput is an input type that accepts GetDataLakesResultArray and GetDataLakesResultArrayOutput values.
 // You can construct a concrete instance of `GetDataLakesResultArrayInput` via:
 //
-//          GetDataLakesResultArray{ GetDataLakesResultArgs{...} }
+//	GetDataLakesResultArray{ GetDataLakesResultArgs{...} }
 type GetDataLakesResultArrayInput interface {
 	pulumi.Input
 
@@ -23776,7 +23790,7 @@ type GetDataLakesResultAw struct {
 // GetDataLakesResultAwInput is an input type that accepts GetDataLakesResultAwArgs and GetDataLakesResultAwOutput values.
 // You can construct a concrete instance of `GetDataLakesResultAwInput` via:
 //
-//          GetDataLakesResultAwArgs{...}
+//	GetDataLakesResultAwArgs{...}
 type GetDataLakesResultAwInput interface {
 	pulumi.Input
 
@@ -23807,7 +23821,7 @@ func (i GetDataLakesResultAwArgs) ToGetDataLakesResultAwOutputWithContext(ctx co
 // GetDataLakesResultAwArrayInput is an input type that accepts GetDataLakesResultAwArray and GetDataLakesResultAwArrayOutput values.
 // You can construct a concrete instance of `GetDataLakesResultAwArrayInput` via:
 //
-//          GetDataLakesResultAwArray{ GetDataLakesResultAwArgs{...} }
+//	GetDataLakesResultAwArray{ GetDataLakesResultAwArgs{...} }
 type GetDataLakesResultAwArrayInput interface {
 	pulumi.Input
 
@@ -23891,7 +23905,7 @@ type GetDataLakesResultDataProcessRegion struct {
 // GetDataLakesResultDataProcessRegionInput is an input type that accepts GetDataLakesResultDataProcessRegionArgs and GetDataLakesResultDataProcessRegionOutput values.
 // You can construct a concrete instance of `GetDataLakesResultDataProcessRegionInput` via:
 //
-//          GetDataLakesResultDataProcessRegionArgs{...}
+//	GetDataLakesResultDataProcessRegionArgs{...}
 type GetDataLakesResultDataProcessRegionInput interface {
 	pulumi.Input
 
@@ -23919,7 +23933,7 @@ func (i GetDataLakesResultDataProcessRegionArgs) ToGetDataLakesResultDataProcess
 // GetDataLakesResultDataProcessRegionArrayInput is an input type that accepts GetDataLakesResultDataProcessRegionArray and GetDataLakesResultDataProcessRegionArrayOutput values.
 // You can construct a concrete instance of `GetDataLakesResultDataProcessRegionArrayInput` via:
 //
-//          GetDataLakesResultDataProcessRegionArray{ GetDataLakesResultDataProcessRegionArgs{...} }
+//	GetDataLakesResultDataProcessRegionArray{ GetDataLakesResultDataProcessRegionArgs{...} }
 type GetDataLakesResultDataProcessRegionArrayInput interface {
 	pulumi.Input
 
@@ -23993,7 +24007,7 @@ type GetDataLakesResultStorageDatabase struct {
 // GetDataLakesResultStorageDatabaseInput is an input type that accepts GetDataLakesResultStorageDatabaseArgs and GetDataLakesResultStorageDatabaseOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageDatabaseInput` via:
 //
-//          GetDataLakesResultStorageDatabaseArgs{...}
+//	GetDataLakesResultStorageDatabaseArgs{...}
 type GetDataLakesResultStorageDatabaseInput interface {
 	pulumi.Input
 
@@ -24023,7 +24037,7 @@ func (i GetDataLakesResultStorageDatabaseArgs) ToGetDataLakesResultStorageDataba
 // GetDataLakesResultStorageDatabaseArrayInput is an input type that accepts GetDataLakesResultStorageDatabaseArray and GetDataLakesResultStorageDatabaseArrayOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageDatabaseArrayInput` via:
 //
-//          GetDataLakesResultStorageDatabaseArray{ GetDataLakesResultStorageDatabaseArgs{...} }
+//	GetDataLakesResultStorageDatabaseArray{ GetDataLakesResultStorageDatabaseArgs{...} }
 type GetDataLakesResultStorageDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -24105,7 +24119,7 @@ type GetDataLakesResultStorageDatabaseCollection struct {
 // GetDataLakesResultStorageDatabaseCollectionInput is an input type that accepts GetDataLakesResultStorageDatabaseCollectionArgs and GetDataLakesResultStorageDatabaseCollectionOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageDatabaseCollectionInput` via:
 //
-//          GetDataLakesResultStorageDatabaseCollectionArgs{...}
+//	GetDataLakesResultStorageDatabaseCollectionArgs{...}
 type GetDataLakesResultStorageDatabaseCollectionInput interface {
 	pulumi.Input
 
@@ -24133,7 +24147,7 @@ func (i GetDataLakesResultStorageDatabaseCollectionArgs) ToGetDataLakesResultSto
 // GetDataLakesResultStorageDatabaseCollectionArrayInput is an input type that accepts GetDataLakesResultStorageDatabaseCollectionArray and GetDataLakesResultStorageDatabaseCollectionArrayOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageDatabaseCollectionArrayInput` via:
 //
-//          GetDataLakesResultStorageDatabaseCollectionArray{ GetDataLakesResultStorageDatabaseCollectionArgs{...} }
+//	GetDataLakesResultStorageDatabaseCollectionArray{ GetDataLakesResultStorageDatabaseCollectionArgs{...} }
 type GetDataLakesResultStorageDatabaseCollectionArrayInput interface {
 	pulumi.Input
 
@@ -24208,7 +24222,7 @@ type GetDataLakesResultStorageDatabaseCollectionDataSource struct {
 // GetDataLakesResultStorageDatabaseCollectionDataSourceInput is an input type that accepts GetDataLakesResultStorageDatabaseCollectionDataSourceArgs and GetDataLakesResultStorageDatabaseCollectionDataSourceOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageDatabaseCollectionDataSourceInput` via:
 //
-//          GetDataLakesResultStorageDatabaseCollectionDataSourceArgs{...}
+//	GetDataLakesResultStorageDatabaseCollectionDataSourceArgs{...}
 type GetDataLakesResultStorageDatabaseCollectionDataSourceInput interface {
 	pulumi.Input
 
@@ -24237,7 +24251,7 @@ func (i GetDataLakesResultStorageDatabaseCollectionDataSourceArgs) ToGetDataLake
 // GetDataLakesResultStorageDatabaseCollectionDataSourceArrayInput is an input type that accepts GetDataLakesResultStorageDatabaseCollectionDataSourceArray and GetDataLakesResultStorageDatabaseCollectionDataSourceArrayOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageDatabaseCollectionDataSourceArrayInput` via:
 //
-//          GetDataLakesResultStorageDatabaseCollectionDataSourceArray{ GetDataLakesResultStorageDatabaseCollectionDataSourceArgs{...} }
+//	GetDataLakesResultStorageDatabaseCollectionDataSourceArray{ GetDataLakesResultStorageDatabaseCollectionDataSourceArgs{...} }
 type GetDataLakesResultStorageDatabaseCollectionDataSourceArrayInput interface {
 	pulumi.Input
 
@@ -24314,7 +24328,7 @@ type GetDataLakesResultStorageDatabaseView struct {
 // GetDataLakesResultStorageDatabaseViewInput is an input type that accepts GetDataLakesResultStorageDatabaseViewArgs and GetDataLakesResultStorageDatabaseViewOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageDatabaseViewInput` via:
 //
-//          GetDataLakesResultStorageDatabaseViewArgs{...}
+//	GetDataLakesResultStorageDatabaseViewArgs{...}
 type GetDataLakesResultStorageDatabaseViewInput interface {
 	pulumi.Input
 
@@ -24343,7 +24357,7 @@ func (i GetDataLakesResultStorageDatabaseViewArgs) ToGetDataLakesResultStorageDa
 // GetDataLakesResultStorageDatabaseViewArrayInput is an input type that accepts GetDataLakesResultStorageDatabaseViewArray and GetDataLakesResultStorageDatabaseViewArrayOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageDatabaseViewArrayInput` via:
 //
-//          GetDataLakesResultStorageDatabaseViewArray{ GetDataLakesResultStorageDatabaseViewArgs{...} }
+//	GetDataLakesResultStorageDatabaseViewArray{ GetDataLakesResultStorageDatabaseViewArgs{...} }
 type GetDataLakesResultStorageDatabaseViewArrayInput interface {
 	pulumi.Input
 
@@ -24425,7 +24439,7 @@ type GetDataLakesResultStorageStore struct {
 // GetDataLakesResultStorageStoreInput is an input type that accepts GetDataLakesResultStorageStoreArgs and GetDataLakesResultStorageStoreOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageStoreInput` via:
 //
-//          GetDataLakesResultStorageStoreArgs{...}
+//	GetDataLakesResultStorageStoreArgs{...}
 type GetDataLakesResultStorageStoreInput interface {
 	pulumi.Input
 
@@ -24459,7 +24473,7 @@ func (i GetDataLakesResultStorageStoreArgs) ToGetDataLakesResultStorageStoreOutp
 // GetDataLakesResultStorageStoreArrayInput is an input type that accepts GetDataLakesResultStorageStoreArray and GetDataLakesResultStorageStoreArrayOutput values.
 // You can construct a concrete instance of `GetDataLakesResultStorageStoreArrayInput` via:
 //
-//          GetDataLakesResultStorageStoreArray{ GetDataLakesResultStorageStoreArgs{...} }
+//	GetDataLakesResultStorageStoreArray{ GetDataLakesResultStorageStoreArgs{...} }
 type GetDataLakesResultStorageStoreArrayInput interface {
 	pulumi.Input
 
@@ -24557,7 +24571,7 @@ type GetDatabaseUserLabel struct {
 // GetDatabaseUserLabelInput is an input type that accepts GetDatabaseUserLabelArgs and GetDatabaseUserLabelOutput values.
 // You can construct a concrete instance of `GetDatabaseUserLabelInput` via:
 //
-//          GetDatabaseUserLabelArgs{...}
+//	GetDatabaseUserLabelArgs{...}
 type GetDatabaseUserLabelInput interface {
 	pulumi.Input
 
@@ -24587,7 +24601,7 @@ func (i GetDatabaseUserLabelArgs) ToGetDatabaseUserLabelOutputWithContext(ctx co
 // GetDatabaseUserLabelArrayInput is an input type that accepts GetDatabaseUserLabelArray and GetDatabaseUserLabelArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseUserLabelArrayInput` via:
 //
-//          GetDatabaseUserLabelArray{ GetDatabaseUserLabelArgs{...} }
+//	GetDatabaseUserLabelArray{ GetDatabaseUserLabelArgs{...} }
 type GetDatabaseUserLabelArrayInput interface {
 	pulumi.Input
 
@@ -24664,7 +24678,7 @@ type GetDatabaseUserRole struct {
 // GetDatabaseUserRoleInput is an input type that accepts GetDatabaseUserRoleArgs and GetDatabaseUserRoleOutput values.
 // You can construct a concrete instance of `GetDatabaseUserRoleInput` via:
 //
-//          GetDatabaseUserRoleArgs{...}
+//	GetDatabaseUserRoleArgs{...}
 type GetDatabaseUserRoleInput interface {
 	pulumi.Input
 
@@ -24695,7 +24709,7 @@ func (i GetDatabaseUserRoleArgs) ToGetDatabaseUserRoleOutputWithContext(ctx cont
 // GetDatabaseUserRoleArrayInput is an input type that accepts GetDatabaseUserRoleArray and GetDatabaseUserRoleArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseUserRoleArrayInput` via:
 //
-//          GetDatabaseUserRoleArray{ GetDatabaseUserRoleArgs{...} }
+//	GetDatabaseUserRoleArray{ GetDatabaseUserRoleArgs{...} }
 type GetDatabaseUserRoleArrayInput interface {
 	pulumi.Input
 
@@ -24775,7 +24789,7 @@ type GetDatabaseUserScope struct {
 // GetDatabaseUserScopeInput is an input type that accepts GetDatabaseUserScopeArgs and GetDatabaseUserScopeOutput values.
 // You can construct a concrete instance of `GetDatabaseUserScopeInput` via:
 //
-//          GetDatabaseUserScopeArgs{...}
+//	GetDatabaseUserScopeArgs{...}
 type GetDatabaseUserScopeInput interface {
 	pulumi.Input
 
@@ -24805,7 +24819,7 @@ func (i GetDatabaseUserScopeArgs) ToGetDatabaseUserScopeOutputWithContext(ctx co
 // GetDatabaseUserScopeArrayInput is an input type that accepts GetDatabaseUserScopeArray and GetDatabaseUserScopeArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseUserScopeArrayInput` via:
 //
-//          GetDatabaseUserScopeArray{ GetDatabaseUserScopeArgs{...} }
+//	GetDatabaseUserScopeArray{ GetDatabaseUserScopeArgs{...} }
 type GetDatabaseUserScopeArrayInput interface {
 	pulumi.Input
 
@@ -24899,7 +24913,7 @@ type GetDatabaseUsersResult struct {
 // GetDatabaseUsersResultInput is an input type that accepts GetDatabaseUsersResultArgs and GetDatabaseUsersResultOutput values.
 // You can construct a concrete instance of `GetDatabaseUsersResultInput` via:
 //
-//          GetDatabaseUsersResultArgs{...}
+//	GetDatabaseUsersResultArgs{...}
 type GetDatabaseUsersResultInput interface {
 	pulumi.Input
 
@@ -24947,7 +24961,7 @@ func (i GetDatabaseUsersResultArgs) ToGetDatabaseUsersResultOutputWithContext(ct
 // GetDatabaseUsersResultArrayInput is an input type that accepts GetDatabaseUsersResultArray and GetDatabaseUsersResultArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseUsersResultArrayInput` via:
 //
-//          GetDatabaseUsersResultArray{ GetDatabaseUsersResultArgs{...} }
+//	GetDatabaseUsersResultArray{ GetDatabaseUsersResultArgs{...} }
 type GetDatabaseUsersResultArrayInput interface {
 	pulumi.Input
 
@@ -25062,7 +25076,7 @@ type GetDatabaseUsersResultLabel struct {
 // GetDatabaseUsersResultLabelInput is an input type that accepts GetDatabaseUsersResultLabelArgs and GetDatabaseUsersResultLabelOutput values.
 // You can construct a concrete instance of `GetDatabaseUsersResultLabelInput` via:
 //
-//          GetDatabaseUsersResultLabelArgs{...}
+//	GetDatabaseUsersResultLabelArgs{...}
 type GetDatabaseUsersResultLabelInput interface {
 	pulumi.Input
 
@@ -25092,7 +25106,7 @@ func (i GetDatabaseUsersResultLabelArgs) ToGetDatabaseUsersResultLabelOutputWith
 // GetDatabaseUsersResultLabelArrayInput is an input type that accepts GetDatabaseUsersResultLabelArray and GetDatabaseUsersResultLabelArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseUsersResultLabelArrayInput` via:
 //
-//          GetDatabaseUsersResultLabelArray{ GetDatabaseUsersResultLabelArgs{...} }
+//	GetDatabaseUsersResultLabelArray{ GetDatabaseUsersResultLabelArgs{...} }
 type GetDatabaseUsersResultLabelArrayInput interface {
 	pulumi.Input
 
@@ -25169,7 +25183,7 @@ type GetDatabaseUsersResultRole struct {
 // GetDatabaseUsersResultRoleInput is an input type that accepts GetDatabaseUsersResultRoleArgs and GetDatabaseUsersResultRoleOutput values.
 // You can construct a concrete instance of `GetDatabaseUsersResultRoleInput` via:
 //
-//          GetDatabaseUsersResultRoleArgs{...}
+//	GetDatabaseUsersResultRoleArgs{...}
 type GetDatabaseUsersResultRoleInput interface {
 	pulumi.Input
 
@@ -25200,7 +25214,7 @@ func (i GetDatabaseUsersResultRoleArgs) ToGetDatabaseUsersResultRoleOutputWithCo
 // GetDatabaseUsersResultRoleArrayInput is an input type that accepts GetDatabaseUsersResultRoleArray and GetDatabaseUsersResultRoleArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseUsersResultRoleArrayInput` via:
 //
-//          GetDatabaseUsersResultRoleArray{ GetDatabaseUsersResultRoleArgs{...} }
+//	GetDatabaseUsersResultRoleArray{ GetDatabaseUsersResultRoleArgs{...} }
 type GetDatabaseUsersResultRoleArrayInput interface {
 	pulumi.Input
 
@@ -25280,7 +25294,7 @@ type GetDatabaseUsersResultScope struct {
 // GetDatabaseUsersResultScopeInput is an input type that accepts GetDatabaseUsersResultScopeArgs and GetDatabaseUsersResultScopeOutput values.
 // You can construct a concrete instance of `GetDatabaseUsersResultScopeInput` via:
 //
-//          GetDatabaseUsersResultScopeArgs{...}
+//	GetDatabaseUsersResultScopeArgs{...}
 type GetDatabaseUsersResultScopeInput interface {
 	pulumi.Input
 
@@ -25310,7 +25324,7 @@ func (i GetDatabaseUsersResultScopeArgs) ToGetDatabaseUsersResultScopeOutputWith
 // GetDatabaseUsersResultScopeArrayInput is an input type that accepts GetDatabaseUsersResultScopeArray and GetDatabaseUsersResultScopeArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseUsersResultScopeArrayInput` via:
 //
-//          GetDatabaseUsersResultScopeArray{ GetDatabaseUsersResultScopeArgs{...} }
+//	GetDatabaseUsersResultScopeArray{ GetDatabaseUsersResultScopeArgs{...} }
 type GetDatabaseUsersResultScopeArrayInput interface {
 	pulumi.Input
 
@@ -25383,7 +25397,7 @@ type GetEventTriggerEventProcessor struct {
 // GetEventTriggerEventProcessorInput is an input type that accepts GetEventTriggerEventProcessorArgs and GetEventTriggerEventProcessorOutput values.
 // You can construct a concrete instance of `GetEventTriggerEventProcessorInput` via:
 //
-//          GetEventTriggerEventProcessorArgs{...}
+//	GetEventTriggerEventProcessorArgs{...}
 type GetEventTriggerEventProcessorInput interface {
 	pulumi.Input
 
@@ -25410,7 +25424,7 @@ func (i GetEventTriggerEventProcessorArgs) ToGetEventTriggerEventProcessorOutput
 // GetEventTriggerEventProcessorArrayInput is an input type that accepts GetEventTriggerEventProcessorArray and GetEventTriggerEventProcessorArrayOutput values.
 // You can construct a concrete instance of `GetEventTriggerEventProcessorArrayInput` via:
 //
-//          GetEventTriggerEventProcessorArray{ GetEventTriggerEventProcessorArgs{...} }
+//	GetEventTriggerEventProcessorArray{ GetEventTriggerEventProcessorArgs{...} }
 type GetEventTriggerEventProcessorArrayInput interface {
 	pulumi.Input
 
@@ -25480,7 +25494,7 @@ type GetEventTriggerEventProcessorAwsEventbridge struct {
 // GetEventTriggerEventProcessorAwsEventbridgeInput is an input type that accepts GetEventTriggerEventProcessorAwsEventbridgeArgs and GetEventTriggerEventProcessorAwsEventbridgeOutput values.
 // You can construct a concrete instance of `GetEventTriggerEventProcessorAwsEventbridgeInput` via:
 //
-//          GetEventTriggerEventProcessorAwsEventbridgeArgs{...}
+//	GetEventTriggerEventProcessorAwsEventbridgeArgs{...}
 type GetEventTriggerEventProcessorAwsEventbridgeInput interface {
 	pulumi.Input
 
@@ -25508,7 +25522,7 @@ func (i GetEventTriggerEventProcessorAwsEventbridgeArgs) ToGetEventTriggerEventP
 // GetEventTriggerEventProcessorAwsEventbridgeArrayInput is an input type that accepts GetEventTriggerEventProcessorAwsEventbridgeArray and GetEventTriggerEventProcessorAwsEventbridgeArrayOutput values.
 // You can construct a concrete instance of `GetEventTriggerEventProcessorAwsEventbridgeArrayInput` via:
 //
-//          GetEventTriggerEventProcessorAwsEventbridgeArray{ GetEventTriggerEventProcessorAwsEventbridgeArgs{...} }
+//	GetEventTriggerEventProcessorAwsEventbridgeArray{ GetEventTriggerEventProcessorAwsEventbridgeArgs{...} }
 type GetEventTriggerEventProcessorAwsEventbridgeArrayInput interface {
 	pulumi.Input
 
@@ -25617,7 +25631,7 @@ type GetEventTriggersResult struct {
 // GetEventTriggersResultInput is an input type that accepts GetEventTriggersResultArgs and GetEventTriggersResultOutput values.
 // You can construct a concrete instance of `GetEventTriggersResultInput` via:
 //
-//          GetEventTriggersResultArgs{...}
+//	GetEventTriggersResultArgs{...}
 type GetEventTriggersResultInput interface {
 	pulumi.Input
 
@@ -25682,7 +25696,7 @@ func (i GetEventTriggersResultArgs) ToGetEventTriggersResultOutputWithContext(ct
 // GetEventTriggersResultArrayInput is an input type that accepts GetEventTriggersResultArray and GetEventTriggersResultArrayOutput values.
 // You can construct a concrete instance of `GetEventTriggersResultArrayInput` via:
 //
-//          GetEventTriggersResultArray{ GetEventTriggersResultArgs{...} }
+//	GetEventTriggersResultArray{ GetEventTriggersResultArgs{...} }
 type GetEventTriggersResultArrayInput interface {
 	pulumi.Input
 
@@ -25844,7 +25858,7 @@ type GetEventTriggersResultEventProcessor struct {
 // GetEventTriggersResultEventProcessorInput is an input type that accepts GetEventTriggersResultEventProcessorArgs and GetEventTriggersResultEventProcessorOutput values.
 // You can construct a concrete instance of `GetEventTriggersResultEventProcessorInput` via:
 //
-//          GetEventTriggersResultEventProcessorArgs{...}
+//	GetEventTriggersResultEventProcessorArgs{...}
 type GetEventTriggersResultEventProcessorInput interface {
 	pulumi.Input
 
@@ -25871,7 +25885,7 @@ func (i GetEventTriggersResultEventProcessorArgs) ToGetEventTriggersResultEventP
 // GetEventTriggersResultEventProcessorArrayInput is an input type that accepts GetEventTriggersResultEventProcessorArray and GetEventTriggersResultEventProcessorArrayOutput values.
 // You can construct a concrete instance of `GetEventTriggersResultEventProcessorArrayInput` via:
 //
-//          GetEventTriggersResultEventProcessorArray{ GetEventTriggersResultEventProcessorArgs{...} }
+//	GetEventTriggersResultEventProcessorArray{ GetEventTriggersResultEventProcessorArgs{...} }
 type GetEventTriggersResultEventProcessorArrayInput interface {
 	pulumi.Input
 
@@ -25941,7 +25955,7 @@ type GetEventTriggersResultEventProcessorAwsEventbridge struct {
 // GetEventTriggersResultEventProcessorAwsEventbridgeInput is an input type that accepts GetEventTriggersResultEventProcessorAwsEventbridgeArgs and GetEventTriggersResultEventProcessorAwsEventbridgeOutput values.
 // You can construct a concrete instance of `GetEventTriggersResultEventProcessorAwsEventbridgeInput` via:
 //
-//          GetEventTriggersResultEventProcessorAwsEventbridgeArgs{...}
+//	GetEventTriggersResultEventProcessorAwsEventbridgeArgs{...}
 type GetEventTriggersResultEventProcessorAwsEventbridgeInput interface {
 	pulumi.Input
 
@@ -25969,7 +25983,7 @@ func (i GetEventTriggersResultEventProcessorAwsEventbridgeArgs) ToGetEventTrigge
 // GetEventTriggersResultEventProcessorAwsEventbridgeArrayInput is an input type that accepts GetEventTriggersResultEventProcessorAwsEventbridgeArray and GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput values.
 // You can construct a concrete instance of `GetEventTriggersResultEventProcessorAwsEventbridgeArrayInput` via:
 //
-//          GetEventTriggersResultEventProcessorAwsEventbridgeArray{ GetEventTriggersResultEventProcessorAwsEventbridgeArgs{...} }
+//	GetEventTriggersResultEventProcessorAwsEventbridgeArray{ GetEventTriggersResultEventProcessorAwsEventbridgeArgs{...} }
 type GetEventTriggersResultEventProcessorAwsEventbridgeArrayInput interface {
 	pulumi.Input
 
@@ -26051,7 +26065,7 @@ type GetFederatedSettingsIdentityProviderAssociatedOrg struct {
 // GetFederatedSettingsIdentityProviderAssociatedOrgInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgArgs and GetFederatedSettingsIdentityProviderAssociatedOrgOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgInput` via:
 //
-//          GetFederatedSettingsIdentityProviderAssociatedOrgArgs{...}
+//	GetFederatedSettingsIdentityProviderAssociatedOrgArgs{...}
 type GetFederatedSettingsIdentityProviderAssociatedOrgInput interface {
 	pulumi.Input
 
@@ -26089,7 +26103,7 @@ func (i GetFederatedSettingsIdentityProviderAssociatedOrgArgs) ToGetFederatedSet
 // GetFederatedSettingsIdentityProviderAssociatedOrgArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgArray and GetFederatedSettingsIdentityProviderAssociatedOrgArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProviderAssociatedOrgArray{ GetFederatedSettingsIdentityProviderAssociatedOrgArgs{...} }
+//	GetFederatedSettingsIdentityProviderAssociatedOrgArray{ GetFederatedSettingsIdentityProviderAssociatedOrgArgs{...} }
 type GetFederatedSettingsIdentityProviderAssociatedOrgArrayInput interface {
 	pulumi.Input
 
@@ -26194,7 +26208,7 @@ type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMapping struct {
 // GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs and GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingInput` via:
 //
-//          GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs{...}
+//	GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs{...}
 type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingInput interface {
 	pulumi.Input
 
@@ -26226,7 +26240,7 @@ func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs) ToGetF
 // GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray and GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray{ GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs{...} }
+//	GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArray{ GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArgs{...} }
 type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingArrayInput interface {
 	pulumi.Input
 
@@ -26313,7 +26327,7 @@ type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignment 
 // GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs and GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentInput` via:
 //
-//          GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs{...}
+//	GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs{...}
 type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentInput interface {
 	pulumi.Input
 
@@ -26345,7 +26359,7 @@ func (i GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignme
 // GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray and GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs{...} }
+//	GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArgs{...} }
 type GetFederatedSettingsIdentityProviderAssociatedOrgRoleMappingRoleAssignmentArrayInput interface {
 	pulumi.Input
 
@@ -26438,7 +26452,7 @@ type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflict struct {
 // GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs and GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictInput` via:
 //
-//          GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs{...}
+//	GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs{...}
 type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictInput interface {
 	pulumi.Input
 
@@ -26474,7 +26488,7 @@ func (i GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs) ToGet
 // GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray and GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray{ GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs{...} }
+//	GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArray{ GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArgs{...} }
 type GetFederatedSettingsIdentityProviderAssociatedOrgUserConflictArrayInput interface {
 	pulumi.Input
 
@@ -26566,7 +26580,7 @@ type GetFederatedSettingsIdentityProviderPemFileInfo struct {
 // GetFederatedSettingsIdentityProviderPemFileInfoInput is an input type that accepts GetFederatedSettingsIdentityProviderPemFileInfoArgs and GetFederatedSettingsIdentityProviderPemFileInfoOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderPemFileInfoInput` via:
 //
-//          GetFederatedSettingsIdentityProviderPemFileInfoArgs{...}
+//	GetFederatedSettingsIdentityProviderPemFileInfoArgs{...}
 type GetFederatedSettingsIdentityProviderPemFileInfoInput interface {
 	pulumi.Input
 
@@ -26595,7 +26609,7 @@ func (i GetFederatedSettingsIdentityProviderPemFileInfoArgs) ToGetFederatedSetti
 // GetFederatedSettingsIdentityProviderPemFileInfoArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderPemFileInfoArray and GetFederatedSettingsIdentityProviderPemFileInfoArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderPemFileInfoArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProviderPemFileInfoArray{ GetFederatedSettingsIdentityProviderPemFileInfoArgs{...} }
+//	GetFederatedSettingsIdentityProviderPemFileInfoArray{ GetFederatedSettingsIdentityProviderPemFileInfoArgs{...} }
 type GetFederatedSettingsIdentityProviderPemFileInfoArrayInput interface {
 	pulumi.Input
 
@@ -26672,7 +26686,7 @@ type GetFederatedSettingsIdentityProviderPemFileInfoCertificate struct {
 // GetFederatedSettingsIdentityProviderPemFileInfoCertificateInput is an input type that accepts GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs and GetFederatedSettingsIdentityProviderPemFileInfoCertificateOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderPemFileInfoCertificateInput` via:
 //
-//          GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs{...}
+//	GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs{...}
 type GetFederatedSettingsIdentityProviderPemFileInfoCertificateInput interface {
 	pulumi.Input
 
@@ -26702,7 +26716,7 @@ func (i GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs) ToGetFed
 // GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayInput is an input type that accepts GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray and GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray{ GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs{...} }
+//	GetFederatedSettingsIdentityProviderPemFileInfoCertificateArray{ GetFederatedSettingsIdentityProviderPemFileInfoCertificateArgs{...} }
 type GetFederatedSettingsIdentityProviderPemFileInfoCertificateArrayInput interface {
 	pulumi.Input
 
@@ -26802,7 +26816,7 @@ type GetFederatedSettingsIdentityProvidersResult struct {
 // GetFederatedSettingsIdentityProvidersResultInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultArgs and GetFederatedSettingsIdentityProvidersResultOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultArgs{...}
+//	GetFederatedSettingsIdentityProvidersResultArgs{...}
 type GetFederatedSettingsIdentityProvidersResultInput interface {
 	pulumi.Input
 
@@ -26856,7 +26870,7 @@ func (i GetFederatedSettingsIdentityProvidersResultArgs) ToGetFederatedSettingsI
 // GetFederatedSettingsIdentityProvidersResultArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultArray and GetFederatedSettingsIdentityProvidersResultArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultArray{ GetFederatedSettingsIdentityProvidersResultArgs{...} }
+//	GetFederatedSettingsIdentityProvidersResultArray{ GetFederatedSettingsIdentityProvidersResultArgs{...} }
 type GetFederatedSettingsIdentityProvidersResultArrayInput interface {
 	pulumi.Input
 
@@ -27001,7 +27015,7 @@ type GetFederatedSettingsIdentityProvidersResultAssociatedOrg struct {
 // GetFederatedSettingsIdentityProvidersResultAssociatedOrgInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs and GetFederatedSettingsIdentityProvidersResultAssociatedOrgOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs{...}
+//	GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs{...}
 type GetFederatedSettingsIdentityProvidersResultAssociatedOrgInput interface {
 	pulumi.Input
 
@@ -27039,7 +27053,7 @@ func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs) ToGetFeder
 // GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray and GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs{...} }
+//	GetFederatedSettingsIdentityProvidersResultAssociatedOrgArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgArgs{...} }
 type GetFederatedSettingsIdentityProvidersResultAssociatedOrgArrayInput interface {
 	pulumi.Input
 
@@ -27146,7 +27160,7 @@ type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMapping struct 
 // GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs and GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs{...}
+//	GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs{...}
 type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingInput interface {
 	pulumi.Input
 
@@ -27178,7 +27192,7 @@ func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs)
 // GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray and GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs{...} }
+//	GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArgs{...} }
 type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingArrayInput interface {
 	pulumi.Input
 
@@ -27265,7 +27279,7 @@ type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssi
 // GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs and GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs{...}
+//	GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs{...}
 type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentInput interface {
 	pulumi.Input
 
@@ -27297,7 +27311,7 @@ func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleA
 // GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray and GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs{...} }
+//	GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArgs{...} }
 type GetFederatedSettingsIdentityProvidersResultAssociatedOrgRoleMappingRoleAssignmentArrayInput interface {
 	pulumi.Input
 
@@ -27390,7 +27404,7 @@ type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflict struct
 // GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs and GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs{...}
+//	GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs{...}
 type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictInput interface {
 	pulumi.Input
 
@@ -27426,7 +27440,7 @@ func (i GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs
 // GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray and GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs{...} }
+//	GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArray{ GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArgs{...} }
 type GetFederatedSettingsIdentityProvidersResultAssociatedOrgUserConflictArrayInput interface {
 	pulumi.Input
 
@@ -27522,7 +27536,7 @@ type GetFederatedSettingsIdentityProvidersResultPemFileInfo struct {
 // GetFederatedSettingsIdentityProvidersResultPemFileInfoInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs and GetFederatedSettingsIdentityProvidersResultPemFileInfoOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultPemFileInfoInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs{...}
+//	GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs{...}
 type GetFederatedSettingsIdentityProvidersResultPemFileInfoInput interface {
 	pulumi.Input
 
@@ -27551,7 +27565,7 @@ func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs) ToGetFederat
 // GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultPemFileInfoArray and GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultPemFileInfoArray{ GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs{...} }
+//	GetFederatedSettingsIdentityProvidersResultPemFileInfoArray{ GetFederatedSettingsIdentityProvidersResultPemFileInfoArgs{...} }
 type GetFederatedSettingsIdentityProvidersResultPemFileInfoArrayInput interface {
 	pulumi.Input
 
@@ -27628,7 +27642,7 @@ type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificate struct {
 // GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs and GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs{...}
+//	GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs{...}
 type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateInput interface {
 	pulumi.Input
 
@@ -27658,7 +27672,7 @@ func (i GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs) T
 // GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayInput is an input type that accepts GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray and GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayInput` via:
 //
-//          GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray{ GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs{...} }
+//	GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArray{ GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArgs{...} }
 type GetFederatedSettingsIdentityProvidersResultPemFileInfoCertificateArrayInput interface {
 	pulumi.Input
 
@@ -27736,7 +27750,7 @@ type GetFederatedSettingsOrgConfigRoleMapping struct {
 // GetFederatedSettingsOrgConfigRoleMappingInput is an input type that accepts GetFederatedSettingsOrgConfigRoleMappingArgs and GetFederatedSettingsOrgConfigRoleMappingOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigRoleMappingInput` via:
 //
-//          GetFederatedSettingsOrgConfigRoleMappingArgs{...}
+//	GetFederatedSettingsOrgConfigRoleMappingArgs{...}
 type GetFederatedSettingsOrgConfigRoleMappingInput interface {
 	pulumi.Input
 
@@ -27768,7 +27782,7 @@ func (i GetFederatedSettingsOrgConfigRoleMappingArgs) ToGetFederatedSettingsOrgC
 // GetFederatedSettingsOrgConfigRoleMappingArrayInput is an input type that accepts GetFederatedSettingsOrgConfigRoleMappingArray and GetFederatedSettingsOrgConfigRoleMappingArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigRoleMappingArrayInput` via:
 //
-//          GetFederatedSettingsOrgConfigRoleMappingArray{ GetFederatedSettingsOrgConfigRoleMappingArgs{...} }
+//	GetFederatedSettingsOrgConfigRoleMappingArray{ GetFederatedSettingsOrgConfigRoleMappingArgs{...} }
 type GetFederatedSettingsOrgConfigRoleMappingArrayInput interface {
 	pulumi.Input
 
@@ -27853,7 +27867,7 @@ type GetFederatedSettingsOrgConfigRoleMappingRoleAssignment struct {
 // GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs and GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentInput` via:
 //
-//          GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs{...}
+//	GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs{...}
 type GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentInput interface {
 	pulumi.Input
 
@@ -27885,7 +27899,7 @@ func (i GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs) ToGetFederat
 // GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray and GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayInput` via:
 //
-//          GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs{...} }
+//	GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArgs{...} }
 type GetFederatedSettingsOrgConfigRoleMappingRoleAssignmentArrayInput interface {
 	pulumi.Input
 
@@ -27972,7 +27986,7 @@ type GetFederatedSettingsOrgConfigUserConflict struct {
 // GetFederatedSettingsOrgConfigUserConflictInput is an input type that accepts GetFederatedSettingsOrgConfigUserConflictArgs and GetFederatedSettingsOrgConfigUserConflictOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigUserConflictInput` via:
 //
-//          GetFederatedSettingsOrgConfigUserConflictArgs{...}
+//	GetFederatedSettingsOrgConfigUserConflictArgs{...}
 type GetFederatedSettingsOrgConfigUserConflictInput interface {
 	pulumi.Input
 
@@ -28008,7 +28022,7 @@ func (i GetFederatedSettingsOrgConfigUserConflictArgs) ToGetFederatedSettingsOrg
 // GetFederatedSettingsOrgConfigUserConflictArrayInput is an input type that accepts GetFederatedSettingsOrgConfigUserConflictArray and GetFederatedSettingsOrgConfigUserConflictArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigUserConflictArrayInput` via:
 //
-//          GetFederatedSettingsOrgConfigUserConflictArray{ GetFederatedSettingsOrgConfigUserConflictArgs{...} }
+//	GetFederatedSettingsOrgConfigUserConflictArray{ GetFederatedSettingsOrgConfigUserConflictArgs{...} }
 type GetFederatedSettingsOrgConfigUserConflictArrayInput interface {
 	pulumi.Input
 
@@ -28107,7 +28121,7 @@ type GetFederatedSettingsOrgConfigsResult struct {
 // GetFederatedSettingsOrgConfigsResultInput is an input type that accepts GetFederatedSettingsOrgConfigsResultArgs and GetFederatedSettingsOrgConfigsResultOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultInput` via:
 //
-//          GetFederatedSettingsOrgConfigsResultArgs{...}
+//	GetFederatedSettingsOrgConfigsResultArgs{...}
 type GetFederatedSettingsOrgConfigsResultInput interface {
 	pulumi.Input
 
@@ -28145,7 +28159,7 @@ func (i GetFederatedSettingsOrgConfigsResultArgs) ToGetFederatedSettingsOrgConfi
 // GetFederatedSettingsOrgConfigsResultArrayInput is an input type that accepts GetFederatedSettingsOrgConfigsResultArray and GetFederatedSettingsOrgConfigsResultArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultArrayInput` via:
 //
-//          GetFederatedSettingsOrgConfigsResultArray{ GetFederatedSettingsOrgConfigsResultArgs{...} }
+//	GetFederatedSettingsOrgConfigsResultArray{ GetFederatedSettingsOrgConfigsResultArgs{...} }
 type GetFederatedSettingsOrgConfigsResultArrayInput interface {
 	pulumi.Input
 
@@ -28250,7 +28264,7 @@ type GetFederatedSettingsOrgConfigsResultRoleMapping struct {
 // GetFederatedSettingsOrgConfigsResultRoleMappingInput is an input type that accepts GetFederatedSettingsOrgConfigsResultRoleMappingArgs and GetFederatedSettingsOrgConfigsResultRoleMappingOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultRoleMappingInput` via:
 //
-//          GetFederatedSettingsOrgConfigsResultRoleMappingArgs{...}
+//	GetFederatedSettingsOrgConfigsResultRoleMappingArgs{...}
 type GetFederatedSettingsOrgConfigsResultRoleMappingInput interface {
 	pulumi.Input
 
@@ -28282,7 +28296,7 @@ func (i GetFederatedSettingsOrgConfigsResultRoleMappingArgs) ToGetFederatedSetti
 // GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput is an input type that accepts GetFederatedSettingsOrgConfigsResultRoleMappingArray and GetFederatedSettingsOrgConfigsResultRoleMappingArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput` via:
 //
-//          GetFederatedSettingsOrgConfigsResultRoleMappingArray{ GetFederatedSettingsOrgConfigsResultRoleMappingArgs{...} }
+//	GetFederatedSettingsOrgConfigsResultRoleMappingArray{ GetFederatedSettingsOrgConfigsResultRoleMappingArgs{...} }
 type GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput interface {
 	pulumi.Input
 
@@ -28367,7 +28381,7 @@ type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignment struct {
 // GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs and GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentInput` via:
 //
-//          GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs{...}
+//	GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs{...}
 type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentInput interface {
 	pulumi.Input
 
@@ -28399,7 +28413,7 @@ func (i GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs) ToGet
 // GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray and GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayInput` via:
 //
-//          GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs{...} }
+//	GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArgs{...} }
 type GetFederatedSettingsOrgConfigsResultRoleMappingRoleAssignmentArrayInput interface {
 	pulumi.Input
 
@@ -28486,7 +28500,7 @@ type GetFederatedSettingsOrgConfigsResultUserConflict struct {
 // GetFederatedSettingsOrgConfigsResultUserConflictInput is an input type that accepts GetFederatedSettingsOrgConfigsResultUserConflictArgs and GetFederatedSettingsOrgConfigsResultUserConflictOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultUserConflictInput` via:
 //
-//          GetFederatedSettingsOrgConfigsResultUserConflictArgs{...}
+//	GetFederatedSettingsOrgConfigsResultUserConflictArgs{...}
 type GetFederatedSettingsOrgConfigsResultUserConflictInput interface {
 	pulumi.Input
 
@@ -28522,7 +28536,7 @@ func (i GetFederatedSettingsOrgConfigsResultUserConflictArgs) ToGetFederatedSett
 // GetFederatedSettingsOrgConfigsResultUserConflictArrayInput is an input type that accepts GetFederatedSettingsOrgConfigsResultUserConflictArray and GetFederatedSettingsOrgConfigsResultUserConflictArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgConfigsResultUserConflictArrayInput` via:
 //
-//          GetFederatedSettingsOrgConfigsResultUserConflictArray{ GetFederatedSettingsOrgConfigsResultUserConflictArgs{...} }
+//	GetFederatedSettingsOrgConfigsResultUserConflictArray{ GetFederatedSettingsOrgConfigsResultUserConflictArgs{...} }
 type GetFederatedSettingsOrgConfigsResultUserConflictArrayInput interface {
 	pulumi.Input
 
@@ -28615,7 +28629,7 @@ type GetFederatedSettingsOrgRoleMappingRoleAssignment struct {
 // GetFederatedSettingsOrgRoleMappingRoleAssignmentInput is an input type that accepts GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs and GetFederatedSettingsOrgRoleMappingRoleAssignmentOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingRoleAssignmentInput` via:
 //
-//          GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs{...}
+//	GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs{...}
 type GetFederatedSettingsOrgRoleMappingRoleAssignmentInput interface {
 	pulumi.Input
 
@@ -28647,7 +28661,7 @@ func (i GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs) ToGetFederatedSett
 // GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsOrgRoleMappingRoleAssignmentArray and GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayInput` via:
 //
-//          GetFederatedSettingsOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs{...} }
+//	GetFederatedSettingsOrgRoleMappingRoleAssignmentArray{ GetFederatedSettingsOrgRoleMappingRoleAssignmentArgs{...} }
 type GetFederatedSettingsOrgRoleMappingRoleAssignmentArrayInput interface {
 	pulumi.Input
 
@@ -28730,7 +28744,7 @@ type GetFederatedSettingsOrgRoleMappingsResult struct {
 // GetFederatedSettingsOrgRoleMappingsResultInput is an input type that accepts GetFederatedSettingsOrgRoleMappingsResultArgs and GetFederatedSettingsOrgRoleMappingsResultOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingsResultInput` via:
 //
-//          GetFederatedSettingsOrgRoleMappingsResultArgs{...}
+//	GetFederatedSettingsOrgRoleMappingsResultArgs{...}
 type GetFederatedSettingsOrgRoleMappingsResultInput interface {
 	pulumi.Input
 
@@ -28762,7 +28776,7 @@ func (i GetFederatedSettingsOrgRoleMappingsResultArgs) ToGetFederatedSettingsOrg
 // GetFederatedSettingsOrgRoleMappingsResultArrayInput is an input type that accepts GetFederatedSettingsOrgRoleMappingsResultArray and GetFederatedSettingsOrgRoleMappingsResultArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingsResultArrayInput` via:
 //
-//          GetFederatedSettingsOrgRoleMappingsResultArray{ GetFederatedSettingsOrgRoleMappingsResultArgs{...} }
+//	GetFederatedSettingsOrgRoleMappingsResultArray{ GetFederatedSettingsOrgRoleMappingsResultArgs{...} }
 type GetFederatedSettingsOrgRoleMappingsResultArrayInput interface {
 	pulumi.Input
 
@@ -28847,7 +28861,7 @@ type GetFederatedSettingsOrgRoleMappingsResultRoleAssignment struct {
 // GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput is an input type that accepts GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs and GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput` via:
 //
-//          GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{...}
+//	GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{...}
 type GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentInput interface {
 	pulumi.Input
 
@@ -28879,7 +28893,7 @@ func (i GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs) ToGetFedera
 // GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput is an input type that accepts GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray and GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayOutput values.
 // You can construct a concrete instance of `GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput` via:
 //
-//          GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray{ GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{...} }
+//	GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArray{ GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArgs{...} }
 type GetFederatedSettingsOrgRoleMappingsResultRoleAssignmentArrayInput interface {
 	pulumi.Input
 
@@ -28966,7 +28980,7 @@ type GetGlobalClusterConfigManagedNamespace struct {
 // GetGlobalClusterConfigManagedNamespaceInput is an input type that accepts GetGlobalClusterConfigManagedNamespaceArgs and GetGlobalClusterConfigManagedNamespaceOutput values.
 // You can construct a concrete instance of `GetGlobalClusterConfigManagedNamespaceInput` via:
 //
-//          GetGlobalClusterConfigManagedNamespaceArgs{...}
+//	GetGlobalClusterConfigManagedNamespaceArgs{...}
 type GetGlobalClusterConfigManagedNamespaceInput interface {
 	pulumi.Input
 
@@ -29002,7 +29016,7 @@ func (i GetGlobalClusterConfigManagedNamespaceArgs) ToGetGlobalClusterConfigMana
 // GetGlobalClusterConfigManagedNamespaceArrayInput is an input type that accepts GetGlobalClusterConfigManagedNamespaceArray and GetGlobalClusterConfigManagedNamespaceArrayOutput values.
 // You can construct a concrete instance of `GetGlobalClusterConfigManagedNamespaceArrayInput` via:
 //
-//          GetGlobalClusterConfigManagedNamespaceArray{ GetGlobalClusterConfigManagedNamespaceArgs{...} }
+//	GetGlobalClusterConfigManagedNamespaceArray{ GetGlobalClusterConfigManagedNamespaceArgs{...} }
 type GetGlobalClusterConfigManagedNamespaceArrayInput interface {
 	pulumi.Input
 
@@ -29092,7 +29106,7 @@ type GetLdapConfigurationUserToDnMapping struct {
 // GetLdapConfigurationUserToDnMappingInput is an input type that accepts GetLdapConfigurationUserToDnMappingArgs and GetLdapConfigurationUserToDnMappingOutput values.
 // You can construct a concrete instance of `GetLdapConfigurationUserToDnMappingInput` via:
 //
-//          GetLdapConfigurationUserToDnMappingArgs{...}
+//	GetLdapConfigurationUserToDnMappingArgs{...}
 type GetLdapConfigurationUserToDnMappingInput interface {
 	pulumi.Input
 
@@ -29121,7 +29135,7 @@ func (i GetLdapConfigurationUserToDnMappingArgs) ToGetLdapConfigurationUserToDnM
 // GetLdapConfigurationUserToDnMappingArrayInput is an input type that accepts GetLdapConfigurationUserToDnMappingArray and GetLdapConfigurationUserToDnMappingArrayOutput values.
 // You can construct a concrete instance of `GetLdapConfigurationUserToDnMappingArrayInput` via:
 //
-//          GetLdapConfigurationUserToDnMappingArray{ GetLdapConfigurationUserToDnMappingArgs{...} }
+//	GetLdapConfigurationUserToDnMappingArray{ GetLdapConfigurationUserToDnMappingArgs{...} }
 type GetLdapConfigurationUserToDnMappingArrayInput interface {
 	pulumi.Input
 
@@ -29197,7 +29211,7 @@ type GetLdapVerifyLink struct {
 // GetLdapVerifyLinkInput is an input type that accepts GetLdapVerifyLinkArgs and GetLdapVerifyLinkOutput values.
 // You can construct a concrete instance of `GetLdapVerifyLinkInput` via:
 //
-//          GetLdapVerifyLinkArgs{...}
+//	GetLdapVerifyLinkArgs{...}
 type GetLdapVerifyLinkInput interface {
 	pulumi.Input
 
@@ -29225,7 +29239,7 @@ func (i GetLdapVerifyLinkArgs) ToGetLdapVerifyLinkOutputWithContext(ctx context.
 // GetLdapVerifyLinkArrayInput is an input type that accepts GetLdapVerifyLinkArray and GetLdapVerifyLinkArrayOutput values.
 // You can construct a concrete instance of `GetLdapVerifyLinkArrayInput` via:
 //
-//          GetLdapVerifyLinkArray{ GetLdapVerifyLinkArgs{...} }
+//	GetLdapVerifyLinkArray{ GetLdapVerifyLinkArgs{...} }
 type GetLdapVerifyLinkArrayInput interface {
 	pulumi.Input
 
@@ -29298,7 +29312,7 @@ type GetLdapVerifyValidation struct {
 // GetLdapVerifyValidationInput is an input type that accepts GetLdapVerifyValidationArgs and GetLdapVerifyValidationOutput values.
 // You can construct a concrete instance of `GetLdapVerifyValidationInput` via:
 //
-//          GetLdapVerifyValidationArgs{...}
+//	GetLdapVerifyValidationArgs{...}
 type GetLdapVerifyValidationInput interface {
 	pulumi.Input
 
@@ -29327,7 +29341,7 @@ func (i GetLdapVerifyValidationArgs) ToGetLdapVerifyValidationOutputWithContext(
 // GetLdapVerifyValidationArrayInput is an input type that accepts GetLdapVerifyValidationArray and GetLdapVerifyValidationArrayOutput values.
 // You can construct a concrete instance of `GetLdapVerifyValidationArrayInput` via:
 //
-//          GetLdapVerifyValidationArray{ GetLdapVerifyValidationArgs{...} }
+//	GetLdapVerifyValidationArray{ GetLdapVerifyValidationArgs{...} }
 type GetLdapVerifyValidationArrayInput interface {
 	pulumi.Input
 
@@ -29422,7 +29436,7 @@ type GetNetworkContainersResult struct {
 // GetNetworkContainersResultInput is an input type that accepts GetNetworkContainersResultArgs and GetNetworkContainersResultOutput values.
 // You can construct a concrete instance of `GetNetworkContainersResultInput` via:
 //
-//          GetNetworkContainersResultArgs{...}
+//	GetNetworkContainersResultArgs{...}
 type GetNetworkContainersResultInput interface {
 	pulumi.Input
 
@@ -29472,7 +29486,7 @@ func (i GetNetworkContainersResultArgs) ToGetNetworkContainersResultOutputWithCo
 // GetNetworkContainersResultArrayInput is an input type that accepts GetNetworkContainersResultArray and GetNetworkContainersResultArrayOutput values.
 // You can construct a concrete instance of `GetNetworkContainersResultArrayInput` via:
 //
-//          GetNetworkContainersResultArray{ GetNetworkContainersResultArgs{...} }
+//	GetNetworkContainersResultArray{ GetNetworkContainersResultArgs{...} }
 type GetNetworkContainersResultArrayInput interface {
 	pulumi.Input
 
@@ -29632,7 +29646,7 @@ type GetNetworkPeeringsResult struct {
 // GetNetworkPeeringsResultInput is an input type that accepts GetNetworkPeeringsResultArgs and GetNetworkPeeringsResultOutput values.
 // You can construct a concrete instance of `GetNetworkPeeringsResultInput` via:
 //
-//          GetNetworkPeeringsResultArgs{...}
+//	GetNetworkPeeringsResultArgs{...}
 type GetNetworkPeeringsResultInput interface {
 	pulumi.Input
 
@@ -29696,7 +29710,7 @@ func (i GetNetworkPeeringsResultArgs) ToGetNetworkPeeringsResultOutputWithContex
 // GetNetworkPeeringsResultArrayInput is an input type that accepts GetNetworkPeeringsResultArray and GetNetworkPeeringsResultArrayOutput values.
 // You can construct a concrete instance of `GetNetworkPeeringsResultArrayInput` via:
 //
-//          GetNetworkPeeringsResultArray{ GetNetworkPeeringsResultArgs{...} }
+//	GetNetworkPeeringsResultArray{ GetNetworkPeeringsResultArgs{...} }
 type GetNetworkPeeringsResultArrayInput interface {
 	pulumi.Input
 
@@ -29861,7 +29875,7 @@ type GetOnlineArchiveCriteria struct {
 // GetOnlineArchiveCriteriaInput is an input type that accepts GetOnlineArchiveCriteriaArgs and GetOnlineArchiveCriteriaOutput values.
 // You can construct a concrete instance of `GetOnlineArchiveCriteriaInput` via:
 //
-//          GetOnlineArchiveCriteriaArgs{...}
+//	GetOnlineArchiveCriteriaArgs{...}
 type GetOnlineArchiveCriteriaInput interface {
 	pulumi.Input
 
@@ -29892,7 +29906,7 @@ func (i GetOnlineArchiveCriteriaArgs) ToGetOnlineArchiveCriteriaOutputWithContex
 // GetOnlineArchiveCriteriaArrayInput is an input type that accepts GetOnlineArchiveCriteriaArray and GetOnlineArchiveCriteriaArrayOutput values.
 // You can construct a concrete instance of `GetOnlineArchiveCriteriaArrayInput` via:
 //
-//          GetOnlineArchiveCriteriaArray{ GetOnlineArchiveCriteriaArgs{...} }
+//	GetOnlineArchiveCriteriaArray{ GetOnlineArchiveCriteriaArgs{...} }
 type GetOnlineArchiveCriteriaArrayInput interface {
 	pulumi.Input
 
@@ -29977,7 +29991,7 @@ type GetOnlineArchivePartitionField struct {
 // GetOnlineArchivePartitionFieldInput is an input type that accepts GetOnlineArchivePartitionFieldArgs and GetOnlineArchivePartitionFieldOutput values.
 // You can construct a concrete instance of `GetOnlineArchivePartitionFieldInput` via:
 //
-//          GetOnlineArchivePartitionFieldArgs{...}
+//	GetOnlineArchivePartitionFieldArgs{...}
 type GetOnlineArchivePartitionFieldInput interface {
 	pulumi.Input
 
@@ -30006,7 +30020,7 @@ func (i GetOnlineArchivePartitionFieldArgs) ToGetOnlineArchivePartitionFieldOutp
 // GetOnlineArchivePartitionFieldArrayInput is an input type that accepts GetOnlineArchivePartitionFieldArray and GetOnlineArchivePartitionFieldArrayOutput values.
 // You can construct a concrete instance of `GetOnlineArchivePartitionFieldArrayInput` via:
 //
-//          GetOnlineArchivePartitionFieldArray{ GetOnlineArchivePartitionFieldArgs{...} }
+//	GetOnlineArchivePartitionFieldArray{ GetOnlineArchivePartitionFieldArgs{...} }
 type GetOnlineArchivePartitionFieldArrayInput interface {
 	pulumi.Input
 
@@ -30091,7 +30105,7 @@ type GetOnlineArchivesResult struct {
 // GetOnlineArchivesResultInput is an input type that accepts GetOnlineArchivesResultArgs and GetOnlineArchivesResultOutput values.
 // You can construct a concrete instance of `GetOnlineArchivesResultInput` via:
 //
-//          GetOnlineArchivesResultArgs{...}
+//	GetOnlineArchivesResultArgs{...}
 type GetOnlineArchivesResultInput interface {
 	pulumi.Input
 
@@ -30128,7 +30142,7 @@ func (i GetOnlineArchivesResultArgs) ToGetOnlineArchivesResultOutputWithContext(
 // GetOnlineArchivesResultArrayInput is an input type that accepts GetOnlineArchivesResultArray and GetOnlineArchivesResultArrayOutput values.
 // You can construct a concrete instance of `GetOnlineArchivesResultArrayInput` via:
 //
-//          GetOnlineArchivesResultArray{ GetOnlineArchivesResultArgs{...} }
+//	GetOnlineArchivesResultArray{ GetOnlineArchivesResultArgs{...} }
 type GetOnlineArchivesResultArrayInput interface {
 	pulumi.Input
 
@@ -30233,7 +30247,7 @@ type GetOnlineArchivesResultCriteria struct {
 // GetOnlineArchivesResultCriteriaInput is an input type that accepts GetOnlineArchivesResultCriteriaArgs and GetOnlineArchivesResultCriteriaOutput values.
 // You can construct a concrete instance of `GetOnlineArchivesResultCriteriaInput` via:
 //
-//          GetOnlineArchivesResultCriteriaArgs{...}
+//	GetOnlineArchivesResultCriteriaArgs{...}
 type GetOnlineArchivesResultCriteriaInput interface {
 	pulumi.Input
 
@@ -30264,7 +30278,7 @@ func (i GetOnlineArchivesResultCriteriaArgs) ToGetOnlineArchivesResultCriteriaOu
 // GetOnlineArchivesResultCriteriaArrayInput is an input type that accepts GetOnlineArchivesResultCriteriaArray and GetOnlineArchivesResultCriteriaArrayOutput values.
 // You can construct a concrete instance of `GetOnlineArchivesResultCriteriaArrayInput` via:
 //
-//          GetOnlineArchivesResultCriteriaArray{ GetOnlineArchivesResultCriteriaArgs{...} }
+//	GetOnlineArchivesResultCriteriaArray{ GetOnlineArchivesResultCriteriaArgs{...} }
 type GetOnlineArchivesResultCriteriaArrayInput interface {
 	pulumi.Input
 
@@ -30349,7 +30363,7 @@ type GetOnlineArchivesResultPartitionField struct {
 // GetOnlineArchivesResultPartitionFieldInput is an input type that accepts GetOnlineArchivesResultPartitionFieldArgs and GetOnlineArchivesResultPartitionFieldOutput values.
 // You can construct a concrete instance of `GetOnlineArchivesResultPartitionFieldInput` via:
 //
-//          GetOnlineArchivesResultPartitionFieldArgs{...}
+//	GetOnlineArchivesResultPartitionFieldArgs{...}
 type GetOnlineArchivesResultPartitionFieldInput interface {
 	pulumi.Input
 
@@ -30378,7 +30392,7 @@ func (i GetOnlineArchivesResultPartitionFieldArgs) ToGetOnlineArchivesResultPart
 // GetOnlineArchivesResultPartitionFieldArrayInput is an input type that accepts GetOnlineArchivesResultPartitionFieldArray and GetOnlineArchivesResultPartitionFieldArrayOutput values.
 // You can construct a concrete instance of `GetOnlineArchivesResultPartitionFieldArrayInput` via:
 //
-//          GetOnlineArchivesResultPartitionFieldArray{ GetOnlineArchivesResultPartitionFieldArgs{...} }
+//	GetOnlineArchivesResultPartitionFieldArray{ GetOnlineArchivesResultPartitionFieldArgs{...} }
 type GetOnlineArchivesResultPartitionFieldArrayInput interface {
 	pulumi.Input
 
@@ -30460,7 +30474,7 @@ type GetPrivateLinkEndpointServiceEndpoint struct {
 // GetPrivateLinkEndpointServiceEndpointInput is an input type that accepts GetPrivateLinkEndpointServiceEndpointArgs and GetPrivateLinkEndpointServiceEndpointOutput values.
 // You can construct a concrete instance of `GetPrivateLinkEndpointServiceEndpointInput` via:
 //
-//          GetPrivateLinkEndpointServiceEndpointArgs{...}
+//	GetPrivateLinkEndpointServiceEndpointArgs{...}
 type GetPrivateLinkEndpointServiceEndpointInput interface {
 	pulumi.Input
 
@@ -30494,7 +30508,7 @@ func (i GetPrivateLinkEndpointServiceEndpointArgs) ToGetPrivateLinkEndpointServi
 // GetPrivateLinkEndpointServiceEndpointArrayInput is an input type that accepts GetPrivateLinkEndpointServiceEndpointArray and GetPrivateLinkEndpointServiceEndpointArrayOutput values.
 // You can construct a concrete instance of `GetPrivateLinkEndpointServiceEndpointArrayInput` via:
 //
-//          GetPrivateLinkEndpointServiceEndpointArray{ GetPrivateLinkEndpointServiceEndpointArgs{...} }
+//	GetPrivateLinkEndpointServiceEndpointArray{ GetPrivateLinkEndpointServiceEndpointArgs{...} }
 type GetPrivateLinkEndpointServiceEndpointArrayInput interface {
 	pulumi.Input
 
@@ -30578,7 +30592,7 @@ type GetPrivatelinkEndpointsServiceAdlLink struct {
 // GetPrivatelinkEndpointsServiceAdlLinkInput is an input type that accepts GetPrivatelinkEndpointsServiceAdlLinkArgs and GetPrivatelinkEndpointsServiceAdlLinkOutput values.
 // You can construct a concrete instance of `GetPrivatelinkEndpointsServiceAdlLinkInput` via:
 //
-//          GetPrivatelinkEndpointsServiceAdlLinkArgs{...}
+//	GetPrivatelinkEndpointsServiceAdlLinkArgs{...}
 type GetPrivatelinkEndpointsServiceAdlLinkInput interface {
 	pulumi.Input
 
@@ -30606,7 +30620,7 @@ func (i GetPrivatelinkEndpointsServiceAdlLinkArgs) ToGetPrivatelinkEndpointsServ
 // GetPrivatelinkEndpointsServiceAdlLinkArrayInput is an input type that accepts GetPrivatelinkEndpointsServiceAdlLinkArray and GetPrivatelinkEndpointsServiceAdlLinkArrayOutput values.
 // You can construct a concrete instance of `GetPrivatelinkEndpointsServiceAdlLinkArrayInput` via:
 //
-//          GetPrivatelinkEndpointsServiceAdlLinkArray{ GetPrivatelinkEndpointsServiceAdlLinkArgs{...} }
+//	GetPrivatelinkEndpointsServiceAdlLinkArray{ GetPrivatelinkEndpointsServiceAdlLinkArgs{...} }
 type GetPrivatelinkEndpointsServiceAdlLinkArrayInput interface {
 	pulumi.Input
 
@@ -30684,7 +30698,7 @@ type GetPrivatelinkEndpointsServiceAdlResult struct {
 // GetPrivatelinkEndpointsServiceAdlResultInput is an input type that accepts GetPrivatelinkEndpointsServiceAdlResultArgs and GetPrivatelinkEndpointsServiceAdlResultOutput values.
 // You can construct a concrete instance of `GetPrivatelinkEndpointsServiceAdlResultInput` via:
 //
-//          GetPrivatelinkEndpointsServiceAdlResultArgs{...}
+//	GetPrivatelinkEndpointsServiceAdlResultArgs{...}
 type GetPrivatelinkEndpointsServiceAdlResultInput interface {
 	pulumi.Input
 
@@ -30718,7 +30732,7 @@ func (i GetPrivatelinkEndpointsServiceAdlResultArgs) ToGetPrivatelinkEndpointsSe
 // GetPrivatelinkEndpointsServiceAdlResultArrayInput is an input type that accepts GetPrivatelinkEndpointsServiceAdlResultArray and GetPrivatelinkEndpointsServiceAdlResultArrayOutput values.
 // You can construct a concrete instance of `GetPrivatelinkEndpointsServiceAdlResultArrayInput` via:
 //
-//          GetPrivatelinkEndpointsServiceAdlResultArray{ GetPrivatelinkEndpointsServiceAdlResultArgs{...} }
+//	GetPrivatelinkEndpointsServiceAdlResultArray{ GetPrivatelinkEndpointsServiceAdlResultArgs{...} }
 type GetPrivatelinkEndpointsServiceAdlResultArrayInput interface {
 	pulumi.Input
 
@@ -30802,7 +30816,7 @@ type GetProjectApiKey struct {
 // GetProjectApiKeyInput is an input type that accepts GetProjectApiKeyArgs and GetProjectApiKeyOutput values.
 // You can construct a concrete instance of `GetProjectApiKeyInput` via:
 //
-//          GetProjectApiKeyArgs{...}
+//	GetProjectApiKeyArgs{...}
 type GetProjectApiKeyInput interface {
 	pulumi.Input
 
@@ -30830,7 +30844,7 @@ func (i GetProjectApiKeyArgs) ToGetProjectApiKeyOutputWithContext(ctx context.Co
 // GetProjectApiKeyArrayInput is an input type that accepts GetProjectApiKeyArray and GetProjectApiKeyArrayOutput values.
 // You can construct a concrete instance of `GetProjectApiKeyArrayInput` via:
 //
-//          GetProjectApiKeyArray{ GetProjectApiKeyArgs{...} }
+//	GetProjectApiKeyArray{ GetProjectApiKeyArgs{...} }
 type GetProjectApiKeyArrayInput interface {
 	pulumi.Input
 
@@ -30902,7 +30916,7 @@ type GetProjectTeam struct {
 // GetProjectTeamInput is an input type that accepts GetProjectTeamArgs and GetProjectTeamOutput values.
 // You can construct a concrete instance of `GetProjectTeamInput` via:
 //
-//          GetProjectTeamArgs{...}
+//	GetProjectTeamArgs{...}
 type GetProjectTeamInput interface {
 	pulumi.Input
 
@@ -30930,7 +30944,7 @@ func (i GetProjectTeamArgs) ToGetProjectTeamOutputWithContext(ctx context.Contex
 // GetProjectTeamArrayInput is an input type that accepts GetProjectTeamArray and GetProjectTeamArrayOutput values.
 // You can construct a concrete instance of `GetProjectTeamArrayInput` via:
 //
-//          GetProjectTeamArray{ GetProjectTeamArgs{...} }
+//	GetProjectTeamArray{ GetProjectTeamArgs{...} }
 type GetProjectTeamArrayInput interface {
 	pulumi.Input
 
@@ -31040,7 +31054,7 @@ type GetProjectsResult struct {
 // GetProjectsResultInput is an input type that accepts GetProjectsResultArgs and GetProjectsResultOutput values.
 // You can construct a concrete instance of `GetProjectsResultInput` via:
 //
-//          GetProjectsResultArgs{...}
+//	GetProjectsResultArgs{...}
 type GetProjectsResultInput interface {
 	pulumi.Input
 
@@ -31106,7 +31120,7 @@ func (i GetProjectsResultArgs) ToGetProjectsResultOutputWithContext(ctx context.
 // GetProjectsResultArrayInput is an input type that accepts GetProjectsResultArray and GetProjectsResultArrayOutput values.
 // You can construct a concrete instance of `GetProjectsResultArrayInput` via:
 //
-//          GetProjectsResultArray{ GetProjectsResultArgs{...} }
+//	GetProjectsResultArray{ GetProjectsResultArgs{...} }
 type GetProjectsResultArrayInput interface {
 	pulumi.Input
 
@@ -31192,24 +31206,24 @@ func (o GetProjectsResultOutput) Name() pulumi.StringOutput {
 // The ID of the organization you want to create the project within.
 // *`clusterCount` - The number of Atlas clusters deployed in the project.
 // *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-//   The following are valid roles:
-// * `GROUP_OWNER`
-// * `GROUP_READ_ONLY`
-// * `GROUP_DATA_ACCESS_ADMIN`
-// * `GROUP_DATA_ACCESS_READ_WRITE`
-// * `GROUP_DATA_ACCESS_READ_ONLY`
-// * `GROUP_CLUSTER_MANAGER`
-// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
-//   The following are valid roles:
-// * `GROUP_OWNER`
-// * `GROUP_READ_ONLY`
-// * `GROUP_DATA_ACCESS_ADMIN`
-// * `GROUP_DATA_ACCESS_READ_WRITE`
-// * `GROUP_DATA_ACCESS_READ_ONLY`
-// * `GROUP_CLUSTER_MANAGER`
+//   - `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+//   - `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+//     The following are valid roles:
+//   - `GROUP_OWNER`
+//   - `GROUP_READ_ONLY`
+//   - `GROUP_DATA_ACCESS_ADMIN`
+//   - `GROUP_DATA_ACCESS_READ_WRITE`
+//   - `GROUP_DATA_ACCESS_READ_ONLY`
+//   - `GROUP_CLUSTER_MANAGER`
+//   - `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
+//   - `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
+//     The following are valid roles:
+//   - `GROUP_OWNER`
+//   - `GROUP_READ_ONLY`
+//   - `GROUP_DATA_ACCESS_ADMIN`
+//   - `GROUP_DATA_ACCESS_READ_WRITE`
+//   - `GROUP_DATA_ACCESS_READ_ONLY`
+//   - `GROUP_CLUSTER_MANAGER`
 func (o GetProjectsResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
@@ -31246,7 +31260,7 @@ type GetProjectsResultApiKey struct {
 // GetProjectsResultApiKeyInput is an input type that accepts GetProjectsResultApiKeyArgs and GetProjectsResultApiKeyOutput values.
 // You can construct a concrete instance of `GetProjectsResultApiKeyInput` via:
 //
-//          GetProjectsResultApiKeyArgs{...}
+//	GetProjectsResultApiKeyArgs{...}
 type GetProjectsResultApiKeyInput interface {
 	pulumi.Input
 
@@ -31274,7 +31288,7 @@ func (i GetProjectsResultApiKeyArgs) ToGetProjectsResultApiKeyOutputWithContext(
 // GetProjectsResultApiKeyArrayInput is an input type that accepts GetProjectsResultApiKeyArray and GetProjectsResultApiKeyArrayOutput values.
 // You can construct a concrete instance of `GetProjectsResultApiKeyArrayInput` via:
 //
-//          GetProjectsResultApiKeyArray{ GetProjectsResultApiKeyArgs{...} }
+//	GetProjectsResultApiKeyArray{ GetProjectsResultApiKeyArgs{...} }
 type GetProjectsResultApiKeyArrayInput interface {
 	pulumi.Input
 
@@ -31346,7 +31360,7 @@ type GetProjectsResultTeam struct {
 // GetProjectsResultTeamInput is an input type that accepts GetProjectsResultTeamArgs and GetProjectsResultTeamOutput values.
 // You can construct a concrete instance of `GetProjectsResultTeamInput` via:
 //
-//          GetProjectsResultTeamArgs{...}
+//	GetProjectsResultTeamArgs{...}
 type GetProjectsResultTeamInput interface {
 	pulumi.Input
 
@@ -31374,7 +31388,7 @@ func (i GetProjectsResultTeamArgs) ToGetProjectsResultTeamOutputWithContext(ctx 
 // GetProjectsResultTeamArrayInput is an input type that accepts GetProjectsResultTeamArray and GetProjectsResultTeamArrayOutput values.
 // You can construct a concrete instance of `GetProjectsResultTeamArrayInput` via:
 //
-//          GetProjectsResultTeamArray{ GetProjectsResultTeamArgs{...} }
+//	GetProjectsResultTeamArray{ GetProjectsResultTeamArgs{...} }
 type GetProjectsResultTeamArrayInput interface {
 	pulumi.Input
 
@@ -31449,7 +31463,7 @@ type GetSearchIndexSynonym struct {
 // GetSearchIndexSynonymInput is an input type that accepts GetSearchIndexSynonymArgs and GetSearchIndexSynonymOutput values.
 // You can construct a concrete instance of `GetSearchIndexSynonymInput` via:
 //
-//          GetSearchIndexSynonymArgs{...}
+//	GetSearchIndexSynonymArgs{...}
 type GetSearchIndexSynonymInput interface {
 	pulumi.Input
 
@@ -31480,7 +31494,7 @@ func (i GetSearchIndexSynonymArgs) ToGetSearchIndexSynonymOutputWithContext(ctx 
 // GetSearchIndexSynonymArrayInput is an input type that accepts GetSearchIndexSynonymArray and GetSearchIndexSynonymArrayOutput values.
 // You can construct a concrete instance of `GetSearchIndexSynonymArrayInput` via:
 //
-//          GetSearchIndexSynonymArray{ GetSearchIndexSynonymArgs{...} }
+//	GetSearchIndexSynonymArray{ GetSearchIndexSynonymArgs{...} }
 type GetSearchIndexSynonymArrayInput interface {
 	pulumi.Input
 
@@ -31583,7 +31597,7 @@ type GetSearchIndexesResult struct {
 // GetSearchIndexesResultInput is an input type that accepts GetSearchIndexesResultArgs and GetSearchIndexesResultOutput values.
 // You can construct a concrete instance of `GetSearchIndexesResultInput` via:
 //
-//          GetSearchIndexesResultArgs{...}
+//	GetSearchIndexesResultArgs{...}
 type GetSearchIndexesResultInput interface {
 	pulumi.Input
 
@@ -31636,7 +31650,7 @@ func (i GetSearchIndexesResultArgs) ToGetSearchIndexesResultOutputWithContext(ct
 // GetSearchIndexesResultArrayInput is an input type that accepts GetSearchIndexesResultArray and GetSearchIndexesResultArrayOutput values.
 // You can construct a concrete instance of `GetSearchIndexesResultArrayInput` via:
 //
-//          GetSearchIndexesResultArray{ GetSearchIndexesResultArgs{...} }
+//	GetSearchIndexesResultArray{ GetSearchIndexesResultArgs{...} }
 type GetSearchIndexesResultArrayInput interface {
 	pulumi.Input
 
@@ -31769,7 +31783,7 @@ type GetSearchIndexesResultSynonym struct {
 // GetSearchIndexesResultSynonymInput is an input type that accepts GetSearchIndexesResultSynonymArgs and GetSearchIndexesResultSynonymOutput values.
 // You can construct a concrete instance of `GetSearchIndexesResultSynonymInput` via:
 //
-//          GetSearchIndexesResultSynonymArgs{...}
+//	GetSearchIndexesResultSynonymArgs{...}
 type GetSearchIndexesResultSynonymInput interface {
 	pulumi.Input
 
@@ -31800,7 +31814,7 @@ func (i GetSearchIndexesResultSynonymArgs) ToGetSearchIndexesResultSynonymOutput
 // GetSearchIndexesResultSynonymArrayInput is an input type that accepts GetSearchIndexesResultSynonymArray and GetSearchIndexesResultSynonymArrayOutput values.
 // You can construct a concrete instance of `GetSearchIndexesResultSynonymArrayInput` via:
 //
-//          GetSearchIndexesResultSynonymArray{ GetSearchIndexesResultSynonymArgs{...} }
+//	GetSearchIndexesResultSynonymArray{ GetSearchIndexesResultSynonymArgs{...} }
 type GetSearchIndexesResultSynonymArrayInput interface {
 	pulumi.Input
 
@@ -31878,7 +31892,7 @@ type GetServerlessInstanceLink struct {
 // GetServerlessInstanceLinkInput is an input type that accepts GetServerlessInstanceLinkArgs and GetServerlessInstanceLinkOutput values.
 // You can construct a concrete instance of `GetServerlessInstanceLinkInput` via:
 //
-//          GetServerlessInstanceLinkArgs{...}
+//	GetServerlessInstanceLinkArgs{...}
 type GetServerlessInstanceLinkInput interface {
 	pulumi.Input
 
@@ -31906,7 +31920,7 @@ func (i GetServerlessInstanceLinkArgs) ToGetServerlessInstanceLinkOutputWithCont
 // GetServerlessInstanceLinkArrayInput is an input type that accepts GetServerlessInstanceLinkArray and GetServerlessInstanceLinkArrayOutput values.
 // You can construct a concrete instance of `GetServerlessInstanceLinkArrayInput` via:
 //
-//          GetServerlessInstanceLinkArray{ GetServerlessInstanceLinkArgs{...} }
+//	GetServerlessInstanceLinkArray{ GetServerlessInstanceLinkArgs{...} }
 type GetServerlessInstanceLinkArrayInput interface {
 	pulumi.Input
 
@@ -31996,7 +32010,7 @@ type GetServerlessInstancesResult struct {
 // GetServerlessInstancesResultInput is an input type that accepts GetServerlessInstancesResultArgs and GetServerlessInstancesResultOutput values.
 // You can construct a concrete instance of `GetServerlessInstancesResultInput` via:
 //
-//          GetServerlessInstancesResultArgs{...}
+//	GetServerlessInstancesResultArgs{...}
 type GetServerlessInstancesResultInput interface {
 	pulumi.Input
 
@@ -32042,7 +32056,7 @@ func (i GetServerlessInstancesResultArgs) ToGetServerlessInstancesResultOutputWi
 // GetServerlessInstancesResultArrayInput is an input type that accepts GetServerlessInstancesResultArray and GetServerlessInstancesResultArrayOutput values.
 // You can construct a concrete instance of `GetServerlessInstancesResultArrayInput` via:
 //
-//          GetServerlessInstancesResultArray{ GetServerlessInstancesResultArgs{...} }
+//	GetServerlessInstancesResultArray{ GetServerlessInstancesResultArgs{...} }
 type GetServerlessInstancesResultArrayInput interface {
 	pulumi.Input
 
@@ -32159,7 +32173,7 @@ type GetServerlessInstancesResultLink struct {
 // GetServerlessInstancesResultLinkInput is an input type that accepts GetServerlessInstancesResultLinkArgs and GetServerlessInstancesResultLinkOutput values.
 // You can construct a concrete instance of `GetServerlessInstancesResultLinkInput` via:
 //
-//          GetServerlessInstancesResultLinkArgs{...}
+//	GetServerlessInstancesResultLinkArgs{...}
 type GetServerlessInstancesResultLinkInput interface {
 	pulumi.Input
 
@@ -32187,7 +32201,7 @@ func (i GetServerlessInstancesResultLinkArgs) ToGetServerlessInstancesResultLink
 // GetServerlessInstancesResultLinkArrayInput is an input type that accepts GetServerlessInstancesResultLinkArray and GetServerlessInstancesResultLinkArrayOutput values.
 // You can construct a concrete instance of `GetServerlessInstancesResultLinkArrayInput` via:
 //
-//          GetServerlessInstancesResultLinkArray{ GetServerlessInstancesResultLinkArgs{...} }
+//	GetServerlessInstancesResultLinkArray{ GetServerlessInstancesResultLinkArgs{...} }
 type GetServerlessInstancesResultLinkArrayInput interface {
 	pulumi.Input
 
@@ -32306,7 +32320,7 @@ type GetThirdPartyIntegrationsResult struct {
 // GetThirdPartyIntegrationsResultInput is an input type that accepts GetThirdPartyIntegrationsResultArgs and GetThirdPartyIntegrationsResultOutput values.
 // You can construct a concrete instance of `GetThirdPartyIntegrationsResultInput` via:
 //
-//          GetThirdPartyIntegrationsResultArgs{...}
+//	GetThirdPartyIntegrationsResultArgs{...}
 type GetThirdPartyIntegrationsResultInput interface {
 	pulumi.Input
 
@@ -32381,7 +32395,7 @@ func (i GetThirdPartyIntegrationsResultArgs) ToGetThirdPartyIntegrationsResultOu
 // GetThirdPartyIntegrationsResultArrayInput is an input type that accepts GetThirdPartyIntegrationsResultArray and GetThirdPartyIntegrationsResultArrayOutput values.
 // You can construct a concrete instance of `GetThirdPartyIntegrationsResultArrayInput` via:
 //
-//          GetThirdPartyIntegrationsResultArray{ GetThirdPartyIntegrationsResultArgs{...} }
+//	GetThirdPartyIntegrationsResultArray{ GetThirdPartyIntegrationsResultArgs{...} }
 type GetThirdPartyIntegrationsResultArrayInput interface {
 	pulumi.Input
 

@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetClusterArgs : Pulumi.InvokeArgs
+    public sealed class GetClusterArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
@@ -54,9 +54,10 @@ namespace Pulumi.Mongodbatlas
         public GetClusterArgs()
         {
         }
+        public static new GetClusterArgs Empty => new GetClusterArgs();
     }
 
-    public sealed class GetClusterInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
@@ -73,6 +74,7 @@ namespace Pulumi.Mongodbatlas
         public GetClusterInvokeArgs()
         {
         }
+        public static new GetClusterInvokeArgs Empty => new GetClusterInvokeArgs();
     }
 
 

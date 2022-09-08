@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class CustomDbRoleActionResourceGetArgs : Pulumi.ResourceArgs
+    public sealed class CustomDbRoleActionResourceGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("cluster")]
         public Input<bool>? Cluster { get; set; }
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public CustomDbRoleActionResourceGetArgs()
         {
         }
+        public static new CustomDbRoleActionResourceGetArgs Empty => new CustomDbRoleActionResourceGetArgs();
     }
 }

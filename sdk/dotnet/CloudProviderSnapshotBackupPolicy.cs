@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderSnapshotBackupPolicy:CloudProviderSnapshotBackupPolicy")]
-    public partial class CloudProviderSnapshotBackupPolicy : Pulumi.CustomResource
+    public partial class CloudProviderSnapshotBackupPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Unique identifier of the Atlas cluster.
@@ -122,7 +122,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudProviderSnapshotBackupPolicyArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderSnapshotBackupPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
@@ -176,9 +176,10 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderSnapshotBackupPolicyArgs()
         {
         }
+        public static new CloudProviderSnapshotBackupPolicyArgs Empty => new CloudProviderSnapshotBackupPolicyArgs();
     }
 
-    public sealed class CloudProviderSnapshotBackupPolicyState : Pulumi.ResourceArgs
+    public sealed class CloudProviderSnapshotBackupPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Unique identifier of the Atlas cluster.
@@ -244,5 +245,6 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderSnapshotBackupPolicyState()
         {
         }
+        public static new CloudProviderSnapshotBackupPolicyState Empty => new CloudProviderSnapshotBackupPolicyState();
     }
 }

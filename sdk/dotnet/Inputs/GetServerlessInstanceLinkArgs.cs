@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class GetServerlessInstanceLinkInputArgs : Pulumi.ResourceArgs
+    public sealed class GetServerlessInstanceLinkInputArgs : global::Pulumi.ResourceArgs
     {
         [Input("href", required: true)]
         public Input<string> Href { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public GetServerlessInstanceLinkInputArgs()
         {
         }
+        public static new GetServerlessInstanceLinkInputArgs Empty => new GetServerlessInstanceLinkInputArgs();
     }
 }

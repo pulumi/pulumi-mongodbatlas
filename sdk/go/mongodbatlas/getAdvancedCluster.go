@@ -16,10 +16,12 @@ import (
 // page_title: "MongoDB Atlas: advancedCluster"
 // sidebar_current: "docs-mongodbatlas-datasource-advanced-cluster"
 // description: |-
-//     Describe an Advanced Cluster.
+//
+//	Describe an Advanced Cluster.
+//
 // ---
 //
-// # AdvancedCluster
+// # Data Source: AdvancedCluster
 //
 // `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 //

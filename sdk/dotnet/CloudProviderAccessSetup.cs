@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup")]
-    public partial class CloudProviderAccessSetup : Pulumi.CustomResource
+    public partial class CloudProviderAccessSetup : global::Pulumi.CustomResource
     {
         [Output("aws")]
         public Output<ImmutableDictionary<string, string>> Aws { get; private set; } = null!;
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class CloudProviderAccessSetupArgs : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessSetupArgs : global::Pulumi.ResourceArgs
     {
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -85,9 +85,10 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderAccessSetupArgs()
         {
         }
+        public static new CloudProviderAccessSetupArgs Empty => new CloudProviderAccessSetupArgs();
     }
 
-    public sealed class CloudProviderAccessSetupState : Pulumi.ResourceArgs
+    public sealed class CloudProviderAccessSetupState : global::Pulumi.ResourceArgs
     {
         [Input("aws")]
         private InputMap<string>? _aws;
@@ -121,5 +122,6 @@ namespace Pulumi.Mongodbatlas
         public CloudProviderAccessSetupState()
         {
         }
+        public static new CloudProviderAccessSetupState Empty => new CloudProviderAccessSetupState();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class SearchIndexSynonymArgs : Pulumi.ResourceArgs
+    public sealed class SearchIndexSynonymArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping. Atlas Search doesn't support these [custom analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) tokenizers and token filters in [analyzers used in synonym mappings](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#options):
@@ -39,5 +39,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public SearchIndexSynonymArgs()
         {
         }
+        public static new SearchIndexSynonymArgs Empty => new SearchIndexSynonymArgs();
     }
 }

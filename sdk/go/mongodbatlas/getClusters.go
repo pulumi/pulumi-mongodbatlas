@@ -24,43 +24,46 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
-// 			ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
-// 			DiskSizeGb:  pulumi.Float64(100),
-// 			ClusterType: pulumi.String("REPLICASET"),
-// 			ReplicationSpecs: ClusterReplicationSpecArray{
-// 				&ClusterReplicationSpecArgs{
-// 					NumShards: pulumi.Int(1),
-// 					RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-// 						&ClusterReplicationSpecRegionsConfigArgs{
-// 							RegionName:     pulumi.String("US_EAST_1"),
-// 							ElectableNodes: pulumi.Int(3),
-// 							Priority:       pulumi.Int(7),
-// 							ReadOnlyNodes:  pulumi.Int(0),
-// 						},
-// 					},
-// 				},
-// 			},
-// 			CloudBackup:              pulumi.Bool(true),
-// 			AutoScalingDiskGbEnabled: pulumi.Bool(true),
-// 			ProviderName:             pulumi.String("AWS"),
-// 			ProviderInstanceSizeName: pulumi.String("M40"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupClustersOutput(ctx, GetClustersOutputArgs{
-// 			ProjectId: testCluster.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
+//				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
+//				DiskSizeGb:  pulumi.Float64(100),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: ClusterReplicationSpecArray{
+//					&ClusterReplicationSpecArgs{
+//						NumShards: pulumi.Int(1),
+//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
+//							&ClusterReplicationSpecRegionsConfigArgs{
+//								RegionName:     pulumi.String("US_EAST_1"),
+//								ElectableNodes: pulumi.Int(3),
+//								Priority:       pulumi.Int(7),
+//								ReadOnlyNodes:  pulumi.Int(0),
+//							},
+//						},
+//					},
+//				},
+//				CloudBackup:              pulumi.Bool(true),
+//				AutoScalingDiskGbEnabled: pulumi.Bool(true),
+//				ProviderName:             pulumi.String("AWS"),
+//				ProviderInstanceSizeName: pulumi.String("M40"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupClustersOutput(ctx, GetClustersOutputArgs{
+//				ProjectId: testCluster.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupClusters(ctx *pulumi.Context, args *LookupClustersArgs, opts ...pulumi.InvokeOption) (*LookupClustersResult, error) {
 	var rv LookupClustersResult

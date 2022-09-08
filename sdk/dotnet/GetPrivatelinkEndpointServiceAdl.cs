@@ -18,34 +18,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Basic
-        /// ```csharp
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var adlTest = new Mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", new Mongodbatlas.PrivatelinkEndpointServiceAdlArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT_ID&gt;",
-        ///             EndpointId = "&lt;ENDPOINT_ID&gt;",
-        ///             Comment = "Comment for PrivateLink endpoint ADL",
-        ///             Type = "DATA_LAKE",
-        ///             ProviderName = "AWS",
-        ///         });
-        ///         var test = Mongodbatlas.GetPrivatelinkEndpointServiceAdl.Invoke(new Mongodbatlas.GetPrivatelinkEndpointServiceAdlInvokeArgs
-        ///         {
-        ///             ProjectId = adlTest.ProjectId,
-        ///             PrivateLinkId = adlTest.EndpointId,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPrivatelinkEndpointServiceAdlResult> InvokeAsync(GetPrivatelinkEndpointServiceAdlArgs args, InvokeOptions? options = null)
@@ -58,34 +30,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
-        /// ### Basic
-        /// ```csharp
-        /// using Pulumi;
-        /// using Mongodbatlas = Pulumi.Mongodbatlas;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var adlTest = new Mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", new Mongodbatlas.PrivatelinkEndpointServiceAdlArgs
-        ///         {
-        ///             ProjectId = "&lt;PROJECT_ID&gt;",
-        ///             EndpointId = "&lt;ENDPOINT_ID&gt;",
-        ///             Comment = "Comment for PrivateLink endpoint ADL",
-        ///             Type = "DATA_LAKE",
-        ///             ProviderName = "AWS",
-        ///         });
-        ///         var test = Mongodbatlas.GetPrivatelinkEndpointServiceAdl.Invoke(new Mongodbatlas.GetPrivatelinkEndpointServiceAdlInvokeArgs
-        ///         {
-        ///             ProjectId = adlTest.ProjectId,
-        ///             PrivateLinkId = adlTest.EndpointId,
-        ///         });
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPrivatelinkEndpointServiceAdlResult> Invoke(GetPrivatelinkEndpointServiceAdlInvokeArgs args, InvokeOptions? options = null)
@@ -93,7 +37,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetPrivatelinkEndpointServiceAdlArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivatelinkEndpointServiceAdlArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
@@ -110,9 +54,10 @@ namespace Pulumi.Mongodbatlas
         public GetPrivatelinkEndpointServiceAdlArgs()
         {
         }
+        public static new GetPrivatelinkEndpointServiceAdlArgs Empty => new GetPrivatelinkEndpointServiceAdlArgs();
     }
 
-    public sealed class GetPrivatelinkEndpointServiceAdlInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPrivatelinkEndpointServiceAdlInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [|aws| PrivateLink](https://aws.amazon.com/privatelink/) feature.
@@ -129,6 +74,7 @@ namespace Pulumi.Mongodbatlas
         public GetPrivatelinkEndpointServiceAdlInvokeArgs()
         {
         }
+        public static new GetPrivatelinkEndpointServiceAdlInvokeArgs Empty => new GetPrivatelinkEndpointServiceAdlInvokeArgs();
     }
 
 

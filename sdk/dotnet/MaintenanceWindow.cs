@@ -25,40 +25,36 @@ namespace Pulumi.Mongodbatlas
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.MaintenanceWindow("test", new Mongodbatlas.MaintenanceWindowArgs
-    ///         {
-    ///             DayOfWeek = 3,
-    ///             HourOfDay = 4,
-    ///             ProjectId = "&lt;your-project-id&gt;",
-    ///         });
-    ///     }
+    ///         DayOfWeek = 3,
+    ///         HourOfDay = 4,
+    ///         ProjectId = "&lt;your-project-id&gt;",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
     ///     {
-    ///         var test = new Mongodbatlas.MaintenanceWindow("test", new Mongodbatlas.MaintenanceWindowArgs
-    ///         {
-    ///             Defer = true,
-    ///             ProjectId = "&lt;your-project-id&gt;",
-    ///         });
-    ///     }
+    ///         Defer = true,
+    ///         ProjectId = "&lt;your-project-id&gt;",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -72,7 +68,7 @@ namespace Pulumi.Mongodbatlas
     ///  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/maintenanceWindow:MaintenanceWindow")]
-    public partial class MaintenanceWindow : Pulumi.CustomResource
+    public partial class MaintenanceWindow : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Defer any scheduled maintenance for the given project for one week.
@@ -166,7 +162,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class MaintenanceWindowArgs : Pulumi.ResourceArgs
+    public sealed class MaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defer any scheduled maintenance for the given project for one week.
@@ -213,9 +209,10 @@ namespace Pulumi.Mongodbatlas
         public MaintenanceWindowArgs()
         {
         }
+        public static new MaintenanceWindowArgs Empty => new MaintenanceWindowArgs();
     }
 
-    public sealed class MaintenanceWindowState : Pulumi.ResourceArgs
+    public sealed class MaintenanceWindowState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defer any scheduled maintenance for the given project for one week.
@@ -268,5 +265,6 @@ namespace Pulumi.Mongodbatlas
         public MaintenanceWindowState()
         {
         }
+        public static new MaintenanceWindowState Empty => new MaintenanceWindowState();
     }
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class DataLakeStorageDatabaseViewArgs : Pulumi.ResourceArgs
+    public sealed class DataLakeStorageDatabaseViewArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the Atlas Data Lake.
@@ -27,5 +27,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public DataLakeStorageDatabaseViewArgs()
         {
         }
+        public static new DataLakeStorageDatabaseViewArgs Empty => new DataLakeStorageDatabaseViewArgs();
     }
 }

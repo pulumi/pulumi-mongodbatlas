@@ -16,7 +16,9 @@ import (
 // The Cloud Provider Access resource can be imported using project ID and the provider name and mongodbatlas role id, in the format `project_id`-`provider_name`-`role_id`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+//
+//	$ pulumi import mongodbatlas:index/cloudProviderAccess:CloudProviderAccess my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+//
 // ```
 type CloudProviderAccess struct {
 	pulumi.CustomResourceState
@@ -166,7 +168,7 @@ func (i *CloudProviderAccess) ToCloudProviderAccessOutputWithContext(ctx context
 // CloudProviderAccessArrayInput is an input type that accepts CloudProviderAccessArray and CloudProviderAccessArrayOutput values.
 // You can construct a concrete instance of `CloudProviderAccessArrayInput` via:
 //
-//          CloudProviderAccessArray{ CloudProviderAccessArgs{...} }
+//	CloudProviderAccessArray{ CloudProviderAccessArgs{...} }
 type CloudProviderAccessArrayInput interface {
 	pulumi.Input
 
@@ -191,7 +193,7 @@ func (i CloudProviderAccessArray) ToCloudProviderAccessArrayOutputWithContext(ct
 // CloudProviderAccessMapInput is an input type that accepts CloudProviderAccessMap and CloudProviderAccessMapOutput values.
 // You can construct a concrete instance of `CloudProviderAccessMapInput` via:
 //
-//          CloudProviderAccessMap{ "key": CloudProviderAccessArgs{...} }
+//	CloudProviderAccessMap{ "key": CloudProviderAccessArgs{...} }
 type CloudProviderAccessMapInput interface {
 	pulumi.Input
 
@@ -225,6 +227,51 @@ func (o CloudProviderAccessOutput) ToCloudProviderAccessOutput() CloudProviderAc
 
 func (o CloudProviderAccessOutput) ToCloudProviderAccessOutputWithContext(ctx context.Context) CloudProviderAccessOutput {
 	return o
+}
+
+// Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+func (o CloudProviderAccessOutput) AtlasAssumedRoleExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.AtlasAssumedRoleExternalId }).(pulumi.StringOutput)
+}
+
+// ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+func (o CloudProviderAccessOutput) AtlasAwsAccountArn() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.AtlasAwsAccountArn }).(pulumi.StringOutput)
+}
+
+// Date on which this role was authorized.
+func (o CloudProviderAccessOutput) AuthorizedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.AuthorizedDate }).(pulumi.StringOutput)
+}
+
+// Date on which this role was created.
+func (o CloudProviderAccessOutput) CreatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// Atlas features this AWS IAM role is linked to.
+func (o CloudProviderAccessOutput) FeatureUsages() CloudProviderAccessFeatureUsageArrayOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) CloudProviderAccessFeatureUsageArrayOutput { return v.FeatureUsages }).(CloudProviderAccessFeatureUsageArrayOutput)
+}
+
+// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+func (o CloudProviderAccessOutput) IamAssumedRoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringPtrOutput { return v.IamAssumedRoleArn }).(pulumi.StringPtrOutput)
+}
+
+// The unique ID for the project
+func (o CloudProviderAccessOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The cloud provider for which to create a new role. Currently only AWS is supported.
+func (o CloudProviderAccessOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// Unique ID of this role returned by mongodb atlas api
+func (o CloudProviderAccessOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudProviderAccess) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
 }
 
 type CloudProviderAccessArrayOutput struct{ *pulumi.OutputState }

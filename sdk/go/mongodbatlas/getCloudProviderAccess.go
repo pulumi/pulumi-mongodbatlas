@@ -20,25 +20,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		testRole, err := mongodbatlas.NewCloudProviderAccess(ctx, "testRole", &mongodbatlas.CloudProviderAccessArgs{
-// 			ProjectId:    pulumi.String("<PROJECT-ID>"),
-// 			ProviderName: pulumi.String("AWS"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_ = mongodbatlas.LookupCloudProviderAccessOutput(ctx, GetCloudProviderAccessOutputArgs{
-// 			ProjectId: testRole.ProjectId,
-// 		}, nil)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testRole, err := mongodbatlas.NewCloudProviderAccess(ctx, "testRole", &mongodbatlas.CloudProviderAccessArgs{
+//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.LookupCloudProviderAccessOutput(ctx, GetCloudProviderAccessOutputArgs{
+//				ProjectId: testRole.ProjectId,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupCloudProviderAccess(ctx *pulumi.Context, args *LookupCloudProviderAccessArgs, opts ...pulumi.InvokeOption) (*LookupCloudProviderAccessResult, error) {
 	var rv LookupCloudProviderAccessResult

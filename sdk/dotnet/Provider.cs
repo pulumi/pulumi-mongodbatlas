@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [MongodbatlasResourceType("pulumi:providers:mongodbatlas")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// MongoDB Atlas Base URL
@@ -68,7 +68,7 @@ namespace Pulumi.Mongodbatlas
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// MongoDB Atlas Base URL
@@ -97,5 +97,6 @@ namespace Pulumi.Mongodbatlas
         public ProviderArgs()
         {
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

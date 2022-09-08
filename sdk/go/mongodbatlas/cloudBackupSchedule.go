@@ -16,10 +16,12 @@ import (
 // Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 //
 // ```sh
-//  $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
+//
+//	$ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
+//
 // ```
 //
-//  For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
+//	For more information see[MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
 type CloudBackupSchedule struct {
 	pulumi.CustomResourceState
 
@@ -245,7 +247,7 @@ func (i *CloudBackupSchedule) ToCloudBackupScheduleOutputWithContext(ctx context
 // CloudBackupScheduleArrayInput is an input type that accepts CloudBackupScheduleArray and CloudBackupScheduleArrayOutput values.
 // You can construct a concrete instance of `CloudBackupScheduleArrayInput` via:
 //
-//          CloudBackupScheduleArray{ CloudBackupScheduleArgs{...} }
+//	CloudBackupScheduleArray{ CloudBackupScheduleArgs{...} }
 type CloudBackupScheduleArrayInput interface {
 	pulumi.Input
 
@@ -270,7 +272,7 @@ func (i CloudBackupScheduleArray) ToCloudBackupScheduleArrayOutputWithContext(ct
 // CloudBackupScheduleMapInput is an input type that accepts CloudBackupScheduleMap and CloudBackupScheduleMapOutput values.
 // You can construct a concrete instance of `CloudBackupScheduleMapInput` via:
 //
-//          CloudBackupScheduleMap{ "key": CloudBackupScheduleArgs{...} }
+//	CloudBackupScheduleMap{ "key": CloudBackupScheduleArgs{...} }
 type CloudBackupScheduleMapInput interface {
 	pulumi.Input
 
@@ -304,6 +306,89 @@ func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutput() CloudBackupSche
 
 func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutputWithContext(ctx context.Context) CloudBackupScheduleOutput {
 	return o
+}
+
+// Flag that indicates whether automatic export of cloud backup snapshots to the AWS bucket is enabled. Value can be one of the following:
+func (o CloudBackupScheduleOutput) AutoExportEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolOutput { return v.AutoExportEnabled }).(pulumi.BoolOutput)
+}
+
+// Unique identifier of the Atlas cluster.
+func (o CloudBackupScheduleOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
+func (o CloudBackupScheduleOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+func (o CloudBackupScheduleOutput) Export() CloudBackupScheduleExportOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupScheduleExportOutput { return v.Export }).(CloudBackupScheduleExportOutput)
+}
+
+// Unique identifier of the backup policy.
+func (o CloudBackupScheduleOutput) IdPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.IdPolicy }).(pulumi.StringOutput)
+}
+
+// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
+func (o CloudBackupScheduleOutput) NextSnapshot() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.NextSnapshot }).(pulumi.StringOutput)
+}
+
+// Daily policy item
+func (o CloudBackupScheduleOutput) PolicyItemDaily() CloudBackupSchedulePolicyItemDailyPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemDailyPtrOutput { return v.PolicyItemDaily }).(CloudBackupSchedulePolicyItemDailyPtrOutput)
+}
+
+// Hourly policy item
+func (o CloudBackupScheduleOutput) PolicyItemHourly() CloudBackupSchedulePolicyItemHourlyPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemHourlyPtrOutput { return v.PolicyItemHourly }).(CloudBackupSchedulePolicyItemHourlyPtrOutput)
+}
+
+// Monthly policy item
+func (o CloudBackupScheduleOutput) PolicyItemMonthlies() CloudBackupSchedulePolicyItemMonthlyArrayOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemMonthlyArrayOutput {
+		return v.PolicyItemMonthlies
+	}).(CloudBackupSchedulePolicyItemMonthlyArrayOutput)
+}
+
+// Weekly policy item
+func (o CloudBackupScheduleOutput) PolicyItemWeeklies() CloudBackupSchedulePolicyItemWeeklyArrayOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupSchedulePolicyItemWeeklyArrayOutput {
+		return v.PolicyItemWeeklies
+	}).(CloudBackupSchedulePolicyItemWeeklyArrayOutput)
+}
+
+// The unique identifier of the project for the Atlas cluster.
+func (o CloudBackupScheduleOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
+func (o CloudBackupScheduleOutput) ReferenceHourOfDay() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.IntOutput { return v.ReferenceHourOfDay }).(pulumi.IntOutput)
+}
+
+// UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
+func (o CloudBackupScheduleOutput) ReferenceMinuteOfHour() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.IntOutput { return v.ReferenceMinuteOfHour }).(pulumi.IntOutput)
+}
+
+// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+func (o CloudBackupScheduleOutput) RestoreWindowDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.IntOutput { return v.RestoreWindowDays }).(pulumi.IntOutput)
+}
+
+// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+func (o CloudBackupScheduleOutput) UpdateSnapshots() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolOutput { return v.UpdateSnapshots }).(pulumi.BoolOutput)
+}
+
+// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your S3 bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
+func (o CloudBackupScheduleOutput) UseOrgAndGroupNamesInExportPrefix() pulumi.BoolOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolOutput { return v.UseOrgAndGroupNamesInExportPrefix }).(pulumi.BoolOutput)
 }
 
 type CloudBackupScheduleArrayOutput struct{ *pulumi.OutputState }

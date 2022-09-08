@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas
     }
 
 
-    public sealed class GetProjectIpAccessListArgs : Pulumi.InvokeArgs
+    public sealed class GetProjectIpAccessListArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier of the AWS security group to add to the access list.
@@ -74,9 +74,10 @@ namespace Pulumi.Mongodbatlas
         public GetProjectIpAccessListArgs()
         {
         }
+        public static new GetProjectIpAccessListArgs Empty => new GetProjectIpAccessListArgs();
     }
 
-    public sealed class GetProjectIpAccessListInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetProjectIpAccessListInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Unique identifier of the AWS security group to add to the access list.
@@ -105,6 +106,7 @@ namespace Pulumi.Mongodbatlas
         public GetProjectIpAccessListInvokeArgs()
         {
         }
+        public static new GetProjectIpAccessListInvokeArgs Empty => new GetProjectIpAccessListInvokeArgs();
     }
 
 

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas.Inputs
 {
 
-    public sealed class AdvancedClusterAdvancedConfigurationGetArgs : Pulumi.ResourceArgs
+    public sealed class AdvancedClusterAdvancedConfigurationGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. MongoDB 4.4 clusters default to [available](https://docs.mongodb.com/manual/reference/read-concern-available/).
@@ -69,5 +69,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         public AdvancedClusterAdvancedConfigurationGetArgs()
         {
         }
+        public static new AdvancedClusterAdvancedConfigurationGetArgs Empty => new AdvancedClusterAdvancedConfigurationGetArgs();
     }
 }

@@ -167,24 +167,24 @@ func (o LookupProjectResultOutput) Name() pulumi.StringPtrOutput {
 // The ID of the organization you want to create the project within.
 // *`clusterCount` - The number of Atlas clusters deployed in the project.
 // *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-//   The following are valid roles:
-// * `GROUP_OWNER`
-// * `GROUP_READ_ONLY`
-// * `GROUP_DATA_ACCESS_ADMIN`
-// * `GROUP_DATA_ACCESS_READ_WRITE`
-// * `GROUP_DATA_ACCESS_READ_ONLY`
-// * `GROUP_CLUSTER_MANAGER`
-// * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-// * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
-//   The following are valid roles:
-// * `GROUP_OWNER`
-// * `GROUP_READ_ONLY`
-// * `GROUP_DATA_ACCESS_ADMIN`
-// * `GROUP_DATA_ACCESS_READ_WRITE`
-// * `GROUP_DATA_ACCESS_READ_ONLY`
-// * `GROUP_CLUSTER_MANAGER`
+//   - `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+//   - `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+//     The following are valid roles:
+//   - `GROUP_OWNER`
+//   - `GROUP_READ_ONLY`
+//   - `GROUP_DATA_ACCESS_ADMIN`
+//   - `GROUP_DATA_ACCESS_READ_WRITE`
+//   - `GROUP_DATA_ACCESS_READ_ONLY`
+//   - `GROUP_CLUSTER_MANAGER`
+//   - `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
+//   - `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
+//     The following are valid roles:
+//   - `GROUP_OWNER`
+//   - `GROUP_READ_ONLY`
+//   - `GROUP_DATA_ACCESS_ADMIN`
+//   - `GROUP_DATA_ACCESS_READ_WRITE`
+//   - `GROUP_DATA_ACCESS_READ_ONLY`
+//   - `GROUP_CLUSTER_MANAGER`
 func (o LookupProjectResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
