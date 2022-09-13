@@ -28,6 +28,13 @@ public final class CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs extends
         return this.frequencyType;
     }
 
+    @Import(name="id", required=true)
+    private Output<String> id;
+
+    public Output<String> id() {
+        return this.id;
+    }
+
     @Import(name="retentionUnit", required=true)
     private Output<String> retentionUnit;
 
@@ -47,6 +54,7 @@ public final class CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs extends
     private CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs(CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs $) {
         this.frequencyInterval = $.frequencyInterval;
         this.frequencyType = $.frequencyType;
+        this.id = $.id;
         this.retentionUnit = $.retentionUnit;
         this.retentionValue = $.retentionValue;
     }
@@ -87,6 +95,15 @@ public final class CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs extends
             return frequencyType(Output.of(frequencyType));
         }
 
+        public Builder id(Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            return id(Output.of(id));
+        }
+
         public Builder retentionUnit(Output<String> retentionUnit) {
             $.retentionUnit = retentionUnit;
             return this;
@@ -108,6 +125,7 @@ public final class CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs extends
         public CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs build() {
             $.frequencyInterval = Objects.requireNonNull($.frequencyInterval, "expected parameter 'frequencyInterval' to be non-null");
             $.frequencyType = Objects.requireNonNull($.frequencyType, "expected parameter 'frequencyType' to be non-null");
+            $.id = Objects.requireNonNull($.id, "expected parameter 'id' to be non-null");
             $.retentionUnit = Objects.requireNonNull($.retentionUnit, "expected parameter 'retentionUnit' to be non-null");
             $.retentionValue = Objects.requireNonNull($.retentionValue, "expected parameter 'retentionValue' to be non-null");
             return $;

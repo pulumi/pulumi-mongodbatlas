@@ -17,6 +17,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? ContainerId;
+        public readonly string? Id;
         /// <summary>
         /// Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
         /// </summary>
@@ -34,6 +35,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         private AdvancedClusterReplicationSpec(
             ImmutableDictionary<string, string>? containerId,
 
+            string? id,
+
             int? numShards,
 
             ImmutableArray<Outputs.AdvancedClusterReplicationSpecRegionConfig> regionConfigs,
@@ -41,6 +44,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             string? zoneName)
         {
             ContainerId = containerId;
+            Id = id;
             NumShards = numShards;
             RegionConfigs = regionConfigs;
             ZoneName = zoneName;

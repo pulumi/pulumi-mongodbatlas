@@ -5,14 +5,27 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetClustersResultSnapshotBackupPolicyPolicyPolicyItem;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetClustersResultSnapshotBackupPolicyPolicy {
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    private String id;
     private List<GetClustersResultSnapshotBackupPolicyPolicyPolicyItem> policyItems;
 
     private GetClustersResultSnapshotBackupPolicyPolicy() {}
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    public String id() {
+        return this.id;
+    }
     public List<GetClustersResultSnapshotBackupPolicyPolicyPolicyItem> policyItems() {
         return this.policyItems;
     }
@@ -26,13 +39,20 @@ public final class GetClustersResultSnapshotBackupPolicyPolicy {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String id;
         private List<GetClustersResultSnapshotBackupPolicyPolicyPolicyItem> policyItems;
         public Builder() {}
         public Builder(GetClustersResultSnapshotBackupPolicyPolicy defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.id = defaults.id;
     	      this.policyItems = defaults.policyItems;
         }
 
+        @CustomType.Setter
+        public Builder id(String id) {
+            this.id = Objects.requireNonNull(id);
+            return this;
+        }
         @CustomType.Setter
         public Builder policyItems(List<GetClustersResultSnapshotBackupPolicyPolicyPolicyItem> policyItems) {
             this.policyItems = Objects.requireNonNull(policyItems);
@@ -43,6 +63,7 @@ public final class GetClustersResultSnapshotBackupPolicyPolicy {
         }
         public GetClustersResultSnapshotBackupPolicyPolicy build() {
             final var o = new GetClustersResultSnapshotBackupPolicyPolicy();
+            o.id = id;
             o.policyItems = policyItems;
             return o;
         }

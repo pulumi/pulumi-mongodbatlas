@@ -18,6 +18,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("frequencyType", required: true)]
         public Input<string> FrequencyType { get; set; } = null!;
 
+        [Input("id", required: true)]
+        public Input<string> Id { get; set; } = null!;
+
         [Input("retentionUnit", required: true)]
         public Input<string> RetentionUnit { get; set; } = null!;
 

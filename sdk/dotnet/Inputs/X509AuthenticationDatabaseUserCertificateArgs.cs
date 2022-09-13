@@ -18,6 +18,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
+        [Input("id")]
+        public Input<int>? Id { get; set; }
+
         [Input("notAfter")]
         public Input<string>? NotAfter { get; set; }
 

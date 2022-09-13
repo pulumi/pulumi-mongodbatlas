@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,13 @@ import java.util.Objects;
 public final class CloudProviderSnapshotBackupPolicyPolicyArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final CloudProviderSnapshotBackupPolicyPolicyArgs Empty = new CloudProviderSnapshotBackupPolicyPolicyArgs();
+
+    @Import(name="id", required=true)
+    private Output<String> id;
+
+    public Output<String> id() {
+        return this.id;
+    }
 
     @Import(name="policyItems", required=true)
     private Output<List<CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs>> policyItems;
@@ -24,6 +32,7 @@ public final class CloudProviderSnapshotBackupPolicyPolicyArgs extends com.pulum
     private CloudProviderSnapshotBackupPolicyPolicyArgs() {}
 
     private CloudProviderSnapshotBackupPolicyPolicyArgs(CloudProviderSnapshotBackupPolicyPolicyArgs $) {
+        this.id = $.id;
         this.policyItems = $.policyItems;
     }
 
@@ -45,6 +54,15 @@ public final class CloudProviderSnapshotBackupPolicyPolicyArgs extends com.pulum
             $ = new CloudProviderSnapshotBackupPolicyPolicyArgs(Objects.requireNonNull(defaults));
         }
 
+        public Builder id(Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            return id(Output.of(id));
+        }
+
         public Builder policyItems(Output<List<CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs>> policyItems) {
             $.policyItems = policyItems;
             return this;
@@ -59,6 +77,7 @@ public final class CloudProviderSnapshotBackupPolicyPolicyArgs extends com.pulum
         }
 
         public CloudProviderSnapshotBackupPolicyPolicyArgs build() {
+            $.id = Objects.requireNonNull($.id, "expected parameter 'id' to be non-null");
             $.policyItems = Objects.requireNonNull($.policyItems, "expected parameter 'policyItems' to be non-null");
             return $;
         }

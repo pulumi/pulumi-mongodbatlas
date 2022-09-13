@@ -34,6 +34,13 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.containerId);
     }
 
+    @Import(name="id")
+    private @Nullable Output<String> id;
+
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
+    }
+
     /**
      * Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don&#39;t create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don&#39;t provide the same benefits as multi-shard configurations.
      * 
@@ -83,6 +90,7 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
 
     private AdvancedClusterReplicationSpecArgs(AdvancedClusterReplicationSpecArgs $) {
         this.containerId = $.containerId;
+        this.id = $.id;
         this.numShards = $.numShards;
         this.regionConfigs = $.regionConfigs;
         this.zoneName = $.zoneName;
@@ -125,6 +133,15 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
          */
         public Builder containerId(Map<String,String> containerId) {
             return containerId(Output.of(containerId));
+        }
+
+        public Builder id(@Nullable Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            return id(Output.of(id));
         }
 
         /**

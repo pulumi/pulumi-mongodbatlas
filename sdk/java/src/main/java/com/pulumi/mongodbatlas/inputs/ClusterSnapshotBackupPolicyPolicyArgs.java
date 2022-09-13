@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.ClusterSnapshotBackupPolicyPolicyPolicyItemArgs;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class ClusterSnapshotBackupPolicyPolicyArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ClusterSnapshotBackupPolicyPolicyArgs Empty = new ClusterSnapshotBackupPolicyPolicyArgs();
+
+    /**
+     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    @Import(name="id")
+    private @Nullable Output<String> id;
+
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
+    }
 
     @Import(name="policyItems")
     private @Nullable Output<List<ClusterSnapshotBackupPolicyPolicyPolicyItemArgs>> policyItems;
@@ -26,6 +42,7 @@ public final class ClusterSnapshotBackupPolicyPolicyArgs extends com.pulumi.reso
     private ClusterSnapshotBackupPolicyPolicyArgs() {}
 
     private ClusterSnapshotBackupPolicyPolicyArgs(ClusterSnapshotBackupPolicyPolicyArgs $) {
+        this.id = $.id;
         this.policyItems = $.policyItems;
     }
 
@@ -45,6 +62,27 @@ public final class ClusterSnapshotBackupPolicyPolicyArgs extends com.pulumi.reso
 
         public Builder(ClusterSnapshotBackupPolicyPolicyArgs defaults) {
             $ = new ClusterSnapshotBackupPolicyPolicyArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder id(@Nullable Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        /**
+         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder id(String id) {
+            return id(Output.of(id));
         }
 
         public Builder policyItems(@Nullable Output<List<ClusterSnapshotBackupPolicyPolicyPolicyItemArgs>> policyItems) {

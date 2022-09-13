@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import javax.annotation.Nullable;
 public final class X509AuthenticationDatabaseUserCertificate {
     private @Nullable String createdAt;
     private @Nullable String groupId;
+    private @Nullable Integer id;
     private @Nullable String notAfter;
     private @Nullable String subject;
 
@@ -22,6 +24,9 @@ public final class X509AuthenticationDatabaseUserCertificate {
     }
     public Optional<String> groupId() {
         return Optional.ofNullable(this.groupId);
+    }
+    public Optional<Integer> id() {
+        return Optional.ofNullable(this.id);
     }
     public Optional<String> notAfter() {
         return Optional.ofNullable(this.notAfter);
@@ -41,6 +46,7 @@ public final class X509AuthenticationDatabaseUserCertificate {
     public static final class Builder {
         private @Nullable String createdAt;
         private @Nullable String groupId;
+        private @Nullable Integer id;
         private @Nullable String notAfter;
         private @Nullable String subject;
         public Builder() {}
@@ -48,6 +54,7 @@ public final class X509AuthenticationDatabaseUserCertificate {
     	      Objects.requireNonNull(defaults);
     	      this.createdAt = defaults.createdAt;
     	      this.groupId = defaults.groupId;
+    	      this.id = defaults.id;
     	      this.notAfter = defaults.notAfter;
     	      this.subject = defaults.subject;
         }
@@ -60,6 +67,11 @@ public final class X509AuthenticationDatabaseUserCertificate {
         @CustomType.Setter
         public Builder groupId(@Nullable String groupId) {
             this.groupId = groupId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder id(@Nullable Integer id) {
+            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -76,6 +88,7 @@ public final class X509AuthenticationDatabaseUserCertificate {
             final var o = new X509AuthenticationDatabaseUserCertificate();
             o.createdAt = createdAt;
             o.groupId = groupId;
+            o.id = id;
             o.notAfter = notAfter;
             o.subject = subject;
             return o;

@@ -46,6 +46,13 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
         return Optional.ofNullable(this.frequencyType);
     }
 
+    @Import(name="id")
+    private @Nullable Output<String> id;
+
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
+    }
+
     /**
      * Scope of the backup policy item: days, weeks, or months.
      * 
@@ -81,6 +88,7 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
     private CloudBackupSchedulePolicyItemMonthlyArgs(CloudBackupSchedulePolicyItemMonthlyArgs $) {
         this.frequencyInterval = $.frequencyInterval;
         this.frequencyType = $.frequencyType;
+        this.id = $.id;
         this.retentionUnit = $.retentionUnit;
         this.retentionValue = $.retentionValue;
     }
@@ -143,6 +151,15 @@ public final class CloudBackupSchedulePolicyItemMonthlyArgs extends com.pulumi.r
          */
         public Builder frequencyType(String frequencyType) {
             return frequencyType(Output.of(frequencyType));
+        }
+
+        public Builder id(@Nullable Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            return id(Output.of(id));
         }
 
         /**
