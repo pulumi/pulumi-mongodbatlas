@@ -20,6 +20,7 @@ public final class AdvancedClusterReplicationSpec {
      * 
      */
     private @Nullable Map<String,String> containerId;
+    private @Nullable String id;
     /**
      * @return Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don&#39;t create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don&#39;t provide the same benefits as multi-shard configurations.
      * 
@@ -43,6 +44,9 @@ public final class AdvancedClusterReplicationSpec {
      */
     public Map<String,String> containerId() {
         return this.containerId == null ? Map.of() : this.containerId;
+    }
+    public Optional<String> id() {
+        return Optional.ofNullable(this.id);
     }
     /**
      * @return Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don&#39;t create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don&#39;t provide the same benefits as multi-shard configurations.
@@ -76,6 +80,7 @@ public final class AdvancedClusterReplicationSpec {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Map<String,String> containerId;
+        private @Nullable String id;
         private @Nullable Integer numShards;
         private List<AdvancedClusterReplicationSpecRegionConfig> regionConfigs;
         private @Nullable String zoneName;
@@ -83,6 +88,7 @@ public final class AdvancedClusterReplicationSpec {
         public Builder(AdvancedClusterReplicationSpec defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.containerId = defaults.containerId;
+    	      this.id = defaults.id;
     	      this.numShards = defaults.numShards;
     	      this.regionConfigs = defaults.regionConfigs;
     	      this.zoneName = defaults.zoneName;
@@ -91,6 +97,11 @@ public final class AdvancedClusterReplicationSpec {
         @CustomType.Setter
         public Builder containerId(@Nullable Map<String,String> containerId) {
             this.containerId = containerId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder id(@Nullable String id) {
+            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -114,6 +125,7 @@ public final class AdvancedClusterReplicationSpec {
         public AdvancedClusterReplicationSpec build() {
             final var o = new AdvancedClusterReplicationSpec();
             o.containerId = containerId;
+            o.id = id;
             o.numShards = numShards;
             o.regionConfigs = regionConfigs;
             o.zoneName = zoneName;

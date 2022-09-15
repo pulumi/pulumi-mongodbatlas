@@ -106,6 +106,7 @@ export interface AdvancedClusterReplicationSpec {
      * A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
      */
     containerId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    id?: pulumi.Input<string>;
     /**
      * Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
      */
@@ -459,6 +460,7 @@ export interface CloudBackupSchedulePolicyItemDaily {
      * Frequency associated with the export snapshot item.
      */
     frequencyType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -498,6 +500,7 @@ export interface CloudBackupSchedulePolicyItemMonthly {
      * Frequency associated with the export snapshot item.
      */
     frequencyType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -517,6 +520,7 @@ export interface CloudBackupSchedulePolicyItemWeekly {
      * Frequency associated with the export snapshot item.
      */
     frequencyType?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
     /**
      * Scope of the backup policy item: days, weeks, or months.
      */
@@ -554,6 +558,10 @@ export interface CloudBackupSnapshotMember {
      * Cloud provider that stores this snapshot.
      */
     cloudProvider?: pulumi.Input<string>;
+    /**
+     * Unique identifier for the sharded cluster snapshot.
+     */
+    id?: pulumi.Input<string>;
     /**
      * Label given to a shard or config server from which Atlas took this snapshot.
      */
@@ -597,12 +605,14 @@ export interface CloudProviderAccessSetupAwsConfig {
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicy {
+    id: pulumi.Input<string>;
     policyItems: pulumi.Input<pulumi.Input<inputs.CloudProviderSnapshotBackupPolicyPolicyPolicyItem>[]>;
 }
 
 export interface CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: pulumi.Input<number>;
     frequencyType: pulumi.Input<string>;
+    id: pulumi.Input<string>;
     retentionUnit: pulumi.Input<string>;
     retentionValue: pulumi.Input<number>;
 }
@@ -783,12 +793,20 @@ export interface ClusterSnapshotBackupPolicy {
 }
 
 export interface ClusterSnapshotBackupPolicyPolicy {
+    /**
+     * Unique identifer of the replication document for a zone in a Global Cluster.
+     */
+    id?: pulumi.Input<string>;
     policyItems?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicyPolicyPolicyItem>[]>;
 }
 
 export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval?: pulumi.Input<number>;
     frequencyType?: pulumi.Input<string>;
+    /**
+     * Unique identifer of the replication document for a zone in a Global Cluster.
+     */
+    id?: pulumi.Input<string>;
     retentionUnit?: pulumi.Input<string>;
     retentionValue?: pulumi.Input<number>;
 }
@@ -1242,6 +1260,7 @@ export interface ServerlessInstanceLink {
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt?: pulumi.Input<string>;
     groupId?: pulumi.Input<string>;
+    id?: pulumi.Input<number>;
     notAfter?: pulumi.Input<string>;
     subject?: pulumi.Input<string>;
 }

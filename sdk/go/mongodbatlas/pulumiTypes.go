@@ -940,6 +940,7 @@ func (o AdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) AdvancedCluste
 type AdvancedClusterReplicationSpec struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId map[string]string `pulumi:"containerId"`
+	Id          *string           `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
 	NumShards *int `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
@@ -962,6 +963,7 @@ type AdvancedClusterReplicationSpecInput interface {
 type AdvancedClusterReplicationSpecArgs struct {
 	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
+	Id          pulumi.StringPtrInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
 	NumShards pulumi.IntPtrInput `pulumi:"numShards"`
 	// Configuration for the hardware specifications for nodes set for a given regionEach `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below
@@ -1024,6 +1026,10 @@ func (o AdvancedClusterReplicationSpecOutput) ToAdvancedClusterReplicationSpecOu
 // A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 func (o AdvancedClusterReplicationSpecOutput) ContainerId() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
+}
+
+func (o AdvancedClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -3193,6 +3199,7 @@ type CloudBackupSchedulePolicyItemDaily struct {
 	FrequencyInterval int `pulumi:"frequencyInterval"`
 	// Frequency associated with the export snapshot item.
 	FrequencyType *string `pulumi:"frequencyType"`
+	Id            *string `pulumi:"id"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3215,6 +3222,7 @@ type CloudBackupSchedulePolicyItemDailyArgs struct {
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
 	// Frequency associated with the export snapshot item.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	Id            pulumi.StringPtrInput `pulumi:"id"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3308,6 +3316,10 @@ func (o CloudBackupSchedulePolicyItemDailyOutput) FrequencyType() pulumi.StringP
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
 
+func (o CloudBackupSchedulePolicyItemDailyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
 // Scope of the backup policy item: days, weeks, or months.
 func (o CloudBackupSchedulePolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
@@ -3359,6 +3371,15 @@ func (o CloudBackupSchedulePolicyItemDailyPtrOutput) FrequencyType() pulumi.Stri
 			return nil
 		}
 		return v.FrequencyType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemDailyPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedulePolicyItemDaily) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3596,6 +3617,7 @@ type CloudBackupSchedulePolicyItemMonthly struct {
 	FrequencyInterval int `pulumi:"frequencyInterval"`
 	// Frequency associated with the export snapshot item.
 	FrequencyType *string `pulumi:"frequencyType"`
+	Id            *string `pulumi:"id"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3618,6 +3640,7 @@ type CloudBackupSchedulePolicyItemMonthlyArgs struct {
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
 	// Frequency associated with the export snapshot item.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	Id            pulumi.StringPtrInput `pulumi:"id"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3685,6 +3708,10 @@ func (o CloudBackupSchedulePolicyItemMonthlyOutput) FrequencyType() pulumi.Strin
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
 }
 
+func (o CloudBackupSchedulePolicyItemMonthlyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
 // Scope of the backup policy item: days, weeks, or months.
 func (o CloudBackupSchedulePolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
@@ -3720,6 +3747,7 @@ type CloudBackupSchedulePolicyItemWeekly struct {
 	FrequencyInterval int `pulumi:"frequencyInterval"`
 	// Frequency associated with the export snapshot item.
 	FrequencyType *string `pulumi:"frequencyType"`
+	Id            *string `pulumi:"id"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit string `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3742,6 +3770,7 @@ type CloudBackupSchedulePolicyItemWeeklyArgs struct {
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
 	// Frequency associated with the export snapshot item.
 	FrequencyType pulumi.StringPtrInput `pulumi:"frequencyType"`
+	Id            pulumi.StringPtrInput `pulumi:"id"`
 	// Scope of the backup policy item: days, weeks, or months.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
 	// Value to associate with `retentionUnit`.
@@ -3807,6 +3836,10 @@ func (o CloudBackupSchedulePolicyItemWeeklyOutput) FrequencyInterval() pulumi.In
 // Frequency associated with the export snapshot item.
 func (o CloudBackupSchedulePolicyItemWeeklyOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+func (o CloudBackupSchedulePolicyItemWeeklyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSchedulePolicyItemWeekly) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Scope of the backup policy item: days, weeks, or months.
@@ -4054,6 +4087,8 @@ func (o CloudBackupSnapshotExportJobCustomDataArrayOutput) Index(i pulumi.IntInp
 type CloudBackupSnapshotMember struct {
 	// Cloud provider that stores this snapshot.
 	CloudProvider *string `pulumi:"cloudProvider"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id *string `pulumi:"id"`
 	// Label given to a shard or config server from which Atlas took this snapshot.
 	ReplicaSetName *string `pulumi:"replicaSetName"`
 }
@@ -4072,6 +4107,8 @@ type CloudBackupSnapshotMemberInput interface {
 type CloudBackupSnapshotMemberArgs struct {
 	// Cloud provider that stores this snapshot.
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
+	// Unique identifier for the sharded cluster snapshot.
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Label given to a shard or config server from which Atlas took this snapshot.
 	ReplicaSetName pulumi.StringPtrInput `pulumi:"replicaSetName"`
 }
@@ -4130,6 +4167,11 @@ func (o CloudBackupSnapshotMemberOutput) ToCloudBackupSnapshotMemberOutputWithCo
 // Cloud provider that stores this snapshot.
 func (o CloudBackupSnapshotMemberOutput) CloudProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotMember) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifier for the sharded cluster snapshot.
+func (o CloudBackupSnapshotMemberOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupSnapshotMember) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Label given to a shard or config server from which Atlas took this snapshot.
@@ -4837,6 +4879,7 @@ func (o CloudProviderAccessSetupAwsConfigArrayOutput) Index(i pulumi.IntInput) C
 }
 
 type CloudProviderSnapshotBackupPolicyPolicy struct {
+	Id          string                                              `pulumi:"id"`
 	PolicyItems []CloudProviderSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
 }
 
@@ -4852,6 +4895,7 @@ type CloudProviderSnapshotBackupPolicyPolicyInput interface {
 }
 
 type CloudProviderSnapshotBackupPolicyPolicyArgs struct {
+	Id          pulumi.StringInput                                          `pulumi:"id"`
 	PolicyItems CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayInput `pulumi:"policyItems"`
 }
 
@@ -4906,6 +4950,10 @@ func (o CloudProviderSnapshotBackupPolicyPolicyOutput) ToCloudProviderSnapshotBa
 	return o
 }
 
+func (o CloudProviderSnapshotBackupPolicyPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotBackupPolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
 func (o CloudProviderSnapshotBackupPolicyPolicyOutput) PolicyItems() CloudProviderSnapshotBackupPolicyPolicyPolicyItemArrayOutput {
 	return o.ApplyT(func(v CloudProviderSnapshotBackupPolicyPolicy) []CloudProviderSnapshotBackupPolicyPolicyPolicyItem {
 		return v.PolicyItems
@@ -4935,6 +4983,7 @@ func (o CloudProviderSnapshotBackupPolicyPolicyArrayOutput) Index(i pulumi.IntIn
 type CloudProviderSnapshotBackupPolicyPolicyPolicyItem struct {
 	FrequencyInterval int    `pulumi:"frequencyInterval"`
 	FrequencyType     string `pulumi:"frequencyType"`
+	Id                string `pulumi:"id"`
 	RetentionUnit     string `pulumi:"retentionUnit"`
 	RetentionValue    int    `pulumi:"retentionValue"`
 }
@@ -4953,6 +5002,7 @@ type CloudProviderSnapshotBackupPolicyPolicyPolicyItemInput interface {
 type CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs struct {
 	FrequencyInterval pulumi.IntInput    `pulumi:"frequencyInterval"`
 	FrequencyType     pulumi.StringInput `pulumi:"frequencyType"`
+	Id                pulumi.StringInput `pulumi:"id"`
 	RetentionUnit     pulumi.StringInput `pulumi:"retentionUnit"`
 	RetentionValue    pulumi.IntInput    `pulumi:"retentionValue"`
 }
@@ -5014,6 +5064,10 @@ func (o CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyInterv
 
 func (o CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudProviderSnapshotBackupPolicyPolicyPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+func (o CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudProviderSnapshotBackupPolicyPolicyPolicyItem) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o CloudProviderSnapshotBackupPolicyPolicyPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
@@ -6627,6 +6681,8 @@ func (o ClusterSnapshotBackupPolicyArrayOutput) Index(i pulumi.IntInput) Cluster
 }
 
 type ClusterSnapshotBackupPolicyPolicy struct {
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id          *string                                       `pulumi:"id"`
 	PolicyItems []ClusterSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
 }
 
@@ -6642,6 +6698,8 @@ type ClusterSnapshotBackupPolicyPolicyInput interface {
 }
 
 type ClusterSnapshotBackupPolicyPolicyArgs struct {
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id          pulumi.StringPtrInput                                 `pulumi:"id"`
 	PolicyItems ClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput `pulumi:"policyItems"`
 }
 
@@ -6696,6 +6754,11 @@ func (o ClusterSnapshotBackupPolicyPolicyOutput) ToClusterSnapshotBackupPolicyPo
 	return o
 }
 
+// Unique identifer of the replication document for a zone in a Global Cluster.
+func (o ClusterSnapshotBackupPolicyPolicyOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicy) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
 func (o ClusterSnapshotBackupPolicyPolicyOutput) PolicyItems() ClusterSnapshotBackupPolicyPolicyPolicyItemArrayOutput {
 	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicy) []ClusterSnapshotBackupPolicyPolicyPolicyItem {
 		return v.PolicyItems
@@ -6725,8 +6788,10 @@ func (o ClusterSnapshotBackupPolicyPolicyArrayOutput) Index(i pulumi.IntInput) C
 type ClusterSnapshotBackupPolicyPolicyPolicyItem struct {
 	FrequencyInterval *int    `pulumi:"frequencyInterval"`
 	FrequencyType     *string `pulumi:"frequencyType"`
-	RetentionUnit     *string `pulumi:"retentionUnit"`
-	RetentionValue    *int    `pulumi:"retentionValue"`
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id             *string `pulumi:"id"`
+	RetentionUnit  *string `pulumi:"retentionUnit"`
+	RetentionValue *int    `pulumi:"retentionValue"`
 }
 
 // ClusterSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts ClusterSnapshotBackupPolicyPolicyPolicyItemArgs and ClusterSnapshotBackupPolicyPolicyPolicyItemOutput values.
@@ -6743,8 +6808,10 @@ type ClusterSnapshotBackupPolicyPolicyPolicyItemInput interface {
 type ClusterSnapshotBackupPolicyPolicyPolicyItemArgs struct {
 	FrequencyInterval pulumi.IntPtrInput    `pulumi:"frequencyInterval"`
 	FrequencyType     pulumi.StringPtrInput `pulumi:"frequencyType"`
-	RetentionUnit     pulumi.StringPtrInput `pulumi:"retentionUnit"`
-	RetentionValue    pulumi.IntPtrInput    `pulumi:"retentionValue"`
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id             pulumi.StringPtrInput `pulumi:"id"`
+	RetentionUnit  pulumi.StringPtrInput `pulumi:"retentionUnit"`
+	RetentionValue pulumi.IntPtrInput    `pulumi:"retentionValue"`
 }
 
 func (ClusterSnapshotBackupPolicyPolicyPolicyItemArgs) ElementType() reflect.Type {
@@ -6804,6 +6871,11 @@ func (o ClusterSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyInterval() p
 
 func (o ClusterSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicyPolicyItem) *string { return v.FrequencyType }).(pulumi.StringPtrOutput)
+}
+
+// Unique identifer of the replication document for a zone in a Global Cluster.
+func (o ClusterSnapshotBackupPolicyPolicyPolicyItemOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterSnapshotBackupPolicyPolicyPolicyItem) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 func (o ClusterSnapshotBackupPolicyPolicyPolicyItemOutput) RetentionUnit() pulumi.StringPtrOutput {
@@ -10941,6 +11013,7 @@ func (o ServerlessInstanceLinkArrayOutput) Index(i pulumi.IntInput) ServerlessIn
 type X509AuthenticationDatabaseUserCertificate struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	GroupId   *string `pulumi:"groupId"`
+	Id        *int    `pulumi:"id"`
 	NotAfter  *string `pulumi:"notAfter"`
 	Subject   *string `pulumi:"subject"`
 }
@@ -10959,6 +11032,7 @@ type X509AuthenticationDatabaseUserCertificateInput interface {
 type X509AuthenticationDatabaseUserCertificateArgs struct {
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	GroupId   pulumi.StringPtrInput `pulumi:"groupId"`
+	Id        pulumi.IntPtrInput    `pulumi:"id"`
 	NotAfter  pulumi.StringPtrInput `pulumi:"notAfter"`
 	Subject   pulumi.StringPtrInput `pulumi:"subject"`
 }
@@ -11020,6 +11094,10 @@ func (o X509AuthenticationDatabaseUserCertificateOutput) CreatedAt() pulumi.Stri
 
 func (o X509AuthenticationDatabaseUserCertificateOutput) GroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v X509AuthenticationDatabaseUserCertificate) *string { return v.GroupId }).(pulumi.StringPtrOutput)
+}
+
+func (o X509AuthenticationDatabaseUserCertificateOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v X509AuthenticationDatabaseUserCertificate) *int { return v.Id }).(pulumi.IntPtrOutput)
 }
 
 func (o X509AuthenticationDatabaseUserCertificateOutput) NotAfter() pulumi.StringPtrOutput {
@@ -19993,6 +20071,8 @@ func (o GetClusterSnapshotBackupPolicyArrayOutput) Index(i pulumi.IntInput) GetC
 }
 
 type GetClusterSnapshotBackupPolicyPolicy struct {
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id          string                                           `pulumi:"id"`
 	PolicyItems []GetClusterSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
 }
 
@@ -20008,6 +20088,8 @@ type GetClusterSnapshotBackupPolicyPolicyInput interface {
 }
 
 type GetClusterSnapshotBackupPolicyPolicyArgs struct {
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id          pulumi.StringInput                                       `pulumi:"id"`
 	PolicyItems GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayInput `pulumi:"policyItems"`
 }
 
@@ -20062,6 +20144,11 @@ func (o GetClusterSnapshotBackupPolicyPolicyOutput) ToGetClusterSnapshotBackupPo
 	return o
 }
 
+// Unique identifer of the replication document for a zone in a Global Cluster.
+func (o GetClusterSnapshotBackupPolicyPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterSnapshotBackupPolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
 func (o GetClusterSnapshotBackupPolicyPolicyOutput) PolicyItems() GetClusterSnapshotBackupPolicyPolicyPolicyItemArrayOutput {
 	return o.ApplyT(func(v GetClusterSnapshotBackupPolicyPolicy) []GetClusterSnapshotBackupPolicyPolicyPolicyItem {
 		return v.PolicyItems
@@ -20091,8 +20178,10 @@ func (o GetClusterSnapshotBackupPolicyPolicyArrayOutput) Index(i pulumi.IntInput
 type GetClusterSnapshotBackupPolicyPolicyPolicyItem struct {
 	FrequencyInterval int    `pulumi:"frequencyInterval"`
 	FrequencyType     string `pulumi:"frequencyType"`
-	RetentionUnit     string `pulumi:"retentionUnit"`
-	RetentionValue    int    `pulumi:"retentionValue"`
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id             string `pulumi:"id"`
+	RetentionUnit  string `pulumi:"retentionUnit"`
+	RetentionValue int    `pulumi:"retentionValue"`
 }
 
 // GetClusterSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs and GetClusterSnapshotBackupPolicyPolicyPolicyItemOutput values.
@@ -20109,8 +20198,10 @@ type GetClusterSnapshotBackupPolicyPolicyPolicyItemInput interface {
 type GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs struct {
 	FrequencyInterval pulumi.IntInput    `pulumi:"frequencyInterval"`
 	FrequencyType     pulumi.StringInput `pulumi:"frequencyType"`
-	RetentionUnit     pulumi.StringInput `pulumi:"retentionUnit"`
-	RetentionValue    pulumi.IntInput    `pulumi:"retentionValue"`
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id             pulumi.StringInput `pulumi:"id"`
+	RetentionUnit  pulumi.StringInput `pulumi:"retentionUnit"`
+	RetentionValue pulumi.IntInput    `pulumi:"retentionValue"`
 }
 
 func (GetClusterSnapshotBackupPolicyPolicyPolicyItemArgs) ElementType() reflect.Type {
@@ -20170,6 +20261,11 @@ func (o GetClusterSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyInterval(
 
 func (o GetClusterSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterSnapshotBackupPolicyPolicyPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifer of the replication document for a zone in a Global Cluster.
+func (o GetClusterSnapshotBackupPolicyPolicyPolicyItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterSnapshotBackupPolicyPolicyPolicyItem) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetClusterSnapshotBackupPolicyPolicyPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
@@ -21833,6 +21929,8 @@ func (o GetClustersResultSnapshotBackupPolicyArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GetClustersResultSnapshotBackupPolicyPolicy struct {
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id          string                                                  `pulumi:"id"`
 	PolicyItems []GetClustersResultSnapshotBackupPolicyPolicyPolicyItem `pulumi:"policyItems"`
 }
 
@@ -21848,6 +21946,8 @@ type GetClustersResultSnapshotBackupPolicyPolicyInput interface {
 }
 
 type GetClustersResultSnapshotBackupPolicyPolicyArgs struct {
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id          pulumi.StringInput                                              `pulumi:"id"`
 	PolicyItems GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayInput `pulumi:"policyItems"`
 }
 
@@ -21902,6 +22002,11 @@ func (o GetClustersResultSnapshotBackupPolicyPolicyOutput) ToGetClustersResultSn
 	return o
 }
 
+// Unique identifer of the replication document for a zone in a Global Cluster.
+func (o GetClustersResultSnapshotBackupPolicyPolicyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultSnapshotBackupPolicyPolicy) string { return v.Id }).(pulumi.StringOutput)
+}
+
 func (o GetClustersResultSnapshotBackupPolicyPolicyOutput) PolicyItems() GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArrayOutput {
 	return o.ApplyT(func(v GetClustersResultSnapshotBackupPolicyPolicy) []GetClustersResultSnapshotBackupPolicyPolicyPolicyItem {
 		return v.PolicyItems
@@ -21931,8 +22036,10 @@ func (o GetClustersResultSnapshotBackupPolicyPolicyArrayOutput) Index(i pulumi.I
 type GetClustersResultSnapshotBackupPolicyPolicyPolicyItem struct {
 	FrequencyInterval int    `pulumi:"frequencyInterval"`
 	FrequencyType     string `pulumi:"frequencyType"`
-	RetentionUnit     string `pulumi:"retentionUnit"`
-	RetentionValue    int    `pulumi:"retentionValue"`
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id             string `pulumi:"id"`
+	RetentionUnit  string `pulumi:"retentionUnit"`
+	RetentionValue int    `pulumi:"retentionValue"`
 }
 
 // GetClustersResultSnapshotBackupPolicyPolicyPolicyItemInput is an input type that accepts GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs and GetClustersResultSnapshotBackupPolicyPolicyPolicyItemOutput values.
@@ -21949,8 +22056,10 @@ type GetClustersResultSnapshotBackupPolicyPolicyPolicyItemInput interface {
 type GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs struct {
 	FrequencyInterval pulumi.IntInput    `pulumi:"frequencyInterval"`
 	FrequencyType     pulumi.StringInput `pulumi:"frequencyType"`
-	RetentionUnit     pulumi.StringInput `pulumi:"retentionUnit"`
-	RetentionValue    pulumi.IntInput    `pulumi:"retentionValue"`
+	// Unique identifer of the replication document for a zone in a Global Cluster.
+	Id             pulumi.StringInput `pulumi:"id"`
+	RetentionUnit  pulumi.StringInput `pulumi:"retentionUnit"`
+	RetentionValue pulumi.IntInput    `pulumi:"retentionValue"`
 }
 
 func (GetClustersResultSnapshotBackupPolicyPolicyPolicyItemArgs) ElementType() reflect.Type {
@@ -22010,6 +22119,11 @@ func (o GetClustersResultSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyIn
 
 func (o GetClustersResultSnapshotBackupPolicyPolicyPolicyItemOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultSnapshotBackupPolicyPolicyPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifer of the replication document for a zone in a Global Cluster.
+func (o GetClustersResultSnapshotBackupPolicyPolicyPolicyItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersResultSnapshotBackupPolicyPolicyPolicyItem) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetClustersResultSnapshotBackupPolicyPolicyPolicyItemOutput) RetentionUnit() pulumi.StringOutput {

@@ -17,6 +17,11 @@ public final class CloudBackupSnapshotMember {
      */
     private @Nullable String cloudProvider;
     /**
+     * @return Unique identifier for the sharded cluster snapshot.
+     * 
+     */
+    private @Nullable String id;
+    /**
      * @return Label given to a shard or config server from which Atlas took this snapshot.
      * 
      */
@@ -29,6 +34,13 @@ public final class CloudBackupSnapshotMember {
      */
     public Optional<String> cloudProvider() {
         return Optional.ofNullable(this.cloudProvider);
+    }
+    /**
+     * @return Unique identifier for the sharded cluster snapshot.
+     * 
+     */
+    public Optional<String> id() {
+        return Optional.ofNullable(this.id);
     }
     /**
      * @return Label given to a shard or config server from which Atlas took this snapshot.
@@ -48,17 +60,24 @@ public final class CloudBackupSnapshotMember {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String cloudProvider;
+        private @Nullable String id;
         private @Nullable String replicaSetName;
         public Builder() {}
         public Builder(CloudBackupSnapshotMember defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cloudProvider = defaults.cloudProvider;
+    	      this.id = defaults.id;
     	      this.replicaSetName = defaults.replicaSetName;
         }
 
         @CustomType.Setter
         public Builder cloudProvider(@Nullable String cloudProvider) {
             this.cloudProvider = cloudProvider;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder id(@Nullable String id) {
+            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -69,6 +88,7 @@ public final class CloudBackupSnapshotMember {
         public CloudBackupSnapshotMember build() {
             final var o = new CloudBackupSnapshotMember();
             o.cloudProvider = cloudProvider;
+            o.id = id;
             o.replicaSetName = replicaSetName;
             return o;
         }

@@ -14,6 +14,11 @@ import javax.annotation.Nullable;
 public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
     private @Nullable Integer frequencyInterval;
     private @Nullable String frequencyType;
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    private @Nullable String id;
     private @Nullable String retentionUnit;
     private @Nullable Integer retentionValue;
 
@@ -23,6 +28,13 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
     }
     public Optional<String> frequencyType() {
         return Optional.ofNullable(this.frequencyType);
+    }
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    public Optional<String> id() {
+        return Optional.ofNullable(this.id);
     }
     public Optional<String> retentionUnit() {
         return Optional.ofNullable(this.retentionUnit);
@@ -42,6 +54,7 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
     public static final class Builder {
         private @Nullable Integer frequencyInterval;
         private @Nullable String frequencyType;
+        private @Nullable String id;
         private @Nullable String retentionUnit;
         private @Nullable Integer retentionValue;
         public Builder() {}
@@ -49,6 +62,7 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
     	      Objects.requireNonNull(defaults);
     	      this.frequencyInterval = defaults.frequencyInterval;
     	      this.frequencyType = defaults.frequencyType;
+    	      this.id = defaults.id;
     	      this.retentionUnit = defaults.retentionUnit;
     	      this.retentionValue = defaults.retentionValue;
         }
@@ -61,6 +75,11 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
         @CustomType.Setter
         public Builder frequencyType(@Nullable String frequencyType) {
             this.frequencyType = frequencyType;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder id(@Nullable String id) {
+            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -77,6 +96,7 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
             final var o = new ClusterSnapshotBackupPolicyPolicyPolicyItem();
             o.frequencyInterval = frequencyInterval;
             o.frequencyType = frequencyType;
+            o.id = id;
             o.retentionUnit = retentionUnit;
             o.retentionValue = retentionValue;
             return o;

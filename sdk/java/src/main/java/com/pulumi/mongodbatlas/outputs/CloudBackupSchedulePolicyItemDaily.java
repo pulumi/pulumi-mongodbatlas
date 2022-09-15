@@ -22,6 +22,7 @@ public final class CloudBackupSchedulePolicyItemDaily {
      * 
      */
     private @Nullable String frequencyType;
+    private @Nullable String id;
     /**
      * @return Scope of the backup policy item: days, weeks, or months.
      * 
@@ -47,6 +48,9 @@ public final class CloudBackupSchedulePolicyItemDaily {
      */
     public Optional<String> frequencyType() {
         return Optional.ofNullable(this.frequencyType);
+    }
+    public Optional<String> id() {
+        return Optional.ofNullable(this.id);
     }
     /**
      * @return Scope of the backup policy item: days, weeks, or months.
@@ -74,6 +78,7 @@ public final class CloudBackupSchedulePolicyItemDaily {
     public static final class Builder {
         private Integer frequencyInterval;
         private @Nullable String frequencyType;
+        private @Nullable String id;
         private String retentionUnit;
         private Integer retentionValue;
         public Builder() {}
@@ -81,6 +86,7 @@ public final class CloudBackupSchedulePolicyItemDaily {
     	      Objects.requireNonNull(defaults);
     	      this.frequencyInterval = defaults.frequencyInterval;
     	      this.frequencyType = defaults.frequencyType;
+    	      this.id = defaults.id;
     	      this.retentionUnit = defaults.retentionUnit;
     	      this.retentionValue = defaults.retentionValue;
         }
@@ -93,6 +99,11 @@ public final class CloudBackupSchedulePolicyItemDaily {
         @CustomType.Setter
         public Builder frequencyType(@Nullable String frequencyType) {
             this.frequencyType = frequencyType;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder id(@Nullable String id) {
+            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -109,6 +120,7 @@ public final class CloudBackupSchedulePolicyItemDaily {
             final var o = new CloudBackupSchedulePolicyItemDaily();
             o.frequencyInterval = frequencyInterval;
             o.frequencyType = frequencyType;
+            o.id = id;
             o.retentionUnit = retentionUnit;
             o.retentionValue = retentionValue;
             return o;

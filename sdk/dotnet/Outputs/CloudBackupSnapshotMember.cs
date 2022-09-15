@@ -18,6 +18,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? CloudProvider;
         /// <summary>
+        /// Unique identifier for the sharded cluster snapshot.
+        /// </summary>
+        public readonly string? Id;
+        /// <summary>
         /// Label given to a shard or config server from which Atlas took this snapshot.
         /// </summary>
         public readonly string? ReplicaSetName;
@@ -26,9 +30,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         private CloudBackupSnapshotMember(
             string? cloudProvider,
 
+            string? id,
+
             string? replicaSetName)
         {
             CloudProvider = cloudProvider;
+            Id = id;
             ReplicaSetName = replicaSetName;
         }
     }

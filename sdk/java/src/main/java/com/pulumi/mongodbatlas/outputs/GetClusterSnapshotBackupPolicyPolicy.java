@@ -5,14 +5,27 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetClusterSnapshotBackupPolicyPolicyPolicyItem;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetClusterSnapshotBackupPolicyPolicy {
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    private String id;
     private List<GetClusterSnapshotBackupPolicyPolicyPolicyItem> policyItems;
 
     private GetClusterSnapshotBackupPolicyPolicy() {}
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    public String id() {
+        return this.id;
+    }
     public List<GetClusterSnapshotBackupPolicyPolicyPolicyItem> policyItems() {
         return this.policyItems;
     }
@@ -26,13 +39,20 @@ public final class GetClusterSnapshotBackupPolicyPolicy {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String id;
         private List<GetClusterSnapshotBackupPolicyPolicyPolicyItem> policyItems;
         public Builder() {}
         public Builder(GetClusterSnapshotBackupPolicyPolicy defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.id = defaults.id;
     	      this.policyItems = defaults.policyItems;
         }
 
+        @CustomType.Setter
+        public Builder id(String id) {
+            this.id = Objects.requireNonNull(id);
+            return this;
+        }
         @CustomType.Setter
         public Builder policyItems(List<GetClusterSnapshotBackupPolicyPolicyPolicyItem> policyItems) {
             this.policyItems = Objects.requireNonNull(policyItems);
@@ -43,6 +63,7 @@ public final class GetClusterSnapshotBackupPolicyPolicy {
         }
         public GetClusterSnapshotBackupPolicyPolicy build() {
             final var o = new GetClusterSnapshotBackupPolicyPolicy();
+            o.id = id;
             o.policyItems = policyItems;
             return o;
         }

@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,6 +30,13 @@ public final class X509AuthenticationDatabaseUserCertificateArgs extends com.pul
         return Optional.ofNullable(this.groupId);
     }
 
+    @Import(name="id")
+    private @Nullable Output<Integer> id;
+
+    public Optional<Output<Integer>> id() {
+        return Optional.ofNullable(this.id);
+    }
+
     @Import(name="notAfter")
     private @Nullable Output<String> notAfter;
 
@@ -48,6 +56,7 @@ public final class X509AuthenticationDatabaseUserCertificateArgs extends com.pul
     private X509AuthenticationDatabaseUserCertificateArgs(X509AuthenticationDatabaseUserCertificateArgs $) {
         this.createdAt = $.createdAt;
         this.groupId = $.groupId;
+        this.id = $.id;
         this.notAfter = $.notAfter;
         this.subject = $.subject;
     }
@@ -86,6 +95,15 @@ public final class X509AuthenticationDatabaseUserCertificateArgs extends com.pul
 
         public Builder groupId(String groupId) {
             return groupId(Output.of(groupId));
+        }
+
+        public Builder id(@Nullable Output<Integer> id) {
+            $.id = id;
+            return this;
+        }
+
+        public Builder id(Integer id) {
+            return id(Output.of(id));
         }
 
         public Builder notAfter(@Nullable Output<String> notAfter) {

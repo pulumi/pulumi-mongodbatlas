@@ -420,6 +420,14 @@
                         }
                     }
                 },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "numShards": {
                     "type": "integer",
                     "description": "Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.\n",
@@ -459,6 +467,7 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "containerId",
+                        "id",
                         "regionConfigs"
                     ]
                 }
@@ -1136,6 +1145,14 @@
                         }
                     }
                 },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "retentionUnit": {
                     "type": "string",
                     "description": "Scope of the backup policy item: days, weeks, or months.\n",
@@ -1166,6 +1183,7 @@
                     "requiredOutputs": [
                         "frequencyInterval",
                         "frequencyType",
+                        "id",
                         "retentionUnit",
                         "retentionValue"
                     ]
@@ -1257,6 +1275,14 @@
                         }
                     }
                 },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "retentionUnit": {
                     "type": "string",
                     "description": "Scope of the backup policy item: days, weeks, or months.\n",
@@ -1287,6 +1313,7 @@
                     "requiredOutputs": [
                         "frequencyInterval",
                         "frequencyType",
+                        "id",
                         "retentionUnit",
                         "retentionValue"
                     ]
@@ -1313,6 +1340,14 @@
                         }
                     }
                 },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "retentionUnit": {
                     "type": "string",
                     "description": "Scope of the backup policy item: days, weeks, or months.\n",
@@ -1343,6 +1378,7 @@
                     "requiredOutputs": [
                         "frequencyInterval",
                         "frequencyType",
+                        "id",
                         "retentionUnit",
                         "retentionValue"
                     ]
@@ -1420,6 +1456,15 @@
                         }
                     }
                 },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the sharded cluster snapshot.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "replicaSetName": {
                     "type": "string",
                     "description": "Label given to a shard or config server from which Atlas took this snapshot.\n",
@@ -1435,6 +1480,7 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "cloudProvider",
+                        "id",
                         "replicaSetName"
                     ]
                 }
@@ -1630,6 +1676,14 @@
         },
         "mongodbatlas:index/CloudProviderSnapshotBackupPolicyPolicy:CloudProviderSnapshotBackupPolicyPolicy": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "policyItems": {
                     "type": "array",
                     "items": {
@@ -1644,6 +1698,7 @@
             },
             "type": "object",
             "required": [
+                "id",
                 "policyItems"
             ]
         },
@@ -1658,6 +1713,14 @@
                     }
                 },
                 "frequencyType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
                     "type": "string",
                     "language": {
                         "python": {
@@ -1686,6 +1749,7 @@
             "required": [
                 "frequencyInterval",
                 "frequencyType",
+                "id",
                 "retentionUnit",
                 "retentionValue"
             ]
@@ -2313,6 +2377,15 @@
         },
         "mongodbatlas:index/ClusterSnapshotBackupPolicyPolicy:ClusterSnapshotBackupPolicyPolicy": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "policyItems": {
                     "type": "array",
                     "items": {
@@ -2329,6 +2402,7 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "id",
                         "policyItems"
                     ]
                 }
@@ -2346,6 +2420,15 @@
                 },
                 "frequencyType": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2375,6 +2458,7 @@
                     "requiredOutputs": [
                         "frequencyInterval",
                         "frequencyType",
+                        "id",
                         "retentionUnit",
                         "retentionValue"
                     ]
@@ -3631,6 +3715,14 @@
                         }
                     }
                 },
+                "id": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "notAfter": {
                     "type": "string",
                     "language": {
@@ -3654,6 +3746,7 @@
                     "requiredOutputs": [
                         "createdAt",
                         "groupId",
+                        "id",
                         "notAfter",
                         "subject"
                     ]
@@ -7803,6 +7896,15 @@
         },
         "mongodbatlas:index/getClusterSnapshotBackupPolicyPolicy:getClusterSnapshotBackupPolicyPolicy": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "policyItems": {
                     "type": "array",
                     "items": {
@@ -7817,6 +7919,7 @@
             },
             "type": "object",
             "required": [
+                "id",
                 "policyItems"
             ],
             "language": {
@@ -7837,6 +7940,15 @@
                 },
                 "frequencyType": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -7864,6 +7976,7 @@
             "required": [
                 "frequencyInterval",
                 "frequencyType",
+                "id",
                 "retentionUnit",
                 "retentionValue"
             ],
@@ -8843,6 +8956,15 @@
         },
         "mongodbatlas:index/getClustersResultSnapshotBackupPolicyPolicy:getClustersResultSnapshotBackupPolicyPolicy": {
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "policyItems": {
                     "type": "array",
                     "items": {
@@ -8857,6 +8979,7 @@
             },
             "type": "object",
             "required": [
+                "id",
                 "policyItems"
             ],
             "language": {
@@ -8877,6 +9000,15 @@
                 },
                 "frequencyType": {
                     "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifer of the replication document for a zone in a Global Cluster.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -8904,6 +9036,7 @@
             "required": [
                 "frequencyInterval",
                 "frequencyType",
+                "id",
                 "retentionUnit",
                 "retentionValue"
             ],

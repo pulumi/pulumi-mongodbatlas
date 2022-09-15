@@ -527,6 +527,7 @@ class AdvancedClusterReplicationSpecArgs:
     def __init__(__self__, *,
                  region_configs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]],
                  container_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
                  num_shards: Optional[pulumi.Input[int]] = None,
                  zone_name: Optional[pulumi.Input[str]] = None):
         """
@@ -538,6 +539,8 @@ class AdvancedClusterReplicationSpecArgs:
         pulumi.set(__self__, "region_configs", region_configs)
         if container_id is not None:
             pulumi.set(__self__, "container_id", container_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if num_shards is not None:
             pulumi.set(__self__, "num_shards", num_shards)
         if zone_name is not None:
@@ -566,6 +569,15 @@ class AdvancedClusterReplicationSpecArgs:
     @container_id.setter
     def container_id(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "container_id", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="numShards")
@@ -1750,7 +1762,8 @@ class CloudBackupSchedulePolicyItemDailyArgs:
                  frequency_interval: pulumi.Input[int],
                  retention_unit: pulumi.Input[str],
                  retention_value: pulumi.Input[int],
-                 frequency_type: Optional[pulumi.Input[str]] = None):
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
@@ -1762,6 +1775,8 @@ class CloudBackupSchedulePolicyItemDailyArgs:
         pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
             pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -1810,6 +1825,15 @@ class CloudBackupSchedulePolicyItemDailyArgs:
     @frequency_type.setter
     def frequency_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type
@@ -1898,7 +1922,8 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
                  frequency_interval: pulumi.Input[int],
                  retention_unit: pulumi.Input[str],
                  retention_value: pulumi.Input[int],
-                 frequency_type: Optional[pulumi.Input[str]] = None):
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
@@ -1910,6 +1935,8 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
         pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
             pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -1958,6 +1985,15 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
     @frequency_type.setter
     def frequency_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type
@@ -1966,7 +2002,8 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
                  frequency_interval: pulumi.Input[int],
                  retention_unit: pulumi.Input[str],
                  retention_value: pulumi.Input[int],
-                 frequency_type: Optional[pulumi.Input[str]] = None):
+                 frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type`.
         :param pulumi.Input[str] retention_unit: Scope of the backup policy item: days, weeks, or months.
@@ -1978,6 +2015,8 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
         pulumi.set(__self__, "retention_value", retention_value)
         if frequency_type is not None:
             pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter(name="frequencyInterval")
@@ -2026,6 +2065,15 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
     @frequency_type.setter
     def frequency_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type
@@ -2108,13 +2156,17 @@ class CloudBackupSnapshotExportJobCustomDataArgs:
 class CloudBackupSnapshotMemberArgs:
     def __init__(__self__, *,
                  cloud_provider: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
                  replica_set_name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] cloud_provider: Cloud provider that stores this snapshot.
+        :param pulumi.Input[str] id: Unique identifier for the sharded cluster snapshot.
         :param pulumi.Input[str] replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if replica_set_name is not None:
             pulumi.set(__self__, "replica_set_name", replica_set_name)
 
@@ -2129,6 +2181,18 @@ class CloudBackupSnapshotMemberArgs:
     @cloud_provider.setter
     def cloud_provider(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cloud_provider", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier for the sharded cluster snapshot.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="replicaSetName")
@@ -2360,8 +2424,19 @@ class CloudProviderAccessSetupAwsConfigArgs:
 @pulumi.input_type
 class CloudProviderSnapshotBackupPolicyPolicyArgs:
     def __init__(__self__, *,
+                 id: pulumi.Input[str],
                  policy_items: pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs']]]):
+        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "policy_items", policy_items)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="policyItems")
@@ -2378,10 +2453,12 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs:
     def __init__(__self__, *,
                  frequency_interval: pulumi.Input[int],
                  frequency_type: pulumi.Input[str],
+                 id: pulumi.Input[str],
                  retention_unit: pulumi.Input[str],
                  retention_value: pulumi.Input[int]):
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "retention_unit", retention_unit)
         pulumi.set(__self__, "retention_value", retention_value)
 
@@ -2402,6 +2479,15 @@ class CloudProviderSnapshotBackupPolicyPolicyPolicyItemArgs:
     @frequency_type.setter
     def frequency_type(self, value: pulumi.Input[str]):
         pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="retentionUnit")
@@ -3241,9 +3327,27 @@ class ClusterSnapshotBackupPolicyArgs:
 @pulumi.input_type
 class ClusterSnapshotBackupPolicyPolicyArgs:
     def __init__(__self__, *,
+                 id: Optional[pulumi.Input[str]] = None,
                  policy_items: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]] = None):
+        """
+        :param pulumi.Input[str] id: Unique identifer of the replication document for a zone in a Global Cluster.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if policy_items is not None:
             pulumi.set(__self__, "policy_items", policy_items)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifer of the replication document for a zone in a Global Cluster.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="policyItems")
@@ -3260,12 +3364,18 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs:
     def __init__(__self__, *,
                  frequency_interval: Optional[pulumi.Input[int]] = None,
                  frequency_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
                  retention_unit: Optional[pulumi.Input[str]] = None,
                  retention_value: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] id: Unique identifer of the replication document for a zone in a Global Cluster.
+        """
         if frequency_interval is not None:
             pulumi.set(__self__, "frequency_interval", frequency_interval)
         if frequency_type is not None:
             pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if retention_unit is not None:
             pulumi.set(__self__, "retention_unit", retention_unit)
         if retention_value is not None:
@@ -3288,6 +3398,18 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs:
     @frequency_type.setter
     def frequency_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "frequency_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifer of the replication document for a zone in a Global Cluster.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="retentionUnit")
@@ -4942,12 +5064,15 @@ class X509AuthenticationDatabaseUserCertificateArgs:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[int]] = None,
                  not_after: Optional[pulumi.Input[str]] = None,
                  subject: Optional[pulumi.Input[str]] = None):
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if not_after is not None:
             pulumi.set(__self__, "not_after", not_after)
         if subject is not None:
@@ -4970,6 +5095,15 @@ class X509AuthenticationDatabaseUserCertificateArgs:
     @group_id.setter
     def group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "group_id", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="notAfter")

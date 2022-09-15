@@ -12,6 +12,11 @@ import java.util.Objects;
 public final class GetClusterSnapshotBackupPolicyPolicyPolicyItem {
     private Integer frequencyInterval;
     private String frequencyType;
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    private String id;
     private String retentionUnit;
     private Integer retentionValue;
 
@@ -21,6 +26,13 @@ public final class GetClusterSnapshotBackupPolicyPolicyPolicyItem {
     }
     public String frequencyType() {
         return this.frequencyType;
+    }
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    public String id() {
+        return this.id;
     }
     public String retentionUnit() {
         return this.retentionUnit;
@@ -40,6 +52,7 @@ public final class GetClusterSnapshotBackupPolicyPolicyPolicyItem {
     public static final class Builder {
         private Integer frequencyInterval;
         private String frequencyType;
+        private String id;
         private String retentionUnit;
         private Integer retentionValue;
         public Builder() {}
@@ -47,6 +60,7 @@ public final class GetClusterSnapshotBackupPolicyPolicyPolicyItem {
     	      Objects.requireNonNull(defaults);
     	      this.frequencyInterval = defaults.frequencyInterval;
     	      this.frequencyType = defaults.frequencyType;
+    	      this.id = defaults.id;
     	      this.retentionUnit = defaults.retentionUnit;
     	      this.retentionValue = defaults.retentionValue;
         }
@@ -59,6 +73,11 @@ public final class GetClusterSnapshotBackupPolicyPolicyPolicyItem {
         @CustomType.Setter
         public Builder frequencyType(String frequencyType) {
             this.frequencyType = Objects.requireNonNull(frequencyType);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder id(String id) {
+            this.id = Objects.requireNonNull(id);
             return this;
         }
         @CustomType.Setter
@@ -75,6 +94,7 @@ public final class GetClusterSnapshotBackupPolicyPolicyPolicyItem {
             final var o = new GetClusterSnapshotBackupPolicyPolicyPolicyItem();
             o.frequencyInterval = frequencyInterval;
             o.frequencyType = frequencyType;
+            o.id = id;
             o.retentionUnit = retentionUnit;
             o.retentionValue = retentionValue;
             return o;

@@ -30,6 +30,21 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs extends com.p
         return Optional.ofNullable(this.frequencyType);
     }
 
+    /**
+     * Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    @Import(name="id")
+    private @Nullable Output<String> id;
+
+    /**
+     * @return Unique identifer of the replication document for a zone in a Global Cluster.
+     * 
+     */
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
+    }
+
     @Import(name="retentionUnit")
     private @Nullable Output<String> retentionUnit;
 
@@ -49,6 +64,7 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs extends com.p
     private ClusterSnapshotBackupPolicyPolicyPolicyItemArgs(ClusterSnapshotBackupPolicyPolicyPolicyItemArgs $) {
         this.frequencyInterval = $.frequencyInterval;
         this.frequencyType = $.frequencyType;
+        this.id = $.id;
         this.retentionUnit = $.retentionUnit;
         this.retentionValue = $.retentionValue;
     }
@@ -87,6 +103,27 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs extends com.p
 
         public Builder frequencyType(String frequencyType) {
             return frequencyType(Output.of(frequencyType));
+        }
+
+        /**
+         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder id(@Nullable Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        /**
+         * @param id Unique identifer of the replication document for a zone in a Global Cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder id(String id) {
+            return id(Output.of(id));
         }
 
         public Builder retentionUnit(@Nullable Output<String> retentionUnit) {

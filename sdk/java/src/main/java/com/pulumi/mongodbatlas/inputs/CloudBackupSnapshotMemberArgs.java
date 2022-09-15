@@ -31,6 +31,21 @@ public final class CloudBackupSnapshotMemberArgs extends com.pulumi.resources.Re
     }
 
     /**
+     * Unique identifier for the sharded cluster snapshot.
+     * 
+     */
+    @Import(name="id")
+    private @Nullable Output<String> id;
+
+    /**
+     * @return Unique identifier for the sharded cluster snapshot.
+     * 
+     */
+    public Optional<Output<String>> id() {
+        return Optional.ofNullable(this.id);
+    }
+
+    /**
      * Label given to a shard or config server from which Atlas took this snapshot.
      * 
      */
@@ -49,6 +64,7 @@ public final class CloudBackupSnapshotMemberArgs extends com.pulumi.resources.Re
 
     private CloudBackupSnapshotMemberArgs(CloudBackupSnapshotMemberArgs $) {
         this.cloudProvider = $.cloudProvider;
+        this.id = $.id;
         this.replicaSetName = $.replicaSetName;
     }
 
@@ -89,6 +105,27 @@ public final class CloudBackupSnapshotMemberArgs extends com.pulumi.resources.Re
          */
         public Builder cloudProvider(String cloudProvider) {
             return cloudProvider(Output.of(cloudProvider));
+        }
+
+        /**
+         * @param id Unique identifier for the sharded cluster snapshot.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder id(@Nullable Output<String> id) {
+            $.id = id;
+            return this;
+        }
+
+        /**
+         * @param id Unique identifier for the sharded cluster snapshot.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder id(String id) {
+            return id(Output.of(id));
         }
 
         /**
