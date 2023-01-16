@@ -8,7 +8,7 @@ replace (
 )
 
 require (
-	github.com/mongodb/terraform-provider-mongodbatlas v1.4.6
+	github.com/mongodb/terraform-provider-mongodbatlas v1.7.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.30.0
 	github.com/pulumi/pulumi/sdk/v3 v3.39.1
 )
