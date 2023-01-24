@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -19,6 +20,7 @@ import * as utilities from "./utilities";
  *     orgId: "627a9683ea7ff7f74de306f14",
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
+ *     postAuthRoleGrants: ["ORG_MEMBER"],
  * });
  * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigsOutput({
  *     federationSettingsId: orgConnections.id,
@@ -26,11 +28,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedSettingsOrgConfigs(args: GetFederatedSettingsOrgConfigsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgConfigsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs", {
         "federationSettingsId": args.federationSettingsId,
         "itemsPerPage": args.itemsPerPage,
@@ -75,9 +74,29 @@ export interface GetFederatedSettingsOrgConfigsResult {
      */
     readonly results: outputs.GetFederatedSettingsOrgConfigsResult[];
 }
-
+/**
+ * `mongodbatlas.getFederatedSettingsOrgConfigs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("orgConnections", {
+ *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     orgId: "627a9683ea7ff7f74de306f14",
+ *     domainRestrictionEnabled: false,
+ *     domainAllowLists: ["mydomain.com"],
+ *     postAuthRoleGrants: ["ORG_MEMBER"],
+ * });
+ * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigsOutput({
+ *     federationSettingsId: orgConnections.id,
+ * });
+ * ```
+ */
 export function getFederatedSettingsOrgConfigsOutput(args: GetFederatedSettingsOrgConfigsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgConfigsResult> {
-    return pulumi.output(args).apply(a => getFederatedSettingsOrgConfigs(a, opts))
+    return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgConfigs(a, opts))
 }
 
 /**

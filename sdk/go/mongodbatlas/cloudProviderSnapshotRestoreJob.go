@@ -63,7 +63,7 @@ import (
 //				ProjectId:   testCloudProviderSnapshot.ProjectId,
 //				ClusterName: testCloudProviderSnapshot.ClusterName,
 //				SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-//				DeliveryTypeConfig: &CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
+//				DeliveryTypeConfig: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
 //					Automated:         pulumi.Bool(true),
 //					TargetClusterName: pulumi.String("MyCluster"),
 //					TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
@@ -117,7 +117,7 @@ import (
 //				ProjectId:   testCloudProviderSnapshot.ProjectId,
 //				ClusterName: testCloudProviderSnapshot.ClusterName,
 //				SnapshotId:  testCloudProviderSnapshot.SnapshotId,
-//				DeliveryTypeConfig: &CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
+//				DeliveryTypeConfig: &mongodbatlas.CloudProviderSnapshotRestoreJobDeliveryTypeConfigArgs{
 //					Download: pulumi.Bool(true),
 //				},
 //			})

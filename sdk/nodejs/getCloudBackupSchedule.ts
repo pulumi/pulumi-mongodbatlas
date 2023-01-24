@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,11 +12,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSchedule(args: GetCloudBackupScheduleArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupScheduleResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", {
         "clusterName": args.clusterName,
         "projectId": args.projectId,
@@ -96,9 +94,13 @@ export interface GetCloudBackupScheduleResult {
      */
     readonly useOrgAndGroupNamesInExportPrefix: boolean;
 }
-
+/**
+ * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getCloudBackupScheduleOutput(args: GetCloudBackupScheduleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupScheduleResult> {
-    return pulumi.output(args).apply(a => getCloudBackupSchedule(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudBackupSchedule(a, opts))
 }
 
 /**

@@ -34,9 +34,14 @@ type LookupProjectArgs struct {
 
 // A collection of values returned by getProject.
 type LookupProjectResult struct {
-	ApiKeys      []GetProjectApiKey `pulumi:"apiKeys"`
-	ClusterCount int                `pulumi:"clusterCount"`
-	Created      string             `pulumi:"created"`
+	ApiKeys []GetProjectApiKey `pulumi:"apiKeys"`
+	// The number of Atlas clusters deployed in the project.
+	ClusterCount int `pulumi:"clusterCount"`
+	// The ISO-8601-formatted timestamp of when Atlas created the project.
+	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+	//   The following are valid roles:
+	Created string `pulumi:"created"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -52,29 +57,11 @@ type LookupProjectResult struct {
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
-	// *`clusterCount` - The number of Atlas clusters deployed in the project.
-	// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-	//   The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
-	// * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-	// * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
-	//   The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
-	OrgId     string           `pulumi:"orgId"`
-	ProjectId *string          `pulumi:"projectId"`
-	Teams     []GetProjectTeam `pulumi:"teams"`
+	OrgId     string  `pulumi:"orgId"`
+	ProjectId *string `pulumi:"projectId"`
+	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+	RegionUsageRestrictions string           `pulumi:"regionUsageRestrictions"`
+	Teams                   []GetProjectTeam `pulumi:"teams"`
 }
 
 func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts ...pulumi.InvokeOption) LookupProjectResultOutput {
@@ -121,10 +108,15 @@ func (o LookupProjectResultOutput) ApiKeys() GetProjectApiKeyArrayOutput {
 	return o.ApplyT(func(v LookupProjectResult) []GetProjectApiKey { return v.ApiKeys }).(GetProjectApiKeyArrayOutput)
 }
 
+// The number of Atlas clusters deployed in the project.
 func (o LookupProjectResultOutput) ClusterCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupProjectResult) int { return v.ClusterCount }).(pulumi.IntOutput)
 }
 
+// The ISO-8601-formatted timestamp of when Atlas created the project.
+//   - `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+//   - `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+//     The following are valid roles:
 func (o LookupProjectResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Created }).(pulumi.StringOutput)
 }
@@ -165,32 +157,17 @@ func (o LookupProjectResultOutput) Name() pulumi.StringPtrOutput {
 }
 
 // The ID of the organization you want to create the project within.
-// *`clusterCount` - The number of Atlas clusters deployed in the project.
-// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-//   - `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-//   - `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-//     The following are valid roles:
-//   - `GROUP_OWNER`
-//   - `GROUP_READ_ONLY`
-//   - `GROUP_DATA_ACCESS_ADMIN`
-//   - `GROUP_DATA_ACCESS_READ_WRITE`
-//   - `GROUP_DATA_ACCESS_READ_ONLY`
-//   - `GROUP_CLUSTER_MANAGER`
-//   - `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-//   - `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
-//     The following are valid roles:
-//   - `GROUP_OWNER`
-//   - `GROUP_READ_ONLY`
-//   - `GROUP_DATA_ACCESS_ADMIN`
-//   - `GROUP_DATA_ACCESS_READ_WRITE`
-//   - `GROUP_DATA_ACCESS_READ_ONLY`
-//   - `GROUP_CLUSTER_MANAGER`
 func (o LookupProjectResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
 
 func (o LookupProjectResultOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupProjectResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+func (o LookupProjectResultOutput) RegionUsageRestrictions() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
 }
 
 func (o LookupProjectResultOutput) Teams() GetProjectTeamArrayOutput {

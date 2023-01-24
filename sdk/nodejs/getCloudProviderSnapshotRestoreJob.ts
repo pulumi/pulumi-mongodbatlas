@@ -12,11 +12,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudProviderSnapshotRestoreJob(args: GetCloudProviderSnapshotRestoreJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotRestoreJobResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderSnapshotRestoreJob:getCloudProviderSnapshotRestoreJob", {
         "clusterName": args.clusterName,
         "jobId": args.jobId,
@@ -101,9 +98,15 @@ export interface GetCloudProviderSnapshotRestoreJobResult {
      */
     readonly timestamp: string;
 }
-
+/**
+ * **WARNING:** This datasource is deprecated, use `mongodbatlas.CloudBackupSnapshotRestoreJob`
+ *
+ * `mongodbatlas.CloudProviderSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getCloudProviderSnapshotRestoreJobOutput(args: GetCloudProviderSnapshotRestoreJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotRestoreJobResult> {
-    return pulumi.output(args).apply(a => getCloudProviderSnapshotRestoreJob(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudProviderSnapshotRestoreJob(a, opts))
 }
 
 /**

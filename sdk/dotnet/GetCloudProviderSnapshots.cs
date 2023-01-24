@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
         public static Task<GetCloudProviderSnapshotsResult> InvokeAsync(GetCloudProviderSnapshotsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotsResult>("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", args ?? new GetCloudProviderSnapshotsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotsResult>("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", args ?? new GetCloudProviderSnapshotsArgs(), options.WithDefaults());
 
         /// <summary>
         /// **WARNING:** This datasource is deprecated, use `mongodbatlas.getCloudBackupSnapshots`
@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
         public static Output<GetCloudProviderSnapshotsResult> Invoke(GetCloudProviderSnapshotsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotsResult>("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", args ?? new GetCloudProviderSnapshotsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotsResult>("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", args ?? new GetCloudProviderSnapshotsInvokeArgs(), options.WithDefaults());
     }
 
 

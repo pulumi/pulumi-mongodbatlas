@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -50,10 +51,10 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.DatabaseUser("test", {
- *     authDatabaseName: "$external",
+ *     authDatabaseName: `$external`,
  *     labels: [{
- *         key: "%s",
- *         value: "%s",
+ *         key: `%s`,
+ *         value: `%s`,
  *     }],
  *     projectId: "<PROJECT-ID>",
  *     roles: [{
@@ -208,7 +209,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             resourceInputs["databaseName"] = args ? args.databaseName : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["ldapAuthType"] = args ? args.ldapAuthType : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["roles"] = args ? args.roles : undefined;
             resourceInputs["scopes"] = args ? args.scopes : undefined;
@@ -216,6 +217,8 @@ export class DatabaseUser extends pulumi.CustomResource {
             resourceInputs["x509Type"] = args ? args.x509Type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(DatabaseUser.__pulumiType, name, resourceInputs, opts);
     }
 }

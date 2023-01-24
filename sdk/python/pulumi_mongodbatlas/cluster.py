@@ -47,6 +47,7 @@ class ClusterArgs:
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
+                 termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
@@ -74,9 +75,9 @@ class ClusterArgs:
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
-        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-        :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
-        :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
+        :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         :param pulumi.Input[bool] provider_backup_enabled: Flag indicating if the cluster uses Cloud Backup for backups. **Deprecated** use `cloud_backup` instead.
@@ -89,9 +90,8 @@ class ClusterArgs:
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
-        :param pulumi.Input[str] version_release_system: - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_instance_size_name", provider_instance_size_name)
@@ -161,6 +161,8 @@ class ClusterArgs:
             pulumi.set(__self__, "replication_factor", replication_factor)
         if replication_specs is not None:
             pulumi.set(__self__, "replication_specs", replication_specs)
+        if termination_protection_enabled is not None:
+            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
             pulumi.set(__self__, "version_release_system", version_release_system)
 
@@ -375,7 +377,7 @@ class ClusterArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         """
         return pulumi.get(self, "name")
 
@@ -387,7 +389,7 @@ class ClusterArgs:
     @pulumi.getter(name="numShards")
     def num_shards(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of shards to deploy in the specified zone, minimum 1.
+        Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         """
         return pulumi.get(self, "num_shards")
 
@@ -408,7 +410,7 @@ class ClusterArgs:
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         """
         return pulumi.get(self, "pit_enabled")
 
@@ -539,12 +541,22 @@ class ClusterArgs:
         pulumi.set(self, "replication_specs", value)
 
     @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
+    @termination_protection_enabled.setter
+    def termination_protection_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "termination_protection_enabled", value)
+
+    @property
     @pulumi.getter(name="versionReleaseSystem")
     def version_release_system(self) -> Optional[pulumi.Input[str]]:
         """
-        - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
         return pulumi.get(self, "version_release_system")
 
@@ -598,6 +610,7 @@ class _ClusterState:
                  snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]] = None,
                  srv_address: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
+                 termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
@@ -617,7 +630,7 @@ class _ClusterState:
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringArgs']]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-        :param pulumi.Input[str] container_id: The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        :param pulumi.Input[str] container_id: The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
                * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
@@ -629,9 +642,9 @@ class _ClusterState:
         :param pulumi.Input[str] mongo_uri: Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] mongo_uri_updated: Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
         :param pulumi.Input[str] mongo_uri_with_options: connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
-        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-        :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
-        :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
+        :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
@@ -656,9 +669,8 @@ class _ClusterState:
                - DELETING
                - DELETED
                - REPAIRING
-        :param pulumi.Input[str] version_release_system: - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
         if advanced_configuration is not None:
             pulumi.set(__self__, "advanced_configuration", advanced_configuration)
@@ -753,6 +765,8 @@ class _ClusterState:
             pulumi.set(__self__, "srv_address", srv_address)
         if state_name is not None:
             pulumi.set(__self__, "state_name", state_name)
+        if termination_protection_enabled is not None:
+            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
         if version_release_system is not None:
             pulumi.set(__self__, "version_release_system", version_release_system)
 
@@ -906,7 +920,7 @@ class _ClusterState:
     @pulumi.getter(name="containerId")
     def container_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         """
         return pulumi.get(self, "container_id")
 
@@ -1015,7 +1029,7 @@ class _ClusterState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         """
         return pulumi.get(self, "name")
 
@@ -1027,7 +1041,7 @@ class _ClusterState:
     @pulumi.getter(name="numShards")
     def num_shards(self) -> Optional[pulumi.Input[int]]:
         """
-        Number of shards to deploy in the specified zone, minimum 1.
+        Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         """
         return pulumi.get(self, "num_shards")
 
@@ -1048,7 +1062,7 @@ class _ClusterState:
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         """
         return pulumi.get(self, "pit_enabled")
 
@@ -1266,12 +1280,22 @@ class _ClusterState:
         pulumi.set(self, "state_name", value)
 
     @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
+    @termination_protection_enabled.setter
+    def termination_protection_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "termination_protection_enabled", value)
+
+    @property
     @pulumi.getter(name="versionReleaseSystem")
     def version_release_system(self) -> Optional[pulumi.Input[str]]:
         """
-        - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
         return pulumi.get(self, "version_release_system")
 
@@ -1316,185 +1340,10 @@ class Cluster(pulumi.CustomResource):
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-        ### Example AWS cluster
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            disk_size_gb=100,
-            mongo_db_major_version="4.2",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M40",
-            provider_name="AWS",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                    region_name="US_EAST_1",
-                )],
-            )])
-        ```
-        ### Example Azure cluster.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_disk_type_name="P6",
-            provider_instance_size_name="M30",
-            provider_name="AZURE",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                    region_name="US_EAST",
-                )],
-            )])
-        ```
-        ### Example GCP cluster
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            disk_size_gb=40,
-            mongo_db_major_version="4.2",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
-            provider_name="GCP",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                    region_name="EASTERN_US",
-                )],
-            )])
-        ```
-        ### Example Multi Region cluster
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            disk_size_gb=100,
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M10",
-            provider_name="AWS",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                        region_name="US_EAST_1",
-                    ),
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=2,
-                        priority=6,
-                        read_only_nodes=0,
-                        region_name="US_EAST_2",
-                    ),
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=2,
-                        priority=5,
-                        read_only_nodes=2,
-                        region_name="US_WEST_1",
-                    ),
-                ],
-            )])
-        ```
-        ### Example Global cluster
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            cloud_backup=True,
-            cluster_type="GEOSHARDED",
-            disk_size_gb=80,
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
-            provider_name="AWS",
-            replication_specs=[
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    num_shards=2,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                        region_name="US_EAST_1",
-                    )],
-                    zone_name="Zone 1",
-                ),
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    num_shards=2,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                        region_name="EU_CENTRAL_1",
-                    )],
-                    zone_name="Zone 2",
-                ),
-            ])
-        ```
-        ### Example AWS Shared Tier (M2/M5) cluster
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M2",
-            provider_name="TENANT",
-            provider_region_name="US_EAST_1")
-        ```
-        ### Example AWS Free Tier cluster
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M0",
-            provider_name="TENANT",
-            provider_region_name="US_EAST_1")
-        ```
-
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1528,9 +1377,9 @@ class Cluster(pulumi.CustomResource):
                * Cannot be used with Azure clusters
         :param pulumi.Input[str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         :param pulumi.Input[str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: `4.2`, `4.4`, `5.0`, or `6.0`. If omitted, Atlas deploys a cluster that runs MongoDB 5.0. If `provider_instance_size_name`: `M0`, `M2` or `M5`, Atlas deploys MongoDB 5.0. Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
-        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-        :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
-        :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
+        :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
@@ -1546,9 +1395,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] provider_volume_type: The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         :param pulumi.Input[int] replication_factor: Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]] replication_specs: Configuration for cluster regions.  See Replication Spec below for more details.
-        :param pulumi.Input[str] version_release_system: - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
         ...
     @overload
@@ -1557,182 +1405,6 @@ class Cluster(pulumi.CustomResource):
                  args: ClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-        ### Example AWS cluster
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            disk_size_gb=100,
-            mongo_db_major_version="4.2",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M40",
-            provider_name="AWS",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                    region_name="US_EAST_1",
-                )],
-            )])
-        ```
-        ### Example Azure cluster.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            mongo_db_major_version="4.2",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_disk_type_name="P6",
-            provider_instance_size_name="M30",
-            provider_name="AZURE",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                    region_name="US_EAST",
-                )],
-            )])
-        ```
-        ### Example GCP cluster
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test = mongodbatlas.Cluster("test",
-            auto_scaling_disk_gb_enabled=True,
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            disk_size_gb=40,
-            mongo_db_major_version="4.2",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
-            provider_name="GCP",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                    electable_nodes=3,
-                    priority=7,
-                    read_only_nodes=0,
-                    region_name="EASTERN_US",
-                )],
-            )])
-        ```
-        ### Example Multi Region cluster
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            cloud_backup=True,
-            cluster_type="REPLICASET",
-            disk_size_gb=100,
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M10",
-            provider_name="AWS",
-            replication_specs=[mongodbatlas.ClusterReplicationSpecArgs(
-                num_shards=1,
-                regions_configs=[
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                        region_name="US_EAST_1",
-                    ),
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=2,
-                        priority=6,
-                        read_only_nodes=0,
-                        region_name="US_EAST_2",
-                    ),
-                    mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=2,
-                        priority=5,
-                        read_only_nodes=2,
-                        region_name="US_WEST_1",
-                    ),
-                ],
-            )])
-        ```
-        ### Example Global cluster
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            cloud_backup=True,
-            cluster_type="GEOSHARDED",
-            disk_size_gb=80,
-            num_shards=1,
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M30",
-            provider_name="AWS",
-            replication_specs=[
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    num_shards=2,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                        region_name="US_EAST_1",
-                    )],
-                    zone_name="Zone 1",
-                ),
-                mongodbatlas.ClusterReplicationSpecArgs(
-                    num_shards=2,
-                    regions_configs=[mongodbatlas.ClusterReplicationSpecRegionsConfigArgs(
-                        electable_nodes=3,
-                        priority=7,
-                        read_only_nodes=0,
-                        region_name="EU_CENTRAL_1",
-                    )],
-                    zone_name="Zone 2",
-                ),
-            ])
-        ```
-        ### Example AWS Shared Tier (M2/M5) cluster
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M2",
-            provider_name="TENANT",
-            provider_region_name="US_EAST_1")
-        ```
-        ### Example AWS Free Tier cluster
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        cluster_test = mongodbatlas.Cluster("cluster-test",
-            backing_provider_name="AWS",
-            project_id="<YOUR-PROJECT-ID>",
-            provider_instance_size_name="M0",
-            provider_name="TENANT",
-            provider_region_name="US_EAST_1")
-        ```
-
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1789,6 +1461,7 @@ class Cluster(pulumi.CustomResource):
                  provider_volume_type: Optional[pulumi.Input[str]] = None,
                  replication_factor: Optional[pulumi.Input[int]] = None,
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterReplicationSpecArgs']]]]] = None,
+                 termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  version_release_system: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1845,6 +1518,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["provider_volume_type"] = provider_volume_type
             __props__.__dict__["replication_factor"] = replication_factor
             __props__.__dict__["replication_specs"] = replication_specs
+            __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
             __props__.__dict__["version_release_system"] = version_release_system
             __props__.__dict__["cluster_id"] = None
             __props__.__dict__["connection_strings"] = None
@@ -1909,6 +1583,7 @@ class Cluster(pulumi.CustomResource):
             snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSnapshotBackupPolicyArgs']]]]] = None,
             srv_address: Optional[pulumi.Input[str]] = None,
             state_name: Optional[pulumi.Input[str]] = None,
+            termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
             version_release_system: Optional[pulumi.Input[str]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
@@ -1933,7 +1608,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: The cluster ID.
         :param pulumi.Input[str] cluster_type: Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterConnectionStringArgs']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More info in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-        :param pulumi.Input[str] container_id: The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        :param pulumi.Input[str] container_id: The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         :param pulumi.Input[float] disk_size_gb: Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
                * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
                * Note: The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider upgrading your cluster to a higher tier.
@@ -1945,9 +1620,9 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] mongo_uri: Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
         :param pulumi.Input[str] mongo_uri_updated: Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
         :param pulumi.Input[str] mongo_uri_with_options: connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
-        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-        :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
-        :param pulumi.Input[bool] pit_enabled: - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        :param pulumi.Input[str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
+        :param pulumi.Input[bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[str] provider_auto_scaling_compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         :param pulumi.Input[str] provider_auto_scaling_compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
@@ -1972,9 +1647,8 @@ class Cluster(pulumi.CustomResource):
                - DELETING
                - DELETED
                - REPAIRING
-        :param pulumi.Input[str] version_release_system: - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-               - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-               - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param pulumi.Input[str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2022,6 +1696,7 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["snapshot_backup_policies"] = snapshot_backup_policies
         __props__.__dict__["srv_address"] = srv_address
         __props__.__dict__["state_name"] = state_name
+        __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
         __props__.__dict__["version_release_system"] = version_release_system
         return Cluster(resource_name, opts=opts, __props__=__props__)
 
@@ -2127,7 +1802,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="containerId")
     def container_id(self) -> pulumi.Output[str]:
         """
-        The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         """
         return pulumi.get(self, "container_id")
 
@@ -2200,7 +1875,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+        Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         """
         return pulumi.get(self, "name")
 
@@ -2208,7 +1883,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="numShards")
     def num_shards(self) -> pulumi.Output[Optional[int]]:
         """
-        Number of shards to deploy in the specified zone, minimum 1.
+        Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         """
         return pulumi.get(self, "num_shards")
 
@@ -2221,7 +1896,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="pitEnabled")
     def pit_enabled(self) -> pulumi.Output[bool]:
         """
-        - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+        Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         """
         return pulumi.get(self, "pit_enabled")
 
@@ -2367,12 +2042,18 @@ class Cluster(pulumi.CustomResource):
         return pulumi.get(self, "state_name")
 
     @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
+    @property
     @pulumi.getter(name="versionReleaseSystem")
     def version_release_system(self) -> pulumi.Output[Optional[str]]:
         """
-        - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-        - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-        - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         """
         return pulumi.get(self, "version_release_system")
 

@@ -169,6 +169,21 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     }
 
     /**
+     * Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     * 
+     */
+    @Import(name="microsoftTeamsWebhookUrl")
+    private @Nullable Output<String> microsoftTeamsWebhookUrl;
+
+    /**
+     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     * 
+     */
+    public Optional<Output<String>> microsoftTeamsWebhookUrl() {
+        return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
+    }
+
+    /**
      * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      * 
      */
@@ -308,9 +323,6 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     /**
      * Type of alert notification.
      * Accepted values are:
-     * - `DATADOG`
-     * - `EMAIL`
-     * - `FLOWDOCK`
      * 
      */
     @Import(name="typeName")
@@ -319,9 +331,6 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     /**
      * @return Type of alert notification.
      * Accepted values are:
-     * - `DATADOG`
-     * - `EMAIL`
-     * - `FLOWDOCK`
      * 
      */
     public Optional<Output<String>> typeName() {
@@ -373,6 +382,36 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.victorOpsRoutingKey);
     }
 
+    /**
+     * Optional authentication secret for the `WEBHOOK` notifications type.
+     * 
+     */
+    @Import(name="webhookSecret")
+    private @Nullable Output<String> webhookSecret;
+
+    /**
+     * @return Optional authentication secret for the `WEBHOOK` notifications type.
+     * 
+     */
+    public Optional<Output<String>> webhookSecret() {
+        return Optional.ofNullable(this.webhookSecret);
+    }
+
+    /**
+     * Target URL  for the `WEBHOOK` notifications type.
+     * 
+     */
+    @Import(name="webhookUrl")
+    private @Nullable Output<String> webhookUrl;
+
+    /**
+     * @return Target URL  for the `WEBHOOK` notifications type.
+     * 
+     */
+    public Optional<Output<String>> webhookUrl() {
+        return Optional.ofNullable(this.webhookUrl);
+    }
+
     private AlertConfigurationNotificationArgs() {}
 
     private AlertConfigurationNotificationArgs(AlertConfigurationNotificationArgs $) {
@@ -386,6 +425,7 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         this.flowName = $.flowName;
         this.flowdockApiToken = $.flowdockApiToken;
         this.intervalMin = $.intervalMin;
+        this.microsoftTeamsWebhookUrl = $.microsoftTeamsWebhookUrl;
         this.mobileNumber = $.mobileNumber;
         this.opsGenieApiKey = $.opsGenieApiKey;
         this.opsGenieRegion = $.opsGenieRegion;
@@ -399,6 +439,8 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         this.username = $.username;
         this.victorOpsApiKey = $.victorOpsApiKey;
         this.victorOpsRoutingKey = $.victorOpsRoutingKey;
+        this.webhookSecret = $.webhookSecret;
+        this.webhookUrl = $.webhookUrl;
     }
 
     public static Builder builder() {
@@ -630,6 +672,27 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param microsoftTeamsWebhookUrl Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder microsoftTeamsWebhookUrl(@Nullable Output<String> microsoftTeamsWebhookUrl) {
+            $.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
+            return this;
+        }
+
+        /**
+         * @param microsoftTeamsWebhookUrl Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder microsoftTeamsWebhookUrl(String microsoftTeamsWebhookUrl) {
+            return microsoftTeamsWebhookUrl(Output.of(microsoftTeamsWebhookUrl));
+        }
+
+        /**
          * @param mobileNumber Mobile number to which alert notifications are sent. Required for the SMS notifications type.
          * 
          * @return builder
@@ -834,9 +897,6 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         /**
          * @param typeName Type of alert notification.
          * Accepted values are:
-         * - `DATADOG`
-         * - `EMAIL`
-         * - `FLOWDOCK`
          * 
          * @return builder
          * 
@@ -849,9 +909,6 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         /**
          * @param typeName Type of alert notification.
          * Accepted values are:
-         * - `DATADOG`
-         * - `EMAIL`
-         * - `FLOWDOCK`
          * 
          * @return builder
          * 
@@ -921,6 +978,48 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
          */
         public Builder victorOpsRoutingKey(String victorOpsRoutingKey) {
             return victorOpsRoutingKey(Output.of(victorOpsRoutingKey));
+        }
+
+        /**
+         * @param webhookSecret Optional authentication secret for the `WEBHOOK` notifications type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookSecret(@Nullable Output<String> webhookSecret) {
+            $.webhookSecret = webhookSecret;
+            return this;
+        }
+
+        /**
+         * @param webhookSecret Optional authentication secret for the `WEBHOOK` notifications type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookSecret(String webhookSecret) {
+            return webhookSecret(Output.of(webhookSecret));
+        }
+
+        /**
+         * @param webhookUrl Target URL  for the `WEBHOOK` notifications type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookUrl(@Nullable Output<String> webhookUrl) {
+            $.webhookUrl = webhookUrl;
+            return this;
+        }
+
+        /**
+         * @param webhookUrl Target URL  for the `WEBHOOK` notifications type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookUrl(String webhookUrl) {
+            return webhookUrl(Output.of(webhookUrl));
         }
 
         public AlertConfigurationNotificationArgs build() {

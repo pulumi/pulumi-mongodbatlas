@@ -8,31 +8,93 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from ._inputs import *
 
 __all__ = ['ProviderArgs', 'Provider']
 
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
+                 assume_role: Optional[pulumi.Input['ProviderAssumeRoleArgs']] = None,
+                 aws_access_key_id: Optional[pulumi.Input[str]] = None,
+                 aws_secret_access_key: Optional[pulumi.Input[str]] = None,
+                 aws_session_token: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
+                 is_mongodbgov_cloud: Optional[pulumi.Input[bool]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
-                 realm_base_url: Optional[pulumi.Input[str]] = None):
+                 realm_base_url: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_name: Optional[pulumi.Input[str]] = None,
+                 sts_endpoint: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] base_url: MongoDB Atlas Base URL
+        :param pulumi.Input[bool] is_mongodbgov_cloud: MongoDB Atlas Base URL default to gov
         :param pulumi.Input[str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[str] public_key: MongoDB Atlas Programmatic Public Key
         :param pulumi.Input[str] realm_base_url: MongoDB Realm Base URL
         """
+        if assume_role is not None:
+            pulumi.set(__self__, "assume_role", assume_role)
+        if aws_access_key_id is not None:
+            pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
+        if aws_secret_access_key is not None:
+            pulumi.set(__self__, "aws_secret_access_key", aws_secret_access_key)
+        if aws_session_token is not None:
+            pulumi.set(__self__, "aws_session_token", aws_session_token)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
+        if is_mongodbgov_cloud is not None:
+            pulumi.set(__self__, "is_mongodbgov_cloud", is_mongodbgov_cloud)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if realm_base_url is not None:
             pulumi.set(__self__, "realm_base_url", realm_base_url)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if secret_name is not None:
+            pulumi.set(__self__, "secret_name", secret_name)
+        if sts_endpoint is not None:
+            pulumi.set(__self__, "sts_endpoint", sts_endpoint)
+
+    @property
+    @pulumi.getter(name="assumeRole")
+    def assume_role(self) -> Optional[pulumi.Input['ProviderAssumeRoleArgs']]:
+        return pulumi.get(self, "assume_role")
+
+    @assume_role.setter
+    def assume_role(self, value: Optional[pulumi.Input['ProviderAssumeRoleArgs']]):
+        pulumi.set(self, "assume_role", value)
+
+    @property
+    @pulumi.getter(name="awsAccessKeyId")
+    def aws_access_key_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_access_key_id")
+
+    @aws_access_key_id.setter
+    def aws_access_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_access_key_id", value)
+
+    @property
+    @pulumi.getter(name="awsSecretAccessKey")
+    def aws_secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_secret_access_key")
+
+    @aws_secret_access_key.setter
+    def aws_secret_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_secret_access_key", value)
+
+    @property
+    @pulumi.getter(name="awsSessionToken")
+    def aws_session_token(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "aws_session_token")
+
+    @aws_session_token.setter
+    def aws_session_token(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aws_session_token", value)
 
     @property
     @pulumi.getter(name="baseUrl")
@@ -45,6 +107,18 @@ class ProviderArgs:
     @base_url.setter
     def base_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "base_url", value)
+
+    @property
+    @pulumi.getter(name="isMongodbgovCloud")
+    def is_mongodbgov_cloud(self) -> Optional[pulumi.Input[bool]]:
+        """
+        MongoDB Atlas Base URL default to gov
+        """
+        return pulumi.get(self, "is_mongodbgov_cloud")
+
+    @is_mongodbgov_cloud.setter
+    def is_mongodbgov_cloud(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_mongodbgov_cloud", value)
 
     @property
     @pulumi.getter(name="privateKey")
@@ -82,16 +156,51 @@ class ProviderArgs:
     def realm_base_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "realm_base_url", value)
 
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="secretName")
+    def secret_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "secret_name")
+
+    @secret_name.setter
+    def secret_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_name", value)
+
+    @property
+    @pulumi.getter(name="stsEndpoint")
+    def sts_endpoint(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sts_endpoint")
+
+    @sts_endpoint.setter
+    def sts_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sts_endpoint", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 assume_role: Optional[pulumi.Input[pulumi.InputType['ProviderAssumeRoleArgs']]] = None,
+                 aws_access_key_id: Optional[pulumi.Input[str]] = None,
+                 aws_secret_access_key: Optional[pulumi.Input[str]] = None,
+                 aws_session_token: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
+                 is_mongodbgov_cloud: Optional[pulumi.Input[bool]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  realm_base_url: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_name: Optional[pulumi.Input[str]] = None,
+                 sts_endpoint: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         The provider type for the mongodbatlas package. By default, resources use package-wide configuration
@@ -102,6 +211,7 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] base_url: MongoDB Atlas Base URL
+        :param pulumi.Input[bool] is_mongodbgov_cloud: MongoDB Atlas Base URL default to gov
         :param pulumi.Input[str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[str] public_key: MongoDB Atlas Programmatic Public Key
         :param pulumi.Input[str] realm_base_url: MongoDB Realm Base URL
@@ -133,10 +243,18 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 assume_role: Optional[pulumi.Input[pulumi.InputType['ProviderAssumeRoleArgs']]] = None,
+                 aws_access_key_id: Optional[pulumi.Input[str]] = None,
+                 aws_secret_access_key: Optional[pulumi.Input[str]] = None,
+                 aws_session_token: Optional[pulumi.Input[str]] = None,
                  base_url: Optional[pulumi.Input[str]] = None,
+                 is_mongodbgov_cloud: Optional[pulumi.Input[bool]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  realm_base_url: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_name: Optional[pulumi.Input[str]] = None,
+                 sts_endpoint: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -146,15 +264,40 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            __props__.__dict__["assume_role"] = pulumi.Output.from_input(assume_role).apply(pulumi.runtime.to_json) if assume_role is not None else None
+            __props__.__dict__["aws_access_key_id"] = aws_access_key_id
+            __props__.__dict__["aws_secret_access_key"] = aws_secret_access_key
+            __props__.__dict__["aws_session_token"] = aws_session_token
             __props__.__dict__["base_url"] = base_url
-            __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["is_mongodbgov_cloud"] = pulumi.Output.from_input(is_mongodbgov_cloud).apply(pulumi.runtime.to_json) if is_mongodbgov_cloud is not None else None
+            __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             __props__.__dict__["public_key"] = public_key
             __props__.__dict__["realm_base_url"] = realm_base_url
+            __props__.__dict__["region"] = region
+            __props__.__dict__["secret_name"] = secret_name
+            __props__.__dict__["sts_endpoint"] = sts_endpoint
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'mongodbatlas',
             resource_name,
             __props__,
             opts)
+
+    @property
+    @pulumi.getter(name="awsAccessKeyId")
+    def aws_access_key_id(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "aws_access_key_id")
+
+    @property
+    @pulumi.getter(name="awsSecretAccessKey")
+    def aws_secret_access_key(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "aws_secret_access_key")
+
+    @property
+    @pulumi.getter(name="awsSessionToken")
+    def aws_session_token(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "aws_session_token")
 
     @property
     @pulumi.getter(name="baseUrl")
@@ -187,4 +330,19 @@ class Provider(pulumi.ProviderResource):
         MongoDB Realm Base URL
         """
         return pulumi.get(self, "realm_base_url")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="secretName")
+    def secret_name(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "secret_name")
+
+    @property
+    @pulumi.getter(name="stsEndpoint")
+    def sts_endpoint(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "sts_endpoint")
 

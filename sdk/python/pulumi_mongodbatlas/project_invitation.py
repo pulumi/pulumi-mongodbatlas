@@ -20,13 +20,7 @@ class ProjectInvitationArgs:
         """
         The set of arguments for constructing a ProjectInvitation resource.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-               * GROUP_OWNER
-               * GROUP_CLUSTER_MANAGER
-               * GROUP_READ_ONLY
-               * GROUP_DATA_ACCESS_ADMIN
-               * GROUP_DATA_ACCESS_READ_WRITE
-               * GROUP_DATA_ACCESS_READ_ONLY
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -49,13 +43,7 @@ class ProjectInvitationArgs:
     @pulumi.getter
     def roles(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-        * GROUP_OWNER
-        * GROUP_CLUSTER_MANAGER
-        * GROUP_READ_ONLY
-        * GROUP_DATA_ACCESS_ADMIN
-        * GROUP_DATA_ACCESS_READ_WRITE
-        * GROUP_DATA_ACCESS_READ_ONLY
+        List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         """
         return pulumi.get(self, "roles")
 
@@ -93,13 +81,7 @@ class _ProjectInvitationState:
         :param pulumi.Input[str] invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
         :param pulumi.Input[str] inviter_username: Atlas user who invited `username` to the project.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-               * GROUP_OWNER
-               * GROUP_CLUSTER_MANAGER
-               * GROUP_READ_ONLY
-               * GROUP_DATA_ACCESS_ADMIN
-               * GROUP_DATA_ACCESS_READ_WRITE
-               * GROUP_DATA_ACCESS_READ_ONLY
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
         if created_at is not None:
@@ -181,13 +163,7 @@ class _ProjectInvitationState:
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-        * GROUP_OWNER
-        * GROUP_CLUSTER_MANAGER
-        * GROUP_READ_ONLY
-        * GROUP_DATA_ACCESS_ADMIN
-        * GROUP_DATA_ACCESS_READ_WRITE
-        * GROUP_DATA_ACCESS_READ_ONLY
+        List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         """
         return pulumi.get(self, "roles")
 
@@ -255,13 +231,7 @@ class ProjectInvitation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-               * GROUP_OWNER
-               * GROUP_CLUSTER_MANAGER
-               * GROUP_READ_ONLY
-               * GROUP_DATA_ACCESS_ADMIN
-               * GROUP_DATA_ACCESS_READ_WRITE
-               * GROUP_DATA_ACCESS_READ_ONLY
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
         ...
@@ -374,13 +344,7 @@ class ProjectInvitation(pulumi.CustomResource):
         :param pulumi.Input[str] invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
         :param pulumi.Input[str] inviter_username: Atlas user who invited `username` to the project.
         :param pulumi.Input[str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-               * GROUP_OWNER
-               * GROUP_CLUSTER_MANAGER
-               * GROUP_READ_ONLY
-               * GROUP_DATA_ACCESS_ADMIN
-               * GROUP_DATA_ACCESS_READ_WRITE
-               * GROUP_DATA_ACCESS_READ_ONLY
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -440,13 +404,7 @@ class ProjectInvitation(pulumi.CustomResource):
     @pulumi.getter
     def roles(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-        * GROUP_OWNER
-        * GROUP_CLUSTER_MANAGER
-        * GROUP_READ_ONLY
-        * GROUP_DATA_ACCESS_ADMIN
-        * GROUP_DATA_ACCESS_READ_WRITE
-        * GROUP_DATA_ACCESS_READ_ONLY
+        List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         """
         return pulumi.get(self, "roles")
 

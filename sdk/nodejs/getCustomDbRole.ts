@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -43,11 +44,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCustomDbRole(args: GetCustomDbRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRoleResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCustomDbRole:getCustomDbRole", {
         "inheritedRoles": args.inheritedRoles,
         "projectId": args.projectId,
@@ -81,11 +79,50 @@ export interface GetCustomDbRoleResult {
     readonly id: string;
     readonly inheritedRoles?: outputs.GetCustomDbRoleInheritedRole[];
     readonly projectId: string;
+    /**
+     * (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     */
     readonly roleName: string;
 }
-
+/**
+ * `mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CustomDbRole("testRole", {
+ *     projectId: "<PROJECT-ID>",
+ *     roleName: "myCustomRole",
+ *     actions: [
+ *         {
+ *             action: "UPDATE",
+ *             resources: [{
+ *                 collectionName: "",
+ *                 databaseName: "anyDatabase",
+ *             }],
+ *         },
+ *         {
+ *             action: "INSERT",
+ *             resources: [{
+ *                 collectionName: "",
+ *                 databaseName: "anyDatabase",
+ *             }],
+ *         },
+ *     ],
+ * });
+ * const test = mongodbatlas.getCustomDbRoleOutput({
+ *     projectId: testRole.projectId,
+ *     roleName: testRole.roleName,
+ * });
+ * ```
+ */
 export function getCustomDbRoleOutput(args: GetCustomDbRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRoleResult> {
-    return pulumi.output(args).apply(a => getCustomDbRole(a, opts))
+    return pulumi.output(args).apply((a: any) => getCustomDbRole(a, opts))
 }
 
 /**

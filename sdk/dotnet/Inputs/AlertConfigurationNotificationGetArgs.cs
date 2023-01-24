@@ -12,11 +12,21 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class AlertConfigurationNotificationGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("apiToken")]
+        private Input<string>? _apiToken;
+
         /// <summary>
         /// Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         /// </summary>
-        [Input("apiToken")]
-        public Input<string>? ApiToken { get; set; }
+        public Input<string>? ApiToken
+        {
+            get => _apiToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Slack channel name. Required for the SLACK notifications type.
@@ -24,11 +34,21 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("channelName")]
         public Input<string>? ChannelName { get; set; }
 
+        [Input("datadogApiKey")]
+        private Input<string>? _datadogApiKey;
+
         /// <summary>
         /// Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
         /// </summary>
-        [Input("datadogApiKey")]
-        public Input<string>? DatadogApiKey { get; set; }
+        public Input<string>? DatadogApiKey
+        {
+            get => _datadogApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _datadogApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Region that indicates which API URL to use. Accepted regions are: `US`, `EU`. The default Datadog region is US.
@@ -60,11 +80,21 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("flowName")]
         public Input<string>? FlowName { get; set; }
 
+        [Input("flowdockApiToken")]
+        private Input<string>? _flowdockApiToken;
+
         /// <summary>
         /// The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         /// </summary>
-        [Input("flowdockApiToken")]
-        public Input<string>? FlowdockApiToken { get; set; }
+        public Input<string>? FlowdockApiToken
+        {
+            get => _flowdockApiToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _flowdockApiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
@@ -72,17 +102,43 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("intervalMin")]
         public Input<int>? IntervalMin { get; set; }
 
+        [Input("microsoftTeamsWebhookUrl")]
+        private Input<string>? _microsoftTeamsWebhookUrl;
+
+        /// <summary>
+        /// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+        /// </summary>
+        public Input<string>? MicrosoftTeamsWebhookUrl
+        {
+            get => _microsoftTeamsWebhookUrl;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _microsoftTeamsWebhookUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         /// </summary>
         [Input("mobileNumber")]
         public Input<string>? MobileNumber { get; set; }
 
+        [Input("opsGenieApiKey")]
+        private Input<string>? _opsGenieApiKey;
+
         /// <summary>
         /// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         /// </summary>
-        [Input("opsGenieApiKey")]
-        public Input<string>? OpsGenieApiKey { get; set; }
+        public Input<string>? OpsGenieApiKey
+        {
+            get => _opsGenieApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _opsGenieApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
@@ -109,11 +165,21 @@ namespace Pulumi.Mongodbatlas.Inputs
             set => _roles = value;
         }
 
+        [Input("serviceKey")]
+        private Input<string>? _serviceKey;
+
         /// <summary>
         /// PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         /// </summary>
-        [Input("serviceKey")]
-        public Input<string>? ServiceKey { get; set; }
+        public Input<string>? ServiceKey
+        {
+            get => _serviceKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
@@ -136,9 +202,6 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Type of alert notification.
         /// Accepted values are:
-        /// - `DATADOG`
-        /// - `EMAIL`
-        /// - `FLOWDOCK`
         /// </summary>
         [Input("typeName")]
         public Input<string>? TypeName { get; set; }
@@ -149,17 +212,69 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("username")]
         public Input<string>? Username { get; set; }
 
+        [Input("victorOpsApiKey")]
+        private Input<string>? _victorOpsApiKey;
+
         /// <summary>
         /// VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         /// </summary>
-        [Input("victorOpsApiKey")]
-        public Input<string>? VictorOpsApiKey { get; set; }
+        public Input<string>? VictorOpsApiKey
+        {
+            get => _victorOpsApiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _victorOpsApiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("victorOpsRoutingKey")]
+        private Input<string>? _victorOpsRoutingKey;
 
         /// <summary>
         /// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         /// </summary>
-        [Input("victorOpsRoutingKey")]
-        public Input<string>? VictorOpsRoutingKey { get; set; }
+        public Input<string>? VictorOpsRoutingKey
+        {
+            get => _victorOpsRoutingKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _victorOpsRoutingKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("webhookSecret")]
+        private Input<string>? _webhookSecret;
+
+        /// <summary>
+        /// Optional authentication secret for the `WEBHOOK` notifications type.
+        /// </summary>
+        public Input<string>? WebhookSecret
+        {
+            get => _webhookSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _webhookSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("webhookUrl")]
+        private Input<string>? _webhookUrl;
+
+        /// <summary>
+        /// Target URL  for the `WEBHOOK` notifications type.
+        /// </summary>
+        public Input<string>? WebhookUrl
+        {
+            get => _webhookUrl;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _webhookUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public AlertConfigurationNotificationGetArgs()
         {

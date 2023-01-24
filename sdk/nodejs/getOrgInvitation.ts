@@ -8,11 +8,8 @@ import * as utilities from "./utilities";
  * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
  */
 export function getOrgInvitation(args: GetOrgInvitationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrgInvitationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getOrgInvitation:getOrgInvitation", {
         "invitationId": args.invitationId,
         "orgId": args.orgId,
@@ -75,9 +72,11 @@ export interface GetOrgInvitationResult {
     readonly teamsIds: string[];
     readonly username: string;
 }
-
+/**
+ * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
+ */
 export function getOrgInvitationOutput(args: GetOrgInvitationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOrgInvitationResult> {
-    return pulumi.output(args).apply(a => getOrgInvitation(a, opts))
+    return pulumi.output(args).apply((a: any) => getOrgInvitation(a, opts))
 }
 
 /**

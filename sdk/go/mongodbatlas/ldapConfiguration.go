@@ -76,8 +76,8 @@ import (
 //				BindPassword:          pulumi.String("PASSWORD"),
 //				CaCertificate:         pulumi.String("CA CERTIFICATE"),
 //				AuthzQueryTemplate:    pulumi.String("{USER}?memberOf?base"),
-//				UserToDnMappings: LdapConfigurationUserToDnMappingArray{
-//					&LdapConfigurationUserToDnMappingArgs{
+//				UserToDnMappings: mongodbatlas.LdapConfigurationUserToDnMappingArray{
+//					&mongodbatlas.LdapConfigurationUserToDnMappingArgs{
 //						Match:     pulumi.String("(.+)"),
 //						LdapQuery: pulumi.String("DC=example,DC=com??sub?(userPrincipalName={0})"),
 //					},
@@ -153,6 +153,13 @@ func NewLdapConfiguration(ctx *pulumi.Context,
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
+	if args.BindPassword != nil {
+		args.BindPassword = pulumi.ToSecret(args.BindPassword).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"bindPassword",
+	})
+	opts = append(opts, secrets)
 	var resource LdapConfiguration
 	err := ctx.RegisterResource("mongodbatlas:index/ldapConfiguration:LdapConfiguration", name, args, &resource, opts...)
 	if err != nil {

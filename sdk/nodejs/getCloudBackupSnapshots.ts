@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,11 +12,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSnapshots(args: GetCloudBackupSnapshotsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", {
         "clusterName": args.clusterName,
         "itemsPerPage": args.itemsPerPage,
@@ -61,9 +59,13 @@ export interface GetCloudBackupSnapshotsResult {
     readonly results: outputs.GetCloudBackupSnapshotsResult[];
     readonly totalCount: number;
 }
-
+/**
+ * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getCloudBackupSnapshotsOutput(args: GetCloudBackupSnapshotsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotsResult> {
-    return pulumi.output(args).apply(a => getCloudBackupSnapshots(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshots(a, opts))
 }
 
 /**

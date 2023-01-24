@@ -49,10 +49,22 @@ namespace Pulumi.Mongodbatlas
     public partial class ServerlessInstance : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// List of Serverless Private Endpoint Connections
+        /// </summary>
+        [Output("connectionStringsPrivateEndpointSrvs")]
+        public Output<ImmutableArray<string>> ConnectionStringsPrivateEndpointSrvs { get; private set; } = null!;
+
+        /// <summary>
         /// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         /// </summary>
         [Output("connectionStringsStandardSrv")]
         public Output<string> ConnectionStringsStandardSrv { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+        /// </summary>
+        [Output("continuousBackupEnabled")]
+        public Output<bool> ContinuousBackupEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
@@ -105,6 +117,12 @@ namespace Pulumi.Mongodbatlas
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
 
+        /// <summary>
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        [Output("terminationProtectionEnabled")]
+        public Output<bool> TerminationProtectionEnabled { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ServerlessInstance resource with the given unique name, arguments, and options.
@@ -151,6 +169,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ServerlessInstanceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+        /// </summary>
+        [Input("continuousBackupEnabled")]
+        public Input<bool>? ContinuousBackupEnabled { get; set; }
+
         [Input("links")]
         private InputList<Inputs.ServerlessInstanceLinkArgs>? _links;
         public InputList<Inputs.ServerlessInstanceLinkArgs> Links
@@ -195,6 +219,12 @@ namespace Pulumi.Mongodbatlas
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        [Input("terminationProtectionEnabled")]
+        public Input<bool>? TerminationProtectionEnabled { get; set; }
+
         public ServerlessInstanceArgs()
         {
         }
@@ -203,11 +233,29 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ServerlessInstanceState : global::Pulumi.ResourceArgs
     {
+        [Input("connectionStringsPrivateEndpointSrvs")]
+        private InputList<string>? _connectionStringsPrivateEndpointSrvs;
+
+        /// <summary>
+        /// List of Serverless Private Endpoint Connections
+        /// </summary>
+        public InputList<string> ConnectionStringsPrivateEndpointSrvs
+        {
+            get => _connectionStringsPrivateEndpointSrvs ?? (_connectionStringsPrivateEndpointSrvs = new InputList<string>());
+            set => _connectionStringsPrivateEndpointSrvs = value;
+        }
+
         /// <summary>
         /// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         /// </summary>
         [Input("connectionStringsStandardSrv")]
         public Input<string>? ConnectionStringsStandardSrv { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+        /// </summary>
+        [Input("continuousBackupEnabled")]
+        public Input<bool>? ContinuousBackupEnabled { get; set; }
 
         /// <summary>
         /// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
@@ -264,6 +312,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        [Input("terminationProtectionEnabled")]
+        public Input<bool>? TerminationProtectionEnabled { get; set; }
 
         public ServerlessInstanceState()
         {

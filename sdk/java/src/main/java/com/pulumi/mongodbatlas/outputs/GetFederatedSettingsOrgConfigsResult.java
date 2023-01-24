@@ -34,7 +34,7 @@ public final class GetFederatedSettingsOrgConfigsResult {
      */
     private String orgId;
     /**
-     * @return List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     * @return List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
      * 
      */
     private List<String> postAuthRoleGrants;
@@ -71,7 +71,7 @@ public final class GetFederatedSettingsOrgConfigsResult {
         return this.orgId;
     }
     /**
-     * @return List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     * @return List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
      * 
      */
     public List<String> postAuthRoleGrants() {

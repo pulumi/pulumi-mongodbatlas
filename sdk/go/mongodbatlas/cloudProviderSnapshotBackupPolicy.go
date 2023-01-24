@@ -30,10 +30,8 @@ type CloudProviderSnapshotBackupPolicy struct {
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
-	NextSnapshot pulumi.StringOutput `pulumi:"nextSnapshot"`
-	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
-	Policies CloudProviderSnapshotBackupPolicyPolicyArrayOutput `pulumi:"policies"`
+	NextSnapshot pulumi.StringOutput                                `pulumi:"nextSnapshot"`
+	Policies     CloudProviderSnapshotBackupPolicyPolicyArrayOutput `pulumi:"policies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -89,10 +87,8 @@ type cloudProviderSnapshotBackupPolicyState struct {
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName *string `pulumi:"clusterName"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
-	NextSnapshot *string `pulumi:"nextSnapshot"`
-	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
-	Policies []CloudProviderSnapshotBackupPolicyPolicy `pulumi:"policies"`
+	NextSnapshot *string                                   `pulumi:"nextSnapshot"`
+	Policies     []CloudProviderSnapshotBackupPolicyPolicy `pulumi:"policies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId *string `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -112,9 +108,7 @@ type CloudProviderSnapshotBackupPolicyState struct {
 	ClusterName pulumi.StringPtrInput
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
 	NextSnapshot pulumi.StringPtrInput
-	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
-	Policies CloudProviderSnapshotBackupPolicyPolicyArrayInput
+	Policies     CloudProviderSnapshotBackupPolicyPolicyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringPtrInput
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -133,10 +127,8 @@ func (CloudProviderSnapshotBackupPolicyState) ElementType() reflect.Type {
 
 type cloudProviderSnapshotBackupPolicyArgs struct {
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-	ClusterName string `pulumi:"clusterName"`
-	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
-	Policies []CloudProviderSnapshotBackupPolicyPolicy `pulumi:"policies"`
+	ClusterName string                                    `pulumi:"clusterName"`
+	Policies    []CloudProviderSnapshotBackupPolicyPolicy `pulumi:"policies"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -153,9 +145,7 @@ type cloudProviderSnapshotBackupPolicyArgs struct {
 type CloudProviderSnapshotBackupPolicyArgs struct {
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringInput
-	// Contains a document for each backup policy item in the desired updated backup policy.
-	// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
-	Policies CloudProviderSnapshotBackupPolicyPolicyArrayInput
+	Policies    CloudProviderSnapshotBackupPolicyPolicyArrayInput
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
@@ -270,8 +260,6 @@ func (o CloudProviderSnapshotBackupPolicyOutput) NextSnapshot() pulumi.StringOut
 	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) pulumi.StringOutput { return v.NextSnapshot }).(pulumi.StringOutput)
 }
 
-// Contains a document for each backup policy item in the desired updated backup policy.
-// * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. providerBackupEnabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
 func (o CloudProviderSnapshotBackupPolicyOutput) Policies() CloudProviderSnapshotBackupPolicyPolicyArrayOutput {
 	return o.ApplyT(func(v *CloudProviderSnapshotBackupPolicy) CloudProviderSnapshotBackupPolicyPolicyArrayOutput {
 		return v.Policies

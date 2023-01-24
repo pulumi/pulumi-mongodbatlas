@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> StorageSizeBytes { get; private set; } = null!;
 
         /// <summary>
-        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         /// </summary>
         [Output("timeout")]
         public Output<string?> Timeout { get; private set; } = null!;
@@ -185,7 +185,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int> RetentionInDays { get; set; } = null!;
 
         /// <summary>
-        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }
@@ -271,7 +271,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? StorageSizeBytes { get; set; }
 
         /// <summary>
-        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        /// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }

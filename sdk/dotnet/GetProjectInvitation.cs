@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectInvitationResult> InvokeAsync(GetProjectInvitationArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetProjectInvitationResult> Invoke(GetProjectInvitationInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -112,13 +112,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string InviterUsername;
         public readonly string ProjectId;
         /// <summary>
-        /// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        /// * GROUP_OWNER
-        /// * GROUP_CLUSTER_MANAGER
-        /// * GROUP_READ_ONLY
-        /// * GROUP_DATA_ACCESS_ADMIN
-        /// * GROUP_DATA_ACCESS_READ_WRITE
-        /// * GROUP_DATA_ACCESS_READ_ONLY
+        /// Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         /// </summary>
         public readonly ImmutableArray<string> Roles;
         public readonly string Username;

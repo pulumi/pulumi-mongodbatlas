@@ -47,7 +47,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetThirdPartyIntegrationResult> InvokeAsync(GetThirdPartyIntegrationArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
@@ -85,7 +85,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetThirdPartyIntegrationResult> Invoke(GetThirdPartyIntegrationInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationResult>("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", args ?? new GetThirdPartyIntegrationInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -97,12 +97,17 @@ namespace Pulumi.Mongodbatlas
         [Input("enabled")]
         public bool? Enabled { get; set; }
 
+        [Input("microsoftTeamsWebhookUrl")]
+        private string? _microsoftTeamsWebhookUrl;
+
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
         /// </summary>
-        [Input("microsoftTeamsWebhookUrl")]
-        public string? MicrosoftTeamsWebhookUrl { get; set; }
+        public string? MicrosoftTeamsWebhookUrl
+        {
+            get => _microsoftTeamsWebhookUrl;
+            set => _microsoftTeamsWebhookUrl = value;
+        }
 
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -116,11 +121,17 @@ namespace Pulumi.Mongodbatlas
         [Input("scheme")]
         public string? Scheme { get; set; }
 
+        [Input("serviceDiscovery")]
+        private string? _serviceDiscovery;
+
         /// <summary>
         /// Indicates which service discovery method is used, either file or http.
         /// </summary>
-        [Input("serviceDiscovery")]
-        public string? ServiceDiscovery { get; set; }
+        public string? ServiceDiscovery
+        {
+            get => _serviceDiscovery;
+            set => _serviceDiscovery = value;
+        }
 
         /// <summary>
         /// Third-Party service integration type
@@ -137,11 +148,17 @@ namespace Pulumi.Mongodbatlas
         [Input("type", required: true)]
         public string Type { get; set; } = null!;
 
+        [Input("userName")]
+        private string? _userName;
+
         /// <summary>
         /// Your Prometheus username.
         /// </summary>
-        [Input("userName")]
-        public string? UserName { get; set; }
+        public string? UserName
+        {
+            get => _userName;
+            set => _userName = value;
+        }
 
         public GetThirdPartyIntegrationArgs()
         {
@@ -157,12 +174,21 @@ namespace Pulumi.Mongodbatlas
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        [Input("microsoftTeamsWebhookUrl")]
+        private Input<string>? _microsoftTeamsWebhookUrl;
+
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
         /// </summary>
-        [Input("microsoftTeamsWebhookUrl")]
-        public Input<string>? MicrosoftTeamsWebhookUrl { get; set; }
+        public Input<string>? MicrosoftTeamsWebhookUrl
+        {
+            get => _microsoftTeamsWebhookUrl;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _microsoftTeamsWebhookUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -176,11 +202,21 @@ namespace Pulumi.Mongodbatlas
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
 
+        [Input("serviceDiscovery")]
+        private Input<string>? _serviceDiscovery;
+
         /// <summary>
         /// Indicates which service discovery method is used, either file or http.
         /// </summary>
-        [Input("serviceDiscovery")]
-        public Input<string>? ServiceDiscovery { get; set; }
+        public Input<string>? ServiceDiscovery
+        {
+            get => _serviceDiscovery;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceDiscovery = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Third-Party service integration type
@@ -197,11 +233,21 @@ namespace Pulumi.Mongodbatlas
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        [Input("userName")]
+        private Input<string>? _userName;
+
         /// <summary>
         /// Your Prometheus username.
         /// </summary>
-        [Input("userName")]
-        public Input<string>? UserName { get; set; }
+        public Input<string>? UserName
+        {
+            get => _userName;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userName = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public GetThirdPartyIntegrationInvokeArgs()
         {
@@ -244,28 +290,23 @@ namespace Pulumi.Mongodbatlas
         public readonly string LicenseKey;
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
         /// <summary>
         /// Your Flowdock organization name.
-        /// * `WEBHOOK`
         /// </summary>
         public readonly string OrgName;
         public readonly string ProjectId;
         /// <summary>
         /// Your Insights Query Key.
-        /// * `OPS_GENIE`
         /// </summary>
         public readonly string ReadToken;
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-        /// * `VICTOR_OPS`
         /// </summary>
         public readonly string Region;
         /// <summary>
         /// An optional field for your Routing Key.
-        /// * `FLOWDOCK`
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
@@ -274,7 +315,6 @@ namespace Pulumi.Mongodbatlas
         public readonly string? Scheme;
         /// <summary>
         /// An optional field for your webhook secret.
-        /// * `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string Secret;
         /// <summary>
@@ -283,7 +323,6 @@ namespace Pulumi.Mongodbatlas
         public readonly string? ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
-        /// * `DATADOG`
         /// </summary>
         public readonly string ServiceKey;
         public readonly string TeamName;

@@ -85,14 +85,12 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
         /// </summary>
         [Output("microsoftTeamsWebhookUrl")]
         public Output<string?> MicrosoftTeamsWebhookUrl { get; private set; } = null!;
 
         /// <summary>
         /// Your Flowdock organization name.
-        /// * `WEBHOOK`
         /// </summary>
         [Output("orgName")]
         public Output<string?> OrgName { get; private set; } = null!;
@@ -111,21 +109,18 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Your Insights Query Key.
-        /// * `OPS_GENIE`
         /// </summary>
         [Output("readToken")]
         public Output<string?> ReadToken { get; private set; } = null!;
 
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-        /// * `VICTOR_OPS`
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// An optional field for your Routing Key.
-        /// * `FLOWDOCK`
         /// </summary>
         [Output("routingKey")]
         public Output<string?> RoutingKey { get; private set; } = null!;
@@ -138,7 +133,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// An optional field for your webhook secret.
-        /// * `MICROSOFT_TEAMS`
         /// </summary>
         [Output("secret")]
         public Output<string?> Secret { get; private set; } = null!;
@@ -151,7 +145,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Your Service Key.
-        /// * `DATADOG`
         /// </summary>
         [Output("serviceKey")]
         public Output<string?> ServiceKey { get; private set; } = null!;
@@ -168,6 +161,8 @@ namespace Pulumi.Mongodbatlas
         /// * VICTOR_OPS
         /// * FLOWDOCK
         /// * WEBHOOK
+        /// * MICROSOFT_TEAMS
+        /// * PROMETHEUS
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -213,6 +208,21 @@ namespace Pulumi.Mongodbatlas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "apiKey",
+                    "apiToken",
+                    "licenseKey",
+                    "microsoftTeamsWebhookUrl",
+                    "password",
+                    "readToken",
+                    "routingKey",
+                    "secret",
+                    "serviceDiscovery",
+                    "serviceKey",
+                    "userName",
+                    "writeToken",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -242,17 +252,37 @@ namespace Pulumi.Mongodbatlas
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
 
+        [Input("apiKey")]
+        private Input<string>? _apiKey;
+
         /// <summary>
         /// Your API Key.
         /// </summary>
-        [Input("apiKey")]
-        public Input<string>? ApiKey { get; set; }
+        public Input<string>? ApiKey
+        {
+            get => _apiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("apiToken")]
+        private Input<string>? _apiToken;
 
         /// <summary>
         /// Your API Token.
         /// </summary>
-        [Input("apiToken")]
-        public Input<string>? ApiToken { get; set; }
+        public Input<string>? ApiToken
+        {
+            get => _apiToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("channelName")]
         public Input<string>? ChannelName { get; set; }
@@ -269,31 +299,59 @@ namespace Pulumi.Mongodbatlas
         [Input("flowName")]
         public Input<string>? FlowName { get; set; }
 
+        [Input("licenseKey")]
+        private Input<string>? _licenseKey;
+
         /// <summary>
         /// Your License Key.
         /// </summary>
-        [Input("licenseKey")]
-        public Input<string>? LicenseKey { get; set; }
+        public Input<string>? LicenseKey
+        {
+            get => _licenseKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _licenseKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("microsoftTeamsWebhookUrl")]
+        private Input<string>? _microsoftTeamsWebhookUrl;
 
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
         /// </summary>
-        [Input("microsoftTeamsWebhookUrl")]
-        public Input<string>? MicrosoftTeamsWebhookUrl { get; set; }
+        public Input<string>? MicrosoftTeamsWebhookUrl
+        {
+            get => _microsoftTeamsWebhookUrl;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _microsoftTeamsWebhookUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Your Flowdock organization name.
-        /// * `WEBHOOK`
         /// </summary>
         [Input("orgName")]
         public Input<string>? OrgName { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// Your Prometheus password.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -301,26 +359,43 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        [Input("readToken")]
+        private Input<string>? _readToken;
+
         /// <summary>
         /// Your Insights Query Key.
-        /// * `OPS_GENIE`
         /// </summary>
-        [Input("readToken")]
-        public Input<string>? ReadToken { get; set; }
+        public Input<string>? ReadToken
+        {
+            get => _readToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _readToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-        /// * `VICTOR_OPS`
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("routingKey")]
+        private Input<string>? _routingKey;
+
         /// <summary>
         /// An optional field for your Routing Key.
-        /// * `FLOWDOCK`
         /// </summary>
-        [Input("routingKey")]
-        public Input<string>? RoutingKey { get; set; }
+        public Input<string>? RoutingKey
+        {
+            get => _routingKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _routingKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Your Prometheus protocol scheme configured for requests.
@@ -328,25 +403,53 @@ namespace Pulumi.Mongodbatlas
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
 
+        [Input("secret")]
+        private Input<string>? _secret;
+
         /// <summary>
         /// An optional field for your webhook secret.
-        /// * `MICROSOFT_TEAMS`
         /// </summary>
-        [Input("secret")]
-        public Input<string>? Secret { get; set; }
+        public Input<string>? Secret
+        {
+            get => _secret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("serviceDiscovery")]
+        private Input<string>? _serviceDiscovery;
 
         /// <summary>
         /// Indicates which service discovery method is used, either file or http.
         /// </summary>
-        [Input("serviceDiscovery")]
-        public Input<string>? ServiceDiscovery { get; set; }
+        public Input<string>? ServiceDiscovery
+        {
+            get => _serviceDiscovery;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceDiscovery = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("serviceKey")]
+        private Input<string>? _serviceKey;
 
         /// <summary>
         /// Your Service Key.
-        /// * `DATADOG`
         /// </summary>
-        [Input("serviceKey")]
-        public Input<string>? ServiceKey { get; set; }
+        public Input<string>? ServiceKey
+        {
+            get => _serviceKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("teamName")]
         public Input<string>? TeamName { get; set; }
@@ -360,6 +463,8 @@ namespace Pulumi.Mongodbatlas
         /// * VICTOR_OPS
         /// * FLOWDOCK
         /// * WEBHOOK
+        /// * MICROSOFT_TEAMS
+        /// * PROMETHEUS
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -370,17 +475,37 @@ namespace Pulumi.Mongodbatlas
         [Input("url")]
         public Input<string>? Url { get; set; }
 
+        [Input("userName")]
+        private Input<string>? _userName;
+
         /// <summary>
         /// Your Prometheus username.
         /// </summary>
-        [Input("userName")]
-        public Input<string>? UserName { get; set; }
+        public Input<string>? UserName
+        {
+            get => _userName;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userName = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("writeToken")]
+        private Input<string>? _writeToken;
 
         /// <summary>
         /// Your Insights Insert Key.
         /// </summary>
-        [Input("writeToken")]
-        public Input<string>? WriteToken { get; set; }
+        public Input<string>? WriteToken
+        {
+            get => _writeToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _writeToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ThirdPartyIntegrationArgs()
         {
@@ -396,17 +521,37 @@ namespace Pulumi.Mongodbatlas
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
 
+        [Input("apiKey")]
+        private Input<string>? _apiKey;
+
         /// <summary>
         /// Your API Key.
         /// </summary>
-        [Input("apiKey")]
-        public Input<string>? ApiKey { get; set; }
+        public Input<string>? ApiKey
+        {
+            get => _apiKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("apiToken")]
+        private Input<string>? _apiToken;
 
         /// <summary>
         /// Your API Token.
         /// </summary>
-        [Input("apiToken")]
-        public Input<string>? ApiToken { get; set; }
+        public Input<string>? ApiToken
+        {
+            get => _apiToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("channelName")]
         public Input<string>? ChannelName { get; set; }
@@ -423,31 +568,59 @@ namespace Pulumi.Mongodbatlas
         [Input("flowName")]
         public Input<string>? FlowName { get; set; }
 
+        [Input("licenseKey")]
+        private Input<string>? _licenseKey;
+
         /// <summary>
         /// Your License Key.
         /// </summary>
-        [Input("licenseKey")]
-        public Input<string>? LicenseKey { get; set; }
+        public Input<string>? LicenseKey
+        {
+            get => _licenseKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _licenseKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("microsoftTeamsWebhookUrl")]
+        private Input<string>? _microsoftTeamsWebhookUrl;
 
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
         /// </summary>
-        [Input("microsoftTeamsWebhookUrl")]
-        public Input<string>? MicrosoftTeamsWebhookUrl { get; set; }
+        public Input<string>? MicrosoftTeamsWebhookUrl
+        {
+            get => _microsoftTeamsWebhookUrl;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _microsoftTeamsWebhookUrl = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Your Flowdock organization name.
-        /// * `WEBHOOK`
         /// </summary>
         [Input("orgName")]
         public Input<string>? OrgName { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// Your Prometheus password.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The unique ID for the project to get all Third-Party service integrations
@@ -455,26 +628,43 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("readToken")]
+        private Input<string>? _readToken;
+
         /// <summary>
         /// Your Insights Query Key.
-        /// * `OPS_GENIE`
         /// </summary>
-        [Input("readToken")]
-        public Input<string>? ReadToken { get; set; }
+        public Input<string>? ReadToken
+        {
+            get => _readToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _readToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-        /// * `VICTOR_OPS`
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("routingKey")]
+        private Input<string>? _routingKey;
+
         /// <summary>
         /// An optional field for your Routing Key.
-        /// * `FLOWDOCK`
         /// </summary>
-        [Input("routingKey")]
-        public Input<string>? RoutingKey { get; set; }
+        public Input<string>? RoutingKey
+        {
+            get => _routingKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _routingKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Your Prometheus protocol scheme configured for requests.
@@ -482,25 +672,53 @@ namespace Pulumi.Mongodbatlas
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
 
+        [Input("secret")]
+        private Input<string>? _secret;
+
         /// <summary>
         /// An optional field for your webhook secret.
-        /// * `MICROSOFT_TEAMS`
         /// </summary>
-        [Input("secret")]
-        public Input<string>? Secret { get; set; }
+        public Input<string>? Secret
+        {
+            get => _secret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("serviceDiscovery")]
+        private Input<string>? _serviceDiscovery;
 
         /// <summary>
         /// Indicates which service discovery method is used, either file or http.
         /// </summary>
-        [Input("serviceDiscovery")]
-        public Input<string>? ServiceDiscovery { get; set; }
+        public Input<string>? ServiceDiscovery
+        {
+            get => _serviceDiscovery;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceDiscovery = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("serviceKey")]
+        private Input<string>? _serviceKey;
 
         /// <summary>
         /// Your Service Key.
-        /// * `DATADOG`
         /// </summary>
-        [Input("serviceKey")]
-        public Input<string>? ServiceKey { get; set; }
+        public Input<string>? ServiceKey
+        {
+            get => _serviceKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("teamName")]
         public Input<string>? TeamName { get; set; }
@@ -514,6 +732,8 @@ namespace Pulumi.Mongodbatlas
         /// * VICTOR_OPS
         /// * FLOWDOCK
         /// * WEBHOOK
+        /// * MICROSOFT_TEAMS
+        /// * PROMETHEUS
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -524,17 +744,37 @@ namespace Pulumi.Mongodbatlas
         [Input("url")]
         public Input<string>? Url { get; set; }
 
+        [Input("userName")]
+        private Input<string>? _userName;
+
         /// <summary>
         /// Your Prometheus username.
         /// </summary>
-        [Input("userName")]
-        public Input<string>? UserName { get; set; }
+        public Input<string>? UserName
+        {
+            get => _userName;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userName = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("writeToken")]
+        private Input<string>? _writeToken;
 
         /// <summary>
         /// Your Insights Insert Key.
         /// </summary>
-        [Input("writeToken")]
-        public Input<string>? WriteToken { get; set; }
+        public Input<string>? WriteToken
+        {
+            get => _writeToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _writeToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ThirdPartyIntegrationState()
         {

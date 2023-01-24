@@ -17,7 +17,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// </summary>
         public static Task<GetPrivateEndpointRegionalModeResult> InvokeAsync(GetPrivateEndpointRegionalModeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPrivateEndpointRegionalModeResult>("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", args ?? new GetPrivateEndpointRegionalModeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateEndpointRegionalModeResult>("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", args ?? new GetPrivateEndpointRegionalModeArgs(), options.WithDefaults());
 
         /// <summary>
         /// `private_endpoint_regional_mode` describe a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
         /// </summary>
         public static Output<GetPrivateEndpointRegionalModeResult> Invoke(GetPrivateEndpointRegionalModeInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPrivateEndpointRegionalModeResult>("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", args ?? new GetPrivateEndpointRegionalModeInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPrivateEndpointRegionalModeResult>("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", args ?? new GetPrivateEndpointRegionalModeInvokeArgs(), options.WithDefaults());
     }
 
 

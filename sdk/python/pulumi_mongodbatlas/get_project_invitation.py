@@ -93,13 +93,7 @@ class GetProjectInvitationResult:
     @pulumi.getter
     def roles(self) -> Sequence[str]:
         """
-        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-        * GROUP_OWNER
-        * GROUP_CLUSTER_MANAGER
-        * GROUP_READ_ONLY
-        * GROUP_DATA_ACCESS_ADMIN
-        * GROUP_DATA_ACCESS_READ_WRITE
-        * GROUP_DATA_ACCESS_READ_ONLY
+        Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         """
         return pulumi.get(self, "roles")
 

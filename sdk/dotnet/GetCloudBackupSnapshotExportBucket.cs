@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportBucketResult> InvokeAsync(GetCloudBackupSnapshotExportBucketArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportBucketResult>("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", args ?? new GetCloudBackupSnapshotExportBucketArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportBucketResult>("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", args ?? new GetCloudBackupSnapshotExportBucketArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportBucketResult> Invoke(GetCloudBackupSnapshotExportBucketInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportBucketResult>("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", args ?? new GetCloudBackupSnapshotExportBucketInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportBucketResult>("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", args ?? new GetCloudBackupSnapshotExportBucketInvokeArgs(), options.WithDefaults());
     }
 
 

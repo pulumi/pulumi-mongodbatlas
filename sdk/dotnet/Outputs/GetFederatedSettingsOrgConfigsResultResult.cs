@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string OrgId;
         /// <summary>
-        /// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+        /// List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
         /// </summary>
         public readonly ImmutableArray<string> PostAuthRoleGrants;
         public readonly ImmutableArray<Outputs.GetFederatedSettingsOrgConfigsResultRoleMappingResult> RoleMappings;

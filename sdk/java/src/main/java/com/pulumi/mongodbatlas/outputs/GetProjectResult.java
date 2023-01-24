@@ -17,7 +17,18 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetProjectResult {
     private List<GetProjectApiKey> apiKeys;
+    /**
+     * @return The number of Atlas clusters deployed in the project.
+     * 
+     */
     private Integer clusterCount;
+    /**
+     * @return The ISO-8601-formatted timestamp of when Atlas created the project.
+     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+     *   The following are valid roles:
+     * 
+     */
     private String created;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -56,39 +67,35 @@ public final class GetProjectResult {
     private @Nullable String name;
     /**
      * @return The ID of the organization you want to create the project within.
-     * *`cluster_count` - The number of Atlas clusters deployed in the project.
-     * *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-     *   The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
-     * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-     * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
-     *   The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
      * 
      */
     private String orgId;
     private @Nullable String projectId;
+    /**
+     * @return If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     * 
+     */
+    private String regionUsageRestrictions;
     private List<GetProjectTeam> teams;
 
     private GetProjectResult() {}
     public List<GetProjectApiKey> apiKeys() {
         return this.apiKeys;
     }
+    /**
+     * @return The number of Atlas clusters deployed in the project.
+     * 
+     */
     public Integer clusterCount() {
         return this.clusterCount;
     }
+    /**
+     * @return The ISO-8601-formatted timestamp of when Atlas created the project.
+     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+     *   The following are valid roles:
+     * 
+     */
     public String created() {
         return this.created;
     }
@@ -143,26 +150,6 @@ public final class GetProjectResult {
     }
     /**
      * @return The ID of the organization you want to create the project within.
-     * *`cluster_count` - The number of Atlas clusters deployed in the project.
-     * *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-     *   The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
-     * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-     * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
-     *   The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
      * 
      */
     public String orgId() {
@@ -170,6 +157,13 @@ public final class GetProjectResult {
     }
     public Optional<String> projectId() {
         return Optional.ofNullable(this.projectId);
+    }
+    /**
+     * @return If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     * 
+     */
+    public String regionUsageRestrictions() {
+        return this.regionUsageRestrictions;
     }
     public List<GetProjectTeam> teams() {
         return this.teams;
@@ -196,6 +190,7 @@ public final class GetProjectResult {
         private @Nullable String name;
         private String orgId;
         private @Nullable String projectId;
+        private String regionUsageRestrictions;
         private List<GetProjectTeam> teams;
         public Builder() {}
         public Builder(GetProjectResult defaults) {
@@ -212,6 +207,7 @@ public final class GetProjectResult {
     	      this.name = defaults.name;
     	      this.orgId = defaults.orgId;
     	      this.projectId = defaults.projectId;
+    	      this.regionUsageRestrictions = defaults.regionUsageRestrictions;
     	      this.teams = defaults.teams;
         }
 
@@ -279,6 +275,11 @@ public final class GetProjectResult {
             return this;
         }
         @CustomType.Setter
+        public Builder regionUsageRestrictions(String regionUsageRestrictions) {
+            this.regionUsageRestrictions = Objects.requireNonNull(regionUsageRestrictions);
+            return this;
+        }
+        @CustomType.Setter
         public Builder teams(List<GetProjectTeam> teams) {
             this.teams = Objects.requireNonNull(teams);
             return this;
@@ -300,6 +301,7 @@ public final class GetProjectResult {
             o.name = name;
             o.orgId = orgId;
             o.projectId = projectId;
+            o.regionUsageRestrictions = regionUsageRestrictions;
             o.teams = teams;
             return o;
         }

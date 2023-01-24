@@ -136,6 +136,8 @@ type LookupClusterResult struct {
 	// - DELETED
 	// - REPAIRING
 	StateName string `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
@@ -401,6 +403,11 @@ func (o LookupClusterResultOutput) SrvAddress() pulumi.StringOutput {
 // - REPAIRING
 func (o LookupClusterResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+func (o LookupClusterResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClusterResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
 }
 
 // Release cadence that Atlas uses for this cluster.

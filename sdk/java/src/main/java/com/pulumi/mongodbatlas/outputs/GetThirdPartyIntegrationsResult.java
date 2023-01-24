@@ -45,13 +45,11 @@ public final class GetThirdPartyIntegrationsResult {
     private String licenseKey;
     /**
      * @return Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      * 
      */
     private @Nullable String microsoftTeamsWebhookUrl;
     /**
      * @return Your Flowdock organization name.
-     * * `WEBHOOK`
      * 
      */
     private String orgName;
@@ -62,19 +60,16 @@ public final class GetThirdPartyIntegrationsResult {
     private String projectId;
     /**
      * @return Your Insights Query Key.
-     * * `OPS_GENIE`
      * 
      */
     private String readToken;
     /**
      * @return Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-     * * `VICTOR_OPS`
      * 
      */
     private String region;
     /**
      * @return An optional field for your Routing Key.
-     * * `FLOWDOCK`
      * 
      */
     private String routingKey;
@@ -85,7 +80,6 @@ public final class GetThirdPartyIntegrationsResult {
     private @Nullable String scheme;
     /**
      * @return An optional field for your webhook secret.
-     * * `MICROSOFT_TEAMS`
      * 
      */
     private String secret;
@@ -96,7 +90,6 @@ public final class GetThirdPartyIntegrationsResult {
     private @Nullable String serviceDiscovery;
     /**
      * @return Your Service Key.
-     * * `DATADOG`
      * 
      */
     private String serviceKey;
@@ -170,7 +163,6 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      * 
      */
     public Optional<String> microsoftTeamsWebhookUrl() {
@@ -178,7 +170,6 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Your Flowdock organization name.
-     * * `WEBHOOK`
      * 
      */
     public String orgName() {
@@ -193,7 +184,6 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Your Insights Query Key.
-     * * `OPS_GENIE`
      * 
      */
     public String readToken() {
@@ -201,7 +191,6 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-     * * `VICTOR_OPS`
      * 
      */
     public String region() {
@@ -209,7 +198,6 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return An optional field for your Routing Key.
-     * * `FLOWDOCK`
      * 
      */
     public String routingKey() {
@@ -224,7 +212,6 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return An optional field for your webhook secret.
-     * * `MICROSOFT_TEAMS`
      * 
      */
     public String secret() {
@@ -239,7 +226,6 @@ public final class GetThirdPartyIntegrationsResult {
     }
     /**
      * @return Your Service Key.
-     * * `DATADOG`
      * 
      */
     public String serviceKey() {

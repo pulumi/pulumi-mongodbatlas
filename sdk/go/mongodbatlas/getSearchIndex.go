@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupSearchIndex(ctx, &GetSearchIndexArgs{
+//			_, err := mongodbatlas.LookupSearchIndex(ctx, &mongodbatlas.LookupSearchIndexArgs{
 //				ClusterName: "<CLUSTER_NAME>",
 //				IndexId:     "<INDEX_ID",
 //				ProjectId:   "<PROJECT_ID>",

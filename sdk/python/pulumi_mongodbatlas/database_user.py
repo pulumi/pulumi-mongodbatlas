@@ -628,7 +628,7 @@ class DatabaseUser(pulumi.CustomResource):
             __props__.__dict__["database_name"] = database_name
             __props__.__dict__["labels"] = labels
             __props__.__dict__["ldap_auth_type"] = ldap_auth_type
-            __props__.__dict__["password"] = password
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -640,6 +640,8 @@ class DatabaseUser(pulumi.CustomResource):
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
             __props__.__dict__["x509_type"] = x509_type
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DatabaseUser, __self__).__init__(
             'mongodbatlas:index/databaseUser:DatabaseUser',
             resource_name,

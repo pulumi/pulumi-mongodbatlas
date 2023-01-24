@@ -73,19 +73,9 @@ public class CloudProviderSnapshotBackupPolicy extends com.pulumi.resources.Cust
     public Output<String> nextSnapshot() {
         return this.nextSnapshot;
     }
-    /**
-     * Contains a document for each backup policy item in the desired updated backup policy.
-     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
-     * 
-     */
     @Export(name="policies", type=List.class, parameters={CloudProviderSnapshotBackupPolicyPolicy.class})
     private Output<List<CloudProviderSnapshotBackupPolicyPolicy>> policies;
 
-    /**
-     * @return Contains a document for each backup policy item in the desired updated backup policy.
-     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
-     * 
-     */
     public Output<List<CloudProviderSnapshotBackupPolicyPolicy>> policies() {
         return this.policies;
     }

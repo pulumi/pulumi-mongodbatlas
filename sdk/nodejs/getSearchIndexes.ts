@@ -2,36 +2,18 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = pulumi.output(mongodbatlas.getSearchIndex({
- *     clusterName: "<CLUSTER_NAME>",
- *     collectionName: "<COLLECTION_NAME>",
- *     databaseName: "<DATABASE_NAME>",
- *     itemsPerPage: 100,
- *     pageNum: 1,
- *     projectId: "<PROJECT_ID>",
- * }));
- * ```
  */
 export function getSearchIndexes(args: GetSearchIndexesArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", {
         "clusterName": args.clusterName,
         "collectionName": args.collectionName,
@@ -101,9 +83,13 @@ export interface GetSearchIndexesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * `mongodbatlas.getSearchIndexes` describe all search indexes. This represents search indexes that have been created.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getSearchIndexesOutput(args: GetSearchIndexesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexesResult> {
-    return pulumi.output(args).apply(a => getSearchIndexes(a, opts))
+    return pulumi.output(args).apply((a: any) => getSearchIndexes(a, opts))
 }
 
 /**

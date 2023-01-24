@@ -14,6 +14,10 @@ import java.util.Objects;
 public final class GetCustomDbRolesResult {
     private List<GetCustomDbRolesResultAction> actions;
     private List<GetCustomDbRolesResultInheritedRole> inheritedRoles;
+    /**
+     * @return (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     * 
+     */
     private String roleName;
 
     private GetCustomDbRolesResult() {}
@@ -23,6 +27,10 @@ public final class GetCustomDbRolesResult {
     public List<GetCustomDbRolesResultInheritedRole> inheritedRoles() {
         return this.inheritedRoles;
     }
+    /**
+     * @return (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     * 
+     */
     public String roleName() {
         return this.roleName;
     }

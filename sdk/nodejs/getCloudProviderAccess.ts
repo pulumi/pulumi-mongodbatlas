@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -26,11 +27,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCloudProviderAccess(args: GetCloudProviderAccessArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderAccessResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderAccess:getCloudProviderAccess", {
         "projectId": args.projectId,
     }, opts);
@@ -60,9 +58,28 @@ export interface GetCloudProviderAccessResult {
     readonly id: string;
     readonly projectId: string;
 }
-
+/**
+ * `mongodbatlas.CloudProviderAccess` allows you to get the list of cloud provider access roles, currently only AWS is supported.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testRole = new mongodbatlas.CloudProviderAccess("testRole", {
+ *     projectId: "<PROJECT-ID>",
+ *     providerName: "AWS",
+ * });
+ * const all = mongodbatlas.getCloudProviderAccessOutput({
+ *     projectId: testRole.projectId,
+ * });
+ * ```
+ */
 export function getCloudProviderAccessOutput(args: GetCloudProviderAccessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderAccessResult> {
-    return pulumi.output(args).apply(a => getCloudProviderAccess(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudProviderAccess(a, opts))
 }
 
 /**

@@ -39,7 +39,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDataLakesResult> InvokeAsync(GetDataLakesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getDataLakes` describe all Data Lakes.
@@ -69,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDataLakesResult> Invoke(GetDataLakesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDataLakesResult>("mongodbatlas:index/getDataLakes:getDataLakes", args ?? new GetDataLakesInvokeArgs(), options.WithDefaults());
     }
 
 

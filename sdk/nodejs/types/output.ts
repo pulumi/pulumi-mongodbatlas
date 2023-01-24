@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface AdvancedClusterAdvancedConfiguration {
     /**
@@ -102,9 +103,6 @@ export interface AdvancedClusterLabel {
 }
 
 export interface AdvancedClusterReplicationSpec {
-    /**
-     * A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-     */
     containerId: {[key: string]: string};
     id: string;
     /**
@@ -245,19 +243,14 @@ export interface AlertConfigurationMatcher {
      */
     fieldName?: string;
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      */
     operator?: string;
     /**
-     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-     * - `PRIMARY`
-     * - `SECONDARY`
-     * - `STANDALONE`
-     * - `CONFIG`
-     * - `MONGOS`
+     * If omitted, the configuration is disabled.
      */
     value?: string;
 }
@@ -272,10 +265,10 @@ export interface AlertConfigurationMetricThresholdConfig {
      */
     mode?: string;
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      */
     operator?: string;
     /**
@@ -284,23 +277,8 @@ export interface AlertConfigurationMetricThresholdConfig {
     threshold?: number;
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units?: string;
 }
@@ -347,6 +325,10 @@ export interface AlertConfigurationNotification {
      */
     intervalMin?: number;
     /**
+     * Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     */
+    microsoftTeamsWebhookUrl?: string;
+    /**
      * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      */
     mobileNumber?: string;
@@ -386,9 +368,6 @@ export interface AlertConfigurationNotification {
     /**
      * Type of alert notification.
      * Accepted values are:
-     * - `DATADOG`
-     * - `EMAIL`
-     * - `FLOWDOCK`
      */
     typeName?: string;
     /**
@@ -403,14 +382,22 @@ export interface AlertConfigurationNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey?: string;
+    /**
+     * Optional authentication secret for the `WEBHOOK` notifications type.
+     */
+    webhookSecret?: string;
+    /**
+     * Target URL  for the `WEBHOOK` notifications type.
+     */
+    webhookUrl?: string;
 }
 
 export interface AlertConfigurationThresholdConfig {
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      */
     operator?: string;
     /**
@@ -419,23 +406,8 @@ export interface AlertConfigurationThresholdConfig {
     threshold?: number;
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units?: string;
 }
@@ -736,7 +708,7 @@ export interface ClusterReplicationSpec {
      */
     id: string;
     /**
-     * Number of shards to deploy in the specified zone, minimum 1.
+     * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
     numShards: number;
     /**
@@ -947,7 +919,7 @@ export interface EncryptionAtRestAwsKmsConfig {
      */
     customerMasterKeyId?: string;
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
     enabled?: boolean;
     /**
@@ -1034,7 +1006,8 @@ export interface FederatedSettingsOrgRoleMappingRoleAssignment {
      */
     orgId?: string;
     /**
-     * Specifies the Roles that are attached to the Role Mapping.
+     * Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+     * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      */
     roles?: string[];
 }
@@ -1201,9 +1174,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     diskIops?: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Type of storage you want to attach to your AWS-provisioned cluster.
      */
     ebsVolumeType?: string;
     /**
@@ -1245,9 +1216,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     diskIops?: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Type of storage you want to attach to your AWS-provisioned cluster.
      */
     ebsVolumeType?: string;
     /**
@@ -1266,9 +1235,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     diskIops?: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Type of storage you want to attach to your AWS-provisioned cluster.
      */
     ebsVolumeType?: string;
     /**
@@ -1341,6 +1308,10 @@ export interface GetAdvancedClustersResult {
      * Current state of the cluster. The possible states are:
      */
     stateName: string;
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled: boolean;
     /**
      * Release cadence that Atlas uses for this cluster.
      */
@@ -1502,8 +1473,6 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSp
     diskIops?: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1546,8 +1515,6 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSp
     diskIops?: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1567,8 +1534,6 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpe
     diskIops?: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType?: string;
     /**
@@ -1589,17 +1554,10 @@ export interface GetAlertConfigurationMatcher {
     /**
      * Operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
      */
     operator: string;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-     * - `PRIMARY`
-     * - `SECONDARY`
-     * - `STANDALONE`
-     * - `CONFIG`
-     * - `MONGOS`
      */
     value: string;
 }
@@ -1616,8 +1574,6 @@ export interface GetAlertConfigurationMetricThresholdConfig {
     /**
      * Operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
      */
     operator: string;
     /**
@@ -1626,23 +1582,7 @@ export interface GetAlertConfigurationMetricThresholdConfig {
     threshold: number;
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units: string;
 }
@@ -1689,6 +1629,10 @@ export interface GetAlertConfigurationNotification {
      */
     intervalMin: number;
     /**
+     * Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+     */
+    microsoftTeamsWebhookUrl?: string;
+    /**
      * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      */
     mobileNumber: string;
@@ -1727,19 +1671,6 @@ export interface GetAlertConfigurationNotification {
     /**
      * Type of alert notification.
      * Accepted values are:
-     * - `DATADOG`
-     * - `EMAIL`
-     * - `FLOWDOCK`
-     * - `GROUP` (Project)
-     * - `OPS_GENIE`
-     * - `ORG`
-     * - `PAGER_DUTY`
-     * - `SLACK`
-     * - `SMS`
-     * - `TEAM`
-     * - `USER`
-     * - `VICTOR_OPS`
-     * - `WEBHOOK`
      */
     typeName: string;
     /**
@@ -1754,14 +1685,20 @@ export interface GetAlertConfigurationNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey: string;
+    /**
+     * Authentication secret for the `WEBHOOK` notifications type.
+     */
+    webhookSecret?: string;
+    /**
+     * Target URL  for the `WEBHOOK` notifications type.
+     */
+    webhookUrl?: string;
 }
 
 export interface GetAlertConfigurationThresholdConfig {
     /**
      * Operator to apply when checking the current metric value against the threshold value.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
      */
     operator: string;
     /**
@@ -1770,23 +1707,7 @@ export interface GetAlertConfigurationThresholdConfig {
     threshold: number;
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units: string;
 }
@@ -2635,6 +2556,10 @@ export interface GetClustersResult {
      */
     stateName: string;
     /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled: boolean;
+    /**
      * Release cadence that Atlas uses for this cluster.
      */
     versionReleaseSystem: string;
@@ -2813,10 +2738,16 @@ export interface GetCustomDbRoleAction {
 export interface GetCustomDbRoleActionResource {
     cluster: boolean;
     collectionName: string;
+    /**
+     * (Required) Database on which the inherited role is granted.
+     */
     databaseName: string;
 }
 
 export interface GetCustomDbRoleInheritedRole {
+    /**
+     * (Required) Database on which the inherited role is granted.
+     */
     databaseName: string;
     /**
      * Name of the custom role.
@@ -2827,6 +2758,9 @@ export interface GetCustomDbRoleInheritedRole {
 export interface GetCustomDbRolesResult {
     actions: outputs.GetCustomDbRolesResultAction[];
     inheritedRoles: outputs.GetCustomDbRolesResultInheritedRole[];
+    /**
+     * (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     */
     roleName: string;
 }
 
@@ -2844,11 +2778,20 @@ export interface GetCustomDbRolesResultAction {
 export interface GetCustomDbRolesResultActionResource {
     cluster: boolean;
     collectionName: string;
+    /**
+     * (Required) Database on which the inherited role is granted.
+     */
     databaseName: string;
 }
 
 export interface GetCustomDbRolesResultInheritedRole {
+    /**
+     * (Required) Database on which the inherited role is granted.
+     */
     databaseName: string;
+    /**
+     * (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     */
     roleName: string;
 }
 
@@ -3047,10 +2990,6 @@ export interface GetDatabaseUsersResult {
     /**
      * (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Possible values include:
-     * * `admin` if `x509Type` and `awsIamType` and `ldapAuthType` are omitted or NONE.
-     * * `$external` if:
-     * * `x509Type` is MANAGED or CUSTOMER, or
-     * * `awsIamType` is USER or ROLE.
      */
     authDatabaseName: string;
     /**
@@ -3530,7 +3469,7 @@ export interface GetFederatedSettingsOrgConfigsResult {
      */
     orgId: string;
     /**
-     * List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     * List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
      */
     postAuthRoleGrants: string[];
     roleMappings: outputs.GetFederatedSettingsOrgConfigsResultRoleMapping[];
@@ -3894,6 +3833,38 @@ export interface GetPrivatelinkEndpointsServiceAdlResult {
     type: string;
 }
 
+export interface GetPrivatelinkEndpointsServiceServerlessResult {
+    /**
+     * Unique string that identifies the private endpoint's network interface.
+     */
+    cloudProviderEndpointId: string;
+    /**
+     * Human-readable string to associate with this private endpoint.
+     */
+    comment: string;
+    /**
+     * (Required) Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [AWS PrivateLink](https://aws.amazon.com/privatelink/) feature.
+     */
+    endpointId: string;
+    /**
+     * Unique string that identifies the PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
+     */
+    endpointServiceName: string;
+    errorMessage: string;
+    /**
+     * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
+     */
+    privateEndpointIpAddress: string;
+    /**
+     * Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
+     */
+    privateLinkServiceResourceId: string;
+    /**
+     * Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
+     */
+    status: string;
+}
+
 export interface GetProjectApiKey {
     apiKeyId: string;
     roleNames: string[];
@@ -3906,7 +3877,16 @@ export interface GetProjectTeam {
 
 export interface GetProjectsResult {
     apiKeys: outputs.GetProjectsResultApiKey[];
+    /**
+     * The number of Atlas clusters deployed in the project.
+     */
     clusterCount: number;
+    /**
+     * The ISO-8601-formatted timestamp of when Atlas created the project.
+     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+     * The following are valid roles:
+     */
     created: string;
     /**
      * Autogenerated Unique ID for this data source.
@@ -3938,28 +3918,12 @@ export interface GetProjectsResult {
     name: string;
     /**
      * The ID of the organization you want to create the project within.
-     * *`clusterCount` - The number of Atlas clusters deployed in the project.
-     * *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-     * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
-     * * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-     * * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
-     * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
      */
     orgId: string;
+    /**
+     * If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     */
+    regionUsageRestrictions: string;
     teams: outputs.GetProjectsResultTeam[];
 }
 
@@ -4059,6 +4023,10 @@ export interface GetServerlessInstancesResult {
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      */
     connectionStringsStandardSrv: string;
+    /**
+     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     */
+    continuousBackupEnabled: boolean;
     createDate: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the serverless instance.
@@ -4093,6 +4061,10 @@ export interface GetServerlessInstancesResult {
      * Stage of deployment of this serverless instance when the resource made its request.
      */
     stateName: string;
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled: boolean;
 }
 
 export interface GetServerlessInstancesResultLink {
@@ -4128,12 +4100,10 @@ export interface GetThirdPartyIntegrationsResult {
     licenseKey: string;
     /**
      * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      */
     microsoftTeamsWebhookUrl?: string;
     /**
      * Your Flowdock organization name.
-     * * `WEBHOOK`
      */
     orgName: string;
     /**
@@ -4142,17 +4112,14 @@ export interface GetThirdPartyIntegrationsResult {
     projectId: string;
     /**
      * Your Insights Query Key.
-     * * `OPS_GENIE`
      */
     readToken: string;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-     * * `VICTOR_OPS`
      */
     region: string;
     /**
      * An optional field for your Routing Key.
-     * * `FLOWDOCK`
      */
     routingKey: string;
     /**
@@ -4161,7 +4128,6 @@ export interface GetThirdPartyIntegrationsResult {
     scheme?: string;
     /**
      * An optional field for your webhook secret.
-     * * `MICROSOFT_TEAMS`
      */
     secret: string;
     /**
@@ -4170,7 +4136,6 @@ export interface GetThirdPartyIntegrationsResult {
     serviceDiscovery?: string;
     /**
      * Your Service Key.
-     * * `DATADOG`
      */
     serviceKey: string;
     teamName: string;
@@ -4284,26 +4249,17 @@ export interface ProjectApiKey {
      */
     apiKeyId: string;
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
      * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
+     * The following are valid roles:
      */
     roleNames: string[];
 }
 
 export interface ProjectTeam {
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
      * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
      */
     roleNames: string[];
     /**
@@ -4346,3 +4302,21 @@ export interface X509AuthenticationDatabaseUserCertificate {
     subject: string;
 }
 
+export namespace config {
+    export interface AssumeRole {
+        duration?: string;
+        /**
+         * @deprecated Use assume_role.duration instead
+         */
+        durationSeconds?: number;
+        externalId?: string;
+        policy?: string;
+        policyArns?: string[];
+        roleArn?: string;
+        sessionName?: string;
+        sourceIdentity?: string;
+        tags?: {[key: string]: string};
+        transitiveTagKeys?: string[];
+    }
+
+}

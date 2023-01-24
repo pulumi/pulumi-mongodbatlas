@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudBackupSnapshotRestoreJobsResult> InvokeAsync(GetCloudBackupSnapshotRestoreJobsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", args ?? new GetCloudBackupSnapshotRestoreJobsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", args ?? new GetCloudBackupSnapshotRestoreJobsArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
@@ -119,7 +119,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetCloudBackupSnapshotRestoreJobsResult> Invoke(GetCloudBackupSnapshotRestoreJobsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", args ?? new GetCloudBackupSnapshotRestoreJobsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", args ?? new GetCloudBackupSnapshotRestoreJobsInvokeArgs(), options.WithDefaults());
     }
 
 

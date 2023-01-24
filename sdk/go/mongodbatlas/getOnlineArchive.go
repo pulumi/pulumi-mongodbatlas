@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupOnlineArchive(ctx, &GetOnlineArchiveArgs{
+//			_, err := mongodbatlas.LookupOnlineArchive(ctx, &mongodbatlas.LookupOnlineArchiveArgs{
 //				ProjectId:   _var.Project_id,
 //				ClusterName: _var.Cluster_name,
 //				ArchiveId:   "5ebad3c1fe9c0ab8d37d61e1",

@@ -34,19 +34,9 @@ public final class CloudProviderSnapshotBackupPolicyArgs extends com.pulumi.reso
         return this.clusterName;
     }
 
-    /**
-     * Contains a document for each backup policy item in the desired updated backup policy.
-     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
-     * 
-     */
     @Import(name="policies", required=true)
     private Output<List<CloudProviderSnapshotBackupPolicyPolicyArgs>> policies;
 
-    /**
-     * @return Contains a document for each backup policy item in the desired updated backup policy.
-     * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
-     * 
-     */
     public Output<List<CloudProviderSnapshotBackupPolicyPolicyArgs>> policies() {
         return this.policies;
     }
@@ -177,36 +167,15 @@ public final class CloudProviderSnapshotBackupPolicyArgs extends com.pulumi.reso
             return clusterName(Output.of(clusterName));
         }
 
-        /**
-         * @param policies Contains a document for each backup policy item in the desired updated backup policy.
-         * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
-         * 
-         * @return builder
-         * 
-         */
         public Builder policies(Output<List<CloudProviderSnapshotBackupPolicyPolicyArgs>> policies) {
             $.policies = policies;
             return this;
         }
 
-        /**
-         * @param policies Contains a document for each backup policy item in the desired updated backup policy.
-         * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
-         * 
-         * @return builder
-         * 
-         */
         public Builder policies(List<CloudProviderSnapshotBackupPolicyPolicyArgs> policies) {
             return policies(Output.of(policies));
         }
 
-        /**
-         * @param policies Contains a document for each backup policy item in the desired updated backup policy.
-         * * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the mongodbatlas.Cluster resource. provider_backup_enabled of the mongodbatlas.Cluster resource must be set to true. See the example above for how to refer to the mongodbatlas.Cluster resource for policies.#.id
-         * 
-         * @return builder
-         * 
-         */
         public Builder policies(CloudProviderSnapshotBackupPolicyPolicyArgs... policies) {
             return policies(List.of(policies));
         }

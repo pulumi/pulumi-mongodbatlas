@@ -162,26 +162,14 @@ public class ProjectInvitation extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-     * * GROUP_OWNER
-     * * GROUP_CLUSTER_MANAGER
-     * * GROUP_READ_ONLY
-     * * GROUP_DATA_ACCESS_ADMIN
-     * * GROUP_DATA_ACCESS_READ_WRITE
-     * * GROUP_DATA_ACCESS_READ_ONLY
+     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      * 
      */
     @Export(name="roles", type=List.class, parameters={String.class})
     private Output<List<String>> roles;
 
     /**
-     * @return List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-     * * GROUP_OWNER
-     * * GROUP_CLUSTER_MANAGER
-     * * GROUP_READ_ONLY
-     * * GROUP_DATA_ACCESS_ADMIN
-     * * GROUP_DATA_ACCESS_READ_WRITE
-     * * GROUP_DATA_ACCESS_READ_ONLY
+     * @return List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      * 
      */
     public Output<List<String>> roles() {

@@ -115,7 +115,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      * 
      */
     @Import(name="microsoftTeamsWebhookUrl")
@@ -123,7 +122,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * @return Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      * 
      */
     public Optional<Output<String>> microsoftTeamsWebhookUrl() {
@@ -132,7 +130,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * Your Flowdock organization name.
-     * * `WEBHOOK`
      * 
      */
     @Import(name="orgName")
@@ -140,7 +137,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * @return Your Flowdock organization name.
-     * * `WEBHOOK`
      * 
      */
     public Optional<Output<String>> orgName() {
@@ -179,7 +175,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * Your Insights Query Key.
-     * * `OPS_GENIE`
      * 
      */
     @Import(name="readToken")
@@ -187,7 +182,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * @return Your Insights Query Key.
-     * * `OPS_GENIE`
      * 
      */
     public Optional<Output<String>> readToken() {
@@ -196,7 +190,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-     * * `VICTOR_OPS`
      * 
      */
     @Import(name="region")
@@ -204,7 +197,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * @return Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-     * * `VICTOR_OPS`
      * 
      */
     public Optional<Output<String>> region() {
@@ -213,7 +205,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * An optional field for your Routing Key.
-     * * `FLOWDOCK`
      * 
      */
     @Import(name="routingKey")
@@ -221,7 +212,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * @return An optional field for your Routing Key.
-     * * `FLOWDOCK`
      * 
      */
     public Optional<Output<String>> routingKey() {
@@ -245,7 +235,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * An optional field for your webhook secret.
-     * * `MICROSOFT_TEAMS`
      * 
      */
     @Import(name="secret")
@@ -253,7 +242,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * @return An optional field for your webhook secret.
-     * * `MICROSOFT_TEAMS`
      * 
      */
     public Optional<Output<String>> secret() {
@@ -277,7 +265,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * Your Service Key.
-     * * `DATADOG`
      * 
      */
     @Import(name="serviceKey")
@@ -285,7 +272,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
     /**
      * @return Your Service Key.
-     * * `DATADOG`
      * 
      */
     public Optional<Output<String>> serviceKey() {
@@ -308,6 +294,8 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      * * VICTOR_OPS
      * * FLOWDOCK
      * * WEBHOOK
+     * * MICROSOFT_TEAMS
+     * * PROMETHEUS
      * 
      */
     @Import(name="type")
@@ -322,6 +310,8 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
      * * VICTOR_OPS
      * * FLOWDOCK
      * * WEBHOOK
+     * * MICROSOFT_TEAMS
+     * * PROMETHEUS
      * 
      */
     public Optional<Output<String>> type() {
@@ -556,7 +546,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
-         * * `PROMETHEUS`
          * 
          * @return builder
          * 
@@ -568,7 +557,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param microsoftTeamsWebhookUrl Your Microsoft Teams incoming webhook URL.
-         * * `PROMETHEUS`
          * 
          * @return builder
          * 
@@ -579,7 +567,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param orgName Your Flowdock organization name.
-         * * `WEBHOOK`
          * 
          * @return builder
          * 
@@ -591,7 +578,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param orgName Your Flowdock organization name.
-         * * `WEBHOOK`
          * 
          * @return builder
          * 
@@ -644,7 +630,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param readToken Your Insights Query Key.
-         * * `OPS_GENIE`
          * 
          * @return builder
          * 
@@ -656,7 +641,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param readToken Your Insights Query Key.
-         * * `OPS_GENIE`
          * 
          * @return builder
          * 
@@ -667,7 +651,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param region Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-         * * `VICTOR_OPS`
          * 
          * @return builder
          * 
@@ -679,7 +662,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param region Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-         * * `VICTOR_OPS`
          * 
          * @return builder
          * 
@@ -690,7 +672,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param routingKey An optional field for your Routing Key.
-         * * `FLOWDOCK`
          * 
          * @return builder
          * 
@@ -702,7 +683,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param routingKey An optional field for your Routing Key.
-         * * `FLOWDOCK`
          * 
          * @return builder
          * 
@@ -734,7 +714,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param secret An optional field for your webhook secret.
-         * * `MICROSOFT_TEAMS`
          * 
          * @return builder
          * 
@@ -746,7 +725,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param secret An optional field for your webhook secret.
-         * * `MICROSOFT_TEAMS`
          * 
          * @return builder
          * 
@@ -778,7 +756,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param serviceKey Your Service Key.
-         * * `DATADOG`
          * 
          * @return builder
          * 
@@ -790,7 +767,6 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         /**
          * @param serviceKey Your Service Key.
-         * * `DATADOG`
          * 
          * @return builder
          * 
@@ -817,6 +793,8 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          * * VICTOR_OPS
          * * FLOWDOCK
          * * WEBHOOK
+         * * MICROSOFT_TEAMS
+         * * PROMETHEUS
          * 
          * @return builder
          * 
@@ -835,6 +813,8 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
          * * VICTOR_OPS
          * * FLOWDOCK
          * * WEBHOOK
+         * * MICROSOFT_TEAMS
+         * * PROMETHEUS
          * 
          * @return builder
          * 

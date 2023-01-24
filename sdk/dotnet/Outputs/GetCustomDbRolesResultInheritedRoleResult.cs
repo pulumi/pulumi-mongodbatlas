@@ -13,7 +13,13 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetCustomDbRolesResultInheritedRoleResult
     {
+        /// <summary>
+        /// (Required) Database on which the inherited role is granted.
+        /// </summary>
         public readonly string DatabaseName;
+        /// <summary>
+        /// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+        /// </summary>
         public readonly string RoleName;
 
         [OutputConstructor]

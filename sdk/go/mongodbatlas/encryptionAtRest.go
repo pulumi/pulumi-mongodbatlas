@@ -43,6 +43,33 @@ func NewEncryptionAtRest(ctx *pulumi.Context,
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
+	if args.AwsKms != nil {
+		args.AwsKms = pulumi.ToSecret(args.AwsKms).(pulumi.StringMapInput)
+	}
+	if args.AwsKmsConfig != nil {
+		args.AwsKmsConfig = pulumi.ToSecret(args.AwsKmsConfig).(EncryptionAtRestAwsKmsConfigPtrInput)
+	}
+	if args.AzureKeyVault != nil {
+		args.AzureKeyVault = pulumi.ToSecret(args.AzureKeyVault).(pulumi.StringMapInput)
+	}
+	if args.AzureKeyVaultConfig != nil {
+		args.AzureKeyVaultConfig = pulumi.ToSecret(args.AzureKeyVaultConfig).(EncryptionAtRestAzureKeyVaultConfigPtrInput)
+	}
+	if args.GoogleCloudKms != nil {
+		args.GoogleCloudKms = pulumi.ToSecret(args.GoogleCloudKms).(pulumi.StringMapInput)
+	}
+	if args.GoogleCloudKmsConfig != nil {
+		args.GoogleCloudKmsConfig = pulumi.ToSecret(args.GoogleCloudKmsConfig).(EncryptionAtRestGoogleCloudKmsConfigPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"awsKms",
+		"awsKmsConfig",
+		"azureKeyVault",
+		"azureKeyVaultConfig",
+		"googleCloudKms",
+		"googleCloudKmsConfig",
+	})
+	opts = append(opts, secrets)
 	var resource EncryptionAtRest
 	err := ctx.RegisterResource("mongodbatlas:index/encryptionAtRest:EncryptionAtRest", name, args, &resource, opts...)
 	if err != nil {

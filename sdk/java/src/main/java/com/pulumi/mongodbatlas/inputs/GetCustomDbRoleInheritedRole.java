@@ -12,9 +12,17 @@ public final class GetCustomDbRoleInheritedRole extends com.pulumi.resources.Inv
 
     public static final GetCustomDbRoleInheritedRole Empty = new GetCustomDbRoleInheritedRole();
 
+    /**
+     * (Required) Database on which the inherited role is granted.
+     * 
+     */
     @Import(name="databaseName", required=true)
     private String databaseName;
 
+    /**
+     * @return (Required) Database on which the inherited role is granted.
+     * 
+     */
     public String databaseName() {
         return this.databaseName;
     }
@@ -59,6 +67,12 @@ public final class GetCustomDbRoleInheritedRole extends com.pulumi.resources.Inv
             $ = new GetCustomDbRoleInheritedRole(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param databaseName (Required) Database on which the inherited role is granted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder databaseName(String databaseName) {
             $.databaseName = databaseName;
             return this;

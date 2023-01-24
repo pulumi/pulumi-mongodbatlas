@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,11 +12,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSnapshotExportJob(args: GetCloudBackupSnapshotExportJobArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportJobResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", {
         "clusterName": args.clusterName,
         "exportJobId": args.exportJobId,
@@ -33,7 +31,7 @@ export interface GetCloudBackupSnapshotExportJobArgs {
      */
     clusterName: string;
     /**
-     * -(Required) Unique identifier of the export job to retrieve.
+     * Unique identifier of the export job to retrieve.
      */
     exportJobId: string;
     id: string;
@@ -91,9 +89,13 @@ export interface GetCloudBackupSnapshotExportJobResult {
      */
     readonly state: string;
 }
-
+/**
+ * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getCloudBackupSnapshotExportJobOutput(args: GetCloudBackupSnapshotExportJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportJobResult> {
-    return pulumi.output(args).apply(a => getCloudBackupSnapshotExportJob(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportJob(a, opts))
 }
 
 /**
@@ -105,7 +107,7 @@ export interface GetCloudBackupSnapshotExportJobOutputArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * -(Required) Unique identifier of the export job to retrieve.
+     * Unique identifier of the export job to retrieve.
      */
     exportJobId: pulumi.Input<string>;
     id: pulumi.Input<string>;

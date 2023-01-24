@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportJobsResult> InvokeAsync(GetCloudBackupSnapshotExportJobsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
@@ -119,7 +119,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportJobsResult> Invoke(GetCloudBackupSnapshotExportJobsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportJobsResult>("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", args ?? new GetCloudBackupSnapshotExportJobsInvokeArgs(), options.WithDefaults());
     }
 
 

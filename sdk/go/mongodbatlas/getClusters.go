@@ -36,11 +36,11 @@ import (
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
 //				DiskSizeGb:  pulumi.Float64(100),
 //				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: ClusterReplicationSpecArray{
-//					&ClusterReplicationSpecArgs{
+//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("US_EAST_1"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),
@@ -57,7 +57,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupClustersOutput(ctx, GetClustersOutputArgs{
+//			_ = mongodbatlas.LookupClustersOutput(ctx, mongodbatlas.GetClustersOutputArgs{
 //				ProjectId: testCluster.ProjectId,
 //			}, nil)
 //			return nil

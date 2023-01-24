@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -64,9 +65,17 @@ export class ServerlessInstance extends pulumi.CustomResource {
     }
 
     /**
+     * List of Serverless Private Endpoint Connections
+     */
+    public /*out*/ readonly connectionStringsPrivateEndpointSrvs!: pulumi.Output<string[]>;
+    /**
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      */
     public /*out*/ readonly connectionStringsStandardSrv!: pulumi.Output<string>;
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+     */
+    public readonly continuousBackupEnabled!: pulumi.Output<boolean>;
     /**
      * Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
      */
@@ -100,6 +109,10 @@ export class ServerlessInstance extends pulumi.CustomResource {
      * Stage of deployment of this serverless instance when the resource made its request.
      */
     public readonly stateName!: pulumi.Output<string>;
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    public readonly terminationProtectionEnabled!: pulumi.Output<boolean>;
 
     /**
      * Create a ServerlessInstance resource with the given unique name, arguments, and options.
@@ -114,7 +127,9 @@ export class ServerlessInstance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServerlessInstanceState | undefined;
+            resourceInputs["connectionStringsPrivateEndpointSrvs"] = state ? state.connectionStringsPrivateEndpointSrvs : undefined;
             resourceInputs["connectionStringsStandardSrv"] = state ? state.connectionStringsStandardSrv : undefined;
+            resourceInputs["continuousBackupEnabled"] = state ? state.continuousBackupEnabled : undefined;
             resourceInputs["createDate"] = state ? state.createDate : undefined;
             resourceInputs["links"] = state ? state.links : undefined;
             resourceInputs["mongoDbVersion"] = state ? state.mongoDbVersion : undefined;
@@ -124,6 +139,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
             resourceInputs["providerSettingsProviderName"] = state ? state.providerSettingsProviderName : undefined;
             resourceInputs["providerSettingsRegionName"] = state ? state.providerSettingsRegionName : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
+            resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
         } else {
             const args = argsOrState as ServerlessInstanceArgs | undefined;
             if ((!args || args.projectId === undefined) && !opts.urn) {
@@ -138,6 +154,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
             if ((!args || args.providerSettingsRegionName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'providerSettingsRegionName'");
             }
+            resourceInputs["continuousBackupEnabled"] = args ? args.continuousBackupEnabled : undefined;
             resourceInputs["links"] = args ? args.links : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -145,6 +162,8 @@ export class ServerlessInstance extends pulumi.CustomResource {
             resourceInputs["providerSettingsProviderName"] = args ? args.providerSettingsProviderName : undefined;
             resourceInputs["providerSettingsRegionName"] = args ? args.providerSettingsRegionName : undefined;
             resourceInputs["stateName"] = args ? args.stateName : undefined;
+            resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
+            resourceInputs["connectionStringsPrivateEndpointSrvs"] = undefined /*out*/;
             resourceInputs["connectionStringsStandardSrv"] = undefined /*out*/;
             resourceInputs["createDate"] = undefined /*out*/;
             resourceInputs["mongoDbVersion"] = undefined /*out*/;
@@ -159,9 +178,17 @@ export class ServerlessInstance extends pulumi.CustomResource {
  */
 export interface ServerlessInstanceState {
     /**
+     * List of Serverless Private Endpoint Connections
+     */
+    connectionStringsPrivateEndpointSrvs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      */
     connectionStringsStandardSrv?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+     */
+    continuousBackupEnabled?: pulumi.Input<boolean>;
     /**
      * Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
      */
@@ -195,12 +222,20 @@ export interface ServerlessInstanceState {
      * Stage of deployment of this serverless instance when the resource made its request.
      */
     stateName?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled?: pulumi.Input<boolean>;
 }
 
 /**
  * The set of arguments for constructing a ServerlessInstance resource.
  */
 export interface ServerlessInstanceArgs {
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+     */
+    continuousBackupEnabled?: pulumi.Input<boolean>;
     links?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceLink>[]>;
     /**
      * Human-readable label that identifies the serverless instance.
@@ -226,4 +261,8 @@ export interface ServerlessInstanceArgs {
      * Stage of deployment of this serverless instance when the resource made its request.
      */
     stateName?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled?: pulumi.Input<boolean>;
 }

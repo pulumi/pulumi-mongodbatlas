@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ServerlessInstanceState;
 import com.pulumi.mongodbatlas.outputs.ServerlessInstanceLink;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
@@ -69,6 +70,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/serverlessInstance:ServerlessInstance")
 public class ServerlessInstance extends com.pulumi.resources.CustomResource {
     /**
+     * List of Serverless Private Endpoint Connections
+     * 
+     */
+    @Export(name="connectionStringsPrivateEndpointSrvs", type=List.class, parameters={String.class})
+    private Output<List<String>> connectionStringsPrivateEndpointSrvs;
+
+    /**
+     * @return List of Serverless Private Endpoint Connections
+     * 
+     */
+    public Output<List<String>> connectionStringsPrivateEndpointSrvs() {
+        return this.connectionStringsPrivateEndpointSrvs;
+    }
+    /**
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      * 
      */
@@ -81,6 +96,20 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      */
     public Output<String> connectionStringsStandardSrv() {
         return this.connectionStringsStandardSrv;
+    }
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+     * 
+     */
+    @Export(name="continuousBackupEnabled", type=Boolean.class, parameters={})
+    private Output<Boolean> continuousBackupEnabled;
+
+    /**
+     * @return Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+     * 
+     */
+    public Output<Boolean> continuousBackupEnabled() {
+        return this.continuousBackupEnabled;
     }
     /**
      * Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
@@ -199,6 +228,20 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
      */
     public Output<String> stateName() {
         return this.stateName;
+    }
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    @Export(name="terminationProtectionEnabled", type=Boolean.class, parameters={})
+    private Output<Boolean> terminationProtectionEnabled;
+
+    /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Output<Boolean> terminationProtectionEnabled() {
+        return this.terminationProtectionEnabled;
     }
 
     /**

@@ -14,6 +14,7 @@ import com.pulumi.mongodbatlas.outputs.EncryptionAtRestAwsKmsConfig;
 import com.pulumi.mongodbatlas.outputs.EncryptionAtRestAzureKeyVaultConfig;
 import com.pulumi.mongodbatlas.outputs.EncryptionAtRestGoogleCloudKmsConfig;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -139,6 +140,14 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "awsKms",
+                "awsKmsConfig",
+                "azureKeyVault",
+                "azureKeyVaultConfig",
+                "googleCloudKms",
+                "googleCloudKmsConfig"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

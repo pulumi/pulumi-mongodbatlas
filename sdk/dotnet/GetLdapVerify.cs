@@ -17,7 +17,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// </summary>
         public static Task<GetLdapVerifyResult> InvokeAsync(GetLdapVerifyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// </summary>
         public static Output<GetLdapVerifyResult> Invoke(GetLdapVerifyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetLdapVerifyResult>("mongodbatlas:index/getLdapVerify:getLdapVerify", args ?? new GetLdapVerifyInvokeArgs(), options.WithDefaults());
     }
 
 

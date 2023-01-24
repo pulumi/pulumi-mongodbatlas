@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// </summary>
         public static Task<GetClusterResult> InvokeAsync(GetClusterArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("mongodbatlas:index/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("mongodbatlas:index/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// </summary>
         public static Output<GetClusterResult> Invoke(GetClusterInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetClusterResult>("mongodbatlas:index/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("mongodbatlas:index/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -256,6 +256,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string StateName;
         /// <summary>
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        public readonly bool TerminationProtectionEnabled;
+        /// <summary>
         /// Release cadence that Atlas uses for this cluster.
         /// </summary>
         public readonly string VersionReleaseSystem;
@@ -344,6 +348,8 @@ namespace Pulumi.Mongodbatlas
 
             string stateName,
 
+            bool terminationProtectionEnabled,
+
             string versionReleaseSystem)
         {
             AdvancedConfigurations = advancedConfigurations;
@@ -387,6 +393,7 @@ namespace Pulumi.Mongodbatlas
             SnapshotBackupPolicies = snapshotBackupPolicies;
             SrvAddress = srvAddress;
             StateName = stateName;
+            TerminationProtectionEnabled = terminationProtectionEnabled;
             VersionReleaseSystem = versionReleaseSystem;
         }
     }

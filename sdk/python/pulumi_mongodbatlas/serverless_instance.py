@@ -20,28 +20,36 @@ class ServerlessInstanceArgs:
                  provider_settings_backing_provider_name: pulumi.Input[str],
                  provider_settings_provider_name: pulumi.Input[str],
                  provider_settings_region_name: pulumi.Input[str],
+                 continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 state_name: Optional[pulumi.Input[str]] = None):
+                 state_name: Optional[pulumi.Input[str]] = None,
+                 termination_protection_enabled: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ServerlessInstance resource.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the serverless instance within.
         :param pulumi.Input[str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
+        :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_settings_backing_provider_name", provider_settings_backing_provider_name)
         pulumi.set(__self__, "provider_settings_provider_name", provider_settings_provider_name)
         pulumi.set(__self__, "provider_settings_region_name", provider_settings_region_name)
+        if continuous_backup_enabled is not None:
+            pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
         if links is not None:
             pulumi.set(__self__, "links", links)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if state_name is not None:
             pulumi.set(__self__, "state_name", state_name)
+        if termination_protection_enabled is not None:
+            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
 
     @property
     @pulumi.getter(name="projectId")
@@ -92,6 +100,18 @@ class ServerlessInstanceArgs:
         pulumi.set(self, "provider_settings_region_name", value)
 
     @property
+    @pulumi.getter(name="continuousBackupEnabled")
+    def continuous_backup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+        """
+        return pulumi.get(self, "continuous_backup_enabled")
+
+    @continuous_backup_enabled.setter
+    def continuous_backup_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "continuous_backup_enabled", value)
+
+    @property
     @pulumi.getter
     def links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]:
         return pulumi.get(self, "links")
@@ -124,11 +144,25 @@ class ServerlessInstanceArgs:
     def state_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state_name", value)
 
+    @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
+    @termination_protection_enabled.setter
+    def termination_protection_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "termination_protection_enabled", value)
+
 
 @pulumi.input_type
 class _ServerlessInstanceState:
     def __init__(__self__, *,
+                 connection_strings_private_endpoint_srvs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_strings_standard_srv: Optional[pulumi.Input[str]] = None,
+                 continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  create_date: Optional[pulumi.Input[str]] = None,
                  links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
                  mongo_db_version: Optional[pulumi.Input[str]] = None,
@@ -137,10 +171,13 @@ class _ServerlessInstanceState:
                  provider_settings_backing_provider_name: Optional[pulumi.Input[str]] = None,
                  provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
                  provider_settings_region_name: Optional[pulumi.Input[str]] = None,
-                 state_name: Optional[pulumi.Input[str]] = None):
+                 state_name: Optional[pulumi.Input[str]] = None,
+                 termination_protection_enabled: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering ServerlessInstance resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] connection_strings_private_endpoint_srvs: List of Serverless Private Endpoint Connections
         :param pulumi.Input[str] connection_strings_standard_srv: Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+        :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         :param pulumi.Input[str] create_date: Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
         :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
@@ -149,9 +186,14 @@ class _ServerlessInstanceState:
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
+        if connection_strings_private_endpoint_srvs is not None:
+            pulumi.set(__self__, "connection_strings_private_endpoint_srvs", connection_strings_private_endpoint_srvs)
         if connection_strings_standard_srv is not None:
             pulumi.set(__self__, "connection_strings_standard_srv", connection_strings_standard_srv)
+        if continuous_backup_enabled is not None:
+            pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
         if create_date is not None:
             pulumi.set(__self__, "create_date", create_date)
         if links is not None:
@@ -170,6 +212,20 @@ class _ServerlessInstanceState:
             pulumi.set(__self__, "provider_settings_region_name", provider_settings_region_name)
         if state_name is not None:
             pulumi.set(__self__, "state_name", state_name)
+        if termination_protection_enabled is not None:
+            pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+
+    @property
+    @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
+    def connection_strings_private_endpoint_srvs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of Serverless Private Endpoint Connections
+        """
+        return pulumi.get(self, "connection_strings_private_endpoint_srvs")
+
+    @connection_strings_private_endpoint_srvs.setter
+    def connection_strings_private_endpoint_srvs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "connection_strings_private_endpoint_srvs", value)
 
     @property
     @pulumi.getter(name="connectionStringsStandardSrv")
@@ -182,6 +238,18 @@ class _ServerlessInstanceState:
     @connection_strings_standard_srv.setter
     def connection_strings_standard_srv(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "connection_strings_standard_srv", value)
+
+    @property
+    @pulumi.getter(name="continuousBackupEnabled")
+    def continuous_backup_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+        """
+        return pulumi.get(self, "continuous_backup_enabled")
+
+    @continuous_backup_enabled.setter
+    def continuous_backup_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "continuous_backup_enabled", value)
 
     @property
     @pulumi.getter(name="createDate")
@@ -288,12 +356,25 @@ class _ServerlessInstanceState:
     def state_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state_name", value)
 
+    @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
+    @termination_protection_enabled.setter
+    def termination_protection_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "termination_protection_enabled", value)
+
 
 class ServerlessInstance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceLinkArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -301,6 +382,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
                  provider_settings_region_name: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
+                 termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
@@ -333,12 +415,14 @@ class ServerlessInstance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
         :param pulumi.Input[str] project_id: The ID of the organization or project you want to create the serverless instance within.
         :param pulumi.Input[str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         ...
     @overload
@@ -390,6 +474,7 @@ class ServerlessInstance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
                  links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceLinkArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -397,6 +482,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
                  provider_settings_region_name: Optional[pulumi.Input[str]] = None,
                  state_name: Optional[pulumi.Input[str]] = None,
+                 termination_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -406,6 +492,7 @@ class ServerlessInstance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ServerlessInstanceArgs.__new__(ServerlessInstanceArgs)
 
+            __props__.__dict__["continuous_backup_enabled"] = continuous_backup_enabled
             __props__.__dict__["links"] = links
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:
@@ -421,6 +508,8 @@ class ServerlessInstance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'provider_settings_region_name'")
             __props__.__dict__["provider_settings_region_name"] = provider_settings_region_name
             __props__.__dict__["state_name"] = state_name
+            __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
+            __props__.__dict__["connection_strings_private_endpoint_srvs"] = None
             __props__.__dict__["connection_strings_standard_srv"] = None
             __props__.__dict__["create_date"] = None
             __props__.__dict__["mongo_db_version"] = None
@@ -434,7 +523,9 @@ class ServerlessInstance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            connection_strings_private_endpoint_srvs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             connection_strings_standard_srv: Optional[pulumi.Input[str]] = None,
+            continuous_backup_enabled: Optional[pulumi.Input[bool]] = None,
             create_date: Optional[pulumi.Input[str]] = None,
             links: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerlessInstanceLinkArgs']]]]] = None,
             mongo_db_version: Optional[pulumi.Input[str]] = None,
@@ -443,7 +534,8 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_backing_provider_name: Optional[pulumi.Input[str]] = None,
             provider_settings_provider_name: Optional[pulumi.Input[str]] = None,
             provider_settings_region_name: Optional[pulumi.Input[str]] = None,
-            state_name: Optional[pulumi.Input[str]] = None) -> 'ServerlessInstance':
+            state_name: Optional[pulumi.Input[str]] = None,
+            termination_protection_enabled: Optional[pulumi.Input[bool]] = None) -> 'ServerlessInstance':
         """
         Get an existing ServerlessInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -451,7 +543,9 @@ class ServerlessInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] connection_strings_private_endpoint_srvs: List of Serverless Private Endpoint Connections
         :param pulumi.Input[str] connection_strings_standard_srv: Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
+        :param pulumi.Input[bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         :param pulumi.Input[str] create_date: Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
         :param pulumi.Input[str] mongo_db_version: Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
         :param pulumi.Input[str] name: Human-readable label that identifies the serverless instance.
@@ -460,12 +554,15 @@ class ServerlessInstance(pulumi.CustomResource):
         :param pulumi.Input[str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[str] state_name: Stage of deployment of this serverless instance when the resource made its request.
+        :param pulumi.Input[bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ServerlessInstanceState.__new__(_ServerlessInstanceState)
 
+        __props__.__dict__["connection_strings_private_endpoint_srvs"] = connection_strings_private_endpoint_srvs
         __props__.__dict__["connection_strings_standard_srv"] = connection_strings_standard_srv
+        __props__.__dict__["continuous_backup_enabled"] = continuous_backup_enabled
         __props__.__dict__["create_date"] = create_date
         __props__.__dict__["links"] = links
         __props__.__dict__["mongo_db_version"] = mongo_db_version
@@ -475,7 +572,16 @@ class ServerlessInstance(pulumi.CustomResource):
         __props__.__dict__["provider_settings_provider_name"] = provider_settings_provider_name
         __props__.__dict__["provider_settings_region_name"] = provider_settings_region_name
         __props__.__dict__["state_name"] = state_name
+        __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
         return ServerlessInstance(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
+    def connection_strings_private_endpoint_srvs(self) -> pulumi.Output[Sequence[str]]:
+        """
+        List of Serverless Private Endpoint Connections
+        """
+        return pulumi.get(self, "connection_strings_private_endpoint_srvs")
 
     @property
     @pulumi.getter(name="connectionStringsStandardSrv")
@@ -484,6 +590,14 @@ class ServerlessInstance(pulumi.CustomResource):
         Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         """
         return pulumi.get(self, "connection_strings_standard_srv")
+
+    @property
+    @pulumi.getter(name="continuousBackupEnabled")
+    def continuous_backup_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+        """
+        return pulumi.get(self, "continuous_backup_enabled")
 
     @property
     @pulumi.getter(name="createDate")
@@ -553,4 +667,12 @@ class ServerlessInstance(pulumi.CustomResource):
         Stage of deployment of this serverless instance when the resource made its request.
         """
         return pulumi.get(self, "state_name")
+
+    @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> pulumi.Output[bool]:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
 

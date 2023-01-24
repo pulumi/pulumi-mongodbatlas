@@ -40,12 +40,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string LicenseKey;
         /// <summary>
         /// Your Microsoft Teams incoming webhook URL.
-        /// * `PROMETHEUS`
         /// </summary>
         public readonly string? MicrosoftTeamsWebhookUrl;
         /// <summary>
         /// Your Flowdock organization name.
-        /// * `WEBHOOK`
         /// </summary>
         public readonly string OrgName;
         /// <summary>
@@ -54,17 +52,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ProjectId;
         /// <summary>
         /// Your Insights Query Key.
-        /// * `OPS_GENIE`
         /// </summary>
         public readonly string ReadToken;
         /// <summary>
         /// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-        /// * `VICTOR_OPS`
         /// </summary>
         public readonly string Region;
         /// <summary>
         /// An optional field for your Routing Key.
-        /// * `FLOWDOCK`
         /// </summary>
         public readonly string RoutingKey;
         /// <summary>
@@ -73,7 +68,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string? Scheme;
         /// <summary>
         /// An optional field for your webhook secret.
-        /// * `MICROSOFT_TEAMS`
         /// </summary>
         public readonly string Secret;
         /// <summary>
@@ -82,7 +76,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string? ServiceDiscovery;
         /// <summary>
         /// Your Service Key.
-        /// * `DATADOG`
         /// </summary>
         public readonly string ServiceKey;
         public readonly string TeamName;

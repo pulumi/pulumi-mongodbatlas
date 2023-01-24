@@ -5,18 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  */
 export function getNetworkPeering(args: GetNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkPeeringResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getNetworkPeering:getNetworkPeering", {
         "peeringId": args.peeringId,
         "projectId": args.projectId,
@@ -119,9 +112,11 @@ export interface GetNetworkPeeringResult {
      */
     readonly vpcId: string;
 }
-
+/**
+ * ## Example Usage
+ */
 export function getNetworkPeeringOutput(args: GetNetworkPeeringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkPeeringResult> {
-    return pulumi.output(args).apply(a => getNetworkPeering(a, opts))
+    return pulumi.output(args).apply((a: any) => getNetworkPeering(a, opts))
 }
 
 /**

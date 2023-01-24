@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -31,11 +32,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedSettingsIdentityProvider(args: GetFederatedSettingsIdentityProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProviderResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", {
         "federationSettingsId": args.federationSettingsId,
         "identityProviderId": args.identityProviderId,
@@ -123,9 +121,33 @@ export interface GetFederatedSettingsIdentityProviderResult {
      */
     readonly status: string;
 }
-
+/**
+ * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
+ *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     associatedDomains: ["yourdomain.com"],
+ *     ssoDebugEnabled: true,
+ *     status: "ACTIVE",
+ *     ssoUrl: "https://mysso.oktapreview.com/app/mysso_terraformtest_1/exk177f7f7f70h8/sso/saml",
+ *     issuerUri: "http://www.okta.com/exk17f7f7f7f7p50h8",
+ *     requestBinding: "HTTP-POST",
+ *     responseSignatureAlgorithm: "SHA-256",
+ * });
+ * const identityProviderDs = mongodbatlas.getFederatedSettingsIdentityProviderOutput({
+ *     federationSettingsId: identityProvider.id,
+ *     identityProviderId: "0oad47f7fXnk1297",
+ * });
+ * ```
+ */
 export function getFederatedSettingsIdentityProviderOutput(args: GetFederatedSettingsIdentityProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProviderResult> {
-    return pulumi.output(args).apply(a => getFederatedSettingsIdentityProvider(a, opts))
+    return pulumi.output(args).apply((a: any) => getFederatedSettingsIdentityProvider(a, opts))
 }
 
 /**

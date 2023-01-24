@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -42,11 +43,8 @@ import * as utilities from "./utilities";
  * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
  */
 export function getOnlineArchive(args: GetOnlineArchiveArgs, opts?: pulumi.InvokeOptions): Promise<GetOnlineArchiveResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getOnlineArchive:getOnlineArchive", {
         "archiveId": args.archiveId,
         "clusterName": args.clusterName,
@@ -90,9 +88,44 @@ export interface GetOnlineArchiveResult {
     readonly projectId: string;
     readonly state: string;
 }
-
+/**
+ * `mongodbatlas.OnlineArchive` describes an Online Archive
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getOnlineArchive({
+ *     projectId: _var.project_id,
+ *     clusterName: _var.cluster_name,
+ *     archiveId: "5ebad3c1fe9c0ab8d37d61e1",
+ * });
+ * ```
+ * ## Attributes reference
+ *
+ * * `dbName`          -  Name of the database that contains the collection.
+ * * `collName`        -  Name of the collection.
+ * * `criteria`         -  Criteria to use for archiving data.
+ * * `criteria.type`          - Type of criteria (DATE, CUSTOM)
+ * * `criteria.date_field`    - Name of an already indexed date field from the documents. Data is archived when the current date is greater than the value of the date field specified here plus the number of days specified via the `expireAfterDays` parameter.
+ * * `criteria.date_format`   - the date format. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS
+ * * `criteria.expire_after_days` - Number of days that specifies the age limit for the data in the live Atlas cluster.
+ * * `criteria.query` - JSON query to use to select documents for archiving. Only for `CUSTOM` type
+ * * `partitionFields` -  Fields to use to partition data.
+ * * `partition_fields.field_name` - Name of the field. To specify a nested field, use the dot notation.
+ * * `partition_fields.order` - Position of the field in the partition. Value can be: 0,1,2
+ *   By default, the date field specified in the criteria.dateField parameter is in the first position of the partition.
+ * * `partitio_fields.field_type` - Type of the partition field
+ * * `state`    - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
+ *
+ * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
+ */
 export function getOnlineArchiveOutput(args: GetOnlineArchiveOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOnlineArchiveResult> {
-    return pulumi.output(args).apply(a => getOnlineArchive(a, opts))
+    return pulumi.output(args).apply((a: any) => getOnlineArchive(a, opts))
 }
 
 /**

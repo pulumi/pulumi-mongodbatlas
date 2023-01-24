@@ -17,11 +17,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
- * On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
- * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * ## Example Usage
  * 
  * ```java

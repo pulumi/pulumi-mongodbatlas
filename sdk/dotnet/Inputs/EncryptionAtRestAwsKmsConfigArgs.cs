@@ -13,16 +13,35 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class EncryptionAtRestAwsKmsConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("accessKeyId")]
-        public Input<string>? AccessKeyId { get; set; }
+        private Input<string>? _accessKeyId;
+        public Input<string>? AccessKeyId
+        {
+            get => _accessKeyId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accessKeyId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("customerMasterKeyId")]
+        private Input<string>? _customerMasterKeyId;
 
         /// <summary>
         /// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
         /// </summary>
-        [Input("customerMasterKeyId")]
-        public Input<string>? CustomerMasterKeyId { get; set; }
+        public Input<string>? CustomerMasterKeyId
+        {
+            get => _customerMasterKeyId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _customerMasterKeyId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
-        /// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        /// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -40,7 +59,16 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? RoleId { get; set; }
 
         [Input("secretAccessKey")]
-        public Input<string>? SecretAccessKey { get; set; }
+        private Input<string>? _secretAccessKey;
+        public Input<string>? SecretAccessKey
+        {
+            get => _secretAccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public EncryptionAtRestAwsKmsConfigArgs()
         {

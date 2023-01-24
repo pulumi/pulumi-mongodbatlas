@@ -23,7 +23,7 @@ class CustomDbRoleArgs:
         """
         The set of arguments for constructing a CustomDbRole resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[str] role_name: Name of the inherited role. This can either be another custom role or a built-in role.
+        :param pulumi.Input[str] role_name: Name of the custom role.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "role_name", role_name)
@@ -48,7 +48,7 @@ class CustomDbRoleArgs:
     @pulumi.getter(name="roleName")
     def role_name(self) -> pulumi.Input[str]:
         """
-        Name of the inherited role. This can either be another custom role or a built-in role.
+        Name of the custom role.
         """
         return pulumi.get(self, "role_name")
 
@@ -85,7 +85,7 @@ class _CustomDbRoleState:
         """
         Input properties used for looking up and filtering CustomDbRole resources.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[str] role_name: Name of the inherited role. This can either be another custom role or a built-in role.
+        :param pulumi.Input[str] role_name: Name of the custom role.
         """
         if actions is not None:
             pulumi.set(__self__, "actions", actions)
@@ -130,7 +130,7 @@ class _CustomDbRoleState:
     @pulumi.getter(name="roleName")
     def role_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the inherited role. This can either be another custom role or a built-in role.
+        Name of the custom role.
         """
         return pulumi.get(self, "role_name")
 
@@ -258,7 +258,7 @@ class CustomDbRole(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[str] role_name: Name of the inherited role. This can either be another custom role or a built-in role.
+        :param pulumi.Input[str] role_name: Name of the custom role.
         """
         ...
     @overload
@@ -430,7 +430,7 @@ class CustomDbRole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project_id: The unique ID for the project to create the database user.
-        :param pulumi.Input[str] role_name: Name of the inherited role. This can either be another custom role or a built-in role.
+        :param pulumi.Input[str] role_name: Name of the custom role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -464,7 +464,7 @@ class CustomDbRole(pulumi.CustomResource):
     @pulumi.getter(name="roleName")
     def role_name(self) -> pulumi.Output[str]:
         """
-        Name of the inherited role. This can either be another custom role or a built-in role.
+        Name of the custom role.
         """
         return pulumi.get(self, "role_name")
 

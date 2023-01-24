@@ -177,6 +177,21 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.projectOwnerId);
     }
 
+    /**
+     * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     * 
+     */
+    @Import(name="regionUsageRestrictions")
+    private @Nullable Output<String> regionUsageRestrictions;
+
+    /**
+     * @return Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     * 
+     */
+    public Optional<Output<String>> regionUsageRestrictions() {
+        return Optional.ofNullable(this.regionUsageRestrictions);
+    }
+
     @Import(name="teams")
     private @Nullable Output<List<ProjectTeamArgs>> teams;
 
@@ -213,6 +228,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.orgId = $.orgId;
         this.projectOwnerId = $.projectOwnerId;
+        this.regionUsageRestrictions = $.regionUsageRestrictions;
         this.teams = $.teams;
         this.withDefaultAlertsSettings = $.withDefaultAlertsSettings;
     }
@@ -456,6 +472,27 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder projectOwnerId(String projectOwnerId) {
             return projectOwnerId(Output.of(projectOwnerId));
+        }
+
+        /**
+         * @param regionUsageRestrictions Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder regionUsageRestrictions(@Nullable Output<String> regionUsageRestrictions) {
+            $.regionUsageRestrictions = regionUsageRestrictions;
+            return this;
+        }
+
+        /**
+         * @param regionUsageRestrictions Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder regionUsageRestrictions(String regionUsageRestrictions) {
+            return regionUsageRestrictions(Output.of(regionUsageRestrictions));
         }
 
         public Builder teams(@Nullable Output<List<ProjectTeamArgs>> teams) {

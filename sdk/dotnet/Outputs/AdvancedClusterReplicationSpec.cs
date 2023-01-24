@@ -13,9 +13,6 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class AdvancedClusterReplicationSpec
     {
-        /// <summary>
-        /// A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-        /// </summary>
         public readonly ImmutableDictionary<string, string>? ContainerId;
         public readonly string? Id;
         /// <summary>

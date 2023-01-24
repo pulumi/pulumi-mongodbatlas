@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  */
 export function getCustomDnsConfigurationClusterAws(args: GetCustomDnsConfigurationClusterAwsArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDnsConfigurationClusterAwsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", {
         "projectId": args.projectId,
     }, opts);
@@ -44,9 +41,13 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
     readonly id: string;
     readonly projectId: string;
 }
-
+/**
+ * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ */
 export function getCustomDnsConfigurationClusterAwsOutput(args: GetCustomDnsConfigurationClusterAwsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDnsConfigurationClusterAwsResult> {
-    return pulumi.output(args).apply(a => getCustomDnsConfigurationClusterAws(a, opts))
+    return pulumi.output(args).apply((a: any) => getCustomDnsConfigurationClusterAws(a, opts))
 }
 
 /**

@@ -23,152 +23,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
- * ### Example single provider and single region
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.AdvancedCluster;
- * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
- *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                     .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                         .instanceSize(&#34;M10&#34;)
- *                         .nodeCount(1)
- *                         .build())
- *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                         .instanceSize(&#34;M10&#34;)
- *                         .nodeCount(3)
- *                         .build())
- *                     .priority(1)
- *                     .providerName(&#34;AWS&#34;)
- *                     .regionName(&#34;US_EAST_1&#34;)
- *                     .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Example Tenant Cluster
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.AdvancedCluster;
- * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
- *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                     .backingProviderName(&#34;AWS&#34;)
- *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                         .instanceSize(&#34;M5&#34;)
- *                         .build())
- *                     .priority(1)
- *                     .providerName(&#34;TENANT&#34;)
- *                     .regionName(&#34;US_EAST_1&#34;)
- *                     .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Example Multicloud.
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.AdvancedCluster;
- * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new AdvancedCluster(&#34;test&#34;, AdvancedClusterArgs.builder()        
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .projectId(&#34;PROJECT ID&#34;)
- *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
- *                 .regionConfigs(                
- *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
- *                             .nodeCount(1)
- *                             .build())
- *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
- *                             .nodeCount(3)
- *                             .build())
- *                         .priority(1)
- *                         .providerName(&#34;AWS&#34;)
- *                         .regionName(&#34;US_EAST_1&#34;)
- *                         .build(),
- *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
- *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
- *                             .instanceSize(&#34;M10&#34;)
- *                             .nodeCount(2)
- *                             .build())
- *                         .priority(6)
- *                         .providerName(&#34;GCP&#34;)
- *                         .regionName(&#34;NORTH_AMERICA_NORTHEAST_1&#34;)
- *                         .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
  * ## Import
  * 
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -339,14 +193,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.mongoDbVersion;
     }
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * @return Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
     public Output<String> name() {
@@ -359,14 +213,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.paused);
     }
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
      */
     @Export(name="pitEnabled", type=Boolean.class, parameters={})
     private Output<Boolean> pitEnabled;
 
     /**
-     * @return - Flag that indicates if the cluster uses Continuous Cloud Backup.
+     * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
      */
     public Output<Boolean> pitEnabled() {
@@ -401,14 +255,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.replicationSpecs;
     }
     /**
-     * - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+     * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      * 
      */
     @Export(name="rootCertType", type=String.class, parameters={})
     private Output<String> rootCertType;
 
     /**
-     * @return - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+     * @return Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      * 
      */
     public Output<String> rootCertType() {
@@ -441,18 +295,28 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.stateName;
     }
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    @Export(name="terminationProtectionEnabled", type=Boolean.class, parameters={})
+    private Output<Boolean> terminationProtectionEnabled;
+
+    /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Output<Boolean> terminationProtectionEnabled() {
+        return this.terminationProtectionEnabled;
+    }
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
     @Export(name="versionReleaseSystem", type=String.class, parameters={})
     private Output</* @Nullable */ String> versionReleaseSystem;
 
     /**
-     * @return - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+     * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
     public Output<Optional<String>> versionReleaseSystem() {

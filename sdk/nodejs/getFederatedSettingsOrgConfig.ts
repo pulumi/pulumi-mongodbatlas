@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -19,6 +20,7 @@ import * as utilities from "./utilities";
  *     orgId: "627a9683ea7ff7f74de306f14",
  *     domainRestrictionEnabled: false,
  *     domainAllowLists: ["mydomain.com"],
+ *     postAuthRoleGrants: ["ORG_MEMBER"],
  * });
  * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigOutput({
  *     federationSettingsId: orgConnections.id,
@@ -27,11 +29,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedSettingsOrgConfig(args: GetFederatedSettingsOrgConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgConfigResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", {
         "federationSettingsId": args.federationSettingsId,
         "orgId": args.orgId,
@@ -78,15 +77,36 @@ export interface GetFederatedSettingsOrgConfigResult {
     readonly identityProviderId: string;
     readonly orgId: string;
     /**
-     * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      */
     readonly postAuthRoleGrants: string[];
     readonly roleMappings: outputs.GetFederatedSettingsOrgConfigRoleMapping[];
     readonly userConflicts: outputs.GetFederatedSettingsOrgConfigUserConflict[];
 }
-
+/**
+ * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const orgConnections = new mongodbatlas.FederatedSettingsOrgConfig("orgConnections", {
+ *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     orgId: "627a9683ea7ff7f74de306f14",
+ *     domainRestrictionEnabled: false,
+ *     domainAllowLists: ["mydomain.com"],
+ *     postAuthRoleGrants: ["ORG_MEMBER"],
+ * });
+ * const orgConfigsDs = mongodbatlas.getFederatedSettingsOrgConfigOutput({
+ *     federationSettingsId: orgConnections.id,
+ *     orgId: "627a9683ea7ff7f74de306f14",
+ * });
+ * ```
+ */
 export function getFederatedSettingsOrgConfigOutput(args: GetFederatedSettingsOrgConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsOrgConfigResult> {
-    return pulumi.output(args).apply(a => getFederatedSettingsOrgConfig(a, opts))
+    return pulumi.output(args).apply((a: any) => getFederatedSettingsOrgConfig(a, opts))
 }
 
 /**

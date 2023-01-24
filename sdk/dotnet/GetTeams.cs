@@ -12,10 +12,10 @@ namespace Pulumi.Mongodbatlas
     public static class GetTeams
     {
         public static Task<GetTeamsResult> InvokeAsync(GetTeamsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsArgs(), options.WithDefaults());
 
         public static Output<GetTeamsResult> Invoke(GetTeamsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetTeamsResult>("mongodbatlas:index/getTeams:getTeams", args ?? new GetTeamsInvokeArgs(), options.WithDefaults());
     }
 
 

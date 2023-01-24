@@ -38,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, GetThirdPartyIntegrationOutputArgs{
+//			_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, mongodbatlas.GetThirdPartyIntegrationOutputArgs{
 //				ProjectId: testFlowdock.ProjectId,
 //			}, nil)
 //			return nil
@@ -60,7 +60,6 @@ type LookupThirdPartyIntegrationArgs struct {
 	// Whether your cluster has Prometheus enabled.
 	Enabled *bool `pulumi:"enabled"`
 	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
@@ -101,30 +100,23 @@ type LookupThirdPartyIntegrationResult struct {
 	// Your License Key.
 	LicenseKey string `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Flowdock organization name.
-	// * `WEBHOOK`
 	OrgName   string `pulumi:"orgName"`
 	ProjectId string `pulumi:"projectId"`
 	// Your Insights Query Key.
-	// * `OPS_GENIE`
 	ReadToken string `pulumi:"readToken"`
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
-	// * `FLOWDOCK`
 	RoutingKey string `pulumi:"routingKey"`
 	// Your Prometheus protocol scheme configured for requests.
 	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
-	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
-	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
 	TeamName   string `pulumi:"teamName"`
 	// Property equal to its own integration type
@@ -155,7 +147,6 @@ type LookupThirdPartyIntegrationOutputArgs struct {
 	// Whether your cluster has Prometheus enabled.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -237,13 +228,11 @@ func (o LookupThirdPartyIntegrationResultOutput) LicenseKey() pulumi.StringOutpu
 }
 
 // Your Microsoft Teams incoming webhook URL.
-// * `PROMETHEUS`
 func (o LookupThirdPartyIntegrationResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
 }
 
 // Your Flowdock organization name.
-// * `WEBHOOK`
 func (o LookupThirdPartyIntegrationResultOutput) OrgName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.OrgName }).(pulumi.StringOutput)
 }
@@ -253,19 +242,16 @@ func (o LookupThirdPartyIntegrationResultOutput) ProjectId() pulumi.StringOutput
 }
 
 // Your Insights Query Key.
-// * `OPS_GENIE`
 func (o LookupThirdPartyIntegrationResultOutput) ReadToken() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ReadToken }).(pulumi.StringOutput)
 }
 
 // Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-// * `VICTOR_OPS`
 func (o LookupThirdPartyIntegrationResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // An optional field for your Routing Key.
-// * `FLOWDOCK`
 func (o LookupThirdPartyIntegrationResultOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.RoutingKey }).(pulumi.StringOutput)
 }
@@ -276,7 +262,6 @@ func (o LookupThirdPartyIntegrationResultOutput) Scheme() pulumi.StringPtrOutput
 }
 
 // An optional field for your webhook secret.
-// * `MICROSOFT_TEAMS`
 func (o LookupThirdPartyIntegrationResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Secret }).(pulumi.StringOutput)
 }
@@ -287,7 +272,6 @@ func (o LookupThirdPartyIntegrationResultOutput) ServiceDiscovery() pulumi.Strin
 }
 
 // Your Service Key.
-// * `DATADOG`
 func (o LookupThirdPartyIntegrationResultOutput) ServiceKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.ServiceKey }).(pulumi.StringOutput)
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -13,11 +14,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudProviderSnapshots(args: GetCloudProviderSnapshotsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderSnapshots:getCloudProviderSnapshots", {
         "clusterName": args.clusterName,
         "itemsPerPage": args.itemsPerPage,
@@ -63,9 +61,15 @@ export interface GetCloudProviderSnapshotsResult {
     readonly results: outputs.GetCloudProviderSnapshotsResult[];
     readonly totalCount: number;
 }
-
+/**
+ * **WARNING:** This datasource is deprecated, use `mongodbatlas.getCloudBackupSnapshots`
+ *
+ * `mongodbatlas.getCloudProviderSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getCloudProviderSnapshotsOutput(args: GetCloudProviderSnapshotsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotsResult> {
-    return pulumi.output(args).apply(a => getCloudProviderSnapshots(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudProviderSnapshots(a, opts))
 }
 
 /**

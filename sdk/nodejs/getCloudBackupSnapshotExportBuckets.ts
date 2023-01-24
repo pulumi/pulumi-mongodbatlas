@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -16,23 +17,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("test", {
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
  *     bucketName: "example-bucket",
  *     cloudProvider: "AWS",
  *     iamRoleId: "{IAM_ROLE_ID}",
  *     projectId: "{PROJECT_ID}",
  * });
- * const testCloudBackupSnapshotExportBuckets = pulumi.output(mongodbatlas.getCloudBackupSnapshotExportBuckets({
+ * const testCloudBackupSnapshotExportBuckets = mongodbatlas.getCloudBackupSnapshotExportBuckets({
  *     projectId: "{PROJECT_ID}",
- * }));
+ * });
  * ```
  */
 export function getCloudBackupSnapshotExportBuckets(args: GetCloudBackupSnapshotExportBucketsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportBucketsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", {
         "itemsPerPage": args.itemsPerPage,
         "pageNum": args.pageNum,
@@ -78,9 +76,30 @@ export interface GetCloudBackupSnapshotExportBucketsResult {
     readonly results: outputs.GetCloudBackupSnapshotExportBucketsResult[];
     readonly totalCount: number;
 }
-
+/**
+ * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ *     bucketName: "example-bucket",
+ *     cloudProvider: "AWS",
+ *     iamRoleId: "{IAM_ROLE_ID}",
+ *     projectId: "{PROJECT_ID}",
+ * });
+ * const testCloudBackupSnapshotExportBuckets = mongodbatlas.getCloudBackupSnapshotExportBuckets({
+ *     projectId: "{PROJECT_ID}",
+ * });
+ * ```
+ */
 export function getCloudBackupSnapshotExportBucketsOutput(args: GetCloudBackupSnapshotExportBucketsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketsResult> {
-    return pulumi.output(args).apply(a => getCloudBackupSnapshotExportBuckets(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportBuckets(a, opts))
 }
 
 /**

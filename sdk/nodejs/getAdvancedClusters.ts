@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -15,11 +16,8 @@ import * as utilities from "./utilities";
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  */
 export function getAdvancedClusters(args: GetAdvancedClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetAdvancedClustersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", {
         "projectId": args.projectId,
     }, opts);
@@ -49,9 +47,17 @@ export interface GetAdvancedClustersResult {
      */
     readonly results: outputs.GetAdvancedClustersResult[];
 }
-
+/**
+ * `mongodbatlas.Cluster` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * > **IMPORTANT:**
+ * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+ * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ */
 export function getAdvancedClustersOutput(args: GetAdvancedClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClustersResult> {
-    return pulumi.output(args).apply(a => getAdvancedClusters(a, opts))
+    return pulumi.output(args).apply((a: any) => getAdvancedClusters(a, opts))
 }
 
 /**

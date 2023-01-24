@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const adlTest = new mongodbatlas.PrivatelinkEndpointServiceAdl("adl_test", {
+ * const adlTest = new mongodbatlas.PrivatelinkEndpointServiceAdl("adlTest", {
  *     comment: "comments for private link endpoint adl",
  *     endpointId: "<ENDPOINT_ID>",
  *     projectId: "<PROJECT_ID>",

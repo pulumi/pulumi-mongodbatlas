@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -38,11 +39,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCustomDbRoles(args: GetCustomDbRolesArgs, opts?: pulumi.InvokeOptions): Promise<GetCustomDbRolesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCustomDbRoles:getCustomDbRoles", {
         "projectId": args.projectId,
     }, opts);
@@ -72,9 +70,40 @@ export interface GetCustomDbRolesResult {
      */
     readonly results: outputs.GetCustomDbRolesResult[];
 }
-
+/**
+ * `mongodbatlas.getCustomDbRoles` describe all Custom DB Roles. This represents a custom db roles.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testDatabaseUser = new mongodbatlas.DatabaseUser("testDatabaseUser", {
+ *     username: "test-acc-username",
+ *     password: "test-acc-password",
+ *     projectId: "<PROJECT-ID>",
+ *     databaseName: "admin",
+ *     roles: [
+ *         {
+ *             roleName: "readWrite",
+ *             databaseName: "admin",
+ *         },
+ *         {
+ *             roleName: "atlasAdmin",
+ *             databaseName: "admin",
+ *         },
+ *     ],
+ * });
+ * const testCustomDbRoles = mongodbatlas.getCustomDbRoles({
+ *     projectId: mongodbatlas_custom_db_role.test.project_id,
+ * });
+ * ```
+ */
 export function getCustomDbRolesOutput(args: GetCustomDbRolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCustomDbRolesResult> {
-    return pulumi.output(args).apply(a => getCustomDbRoles(a, opts))
+    return pulumi.output(args).apply((a: any) => getCustomDbRoles(a, opts))
 }
 
 /**

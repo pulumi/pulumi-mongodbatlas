@@ -22,7 +22,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, name=None, org_id=None, project_id=None, teams=None):
+    def __init__(__self__, api_keys=None, cluster_count=None, created=None, id=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, teams=None):
         if api_keys and not isinstance(api_keys, list):
             raise TypeError("Expected argument 'api_keys' to be a list")
         pulumi.set(__self__, "api_keys", api_keys)
@@ -59,6 +59,9 @@ class GetProjectResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if region_usage_restrictions and not isinstance(region_usage_restrictions, str):
+            raise TypeError("Expected argument 'region_usage_restrictions' to be a str")
+        pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
         if teams and not isinstance(teams, list):
             raise TypeError("Expected argument 'teams' to be a list")
         pulumi.set(__self__, "teams", teams)
@@ -71,11 +74,20 @@ class GetProjectResult:
     @property
     @pulumi.getter(name="clusterCount")
     def cluster_count(self) -> int:
+        """
+        The number of Atlas clusters deployed in the project.
+        """
         return pulumi.get(self, "cluster_count")
 
     @property
     @pulumi.getter
     def created(self) -> str:
+        """
+        The ISO-8601-formatted timestamp of when Atlas created the project.
+        * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+        * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+        The following are valid roles:
+        """
         return pulumi.get(self, "created")
 
     @property
@@ -139,26 +151,6 @@ class GetProjectResult:
     def org_id(self) -> str:
         """
         The ID of the organization you want to create the project within.
-        *`cluster_count` - The number of Atlas clusters deployed in the project.
-        *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-        * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-        * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-        The following are valid roles:
-        * `GROUP_OWNER`
-        * `GROUP_READ_ONLY`
-        * `GROUP_DATA_ACCESS_ADMIN`
-        * `GROUP_DATA_ACCESS_READ_WRITE`
-        * `GROUP_DATA_ACCESS_READ_ONLY`
-        * `GROUP_CLUSTER_MANAGER`
-        * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-        * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
-        The following are valid roles:
-        * `GROUP_OWNER`
-        * `GROUP_READ_ONLY`
-        * `GROUP_DATA_ACCESS_ADMIN`
-        * `GROUP_DATA_ACCESS_READ_WRITE`
-        * `GROUP_DATA_ACCESS_READ_ONLY`
-        * `GROUP_CLUSTER_MANAGER`
         """
         return pulumi.get(self, "org_id")
 
@@ -166,6 +158,14 @@ class GetProjectResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="regionUsageRestrictions")
+    def region_usage_restrictions(self) -> str:
+        """
+        If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        """
+        return pulumi.get(self, "region_usage_restrictions")
 
     @property
     @pulumi.getter
@@ -191,6 +191,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             name=self.name,
             org_id=self.org_id,
             project_id=self.project_id,
+            region_usage_restrictions=self.region_usage_restrictions,
             teams=self.teams)
 
 
@@ -227,6 +228,7 @@ def get_project(name: Optional[str] = None,
         name=__ret__.name,
         org_id=__ret__.org_id,
         project_id=__ret__.project_id,
+        region_usage_restrictions=__ret__.region_usage_restrictions,
         teams=__ret__.teams)
 
 

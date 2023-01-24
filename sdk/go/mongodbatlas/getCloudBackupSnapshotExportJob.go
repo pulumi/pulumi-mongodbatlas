@@ -26,7 +26,7 @@ func LookupCloudBackupSnapshotExportJob(ctx *pulumi.Context, args *LookupCloudBa
 type LookupCloudBackupSnapshotExportJobArgs struct {
 	// Name of the Atlas cluster whose export job you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`
-	// -(Required) Unique identifier of the export job to retrieve.
+	// Unique identifier of the export job to retrieve.
 	ExportJobId string `pulumi:"exportJobId"`
 	Id          string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
@@ -79,7 +79,7 @@ func LookupCloudBackupSnapshotExportJobOutput(ctx *pulumi.Context, args LookupCl
 type LookupCloudBackupSnapshotExportJobOutputArgs struct {
 	// Name of the Atlas cluster whose export job you want to retrieve.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// -(Required) Unique identifier of the export job to retrieve.
+	// Unique identifier of the export job to retrieve.
 	ExportJobId pulumi.StringInput `pulumi:"exportJobId"`
 	Id          pulumi.StringInput `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.

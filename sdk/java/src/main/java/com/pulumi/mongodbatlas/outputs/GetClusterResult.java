@@ -237,6 +237,11 @@ public final class GetClusterResult {
      */
     private String stateName;
     /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    private Boolean terminationProtectionEnabled;
+    /**
      * @return Release cadence that Atlas uses for this cluster.
      * 
      */
@@ -542,6 +547,13 @@ public final class GetClusterResult {
         return this.stateName;
     }
     /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Boolean terminationProtectionEnabled() {
+        return this.terminationProtectionEnabled;
+    }
+    /**
      * @return Release cadence that Atlas uses for this cluster.
      * 
      */
@@ -599,6 +611,7 @@ public final class GetClusterResult {
         private List<GetClusterSnapshotBackupPolicy> snapshotBackupPolicies;
         private String srvAddress;
         private String stateName;
+        private Boolean terminationProtectionEnabled;
         private String versionReleaseSystem;
         public Builder() {}
         public Builder(GetClusterResult defaults) {
@@ -644,6 +657,7 @@ public final class GetClusterResult {
     	      this.snapshotBackupPolicies = defaults.snapshotBackupPolicies;
     	      this.srvAddress = defaults.srvAddress;
     	      this.stateName = defaults.stateName;
+    	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
 
@@ -871,6 +885,11 @@ public final class GetClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
+            this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
+            return this;
+        }
+        @CustomType.Setter
         public Builder versionReleaseSystem(String versionReleaseSystem) {
             this.versionReleaseSystem = Objects.requireNonNull(versionReleaseSystem);
             return this;
@@ -918,6 +937,7 @@ public final class GetClusterResult {
             o.snapshotBackupPolicies = snapshotBackupPolicies;
             o.srvAddress = srvAddress;
             o.stateName = stateName;
+            o.terminationProtectionEnabled = terminationProtectionEnabled;
             o.versionReleaseSystem = versionReleaseSystem;
             return o;
         }

@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// </summary>
         public static Task<GetAdvancedClustersResult> InvokeAsync(GetAdvancedClustersArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.Cluster` describes all Advanced Clusters by the provided project_id. The data source requires your Project ID.
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// </summary>
         public static Output<GetAdvancedClustersResult> Invoke(GetAdvancedClustersInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -14,11 +14,8 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getNetworkContainer(args: GetNetworkContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainerResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getNetworkContainer:getNetworkContainer", {
         "containerId": args.containerId,
         "projectId": args.projectId,
@@ -94,9 +91,17 @@ export interface GetNetworkContainerResult {
      */
     readonly vpcId: string;
 }
-
+/**
+ * `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
+ *
+ * > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ */
 export function getNetworkContainerOutput(args: GetNetworkContainerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainerResult> {
-    return pulumi.output(args).apply(a => getNetworkContainer(a, opts))
+    return pulumi.output(args).apply((a: any) => getNetworkContainer(a, opts))
 }
 
 /**

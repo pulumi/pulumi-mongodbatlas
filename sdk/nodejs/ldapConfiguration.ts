@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -170,7 +171,7 @@ export class LdapConfiguration extends pulumi.CustomResource {
             resourceInputs["authenticationEnabled"] = args ? args.authenticationEnabled : undefined;
             resourceInputs["authorizationEnabled"] = args ? args.authorizationEnabled : undefined;
             resourceInputs["authzQueryTemplate"] = args ? args.authzQueryTemplate : undefined;
-            resourceInputs["bindPassword"] = args ? args.bindPassword : undefined;
+            resourceInputs["bindPassword"] = args?.bindPassword ? pulumi.secret(args.bindPassword) : undefined;
             resourceInputs["bindUsername"] = args ? args.bindUsername : undefined;
             resourceInputs["caCertificate"] = args ? args.caCertificate : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
@@ -179,6 +180,8 @@ export class LdapConfiguration extends pulumi.CustomResource {
             resourceInputs["userToDnMappings"] = args ? args.userToDnMappings : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["bindPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(LdapConfiguration.__pulumiType, name, resourceInputs, opts);
     }
 }

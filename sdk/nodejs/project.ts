@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -119,6 +120,10 @@ export class Project extends pulumi.CustomResource {
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
     public readonly projectOwnerId!: pulumi.Output<string | undefined>;
+    /**
+     * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     */
+    public readonly regionUsageRestrictions!: pulumi.Output<string>;
     public readonly teams!: pulumi.Output<outputs.ProjectTeam[] | undefined>;
     /**
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
@@ -149,6 +154,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["orgId"] = state ? state.orgId : undefined;
             resourceInputs["projectOwnerId"] = state ? state.projectOwnerId : undefined;
+            resourceInputs["regionUsageRestrictions"] = state ? state.regionUsageRestrictions : undefined;
             resourceInputs["teams"] = state ? state.teams : undefined;
             resourceInputs["withDefaultAlertsSettings"] = state ? state.withDefaultAlertsSettings : undefined;
         } else {
@@ -165,6 +171,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["orgId"] = args ? args.orgId : undefined;
             resourceInputs["projectOwnerId"] = args ? args.projectOwnerId : undefined;
+            resourceInputs["regionUsageRestrictions"] = args ? args.regionUsageRestrictions : undefined;
             resourceInputs["teams"] = args ? args.teams : undefined;
             resourceInputs["withDefaultAlertsSettings"] = args ? args.withDefaultAlertsSettings : undefined;
             resourceInputs["clusterCount"] = undefined /*out*/;
@@ -220,6 +227,10 @@ export interface ProjectState {
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
     projectOwnerId?: pulumi.Input<string>;
+    /**
+     * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     */
+    regionUsageRestrictions?: pulumi.Input<string>;
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
     /**
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
@@ -264,6 +275,10 @@ export interface ProjectArgs {
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
     projectOwnerId?: pulumi.Input<string>;
+    /**
+     * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     */
+    regionUsageRestrictions?: pulumi.Input<string>;
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
     /**
      * It allows users to disable the creation of the default alert settings. By default, this flag is set to true.

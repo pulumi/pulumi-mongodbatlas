@@ -43,14 +43,14 @@ import (
 //				Username:     pulumi.String("myUsername"),
 //				X509Type:     pulumi.String("MANAGED"),
 //				DatabaseName: pulumi.String(fmt.Sprintf("$external")),
-//				Roles: DatabaseUserRoleArray{
-//					&DatabaseUserRoleArgs{
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
 //						RoleName:     pulumi.String("atlasAdmin"),
 //						DatabaseName: pulumi.String("admin"),
 //					},
 //				},
-//				Labels: DatabaseUserLabelArray{
-//					&DatabaseUserLabelArgs{
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
 //						Key:   pulumi.String("My Key"),
 //						Value: pulumi.String("My Value"),
 //					},
@@ -164,6 +164,14 @@ func NewX509AuthenticationDatabaseUser(ctx *pulumi.Context,
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
+	if args.CustomerX509Cas != nil {
+		args.CustomerX509Cas = pulumi.ToSecret(args.CustomerX509Cas).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"currentCertificate",
+		"customerX509Cas",
+	})
+	opts = append(opts, secrets)
 	var resource X509AuthenticationDatabaseUser
 	err := ctx.RegisterResource("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", name, args, &resource, opts...)
 	if err != nil {

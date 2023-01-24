@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ThirdPartyIntegrationState;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -155,7 +156,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     }
     /**
      * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      * 
      */
     @Export(name="microsoftTeamsWebhookUrl", type=String.class, parameters={})
@@ -163,7 +163,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      * 
      */
     public Output<Optional<String>> microsoftTeamsWebhookUrl() {
@@ -171,7 +170,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     }
     /**
      * Your Flowdock organization name.
-     * * `WEBHOOK`
      * 
      */
     @Export(name="orgName", type=String.class, parameters={})
@@ -179,7 +177,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Your Flowdock organization name.
-     * * `WEBHOOK`
      * 
      */
     public Output<Optional<String>> orgName() {
@@ -215,7 +212,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     }
     /**
      * Your Insights Query Key.
-     * * `OPS_GENIE`
      * 
      */
     @Export(name="readToken", type=String.class, parameters={})
@@ -223,7 +219,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Your Insights Query Key.
-     * * `OPS_GENIE`
      * 
      */
     public Output<Optional<String>> readToken() {
@@ -231,7 +226,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     }
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-     * * `VICTOR_OPS`
      * 
      */
     @Export(name="region", type=String.class, parameters={})
@@ -239,7 +233,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-     * * `VICTOR_OPS`
      * 
      */
     public Output<Optional<String>> region() {
@@ -247,7 +240,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     }
     /**
      * An optional field for your Routing Key.
-     * * `FLOWDOCK`
      * 
      */
     @Export(name="routingKey", type=String.class, parameters={})
@@ -255,7 +247,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return An optional field for your Routing Key.
-     * * `FLOWDOCK`
      * 
      */
     public Output<Optional<String>> routingKey() {
@@ -277,7 +268,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     }
     /**
      * An optional field for your webhook secret.
-     * * `MICROSOFT_TEAMS`
      * 
      */
     @Export(name="secret", type=String.class, parameters={})
@@ -285,7 +275,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return An optional field for your webhook secret.
-     * * `MICROSOFT_TEAMS`
      * 
      */
     public Output<Optional<String>> secret() {
@@ -307,7 +296,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     }
     /**
      * Your Service Key.
-     * * `DATADOG`
      * 
      */
     @Export(name="serviceKey", type=String.class, parameters={})
@@ -315,7 +303,6 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Your Service Key.
-     * * `DATADOG`
      * 
      */
     public Output<Optional<String>> serviceKey() {
@@ -336,6 +323,8 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * VICTOR_OPS
      * * FLOWDOCK
      * * WEBHOOK
+     * * MICROSOFT_TEAMS
+     * * PROMETHEUS
      * 
      */
     @Export(name="type", type=String.class, parameters={})
@@ -350,6 +339,8 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
      * * VICTOR_OPS
      * * FLOWDOCK
      * * WEBHOOK
+     * * MICROSOFT_TEAMS
+     * * PROMETHEUS
      * 
      */
     public Output<String> type() {
@@ -430,6 +421,20 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "apiKey",
+                "apiToken",
+                "licenseKey",
+                "microsoftTeamsWebhookUrl",
+                "password",
+                "readToken",
+                "routingKey",
+                "secret",
+                "serviceDiscovery",
+                "serviceKey",
+                "userName",
+                "writeToken"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

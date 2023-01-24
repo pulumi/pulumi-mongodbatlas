@@ -65,6 +65,11 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable Integer intervalMin;
     /**
+     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     * 
+     */
+    private @Nullable String microsoftTeamsWebhookUrl;
+    /**
      * @return Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      * 
      */
@@ -113,9 +118,6 @@ public final class AlertConfigurationNotification {
     /**
      * @return Type of alert notification.
      * Accepted values are:
-     * - `DATADOG`
-     * - `EMAIL`
-     * - `FLOWDOCK`
      * 
      */
     private @Nullable String typeName;
@@ -134,6 +136,16 @@ public final class AlertConfigurationNotification {
      * 
      */
     private @Nullable String victorOpsRoutingKey;
+    /**
+     * @return Optional authentication secret for the `WEBHOOK` notifications type.
+     * 
+     */
+    private @Nullable String webhookSecret;
+    /**
+     * @return Target URL  for the `WEBHOOK` notifications type.
+     * 
+     */
+    private @Nullable String webhookUrl;
 
     private AlertConfigurationNotification() {}
     /**
@@ -207,6 +219,13 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.intervalMin);
     }
     /**
+     * @return Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     * 
+     */
+    public Optional<String> microsoftTeamsWebhookUrl() {
+        return Optional.ofNullable(this.microsoftTeamsWebhookUrl);
+    }
+    /**
      * @return Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      * 
      */
@@ -273,9 +292,6 @@ public final class AlertConfigurationNotification {
     /**
      * @return Type of alert notification.
      * Accepted values are:
-     * - `DATADOG`
-     * - `EMAIL`
-     * - `FLOWDOCK`
      * 
      */
     public Optional<String> typeName() {
@@ -302,6 +318,20 @@ public final class AlertConfigurationNotification {
     public Optional<String> victorOpsRoutingKey() {
         return Optional.ofNullable(this.victorOpsRoutingKey);
     }
+    /**
+     * @return Optional authentication secret for the `WEBHOOK` notifications type.
+     * 
+     */
+    public Optional<String> webhookSecret() {
+        return Optional.ofNullable(this.webhookSecret);
+    }
+    /**
+     * @return Target URL  for the `WEBHOOK` notifications type.
+     * 
+     */
+    public Optional<String> webhookUrl() {
+        return Optional.ofNullable(this.webhookUrl);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -322,6 +352,7 @@ public final class AlertConfigurationNotification {
         private @Nullable String flowName;
         private @Nullable String flowdockApiToken;
         private @Nullable Integer intervalMin;
+        private @Nullable String microsoftTeamsWebhookUrl;
         private @Nullable String mobileNumber;
         private @Nullable String opsGenieApiKey;
         private @Nullable String opsGenieRegion;
@@ -335,6 +366,8 @@ public final class AlertConfigurationNotification {
         private @Nullable String username;
         private @Nullable String victorOpsApiKey;
         private @Nullable String victorOpsRoutingKey;
+        private @Nullable String webhookSecret;
+        private @Nullable String webhookUrl;
         public Builder() {}
         public Builder(AlertConfigurationNotification defaults) {
     	      Objects.requireNonNull(defaults);
@@ -348,6 +381,7 @@ public final class AlertConfigurationNotification {
     	      this.flowName = defaults.flowName;
     	      this.flowdockApiToken = defaults.flowdockApiToken;
     	      this.intervalMin = defaults.intervalMin;
+    	      this.microsoftTeamsWebhookUrl = defaults.microsoftTeamsWebhookUrl;
     	      this.mobileNumber = defaults.mobileNumber;
     	      this.opsGenieApiKey = defaults.opsGenieApiKey;
     	      this.opsGenieRegion = defaults.opsGenieRegion;
@@ -361,6 +395,8 @@ public final class AlertConfigurationNotification {
     	      this.username = defaults.username;
     	      this.victorOpsApiKey = defaults.victorOpsApiKey;
     	      this.victorOpsRoutingKey = defaults.victorOpsRoutingKey;
+    	      this.webhookSecret = defaults.webhookSecret;
+    	      this.webhookUrl = defaults.webhookUrl;
         }
 
         @CustomType.Setter
@@ -411,6 +447,11 @@ public final class AlertConfigurationNotification {
         @CustomType.Setter
         public Builder intervalMin(@Nullable Integer intervalMin) {
             this.intervalMin = intervalMin;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder microsoftTeamsWebhookUrl(@Nullable String microsoftTeamsWebhookUrl) {
+            this.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             return this;
         }
         @CustomType.Setter
@@ -481,6 +522,16 @@ public final class AlertConfigurationNotification {
             this.victorOpsRoutingKey = victorOpsRoutingKey;
             return this;
         }
+        @CustomType.Setter
+        public Builder webhookSecret(@Nullable String webhookSecret) {
+            this.webhookSecret = webhookSecret;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder webhookUrl(@Nullable String webhookUrl) {
+            this.webhookUrl = webhookUrl;
+            return this;
+        }
         public AlertConfigurationNotification build() {
             final var o = new AlertConfigurationNotification();
             o.apiToken = apiToken;
@@ -493,6 +544,7 @@ public final class AlertConfigurationNotification {
             o.flowName = flowName;
             o.flowdockApiToken = flowdockApiToken;
             o.intervalMin = intervalMin;
+            o.microsoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             o.mobileNumber = mobileNumber;
             o.opsGenieApiKey = opsGenieApiKey;
             o.opsGenieRegion = opsGenieRegion;
@@ -506,6 +558,8 @@ public final class AlertConfigurationNotification {
             o.username = username;
             o.victorOpsApiKey = victorOpsApiKey;
             o.victorOpsRoutingKey = victorOpsRoutingKey;
+            o.webhookSecret = webhookSecret;
+            o.webhookUrl = webhookUrl;
             return o;
         }
     }

@@ -245,14 +245,14 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * @return Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
     public Optional<Output<String>> name() {
@@ -260,14 +260,14 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of shards to deploy in the specified zone, minimum 1.
+     * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     @Import(name="numShards")
     private @Nullable Output<Integer> numShards;
 
     /**
-     * @return Number of shards to deploy in the specified zone, minimum 1.
+     * @return Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     public Optional<Output<Integer>> numShards() {
@@ -282,14 +282,14 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
      * 
      */
     @Import(name="pitEnabled")
     private @Nullable Output<Boolean> pitEnabled;
 
     /**
-     * @return - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+     * @return Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
      * 
      */
     public Optional<Output<Boolean>> pitEnabled() {
@@ -512,18 +512,29 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    @Import(name="terminationProtectionEnabled")
+    private @Nullable Output<Boolean> terminationProtectionEnabled;
+
+    /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Optional<Output<Boolean>> terminationProtectionEnabled() {
+        return Optional.ofNullable(this.terminationProtectionEnabled);
+    }
+
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
     @Import(name="versionReleaseSystem")
     private @Nullable Output<String> versionReleaseSystem;
 
     /**
-     * @return - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+     * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
     public Optional<Output<String>> versionReleaseSystem() {
@@ -564,6 +575,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         this.providerVolumeType = $.providerVolumeType;
         this.replicationFactor = $.replicationFactor;
         this.replicationSpecs = $.replicationSpecs;
+        this.terminationProtectionEnabled = $.terminationProtectionEnabled;
         this.versionReleaseSystem = $.versionReleaseSystem;
     }
 
@@ -886,7 +898,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+         * @param name Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
          * 
          * @return builder
          * 
@@ -897,7 +909,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+         * @param name Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
          * 
          * @return builder
          * 
@@ -907,7 +919,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param numShards Number of shards to deploy in the specified zone, minimum 1.
+         * @param numShards Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
          * 
          * @return builder
          * 
@@ -918,7 +930,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param numShards Number of shards to deploy in the specified zone, minimum 1.
+         * @param numShards Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
          * 
          * @return builder
          * 
@@ -937,7 +949,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pitEnabled - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+         * @param pitEnabled Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
          * 
          * @return builder
          * 
@@ -948,7 +960,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pitEnabled - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+         * @param pitEnabled Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
          * 
          * @return builder
          * 
@@ -1261,9 +1273,28 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param versionReleaseSystem - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-         * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-         * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+         * @param terminationProtectionEnabled Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder terminationProtectionEnabled(@Nullable Output<Boolean> terminationProtectionEnabled) {
+            $.terminationProtectionEnabled = terminationProtectionEnabled;
+            return this;
+        }
+
+        /**
+         * @param terminationProtectionEnabled Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
+            return terminationProtectionEnabled(Output.of(terminationProtectionEnabled));
+        }
+
+        /**
+         * @param versionReleaseSystem Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
          * 
          * @return builder
          * 
@@ -1274,9 +1305,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param versionReleaseSystem - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-         * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-         * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+         * @param versionReleaseSystem Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
          * 
          * @return builder
          * 

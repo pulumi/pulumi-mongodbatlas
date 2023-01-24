@@ -20,7 +20,7 @@ public final class ClusterReplicationSpec {
      */
     private @Nullable String id;
     /**
-     * @return Number of shards to deploy in the specified zone, minimum 1.
+     * @return Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     private Integer numShards;
@@ -44,7 +44,7 @@ public final class ClusterReplicationSpec {
         return Optional.ofNullable(this.id);
     }
     /**
-     * @return Number of shards to deploy in the specified zone, minimum 1.
+     * @return Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     public Integer numShards() {

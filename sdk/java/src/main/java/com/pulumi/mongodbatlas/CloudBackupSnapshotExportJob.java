@@ -18,10 +18,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * `mongodbatlas.CloudBackupSnapshotExportJob` resource allows you to create a cloud backup snapshot export job for the specified project.
- * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;

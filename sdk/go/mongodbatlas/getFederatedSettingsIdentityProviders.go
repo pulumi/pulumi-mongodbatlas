@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `FederatedSettingsIdentityProvider` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+// `getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 //
 // ## Example Usage
 //
@@ -37,6 +37,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_ = identityProvider.ID().ApplyT(func(id string) (mongodbatlas.GetFederatedSettingsIdentityProvidersResult, error) {
+//				return mongodbatlas.LookupFederatedSettingsIdentityProvidersOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProvidersOutputArgs{
+//					FederationSettingsId: id,
+//					PageNum:              1,
+//					ItemsPerPage:         5,
+//				}, nil), nil
+//			}).(mongodbatlas.GetFederatedSettingsIdentityProvidersResultOutput)
 //			return nil
 //		})
 //	}

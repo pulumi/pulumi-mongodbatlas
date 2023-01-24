@@ -43,7 +43,7 @@ import (
 //				ProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
 //				ClusterName: pulumi.String("MyCluster"),
 //				SnapshotId:  testCloudBackupSnapshot.ID(),
-//				DeliveryTypeConfig: &CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
+//				DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
 //					Automated:         pulumi.Bool(true),
 //					TargetClusterName: pulumi.String("MyCluster"),
 //					TargetProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
@@ -52,6 +52,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_ = pulumi.All(testCloudBackupSnapshotRestoreJob.ProjectId, testCloudBackupSnapshotRestoreJob.ClusterName).ApplyT(func(_args []interface{}) (mongodbatlas.GetCloudBackupSnapshotRestoreJobsResult, error) {
+//				projectId := _args[0].(string)
+//				clusterName := _args[1].(string)
+//				return mongodbatlas.LookupCloudBackupSnapshotRestoreJobsOutput(ctx, mongodbatlas.GetCloudBackupSnapshotRestoreJobsOutputArgs{
+//					ProjectId:    projectId,
+//					ClusterName:  clusterName,
+//					PageNum:      1,
+//					ItemsPerPage: 5,
+//				}, nil), nil
+//			}).(mongodbatlas.GetCloudBackupSnapshotRestoreJobsResultOutput)
 //			return nil
 //		})
 //	}

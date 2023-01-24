@@ -72,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCustomDbRoleResult> InvokeAsync(GetCustomDbRoleArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.CustomDbRole` describe a Custom DB Role. This represents a custom db role.
@@ -135,7 +135,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetCustomDbRoleResult> Invoke(GetCustomDbRoleInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -206,6 +206,9 @@ namespace Pulumi.Mongodbatlas
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetCustomDbRoleInheritedRoleResult> InheritedRoles;
         public readonly string ProjectId;
+        /// <summary>
+        /// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+        /// </summary>
         public readonly string RoleName;
 
         [OutputConstructor]

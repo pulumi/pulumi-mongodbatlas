@@ -938,7 +938,6 @@ func (o AdvancedClusterLabelArrayOutput) Index(i pulumi.IntInput) AdvancedCluste
 }
 
 type AdvancedClusterReplicationSpec struct {
-	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId map[string]string `pulumi:"containerId"`
 	Id          *string           `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -961,7 +960,6 @@ type AdvancedClusterReplicationSpecInput interface {
 }
 
 type AdvancedClusterReplicationSpecArgs struct {
-	// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
 	Id          pulumi.StringPtrInput `pulumi:"id"`
 	// Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
@@ -1023,7 +1021,6 @@ func (o AdvancedClusterReplicationSpecOutput) ToAdvancedClusterReplicationSpecOu
 	return o
 }
 
-// A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
 func (o AdvancedClusterReplicationSpecOutput) ContainerId() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) map[string]string { return v.ContainerId }).(pulumi.StringMapOutput)
 }
@@ -2044,17 +2041,12 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) NodeCo
 type AlertConfigurationMatcher struct {
 	// Name of the field in the target object to match on.
 	FieldName *string `pulumi:"fieldName"`
-	// Operator to apply when checking the current metric value against the threshold value.
+	// If omitted, the configuration is disabled.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
+	// Accepted values are:
+	// Accepted values are:
 	Operator *string `pulumi:"operator"`
-	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-	// - `PRIMARY`
-	// - `SECONDARY`
-	// - `STANDALONE`
-	// - `CONFIG`
-	// - `MONGOS`
+	// If omitted, the configuration is disabled.
 	Value *string `pulumi:"value"`
 }
 
@@ -2072,17 +2064,12 @@ type AlertConfigurationMatcherInput interface {
 type AlertConfigurationMatcherArgs struct {
 	// Name of the field in the target object to match on.
 	FieldName pulumi.StringPtrInput `pulumi:"fieldName"`
-	// Operator to apply when checking the current metric value against the threshold value.
+	// If omitted, the configuration is disabled.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
+	// Accepted values are:
+	// Accepted values are:
 	Operator pulumi.StringPtrInput `pulumi:"operator"`
-	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-	// - `PRIMARY`
-	// - `SECONDARY`
-	// - `STANDALONE`
-	// - `CONFIG`
-	// - `MONGOS`
+	// If omitted, the configuration is disabled.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -2142,20 +2129,15 @@ func (o AlertConfigurationMatcherOutput) FieldName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMatcher) *string { return v.FieldName }).(pulumi.StringPtrOutput)
 }
 
-// Operator to apply when checking the current metric value against the threshold value.
+// If omitted, the configuration is disabled.
 // Accepted values are:
-// - `GREATER_THAN`
-// - `LESS_THAN`
+// Accepted values are:
+// Accepted values are:
 func (o AlertConfigurationMatcherOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMatcher) *string { return v.Operator }).(pulumi.StringPtrOutput)
 }
 
-// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-// - `PRIMARY`
-// - `SECONDARY`
-// - `STANDALONE`
-// - `CONFIG`
-// - `MONGOS`
+// If omitted, the configuration is disabled.
 func (o AlertConfigurationMatcherOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMatcher) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -2185,31 +2167,16 @@ type AlertConfigurationMetricThresholdConfig struct {
 	MetricName *string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode *string `pulumi:"mode"`
-	// Operator to apply when checking the current metric value against the threshold value.
+	// If omitted, the configuration is disabled.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
+	// Accepted values are:
+	// Accepted values are:
 	Operator *string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold *float64 `pulumi:"threshold"`
 	// The units for the threshold value. Depends on the type of metric.
-	// Accepted values are:
-	// - `RAW`
-	// - `BITS`
-	// - `BYTES`
-	// - `KILOBITS`
-	// - `KILOBYTES`
-	// - `MEGABITS`
-	// - `MEGABYTES`
-	// - `GIGABITS`
-	// - `GIGABYTES`
-	// - `TERABYTES`
-	// - `PETABYTES`
-	// - `MILLISECONDS`
-	// - `SECONDS`
-	// - `MINUTES`
-	// - `HOURS`
-	// - `DAYS`
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 	Units *string `pulumi:"units"`
 }
 
@@ -2229,31 +2196,16 @@ type AlertConfigurationMetricThresholdConfigArgs struct {
 	MetricName pulumi.StringPtrInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
-	// Operator to apply when checking the current metric value against the threshold value.
+	// If omitted, the configuration is disabled.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
+	// Accepted values are:
+	// Accepted values are:
 	Operator pulumi.StringPtrInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64PtrInput `pulumi:"threshold"`
 	// The units for the threshold value. Depends on the type of metric.
-	// Accepted values are:
-	// - `RAW`
-	// - `BITS`
-	// - `BYTES`
-	// - `KILOBITS`
-	// - `KILOBYTES`
-	// - `MEGABITS`
-	// - `MEGABYTES`
-	// - `GIGABITS`
-	// - `GIGABYTES`
-	// - `TERABYTES`
-	// - `PETABYTES`
-	// - `MILLISECONDS`
-	// - `SECONDS`
-	// - `MINUTES`
-	// - `HOURS`
-	// - `DAYS`
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 	Units pulumi.StringPtrInput `pulumi:"units"`
 }
 
@@ -2344,10 +2296,10 @@ func (o AlertConfigurationMetricThresholdConfigOutput) Mode() pulumi.StringPtrOu
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
-// Operator to apply when checking the current metric value against the threshold value.
+// If omitted, the configuration is disabled.
 // Accepted values are:
-// - `GREATER_THAN`
-// - `LESS_THAN`
+// Accepted values are:
+// Accepted values are:
 func (o AlertConfigurationMetricThresholdConfigOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Operator }).(pulumi.StringPtrOutput)
 }
@@ -2358,23 +2310,8 @@ func (o AlertConfigurationMetricThresholdConfigOutput) Threshold() pulumi.Float6
 }
 
 // The units for the threshold value. Depends on the type of metric.
-// Accepted values are:
-// - `RAW`
-// - `BITS`
-// - `BYTES`
-// - `KILOBITS`
-// - `KILOBYTES`
-// - `MEGABITS`
-// - `MEGABYTES`
-// - `GIGABITS`
-// - `GIGABYTES`
-// - `TERABYTES`
-// - `PETABYTES`
-// - `MILLISECONDS`
-// - `SECONDS`
-// - `MINUTES`
-// - `HOURS`
-// - `DAYS`
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o AlertConfigurationMetricThresholdConfigOutput) Units() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) *string { return v.Units }).(pulumi.StringPtrOutput)
 }
@@ -2423,10 +2360,10 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Mode() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Operator to apply when checking the current metric value against the threshold value.
+// If omitted, the configuration is disabled.
 // Accepted values are:
-// - `GREATER_THAN`
-// - `LESS_THAN`
+// Accepted values are:
+// Accepted values are:
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
@@ -2447,23 +2384,8 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Threshold() pulumi.Flo
 }
 
 // The units for the threshold value. Depends on the type of metric.
-// Accepted values are:
-// - `RAW`
-// - `BITS`
-// - `BYTES`
-// - `KILOBITS`
-// - `KILOBYTES`
-// - `MEGABITS`
-// - `MEGABYTES`
-// - `GIGABITS`
-// - `GIGABYTES`
-// - `TERABYTES`
-// - `PETABYTES`
-// - `MILLISECONDS`
-// - `SECONDS`
-// - `MINUTES`
-// - `HOURS`
-// - `DAYS`
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) Units() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
@@ -2494,6 +2416,8 @@ type AlertConfigurationNotification struct {
 	FlowdockApiToken *string `pulumi:"flowdockApiToken"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
 	IntervalMin *int `pulumi:"intervalMin"`
+	// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber *string `pulumi:"mobileNumber"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
@@ -2515,9 +2439,6 @@ type AlertConfigurationNotification struct {
 	TeamName *string `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
-	// - `DATADOG`
-	// - `EMAIL`
-	// - `FLOWDOCK`
 	TypeName *string `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username *string `pulumi:"username"`
@@ -2525,6 +2446,10 @@ type AlertConfigurationNotification struct {
 	VictorOpsApiKey *string `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey *string `pulumi:"victorOpsRoutingKey"`
+	// Optional authentication secret for the `WEBHOOK` notifications type.
+	WebhookSecret *string `pulumi:"webhookSecret"`
+	// Target URL  for the `WEBHOOK` notifications type.
+	WebhookUrl *string `pulumi:"webhookUrl"`
 }
 
 // AlertConfigurationNotificationInput is an input type that accepts AlertConfigurationNotificationArgs and AlertConfigurationNotificationOutput values.
@@ -2559,6 +2484,8 @@ type AlertConfigurationNotificationArgs struct {
 	FlowdockApiToken pulumi.StringPtrInput `pulumi:"flowdockApiToken"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
 	IntervalMin pulumi.IntPtrInput `pulumi:"intervalMin"`
+	// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber pulumi.StringPtrInput `pulumi:"mobileNumber"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
@@ -2580,9 +2507,6 @@ type AlertConfigurationNotificationArgs struct {
 	TeamName pulumi.StringPtrInput `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
-	// - `DATADOG`
-	// - `EMAIL`
-	// - `FLOWDOCK`
 	TypeName pulumi.StringPtrInput `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username pulumi.StringPtrInput `pulumi:"username"`
@@ -2590,6 +2514,10 @@ type AlertConfigurationNotificationArgs struct {
 	VictorOpsApiKey pulumi.StringPtrInput `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey pulumi.StringPtrInput `pulumi:"victorOpsRoutingKey"`
+	// Optional authentication secret for the `WEBHOOK` notifications type.
+	WebhookSecret pulumi.StringPtrInput `pulumi:"webhookSecret"`
+	// Target URL  for the `WEBHOOK` notifications type.
+	WebhookUrl pulumi.StringPtrInput `pulumi:"webhookUrl"`
 }
 
 func (AlertConfigurationNotificationArgs) ElementType() reflect.Type {
@@ -2693,6 +2621,11 @@ func (o AlertConfigurationNotificationOutput) IntervalMin() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v AlertConfigurationNotification) *int { return v.IntervalMin }).(pulumi.IntPtrOutput)
 }
 
+// Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+func (o AlertConfigurationNotificationOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
+}
+
 // Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 func (o AlertConfigurationNotificationOutput) MobileNumber() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.MobileNumber }).(pulumi.StringPtrOutput)
@@ -2741,9 +2674,6 @@ func (o AlertConfigurationNotificationOutput) TeamName() pulumi.StringPtrOutput 
 
 // Type of alert notification.
 // Accepted values are:
-// - `DATADOG`
-// - `EMAIL`
-// - `FLOWDOCK`
 func (o AlertConfigurationNotificationOutput) TypeName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.TypeName }).(pulumi.StringPtrOutput)
 }
@@ -2761,6 +2691,16 @@ func (o AlertConfigurationNotificationOutput) VictorOpsApiKey() pulumi.StringPtr
 // VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o AlertConfigurationNotificationOutput) VictorOpsRoutingKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.VictorOpsRoutingKey }).(pulumi.StringPtrOutput)
+}
+
+// Optional authentication secret for the `WEBHOOK` notifications type.
+func (o AlertConfigurationNotificationOutput) WebhookSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.WebhookSecret }).(pulumi.StringPtrOutput)
+}
+
+// Target URL  for the `WEBHOOK` notifications type.
+func (o AlertConfigurationNotificationOutput) WebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.WebhookUrl }).(pulumi.StringPtrOutput)
 }
 
 type AlertConfigurationNotificationArrayOutput struct{ *pulumi.OutputState }
@@ -2784,31 +2724,16 @@ func (o AlertConfigurationNotificationArrayOutput) Index(i pulumi.IntInput) Aler
 }
 
 type AlertConfigurationThresholdConfig struct {
-	// Operator to apply when checking the current metric value against the threshold value.
+	// If omitted, the configuration is disabled.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
+	// Accepted values are:
+	// Accepted values are:
 	Operator *string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold *float64 `pulumi:"threshold"`
 	// The units for the threshold value. Depends on the type of metric.
-	// Accepted values are:
-	// - `RAW`
-	// - `BITS`
-	// - `BYTES`
-	// - `KILOBITS`
-	// - `KILOBYTES`
-	// - `MEGABITS`
-	// - `MEGABYTES`
-	// - `GIGABITS`
-	// - `GIGABYTES`
-	// - `TERABYTES`
-	// - `PETABYTES`
-	// - `MILLISECONDS`
-	// - `SECONDS`
-	// - `MINUTES`
-	// - `HOURS`
-	// - `DAYS`
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 	Units *string `pulumi:"units"`
 }
 
@@ -2824,31 +2749,16 @@ type AlertConfigurationThresholdConfigInput interface {
 }
 
 type AlertConfigurationThresholdConfigArgs struct {
-	// Operator to apply when checking the current metric value against the threshold value.
+	// If omitted, the configuration is disabled.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
+	// Accepted values are:
+	// Accepted values are:
 	Operator pulumi.StringPtrInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64PtrInput `pulumi:"threshold"`
 	// The units for the threshold value. Depends on the type of metric.
-	// Accepted values are:
-	// - `RAW`
-	// - `BITS`
-	// - `BYTES`
-	// - `KILOBITS`
-	// - `KILOBYTES`
-	// - `MEGABITS`
-	// - `MEGABYTES`
-	// - `GIGABITS`
-	// - `GIGABYTES`
-	// - `TERABYTES`
-	// - `PETABYTES`
-	// - `MILLISECONDS`
-	// - `SECONDS`
-	// - `MINUTES`
-	// - `HOURS`
-	// - `DAYS`
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 	Units pulumi.StringPtrInput `pulumi:"units"`
 }
 
@@ -2929,10 +2839,10 @@ func (o AlertConfigurationThresholdConfigOutput) ToAlertConfigurationThresholdCo
 	}).(AlertConfigurationThresholdConfigPtrOutput)
 }
 
-// Operator to apply when checking the current metric value against the threshold value.
+// If omitted, the configuration is disabled.
 // Accepted values are:
-// - `GREATER_THAN`
-// - `LESS_THAN`
+// Accepted values are:
+// Accepted values are:
 func (o AlertConfigurationThresholdConfigOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *string { return v.Operator }).(pulumi.StringPtrOutput)
 }
@@ -2943,23 +2853,8 @@ func (o AlertConfigurationThresholdConfigOutput) Threshold() pulumi.Float64PtrOu
 }
 
 // The units for the threshold value. Depends on the type of metric.
-// Accepted values are:
-// - `RAW`
-// - `BITS`
-// - `BYTES`
-// - `KILOBITS`
-// - `KILOBYTES`
-// - `MEGABITS`
-// - `MEGABYTES`
-// - `GIGABITS`
-// - `GIGABYTES`
-// - `TERABYTES`
-// - `PETABYTES`
-// - `MILLISECONDS`
-// - `SECONDS`
-// - `MINUTES`
-// - `HOURS`
-// - `DAYS`
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o AlertConfigurationThresholdConfigOutput) Units() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationThresholdConfig) *string { return v.Units }).(pulumi.StringPtrOutput)
 }
@@ -2988,10 +2883,10 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Elem() AlertConfigurationThr
 	}).(AlertConfigurationThresholdConfigOutput)
 }
 
-// Operator to apply when checking the current metric value against the threshold value.
+// If omitted, the configuration is disabled.
 // Accepted values are:
-// - `GREATER_THAN`
-// - `LESS_THAN`
+// Accepted values are:
+// Accepted values are:
 func (o AlertConfigurationThresholdConfigPtrOutput) Operator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) *string {
 		if v == nil {
@@ -3012,23 +2907,8 @@ func (o AlertConfigurationThresholdConfigPtrOutput) Threshold() pulumi.Float64Pt
 }
 
 // The units for the threshold value. Depends on the type of metric.
-// Accepted values are:
-// - `RAW`
-// - `BITS`
-// - `BYTES`
-// - `KILOBITS`
-// - `KILOBYTES`
-// - `MEGABITS`
-// - `MEGABYTES`
-// - `GIGABITS`
-// - `GIGABYTES`
-// - `TERABYTES`
-// - `PETABYTES`
-// - `MILLISECONDS`
-// - `SECONDS`
-// - `MINUTES`
-// - `HOURS`
-// - `DAYS`
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o AlertConfigurationThresholdConfigPtrOutput) Units() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationThresholdConfig) *string {
 		if v == nil {
@@ -6269,7 +6149,7 @@ func (o ClusterLabelArrayOutput) Index(i pulumi.IntInput) ClusterLabelOutput {
 type ClusterReplicationSpec struct {
 	// Unique identifer of the replication document for a zone in a Global Cluster.
 	Id *string `pulumi:"id"`
-	// Number of shards to deploy in the specified zone, minimum 1.
+	// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
 	NumShards int `pulumi:"numShards"`
 	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
 	RegionsConfigs []ClusterReplicationSpecRegionsConfig `pulumi:"regionsConfigs"`
@@ -6291,7 +6171,7 @@ type ClusterReplicationSpecInput interface {
 type ClusterReplicationSpecArgs struct {
 	// Unique identifer of the replication document for a zone in a Global Cluster.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Number of shards to deploy in the specified zone, minimum 1.
+	// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
 	NumShards pulumi.IntInput `pulumi:"numShards"`
 	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
 	RegionsConfigs ClusterReplicationSpecRegionsConfigArrayInput `pulumi:"regionsConfigs"`
@@ -6355,7 +6235,7 @@ func (o ClusterReplicationSpecOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Number of shards to deploy in the specified zone, minimum 1.
+// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
 func (o ClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
@@ -8476,7 +8356,7 @@ type EncryptionAtRestAwsKmsConfig struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId *string `pulumi:"customerMasterKeyId"`
-	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+	// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
 	Enabled *bool `pulumi:"enabled"`
 	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
 	Region *string `pulumi:"region"`
@@ -8500,7 +8380,7 @@ type EncryptionAtRestAwsKmsConfigArgs struct {
 	AccessKeyId pulumi.StringPtrInput `pulumi:"accessKeyId"`
 	// The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId pulumi.StringPtrInput `pulumi:"customerMasterKeyId"`
-	// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+	// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -8595,7 +8475,7 @@ func (o EncryptionAtRestAwsKmsConfigOutput) CustomerMasterKeyId() pulumi.StringP
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.CustomerMasterKeyId }).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
 func (o EncryptionAtRestAwsKmsConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -8657,7 +8537,7 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) CustomerMasterKeyId() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+// Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
 func (o EncryptionAtRestAwsKmsConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *bool {
 		if v == nil {
@@ -9448,7 +9328,8 @@ type FederatedSettingsOrgRoleMappingRoleAssignment struct {
 	GroupId *string `pulumi:"groupId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId *string `pulumi:"orgId"`
-	// Specifies the Roles that are attached to the Role Mapping.
+	// Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+	// Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
 	Roles []string `pulumi:"roles"`
 }
 
@@ -9468,7 +9349,8 @@ type FederatedSettingsOrgRoleMappingRoleAssignmentArgs struct {
 	GroupId pulumi.StringPtrInput `pulumi:"groupId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
-	// Specifies the Roles that are attached to the Role Mapping.
+	// Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+	// Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
 }
 
@@ -9533,7 +9415,8 @@ func (o FederatedSettingsOrgRoleMappingRoleAssignmentOutput) OrgId() pulumi.Stri
 	return o.ApplyT(func(v FederatedSettingsOrgRoleMappingRoleAssignment) *string { return v.OrgId }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the Roles that are attached to the Role Mapping.
+// Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+// Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
 func (o FederatedSettingsOrgRoleMappingRoleAssignmentOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v FederatedSettingsOrgRoleMappingRoleAssignment) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
@@ -10532,13 +10415,9 @@ func (o PrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInput) 
 type ProjectApiKey struct {
 	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
 	ApiKeyId string `pulumi:"apiKeyId"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
 	// The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
+	// The following are valid roles:
 	RoleNames []string `pulumi:"roleNames"`
 }
 
@@ -10556,13 +10435,9 @@ type ProjectApiKeyInput interface {
 type ProjectApiKeyArgs struct {
 	// The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
 	// The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
+	// The following are valid roles:
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 }
 
@@ -10622,13 +10497,9 @@ func (o ProjectApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v ProjectApiKey) string { return v.ApiKeyId }).(pulumi.StringOutput)
 }
 
-// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
 // The following are valid roles:
-// * `GROUP_OWNER`
-// * `GROUP_READ_ONLY`
-// * `GROUP_DATA_ACCESS_ADMIN`
-// * `GROUP_DATA_ACCESS_READ_WRITE`
-// * `GROUP_DATA_ACCESS_READ_ONLY`
+// The following are valid roles:
 func (o ProjectApiKeyOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProjectApiKey) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -10654,13 +10525,8 @@ func (o ProjectApiKeyArrayOutput) Index(i pulumi.IntInput) ProjectApiKeyOutput {
 }
 
 type ProjectTeam struct {
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
 	// The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
 	RoleNames []string `pulumi:"roleNames"`
 	// The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	TeamId string `pulumi:"teamId"`
@@ -10678,13 +10544,8 @@ type ProjectTeamInput interface {
 }
 
 type ProjectTeamArgs struct {
-	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+	// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
 	// The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
 	// The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
 	TeamId pulumi.StringInput `pulumi:"teamId"`
@@ -10741,13 +10602,8 @@ func (o ProjectTeamOutput) ToProjectTeamOutputWithContext(ctx context.Context) P
 	return o
 }
 
-// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+// Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
 // The following are valid roles:
-// * `GROUP_OWNER`
-// * `GROUP_READ_ONLY`
-// * `GROUP_DATA_ACCESS_ADMIN`
-// * `GROUP_DATA_ACCESS_READ_WRITE`
-// * `GROUP_DATA_ACCESS_READ_ONLY`
 func (o ProjectTeamOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ProjectTeam) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
@@ -10775,6 +10631,278 @@ func (o ProjectTeamArrayOutput) Index(i pulumi.IntInput) ProjectTeamOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectTeam {
 		return vs[0].([]ProjectTeam)[vs[1].(int)]
 	}).(ProjectTeamOutput)
+}
+
+type ProviderAssumeRole struct {
+	Duration *string `pulumi:"duration"`
+	// Deprecated: Use assume_role.duration instead
+	DurationSeconds   *int              `pulumi:"durationSeconds"`
+	ExternalId        *string           `pulumi:"externalId"`
+	Policy            *string           `pulumi:"policy"`
+	PolicyArns        []string          `pulumi:"policyArns"`
+	RoleArn           *string           `pulumi:"roleArn"`
+	SessionName       *string           `pulumi:"sessionName"`
+	SourceIdentity    *string           `pulumi:"sourceIdentity"`
+	Tags              map[string]string `pulumi:"tags"`
+	TransitiveTagKeys []string          `pulumi:"transitiveTagKeys"`
+}
+
+// ProviderAssumeRoleInput is an input type that accepts ProviderAssumeRoleArgs and ProviderAssumeRoleOutput values.
+// You can construct a concrete instance of `ProviderAssumeRoleInput` via:
+//
+//	ProviderAssumeRoleArgs{...}
+type ProviderAssumeRoleInput interface {
+	pulumi.Input
+
+	ToProviderAssumeRoleOutput() ProviderAssumeRoleOutput
+	ToProviderAssumeRoleOutputWithContext(context.Context) ProviderAssumeRoleOutput
+}
+
+type ProviderAssumeRoleArgs struct {
+	Duration pulumi.StringPtrInput `pulumi:"duration"`
+	// Deprecated: Use assume_role.duration instead
+	DurationSeconds   pulumi.IntPtrInput      `pulumi:"durationSeconds"`
+	ExternalId        pulumi.StringPtrInput   `pulumi:"externalId"`
+	Policy            pulumi.StringPtrInput   `pulumi:"policy"`
+	PolicyArns        pulumi.StringArrayInput `pulumi:"policyArns"`
+	RoleArn           pulumi.StringPtrInput   `pulumi:"roleArn"`
+	SessionName       pulumi.StringPtrInput   `pulumi:"sessionName"`
+	SourceIdentity    pulumi.StringPtrInput   `pulumi:"sourceIdentity"`
+	Tags              pulumi.StringMapInput   `pulumi:"tags"`
+	TransitiveTagKeys pulumi.StringArrayInput `pulumi:"transitiveTagKeys"`
+}
+
+func (ProviderAssumeRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAssumeRole)(nil)).Elem()
+}
+
+func (i ProviderAssumeRoleArgs) ToProviderAssumeRoleOutput() ProviderAssumeRoleOutput {
+	return i.ToProviderAssumeRoleOutputWithContext(context.Background())
+}
+
+func (i ProviderAssumeRoleArgs) ToProviderAssumeRoleOutputWithContext(ctx context.Context) ProviderAssumeRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAssumeRoleOutput)
+}
+
+func (i ProviderAssumeRoleArgs) ToProviderAssumeRolePtrOutput() ProviderAssumeRolePtrOutput {
+	return i.ToProviderAssumeRolePtrOutputWithContext(context.Background())
+}
+
+func (i ProviderAssumeRoleArgs) ToProviderAssumeRolePtrOutputWithContext(ctx context.Context) ProviderAssumeRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAssumeRoleOutput).ToProviderAssumeRolePtrOutputWithContext(ctx)
+}
+
+// ProviderAssumeRolePtrInput is an input type that accepts ProviderAssumeRoleArgs, ProviderAssumeRolePtr and ProviderAssumeRolePtrOutput values.
+// You can construct a concrete instance of `ProviderAssumeRolePtrInput` via:
+//
+//	        ProviderAssumeRoleArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProviderAssumeRolePtrInput interface {
+	pulumi.Input
+
+	ToProviderAssumeRolePtrOutput() ProviderAssumeRolePtrOutput
+	ToProviderAssumeRolePtrOutputWithContext(context.Context) ProviderAssumeRolePtrOutput
+}
+
+type providerAssumeRolePtrType ProviderAssumeRoleArgs
+
+func ProviderAssumeRolePtr(v *ProviderAssumeRoleArgs) ProviderAssumeRolePtrInput {
+	return (*providerAssumeRolePtrType)(v)
+}
+
+func (*providerAssumeRolePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProviderAssumeRole)(nil)).Elem()
+}
+
+func (i *providerAssumeRolePtrType) ToProviderAssumeRolePtrOutput() ProviderAssumeRolePtrOutput {
+	return i.ToProviderAssumeRolePtrOutputWithContext(context.Background())
+}
+
+func (i *providerAssumeRolePtrType) ToProviderAssumeRolePtrOutputWithContext(ctx context.Context) ProviderAssumeRolePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAssumeRolePtrOutput)
+}
+
+type ProviderAssumeRoleOutput struct{ *pulumi.OutputState }
+
+func (ProviderAssumeRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAssumeRole)(nil)).Elem()
+}
+
+func (o ProviderAssumeRoleOutput) ToProviderAssumeRoleOutput() ProviderAssumeRoleOutput {
+	return o
+}
+
+func (o ProviderAssumeRoleOutput) ToProviderAssumeRoleOutputWithContext(ctx context.Context) ProviderAssumeRoleOutput {
+	return o
+}
+
+func (o ProviderAssumeRoleOutput) ToProviderAssumeRolePtrOutput() ProviderAssumeRolePtrOutput {
+	return o.ToProviderAssumeRolePtrOutputWithContext(context.Background())
+}
+
+func (o ProviderAssumeRoleOutput) ToProviderAssumeRolePtrOutputWithContext(ctx context.Context) ProviderAssumeRolePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAssumeRole) *ProviderAssumeRole {
+		return &v
+	}).(ProviderAssumeRolePtrOutput)
+}
+
+func (o ProviderAssumeRoleOutput) Duration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.Duration }).(pulumi.StringPtrOutput)
+}
+
+// Deprecated: Use assume_role.duration instead
+func (o ProviderAssumeRoleOutput) DurationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *int { return v.DurationSeconds }).(pulumi.IntPtrOutput)
+}
+
+func (o ProviderAssumeRoleOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRoleOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.Policy }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRoleOutput) PolicyArns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) []string { return v.PolicyArns }).(pulumi.StringArrayOutput)
+}
+
+func (o ProviderAssumeRoleOutput) RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.RoleArn }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRoleOutput) SessionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.SessionName }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRoleOutput) SourceIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) *string { return v.SourceIdentity }).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRoleOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
+}
+
+func (o ProviderAssumeRoleOutput) TransitiveTagKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ProviderAssumeRole) []string { return v.TransitiveTagKeys }).(pulumi.StringArrayOutput)
+}
+
+type ProviderAssumeRolePtrOutput struct{ *pulumi.OutputState }
+
+func (ProviderAssumeRolePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProviderAssumeRole)(nil)).Elem()
+}
+
+func (o ProviderAssumeRolePtrOutput) ToProviderAssumeRolePtrOutput() ProviderAssumeRolePtrOutput {
+	return o
+}
+
+func (o ProviderAssumeRolePtrOutput) ToProviderAssumeRolePtrOutputWithContext(ctx context.Context) ProviderAssumeRolePtrOutput {
+	return o
+}
+
+func (o ProviderAssumeRolePtrOutput) Elem() ProviderAssumeRoleOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) ProviderAssumeRole {
+		if v != nil {
+			return *v
+		}
+		var ret ProviderAssumeRole
+		return ret
+	}).(ProviderAssumeRoleOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) Duration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Duration
+	}).(pulumi.StringPtrOutput)
+}
+
+// Deprecated: Use assume_role.duration instead
+func (o ProviderAssumeRolePtrOutput) DurationSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DurationSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExternalId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) Policy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Policy
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) PolicyArns() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) []string {
+		if v == nil {
+			return nil
+		}
+		return v.PolicyArns
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleArn
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) SessionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SessionName
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) SourceIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Tags
+	}).(pulumi.StringMapOutput)
+}
+
+func (o ProviderAssumeRolePtrOutput) TransitiveTagKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ProviderAssumeRole) []string {
+		if v == nil {
+			return nil
+		}
+		return v.TransitiveTagKeys
+	}).(pulumi.StringArrayOutput)
 }
 
 type SearchIndexSynonym struct {
@@ -12292,8 +12420,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -12316,8 +12442,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -12408,8 +12532,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -12459,8 +12581,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Di
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -12633,8 +12753,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -12657,8 +12775,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -12749,8 +12865,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskI
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -12800,8 +12914,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Di
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -12835,8 +12947,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -12859,8 +12969,6 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -12951,8 +13059,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIo
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -13002,8 +13108,6 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Dis
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -13065,6 +13169,8 @@ type GetAdvancedClustersResult struct {
 	RootCertType string `pulumi:"rootCertType"`
 	// Current state of the cluster. The possible states are:
 	StateName string `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
@@ -13112,6 +13218,8 @@ type GetAdvancedClustersResultArgs struct {
 	RootCertType pulumi.StringInput `pulumi:"rootCertType"`
 	// Current state of the cluster. The possible states are:
 	StateName pulumi.StringInput `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled pulumi.BoolInput `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem pulumi.StringInput `pulumi:"versionReleaseSystem"`
 }
@@ -13253,6 +13361,11 @@ func (o GetAdvancedClustersResultOutput) RootCertType() pulumi.StringOutput {
 // Current state of the cluster. The possible states are:
 func (o GetAdvancedClustersResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+func (o GetAdvancedClustersResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
 }
 
 // Release cadence that Atlas uses for this cluster.
@@ -14326,8 +14439,6 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -14350,8 +14461,6 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs stru
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -14442,8 +14551,6 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		return v.EbsVolumeType
@@ -14497,8 +14604,6 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOut
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -14671,8 +14776,6 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -14695,8 +14798,6 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs stru
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -14787,8 +14888,6 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
 		return v.EbsVolumeType
@@ -14842,8 +14941,6 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOut
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -14877,8 +14974,6 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -14901,8 +14996,6 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs struc
 	// Target throughput (IOPS) desired for AWS storage attached to your cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -14993,8 +15086,6 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
 		return v.EbsVolumeType
@@ -15048,8 +15139,6 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutp
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -15084,15 +15173,8 @@ type GetAlertConfigurationMatcher struct {
 	FieldName string `pulumi:"fieldName"`
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-	// - `PRIMARY`
-	// - `SECONDARY`
-	// - `STANDALONE`
-	// - `CONFIG`
-	// - `MONGOS`
 	Value string `pulumi:"value"`
 }
 
@@ -15112,15 +15194,8 @@ type GetAlertConfigurationMatcherArgs struct {
 	FieldName pulumi.StringInput `pulumi:"fieldName"`
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-	// - `PRIMARY`
-	// - `SECONDARY`
-	// - `STANDALONE`
-	// - `CONFIG`
-	// - `MONGOS`
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -15182,18 +15257,11 @@ func (o GetAlertConfigurationMatcherOutput) FieldName() pulumi.StringOutput {
 
 // Operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
-// - `GREATER_THAN`
-// - `LESS_THAN`
 func (o GetAlertConfigurationMatcherOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMatcher) string { return v.Operator }).(pulumi.StringOutput)
 }
 
 // Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-// - `PRIMARY`
-// - `SECONDARY`
-// - `STANDALONE`
-// - `CONFIG`
-// - `MONGOS`
 func (o GetAlertConfigurationMatcherOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMatcher) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -15225,29 +15293,11 @@ type GetAlertConfigurationMetricThresholdConfig struct {
 	Mode string `pulumi:"mode"`
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
 	// The units for the threshold value. Depends on the type of metric.
-	// Accepted values are:
-	// - `RAW`
-	// - `BITS`
-	// - `BYTES`
-	// - `KILOBITS`
-	// - `KILOBYTES`
-	// - `MEGABITS`
-	// - `MEGABYTES`
-	// - `GIGABITS`
-	// - `GIGABYTES`
-	// - `TERABYTES`
-	// - `PETABYTES`
-	// - `MILLISECONDS`
-	// - `SECONDS`
-	// - `MINUTES`
-	// - `HOURS`
-	// - `DAYS`
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 	Units string `pulumi:"units"`
 }
 
@@ -15269,29 +15319,11 @@ type GetAlertConfigurationMetricThresholdConfigArgs struct {
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
 	// The units for the threshold value. Depends on the type of metric.
-	// Accepted values are:
-	// - `RAW`
-	// - `BITS`
-	// - `BYTES`
-	// - `KILOBITS`
-	// - `KILOBYTES`
-	// - `MEGABITS`
-	// - `MEGABYTES`
-	// - `GIGABITS`
-	// - `GIGABYTES`
-	// - `TERABYTES`
-	// - `PETABYTES`
-	// - `MILLISECONDS`
-	// - `SECONDS`
-	// - `MINUTES`
-	// - `HOURS`
-	// - `DAYS`
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 	Units pulumi.StringInput `pulumi:"units"`
 }
 
@@ -15358,8 +15390,6 @@ func (o GetAlertConfigurationMetricThresholdConfigOutput) Mode() pulumi.StringOu
 
 // Operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
-// - `GREATER_THAN`
-// - `LESS_THAN`
 func (o GetAlertConfigurationMetricThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -15370,23 +15400,7 @@ func (o GetAlertConfigurationMetricThresholdConfigOutput) Threshold() pulumi.Flo
 }
 
 // The units for the threshold value. Depends on the type of metric.
-// Accepted values are:
-// - `RAW`
-// - `BITS`
-// - `BYTES`
-// - `KILOBITS`
-// - `KILOBYTES`
-// - `MEGABITS`
-// - `MEGABYTES`
-// - `GIGABITS`
-// - `GIGABYTES`
-// - `TERABYTES`
-// - `PETABYTES`
-// - `MILLISECONDS`
-// - `SECONDS`
-// - `MINUTES`
-// - `HOURS`
-// - `DAYS`
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o GetAlertConfigurationMetricThresholdConfigOutput) Units() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.Units }).(pulumi.StringOutput)
 }
@@ -15432,6 +15446,8 @@ type GetAlertConfigurationNotification struct {
 	FlowdockApiToken string `pulumi:"flowdockApiToken"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin int `pulumi:"intervalMin"`
+	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber string `pulumi:"mobileNumber"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
@@ -15452,19 +15468,6 @@ type GetAlertConfigurationNotification struct {
 	TeamName string `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
-	// - `DATADOG`
-	// - `EMAIL`
-	// - `FLOWDOCK`
-	// - `GROUP` (Project)
-	// - `OPS_GENIE`
-	// - `ORG`
-	// - `PAGER_DUTY`
-	// - `SLACK`
-	// - `SMS`
-	// - `TEAM`
-	// - `USER`
-	// - `VICTOR_OPS`
-	// - `WEBHOOK`
 	TypeName string `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username string `pulumi:"username"`
@@ -15472,6 +15475,10 @@ type GetAlertConfigurationNotification struct {
 	VictorOpsApiKey string `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey string `pulumi:"victorOpsRoutingKey"`
+	// Authentication secret for the `WEBHOOK` notifications type.
+	WebhookSecret *string `pulumi:"webhookSecret"`
+	// Target URL  for the `WEBHOOK` notifications type.
+	WebhookUrl *string `pulumi:"webhookUrl"`
 }
 
 // GetAlertConfigurationNotificationInput is an input type that accepts GetAlertConfigurationNotificationArgs and GetAlertConfigurationNotificationOutput values.
@@ -15506,6 +15513,8 @@ type GetAlertConfigurationNotificationArgs struct {
 	FlowdockApiToken pulumi.StringInput `pulumi:"flowdockApiToken"`
 	// Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.
 	IntervalMin pulumi.IntInput `pulumi:"intervalMin"`
+	// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 	MobileNumber pulumi.StringInput `pulumi:"mobileNumber"`
 	// Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
@@ -15526,19 +15535,6 @@ type GetAlertConfigurationNotificationArgs struct {
 	TeamName pulumi.StringInput `pulumi:"teamName"`
 	// Type of alert notification.
 	// Accepted values are:
-	// - `DATADOG`
-	// - `EMAIL`
-	// - `FLOWDOCK`
-	// - `GROUP` (Project)
-	// - `OPS_GENIE`
-	// - `ORG`
-	// - `PAGER_DUTY`
-	// - `SLACK`
-	// - `SMS`
-	// - `TEAM`
-	// - `USER`
-	// - `VICTOR_OPS`
-	// - `WEBHOOK`
 	TypeName pulumi.StringInput `pulumi:"typeName"`
 	// Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
 	Username pulumi.StringInput `pulumi:"username"`
@@ -15546,6 +15542,10 @@ type GetAlertConfigurationNotificationArgs struct {
 	VictorOpsApiKey pulumi.StringInput `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey pulumi.StringInput `pulumi:"victorOpsRoutingKey"`
+	// Authentication secret for the `WEBHOOK` notifications type.
+	WebhookSecret pulumi.StringPtrInput `pulumi:"webhookSecret"`
+	// Target URL  for the `WEBHOOK` notifications type.
+	WebhookUrl pulumi.StringPtrInput `pulumi:"webhookUrl"`
 }
 
 func (GetAlertConfigurationNotificationArgs) ElementType() reflect.Type {
@@ -15649,6 +15649,11 @@ func (o GetAlertConfigurationNotificationOutput) IntervalMin() pulumi.IntOutput 
 	return o.ApplyT(func(v GetAlertConfigurationNotification) int { return v.IntervalMin }).(pulumi.IntOutput)
 }
 
+// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+func (o GetAlertConfigurationNotificationOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
+}
+
 // Mobile number to which alert notifications are sent. Required for the SMS notifications type.
 func (o GetAlertConfigurationNotificationOutput) MobileNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.MobileNumber }).(pulumi.StringOutput)
@@ -15696,19 +15701,6 @@ func (o GetAlertConfigurationNotificationOutput) TeamName() pulumi.StringOutput 
 
 // Type of alert notification.
 // Accepted values are:
-// - `DATADOG`
-// - `EMAIL`
-// - `FLOWDOCK`
-// - `GROUP` (Project)
-// - `OPS_GENIE`
-// - `ORG`
-// - `PAGER_DUTY`
-// - `SLACK`
-// - `SMS`
-// - `TEAM`
-// - `USER`
-// - `VICTOR_OPS`
-// - `WEBHOOK`
 func (o GetAlertConfigurationNotificationOutput) TypeName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.TypeName }).(pulumi.StringOutput)
 }
@@ -15726,6 +15718,16 @@ func (o GetAlertConfigurationNotificationOutput) VictorOpsApiKey() pulumi.String
 // VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o GetAlertConfigurationNotificationOutput) VictorOpsRoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.VictorOpsRoutingKey }).(pulumi.StringOutput)
+}
+
+// Authentication secret for the `WEBHOOK` notifications type.
+func (o GetAlertConfigurationNotificationOutput) WebhookSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) *string { return v.WebhookSecret }).(pulumi.StringPtrOutput)
+}
+
+// Target URL  for the `WEBHOOK` notifications type.
+func (o GetAlertConfigurationNotificationOutput) WebhookUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) *string { return v.WebhookUrl }).(pulumi.StringPtrOutput)
 }
 
 type GetAlertConfigurationNotificationArrayOutput struct{ *pulumi.OutputState }
@@ -15751,29 +15753,11 @@ func (o GetAlertConfigurationNotificationArrayOutput) Index(i pulumi.IntInput) G
 type GetAlertConfigurationThresholdConfig struct {
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
 	Operator string `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold float64 `pulumi:"threshold"`
 	// The units for the threshold value. Depends on the type of metric.
-	// Accepted values are:
-	// - `RAW`
-	// - `BITS`
-	// - `BYTES`
-	// - `KILOBITS`
-	// - `KILOBYTES`
-	// - `MEGABITS`
-	// - `MEGABYTES`
-	// - `GIGABITS`
-	// - `GIGABYTES`
-	// - `TERABYTES`
-	// - `PETABYTES`
-	// - `MILLISECONDS`
-	// - `SECONDS`
-	// - `MINUTES`
-	// - `HOURS`
-	// - `DAYS`
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 	Units string `pulumi:"units"`
 }
 
@@ -15791,29 +15775,11 @@ type GetAlertConfigurationThresholdConfigInput interface {
 type GetAlertConfigurationThresholdConfigArgs struct {
 	// Operator to apply when checking the current metric value against the threshold value.
 	// Accepted values are:
-	// - `GREATER_THAN`
-	// - `LESS_THAN`
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// Threshold value outside of which an alert will be triggered.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
 	// The units for the threshold value. Depends on the type of metric.
-	// Accepted values are:
-	// - `RAW`
-	// - `BITS`
-	// - `BYTES`
-	// - `KILOBITS`
-	// - `KILOBYTES`
-	// - `MEGABITS`
-	// - `MEGABYTES`
-	// - `GIGABITS`
-	// - `GIGABYTES`
-	// - `TERABYTES`
-	// - `PETABYTES`
-	// - `MILLISECONDS`
-	// - `SECONDS`
-	// - `MINUTES`
-	// - `HOURS`
-	// - `DAYS`
+	// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 	Units pulumi.StringInput `pulumi:"units"`
 }
 
@@ -15870,8 +15836,6 @@ func (o GetAlertConfigurationThresholdConfigOutput) ToGetAlertConfigurationThres
 
 // Operator to apply when checking the current metric value against the threshold value.
 // Accepted values are:
-// - `GREATER_THAN`
-// - `LESS_THAN`
 func (o GetAlertConfigurationThresholdConfigOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationThresholdConfig) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -15882,23 +15846,7 @@ func (o GetAlertConfigurationThresholdConfigOutput) Threshold() pulumi.Float64Ou
 }
 
 // The units for the threshold value. Depends on the type of metric.
-// Accepted values are:
-// - `RAW`
-// - `BITS`
-// - `BYTES`
-// - `KILOBITS`
-// - `KILOBYTES`
-// - `MEGABITS`
-// - `MEGABYTES`
-// - `GIGABITS`
-// - `GIGABYTES`
-// - `TERABYTES`
-// - `PETABYTES`
-// - `MILLISECONDS`
-// - `SECONDS`
-// - `MINUTES`
-// - `HOURS`
-// - `DAYS`
+// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
 func (o GetAlertConfigurationThresholdConfigOutput) Units() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationThresholdConfig) string { return v.Units }).(pulumi.StringOutput)
 }
@@ -20393,6 +20341,8 @@ type GetClustersResult struct {
 	// - DELETED
 	// - REPAIRING
 	StateName string `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
@@ -20505,6 +20455,8 @@ type GetClustersResultArgs struct {
 	// - DELETED
 	// - REPAIRING
 	StateName pulumi.StringInput `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled pulumi.BoolInput `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem pulumi.StringInput `pulumi:"versionReleaseSystem"`
 }
@@ -20768,6 +20720,11 @@ func (o GetClustersResultOutput) SrvAddress() pulumi.StringOutput {
 // - REPAIRING
 func (o GetClustersResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+func (o GetClustersResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
 }
 
 // Release cadence that Atlas uses for this cluster.
@@ -22263,7 +22220,8 @@ func (o GetCustomDbRoleActionArrayOutput) Index(i pulumi.IntInput) GetCustomDbRo
 type GetCustomDbRoleActionResource struct {
 	Cluster        bool   `pulumi:"cluster"`
 	CollectionName string `pulumi:"collectionName"`
-	DatabaseName   string `pulumi:"databaseName"`
+	// (Required) Database on which the inherited role is granted.
+	DatabaseName string `pulumi:"databaseName"`
 }
 
 // GetCustomDbRoleActionResourceInput is an input type that accepts GetCustomDbRoleActionResourceArgs and GetCustomDbRoleActionResourceOutput values.
@@ -22280,7 +22238,8 @@ type GetCustomDbRoleActionResourceInput interface {
 type GetCustomDbRoleActionResourceArgs struct {
 	Cluster        pulumi.BoolInput   `pulumi:"cluster"`
 	CollectionName pulumi.StringInput `pulumi:"collectionName"`
-	DatabaseName   pulumi.StringInput `pulumi:"databaseName"`
+	// (Required) Database on which the inherited role is granted.
+	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
 }
 
 func (GetCustomDbRoleActionResourceArgs) ElementType() reflect.Type {
@@ -22342,6 +22301,7 @@ func (o GetCustomDbRoleActionResourceOutput) CollectionName() pulumi.StringOutpu
 	return o.ApplyT(func(v GetCustomDbRoleActionResource) string { return v.CollectionName }).(pulumi.StringOutput)
 }
 
+// (Required) Database on which the inherited role is granted.
 func (o GetCustomDbRoleActionResourceOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCustomDbRoleActionResource) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
@@ -22367,6 +22327,7 @@ func (o GetCustomDbRoleActionResourceArrayOutput) Index(i pulumi.IntInput) GetCu
 }
 
 type GetCustomDbRoleInheritedRole struct {
+	// (Required) Database on which the inherited role is granted.
 	DatabaseName string `pulumi:"databaseName"`
 	// Name of the custom role.
 	RoleName string `pulumi:"roleName"`
@@ -22384,6 +22345,7 @@ type GetCustomDbRoleInheritedRoleInput interface {
 }
 
 type GetCustomDbRoleInheritedRoleArgs struct {
+	// (Required) Database on which the inherited role is granted.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
 	// Name of the custom role.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
@@ -22440,6 +22402,7 @@ func (o GetCustomDbRoleInheritedRoleOutput) ToGetCustomDbRoleInheritedRoleOutput
 	return o
 }
 
+// (Required) Database on which the inherited role is granted.
 func (o GetCustomDbRoleInheritedRoleOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCustomDbRoleInheritedRole) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
@@ -22472,7 +22435,8 @@ func (o GetCustomDbRoleInheritedRoleArrayOutput) Index(i pulumi.IntInput) GetCus
 type GetCustomDbRolesResult struct {
 	Actions        []GetCustomDbRolesResultAction        `pulumi:"actions"`
 	InheritedRoles []GetCustomDbRolesResultInheritedRole `pulumi:"inheritedRoles"`
-	RoleName       string                                `pulumi:"roleName"`
+	// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+	RoleName string `pulumi:"roleName"`
 }
 
 // GetCustomDbRolesResultInput is an input type that accepts GetCustomDbRolesResultArgs and GetCustomDbRolesResultOutput values.
@@ -22489,7 +22453,8 @@ type GetCustomDbRolesResultInput interface {
 type GetCustomDbRolesResultArgs struct {
 	Actions        GetCustomDbRolesResultActionArrayInput        `pulumi:"actions"`
 	InheritedRoles GetCustomDbRolesResultInheritedRoleArrayInput `pulumi:"inheritedRoles"`
-	RoleName       pulumi.StringInput                            `pulumi:"roleName"`
+	// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
 }
 
 func (GetCustomDbRolesResultArgs) ElementType() reflect.Type {
@@ -22551,6 +22516,7 @@ func (o GetCustomDbRolesResultOutput) InheritedRoles() GetCustomDbRolesResultInh
 	return o.ApplyT(func(v GetCustomDbRolesResult) []GetCustomDbRolesResultInheritedRole { return v.InheritedRoles }).(GetCustomDbRolesResultInheritedRoleArrayOutput)
 }
 
+// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
 func (o GetCustomDbRolesResultOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCustomDbRolesResult) string { return v.RoleName }).(pulumi.StringOutput)
 }
@@ -22684,7 +22650,8 @@ func (o GetCustomDbRolesResultActionArrayOutput) Index(i pulumi.IntInput) GetCus
 type GetCustomDbRolesResultActionResource struct {
 	Cluster        bool   `pulumi:"cluster"`
 	CollectionName string `pulumi:"collectionName"`
-	DatabaseName   string `pulumi:"databaseName"`
+	// (Required) Database on which the inherited role is granted.
+	DatabaseName string `pulumi:"databaseName"`
 }
 
 // GetCustomDbRolesResultActionResourceInput is an input type that accepts GetCustomDbRolesResultActionResourceArgs and GetCustomDbRolesResultActionResourceOutput values.
@@ -22701,7 +22668,8 @@ type GetCustomDbRolesResultActionResourceInput interface {
 type GetCustomDbRolesResultActionResourceArgs struct {
 	Cluster        pulumi.BoolInput   `pulumi:"cluster"`
 	CollectionName pulumi.StringInput `pulumi:"collectionName"`
-	DatabaseName   pulumi.StringInput `pulumi:"databaseName"`
+	// (Required) Database on which the inherited role is granted.
+	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
 }
 
 func (GetCustomDbRolesResultActionResourceArgs) ElementType() reflect.Type {
@@ -22763,6 +22731,7 @@ func (o GetCustomDbRolesResultActionResourceOutput) CollectionName() pulumi.Stri
 	return o.ApplyT(func(v GetCustomDbRolesResultActionResource) string { return v.CollectionName }).(pulumi.StringOutput)
 }
 
+// (Required) Database on which the inherited role is granted.
 func (o GetCustomDbRolesResultActionResourceOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCustomDbRolesResultActionResource) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
@@ -22788,8 +22757,10 @@ func (o GetCustomDbRolesResultActionResourceArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetCustomDbRolesResultInheritedRole struct {
+	// (Required) Database on which the inherited role is granted.
 	DatabaseName string `pulumi:"databaseName"`
-	RoleName     string `pulumi:"roleName"`
+	// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+	RoleName string `pulumi:"roleName"`
 }
 
 // GetCustomDbRolesResultInheritedRoleInput is an input type that accepts GetCustomDbRolesResultInheritedRoleArgs and GetCustomDbRolesResultInheritedRoleOutput values.
@@ -22804,8 +22775,10 @@ type GetCustomDbRolesResultInheritedRoleInput interface {
 }
 
 type GetCustomDbRolesResultInheritedRoleArgs struct {
+	// (Required) Database on which the inherited role is granted.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
-	RoleName     pulumi.StringInput `pulumi:"roleName"`
+	// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
 }
 
 func (GetCustomDbRolesResultInheritedRoleArgs) ElementType() reflect.Type {
@@ -22859,10 +22832,12 @@ func (o GetCustomDbRolesResultInheritedRoleOutput) ToGetCustomDbRolesResultInher
 	return o
 }
 
+// (Required) Database on which the inherited role is granted.
 func (o GetCustomDbRolesResultInheritedRoleOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCustomDbRolesResultInheritedRole) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
+// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
 func (o GetCustomDbRolesResultInheritedRoleOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCustomDbRolesResultInheritedRole) string { return v.RoleName }).(pulumi.StringOutput)
 }
@@ -25002,10 +24977,6 @@ func (o GetDatabaseUserScopeArrayOutput) Index(i pulumi.IntInput) GetDatabaseUse
 type GetDatabaseUsersResult struct {
 	// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Possible values include:
-	// * `admin` if `x509Type` and `awsIamType` and `ldapAuthType` are omitted or NONE.
-	// * `$external` if:
-	// * `x509Type` is MANAGED or CUSTOMER, or
-	// * `awsIamType` is USER or ROLE.
 	AuthDatabaseName string `pulumi:"authDatabaseName"`
 	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
 	AwsIamType string                        `pulumi:"awsIamType"`
@@ -25038,10 +25009,6 @@ type GetDatabaseUsersResultInput interface {
 type GetDatabaseUsersResultArgs struct {
 	// (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Possible values include:
-	// * `admin` if `x509Type` and `awsIamType` and `ldapAuthType` are omitted or NONE.
-	// * `$external` if:
-	// * `x509Type` is MANAGED or CUSTOMER, or
-	// * `awsIamType` is USER or ROLE.
 	AuthDatabaseName pulumi.StringInput `pulumi:"authDatabaseName"`
 	// The new database user authenticates with AWS IAM credentials. Default is `NONE`, `USER` means user has AWS IAM user credentials, `ROLE` - means user has credentials associated with an AWS IAM role.
 	AwsIamType pulumi.StringInput                    `pulumi:"awsIamType"`
@@ -25113,10 +25080,6 @@ func (o GetDatabaseUsersResultOutput) ToGetDatabaseUsersResultOutputWithContext(
 
 // (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 // Possible values include:
-// * `admin` if `x509Type` and `awsIamType` and `ldapAuthType` are omitted or NONE.
-// * `$external` if:
-// * `x509Type` is MANAGED or CUSTOMER, or
-// * `awsIamType` is USER or ROLE.
 func (o GetDatabaseUsersResultOutput) AuthDatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.AuthDatabaseName }).(pulumi.StringOutput)
 }
@@ -28226,7 +28189,7 @@ type GetFederatedSettingsOrgConfigsResult struct {
 	IdentityProviderId string `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
-	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
 	PostAuthRoleGrants []string                                           `pulumi:"postAuthRoleGrants"`
 	RoleMappings       []GetFederatedSettingsOrgConfigsResultRoleMapping  `pulumi:"roleMappings"`
 	UserConflicts      []GetFederatedSettingsOrgConfigsResultUserConflict `pulumi:"userConflicts"`
@@ -28252,7 +28215,7 @@ type GetFederatedSettingsOrgConfigsResultArgs struct {
 	IdentityProviderId pulumi.StringInput `pulumi:"identityProviderId"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
-	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	// List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
 	PostAuthRoleGrants pulumi.StringArrayInput                                    `pulumi:"postAuthRoleGrants"`
 	RoleMappings       GetFederatedSettingsOrgConfigsResultRoleMappingArrayInput  `pulumi:"roleMappings"`
 	UserConflicts      GetFederatedSettingsOrgConfigsResultUserConflictArrayInput `pulumi:"userConflicts"`
@@ -28329,7 +28292,7 @@ func (o GetFederatedSettingsOrgConfigsResultOutput) OrgId() pulumi.StringOutput 
 	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
 
-// List that contains the default roles granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+// List that contains the default roles granted to users who authenticate through the IdP in a connected organization.
 func (o GetFederatedSettingsOrgConfigsResultOutput) PostAuthRoleGrants() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFederatedSettingsOrgConfigsResult) []string { return v.PostAuthRoleGrants }).(pulumi.StringArrayOutput)
 }
@@ -30922,6 +30885,163 @@ func (o GetPrivatelinkEndpointsServiceAdlResultArrayOutput) Index(i pulumi.IntIn
 	}).(GetPrivatelinkEndpointsServiceAdlResultOutput)
 }
 
+type GetPrivatelinkEndpointsServiceServerlessResult struct {
+	// Unique string that identifies the private endpoint's network interface.
+	CloudProviderEndpointId string `pulumi:"cloudProviderEndpointId"`
+	// Human-readable string to associate with this private endpoint.
+	Comment string `pulumi:"comment"`
+	// (Required) Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [AWS PrivateLink](https://aws.amazon.com/privatelink/) feature.
+	EndpointId string `pulumi:"endpointId"`
+	// Unique string that identifies the PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
+	EndpointServiceName string `pulumi:"endpointServiceName"`
+	ErrorMessage        string `pulumi:"errorMessage"`
+	// IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
+	PrivateEndpointIpAddress string `pulumi:"privateEndpointIpAddress"`
+	// Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
+	PrivateLinkServiceResourceId string `pulumi:"privateLinkServiceResourceId"`
+	// Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
+	Status string `pulumi:"status"`
+}
+
+// GetPrivatelinkEndpointsServiceServerlessResultInput is an input type that accepts GetPrivatelinkEndpointsServiceServerlessResultArgs and GetPrivatelinkEndpointsServiceServerlessResultOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsServiceServerlessResultInput` via:
+//
+//	GetPrivatelinkEndpointsServiceServerlessResultArgs{...}
+type GetPrivatelinkEndpointsServiceServerlessResultInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsServiceServerlessResultOutput() GetPrivatelinkEndpointsServiceServerlessResultOutput
+	ToGetPrivatelinkEndpointsServiceServerlessResultOutputWithContext(context.Context) GetPrivatelinkEndpointsServiceServerlessResultOutput
+}
+
+type GetPrivatelinkEndpointsServiceServerlessResultArgs struct {
+	// Unique string that identifies the private endpoint's network interface.
+	CloudProviderEndpointId pulumi.StringInput `pulumi:"cloudProviderEndpointId"`
+	// Human-readable string to associate with this private endpoint.
+	Comment pulumi.StringInput `pulumi:"comment"`
+	// (Required) Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [AWS PrivateLink](https://aws.amazon.com/privatelink/) feature.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// Unique string that identifies the PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
+	EndpointServiceName pulumi.StringInput `pulumi:"endpointServiceName"`
+	ErrorMessage        pulumi.StringInput `pulumi:"errorMessage"`
+	// IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
+	PrivateEndpointIpAddress pulumi.StringInput `pulumi:"privateEndpointIpAddress"`
+	// Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
+	PrivateLinkServiceResourceId pulumi.StringInput `pulumi:"privateLinkServiceResourceId"`
+	// Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetPrivatelinkEndpointsServiceServerlessResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsServiceServerlessResult)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsServiceServerlessResultArgs) ToGetPrivatelinkEndpointsServiceServerlessResultOutput() GetPrivatelinkEndpointsServiceServerlessResultOutput {
+	return i.ToGetPrivatelinkEndpointsServiceServerlessResultOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsServiceServerlessResultArgs) ToGetPrivatelinkEndpointsServiceServerlessResultOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceServerlessResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsServiceServerlessResultOutput)
+}
+
+// GetPrivatelinkEndpointsServiceServerlessResultArrayInput is an input type that accepts GetPrivatelinkEndpointsServiceServerlessResultArray and GetPrivatelinkEndpointsServiceServerlessResultArrayOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsServiceServerlessResultArrayInput` via:
+//
+//	GetPrivatelinkEndpointsServiceServerlessResultArray{ GetPrivatelinkEndpointsServiceServerlessResultArgs{...} }
+type GetPrivatelinkEndpointsServiceServerlessResultArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsServiceServerlessResultArrayOutput() GetPrivatelinkEndpointsServiceServerlessResultArrayOutput
+	ToGetPrivatelinkEndpointsServiceServerlessResultArrayOutputWithContext(context.Context) GetPrivatelinkEndpointsServiceServerlessResultArrayOutput
+}
+
+type GetPrivatelinkEndpointsServiceServerlessResultArray []GetPrivatelinkEndpointsServiceServerlessResultInput
+
+func (GetPrivatelinkEndpointsServiceServerlessResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsServiceServerlessResult)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsServiceServerlessResultArray) ToGetPrivatelinkEndpointsServiceServerlessResultArrayOutput() GetPrivatelinkEndpointsServiceServerlessResultArrayOutput {
+	return i.ToGetPrivatelinkEndpointsServiceServerlessResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsServiceServerlessResultArray) ToGetPrivatelinkEndpointsServiceServerlessResultArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceServerlessResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsServiceServerlessResultArrayOutput)
+}
+
+type GetPrivatelinkEndpointsServiceServerlessResultOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsServiceServerlessResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsServiceServerlessResult)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) ToGetPrivatelinkEndpointsServiceServerlessResultOutput() GetPrivatelinkEndpointsServiceServerlessResultOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) ToGetPrivatelinkEndpointsServiceServerlessResultOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceServerlessResultOutput {
+	return o
+}
+
+// Unique string that identifies the private endpoint's network interface.
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) CloudProviderEndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceServerlessResult) string { return v.CloudProviderEndpointId }).(pulumi.StringOutput)
+}
+
+// Human-readable string to associate with this private endpoint.
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceServerlessResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// (Required) Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [AWS PrivateLink](https://aws.amazon.com/privatelink/) feature.
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceServerlessResult) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// Unique string that identifies the PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) EndpointServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceServerlessResult) string { return v.EndpointServiceName }).(pulumi.StringOutput)
+}
+
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceServerlessResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) PrivateEndpointIpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceServerlessResult) string { return v.PrivateEndpointIpAddress }).(pulumi.StringOutput)
+}
+
+// Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) PrivateLinkServiceResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceServerlessResult) string { return v.PrivateLinkServiceResourceId }).(pulumi.StringOutput)
+}
+
+// Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
+func (o GetPrivatelinkEndpointsServiceServerlessResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsServiceServerlessResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetPrivatelinkEndpointsServiceServerlessResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsServiceServerlessResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsServiceServerlessResult)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsServiceServerlessResultArrayOutput) ToGetPrivatelinkEndpointsServiceServerlessResultArrayOutput() GetPrivatelinkEndpointsServiceServerlessResultArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceServerlessResultArrayOutput) ToGetPrivatelinkEndpointsServiceServerlessResultArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsServiceServerlessResultArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsServiceServerlessResultArrayOutput) Index(i pulumi.IntInput) GetPrivatelinkEndpointsServiceServerlessResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivatelinkEndpointsServiceServerlessResult {
+		return vs[0].([]GetPrivatelinkEndpointsServiceServerlessResult)[vs[1].(int)]
+	}).(GetPrivatelinkEndpointsServiceServerlessResultOutput)
+}
+
 type GetProjectApiKey struct {
 	ApiKeyId  string   `pulumi:"apiKeyId"`
 	RoleNames []string `pulumi:"roleNames"`
@@ -31123,9 +31243,14 @@ func (o GetProjectTeamArrayOutput) Index(i pulumi.IntInput) GetProjectTeamOutput
 }
 
 type GetProjectsResult struct {
-	ApiKeys      []GetProjectsResultApiKey `pulumi:"apiKeys"`
-	ClusterCount int                       `pulumi:"clusterCount"`
-	Created      string                    `pulumi:"created"`
+	ApiKeys []GetProjectsResultApiKey `pulumi:"apiKeys"`
+	// The number of Atlas clusters deployed in the project.
+	ClusterCount int `pulumi:"clusterCount"`
+	// The ISO-8601-formatted timestamp of when Atlas created the project.
+	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+	//   The following are valid roles:
+	Created string `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id string `pulumi:"id"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -31141,28 +31266,10 @@ type GetProjectsResult struct {
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
-	// *`clusterCount` - The number of Atlas clusters deployed in the project.
-	// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-	//   The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
-	// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-	// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
-	//   The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
-	OrgId string                  `pulumi:"orgId"`
-	Teams []GetProjectsResultTeam `pulumi:"teams"`
+	OrgId string `pulumi:"orgId"`
+	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+	RegionUsageRestrictions string                  `pulumi:"regionUsageRestrictions"`
+	Teams                   []GetProjectsResultTeam `pulumi:"teams"`
 }
 
 // GetProjectsResultInput is an input type that accepts GetProjectsResultArgs and GetProjectsResultOutput values.
@@ -31177,9 +31284,14 @@ type GetProjectsResultInput interface {
 }
 
 type GetProjectsResultArgs struct {
-	ApiKeys      GetProjectsResultApiKeyArrayInput `pulumi:"apiKeys"`
-	ClusterCount pulumi.IntInput                   `pulumi:"clusterCount"`
-	Created      pulumi.StringInput                `pulumi:"created"`
+	ApiKeys GetProjectsResultApiKeyArrayInput `pulumi:"apiKeys"`
+	// The number of Atlas clusters deployed in the project.
+	ClusterCount pulumi.IntInput `pulumi:"clusterCount"`
+	// The ISO-8601-formatted timestamp of when Atlas created the project.
+	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+	//   The following are valid roles:
+	Created pulumi.StringInput `pulumi:"created"`
 	// Autogenerated Unique ID for this data source.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -31195,28 +31307,10 @@ type GetProjectsResultArgs struct {
 	// The name of the project you want to create. (Cannot be changed via this Provider after creation.)
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
-	// *`clusterCount` - The number of Atlas clusters deployed in the project.
-	// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-	// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-	// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-	//   The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
-	// * `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-	// * `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
-	//   The following are valid roles:
-	// * `GROUP_OWNER`
-	// * `GROUP_READ_ONLY`
-	// * `GROUP_DATA_ACCESS_ADMIN`
-	// * `GROUP_DATA_ACCESS_READ_WRITE`
-	// * `GROUP_DATA_ACCESS_READ_ONLY`
-	// * `GROUP_CLUSTER_MANAGER`
-	OrgId pulumi.StringInput              `pulumi:"orgId"`
-	Teams GetProjectsResultTeamArrayInput `pulumi:"teams"`
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+	RegionUsageRestrictions pulumi.StringInput              `pulumi:"regionUsageRestrictions"`
+	Teams                   GetProjectsResultTeamArrayInput `pulumi:"teams"`
 }
 
 func (GetProjectsResultArgs) ElementType() reflect.Type {
@@ -31274,10 +31368,15 @@ func (o GetProjectsResultOutput) ApiKeys() GetProjectsResultApiKeyArrayOutput {
 	return o.ApplyT(func(v GetProjectsResult) []GetProjectsResultApiKey { return v.ApiKeys }).(GetProjectsResultApiKeyArrayOutput)
 }
 
+// The number of Atlas clusters deployed in the project.
 func (o GetProjectsResultOutput) ClusterCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetProjectsResult) int { return v.ClusterCount }).(pulumi.IntOutput)
 }
 
+// The ISO-8601-formatted timestamp of when Atlas created the project.
+//   - `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+//   - `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+//     The following are valid roles:
 func (o GetProjectsResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.Created }).(pulumi.StringOutput)
 }
@@ -31318,28 +31417,13 @@ func (o GetProjectsResultOutput) Name() pulumi.StringOutput {
 }
 
 // The ID of the organization you want to create the project within.
-// *`clusterCount` - The number of Atlas clusters deployed in the project.
-// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-//   - `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-//   - `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-//     The following are valid roles:
-//   - `GROUP_OWNER`
-//   - `GROUP_READ_ONLY`
-//   - `GROUP_DATA_ACCESS_ADMIN`
-//   - `GROUP_DATA_ACCESS_READ_WRITE`
-//   - `GROUP_DATA_ACCESS_READ_ONLY`
-//   - `GROUP_CLUSTER_MANAGER`
-//   - `api_keys.#.api_key_id` - The unique identifier of the Organization Programmatic API key assigned to the Project.
-//   - `api_keys.#.role_names` -  List of roles that the Organization Programmatic API key has been assigned.
-//     The following are valid roles:
-//   - `GROUP_OWNER`
-//   - `GROUP_READ_ONLY`
-//   - `GROUP_DATA_ACCESS_ADMIN`
-//   - `GROUP_DATA_ACCESS_READ_WRITE`
-//   - `GROUP_DATA_ACCESS_READ_ONLY`
-//   - `GROUP_CLUSTER_MANAGER`
 func (o GetProjectsResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+func (o GetProjectsResultOutput) RegionUsageRestrictions() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectsResult) string { return v.RegionUsageRestrictions }).(pulumi.StringOutput)
 }
 
 func (o GetProjectsResultOutput) Teams() GetProjectsResultTeamArrayOutput {
@@ -32101,7 +32185,9 @@ func (o GetServerlessInstanceLinkArrayOutput) Index(i pulumi.IntInput) GetServer
 type GetServerlessInstancesResult struct {
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv string `pulumi:"connectionStringsStandardSrv"`
-	CreateDate                   string `pulumi:"createDate"`
+	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+	ContinuousBackupEnabled bool   `pulumi:"continuousBackupEnabled"`
+	CreateDate              string `pulumi:"createDate"`
 	// Unique 24-hexadecimal digit string that identifies the serverless instance.
 	Id    string                             `pulumi:"id"`
 	Links []GetServerlessInstancesResultLink `pulumi:"links"`
@@ -32119,6 +32205,8 @@ type GetServerlessInstancesResult struct {
 	ProviderSettingsRegionName string `pulumi:"providerSettingsRegionName"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName string `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 }
 
 // GetServerlessInstancesResultInput is an input type that accepts GetServerlessInstancesResultArgs and GetServerlessInstancesResultOutput values.
@@ -32135,7 +32223,9 @@ type GetServerlessInstancesResultInput interface {
 type GetServerlessInstancesResultArgs struct {
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv pulumi.StringInput `pulumi:"connectionStringsStandardSrv"`
-	CreateDate                   pulumi.StringInput `pulumi:"createDate"`
+	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+	ContinuousBackupEnabled pulumi.BoolInput   `pulumi:"continuousBackupEnabled"`
+	CreateDate              pulumi.StringInput `pulumi:"createDate"`
 	// Unique 24-hexadecimal digit string that identifies the serverless instance.
 	Id    pulumi.StringInput                         `pulumi:"id"`
 	Links GetServerlessInstancesResultLinkArrayInput `pulumi:"links"`
@@ -32153,6 +32243,8 @@ type GetServerlessInstancesResultArgs struct {
 	ProviderSettingsRegionName pulumi.StringInput `pulumi:"providerSettingsRegionName"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName pulumi.StringInput `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled pulumi.BoolInput `pulumi:"terminationProtectionEnabled"`
 }
 
 func (GetServerlessInstancesResultArgs) ElementType() reflect.Type {
@@ -32211,6 +32303,11 @@ func (o GetServerlessInstancesResultOutput) ConnectionStringsStandardSrv() pulum
 	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.ConnectionStringsStandardSrv }).(pulumi.StringOutput)
 }
 
+// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+func (o GetServerlessInstancesResultOutput) ContinuousBackupEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) bool { return v.ContinuousBackupEnabled }).(pulumi.BoolOutput)
+}
+
 func (o GetServerlessInstancesResultOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.CreateDate }).(pulumi.StringOutput)
 }
@@ -32257,6 +32354,11 @@ func (o GetServerlessInstancesResultOutput) ProviderSettingsRegionName() pulumi.
 // Stage of deployment of this serverless instance when the resource made its request.
 func (o GetServerlessInstancesResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+func (o GetServerlessInstancesResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerlessInstancesResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
 }
 
 type GetServerlessInstancesResultArrayOutput struct{ *pulumi.OutputState }
@@ -32394,31 +32496,24 @@ type GetThirdPartyIntegrationsResult struct {
 	// Your License Key.
 	LicenseKey string `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Flowdock organization name.
-	// * `WEBHOOK`
 	OrgName string `pulumi:"orgName"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId string `pulumi:"projectId"`
 	// Your Insights Query Key.
-	// * `OPS_GENIE`
 	ReadToken string `pulumi:"readToken"`
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-	// * `VICTOR_OPS`
 	Region string `pulumi:"region"`
 	// An optional field for your Routing Key.
-	// * `FLOWDOCK`
 	RoutingKey string `pulumi:"routingKey"`
 	// Your Prometheus protocol scheme configured for requests.
 	Scheme *string `pulumi:"scheme"`
 	// An optional field for your webhook secret.
-	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery *string `pulumi:"serviceDiscovery"`
 	// Your Service Key.
-	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
 	TeamName   string `pulumi:"teamName"`
 	// (Required) Thirt-Party service integration type.
@@ -32457,31 +32552,24 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Your License Key.
 	LicenseKey pulumi.StringInput `pulumi:"licenseKey"`
 	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput `pulumi:"microsoftTeamsWebhookUrl"`
 	// Your Flowdock organization name.
-	// * `WEBHOOK`
 	OrgName pulumi.StringInput `pulumi:"orgName"`
 	// The unique ID for the project to get all Third-Party service integrations
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Your Insights Query Key.
-	// * `OPS_GENIE`
 	ReadToken pulumi.StringInput `pulumi:"readToken"`
 	// Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-	// * `VICTOR_OPS`
 	Region pulumi.StringInput `pulumi:"region"`
 	// An optional field for your Routing Key.
-	// * `FLOWDOCK`
 	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
 	// Your Prometheus protocol scheme configured for requests.
 	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
 	// An optional field for your webhook secret.
-	// * `MICROSOFT_TEAMS`
 	Secret pulumi.StringInput `pulumi:"secret"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery pulumi.StringPtrInput `pulumi:"serviceDiscovery"`
 	// Your Service Key.
-	// * `DATADOG`
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
 	TeamName   pulumi.StringInput `pulumi:"teamName"`
 	// (Required) Thirt-Party service integration type.
@@ -32580,13 +32668,11 @@ func (o GetThirdPartyIntegrationsResultOutput) LicenseKey() pulumi.StringOutput 
 }
 
 // Your Microsoft Teams incoming webhook URL.
-// * `PROMETHEUS`
 func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) *string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringPtrOutput)
 }
 
 // Your Flowdock organization name.
-// * `WEBHOOK`
 func (o GetThirdPartyIntegrationsResultOutput) OrgName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.OrgName }).(pulumi.StringOutput)
 }
@@ -32597,19 +32683,16 @@ func (o GetThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Your Insights Query Key.
-// * `OPS_GENIE`
 func (o GetThirdPartyIntegrationsResultOutput) ReadToken() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ReadToken }).(pulumi.StringOutput)
 }
 
 // Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-// * `VICTOR_OPS`
 func (o GetThirdPartyIntegrationsResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // An optional field for your Routing Key.
-// * `FLOWDOCK`
 func (o GetThirdPartyIntegrationsResultOutput) RoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.RoutingKey }).(pulumi.StringOutput)
 }
@@ -32620,7 +32703,6 @@ func (o GetThirdPartyIntegrationsResultOutput) Scheme() pulumi.StringPtrOutput {
 }
 
 // An optional field for your webhook secret.
-// * `MICROSOFT_TEAMS`
 func (o GetThirdPartyIntegrationsResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Secret }).(pulumi.StringOutput)
 }
@@ -32631,7 +32713,6 @@ func (o GetThirdPartyIntegrationsResultOutput) ServiceDiscovery() pulumi.StringP
 }
 
 // Your Service Key.
-// * `DATADOG`
 func (o GetThirdPartyIntegrationsResultOutput) ServiceKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ServiceKey }).(pulumi.StringOutput)
 }
@@ -32825,6 +32906,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyArrayInput)(nil)).Elem(), ProjectApiKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamInput)(nil)).Elem(), ProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRoleInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRolePtrInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymInput)(nil)).Elem(), SearchIndexSynonymArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SearchIndexSynonymArrayInput)(nil)).Elem(), SearchIndexSynonymArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceLinkInput)(nil)).Elem(), ServerlessInstanceLinkArgs{})
@@ -33123,6 +33206,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlLinkArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceAdlLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlResultInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceAdlResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceAdlResultArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceAdlResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceServerlessResultInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceServerlessResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsServiceServerlessResultArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsServiceServerlessResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyInput)(nil)).Elem(), GetProjectApiKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyArrayInput)(nil)).Elem(), GetProjectApiKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamInput)(nil)).Elem(), GetProjectTeamArgs{})
@@ -33291,6 +33376,8 @@ func init() {
 	pulumi.RegisterOutputType(ProjectApiKeyArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTeamOutput{})
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
+	pulumi.RegisterOutputType(ProviderAssumeRoleOutput{})
+	pulumi.RegisterOutputType(ProviderAssumeRolePtrOutput{})
 	pulumi.RegisterOutputType(SearchIndexSynonymOutput{})
 	pulumi.RegisterOutputType(SearchIndexSynonymArrayOutput{})
 	pulumi.RegisterOutputType(ServerlessInstanceLinkOutput{})
@@ -33589,6 +33676,8 @@ func init() {
 	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceAdlLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceAdlResultOutput{})
 	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceAdlResultArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceServerlessResultOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsServiceServerlessResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeyOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamOutput{})

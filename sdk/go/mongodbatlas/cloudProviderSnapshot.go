@@ -56,7 +56,7 @@ type CloudProviderSnapshot struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the size of the snapshot in bytes.
 	StorageSizeBytes pulumi.IntOutput `pulumi:"storageSizeBytes"`
-	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
 	Timeout pulumi.StringPtrOutput `pulumi:"timeout"`
 	// Specifies the type of cluster: replicaSet or shardedCluster.
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -127,7 +127,7 @@ type cloudProviderSnapshotState struct {
 	Status *string `pulumi:"status"`
 	// Specifies the size of the snapshot in bytes.
 	StorageSizeBytes *int `pulumi:"storageSizeBytes"`
-	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
 	Timeout *string `pulumi:"timeout"`
 	// Specifies the type of cluster: replicaSet or shardedCluster.
 	Type *string `pulumi:"type"`
@@ -158,7 +158,7 @@ type CloudProviderSnapshotState struct {
 	Status pulumi.StringPtrInput
 	// Specifies the size of the snapshot in bytes.
 	StorageSizeBytes pulumi.IntPtrInput
-	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
 	Timeout pulumi.StringPtrInput
 	// Specifies the type of cluster: replicaSet or shardedCluster.
 	Type pulumi.StringPtrInput
@@ -177,7 +177,7 @@ type cloudProviderSnapshotArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
 	RetentionInDays int `pulumi:"retentionInDays"`
-	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
 	Timeout *string `pulumi:"timeout"`
 }
 
@@ -191,7 +191,7 @@ type CloudProviderSnapshotArgs struct {
 	ProjectId pulumi.StringInput
 	// The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
 	RetentionInDays pulumi.IntInput
-	// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+	// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
 	Timeout pulumi.StringPtrInput
 }
 
@@ -342,7 +342,7 @@ func (o CloudProviderSnapshotOutput) StorageSizeBytes() pulumi.IntOutput {
 	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.IntOutput { return v.StorageSizeBytes }).(pulumi.IntOutput)
 }
 
-// The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+// The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
 func (o CloudProviderSnapshotOutput) Timeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudProviderSnapshot) pulumi.StringPtrOutput { return v.Timeout }).(pulumi.StringPtrOutput)
 }

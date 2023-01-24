@@ -2,18 +2,16 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.EventTrigger` describe an Event Trigger.
  */
 export function getEventTrigger(args: GetEventTriggerArgs, opts?: pulumi.InvokeOptions): Promise<GetEventTriggerResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getEventTrigger:getEventTrigger", {
         "appId": args.appId,
         "projectId": args.projectId,
@@ -123,9 +121,11 @@ export interface GetEventTriggerResult {
      */
     readonly unordered: boolean;
 }
-
+/**
+ * `mongodbatlas.EventTrigger` describe an Event Trigger.
+ */
 export function getEventTriggerOutput(args: GetEventTriggerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEventTriggerResult> {
-    return pulumi.output(args).apply(a => getEventTrigger(a, opts))
+    return pulumi.output(args).apply((a: any) => getEventTrigger(a, opts))
 }
 
 /**

@@ -397,7 +397,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = X509AuthenticationDatabaseUserArgs.__new__(X509AuthenticationDatabaseUserArgs)
 
-            __props__.__dict__["customer_x509_cas"] = customer_x509_cas
+            __props__.__dict__["customer_x509_cas"] = None if customer_x509_cas is None else pulumi.Output.secret(customer_x509_cas)
             __props__.__dict__["months_until_expiration"] = months_until_expiration
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
@@ -405,6 +405,8 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
             __props__.__dict__["username"] = username
             __props__.__dict__["certificates"] = None
             __props__.__dict__["current_certificate"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["currentCertificate", "customerX509Cas"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(X509AuthenticationDatabaseUser, __self__).__init__(
             'mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser',
             resource_name,

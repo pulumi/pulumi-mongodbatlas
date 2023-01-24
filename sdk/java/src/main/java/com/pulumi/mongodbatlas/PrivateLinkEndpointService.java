@@ -25,6 +25,7 @@ import javax.annotation.Nullable;
  *   * Project Owner
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+ * **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
  * 
  * ## Example with AWS
  * ```java

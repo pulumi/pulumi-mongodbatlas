@@ -23,10 +23,13 @@ class GetServerlessInstanceResult:
     """
     A collection of values returned by getServerlessInstance.
     """
-    def __init__(__self__, connection_strings_standard_srv=None, create_date=None, id=None, links=None, mongo_db_version=None, name=None, project_id=None, provider_settings_backing_provider_name=None, provider_settings_provider_name=None, provider_settings_region_name=None, state_name=None):
+    def __init__(__self__, connection_strings_standard_srv=None, continuous_backup_enabled=None, create_date=None, id=None, links=None, mongo_db_version=None, name=None, project_id=None, provider_settings_backing_provider_name=None, provider_settings_provider_name=None, provider_settings_region_name=None, state_name=None, termination_protection_enabled=None):
         if connection_strings_standard_srv and not isinstance(connection_strings_standard_srv, str):
             raise TypeError("Expected argument 'connection_strings_standard_srv' to be a str")
         pulumi.set(__self__, "connection_strings_standard_srv", connection_strings_standard_srv)
+        if continuous_backup_enabled and not isinstance(continuous_backup_enabled, bool):
+            raise TypeError("Expected argument 'continuous_backup_enabled' to be a bool")
+        pulumi.set(__self__, "continuous_backup_enabled", continuous_backup_enabled)
         if create_date and not isinstance(create_date, str):
             raise TypeError("Expected argument 'create_date' to be a str")
         pulumi.set(__self__, "create_date", create_date)
@@ -57,6 +60,9 @@ class GetServerlessInstanceResult:
         if state_name and not isinstance(state_name, str):
             raise TypeError("Expected argument 'state_name' to be a str")
         pulumi.set(__self__, "state_name", state_name)
+        if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
+            raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
+        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
 
     @property
     @pulumi.getter(name="connectionStringsStandardSrv")
@@ -65,6 +71,14 @@ class GetServerlessInstanceResult:
         Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         """
         return pulumi.get(self, "connection_strings_standard_srv")
+
+    @property
+    @pulumi.getter(name="continuousBackupEnabled")
+    def continuous_backup_enabled(self) -> bool:
+        """
+        Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+        """
+        return pulumi.get(self, "continuous_backup_enabled")
 
     @property
     @pulumi.getter(name="createDate")
@@ -134,6 +148,14 @@ class GetServerlessInstanceResult:
         """
         return pulumi.get(self, "state_name")
 
+    @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> bool:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
 
 class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
     # pylint: disable=using-constant-test
@@ -142,6 +164,7 @@ class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
             yield self
         return GetServerlessInstanceResult(
             connection_strings_standard_srv=self.connection_strings_standard_srv,
+            continuous_backup_enabled=self.continuous_backup_enabled,
             create_date=self.create_date,
             id=self.id,
             links=self.links,
@@ -151,10 +174,12 @@ class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
             provider_settings_backing_provider_name=self.provider_settings_backing_provider_name,
             provider_settings_provider_name=self.provider_settings_provider_name,
             provider_settings_region_name=self.provider_settings_region_name,
-            state_name=self.state_name)
+            state_name=self.state_name,
+            termination_protection_enabled=self.termination_protection_enabled)
 
 
-def get_serverless_instance(links: Optional[Sequence[pulumi.InputType['GetServerlessInstanceLinkArgs']]] = None,
+def get_serverless_instance(continuous_backup_enabled: Optional[bool] = None,
+                            links: Optional[Sequence[pulumi.InputType['GetServerlessInstanceLinkArgs']]] = None,
                             name: Optional[str] = None,
                             project_id: Optional[str] = None,
                             state_name: Optional[str] = None,
@@ -177,11 +202,13 @@ def get_serverless_instance(links: Optional[Sequence[pulumi.InputType['GetServer
     ```
 
 
+    :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
     :param str state_name: Stage of deployment of this serverless instance when the resource made its request.
     """
     __args__ = dict()
+    __args__['continuousBackupEnabled'] = continuous_backup_enabled
     __args__['links'] = links
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -191,6 +218,7 @@ def get_serverless_instance(links: Optional[Sequence[pulumi.InputType['GetServer
 
     return AwaitableGetServerlessInstanceResult(
         connection_strings_standard_srv=__ret__.connection_strings_standard_srv,
+        continuous_backup_enabled=__ret__.continuous_backup_enabled,
         create_date=__ret__.create_date,
         id=__ret__.id,
         links=__ret__.links,
@@ -200,11 +228,13 @@ def get_serverless_instance(links: Optional[Sequence[pulumi.InputType['GetServer
         provider_settings_backing_provider_name=__ret__.provider_settings_backing_provider_name,
         provider_settings_provider_name=__ret__.provider_settings_provider_name,
         provider_settings_region_name=__ret__.provider_settings_region_name,
-        state_name=__ret__.state_name)
+        state_name=__ret__.state_name,
+        termination_protection_enabled=__ret__.termination_protection_enabled)
 
 
 @_utilities.lift_output_func(get_serverless_instance)
-def get_serverless_instance_output(links: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServerlessInstanceLinkArgs']]]]] = None,
+def get_serverless_instance_output(continuous_backup_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
+                                   links: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServerlessInstanceLinkArgs']]]]] = None,
                                    name: Optional[pulumi.Input[str]] = None,
                                    project_id: Optional[pulumi.Input[str]] = None,
                                    state_name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -227,6 +257,7 @@ def get_serverless_instance_output(links: Optional[pulumi.Input[Optional[Sequenc
     ```
 
 
+    :param bool continuous_backup_enabled: Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param str name: Human-readable label that identifies your serverless instance.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
     :param str state_name: Stage of deployment of this serverless instance when the resource made its request.

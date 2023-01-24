@@ -23,7 +23,8 @@ public final class FederatedSettingsOrgRoleMappingRoleAssignment {
      */
     private @Nullable String orgId;
     /**
-     * @return Specifies the Roles that are attached to the Role Mapping.
+     * @return Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+     * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      * 
      */
     private @Nullable List<String> roles;
@@ -44,7 +45,8 @@ public final class FederatedSettingsOrgRoleMappingRoleAssignment {
         return Optional.ofNullable(this.orgId);
     }
     /**
-     * @return Specifies the Roles that are attached to the Role Mapping.
+     * @return Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+     * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      * 
      */
     public List<String> roles() {

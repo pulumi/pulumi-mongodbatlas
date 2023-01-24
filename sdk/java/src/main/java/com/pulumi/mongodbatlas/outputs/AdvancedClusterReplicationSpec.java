@@ -15,10 +15,6 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AdvancedClusterReplicationSpec {
-    /**
-     * @return A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
-     * 
-     */
     private @Nullable Map<String,String> containerId;
     private @Nullable String id;
     /**
@@ -38,10 +34,6 @@ public final class AdvancedClusterReplicationSpec {
     private @Nullable String zoneName;
 
     private AdvancedClusterReplicationSpec() {}
-    /**
-     * @return A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
-     * 
-     */
     public Map<String,String> containerId() {
         return this.containerId == null ? Map.of() : this.containerId;
     }

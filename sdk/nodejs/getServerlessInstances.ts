@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -19,17 +20,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const dataServerless = pulumi.output(mongodbatlas.getServerlessInstances({
+ * const dataServerless = mongodbatlas.getServerlessInstances({
  *     projectId: "<PROJECT_ID",
- * }));
+ * });
  * ```
  */
 export function getServerlessInstances(args: GetServerlessInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetServerlessInstancesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getServerlessInstances:getServerlessInstances", {
         "projectId": args.projectId,
     }, opts);
@@ -59,9 +57,27 @@ export interface GetServerlessInstancesResult {
      */
     readonly results: outputs.GetServerlessInstancesResult[];
 }
-
+/**
+ * `mongodbatlas.getServerlessInstances` describe all serverless instances. This represents serverless instances that have been created for the specified group id.
+ *
+ * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+ * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const dataServerless = mongodbatlas.getServerlessInstances({
+ *     projectId: "<PROJECT_ID",
+ * });
+ * ```
+ */
 export function getServerlessInstancesOutput(args: GetServerlessInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstancesResult> {
-    return pulumi.output(args).apply(a => getServerlessInstances(a, opts))
+    return pulumi.output(args).apply((a: any) => getServerlessInstances(a, opts))
 }
 
 /**

@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudBackupSnapshotExportBucket(args: GetCloudBackupSnapshotExportBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportBucketResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket", {
         "exportBucketId": args.exportBucketId,
         "id": args.id,
@@ -57,9 +54,13 @@ export interface GetCloudBackupSnapshotExportBucketResult {
     readonly id: string;
     readonly projectId: string;
 }
-
+/**
+ * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getCloudBackupSnapshotExportBucketOutput(args: GetCloudBackupSnapshotExportBucketOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportBucketResult> {
-    return pulumi.output(args).apply(a => getCloudBackupSnapshotExportBucket(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportBucket(a, opts))
 }
 
 /**

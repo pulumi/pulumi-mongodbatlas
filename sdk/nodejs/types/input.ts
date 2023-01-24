@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface AdvancedClusterAdvancedConfiguration {
     /**
@@ -102,9 +103,6 @@ export interface AdvancedClusterLabel {
 }
 
 export interface AdvancedClusterReplicationSpec {
-    /**
-     * A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-     */
     containerId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     id?: pulumi.Input<string>;
     /**
@@ -245,19 +243,14 @@ export interface AlertConfigurationMatcher {
      */
     fieldName?: pulumi.Input<string>;
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      */
     operator?: pulumi.Input<string>;
     /**
-     * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
-     * - `PRIMARY`
-     * - `SECONDARY`
-     * - `STANDALONE`
-     * - `CONFIG`
-     * - `MONGOS`
+     * If omitted, the configuration is disabled.
      */
     value?: pulumi.Input<string>;
 }
@@ -272,10 +265,10 @@ export interface AlertConfigurationMetricThresholdConfig {
      */
     mode?: pulumi.Input<string>;
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      */
     operator?: pulumi.Input<string>;
     /**
@@ -284,23 +277,8 @@ export interface AlertConfigurationMetricThresholdConfig {
     threshold?: pulumi.Input<number>;
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units?: pulumi.Input<string>;
 }
@@ -347,6 +325,10 @@ export interface AlertConfigurationNotification {
      */
     intervalMin?: pulumi.Input<number>;
     /**
+     * Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+     */
+    microsoftTeamsWebhookUrl?: pulumi.Input<string>;
+    /**
      * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      */
     mobileNumber?: pulumi.Input<string>;
@@ -386,9 +368,6 @@ export interface AlertConfigurationNotification {
     /**
      * Type of alert notification.
      * Accepted values are:
-     * - `DATADOG`
-     * - `EMAIL`
-     * - `FLOWDOCK`
      */
     typeName?: pulumi.Input<string>;
     /**
@@ -403,14 +382,22 @@ export interface AlertConfigurationNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey?: pulumi.Input<string>;
+    /**
+     * Optional authentication secret for the `WEBHOOK` notifications type.
+     */
+    webhookSecret?: pulumi.Input<string>;
+    /**
+     * Target URL  for the `WEBHOOK` notifications type.
+     */
+    webhookUrl?: pulumi.Input<string>;
 }
 
 export interface AlertConfigurationThresholdConfig {
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      */
     operator?: pulumi.Input<string>;
     /**
@@ -419,23 +406,8 @@ export interface AlertConfigurationThresholdConfig {
     threshold?: pulumi.Input<number>;
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      */
     units?: pulumi.Input<string>;
 }
@@ -736,7 +708,7 @@ export interface ClusterReplicationSpec {
      */
     id?: pulumi.Input<string>;
     /**
-     * Number of shards to deploy in the specified zone, minimum 1.
+     * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
     numShards: pulumi.Input<number>;
     /**
@@ -947,7 +919,7 @@ export interface EncryptionAtRestAwsKmsConfig {
      */
     customerMasterKeyId?: pulumi.Input<string>;
     /**
-     * Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -1034,12 +1006,16 @@ export interface FederatedSettingsOrgRoleMappingRoleAssignment {
      */
     orgId?: pulumi.Input<string>;
     /**
-     * Specifies the Roles that are attached to the Role Mapping.
+     * Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+     * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetCustomDbRoleInheritedRole {
+    /**
+     * (Required) Database on which the inherited role is granted.
+     */
     databaseName?: string;
     /**
      * Name of the custom role.
@@ -1048,6 +1024,9 @@ export interface GetCustomDbRoleInheritedRole {
 }
 
 export interface GetCustomDbRoleInheritedRoleArgs {
+    /**
+     * (Required) Database on which the inherited role is granted.
+     */
     databaseName?: pulumi.Input<string>;
     /**
      * Name of the custom role.
@@ -1101,14 +1080,14 @@ export interface GetGlobalClusterConfigManagedNamespaceArgs {
     isShardKeyUnique?: pulumi.Input<boolean>;
 }
 
-export interface GetServerlessInstanceLinkArgs {
-    href?: pulumi.Input<string>;
-    rel?: pulumi.Input<string>;
-}
-
 export interface GetServerlessInstanceLink {
     href?: string;
     rel?: string;
+}
+
+export interface GetServerlessInstanceLinkArgs {
+    href?: pulumi.Input<string>;
+    rel?: pulumi.Input<string>;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {
@@ -1203,32 +1182,39 @@ export interface ProjectApiKey {
      */
     apiKeyId: pulumi.Input<string>;
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
      * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
+     * The following are valid roles:
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ProjectTeam {
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
      * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
      */
     roleNames: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      */
     teamId: pulumi.Input<string>;
+}
+
+export interface ProviderAssumeRole {
+    duration?: pulumi.Input<string>;
+    /**
+     * @deprecated Use assume_role.duration instead
+     */
+    durationSeconds?: pulumi.Input<number>;
+    externalId?: pulumi.Input<string>;
+    policy?: pulumi.Input<string>;
+    policyArns?: pulumi.Input<pulumi.Input<string>[]>;
+    roleArn?: pulumi.Input<string>;
+    sessionName?: pulumi.Input<string>;
+    sourceIdentity?: pulumi.Input<string>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    transitiveTagKeys?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface SearchIndexSynonym {
@@ -1263,4 +1249,6 @@ export interface X509AuthenticationDatabaseUserCertificate {
     id?: pulumi.Input<number>;
     notAfter?: pulumi.Input<string>;
     subject?: pulumi.Input<string>;
+}
+export namespace config {
 }

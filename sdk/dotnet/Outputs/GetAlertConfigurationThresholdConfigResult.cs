@@ -16,8 +16,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Operator to apply when checking the current metric value against the threshold value.
         /// Accepted values are:
-        /// - `GREATER_THAN`
-        /// - `LESS_THAN`
         /// </summary>
         public readonly string Operator;
         /// <summary>
@@ -26,23 +24,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly double Threshold;
         /// <summary>
         /// The units for the threshold value. Depends on the type of metric.
-        /// Accepted values are:
-        /// - `RAW`
-        /// - `BITS`
-        /// - `BYTES`
-        /// - `KILOBITS`
-        /// - `KILOBYTES`
-        /// - `MEGABITS`
-        /// - `MEGABYTES`
-        /// - `GIGABITS`
-        /// - `GIGABYTES`
-        /// - `TERABYTES`
-        /// - `PETABYTES`
-        /// - `MILLISECONDS`
-        /// - `SECONDS`
-        /// - `MINUTES`
-        /// - `HOURS`
-        /// - `DAYS`
+        /// Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         /// </summary>
         public readonly string Units;
 

@@ -100,7 +100,7 @@ class GetFederatedSettingsOrgConfigResult:
     @pulumi.getter(name="postAuthRoleGrants")
     def post_auth_role_grants(self) -> Sequence[str]:
         """
-        List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+        List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
         """
         return pulumi.get(self, "post_auth_role_grants")
 
@@ -148,7 +148,8 @@ def get_federated_settings_org_config(federation_settings_id: Optional[str] = No
         federation_settings_id="627a9687f7f7f7f774de306f14",
         org_id="627a9683ea7ff7f74de306f14",
         domain_restriction_enabled=False,
-        domain_allow_lists=["mydomain.com"])
+        domain_allow_lists=["mydomain.com"],
+        post_auth_role_grants=["ORG_MEMBER"])
     org_configs_ds = mongodbatlas.get_federated_settings_org_config_output(federation_settings_id=org_connections.id,
         org_id="627a9683ea7ff7f74de306f14")
     ```
@@ -192,7 +193,8 @@ def get_federated_settings_org_config_output(federation_settings_id: Optional[pu
         federation_settings_id="627a9687f7f7f7f774de306f14",
         org_id="627a9683ea7ff7f74de306f14",
         domain_restriction_enabled=False,
-        domain_allow_lists=["mydomain.com"])
+        domain_allow_lists=["mydomain.com"],
+        post_auth_role_grants=["ORG_MEMBER"])
     org_configs_ds = mongodbatlas.get_federated_settings_org_config_output(federation_settings_id=org_connections.id,
         org_id="627a9683ea7ff7f74de306f14")
     ```

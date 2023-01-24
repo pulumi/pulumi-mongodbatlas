@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getPrivateEndpointRegionalMode(args: GetPrivateEndpointRegionalModeArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateEndpointRegionalModeResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", {
         "enabled": args.enabled,
         "projectId": args.projectId,
@@ -46,9 +43,13 @@ export interface GetPrivateEndpointRegionalModeResult {
     readonly id: string;
     readonly projectId: string;
 }
-
+/**
+ * `privateEndpointRegionalMode` describe a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ */
 export function getPrivateEndpointRegionalModeOutput(args: GetPrivateEndpointRegionalModeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateEndpointRegionalModeResult> {
-    return pulumi.output(args).apply(a => getPrivateEndpointRegionalMode(a, opts))
+    return pulumi.output(args).apply((a: any) => getPrivateEndpointRegionalMode(a, opts))
 }
 
 /**

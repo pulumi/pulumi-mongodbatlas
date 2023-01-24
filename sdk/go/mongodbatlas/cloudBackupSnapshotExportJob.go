@@ -11,10 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `CloudBackupSnapshotExportJob` resource allows you to create a cloud backup snapshot export job for the specified project.
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -43,8 +39,8 @@ import (
 //				ClusterName:    pulumi.String("{CLUSTER_NAME}"),
 //				SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
 //				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
-//				CustomDatas: CloudBackupSnapshotExportJobCustomDataArray{
-//					&CloudBackupSnapshotExportJobCustomDataArgs{
+//				CustomDatas: mongodbatlas.CloudBackupSnapshotExportJobCustomDataArray{
+//					&mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs{
 //						Key:   pulumi.String("exported by"),
 //						Value: pulumi.String("myName"),
 //					},

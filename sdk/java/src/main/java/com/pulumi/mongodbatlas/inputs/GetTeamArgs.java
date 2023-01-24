@@ -15,47 +15,23 @@ public final class GetTeamArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetTeamArgs Empty = new GetTeamArgs();
 
-    /**
-     * The team name.
-     * 
-     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
-    /**
-     * @return The team name.
-     * 
-     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * The unique identifier for the organization you want to associate the team with.
-     * 
-     */
     @Import(name="orgId", required=true)
     private Output<String> orgId;
 
-    /**
-     * @return The unique identifier for the organization you want to associate the team with.
-     * 
-     */
     public Output<String> orgId() {
         return this.orgId;
     }
 
-    /**
-     * The unique identifier for the team.
-     * 
-     */
     @Import(name="teamId")
     private @Nullable Output<String> teamId;
 
-    /**
-     * @return The unique identifier for the team.
-     * 
-     */
     public Optional<Output<String>> teamId() {
         return Optional.ofNullable(this.teamId);
     }
@@ -86,65 +62,29 @@ public final class GetTeamArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetTeamArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param name The team name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param name The team name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
-        /**
-         * @param orgId The unique identifier for the organization you want to associate the team with.
-         * 
-         * @return builder
-         * 
-         */
         public Builder orgId(Output<String> orgId) {
             $.orgId = orgId;
             return this;
         }
 
-        /**
-         * @param orgId The unique identifier for the organization you want to associate the team with.
-         * 
-         * @return builder
-         * 
-         */
         public Builder orgId(String orgId) {
             return orgId(Output.of(orgId));
         }
 
-        /**
-         * @param teamId The unique identifier for the team.
-         * 
-         * @return builder
-         * 
-         */
         public Builder teamId(@Nullable Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
 
-        /**
-         * @param teamId The unique identifier for the team.
-         * 
-         * @return builder
-         * 
-         */
         public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }

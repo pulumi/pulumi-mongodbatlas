@@ -42,7 +42,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetServerlessInstanceResult> InvokeAsync(GetServerlessInstanceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
@@ -75,12 +75,18 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetServerlessInstanceResult> Invoke(GetServerlessInstanceInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetServerlessInstanceResult>("mongodbatlas:index/getServerlessInstance:getServerlessInstance", args ?? new GetServerlessInstanceInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetServerlessInstanceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+        /// </summary>
+        [Input("continuousBackupEnabled")]
+        public bool? ContinuousBackupEnabled { get; set; }
+
         [Input("links")]
         private List<Inputs.GetServerlessInstanceLinkArgs>? _links;
         public List<Inputs.GetServerlessInstanceLinkArgs> Links
@@ -115,6 +121,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetServerlessInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+        /// </summary>
+        [Input("continuousBackupEnabled")]
+        public Input<bool>? ContinuousBackupEnabled { get; set; }
+
         [Input("links")]
         private InputList<Inputs.GetServerlessInstanceLinkInputArgs>? _links;
         public InputList<Inputs.GetServerlessInstanceLinkInputArgs> Links
@@ -155,6 +167,10 @@ namespace Pulumi.Mongodbatlas
         /// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         /// </summary>
         public readonly string ConnectionStringsStandardSrv;
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+        /// </summary>
+        public readonly bool ContinuousBackupEnabled;
         public readonly string CreateDate;
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the serverless instance.
@@ -183,10 +199,16 @@ namespace Pulumi.Mongodbatlas
         /// Stage of deployment of this serverless instance when the resource made its request.
         /// </summary>
         public readonly string StateName;
+        /// <summary>
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        public readonly bool TerminationProtectionEnabled;
 
         [OutputConstructor]
         private GetServerlessInstanceResult(
             string connectionStringsStandardSrv,
+
+            bool continuousBackupEnabled,
 
             string createDate,
 
@@ -206,9 +228,12 @@ namespace Pulumi.Mongodbatlas
 
             string providerSettingsRegionName,
 
-            string stateName)
+            string stateName,
+
+            bool terminationProtectionEnabled)
         {
             ConnectionStringsStandardSrv = connectionStringsStandardSrv;
+            ContinuousBackupEnabled = continuousBackupEnabled;
             CreateDate = createDate;
             Id = id;
             Links = links;
@@ -219,6 +244,7 @@ namespace Pulumi.Mongodbatlas
             ProviderSettingsProviderName = providerSettingsProviderName;
             ProviderSettingsRegionName = providerSettingsRegionName;
             StateName = stateName;
+            TerminationProtectionEnabled = terminationProtectionEnabled;
         }
     }
 }

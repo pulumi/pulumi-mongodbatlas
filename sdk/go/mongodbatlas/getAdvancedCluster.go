@@ -10,19 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## --
-//
-// layout: "mongodbatlas"
-// page_title: "MongoDB Atlas: advancedCluster"
-// sidebar_current: "docs-mongodbatlas-datasource-advanced-cluster"
-// description: |-
-//
-//	Describe an Advanced Cluster.
-//
-// ---
-//
-// # Data Source: AdvancedCluster
-//
 // `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -85,6 +72,8 @@ type LookupAdvancedClusterResult struct {
 	RootCertType string `pulumi:"rootCertType"`
 	// Current state of the cluster. The possible states are:
 	StateName string `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
@@ -222,6 +211,11 @@ func (o LookupAdvancedClusterResultOutput) RootCertType() pulumi.StringOutput {
 // Current state of the cluster. The possible states are:
 func (o LookupAdvancedClusterResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+func (o LookupAdvancedClusterResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
 }
 
 // Release cadence that Atlas uses for this cluster.

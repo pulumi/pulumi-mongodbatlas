@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -13,11 +14,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudProviderSnapshotBackupPolicy(args: GetCloudProviderSnapshotBackupPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotBackupPolicyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderSnapshotBackupPolicy:getCloudProviderSnapshotBackupPolicy", {
         "clusterName": args.clusterName,
         "projectId": args.projectId,
@@ -75,9 +73,15 @@ export interface GetCloudProviderSnapshotBackupPolicyResult {
     readonly restoreWindowDays: number;
     readonly updateSnapshots: boolean;
 }
-
+/**
+ * **WARNING:** This data source is deprecated, use `mongodbatlas.CloudBackupSchedule`
+ *
+ * `mongodbatlas.CloudProviderSnapshotBackupPolicy` provides a Cloud Backup Snapshot Backup Policy datasource. An Atlas Cloud Backup Snapshot Policy provides the current snapshot schedule and retention settings for the cluster.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getCloudProviderSnapshotBackupPolicyOutput(args: GetCloudProviderSnapshotBackupPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotBackupPolicyResult> {
-    return pulumi.output(args).apply(a => getCloudProviderSnapshotBackupPolicy(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudProviderSnapshotBackupPolicy(a, opts))
 }
 
 /**

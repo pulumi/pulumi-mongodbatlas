@@ -15,6 +15,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly bool Cluster;
         public readonly string CollectionName;
+        /// <summary>
+        /// (Required) Database on which the inherited role is granted.
+        /// </summary>
         public readonly string DatabaseName;
 
         [OutputConstructor]

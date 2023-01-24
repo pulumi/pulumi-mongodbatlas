@@ -19,17 +19,9 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
 
     public static final AdvancedClusterReplicationSpecArgs Empty = new AdvancedClusterReplicationSpecArgs();
 
-    /**
-     * A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
-     * 
-     */
     @Import(name="containerId")
     private @Nullable Output<Map<String,String>> containerId;
 
-    /**
-     * @return A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
-     * 
-     */
     public Optional<Output<Map<String,String>>> containerId() {
         return Optional.ofNullable(this.containerId);
     }
@@ -114,23 +106,11 @@ public final class AdvancedClusterReplicationSpecArgs extends com.pulumi.resourc
             $ = new AdvancedClusterReplicationSpecArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param containerId A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder containerId(@Nullable Output<Map<String,String>> containerId) {
             $.containerId = containerId;
             return this;
         }
 
-        /**
-         * @param containerId A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder containerId(Map<String,String> containerId) {
             return containerId(Output.of(containerId));
         }

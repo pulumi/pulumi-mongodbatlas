@@ -89,6 +89,35 @@ def get_projects(items_per_page: Optional[int] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("testProject",
+        api_keys=[mongodbatlas.ProjectApiKeyArgs(
+            api_key_id="61003b299dda8d54a9d7d10c",
+            role_names=["GROUP_READ_ONLY"],
+        )],
+        org_id="<ORG_ID>",
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                role_names=["GROUP_OWNER"],
+                team_id="5e0fa8c99ccf641c722fe645",
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+            ),
+        ])
+    test_projects = mongodbatlas.get_projects(items_per_page=5,
+        page_num=1)
+    ```
+
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param int page_num: The page to return. Defaults to `1`.
@@ -115,6 +144,35 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[int]]] = 
     `get_projects` describe all Projects. This represents projects that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_project = mongodbatlas.Project("testProject",
+        api_keys=[mongodbatlas.ProjectApiKeyArgs(
+            api_key_id="61003b299dda8d54a9d7d10c",
+            role_names=["GROUP_READ_ONLY"],
+        )],
+        org_id="<ORG_ID>",
+        teams=[
+            mongodbatlas.ProjectTeamArgs(
+                role_names=["GROUP_OWNER"],
+                team_id="5e0fa8c99ccf641c722fe645",
+            ),
+            mongodbatlas.ProjectTeamArgs(
+                role_names=[
+                    "GROUP_READ_ONLY",
+                    "GROUP_DATA_ACCESS_READ_WRITE",
+                ],
+                team_id="5e1dd7b4f2a30ba80a70cd4rw",
+            ),
+        ])
+    test_projects = mongodbatlas.get_projects(items_per_page=5,
+        page_num=1)
+    ```
 
 
     :param int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

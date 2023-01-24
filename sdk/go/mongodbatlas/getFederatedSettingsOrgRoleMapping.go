@@ -30,8 +30,8 @@ import (
 //				FederationSettingsId: pulumi.Any(data.Mongodbatlas_federated_settings.Federated_settings.Id),
 //				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
 //				ExternalGroupName:    pulumi.String("myGrouptest"),
-//				RoleAssignments: FederatedSettingsOrgRoleMappingRoleAssignmentArray{
-//					&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//				RoleAssignments: mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArray{
+//					&mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
 //						OrgId: pulumi.String("627a9683e7f7f7ff7fe306f14"),
 //						Roles: pulumi.StringArray{
 //							pulumi.String("ORG_MEMBER"),
@@ -39,7 +39,7 @@ import (
 //							pulumi.String("ORG_BILLING_ADMIN"),
 //						},
 //					},
-//					&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//					&mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
 //						GroupId: pulumi.String("628aa20db7f7f7f98b81b8"),
 //						Roles: pulumi.StringArray{
 //							pulumi.String("GROUP_OWNER"),
@@ -48,7 +48,7 @@ import (
 //							pulumi.String("GROUP_DATA_ACCESS_READ_ONLY"),
 //						},
 //					},
-//					&FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
+//					&mongodbatlas.FederatedSettingsOrgRoleMappingRoleAssignmentArgs{
 //						GroupId: pulumi.String("62b477f7f7f7f5e741489c"),
 //						Roles: pulumi.StringArray{
 //							pulumi.String("GROUP_OWNER"),
@@ -63,7 +63,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupFederatedSettingsOrgRoleMappingOutput(ctx, GetFederatedSettingsOrgRoleMappingOutputArgs{
+//			_ = mongodbatlas.LookupFederatedSettingsOrgRoleMappingOutput(ctx, mongodbatlas.GetFederatedSettingsOrgRoleMappingOutputArgs{
 //				FederationSettingsId: orgGroupRoleMappingImport.ID(),
 //				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
 //				RoleMappingId:        pulumi.String("627a9673e7f7f7ff7fe306f14"),

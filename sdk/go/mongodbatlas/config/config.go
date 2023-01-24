@@ -8,9 +8,27 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
+func GetAssumeRole(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:assumeRole")
+}
+func GetAwsAccessKeyId(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:awsAccessKeyId")
+}
+func GetAwsSecretAccessKey(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:awsSecretAccessKey")
+}
+func GetAwsSessionToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:awsSessionToken")
+}
+
 // MongoDB Atlas Base URL
 func GetBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:baseUrl")
+}
+
+// MongoDB Atlas Base URL default to gov
+func GetIsMongodbgovCloud(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "mongodbatlas:isMongodbgovCloud")
 }
 
 // MongoDB Atlas Programmatic Private Key
@@ -26,4 +44,13 @@ func GetPublicKey(ctx *pulumi.Context) string {
 // MongoDB Realm Base URL
 func GetRealmBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:realmBaseUrl")
+}
+func GetRegion(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:region")
+}
+func GetSecretName(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:secretName")
+}
+func GetStsEndpoint(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:stsEndpoint")
 }

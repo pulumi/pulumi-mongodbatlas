@@ -33,11 +33,14 @@ import (
 //				DomainAllowLists: pulumi.StringArray{
 //					pulumi.String("mydomain.com"),
 //				},
+//				PostAuthRoleGrants: pulumi.StringArray{
+//					pulumi.String("ORG_MEMBER"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupFederatedSettingsOrgConfigOutput(ctx, GetFederatedSettingsOrgConfigOutputArgs{
+//			_ = mongodbatlas.LookupFederatedSettingsOrgConfigOutput(ctx, mongodbatlas.GetFederatedSettingsOrgConfigOutputArgs{
 //				FederationSettingsId: orgConnections.ID(),
 //				OrgId:                pulumi.String("627a9683ea7ff7f74de306f14"),
 //			}, nil)
@@ -76,7 +79,7 @@ type LookupFederatedSettingsOrgConfigResult struct {
 	// Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
 	IdentityProviderId string `pulumi:"identityProviderId"`
 	OrgId              string `pulumi:"orgId"`
-	// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+	// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
 	PostAuthRoleGrants []string                                    `pulumi:"postAuthRoleGrants"`
 	RoleMappings       []GetFederatedSettingsOrgConfigRoleMapping  `pulumi:"roleMappings"`
 	UserConflicts      []GetFederatedSettingsOrgConfigUserConflict `pulumi:"userConflicts"`
@@ -151,7 +154,7 @@ func (o LookupFederatedSettingsOrgConfigResultOutput) OrgId() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupFederatedSettingsOrgConfigResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
 
-// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+// List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
 func (o LookupFederatedSettingsOrgConfigResultOutput) PostAuthRoleGrants() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsOrgConfigResult) []string { return v.PostAuthRoleGrants }).(pulumi.StringArrayOutput)
 }

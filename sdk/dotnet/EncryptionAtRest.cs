@@ -68,6 +68,15 @@ namespace Pulumi.Mongodbatlas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "awsKms",
+                    "awsKmsConfig",
+                    "azureKeyVault",
+                    "azureKeyVaultConfig",
+                    "googleCloudKms",
+                    "googleCloudKmsConfig",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -101,11 +110,24 @@ namespace Pulumi.Mongodbatlas
         public InputMap<string> AwsKms
         {
             get => _awsKms ?? (_awsKms = new InputMap<string>());
-            set => _awsKms = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _awsKms = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("awsKmsConfig")]
-        public Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>? AwsKmsConfig { get; set; }
+        private Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>? _awsKmsConfig;
+        public Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>? AwsKmsConfig
+        {
+            get => _awsKmsConfig;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _awsKmsConfig = Output.Tuple<Input<Inputs.EncryptionAtRestAwsKmsConfigArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("azureKeyVault")]
         private InputMap<string>? _azureKeyVault;
@@ -117,11 +139,24 @@ namespace Pulumi.Mongodbatlas
         public InputMap<string> AzureKeyVault
         {
             get => _azureKeyVault ?? (_azureKeyVault = new InputMap<string>());
-            set => _azureKeyVault = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _azureKeyVault = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("azureKeyVaultConfig")]
-        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? AzureKeyVaultConfig { get; set; }
+        private Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? _azureKeyVaultConfig;
+        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>? AzureKeyVaultConfig
+        {
+            get => _azureKeyVaultConfig;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _azureKeyVaultConfig = Output.Tuple<Input<Inputs.EncryptionAtRestAzureKeyVaultConfigArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("googleCloudKms")]
         private InputMap<string>? _googleCloudKms;
@@ -133,11 +168,24 @@ namespace Pulumi.Mongodbatlas
         public InputMap<string> GoogleCloudKms
         {
             get => _googleCloudKms ?? (_googleCloudKms = new InputMap<string>());
-            set => _googleCloudKms = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _googleCloudKms = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("googleCloudKmsConfig")]
-        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>? GoogleCloudKmsConfig { get; set; }
+        private Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>? _googleCloudKmsConfig;
+        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>? GoogleCloudKmsConfig
+        {
+            get => _googleCloudKmsConfig;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _googleCloudKmsConfig = Output.Tuple<Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The unique identifier for the project.
@@ -163,11 +211,24 @@ namespace Pulumi.Mongodbatlas
         public InputMap<string> AwsKms
         {
             get => _awsKms ?? (_awsKms = new InputMap<string>());
-            set => _awsKms = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _awsKms = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("awsKmsConfig")]
-        public Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>? AwsKmsConfig { get; set; }
+        private Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>? _awsKmsConfig;
+        public Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>? AwsKmsConfig
+        {
+            get => _awsKmsConfig;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _awsKmsConfig = Output.Tuple<Input<Inputs.EncryptionAtRestAwsKmsConfigGetArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("azureKeyVault")]
         private InputMap<string>? _azureKeyVault;
@@ -179,11 +240,24 @@ namespace Pulumi.Mongodbatlas
         public InputMap<string> AzureKeyVault
         {
             get => _azureKeyVault ?? (_azureKeyVault = new InputMap<string>());
-            set => _azureKeyVault = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _azureKeyVault = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("azureKeyVaultConfig")]
-        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? AzureKeyVaultConfig { get; set; }
+        private Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? _azureKeyVaultConfig;
+        public Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>? AzureKeyVaultConfig
+        {
+            get => _azureKeyVaultConfig;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _azureKeyVaultConfig = Output.Tuple<Input<Inputs.EncryptionAtRestAzureKeyVaultConfigGetArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("googleCloudKms")]
         private InputMap<string>? _googleCloudKms;
@@ -195,11 +269,24 @@ namespace Pulumi.Mongodbatlas
         public InputMap<string> GoogleCloudKms
         {
             get => _googleCloudKms ?? (_googleCloudKms = new InputMap<string>());
-            set => _googleCloudKms = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _googleCloudKms = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("googleCloudKmsConfig")]
-        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>? GoogleCloudKmsConfig { get; set; }
+        private Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>? _googleCloudKmsConfig;
+        public Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>? GoogleCloudKmsConfig
+        {
+            get => _googleCloudKmsConfig;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _googleCloudKmsConfig = Output.Tuple<Input<Inputs.EncryptionAtRestGoogleCloudKmsConfigGetArgs>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The unique identifier for the project.

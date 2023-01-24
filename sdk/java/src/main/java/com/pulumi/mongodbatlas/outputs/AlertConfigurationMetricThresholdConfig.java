@@ -23,10 +23,10 @@ public final class AlertConfigurationMetricThresholdConfig {
      */
     private @Nullable String mode;
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      * 
      */
     private @Nullable String operator;
@@ -37,23 +37,8 @@ public final class AlertConfigurationMetricThresholdConfig {
     private @Nullable Double threshold;
     /**
      * @return The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * 
      */
     private @Nullable String units;
@@ -74,10 +59,10 @@ public final class AlertConfigurationMetricThresholdConfig {
         return Optional.ofNullable(this.mode);
     }
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      * 
      */
     public Optional<String> operator() {
@@ -92,23 +77,8 @@ public final class AlertConfigurationMetricThresholdConfig {
     }
     /**
      * @return The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * 
      */
     public Optional<String> units() {

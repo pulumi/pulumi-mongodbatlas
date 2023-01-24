@@ -19,7 +19,7 @@ public final class EncryptionAtRestAwsKmsConfig {
      */
     private @Nullable String customerMasterKeyId;
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
      * 
      */
     private @Nullable Boolean enabled;
@@ -47,7 +47,7 @@ public final class EncryptionAtRestAwsKmsConfig {
         return Optional.ofNullable(this.customerMasterKeyId);
     }
     /**
-     * @return Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+     * @return Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
      * 
      */
     public Optional<Boolean> enabled() {

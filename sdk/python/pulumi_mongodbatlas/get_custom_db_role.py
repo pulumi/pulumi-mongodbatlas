@@ -66,6 +66,9 @@ class GetCustomDbRoleResult:
     @property
     @pulumi.getter(name="roleName")
     def role_name(self) -> str:
+        """
+        (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+        """
         return pulumi.get(self, "role_name")
 
 

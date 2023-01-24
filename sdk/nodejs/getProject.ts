@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,39 +12,11 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
- * ### Using projectId attribute to query
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const testMongodbatlasProject = new mongodbatlas.Project("test", {
- *     orgId: "<ORG_ID>",
- *     teams: [
- *         {
- *             roleNames: ["GROUP_OWNER"],
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *         },
- *         {
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *         },
- *     ],
- * });
- * const testProject = testMongodbatlasProject.id.apply(id => mongodbatlas.getProject({
- *     projectId: id,
- * }));
- * ```
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProject:getProject", {
         "name": args.name,
         "projectId": args.projectId,
@@ -69,7 +42,16 @@ export interface GetProjectArgs {
  */
 export interface GetProjectResult {
     readonly apiKeys: outputs.GetProjectApiKey[];
+    /**
+     * The number of Atlas clusters deployed in the project.
+     */
     readonly clusterCount: number;
+    /**
+     * The ISO-8601-formatted timestamp of when Atlas created the project.
+     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+     * The following are valid roles:
+     */
     readonly created: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -101,34 +83,24 @@ export interface GetProjectResult {
     readonly name?: string;
     /**
      * The ID of the organization you want to create the project within.
-     * *`clusterCount` - The number of Atlas clusters deployed in the project.
-     * *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-     * * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-     * * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-     * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
-     * * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-     * * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
-     * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
-     * * `GROUP_CLUSTER_MANAGER`
      */
     readonly orgId: string;
     readonly projectId?: string;
+    /**
+     * If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     */
+    readonly regionUsageRestrictions: string;
     readonly teams: outputs.GetProjectTeam[];
 }
-
+/**
+ * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ */
 export function getProjectOutput(args?: GetProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectResult> {
-    return pulumi.output(args).apply(a => getProject(a, opts))
+    return pulumi.output(args).apply((a: any) => getProject(a, opts))
 }
 
 /**

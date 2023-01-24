@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
         /// </summary>
         public static Task<GetOnlineArchivesResult> InvokeAsync(GetOnlineArchivesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
         /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-all-for-cluster/) Documentation for more information.
         /// </summary>
         public static Output<GetOnlineArchivesResult> Invoke(GetOnlineArchivesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesInvokeArgs(), options.WithDefaults());
     }
 
 

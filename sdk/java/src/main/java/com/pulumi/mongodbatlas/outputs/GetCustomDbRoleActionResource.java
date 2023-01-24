@@ -12,6 +12,10 @@ import java.util.Objects;
 public final class GetCustomDbRoleActionResource {
     private Boolean cluster;
     private String collectionName;
+    /**
+     * @return (Required) Database on which the inherited role is granted.
+     * 
+     */
     private String databaseName;
 
     private GetCustomDbRoleActionResource() {}
@@ -21,6 +25,10 @@ public final class GetCustomDbRoleActionResource {
     public String collectionName() {
         return this.collectionName;
     }
+    /**
+     * @return (Required) Database on which the inherited role is granted.
+     * 
+     */
     public String databaseName() {
         return this.databaseName;
     }

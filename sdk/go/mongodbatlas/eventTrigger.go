@@ -48,8 +48,8 @@ import (
 //				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
 //				ConfigFullDocument:       pulumi.Bool(false),
 //				ConfigFullDocumentBefore: pulumi.Bool(false),
-//				EventProcessors: &EventTriggerEventProcessorsArgs{
-//					AwsEventbridge: &EventTriggerEventProcessorsAwsEventbridgeArgs{
+//				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
+//					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
 //						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
 //						ConfigRegion:    pulumi.String("AWS REGIOn"),
 //					},
@@ -95,8 +95,8 @@ import (
 //				ConfigSchedule:  pulumi.String("*"),
 //				ConfigServiceId: pulumi.String("1"),
 //				Disabled:        pulumi.Bool(false),
-//				EventProcessors: &EventTriggerEventProcessorsArgs{
-//					AwsEventbridge: &EventTriggerEventProcessorsAwsEventbridgeArgs{
+//				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
+//					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
 //						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
 //						ConfigRegion:    pulumi.String("AWS REGIOn"),
 //					},

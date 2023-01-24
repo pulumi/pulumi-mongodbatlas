@@ -83,7 +83,9 @@ from .get_private_endpoint_regional_mode import *
 from .get_private_link_endpoint import *
 from .get_private_link_endpoint_service import *
 from .get_privatelink_endpoint_service_adl import *
+from .get_privatelink_endpoint_service_serverless import *
 from .get_privatelink_endpoints_service_adl import *
+from .get_privatelink_endpoints_service_serverless import *
 from .get_project import *
 from .get_project_invitation import *
 from .get_project_ip_access_list import *
@@ -108,7 +110,9 @@ from .private_endpoint_regional_mode import *
 from .private_ip_mode import *
 from .private_link_endpoint import *
 from .private_link_endpoint_service import *
+from .privatelink_endpoint_serverless import *
 from .privatelink_endpoint_service_adl import *
+from .privatelink_endpoint_service_serverless import *
 from .project import *
 from .project_invitation import *
 from .project_ip_access_list import *
@@ -422,10 +426,26 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/privatelinkEndpointServerless",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless": "PrivatelinkEndpointServerless"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/privatelinkEndpointServiceAdl",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl": "PrivatelinkEndpointServiceAdl"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/privatelinkEndpointServiceServerless",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless": "PrivatelinkEndpointServiceServerless"
   }
  },
  {

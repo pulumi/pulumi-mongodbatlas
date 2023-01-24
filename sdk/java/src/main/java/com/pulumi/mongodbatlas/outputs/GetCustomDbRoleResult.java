@@ -21,6 +21,10 @@ public final class GetCustomDbRoleResult {
     private String id;
     private @Nullable List<GetCustomDbRoleInheritedRole> inheritedRoles;
     private String projectId;
+    /**
+     * @return (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     * 
+     */
     private String roleName;
 
     private GetCustomDbRoleResult() {}
@@ -40,6 +44,10 @@ public final class GetCustomDbRoleResult {
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     * 
+     */
     public String roleName() {
         return this.roleName;
     }

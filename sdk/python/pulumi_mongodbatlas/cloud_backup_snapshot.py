@@ -372,11 +372,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  retention_in_days: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
-        On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
         ## Import
 
         Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
@@ -401,11 +396,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  args: CloudBackupSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
-        On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
         ## Import
 
         Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.

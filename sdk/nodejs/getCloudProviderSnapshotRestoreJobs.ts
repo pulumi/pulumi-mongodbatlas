@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -13,11 +14,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getCloudProviderSnapshotRestoreJobs(args: GetCloudProviderSnapshotRestoreJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudProviderSnapshotRestoreJobsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", {
         "clusterName": args.clusterName,
         "itemsPerPage": args.itemsPerPage,
@@ -66,9 +64,15 @@ export interface GetCloudProviderSnapshotRestoreJobsResult {
     readonly results: outputs.GetCloudProviderSnapshotRestoreJobsResult[];
     readonly totalCount: number;
 }
-
+/**
+ * **WARNING:** This datasource is deprecated, use `mongodbatlasCloudBackupSnapshotsRestoreJobs`
+ *
+ * `mongodbatlas.getCloudProviderSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getCloudProviderSnapshotRestoreJobsOutput(args: GetCloudProviderSnapshotRestoreJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudProviderSnapshotRestoreJobsResult> {
-    return pulumi.output(args).apply(a => getCloudProviderSnapshotRestoreJobs(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudProviderSnapshotRestoreJobs(a, opts))
 }
 
 /**

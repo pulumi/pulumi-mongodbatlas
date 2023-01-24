@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -16,17 +17,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = pulumi.output(mongodbatlas.getDataLakes({
+ * const test = mongodbatlas.getDataLakes({
  *     projectId: "PROJECT ID",
- * }));
+ * });
  * ```
  */
 export function getDataLakes(args: GetDataLakesArgs, opts?: pulumi.InvokeOptions): Promise<GetDataLakesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getDataLakes:getDataLakes", {
         "projectId": args.projectId,
     }, opts);
@@ -56,9 +54,24 @@ export interface GetDataLakesResult {
      */
     readonly results: outputs.GetDataLakesResult[];
 }
-
+/**
+ * `mongodbatlas.getDataLakes` describe all Data Lakes.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getDataLakes({
+ *     projectId: "PROJECT ID",
+ * });
+ * ```
+ */
 export function getDataLakesOutput(args: GetDataLakesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataLakesResult> {
-    return pulumi.output(args).apply(a => getDataLakes(a, opts))
+    return pulumi.output(args).apply((a: any) => getDataLakes(a, opts))
 }
 
 /**
