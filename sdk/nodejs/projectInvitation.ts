@@ -90,13 +90,7 @@ export class ProjectInvitation extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-     * * GROUP_OWNER
-     * * GROUP_CLUSTER_MANAGER
-     * * GROUP_READ_ONLY
-     * * GROUP_DATA_ACCESS_ADMIN
-     * * GROUP_DATA_ACCESS_READ_WRITE
-     * * GROUP_DATA_ACCESS_READ_ONLY
+     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      */
     public readonly roles!: pulumi.Output<string[]>;
     /**
@@ -173,13 +167,7 @@ export interface ProjectInvitationState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-     * * GROUP_OWNER
-     * * GROUP_CLUSTER_MANAGER
-     * * GROUP_READ_ONLY
-     * * GROUP_DATA_ACCESS_ADMIN
-     * * GROUP_DATA_ACCESS_READ_WRITE
-     * * GROUP_DATA_ACCESS_READ_ONLY
+     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -197,13 +185,7 @@ export interface ProjectInvitationArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-     * * GROUP_OWNER
-     * * GROUP_CLUSTER_MANAGER
-     * * GROUP_READ_ONLY
-     * * GROUP_DATA_ACCESS_ADMIN
-     * * GROUP_DATA_ACCESS_READ_WRITE
-     * * GROUP_DATA_ACCESS_READ_ONLY
+     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      */
     roles: pulumi.Input<pulumi.Input<string>[]>;
     /**

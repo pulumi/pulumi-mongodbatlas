@@ -33,12 +33,12 @@ import (
 //				Password:     pulumi.String("test-acc-password"),
 //				ProjectId:    pulumi.String("<PROJECT-ID>"),
 //				DatabaseName: pulumi.String("admin"),
-//				Roles: DatabaseUserRoleArray{
-//					&DatabaseUserRoleArgs{
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
 //						RoleName:     pulumi.String("readWrite"),
 //						DatabaseName: pulumi.String("admin"),
 //					},
-//					&DatabaseUserRoleArgs{
+//					&mongodbatlas.DatabaseUserRoleArgs{
 //						RoleName:     pulumi.String("atlasAdmin"),
 //						DatabaseName: pulumi.String("admin"),
 //					},
@@ -47,7 +47,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupCustomDbRoles(ctx, &GetCustomDbRolesArgs{
+//			_, err = mongodbatlas.LookupCustomDbRoles(ctx, &mongodbatlas.LookupCustomDbRolesArgs{
 //				ProjectId: mongodbatlas_custom_db_role.Test.Project_id,
 //			}, nil)
 //			if err != nil {

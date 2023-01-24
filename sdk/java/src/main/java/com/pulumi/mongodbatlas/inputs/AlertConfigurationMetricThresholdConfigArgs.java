@@ -47,20 +47,20 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
     }
 
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      * 
      */
     @Import(name="operator")
     private @Nullable Output<String> operator;
 
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      * 
      */
     public Optional<Output<String>> operator() {
@@ -84,23 +84,8 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
 
     /**
      * The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * 
      */
     @Import(name="units")
@@ -108,23 +93,8 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
 
     /**
      * @return The units for the threshold value. Depends on the type of metric.
-     * Accepted values are:
-     * - `RAW`
-     * - `BITS`
-     * - `BYTES`
-     * - `KILOBITS`
-     * - `KILOBYTES`
-     * - `MEGABITS`
-     * - `MEGABYTES`
-     * - `GIGABITS`
-     * - `GIGABYTES`
-     * - `TERABYTES`
-     * - `PETABYTES`
-     * - `MILLISECONDS`
-     * - `SECONDS`
-     * - `MINUTES`
-     * - `HOURS`
-     * - `DAYS`
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+     * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
      * 
      */
     public Optional<Output<String>> units() {
@@ -202,10 +172,10 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
         }
 
         /**
-         * @param operator Operator to apply when checking the current metric value against the threshold value.
+         * @param operator If omitted, the configuration is disabled.
          * Accepted values are:
-         * - `GREATER_THAN`
-         * - `LESS_THAN`
+         * Accepted values are:
+         * Accepted values are:
          * 
          * @return builder
          * 
@@ -216,10 +186,10 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
         }
 
         /**
-         * @param operator Operator to apply when checking the current metric value against the threshold value.
+         * @param operator If omitted, the configuration is disabled.
          * Accepted values are:
-         * - `GREATER_THAN`
-         * - `LESS_THAN`
+         * Accepted values are:
+         * Accepted values are:
          * 
          * @return builder
          * 
@@ -251,23 +221,8 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
 
         /**
          * @param units The units for the threshold value. Depends on the type of metric.
-         * Accepted values are:
-         * - `RAW`
-         * - `BITS`
-         * - `BYTES`
-         * - `KILOBITS`
-         * - `KILOBYTES`
-         * - `MEGABITS`
-         * - `MEGABYTES`
-         * - `GIGABITS`
-         * - `GIGABYTES`
-         * - `TERABYTES`
-         * - `PETABYTES`
-         * - `MILLISECONDS`
-         * - `SECONDS`
-         * - `MINUTES`
-         * - `HOURS`
-         * - `DAYS`
+         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
          * 
          * @return builder
          * 
@@ -279,23 +234,8 @@ public final class AlertConfigurationMetricThresholdConfigArgs extends com.pulum
 
         /**
          * @param units The units for the threshold value. Depends on the type of metric.
-         * Accepted values are:
-         * - `RAW`
-         * - `BITS`
-         * - `BYTES`
-         * - `KILOBITS`
-         * - `KILOBYTES`
-         * - `MEGABITS`
-         * - `MEGABYTES`
-         * - `GIGABITS`
-         * - `GIGABYTES`
-         * - `TERABYTES`
-         * - `PETABYTES`
-         * - `MILLISECONDS`
-         * - `SECONDS`
-         * - `MINUTES`
-         * - `HOURS`
-         * - `DAYS`
+         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+         * Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
          * 
          * @return builder
          * 

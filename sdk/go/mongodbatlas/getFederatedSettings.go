@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.GetFederatedSettings(ctx, &GetFederatedSettingsArgs{
+//			_, err := mongodbatlas.GetFederatedSettings(ctx, &mongodbatlas.GetFederatedSettingsArgs{
 //				OrgId: "627a9683e7f7f7ff7fe306f14",
 //			}, nil)
 //			if err != nil {

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const myPrivateIpMode = new mongodbatlas.PrivateIpMode("my_private_ip_mode", {
+ * const myPrivateIpMode = new mongodbatlas.PrivateIpMode("myPrivateIpMode", {
  *     enabled: false,
  *     projectId: "<YOUR PROJECT ID>",
  * });

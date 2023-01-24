@@ -5,11 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getTeams(args: GetTeamsArgs, opts?: pulumi.InvokeOptions): Promise<GetTeamsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getTeams:getTeams", {
         "name": args.name,
         "orgId": args.orgId,
@@ -39,9 +36,8 @@ export interface GetTeamsResult {
     readonly teamId: string;
     readonly usernames: string[];
 }
-
 export function getTeamsOutput(args: GetTeamsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTeamsResult> {
-    return pulumi.output(args).apply(a => getTeams(a, opts))
+    return pulumi.output(args).apply((a: any) => getTeams(a, opts))
 }
 
 /**

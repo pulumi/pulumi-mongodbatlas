@@ -34,14 +34,14 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * Number of shards to deploy in the specified zone, minimum 1.
+     * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     @Import(name="numShards", required=true)
     private Output<Integer> numShards;
 
     /**
-     * @return Number of shards to deploy in the specified zone, minimum 1.
+     * @return Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     public Output<Integer> numShards() {
@@ -127,7 +127,7 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param numShards Number of shards to deploy in the specified zone, minimum 1.
+         * @param numShards Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
          * 
          * @return builder
          * 
@@ -138,7 +138,7 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param numShards Number of shards to deploy in the specified zone, minimum 1.
+         * @param numShards Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
          * 
          * @return builder
          * 

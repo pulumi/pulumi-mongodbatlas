@@ -31,20 +31,20 @@ import (
 //			testRole, err := mongodbatlas.NewCustomDbRole(ctx, "testRole", &mongodbatlas.CustomDbRoleArgs{
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
 //				RoleName:  pulumi.String("myCustomRole"),
-//				Actions: CustomDbRoleActionArray{
-//					&CustomDbRoleActionArgs{
+//				Actions: mongodbatlas.CustomDbRoleActionArray{
+//					&mongodbatlas.CustomDbRoleActionArgs{
 //						Action: pulumi.String("UPDATE"),
-//						Resources: CustomDbRoleActionResourceArray{
-//							&CustomDbRoleActionResourceArgs{
+//						Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+//							&mongodbatlas.CustomDbRoleActionResourceArgs{
 //								CollectionName: pulumi.String(""),
 //								DatabaseName:   pulumi.String("anyDatabase"),
 //							},
 //						},
 //					},
-//					&CustomDbRoleActionArgs{
+//					&mongodbatlas.CustomDbRoleActionArgs{
 //						Action: pulumi.String("INSERT"),
-//						Resources: CustomDbRoleActionResourceArray{
-//							&CustomDbRoleActionResourceArgs{
+//						Resources: mongodbatlas.CustomDbRoleActionResourceArray{
+//							&mongodbatlas.CustomDbRoleActionResourceArgs{
 //								CollectionName: pulumi.String(""),
 //								DatabaseName:   pulumi.String("anyDatabase"),
 //							},
@@ -55,7 +55,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCustomDbRoleOutput(ctx, GetCustomDbRoleOutputArgs{
+//			_ = mongodbatlas.LookupCustomDbRoleOutput(ctx, mongodbatlas.GetCustomDbRoleOutputArgs{
 //				ProjectId: testRole.ProjectId,
 //				RoleName:  testRole.RoleName,
 //			}, nil)
@@ -89,7 +89,8 @@ type LookupCustomDbRoleResult struct {
 	Id             string                         `pulumi:"id"`
 	InheritedRoles []GetCustomDbRoleInheritedRole `pulumi:"inheritedRoles"`
 	ProjectId      string                         `pulumi:"projectId"`
-	RoleName       string                         `pulumi:"roleName"`
+	// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+	RoleName string `pulumi:"roleName"`
 }
 
 func LookupCustomDbRoleOutput(ctx *pulumi.Context, args LookupCustomDbRoleOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDbRoleResultOutput {
@@ -150,6 +151,7 @@ func (o LookupCustomDbRoleResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCustomDbRoleResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
 func (o LookupCustomDbRoleResultOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCustomDbRoleResult) string { return v.RoleName }).(pulumi.StringOutput)
 }

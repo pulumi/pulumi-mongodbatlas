@@ -25,7 +25,7 @@ class CloudProviderSnapshotArgs:
         :param pulumi.Input[str] description: Description of the on-demand snapshot.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
-        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "description", description)
@@ -86,7 +86,7 @@ class CloudProviderSnapshotArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[str]]:
         """
-        The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         """
         return pulumi.get(self, "timeout")
 
@@ -126,7 +126,7 @@ class _CloudProviderSnapshotState:
         :param pulumi.Input[str] snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
         :param pulumi.Input[str] status: Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
         :param pulumi.Input[int] storage_size_bytes: Specifies the size of the snapshot in bytes.
-        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         :param pulumi.Input[str] type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
         if cluster_name is not None:
@@ -306,7 +306,7 @@ class _CloudProviderSnapshotState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[str]]:
         """
-        The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         """
         return pulumi.get(self, "timeout")
 
@@ -362,7 +362,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description of the on-demand snapshot.
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
-        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         """
         ...
     @overload
@@ -482,7 +482,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] snapshot_type: Specified the type of snapshot. Valid values are onDemand and scheduled.
         :param pulumi.Input[str] status: Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
         :param pulumi.Input[int] storage_size_bytes: Specifies the size of the snapshot in bytes.
-        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        :param pulumi.Input[str] timeout: The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         :param pulumi.Input[str] type: Specifies the type of cluster: replicaSet or shardedCluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -605,7 +605,7 @@ class CloudProviderSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[Optional[str]]:
         """
-        The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+        The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
         """
         return pulumi.get(self, "timeout")
 

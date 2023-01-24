@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// Number of shards to deploy in the specified zone, minimum 1.
+        /// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         /// </summary>
         public readonly int NumShards;
         /// <summary>

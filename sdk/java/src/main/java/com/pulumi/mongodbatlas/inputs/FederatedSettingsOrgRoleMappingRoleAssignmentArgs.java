@@ -47,14 +47,16 @@ public final class FederatedSettingsOrgRoleMappingRoleAssignmentArgs extends com
     }
 
     /**
-     * Specifies the Roles that are attached to the Role Mapping.
+     * Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+     * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      * 
      */
     @Import(name="roles")
     private @Nullable Output<List<String>> roles;
 
     /**
-     * @return Specifies the Roles that are attached to the Role Mapping.
+     * @return Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+     * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      * 
      */
     public Optional<Output<List<String>>> roles() {
@@ -130,7 +132,8 @@ public final class FederatedSettingsOrgRoleMappingRoleAssignmentArgs extends com
         }
 
         /**
-         * @param roles Specifies the Roles that are attached to the Role Mapping.
+         * @param roles Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+         * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
          * 
          * @return builder
          * 
@@ -141,7 +144,8 @@ public final class FederatedSettingsOrgRoleMappingRoleAssignmentArgs extends com
         }
 
         /**
-         * @param roles Specifies the Roles that are attached to the Role Mapping.
+         * @param roles Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+         * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
          * 
          * @return builder
          * 
@@ -151,7 +155,8 @@ public final class FederatedSettingsOrgRoleMappingRoleAssignmentArgs extends com
         }
 
         /**
-         * @param roles Specifies the Roles that are attached to the Role Mapping.
+         * @param roles Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+         * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
          * 
          * @return builder
          * 

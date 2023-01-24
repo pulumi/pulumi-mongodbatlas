@@ -30,26 +30,18 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
      * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
+     * The following are valid roles:
      * 
      */
     @Import(name="roleNames", required=true)
     private Output<List<String>> roleNames;
 
     /**
-     * @return List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+     * @return Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
      * The following are valid roles:
-     * * `GROUP_OWNER`
-     * * `GROUP_READ_ONLY`
-     * * `GROUP_DATA_ACCESS_ADMIN`
-     * * `GROUP_DATA_ACCESS_READ_WRITE`
-     * * `GROUP_DATA_ACCESS_READ_ONLY`
+     * The following are valid roles:
      * 
      */
     public Output<List<String>> roleNames() {
@@ -103,13 +95,9 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
          * The following are valid roles:
-         * * `GROUP_OWNER`
-         * * `GROUP_READ_ONLY`
-         * * `GROUP_DATA_ACCESS_ADMIN`
-         * * `GROUP_DATA_ACCESS_READ_WRITE`
-         * * `GROUP_DATA_ACCESS_READ_ONLY`
+         * The following are valid roles:
          * 
          * @return builder
          * 
@@ -120,13 +108,9 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
          * The following are valid roles:
-         * * `GROUP_OWNER`
-         * * `GROUP_READ_ONLY`
-         * * `GROUP_DATA_ACCESS_ADMIN`
-         * * `GROUP_DATA_ACCESS_READ_WRITE`
-         * * `GROUP_DATA_ACCESS_READ_ONLY`
+         * The following are valid roles:
          * 
          * @return builder
          * 
@@ -136,13 +120,9 @@ public final class ProjectApiKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleNames List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+         * @param roleNames Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
          * The following are valid roles:
-         * * `GROUP_OWNER`
-         * * `GROUP_READ_ONLY`
-         * * `GROUP_DATA_ACCESS_ADMIN`
-         * * `GROUP_DATA_ACCESS_READ_WRITE`
-         * * `GROUP_DATA_ACCESS_READ_ONLY`
+         * The following are valid roles:
          * 
          * @return builder
          * 

@@ -42,7 +42,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewDataLake(ctx, "basicDs", &mongodbatlas.DataLakeArgs{
 //				ProjectId: testProject.ID(),
-//				Aws: &DataLakeAwsArgs{
+//				Aws: &mongodbatlas.DataLakeAwsArgs{
 //					RoleId:       testCloudProviderAccess.RoleId,
 //					TestS3Bucket: pulumi.String("TEST S3 BUCKET NAME"),
 //				},

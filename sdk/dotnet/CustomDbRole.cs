@@ -197,7 +197,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the inherited role. This can either be another custom role or a built-in role.
+        /// Name of the custom role.
         /// </summary>
         [Output("roleName")]
         public Output<string> RoleName { get; private set; } = null!;
@@ -271,7 +271,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Name of the inherited role. This can either be another custom role or a built-in role.
+        /// Name of the custom role.
         /// </summary>
         [Input("roleName", required: true)]
         public Input<string> RoleName { get; set; } = null!;
@@ -307,7 +307,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Name of the inherited role. This can either be another custom role or a built-in role.
+        /// Name of the custom role.
         /// </summary>
         [Input("roleName")]
         public Input<string>? RoleName { get; set; }

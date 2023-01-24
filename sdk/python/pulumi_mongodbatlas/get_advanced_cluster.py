@@ -22,7 +22,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connectors=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connectors=None, cluster_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pit_enabled=None, project_id=None, replication_specs=None, root_cert_type=None, state_name=None, termination_protection_enabled=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -80,6 +80,9 @@ class GetAdvancedClusterResult:
         if state_name and not isinstance(state_name, str):
             raise TypeError("Expected argument 'state_name' to be a str")
         pulumi.set(__self__, "state_name", state_name)
+        if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
+            raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
+        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
         if version_release_system and not isinstance(version_release_system, str):
             raise TypeError("Expected argument 'version_release_system' to be a str")
         pulumi.set(__self__, "version_release_system", version_release_system)
@@ -225,6 +228,14 @@ class GetAdvancedClusterResult:
         return pulumi.get(self, "state_name")
 
     @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> bool:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
+    @property
     @pulumi.getter(name="versionReleaseSystem")
     def version_release_system(self) -> str:
         """
@@ -258,6 +269,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             replication_specs=self.replication_specs,
             root_cert_type=self.root_cert_type,
             state_name=self.state_name,
+            termination_protection_enabled=self.termination_protection_enabled,
             version_release_system=self.version_release_system)
 
 
@@ -266,17 +278,6 @@ def get_advanced_cluster(name: Optional[str] = None,
                          project_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClusterResult:
     """
-    ## --
-
-    layout: "mongodbatlas"
-    page_title: "MongoDB Atlas: advanced_cluster"
-    sidebar_current: "docs-mongodbatlas-datasource-advanced-cluster"
-    description: |-
-        Describe an Advanced Cluster.
-    ---
-
-    # Data Source: AdvancedCluster
-
     `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -317,6 +318,7 @@ def get_advanced_cluster(name: Optional[str] = None,
         replication_specs=__ret__.replication_specs,
         root_cert_type=__ret__.root_cert_type,
         state_name=__ret__.state_name,
+        termination_protection_enabled=__ret__.termination_protection_enabled,
         version_release_system=__ret__.version_release_system)
 
 
@@ -326,17 +328,6 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[str]] = None,
                                 project_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
-    ## --
-
-    layout: "mongodbatlas"
-    page_title: "MongoDB Atlas: advanced_cluster"
-    sidebar_current: "docs-mongodbatlas-datasource-advanced-cluster"
-    description: |-
-        Describe an Advanced Cluster.
-    ---
-
-    # Data Source: AdvancedCluster
-
     `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

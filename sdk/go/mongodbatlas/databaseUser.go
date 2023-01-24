@@ -28,30 +28,30 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
 //				AuthDatabaseName: pulumi.String("admin"),
-//				Labels: DatabaseUserLabelArray{
-//					&DatabaseUserLabelArgs{
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
 //						Key:   pulumi.String("My Key"),
 //						Value: pulumi.String("My Value"),
 //					},
 //				},
 //				Password:  pulumi.String("test-acc-password"),
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				Roles: DatabaseUserRoleArray{
-//					&DatabaseUserRoleArgs{
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
 //						DatabaseName: pulumi.String("dbforApp"),
 //						RoleName:     pulumi.String("readWrite"),
 //					},
-//					&DatabaseUserRoleArgs{
+//					&mongodbatlas.DatabaseUserRoleArgs{
 //						DatabaseName: pulumi.String("admin"),
 //						RoleName:     pulumi.String("readAnyDatabase"),
 //					},
 //				},
-//				Scopes: DatabaseUserScopeArray{
-//					&DatabaseUserScopeArgs{
+//				Scopes: mongodbatlas.DatabaseUserScopeArray{
+//					&mongodbatlas.DatabaseUserScopeArgs{
 //						Name: pulumi.String("My cluster name"),
 //						Type: pulumi.String("CLUSTER"),
 //					},
-//					&DatabaseUserScopeArgs{
+//					&mongodbatlas.DatabaseUserScopeArgs{
 //						Name: pulumi.String("My second cluster name"),
 //						Type: pulumi.String("CLUSTER"),
 //					},
@@ -83,21 +83,21 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewDatabaseUser(ctx, "test", &mongodbatlas.DatabaseUserArgs{
 //				AuthDatabaseName: pulumi.String(fmt.Sprintf("$external")),
-//				Labels: DatabaseUserLabelArray{
-//					&DatabaseUserLabelArgs{
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
 //						Key:   pulumi.String(fmt.Sprintf("%vs", "%")),
 //						Value: pulumi.String(fmt.Sprintf("%vs", "%")),
 //					},
 //				},
 //				ProjectId: pulumi.String("<PROJECT-ID>"),
-//				Roles: DatabaseUserRoleArray{
-//					&DatabaseUserRoleArgs{
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
 //						DatabaseName: pulumi.String("admin"),
 //						RoleName:     pulumi.String("readAnyDatabase"),
 //					},
 //				},
-//				Scopes: DatabaseUserScopeArray{
-//					&DatabaseUserScopeArgs{
+//				Scopes: mongodbatlas.DatabaseUserScopeArray{
+//					&mongodbatlas.DatabaseUserScopeArgs{
 //						Name: pulumi.String("My cluster name"),
 //						Type: pulumi.String("CLUSTER"),
 //					},
@@ -133,20 +133,20 @@ import (
 //				ProjectId:        pulumi.String("<PROJECT-ID>"),
 //				AuthDatabaseName: pulumi.String(fmt.Sprintf("$external")),
 //				AwsIamType:       pulumi.String("ROLE"),
-//				Roles: DatabaseUserRoleArray{
-//					&DatabaseUserRoleArgs{
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
 //						RoleName:     pulumi.String("readAnyDatabase"),
 //						DatabaseName: pulumi.String("admin"),
 //					},
 //				},
-//				Labels: DatabaseUserLabelArray{
-//					&DatabaseUserLabelArgs{
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
 //						Key:   pulumi.String(fmt.Sprintf("%vs", "%")),
 //						Value: pulumi.String(fmt.Sprintf("%vs", "%")),
 //					},
 //				},
-//				Scopes: DatabaseUserScopeArray{
-//					&DatabaseUserScopeArgs{
+//				Scopes: mongodbatlas.DatabaseUserScopeArray{
+//					&mongodbatlas.DatabaseUserScopeArgs{
 //						Name: pulumi.String("My cluster name"),
 //						Type: pulumi.String("CLUSTER"),
 //					},
@@ -213,6 +213,13 @@ func NewDatabaseUser(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	var resource DatabaseUser
 	err := ctx.RegisterResource("mongodbatlas:index/databaseUser:DatabaseUser", name, args, &resource, opts...)
 	if err != nil {

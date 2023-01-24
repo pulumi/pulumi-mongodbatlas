@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  */
 export function getMaintenanceWindow(args: GetMaintenanceWindowArgs, opts?: pulumi.InvokeOptions): Promise<GetMaintenanceWindowResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", {
         "projectId": args.projectId,
     }, opts);
@@ -61,9 +58,13 @@ export interface GetMaintenanceWindowResult {
      */
     readonly startAsap: boolean;
 }
-
+/**
+ * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ */
 export function getMaintenanceWindowOutput(args: GetMaintenanceWindowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMaintenanceWindowResult> {
-    return pulumi.output(args).apply(a => getMaintenanceWindow(a, opts))
+    return pulumi.output(args).apply((a: any) => getMaintenanceWindow(a, opts))
 }
 
 /**

@@ -73,6 +73,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string StateName;
         /// <summary>
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        public readonly bool TerminationProtectionEnabled;
+        /// <summary>
         /// Release cadence that Atlas uses for this cluster.
         /// </summary>
         public readonly string VersionReleaseSystem;
@@ -113,6 +117,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string stateName,
 
+            bool terminationProtectionEnabled,
+
             string versionReleaseSystem)
         {
             AdvancedConfigurations = advancedConfigurations;
@@ -132,6 +138,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ReplicationSpecs = replicationSpecs;
             RootCertType = rootCertType;
             StateName = stateName;
+            TerminationProtectionEnabled = terminationProtectionEnabled;
             VersionReleaseSystem = versionReleaseSystem;
         }
     }

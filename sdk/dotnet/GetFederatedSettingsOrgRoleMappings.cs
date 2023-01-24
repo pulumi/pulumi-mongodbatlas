@@ -15,13 +15,13 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
         /// </summary>
         public static Task<GetFederatedSettingsOrgRoleMappingsResult> InvokeAsync(GetFederatedSettingsOrgRoleMappingsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgRoleMappingsResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", args ?? new GetFederatedSettingsOrgRoleMappingsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgRoleMappingsResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", args ?? new GetFederatedSettingsOrgRoleMappingsArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getFederatedSettingsOrgRoleMappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
         /// </summary>
         public static Output<GetFederatedSettingsOrgRoleMappingsResult> Invoke(GetFederatedSettingsOrgRoleMappingsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgRoleMappingsResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", args ?? new GetFederatedSettingsOrgRoleMappingsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgRoleMappingsResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", args ?? new GetFederatedSettingsOrgRoleMappingsInvokeArgs(), options.WithDefaults());
     }
 
 

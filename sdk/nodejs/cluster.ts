@@ -2,200 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- * ### Example AWS cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     autoScalingDiskGbEnabled: true,
- *     cloudBackup: true,
- *     clusterType: "REPLICASET",
- *     diskSizeGb: 100,
- *     mongoDbMajorVersion: "4.2",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M40",
- *     // Provider Settings "block"
- *     providerName: "AWS",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *             regionName: "US_EAST_1",
- *         }],
- *     }],
- * });
- * ```
- * ### Example Azure cluster.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.Cluster("test", {
- *     autoScalingDiskGbEnabled: true,
- *     cloudBackup: true,
- *     clusterType: "REPLICASET",
- *     mongoDbMajorVersion: "4.2",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerDiskTypeName: "P6",
- *     providerInstanceSizeName: "M30",
- *     // Provider Settings "block"
- *     providerName: "AZURE",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *             regionName: "US_EAST",
- *         }],
- *     }],
- * });
- * ```
- * ### Example GCP cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.Cluster("test", {
- *     autoScalingDiskGbEnabled: true,
- *     cloudBackup: true,
- *     clusterType: "REPLICASET",
- *     diskSizeGb: 40,
- *     mongoDbMajorVersion: "4.2",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M30",
- *     // Provider Settings "block"
- *     providerName: "GCP",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [{
- *             electableNodes: 3,
- *             priority: 7,
- *             readOnlyNodes: 0,
- *             regionName: "EASTERN_US",
- *         }],
- *     }],
- * });
- * ```
- * ### Example Multi Region cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     cloudBackup: true,
- *     clusterType: "REPLICASET",
- *     diskSizeGb: 100,
- *     numShards: 1,
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M10",
- *     // Provider Settings "block"
- *     providerName: "AWS",
- *     replicationSpecs: [{
- *         numShards: 1,
- *         regionsConfigs: [
- *             {
- *                 electableNodes: 3,
- *                 priority: 7,
- *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_1",
- *             },
- *             {
- *                 electableNodes: 2,
- *                 priority: 6,
- *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_2",
- *             },
- *             {
- *                 electableNodes: 2,
- *                 priority: 5,
- *                 readOnlyNodes: 2,
- *                 regionName: "US_WEST_1",
- *             },
- *         ],
- *     }],
- * });
- * ```
- * ### Example Global cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     cloudBackup: true,
- *     clusterType: "GEOSHARDED",
- *     diskSizeGb: 80,
- *     numShards: 1,
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M30",
- *     // Provider Settings "block"
- *     providerName: "AWS",
- *     replicationSpecs: [
- *         {
- *             numShards: 2,
- *             regionsConfigs: [{
- *                 electableNodes: 3,
- *                 priority: 7,
- *                 readOnlyNodes: 0,
- *                 regionName: "US_EAST_1",
- *             }],
- *             zoneName: "Zone 1",
- *         },
- *         {
- *             numShards: 2,
- *             regionsConfigs: [{
- *                 electableNodes: 3,
- *                 priority: 7,
- *                 readOnlyNodes: 0,
- *                 regionName: "EU_CENTRAL_1",
- *             }],
- *             zoneName: "Zone 2",
- *         },
- *     ],
- * });
- * ```
- * ### Example AWS Shared Tier (M2/M5) cluster
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     backingProviderName: "AWS",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M2",
- *     // Provider Settings "block"
- *     providerName: "TENANT",
- *     providerRegionName: "US_EAST_1",
- * });
- * ```
- * ### Example AWS Free Tier cluster
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const cluster_test = new mongodbatlas.Cluster("cluster-test", {
- *     backingProviderName: "AWS",
- *     projectId: "<YOUR-PROJECT-ID>",
- *     providerInstanceSizeName: "M0",
- *     // Provider Settings "block"
- *     providerName: "TENANT",
- *     providerRegionName: "US_EAST_1",
- * });
- * ```
- *
  * ## Import
  *
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -287,7 +98,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly connectionStrings!: pulumi.Output<outputs.ClusterConnectionString[]>;
     /**
-     * The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+     * The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      */
     public /*out*/ readonly containerId!: pulumi.Output<string>;
     /**
@@ -324,16 +135,16 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly mongoUriWithOptions!: pulumi.Output<string>;
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Number of shards to deploy in the specified zone, minimum 1.
+     * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
     public readonly numShards!: pulumi.Output<number | undefined>;
     public readonly paused!: pulumi.Output<boolean | undefined>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
     public readonly pitEnabled!: pulumi.Output<boolean>;
     /**
@@ -414,9 +225,11 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly stateName!: pulumi.Output<string>;
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    public readonly terminationProtectionEnabled!: pulumi.Output<boolean>;
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      */
     public readonly versionReleaseSystem!: pulumi.Output<string | undefined>;
 
@@ -475,6 +288,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["snapshotBackupPolicies"] = state ? state.snapshotBackupPolicies : undefined;
             resourceInputs["srvAddress"] = state ? state.srvAddress : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
+            resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = state ? state.versionReleaseSystem : undefined;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
@@ -518,6 +332,7 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["providerVolumeType"] = args ? args.providerVolumeType : undefined;
             resourceInputs["replicationFactor"] = args ? args.replicationFactor : undefined;
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
+            resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = args ? args.versionReleaseSystem : undefined;
             resourceInputs["clusterId"] = undefined /*out*/;
             resourceInputs["connectionStrings"] = undefined /*out*/;
@@ -593,7 +408,7 @@ export interface ClusterState {
      */
     connectionStrings?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionString>[]>;
     /**
-     * The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+     * The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      */
     containerId?: pulumi.Input<string>;
     /**
@@ -630,16 +445,16 @@ export interface ClusterState {
      */
     mongoUriWithOptions?: pulumi.Input<string>;
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * Number of shards to deploy in the specified zone, minimum 1.
+     * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
     numShards?: pulumi.Input<number>;
     paused?: pulumi.Input<boolean>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
@@ -720,9 +535,11 @@ export interface ClusterState {
      */
     stateName?: pulumi.Input<string>;
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled?: pulumi.Input<boolean>;
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      */
     versionReleaseSystem?: pulumi.Input<string>;
 }
@@ -793,16 +610,16 @@ export interface ClusterArgs {
      */
     mongoDbMajorVersion?: pulumi.Input<string>;
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
     name?: pulumi.Input<string>;
     /**
-     * Number of shards to deploy in the specified zone, minimum 1.
+     * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
     numShards?: pulumi.Input<number>;
     paused?: pulumi.Input<boolean>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
@@ -864,9 +681,11 @@ export interface ClusterArgs {
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled?: pulumi.Input<boolean>;
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      */
     versionReleaseSystem?: pulumi.Input<string>;
 }

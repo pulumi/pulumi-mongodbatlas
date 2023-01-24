@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -44,11 +45,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getClusters(args: GetClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetClustersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getClusters:getClusters", {
         "projectId": args.projectId,
     }, opts);
@@ -78,9 +76,46 @@ export interface GetClustersResult {
      */
     readonly results: outputs.GetClustersResult[];
 }
-
+/**
+ * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * > **IMPORTANT:**
+ * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+ * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCluster = new mongodbatlas.Cluster("testCluster", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     diskSizeGb: 100,
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         numShards: 1,
+ *         regionsConfigs: [{
+ *             regionName: "US_EAST_1",
+ *             electableNodes: 3,
+ *             priority: 7,
+ *             readOnlyNodes: 0,
+ *         }],
+ *     }],
+ *     cloudBackup: true,
+ *     autoScalingDiskGbEnabled: true,
+ *     providerName: "AWS",
+ *     providerInstanceSizeName: "M40",
+ * });
+ * const testClusters = mongodbatlas.getClustersOutput({
+ *     projectId: testCluster.projectId,
+ * });
+ * ```
+ */
 export function getClustersOutput(args: GetClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClustersResult> {
-    return pulumi.output(args).apply(a => getClusters(a, opts))
+    return pulumi.output(args).apply((a: any) => getClusters(a, opts))
 }
 
 /**

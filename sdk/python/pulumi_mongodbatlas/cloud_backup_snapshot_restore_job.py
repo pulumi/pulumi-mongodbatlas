@@ -29,7 +29,7 @@ class CloudBackupSnapshotRestoreJobArgs:
         :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
-               * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+               * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
                * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
                * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
                * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
@@ -99,7 +99,7 @@ class CloudBackupSnapshotRestoreJobArgs:
         Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         * `delivery_type_config.download` - Set to `true` to use the download configuration.
-        * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+        * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
         * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
@@ -137,7 +137,7 @@ class _CloudBackupSnapshotRestoreJobState:
         :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
-               * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+               * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
                * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
                * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
                * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
@@ -234,7 +234,7 @@ class _CloudBackupSnapshotRestoreJobState:
         Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         * `delivery_type_config.download` - Set to `true` to use the download configuration.
-        * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+        * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
         * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
@@ -356,75 +356,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        `CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job must define one of three delivery types:
-        * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
-
-        * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
-
-        * **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.
-
-        > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-        ## Example Usage
-        ### Example automated delivery type.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        my_cluster = mongodbatlas.Cluster("myCluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
-            disk_size_gb=5,
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
-        # enable cloud backup snapshots
-        test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
-            project_id=my_cluster.project_id,
-            cluster_name=my_cluster.name,
-            description="myDescription",
-            retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-            project_id=test_cloud_provider_snapshot.project_id,
-            cluster_name=test_cloud_provider_snapshot.cluster_name,
-            snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                automated=True,
-                target_cluster_name="MyCluster",
-                target_project_id="5cf5a45a9ccf6400e60981b6",
-            ))
-        ```
-        ### Example download delivery type.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        my_cluster = mongodbatlas.Cluster("myCluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
-            disk_size_gb=5,
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
-        # enable cloud backup snapshots
-        test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
-            project_id=my_cluster.project_id,
-            cluster_name=my_cluster.name,
-            description="myDescription",
-            retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-            project_id=test_cloud_provider_snapshot.project_id,
-            cluster_name=test_cloud_provider_snapshot.cluster_name,
-            snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                download=True,
-            ))
-        ```
-
         ## Import
 
         Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
@@ -441,7 +372,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
-               * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+               * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
                * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
                * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
                * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
@@ -457,75 +388,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  args: CloudBackupSnapshotRestoreJobArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job must define one of three delivery types:
-        * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
-
-        * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
-
-        * **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.
-
-        > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
-        ## Example Usage
-        ### Example automated delivery type.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        my_cluster = mongodbatlas.Cluster("myCluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
-            disk_size_gb=5,
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
-        # enable cloud backup snapshots
-        test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
-            project_id=my_cluster.project_id,
-            cluster_name=my_cluster.name,
-            description="myDescription",
-            retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-            project_id=test_cloud_provider_snapshot.project_id,
-            cluster_name=test_cloud_provider_snapshot.cluster_name,
-            snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                automated=True,
-                target_cluster_name="MyCluster",
-                target_project_id="5cf5a45a9ccf6400e60981b6",
-            ))
-        ```
-        ### Example download delivery type.
-
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        my_cluster = mongodbatlas.Cluster("myCluster",
-            project_id="5cf5a45a9ccf6400e60981b6",
-            disk_size_gb=5,
-            provider_name="AWS",
-            provider_region_name="EU_WEST_2",
-            provider_instance_size_name="M10",
-            cloud_backup=True)
-        # enable cloud backup snapshots
-        test_cloud_provider_snapshot = mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot",
-            project_id=my_cluster.project_id,
-            cluster_name=my_cluster.name,
-            description="myDescription",
-            retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob",
-            project_id=test_cloud_provider_snapshot.project_id,
-            cluster_name=test_cloud_provider_snapshot.cluster_name,
-            snapshot_id=test_cloud_provider_snapshot.snapshot_id,
-            delivery_type_config=mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs(
-                download=True,
-            ))
-        ```
-
         ## Import
 
         Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
@@ -623,7 +485,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
-               * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+               * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
                * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
                * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
                * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
@@ -693,7 +555,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         * `delivery_type_config.download` - Set to `true` to use the download configuration.
-        * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+        * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
         * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.

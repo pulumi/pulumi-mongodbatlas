@@ -2,97 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- * ### Example single provider and single region
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.AdvancedCluster("test", {
- *     clusterType: "REPLICASET",
- *     projectId: "PROJECT ID",
- *     replicationSpecs: [{
- *         regionConfigs: [{
- *             analyticsSpecs: {
- *                 instanceSize: "M10",
- *                 nodeCount: 1,
- *             },
- *             electableSpecs: {
- *                 instanceSize: "M10",
- *                 nodeCount: 3,
- *             },
- *             priority: 1,
- *             providerName: "AWS",
- *             regionName: "US_EAST_1",
- *         }],
- *     }],
- * });
- * ```
- * ### Example Tenant Cluster
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.AdvancedCluster("test", {
- *     clusterType: "REPLICASET",
- *     projectId: "PROJECT ID",
- *     replicationSpecs: [{
- *         regionConfigs: [{
- *             backingProviderName: "AWS",
- *             electableSpecs: {
- *                 instanceSize: "M5",
- *             },
- *             priority: 1,
- *             providerName: "TENANT",
- *             regionName: "US_EAST_1",
- *         }],
- *     }],
- * });
- * ```
- * ### Example Multicloud.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as mongodbatlas from "@pulumi/mongodbatlas";
- *
- * const test = new mongodbatlas.AdvancedCluster("test", {
- *     clusterType: "REPLICASET",
- *     projectId: "PROJECT ID",
- *     replicationSpecs: [{
- *         regionConfigs: [
- *             {
- *                 analyticsSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 1,
- *                 },
- *                 electableSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 3,
- *                 },
- *                 priority: 1,
- *                 providerName: "AWS",
- *                 regionName: "US_EAST_1",
- *             },
- *             {
- *                 electableSpecs: {
- *                     instanceSize: "M10",
- *                     nodeCount: 2,
- *                 },
- *                 priority: 6,
- *                 providerName: "GCP",
- *                 regionName: "NORTH_AMERICA_NORTHEAST_1",
- *             },
- *         ],
- *     }],
- * });
- * ```
- *
  * ## Import
  *
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -176,12 +90,12 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly mongoDbVersion!: pulumi.Output<string>;
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
     public readonly name!: pulumi.Output<string>;
     public readonly paused!: pulumi.Output<boolean | undefined>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup.
      */
     public readonly pitEnabled!: pulumi.Output<boolean>;
     /**
@@ -193,7 +107,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public readonly replicationSpecs!: pulumi.Output<outputs.AdvancedClusterReplicationSpec[]>;
     /**
-     * - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+     * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      */
     public readonly rootCertType!: pulumi.Output<string>;
     /**
@@ -207,9 +121,11 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly stateName!: pulumi.Output<string>;
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    public readonly terminationProtectionEnabled!: pulumi.Output<boolean>;
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      */
     public readonly versionReleaseSystem!: pulumi.Output<string | undefined>;
 
@@ -245,6 +161,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["replicationSpecs"] = state ? state.replicationSpecs : undefined;
             resourceInputs["rootCertType"] = state ? state.rootCertType : undefined;
             resourceInputs["stateName"] = state ? state.stateName : undefined;
+            resourceInputs["terminationProtectionEnabled"] = state ? state.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = state ? state.versionReleaseSystem : undefined;
         } else {
             const args = argsOrState as AdvancedClusterArgs | undefined;
@@ -271,6 +188,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["replicationSpecs"] = args ? args.replicationSpecs : undefined;
             resourceInputs["rootCertType"] = args ? args.rootCertType : undefined;
+            resourceInputs["terminationProtectionEnabled"] = args ? args.terminationProtectionEnabled : undefined;
             resourceInputs["versionReleaseSystem"] = args ? args.versionReleaseSystem : undefined;
             resourceInputs["clusterId"] = undefined /*out*/;
             resourceInputs["connectionStrings"] = undefined /*out*/;
@@ -332,12 +250,12 @@ export interface AdvancedClusterState {
      */
     mongoDbVersion?: pulumi.Input<string>;
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
     name?: pulumi.Input<string>;
     paused?: pulumi.Input<boolean>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup.
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
@@ -349,7 +267,7 @@ export interface AdvancedClusterState {
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpec>[]>;
     /**
-     * - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+     * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      */
     rootCertType?: pulumi.Input<string>;
     /**
@@ -363,9 +281,11 @@ export interface AdvancedClusterState {
      */
     stateName?: pulumi.Input<string>;
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled?: pulumi.Input<boolean>;
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      */
     versionReleaseSystem?: pulumi.Input<string>;
 }
@@ -406,12 +326,12 @@ export interface AdvancedClusterArgs {
      */
     mongoDbMajorVersion?: pulumi.Input<string>;
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
     name?: pulumi.Input<string>;
     paused?: pulumi.Input<boolean>;
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup.
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
@@ -423,13 +343,15 @@ export interface AdvancedClusterArgs {
      */
     replicationSpecs: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpec>[]>;
     /**
-     * - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+     * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      */
     rootCertType?: pulumi.Input<string>;
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    terminationProtectionEnabled?: pulumi.Input<boolean>;
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      */
     versionReleaseSystem?: pulumi.Input<string>;
 }

@@ -33,11 +33,14 @@ import (
 //				DomainAllowLists: pulumi.StringArray{
 //					pulumi.String("mydomain.com"),
 //				},
+//				PostAuthRoleGrants: pulumi.StringArray{
+//					pulumi.String("ORG_MEMBER"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupFederatedSettingsOrgConfigsOutput(ctx, GetFederatedSettingsOrgConfigsOutputArgs{
+//			_ = mongodbatlas.LookupFederatedSettingsOrgConfigsOutput(ctx, mongodbatlas.GetFederatedSettingsOrgConfigsOutputArgs{
 //				FederationSettingsId: orgConnections.ID(),
 //			}, nil)
 //			return nil

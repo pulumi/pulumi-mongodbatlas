@@ -22,7 +22,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, version_release_system=None):
+    def __init__(__self__, advanced_configurations=None, auto_scaling_compute_enabled=None, auto_scaling_compute_scale_down_enabled=None, auto_scaling_disk_gb_enabled=None, backing_provider_name=None, backup_enabled=None, bi_connector=None, bi_connector_configs=None, cluster_type=None, connection_strings=None, container_id=None, disk_size_gb=None, encryption_at_rest_provider=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, mongo_uri=None, mongo_uri_updated=None, mongo_uri_with_options=None, name=None, num_shards=None, paused=None, pit_enabled=None, project_id=None, provider_auto_scaling_compute_max_instance_size=None, provider_auto_scaling_compute_min_instance_size=None, provider_backup_enabled=None, provider_disk_iops=None, provider_disk_type_name=None, provider_encrypt_ebs_volume=None, provider_encrypt_ebs_volume_flag=None, provider_instance_size_name=None, provider_name=None, provider_region_name=None, provider_volume_type=None, replication_factor=None, replication_specs=None, snapshot_backup_policies=None, srv_address=None, state_name=None, termination_protection_enabled=None, version_release_system=None):
         if advanced_configurations and not isinstance(advanced_configurations, list):
             raise TypeError("Expected argument 'advanced_configurations' to be a list")
         pulumi.set(__self__, "advanced_configurations", advanced_configurations)
@@ -150,6 +150,9 @@ class GetClusterResult:
         if state_name and not isinstance(state_name, str):
             raise TypeError("Expected argument 'state_name' to be a str")
         pulumi.set(__self__, "state_name", state_name)
+        if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
+            raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
+        pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
         if version_release_system and not isinstance(version_release_system, str):
             raise TypeError("Expected argument 'version_release_system' to be a str")
         pulumi.set(__self__, "version_release_system", version_release_system)
@@ -493,6 +496,14 @@ class GetClusterResult:
         return pulumi.get(self, "state_name")
 
     @property
+    @pulumi.getter(name="terminationProtectionEnabled")
+    def termination_protection_enabled(self) -> bool:
+        """
+        Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        """
+        return pulumi.get(self, "termination_protection_enabled")
+
+    @property
     @pulumi.getter(name="versionReleaseSystem")
     def version_release_system(self) -> str:
         """
@@ -548,6 +559,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             snapshot_backup_policies=self.snapshot_backup_policies,
             srv_address=self.srv_address,
             state_name=self.state_name,
+            termination_protection_enabled=self.termination_protection_enabled,
             version_release_system=self.version_release_system)
 
 
@@ -615,6 +627,7 @@ def get_cluster(name: Optional[str] = None,
         snapshot_backup_policies=__ret__.snapshot_backup_policies,
         srv_address=__ret__.srv_address,
         state_name=__ret__.state_name,
+        termination_protection_enabled=__ret__.termination_protection_enabled,
         version_release_system=__ret__.version_release_system)
 
 

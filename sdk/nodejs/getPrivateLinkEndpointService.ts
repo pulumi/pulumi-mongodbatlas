@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,11 +12,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointServiceResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService", {
         "endpointServiceId": args.endpointServiceId,
         "privateLinkId": args.privateLinkId,
@@ -102,9 +100,13 @@ export interface GetPrivateLinkEndpointServiceResult {
     readonly projectId: string;
     readonly providerName: string;
 }
-
+/**
+ * `mongodbatlas.PrivateLinkEndpointService` describe a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ */
 export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpointServiceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointServiceResult> {
-    return pulumi.output(args).apply(a => getPrivateLinkEndpointService(a, opts))
+    return pulumi.output(args).apply((a: any) => getPrivateLinkEndpointService(a, opts))
 }
 
 /**

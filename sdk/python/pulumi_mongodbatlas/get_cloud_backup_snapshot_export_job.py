@@ -208,7 +208,7 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[str] = None,
 
 
     :param str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
-    :param str export_job_id: -(Required) Unique identifier of the export job to retrieve.
+    :param str export_job_id: Unique identifier of the export job to retrieve.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
     """
     __args__ = dict()
@@ -250,7 +250,7 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
 
 
     :param str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
-    :param str export_job_id: -(Required) Unique identifier of the export job to retrieve.
+    :param str export_job_id: Unique identifier of the export job to retrieve.
     :param str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
     """
     ...

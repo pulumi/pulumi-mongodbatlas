@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -16,19 +17,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = pulumi.output(mongodbatlas.getSearchIndex({
+ * const test = mongodbatlas.getSearchIndex({
  *     clusterName: "<CLUSTER_NAME>",
  *     indexId: "<INDEX_ID",
  *     projectId: "<PROJECT_ID>",
- * }));
+ * });
  * ```
  */
 export function getSearchIndex(args: GetSearchIndexArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getSearchIndex:getSearchIndex", {
         "analyzer": args.analyzer,
         "analyzers": args.analyzers,
@@ -148,9 +146,26 @@ export interface GetSearchIndexResult {
      */
     readonly synonyms: outputs.GetSearchIndexSynonym[];
 }
-
+/**
+ * `mongodbatlas.SearchIndex` describe a single search indexes. This represents a single search index that have been created.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getSearchIndex({
+ *     clusterName: "<CLUSTER_NAME>",
+ *     indexId: "<INDEX_ID",
+ *     projectId: "<PROJECT_ID>",
+ * });
+ * ```
+ */
 export function getSearchIndexOutput(args: GetSearchIndexOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSearchIndexResult> {
-    return pulumi.output(args).apply(a => getSearchIndex(a, opts))
+    return pulumi.output(args).apply((a: any) => getSearchIndex(a, opts))
 }
 
 /**

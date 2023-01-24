@@ -30,26 +30,14 @@ public final class ProjectInvitationArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-     * * GROUP_OWNER
-     * * GROUP_CLUSTER_MANAGER
-     * * GROUP_READ_ONLY
-     * * GROUP_DATA_ACCESS_ADMIN
-     * * GROUP_DATA_ACCESS_READ_WRITE
-     * * GROUP_DATA_ACCESS_READ_ONLY
+     * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      * 
      */
     @Import(name="roles", required=true)
     private Output<List<String>> roles;
 
     /**
-     * @return List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-     * * GROUP_OWNER
-     * * GROUP_CLUSTER_MANAGER
-     * * GROUP_READ_ONLY
-     * * GROUP_DATA_ACCESS_ADMIN
-     * * GROUP_DATA_ACCESS_READ_WRITE
-     * * GROUP_DATA_ACCESS_READ_ONLY
+     * @return List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      * 
      */
     public Output<List<String>> roles() {
@@ -119,13 +107,7 @@ public final class ProjectInvitationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param roles List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-         * * GROUP_OWNER
-         * * GROUP_CLUSTER_MANAGER
-         * * GROUP_READ_ONLY
-         * * GROUP_DATA_ACCESS_ADMIN
-         * * GROUP_DATA_ACCESS_READ_WRITE
-         * * GROUP_DATA_ACCESS_READ_ONLY
+         * @param roles List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
          * 
          * @return builder
          * 
@@ -136,13 +118,7 @@ public final class ProjectInvitationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param roles List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-         * * GROUP_OWNER
-         * * GROUP_CLUSTER_MANAGER
-         * * GROUP_READ_ONLY
-         * * GROUP_DATA_ACCESS_ADMIN
-         * * GROUP_DATA_ACCESS_READ_WRITE
-         * * GROUP_DATA_ACCESS_READ_ONLY
+         * @param roles List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
          * 
          * @return builder
          * 
@@ -152,13 +128,7 @@ public final class ProjectInvitationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param roles List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-         * * GROUP_OWNER
-         * * GROUP_CLUSTER_MANAGER
-         * * GROUP_READ_ONLY
-         * * GROUP_DATA_ACCESS_ADMIN
-         * * GROUP_DATA_ACCESS_READ_WRITE
-         * * GROUP_DATA_ACCESS_READ_ONLY
+         * @param roles List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
          * 
          * @return builder
          * 

@@ -16,10 +16,6 @@ public final class GetDatabaseUsersResult {
     /**
      * @return (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Possible values include:
-     * * `admin` if `x509_type` and `aws_iam_type` and `ldap_auth_type` are omitted or NONE.
-     * * `$external` if:
-     * * `x509_type` is MANAGED or CUSTOMER, or
-     * * `aws_iam_type` is USER or ROLE.
      * 
      */
     private String authDatabaseName;
@@ -64,10 +60,6 @@ public final class GetDatabaseUsersResult {
     /**
      * @return (Required) Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Possible values include:
-     * * `admin` if `x509_type` and `aws_iam_type` and `ldap_auth_type` are omitted or NONE.
-     * * `$external` if:
-     * * `x509_type` is MANAGED or CUSTOMER, or
-     * * `aws_iam_type` is USER or ROLE.
      * 
      */
     public String authDatabaseName() {

@@ -19,21 +19,16 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? FieldName { get; set; }
 
         /// <summary>
-        /// Operator to apply when checking the current metric value against the threshold value.
+        /// If omitted, the configuration is disabled.
         /// Accepted values are:
-        /// - `GREATER_THAN`
-        /// - `LESS_THAN`
+        /// Accepted values are:
+        /// Accepted values are:
         /// </summary>
         [Input("operator")]
         public Input<string>? Operator { get; set; }
 
         /// <summary>
-        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-        /// - `PRIMARY`
-        /// - `SECONDARY`
-        /// - `STANDALONE`
-        /// - `CONFIG`
-        /// - `MONGOS`
+        /// If omitted, the configuration is disabled.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

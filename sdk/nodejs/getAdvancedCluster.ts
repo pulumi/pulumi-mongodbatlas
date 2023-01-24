@@ -2,21 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## --
- *
- * layout: "mongodbatlas"
- * page_title: "MongoDB Atlas: advancedCluster"
- * sidebar_current: "docs-mongodbatlas-datasource-advanced-cluster"
- * description: |-
- *     Describe an Advanced Cluster.
- * ---
- *
- * # Data Source: mongodbatlas.AdvancedCluster
- *
  * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -26,11 +16,8 @@ import * as utilities from "./utilities";
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  */
 export function getAdvancedCluster(args: GetAdvancedClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetAdvancedClusterResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", {
         "name": args.name,
         "pitEnabled": args.pitEnabled,
@@ -125,13 +112,25 @@ export interface GetAdvancedClusterResult {
      */
     readonly stateName: string;
     /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    readonly terminationProtectionEnabled: boolean;
+    /**
      * Release cadence that Atlas uses for this cluster.
      */
     readonly versionReleaseSystem: string;
 }
-
+/**
+ * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * > **IMPORTANT:**
+ * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+ * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ */
 export function getAdvancedClusterOutput(args: GetAdvancedClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAdvancedClusterResult> {
-    return pulumi.output(args).apply(a => getAdvancedCluster(a, opts))
+    return pulumi.output(args).apply((a: any) => getAdvancedCluster(a, opts))
 }
 
 /**

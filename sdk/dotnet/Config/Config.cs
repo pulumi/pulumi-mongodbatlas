@@ -30,7 +30,35 @@ namespace Pulumi.Mongodbatlas
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("mongodbatlas");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("mongodbatlas");
+
+        private static readonly __Value<Pulumi.Mongodbatlas.Config.Types.AssumeRole?> _assumeRole = new __Value<Pulumi.Mongodbatlas.Config.Types.AssumeRole?>(() => __config.GetObject<Pulumi.Mongodbatlas.Config.Types.AssumeRole>("assumeRole"));
+        public static Pulumi.Mongodbatlas.Config.Types.AssumeRole? AssumeRole
+        {
+            get => _assumeRole.Get();
+            set => _assumeRole.Set(value);
+        }
+
+        private static readonly __Value<string?> _awsAccessKeyId = new __Value<string?>(() => __config.Get("awsAccessKeyId"));
+        public static string? AwsAccessKeyId
+        {
+            get => _awsAccessKeyId.Get();
+            set => _awsAccessKeyId.Set(value);
+        }
+
+        private static readonly __Value<string?> _awsSecretAccessKey = new __Value<string?>(() => __config.Get("awsSecretAccessKey"));
+        public static string? AwsSecretAccessKey
+        {
+            get => _awsSecretAccessKey.Get();
+            set => _awsSecretAccessKey.Set(value);
+        }
+
+        private static readonly __Value<string?> _awsSessionToken = new __Value<string?>(() => __config.Get("awsSessionToken"));
+        public static string? AwsSessionToken
+        {
+            get => _awsSessionToken.Get();
+            set => _awsSessionToken.Set(value);
+        }
 
         private static readonly __Value<string?> _baseUrl = new __Value<string?>(() => __config.Get("baseUrl"));
         /// <summary>
@@ -40,6 +68,16 @@ namespace Pulumi.Mongodbatlas
         {
             get => _baseUrl.Get();
             set => _baseUrl.Set(value);
+        }
+
+        private static readonly __Value<bool?> _isMongodbgovCloud = new __Value<bool?>(() => __config.GetBoolean("isMongodbgovCloud"));
+        /// <summary>
+        /// MongoDB Atlas Base URL default to gov
+        /// </summary>
+        public static bool? IsMongodbgovCloud
+        {
+            get => _isMongodbgovCloud.Get();
+            set => _isMongodbgovCloud.Set(value);
         }
 
         private static readonly __Value<string?> _privateKey = new __Value<string?>(() => __config.Get("privateKey"));
@@ -72,5 +110,43 @@ namespace Pulumi.Mongodbatlas
             set => _realmBaseUrl.Set(value);
         }
 
+        private static readonly __Value<string?> _region = new __Value<string?>(() => __config.Get("region"));
+        public static string? Region
+        {
+            get => _region.Get();
+            set => _region.Set(value);
+        }
+
+        private static readonly __Value<string?> _secretName = new __Value<string?>(() => __config.Get("secretName"));
+        public static string? SecretName
+        {
+            get => _secretName.Get();
+            set => _secretName.Set(value);
+        }
+
+        private static readonly __Value<string?> _stsEndpoint = new __Value<string?>(() => __config.Get("stsEndpoint"));
+        public static string? StsEndpoint
+        {
+            get => _stsEndpoint.Get();
+            set => _stsEndpoint.Set(value);
+        }
+
+        public static class Types
+        {
+
+             public class AssumeRole
+             {
+                public string? Duration { get; set; } = null!;
+                public int? DurationSeconds { get; set; }
+                public string? ExternalId { get; set; } = null!;
+                public string? Policy { get; set; } = null!;
+                public ImmutableArray<string> PolicyArns { get; set; }
+                public string? RoleArn { get; set; } = null!;
+                public string? SessionName { get; set; } = null!;
+                public string? SourceIdentity { get; set; } = null!;
+                public ImmutableDictionary<string, string>? Tags { get; set; } = null!;
+                public ImmutableArray<string> TransitiveTagKeys { get; set; }
+            }
+        }
     }
 }

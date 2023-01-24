@@ -17,6 +17,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         /// </summary>
         public readonly string ConnectionStringsStandardSrv;
+        /// <summary>
+        /// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+        /// </summary>
+        public readonly bool ContinuousBackupEnabled;
         public readonly string CreateDate;
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the serverless instance.
@@ -51,10 +55,16 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Stage of deployment of this serverless instance when the resource made its request.
         /// </summary>
         public readonly string StateName;
+        /// <summary>
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        public readonly bool TerminationProtectionEnabled;
 
         [OutputConstructor]
         private GetServerlessInstancesResultResult(
             string connectionStringsStandardSrv,
+
+            bool continuousBackupEnabled,
 
             string createDate,
 
@@ -74,9 +84,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string providerSettingsRegionName,
 
-            string stateName)
+            string stateName,
+
+            bool terminationProtectionEnabled)
         {
             ConnectionStringsStandardSrv = connectionStringsStandardSrv;
+            ContinuousBackupEnabled = continuousBackupEnabled;
             CreateDate = createDate;
             Id = id;
             Links = links;
@@ -87,6 +100,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ProviderSettingsProviderName = providerSettingsProviderName;
             ProviderSettingsRegionName = providerSettingsRegionName;
             StateName = stateName;
+            TerminationProtectionEnabled = terminationProtectionEnabled;
         }
     }
 }

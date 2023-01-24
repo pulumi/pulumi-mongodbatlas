@@ -4,18 +4,39 @@
 package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.internal.Codegen;
+import com.pulumi.mongodbatlas.config.inputs.AssumeRole;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
 public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("mongodbatlas");
+    public Optional<AssumeRole> assumeRole() {
+        return Codegen.objectProp("assumeRole", AssumeRole.class).config(config).get();
+    }
+    public Optional<String> awsAccessKeyId() {
+        return Codegen.stringProp("awsAccessKeyId").config(config).get();
+    }
+    public Optional<String> awsSecretAccessKey() {
+        return Codegen.stringProp("awsSecretAccessKey").config(config).get();
+    }
+    public Optional<String> awsSessionToken() {
+        return Codegen.stringProp("awsSessionToken").config(config).get();
+    }
 /**
  * MongoDB Atlas Base URL
  * 
  */
     public Optional<String> baseUrl() {
         return Codegen.stringProp("baseUrl").config(config).get();
+    }
+/**
+ * MongoDB Atlas Base URL default to gov
+ * 
+ */
+    public Optional<Boolean> isMongodbgovCloud() {
+        return Codegen.booleanProp("isMongodbgovCloud").config(config).get();
     }
 /**
  * MongoDB Atlas Programmatic Private Key
@@ -37,5 +58,14 @@ public final class Config {
  */
     public Optional<String> realmBaseUrl() {
         return Codegen.stringProp("realmBaseUrl").config(config).get();
+    }
+    public Optional<String> region() {
+        return Codegen.stringProp("region").config(config).get();
+    }
+    public Optional<String> secretName() {
+        return Codegen.stringProp("secretName").config(config).get();
+    }
+    public Optional<String> stsEndpoint() {
+        return Codegen.stringProp("stsEndpoint").config(config).get();
     }
 }

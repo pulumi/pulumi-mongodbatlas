@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -30,11 +31,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getNetworkContainers:getNetworkContainers", {
         "projectId": args.projectId,
         "providerName": args.providerName,
@@ -73,9 +71,32 @@ export interface GetNetworkContainersResult {
      */
     readonly results: outputs.GetNetworkContainersResult[];
 }
-
+/**
+ * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ *
+ * ## Example Usage
+ * ### Basic Example.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testNetworkContainer = new mongodbatlas.NetworkContainer("testNetworkContainer", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     atlasCidrBlock: "10.8.0.0/21",
+ *     providerName: "AWS",
+ *     regionName: "US_EAST_1",
+ * });
+ * const testNetworkContainers = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
+ *     projectId: projectId,
+ *     providerName: providerName,
+ * }));
+ * ```
+ */
 export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkContainersResult> {
-    return pulumi.output(args).apply(a => getNetworkContainers(a, opts))
+    return pulumi.output(args).apply((a: any) => getNetworkContainers(a, opts))
 }
 
 /**

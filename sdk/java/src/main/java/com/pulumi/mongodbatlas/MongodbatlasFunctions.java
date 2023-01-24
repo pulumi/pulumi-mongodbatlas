@@ -116,8 +116,12 @@ import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServicePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceAdlArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceAdlPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceAdlPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectInvitationPlainArgs;
@@ -196,7 +200,9 @@ import com.pulumi.mongodbatlas.outputs.GetPrivateEndpointRegionalModeResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivateLinkEndpointResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivateLinkEndpointServiceResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceAdlResult;
+import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceServerlessResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointsServiceAdlInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointsServiceServerlessInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectInvitationResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAccessListResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectResult;
@@ -705,17 +711,6 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser", TypeShape.of(Get509AuthenticationDatabaseUserResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## --
-     * 
-     * layout: &#34;mongodbatlas&#34;
-     * page_title: &#34;MongoDB Atlas: advanced_cluster&#34;
-     * sidebar_current: &#34;docs-mongodbatlas-datasource-advanced-cluster&#34;
-     * description: |-
-     *     Describe an Advanced Cluster.
-     * ---
-     * 
-     * # Data Source: mongodbatlas.AdvancedCluster
-     * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -729,17 +724,6 @@ public final class MongodbatlasFunctions {
         return getAdvancedCluster(args, InvokeOptions.Empty);
     }
     /**
-     * ## --
-     * 
-     * layout: &#34;mongodbatlas&#34;
-     * page_title: &#34;MongoDB Atlas: advanced_cluster&#34;
-     * sidebar_current: &#34;docs-mongodbatlas-datasource-advanced-cluster&#34;
-     * description: |-
-     *     Describe an Advanced Cluster.
-     * ---
-     * 
-     * # Data Source: mongodbatlas.AdvancedCluster
-     * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -753,17 +737,6 @@ public final class MongodbatlasFunctions {
         return getAdvancedClusterPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## --
-     * 
-     * layout: &#34;mongodbatlas&#34;
-     * page_title: &#34;MongoDB Atlas: advanced_cluster&#34;
-     * sidebar_current: &#34;docs-mongodbatlas-datasource-advanced-cluster&#34;
-     * description: |-
-     *     Describe an Advanced Cluster.
-     * ---
-     * 
-     * # Data Source: mongodbatlas.AdvancedCluster
-     * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -777,17 +750,6 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", TypeShape.of(GetAdvancedClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## --
-     * 
-     * layout: &#34;mongodbatlas&#34;
-     * page_title: &#34;MongoDB Atlas: advanced_cluster&#34;
-     * sidebar_current: &#34;docs-mongodbatlas-datasource-advanced-cluster&#34;
-     * description: |-
-     *     Describe an Advanced Cluster.
-     * ---
-     * 
-     * # Data Source: mongodbatlas.AdvancedCluster
-     * 
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -4777,7 +4739,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", TypeShape.of(GetFederatedSettingsIdentityProviderResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+     * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * ## Example Usage
      * ```java
@@ -4825,7 +4787,7 @@ public final class MongodbatlasFunctions {
         return getFederatedSettingsIdentityProviders(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+     * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * ## Example Usage
      * ```java
@@ -4873,7 +4835,7 @@ public final class MongodbatlasFunctions {
         return getFederatedSettingsIdentityProvidersPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+     * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * ## Example Usage
      * ```java
@@ -4921,7 +4883,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", TypeShape.of(GetFederatedSettingsIdentityProvidersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+     * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
      * 
      * ## Example Usage
      * ```java
@@ -5000,6 +4962,7 @@ public final class MongodbatlasFunctions {
      *             .orgId(&#34;627a9683ea7ff7f74de306f14&#34;)
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists(&#34;mydomain.com&#34;)
+     *             .postAuthRoleGrants(&#34;ORG_MEMBER&#34;)
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
@@ -5047,6 +5010,7 @@ public final class MongodbatlasFunctions {
      *             .orgId(&#34;627a9683ea7ff7f74de306f14&#34;)
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists(&#34;mydomain.com&#34;)
+     *             .postAuthRoleGrants(&#34;ORG_MEMBER&#34;)
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
@@ -5094,6 +5058,7 @@ public final class MongodbatlasFunctions {
      *             .orgId(&#34;627a9683ea7ff7f74de306f14&#34;)
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists(&#34;mydomain.com&#34;)
+     *             .postAuthRoleGrants(&#34;ORG_MEMBER&#34;)
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
@@ -5141,6 +5106,7 @@ public final class MongodbatlasFunctions {
      *             .orgId(&#34;627a9683ea7ff7f74de306f14&#34;)
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists(&#34;mydomain.com&#34;)
+     *             .postAuthRoleGrants(&#34;ORG_MEMBER&#34;)
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
@@ -5188,6 +5154,7 @@ public final class MongodbatlasFunctions {
      *             .orgId(&#34;627a9683ea7ff7f74de306f14&#34;)
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists(&#34;mydomain.com&#34;)
+     *             .postAuthRoleGrants(&#34;ORG_MEMBER&#34;)
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
@@ -5234,6 +5201,7 @@ public final class MongodbatlasFunctions {
      *             .orgId(&#34;627a9683ea7ff7f74de306f14&#34;)
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists(&#34;mydomain.com&#34;)
+     *             .postAuthRoleGrants(&#34;ORG_MEMBER&#34;)
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
@@ -5280,6 +5248,7 @@ public final class MongodbatlasFunctions {
      *             .orgId(&#34;627a9683ea7ff7f74de306f14&#34;)
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists(&#34;mydomain.com&#34;)
+     *             .postAuthRoleGrants(&#34;ORG_MEMBER&#34;)
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
@@ -5326,6 +5295,7 @@ public final class MongodbatlasFunctions {
      *             .orgId(&#34;627a9683ea7ff7f74de306f14&#34;)
      *             .domainRestrictionEnabled(false)
      *             .domainAllowLists(&#34;mydomain.com&#34;)
+     *             .postAuthRoleGrants(&#34;ORG_MEMBER&#34;)
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
@@ -6285,10 +6255,6 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getNetworkContainers:getNetworkContainers", TypeShape.of(GetNetworkContainersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      */
@@ -6296,10 +6262,6 @@ public final class MongodbatlasFunctions {
         return getNetworkPeering(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      */
@@ -6307,10 +6269,6 @@ public final class MongodbatlasFunctions {
         return getNetworkPeeringPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      */
@@ -6318,10 +6276,6 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getNetworkPeering:getNetworkPeering", TypeShape.of(GetNetworkPeeringResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      */
@@ -7357,6 +7311,522 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", TypeShape.of(GetPrivatelinkEndpointServiceAdlResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs args) {
+        return getPrivatelinkEndpointServiceServerless(args, InvokeOptions.Empty);
+    }
+    /**
+     * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerlessPlain(GetPrivatelinkEndpointServiceServerlessPlainArgs args) {
+        return getPrivatelinkEndpointServiceServerlessPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `privatelink_endpoint_service_serverless` Provides a Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointServiceServerless(GetPrivatelinkEndpointServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .build());
+     * 
+     *         var testIndex_privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testIndex/privatelinkEndpointServiceServerlessPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointServiceServerlessResult> getPrivatelinkEndpointServiceServerlessPlain(GetPrivatelinkEndpointServiceServerlessPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless", TypeShape.of(GetPrivatelinkEndpointServiceServerlessResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `privatelink_endpoints_service_adl` Describes the list of all Atlas Data Lake (ADL) and Online Archive PrivateLink endpoints resource.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -7557,6 +8027,514 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointsServiceAdl:getPrivatelinkEndpointsServiceAdl", TypeShape.of(GetPrivatelinkEndpointsServiceAdlInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `privatelink_endpoints_service_serverless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointsServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointsServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs args) {
+        return getPrivatelinkEndpointsServiceServerless(args, InvokeOptions.Empty);
+    }
+    /**
+     * `privatelink_endpoints_service_serverless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointsServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointsServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerlessPlain(GetPrivatelinkEndpointsServiceServerlessPlainArgs args) {
+        return getPrivatelinkEndpointsServiceServerlessPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `privatelink_endpoints_service_serverless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointsServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointsServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", TypeShape.of(GetPrivatelinkEndpointsServiceServerlessInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `privatelink_endpoints_service_serverless` Describes the list of all Serverless PrivateLink Endpoint Service resource.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+     * 
+     * ## Example with AWS
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AWS&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST_1&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointsServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AWS&#34;)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AWS&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     * ## Example with AZURE
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServerlessInstance;
+     * import com.pulumi.mongodbatlas.ServerlessInstanceArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsServiceServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServerlessArgs;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerless;
+     * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceServerlessArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testServerlessInstance = new ServerlessInstance(&#34;testServerlessInstance&#34;, ServerlessInstanceArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .providerSettingsBackingProviderName(&#34;AZURE&#34;)
+     *             .providerSettingsProviderName(&#34;SERVERLESS&#34;)
+     *             .providerSettingsRegionName(&#34;US_EAST&#34;)
+     *             .continuousBackupEnabled(true)
+     *             .build());
+     * 
+     *         final var testPrivatelinkEndpointsServiceServerless = MongodbatlasFunctions.getPrivatelinkEndpointsServiceServerless(GetPrivatelinkEndpointsServiceServerlessArgs.builder()
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServerless = new PrivatelinkEndpointServerless(&#34;testPrivatelinkEndpointServerless&#34;, PrivatelinkEndpointServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(testServerlessInstance.name())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .build());
+     * 
+     *         var testPrivatelinkEndpointServiceServerless = new PrivatelinkEndpointServiceServerless(&#34;testPrivatelinkEndpointServiceServerless&#34;, PrivatelinkEndpointServiceServerlessArgs.builder()        
+     *             .projectId(&#34;&lt;PROJECT_ID&gt;&#34;)
+     *             .instanceName(&#34;test-db&#34;)
+     *             .endpointId(testPrivatelinkEndpointServerless.endpointId())
+     *             .providerName(&#34;AZURE&#34;)
+     *             .comment(&#34;New serverless endpoint&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointsServiceServerlessInvokeResult> getPrivatelinkEndpointsServiceServerlessPlain(GetPrivatelinkEndpointsServiceServerlessPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless", TypeShape.of(GetPrivatelinkEndpointsServiceServerlessInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -7728,6 +8706,58 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .apiKeys(ProjectApiKeyArgs.builder()
+     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
+     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetProjectsInvokeResult> getProjects() {
@@ -7739,6 +8769,58 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .apiKeys(ProjectApiKeyArgs.builder()
+     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
+     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetProjectsInvokeResult> getProjectsPlain() {
@@ -7750,6 +8832,58 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .apiKeys(ProjectApiKeyArgs.builder()
+     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
+     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetProjectsInvokeResult> getProjects(GetProjectsArgs args) {
@@ -7761,6 +8895,58 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .apiKeys(ProjectApiKeyArgs.builder()
+     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
+     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetProjectsInvokeResult> getProjectsPlain(GetProjectsPlainArgs args) {
@@ -7772,6 +8958,58 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .apiKeys(ProjectApiKeyArgs.builder()
+     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
+     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetProjectsInvokeResult> getProjects(GetProjectsArgs args, InvokeOptions options) {
@@ -7783,6 +9021,58 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.Project;
+     * import com.pulumi.mongodbatlas.ProjectArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testProject = new Project(&#34;testProject&#34;, ProjectArgs.builder()        
+     *             .apiKeys(ProjectApiKeyArgs.builder()
+     *                 .apiKeyId(&#34;61003b299dda8d54a9d7d10c&#34;)
+     *                 .roleNames(&#34;GROUP_READ_ONLY&#34;)
+     *                 .build())
+     *             .orgId(&#34;&lt;ORG_ID&gt;&#34;)
+     *             .teams(            
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(&#34;GROUP_OWNER&#34;)
+     *                     .teamId(&#34;5e0fa8c99ccf641c722fe645&#34;)
+     *                     .build(),
+     *                 ProjectTeamArgs.builder()
+     *                     .roleNames(                    
+     *                         &#34;GROUP_READ_ONLY&#34;,
+     *                         &#34;GROUP_DATA_ACCESS_READ_WRITE&#34;)
+     *                     .teamId(&#34;5e1dd7b4f2a30ba80a70cd4rw&#34;)
+     *                     .build())
+     *             .build());
+     * 
+     *         final var testProjects = MongodbatlasFunctions.getProjects(GetProjectsArgs.builder()
+     *             .itemsPerPage(5)
+     *             .pageNum(1)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetProjectsInvokeResult> getProjectsPlain(GetProjectsPlainArgs args, InvokeOptions options) {
@@ -7958,6 +9248,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -8002,6 +9293,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -8046,6 +9338,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -8090,6 +9383,7 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
+     * 
      * ```java
      * package generated_program;
      * 
@@ -8468,39 +9762,15 @@ public final class MongodbatlasFunctions {
     public static CompletableFuture<GetServerlessInstancesInvokeResult> getServerlessInstancesPlain(GetServerlessInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServerlessInstances:getServerlessInstances", TypeShape.of(GetServerlessInstancesInvokeResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     */
     public static Output<GetTeamResult> getTeam(GetTeamArgs args) {
         return getTeam(args, InvokeOptions.Empty);
     }
-    /**
-     * `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     */
     public static CompletableFuture<GetTeamResult> getTeamPlain(GetTeamPlainArgs args) {
         return getTeamPlain(args, InvokeOptions.Empty);
     }
-    /**
-     * `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     */
     public static Output<GetTeamResult> getTeam(GetTeamArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getTeam:getTeam", TypeShape.of(GetTeamResult.class), args, Utilities.withVersion(options));
     }
-    /**
-     * `mongodbatlas.Teams` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-     * 
-     */
     public static CompletableFuture<GetTeamResult> getTeamPlain(GetTeamPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getTeam:getTeam", TypeShape.of(GetTeamResult.class), args, Utilities.withVersion(options));
     }

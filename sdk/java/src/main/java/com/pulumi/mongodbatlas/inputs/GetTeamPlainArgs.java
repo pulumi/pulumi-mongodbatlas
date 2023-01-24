@@ -14,47 +14,23 @@ public final class GetTeamPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetTeamPlainArgs Empty = new GetTeamPlainArgs();
 
-    /**
-     * The team name.
-     * 
-     */
     @Import(name="name")
     private @Nullable String name;
 
-    /**
-     * @return The team name.
-     * 
-     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * The unique identifier for the organization you want to associate the team with.
-     * 
-     */
     @Import(name="orgId", required=true)
     private String orgId;
 
-    /**
-     * @return The unique identifier for the organization you want to associate the team with.
-     * 
-     */
     public String orgId() {
         return this.orgId;
     }
 
-    /**
-     * The unique identifier for the team.
-     * 
-     */
     @Import(name="teamId")
     private @Nullable String teamId;
 
-    /**
-     * @return The unique identifier for the team.
-     * 
-     */
     public Optional<String> teamId() {
         return Optional.ofNullable(this.teamId);
     }
@@ -85,34 +61,16 @@ public final class GetTeamPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetTeamPlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param name The team name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(@Nullable String name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param orgId The unique identifier for the organization you want to associate the team with.
-         * 
-         * @return builder
-         * 
-         */
         public Builder orgId(String orgId) {
             $.orgId = orgId;
             return this;
         }
 
-        /**
-         * @param teamId The unique identifier for the team.
-         * 
-         * @return builder
-         * 
-         */
         public Builder teamId(@Nullable String teamId) {
             $.teamId = teamId;
             return this;

@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const settings = pulumi.output(mongodbatlas.getFederatedSettings({
+ * const settings = mongodbatlas.getFederatedSettings({
  *     orgId: "627a9683e7f7f7ff7fe306f14",
- * }));
+ * });
  * ```
  */
 export function getFederatedSettings(args: GetFederatedSettingsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettings:getFederatedSettings", {
         "orgId": args.orgId,
     }, opts);
@@ -65,9 +62,22 @@ export interface GetFederatedSettingsResult {
     readonly identityProviderStatus: string;
     readonly orgId: string;
 }
-
+/**
+ * `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const settings = mongodbatlas.getFederatedSettings({
+ *     orgId: "627a9683e7f7f7ff7fe306f14",
+ * });
+ * ```
+ */
 export function getFederatedSettingsOutput(args: GetFederatedSettingsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsResult> {
-    return pulumi.output(args).apply(a => getFederatedSettings(a, opts))
+    return pulumi.output(args).apply((a: any) => getFederatedSettings(a, opts))
 }
 
 /**

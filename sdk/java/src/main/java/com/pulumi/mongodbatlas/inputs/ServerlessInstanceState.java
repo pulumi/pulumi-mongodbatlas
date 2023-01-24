@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.ServerlessInstanceLinkArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,21 @@ import javax.annotation.Nullable;
 public final class ServerlessInstanceState extends com.pulumi.resources.ResourceArgs {
 
     public static final ServerlessInstanceState Empty = new ServerlessInstanceState();
+
+    /**
+     * List of Serverless Private Endpoint Connections
+     * 
+     */
+    @Import(name="connectionStringsPrivateEndpointSrvs")
+    private @Nullable Output<List<String>> connectionStringsPrivateEndpointSrvs;
+
+    /**
+     * @return List of Serverless Private Endpoint Connections
+     * 
+     */
+    public Optional<Output<List<String>>> connectionStringsPrivateEndpointSrvs() {
+        return Optional.ofNullable(this.connectionStringsPrivateEndpointSrvs);
+    }
 
     /**
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -30,6 +46,21 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
      */
     public Optional<Output<String>> connectionStringsStandardSrv() {
         return Optional.ofNullable(this.connectionStringsStandardSrv);
+    }
+
+    /**
+     * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+     * 
+     */
+    @Import(name="continuousBackupEnabled")
+    private @Nullable Output<Boolean> continuousBackupEnabled;
+
+    /**
+     * @return Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+     * 
+     */
+    public Optional<Output<Boolean>> continuousBackupEnabled() {
+        return Optional.ofNullable(this.continuousBackupEnabled);
     }
 
     /**
@@ -159,10 +190,27 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.stateName);
     }
 
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    @Import(name="terminationProtectionEnabled")
+    private @Nullable Output<Boolean> terminationProtectionEnabled;
+
+    /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Optional<Output<Boolean>> terminationProtectionEnabled() {
+        return Optional.ofNullable(this.terminationProtectionEnabled);
+    }
+
     private ServerlessInstanceState() {}
 
     private ServerlessInstanceState(ServerlessInstanceState $) {
+        this.connectionStringsPrivateEndpointSrvs = $.connectionStringsPrivateEndpointSrvs;
         this.connectionStringsStandardSrv = $.connectionStringsStandardSrv;
+        this.continuousBackupEnabled = $.continuousBackupEnabled;
         this.createDate = $.createDate;
         this.links = $.links;
         this.mongoDbVersion = $.mongoDbVersion;
@@ -172,6 +220,7 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
         this.providerSettingsProviderName = $.providerSettingsProviderName;
         this.providerSettingsRegionName = $.providerSettingsRegionName;
         this.stateName = $.stateName;
+        this.terminationProtectionEnabled = $.terminationProtectionEnabled;
     }
 
     public static Builder builder() {
@@ -193,6 +242,37 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param connectionStringsPrivateEndpointSrvs List of Serverless Private Endpoint Connections
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionStringsPrivateEndpointSrvs(@Nullable Output<List<String>> connectionStringsPrivateEndpointSrvs) {
+            $.connectionStringsPrivateEndpointSrvs = connectionStringsPrivateEndpointSrvs;
+            return this;
+        }
+
+        /**
+         * @param connectionStringsPrivateEndpointSrvs List of Serverless Private Endpoint Connections
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionStringsPrivateEndpointSrvs(List<String> connectionStringsPrivateEndpointSrvs) {
+            return connectionStringsPrivateEndpointSrvs(Output.of(connectionStringsPrivateEndpointSrvs));
+        }
+
+        /**
+         * @param connectionStringsPrivateEndpointSrvs List of Serverless Private Endpoint Connections
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionStringsPrivateEndpointSrvs(String... connectionStringsPrivateEndpointSrvs) {
+            return connectionStringsPrivateEndpointSrvs(List.of(connectionStringsPrivateEndpointSrvs));
+        }
+
+        /**
          * @param connectionStringsStandardSrv Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
          * 
          * @return builder
@@ -211,6 +291,27 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
          */
         public Builder connectionStringsStandardSrv(String connectionStringsStandardSrv) {
             return connectionStringsStandardSrv(Output.of(connectionStringsStandardSrv));
+        }
+
+        /**
+         * @param continuousBackupEnabled Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder continuousBackupEnabled(@Nullable Output<Boolean> continuousBackupEnabled) {
+            $.continuousBackupEnabled = continuousBackupEnabled;
+            return this;
+        }
+
+        /**
+         * @param continuousBackupEnabled Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder continuousBackupEnabled(Boolean continuousBackupEnabled) {
+            return continuousBackupEnabled(Output.of(continuousBackupEnabled));
         }
 
         /**
@@ -392,6 +493,27 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
          */
         public Builder stateName(String stateName) {
             return stateName(Output.of(stateName));
+        }
+
+        /**
+         * @param terminationProtectionEnabled Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder terminationProtectionEnabled(@Nullable Output<Boolean> terminationProtectionEnabled) {
+            $.terminationProtectionEnabled = terminationProtectionEnabled;
+            return this;
+        }
+
+        /**
+         * @param terminationProtectionEnabled Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
+            return terminationProtectionEnabled(Output.of(terminationProtectionEnabled));
         }
 
         public ServerlessInstanceState build() {

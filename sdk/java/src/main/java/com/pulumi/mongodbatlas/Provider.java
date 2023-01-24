@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.ProviderArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -22,6 +23,24 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="pulumi:providers:mongodbatlas")
 public class Provider extends com.pulumi.resources.ProviderResource {
+    @Export(name="awsAccessKeyId", type=String.class, parameters={})
+    private Output</* @Nullable */ String> awsAccessKeyId;
+
+    public Output<Optional<String>> awsAccessKeyId() {
+        return Codegen.optional(this.awsAccessKeyId);
+    }
+    @Export(name="awsSecretAccessKey", type=String.class, parameters={})
+    private Output</* @Nullable */ String> awsSecretAccessKey;
+
+    public Output<Optional<String>> awsSecretAccessKey() {
+        return Codegen.optional(this.awsSecretAccessKey);
+    }
+    @Export(name="awsSessionToken", type=String.class, parameters={})
+    private Output</* @Nullable */ String> awsSessionToken;
+
+    public Output<Optional<String>> awsSessionToken() {
+        return Codegen.optional(this.awsSessionToken);
+    }
     /**
      * MongoDB Atlas Base URL
      * 
@@ -78,6 +97,24 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<Optional<String>> realmBaseUrl() {
         return Codegen.optional(this.realmBaseUrl);
     }
+    @Export(name="region", type=String.class, parameters={})
+    private Output</* @Nullable */ String> region;
+
+    public Output<Optional<String>> region() {
+        return Codegen.optional(this.region);
+    }
+    @Export(name="secretName", type=String.class, parameters={})
+    private Output</* @Nullable */ String> secretName;
+
+    public Output<Optional<String>> secretName() {
+        return Codegen.optional(this.secretName);
+    }
+    @Export(name="stsEndpoint", type=String.class, parameters={})
+    private Output</* @Nullable */ String> stsEndpoint;
+
+    public Output<Optional<String>> stsEndpoint() {
+        return Codegen.optional(this.stsEndpoint);
+    }
 
     /**
      *
@@ -107,6 +144,9 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "privateKey"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -97,6 +97,11 @@ public final class GetAdvancedClusterResult {
      */
     private String stateName;
     /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    private Boolean terminationProtectionEnabled;
+    /**
      * @return Release cadence that Atlas uses for this cluster.
      * 
      */
@@ -221,6 +226,13 @@ public final class GetAdvancedClusterResult {
         return this.stateName;
     }
     /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Boolean terminationProtectionEnabled() {
+        return this.terminationProtectionEnabled;
+    }
+    /**
      * @return Release cadence that Atlas uses for this cluster.
      * 
      */
@@ -256,6 +268,7 @@ public final class GetAdvancedClusterResult {
         private List<GetAdvancedClusterReplicationSpec> replicationSpecs;
         private String rootCertType;
         private String stateName;
+        private Boolean terminationProtectionEnabled;
         private String versionReleaseSystem;
         public Builder() {}
         public Builder(GetAdvancedClusterResult defaults) {
@@ -279,6 +292,7 @@ public final class GetAdvancedClusterResult {
     	      this.replicationSpecs = defaults.replicationSpecs;
     	      this.rootCertType = defaults.rootCertType;
     	      this.stateName = defaults.stateName;
+    	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
 
@@ -393,6 +407,11 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
+            this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
+            return this;
+        }
+        @CustomType.Setter
         public Builder versionReleaseSystem(String versionReleaseSystem) {
             this.versionReleaseSystem = Objects.requireNonNull(versionReleaseSystem);
             return this;
@@ -418,6 +437,7 @@ public final class GetAdvancedClusterResult {
             o.replicationSpecs = replicationSpecs;
             o.rootCertType = rootCertType;
             o.stateName = stateName;
+            o.terminationProtectionEnabled = terminationProtectionEnabled;
             o.versionReleaseSystem = versionReleaseSystem;
             return o;
         }

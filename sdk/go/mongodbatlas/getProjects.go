@@ -13,6 +13,62 @@ import (
 // `getProjects` describe all Projects. This represents projects that have been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewProject(ctx, "testProject", &mongodbatlas.ProjectArgs{
+//				ApiKeys: mongodbatlas.ProjectApiKeyArray{
+//					&mongodbatlas.ProjectApiKeyArgs{
+//						ApiKeyId: pulumi.String("61003b299dda8d54a9d7d10c"),
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//						},
+//					},
+//				},
+//				OrgId: pulumi.String("<ORG_ID>"),
+//				Teams: mongodbatlas.ProjectTeamArray{
+//					&mongodbatlas.ProjectTeamArgs{
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_OWNER"),
+//						},
+//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
+//					},
+//					&mongodbatlas.ProjectTeamArgs{
+//						RoleNames: pulumi.StringArray{
+//							pulumi.String("GROUP_READ_ONLY"),
+//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
+//						},
+//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.LookupProjects(ctx, &mongodbatlas.LookupProjectsArgs{
+//				ItemsPerPage: pulumi.IntRef(5),
+//				PageNum:      pulumi.IntRef(1),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupProjects(ctx *pulumi.Context, args *LookupProjectsArgs, opts ...pulumi.InvokeOption) (*LookupProjectsResult, error) {
 	var rv LookupProjectsResult
 	err := ctx.Invoke("mongodbatlas:index/getProjects:getProjects", args, &rv, opts...)

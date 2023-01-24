@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -18,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testRole = new mongodbatlas.CustomDbRole("test_role", {
+ * const testRole = new mongodbatlas.CustomDbRole("testRole", {
  *     actions: [
  *         {
  *             action: "UPDATE",
@@ -150,7 +151,7 @@ export class CustomDbRole extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Name of the inherited role. This can either be another custom role or a built-in role.
+     * Name of the custom role.
      */
     public readonly roleName!: pulumi.Output<string>;
 
@@ -200,7 +201,7 @@ export interface CustomDbRoleState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Name of the inherited role. This can either be another custom role or a built-in role.
+     * Name of the custom role.
      */
     roleName?: pulumi.Input<string>;
 }
@@ -216,7 +217,7 @@ export interface CustomDbRoleArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Name of the inherited role. This can either be another custom role or a built-in role.
+     * Name of the custom role.
      */
     roleName: pulumi.Input<string>;
 }

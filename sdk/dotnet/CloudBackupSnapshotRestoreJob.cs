@@ -10,103 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job must define one of three delivery types:
-    /// * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
-    /// 
-    /// * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
-    /// 
-    /// * **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.
-    /// 
-    /// &gt; **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
-    /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
-    /// ## Example Usage
-    /// ### Example automated delivery type.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var myCluster = new Mongodbatlas.Cluster("myCluster", new()
-    ///     {
-    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///         DiskSizeGb = 5,
-    ///         ProviderName = "AWS",
-    ///         ProviderRegionName = "EU_WEST_2",
-    ///         ProviderInstanceSizeName = "M10",
-    ///         CloudBackup = true,
-    ///     });
-    /// 
-    ///     // enable cloud backup snapshots
-    ///     var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new()
-    ///     {
-    ///         ProjectId = myCluster.ProjectId,
-    ///         ClusterName = myCluster.Name,
-    ///         Description = "myDescription",
-    ///         RetentionInDays = 1,
-    ///     });
-    /// 
-    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new()
-    ///     {
-    ///         ProjectId = testCloudProviderSnapshot.ProjectId,
-    ///         ClusterName = testCloudProviderSnapshot.ClusterName,
-    ///         SnapshotId = testCloudProviderSnapshot.SnapshotId,
-    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
-    ///         {
-    ///             Automated = true,
-    ///             TargetClusterName = "MyCluster",
-    ///             TargetProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ### Example download delivery type.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var myCluster = new Mongodbatlas.Cluster("myCluster", new()
-    ///     {
-    ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///         DiskSizeGb = 5,
-    ///         ProviderName = "AWS",
-    ///         ProviderRegionName = "EU_WEST_2",
-    ///         ProviderInstanceSizeName = "M10",
-    ///         CloudBackup = true,
-    ///     });
-    /// 
-    ///     // enable cloud backup snapshots
-    ///     var testCloudProviderSnapshot = new Mongodbatlas.CloudProviderSnapshot("testCloudProviderSnapshot", new()
-    ///     {
-    ///         ProjectId = myCluster.ProjectId,
-    ///         ClusterName = myCluster.Name,
-    ///         Description = "myDescription",
-    ///         RetentionInDays = 1,
-    ///     });
-    /// 
-    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("testCloudBackupSnapshotRestoreJob", new()
-    ///     {
-    ///         ProjectId = testCloudProviderSnapshot.ProjectId,
-    ///         ClusterName = testCloudProviderSnapshot.ClusterName,
-    ///         SnapshotId = testCloudProviderSnapshot.SnapshotId,
-    ///         DeliveryTypeConfig = new Mongodbatlas.Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs
-    ///         {
-    ///             Download = true,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
@@ -145,7 +48,7 @@ namespace Pulumi.Mongodbatlas
         /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         /// * `delivery_type_config.download` - Set to `true` to use the download configuration.
-        /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+        /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
         /// * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         /// * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         /// * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
@@ -268,7 +171,7 @@ namespace Pulumi.Mongodbatlas
         /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         /// * `delivery_type_config.download` - Set to `true` to use the download configuration.
-        /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+        /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
         /// * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         /// * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         /// * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
@@ -329,7 +232,7 @@ namespace Pulumi.Mongodbatlas
         /// Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         /// * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
         /// * `delivery_type_config.download` - Set to `true` to use the download configuration.
-        /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration.
+        /// * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
         /// * `delivery_type_config.target_cluster_name` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         /// * `delivery_type_config.target_project_id` - Name of the target Atlas cluster to which the restore job restores the snapshot. Required for **automated** and **pointInTime**.
         /// * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -25,6 +27,9 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    public readonly awsAccessKeyId!: pulumi.Output<string | undefined>;
+    public readonly awsSecretAccessKey!: pulumi.Output<string | undefined>;
+    public readonly awsSessionToken!: pulumi.Output<string | undefined>;
     /**
      * MongoDB Atlas Base URL
      */
@@ -41,6 +46,9 @@ export class Provider extends pulumi.ProviderResource {
      * MongoDB Realm Base URL
      */
     public readonly realmBaseUrl!: pulumi.Output<string | undefined>;
+    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly secretName!: pulumi.Output<string | undefined>;
+    public readonly stsEndpoint!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -53,12 +61,22 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
+            resourceInputs["assumeRole"] = pulumi.output(args ? args.assumeRole : undefined).apply(JSON.stringify);
+            resourceInputs["awsAccessKeyId"] = args ? args.awsAccessKeyId : undefined;
+            resourceInputs["awsSecretAccessKey"] = args ? args.awsSecretAccessKey : undefined;
+            resourceInputs["awsSessionToken"] = args ? args.awsSessionToken : undefined;
             resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["isMongodbgovCloud"] = pulumi.output(args ? args.isMongodbgovCloud : undefined).apply(JSON.stringify);
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
             resourceInputs["realmBaseUrl"] = args ? args.realmBaseUrl : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["secretName"] = args ? args.secretName : undefined;
+            resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["privateKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -67,10 +85,18 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    assumeRole?: pulumi.Input<inputs.ProviderAssumeRole>;
+    awsAccessKeyId?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string>;
+    awsSessionToken?: pulumi.Input<string>;
     /**
      * MongoDB Atlas Base URL
      */
     baseUrl?: pulumi.Input<string>;
+    /**
+     * MongoDB Atlas Base URL default to gov
+     */
+    isMongodbgovCloud?: pulumi.Input<boolean>;
     /**
      * MongoDB Atlas Programmatic Private Key
      */
@@ -83,4 +109,7 @@ export interface ProviderArgs {
      * MongoDB Realm Base URL
      */
     realmBaseUrl?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    secretName?: pulumi.Input<string>;
+    stsEndpoint?: pulumi.Input<string>;
 }

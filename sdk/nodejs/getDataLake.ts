@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,11 +12,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getDataLake(args: GetDataLakeArgs, opts?: pulumi.InvokeOptions): Promise<GetDataLakeResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getDataLake:getDataLake", {
         "name": args.name,
         "projectId": args.projectId,
@@ -96,9 +94,13 @@ export interface GetDataLakeResult {
      */
     readonly storageStores: outputs.GetDataLakeStorageStore[];
 }
-
+/**
+ * `mongodbatlas.DataLake` describe a Data Lake.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ */
 export function getDataLakeOutput(args: GetDataLakeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataLakeResult> {
-    return pulumi.output(args).apply(a => getDataLake(a, opts))
+    return pulumi.output(args).apply((a: any) => getDataLake(a, opts))
 }
 
 /**

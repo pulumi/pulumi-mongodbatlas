@@ -22,7 +22,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? OrgId;
         /// <summary>
-        /// Specifies the Roles that are attached to the Role Mapping.
+        /// Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+        /// Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
         /// </summary>
         public readonly ImmutableArray<string> Roles;
 

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class EncryptionAtRest extends pulumi.CustomResource {
@@ -84,15 +85,17 @@ export class EncryptionAtRest extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["awsKms"] = args ? args.awsKms : undefined;
-            resourceInputs["awsKmsConfig"] = args ? args.awsKmsConfig : undefined;
-            resourceInputs["azureKeyVault"] = args ? args.azureKeyVault : undefined;
-            resourceInputs["azureKeyVaultConfig"] = args ? args.azureKeyVaultConfig : undefined;
-            resourceInputs["googleCloudKms"] = args ? args.googleCloudKms : undefined;
-            resourceInputs["googleCloudKmsConfig"] = args ? args.googleCloudKmsConfig : undefined;
+            resourceInputs["awsKms"] = args?.awsKms ? pulumi.secret(args.awsKms) : undefined;
+            resourceInputs["awsKmsConfig"] = args?.awsKmsConfig ? pulumi.secret(args.awsKmsConfig) : undefined;
+            resourceInputs["azureKeyVault"] = args?.azureKeyVault ? pulumi.secret(args.azureKeyVault) : undefined;
+            resourceInputs["azureKeyVaultConfig"] = args?.azureKeyVaultConfig ? pulumi.secret(args.azureKeyVaultConfig) : undefined;
+            resourceInputs["googleCloudKms"] = args?.googleCloudKms ? pulumi.secret(args.googleCloudKms) : undefined;
+            resourceInputs["googleCloudKmsConfig"] = args?.googleCloudKmsConfig ? pulumi.secret(args.googleCloudKmsConfig) : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["awsKms", "awsKmsConfig", "azureKeyVault", "azureKeyVaultConfig", "googleCloudKms", "googleCloudKmsConfig"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(EncryptionAtRest.__pulumiType, name, resourceInputs, opts);
     }
 }

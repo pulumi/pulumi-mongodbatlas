@@ -232,6 +232,20 @@ public class Project extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> projectOwnerId() {
         return Codegen.optional(this.projectOwnerId);
     }
+    /**
+     * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     * 
+     */
+    @Export(name="regionUsageRestrictions", type=String.class, parameters={})
+    private Output<String> regionUsageRestrictions;
+
+    /**
+     * @return Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+     * 
+     */
+    public Output<String> regionUsageRestrictions() {
+        return this.regionUsageRestrictions;
+    }
     @Export(name="teams", type=List.class, parameters={ProjectTeam.class})
     private Output</* @Nullable */ List<ProjectTeam>> teams;
 

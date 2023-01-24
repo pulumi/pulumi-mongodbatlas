@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetCustomDbRolesResultInheritedRole {
+    /**
+     * @return (Required) Database on which the inherited role is granted.
+     * 
+     */
     private String databaseName;
+    /**
+     * @return (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     * 
+     */
     private String roleName;
 
     private GetCustomDbRolesResultInheritedRole() {}
+    /**
+     * @return (Required) Database on which the inherited role is granted.
+     * 
+     */
     public String databaseName() {
         return this.databaseName;
     }
+    /**
+     * @return (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+     * 
+     */
     public String roleName() {
         return this.roleName;
     }

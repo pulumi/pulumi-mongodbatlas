@@ -12,11 +12,8 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getProjectInvitation(args: GetProjectInvitationArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectInvitationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjectInvitation:getProjectInvitation", {
         "invitationId": args.invitationId,
         "projectId": args.projectId,
@@ -65,20 +62,20 @@ export interface GetProjectInvitationResult {
     readonly inviterUsername: string;
     readonly projectId: string;
     /**
-     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The following options are available:
-     * * GROUP_OWNER
-     * * GROUP_CLUSTER_MANAGER
-     * * GROUP_READ_ONLY
-     * * GROUP_DATA_ACCESS_ADMIN
-     * * GROUP_DATA_ACCESS_READ_WRITE
-     * * GROUP_DATA_ACCESS_READ_ONLY
+     * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      */
     readonly roles: string[];
     readonly username: string;
 }
-
+/**
+ * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
+ *
+ * ## Example Usage
+ */
 export function getProjectInvitationOutput(args: GetProjectInvitationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectInvitationResult> {
-    return pulumi.output(args).apply(a => getProjectInvitation(a, opts))
+    return pulumi.output(args).apply((a: any) => getProjectInvitation(a, opts))
 }
 
 /**

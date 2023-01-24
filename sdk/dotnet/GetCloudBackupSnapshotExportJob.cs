@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
         public static Task<GetCloudBackupSnapshotExportJobResult> InvokeAsync(GetCloudBackupSnapshotExportJobArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobResult>("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", args ?? new GetCloudBackupSnapshotExportJobArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportJobResult>("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", args ?? new GetCloudBackupSnapshotExportJobArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
         public static Output<GetCloudBackupSnapshotExportJobResult> Invoke(GetCloudBackupSnapshotExportJobInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportJobResult>("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", args ?? new GetCloudBackupSnapshotExportJobInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportJobResult>("mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob", args ?? new GetCloudBackupSnapshotExportJobInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -40,7 +40,7 @@ namespace Pulumi.Mongodbatlas
         public string ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// -(Required) Unique identifier of the export job to retrieve.
+        /// Unique identifier of the export job to retrieve.
         /// </summary>
         [Input("exportJobId", required: true)]
         public string ExportJobId { get; set; } = null!;
@@ -69,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// -(Required) Unique identifier of the export job to retrieve.
+        /// Unique identifier of the export job to retrieve.
         /// </summary>
         [Input("exportJobId", required: true)]
         public Input<string> ExportJobId { get; set; } = null!;

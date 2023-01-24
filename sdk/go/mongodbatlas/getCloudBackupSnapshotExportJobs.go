@@ -42,8 +42,8 @@ import (
 //				ClusterName:    pulumi.String("{CLUSTER_NAME}"),
 //				SnapshotId:     pulumi.String("{SNAPSHOT_ID}"),
 //				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
-//				CustomDatas: CloudBackupSnapshotExportJobCustomDataArray{
-//					&CloudBackupSnapshotExportJobCustomDataArgs{
+//				CustomDatas: mongodbatlas.CloudBackupSnapshotExportJobCustomDataArray{
+//					&mongodbatlas.CloudBackupSnapshotExportJobCustomDataArgs{
 //						Key:   pulumi.String("exported by"),
 //						Value: pulumi.String("myName"),
 //					},
@@ -52,7 +52,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupCloudBackupSnapshotExportJobs(ctx, &GetCloudBackupSnapshotExportJobsArgs{
+//			_, err = mongodbatlas.LookupCloudBackupSnapshotExportJobs(ctx, &mongodbatlas.LookupCloudBackupSnapshotExportJobsArgs{
 //				ProjectId:   "{PROJECT_ID}",
 //				ClusterName: "{CLUSTER_NAME}",
 //			}, nil)

@@ -175,6 +175,11 @@ namespace Pulumi.Mongodbatlas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "currentCertificate",
+                    "customerX509Cas",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -198,11 +203,21 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class X509AuthenticationDatabaseUserArgs : global::Pulumi.ResourceArgs
     {
+        [Input("customerX509Cas")]
+        private Input<string>? _customerX509Cas;
+
         /// <summary>
         /// PEM string containing one or more customer CAs for database user authentication.
         /// </summary>
-        [Input("customerX509Cas")]
-        public Input<string>? CustomerX509Cas { get; set; }
+        public Input<string>? CustomerX509Cas
+        {
+            get => _customerX509Cas;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _customerX509Cas = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
@@ -242,17 +257,37 @@ namespace Pulumi.Mongodbatlas
             set => _certificates = value;
         }
 
+        [Input("currentCertificate")]
+        private Input<string>? _currentCertificate;
+
         /// <summary>
         /// Contains the last X.509 certificate and private key created for a database user.
         /// </summary>
-        [Input("currentCertificate")]
-        public Input<string>? CurrentCertificate { get; set; }
+        public Input<string>? CurrentCertificate
+        {
+            get => _currentCertificate;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _currentCertificate = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("customerX509Cas")]
+        private Input<string>? _customerX509Cas;
 
         /// <summary>
         /// PEM string containing one or more customer CAs for database user authentication.
         /// </summary>
-        [Input("customerX509Cas")]
-        public Input<string>? CustomerX509Cas { get; set; }
+        public Input<string>? CustomerX509Cas
+        {
+            get => _customerX509Cas;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _customerX509Cas = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.

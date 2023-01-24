@@ -92,8 +92,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PrivateLinkEndpoint{}
 	case "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
 		r = &PrivateLinkEndpointService{}
+	case "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless":
+		r = &PrivatelinkEndpointServerless{}
 	case "mongodbatlas:index/privatelinkEndpointServiceAdl:PrivatelinkEndpointServiceAdl":
 		r = &PrivatelinkEndpointServiceAdl{}
+	case "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless":
+		r = &PrivatelinkEndpointServiceServerless{}
 	case "mongodbatlas:index/project:Project":
 		r = &Project{}
 	case "mongodbatlas:index/projectInvitation:ProjectInvitation":
@@ -322,7 +326,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/privatelinkEndpointServerless",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/privatelinkEndpointServiceAdl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/privatelinkEndpointServiceServerless",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

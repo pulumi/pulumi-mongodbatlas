@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupServerlessInstances(ctx, &GetServerlessInstancesArgs{
+//			_, err := mongodbatlas.LookupServerlessInstances(ctx, &mongodbatlas.LookupServerlessInstancesArgs{
 //				ProjectId: "<PROJECT_ID",
 //			}, nil)
 //			if err != nil {

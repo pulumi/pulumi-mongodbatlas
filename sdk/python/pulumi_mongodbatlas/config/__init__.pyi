@@ -8,10 +8,24 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+
+assumeRole: Optional[str]
+
+awsAccessKeyId: Optional[str]
+
+awsSecretAccessKey: Optional[str]
+
+awsSessionToken: Optional[str]
 
 baseUrl: Optional[str]
 """
 MongoDB Atlas Base URL
+"""
+
+isMongodbgovCloud: Optional[bool]
+"""
+MongoDB Atlas Base URL default to gov
 """
 
 privateKey: Optional[str]
@@ -28,4 +42,10 @@ realmBaseUrl: Optional[str]
 """
 MongoDB Realm Base URL
 """
+
+region: Optional[str]
+
+secretName: Optional[str]
+
+stsEndpoint: Optional[str]
 

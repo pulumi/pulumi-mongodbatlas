@@ -28,7 +28,8 @@ namespace Pulumi.Mongodbatlas.Inputs
         private InputList<string>? _roles;
 
         /// <summary>
-        /// Specifies the Roles that are attached to the Role Mapping.
+        /// Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+        /// Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
         /// </summary>
         public InputList<string> Roles
         {

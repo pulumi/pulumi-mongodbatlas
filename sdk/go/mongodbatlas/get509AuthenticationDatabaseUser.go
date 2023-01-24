@@ -37,14 +37,14 @@ import (
 //				Username:     pulumi.String("myUsername"),
 //				X509Type:     pulumi.String("MANAGED"),
 //				DatabaseName: pulumi.String(fmt.Sprintf("$external")),
-//				Roles: DatabaseUserRoleArray{
-//					&DatabaseUserRoleArgs{
+//				Roles: mongodbatlas.DatabaseUserRoleArray{
+//					&mongodbatlas.DatabaseUserRoleArgs{
 //						RoleName:     pulumi.String("atlasAdmin"),
 //						DatabaseName: pulumi.String("admin"),
 //					},
 //				},
-//				Labels: DatabaseUserLabelArray{
-//					&DatabaseUserLabelArgs{
+//				Labels: mongodbatlas.DatabaseUserLabelArray{
+//					&mongodbatlas.DatabaseUserLabelArgs{
 //						Key:   pulumi.String("My Key"),
 //						Value: pulumi.String("My Value"),
 //					},
@@ -61,6 +61,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_ = pulumi.All(testX509AuthenticationDatabaseUser.ProjectId, testX509AuthenticationDatabaseUser.Username).ApplyT(func(_args []interface{}) (mongodbatlas.Get509AuthenticationDatabaseUserResult, error) {
+//				projectId := _args[0].(string)
+//				username := _args[1].(*string)
+//				return mongodbatlas.Get509AuthenticationDatabaseUserOutput(ctx, mongodbatlas.Get509AuthenticationDatabaseUserOutputArgs{
+//					ProjectId: projectId,
+//					Username:  username,
+//				}, nil), nil
+//			}).(mongodbatlas.Get509AuthenticationDatabaseUserResultOutput)
 //			return nil
 //		})
 //	}
@@ -106,7 +114,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.Get509AuthenticationDatabaseUserOutput(ctx, Get509AuthenticationDatabaseUserOutputArgs{
+//			_ = mongodbatlas.Get509AuthenticationDatabaseUserOutput(ctx, mongodbatlas.Get509AuthenticationDatabaseUserOutputArgs{
 //				ProjectId: testX509AuthenticationDatabaseUser.ProjectId,
 //			}, nil)
 //			return nil

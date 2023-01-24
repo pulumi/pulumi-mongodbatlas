@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -16,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testMongodbatlasProject = new mongodbatlas.Project("test", {
+ * const testProject = new mongodbatlas.Project("testProject", {
  *     apiKeys: [{
  *         apiKeyId: "61003b299dda8d54a9d7d10c",
  *         roleNames: ["GROUP_READ_ONLY"],
@@ -36,19 +37,16 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const testProject = pulumi.output(mongodbatlas.getProject({
+ * const testProjects = mongodbatlas.getProjects({
  *     itemsPerPage: 5,
  *     pageNum: 1,
- * }));
+ * });
  * ```
  */
 export function getProjects(args?: GetProjectsArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjects:getProjects", {
         "itemsPerPage": args.itemsPerPage,
         "pageNum": args.pageNum,
@@ -82,9 +80,45 @@ export interface GetProjectsResult {
     readonly results: outputs.GetProjectsResult[];
     readonly totalCount: number;
 }
-
+/**
+ * `mongodbatlas.getProjects` describe all Projects. This represents projects that have been created.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testProject = new mongodbatlas.Project("testProject", {
+ *     apiKeys: [{
+ *         apiKeyId: "61003b299dda8d54a9d7d10c",
+ *         roleNames: ["GROUP_READ_ONLY"],
+ *     }],
+ *     orgId: "<ORG_ID>",
+ *     teams: [
+ *         {
+ *             roleNames: ["GROUP_OWNER"],
+ *             teamId: "5e0fa8c99ccf641c722fe645",
+ *         },
+ *         {
+ *             roleNames: [
+ *                 "GROUP_READ_ONLY",
+ *                 "GROUP_DATA_ACCESS_READ_WRITE",
+ *             ],
+ *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
+ *         },
+ *     ],
+ * });
+ * const testProjects = mongodbatlas.getProjects({
+ *     itemsPerPage: 5,
+ *     pageNum: 1,
+ * });
+ * ```
+ */
 export function getProjectsOutput(args?: GetProjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectsResult> {
-    return pulumi.output(args).apply(a => getProjects(a, opts))
+    return pulumi.output(args).apply((a: any) => getProjects(a, opts))
 }
 
 /**

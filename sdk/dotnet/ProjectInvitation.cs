@@ -96,13 +96,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-        /// * GROUP_OWNER
-        /// * GROUP_CLUSTER_MANAGER
-        /// * GROUP_READ_ONLY
-        /// * GROUP_DATA_ACCESS_ADMIN
-        /// * GROUP_DATA_ACCESS_READ_WRITE
-        /// * GROUP_DATA_ACCESS_READ_ONLY
+        /// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
@@ -169,13 +163,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roles;
 
         /// <summary>
-        /// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-        /// * GROUP_OWNER
-        /// * GROUP_CLUSTER_MANAGER
-        /// * GROUP_READ_ONLY
-        /// * GROUP_DATA_ACCESS_ADMIN
-        /// * GROUP_DATA_ACCESS_READ_WRITE
-        /// * GROUP_DATA_ACCESS_READ_ONLY
+        /// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         /// </summary>
         public InputList<string> Roles
         {
@@ -231,13 +219,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _roles;
 
         /// <summary>
-        /// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-        /// * GROUP_OWNER
-        /// * GROUP_CLUSTER_MANAGER
-        /// * GROUP_READ_ONLY
-        /// * GROUP_DATA_ACCESS_ADMIN
-        /// * GROUP_DATA_ACCESS_READ_WRITE
-        /// * GROUP_DATA_ACCESS_READ_ONLY
+        /// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         /// </summary>
         public InputList<string> Roles
         {

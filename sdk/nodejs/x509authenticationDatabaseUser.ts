@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -65,6 +66,7 @@ import * as utilities from "./utilities";
  *   7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
  *   iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
  *   -----END CERTIFICATE-----"
+ *
  * `,
  *     projectId: "<PROJECT-ID>",
  * });
@@ -163,7 +165,7 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
             if ((!args || args.projectId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
-            resourceInputs["customerX509Cas"] = args ? args.customerX509Cas : undefined;
+            resourceInputs["customerX509Cas"] = args?.customerX509Cas ? pulumi.secret(args.customerX509Cas) : undefined;
             resourceInputs["monthsUntilExpiration"] = args ? args.monthsUntilExpiration : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
@@ -171,6 +173,8 @@ export class X509AuthenticationDatabaseUser extends pulumi.CustomResource {
             resourceInputs["currentCertificate"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["currentCertificate", "customerX509Cas"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(X509AuthenticationDatabaseUser.__pulumiType, name, resourceInputs, opts);
     }
 }

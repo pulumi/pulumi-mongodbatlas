@@ -17,20 +17,15 @@ public final class AlertConfigurationMatcher {
      */
     private @Nullable String fieldName;
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      * 
      */
     private @Nullable String operator;
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-     * - `PRIMARY`
-     * - `SECONDARY`
-     * - `STANDALONE`
-     * - `CONFIG`
-     * - `MONGOS`
+     * @return If omitted, the configuration is disabled.
      * 
      */
     private @Nullable String value;
@@ -44,22 +39,17 @@ public final class AlertConfigurationMatcher {
         return Optional.ofNullable(this.fieldName);
     }
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      * 
      */
     public Optional<String> operator() {
         return Optional.ofNullable(this.operator);
     }
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-     * - `PRIMARY`
-     * - `SECONDARY`
-     * - `STANDALONE`
-     * - `CONFIG`
-     * - `MONGOS`
+     * @return If omitted, the configuration is disabled.
      * 
      */
     public Optional<String> value() {

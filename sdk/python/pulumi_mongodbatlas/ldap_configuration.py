@@ -531,7 +531,7 @@ class LdapConfiguration(pulumi.CustomResource):
             __props__.__dict__["authz_query_template"] = authz_query_template
             if bind_password is None and not opts.urn:
                 raise TypeError("Missing required property 'bind_password'")
-            __props__.__dict__["bind_password"] = bind_password
+            __props__.__dict__["bind_password"] = None if bind_password is None else pulumi.Output.secret(bind_password)
             if bind_username is None and not opts.urn:
                 raise TypeError("Missing required property 'bind_username'")
             __props__.__dict__["bind_username"] = bind_username
@@ -544,6 +544,8 @@ class LdapConfiguration(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["user_to_dn_mappings"] = user_to_dn_mappings
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindPassword"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(LdapConfiguration, __self__).__init__(
             'mongodbatlas:index/ldapConfiguration:LdapConfiguration',
             resource_name,

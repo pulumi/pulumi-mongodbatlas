@@ -31,20 +31,20 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Operator to apply when checking the current metric value against the threshold value.
+     * If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      * 
      */
     @Import(name="operator")
     private @Nullable Output<String> operator;
 
     /**
-     * @return Operator to apply when checking the current metric value against the threshold value.
+     * @return If omitted, the configuration is disabled.
      * Accepted values are:
-     * - `GREATER_THAN`
-     * - `LESS_THAN`
+     * Accepted values are:
+     * Accepted values are:
      * 
      */
     public Optional<Output<String>> operator() {
@@ -52,24 +52,14 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-     * - `PRIMARY`
-     * - `SECONDARY`
-     * - `STANDALONE`
-     * - `CONFIG`
-     * - `MONGOS`
+     * If omitted, the configuration is disabled.
      * 
      */
     @Import(name="value")
     private @Nullable Output<String> value;
 
     /**
-     * @return Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-     * - `PRIMARY`
-     * - `SECONDARY`
-     * - `STANDALONE`
-     * - `CONFIG`
-     * - `MONGOS`
+     * @return If omitted, the configuration is disabled.
      * 
      */
     public Optional<Output<String>> value() {
@@ -124,10 +114,10 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param operator Operator to apply when checking the current metric value against the threshold value.
+         * @param operator If omitted, the configuration is disabled.
          * Accepted values are:
-         * - `GREATER_THAN`
-         * - `LESS_THAN`
+         * Accepted values are:
+         * Accepted values are:
          * 
          * @return builder
          * 
@@ -138,10 +128,10 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param operator Operator to apply when checking the current metric value against the threshold value.
+         * @param operator If omitted, the configuration is disabled.
          * Accepted values are:
-         * - `GREATER_THAN`
-         * - `LESS_THAN`
+         * Accepted values are:
+         * Accepted values are:
          * 
          * @return builder
          * 
@@ -151,12 +141,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-         * - `PRIMARY`
-         * - `SECONDARY`
-         * - `STANDALONE`
-         * - `CONFIG`
-         * - `MONGOS`
+         * @param value If omitted, the configuration is disabled.
          * 
          * @return builder
          * 
@@ -167,12 +152,7 @@ public final class AlertConfigurationMatcherArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param value Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-         * - `PRIMARY`
-         * - `SECONDARY`
-         * - `STANDALONE`
-         * - `CONFIG`
-         * - `MONGOS`
+         * @param value If omitted, the configuration is disabled.
          * 
          * @return builder
          * 

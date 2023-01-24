@@ -18,17 +18,37 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        [Input("keyVersionResourceId")]
+        private Input<string>? _keyVersionResourceId;
+
         /// <summary>
         /// The Key Version Resource ID from your GCP account.
         /// </summary>
-        [Input("keyVersionResourceId")]
-        public Input<string>? KeyVersionResourceId { get; set; }
+        public Input<string>? KeyVersionResourceId
+        {
+            get => _keyVersionResourceId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _keyVersionResourceId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("serviceAccountKey")]
+        private Input<string>? _serviceAccountKey;
 
         /// <summary>
         /// String-formatted JSON object containing GCP KMS credentials from your GCP account.
         /// </summary>
-        [Input("serviceAccountKey")]
-        public Input<string>? ServiceAccountKey { get; set; }
+        public Input<string>? ServiceAccountKey
+        {
+            get => _serviceAccountKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceAccountKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public EncryptionAtRestGoogleCloudKmsConfigGetArgs()
         {

@@ -2,11 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+ * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
  *
  * ## Example Usage
  *
@@ -28,11 +29,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFederatedSettingsIdentityProviders(args: GetFederatedSettingsIdentityProvidersArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProvidersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", {
         "federationSettingsId": args.federationSettingsId,
         "itemsPerPage": args.itemsPerPage,
@@ -77,9 +75,30 @@ export interface GetFederatedSettingsIdentityProvidersResult {
      */
     readonly results: outputs.GetFederatedSettingsIdentityProvidersResult[];
 }
-
+/**
+ * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identityProvider", {
+ *     federationSettingsId: "627a9687f7f7f7f774de306f14",
+ *     associatedDomains: ["yourdomain.com"],
+ *     ssoDebugEnabled: true,
+ *     status: "ACTIVE",
+ * });
+ * const identittyProvider = identityProvider.id.apply(id => mongodbatlas.getFederatedSettingsIdentityProvidersOutput({
+ *     federationSettingsId: id,
+ *     pageNum: 1,
+ *     itemsPerPage: 5,
+ * }));
+ * ```
+ */
 export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
-    return pulumi.output(args).apply(a => getFederatedSettingsIdentityProviders(a, opts))
+    return pulumi.output(args).apply((a: any) => getFederatedSettingsIdentityProviders(a, opts))
 }
 
 /**

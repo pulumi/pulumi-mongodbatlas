@@ -104,7 +104,7 @@ import (
 //				return err
 //			}
 //			_, err = compute.NewNetworkPeering(ctx, "peering", &compute.NetworkPeeringArgs{
-//				Network: pulumi.String(_default.SelfLink),
+//				Network: *pulumi.String(_default.SelfLink),
 //				PeerNetwork: pulumi.All(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).ApplyT(func(_args []interface{}) (string, error) {
 //					atlasGcpProjectId := _args[0].(string)
 //					atlasVpcName := _args[1].(string)
@@ -119,11 +119,11 @@ import (
 //				NumShards:   pulumi.Int(1),
 //				DiskSizeGb:  pulumi.Float64(5),
 //				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: ClusterReplicationSpecArray{
-//					&ClusterReplicationSpecArgs{
+//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("US_EAST_4"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),
@@ -185,11 +185,11 @@ import (
 //			_, err = mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: ClusterReplicationSpecArray{
-//					&ClusterReplicationSpecArgs{
+//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("US_EAST_2"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),
@@ -234,11 +234,11 @@ import (
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				DiskSizeGb:  pulumi.Float64(5),
 //				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: ClusterReplicationSpecArray{
-//					&ClusterReplicationSpecArgs{
+//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("US_EAST_2"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),
@@ -310,11 +310,11 @@ import (
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				DiskSizeGb:  pulumi.Float64(5),
 //				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: ClusterReplicationSpecArray{
-//					&ClusterReplicationSpecArgs{
+//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("US_EAST_2"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),
@@ -349,7 +349,7 @@ import (
 //				return err
 //			}
 //			_, err = compute.NewNetworkPeering(ctx, "peering", &compute.NetworkPeeringArgs{
-//				Network: pulumi.String(_default.SelfLink),
+//				Network: *pulumi.String(_default.SelfLink),
 //				PeerNetwork: pulumi.All(testNetworkPeering.AtlasGcpProjectId, testNetworkPeering.AtlasVpcName).ApplyT(func(_args []interface{}) (string, error) {
 //					atlasGcpProjectId := _args[0].(string)
 //					atlasVpcName := _args[1].(string)
@@ -381,11 +381,11 @@ import (
 //			testCluster, err := mongodbatlas.NewCluster(ctx, "testCluster", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.Any(local.Project_id),
 //				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: ClusterReplicationSpecArray{
-//					&ClusterReplicationSpecArgs{
+//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("US_EAST_2"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),

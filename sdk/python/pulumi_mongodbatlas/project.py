@@ -25,6 +25,7 @@ class ProjectArgs:
                  is_schema_advisor_enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
+                 region_usage_restrictions: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None):
         """
@@ -37,6 +38,7 @@ class ProjectArgs:
         :param pulumi.Input[bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         pulumi.set(__self__, "org_id", org_id)
@@ -56,6 +58,8 @@ class ProjectArgs:
             pulumi.set(__self__, "name", name)
         if project_owner_id is not None:
             pulumi.set(__self__, "project_owner_id", project_owner_id)
+        if region_usage_restrictions is not None:
+            pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
         if with_default_alerts_settings is not None:
@@ -167,6 +171,18 @@ class ProjectArgs:
         pulumi.set(self, "project_owner_id", value)
 
     @property
+    @pulumi.getter(name="regionUsageRestrictions")
+    def region_usage_restrictions(self) -> Optional[pulumi.Input[str]]:
+        """
+        Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        """
+        return pulumi.get(self, "region_usage_restrictions")
+
+    @region_usage_restrictions.setter
+    def region_usage_restrictions(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region_usage_restrictions", value)
+
+    @property
     @pulumi.getter
     def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
         return pulumi.get(self, "teams")
@@ -202,6 +218,7 @@ class _ProjectState:
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
+                 region_usage_restrictions: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None):
         """
@@ -216,6 +233,7 @@ class _ProjectState:
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         if api_keys is not None:
@@ -240,6 +258,8 @@ class _ProjectState:
             pulumi.set(__self__, "org_id", org_id)
         if project_owner_id is not None:
             pulumi.set(__self__, "project_owner_id", project_owner_id)
+        if region_usage_restrictions is not None:
+            pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
         if with_default_alerts_settings is not None:
@@ -375,6 +395,18 @@ class _ProjectState:
         pulumi.set(self, "project_owner_id", value)
 
     @property
+    @pulumi.getter(name="regionUsageRestrictions")
+    def region_usage_restrictions(self) -> Optional[pulumi.Input[str]]:
+        """
+        Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        """
+        return pulumi.get(self, "region_usage_restrictions")
+
+    @region_usage_restrictions.setter
+    def region_usage_restrictions(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region_usage_restrictions", value)
+
+    @property
     @pulumi.getter
     def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
         return pulumi.get(self, "teams")
@@ -410,6 +442,7 @@ class Project(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
+                 region_usage_restrictions: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -467,6 +500,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         ...
@@ -543,6 +577,7 @@ class Project(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  org_id: Optional[pulumi.Input[str]] = None,
                  project_owner_id: Optional[pulumi.Input[str]] = None,
+                 region_usage_restrictions: Optional[pulumi.Input[str]] = None,
                  teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
                  with_default_alerts_settings: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -565,6 +600,7 @@ class Project(pulumi.CustomResource):
                 raise TypeError("Missing required property 'org_id'")
             __props__.__dict__["org_id"] = org_id
             __props__.__dict__["project_owner_id"] = project_owner_id
+            __props__.__dict__["region_usage_restrictions"] = region_usage_restrictions
             __props__.__dict__["teams"] = teams
             __props__.__dict__["with_default_alerts_settings"] = with_default_alerts_settings
             __props__.__dict__["cluster_count"] = None
@@ -590,6 +626,7 @@ class Project(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             org_id: Optional[pulumi.Input[str]] = None,
             project_owner_id: Optional[pulumi.Input[str]] = None,
+            region_usage_restrictions: Optional[pulumi.Input[str]] = None,
             teams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectTeamArgs']]]]] = None,
             with_default_alerts_settings: Optional[pulumi.Input[bool]] = None) -> 'Project':
         """
@@ -609,6 +646,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the project you want to create. (Cannot be changed via this Provider after creation.)
         :param pulumi.Input[str] org_id: The ID of the organization you want to create the project within.
         :param pulumi.Input[str] project_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        :param pulumi.Input[str] region_usage_restrictions: Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param pulumi.Input[bool] with_default_alerts_settings: It allows users to disable the creation of the default alert settings. By default, this flag is set to true.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -626,6 +664,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["project_owner_id"] = project_owner_id
+        __props__.__dict__["region_usage_restrictions"] = region_usage_restrictions
         __props__.__dict__["teams"] = teams
         __props__.__dict__["with_default_alerts_settings"] = with_default_alerts_settings
         return Project(resource_name, opts=opts, __props__=__props__)
@@ -714,6 +753,14 @@ class Project(pulumi.CustomResource):
         Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         """
         return pulumi.get(self, "project_owner_id")
+
+    @property
+    @pulumi.getter(name="regionUsageRestrictions")
+    def region_usage_restrictions(self) -> pulumi.Output[str]:
+        """
+        Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        """
+        return pulumi.get(self, "region_usage_restrictions")
 
     @property
     @pulumi.getter

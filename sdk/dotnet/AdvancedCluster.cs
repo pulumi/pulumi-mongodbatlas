@@ -10,140 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## Example Usage
-    /// ### Example single provider and single region
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
-    ///     {
-    ///         ClusterType = "REPLICASET",
-    ///         ProjectId = "PROJECT ID",
-    ///         ReplicationSpecs = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
-    ///             {
-    ///                 RegionConfigs = new[]
-    ///                 {
-    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
-    ///                     {
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
-    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 3,
-    ///                         },
-    ///                         Priority = 1,
-    ///                         ProviderName = "AWS",
-    ///                         RegionName = "US_EAST_1",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ### Example Tenant Cluster
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
-    ///     {
-    ///         ClusterType = "REPLICASET",
-    ///         ProjectId = "PROJECT ID",
-    ///         ReplicationSpecs = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
-    ///             {
-    ///                 RegionConfigs = new[]
-    ///                 {
-    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
-    ///                     {
-    ///                         BackingProviderName = "AWS",
-    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M5",
-    ///                         },
-    ///                         Priority = 1,
-    ///                         ProviderName = "TENANT",
-    ///                         RegionName = "US_EAST_1",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ### Example Multicloud.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Mongodbatlas = Pulumi.Mongodbatlas;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
-    ///     {
-    ///         ClusterType = "REPLICASET",
-    ///         ProjectId = "PROJECT ID",
-    ///         ReplicationSpecs = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
-    ///             {
-    ///                 RegionConfigs = new[]
-    ///                 {
-    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
-    ///                     {
-    ///                         AnalyticsSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 1,
-    ///                         },
-    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 3,
-    ///                         },
-    ///                         Priority = 1,
-    ///                         ProviderName = "AWS",
-    ///                         RegionName = "US_EAST_1",
-    ///                     },
-    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
-    ///                     {
-    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
-    ///                         {
-    ///                             InstanceSize = "M10",
-    ///                             NodeCount = 2,
-    ///                         },
-    ///                         Priority = 6,
-    ///                         ProviderName = "GCP",
-    ///                         RegionName = "NORTH_AMERICA_NORTHEAST_1",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -226,7 +92,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> MongoDbVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+        /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -235,7 +101,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool?> Paused { get; private set; } = null!;
 
         /// <summary>
-        /// - Flag that indicates if the cluster uses Continuous Cloud Backup.
+        /// Flag that indicates if the cluster uses Continuous Cloud Backup.
         /// </summary>
         [Output("pitEnabled")]
         public Output<bool> PitEnabled { get; private set; } = null!;
@@ -253,7 +119,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.AdvancedClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
 
         /// <summary>
-        /// - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+        /// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         /// </summary>
         [Output("rootCertType")]
         public Output<string> RootCertType { get; private set; } = null!;
@@ -271,9 +137,13 @@ namespace Pulumi.Mongodbatlas
         public Output<string> StateName { get; private set; } = null!;
 
         /// <summary>
-        /// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        [Output("terminationProtectionEnabled")]
+        public Output<bool> TerminationProtectionEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         /// </summary>
         [Output("versionReleaseSystem")]
         public Output<string?> VersionReleaseSystem { get; private set; } = null!;
@@ -378,7 +248,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? MongoDbMajorVersion { get; set; }
 
         /// <summary>
-        /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+        /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -387,7 +257,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Paused { get; set; }
 
         /// <summary>
-        /// - Flag that indicates if the cluster uses Continuous Cloud Backup.
+        /// Flag that indicates if the cluster uses Continuous Cloud Backup.
         /// </summary>
         [Input("pitEnabled")]
         public Input<bool>? PitEnabled { get; set; }
@@ -411,15 +281,19 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+        /// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         /// </summary>
         [Input("rootCertType")]
         public Input<string>? RootCertType { get; set; }
 
         /// <summary>
-        /// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        [Input("terminationProtectionEnabled")]
+        public Input<bool>? TerminationProtectionEnabled { get; set; }
+
+        /// <summary>
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         /// </summary>
         [Input("versionReleaseSystem")]
         public Input<string>? VersionReleaseSystem { get; set; }
@@ -513,7 +387,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? MongoDbVersion { get; set; }
 
         /// <summary>
-        /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+        /// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -522,7 +396,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Paused { get; set; }
 
         /// <summary>
-        /// - Flag that indicates if the cluster uses Continuous Cloud Backup.
+        /// Flag that indicates if the cluster uses Continuous Cloud Backup.
         /// </summary>
         [Input("pitEnabled")]
         public Input<bool>? PitEnabled { get; set; }
@@ -546,7 +420,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+        /// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         /// </summary>
         [Input("rootCertType")]
         public Input<string>? RootCertType { get; set; }
@@ -564,9 +438,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? StateName { get; set; }
 
         /// <summary>
-        /// - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-        /// - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-        /// - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        [Input("terminationProtectionEnabled")]
+        public Input<bool>? TerminationProtectionEnabled { get; set; }
+
+        /// <summary>
+        /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         /// </summary>
         [Input("versionReleaseSystem")]
         public Input<string>? VersionReleaseSystem { get; set; }

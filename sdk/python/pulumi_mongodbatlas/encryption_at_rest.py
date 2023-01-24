@@ -310,21 +310,23 @@ class EncryptionAtRest(pulumi.CustomResource):
             if aws_kms is not None and not opts.urn:
                 warnings.warn("""use aws_kms_config instead""", DeprecationWarning)
                 pulumi.log.warn("""aws_kms is deprecated: use aws_kms_config instead""")
-            __props__.__dict__["aws_kms"] = aws_kms
-            __props__.__dict__["aws_kms_config"] = aws_kms_config
+            __props__.__dict__["aws_kms"] = None if aws_kms is None else pulumi.Output.secret(aws_kms)
+            __props__.__dict__["aws_kms_config"] = None if aws_kms_config is None else pulumi.Output.secret(aws_kms_config)
             if azure_key_vault is not None and not opts.urn:
                 warnings.warn("""use azure_key_vault_config instead""", DeprecationWarning)
                 pulumi.log.warn("""azure_key_vault is deprecated: use azure_key_vault_config instead""")
-            __props__.__dict__["azure_key_vault"] = azure_key_vault
-            __props__.__dict__["azure_key_vault_config"] = azure_key_vault_config
+            __props__.__dict__["azure_key_vault"] = None if azure_key_vault is None else pulumi.Output.secret(azure_key_vault)
+            __props__.__dict__["azure_key_vault_config"] = None if azure_key_vault_config is None else pulumi.Output.secret(azure_key_vault_config)
             if google_cloud_kms is not None and not opts.urn:
                 warnings.warn("""use google_cloud_kms_config instead""", DeprecationWarning)
                 pulumi.log.warn("""google_cloud_kms is deprecated: use google_cloud_kms_config instead""")
-            __props__.__dict__["google_cloud_kms"] = google_cloud_kms
-            __props__.__dict__["google_cloud_kms_config"] = google_cloud_kms_config
+            __props__.__dict__["google_cloud_kms"] = None if google_cloud_kms is None else pulumi.Output.secret(google_cloud_kms)
+            __props__.__dict__["google_cloud_kms_config"] = None if google_cloud_kms_config is None else pulumi.Output.secret(google_cloud_kms_config)
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["awsKms", "awsKmsConfig", "azureKeyVault", "azureKeyVaultConfig", "googleCloudKms", "googleCloudKmsConfig"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(EncryptionAtRest, __self__).__init__(
             'mongodbatlas:index/encryptionAtRest:EncryptionAtRest',
             resource_name,

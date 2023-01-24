@@ -15,6 +15,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly ImmutableArray<Outputs.GetCustomDbRolesResultActionResult> Actions;
         public readonly ImmutableArray<Outputs.GetCustomDbRolesResultInheritedRoleResult> InheritedRoles;
+        /// <summary>
+        /// (Required) Name of the inherited role. This can either be another custom role or a built-in role.
+        /// </summary>
         public readonly string RoleName;
 
         [OutputConstructor]

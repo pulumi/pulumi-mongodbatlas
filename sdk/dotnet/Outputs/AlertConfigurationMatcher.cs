@@ -18,19 +18,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? FieldName;
         /// <summary>
-        /// Operator to apply when checking the current metric value against the threshold value.
+        /// If omitted, the configuration is disabled.
         /// Accepted values are:
-        /// - `GREATER_THAN`
-        /// - `LESS_THAN`
+        /// Accepted values are:
+        /// Accepted values are:
         /// </summary>
         public readonly string? Operator;
         /// <summary>
-        /// Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-        /// - `PRIMARY`
-        /// - `SECONDARY`
-        /// - `STANDALONE`
-        /// - `CONFIG`
-        /// - `MONGOS`
+        /// If omitted, the configuration is disabled.
         /// </summary>
         public readonly string? Value;
 

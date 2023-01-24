@@ -15,11 +15,8 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getProjectIpAccessList(args: GetProjectIpAccessListArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectIpAccessListResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList", {
         "awsSecurityGroup": args.awsSecurityGroup,
         "cidrBlock": args.cidrBlock,
@@ -67,9 +64,18 @@ export interface GetProjectIpAccessListResult {
     readonly ipAddress: string;
     readonly projectId: string;
 }
-
+/**
+ * `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * > **IMPORTANT:**
+ * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+ *
+ * ## Example Usage
+ */
 export function getProjectIpAccessListOutput(args: GetProjectIpAccessListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetProjectIpAccessListResult> {
-    return pulumi.output(args).apply(a => getProjectIpAccessList(a, opts))
+    return pulumi.output(args).apply((a: any) => getProjectIpAccessList(a, opts))
 }
 
 /**

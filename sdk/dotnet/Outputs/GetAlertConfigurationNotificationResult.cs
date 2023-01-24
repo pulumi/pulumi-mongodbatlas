@@ -54,6 +54,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int IntervalMin;
         /// <summary>
+        /// Microsoft Teams channel incoming webhook URL. Required for the `MICROSOFT_TEAMS` notifications type.
+        /// </summary>
+        public readonly string? MicrosoftTeamsWebhookUrl;
+        /// <summary>
         /// Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         /// </summary>
         public readonly string MobileNumber;
@@ -92,19 +96,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Type of alert notification.
         /// Accepted values are:
-        /// - `DATADOG`
-        /// - `EMAIL`
-        /// - `FLOWDOCK`
-        /// - `GROUP` (Project)
-        /// - `OPS_GENIE`
-        /// - `ORG`
-        /// - `PAGER_DUTY`
-        /// - `SLACK`
-        /// - `SMS`
-        /// - `TEAM`
-        /// - `USER`
-        /// - `VICTOR_OPS`
-        /// - `WEBHOOK`
         /// </summary>
         public readonly string TypeName;
         /// <summary>
@@ -119,6 +110,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         /// </summary>
         public readonly string VictorOpsRoutingKey;
+        /// <summary>
+        /// Authentication secret for the `WEBHOOK` notifications type.
+        /// </summary>
+        public readonly string? WebhookSecret;
+        /// <summary>
+        /// Target URL  for the `WEBHOOK` notifications type.
+        /// </summary>
+        public readonly string? WebhookUrl;
 
         [OutputConstructor]
         private GetAlertConfigurationNotificationResult(
@@ -141,6 +140,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             string flowdockApiToken,
 
             int intervalMin,
+
+            string? microsoftTeamsWebhookUrl,
 
             string mobileNumber,
 
@@ -166,7 +167,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string victorOpsApiKey,
 
-            string victorOpsRoutingKey)
+            string victorOpsRoutingKey,
+
+            string? webhookSecret,
+
+            string? webhookUrl)
         {
             ApiToken = apiToken;
             ChannelName = channelName;
@@ -178,6 +183,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             FlowName = flowName;
             FlowdockApiToken = flowdockApiToken;
             IntervalMin = intervalMin;
+            MicrosoftTeamsWebhookUrl = microsoftTeamsWebhookUrl;
             MobileNumber = mobileNumber;
             OpsGenieApiKey = opsGenieApiKey;
             OpsGenieRegion = opsGenieRegion;
@@ -191,6 +197,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             Username = username;
             VictorOpsApiKey = victorOpsApiKey;
             VictorOpsRoutingKey = victorOpsRoutingKey;
+            WebhookSecret = webhookSecret;
+            WebhookUrl = webhookUrl;
         }
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -35,11 +36,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getThirdPartyIntegrations(args: GetThirdPartyIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", {
         "projectId": args.projectId,
     }, opts);
@@ -72,9 +70,37 @@ export interface GetThirdPartyIntegrationsResult {
      */
     readonly results: outputs.GetThirdPartyIntegrationsResult[];
 }
-
+/**
+ * `mongodbatlas.getThirdPartyIntegrations` describe all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `FLOWDOCK`
+ * applied across the project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testPagerDuty = new mongodbatlas.ThirdPartyIntegration("testPagerDuty", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "PAGER_DUTY",
+ *     serviceKey: "<PAGER-DUTY-SERVICE-KEY>",
+ * });
+ * const testFlowdock = new mongodbatlas.ThirdPartyIntegration("testFlowdock", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "FLOWDOCK",
+ *     flowName: "<FLOW-NAME>",
+ *     apiToken: "<API-TOKEN>",
+ *     orgName: "<ORG-NAME>",
+ * });
+ * const test = mongodbatlas.getThirdPartyIntegrationsOutput({
+ *     projectId: testPagerDuty.projectId,
+ * });
+ * ```
+ */
 export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationsResult> {
-    return pulumi.output(args).apply(a => getThirdPartyIntegrations(a, opts))
+    return pulumi.output(args).apply((a: any) => getThirdPartyIntegrations(a, opts))
 }
 
 /**

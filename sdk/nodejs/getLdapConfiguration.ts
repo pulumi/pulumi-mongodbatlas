@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,11 +12,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  */
 export function getLdapConfiguration(args: GetLdapConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetLdapConfigurationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", {
         "projectId": args.projectId,
     }, opts);
@@ -80,9 +78,13 @@ export interface GetLdapConfigurationResult {
      */
     readonly userToDnMappings: outputs.GetLdapConfigurationUserToDnMapping[];
 }
-
+/**
+ * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ */
 export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLdapConfigurationResult> {
-    return pulumi.output(args).apply(a => getLdapConfiguration(a, opts))
+    return pulumi.output(args).apply((a: any) => getLdapConfiguration(a, opts))
 }
 
 /**

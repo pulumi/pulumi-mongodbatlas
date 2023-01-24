@@ -28,14 +28,14 @@ public final class GetCloudBackupSnapshotExportJobPlainArgs extends com.pulumi.r
     }
 
     /**
-     * -(Required) Unique identifier of the export job to retrieve.
+     * Unique identifier of the export job to retrieve.
      * 
      */
     @Import(name="exportJobId", required=true)
     private String exportJobId;
 
     /**
-     * @return -(Required) Unique identifier of the export job to retrieve.
+     * @return Unique identifier of the export job to retrieve.
      * 
      */
     public String exportJobId() {
@@ -103,7 +103,7 @@ public final class GetCloudBackupSnapshotExportJobPlainArgs extends com.pulumi.r
         }
 
         /**
-         * @param exportJobId -(Required) Unique identifier of the export job to retrieve.
+         * @param exportJobId Unique identifier of the export job to retrieve.
          * 
          * @return builder
          * 

@@ -5,6 +5,8 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.ProviderAssumeRoleArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +16,34 @@ import javax.annotation.Nullable;
 public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ProviderArgs Empty = new ProviderArgs();
+
+    @Import(name="assumeRole", json=true)
+    private @Nullable Output<ProviderAssumeRoleArgs> assumeRole;
+
+    public Optional<Output<ProviderAssumeRoleArgs>> assumeRole() {
+        return Optional.ofNullable(this.assumeRole);
+    }
+
+    @Import(name="awsAccessKeyId")
+    private @Nullable Output<String> awsAccessKeyId;
+
+    public Optional<Output<String>> awsAccessKeyId() {
+        return Optional.ofNullable(this.awsAccessKeyId);
+    }
+
+    @Import(name="awsSecretAccessKey")
+    private @Nullable Output<String> awsSecretAccessKey;
+
+    public Optional<Output<String>> awsSecretAccessKey() {
+        return Optional.ofNullable(this.awsSecretAccessKey);
+    }
+
+    @Import(name="awsSessionToken")
+    private @Nullable Output<String> awsSessionToken;
+
+    public Optional<Output<String>> awsSessionToken() {
+        return Optional.ofNullable(this.awsSessionToken);
+    }
 
     /**
      * MongoDB Atlas Base URL
@@ -28,6 +58,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> baseUrl() {
         return Optional.ofNullable(this.baseUrl);
+    }
+
+    /**
+     * MongoDB Atlas Base URL default to gov
+     * 
+     */
+    @Import(name="isMongodbgovCloud", json=true)
+    private @Nullable Output<Boolean> isMongodbgovCloud;
+
+    /**
+     * @return MongoDB Atlas Base URL default to gov
+     * 
+     */
+    public Optional<Output<Boolean>> isMongodbgovCloud() {
+        return Optional.ofNullable(this.isMongodbgovCloud);
     }
 
     /**
@@ -75,13 +120,42 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.realmBaseUrl);
     }
 
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    @Import(name="secretName")
+    private @Nullable Output<String> secretName;
+
+    public Optional<Output<String>> secretName() {
+        return Optional.ofNullable(this.secretName);
+    }
+
+    @Import(name="stsEndpoint")
+    private @Nullable Output<String> stsEndpoint;
+
+    public Optional<Output<String>> stsEndpoint() {
+        return Optional.ofNullable(this.stsEndpoint);
+    }
+
     private ProviderArgs() {}
 
     private ProviderArgs(ProviderArgs $) {
+        this.assumeRole = $.assumeRole;
+        this.awsAccessKeyId = $.awsAccessKeyId;
+        this.awsSecretAccessKey = $.awsSecretAccessKey;
+        this.awsSessionToken = $.awsSessionToken;
         this.baseUrl = $.baseUrl;
+        this.isMongodbgovCloud = $.isMongodbgovCloud;
         this.privateKey = $.privateKey;
         this.publicKey = $.publicKey;
         this.realmBaseUrl = $.realmBaseUrl;
+        this.region = $.region;
+        this.secretName = $.secretName;
+        this.stsEndpoint = $.stsEndpoint;
     }
 
     public static Builder builder() {
@@ -100,6 +174,42 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ProviderArgs defaults) {
             $ = new ProviderArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder assumeRole(@Nullable Output<ProviderAssumeRoleArgs> assumeRole) {
+            $.assumeRole = assumeRole;
+            return this;
+        }
+
+        public Builder assumeRole(ProviderAssumeRoleArgs assumeRole) {
+            return assumeRole(Output.of(assumeRole));
+        }
+
+        public Builder awsAccessKeyId(@Nullable Output<String> awsAccessKeyId) {
+            $.awsAccessKeyId = awsAccessKeyId;
+            return this;
+        }
+
+        public Builder awsAccessKeyId(String awsAccessKeyId) {
+            return awsAccessKeyId(Output.of(awsAccessKeyId));
+        }
+
+        public Builder awsSecretAccessKey(@Nullable Output<String> awsSecretAccessKey) {
+            $.awsSecretAccessKey = awsSecretAccessKey;
+            return this;
+        }
+
+        public Builder awsSecretAccessKey(String awsSecretAccessKey) {
+            return awsSecretAccessKey(Output.of(awsSecretAccessKey));
+        }
+
+        public Builder awsSessionToken(@Nullable Output<String> awsSessionToken) {
+            $.awsSessionToken = awsSessionToken;
+            return this;
+        }
+
+        public Builder awsSessionToken(String awsSessionToken) {
+            return awsSessionToken(Output.of(awsSessionToken));
         }
 
         /**
@@ -121,6 +231,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder baseUrl(String baseUrl) {
             return baseUrl(Output.of(baseUrl));
+        }
+
+        /**
+         * @param isMongodbgovCloud MongoDB Atlas Base URL default to gov
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isMongodbgovCloud(@Nullable Output<Boolean> isMongodbgovCloud) {
+            $.isMongodbgovCloud = isMongodbgovCloud;
+            return this;
+        }
+
+        /**
+         * @param isMongodbgovCloud MongoDB Atlas Base URL default to gov
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isMongodbgovCloud(Boolean isMongodbgovCloud) {
+            return isMongodbgovCloud(Output.of(isMongodbgovCloud));
         }
 
         /**
@@ -184,6 +315,33 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realmBaseUrl(String realmBaseUrl) {
             return realmBaseUrl(Output.of(realmBaseUrl));
+        }
+
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        public Builder region(String region) {
+            return region(Output.of(region));
+        }
+
+        public Builder secretName(@Nullable Output<String> secretName) {
+            $.secretName = secretName;
+            return this;
+        }
+
+        public Builder secretName(String secretName) {
+            return secretName(Output.of(secretName));
+        }
+
+        public Builder stsEndpoint(@Nullable Output<String> stsEndpoint) {
+            $.stsEndpoint = stsEndpoint;
+            return this;
+        }
+
+        public Builder stsEndpoint(String stsEndpoint) {
+            return stsEndpoint(Output.of(stsEndpoint));
         }
 
         public ProviderArgs build() {

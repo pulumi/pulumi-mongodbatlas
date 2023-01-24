@@ -139,14 +139,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * @return Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
     public Optional<Output<String>> name() {
@@ -161,14 +161,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
      */
     @Import(name="pitEnabled")
     private @Nullable Output<Boolean> pitEnabled;
 
     /**
-     * @return - Flag that indicates if the cluster uses Continuous Cloud Backup.
+     * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
      */
     public Optional<Output<Boolean>> pitEnabled() {
@@ -206,14 +206,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+     * Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      * 
      */
     @Import(name="rootCertType")
     private @Nullable Output<String> rootCertType;
 
     /**
-     * @return - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+     * @return Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
      * 
      */
     public Optional<Output<String>> rootCertType() {
@@ -221,18 +221,29 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    @Import(name="terminationProtectionEnabled")
+    private @Nullable Output<Boolean> terminationProtectionEnabled;
+
+    /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Optional<Output<Boolean>> terminationProtectionEnabled() {
+        return Optional.ofNullable(this.terminationProtectionEnabled);
+    }
+
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
     @Import(name="versionReleaseSystem")
     private @Nullable Output<String> versionReleaseSystem;
 
     /**
-     * @return - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+     * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
     public Optional<Output<String>> versionReleaseSystem() {
@@ -256,6 +267,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.projectId = $.projectId;
         this.replicationSpecs = $.replicationSpecs;
         this.rootCertType = $.rootCertType;
+        this.terminationProtectionEnabled = $.terminationProtectionEnabled;
         this.versionReleaseSystem = $.versionReleaseSystem;
     }
 
@@ -448,7 +460,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+         * @param name Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
          * 
          * @return builder
          * 
@@ -459,7 +471,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+         * @param name Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
          * 
          * @return builder
          * 
@@ -478,7 +490,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param pitEnabled - Flag that indicates if the cluster uses Continuous Cloud Backup.
+         * @param pitEnabled Flag that indicates if the cluster uses Continuous Cloud Backup.
          * 
          * @return builder
          * 
@@ -489,7 +501,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param pitEnabled - Flag that indicates if the cluster uses Continuous Cloud Backup.
+         * @param pitEnabled Flag that indicates if the cluster uses Continuous Cloud Backup.
          * 
          * @return builder
          * 
@@ -551,7 +563,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param rootCertType - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+         * @param rootCertType Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
          * 
          * @return builder
          * 
@@ -562,7 +574,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param rootCertType - Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
+         * @param rootCertType Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
          * 
          * @return builder
          * 
@@ -572,9 +584,28 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param versionReleaseSystem - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-         * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-         * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+         * @param terminationProtectionEnabled Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder terminationProtectionEnabled(@Nullable Output<Boolean> terminationProtectionEnabled) {
+            $.terminationProtectionEnabled = terminationProtectionEnabled;
+            return this;
+        }
+
+        /**
+         * @param terminationProtectionEnabled Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
+            return terminationProtectionEnabled(Output.of(terminationProtectionEnabled));
+        }
+
+        /**
+         * @param versionReleaseSystem Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
          * 
          * @return builder
          * 
@@ -585,9 +616,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param versionReleaseSystem - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-         * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-         * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+         * @param versionReleaseSystem Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
          * 
          * @return builder
          * 

@@ -48,14 +48,14 @@ public final class CustomDbRoleState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Name of the inherited role. This can either be another custom role or a built-in role.
+     * Name of the custom role.
      * 
      */
     @Import(name="roleName")
     private @Nullable Output<String> roleName;
 
     /**
-     * @return Name of the inherited role. This can either be another custom role or a built-in role.
+     * @return Name of the custom role.
      * 
      */
     public Optional<Output<String>> roleName() {
@@ -137,7 +137,7 @@ public final class CustomDbRoleState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleName Name of the inherited role. This can either be another custom role or a built-in role.
+         * @param roleName Name of the custom role.
          * 
          * @return builder
          * 
@@ -148,7 +148,7 @@ public final class CustomDbRoleState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roleName Name of the inherited role. This can either be another custom role or a built-in role.
+         * @param roleName Name of the custom role.
          * 
          * @return builder
          * 

@@ -17,7 +17,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// </summary>
         public static Task<GetAuditingResult> InvokeAsync(GetAuditingArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.Auditing` describes a Auditing.
@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// </summary>
         public static Output<GetAuditingResult> Invoke(GetAuditingInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingInvokeArgs(), options.WithDefaults());
     }
 
 

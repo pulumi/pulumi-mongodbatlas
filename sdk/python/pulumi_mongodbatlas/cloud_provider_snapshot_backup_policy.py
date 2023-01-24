@@ -26,8 +26,6 @@ class CloudProviderSnapshotBackupPolicyArgs:
         """
         The set of arguments for constructing a CloudProviderSnapshotBackupPolicy resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-        :param pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyArgs']]] policies: Contains a document for each backup policy item in the desired updated backup policy.
-               * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
@@ -61,10 +59,6 @@ class CloudProviderSnapshotBackupPolicyArgs:
     @property
     @pulumi.getter
     def policies(self) -> pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyArgs']]]:
-        """
-        Contains a document for each backup policy item in the desired updated backup policy.
-        * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
-        """
         return pulumi.get(self, "policies")
 
     @policies.setter
@@ -149,8 +143,6 @@ class _CloudProviderSnapshotBackupPolicyState:
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] next_snapshot: Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
-        :param pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyArgs']]] policies: Contains a document for each backup policy item in the desired updated backup policy.
-               * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
@@ -215,10 +207,6 @@ class _CloudProviderSnapshotBackupPolicyState:
     @property
     @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderSnapshotBackupPolicyPolicyArgs']]]]:
-        """
-        Contains a document for each backup policy item in the desired updated backup policy.
-        * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
-        """
         return pulumi.get(self, "policies")
 
     @policies.setter
@@ -313,8 +301,6 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderSnapshotBackupPolicyPolicyArgs']]]] policies: Contains a document for each backup policy item in the desired updated backup policy.
-               * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
@@ -413,8 +399,6 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[str] next_snapshot: Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CloudProviderSnapshotBackupPolicyPolicyArgs']]]] policies: Contains a document for each backup policy item in the desired updated backup policy.
-               * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
         :param pulumi.Input[str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[int] reference_minute_of_hour: UTC Minutes after referenceHourOfDay that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
@@ -463,10 +447,6 @@ class CloudProviderSnapshotBackupPolicy(pulumi.CustomResource):
     @property
     @pulumi.getter
     def policies(self) -> pulumi.Output[Sequence['outputs.CloudProviderSnapshotBackupPolicyPolicy']]:
-        """
-        Contains a document for each backup policy item in the desired updated backup policy.
-        * `policies.#.id` - (Required) Unique identifier of the backup policy that you want to update. policies.#.id is a value obtained via the Cluster resource. provider_backup_enabled of the Cluster resource must be set to true. See the example above for how to refer to the Cluster resource for policies.#.id
-        """
         return pulumi.get(self, "policies")
 
     @property

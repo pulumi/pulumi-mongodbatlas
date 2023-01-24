@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceLink;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetServerlessInstancePlainArgs Empty = new GetServerlessInstancePlainArgs();
+
+    /**
+     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * 
+     */
+    @Import(name="continuousBackupEnabled")
+    private @Nullable Boolean continuousBackupEnabled;
+
+    /**
+     * @return Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * 
+     */
+    public Optional<Boolean> continuousBackupEnabled() {
+        return Optional.ofNullable(this.continuousBackupEnabled);
+    }
 
     @Import(name="links")
     private @Nullable List<GetServerlessInstanceLink> links;
@@ -71,6 +87,7 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
     private GetServerlessInstancePlainArgs() {}
 
     private GetServerlessInstancePlainArgs(GetServerlessInstancePlainArgs $) {
+        this.continuousBackupEnabled = $.continuousBackupEnabled;
         this.links = $.links;
         this.name = $.name;
         this.projectId = $.projectId;
@@ -93,6 +110,17 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
 
         public Builder(GetServerlessInstancePlainArgs defaults) {
             $ = new GetServerlessInstancePlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param continuousBackupEnabled Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder continuousBackupEnabled(@Nullable Boolean continuousBackupEnabled) {
+            $.continuousBackupEnabled = continuousBackupEnabled;
+            return this;
         }
 
         public Builder links(@Nullable List<GetServerlessInstanceLink> links) {

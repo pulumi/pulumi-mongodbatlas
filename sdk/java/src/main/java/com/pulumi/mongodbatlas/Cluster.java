@@ -26,327 +26,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
- * ### Example AWS cluster
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .autoScalingDiskGbEnabled(true)
- *             .cloudBackup(true)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .diskSizeGb(100)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M40&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
- *                 .numShards(1)
- *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .electableNodes(3)
- *                     .priority(7)
- *                     .readOnlyNodes(0)
- *                     .regionName(&#34;US_EAST_1&#34;)
- *                     .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Example Azure cluster.
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
- *             .autoScalingDiskGbEnabled(true)
- *             .cloudBackup(true)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerDiskTypeName(&#34;P6&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
- *             .providerName(&#34;AZURE&#34;)
- *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
- *                 .numShards(1)
- *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .electableNodes(3)
- *                     .priority(7)
- *                     .readOnlyNodes(0)
- *                     .regionName(&#34;US_EAST&#34;)
- *                     .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Example GCP cluster
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new Cluster(&#34;test&#34;, ClusterArgs.builder()        
- *             .autoScalingDiskGbEnabled(true)
- *             .cloudBackup(true)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .diskSizeGb(40)
- *             .mongoDbMajorVersion(&#34;4.2&#34;)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
- *             .providerName(&#34;GCP&#34;)
- *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
- *                 .numShards(1)
- *                 .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                     .electableNodes(3)
- *                     .priority(7)
- *                     .readOnlyNodes(0)
- *                     .regionName(&#34;EASTERN_US&#34;)
- *                     .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Example Multi Region cluster
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .cloudBackup(true)
- *             .clusterType(&#34;REPLICASET&#34;)
- *             .diskSizeGb(100)
- *             .numShards(1)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M10&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .replicationSpecs(ClusterReplicationSpecArgs.builder()
- *                 .numShards(1)
- *                 .regionsConfigs(                
- *                     ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .electableNodes(3)
- *                         .priority(7)
- *                         .readOnlyNodes(0)
- *                         .regionName(&#34;US_EAST_1&#34;)
- *                         .build(),
- *                     ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .electableNodes(2)
- *                         .priority(6)
- *                         .readOnlyNodes(0)
- *                         .regionName(&#34;US_EAST_2&#34;)
- *                         .build(),
- *                     ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .electableNodes(2)
- *                         .priority(5)
- *                         .readOnlyNodes(2)
- *                         .regionName(&#34;US_WEST_1&#34;)
- *                         .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Example Global cluster
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .cloudBackup(true)
- *             .clusterType(&#34;GEOSHARDED&#34;)
- *             .diskSizeGb(80)
- *             .numShards(1)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M30&#34;)
- *             .providerName(&#34;AWS&#34;)
- *             .replicationSpecs(            
- *                 ClusterReplicationSpecArgs.builder()
- *                     .numShards(2)
- *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .electableNodes(3)
- *                         .priority(7)
- *                         .readOnlyNodes(0)
- *                         .regionName(&#34;US_EAST_1&#34;)
- *                         .build())
- *                     .zoneName(&#34;Zone 1&#34;)
- *                     .build(),
- *                 ClusterReplicationSpecArgs.builder()
- *                     .numShards(2)
- *                     .regionsConfigs(ClusterReplicationSpecRegionsConfigArgs.builder()
- *                         .electableNodes(3)
- *                         .priority(7)
- *                         .readOnlyNodes(0)
- *                         .regionName(&#34;EU_CENTRAL_1&#34;)
- *                         .build())
- *                     .zoneName(&#34;Zone 2&#34;)
- *                     .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Example AWS Shared Tier (M2/M5) cluster
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .backingProviderName(&#34;AWS&#34;)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M2&#34;)
- *             .providerName(&#34;TENANT&#34;)
- *             .providerRegionName(&#34;US_EAST_1&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * ### Example AWS Free Tier cluster
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Cluster;
- * import com.pulumi.mongodbatlas.ClusterArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var cluster_test = new Cluster(&#34;cluster-test&#34;, ClusterArgs.builder()        
- *             .backingProviderName(&#34;AWS&#34;)
- *             .projectId(&#34;&lt;YOUR-PROJECT-ID&gt;&#34;)
- *             .providerInstanceSizeName(&#34;M0&#34;)
- *             .providerName(&#34;TENANT&#34;)
- *             .providerRegionName(&#34;US_EAST_1&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
  * ## Import
  * 
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -535,14 +214,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.connectionStrings;
     }
     /**
-     * The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+     * The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      * 
      */
     @Export(name="containerId", type=String.class, parameters={})
     private Output<String> containerId;
 
     /**
-     * @return The Network Peering Container ID. The id of the container either created programmatically by the user before any clusters existed in the project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+     * @return The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      * 
      */
     public Output<String> containerId() {
@@ -661,28 +340,28 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.mongoUriWithOptions;
     }
     /**
-     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
+     * @return Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * Number of shards to deploy in the specified zone, minimum 1.
+     * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     @Export(name="numShards", type=Integer.class, parameters={})
     private Output</* @Nullable */ Integer> numShards;
 
     /**
-     * @return Number of shards to deploy in the specified zone, minimum 1.
+     * @return Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      * 
      */
     public Output<Optional<Integer>> numShards() {
@@ -695,14 +374,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.paused);
     }
     /**
-     * - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+     * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
      * 
      */
     @Export(name="pitEnabled", type=Boolean.class, parameters={})
     private Output<Boolean> pitEnabled;
 
     /**
-     * @return - Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
+     * @return Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
      * 
      */
     public Output<Boolean> pitEnabled() {
@@ -963,18 +642,28 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.stateName;
     }
     /**
-     * - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    @Export(name="terminationProtectionEnabled", type=Boolean.class, parameters={})
+    private Output<Boolean> terminationProtectionEnabled;
+
+    /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Output<Boolean> terminationProtectionEnabled() {
+        return this.terminationProtectionEnabled;
+    }
+    /**
+     * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
     @Export(name="versionReleaseSystem", type=String.class, parameters={})
     private Output</* @Nullable */ String> versionReleaseSystem;
 
     /**
-     * @return - Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
-     * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
-     * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn&#39;t update your cluster to newer rapid or major MongoDB releases as they become available.
+     * @return Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
      * 
      */
     public Output<Optional<String>> versionReleaseSystem() {

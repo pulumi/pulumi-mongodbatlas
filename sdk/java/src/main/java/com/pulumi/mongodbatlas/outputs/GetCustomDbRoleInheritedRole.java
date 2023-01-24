@@ -9,6 +9,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetCustomDbRoleInheritedRole {
+    /**
+     * @return (Required) Database on which the inherited role is granted.
+     * 
+     */
     private String databaseName;
     /**
      * @return Name of the custom role.
@@ -17,6 +21,10 @@ public final class GetCustomDbRoleInheritedRole {
     private String roleName;
 
     private GetCustomDbRoleInheritedRole() {}
+    /**
+     * @return (Required) Database on which the inherited role is granted.
+     * 
+     */
     public String databaseName() {
         return this.databaseName;
     }

@@ -59,8 +59,12 @@ import (
 type ServerlessInstance struct {
 	pulumi.CustomResourceState
 
+	// List of Serverless Private Endpoint Connections
+	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayOutput `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv pulumi.StringOutput `pulumi:"connectionStringsStandardSrv"`
+	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	ContinuousBackupEnabled pulumi.BoolOutput `pulumi:"continuousBackupEnabled"`
 	// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
 	CreateDate pulumi.StringOutput               `pulumi:"createDate"`
 	Links      ServerlessInstanceLinkArrayOutput `pulumi:"links"`
@@ -78,6 +82,8 @@ type ServerlessInstance struct {
 	ProviderSettingsRegionName pulumi.StringOutput `pulumi:"providerSettingsRegionName"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName pulumi.StringOutput `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled pulumi.BoolOutput `pulumi:"terminationProtectionEnabled"`
 }
 
 // NewServerlessInstance registers a new resource with the given unique name, arguments, and options.
@@ -121,8 +127,12 @@ func GetServerlessInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServerlessInstance resources.
 type serverlessInstanceState struct {
+	// List of Serverless Private Endpoint Connections
+	ConnectionStringsPrivateEndpointSrvs []string `pulumi:"connectionStringsPrivateEndpointSrvs"`
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv *string `pulumi:"connectionStringsStandardSrv"`
+	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	ContinuousBackupEnabled *bool `pulumi:"continuousBackupEnabled"`
 	// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
 	CreateDate *string                  `pulumi:"createDate"`
 	Links      []ServerlessInstanceLink `pulumi:"links"`
@@ -140,11 +150,17 @@ type serverlessInstanceState struct {
 	ProviderSettingsRegionName *string `pulumi:"providerSettingsRegionName"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName *string `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
 }
 
 type ServerlessInstanceState struct {
+	// List of Serverless Private Endpoint Connections
+	ConnectionStringsPrivateEndpointSrvs pulumi.StringArrayInput
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv pulumi.StringPtrInput
+	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	ContinuousBackupEnabled pulumi.BoolPtrInput
 	// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
 	CreateDate pulumi.StringPtrInput
 	Links      ServerlessInstanceLinkArrayInput
@@ -162,6 +178,8 @@ type ServerlessInstanceState struct {
 	ProviderSettingsRegionName pulumi.StringPtrInput
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName pulumi.StringPtrInput
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled pulumi.BoolPtrInput
 }
 
 func (ServerlessInstanceState) ElementType() reflect.Type {
@@ -169,7 +187,9 @@ func (ServerlessInstanceState) ElementType() reflect.Type {
 }
 
 type serverlessInstanceArgs struct {
-	Links []ServerlessInstanceLink `pulumi:"links"`
+	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	ContinuousBackupEnabled *bool                    `pulumi:"continuousBackupEnabled"`
+	Links                   []ServerlessInstanceLink `pulumi:"links"`
 	// Human-readable label that identifies the serverless instance.
 	Name *string `pulumi:"name"`
 	// The ID of the organization or project you want to create the serverless instance within.
@@ -182,11 +202,15 @@ type serverlessInstanceArgs struct {
 	ProviderSettingsRegionName string `pulumi:"providerSettingsRegionName"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName *string `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
 }
 
 // The set of arguments for constructing a ServerlessInstance resource.
 type ServerlessInstanceArgs struct {
-	Links ServerlessInstanceLinkArrayInput
+	// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+	ContinuousBackupEnabled pulumi.BoolPtrInput
+	Links                   ServerlessInstanceLinkArrayInput
 	// Human-readable label that identifies the serverless instance.
 	Name pulumi.StringPtrInput
 	// The ID of the organization or project you want to create the serverless instance within.
@@ -199,6 +223,8 @@ type ServerlessInstanceArgs struct {
 	ProviderSettingsRegionName pulumi.StringInput
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName pulumi.StringPtrInput
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled pulumi.BoolPtrInput
 }
 
 func (ServerlessInstanceArgs) ElementType() reflect.Type {
@@ -288,9 +314,19 @@ func (o ServerlessInstanceOutput) ToServerlessInstanceOutputWithContext(ctx cont
 	return o
 }
 
+// List of Serverless Private Endpoint Connections
+func (o ServerlessInstanceOutput) ConnectionStringsPrivateEndpointSrvs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringArrayOutput { return v.ConnectionStringsPrivateEndpointSrvs }).(pulumi.StringArrayOutput)
+}
+
 // Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 func (o ServerlessInstanceOutput) ConnectionStringsStandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ConnectionStringsStandardSrv }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
+func (o ServerlessInstanceOutput) ContinuousBackupEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.BoolOutput { return v.ContinuousBackupEnabled }).(pulumi.BoolOutput)
 }
 
 // Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
@@ -335,6 +371,11 @@ func (o ServerlessInstanceOutput) ProviderSettingsRegionName() pulumi.StringOutp
 // Stage of deployment of this serverless instance when the resource made its request.
 func (o ServerlessInstanceOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+func (o ServerlessInstanceOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.BoolOutput { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
 }
 
 type ServerlessInstanceArrayOutput struct{ *pulumi.OutputState }

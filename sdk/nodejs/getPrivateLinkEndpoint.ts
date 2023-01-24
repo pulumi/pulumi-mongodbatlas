@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getPrivateLinkEndpoint(args: GetPrivateLinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", {
         "privateLinkId": args.privateLinkId,
         "projectId": args.projectId,
@@ -93,9 +90,13 @@ export interface GetPrivateLinkEndpointResult {
      */
     readonly status: string;
 }
-
+/**
+ * `mongodbatlas.PrivateLinkEndpoint` describe a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ */
 export function getPrivateLinkEndpointOutput(args: GetPrivateLinkEndpointOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateLinkEndpointResult> {
-    return pulumi.output(args).apply(a => getPrivateLinkEndpoint(a, opts))
+    return pulumi.output(args).apply((a: any) => getPrivateLinkEndpoint(a, opts))
 }
 
 /**

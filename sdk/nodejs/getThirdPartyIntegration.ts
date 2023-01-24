@@ -28,11 +28,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetThirdPartyIntegrationResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration", {
         "enabled": args.enabled,
         "microsoftTeamsWebhookUrl": args.microsoftTeamsWebhookUrl,
@@ -54,7 +51,6 @@ export interface GetThirdPartyIntegrationArgs {
     enabled?: boolean;
     /**
      * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      */
     microsoftTeamsWebhookUrl?: string;
     /**
@@ -123,28 +119,23 @@ export interface GetThirdPartyIntegrationResult {
     readonly licenseKey: string;
     /**
      * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      */
     readonly microsoftTeamsWebhookUrl?: string;
     /**
      * Your Flowdock organization name.
-     * * `WEBHOOK`
      */
     readonly orgName: string;
     readonly projectId: string;
     /**
      * Your Insights Query Key.
-     * * `OPS_GENIE`
      */
     readonly readToken: string;
     /**
      * Indicates which API URL to use, either US or EU. Opsgenie will use US by default.
-     * * `VICTOR_OPS`
      */
     readonly region: string;
     /**
      * An optional field for your Routing Key.
-     * * `FLOWDOCK`
      */
     readonly routingKey: string;
     /**
@@ -153,7 +144,6 @@ export interface GetThirdPartyIntegrationResult {
     readonly scheme?: string;
     /**
      * An optional field for your webhook secret.
-     * * `MICROSOFT_TEAMS`
      */
     readonly secret: string;
     /**
@@ -162,7 +152,6 @@ export interface GetThirdPartyIntegrationResult {
     readonly serviceDiscovery?: string;
     /**
      * Your Service Key.
-     * * `DATADOG`
      */
     readonly serviceKey: string;
     readonly teamName: string;
@@ -183,9 +172,31 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly writeToken: string;
 }
-
+/**
+ * `mongodbatlas.ThirdPartyIntegration` describe a Third-Party Integration Settings for the given type.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testFlowdock = new mongodbatlas.ThirdPartyIntegration("testFlowdock", {
+ *     projectId: "<PROJECT-ID>",
+ *     type: "FLOWDOCK",
+ *     flowName: "<FLOW-NAME>",
+ *     apiToken: "<API-TOKEN>",
+ *     orgName: "<ORG-NAME>",
+ * });
+ * const test = mongodbatlas.getThirdPartyIntegrationOutput({
+ *     projectId: testFlowdock.projectId,
+ * });
+ * ```
+ */
 export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetThirdPartyIntegrationResult> {
-    return pulumi.output(args).apply(a => getThirdPartyIntegration(a, opts))
+    return pulumi.output(args).apply((a: any) => getThirdPartyIntegration(a, opts))
 }
 
 /**
@@ -198,7 +209,6 @@ export interface GetThirdPartyIntegrationOutputArgs {
     enabled?: pulumi.Input<boolean>;
     /**
      * Your Microsoft Teams incoming webhook URL.
-     * * `PROMETHEUS`
      */
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
     /**

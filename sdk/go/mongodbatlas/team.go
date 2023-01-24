@@ -11,66 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `Teams` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
-//
-// > **IMPORTANT:** MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
-//
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
-// MongoDB Atlas Team limits: max 250 teams in an organization and max 100 teams per project.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewTeams(ctx, "test", &mongodbatlas.TeamsArgs{
-//				OrgId: pulumi.String("<ORGANIZATION-ID>"),
-//				Usernames: pulumi.StringArray{
-//					pulumi.String("user1@email.com"),
-//					pulumi.String("user2@email.com"),
-//					pulumi.String("user3@email.com"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// Teams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g.
-//
-// ```sh
-//
-//	$ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
-//
-// ```
-//
-//	See detailed information for arguments and attributes[MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
 type Team struct {
 	pulumi.CustomResourceState
 
-	// The name of the team you want to create.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// The unique identifier for the organization you want to associate the team with.
-	OrgId pulumi.StringOutput `pulumi:"orgId"`
-	// The unique identifier for the team.
-	TeamId pulumi.StringOutput `pulumi:"teamId"`
-	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	Name      pulumi.StringOutput      `pulumi:"name"`
+	OrgId     pulumi.StringOutput      `pulumi:"orgId"`
+	TeamId    pulumi.StringOutput      `pulumi:"teamId"`
 	Usernames pulumi.StringArrayOutput `pulumi:"usernames"`
 }
 
@@ -109,24 +55,16 @@ func GetTeam(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Team resources.
 type teamState struct {
-	// The name of the team you want to create.
-	Name *string `pulumi:"name"`
-	// The unique identifier for the organization you want to associate the team with.
-	OrgId *string `pulumi:"orgId"`
-	// The unique identifier for the team.
-	TeamId *string `pulumi:"teamId"`
-	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	Name      *string  `pulumi:"name"`
+	OrgId     *string  `pulumi:"orgId"`
+	TeamId    *string  `pulumi:"teamId"`
 	Usernames []string `pulumi:"usernames"`
 }
 
 type TeamState struct {
-	// The name of the team you want to create.
-	Name pulumi.StringPtrInput
-	// The unique identifier for the organization you want to associate the team with.
-	OrgId pulumi.StringPtrInput
-	// The unique identifier for the team.
-	TeamId pulumi.StringPtrInput
-	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	Name      pulumi.StringPtrInput
+	OrgId     pulumi.StringPtrInput
+	TeamId    pulumi.StringPtrInput
 	Usernames pulumi.StringArrayInput
 }
 
@@ -135,21 +73,15 @@ func (TeamState) ElementType() reflect.Type {
 }
 
 type teamArgs struct {
-	// The name of the team you want to create.
-	Name *string `pulumi:"name"`
-	// The unique identifier for the organization you want to associate the team with.
-	OrgId string `pulumi:"orgId"`
-	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	Name      *string  `pulumi:"name"`
+	OrgId     string   `pulumi:"orgId"`
 	Usernames []string `pulumi:"usernames"`
 }
 
 // The set of arguments for constructing a Team resource.
 type TeamArgs struct {
-	// The name of the team you want to create.
-	Name pulumi.StringPtrInput
-	// The unique identifier for the organization you want to associate the team with.
-	OrgId pulumi.StringInput
-	// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+	Name      pulumi.StringPtrInput
+	OrgId     pulumi.StringInput
 	Usernames pulumi.StringArrayInput
 }
 
@@ -240,22 +172,18 @@ func (o TeamOutput) ToTeamOutputWithContext(ctx context.Context) TeamOutput {
 	return o
 }
 
-// The name of the team you want to create.
 func (o TeamOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The unique identifier for the organization you want to associate the team with.
 func (o TeamOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
-// The unique identifier for the team.
 func (o TeamOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.TeamId }).(pulumi.StringOutput)
 }
 
-// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
 func (o TeamOutput) Usernames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringArrayOutput { return v.Usernames }).(pulumi.StringArrayOutput)
 }

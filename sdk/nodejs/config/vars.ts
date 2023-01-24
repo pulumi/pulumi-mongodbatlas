@@ -2,10 +2,44 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 declare var exports: any;
 const __config = new pulumi.Config("mongodbatlas");
+
+export declare const assumeRole: outputs.config.AssumeRole | undefined;
+Object.defineProperty(exports, "assumeRole", {
+    get() {
+        return __config.getObject<outputs.config.AssumeRole>("assumeRole");
+    },
+    enumerable: true,
+});
+
+export declare const awsAccessKeyId: string | undefined;
+Object.defineProperty(exports, "awsAccessKeyId", {
+    get() {
+        return __config.get("awsAccessKeyId");
+    },
+    enumerable: true,
+});
+
+export declare const awsSecretAccessKey: string | undefined;
+Object.defineProperty(exports, "awsSecretAccessKey", {
+    get() {
+        return __config.get("awsSecretAccessKey");
+    },
+    enumerable: true,
+});
+
+export declare const awsSessionToken: string | undefined;
+Object.defineProperty(exports, "awsSessionToken", {
+    get() {
+        return __config.get("awsSessionToken");
+    },
+    enumerable: true,
+});
 
 /**
  * MongoDB Atlas Base URL
@@ -14,6 +48,17 @@ export declare const baseUrl: string | undefined;
 Object.defineProperty(exports, "baseUrl", {
     get() {
         return __config.get("baseUrl");
+    },
+    enumerable: true,
+});
+
+/**
+ * MongoDB Atlas Base URL default to gov
+ */
+export declare const isMongodbgovCloud: boolean | undefined;
+Object.defineProperty(exports, "isMongodbgovCloud", {
+    get() {
+        return __config.getObject<boolean>("isMongodbgovCloud");
     },
     enumerable: true,
 });
@@ -47,6 +92,30 @@ export declare const realmBaseUrl: string | undefined;
 Object.defineProperty(exports, "realmBaseUrl", {
     get() {
         return __config.get("realmBaseUrl");
+    },
+    enumerable: true,
+});
+
+export declare const region: string | undefined;
+Object.defineProperty(exports, "region", {
+    get() {
+        return __config.get("region");
+    },
+    enumerable: true,
+});
+
+export declare const secretName: string | undefined;
+Object.defineProperty(exports, "secretName", {
+    get() {
+        return __config.get("secretName");
+    },
+    enumerable: true,
+});
+
+export declare const stsEndpoint: string | undefined;
+Object.defineProperty(exports, "stsEndpoint", {
+    get() {
+        return __config.get("stsEndpoint");
     },
     enumerable: true,
 });

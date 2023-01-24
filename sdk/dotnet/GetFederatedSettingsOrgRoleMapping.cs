@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFederatedSettingsOrgRoleMappingResult> InvokeAsync(GetFederatedSettingsOrgRoleMappingArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
@@ -155,7 +155,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetFederatedSettingsOrgRoleMappingResult> Invoke(GetFederatedSettingsOrgRoleMappingInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsOrgRoleMappingResult>("mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping", args ?? new GetFederatedSettingsOrgRoleMappingInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -11,11 +12,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  */
 export function getGlobalClusterConfig(args: GetGlobalClusterConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalClusterConfigResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", {
         "clusterName": args.clusterName,
         "managedNamespaces": args.managedNamespaces,
@@ -58,9 +56,13 @@ export interface GetGlobalClusterConfigResult {
     readonly managedNamespaces: outputs.GetGlobalClusterConfigManagedNamespace[];
     readonly projectId: string;
 }
-
+/**
+ * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ */
 export function getGlobalClusterConfigOutput(args: GetGlobalClusterConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGlobalClusterConfigResult> {
-    return pulumi.output(args).apply(a => getGlobalClusterConfig(a, opts))
+    return pulumi.output(args).apply((a: any) => getGlobalClusterConfig(a, opts))
 }
 
 /**

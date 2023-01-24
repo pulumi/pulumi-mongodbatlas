@@ -93,13 +93,7 @@ type ProjectInvitation struct {
 	InviterUsername pulumi.StringOutput `pulumi:"inviterUsername"`
 	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-	// * GROUP_OWNER
-	// * GROUP_CLUSTER_MANAGER
-	// * GROUP_READ_ONLY
-	// * GROUP_DATA_ACCESS_ADMIN
-	// * GROUP_DATA_ACCESS_READ_WRITE
-	// * GROUP_DATA_ACCESS_READ_ONLY
+	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
 	// Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
 	Username pulumi.StringOutput `pulumi:"username"`
@@ -153,13 +147,7 @@ type projectInvitationState struct {
 	InviterUsername *string `pulumi:"inviterUsername"`
 	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
 	ProjectId *string `pulumi:"projectId"`
-	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-	// * GROUP_OWNER
-	// * GROUP_CLUSTER_MANAGER
-	// * GROUP_READ_ONLY
-	// * GROUP_DATA_ACCESS_ADMIN
-	// * GROUP_DATA_ACCESS_READ_WRITE
-	// * GROUP_DATA_ACCESS_READ_ONLY
+	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles []string `pulumi:"roles"`
 	// Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
 	Username *string `pulumi:"username"`
@@ -176,13 +164,7 @@ type ProjectInvitationState struct {
 	InviterUsername pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
 	ProjectId pulumi.StringPtrInput
-	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-	// * GROUP_OWNER
-	// * GROUP_CLUSTER_MANAGER
-	// * GROUP_READ_ONLY
-	// * GROUP_DATA_ACCESS_ADMIN
-	// * GROUP_DATA_ACCESS_READ_WRITE
-	// * GROUP_DATA_ACCESS_READ_ONLY
+	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles pulumi.StringArrayInput
 	// Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
 	Username pulumi.StringPtrInput
@@ -195,13 +177,7 @@ func (ProjectInvitationState) ElementType() reflect.Type {
 type projectInvitationArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
 	ProjectId string `pulumi:"projectId"`
-	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-	// * GROUP_OWNER
-	// * GROUP_CLUSTER_MANAGER
-	// * GROUP_READ_ONLY
-	// * GROUP_DATA_ACCESS_ADMIN
-	// * GROUP_DATA_ACCESS_READ_WRITE
-	// * GROUP_DATA_ACCESS_READ_ONLY
+	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles []string `pulumi:"roles"`
 	// Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
 	Username string `pulumi:"username"`
@@ -211,13 +187,7 @@ type projectInvitationArgs struct {
 type ProjectInvitationArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
 	ProjectId pulumi.StringInput
-	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-	// * GROUP_OWNER
-	// * GROUP_CLUSTER_MANAGER
-	// * GROUP_READ_ONLY
-	// * GROUP_DATA_ACCESS_ADMIN
-	// * GROUP_DATA_ACCESS_READ_WRITE
-	// * GROUP_DATA_ACCESS_READ_ONLY
+	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles pulumi.StringArrayInput
 	// Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
 	Username pulumi.StringInput
@@ -335,13 +305,7 @@ func (o ProjectInvitationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Atlas accepts the following roles:
-// * GROUP_OWNER
-// * GROUP_CLUSTER_MANAGER
-// * GROUP_READ_ONLY
-// * GROUP_DATA_ACCESS_ADMIN
-// * GROUP_DATA_ACCESS_READ_WRITE
-// * GROUP_DATA_ACCESS_READ_ONLY
+// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 func (o ProjectInvitationOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringArrayOutput { return v.Roles }).(pulumi.StringArrayOutput)
 }

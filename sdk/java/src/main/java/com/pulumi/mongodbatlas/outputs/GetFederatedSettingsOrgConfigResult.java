@@ -40,7 +40,7 @@ public final class GetFederatedSettingsOrgConfigResult {
     private String identityProviderId;
     private String orgId;
     /**
-     * @return List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     * @return List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      * 
      */
     private List<String> postAuthRoleGrants;
@@ -87,7 +87,7 @@ public final class GetFederatedSettingsOrgConfigResult {
         return this.orgId;
     }
     /**
-     * @return List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization. If you provide a postAuthRoleGrants field in the request, the array that you provide replaces the current postAuthRoleGrants.
+     * @return List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      * 
      */
     public List<String> postAuthRoleGrants() {

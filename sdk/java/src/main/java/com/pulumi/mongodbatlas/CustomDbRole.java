@@ -197,14 +197,14 @@ public class CustomDbRole extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Name of the inherited role. This can either be another custom role or a built-in role.
+     * Name of the custom role.
      * 
      */
     @Export(name="roleName", type=String.class, parameters={})
     private Output<String> roleName;
 
     /**
-     * @return Name of the inherited role. This can either be another custom role or a built-in role.
+     * @return Name of the custom role.
      * 
      */
     public Output<String> roleName() {

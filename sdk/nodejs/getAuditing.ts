@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  */
 export function getAuditing(args: GetAuditingArgs, opts?: pulumi.InvokeOptions): Promise<GetAuditingResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAuditing:getAuditing", {
         "projectId": args.projectId,
     }, opts);
@@ -56,9 +53,13 @@ export interface GetAuditingResult {
     readonly id: string;
     readonly projectId: string;
 }
-
+/**
+ * `mongodbatlas.Auditing` describes a Auditing.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
+ */
 export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuditingResult> {
-    return pulumi.output(args).apply(a => getAuditing(a, opts))
+    return pulumi.output(args).apply((a: any) => getAuditing(a, opts))
 }
 
 /**

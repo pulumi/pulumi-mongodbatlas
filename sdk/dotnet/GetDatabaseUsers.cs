@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatabaseUsersResult> InvokeAsync(GetDatabaseUsersArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseUsersResult>("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args ?? new GetDatabaseUsersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseUsersResult>("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args ?? new GetDatabaseUsersArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.getDatabaseUsers` describe all Database Users. This represents a database user which will be applied to all clusters within the project.
@@ -139,7 +139,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDatabaseUsersResult> Invoke(GetDatabaseUsersInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDatabaseUsersResult>("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args ?? new GetDatabaseUsersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseUsersResult>("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args ?? new GetDatabaseUsersInvokeArgs(), options.WithDefaults());
     }
 
 

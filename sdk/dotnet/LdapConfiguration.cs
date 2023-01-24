@@ -172,6 +172,10 @@ namespace Pulumi.Mongodbatlas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "bindPassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -213,11 +217,21 @@ namespace Pulumi.Mongodbatlas
         [Input("authzQueryTemplate")]
         public Input<string>? AuthzQueryTemplate { get; set; }
 
+        [Input("bindPassword", required: true)]
+        private Input<string>? _bindPassword;
+
         /// <summary>
         /// The password used to authenticate the `bind_username`.
         /// </summary>
-        [Input("bindPassword", required: true)]
-        public Input<string> BindPassword { get; set; } = null!;
+        public Input<string>? BindPassword
+        {
+            get => _bindPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
@@ -290,11 +304,21 @@ namespace Pulumi.Mongodbatlas
         [Input("authzQueryTemplate")]
         public Input<string>? AuthzQueryTemplate { get; set; }
 
+        [Input("bindPassword")]
+        private Input<string>? _bindPassword;
+
         /// <summary>
         /// The password used to authenticate the `bind_username`.
         /// </summary>
-        [Input("bindPassword")]
-        public Input<string>? BindPassword { get; set; }
+        public Input<string>? BindPassword
+        {
+            get => _bindPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.

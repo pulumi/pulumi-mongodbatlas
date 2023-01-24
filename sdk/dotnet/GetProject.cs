@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetProjectResult> InvokeAsync(GetProjectArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("mongodbatlas:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectResult>("mongodbatlas:index/getProject:getProject", args ?? new GetProjectArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetProjectResult> Invoke(GetProjectInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetProjectResult>("mongodbatlas:index/getProject:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetProjectResult>("mongodbatlas:index/getProject:getProject", args ?? new GetProjectInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -82,7 +82,16 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetProjectResult
     {
         public readonly ImmutableArray<Outputs.GetProjectApiKeyResult> ApiKeys;
+        /// <summary>
+        /// The number of Atlas clusters deployed in the project.
+        /// </summary>
         public readonly int ClusterCount;
+        /// <summary>
+        /// The ISO-8601-formatted timestamp of when Atlas created the project.
+        /// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
+        /// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
+        /// The following are valid roles:
+        /// </summary>
         public readonly string Created;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -114,29 +123,13 @@ namespace Pulumi.Mongodbatlas
         public readonly string? Name;
         /// <summary>
         /// The ID of the organization you want to create the project within.
-        /// *`cluster_count` - The number of Atlas clusters deployed in the project.
-        /// *`created` - The ISO-8601-formatted timestamp of when Atlas created the project.
-        /// * `teams.#.team_id` - The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
-        /// * `teams.#.role_names` - Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles.
-        /// The following are valid roles:
-        /// * `GROUP_OWNER`
-        /// * `GROUP_READ_ONLY`
-        /// * `GROUP_DATA_ACCESS_ADMIN`
-        /// * `GROUP_DATA_ACCESS_READ_WRITE`
-        /// * `GROUP_DATA_ACCESS_READ_ONLY`
-        /// * `GROUP_CLUSTER_MANAGER`
-        /// * `api_keys.#.api_key_id` - The unique identifier of the programmatic API key you want to associate with the project. The programmatic API key and project must share the same parent organization.
-        /// * `api_keys.#.role_names` - Each string in the array represents a project role assigned to the programmatic API key.
-        /// The following are valid roles:
-        /// * `GROUP_OWNER`
-        /// * `GROUP_READ_ONLY`
-        /// * `GROUP_DATA_ACCESS_ADMIN`
-        /// * `GROUP_DATA_ACCESS_READ_WRITE`
-        /// * `GROUP_DATA_ACCESS_READ_ONLY`
-        /// * `GROUP_CLUSTER_MANAGER`
         /// </summary>
         public readonly string OrgId;
         public readonly string? ProjectId;
+        /// <summary>
+        /// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        /// </summary>
+        public readonly string RegionUsageRestrictions;
         public readonly ImmutableArray<Outputs.GetProjectTeamResult> Teams;
 
         [OutputConstructor]
@@ -165,6 +158,8 @@ namespace Pulumi.Mongodbatlas
 
             string? projectId,
 
+            string regionUsageRestrictions,
+
             ImmutableArray<Outputs.GetProjectTeamResult> teams)
         {
             ApiKeys = apiKeys;
@@ -179,6 +174,7 @@ namespace Pulumi.Mongodbatlas
             Name = name;
             OrgId = orgId;
             ProjectId = projectId;
+            RegionUsageRestrictions = regionUsageRestrictions;
             Teams = teams;
         }
     }

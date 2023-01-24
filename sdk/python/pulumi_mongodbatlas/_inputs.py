@@ -82,6 +82,7 @@ __all__ = [
     'PrivateLinkEndpointServiceEndpointArgs',
     'ProjectApiKeyArgs',
     'ProjectTeamArgs',
+    'ProviderAssumeRoleArgs',
     'SearchIndexSynonymArgs',
     'ServerlessInstanceLinkArgs',
     'X509AuthenticationDatabaseUserCertificateArgs',
@@ -532,7 +533,6 @@ class AdvancedClusterReplicationSpecArgs:
                  zone_name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]] region_configs: Configuration for the hardware specifications for nodes set for a given regionEach `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         :param pulumi.Input[int] num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
         :param pulumi.Input[str] zone_name: Name for the zone in a Global Cluster.
         """
@@ -561,9 +561,6 @@ class AdvancedClusterReplicationSpecArgs:
     @property
     @pulumi.getter(name="containerId")
     def container_id(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-        """
         return pulumi.get(self, "container_id")
 
     @container_id.setter
@@ -1047,16 +1044,11 @@ class AlertConfigurationMatcherArgs:
                  value: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] field_name: Name of the field in the target object to match on.
-        :param pulumi.Input[str] operator: Operator to apply when checking the current metric value against the threshold value.
+        :param pulumi.Input[str] operator: If omitted, the configuration is disabled.
                Accepted values are:
-               - `GREATER_THAN`
-               - `LESS_THAN`
-        :param pulumi.Input[str] value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-               - `PRIMARY`
-               - `SECONDARY`
-               - `STANDALONE`
-               - `CONFIG`
-               - `MONGOS`
+               Accepted values are:
+               Accepted values are:
+        :param pulumi.Input[str] value: If omitted, the configuration is disabled.
         """
         if field_name is not None:
             pulumi.set(__self__, "field_name", field_name)
@@ -1081,10 +1073,10 @@ class AlertConfigurationMatcherArgs:
     @pulumi.getter
     def operator(self) -> Optional[pulumi.Input[str]]:
         """
-        Operator to apply when checking the current metric value against the threshold value.
+        If omitted, the configuration is disabled.
         Accepted values are:
-        - `GREATER_THAN`
-        - `LESS_THAN`
+        Accepted values are:
+        Accepted values are:
         """
         return pulumi.get(self, "operator")
 
@@ -1096,12 +1088,7 @@ class AlertConfigurationMatcherArgs:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
-        - `PRIMARY`
-        - `SECONDARY`
-        - `STANDALONE`
-        - `CONFIG`
-        - `MONGOS`
+        If omitted, the configuration is disabled.
         """
         return pulumi.get(self, "value")
 
@@ -1121,29 +1108,14 @@ class AlertConfigurationMetricThresholdConfigArgs:
         """
         :param pulumi.Input[str] metric_name: Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
         :param pulumi.Input[str] mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
-        :param pulumi.Input[str] operator: Operator to apply when checking the current metric value against the threshold value.
+        :param pulumi.Input[str] operator: If omitted, the configuration is disabled.
                Accepted values are:
-               - `GREATER_THAN`
-               - `LESS_THAN`
+               Accepted values are:
+               Accepted values are:
         :param pulumi.Input[float] threshold: Threshold value outside of which an alert will be triggered.
         :param pulumi.Input[str] units: The units for the threshold value. Depends on the type of metric.
-               Accepted values are:
-               - `RAW`
-               - `BITS`
-               - `BYTES`
-               - `KILOBITS`
-               - `KILOBYTES`
-               - `MEGABITS`
-               - `MEGABYTES`
-               - `GIGABITS`
-               - `GIGABYTES`
-               - `TERABYTES`
-               - `PETABYTES`
-               - `MILLISECONDS`
-               - `SECONDS`
-               - `MINUTES`
-               - `HOURS`
-               - `DAYS`
+               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
         if metric_name is not None:
             pulumi.set(__self__, "metric_name", metric_name)
@@ -1184,10 +1156,10 @@ class AlertConfigurationMetricThresholdConfigArgs:
     @pulumi.getter
     def operator(self) -> Optional[pulumi.Input[str]]:
         """
-        Operator to apply when checking the current metric value against the threshold value.
+        If omitted, the configuration is disabled.
         Accepted values are:
-        - `GREATER_THAN`
-        - `LESS_THAN`
+        Accepted values are:
+        Accepted values are:
         """
         return pulumi.get(self, "operator")
 
@@ -1212,23 +1184,8 @@ class AlertConfigurationMetricThresholdConfigArgs:
     def units(self) -> Optional[pulumi.Input[str]]:
         """
         The units for the threshold value. Depends on the type of metric.
-        Accepted values are:
-        - `RAW`
-        - `BITS`
-        - `BYTES`
-        - `KILOBITS`
-        - `KILOBYTES`
-        - `MEGABITS`
-        - `MEGABYTES`
-        - `GIGABITS`
-        - `GIGABYTES`
-        - `TERABYTES`
-        - `PETABYTES`
-        - `MILLISECONDS`
-        - `SECONDS`
-        - `MINUTES`
-        - `HOURS`
-        - `DAYS`
+        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
         return pulumi.get(self, "units")
 
@@ -1250,6 +1207,7 @@ class AlertConfigurationNotificationArgs:
                  flow_name: Optional[pulumi.Input[str]] = None,
                  flowdock_api_token: Optional[pulumi.Input[str]] = None,
                  interval_min: Optional[pulumi.Input[int]] = None,
+                 microsoft_teams_webhook_url: Optional[pulumi.Input[str]] = None,
                  mobile_number: Optional[pulumi.Input[str]] = None,
                  ops_genie_api_key: Optional[pulumi.Input[str]] = None,
                  ops_genie_region: Optional[pulumi.Input[str]] = None,
@@ -1262,7 +1220,9 @@ class AlertConfigurationNotificationArgs:
                  type_name: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  victor_ops_api_key: Optional[pulumi.Input[str]] = None,
-                 victor_ops_routing_key: Optional[pulumi.Input[str]] = None):
+                 victor_ops_routing_key: Optional[pulumi.Input[str]] = None,
+                 webhook_secret: Optional[pulumi.Input[str]] = None,
+                 webhook_url: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] api_token: Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[str] channel_name: Slack channel name. Required for the SLACK notifications type.
@@ -1274,6 +1234,7 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[str] flow_name: Flowdock flow name in lower-case letters. Required for the `FLOWDOCK` notifications type
         :param pulumi.Input[str] flowdock_api_token: The Flowdock personal API token. Required for the `FLOWDOCK` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[int] interval_min: Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
+        :param pulumi.Input[str] microsoft_teams_webhook_url: Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
         :param pulumi.Input[str] mobile_number: Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         :param pulumi.Input[str] ops_genie_api_key: Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         :param pulumi.Input[str] ops_genie_region: Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
@@ -1286,12 +1247,11 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[str] team_name: Label for the team that receives this notification.
         :param pulumi.Input[str] type_name: Type of alert notification.
                Accepted values are:
-               - `DATADOG`
-               - `EMAIL`
-               - `FLOWDOCK`
         :param pulumi.Input[str] username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         :param pulumi.Input[str] victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param pulumi.Input[str] victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        :param pulumi.Input[str] webhook_secret: Optional authentication secret for the `WEBHOOK` notifications type.
+        :param pulumi.Input[str] webhook_url: Target URL  for the `WEBHOOK` notifications type.
         """
         if api_token is not None:
             pulumi.set(__self__, "api_token", api_token)
@@ -1313,6 +1273,8 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "flowdock_api_token", flowdock_api_token)
         if interval_min is not None:
             pulumi.set(__self__, "interval_min", interval_min)
+        if microsoft_teams_webhook_url is not None:
+            pulumi.set(__self__, "microsoft_teams_webhook_url", microsoft_teams_webhook_url)
         if mobile_number is not None:
             pulumi.set(__self__, "mobile_number", mobile_number)
         if ops_genie_api_key is not None:
@@ -1339,6 +1301,10 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
         if victor_ops_routing_key is not None:
             pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+        if webhook_secret is not None:
+            pulumi.set(__self__, "webhook_secret", webhook_secret)
+        if webhook_url is not None:
+            pulumi.set(__self__, "webhook_url", webhook_url)
 
     @property
     @pulumi.getter(name="apiToken")
@@ -1461,6 +1427,18 @@ class AlertConfigurationNotificationArgs:
         pulumi.set(self, "interval_min", value)
 
     @property
+    @pulumi.getter(name="microsoftTeamsWebhookUrl")
+    def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
+        """
+        return pulumi.get(self, "microsoft_teams_webhook_url")
+
+    @microsoft_teams_webhook_url.setter
+    def microsoft_teams_webhook_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "microsoft_teams_webhook_url", value)
+
+    @property
     @pulumi.getter(name="mobileNumber")
     def mobile_number(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1575,9 +1553,6 @@ class AlertConfigurationNotificationArgs:
         """
         Type of alert notification.
         Accepted values are:
-        - `DATADOG`
-        - `EMAIL`
-        - `FLOWDOCK`
         """
         return pulumi.get(self, "type_name")
 
@@ -1621,6 +1596,30 @@ class AlertConfigurationNotificationArgs:
     def victor_ops_routing_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "victor_ops_routing_key", value)
 
+    @property
+    @pulumi.getter(name="webhookSecret")
+    def webhook_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        Optional authentication secret for the `WEBHOOK` notifications type.
+        """
+        return pulumi.get(self, "webhook_secret")
+
+    @webhook_secret.setter
+    def webhook_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "webhook_secret", value)
+
+    @property
+    @pulumi.getter(name="webhookUrl")
+    def webhook_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Target URL  for the `WEBHOOK` notifications type.
+        """
+        return pulumi.get(self, "webhook_url")
+
+    @webhook_url.setter
+    def webhook_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "webhook_url", value)
+
 
 @pulumi.input_type
 class AlertConfigurationThresholdConfigArgs:
@@ -1629,29 +1628,14 @@ class AlertConfigurationThresholdConfigArgs:
                  threshold: Optional[pulumi.Input[float]] = None,
                  units: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] operator: Operator to apply when checking the current metric value against the threshold value.
+        :param pulumi.Input[str] operator: If omitted, the configuration is disabled.
                Accepted values are:
-               - `GREATER_THAN`
-               - `LESS_THAN`
+               Accepted values are:
+               Accepted values are:
         :param pulumi.Input[float] threshold: Threshold value outside of which an alert will be triggered.
         :param pulumi.Input[str] units: The units for the threshold value. Depends on the type of metric.
-               Accepted values are:
-               - `RAW`
-               - `BITS`
-               - `BYTES`
-               - `KILOBITS`
-               - `KILOBYTES`
-               - `MEGABITS`
-               - `MEGABYTES`
-               - `GIGABITS`
-               - `GIGABYTES`
-               - `TERABYTES`
-               - `PETABYTES`
-               - `MILLISECONDS`
-               - `SECONDS`
-               - `MINUTES`
-               - `HOURS`
-               - `DAYS`
+               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+               Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
         if operator is not None:
             pulumi.set(__self__, "operator", operator)
@@ -1664,10 +1648,10 @@ class AlertConfigurationThresholdConfigArgs:
     @pulumi.getter
     def operator(self) -> Optional[pulumi.Input[str]]:
         """
-        Operator to apply when checking the current metric value against the threshold value.
+        If omitted, the configuration is disabled.
         Accepted values are:
-        - `GREATER_THAN`
-        - `LESS_THAN`
+        Accepted values are:
+        Accepted values are:
         """
         return pulumi.get(self, "operator")
 
@@ -1692,23 +1676,8 @@ class AlertConfigurationThresholdConfigArgs:
     def units(self) -> Optional[pulumi.Input[str]]:
         """
         The units for the threshold value. Depends on the type of metric.
-        Accepted values are:
-        - `RAW`
-        - `BITS`
-        - `BYTES`
-        - `KILOBITS`
-        - `KILOBYTES`
-        - `MEGABITS`
-        - `MEGABYTES`
-        - `GIGABITS`
-        - `GIGABYTES`
-        - `TERABYTES`
-        - `PETABYTES`
-        - `MILLISECONDS`
-        - `SECONDS`
-        - `MINUTES`
-        - `HOURS`
-        - `DAYS`
+        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
+        Refer to the [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-get-config/#request-body-parameters) for a list of accepted values.
         """
         return pulumi.get(self, "units")
 
@@ -3057,7 +3026,7 @@ class ClusterReplicationSpecArgs:
                  regions_configs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]] = None,
                  zone_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] num_shards: Number of shards to deploy in the specified zone, minimum 1.
+        :param pulumi.Input[int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         :param pulumi.Input[str] id: Unique identifer of the replication document for a zone in a Global Cluster.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param pulumi.Input[str] zone_name: Name for the zone in a Global Cluster.
@@ -3074,7 +3043,7 @@ class ClusterReplicationSpecArgs:
     @pulumi.getter(name="numShards")
     def num_shards(self) -> pulumi.Input[int]:
         """
-        Number of shards to deploy in the specified zone, minimum 1.
+        Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         """
         return pulumi.get(self, "num_shards")
 
@@ -4076,7 +4045,7 @@ class EncryptionAtRestAwsKmsConfigArgs:
                  secret_access_key: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] customer_master_key_id: The AWS customer master key used to encrypt and decrypt the MongoDB master keys.
-        :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        :param pulumi.Input[bool] enabled: Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
         :param pulumi.Input[str] region: The AWS region in which the AWS customer master key exists: CA_CENTRAL_1, US_EAST_1, US_EAST_2, US_WEST_1, US_WEST_2, SA_EAST_1
         :param pulumi.Input[str] role_id: ID of an AWS IAM role authorized to manage an AWS customer master key. To find the ID for an existing IAM role check the `role_id` attribute of the `CloudProviderAccess` resource.
         """
@@ -4118,7 +4087,7 @@ class EncryptionAtRestAwsKmsConfigArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Specifies whether Encryption at Rest is enabled for an Atlas project. To disable Encryption at Rest, pass only this parameter with a value of false. When you disable Encryption at Rest, Atlas also removes the configuration details.
+        Specifies whether Encryption at Rest is enabled for an Atlas project, To disable Encryption at Rest, pass only this parameter with a value of false, When you disable Encryption at Rest, Atlas also removes the configuration details.
         """
         return pulumi.get(self, "enabled")
 
@@ -4420,7 +4389,8 @@ class FederatedSettingsOrgRoleMappingRoleAssignmentArgs:
         """
         :param pulumi.Input[str] group_id: Unique identifier of the project to which you want the role mapping to apply.
         :param pulumi.Input[str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Specifies the Roles that are attached to the Role Mapping.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+               Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
         """
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
@@ -4457,7 +4427,8 @@ class FederatedSettingsOrgRoleMappingRoleAssignmentArgs:
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Specifies the Roles that are attached to the Role Mapping.
+        Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
+        Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
         """
         return pulumi.get(self, "roles")
 
@@ -4875,13 +4846,9 @@ class ProjectApiKeyArgs:
                  role_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         :param pulumi.Input[str] api_key_id: The unique identifier of the Programmatic API key you want to associate with the Project.  The Programmatic API key and Project must share the same parent organization.  Note: this is not the `publicKey` of the Programmatic API key but the `id` of the key. See [Programmatic API Keys](https://docs.atlas.mongodb.com/reference/api/apiKeys/) for more.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
                The following are valid roles:
-               * `GROUP_OWNER`
-               * `GROUP_READ_ONLY`
-               * `GROUP_DATA_ACCESS_ADMIN`
-               * `GROUP_DATA_ACCESS_READ_WRITE`
-               * `GROUP_DATA_ACCESS_READ_ONLY`
+               The following are valid roles:
         """
         pulumi.set(__self__, "api_key_id", api_key_id)
         pulumi.set(__self__, "role_names", role_names)
@@ -4902,13 +4869,9 @@ class ProjectApiKeyArgs:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
         The following are valid roles:
-        * `GROUP_OWNER`
-        * `GROUP_READ_ONLY`
-        * `GROUP_DATA_ACCESS_ADMIN`
-        * `GROUP_DATA_ACCESS_READ_WRITE`
-        * `GROUP_DATA_ACCESS_READ_ONLY`
+        The following are valid roles:
         """
         return pulumi.get(self, "role_names")
 
@@ -4923,13 +4886,8 @@ class ProjectTeamArgs:
                  role_names: pulumi.Input[Sequence[pulumi.Input[str]]],
                  team_id: pulumi.Input[str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_names: Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
                The following are valid roles:
-               * `GROUP_OWNER`
-               * `GROUP_READ_ONLY`
-               * `GROUP_DATA_ACCESS_ADMIN`
-               * `GROUP_DATA_ACCESS_READ_WRITE`
-               * `GROUP_DATA_ACCESS_READ_ONLY`
         :param pulumi.Input[str] team_id: The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         """
         pulumi.set(__self__, "role_names", role_names)
@@ -4939,13 +4897,8 @@ class ProjectTeamArgs:
     @pulumi.getter(name="roleNames")
     def role_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project.  You must specify an array even if you are only associating a single role with the Programmatic API key.
+        Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team.
         The following are valid roles:
-        * `GROUP_OWNER`
-        * `GROUP_READ_ONLY`
-        * `GROUP_DATA_ACCESS_ADMIN`
-        * `GROUP_DATA_ACCESS_READ_WRITE`
-        * `GROUP_DATA_ACCESS_READ_ONLY`
         """
         return pulumi.get(self, "role_names")
 
@@ -4964,6 +4917,134 @@ class ProjectTeamArgs:
     @team_id.setter
     def team_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "team_id", value)
+
+
+@pulumi.input_type
+class ProviderAssumeRoleArgs:
+    def __init__(__self__, *,
+                 duration: Optional[pulumi.Input[str]] = None,
+                 duration_seconds: Optional[pulumi.Input[int]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
+                 policy: Optional[pulumi.Input[str]] = None,
+                 policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
+                 session_name: Optional[pulumi.Input[str]] = None,
+                 source_identity: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 transitive_tag_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
+        if duration_seconds is not None:
+            warnings.warn("""Use assume_role.duration instead""", DeprecationWarning)
+            pulumi.log.warn("""duration_seconds is deprecated: Use assume_role.duration instead""")
+        if duration_seconds is not None:
+            pulumi.set(__self__, "duration_seconds", duration_seconds)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if policy_arns is not None:
+            pulumi.set(__self__, "policy_arns", policy_arns)
+        if role_arn is not None:
+            pulumi.set(__self__, "role_arn", role_arn)
+        if session_name is not None:
+            pulumi.set(__self__, "session_name", session_name)
+        if source_identity is not None:
+            pulumi.set(__self__, "source_identity", source_identity)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if transitive_tag_keys is not None:
+            pulumi.set(__self__, "transitive_tag_keys", transitive_tag_keys)
+
+    @property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "duration", value)
+
+    @property
+    @pulumi.getter(name="durationSeconds")
+    def duration_seconds(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "duration_seconds")
+
+    @duration_seconds.setter
+    def duration_seconds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "duration_seconds", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy", value)
+
+    @property
+    @pulumi.getter(name="policyArns")
+    def policy_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "policy_arns")
+
+    @policy_arns.setter
+    def policy_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "policy_arns", value)
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "role_arn")
+
+    @role_arn.setter
+    def role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_arn", value)
+
+    @property
+    @pulumi.getter(name="sessionName")
+    def session_name(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "session_name")
+
+    @session_name.setter
+    def session_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "session_name", value)
+
+    @property
+    @pulumi.getter(name="sourceIdentity")
+    def source_identity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_identity")
+
+    @source_identity.setter
+    def source_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_identity", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="transitiveTagKeys")
+    def transitive_tag_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "transitive_tag_keys")
+
+    @transitive_tag_keys.setter
+    def transitive_tag_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "transitive_tag_keys", value)
 
 
 @pulumi.input_type
@@ -5130,6 +5211,7 @@ class GetCustomDbRoleInheritedRoleArgs:
                  database_name: str,
                  role_name: str):
         """
+        :param str database_name: (Required) Database on which the inherited role is granted.
         :param str role_name: Name of the custom role.
         """
         pulumi.set(__self__, "database_name", database_name)
@@ -5138,6 +5220,9 @@ class GetCustomDbRoleInheritedRoleArgs:
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> str:
+        """
+        (Required) Database on which the inherited role is granted.
+        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter

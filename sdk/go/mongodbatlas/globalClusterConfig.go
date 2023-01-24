@@ -38,12 +38,12 @@ import (
 //				ClusterType:              pulumi.String("GEOSHARDED"),
 //				ProviderName:             pulumi.String("AWS"),
 //				ProviderInstanceSizeName: pulumi.String("M30"),
-//				ReplicationSpecs: ClusterReplicationSpecArray{
-//					&ClusterReplicationSpecArgs{
+//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						ZoneName:  pulumi.String("Zone 1"),
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("EU_CENTRAL_1"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),
@@ -51,11 +51,11 @@ import (
 //							},
 //						},
 //					},
-//					&ClusterReplicationSpecArgs{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						ZoneName:  pulumi.String("Zone 2"),
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("US_EAST_2"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),
@@ -71,8 +71,8 @@ import (
 //			_, err = mongodbatlas.NewGlobalClusterConfig(ctx, "config", &mongodbatlas.GlobalClusterConfigArgs{
 //				ProjectId:   test.ProjectId,
 //				ClusterName: test.Name,
-//				ManagedNamespaces: GlobalClusterConfigManagedNamespaceArray{
-//					&GlobalClusterConfigManagedNamespaceArgs{
+//				ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
+//					&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
 //						Db:                     pulumi.String("mydata"),
 //						Collection:             pulumi.String("publishers"),
 //						CustomShardKey:         pulumi.String("city"),
@@ -80,8 +80,8 @@ import (
 //						IsShardKeyUnique:       pulumi.Bool(false),
 //					},
 //				},
-//				CustomZoneMappings: GlobalClusterConfigCustomZoneMappingArray{
-//					&GlobalClusterConfigCustomZoneMappingArgs{
+//				CustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{
+//					&mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{
 //						Location: pulumi.String("CA"),
 //						Zone:     pulumi.String("Zone 1"),
 //					},
@@ -113,11 +113,11 @@ import (
 //			_, err := mongodbatlas.NewCluster(ctx, "cluster-test", &mongodbatlas.ClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
 //				ClusterType: pulumi.String("REPLICASET"),
-//				ReplicationSpecs: ClusterReplicationSpecArray{
-//					&ClusterReplicationSpecArgs{
+//				ReplicationSpecs: mongodbatlas.ClusterReplicationSpecArray{
+//					&mongodbatlas.ClusterReplicationSpecArgs{
 //						NumShards: pulumi.Int(1),
-//						RegionsConfigs: ClusterReplicationSpecRegionsConfigArray{
-//							&ClusterReplicationSpecRegionsConfigArgs{
+//						RegionsConfigs: mongodbatlas.ClusterReplicationSpecRegionsConfigArray{
+//							&mongodbatlas.ClusterReplicationSpecRegionsConfigArgs{
 //								RegionName:     pulumi.String("US_EAST_1"),
 //								ElectableNodes: pulumi.Int(3),
 //								Priority:       pulumi.Int(7),
@@ -139,15 +139,15 @@ import (
 //			_, err = mongodbatlas.NewGlobalClusterConfig(ctx, "config", &mongodbatlas.GlobalClusterConfigArgs{
 //				ProjectId:   pulumi.Any(mongodbatlas_cluster.Test.Project_id),
 //				ClusterName: pulumi.Any(mongodbatlas_cluster.Test.Name),
-//				ManagedNamespaces: GlobalClusterConfigManagedNamespaceArray{
-//					&GlobalClusterConfigManagedNamespaceArgs{
+//				ManagedNamespaces: mongodbatlas.GlobalClusterConfigManagedNamespaceArray{
+//					&mongodbatlas.GlobalClusterConfigManagedNamespaceArgs{
 //						Db:             pulumi.String("mydata"),
 //						Collection:     pulumi.String("publishers"),
 //						CustomShardKey: pulumi.String("city"),
 //					},
 //				},
-//				CustomZoneMappings: GlobalClusterConfigCustomZoneMappingArray{
-//					&GlobalClusterConfigCustomZoneMappingArgs{
+//				CustomZoneMappings: mongodbatlas.GlobalClusterConfigCustomZoneMappingArray{
+//					&mongodbatlas.GlobalClusterConfigCustomZoneMappingArgs{
 //						Location: pulumi.String("CA"),
 //						Zone:     pulumi.String("Zone 1"),
 //					},

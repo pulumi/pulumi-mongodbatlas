@@ -12,11 +12,8 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getPrivatelinkEndpointServiceAdl(args: GetPrivatelinkEndpointServiceAdlArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivatelinkEndpointServiceAdlResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", {
         "endpointId": args.endpointId,
         "projectId": args.projectId,
@@ -60,9 +57,15 @@ export interface GetPrivatelinkEndpointServiceAdlResult {
      */
     readonly type: string;
 }
-
+/**
+ * `privatelinkEndpointServiceAdl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ */
 export function getPrivatelinkEndpointServiceAdlOutput(args: GetPrivatelinkEndpointServiceAdlOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivatelinkEndpointServiceAdlResult> {
-    return pulumi.output(args).apply(a => getPrivatelinkEndpointServiceAdl(a, opts))
+    return pulumi.output(args).apply((a: any) => getPrivatelinkEndpointServiceAdl(a, opts))
 }
 
 /**

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -18,19 +19,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testTwo = pulumi.output(mongodbatlas.getServerlessInstance({
+ * const testTwo = mongodbatlas.getServerlessInstance({
  *     name: "<SERVERLESS_INSTANCE_NAME>",
  *     projectId: "<PROJECT_ID >",
- * }));
+ * });
  * ```
  */
 export function getServerlessInstance(args: GetServerlessInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetServerlessInstanceResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getServerlessInstance:getServerlessInstance", {
+        "continuousBackupEnabled": args.continuousBackupEnabled,
         "links": args.links,
         "name": args.name,
         "projectId": args.projectId,
@@ -42,6 +41,10 @@ export function getServerlessInstance(args: GetServerlessInstanceArgs, opts?: pu
  * A collection of arguments for invoking getServerlessInstance.
  */
 export interface GetServerlessInstanceArgs {
+    /**
+     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     */
+    continuousBackupEnabled?: boolean;
     links?: inputs.GetServerlessInstanceLink[];
     /**
      * Human-readable label that identifies your serverless instance.
@@ -65,6 +68,10 @@ export interface GetServerlessInstanceResult {
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      */
     readonly connectionStringsStandardSrv: string;
+    /**
+     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     */
+    readonly continuousBackupEnabled: boolean;
     readonly createDate: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the serverless instance.
@@ -93,16 +100,42 @@ export interface GetServerlessInstanceResult {
      * Stage of deployment of this serverless instance when the resource made its request.
      */
     readonly stateName: string;
+    /**
+     * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     */
+    readonly terminationProtectionEnabled: boolean;
 }
-
+/**
+ * `mongodbatlas.ServerlessInstance` describe a single serverless instance. This represents a single serverless instance that have been created.
+ * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
+ * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ * ### Basic
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testTwo = mongodbatlas.getServerlessInstance({
+ *     name: "<SERVERLESS_INSTANCE_NAME>",
+ *     projectId: "<PROJECT_ID >",
+ * });
+ * ```
+ */
 export function getServerlessInstanceOutput(args: GetServerlessInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerlessInstanceResult> {
-    return pulumi.output(args).apply(a => getServerlessInstance(a, opts))
+    return pulumi.output(args).apply((a: any) => getServerlessInstance(a, opts))
 }
 
 /**
  * A collection of arguments for invoking getServerlessInstance.
  */
 export interface GetServerlessInstanceOutputArgs {
+    /**
+     * Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     */
+    continuousBackupEnabled?: pulumi.Input<boolean>;
     links?: pulumi.Input<pulumi.Input<inputs.GetServerlessInstanceLinkArgs>[]>;
     /**
      * Human-readable label that identifies your serverless instance.

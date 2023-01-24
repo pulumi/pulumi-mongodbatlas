@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, GetCloudProviderAccessSetupOutputArgs{
+//			_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
 //				ProjectId:    testRole.ProjectId,
 //				ProviderName: testRole.ProviderName,
 //				RoleId:       testRole.RoleId,

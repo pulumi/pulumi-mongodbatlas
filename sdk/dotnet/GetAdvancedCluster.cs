@@ -12,17 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetAdvancedCluster
     {
         /// <summary>
-        /// ## --
-        /// 
-        /// layout: "mongodbatlas"
-        /// page_title: "MongoDB Atlas: advanced_cluster"
-        /// sidebar_current: "docs-mongodbatlas-datasource-advanced-cluster"
-        /// description: |-
-        ///     Describe an Advanced Cluster.
-        /// --
-        /// 
-        /// # Data Source: mongodbatlas.AdvancedCluster
-        /// 
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -32,20 +21,9 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// </summary>
         public static Task<GetAdvancedClusterResult> InvokeAsync(GetAdvancedClusterArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## --
-        /// 
-        /// layout: "mongodbatlas"
-        /// page_title: "MongoDB Atlas: advanced_cluster"
-        /// sidebar_current: "docs-mongodbatlas-datasource-advanced-cluster"
-        /// description: |-
-        ///     Describe an Advanced Cluster.
-        /// --
-        /// 
-        /// # Data Source: mongodbatlas.AdvancedCluster
-        /// 
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -55,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// </summary>
         public static Output<GetAdvancedClusterResult> Invoke(GetAdvancedClusterInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -180,6 +158,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string StateName;
         /// <summary>
+        /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        /// </summary>
+        public readonly bool TerminationProtectionEnabled;
+        /// <summary>
         /// Release cadence that Atlas uses for this cluster.
         /// </summary>
         public readonly string VersionReleaseSystem;
@@ -224,6 +206,8 @@ namespace Pulumi.Mongodbatlas
 
             string stateName,
 
+            bool terminationProtectionEnabled,
+
             string versionReleaseSystem)
         {
             AdvancedConfigurations = advancedConfigurations;
@@ -245,6 +229,7 @@ namespace Pulumi.Mongodbatlas
             ReplicationSpecs = replicationSpecs;
             RootCertType = rootCertType;
             StateName = stateName;
+            TerminationProtectionEnabled = terminationProtectionEnabled;
             VersionReleaseSystem = versionReleaseSystem;
         }
     }

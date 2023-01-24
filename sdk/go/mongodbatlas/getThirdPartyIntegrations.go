@@ -47,7 +47,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupThirdPartyIntegrationsOutput(ctx, GetThirdPartyIntegrationsOutputArgs{
+//			_ = mongodbatlas.LookupThirdPartyIntegrationsOutput(ctx, mongodbatlas.GetThirdPartyIntegrationsOutputArgs{
 //				ProjectId: testPagerDuty.ProjectId,
 //			}, nil)
 //			return nil

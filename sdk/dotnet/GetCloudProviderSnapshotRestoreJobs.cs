@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
         public static Task<GetCloudProviderSnapshotRestoreJobsResult> InvokeAsync(GetCloudProviderSnapshotRestoreJobsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsArgs(), options.WithDefaults());
 
         /// <summary>
         /// **WARNING:** This datasource is deprecated, use `mongodbatlas_cloud_backup_snapshots_restore_jobs`
@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// </summary>
         public static Output<GetCloudProviderSnapshotRestoreJobsResult> Invoke(GetCloudProviderSnapshotRestoreJobsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCloudProviderSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudProviderSnapshotRestoreJobs:getCloudProviderSnapshotRestoreJobs", args ?? new GetCloudProviderSnapshotRestoreJobsInvokeArgs(), options.WithDefaults());
     }
 
 

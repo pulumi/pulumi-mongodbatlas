@@ -140,6 +140,12 @@ namespace Pulumi.Mongodbatlas
         [Output("projectOwnerId")]
         public Output<string?> ProjectOwnerId { get; private set; } = null!;
 
+        /// <summary>
+        /// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        /// </summary>
+        [Output("regionUsageRestrictions")]
+        public Output<string> RegionUsageRestrictions { get; private set; } = null!;
+
         [Output("teams")]
         public Output<ImmutableArray<Outputs.ProjectTeam>> Teams { get; private set; } = null!;
 
@@ -251,6 +257,12 @@ namespace Pulumi.Mongodbatlas
         [Input("projectOwnerId")]
         public Input<string>? ProjectOwnerId { get; set; }
 
+        /// <summary>
+        /// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        /// </summary>
+        [Input("regionUsageRestrictions")]
+        public Input<string>? RegionUsageRestrictions { get; set; }
+
         [Input("teams")]
         private InputList<Inputs.ProjectTeamArgs>? _teams;
         public InputList<Inputs.ProjectTeamArgs> Teams
@@ -340,6 +352,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectOwnerId")]
         public Input<string>? ProjectOwnerId { get; set; }
+
+        /// <summary>
+        /// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
+        /// </summary>
+        [Input("regionUsageRestrictions")]
+        public Input<string>? RegionUsageRestrictions { get; set; }
 
         [Input("teams")]
         private InputList<Inputs.ProjectTeamGetArgs>? _teams;

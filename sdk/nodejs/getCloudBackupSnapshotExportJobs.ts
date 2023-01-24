@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -39,11 +40,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCloudBackupSnapshotExportJobs(args: GetCloudBackupSnapshotExportJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotExportJobsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs", {
         "clusterName": args.clusterName,
         "itemsPerPage": args.itemsPerPage,
@@ -95,9 +93,41 @@ export interface GetCloudBackupSnapshotExportJobsResult {
     readonly results: outputs.GetCloudBackupSnapshotExportJobsResult[];
     readonly totalCount: number;
 }
-
+/**
+ * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshotExportBucket = new mongodbatlas.CloudBackupSnapshotExportBucket("testCloudBackupSnapshotExportBucket", {
+ *     projectId: "{PROJECT_ID}",
+ *     iamRoleId: "{IAM_ROLE_ID}",
+ *     bucketName: "example_bucket",
+ *     cloudProvider: "AWS",
+ * });
+ * const testCloudBackupSnapshotExportJob = new mongodbatlas.CloudBackupSnapshotExportJob("testCloudBackupSnapshotExportJob", {
+ *     projectId: "{PROJECT_ID}",
+ *     clusterName: "{CLUSTER_NAME}",
+ *     snapshotId: "{SNAPSHOT_ID}",
+ *     exportBucketId: testCloudBackupSnapshotExportBucket.exportBucketId,
+ *     customDatas: [{
+ *         key: "exported by",
+ *         value: "myName",
+ *     }],
+ * });
+ * const testCloudBackupSnapshotExportJobs = mongodbatlas.getCloudBackupSnapshotExportJobs({
+ *     projectId: "{PROJECT_ID}",
+ *     clusterName: "{CLUSTER_NAME}",
+ * });
+ * ```
+ */
 export function getCloudBackupSnapshotExportJobsOutput(args: GetCloudBackupSnapshotExportJobsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCloudBackupSnapshotExportJobsResult> {
-    return pulumi.output(args).apply(a => getCloudBackupSnapshotExportJobs(a, opts))
+    return pulumi.output(args).apply((a: any) => getCloudBackupSnapshotExportJobs(a, opts))
 }
 
 /**

@@ -38,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupPrivatelinkEndpointsServiceAdlOutput(ctx, GetPrivatelinkEndpointsServiceAdlOutputArgs{
+//			_ = mongodbatlas.LookupPrivatelinkEndpointsServiceAdlOutput(ctx, mongodbatlas.GetPrivatelinkEndpointsServiceAdlOutputArgs{
 //				ProjectId: adlTest.ProjectId,
 //			}, nil)
 //			return nil

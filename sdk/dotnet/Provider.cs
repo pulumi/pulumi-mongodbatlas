@@ -18,6 +18,15 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("pulumi:providers:mongodbatlas")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
+        [Output("awsAccessKeyId")]
+        public Output<string?> AwsAccessKeyId { get; private set; } = null!;
+
+        [Output("awsSecretAccessKey")]
+        public Output<string?> AwsSecretAccessKey { get; private set; } = null!;
+
+        [Output("awsSessionToken")]
+        public Output<string?> AwsSessionToken { get; private set; } = null!;
+
         /// <summary>
         /// MongoDB Atlas Base URL
         /// </summary>
@@ -42,6 +51,15 @@ namespace Pulumi.Mongodbatlas
         [Output("realmBaseUrl")]
         public Output<string?> RealmBaseUrl { get; private set; } = null!;
 
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
+
+        [Output("secretName")]
+        public Output<string?> SecretName { get; private set; } = null!;
+
+        [Output("stsEndpoint")]
+        public Output<string?> StsEndpoint { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
@@ -60,6 +78,10 @@ namespace Pulumi.Mongodbatlas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "privateKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -70,6 +92,18 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
+        [Input("assumeRole", json: true)]
+        public Input<Inputs.ProviderAssumeRoleArgs>? AssumeRole { get; set; }
+
+        [Input("awsAccessKeyId")]
+        public Input<string>? AwsAccessKeyId { get; set; }
+
+        [Input("awsSecretAccessKey")]
+        public Input<string>? AwsSecretAccessKey { get; set; }
+
+        [Input("awsSessionToken")]
+        public Input<string>? AwsSessionToken { get; set; }
+
         /// <summary>
         /// MongoDB Atlas Base URL
         /// </summary>
@@ -77,10 +111,26 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
+        /// MongoDB Atlas Base URL default to gov
+        /// </summary>
+        [Input("isMongodbgovCloud", json: true)]
+        public Input<bool>? IsMongodbgovCloud { get; set; }
+
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
+        /// <summary>
         /// MongoDB Atlas Programmatic Private Key
         /// </summary>
-        [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// MongoDB Atlas Programmatic Public Key
@@ -93,6 +143,15 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("realmBaseUrl")]
         public Input<string>? RealmBaseUrl { get; set; }
+
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        [Input("secretName")]
+        public Input<string>? SecretName { get; set; }
+
+        [Input("stsEndpoint")]
+        public Input<string>? StsEndpoint { get; set; }
 
         public ProviderArgs()
         {

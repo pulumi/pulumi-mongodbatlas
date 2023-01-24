@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupServerlessInstance(ctx, &GetServerlessInstanceArgs{
+//			_, err := mongodbatlas.LookupServerlessInstance(ctx, &mongodbatlas.LookupServerlessInstanceArgs{
 //				Name:      "<SERVERLESS_INSTANCE_NAME>",
 //				ProjectId: "<PROJECT_ID >",
 //			}, nil)
@@ -53,7 +53,9 @@ func LookupServerlessInstance(ctx *pulumi.Context, args *LookupServerlessInstanc
 
 // A collection of arguments for invoking getServerlessInstance.
 type LookupServerlessInstanceArgs struct {
-	Links []GetServerlessInstanceLink `pulumi:"links"`
+	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+	ContinuousBackupEnabled *bool                       `pulumi:"continuousBackupEnabled"`
+	Links                   []GetServerlessInstanceLink `pulumi:"links"`
 	// Human-readable label that identifies your serverless instance.
 	Name string `pulumi:"name"`
 	// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
@@ -66,7 +68,9 @@ type LookupServerlessInstanceArgs struct {
 type LookupServerlessInstanceResult struct {
 	// Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 	ConnectionStringsStandardSrv string `pulumi:"connectionStringsStandardSrv"`
-	CreateDate                   string `pulumi:"createDate"`
+	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+	ContinuousBackupEnabled bool   `pulumi:"continuousBackupEnabled"`
+	CreateDate              string `pulumi:"createDate"`
 	// Unique 24-hexadecimal digit string that identifies the serverless instance.
 	Id    string                      `pulumi:"id"`
 	Links []GetServerlessInstanceLink `pulumi:"links"`
@@ -82,6 +86,8 @@ type LookupServerlessInstanceResult struct {
 	ProviderSettingsRegionName string `pulumi:"providerSettingsRegionName"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName string `pulumi:"stateName"`
+	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
 }
 
 func LookupServerlessInstanceOutput(ctx *pulumi.Context, args LookupServerlessInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupServerlessInstanceResultOutput {
@@ -99,7 +105,9 @@ func LookupServerlessInstanceOutput(ctx *pulumi.Context, args LookupServerlessIn
 
 // A collection of arguments for invoking getServerlessInstance.
 type LookupServerlessInstanceOutputArgs struct {
-	Links GetServerlessInstanceLinkArrayInput `pulumi:"links"`
+	// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+	ContinuousBackupEnabled pulumi.BoolPtrInput                 `pulumi:"continuousBackupEnabled"`
+	Links                   GetServerlessInstanceLinkArrayInput `pulumi:"links"`
 	// Human-readable label that identifies your serverless instance.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
@@ -130,6 +138,11 @@ func (o LookupServerlessInstanceResultOutput) ToLookupServerlessInstanceResultOu
 // Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
 func (o LookupServerlessInstanceResultOutput) ConnectionStringsStandardSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessInstanceResult) string { return v.ConnectionStringsStandardSrv }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+func (o LookupServerlessInstanceResultOutput) ContinuousBackupEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupServerlessInstanceResult) bool { return v.ContinuousBackupEnabled }).(pulumi.BoolOutput)
 }
 
 func (o LookupServerlessInstanceResultOutput) CreateDate() pulumi.StringOutput {
@@ -176,6 +189,11 @@ func (o LookupServerlessInstanceResultOutput) ProviderSettingsRegionName() pulum
 // Stage of deployment of this serverless instance when the resource made its request.
 func (o LookupServerlessInstanceResultOutput) StateName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessInstanceResult) string { return v.StateName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+func (o LookupServerlessInstanceResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupServerlessInstanceResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
 }
 
 func init() {

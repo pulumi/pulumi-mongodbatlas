@@ -99,7 +99,7 @@ export class CloudProviderSnapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly storageSizeBytes!: pulumi.Output<number>;
     /**
-     * The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+     * The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
      */
     public readonly timeout!: pulumi.Output<string | undefined>;
     /**
@@ -221,7 +221,7 @@ export interface CloudProviderSnapshotState {
      */
     storageSizeBytes?: pulumi.Input<number>;
     /**
-     * The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+     * The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
      */
     timeout?: pulumi.Input<string>;
     /**
@@ -251,7 +251,7 @@ export interface CloudProviderSnapshotArgs {
      */
     retentionInDays: pulumi.Input<number>;
     /**
-     * The duration of time to wait to finish the on-demand snapshot. The timeout value is definded by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
+     * The duration of time to wait to finish the on-demand snapshot. The timeout value is defined by a signed sequence of decimal numbers with an time unit suffix such as: `1h45m`, `300s`, `10m`, .... The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. Default value for the timeout is `10m`
      */
     timeout?: pulumi.Input<string>;
 }

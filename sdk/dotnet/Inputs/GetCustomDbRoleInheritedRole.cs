@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class GetCustomDbRoleInheritedRoleArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// (Required) Database on which the inherited role is granted.
+        /// </summary>
         [Input("databaseName", required: true)]
         public string DatabaseName { get; set; } = null!;
 

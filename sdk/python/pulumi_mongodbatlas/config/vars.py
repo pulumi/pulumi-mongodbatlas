@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 import types
 
@@ -16,11 +17,34 @@ __config__ = pulumi.Config('mongodbatlas')
 
 class _ExportableConfig(types.ModuleType):
     @property
+    def assume_role(self) -> Optional[str]:
+        return __config__.get('assumeRole')
+
+    @property
+    def aws_access_key_id(self) -> Optional[str]:
+        return __config__.get('awsAccessKeyId')
+
+    @property
+    def aws_secret_access_key(self) -> Optional[str]:
+        return __config__.get('awsSecretAccessKey')
+
+    @property
+    def aws_session_token(self) -> Optional[str]:
+        return __config__.get('awsSessionToken')
+
+    @property
     def base_url(self) -> Optional[str]:
         """
         MongoDB Atlas Base URL
         """
         return __config__.get('baseUrl')
+
+    @property
+    def is_mongodbgov_cloud(self) -> Optional[bool]:
+        """
+        MongoDB Atlas Base URL default to gov
+        """
+        return __config__.get_bool('isMongodbgovCloud')
 
     @property
     def private_key(self) -> Optional[str]:
@@ -42,4 +66,16 @@ class _ExportableConfig(types.ModuleType):
         MongoDB Realm Base URL
         """
         return __config__.get('realmBaseUrl')
+
+    @property
+    def region(self) -> Optional[str]:
+        return __config__.get('region')
+
+    @property
+    def secret_name(self) -> Optional[str]:
+        return __config__.get('secretName')
+
+    @property
+    def sts_endpoint(self) -> Optional[str]:
+        return __config__.get('stsEndpoint')
 

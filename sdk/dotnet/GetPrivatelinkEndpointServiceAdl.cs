@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPrivatelinkEndpointServiceAdlResult> InvokeAsync(GetPrivatelinkEndpointServiceAdlArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceAdlResult>("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", args ?? new GetPrivatelinkEndpointServiceAdlArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivatelinkEndpointServiceAdlResult>("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", args ?? new GetPrivatelinkEndpointServiceAdlArgs(), options.WithDefaults());
 
         /// <summary>
         /// `privatelink_endpoint_service_adl` Provides an Atlas Data Lake (ADL) and Online Archive PrivateLink endpoint resource.
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPrivatelinkEndpointServiceAdlResult> Invoke(GetPrivatelinkEndpointServiceAdlInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceAdlResult>("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", args ?? new GetPrivatelinkEndpointServiceAdlInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPrivatelinkEndpointServiceAdlResult>("mongodbatlas:index/getPrivatelinkEndpointServiceAdl:getPrivatelinkEndpointServiceAdl", args ?? new GetPrivatelinkEndpointServiceAdlInvokeArgs(), options.WithDefaults());
     }
 
 

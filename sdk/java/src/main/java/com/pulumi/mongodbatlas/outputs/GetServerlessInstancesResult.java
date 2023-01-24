@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstancesResultLink;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,11 @@ public final class GetServerlessInstancesResult {
      * 
      */
     private String connectionStringsStandardSrv;
+    /**
+     * @return Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * 
+     */
+    private Boolean continuousBackupEnabled;
     private String createDate;
     /**
      * @return Unique 24-hexadecimal digit string that identifies the serverless instance.
@@ -58,6 +64,11 @@ public final class GetServerlessInstancesResult {
      * 
      */
     private String stateName;
+    /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    private Boolean terminationProtectionEnabled;
 
     private GetServerlessInstancesResult() {}
     /**
@@ -66,6 +77,13 @@ public final class GetServerlessInstancesResult {
      */
     public String connectionStringsStandardSrv() {
         return this.connectionStringsStandardSrv;
+    }
+    /**
+     * @return Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
+     * 
+     */
+    public Boolean continuousBackupEnabled() {
+        return this.continuousBackupEnabled;
     }
     public String createDate() {
         return this.createDate;
@@ -129,6 +147,13 @@ public final class GetServerlessInstancesResult {
     public String stateName() {
         return this.stateName;
     }
+    /**
+     * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+     * 
+     */
+    public Boolean terminationProtectionEnabled() {
+        return this.terminationProtectionEnabled;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -140,6 +165,7 @@ public final class GetServerlessInstancesResult {
     @CustomType.Builder
     public static final class Builder {
         private String connectionStringsStandardSrv;
+        private Boolean continuousBackupEnabled;
         private String createDate;
         private String id;
         private List<GetServerlessInstancesResultLink> links;
@@ -150,10 +176,12 @@ public final class GetServerlessInstancesResult {
         private String providerSettingsProviderName;
         private String providerSettingsRegionName;
         private String stateName;
+        private Boolean terminationProtectionEnabled;
         public Builder() {}
         public Builder(GetServerlessInstancesResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectionStringsStandardSrv = defaults.connectionStringsStandardSrv;
+    	      this.continuousBackupEnabled = defaults.continuousBackupEnabled;
     	      this.createDate = defaults.createDate;
     	      this.id = defaults.id;
     	      this.links = defaults.links;
@@ -164,11 +192,17 @@ public final class GetServerlessInstancesResult {
     	      this.providerSettingsProviderName = defaults.providerSettingsProviderName;
     	      this.providerSettingsRegionName = defaults.providerSettingsRegionName;
     	      this.stateName = defaults.stateName;
+    	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
         }
 
         @CustomType.Setter
         public Builder connectionStringsStandardSrv(String connectionStringsStandardSrv) {
             this.connectionStringsStandardSrv = Objects.requireNonNull(connectionStringsStandardSrv);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder continuousBackupEnabled(Boolean continuousBackupEnabled) {
+            this.continuousBackupEnabled = Objects.requireNonNull(continuousBackupEnabled);
             return this;
         }
         @CustomType.Setter
@@ -224,9 +258,15 @@ public final class GetServerlessInstancesResult {
             this.stateName = Objects.requireNonNull(stateName);
             return this;
         }
+        @CustomType.Setter
+        public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
+            this.terminationProtectionEnabled = Objects.requireNonNull(terminationProtectionEnabled);
+            return this;
+        }
         public GetServerlessInstancesResult build() {
             final var o = new GetServerlessInstancesResult();
             o.connectionStringsStandardSrv = connectionStringsStandardSrv;
+            o.continuousBackupEnabled = continuousBackupEnabled;
             o.createDate = createDate;
             o.id = id;
             o.links = links;
@@ -237,6 +277,7 @@ public final class GetServerlessInstancesResult {
             o.providerSettingsProviderName = providerSettingsProviderName;
             o.providerSettingsRegionName = providerSettingsRegionName;
             o.stateName = stateName;
+            o.terminationProtectionEnabled = terminationProtectionEnabled;
             return o;
         }
     }

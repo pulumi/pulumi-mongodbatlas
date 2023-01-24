@@ -15,13 +15,13 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
         /// </summary>
         public static Task<GetOrgInvitationResult> InvokeAsync(GetOrgInvitationArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOrgInvitationResult>("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args ?? new GetOrgInvitationArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrgInvitationResult>("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args ?? new GetOrgInvitationArgs(), options.WithDefaults());
 
         /// <summary>
         /// `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
         /// </summary>
         public static Output<GetOrgInvitationResult> Invoke(GetOrgInvitationInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOrgInvitationResult>("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args ?? new GetOrgInvitationInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrgInvitationResult>("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args ?? new GetOrgInvitationInvokeArgs(), options.WithDefaults());
     }
 
 
