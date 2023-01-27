@@ -59,6 +59,7 @@ func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
 	p := shimv2.NewProvider(mongodbatlas.Provider())
 
+	trueValue := true
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
@@ -69,7 +70,10 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-mongodbatlas",
 		GitHubOrg:   "mongodb",
-		Config:      map[string]*tfbridge.SchemaInfo{},
+		Config: map[string]*tfbridge.SchemaInfo{
+			"private_key": {MarkAsOptional: &trueValue},
+			"public_key":  {MarkAsOptional: &trueValue},
+		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"mongodbatlas_custom_db_role": {Tok: makeResource(mainMod, "CustomDbRole")},
 			"mongodbatlas_custom_dns_configuration_cluster_aws": {
