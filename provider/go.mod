@@ -2,13 +2,10 @@ module github.com/pulumi/pulumi-mongodbatlas/provider/v3
 
 go 1.18
 
-replace (
-	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
-	github.com/mongodb/terraform-provider-mongodbatlas => github.com/pulumi/terraform-provider-mongodbatlas v0.5.1-0.20230124211744-6052f49210f8
-)
+replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
 
 require (
-	github.com/mongodb/terraform-provider-mongodbatlas v1.4.6
+	github.com/mongodb/terraform-provider-mongodbatlas v1.7.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.38.1
 	github.com/pulumi/pulumi/sdk/v3 v3.51.0
 )
